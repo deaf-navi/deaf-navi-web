@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T13:13:08.809Z",
+  "generatedAt": "2026-05-09T13:14:52.305Z",
   "variant": "world",
   "count": 600,
   "regions": {
@@ -21,24 +21,24 @@
   },
   "quality": {
     "version": "world-v1",
-    "rawCount": 1841,
+    "rawCount": 1830,
     "dedupedCount": 600,
     "maxArticles": 600,
     "minScore": 8,
     "queryCount": 155,
     "translationProvider": "Codex app server + translate.googleapis.com",
     "regionCounts": {
-      "europe_cis": 174,
-      "asia_oceania": 159,
-      "middle_east_africa": 110,
-      "americas": 157
+      "europe_cis": 176,
+      "asia_oceania": 163,
+      "middle_east_africa": 106,
+      "americas": 155
     },
     "topicCounts": {
-      "health": 179,
-      "accessibility": 194,
-      "culture": 33,
-      "rights": 28,
-      "education": 68,
+      "health": 181,
+      "accessibility": 193,
+      "culture": 30,
+      "rights": 31,
+      "education": 67,
       "technology": 35,
       "sports": 60,
       "safety": 3
@@ -51,40 +51,40 @@
       "RTE.ie": 17,
       "NZ Herald": 9,
       "USA Today": 18,
-      "The Times of India": 50,
+      "The Times of India": 52,
       "Daily Maverick": 3,
-      "SBS Australia": 3,
+      "SBS Australia": 4,
       "thecanary.co": 1,
-      "CTV News": 23,
-      "CBS News": 25,
+      "CTV News": 26,
+      "CBS News": 21,
       "The Globe and Mail": 11,
       "Global News": 4,
-      "The Independent": 38,
+      "The Independent": 39,
       "Reuters": 6,
       "The Jerusalem Post": 7,
-      "Punch Newspapers": 11,
+      "Punch Newspapers": 10,
       "ABC News - Breaking News, Latest News and Videos": 3,
       "NBC News": 3,
       "Daily Nation": 25,
       "NPR": 8,
-      "The Indian Express": 10,
+      "The Indian Express": 11,
       "Morocco World News": 6,
       "Daily Monitor": 13,
       "AP News": 8,
       "SMH.com.au": 4,
       "The Korea Herald": 3,
       "CNA": 3,
-      "Taipei Times": 3,
-      "CNA Lifestyle": 2,
+      "Taipei Times": 4,
+      "CNA Lifestyle": 1,
       "The Korea Times": 6,
-      "allAfrica.com": 9,
+      "allAfrica.com": 8,
       "CBC": 29,
       "ABC iview": 4,
       "Financial Times": 2,
       "The New York Times": 16,
       "The Japan Times": 8,
       "Los Angeles Times": 3,
-      "Arab News": 10,
+      "Arab News": 9,
       "RNZ": 7,
       "Haaretz": 1,
       "The Straits Times": 13,
@@ -96,9 +96,7 @@
       "Bills Wire": 1,
       "Services Australia": 1,
       "The Guardian Nigeria News": 7,
-      "The Eastleigh Voice": 1,
       "DW.com": 2,
-      "Roll Tide Wire": 1,
       "SWI swissinfo.ch": 1,
       "Nature": 1,
       "The National": 1,
@@ -109,20 +107,21 @@
       "APTN News": 1,
       "Stuff": 3,
       "The Times of Israel": 1,
+      "Gulf News": 1,
       "Wits University": 1,
       "eNCA": 1,
-      "The New Arab": 1,
       "Sky News": 2,
       "News.com.au": 1,
       "Pacific University": 1,
+      "The Kyiv Independent": 1,
       "Euronews.com": 1,
       "American Academy of Family Physicians | AAFP": 1,
       "Simple Flying": 1,
-      "Doha News | Qatar": 1
+      "World Bank Blogs": 1
     },
     "sourceModeCounts": {
-      "major-media": 576,
-      "regional-broad": 24
+      "major-media": 575,
+      "regional-broad": 25
     }
   },
   "articles": [
@@ -716,6 +715,30 @@
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "technology",
       "topicLabel": "技術・AI",
+      "curationScore": 29,
+      "curationSignals": [
+        "deaf child",
+        "deaf children",
+        "sign language"
+      ],
+      "sourceDomain": "bbc.co.uk",
+      "sourcePriority": 50,
+      "sourceMode": "regional-broad",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5VeHp1Y2FNWFdHUVFwOV9BUnlvLTdwVXdxZFoxbjg5eU9SMmZ6ZVdKelVnQ21aYWtHcWdyT0tVZlRsVVFGS2FiQTJtUjhPd0tNd2o2cUhZYzVZMVRQ?oc=5",
+      "title": "NI、英国で初めて聴覚障害のある子供たちに無料の手話クラスを提供",
+      "summary": "NI、英国で初めて聴覚障害のある子供たちに無料の手話クラスを提供",
+      "originalTitle": "NI to be first part of UK to offer free sign language classes for deaf children",
+      "originalSummary": "NI to be first part of UK to offer free sign language classes for deaf children",
+      "sourceName": "BBC",
+      "sourceUrl": "https://www.bbc.co.uk",
+      "publishedAt": "2026-04-28T07:00:00.000Z",
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "education",
+      "topicLabel": "教育",
       "curationScore": 29,
       "curationSignals": [
         "deaf child",
@@ -1531,6 +1554,29 @@
       "sourceDomain": "independent.co.uk",
       "sourcePriority": 78,
       "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOVFJrSllsamh3SmNoZXo3NXdxSVFCLUVId21VVndpbmRQLUZOempXTGFNempNUDA3RDdlbzU4YV9Ka1BzWHJkWkZLdVhmYWY2ZndEdkFCVE9RRUtBSUV4QjdlWTBIUmg0bFNxOW1UTUlLUWdwYzU1N2dIMDJZSlBlYV96RWhHWE1PcndZNTlLVGZKS0dkbndtV3F4NEVmOUM3TXFyWkUzb1ZQOW9LUVVnMGRYY0EzZXNEUVB1VXRfR0J1RGR1QVdDUDN3LWk2aEJ5cUxva1JtWmhRVXZT0gHiAUFVX3lxTFB0OTRPekZuM3UxODBKcUt2eEN1WlQtQzN4clRXYU5ad3p3VUFzd0hQQ2E3TzBOV2VUU0tnRWFyYV84ZkhVbWpwcW1xSUpFQ18zaUFmdlJhQ2I5Rlg5R2dxZEdTMmlnYWxtdGExUkp3OHlhRmdSWTVPSnMteERuOEdSalFGTURmTkJJVGZtamtualh6Qm0waDNrOFlEdHhhVzlxTExkRHQ3OUgzLVVDeWhJaEVKRkU0dVQ1WlE4blpXMFN6ZUNzRmswVWN5VGNNdTU0X2Z5UVVacHNjRjRnejlIS2c?oc=5",
+      "title": "スマート人工内耳は 4 歳児が初めて音を聞くのに役立ちます",
+      "summary": "スマート人工内耳は 4 歳児が初めて音を聞くのに役立ちます",
+      "originalTitle": "Smart cochlear implant helps four- year-old hear sound for the first time",
+      "originalSummary": "Smart cochlear implant helps four- year-old hear sound for the first time",
+      "sourceName": "The Times of India",
+      "sourceUrl": "https://timesofindia.indiatimes.com",
+      "publishedAt": "2026-04-04T07:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 18,
+      "curationSignals": [
+        "cochlear implant",
+        "major-media"
+      ],
+      "sourceDomain": "timesofindia.indiatimes.com",
+      "sourcePriority": 76,
+      "sourceMode": "regional-broad",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
@@ -2970,6 +3016,29 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPNnFaT2VSdzZPVXZXaGpHYXlFeVM2YjhjV0VQckh6bFZLMG50aUt2Tm5xd19UVXgzV29Dc29jODMzLVdXdnpxa2VUUGhnUHRaczRXWDdIZ0ItLXNlY3h5WDdqcW9SVmI3eVRoN29lMzZfSVR3SG8weEhyUVZOaWdPRVVMMnRFUUE1cjVMOFlyOA?oc=5",
+      "title": "あなたの補聴器はどのくらい持続しますか?",
+      "summary": "あなたの補聴器はどのくらい持続しますか?",
+      "originalTitle": "How long will your hearing aid last?",
+      "originalSummary": "How long will your hearing aid last?",
+      "sourceName": "CTV News",
+      "sourceUrl": "https://www.ctvnews.ca",
+      "publishedAt": "2026-02-23T08:00:00.000Z",
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 23,
+      "curationSignals": [
+        "hearing aid",
+        "major-media"
+      ],
+      "sourceDomain": "ctvnews.ca",
+      "sourcePriority": 82,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQRXN5SjFYMmxIOW1FUHJKd0xNMzZnZ3J0WnVuVnc5Nkxoc21MbnE2LWtzOVBnY3JnZFVDWmJXMFNDZm50M19idm9FRjJ2SjFTMk95ZngwUjl1S3RzTkI5akhaM3VWRHdfNmU5M2wxRmxLMFVyeE9WNVJHNFh5aGtWRzhybHV0a0ZHUzFPUHp3LVRhdTR3c3VMTnNTbVE4WFUwU25uaE5oR2JKVWMtSTN0aXRYam5iYXhYUFlQb2hRS0JRTFhpTmtnZ2ZXRUZ3Zw?oc=5",
       "title": "シンガポールの高齢者の3人に1人以上が未診断の眼疾患を患っています。 5人に1人が重度の難聴を患っている：研究",
       "summary": "シンガポールの高齢者の3人に1人以上が未診断の眼疾患を患っています。 5人に1人が重度の難聴を患っている：研究",
@@ -3039,26 +3108,26 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQZGtDb0o2UzlHc1B1dzlXaGs5WTdiXzZ3a1A4NG1tc3JOcVZtSG84TTBnN0lyR2xVSFhjOHQwT3RJbFNQVU93Sk9KekVFdHBWWTBWNG5xckVZN0dIMHJSN1kyTVlZb1IyQm5UOGJpQ0hnbHJnVWZJcTNLSDhTdUJTc1Q4VUFuUkRKb25meS1hRERtbUlrbGpFWDdZVDFELW9pTk9SUA?oc=5",
-      "title": "研究者らは難聴と認知機能低下の関連性を調査している",
-      "summary": "研究者らは難聴と認知機能低下の関連性を調査している",
-      "originalTitle": "Researchers examine link between hearing loss, cognitive decline",
-      "originalSummary": "Researchers examine link between hearing loss, cognitive decline",
-      "sourceName": "CBS News",
-      "sourceUrl": "https://www.cbsnews.com",
-      "publishedAt": "2026-02-17T08:00:00.000Z",
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
+      "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNOVd5V0QwbGJnNlF2N2hIRk03d2o1R3o2Nmc3djlEWGtGWmZicnBJQU5yS1RuWWVVallYWXJna0JPOS1NeFN1Zm00WGowX2FBb1ZaMWxSRktrdi1MYXc3M0xPTG5VVVl5Y1dSWDBPODhqb1J4a25IaW9EQTl2S0dVdlJtZ29mNkhKSmRJRFdfSU4wNzFZSlJNeFZFRE9lWUdKaGJ1Y3IydHBQWmcxdW02WWxnbkhJZkQzcm51VEdEZEMxWjlsWUJVVXFB0gHPAUFVX3lxTFBpbVpkZE9aWmNpRzRtcUdNOWV6Sm5xOERkVUYwWUN0MzluNnFoNmlBTGNoNEx0NXRCbk03SHplUk1SWFlqRWk0eWtyaVRCNkRuQlFNcHRVSFFCVkVTcHJ2bVV3RFRSNXI5TW5ncFJyZVJDdDFLaXpvUGo0MG1heE9UbXR0ZEFxNEhxM1lLUFpRVzUyb0tnQmpnMDctcENrbUdwcTRFYk1ubmdCQllYNVp4N1ZkMG92cUpESzR1Z2FkcjR0M1lXRGlob3RuR09jdw?oc=5",
+      "title": "カーンプールで17人の子供が人工内耳手術を受ける",
+      "summary": "カーンプールで17人の子供が人工内耳手術を受ける",
+      "originalTitle": "17 children to undergo cochlear implant surgery in Kanpur",
+      "originalSummary": "17 children to undergo cochlear implant surgery in Kanpur",
+      "sourceName": "The Times of India",
+      "sourceUrl": "https://timesofindia.indiatimes.com",
+      "publishedAt": "2026-02-18T08:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 18,
       "curationSignals": [
-        "hearing loss",
+        "cochlear implant",
         "major-media"
       ],
-      "sourceDomain": "cbsnews.com",
-      "sourcePriority": 84,
-      "sourceMode": "major-media",
+      "sourceDomain": "timesofindia.indiatimes.com",
+      "sourcePriority": 76,
+      "sourceMode": "regional-broad",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
@@ -3095,8 +3164,8 @@
       "publishedAt": "2026-02-15T08:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
-      "topic": "culture",
-      "topicLabel": "文化・社会",
+      "topic": "rights",
+      "topicLabel": "権利・制度",
       "curationScore": 21,
       "curationSignals": [
         "deaf people",
@@ -3104,29 +3173,6 @@
       ],
       "sourceDomain": "abc.net.au",
       "sourcePriority": 95,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORXo3alUyN3JhQjRweVpldFVjcTJQTk1XQ3FaRjRIcG03eEdSSnRZOEY2SndZSEU0MmoyLUhmYXBacFdSMjRzM19oQkZJMkdxcnlBQ2R3X3JmRXRJZm90YjdkR0JkdnpZUEpLbmpzQy1JSldOV0UzY195OUhuR0lXY1lYdThzTVp1UzZSZ2FMeGNNUlNrOEh4QmlaZkdMWjM2dGpOQUVzNS1PQ3RMMDdpVWIteFdkUkdVSVJfY1UtMTFHTWpCc0dpTzFvT3JsaF85WVpmeXdRNjhSVGRn0gHiAUFVX3lxTE5HWEhrUnppSmlsb0xmcDhkWmVfLTh0NE1xc0ZQSmU1dHp2N2ozNlZleGJubmNQemU4Q1RWakFHTm5JZFJIVXNkVGNlNGFfZ29HNkVPdVVLai1SOGFzZml3MFJobXl5R2tfRlJsRlgzWFlIdm92N0t0TWR4dldxeEVud1FDVmlvRUpqN3FVZmFGajVhSHdocDNLZjRweHJIOVdIWGFEZlY0eXpaQVZCSFEzTjlfN05vT1pCUE9ySm8tRE96eFVPRkdDRDdCNE4tSHJLM182bzB0ZXRUaDcxOU9tTVE?oc=5",
-      "title": "イシャ・マハシヴラトリ 2026 が手話通訳付きでライブストリーミングされる",
-      "summary": "イシャ・マハシヴラトリ 2026 が手話通訳付きでライブストリーミングされる",
-      "originalTitle": "Isha Mahashivratri 2026 to be livestreamed with sign language interpretation",
-      "originalSummary": "Isha Mahashivratri 2026 to be livestreamed with sign language interpretation",
-      "sourceName": "The Times of India",
-      "sourceUrl": "https://timesofindia.indiatimes.com",
-      "publishedAt": "2026-02-15T08:00:00.000Z",
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
-      "curationSignals": [
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "timesofindia.indiatimes.com",
-      "sourcePriority": 76,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -3146,6 +3192,29 @@
       "curationScore": 21,
       "curationSignals": [
         "cochlear implant",
+        "major-media"
+      ],
+      "sourceDomain": "timesofindia.indiatimes.com",
+      "sourcePriority": 76,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORXo3alUyN3JhQjRweVpldFVjcTJQTk1XQ3FaRjRIcG03eEdSSnRZOEY2SndZSEU0MmoyLUhmYXBacFdSMjRzM19oQkZJMkdxcnlBQ2R3X3JmRXRJZm90YjdkR0JkdnpZUEpLbmpzQy1JSldOV0UzY195OUhuR0lXY1lYdThzTVp1UzZSZ2FMeGNNUlNrOEh4QmlaZkdMWjM2dGpOQUVzNS1PQ3RMMDdpVWIteFdkUkdVSVJfY1UtMTFHTWpCc0dpTzFvT3JsaF85WVpmeXdRNjhSVGRn0gHiAUFVX3lxTE5HWEhrUnppSmlsb0xmcDhkWmVfLTh0NE1xc0ZQSmU1dHp2N2ozNlZleGJubmNQemU4Q1RWakFHTm5JZFJIVXNkVGNlNGFfZ29HNkVPdVVLai1SOGFzZml3MFJobXl5R2tfRlJsRlgzWFlIdm92N0t0TWR4dldxeEVud1FDVmlvRUpqN3FVZmFGajVhSHdocDNLZjRweHJIOVdIWGFEZlY0eXpaQVZCSFEzTjlfN05vT1pCUE9ySm8tRE96eFVPRkdDRDdCNE4tSHJLM182bzB0ZXRUaDcxOU9tTVE?oc=5",
+      "title": "イシャ・マハシヴラトリ 2026 が手話通訳付きでライブストリーミングされる",
+      "summary": "イシャ・マハシヴラトリ 2026 が手話通訳付きでライブストリーミングされる",
+      "originalTitle": "Isha Mahashivratri 2026 to be livestreamed with sign language interpretation",
+      "originalSummary": "Isha Mahashivratri 2026 to be livestreamed with sign language interpretation",
+      "sourceName": "The Times of India",
+      "sourceUrl": "https://timesofindia.indiatimes.com",
+      "publishedAt": "2026-02-15T08:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 21,
+      "curationSignals": [
+        "sign language",
         "major-media"
       ],
       "sourceDomain": "timesofindia.indiatimes.com",
@@ -3570,29 +3639,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5rb3dWUUMtWDFxTlFWbURBVlVEZGxIVHh2eFktNURHVS1mVTVnTnpXeWNfZEZRSDVMU3lFaDkwYm9admJMdEF4ZmR5ZWVFSDhxWU91c3RQQVNCcXM?oc=5",
-      "title": "ナイジェリア、アフリカ初の手話聖書を制作",
-      "summary": "ナイジェリア、アフリカ初の手話聖書を制作",
-      "originalTitle": "Nigeria Produces Africa's First Sign Language Bible",
-      "originalSummary": "Nigeria Produces Africa's First Sign Language Bible",
-      "sourceName": "allAfrica.com",
-      "sourceUrl": "https://allafrica.com",
-      "publishedAt": "2026-01-26T08:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
-      "curationSignals": [
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "allafrica.com",
-      "sourcePriority": 78,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOZHZRZlBBR3JZRGhuNC14NGRSeElWM1c2OGRVbmYwQ0lKUkpZYS1xRUc2WWtJanR1S285S182Qy15TjQ3NlNjYWxiSXo5WERyc2NzdXpYbWJQUkdMWU85Z3JubDVoQUJtTDExNFBULVFacXNGU2ExcVFQSHpKdmdzdnJWamRMNE43Q0ktZHQ2WFo2QmVNLXVkS0JzUUJxMi1xekp4Z2lmNWs2R29fa2ctaDk0WjY2eDhLckE?oc=5",
       "title": "K-POPスターRain、コンサートで踊らなかった難聴のファンに呼びかけ謝罪",
       "summary": "K-POPスターRain、コンサートで踊らなかった難聴のファンに呼びかけ謝罪",
@@ -3955,31 +4001,6 @@
       "curationScore": 21,
       "curationSignals": [
         "deaf student",
-        "major-media"
-      ],
-      "sourceDomain": "timesofindia.indiatimes.com",
-      "sourcePriority": 76,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMihAJBVV95cUxNekc2cy0xU1J6TlUtU2U3bnlmWFp5eVd3dm9oWG5NVnJEbjNvT3dqUDJPeTdKN3VZcUlzcWg2Mi1TUUpsWE44U1pvWWhjWm85N1hmRFY1QjNjeDVIaDlhSDJQaF9lbzc1S09zb2Mtc1VYeFFzZ1BYZGxkX0tUU0k3LWVqbTdSdWNveUNtdU4zb09RM1pIOUpJejdhM3dTUk54U1o4cmxhTU9EdDRDZ0Mzc1dqeldfWU5RME1tR1RGWnhmcXU2WDBTZ295eEJjWDBXMVhOWDFtT0NUeDVEdmFRa09rN2M1bFlzREJPZndVSFVkd3pDeVVuc2ZyakJCRnBwY1RpeA?oc=5",
-      "title": "革新的な AI メガネがライブ字幕を提供し、聴覚障害者のアクセシビリティを再定義",
-      "summary": "革新的な AI メガネがライブ字幕を提供し、聴覚障害者のアクセシビリティを再定義",
-      "originalTitle": "Game-Changing AI Glasses Deliver Live Subtitles, Redefining Accessibility For Hearing Impaired",
-      "originalSummary": "Game-Changing AI Glasses Deliver Live Subtitles, Redefining Accessibility For Hearing Impaired",
-      "sourceName": "The Times of India",
-      "sourceUrl": "https://timesofindia.indiatimes.com",
-      "publishedAt": "2025-12-22T08:00:00.000Z",
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 37,
-      "curationSignals": [
-        "hearing impaired",
-        "subtitles",
-        "accessibility",
         "major-media"
       ],
       "sourceDomain": "timesofindia.indiatimes.com",
@@ -4518,30 +4539,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNazVsbHl1REVSQ1ZLOU5IZU9GcjhSLU9TU2M1UHZQNXVKLXNGZk1NYUpIa3Rjb256YTd0bV9yUkZQTzd0dGJQUG1yMDJvengtTGtTem0tdnphbEg3QkhmdHN4Um1iSXBtX2dXWklYaWVDRE9zaWUyRVd4cFktYWc1aGxmTFNZNW5IaXNMR2FYRjA4VWRobUFmcGZBZHUyRElFZURpY0ZBMTd1Mi1HWXhCeQ?oc=5",
-      "title": "人工内耳が難聴のベトナム帰還兵の生活を変える",
-      "summary": "人工内耳が難聴のベトナム帰還兵の生活を変える",
-      "originalTitle": "Cochlear implant transforms life of Vietnam veteran with hearing loss",
-      "originalSummary": "Cochlear implant transforms life of Vietnam veteran with hearing loss",
-      "sourceName": "CBS News",
-      "sourceUrl": "https://www.cbsnews.com",
-      "publishedAt": "2025-11-25T08:00:00.000Z",
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 29,
-      "curationSignals": [
-        "cochlear implant",
-        "hearing loss",
-        "major-media"
-      ],
-      "sourceDomain": "cbsnews.com",
-      "sourcePriority": 84,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQbFVuLUJ5UDRBNTNyY3lxd1lIdmhFQm1FdEtFcjZRZmJFOFZsT3dnWE93ZlVsTlNEZ3NNWnFsYURCNWt6d0xmbU1XdWxqdU9kVFhvcVU2OU1kMVlKQXllZEFMOVlxSWwzN1FlMGlTczhZVkZkeERVbkpsMDN3TXlPY0JjNmVKR2w1d1FoMHFUQUpwNFNOSEt0Z2hXMlplb1RQQUZub0NNOFZObWdObThRYXpSaw?oc=5",
       "title": "ベトナム退役軍人、人工内耳のおかげで数十年ぶりに聴力を取り戻す",
       "summary": "ベトナム退役軍人、人工内耳のおかげで数十年ぶりに聴力を取り戻す",
@@ -4681,29 +4678,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9HUTFIal91VDZTUU1iTm9jWnVHcHlwdEZNelJucnV5ZVlZUzJtZkRWQ1RTM0pLVzNDVDBUaXRBUk5zZGR3a1RXbWlFU1ByQzlSXy1HWnhqVmRDOUlBM0xPZ2JTZ1p3U0owUVZmU0hnZ0JRQU0?oc=5",
-      "title": "ナイジェリアの聴覚障害者コミュニティがガバナンスへの参加を模索",
-      "summary": "ナイジェリアの聴覚障害者コミュニティがガバナンスへの参加を模索",
-      "originalTitle": "Deaf Community Seeks Inclusion in Governance in Nigeria",
-      "originalSummary": "Deaf Community Seeks Inclusion in Governance in Nigeria",
-      "sourceName": "Punch Newspapers",
-      "sourceUrl": "https://punchng.com",
-      "publishedAt": "2025-11-24T08:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "culture",
-      "topicLabel": "文化・社会",
-      "curationScore": 23,
-      "curationSignals": [
-        "deaf community",
-        "major-media"
-      ],
-      "sourceDomain": "punchng.com",
-      "sourcePriority": 72,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQbVRlcVozUk1VdmZ5Mm5peGgzUm0zSVYwOExFT20tZEI3TnVIYU1LLWJmcHdoc213WEM2LUd0NGRzNnNIQklzQmxJTlBOcFMydFBMNXFRSEl2S0ZPYU5ubEZUODR1TFdjbmYxQjlKUWdZNURhM1lweExINlFxWHFxZDl3a1JzOWxuY2Rabm9NdTN3NndJMGtfb1ZqaF9wclox?oc=5",
       "title": "デフリンピック：男子5000メートルでケニアが全勝",
       "summary": "デフリンピック：男子5000メートルでケニアが全勝",
@@ -4839,6 +4813,29 @@
       ],
       "sourceDomain": "timesofindia.indiatimes.com",
       "sourcePriority": 76,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9VYnFNOXdrUko0REIyTDV1bmRubkpyNkszZDU4RUJoTEhhQkdyaU1nb3pxQ0V2UjlTbkNxczhZNk45bmRZWVU5UlVRMlFGS2NLRl9lc3BObkI2UWRMbHc4VnQybk5lWkpkOUJTTEdQODlMLW8xNlVxcg?oc=5",
+      "title": "沈燕如選手が東京デフリンピックで銀メダルを獲得",
+      "summary": "沈燕如選手が東京デフリンピックで銀メダルを獲得",
+      "originalTitle": "Shen Yan-ru clinches silver at the Tokyo Deaflympics",
+      "originalSummary": "Shen Yan-ru clinches silver at the Tokyo Deaflympics",
+      "sourceName": "Taipei Times",
+      "sourceUrl": "https://www.taipeitimes.com",
+      "publishedAt": "2025-11-23T08:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "sports",
+      "topicLabel": "デフスポーツ",
+      "curationScore": 22,
+      "curationSignals": [
+        "deaflympics",
+        "major-media"
+      ],
+      "sourceDomain": "taipeitimes.com",
+      "sourcePriority": 72,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -5630,30 +5627,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPOW1KVkhYQ1lyaW5EOUliSF9ZbzE2aVI2X3pxa25aQi1zWTAxWUEyZG80eEltNENLRHhXT2RSRVQ3NVF0OFpmZ2c5VlBSckNtVWxvVVU3YVB4T1VqNGhhZVB0LWZ4SE9zMnBJSk0wUURadzdTbHdWZU0tYlMyc21TQmItdHJZTUJYQnFfVmVjLXFEMldRZmUxcmVSYWR5Uk9wUWlaUFdHM0Y1MnpTdm5iWDJCemo4ZUhROWllaGdWWmh3VWvSAcsBQVVfeXFMTm93aGdZdjBwdEc5Nk1TbEU4SzIzVXZnb0g3ek9weVhKUzJFQXZwNkktcnJfc01jdy02dVRjOF92bDNOaGFON2dNU2J1a09hWUdxcEhwaWZXdjlYQjc0Mktrdjk5WFluRldpa0pzMzVRYlFVVWp5YkdTUVUwYmRKLTVsYTFCVW9kQ2FUY1RxZUZUN1YteDkxR3ZZUy00ZTQ4eWlBbDdnenZPbHUzRHprc2NGZjR5WnNHQ0lNTUQzTVhTd0NIbEFfM2NZYVE?oc=5",
-      "title": "ケニア、聴覚障害のある子供たちの聴力を助ける1億2,000万シラミの人工内耳プログラムを開始",
-      "summary": "ケニア、聴覚障害のある子供たちの聴力を助ける1億2,000万シラミの人工内耳プログラムを開始",
-      "originalTitle": "Kenya launches Sh120 million cochlear implant programme to help deaf children hear",
-      "originalSummary": "Kenya launches Sh120 million cochlear implant programme to help deaf children hear",
-      "sourceName": "The Eastleigh Voice",
-      "sourceUrl": "https://eastleighvoice.co.ke",
-      "publishedAt": "2025-11-05T08:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 29,
-      "curationSignals": [
-        "deaf child",
-        "deaf children",
-        "cochlear implant"
-      ],
-      "sourceDomain": "eastleighvoice.co.ke",
-      "sourcePriority": 50,
-      "sourceMode": "regional-broad",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOV3NFM1U2aHFqQ0J6cmx2SmJOYzI0elBiRjRyeDZEZUg2SWVyQ1ltTGM2Tks4Y1ZDVjV4b3JaTkZ6Yzc0LXRrWTNmUVQ1T2JlUm5yZDJUejk0bXhpZzltbUh6WnZPMTNDOVZiZDRPcmxsVGpxajcxNThQQ0I1VWR2akM2c0h5N3dzY0xWanNtd0dNZ3pmbHZMeV91TVBkSV9XZEE?oc=5",
       "title": "米国、ホワイトハウス会見で米国手話通訳の使用命令を上訴",
       "summary": "米国、ホワイトハウス会見で米国手話通訳の使用命令を上訴",
@@ -6366,29 +6339,6 @@
       ],
       "sourceDomain": "bbc.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQQ0ZKTDNlR1pqNWJ5R2JGeXMyeUNUZW9WTmM4TkFMRUhVb2N5SndzSndaem9FNElHaTYwc2ZoN2I2MWFFUEZ4aWFJT0QzdFJTQ2d4TlpfWmJVSGNmeWVpVHQ2UXc5UkJURHhYUWZ6WnEzX3ZNeDJLR0h0OWN6aE9hRXJtVko2eGd2UDgyUjdEQWhDM1hNQ3hrMjhSN21FaWtQcWpjVi1zOFNtaEU3LUxYeVVYRjNBYTlqWndpREw5U2tSX2htclk2SkJwM0ZDbEkwRzgyZHkteWRIaFdsd0VJckJVZG9CdG1FeXVZUjR6V0RhQWxETFFHSVNNc0xDMUpwMWhr?oc=5",
-      "title": "最初はスタジアムは静まり返っていました。すると、コルツのチアリーダーが「話を聞いてもらっていると感じさせる」ために手話を使った",
-      "summary": "最初はスタジアムは静まり返っていました。すると、コルツのチアリーダーが「話を聞いてもらっていると感じさせる」ために手話を使った",
-      "originalTitle": "At first the stadium was silent. Then a Colts cheerleader used sign language to 'make him feel heard'",
-      "originalSummary": "At first the stadium was silent. Then a Colts cheerleader used sign language to 'make him feel heard'",
-      "sourceName": "Roll Tide Wire",
-      "sourceUrl": "https://rolltidewire.usatoday.com",
-      "publishedAt": "2025-10-10T07:00:00.000Z",
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
-      "curationSignals": [
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "usatoday.com",
-      "sourcePriority": 78,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -7642,29 +7592,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPNDYtcUJ2SmRrTE91N0s4cVFIMm9teUVFMXhVNi1aVmZtLTJLY1VheWRpWFExd3V4eFdLQnFKZkpzQ0ljRU5md2lucTNJRmRaRVBFX0dHRnNTTDE2UHZadjRLRlBRVTBNS3d2MmFVT1ZfZVRHTnFoZDF1N0I5YnJBLUJwWnNSSGtQcS10ZXk2ZjV0djRhWXRBZ2dUOHhEV0E?oc=5",
-      "title": "この手話教師は、NDP 2025 を聴覚障害者にとってより包括的なものにするためにどのように貢献したか",
-      "summary": "この手話教師は、NDP 2025 を聴覚障害者にとってより包括的なものにするためにどのように貢献したか",
-      "originalTitle": "How this sign language teacher helped make NDP 2025 more inclusive for the deaf",
-      "originalSummary": "How this sign language teacher helped make NDP 2025 more inclusive for the deaf",
-      "sourceName": "CNA Lifestyle",
-      "sourceUrl": "https://cnalifestyle.channelnewsasia.com",
-      "publishedAt": "2025-08-09T07:00:00.000Z",
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 20,
-      "curationSignals": [
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "channelnewsasia.com",
-      "sourcePriority": 84,
-      "sourceMode": "regional-broad",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOdTM2TWNvTlpTb2JSVEYtSm5ZQ2Y4UUVNdEFrR29wa3BUZm9nRm9tbGs2b1NYaWI5dE0tODJJaFlaVVR1MnlZaTBVMHlabFlUdTlLUTgwZkwtSld0aHloUjZCSUNfTEI1MWpIMm91QzhST2MyYlpZRHlUSlE1T1FpMDFsUjV3WG9NVFJNNTV1WlVaZTUxQl9pSC05ZENkckpJZXlheGFmaFdFU2VzZEZtVWlVZksteU4yQkt2cHMwOHo4a216ZEwxZVFNLWY?oc=5",
       "title": "聴覚障害者のパレスチナ人がソーシャルメディアを活用し、手話を通じてガザの闘いを強調",
       "summary": "聴覚障害者のパレスチナ人がソーシャルメディアを活用し、手話を通じてガザの闘いを強調",
@@ -7837,8 +7764,8 @@
       "publishedAt": "2025-07-28T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "culture",
-      "topicLabel": "文化・社会",
+      "topic": "rights",
+      "topicLabel": "権利・制度",
       "curationScore": 22,
       "curationSignals": [
         "hard of hearing",
@@ -7846,6 +7773,30 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOaVdIU2l5eVhjTU9GQkJ2anNsVTBScElHeXU2NmxOdV9vaGhpdUlTQ0hXVHljZElHSy1lZXlTSVI0THNZNlNOQjhncm1NNHhOdVJoV0hnZl8tVlMydWIxdDJBeDdkQlVmdHhlbGJjdDJJYUcxYVdxNi1FQUpfbWJPNEdwVkcyR3BneFpTMnlfZUJwQ0R0VkdPc2NNN1c5TnM0endMczVwQnNZcDdNM2ZpSVZvVzlRTXpoV0RpOXRlWmJ2Um1C?oc=5",
+      "title": "オーストラリアのろう児向け早期介入プログラムが日本で試験導入",
+      "summary": "オーストラリアのろう児向け早期介入プログラムが日本で試験導入",
+      "originalTitle": "Australian early intervention program for deaf children piloted in Japan",
+      "originalSummary": "Australian early intervention program for deaf children piloted in Japan",
+      "sourceName": "SBS Australia",
+      "sourceUrl": "https://www.sbs.com.au",
+      "publishedAt": "2025-07-27T07:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 30,
+      "curationSignals": [
+        "deaf child",
+        "deaf children",
+        "major-media"
+      ],
+      "sourceDomain": "sbs.com.au",
+      "sourcePriority": 85,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -8640,14 +8591,14 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQYkJwd2RpcklqX0NONURGX1QzcDVhU05XVE0zbE5QQVROV1ZhY2xzdHo3ZGc1YVlOdnpuQjNjbDR5a2hZZDVGbnhRTWF3SXRsazdXYTdVTmVTa19LRkpCcGF1TzNiRV9GNDJkZTJFclJUVWVHYjROMWwwYzRKRjAwWmVQNFVkOXdVNTdsT0IwUWpIV3ZweWgwaQ?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMidkFVX3lxTFA1azF6eVFJdHhyWjRXV284UjdVQlB4aW5vTHJPSjNUY0NfZWY1QTRZVU5OYmFTN2lTbWE0ZzlCMU9lT3RaRlpVYmpnN1F1emJzdTVfcE02TlFMSmlYZVZUQmNRWkp4LThEWjdQTGM2V1JKcmhIOWc?oc=5",
       "title": "Sky Stream のアクセシビリティ設定 |スカイヘルプ |スカイ.com",
       "summary": "Sky Stream のアクセシビリティ設定 |スカイヘルプ |スカイ.com",
       "originalTitle": "Accessibility settings on Sky Stream | Sky Help | Sky.com",
       "originalSummary": "Accessibility settings on Sky Stream | Sky Help | Sky.com",
       "sourceName": "Sky",
       "sourceUrl": "https://www.sky.com",
-      "publishedAt": "2025-06-26T18:24:34.000Z",
+      "publishedAt": "2025-06-26T17:23:03.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "accessibility",
@@ -9377,6 +9328,29 @@
       ],
       "sourceDomain": "cbc.ca",
       "sourcePriority": 90,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPX2JieXJGLTU4Q1QxblVpc2QyTGpaenpDY3dndWwyQ0hpbTVZbEtvWlQ3R0hRRDk4UnVCdlFpRXpZQ3BTZ2c1T1lqakxzRHM3VkVWRF9kaFVQVmgteHJtaGk1SksySlk0aU1wVWlCTDEteTdtY21zanVkcVlGb3phSVBwYk0xZzdkR2dLZ2pCU1RzVmFqVGtscmFKYUlocDlNNTBjQQ?oc=5",
+      "title": "難聴の一因となる驚くべき要因",
+      "summary": "難聴の一因となる驚くべき要因",
+      "originalTitle": "The Surprising Factors Contributing to Hearing Loss",
+      "originalSummary": "The Surprising Factors Contributing to Hearing Loss",
+      "sourceName": "CTV News",
+      "sourceUrl": "https://www.ctvnews.ca",
+      "publishedAt": "2025-05-15T07:00:00.000Z",
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
+      "curationSignals": [
+        "hearing loss",
+        "major-media"
+      ],
+      "sourceDomain": "ctvnews.ca",
+      "sourcePriority": 82,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -10533,6 +10507,29 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQZHBraU9iUEZNSFBHYllEWkRVYkEyN1dwcnN2M0RjOVMxN2V2TTNLMU1yT0p5TVA2bEZaaEdXaE9nR0FlUU5ZVTFzYlpIMnBRRFdSUXdqb3k3UjB0M2xOdXJ3bVplWWpVQlFjclVXZlpUdXhyVEQ0enRnQnBMd21fR3hNSTc2bFdVeWxTZW50SHhSVzhiT2V0RV9OTDB3bFJQVllRZ3VYQUdaVFhBcWc1R05JSm5JbkhwcHZuOEZLUWF1cXBjNDN5S0tqVVdKU1RaeEo2eDJfRTQtRHhJXzNoUVBna1RJOE1YNkRlYlFTY9IB_wFBVV95cUxPeWM5U1dmSmNmbFBkZS1IQnNzclRVT3Zia2Y5b3hremt3LTc2dy1rWmNObDllTGx0QllwbGhrdUd0NHlVY1JvTFlpTGZZR3RTbEtBOUxTd2xmWHFlWk1iZjZlM1NQRnUzSFZacFBWREtTQ0R0OVRwaWxjOTJhWmpvckQ4RGxwbXFJcmNYYmN5T2RzV0RMcERWQTJQaVhwcS14MEdHMy1uMm1lNlRhaVpNMGF4TDRzREo3WTI2VDN2eFhBMXZQOThpRG1MS21veExLV3NZUjNBZTRVTnY4bi1RRnZ5NXAwSktPdmJ5Z3otOXkwU0RSQThSTjBXQm9vV1k?oc=5",
+      "title": "画期的な人工内耳手術により、感染症後の難聴から4歳児の聴力が回復",
+      "summary": "画期的な人工内耳手術により、感染症後の難聴から4歳児の聴力が回復",
+      "originalTitle": "Groundbreaking cochlear implant surgery restores hearing for 4 year old child following post-infectious hearing loss",
+      "originalSummary": "Groundbreaking cochlear implant surgery restores hearing for 4 year old child following post-infectious hearing loss",
+      "sourceName": "Gulf News",
+      "sourceUrl": "https://gulfnews.com",
+      "publishedAt": "2025-03-25T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 19,
+      "curationSignals": [
+        "cochlear implant",
+        "hearing loss"
+      ],
+      "sourceDomain": "gulfnews.com",
+      "sourcePriority": 50,
+      "sourceMode": "regional-broad",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxORDZWNnBKVUlaZHJOWWlRbm5FQ1JTSHpHVlY2N21kZ3dVTmVjR1dTbDFjYzZxTlNSZUZfVnhZcUJWamtPZDJXQmJ4TTFUcktKaWFKQkdQQjRPbTdtZ3k0dEJ0aUdtVUl1YjNNWHZ2SWxsc3N2UEpZRHcxSWowYmxZMXhSMER4ZWlNeld6SlVMNWU2ZVRaQWZHZW94ekkyTVdVU0daalczOU5PdjZWZVRqTUpXVUVLb2lYTlgtYTItVDQ2RE0?oc=5",
       "title": "Nano のエキスパート ガイドを読む前に補聴器のワックス ガードを交換しないでください",
       "summary": "Nano のエキスパート ガイドを読む前に補聴器のワックス ガードを交換しないでください",
@@ -10995,6 +10992,29 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNNUJrQnpUdFY5M3JVcWJEZEsxY2JLNnFmajU4OGkzNHJjeExyWWRPRmN4RFJhSUNsX0VKbThLaFlYVnZaUHY2M2JXUmJfTk9aY3pLNzJuNGxkR1dYNERBM2xsYllDdHV0WTlkNU1kUHJFcUtvZkV6UU9NYVN2bllLOUREOA?oc=5",
+      "title": "新しいアップデートでAirPods Proが補聴器に変わる",
+      "summary": "新しいアップデートでAirPods Proが補聴器に変わる",
+      "originalTitle": "New update turns AirPods Pro into hearing aids",
+      "originalSummary": "New update turns AirPods Pro into hearing aids",
+      "sourceName": "The Independent",
+      "sourceUrl": "https://www.independent.co.uk",
+      "publishedAt": "2025-02-24T08:00:00.000Z",
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 23,
+      "curationSignals": [
+        "hearing aid",
+        "major-media"
+      ],
+      "sourceDomain": "independent.co.uk",
+      "sourcePriority": 78,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5NeEVRaHd3d3JsM1Bza3FJZExqalZ3a0F0em9pR1Bqc1pkUE1mTy00WFVQM2Z5X09QZldvYWFZeUJEZDBGZF9ON2xTY0p1MDNhT3Y0X3hyemZMZw?oc=5",
       "title": "「軍は私の戦闘性難聴に対して5,000ポンドしか支払ってくれなかった」",
       "summary": "「軍は私の戦闘性難聴に対して5,000ポンドしか支払ってくれなかった」",
@@ -11062,29 +11082,6 @@
       "sourceDomain": "independent.co.uk",
       "sourcePriority": 78,
       "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPOXFFMlZycmtMTVdyY2JmV2hPZjRibDYzb21pcjA5cEkyR2FvdklxdTV1UXpNNDFsRFg1SEt5eHRsWXA3YWJWS3p6ZElJT0tvaXYxMkFlNlR3eHBTSEhhTEFaeHo3NVhxY01aTEhIZHNybWJ1a3VZNkJEZko1cV9MMHZLYlXSAYoBQVVfeXFMTzQtV3JERlhCbTh1OXpySjNGeEhnZ3BoLU1WNkRITVYxdm50Y01UUk1oVHRRNE53aG1Xa3g0VkdTUUlkMGhza1AwZkZPVFQzelJDZUJZeWNQYlN1MldVX1R3UmIya3llOWRYa3RCSnBhX3lhMWJXZ0l5R0dtU1JTQ1g1YVY4cXdpS1R3?oc=5",
-      "title": "ガザからの振動: 聴覚障害のある子供たちに対する大量虐殺のトラウマ",
-      "summary": "ガザからの振動: 聴覚障害のある子供たちに対する大量虐殺のトラウマ",
-      "originalTitle": "Vibrations from Gaza: The trauma of a genocide on deaf children",
-      "originalSummary": "Vibrations from Gaza: The trauma of a genocide on deaf children",
-      "sourceName": "The New Arab",
-      "sourceUrl": "https://www.newarab.com",
-      "publishedAt": "2025-02-20T08:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 20,
-      "curationSignals": [
-        "deaf child",
-        "deaf children"
-      ],
-      "sourceDomain": "newarab.com",
-      "sourcePriority": 50,
-      "sourceMode": "regional-broad",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
@@ -11410,6 +11407,29 @@
       ],
       "sourceDomain": "cbc.ca",
       "sourcePriority": 90,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQTHFnZHFjZmNDSjF2TEw4czRyeU5BN3E5R1VZVFlzTFNoekhuZW5tUVduOFZUTnhiWEdUbGtjUDRTb0ZuU2Q2TlRmN3ltNTdpRHladzRjd0NTNEVqN2pzN0tYeFFYR053d3ZtSE4zOVVWVk1kLXJQN0FQcy1QRWJ6eTBKMjlzMEI0X1FLeTZkMlhlU3dmY3pyVHdzM2JXdXdsNUUtSkR3?oc=5",
+      "title": "ビデオゲーマーは難聴や耳鳴りの危険にさらされている可能性があることが研究で判明",
+      "summary": "ビデオゲーマーは難聴や耳鳴りの危険にさらされている可能性があることが研究で判明",
+      "originalTitle": "Video gamers may be risking hearing loss or tinnitus, study finds",
+      "originalSummary": "Video gamers may be risking hearing loss or tinnitus, study finds",
+      "sourceName": "CTV News",
+      "sourceUrl": "https://www.ctvnews.ca",
+      "publishedAt": "2025-01-22T09:02:52.000Z",
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
+      "curationSignals": [
+        "hearing loss",
+        "major-media"
+      ],
+      "sourceDomain": "ctvnews.ca",
+      "sourcePriority": 82,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -11840,8 +11860,8 @@
       "publishedAt": "2024-12-19T08:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
+      "topic": "rights",
+      "topicLabel": "権利・制度",
       "curationScore": 22,
       "curationSignals": [
         "deafblind",
@@ -12338,31 +12358,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5QVHRkREJSQUVzUWR2UUJqM3FNQWZpeDE2SnJGNC0zWDB6eG9kSDh6QjJsZGprRkZGSlNBYUlMMGRfMkNNUXlKdHdVU3dsOWNBZUliUVBPdHBFUQ?oc=5",
-      "title": "ウェンズベリー手話サンタ、聴覚障害のある子供たちと会う",
-      "summary": "ウェンズベリー手話サンタ、聴覚障害のある子供たちと会う",
-      "originalTitle": "Wednesbury sign language Santa to meet deaf children",
-      "originalSummary": "Wednesbury sign language Santa to meet deaf children",
-      "sourceName": "BBC",
-      "sourceUrl": "https://www.bbc.com",
-      "publishedAt": "2024-11-29T08:00:00.000Z",
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 39,
-      "curationSignals": [
-        "deaf child",
-        "deaf children",
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "bbc.com",
-      "sourcePriority": 96,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPV2dJQk84WlJRWGMteU51Nk91cl96MHBOZFJiOE5CU2Y2UmFuQnNDRXg0TnJCdVlWWnZmdjRmV0NFMkZpdkdDa3hCb3VudkRRRVhjMldLSEtScmZXalJ2LWNNV3hlMFVyazJCaF94cU9pNEV5UGljRC1sV1hPLV8tTEZCbFdFSDRBZnZ6cjJiSlBVcFRiX01NeDhfSjNlcHZBNFd5dVJrUlRseEF1MlAtWThZbkJIMWxs?oc=5",
       "title": "盲ろう者コミュニティが新しいアパートプロジェクトの建設を開始",
       "summary": "盲ろう者コミュニティが新しいアパートプロジェクトの建設を開始",
@@ -12548,29 +12543,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPM3I4OWc2eUg5X0dTbU0zdE0tT1NYOURqUHhUSTFWT0NCbVVfV2QtZlZlWHlGQm1GaW43bC1OOExCTEF1WTlfUGQyMnBidTNOQnBrNWtBeEhfMjg3X0J3d3AxTWJDMVJoVTJ6NHNHNXhKV1F0eHllblJMYUNrTEtMWTFrdUJIQUZoX0xhcFFpbnhweEk3RFNENFpSa2s0MjZ2ZnhTQV9xSFNtcWtYcUtuYTY5ZUhOdnFmWEtEM0F6TUV5R0NDXzBvZzhkUdIB0AFBVV95cUxPNkxqQTNpeHUzTDBfdWdDcHFQVi0xSUpxZmFiSGs3M0V4LS1TeGx1c2NVemZNRHBwOG91eUFCdzlGSUNNVW51QlFrOFF4Z04tQ0licEFIWWZlZ0JNSmdhdmZ6N00tcWZDeUJpX0FYUkdJZFZPV0hQNTF2ZDgwRmRiWWR4Q0RyaXVKbG9HQXlhV1V2cGxXMDJfRkJnZGdfQ0ZqcV91aFhDOXZRbHRHdzY3cHRNRy1VZ25lZV9MbnBINHBEcm1hLWxLbnkyU3ZOclp2?oc=5",
-      "title": "Iffi就任式では手話通訳が生中継される",
-      "summary": "Iffi就任式では手話通訳が生中継される",
-      "originalTitle": "Sign language interpretation to be live at Iffi inauguration",
-      "originalSummary": "Sign language interpretation to be live at Iffi inauguration",
-      "sourceName": "The Times of India",
-      "sourceUrl": "https://timesofindia.indiatimes.com",
-      "publishedAt": "2024-11-20T08:00:00.000Z",
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
-      "curationSignals": [
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "timesofindia.indiatimes.com",
-      "sourcePriority": 76,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPOWQyXzhIVzc5X0dWZ2xZSmd1c0RDOS0yZEJoRnVzZGdjNm9GM1RKbUNjLUxJRHRFNFZidTdianBkeGhTRWd1Sy0tZS1kN25SY25pTGoxU1d4Yk1NeG5td3JiSkFiay1CYW5nTWhoT21GWkhTb3dUNmxXRld6eG05dnU1c2xjaFRId1NINXpXeXZnNXJyTXVsXzZTLU5DZ1pETHdVb0IwUzlxV0VJZmFSeVRTQldoUEo0MThPU09HQk5xbC1tVDFRVWpNMVRDR2U3bl9sdUQwNy1LN3IxclhXdllacl82Z9IB6wFBVV95cUxNZXV2WHJWdXRfenpXOGxrNENRTkxGRl9ITVBrRGtCVjl1SUlhbS04ZXppNkVuTjdjcE8yRm5fNVpMdjNzT3VnZFQxLU42cjhlRFNkYXlUQ1RkQUFadVVSMUJXclJ4dVl3WWRjMy1Xd2prWXNjWUJ5Vl82X244N2JRU2JiR2lFTnZETnFrcjR6TWIwQUJ0bm5ZSmV0aWsxc043NERQdFlNMEpsY0V6bGhEYy1rcUItWW8zSVM5STFweW1pM1pBTlBHRHgzRV9wSFZ5QmFCSHRsUDVGbUVub2VNVjlxVmxDR0NUOW04?oc=5",
       "title": "人工内耳手術を受ける子供たちを選抜するキャンプがTrichy GHで開催",
       "summary": "人工内耳手術を受ける子供たちを選抜するキャンプがTrichy GHで開催",
@@ -12594,25 +12566,25 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQVnlFdFk2dmlRSzdLLXd5QlNVTDhkYXNjZ3RGUGQ5R2RHUkhENFQ3T1F5X0FkOFlTdDhtUW1xRDBIVEZuYzZVcFhDMjlsQXlFaWRTTzBGTElFS003VmJrTkZiMHhURE9PZUNfbWZFaDFiTGYyRFhVR29xMHFtWGd6U1Z4ZGNNRmRjd2hjdGdOQUZ2VkZFRk9kMks2OFFmNjJzam50VQ?oc=5",
-      "title": "ポール・サイモンが難聴を治すためのスタンフォード大学の取り組みについて語る",
-      "summary": "ポール・サイモンが難聴を治すためのスタンフォード大学の取り組みについて語る",
-      "originalTitle": "Paul Simon's inside look at the Stanford Initiative to Cure Hearing Loss",
-      "originalSummary": "Paul Simon's inside look at the Stanford Initiative to Cure Hearing Loss",
-      "sourceName": "CBS News",
-      "sourceUrl": "https://www.cbsnews.com",
+      "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPM3I4OWc2eUg5X0dTbU0zdE0tT1NYOURqUHhUSTFWT0NCbVVfV2QtZlZlWHlGQm1GaW43bC1OOExCTEF1WTlfUGQyMnBidTNOQnBrNWtBeEhfMjg3X0J3d3AxTWJDMVJoVTJ6NHNHNXhKV1F0eHllblJMYUNrTEtMWTFrdUJIQUZoX0xhcFFpbnhweEk3RFNENFpSa2s0MjZ2ZnhTQV9xSFNtcWtYcUtuYTY5ZUhOdnFmWEtEM0F6TUV5R0NDXzBvZzhkUdIB0AFBVV95cUxPNkxqQTNpeHUzTDBfdWdDcHFQVi0xSUpxZmFiSGs3M0V4LS1TeGx1c2NVemZNRHBwOG91eUFCdzlGSUNNVW51QlFrOFF4Z04tQ0licEFIWWZlZ0JNSmdhdmZ6N00tcWZDeUJpX0FYUkdJZFZPV0hQNTF2ZDgwRmRiWWR4Q0RyaXVKbG9HQXlhV1V2cGxXMDJfRkJnZGdfQ0ZqcV91aFhDOXZRbHRHdzY3cHRNRy1VZ25lZV9MbnBINHBEcm1hLWxLbnkyU3ZOclp2?oc=5",
+      "title": "Iffi就任式では手話通訳が生中継される",
+      "summary": "Iffi就任式では手話通訳が生中継される",
+      "originalTitle": "Sign language interpretation to be live at Iffi inauguration",
+      "originalSummary": "Sign language interpretation to be live at Iffi inauguration",
+      "sourceName": "The Times of India",
+      "sourceUrl": "https://timesofindia.indiatimes.com",
       "publishedAt": "2024-11-20T08:00:00.000Z",
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 21,
       "curationSignals": [
-        "hearing loss",
+        "sign language",
         "major-media"
       ],
-      "sourceDomain": "cbsnews.com",
-      "sourcePriority": 84,
+      "sourceDomain": "timesofindia.indiatimes.com",
+      "sourcePriority": 76,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -12732,29 +12704,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMilAJBVV95cUxOVVNoTGY1SFNkUG1nVkVLYVhubk9sZmxDLTBjczBXejVsZWoyUHBMRFlRanZ3U0Z4bWxhWlpHYm82SlloanRZWGxBVnhicW43RlhDYm85bm5uMV83ZkFzYTh5eGlQbG9XZlZIXy02TjFaOFRLZjBKM3MweE1tTUtWbWpiQW5aS1JwVnFBdU9DVC1za1dDT3VVXzFacElVX21Gb1NDZEFUTHlLUHMtLXREZU5HNUJBbkVjTU5NMHROZzhVWDJuT0k2ak5iOGFFSjA3bWVoZElkVTdFNUZob0FsWEJhQmtYa01jS082d3JoVWRXNF9HWFZEOUMxbDhPU0tjRXc3NlZsdlAwdmRJbFlTLUU3Um3SAZoCQVVfeXFMTVoya1VaN0FqcHlIQm9rUFBpRXNTSHk5MW1HMnNtdi0xQUZkb3FPOWotRnFnT0ZGRFBibUFKLTZwM0gtOXUyeW1MZFgwM2dMaGxHNl8zMy1nLU9QVEpvV2hRa2htOG5jZmc3cVRNY1RsSXVrSS1PRXRVdU11dWVCcUpUWHlKYUhEY3diUjlQUzR6NTBXWnZScHZ6S1RkYWdEeWlQT0dOcWNBRlk3WGRsR0w2dWZUamNYVlpUZDVkSWlnTHNxMEc5ZlpDRzRQc0ZYaU5zUEkxNVBfNWhJLWFQQW40RTJ3TjdkQmliM3RyRnhDc2tNeGlMRENROHJoNmdoSFlFQmdZenV2WXZFZV9hZHl5Nl83bHVoMTNn?oc=5",
-      "title": "チッティラピリー財団、人工内耳サポートでスルティサランガムと提携",
-      "summary": "チッティラピリー財団、人工内耳サポートでスルティサランガムと提携",
-      "originalTitle": "Chittilappilly Foundation partners with Sruthitharangam for cochlear implantation support",
-      "originalSummary": "Chittilappilly Foundation partners with Sruthitharangam for cochlear implantation support",
-      "sourceName": "The Times of India",
-      "sourceUrl": "https://timesofindia.indiatimes.com",
-      "publishedAt": "2024-11-14T08:00:00.000Z",
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "technology",
-      "topicLabel": "技術・AI",
-      "curationScore": 21,
-      "curationSignals": [
-        "cochlear implant",
-        "major-media"
-      ],
-      "sourceDomain": "timesofindia.indiatimes.com",
-      "sourcePriority": 76,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxONTNfS055a0llM00yejNBTlROcnlBNDVQOWdiUE5tT0Q0N3ZXTDFFcU5FVU5obHgzMWxkNlNKN1U5OWQtODNld1N2WGtELS1xbGl6SHh1b3d6b0lmRWtULVMxSUpjRmd0MS13MHVuUVlDTlZRVXZPTHlXUDlXX2d2LVEydjlvUW0tdzV2eWExSG1CWlppTm5qeThGQUF6cjQ?oc=5",
       "title": "補聴器を必要とする人々に無料で提供するタスマニアの女性を紹介します",
       "summary": "補聴器を必要とする人々に無料で提供するタスマニアの女性を紹介します",
@@ -12778,11 +12727,11 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1nMXB1M0Eta2JHYloySFZUU0NUR2dkOUFzbUdhek83V3hFMmxJOFYzQUFWSFJZSGZETHluMTFXekVOSVkxSVRHQ3dYZmhYcEtxODVDMTk5enZyR2pIVERFNWlqZkVTTkxCbFhz?oc=5",
-      "title": "リリー・サイモンとジョナサン・ビアはソロモン諸島で手話を教えるための本を作成しました",
-      "summary": "リリー・サイモンとジョナサン・ビアはソロモン諸島で手話を教えるための本を作成しました",
-      "originalTitle": "Lilly Simon and Jonathan Bia created a book to teach sign language in Solomon Islands",
-      "originalSummary": "Lilly Simon and Jonathan Bia created a book to teach sign language in Solomon Islands",
+      "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQUEFOTzF5aDQzY255NFdRZDgwSjZEX0Z3UHB0cjZTVWtzMlB2emQyMFU1TnNieC1iNUVxeDEyMWhlTldtbWEyQVh1Ry1FUjF4bnBabGdhcVFmMlgzRHlrQVpnNVE2dDZVUmNhVDcxV1dKNU1ZakJUYlcxbWZ3allZb1V5N1k1SGpMNFNvaGh0VHRlNExtcjk4?oc=5",
+      "title": "新しい本の中で地元の手話を教える聴覚障害者のソロモン諸島人 2 人を紹介する",
+      "summary": "新しい本の中で地元の手話を教える聴覚障害者のソロモン諸島人 2 人を紹介する",
+      "originalTitle": "Meet the two deaf Solomon Islanders teaching local sign language in a new book",
+      "originalSummary": "Meet the two deaf Solomon Islanders teaching local sign language in a new book",
       "sourceName": "Australian Broadcasting Corporation",
       "sourceUrl": "https://www.abc.net.au",
       "publishedAt": "2024-11-12T08:00:00.000Z",
@@ -12801,11 +12750,11 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQUEFOTzF5aDQzY255NFdRZDgwSjZEX0Z3UHB0cjZTVWtzMlB2emQyMFU1TnNieC1iNUVxeDEyMWhlTldtbWEyQVh1Ry1FUjF4bnBabGdhcVFmMlgzRHlrQVpnNVE2dDZVUmNhVDcxV1dKNU1ZakJUYlcxbWZ3allZb1V5N1k1SGpMNFNvaGh0VHRlNExtcjk4?oc=5",
-      "title": "新しい本の中で地元の手話を教える聴覚障害者のソロモン諸島人 2 人を紹介する",
-      "summary": "新しい本の中で地元の手話を教える聴覚障害者のソロモン諸島人 2 人を紹介する",
-      "originalTitle": "Meet the two deaf Solomon Islanders teaching local sign language in a new book",
-      "originalSummary": "Meet the two deaf Solomon Islanders teaching local sign language in a new book",
+      "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1nMXB1M0Eta2JHYloySFZUU0NUR2dkOUFzbUdhek83V3hFMmxJOFYzQUFWSFJZSGZETHluMTFXekVOSVkxSVRHQ3dYZmhYcEtxODVDMTk5enZyR2pIVERFNWlqZkVTTkxCbFhz?oc=5",
+      "title": "リリー・サイモンとジョナサン・ビアはソロモン諸島で手話を教えるための本を作成しました",
+      "summary": "リリー・サイモンとジョナサン・ビアはソロモン諸島で手話を教えるための本を作成しました",
+      "originalTitle": "Lilly Simon and Jonathan Bia created a book to teach sign language in Solomon Islands",
+      "originalSummary": "Lilly Simon and Jonathan Bia created a book to teach sign language in Solomon Islands",
       "sourceName": "Australian Broadcasting Corporation",
       "sourceUrl": "https://www.abc.net.au",
       "publishedAt": "2024-11-12T08:00:00.000Z",
@@ -13031,6 +12980,29 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPZjFwZk8zZFljc0xFYU04bHI5U0dhUWhxYzdhM0JWaDJwemRsTHVYMXpXOTZwdTJKZTFwUDFOVzhfUzNxOHQwOC1xbEN6UHNaNFNQTU80dlFnVnhuY0o5UVVwNmE5dUxsYWtVUFpDeElweGROWVJLZkhBNVBUUVB3eXVicU5FbW9YTWdTOElfQU5rQ3RoQW5XVEFRNktwNU9Lb2lzWnVLaC1tZlZsM0Fr?oc=5",
+      "title": "意見: ロシア戦争で組織的欠陥が明らかになる中、ウクライナでのアクセスは依然としてとらえどころがない",
+      "summary": "意見: ロシア戦争で組織的欠陥が明らかになる中、ウクライナでのアクセスは依然としてとらえどころがない",
+      "originalTitle": "Opinion: Accessibility in Ukraine remains elusive as Russia’s war reveals systemic failures",
+      "originalSummary": "Opinion: Accessibility in Ukraine remains elusive as Russia’s war reveals systemic failures",
+      "sourceName": "The Kyiv Independent",
+      "sourceUrl": "https://kyivindependent.com",
+      "publishedAt": "2024-11-01T07:00:00.000Z",
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 22,
+      "curationSignals": [
+        "accessibility",
+        "major-media"
+      ],
+      "sourceDomain": "kyivindependent.com",
+      "sourcePriority": 78,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5KWmc5dkFMUkxkVUNMMERVMXJLVHo5NUJBaFhBbkFSQ0g4dW9VX2xIVEZXRW1qOVJwU0hNRkI2OFhLNnY3OWRmcnVfZnM2eS1HclpZeFk0cU40Zw?oc=5",
       "title": "「近所の人たちは私の耳の聞こえない子供のために手話を習いました」",
       "summary": "「近所の人たちは私の耳の聞こえない子供のために手話を習いました」",
@@ -13073,6 +13045,29 @@
       ],
       "sourceDomain": "bbc.com",
       "sourcePriority": 96,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOUGdDazVGMlYxSFQ1Y0VOcWxYSktDZjdaelJDV29SU3VPSDVjY0VKN1g1UmgweTlUQzlSNllNWnZnZ3hDSzZLU3pySGRjZlMyYUdDUWY1YmR1dGZQVXI4SVpib2FWV0ZFU2N2eEZ1OFpxb0Y4ZV9KeU9xUURnSk5seGlwN0dfYW1mOTEtTk5NQy1ndl9Td2MzdGxoTWtBb1HSAaYBQVVfeXFMTmh1TmRfOUxjNllEZjd5czFSMHRNbDNieVFFaGZLNFk5UnZrWWd1bm4tQXE2QmNEZlJubmg1dklYNWp2NnNKeHZjNUd5VW1jVWFBcFhoc29WeHlMa01ucU1DMHBLcXFvcTZWRnhjaS1lSERYWDZKVFZVUDRQWjVqVTVILXNQVU5XaUpsRERKQ0pfbVFpTVgyUDNtZVViSFBpNkg5OUp2Zw?oc=5",
+      "title": "AppleはAirPods Pro 2を手頃な価格の補聴器に変えた",
+      "summary": "AppleはAirPods Pro 2を手頃な価格の補聴器に変えた",
+      "originalTitle": "Apple turned the AirPods Pro 2 into an affordable hearing aids",
+      "originalSummary": "Apple turned the AirPods Pro 2 into an affordable hearing aids",
+      "sourceName": "The Indian Express",
+      "sourceUrl": "https://indianexpress.com",
+      "publishedAt": "2024-10-29T07:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "technology",
+      "topicLabel": "技術・AI",
+      "curationScore": 23,
+      "curationSignals": [
+        "hearing aid",
+        "major-media"
+      ],
+      "sourceDomain": "indianexpress.com",
+      "sourcePriority": 76,
       "sourceMode": "major-media",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
@@ -13492,29 +13487,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOMk5xaVdxUFptX1JiOXZoc0NsWWJLMzQ3VzhURXRrdGFKUTNGZFN3bUI4TFVDNDRQaHN3Y1ZhekRlWC1LTjZfTDdsdVg5RGtKTnNqOFA5WVNJWl9NSXl0ZDJoWEhaTVZHcXpCWnpXaWo2RGgxTDg5d3Z6WlNObEx6Mm4xeG9SdGUzMks4TGdnZVk3Q19WRHBJVkw2U18?oc=5",
-      "title": "メトロ聾学校の運動部長が生徒アスリートたちのためにゲームを成長させている",
-      "summary": "メトロ聾学校の運動部長が生徒アスリートたちのためにゲームを成長させている",
-      "originalTitle": "Metro Deaf School's athletic director is growing the game for her student-athletes",
-      "originalSummary": "Metro Deaf School's athletic director is growing the game for her student-athletes",
-      "sourceName": "CBS News",
-      "sourceUrl": "https://www.cbsnews.com",
-      "publishedAt": "2024-10-14T07:00:00.000Z",
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "sports",
-      "topicLabel": "デフスポーツ",
-      "curationScore": 23,
-      "curationSignals": [
-        "deaf school",
-        "major-media"
-      ],
-      "sourceDomain": "cbsnews.com",
-      "sourcePriority": 84,
-      "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1OOGtfSUlkb0t0Q3gyNmRkQ0p0MjdWcS1mQzdRTFE1WjV3NjBlQjRRZVQ0STdzQ3lFVHRpeS1LRWU5WXNnUUpiVVhTVmRrWFlvcjVhNkpwSmU4Ym5tZDFZ?oc=5",
       "title": "コミュニケーションを強化: アラビア語を話す聴覚障害者コミュニティのギャップを埋めるアプリ",
       "summary": "コミュニケーションを強化: アラビア語を話す聴覚障害者コミュニティのギャップを埋めるアプリ",
@@ -13604,6 +13576,53 @@
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
       "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQS2FyYnVXcFBuTm1jV1MyenZNYWlQMFJQY1lBQjJITnBrMkhNRXZmbzJoTEtxcWV0cGZjdjdVS3NGRUV2QjY4WENySXRxQnZZRWlpM2ZQZDY0a0VRRzhqaFZBYkt4QnFRTEdCbjRGTHBQRk1laERybGJUU2VEUlJqMlgyNXNpTTkyTGtuQXhQQ1psd3Q0cF9BYTBudHFuaHBTTS0xREVucmhnOC0yeUlIRlVIRFV5anNhZk0yUEtzbzlnLU9PcVh1VmNFMHlFczBHRlVDNWNkaV90ek9OcmpFazg1ZmlpaFBMYjVhNk1wTlBZc2dnY1F0StIB_gFBVV95cUxORFpEeHNjQTVlejVoY3lNZDBuTGh4cG4zWHpHRW13ajNYbGFlcFpabklGVXhYbjU5dGROTF9oWHIySUQ2UUI3YUVyamQ2UU0zeEF5SFJsWGhGbFNIRUtVY3NyOURidUJ0OHRIVkh0Skg2cXpmMGQ0X0pjb24tc0RTT09Rc3JhOHZtMkFqc0hKaEF4Zkl2anNQaE01RDVUTHFEdmtsd25mMkJlLTRPbmw5dGVxX1dDbzM4aW5pV0hob3pkUkxRMGs1UGJMXzliOWR1cE9jbjNpam1SWkJxV2gyTUt4bzdjZmRJSjRGQXllczNkSWpVUW9BWTQyRHk2QQ?oc=5",
+      "title": "Xiaomi India、手話サポートにより顧客アクセシビリティのオプションを拡大",
+      "summary": "Xiaomi India、手話サポートにより顧客アクセシビリティのオプションを拡大",
+      "originalTitle": "Xiaomi India expands its customer accessibility options with sign language support",
+      "originalSummary": "Xiaomi India expands its customer accessibility options with sign language support",
+      "sourceName": "The Times of India",
+      "sourceUrl": "https://timesofindia.indiatimes.com",
+      "publishedAt": "2024-10-09T07:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 29,
+      "curationSignals": [
+        "sign language",
+        "accessibility",
+        "major-media"
+      ],
+      "sourceDomain": "timesofindia.indiatimes.com",
+      "sourcePriority": 76,
+      "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOTmdZT3RzSHdNTVhIS1dRLWxqQ29tLVNoNzlIN0xhNWpuQ09GZUhsQVNYaGsxR1ItTGxSX0todTRCTHM4VjdvVUVNM0dBQUw4NERfRXl6R2N5SGR5dkZPVFpqaU01bGY0eTJxWks3SHNrZTdMYlNzS0cxcEo0SEhFcjhNdFd1b2hsdU9MVTBxaXQyMzB3clVYUlhlYjBjSkFmZzdEckdsWUFScTZIZ2dnXzhtckdOWm5yMDZsV1BMXzI3TmxUbG90djFoaWUwT3ZYUFE2ZmtSUlNNbWI3cHdnUVN6ZThoV3VReTRr0gHwAUFVX3lxTE92MUVyeTVjOXZCOXNCSTJpUVczdF9jRWk4T284QjE2bVMtMm8yQk5SenV5SEczY1Flc1FkdGY2YW1SY3hEb3pFRVNGWG4wSmN2d2dzR2V2bWF5MnVxbTdzenRfYk5OSVA2N2RxVWNKSmVOQ25iZzdYekcyb2dualA2ZFdhbk5iU2pialo4VXhkX25wQ1FleWExQW9vbGRZSnBCYnhaUThrQktDRjhjQ0lEQ3FiZkJ3ZV9FaTFJaUdEWl85VVZzajRXYzc5cUJlNXpVZEJSQ0xUTjdTNWJ0YmNaNnNSYWc4blJfZnF3d2o0dQ?oc=5",
+      "title": "9歳の人工内耳が故障、IGGMCHの文書は新しい人工内耳で少年の聴力を回復",
+      "summary": "9歳の人工内耳が故障、IGGMCHの文書は新しい人工内耳で少年の聴力を回復",
+      "originalTitle": "9-yr-old cochlear implant fails, IGGMCH docs restore boy’s hearing with new one",
+      "originalSummary": "9-yr-old cochlear implant fails, IGGMCH docs restore boy’s hearing with new one",
+      "sourceName": "The Times of India",
+      "sourceUrl": "https://timesofindia.indiatimes.com",
+      "publishedAt": "2024-10-05T07:00:00.000Z",
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
+      "curationSignals": [
+        "cochlear implant",
+        "major-media"
+      ],
+      "sourceDomain": "timesofindia.indiatimes.com",
+      "sourcePriority": 76,
+      "sourceMode": "regional-broad",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
@@ -13745,29 +13764,6 @@
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1rU2VNUWthVDFyODI3bWRuWGRZa05QckNLY2dVVV9ONnU2Sk9tZWNvbU5IX18ydFJaM19HQXZJbmRaTmh1WFd5blRJdTZ5VEJEeEE5WGdPMUNpTWJxd1ZJ?oc=5",
-      "title": "サウジアラビア、人工内耳治療を強化",
-      "summary": "サウジアラビア、人工内耳治療を強化",
-      "originalTitle": "Saudi Arabia boosts cochlear implant care",
-      "originalSummary": "Saudi Arabia boosts cochlear implant care",
-      "sourceName": "Arab News",
-      "sourceUrl": "https://www.arabnews.com",
-      "publishedAt": "2024-09-30T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 18,
-      "curationSignals": [
-        "cochlear implant",
-        "major-media"
-      ],
-      "sourceDomain": "arabnews.com",
-      "sourcePriority": 78,
-      "sourceMode": "regional-broad",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNQjlmVmZ6cXZvT3FUZDFEX1V5eWU0eHR5OHpvNkpFakF3TW5XUFlzZVAxNU9zR1h4cm1nWmNGbWg2NEhrbVpVa2NrRnh0eUVqemFVeDJHTFZWUWF2WlZjR01xYnV4cUltaEtpTVplN3dBbV85V2ZZck8zdkVjOVFoaVhHeFVON2pJczZyZmpxYXFwQ1pMNzZxaW1oNTlveHluaGtvbGxfRWswOEZOd0tJS0F0RnY4c19Xck1mY0ktMFUza0NtRms0LXJrRHE0YXZNZURROUVpRVFKOWdjM0l6NHhpSXFZX2YxR29xYUl3?oc=5",
       "title": "学校のスポットライト: カノーシアン学校の難聴を持つ生徒が主流の学校の仲間と一緒に学ぶ",
       "summary": "学校のスポットライト: カノーシアン学校の難聴を持つ生徒が主流の学校の仲間と一緒に学ぶ",
@@ -13858,30 +13854,6 @@
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
       "sourceMode": "major-media",
-      "translationProvider": "Codex app server + translate.googleapis.com"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQU2xZQnZoeDQzV1E5cUJUOGt3OTZHZVRVVmpKeFIzY1JWbnZlUTVmYlQwVE9SNmdvc1RrVG83MUxCMmIwOVlYZXBWdkhkVjNKcFZzS241YXFUMnppSzducVBkbGtsT2t3LTdJd1NPSXpXOW51S2JWa0dITXh1TGRoS3Vn?oc=5",
-      "title": "マダセンターが聴覚障害者コミュニティ向けデジタル手話通訳機「ブ・ハマド」を発売",
-      "summary": "マダセンターが聴覚障害者コミュニティ向けデジタル手話通訳機「ブ・ハマド」を発売",
-      "originalTitle": "Mada Center launches ‘Bu Hamad’ digital sign language interpreter for deaf community",
-      "originalSummary": "Mada Center launches ‘Bu Hamad’ digital sign language interpreter for deaf community",
-      "sourceName": "Doha News | Qatar",
-      "sourceUrl": "https://dohanews.co",
-      "publishedAt": "2024-09-23T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 26,
-      "curationSignals": [
-        "deaf community",
-        "sign language",
-        "interpreter"
-      ],
-      "sourceDomain": "dohanews.co",
-      "sourcePriority": 50,
-      "sourceMode": "regional-broad",
       "translationProvider": "Codex app server + translate.googleapis.com"
     },
     {
@@ -13998,6 +13970,29 @@
       "sourceDomain": "stuff.co.nz",
       "sourcePriority": 78,
       "sourceMode": "major-media",
+      "translationProvider": "Codex app server + translate.googleapis.com"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNamNoLVVjTzd6X21oR2htaDlTYVViRWV1S0FTeV83M3V6LWFJU0k3TU5fV2JwOTY2WjVyN1FDa0N0UjZKX3B6Vm5jbUQxUWhNdkN3WXNkWVU5UWdyTmhhbmpvYW5Obm1wSnNQbEVoOEU5c2dMa3RZN1MyVVJEM3RqTkI4Mjd3UHZ1NWVrd2dMbzZsellETG9iZzk0UGJncVgtMEg5b0I1Rl8?oc=5",
+      "title": "理解されること: 聴覚障害者コミュニティの手話へのアクセスを拡大する方法",
+      "summary": "理解されること: 聴覚障害者コミュニティの手話へのアクセスを拡大する方法",
+      "originalTitle": "Being understood: how to expand sign language access for the deaf community",
+      "originalSummary": "Being understood: how to expand sign language access for the deaf community",
+      "sourceName": "World Bank Blogs",
+      "sourceUrl": "https://blogs.worldbank.org",
+      "publishedAt": "2024-09-17T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 22,
+      "curationSignals": [
+        "deaf community",
+        "sign language"
+      ],
+      "sourceDomain": "blogs.worldbank.org",
+      "sourcePriority": 50,
+      "sourceMode": "regional-broad",
       "translationProvider": "Codex app server + translate.googleapis.com"
     }
   ]
