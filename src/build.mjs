@@ -323,7 +323,7 @@ function renderPage({ generatedAt, count, articles }) {
     </div>
     <div class="container">
       <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${headerSub}</span></h1>
-      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティのための、静かで確かなニュースキュレーション。手話・情報保障・制度・医療・教育・地域情報を${leadUpdateText}</p>
+      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティのための、ニュースキュレーション。手話・情報保障・制度・医療・教育・地域情報を${leadUpdateText}</p>
     </div>
   </header>
 
