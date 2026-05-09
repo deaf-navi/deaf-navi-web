@@ -11,9 +11,9 @@ const MAX_ARTICLES = 600;
 const MIN_SCORE = 8;
 const FETCH_TIMEOUT = 18_000;
 const FETCH_CONCURRENCY = 8;
-const TRANSLATE_BATCH_CHARS = 2800;
-const TRANSLATE_DELAY_MS = 180;
-const TRANSLATION_PROVIDER = 'Codex app server + translate.googleapis.com';
+const TRANSLATE_BATCH_CHARS = 1600;
+const TRANSLATE_DELAY_MS = 220;
+const TRANSLATION_PROVIDER = 'translate.googleapis.com + Deaf Navi glossary v2';
 
 const REGIONS = {
   asia_oceania: 'アジア・オセアニア',
@@ -631,6 +631,25 @@ function polishJapanese(text) {
     .replace(/\s+([、。！？])/g, '$1')
     .replace(/（ /g, '（')
     .replace(/ ）/g, '）')
+    .replace(/オーストラリア手話/g, 'Auslan（オーストラリア手話）')
+    .replace(/オースラン語/g, 'Auslan')
+    .replace(/オースラン/g, 'Auslan')
+    .replace(/デフコミュニティ/g, 'ろう者コミュニティ')
+    .replace(/聴覚障害者コミュニティ/g, 'ろう者コミュニティ')
+    .replace(/聴覚障害者および難聴の/g, 'ろう・難聴の')
+    .replace(/聴覚障害者および難聴者/g, 'ろう・難聴者')
+    .replace(/どれほど耳が遠いのか知りませんでした/g, 'どれほど聞こえていなかったのか気づいていませんでした')
+    .replace(/ニュースを「見逃す」のではないかと懸念/g, 'ニュースから取り残される懸念')
+    .replace(/6月に最終回を放送する/g, '6月に最終回を迎える')
+    .replace(/この物語は(.+?)で解釈されています。?/g, 'この記事は$1で通訳されています。')
+    .replace(/キウイの 6 人に 1 人/g, 'ニュージーランド人の6人に1人')
+    .replace(/SA の学校/g, '南アフリカの学校')
+    .replace(/AI WhatsApp ボット/g, 'WhatsApp対応AIボット')
+    .replace(/手話のロックで/g, '手話通訳で')
+    .replace(/リオの手話のロック/g, 'ロック・イン・リオの手話通訳')
+    .replace(/聞く手: 手話を使ってギャップを埋める/g, '聞こえる手: 手話で隔たりを埋める')
+    .replace(/聴覚障害者のための/g, 'ろう者のための')
+    .replace(/聴覚障害者向け/g, 'ろう者向け')
     .trim();
 }
 
@@ -665,8 +684,8 @@ async function applyTranslations(articles) {
   }
 
   for (const article of articles) {
-    article.title = cache.get(article.originalTitle) ?? translated.get(article.originalTitle) ?? fallbackJapanese(article.originalTitle);
-    article.summary = cache.get(article.originalSummary) ?? translated.get(article.originalSummary) ?? fallbackJapanese(article.originalSummary);
+    article.title = polishJapanese(cache.get(article.originalTitle) ?? translated.get(article.originalTitle) ?? fallbackJapanese(article.originalTitle));
+    article.summary = polishJapanese(cache.get(article.originalSummary) ?? translated.get(article.originalSummary) ?? fallbackJapanese(article.originalSummary));
   }
 }
 
@@ -712,7 +731,7 @@ async function loadWorldNews() {
   return {
     articles: deduped,
     report: {
-      version: 'world-v1',
+      version: 'world-v2',
       rawCount: all.length,
       dedupedCount: deduped.length,
       maxArticles: MAX_ARTICLES,

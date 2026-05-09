@@ -7,8 +7,11 @@ const ROOT = join(__dirname, '..');
 const DOCS = join(ROOT, 'docs');
 
 const DATA_FILE = join(DOCS, 'articles-world.json');
-const HTML_OUT = join(DOCS, 'deaf-navi-world.html');
+const JP_HTML_OUT = join(DOCS, 'deaf-navi-world-jp.html');
+const EN_HTML_OUT = join(DOCS, 'deaf-navi-world-en.html');
+const LEGACY_HTML_OUT = join(DOCS, 'deaf-navi-world.html');
 const FEED_OUT = join(DOCS, 'feed-world.xml');
+const EN_FEED_OUT = join(DOCS, 'feed-world-en.xml');
 const SITEMAP_OUT = join(DOCS, 'sitemap-world.xml');
 const STYLES_SRC = join(__dirname, 'styles.css');
 const STYLES_OUT = join(DOCS, 'styles-world.css');
@@ -18,12 +21,17 @@ const OG_SRC = join(__dirname, 'og-image.svg');
 const OG_OUT = join(DOCS, 'og-image-world.svg');
 
 const SITE_URL = 'https://tamas-hub.github.io/deaf-navi-web/';
-const PAGE_FILE = 'deaf-navi-world.html';
-const PAGE_URL = `${SITE_URL}${PAGE_FILE}`;
+const JP_PAGE_FILE = 'deaf-navi-world-jp.html';
+const EN_PAGE_FILE = 'deaf-navi-world-en.html';
+const JP_PAGE_URL = `${SITE_URL}${JP_PAGE_FILE}`;
+const EN_PAGE_URL = `${SITE_URL}${EN_PAGE_FILE}`;
 const FEED_URL = `${SITE_URL}feed-world.xml`;
+const EN_FEED_URL = `${SITE_URL}feed-world-en.xml`;
 const SITEMAP_URL = `${SITE_URL}sitemap-world.xml`;
-const SITE_NAME = 'Deaf Navi World';
+const JP_SITE_NAME = 'Deaf Navi World-JP';
+const EN_SITE_NAME = 'Deaf Navi World-EN';
 const SITE_DESC = '世界中の主要メディアが報じる聴覚障害・ろう者・難聴・手話・情報保障関連ニュースを、日本語に翻訳して地域別・カテゴリ別にキュレーションするDeaf Naviの世界版ページ。';
+const EN_SITE_DESC = 'Original, untranslated global news articles related to deaf, hard-of-hearing, sign language, accessibility, health, education, culture, and deaf sports topics.';
 const INITIAL_VISIBLE = 150;
 
 const REGION_ORDER = ['all', 'asia_oceania', 'americas', 'europe_cis', 'middle_east_africa'];
@@ -46,6 +54,27 @@ const TOPIC_UI = {
   sports: 'デフスポーツ',
   safety: '災害・安全',
   general: '一般',
+};
+
+const REGION_UI_EN = {
+  all: 'All regions',
+  asia_oceania: 'Asia / Oceania',
+  americas: 'Americas',
+  europe_cis: 'Europe / CIS',
+  middle_east_africa: 'Middle East / Africa',
+};
+
+const TOPIC_UI_EN = {
+  all: 'All topics',
+  accessibility: 'Accessibility / interpreting',
+  rights: 'Rights / policy',
+  health: 'Health / hearing',
+  education: 'Education',
+  technology: 'Technology / AI',
+  culture: 'Culture / society',
+  sports: 'Deaf sports',
+  safety: 'Safety / emergencies',
+  general: 'General',
 };
 
 const CF_ANALYTICS_TOKEN = '6473e8a5f9904585a0f0f17c8a3edfe0';
@@ -79,6 +108,34 @@ function formatDateJST(iso) {
   return `${fmt.format(d).slice(0, 16)} JST`;
 }
 
+function refineJapanese(value) {
+  return String(value ?? '')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([、。！？])/g, '$1')
+    .replace(/（ /g, '（')
+    .replace(/ ）/g, '）')
+    .replace(/オーストラリア手話/g, 'Auslan（オーストラリア手話）')
+    .replace(/オースラン語/g, 'Auslan')
+    .replace(/オースラン/g, 'Auslan')
+    .replace(/デフコミュニティ/g, 'ろう者コミュニティ')
+    .replace(/聴覚障害者コミュニティ/g, 'ろう者コミュニティ')
+    .replace(/聴覚障害者および難聴の/g, 'ろう・難聴の')
+    .replace(/聴覚障害者および難聴者/g, 'ろう・難聴者')
+    .replace(/どれほど耳が遠いのか知りませんでした/g, 'どれほど聞こえていなかったのか気づいていませんでした')
+    .replace(/ニュースを「見逃す」のではないかと懸念/g, 'ニュースから取り残される懸念')
+    .replace(/6月に最終回を放送する/g, '6月に最終回を迎える')
+    .replace(/この物語は(.+?)で解釈されています。?/g, 'この記事は$1で通訳されています。')
+    .replace(/キウイの 6 人に 1 人/g, 'ニュージーランド人の6人に1人')
+    .replace(/SA の学校/g, '南アフリカの学校')
+    .replace(/AI WhatsApp ボット/g, 'WhatsApp対応AIボット')
+    .replace(/手話のロックで/g, '手話通訳で')
+    .replace(/リオの手話のロック/g, 'ロック・イン・リオの手話通訳')
+    .replace(/聞く手: 手話を使ってギャップを埋める/g, '聞こえる手: 手話で隔たりを埋める')
+    .replace(/聴覚障害者のための/g, 'ろう者のための')
+    .replace(/聴覚障害者向け/g, 'ろう者向け')
+    .trim();
+}
+
 function relativeTime(iso) {
   const now = Date.now();
   const t = new Date(iso).getTime();
@@ -102,10 +159,34 @@ function renderButtons(items, ui, attr, allLabel) {
   }).join('\n          ');
 }
 
-function renderArticle(article, index) {
+function articleText(article, mode) {
+  if (mode === 'en') {
+    return {
+      title: article.originalTitle || article.title,
+      summary: article.originalSummary || article.summary || article.originalTitle || article.title,
+      original: '',
+      lang: 'en',
+    };
+  }
+
+  return {
+    title: refineJapanese(article.title || article.originalTitle),
+    summary: refineJapanese(article.summary || article.originalSummary || article.title || article.originalTitle),
+    original: article.originalTitle || '',
+    lang: 'ja',
+  };
+}
+
+function renderArticle(article, index, mode = 'jp') {
   const hidden = index >= INITIAL_VISIBLE ? ' hidden' : '';
-  const regionLabel = REGION_UI[article.region] ?? article.regionLabel ?? '地域未分類';
-  const topicLabel = TOPIC_UI[article.topic] ?? article.topicLabel ?? '一般';
+  const regionUi = mode === 'en' ? REGION_UI_EN : REGION_UI;
+  const topicUi = mode === 'en' ? TOPIC_UI_EN : TOPIC_UI;
+  const regionLabel = regionUi[article.region] ?? article.regionLabel ?? 'Uncategorized';
+  const topicLabel = topicUi[article.topic] ?? article.topicLabel ?? 'General';
+  const text = articleText(article, mode);
+  const originalHtml = mode === 'jp' && text.original
+    ? `<p class="card__original" lang="en">${escapeHtml(text.original)}</p>`
+    : '';
   return `
       <article class="card world-card" data-region="${escapeHtml(article.region)}" data-topic="${escapeHtml(article.topic)}" data-index="${index}"${hidden}>
         <header class="card__head world-card__head">
@@ -113,11 +194,11 @@ function renderArticle(article, index) {
           <span class="chip chip--world-topic chip--topic-${escapeHtml(article.topic)}">${escapeHtml(topicLabel)}</span>
         </header>
         <time class="card__time" datetime="${escapeHtml(article.publishedAt)}" title="${escapeHtml(formatDateJST(article.publishedAt))}">${escapeHtml(relativeTime(article.publishedAt))}</time>
-        <h3 class="card__title">
-          <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
+        <h3 class="card__title" lang="${text.lang}">
+          <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text.title)}</a>
         </h3>
-        <p class="card__summary">${escapeHtml(article.summary)}</p>
-        <p class="card__original" lang="en">${escapeHtml(article.originalTitle)}</p>
+        <p class="card__summary" lang="${text.lang}">${escapeHtml(text.summary)}</p>
+        ${originalHtml}
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
           <span class="world-card__score" title="curation score">score ${escapeHtml(article.curationScore ?? '')}</span>
@@ -125,34 +206,44 @@ function renderArticle(article, index) {
       </article>`;
 }
 
-function renderJsonLd({ generatedAt, articles }) {
-  const itemList = articles.slice(0, 40).map((article, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    url: article.id,
-    item: {
+function renderJsonLd({ generatedAt, articles, mode, pageUrl, siteName, siteDesc }) {
+  const itemList = articles.slice(0, 40).map((article, index) => {
+    const text = articleText(article, mode);
+    const item = {
       '@type': 'NewsArticle',
       '@id': article.id,
-      headline: article.title,
+      headline: text.title,
       url: article.id,
       datePublished: article.publishedAt,
       dateModified: article.publishedAt,
-      inLanguage: 'ja-JP',
-      description: article.summary,
-      translationOfWork: {
-        '@type': 'NewsArticle',
-        headline: article.originalTitle,
-        inLanguage: 'und',
-      },
+      inLanguage: mode === 'jp' ? 'ja-JP' : 'und',
+      description: text.summary,
       publisher: {
         '@type': 'Organization',
         name: article.sourceName,
         url: article.sourceUrl,
       },
-      articleSection: article.topicLabel ?? TOPIC_UI[article.topic] ?? '一般',
-      spatialCoverage: article.regionLabel ?? REGION_UI[article.region] ?? '',
-    },
-  }));
+      articleSection: mode === 'en'
+        ? TOPIC_UI_EN[article.topic] ?? 'General'
+        : article.topicLabel ?? TOPIC_UI[article.topic] ?? '一般',
+      spatialCoverage: mode === 'en'
+        ? REGION_UI_EN[article.region] ?? ''
+        : article.regionLabel ?? REGION_UI[article.region] ?? '',
+    };
+    if (mode === 'jp') {
+      item.translationOfWork = {
+        '@type': 'NewsArticle',
+        headline: article.originalTitle,
+        inLanguage: 'und',
+      };
+    }
+    return {
+      '@type': 'ListItem',
+      position: index + 1,
+      url: article.id,
+      item,
+    };
+  });
 
   return `<script type="application/ld+json">
 ${JSON.stringify({
@@ -167,18 +258,18 @@ ${JSON.stringify({
       },
       {
         '@type': 'CollectionPage',
-        '@id': `${PAGE_URL}#webpage`,
-        url: PAGE_URL,
-        name: SITE_NAME,
-        description: SITE_DESC,
-        inLanguage: 'ja-JP',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: siteName,
+        description: siteDesc,
+        inLanguage: mode === 'jp' ? 'ja-JP' : 'en',
         isPartOf: { '@id': `${SITE_URL}#website` },
         dateModified: generatedAt,
       },
       {
         '@type': 'ItemList',
-        '@id': `${PAGE_URL}#itemlist`,
-        name: 'Deaf Navi World 海外ニュース',
+        '@id': `${pageUrl}#itemlist`,
+        name: siteName,
         numberOfItems: itemList.length,
         itemListElement: itemList,
       },
@@ -187,47 +278,83 @@ ${JSON.stringify({
 </script>`;
 }
 
-function renderPage(data) {
+function renderLanguageSwitch(mode) {
+  return `<div class="world-language-switch" aria-label="表示言語の切り替え">
+        <a class="world-language-switch__item${mode === 'jp' ? ' is-active' : ''}" href="./${JP_PAGE_FILE}"${mode === 'jp' ? ' aria-current="page"' : ''}>JP 日本語</a>
+        <a class="world-language-switch__item${mode === 'en' ? ' is-active' : ''}" href="./${EN_PAGE_FILE}"${mode === 'en' ? ' aria-current="page"' : ''}>EN Original</a>
+      </div>`;
+}
+
+function renderPage(data, mode = 'jp') {
   const articles = data.articles ?? [];
   const generatedAt = data.generatedAt ?? new Date().toISOString();
   const initialVisible = Math.min(INITIAL_VISIBLE, articles.length);
   const generatedLocal = formatDateJST(generatedAt);
-  const articlesHtml = articles.map(renderArticle).join('\n');
-  const regionButtons = renderButtons(REGION_ORDER, REGION_UI, 'data-filter-region', 'すべての地域');
-  const topicButtons = renderButtons(TOPIC_ORDER, TOPIC_UI, 'data-filter-topic', 'すべてのカテゴリ');
+  const articlesHtml = articles.map((article, index) => renderArticle(article, index, mode)).join('\n');
+  const isEn = mode === 'en';
+  const ogLocale = isEn ? 'en_US' : 'ja_JP';
+  const pageUrl = isEn ? EN_PAGE_URL : JP_PAGE_URL;
+  const pageFile = isEn ? EN_PAGE_FILE : JP_PAGE_FILE;
+  const siteName = isEn ? EN_SITE_NAME : JP_SITE_NAME;
+  const siteDesc = isEn ? EN_SITE_DESC : SITE_DESC;
+  const feedUrl = isEn ? EN_FEED_URL : FEED_URL;
+  const regionButtons = renderButtons(REGION_ORDER, isEn ? REGION_UI_EN : REGION_UI, 'data-filter-region', isEn ? 'All regions' : 'すべての地域');
+  const topicButtons = renderButtons(TOPIC_ORDER, isEn ? TOPIC_UI_EN : TOPIC_UI, 'data-filter-topic', isEn ? 'All topics' : 'すべてのカテゴリ');
   const ogImage = `${SITE_URL}og-image-world.svg`;
-  const jsonLd = renderJsonLd({ generatedAt, articles });
+  const jsonLd = renderJsonLd({ generatedAt, articles, mode, pageUrl, siteName, siteDesc });
+  const title = isEn ? `${siteName} | Original global deaf news` : `${siteName} | 世界の聴覚障害ニュース`;
+  const heading = isEn ? 'World News Original' : 'World News JP';
+  const lead = isEn
+    ? 'Global news related to deaf, hard-of-hearing, sign language, accessibility, health, education, and culture is shown in its original wording without Japanese translation.'
+    : '世界中の主要メディアが報じる聴覚障害・ろう者・難聴・手話・情報保障のニュースを、日本語に翻訳して地域別にキュレーションします。';
+  const note = isEn
+    ? 'Original titles and summaries are shown without Japanese translation.'
+    : 'タイトルと要約は日本語翻訳済みです。見出しとして読みやすくなるよう、ろう・難聴領域の用語を補正しています。';
+  const filterAria = isEn ? 'Deaf Navi World filters' : 'Deaf Navi World フィルタ';
+  const regionLabel = isEn ? 'Region' : '地域';
+  const topicLabel = isEn ? 'Topic' : 'カテゴリ';
+  const showingLabel = isEn ? 'Showing' : '表示中';
+  const totalLabel = isEn ? 'total' : '全';
+  const updatedLabel = isEn ? 'Updated' : '最終更新';
+  const loadMoreLabel = isEn ? 'Load more' : 'もっと読む';
+  const remainingLabel = isEn ? `${articles.length - initialVisible} more` : `あと ${articles.length - initialVisible} 件`;
+  const emptyLabel = isEn ? 'No matching articles.' : '該当する記事がありません。';
+  const backLabel = isEn ? 'Back to Deaf Navi' : 'Deaf Navi に戻る';
+  const htmlLang = isEn ? 'en' : 'ja';
 
   return `<!DOCTYPE html>
-<html lang="ja">
+<html lang="${htmlLang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${SITE_NAME} | 世界の聴覚障害ニュース</title>
-  <meta name="description" content="${escapeHtml(SITE_DESC)}">
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(siteDesc)}">
   <meta name="keywords" content="Deaf Navi World,聴覚障害,ろう者,難聴,手話,情報保障,海外ニュース,世界ニュース,deaf,hard of hearing,sign language">
   <meta name="author" content="TAMA">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <meta name="googlebot" content="index,follow">
   <meta name="theme-color" content="#5a7a48">
-  <link rel="canonical" href="${PAGE_URL}">
-  <link rel="alternate" type="application/rss+xml" title="${SITE_NAME}" href="${FEED_URL}">
+  <link rel="canonical" href="${pageUrl}">
+  <link rel="alternate" hreflang="ja" href="${JP_PAGE_URL}">
+  <link rel="alternate" hreflang="en" href="${EN_PAGE_URL}">
+  <link rel="alternate" hreflang="x-default" href="${JP_PAGE_URL}">
+  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)}" href="${feedUrl}">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Deaf Navi">
-  <meta property="og:title" content="${SITE_NAME} | 世界の聴覚障害ニュース">
-  <meta property="og:description" content="${escapeHtml(SITE_DESC)}">
-  <meta property="og:url" content="${PAGE_URL}">
+  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:description" content="${escapeHtml(siteDesc)}">
+  <meta property="og:url" content="${pageUrl}">
   <meta property="og:image" content="${ogImage}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Deaf Navi World - 世界の聴覚障害ニュース">
-  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image:alt" content="${escapeHtml(siteName)}">
+  <meta property="og:locale" content="${ogLocale}">
   <meta property="og:updated_time" content="${escapeHtml(generatedAt)}">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${SITE_NAME} | 世界の聴覚障害ニュース">
-  <meta name="twitter:description" content="${escapeHtml(SITE_DESC)}">
+  <meta name="twitter:title" content="${escapeHtml(title)}">
+  <meta name="twitter:description" content="${escapeHtml(siteDesc)}">
   <meta name="twitter:image" content="${ogImage}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -243,28 +370,23 @@ function renderPage(data) {
 
   <header class="site-header site-header--world" role="banner">
     <div class="container">
-      <p class="site-breadcrumb"><a href="./">Deaf Navi</a> <span aria-hidden="true">›</span> <span>World</span></p>
-      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">World</span></h1>
-      <p class="site-lead">世界中の主要メディアが報じる聴覚障害・ろう者・難聴・手話・情報保障のニュースを、日本語に翻訳して地域別にキュレーションします。</p>
-      <div class="world-summary" aria-label="Deaf Navi World summary">
-        <span><strong>${articles.length}</strong> 件</span>
-        <span>4地域</span>
-        <span>${Object.keys(TOPIC_UI).length - 1}カテゴリ</span>
-        <span>最終更新 ${escapeHtml(generatedLocal)}</span>
-      </div>
+      <p class="site-breadcrumb"><a href="./">Deaf Navi</a> <span aria-hidden="true">›</span> <span>${escapeHtml(siteName)}</span></p>
+      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${isEn ? 'World-EN' : 'World-JP'}</span></h1>
+      <p class="site-lead">${escapeHtml(lead)}</p>
+      ${renderLanguageSwitch(mode)}
     </div>
   </header>
 
-  <nav class="filters filters--world" role="navigation" aria-label="Deaf Navi World フィルタ">
+  <nav class="filters filters--world" role="navigation" aria-label="${escapeHtml(filterAria)}">
     <div class="container">
       <div class="world-filter-group" aria-label="地域で絞り込み">
-        <span class="filters__label">地域</span>
+        <span class="filters__label">${escapeHtml(regionLabel)}</span>
         <div class="filters__row" role="group" aria-label="地域で絞り込み">
           ${regionButtons}
         </div>
       </div>
       <div class="world-filter-group" aria-label="カテゴリで絞り込み">
-        <span class="filters__label">カテゴリ</span>
+        <span class="filters__label">${escapeHtml(topicLabel)}</span>
         <div class="filters__row" role="group" aria-label="カテゴリで絞り込み">
           ${topicButtons}
         </div>
@@ -275,37 +397,37 @@ function renderPage(data) {
   <main id="main" class="container" role="main">
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
-        <h2 id="articles-heading">World News</h2>
+        <h2 id="articles-heading">${escapeHtml(heading)}</h2>
         <p class="meta">
-          表示中: <strong id="visible-count">${initialVisible}</strong> / 全 <strong id="total-count">${articles.length}</strong> 件
+          ${escapeHtml(showingLabel)}: <strong id="visible-count">${initialVisible}</strong> / ${escapeHtml(totalLabel)} <strong id="total-count">${articles.length}</strong> ${isEn ? 'articles' : '件'}
           <span class="meta__sep" aria-hidden="true">/</span>
-          最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
+          ${escapeHtml(updatedLabel)}: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
         </p>
       </div>
-      <p class="world-note">タイトルと要約は日本語翻訳済みです。カード下部に原題を併記しています。</p>
+      <p class="world-note">${escapeHtml(note)}</p>
       <div id="articles" class="articles">
 ${articlesHtml}
       </div>
-      <p id="empty-msg" class="empty" hidden>該当する記事がありません。</p>
+      <p id="empty-msg" class="empty" hidden>${escapeHtml(emptyLabel)}</p>
       <div class="load-more-wrap">
         <button type="button" id="load-more-btn" class="load-more-btn"${articles.length <= INITIAL_VISIBLE ? ' hidden' : ''}>
-          もっと読む<span class="load-more-btn__remain" id="load-more-remain">（あと ${articles.length - initialVisible} 件）</span>
+          ${escapeHtml(loadMoreLabel)}<span class="load-more-btn__remain" id="load-more-remain">（${escapeHtml(remainingLabel)}）</span>
         </button>
       </div>
-      <p class="about__back"><a href="./">← Deaf Navi に戻る</a></p>
+      <p class="about__back"><a href="./">← ${escapeHtml(backLabel)}</a></p>
     </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>Deaf Navi World は Google News RSS を入口に、世界各地域の主要メディア発信記事を関連性スコアで絞り込み、Codex app server の自動キュレーションで日本語翻訳して掲載しています。</p>
-      <p>記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳です。</p>
-      <p><a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_URL}">サイトマップ</a></p>
+      <p>${isEn ? 'Deaf Navi World-EN shows original, untranslated article titles and summaries gathered from Google News RSS and major media sources.' : 'Deaf Navi World-JP は Google News RSS を入口に、世界各地域の主要メディア発信記事を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正を通して掲載しています。'}</p>
+      <p>${isEn ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳です。'}</p>
+      <p><a href="${feedUrl}">${isEn ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${SITEMAP_URL}">${isEn ? 'Sitemap' : 'サイトマップ'}</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>
         <span class="dot" aria-hidden="true"></span>
-        <span>Deaf Navi World.</span>
+        <span>${escapeHtml(siteName)}.</span>
       </p>
     </div>
   </footer>
@@ -315,26 +437,35 @@ ${articlesHtml}
 </html>`;
 }
 
-function renderRss(data) {
+function renderRss(data, mode = 'jp') {
   const generatedAt = data.generatedAt ?? new Date().toISOString();
-  const items = (data.articles ?? []).slice(0, 80).map((article) => `    <item>
-      <title>${escapeXml(article.title)}</title>
+  const isEn = mode === 'en';
+  const pageUrl = isEn ? EN_PAGE_URL : JP_PAGE_URL;
+  const siteName = isEn ? EN_SITE_NAME : JP_SITE_NAME;
+  const siteDesc = isEn ? EN_SITE_DESC : SITE_DESC;
+  const items = (data.articles ?? []).slice(0, 80).map((article) => {
+    const text = articleText(article, mode);
+    const categoryRegion = isEn ? REGION_UI_EN[article.region] : article.regionLabel ?? REGION_UI[article.region] ?? '';
+    const categoryTopic = isEn ? TOPIC_UI_EN[article.topic] : article.topicLabel ?? TOPIC_UI[article.topic] ?? '';
+    return `    <item>
+      <title>${escapeXml(text.title)}</title>
       <link>${escapeXml(article.id)}</link>
       <guid isPermaLink="true">${escapeXml(article.id)}</guid>
       <pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>
-      <description>${escapeXml(article.summary)}</description>
+      <description>${escapeXml(text.summary)}</description>
       <source url="${escapeXml(article.sourceUrl)}">${escapeXml(article.sourceName)}</source>
-      <category>${escapeXml(article.regionLabel ?? REGION_UI[article.region] ?? '')}</category>
-      <category>${escapeXml(article.topicLabel ?? TOPIC_UI[article.topic] ?? '')}</category>
-    </item>`).join('\n');
+      <category>${escapeXml(categoryRegion)}</category>
+      <category>${escapeXml(categoryTopic)}</category>
+    </item>`;
+  }).join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>${SITE_NAME}</title>
-    <link>${PAGE_URL}</link>
-    <description>${SITE_DESC}</description>
-    <language>ja</language>
+    <title>${siteName}</title>
+    <link>${pageUrl}</link>
+    <description>${siteDesc}</description>
+    <language>${isEn ? 'en' : 'ja'}</language>
     <lastBuildDate>${new Date(generatedAt).toUTCString()}</lastBuildDate>
 ${items}
   </channel>
@@ -347,26 +478,53 @@ function renderSitemap(data) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${PAGE_URL}</loc>
+    <loc>${JP_PAGE_URL}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>${EN_PAGE_URL}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
 `;
+}
+
+function renderLegacyRedirect() {
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,follow">
+  <meta http-equiv="refresh" content="0; url=./${JP_PAGE_FILE}">
+  <link rel="canonical" href="${JP_PAGE_URL}">
+  <title>Deaf Navi World-JPへ移動</title>
+  <script>window.location.replace('./${JP_PAGE_FILE}');</script>
+</head>
+<body>
+  <p><a href="./${JP_PAGE_FILE}">Deaf Navi World-JPへ移動</a></p>
+</body>
+</html>`;
 }
 
 async function main() {
   const raw = await readFile(DATA_FILE, 'utf8');
   const data = JSON.parse(raw);
   await mkdir(DOCS, { recursive: true });
-  await writeFile(HTML_OUT, renderPage(data), 'utf8');
-  await writeFile(FEED_OUT, renderRss(data), 'utf8');
+  await writeFile(JP_HTML_OUT, renderPage(data, 'jp'), 'utf8');
+  await writeFile(EN_HTML_OUT, renderPage(data, 'en'), 'utf8');
+  await writeFile(LEGACY_HTML_OUT, renderLegacyRedirect(), 'utf8');
+  await writeFile(FEED_OUT, renderRss(data, 'jp'), 'utf8');
+  await writeFile(EN_FEED_OUT, renderRss(data, 'en'), 'utf8');
   await writeFile(SITEMAP_OUT, renderSitemap(data), 'utf8');
   await copyFile(STYLES_SRC, STYLES_OUT);
   await copyFile(APP_SRC, APP_OUT);
   await copyFile(OG_SRC, OG_OUT);
-  console.log(`Deaf Navi World: built ${HTML_OUT}`);
+  console.log(`Deaf Navi World: built ${JP_HTML_OUT} and ${EN_HTML_OUT}`);
 }
 
 main().catch((err) => {

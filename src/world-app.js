@@ -11,6 +11,7 @@
   const totalCountEl = document.getElementById('total-count');
   const loadMoreBtn = document.getElementById('load-more-btn');
   const loadMoreRemainEl = document.getElementById('load-more-remain');
+  const isEnglish = document.documentElement.lang === 'en';
 
   let currentRegion = 'all';
   let currentTopic = 'all';
@@ -30,6 +31,10 @@
     const regionMatch = currentRegion === 'all' || region === currentRegion;
     const topicMatch = currentTopic === 'all' || topic === currentTopic;
     return regionMatch && topicMatch;
+  }
+
+  function remainingText(count) {
+    return isEnglish ? `(${count} more)` : `（あと ${count} 件）`;
   }
 
   function apply() {
@@ -55,7 +60,7 @@
     if (loadMoreBtn) {
       const remaining = matched - shown;
       loadMoreBtn.hidden = remaining <= 0;
-      if (loadMoreRemainEl) loadMoreRemainEl.textContent = `（あと ${Math.max(0, remaining)} 件）`;
+      if (loadMoreRemainEl) loadMoreRemainEl.textContent = remainingText(Math.max(0, remaining));
     }
   }
 
