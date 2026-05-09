@@ -7,16 +7,35 @@ function argValue(name) {
 }
 
 const port = Number(argValue('--port') ?? process.env.CODEX_APP_SERVER_PORT ?? 8787);
-const host = argValue('--host') ?? process.env.CODEX_APP_SERVER_HOST ?? '127.0.0.1';
-const token = argValue('--token') ?? process.env.CODEX_APP_SERVER_TOKEN ?? '';
-const codexBin = process.env.CODEX_BIN ?? 'codex';
-const model = process.env.CODEX_APP_SERVER_MODEL ?? '';
+const host = String(argValue('--host') ?? process.env.CODEX_APP_SERVER_HOST ?? '127.0.0.1').trim();
+const token = String(argValue('--token') ?? process.env.CODEX_APP_SERVER_TOKEN ?? '').trim();
+const requireToken = process.env.CODEX_APP_SERVER_REQUIRE_TOKEN !== '0';
+const codexBin = String(process.env.CODEX_BIN ?? 'codex').trim();
+const model = String(process.env.CODEX_APP_SERVER_MODEL ?? '').trim();
 const timeoutMs = Number(process.env.CODEX_APP_SERVER_EXEC_TIMEOUT_MS ?? 180_000);
 const outputLimitBytes = 1024 * 1024 * 4;
+const requestLimitBytes = Number(process.env.CODEX_APP_SERVER_REQUEST_LIMIT_BYTES ?? 768_000);
+const maxBatchItems = Number(process.env.CODEX_APP_SERVER_MAX_BATCH_ITEMS ?? 50);
+const allowedTypes = new Set(
+  (process.env.CODEX_APP_SERVER_ALLOWED_TYPES ?? 'world_jp_post_edit')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean),
+);
+
+if (requireToken && !token) {
+  throw new Error('CODEX_APP_SERVER_TOKEN is required when CODEX_APP_SERVER_REQUIRE_TOKEN is enabled');
+}
 
 function sendJson(res, status, body) {
   res.writeHead(status, { 'content-type': 'application/json; charset=utf-8' });
   res.end(JSON.stringify(body));
+}
+
+function httpError(statusCode, message) {
+  const error = new Error(message);
+  error.statusCode = statusCode;
+  return error;
 }
 
 function authorized(req) {
@@ -33,10 +52,20 @@ async function readJson(req) {
   for await (const chunk of req) {
     const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
     size += buffer.length;
-    if (size > 768_000) throw new Error('request body too large');
+    if (size > requestLimitBytes) throw httpError(413, 'request body too large');
     chunks.push(buffer);
   }
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
+}
+
+function validateRequestBody(body) {
+  if (!body || typeof body !== 'object' || Array.isArray(body)) throw httpError(400, 'request body must be an object');
+  if (!allowedTypes.has(String(body.type ?? ''))) throw httpError(400, 'request type is not allowed');
+  if (body.platform !== 'deaf-navi-world-jp') throw httpError(400, 'platform is not allowed');
+  const count = Number(body.count ?? 1);
+  if (!Number.isFinite(count) || count < 1 || count > maxBatchItems) throw httpError(400, 'count is out of range');
+  if (typeof body.source_text !== 'string' || body.source_text.length < 2) throw httpError(400, 'source_text is required');
+  if (body.source_text.length > requestLimitBytes) throw httpError(413, 'source_text is too large');
 }
 
 function buildPrompt(body) {
@@ -102,7 +131,7 @@ function runCodex(prompt) {
   return new Promise((resolve, reject) => {
     const child = spawn(codexBin, args, {
       cwd: process.cwd(),
-      env: process.env,
+      env: safeCodexEnv(),
       stdio: ['pipe', 'pipe', 'pipe'],
     });
 
@@ -147,7 +176,38 @@ function runCodex(prompt) {
   });
 }
 
+function safeCodexEnv() {
+  const pass = [
+    'PATH',
+    'Path',
+    'HOME',
+    'USERPROFILE',
+    'USER',
+    'USERNAME',
+    'SHELL',
+    'ComSpec',
+    'SystemRoot',
+    'TEMP',
+    'TMP',
+    'LANG',
+    'LC_ALL',
+    'TERM',
+    'APPDATA',
+    'LOCALAPPDATA',
+    'XDG_CONFIG_HOME',
+    'XDG_DATA_HOME',
+    'XDG_CACHE_HOME',
+    'CODEX_HOME',
+  ];
+  const env = {};
+  for (const key of pass) {
+    if (process.env[key]) env[key] = process.env[key];
+  }
+  return env;
+}
+
 async function generate(body) {
+  validateRequestBody(body);
   const prompt = buildPrompt(body);
   const stdout = await runCodex(prompt);
   const parsed = JSON.parse(extractJson(stdout));
@@ -170,6 +230,10 @@ async function generate(body) {
 const server = http.createServer(async (req, res) => {
   try {
     if (req.method === 'GET' && req.url === '/health') {
+      if (!authorized(req)) {
+        sendJson(res, 401, { success: false, error: 'unauthorized' });
+        return;
+      }
       sendJson(res, 200, { ok: true, provider: 'codex_app_server' });
       return;
     }
@@ -188,7 +252,8 @@ const server = http.createServer(async (req, res) => {
     const result = await generate(body);
     sendJson(res, 200, result);
   } catch (err) {
-    sendJson(res, 500, { success: false, error: err instanceof Error ? err.message : String(err) });
+    const statusCode = Number.isInteger(err?.statusCode) ? err.statusCode : 500;
+    sendJson(res, statusCode, { success: false, error: err instanceof Error ? err.message : String(err) });
   }
 });
 
