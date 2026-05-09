@@ -153,8 +153,9 @@ function renderFilterButtons() {
     (c) =>
       `<button type="button" class="filter${c === 'all' ? ' is-active' : ''}" data-filter="${c}" aria-pressed="${c === 'all' ? 'true' : 'false'}">${CATEGORY_UI[c]}</button>`,
   ).join('\n          ');
+  const worldLink = `<a class="filter filter--world-link" href="./deaf-navi-world.html">Deaf Navi World</a>`;
   const aboutLink = `<a class="filter filter--about" href="./${ABOUT_FILE}" target="_blank" rel="noopener">Deaf Naviについて<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>`;
-  return `${filters}\n          ${aboutLink}`;
+  return `${filters}\n          ${worldLink}\n          ${aboutLink}`;
 }
 
 /** 構造化データ JSON-LD（WebSite + Organization + ItemList of NewsArticle） */
@@ -666,6 +667,12 @@ function renderSitemap({ generatedAt }) {
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>${SITE_URL}deaf-navi-world.html</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
 `;
 }
@@ -688,6 +695,7 @@ Allow: /
 Disallow: /articles.json$
 
 Sitemap: ${SITEMAP_URL}
+Sitemap: ${SITE_URL}sitemap-world.xml
 `;
 }
 

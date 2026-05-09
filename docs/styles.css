@@ -298,8 +298,19 @@ button {
   border-color: rgba(122, 154, 101, 0.35);
 }
 
+.filter--world-link {
+  margin-left: auto;
+  color: var(--accent-deep);
+  border-color: rgba(90, 122, 72, 0.28);
+}
+
+.filter--world-link + .filter--about {
+  margin-left: 0;
+}
+
 @media (max-width: 600px) {
-  .filter--about { margin-left: 0; }
+  .filter--about,
+  .filter--world-link { margin-left: 0; }
 }
 
 /* ---------- Main ---------- */
@@ -822,6 +833,107 @@ main {
   height: 3px;
   border-radius: 50%;
   background: var(--text-tertiary);
+}
+
+/* ---------- Deaf Navi World ---------- */
+.site-header--world {
+  padding: var(--s-10, 40px) 0 var(--s-8);
+}
+
+.world-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.world-summary span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-pill);
+  background: rgba(251, 247, 238, 0.72);
+}
+
+.filters--world {
+  padding: var(--s-3) 0 var(--s-2);
+}
+
+.world-filter-group {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: var(--s-2);
+  align-items: start;
+  padding: 3px 0;
+}
+
+.filters__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
+  padding-top: 8px;
+}
+
+.world-note {
+  margin: 0 0 var(--s-4);
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.world-card__head {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.chip--world-region::before { background: #5a7a48; }
+.chip--region-asia_oceania::before { background: #4f8f8a; }
+.chip--region-americas::before { background: #7b6fa6; }
+.chip--region-europe_cis::before { background: #5a7a9a; }
+.chip--region-middle_east_africa::before { background: #b06f47; }
+
+.chip--topic-accessibility::before { background: #2f7c86; }
+.chip--topic-rights::before { background: #8b6b93; }
+.chip--topic-health::before { background: #b35e4b; }
+.chip--topic-education::before { background: #5a7a9a; }
+.chip--topic-technology::before { background: #627b52; }
+.chip--topic-culture::before { background: #a66b73; }
+.chip--topic-sports::before { background: #c28840; }
+.chip--topic-safety::before { background: #9a5b42; }
+.chip--topic-general::before { background: var(--cat-general); }
+
+.card__original {
+  margin-top: -4px;
+  padding-top: var(--s-2);
+  border-top: 1px dotted var(--border-subtle);
+  color: var(--text-tertiary);
+  font-size: 12px;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.world-card__score {
+  color: var(--text-tertiary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 720px) {
+  .world-filter-group {
+    grid-template-columns: 1fr;
+  }
+
+  .filters__label {
+    padding-top: 0;
+  }
 }
 
 /* ---------- Motion preferences ---------- */

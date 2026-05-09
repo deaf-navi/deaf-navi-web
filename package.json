@@ -7,10 +7,13 @@
   "scripts": {
     "curate": "node src/curate.mjs",
     "curate:dev": "node src/curate.mjs --dev",
+    "curate:world": "node src/world-curate.mjs",
     "build": "node src/build.mjs",
     "build:dev": "node src/build.mjs --dev",
+    "build:world": "node src/world-build.mjs",
     "generate": "npm run curate && npm run build",
     "generate:dev": "npm run curate:dev && npm run build:dev",
+    "generate:world": "npm run curate:world && npm run build:world",
     "serve": "node src/serve.mjs"
   },
   "engines": {
