@@ -40,10 +40,11 @@ const SITE_TAGLINE = '聴覚障害・難聴・ろう者コミュニティの最�
 const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・医療・教育・地域情報を毎時自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
 const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途失聴,手話,情報保障,補聴器,人工内耳,手話言語条例,聴覚障害ニュース,手話ニュース,難聴者,デフ,deaf,字幕,電話リレー,要約筆記,ろう学校,聴覚特別支援';
 
-const CATEGORY_ORDER = ['all', 'policy', 'medical', 'education', 'culture', 'sports', 'local', 'general'];
+const CATEGORY_ORDER = ['all', 'policy', 'relay', 'medical', 'education', 'culture', 'sports', 'local', 'general'];
 const CATEGORY_UI = {
   all: 'すべて',
   policy: '制度・政策',
+  relay: '電話リレー・ヨメテル',
   medical: '医療',
   education: '教育',
   culture: '文化・芸能',
@@ -53,6 +54,7 @@ const CATEGORY_UI = {
 };
 
 const INITIAL_VISIBLE = 150;
+const EXCLUDED_FROM_ALL = new Set(['relay']);
 
 // Cloudflare Web Analytics — cookieless / privacy-friendly
 const CF_ANALYTICS_TOKEN = '6473e8a5f9904585a0f0f17c8a3edfe0';
@@ -105,11 +107,15 @@ function relativeTime(iso) {
   return `${months}ヶ月前`;
 }
 
-function renderArticle(a, index) {
+function isDefaultVisibleCategory(category) {
+  return !EXCLUDED_FROM_ALL.has(category);
+}
+
+function renderArticle(a, index, defaultIndex = index) {
   const catLabel = CATEGORY_UI[a.category] ?? '一般';
-  const hidden = index >= INITIAL_VISIBLE ? ' hidden' : '';
+  const hidden = defaultIndex < 0 || defaultIndex >= INITIAL_VISIBLE ? ' hidden' : '';
   return `
-      <article class="card" data-category="${escapeHtml(a.category)}" data-index="${index}"${hidden}>
+      <article class="card" data-category="${escapeHtml(a.category)}" data-index="${index}" data-default-index="${defaultIndex}"${hidden}>
         <header class="card__head">
           <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(catLabel)}</span>
           <time class="card__time" datetime="${escapeHtml(a.publishedAt)}" title="${escapeHtml(formatDateJST(a.publishedAt))}">${escapeHtml(relativeTime(a.publishedAt))}</time>
@@ -229,8 +235,13 @@ ${JSON.stringify(data, null, 2)}
 }
 
 function renderPage({ generatedAt, count, articles }) {
-  const articlesHtml = articles.map((a, i) => renderArticle(a, i)).join('\n');
-  const initialVisible = Math.min(INITIAL_VISIBLE, count);
+  let defaultIndex = 0;
+  const articlesHtml = articles.map((a, i) => {
+    const articleDefaultIndex = isDefaultVisibleCategory(a.category) ? defaultIndex++ : -1;
+    return renderArticle(a, i, articleDefaultIndex);
+  }).join('\n');
+  const defaultCount = defaultIndex;
+  const initialVisible = Math.min(INITIAL_VISIBLE, defaultCount);
   const generatedLocal = formatDateJST(generatedAt);
   const jsonLd = renderJsonLd({ generatedAt, articles });
 
@@ -322,7 +333,7 @@ function renderPage({ generatedAt, count, articles }) {
       <div class="articles-head">
         <h2 id="articles-heading">最新ニュース</h2>
         <p class="meta">
-          表示中: <strong id="visible-count">${initialVisible}</strong> / 全 <strong id="total-count">${count}</strong> 件
+          表示中: <strong id="visible-count">${initialVisible}</strong> / 全 <strong id="total-count">${defaultCount}</strong> 件
           <span class="meta__sep" aria-hidden="true">/</span>
           最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
         </p>
@@ -332,8 +343,8 @@ ${articlesHtml}
       </div>
       <p id="empty-msg" class="empty" hidden>該当する記事がありません。</p>
       <div class="load-more-wrap">
-        <button type="button" id="load-more-btn" class="load-more-btn"${count <= INITIAL_VISIBLE ? ' hidden' : ''}>
-          もっと読む<span class="load-more-btn__remain" id="load-more-remain">（あと ${count - initialVisible} 件）</span>
+        <button type="button" id="load-more-btn" class="load-more-btn"${defaultCount <= INITIAL_VISIBLE ? ' hidden' : ''}>
+          もっと読む<span class="load-more-btn__remain" id="load-more-remain">（あと ${defaultCount - initialVisible} 件）</span>
         </button>
       </div>
       ${archiveLink}
@@ -591,6 +602,7 @@ ${devSourceSection}
       <p>記事はタイトル・要約から自動で以下のカテゴリに分類されます:</p>
       <ul>
         <li><strong>制度・政策</strong> — 法律・条例・給付・雇用・助成など</li>
+        <li><strong>電話リレー・ヨメテル</strong> — 電話リレーサービス・ヨメテル・手話リンクなど</li>
         <li><strong>医療</strong> — 病院・治療・補聴器・人工内耳・診断など</li>
         <li><strong>教育</strong> — 学校・大学・授業・入試・研究など</li>
         <li><strong>文化・芸能</strong> — ろう演劇・ろう映画・手話パフォーマンス・ろうアート・手話狂言など</li>

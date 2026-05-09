@@ -7,8 +7,10 @@
   const articles = Array.from(document.querySelectorAll('.card'));
   const emptyMsg = document.getElementById('empty-msg');
   const visibleCountEl = document.getElementById('visible-count');
+  const totalCountEl = document.getElementById('total-count');
   const loadMoreBtn = document.getElementById('load-more-btn');
   const loadMoreRemainEl = document.getElementById('load-more-remain');
+  const excludedFromAll = new Set(['relay']);
 
   let currentFilter = 'all';
   let limit = INITIAL_VISIBLE;
@@ -18,7 +20,9 @@
     let shown = 0;
     articles.forEach((el) => {
       const cat = el.getAttribute('data-category');
-      const matches = currentFilter === 'all' || cat === currentFilter;
+      const matches = currentFilter === 'all'
+        ? !excludedFromAll.has(cat)
+        : cat === currentFilter;
       if (matches) {
         const show = shown < limit;
         el.hidden = !show;
@@ -30,6 +34,7 @@
     });
 
     if (visibleCountEl) visibleCountEl.textContent = String(shown);
+    if (totalCountEl) totalCountEl.textContent = String(matched);
     if (emptyMsg) emptyMsg.hidden = matched > 0;
 
     if (loadMoreBtn) {

@@ -363,6 +363,7 @@ function isRelevantArticle(title, description) {
 
 function guessCategory(title, summary) {
   const text = (title + ' ' + summary).toLowerCase();
+  if (/電話リレー|ヨメテル|文字表示電話|手話リンク|手話フォン|遠隔手話/.test(text)) return 'relay';
   // culture は最優先（「ろう演劇」「手話映画」等が他カテゴリに誤判定されるのを防ぐ）
   if (/ろう[文劇芸映]|手話[演舞映落狂詩]|デフシアター|ろう映画|ろう芸術|手話パフォーマンス|手話能|手話狂言|手話文学|ろうアーティスト|デフリンピック.*(文化|芸術|プログラム)/.test(text)) return 'culture';
   // sports は culture の次（「デフリンピック文化プログラム」は culture に流れる）

@@ -34,6 +34,7 @@
 
   /* Category palette — botanical tones */
   --cat-policy:    #8b6b93; /* lavender */
+  --cat-relay:     #2f7c86; /* teal */
   --cat-medical:   #b35e4b; /* terracotta */
   --cat-education: #5a7a9a; /* dusty blue */
   --cat-culture:   #a66b73; /* muted rose-wine (arts) */
@@ -522,6 +523,7 @@ main {
 }
 
 .chip--policy::before    { background: var(--cat-policy); }
+.chip--relay::before     { background: var(--cat-relay); }
 .chip--medical::before   { background: var(--cat-medical); }
 .chip--education::before { background: var(--cat-education); }
 .chip--culture::before   { background: var(--cat-culture); }
@@ -530,6 +532,7 @@ main {
 .chip--general::before   { background: var(--cat-general); }
 
 .chip--policy    { color: var(--cat-policy); }
+.chip--relay     { color: var(--cat-relay); }
 .chip--medical   { color: var(--cat-medical); }
 .chip--education { color: var(--cat-education); }
 .chip--culture   { color: var(--cat-culture); }
