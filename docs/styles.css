@@ -645,6 +645,48 @@ main {
   font-variant-numeric: tabular-nums;
 }
 
+.archive-link {
+  margin: var(--s-4) 0 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.archive-link a {
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+
+.archive {
+  padding-top: var(--s-6);
+}
+
+.archive-month {
+  margin-top: var(--s-8);
+}
+
+.archive-month__head {
+  margin-bottom: var(--s-4);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--border-default);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+
+.archive-month__head h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.archive-articles {
+  margin-top: 0;
+}
+
 .meta__sep {
   color: var(--border-default);
   margin: 0 6px;
