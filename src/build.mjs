@@ -512,7 +512,7 @@ function renderAboutPage() {
     '@id': ABOUT_URL,
     url: ABOUT_URL,
     name: aboutTitle,
-    description: 'Deaf Navi Web のコンセプト・情報源・更新頻度・運営者情報。',
+    description: 'Deaf Navi Web と Deaf Navi World-JP/EN のコンセプト・情報源・更新頻度・運営者情報。',
     inLanguage: 'ja-JP',
     isPartOf: { '@id': `${SITE_URL}#website` },
   };
@@ -531,13 +531,13 @@ function renderAboutPage() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(aboutTitle)}</title>
-  <meta name="description" content="Deaf Navi Web のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。">
+  <meta name="description" content="Deaf Navi Web と Deaf Navi World-JP/EN のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。">
   <meta name="robots" content="${robots}">
   <link rel="canonical" href="${IS_DEV ? `${SITE_URL}about.html` : ABOUT_URL}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
   <meta property="og:title" content="${escapeHtml(aboutTitle)}">
-  <meta property="og:description" content="Deaf Navi Web のコンセプト・情報源・更新頻度・運営者情報。">
+  <meta property="og:description" content="Deaf Navi Web と Deaf Navi World-JP/EN のコンセプト・情報源・更新頻度・運営者情報。">
   <meta property="og:url" content="${ABOUT_URL}">
   <meta property="og:image" content="${SITE_URL}${OG_FILE}">
   <meta property="og:locale" content="ja_JP">
@@ -576,25 +576,37 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
   <main id="main" class="container about" role="main">
     <section aria-labelledby="about-concept">
       <h2 id="about-concept" class="about__h2">このサイトについて</h2>
-      <p>Deaf Navi Web は、<strong>聴覚障害・難聴・ろう者・中途失聴者</strong>のコミュニティに関わる情報を、信頼できる情報源から自動収集・分類してお届けする無料ニュースキュレーションサイトです。毎時自動更新されるため、常に最新の動向を確認できます。</p>
-      <p>情報保障・手話・制度・医療・教育・文化など、暮らしと権利に直結するトピックを幅広くカバーします。</p>
+      <p>Deaf Navi Web は、<strong>聴覚障害・難聴・ろう者・中途失聴者</strong>のコミュニティに関わる情報を、信頼できる情報源から自動収集・分類してお届けする無料ニュースキュレーションサイトです。</p>
+      <p>国内ニュースを扱う Deaf Navi Web に加え、海外ニュースを扱う <a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版）と <a href="./deaf-navi-world-en.html">Deaf Navi World-EN</a>（原文版）を公開しています。情報保障・手話・制度・医療・教育・文化・デフスポーツなど、暮らしと権利に直結するトピックを幅広くカバーします。</p>
     </section>
 
     <section aria-labelledby="about-sources">
       <h2 id="about-sources" class="about__h2">情報源</h2>
-      <h3 class="about__h3">専門媒体（直接RSS）</h3>
+      <h3 class="about__h3">国内版: 公式・専門媒体（直接RSS/Atom）</h3>
       <ul>
         <li><a href="https://www.jfd.or.jp/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟</a> — 全国規模の連盟公式情報（制度・手話言語法を含む）</li>
         <li><a href="https://www.tfd.deaf.tokyo/" target="_blank" rel="noopener noreferrer">東京都聴覚障害者連盟</a> — 地域連盟の活動情報</li>
         <li><a href="https://shikaku.in/" target="_blank" rel="noopener noreferrer">しかくタイムズ</a> — ろう者・難聴者向けイベント情報</li>
         <li><a href="https://co-coco.jp/" target="_blank" rel="noopener noreferrer">こここ</a> — マガジンハウス運営の福祉クリエイティブマガジン</li>
         <li><a href="https://ameblo.jp/jtd2009/" target="_blank" rel="noopener noreferrer">日本ろう者劇団</a> — 手話狂言・公演情報</li>
+        <li><a href="https://www.jfd.or.jp/sc/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟スポーツ委員会</a>、<a href="https://jdba.sakura.ne.jp/" target="_blank" rel="noopener noreferrer">日本デフバスケットボール協会</a>、<a href="https://www.deafswim.or.jp/" target="_blank" rel="noopener noreferrer">日本デフ水泳協会</a> — 国内デフスポーツ情報</li>
       </ul>
 ${devSourceSection}
-      <h3 class="about__h3">主要報道機関・公的機関（Google News RSS）</h3>
+      <h3 class="about__h3">国内版: 主要報道機関・公的機関（Google News RSS）</h3>
       <ul>
-        <li>朝日新聞・読売新聞・PR TIMES・国立リハビリテーションセンター 等</li>
-        <li>キーワード: 聴覚障害 / 難聴 / ろう者 / 手話 / 情報保障 / 制度・支援 / ろう文化・芸能 ほか</li>
+        <li>朝日新聞・読売新聞・NHK系記事・自治体/公的機関・PR TIMES など、Google News RSS に掲載される国内ニュースを参照します。</li>
+        <li>キーワード: 聴覚障害 / 難聴 / ろう者 / 手話 / 情報保障 / 電話リレー / ヨメテル / 補聴器 / 人工内耳 / ろう学校 / デフスポーツ / ろう文化・芸能 ほか</li>
+        <li>電話リレー・ヨメテル系の記事は専用カテゴリで表示し、トップの「すべて」からは除外しています。</li>
+      </ul>
+
+      <h3 class="about__h3">Deaf Navi World: 海外主要メディア（Google News RSS）</h3>
+      <ul>
+        <li>海外版は、公式サイトの小さな更新を広く拾うのではなく、Google News RSS を入口に主要メディアの記事を地域別に収集します。</li>
+        <li>アジア・オセアニア: ABC News Australia、SBS News、The Guardian、RNZ、CNA、The Japan Times、The Korea Herald ほか</li>
+        <li>北米・中南米: AP News、Reuters、NPR、The New York Times、The Washington Post、CBC News、El Pais、Folha de S.Paulo ほか</li>
+        <li>ヨーロッパ・CIS: BBC News、Reuters、Deutsche Welle、France 24、Euronews、POLITICO Europe、Le Monde、The Kyiv Independent ほか</li>
+        <li>中東・アフリカ: Al Jazeera、The National、Arab News、Africanews、News24、Daily Maverick、Nation Africa ほか</li>
+        <li>Deaf Navi World-JP は自動翻訳後に「ろう」「難聴」「手話」「補聴器」「Auslan」などの用語補正を行います。Deaf Navi World-EN では翻訳せず、原文タイトル・要約を表示します。</li>
       </ul>
     </section>
 
@@ -607,6 +619,7 @@ ${devSourceSection}
         <li><strong>医療</strong> — 病院・治療・補聴器・人工内耳・診断など</li>
         <li><strong>教育</strong> — 学校・大学・授業・入試・研究など</li>
         <li><strong>文化・芸能</strong> — ろう演劇・ろう映画・手話パフォーマンス・ろうアート・手話狂言など</li>
+        <li><strong>デフスポーツ</strong> — デフリンピック・競技団体・選手・大会情報など</li>
         <li><strong>地域</strong> — 都道府県・市区町村単位のローカル情報</li>
         <li><strong>一般</strong> — 上記以外の関連トピック</li>
       </ul>
@@ -614,7 +627,8 @@ ${devSourceSection}
 
     <section aria-labelledby="about-update">
       <h2 id="about-update" class="about__h2">更新頻度・仕組み</h2>
-      <p>GitHub Actions による自動ジョブが毎時（UTC 0分／JST 毎時9分）にRSSを収集。関連性フィルタ・重複除去・カテゴリ分類を行い、最新150件を表示しています。</p>
+      <p>国内版は GitHub Actions による自動ジョブが毎時（JST 毎時0分ごろ）にRSSを収集。関連性フィルタ・重複除去・カテゴリ分類を行い、最大400件を保持し、初期表示では最新150件を表示しています。</p>
+      <p>Deaf Navi World は6時間ごと（JST 3:30 / 9:30 / 15:30 / 21:30ごろ）に海外ニュースを収集し、最大600件を保持します。World-JP は日本語翻訳版、World-EN は翻訳なしの原文版です。</p>
       <p>記事の本文・要約は各発信元のものを抜粋し、本文リンクはすべて各元記事の原文（外部サイト）に遷移します。記事の著作権はそれぞれの発信元に帰属します。</p>
     </section>
 
@@ -628,6 +642,8 @@ ${devSourceSection}
       <h2 id="about-feeds" class="about__h2">配信・共有</h2>
       <ul>
         <li><a href="${FEED_URL}">RSS フィード</a>（最新50件）</li>
+        <li><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版） / <a href="./deaf-navi-world-en.html">Deaf Navi World-EN</a>（原文版）</li>
+        <li><a href="https://tamas-hub.github.io/deaf-navi-web/feed-world.xml">World-JP RSS フィード</a> / <a href="https://tamas-hub.github.io/deaf-navi-web/feed-world-en.xml">World-EN RSS フィード</a></li>
         <li><a href="${SITEMAP_URL}">サイトマップ</a></li>
       </ul>
     </section>

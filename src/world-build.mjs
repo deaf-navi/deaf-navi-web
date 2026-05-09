@@ -280,9 +280,12 @@ ${JSON.stringify({
 }
 
 function renderLanguageSwitch(mode) {
-  return `<div class="world-language-switch" aria-label="表示言語の切り替え">
+  const aboutLabel = mode === 'en' ? 'About Deaf Navi' : 'Deaf Naviについて';
+  const ariaLabel = mode === 'en' ? 'World page navigation' : 'Worldページ内ナビゲーション';
+  return `<div class="world-language-switch" aria-label="${ariaLabel}">
         <a class="world-language-switch__item${mode === 'jp' ? ' is-active' : ''}" href="./${JP_PAGE_FILE}"${mode === 'jp' ? ' aria-current="page"' : ''}>JP 日本語</a>
         <a class="world-language-switch__item${mode === 'en' ? ' is-active' : ''}" href="./${EN_PAGE_FILE}"${mode === 'en' ? ' aria-current="page"' : ''}>EN Original</a>
+        <a class="world-language-switch__item" href="./about.html">${aboutLabel}</a>
       </div>`;
 }
 
@@ -423,7 +426,7 @@ ${articlesHtml}
     <div class="container">
       <p>${isEn ? 'Deaf Navi World-EN shows original, untranslated article titles and summaries gathered from Google News RSS and major media sources.' : 'Deaf Navi World-JP は Google News RSS を入口に、世界各地域の主要メディア発信記事を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正を通して掲載しています。'}</p>
       <p>${isEn ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳です。'}</p>
-      <p><a href="${feedUrl}">${isEn ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${SITEMAP_URL}">${isEn ? 'Sitemap' : 'サイトマップ'}</a></p>
+      <p><a href="./about.html">${isEn ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isEn ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${SITEMAP_URL}">${isEn ? 'Sitemap' : 'サイトマップ'}</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>
