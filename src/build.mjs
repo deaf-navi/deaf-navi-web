@@ -504,6 +504,14 @@ function renderAboutPage() {
     inLanguage: 'ja-JP',
     isPartOf: { '@id': `${SITE_URL}#website` },
   };
+  const devSourceSection = IS_DEV ? `
+      <h3 class="about__h3">DEV試験追加ソース</h3>
+      <ul>
+        <li><a href="https://www.zennancho.or.jp/" target="_blank" rel="noopener noreferrer">全日本難聴者・中途失聴者団体連合会</a>、<a href="https://www.com-sagano.com/" target="_blank" rel="noopener noreferrer">全国手話研修センター</a>、<a href="https://www.jyoubun-center.or.jp/" target="_blank" rel="noopener noreferrer">聴力障害者情報文化センター</a> ほか</li>
+        <li><a href="https://www.nftrs.or.jp/" target="_blank" rel="noopener noreferrer">電話リレーサービス</a>、<a href="https://zentsuken.cocolog-nifty.com/blog/" target="_blank" rel="noopener noreferrer">全通研NOW!!</a>、<a href="https://audiology-japan.jp/" target="_blank" rel="noopener noreferrer">日本聴覚医学会</a> ほか</li>
+        <li>YouTube公式チャンネル、note、UDCast、Palabra、Silent Voice などの公開RSS/Atom</li>
+        <li>追加ソースとSNS系は関連語スコアが一定以上の記事のみ掲載候補にしています</li>
+      </ul>` : '';
 
   return `<!DOCTYPE html>
 <html lang="ja">
@@ -570,6 +578,7 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
         <li><a href="https://co-coco.jp/" target="_blank" rel="noopener noreferrer">こここ</a> — マガジンハウス運営の福祉クリエイティブマガジン</li>
         <li><a href="https://ameblo.jp/jtd2009/" target="_blank" rel="noopener noreferrer">日本ろう者劇団</a> — 手話狂言・公演情報</li>
       </ul>
+${devSourceSection}
       <h3 class="about__h3">主要報道機関・公的機関（Google News RSS）</h3>
       <ul>
         <li>朝日新聞・読売新聞・PR TIMES・国立リハビリテーションセンター 等</li>

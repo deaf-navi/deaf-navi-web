@@ -126,6 +126,156 @@ const DIRECT_FEEDS = [
   },
 ];
 
+const DEV_DIRECT_FEEDS = [
+  {
+    url: 'https://www.zennancho.or.jp/feed/',
+    sourceName: '全日本難聴者・中途失聴者団体連合会',
+    sourceUrl: 'https://www.zennancho.or.jp/',
+    defaultCategory: 'policy',
+    sourceTier: 'official',
+    minScore: 6,
+  },
+  {
+    url: 'https://www.com-sagano.com/feed/',
+    sourceName: '全国手話研修センター',
+    sourceUrl: 'https://www.com-sagano.com/',
+    defaultCategory: 'education',
+    sourceTier: 'official',
+    minScore: 7,
+  },
+  {
+    url: 'https://www.jyoubun-center.or.jp/feed/',
+    sourceName: '聴力障害者情報文化センター',
+    sourceUrl: 'https://www.jyoubun-center.or.jp/',
+    defaultCategory: 'culture',
+    sourceTier: 'official',
+    minScore: 7,
+  },
+  {
+    url: 'https://shigajou.or.jp/feed/',
+    sourceName: '滋賀県立聴覚障害者センター',
+    sourceUrl: 'https://shigajou.or.jp/',
+    defaultCategory: 'local',
+    sourceTier: 'official',
+    minScore: 7,
+  },
+  {
+    url: 'https://www.tokyo-shuwacenter.or.jp/feed/',
+    sourceName: '東京手話通訳等派遣センター',
+    sourceUrl: 'https://www.tokyo-shuwacenter.or.jp/',
+    defaultCategory: 'local',
+    sourceTier: 'official',
+    minScore: 7,
+  },
+  {
+    url: 'https://www.nftrs.or.jp/rss.xml',
+    sourceName: '電話リレーサービス',
+    sourceUrl: 'https://www.nftrs.or.jp/',
+    defaultCategory: 'policy',
+    sourceTier: 'official',
+    minScore: 7,
+  },
+  {
+    url: 'https://www.nf-denwa-relay.jp/rss.xml',
+    sourceName: '日本財団電話リレーサービス',
+    sourceUrl: 'https://www.nf-denwa-relay.jp/',
+    defaultCategory: 'policy',
+    sourceTier: 'official',
+    minScore: 7,
+  },
+  {
+    url: 'https://zentsuken.cocolog-nifty.com/blog/rss.xml',
+    sourceName: '全通研NOW!!',
+    sourceUrl: 'https://www.zentsuken.net/',
+    defaultCategory: 'policy',
+    sourceTier: 'specialist',
+    minScore: 5,
+  },
+  {
+    url: 'https://audiology-japan.jp/feed/',
+    sourceName: '日本聴覚医学会',
+    sourceUrl: 'https://audiology-japan.jp/',
+    defaultCategory: 'medical',
+    sourceTier: 'specialist',
+    minScore: 6,
+  },
+];
+
+const DEV_SOCIAL_FEEDS = [
+  {
+    url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCEL-kFxU_6EnoEB4sj4DBTg',
+    sourceName: '全日本ろうあ連盟 YouTube',
+    sourceUrl: 'https://www.youtube.com/@JFDVideo',
+    defaultCategory: 'general',
+    sourceTier: 'official',
+    sourceType: 'video',
+    minScore: 6,
+  },
+  {
+    url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCv-RELKOhMzxV6wBbIKpbhA',
+    sourceName: '全国手話研修センター YouTube',
+    sourceUrl: 'https://www.youtube.com/@%E5%85%A8%E5%9B%BD%E6%89%8B%E8%A9%B1%E7%A0%94%E4%BF%AE%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC',
+    defaultCategory: 'education',
+    sourceTier: 'official',
+    sourceType: 'video',
+    minScore: 5,
+  },
+  {
+    url: 'https://note.com/ontelope/rss',
+    sourceName: 'ONTELOPE note',
+    sourceUrl: 'https://note.com/ontelope',
+    defaultCategory: 'general',
+    sourceTier: 'broad',
+    sourceType: 'social',
+    minScore: 7,
+  },
+  {
+    url: 'https://note.com/psy_article/rss',
+    sourceName: 'うりぼー note',
+    sourceUrl: 'https://note.com/psy_article',
+    defaultCategory: 'general',
+    sourceTier: 'broad',
+    sourceType: 'social',
+    minScore: 8,
+  },
+  {
+    url: 'https://udcast.net/feed/',
+    sourceName: 'UDCast',
+    sourceUrl: 'https://udcast.net/',
+    defaultCategory: 'culture',
+    sourceTier: 'broad',
+    sourceType: 'social',
+    minScore: 7,
+  },
+  {
+    url: 'https://udcast.net/workslist/feed/',
+    sourceName: 'UDCast 作品情報',
+    sourceUrl: 'https://udcast.net/workslist/',
+    defaultCategory: 'culture',
+    sourceTier: 'broad',
+    sourceType: 'social',
+    minScore: 7,
+  },
+  {
+    url: 'https://palabra-i.co.jp/feed/',
+    sourceName: 'Palabra',
+    sourceUrl: 'https://palabra-i.co.jp/',
+    defaultCategory: 'culture',
+    sourceTier: 'broad',
+    sourceType: 'social',
+    minScore: 7,
+  },
+  {
+    url: 'https://silentvoice.co.jp/feed/',
+    sourceName: 'Silent Voice',
+    sourceUrl: 'https://silentvoice.co.jp/',
+    defaultCategory: 'education',
+    sourceTier: 'broad',
+    sourceType: 'social',
+    minScore: 7,
+  },
+];
+
 const RELEVANT_KEYWORDS = [
   '聴覚障害', '難聴', 'ろう者', 'ろうあ者', 'ろうあ', '聾者', '聾唖',
   'デフ', 'deaf', '手話', '情報保障', '字幕', '補聴器', '人工内耳',
@@ -154,6 +304,7 @@ const SCORE_TERMS = [
   ['遠隔手話', 8], ['手話リンク', 7], ['手話言語', 7], ['手話奉仕員', 7],
   ['補聴器', 7], ['人工内耳', 7], ['新生児聴覚スクリーニング', 7],
   ['デフリンピック', 8], ['デフスポーツ', 8], ['デフアスリート', 7],
+  ['全国キャラバン', 6], ['標準手話', 6], ['手話練習帳', 6], ['Let’s手話', 6], ["Let's手話", 6],
   ['全国ろうあ者体育大会', 8], ['ろうあ者体育大会', 8],
   ['デフバスケ', 7], ['デフテニス', 7], ['デフサッカー', 7], ['デフバレー', 7],
   ['デフ柔道', 7], ['デフ陸上', 7], ['デフ水泳', 7],
@@ -233,6 +384,11 @@ function extractTag(xml, tag) {
   if (cdata) return cdata[1].trim();
   const plain = xml.match(new RegExp(`<${tag}[^>]*>([^<]*)<\\/${tag}>`, 'i'));
   return plain?.[1]?.trim() ?? '';
+}
+
+function extractAttr(xml, tag, attr, attrPattern = '') {
+  const pattern = new RegExp(`<${tag}\\b(?=[^>]*${attrPattern})[^>]*\\s${attr}=["']([^"']+)["'][^>]*>`, 'i');
+  return xml.match(pattern)?.[1]?.trim() ?? '';
 }
 
 function extractActualUrl(description, fallback) {
@@ -326,13 +482,72 @@ function parseItems(xml, defaultCategory, sourceOverride) {
       sourceUrl,
       publishedAt,
       category,
+      sourceType: sourceOverride?.sourceType ?? 'rss',
       _sourceTier: sourceOverride?.sourceTier ?? 'google',
       _passThrough: Boolean(sourceOverride?.passThrough),
       _minScore: sourceOverride?.minScore,
+      _feedUrl: sourceOverride?.url,
     });
   }
 
   return results;
+}
+
+function parseAtomEntries(xml, defaultCategory, sourceOverride) {
+  const results = [];
+  const entryMatches = [...xml.matchAll(/<entry\b[^>]*>([\s\S]*?)<\/entry>/g)];
+
+  for (const match of entryMatches) {
+    const block = match[1];
+    const title = cleanHtml(extractTag(block, 'title') || extractTag(block, 'media:title'));
+    const rawSummary = extractTag(block, 'summary')
+      || extractTag(block, 'content')
+      || extractTag(block, 'media:description');
+    const description = cleanHtml(rawSummary).substring(0, 200);
+    const alternateLink = extractAttr(block, 'link', 'href', 'rel=["\']alternate["\']')
+      || extractAttr(block, 'link', 'href');
+    const id = extractTag(block, 'id') || alternateLink;
+    const pubDate = extractTag(block, 'published') || extractTag(block, 'updated');
+    const articleUrl = alternateLink || id;
+
+    if (!title || !articleUrl) continue;
+
+    let publishedAt;
+    try {
+      publishedAt = new Date(pubDate).toISOString();
+    } catch {
+      publishedAt = new Date().toISOString();
+    }
+
+    const authorName = cleanHtml(extractTag(block, 'name'));
+    const authorUri = extractTag(block, 'uri');
+    const sourceName = sourceOverride?.sourceName ?? authorName ?? 'Atom Feed';
+    const sourceUrl = sourceOverride?.sourceUrl ?? authorUri ?? articleUrl;
+    const category = guessCategory(title, description) ?? defaultCategory;
+
+    results.push({
+      id: articleUrl,
+      title,
+      summary: description,
+      sourceName,
+      sourceUrl,
+      publishedAt,
+      category,
+      sourceType: sourceOverride?.sourceType ?? 'atom',
+      _sourceTier: sourceOverride?.sourceTier ?? 'google',
+      _passThrough: Boolean(sourceOverride?.passThrough),
+      _minScore: sourceOverride?.minScore,
+      _feedUrl: sourceOverride?.url,
+    });
+  }
+
+  return results;
+}
+
+function parseFeedItems(xml, defaultCategory, sourceOverride) {
+  const rssItems = parseItems(xml, defaultCategory, sourceOverride);
+  const atomItems = parseAtomEntries(xml, defaultCategory, sourceOverride);
+  return [...rssItems, ...atomItems];
 }
 
 async function fetchWithTimeout(url, ms) {
@@ -379,6 +594,8 @@ function scoreArticle(article) {
 
   if (article._sourceTier === 'official') score += 5;
   if (article._sourceTier === 'specialist') score += 4;
+  if (article.sourceType === 'video') score += 1;
+  if (article.sourceType === 'social') score -= 1;
   if (/\.(go|lg)\.jp\b/.test(article.sourceUrl)) score += 2;
   if (AGGREGATOR_SOURCES.has(article.sourceName)) score -= 2;
 
@@ -433,6 +650,8 @@ function sourcePriority(article) {
   if (article._sourceTier === 'official') priority += 45;
   if (article._sourceTier === 'specialist') priority += 35;
   if (article._sourceTier === 'broad') priority -= 10;
+  if (article.sourceType === 'video') priority -= 5;
+  if (article.sourceType === 'social') priority -= 8;
   if (AGGREGATOR_SOURCES.has(article.sourceName)) priority -= 45;
   if (/\.go\.jp\b|\.lg\.jp\b|pref\./.test(article.sourceUrl)) priority += 12;
   if (/news\.google\.com/.test(article.id)) priority -= 4;
@@ -518,6 +737,8 @@ function curateDevArticles(allArticles) {
       minScore: DEV_MIN_SCORE,
       sourceCountsBefore: countBy(scored, 'sourceName'),
       sourceCountsAfter: countBy(deduped, 'sourceName'),
+      sourceTypeCountsAfter: countBy(deduped, (article) => article.sourceType ?? 'unknown'),
+      sourceTierCountsAfter: countBy(deduped, (article) => article._sourceTier ?? 'unknown'),
       categoryCountsAfter: countBy(deduped, 'category'),
       duplicateSamples: duplicates.slice(0, 20),
       droppedSamples: scored
@@ -540,6 +761,7 @@ function stripInternal(article) {
     _passThrough,
     _minScore,
     _dedupeKey,
+    _feedUrl,
     ...clean
   } = article;
   if (!IS_DEV) {
@@ -576,8 +798,11 @@ function mergeOldArticles(currentOldArticles, previousOldArticles) {
 
 async function loadNews() {
   const allArticles = [];
+  const directFeeds = IS_DEV
+    ? [...DIRECT_FEEDS, ...DEV_DIRECT_FEEDS, ...DEV_SOCIAL_FEEDS]
+    : DIRECT_FEEDS;
 
-  for (const feed of DIRECT_FEEDS) {
+  for (const feed of directFeeds) {
     try {
       const res = await fetchWithTimeout(feed.url, 15_000);
       if (!res.ok) {
@@ -585,7 +810,7 @@ async function loadNews() {
         continue;
       }
       const xml = await res.text();
-      const items = parseItems(xml, feed.defaultCategory, feed);
+      const items = parseFeedItems(xml, feed.defaultCategory, feed);
       console.log(`[direct] ${feed.sourceName}: ${items.length} items`);
       allArticles.push(...items);
     } catch (err) {
@@ -602,7 +827,7 @@ async function loadNews() {
         continue;
       }
       const xml = await res.text();
-      const items = parseItems(xml, defaultCategory);
+      const items = parseFeedItems(xml, defaultCategory);
       console.log(`[google] "${query}": ${items.length} items`);
       allArticles.push(...items);
     } catch (err) {
@@ -618,7 +843,7 @@ async function loadNews() {
     return curateDevArticles(allArticles);
   }
 
-  const directSourceNames = new Set(DIRECT_FEEDS.map((f) => f.sourceName));
+  const directSourceNames = new Set(directFeeds.map((f) => f.sourceName));
   const filtered = allArticles.filter(
     (a) => directSourceNames.has(a.sourceName) || isRelevantArticle(a.title, a.summary),
   );
