@@ -9,6 +9,9 @@ const DATA_FILE = join(DATA_DIR, 'articles-world.json');
 
 const MAX_ARTICLES = 600;
 const MIN_SCORE = 8;
+const FRESH_LOOKBACK = '45d';
+const RECENT_LOOKBACK = '120d';
+const STANDARD_LOOKBACK = '365d';
 const FETCH_TIMEOUT = 18_000;
 const FETCH_CONCURRENCY = 8;
 const TRANSLATE_BATCH_CHARS = 1600;
@@ -21,6 +24,8 @@ const REGIONS = {
   europe_cis: 'ヨーロッパ・CIS',
   middle_east_africa: '中東・アフリカ',
 };
+
+const REGION_ORDER = Object.keys(REGIONS);
 
 const TOPICS = {
   accessibility: 'アクセシビリティ・情報保障',
@@ -134,14 +139,30 @@ const SOURCE_GROUPS = [
 ];
 
 const TOPIC_QUERIES = [
-  { topic: 'rights', query: 'deaf OR "hard of hearing" OR "hearing impaired" OR deafblind' },
-  { topic: 'accessibility', query: '"sign language" OR "sign-language" OR captioning OR subtitles OR "deaf interpreter"' },
-  { topic: 'health', query: '"cochlear implant" OR "hearing aid" OR audiology OR "hearing loss"' },
-  { topic: 'education', query: '"deaf school" OR "deaf students" OR "deaf education" OR "deaf children"' },
-  { topic: 'sports', query: 'Deaflympics OR "deaf sports" OR "deaf athlete" OR "deaf football"' },
-  { topic: 'culture', query: '"deaf actor" OR "deaf artist" OR "deaf culture" OR "deaf community"' },
-  { topic: 'technology', query: '"AI captioning" OR "live caption" OR "speech to text" deaf OR "speech-to-text" deaf' },
+  { topic: 'rights', query: 'deaf OR "hard of hearing" OR "hearing impaired" OR deafblind OR "deaf rights" OR "sign language law" OR "accessibility law"' },
+  { topic: 'accessibility', query: '"sign language" OR "sign-language" OR captioning OR subtitles OR "deaf interpreter" OR Auslan OR BSL OR ASL OR NZSL OR "closed captions"' },
+  { topic: 'health', query: '"cochlear implant" OR "hearing aid" OR audiology OR "hearing loss" OR "newborn hearing screening" OR tinnitus' },
+  { topic: 'education', query: '"deaf school" OR "deaf students" OR "deaf education" OR "deaf children" OR "sign language class"' },
+  { topic: 'sports', query: 'Deaflympics OR "deaf sports" OR "deaf athlete" OR "deaf football" OR "deaf basketball"' },
+  { topic: 'culture', query: '"deaf actor" OR "deaf artist" OR "deaf culture" OR "deaf community" OR "deaf theatre" OR "deaf film"' },
+  { topic: 'technology', query: '"AI captioning" OR "live caption" OR "speech to text" deaf OR "speech-to-text" deaf OR "sign language avatar" OR "hearing accessibility"' },
+  { topic: 'safety', query: '"deaf emergency" OR "accessible alert" OR "emergency interpreter" OR "deaf evacuation" OR "sign language alert"' },
 ];
+
+const CORE_RECENT_QUERY = [
+  'deaf',
+  '"hard of hearing"',
+  '"hearing impaired"',
+  '"hearing loss"',
+  '"sign language"',
+  '"cochlear implant"',
+  '"hearing aid"',
+  'Deaflympics',
+  'Auslan',
+  'BSL',
+  'ASL',
+  'captioning',
+].join(' OR ');
 
 const BROAD_REGION_QUERIES = [
   {
@@ -149,35 +170,63 @@ const BROAD_REGION_QUERIES = [
     gl: 'AU',
     hl: 'en-AU',
     ceid: 'AU:en',
-    query: '(deaf OR "hard of hearing" OR "sign language" OR "cochlear implant" OR Deaflympics) (Australia OR "New Zealand" OR India OR Singapore OR "South Korea" OR Philippines OR Pacific)',
+    query: '(deaf OR "hard of hearing" OR "sign language" OR Auslan OR "New Zealand Sign Language" OR "cochlear implant" OR Deaflympics) (Australia OR "New Zealand" OR Pacific)',
+  },
+  {
+    region: 'asia_oceania',
+    gl: 'IN',
+    hl: 'en-IN',
+    ceid: 'IN:en',
+    query: '(deaf OR "hard of hearing" OR "hearing impaired" OR "sign language" OR "cochlear implant" OR "hearing aid") (India OR Sri Lanka OR Bangladesh OR Nepal)',
+  },
+  {
+    region: 'asia_oceania',
+    gl: 'SG',
+    hl: 'en-SG',
+    ceid: 'SG:en',
+    query: '(deaf OR "hard of hearing" OR "sign language" OR "hearing loss" OR "cochlear implant") (Singapore OR Malaysia OR Philippines OR Indonesia OR Thailand)',
+  },
+  {
+    region: 'asia_oceania',
+    gl: 'KR',
+    hl: 'ko',
+    ceid: 'KR:ko',
+    query: '(청각장애 OR 청각 장애 OR 농인 OR 농아인 OR 수어 OR 수화 OR 보청기 OR 인공와우 OR 난청)',
+  },
+  {
+    region: 'asia_oceania',
+    gl: 'TW',
+    hl: 'zh-TW',
+    ceid: 'TW:zh-Hant',
+    query: '(聽障 OR 听障 OR 聾人 OR 聋人 OR 手語 OR 手语 OR 助聽器 OR 助听器 OR 人工耳蝸 OR 人工耳蜗 OR 失聰 OR 失聪)',
   },
   {
     region: 'americas',
     gl: 'US',
     hl: 'en-US',
     ceid: 'US:en',
-    query: '(deaf OR "hard of hearing" OR "sign language" OR "cochlear implant" OR Deaflympics) ("United States" OR Canada OR Mexico OR Brazil OR Argentina OR Chile)',
+    query: '(deaf OR "hard of hearing" OR ASL OR "American Sign Language" OR "cochlear implant" OR "hearing aid" OR Deaflympics) ("United States" OR Canada)',
   },
   {
     region: 'americas',
     gl: 'MX',
     hl: 'es-419',
     ceid: 'MX:es-419',
-    query: '(sordo OR sordos OR sordera OR "discapacidad auditiva" OR "lengua de señas" OR "implante coclear" OR audífonos)',
+    query: '(sordo OR sordos OR sordera OR "discapacidad auditiva" OR "lengua de señas" OR "lengua de signos" OR "implante coclear" OR audífonos) (México OR Colombia OR Argentina OR Chile OR Perú)',
   },
   {
     region: 'americas',
     gl: 'BR',
     hl: 'pt-BR',
     ceid: 'BR:pt-419',
-    query: '(surdo OR surdez OR "deficiência auditiva" OR "língua de sinais" OR libras OR "implante coclear" OR auditivo)',
+    query: '(surdo OR surdez OR "deficiência auditiva" OR "língua de sinais" OR libras OR "implante coclear" OR auditivo OR "aparelho auditivo")',
   },
   {
     region: 'europe_cis',
     gl: 'GB',
     hl: 'en-GB',
     ceid: 'GB:en',
-    query: '(deaf OR "hard of hearing" OR "sign language" OR "cochlear implant" OR Deaflympics) (Europe OR Britain OR Germany OR France OR Ukraine OR Ireland)',
+    query: '(deaf OR "hard of hearing" OR "British Sign Language" OR BSL OR "Irish Sign Language" OR "cochlear implant" OR "hearing aid") (Britain OR UK OR Ireland)',
   },
   {
     region: 'europe_cis',
@@ -191,14 +240,42 @@ const BROAD_REGION_QUERIES = [
     gl: 'DE',
     hl: 'de',
     ceid: 'DE:de',
-    query: '(gehörlos OR gehörlose OR gebärdensprache OR hörgerät OR cochlea-implantat)',
+    query: '(gehörlos OR gehörlose OR gebärdensprache OR hörgerät OR hörverlust OR schwerhörig OR cochlea-implantat)',
+  },
+  {
+    region: 'europe_cis',
+    gl: 'ES',
+    hl: 'es',
+    ceid: 'ES:es',
+    query: '(sordo OR sordos OR sordera OR "lengua de signos" OR "lengua de señas" OR "implante coclear" OR audífonos)',
+  },
+  {
+    region: 'europe_cis',
+    gl: 'IT',
+    hl: 'it',
+    ceid: 'IT:it',
+    query: '(sordo OR sordi OR sordità OR "lingua dei segni" OR "impianto cocleare" OR "apparecchio acustico")',
+  },
+  {
+    region: 'europe_cis',
+    gl: 'TR',
+    hl: 'tr',
+    ceid: 'TR:tr',
+    query: '("işitme engelli" OR sağır OR "işaret dili" OR "koklear implant" OR "işitme cihazı")',
   },
   {
     region: 'middle_east_africa',
     gl: 'ZA',
     hl: 'en-ZA',
     ceid: 'ZA:en',
-    query: '(deaf OR "hard of hearing" OR "sign language" OR "cochlear implant" OR Deaflympics) (Africa OR "South Africa" OR Kenya OR Nigeria OR Egypt OR "Middle East" OR UAE OR Israel)',
+    query: '(deaf OR "hard of hearing" OR "sign language" OR "cochlear implant" OR "hearing aid" OR Deaflympics) ("South Africa" OR Zimbabwe OR Namibia OR Botswana)',
+  },
+  {
+    region: 'middle_east_africa',
+    gl: 'KE',
+    hl: 'en-KE',
+    ceid: 'KE:en',
+    query: '(deaf OR "hard of hearing" OR "sign language" OR "cochlear implant" OR "hearing loss") (Kenya OR Uganda OR Tanzania OR Nigeria OR Ghana)',
   },
   {
     region: 'middle_east_africa',
@@ -206,6 +283,13 @@ const BROAD_REGION_QUERIES = [
     hl: 'en-AE',
     ceid: 'AE:en',
     query: '(deaf OR "hard of hearing" OR "sign language" OR "hearing loss" OR "cochlear implant") ("Middle East" OR Gulf OR UAE OR Saudi OR Qatar OR Israel)',
+  },
+  {
+    region: 'middle_east_africa',
+    gl: 'AE',
+    hl: 'ar',
+    ceid: 'AE:ar',
+    query: '(الصم OR أصم OR "ضعاف السمع" OR "ضعف السمع" OR "لغة الإشارة" OR "زراعة القوقعة" OR "سماعة طبية")',
   },
 ];
 
@@ -221,6 +305,17 @@ const TERM_WEIGHTS = [
   ['surdo', 9], ['surdez', 8], ['deficiência auditiva', 9], ['língua de sinais', 9], ['libras', 8],
   ['sourd', 8], ['sourds', 8], ['surdité', 8], ['langue des signes', 9], ['implant cochléaire', 9],
   ['appareil auditif', 8], ['gehörlos', 9], ['gehörlose', 9], ['gebärdensprache', 9], ['hörgerät', 8],
+  ['schwerhörig', 8], ['hörverlust', 8],
+  ['sordi', 8], ['sordità', 8], ['lingua dei segni', 9], ['impianto cocleare', 9],
+  ['apparecchio acustico', 8],
+  ['işitme engelli', 9], ['sağır', 8], ['işaret dili', 9], ['koklear implant', 9], ['işitme cihazı', 8],
+  ['청각장애', 9], ['청각 장애', 9], ['농인', 9], ['농아인', 9], ['수어', 8], ['수화', 7],
+  ['보청기', 8], ['인공와우', 9], ['난청', 8],
+  ['聽障', 9], ['听障', 9], ['聾人', 9], ['聋人', 9], ['手語', 8], ['手语', 8],
+  ['助聽器', 8], ['助听器', 8], ['人工耳蝸', 9], ['人工耳蜗', 9], ['失聰', 8], ['失聪', 8],
+  ['الصم', 9], ['أصم', 8], ['ضعاف السمع', 9], ['ضعف السمع', 8], ['لغة الإشارة', 9],
+  ['زراعة القوقعة', 9], ['سماعة طبية', 8],
+  ['बधिर', 9], ['सांकेतिक भाषा', 9], ['श्रवण बाधित', 9], ['कॉक्लियर इम्प्लांट', 9],
   ['聴覚障害', 9], ['難聴', 8], ['ろう者', 9], ['手話', 7], ['人工内耳', 8], ['補聴器', 8],
 ];
 
@@ -231,6 +326,9 @@ const STRONG_CONTEXT = [
   'derechos', 'educación', 'salud', 'accesibilidad', 'inclusión',
   'direitos', 'educação', 'saúde', 'acessibilidade', 'inclusão',
   'droits', 'éducation', 'santé', 'accessibilité', 'inclusion',
+  'inklusion', 'barrierefreiheit', 'educación inclusiva', 'inclusión',
+  'inclusione', 'accessibilità', '교육', '복지', '권리', '접근성',
+  '無障礙', '无障碍', '教育', '權利', '权利', 'صحة', 'تعليم', 'حقوق', 'إتاحة',
 ];
 
 const NOISE_PATTERNS = [
@@ -240,12 +338,20 @@ const NOISE_PATTERNS = [
   /\bturn(?:s|ed|ing)? a deaf ear\b/i,
   /\bdeafening\b/i,
   /\bhearing\b.{0,24}\b(court|senate|congress|committee|trial|inquiry)\b/i,
+  /\b(earbuds|earphones|headphones|headset|airpods|bluetooth|noise[-\s]?cancell(?:ing|ation)|hi-res)\b/i,
+  /\b(audífonos|auriculares)\b.{0,80}\b(hi-res|bluetooth|inalámbric|baratos|tablet|realme|xiaomi|samsung|sony)\b/i,
+  /\b(audífonos|auriculares)\b.{0,100}\b(amazon|descuento|precio|gratis|comprar|costar|pesos|batería|modelo|marca)\b/i,
+  /\b(realme|razer|sennheiser)\b.{0,100}\b(audífonos|auriculares|headphones|earbuds)\b/i,
 ];
 
-const NON_NOISE_HINT = /(sign language|hard of hearing|hearing impaired|hearing loss|hearing aid|cochlear|deafblind|deaf community|deaf student|deaf child|caption|interpreter|accessibility|sordo|sordera|surdo|surdez|sourd|surdité|gehörlos|gebärdensprache)/i;
+const HARD_NOISE_PATTERNS = [
+  /dialogue de sourds/i,
+];
 
-const NON_NEWS_SOURCE_PATTERN = /(help\s*centre|help\s*center|help\s*forum|community|support|customer care|forum)/i;
-const NON_NEWS_DOMAIN_PATTERN = /(^|\.)helpforum\.|(^|\.)support\.|(^|\.)community\.|(^|\.)forum\.|helpcentre|helpcenter/i;
+const NON_NOISE_HINT = /(sign language|hard of hearing|hearing impaired|hearing loss|hearing aid|cochlear|deafblind|deaf community|deaf student|deaf child|caption|interpreter|accessibility|sordo|sordera|surdo|surdez|sourd|surdité|gehörlos|gebärdensprache|sordità|lingua dei segni|işitme engelli|işaret dili|청각장애|농인|수어|聽障|听障|手語|手语|لغة الإشارة|ضعاف السمع|बधिर)/i;
+
+const NON_NEWS_SOURCE_PATTERN = /(help\s*centre|help\s*center|help\s*forum|community|support|customer care|forum|facebook|wikimedia|pressreader|starbucks|disneyphile|iphone in canada|sennheiser)/i;
+const NON_NEWS_DOMAIN_PATTERN = /(^|\.)helpforum\.|(^|\.)support\.|(^|\.)community\.|(^|\.)forum\.|helpcentre|helpcenter|(^|\.)facebook\.com$|(^|\.)wikimedia\.org$|(^|\.)pressreader\.com$/i;
 
 const DOMAIN_REGION = new Map();
 const DOMAIN_META = new Map();
@@ -266,8 +372,9 @@ function chunk(items, size) {
   return out;
 }
 
-function buildGoogleNewsUrl(query, { gl = 'US', hl = 'en-US', ceid = 'US:en' } = {}) {
-  const encoded = encodeURIComponent(`${query} when:730d`);
+function buildGoogleNewsUrl(query, { gl = 'US', hl = 'en-US', ceid = 'US:en' } = {}, lookback = STANDARD_LOOKBACK) {
+  const when = lookback ? ` when:${lookback}` : '';
+  const encoded = encodeURIComponent(`${query}${when}`);
   return `https://news.google.com/rss/search?q=${encoded}&hl=${encodeURIComponent(hl)}&gl=${encodeURIComponent(gl)}&ceid=${encodeURIComponent(ceid)}`;
 }
 
@@ -277,27 +384,46 @@ function buildQueryJobs() {
     const sourceChunks = chunk(group.sources, 5);
     for (const sources of sourceChunks) {
       const siteQuery = sources.map(([domain]) => `site:${domain}`).join(' OR ');
+      const freshQuery = `(${siteQuery}) (${CORE_RECENT_QUERY})`;
+      jobs.push({
+        region: group.region,
+        topic: 'general',
+        query: freshQuery,
+        sourceMode: 'major-media-fresh',
+        lookback: FRESH_LOOKBACK,
+        url: buildGoogleNewsUrl(freshQuery, undefined, FRESH_LOOKBACK),
+      });
       for (const topic of TOPIC_QUERIES) {
         jobs.push({
           region: group.region,
           topic: topic.topic,
           query: `(${siteQuery}) (${topic.query})`,
           sourceMode: 'major-media',
-          url: buildGoogleNewsUrl(`(${siteQuery}) (${topic.query})`),
+          lookback: STANDARD_LOOKBACK,
+          url: buildGoogleNewsUrl(`(${siteQuery}) (${topic.query})`, undefined, STANDARD_LOOKBACK),
         });
       }
     }
   }
 
   for (const broad of BROAD_REGION_QUERIES) {
-    for (const topic of TOPIC_QUERIES.slice(0, 4)) {
+    jobs.push({
+      region: broad.region,
+      topic: 'general',
+      query: broad.query,
+      sourceMode: 'regional-fresh',
+      lookback: FRESH_LOOKBACK,
+      url: buildGoogleNewsUrl(broad.query, broad, FRESH_LOOKBACK),
+    });
+    for (const topic of TOPIC_QUERIES) {
       const query = `(${broad.query}) (${topic.query})`;
       jobs.push({
         region: broad.region,
         topic: topic.topic,
         query,
-        sourceMode: 'regional-broad',
-        url: buildGoogleNewsUrl(query, broad),
+        sourceMode: 'regional-multilingual',
+        lookback: RECENT_LOOKBACK,
+        url: buildGoogleNewsUrl(query, broad, RECENT_LOOKBACK),
       });
     }
   }
@@ -419,7 +545,7 @@ function parseItems(xml, job) {
 
     const knownDomain = findKnownDomain(sourceUrl || articleUrl);
     const sourceMeta = DOMAIN_META.get(knownDomain);
-    const region = sourceMeta?.region ?? job.region;
+    const region = job.region;
     const topic = inferTopic(`${originalTitle} ${originalSummary}`, job.topic);
     const scoreInfo = scoreArticle({
       originalTitle,
@@ -432,9 +558,12 @@ function parseItems(xml, job) {
     });
 
     const isKnownMajorSource = DOMAIN_META.has(knownDomain);
-    const isBroadOnlySource = job.sourceMode !== 'major-media' && !isKnownMajorSource;
+    const isMajorMode = job.sourceMode.startsWith('major-media');
+    const isRegionalDiscovery = job.sourceMode === 'regional-multilingual' || job.sourceMode === 'regional-fresh';
+    const isBroadOnlySource = !isMajorMode && !isKnownMajorSource;
+    const broadThreshold = isRegionalDiscovery ? 16 : 18;
     if (scoreInfo.isNoise || scoreInfo.relevanceHits === 0 || scoreInfo.score < MIN_SCORE) continue;
-    if (isBroadOnlySource && scoreInfo.score < 18) continue;
+    if (isBroadOnlySource && scoreInfo.score < broadThreshold) continue;
 
     let publishedAt;
     const parsedDate = new Date(pubDate);
@@ -477,6 +606,7 @@ function normalizeForSearch(text) {
 function scoreArticle(article) {
   const text = normalizeForSearch(`${article.originalTitle} ${article.originalSummary}`);
   const signals = [];
+  if (HARD_NOISE_PATTERNS.some((pattern) => pattern.test(text))) return { score: 0, signals: ['hard-noise'], isNoise: true };
   const hasNoise = NOISE_PATTERNS.some((pattern) => pattern.test(text));
   const hasNonNoiseHint = NON_NOISE_HINT.test(text);
   if (hasNoise && !hasNonNoiseHint) return { score: 0, signals: ['noise'], isNoise: true };
@@ -501,7 +631,11 @@ function scoreArticle(article) {
     score += 7;
     signals.push('major-media');
   }
-  if (article.sourceMode === 'major-media') score += 3;
+  if (article.sourceMode.startsWith('major-media')) score += 3;
+  if (article.sourceMode === 'regional-multilingual' || article.sourceMode === 'regional-fresh') {
+    score += 2;
+    signals.push('multilingual');
+  }
   if (article.topic !== 'general') score += 2;
   if (/news\.google\.com/.test(article.id)) score -= 2;
 
@@ -515,14 +649,14 @@ function scoreArticle(article) {
 
 function inferTopic(text, hint = 'general') {
   const value = normalizeForSearch(text);
-  if (/(deaflympics|deaf sports|deaf athlete|deaf football|paralympic|olympic|sport|athlete|tournament|championship|fútbol|football|basketball)/i.test(value)) return 'sports';
-  if (/(ai caption|live caption|speech-to-text|speech to text|automatic caption|technology|app|device|startup|artificial intelligence)/i.test(value)) return 'technology';
-  if (/(school|student|education|teacher|university|classroom|college|children|deaf education|escuela|educación|école|bildung)/i.test(value)) return 'education';
-  if (/(law|court|lawsuit|rights|policy|government|election|vote|discrimination|settlement|legislation|derechos|tribunal|loi|gesetz)/i.test(value)) return 'rights';
-  if (/(sign language|interpreter|caption|subtitle|accessibility|accessible|broadcast|television|theatre access|lengua de señas|langue des signes|gebärdensprache|libras)/i.test(value)) return 'accessibility';
-  if (/(cochlear|hearing aid|hearing loss|audiology|implant|hospital|doctor|medical|health|screening|audífono|implante coclear|surdité|hörgerät)/i.test(value)) return 'health';
-  if (/(film|movie|actor|artist|culture|community|festival|music|theatre|theater|book|museum|art|documentary)/i.test(value)) return 'culture';
-  if (/(emergency|disaster|earthquake|war|conflict|evacuation|police|fire|safety|alert)/i.test(value)) return 'safety';
+  if (/(deaflympics|deaf sports|deaf athlete|deaf football|paralympic|olympic|sport|athlete|tournament|championship|fútbol|futsal|football|basketball|deporte|esporte|sportif|운동선수|体育|體育|رياضة)/i.test(value)) return 'sports';
+  if (/(ai caption|live caption|speech-to-text|speech to text|automatic caption|technology|app|device|startup|artificial intelligence|avatar|tecnología|tecnologia|기술|人工智能|ai字幕|تقنية|تطبيق|teknoloji)/i.test(value)) return 'technology';
+  if (/(school|student|education|teacher|university|classroom|college|children|deaf education|escuela|educación|école|bildung|scuola|educazione|학교|학생|교육|學校|学校|教育|مدرسة|تعليم|okul|öğrenci)/i.test(value)) return 'education';
+  if (/(law|court|lawsuit|rights|policy|government|election|vote|discrimination|settlement|legislation|derechos|tribunal|loi|gesetz|diritti|법|권리|차별|法律|權利|权利|歧視|歧视|حقوق|قانون|mahkeme|hakları)/i.test(value)) return 'rights';
+  if (/(sign language|interpreter|caption|subtitle|accessibility|accessible|broadcast|television|theatre access|lengua de señas|lengua de signos|langue des signes|gebärdensprache|libras|lingua dei segni|işaret dili|수어|수화|통역|手語|手语|字幕|無障礙|无障碍|لغة الإشارة|ترجمة|إتاحة)/i.test(value)) return 'accessibility';
+  if (/(cochlear|hearing aid|hearing loss|audiology|implant|hospital|doctor|medical|health|screening|audífono|implante coclear|surdité|hörgerät|impianto cocleare|apparecchio acustico|보청기|인공와우|난청|助聽器|助听器|人工耳蝸|人工耳蜗|زراعة القوقعة|سماعة طبية|ضعف السمع|koklear|işitme cihazı)/i.test(value)) return 'health';
+  if (/(film|movie|actor|artist|culture|community|festival|music|theatre|theater|book|museum|art|documentary|cultura|comunidad|영화|배우|문화|社群|文化|فيلم|ثقافة|مسرح|kültür|film)/i.test(value)) return 'culture';
+  if (/(emergency|disaster|earthquake|war|conflict|evacuation|police|fire|safety|alert|emergencia|desastre|災害|灾害|緊急|紧急|재난|비상|طوارئ|كوارث|acil|afet)/i.test(value)) return 'safety';
   return hint && TOPICS[hint] ? hint : 'general';
 }
 
@@ -567,6 +701,61 @@ function preferredSort(a, b) {
   const priority = (b.sourcePriority ?? 50) - (a.sourcePriority ?? 50);
   if (priority !== 0) return priority;
   return new Date(b.publishedAt) - new Date(a.publishedAt);
+}
+
+function displaySort(a, b) {
+  const time = new Date(b.publishedAt) - new Date(a.publishedAt);
+  if (time !== 0) return time;
+  const score = (b.curationScore ?? 0) - (a.curationScore ?? 0);
+  if (score !== 0) return score;
+  return (b.sourcePriority ?? 50) - (a.sourcePriority ?? 50);
+}
+
+function ageDays(article, now = Date.now()) {
+  const published = new Date(article.publishedAt).getTime();
+  if (Number.isNaN(published)) return Number.POSITIVE_INFINITY;
+  return Math.max(0, (now - published) / 86_400_000);
+}
+
+function interleaveByRegion(articles) {
+  const groups = new Map(REGION_ORDER.map((region) => [region, []]));
+  for (const article of [...articles].sort(displaySort)) {
+    const key = groups.has(article.region) ? article.region : REGION_ORDER[0];
+    groups.get(key).push(article);
+  }
+
+  const selected = [];
+  while ([...groups.values()].some((items) => items.length)) {
+    const active = REGION_ORDER
+      .map((region) => ({ region, items: groups.get(region) }))
+      .filter(({ items }) => items?.length)
+      .sort((a, b) => displaySort(a.items[0], b.items[0]));
+    for (const { items } of active) selected.push(items.shift());
+  }
+  return selected;
+}
+
+function selectFreshBalancedArticles(articles) {
+  const now = Date.now();
+  const buckets = [
+    (article) => ageDays(article, now) <= 7,
+    (article) => ageDays(article, now) <= 30,
+    (article) => ageDays(article, now) <= 90,
+    (article) => ageDays(article, now) <= 365,
+    () => true,
+  ];
+  const remaining = [...articles];
+  const selected = [];
+
+  for (const matchBucket of buckets) {
+    const bucket = [];
+    for (let i = remaining.length - 1; i >= 0; i -= 1) {
+      if (matchBucket(remaining[i])) bucket.push(...remaining.splice(i, 1));
+    }
+    selected.push(...interleaveByRegion(bucket));
+  }
+
+  return selected;
 }
 
 async function loadTranslationCache() {
@@ -726,23 +915,33 @@ async function loadWorldNews() {
 
   if (!all.length) throw new Error('No world articles fetched.');
 
-  const deduped = dedupeArticles(all).slice(0, MAX_ARTICLES);
-  await applyTranslations(deduped);
+  const dedupedAll = dedupeArticles(all);
+  const selected = selectFreshBalancedArticles(dedupedAll).slice(0, MAX_ARTICLES);
+  await applyTranslations(selected);
 
   return {
-    articles: deduped,
+    articles: selected,
     report: {
-      version: 'world-v2',
+      version: 'world-v3',
       rawCount: all.length,
-      dedupedCount: deduped.length,
+      dedupedCount: dedupedAll.length,
+      selectedCount: selected.length,
       maxArticles: MAX_ARTICLES,
       minScore: MIN_SCORE,
+      freshLookback: FRESH_LOOKBACK,
+      recentLookback: RECENT_LOOKBACK,
+      standardLookback: STANDARD_LOOKBACK,
       queryCount: jobs.length,
       translationProvider: TRANSLATION_PROVIDER,
-      regionCounts: countBy(deduped, 'region'),
-      topicCounts: countBy(deduped, 'topic'),
-      sourceCounts: countBy(deduped, 'sourceName'),
-      sourceModeCounts: countBy(deduped, 'sourceMode'),
+      freshnessCounts: {
+        last7d: selected.filter((article) => ageDays(article) <= 7).length,
+        last30d: selected.filter((article) => ageDays(article) <= 30).length,
+        last90d: selected.filter((article) => ageDays(article) <= 90).length,
+      },
+      regionCounts: countBy(selected, 'region'),
+      topicCounts: countBy(selected, 'topic'),
+      sourceCounts: countBy(selected, 'sourceName'),
+      sourceModeCounts: countBy(selected, 'sourceMode'),
     },
   };
 }

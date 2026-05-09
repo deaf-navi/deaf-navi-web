@@ -30,8 +30,8 @@ const EN_FEED_URL = `${SITE_URL}feed-world-en.xml`;
 const SITEMAP_URL = `${SITE_URL}sitemap-world.xml`;
 const JP_SITE_NAME = 'Deaf Navi World-JP';
 const EN_SITE_NAME = 'Deaf Navi World-EN';
-const SITE_DESC = '世界中の主要メディアが報じる聴覚障害・ろう者・難聴・手話・情報保障関連ニュースを、日本語に翻訳して地域別・カテゴリ別にキュレーションするDeaf Naviの世界版ページ。';
-const EN_SITE_DESC = 'Original, untranslated global news articles related to deaf, hard-of-hearing, sign language, accessibility, health, education, culture, and deaf sports topics.';
+const SITE_DESC = '世界中の主要メディアと多言語の地域別Google News検索から、聴覚障害・ろう者・難聴・手話・情報保障関連ニュースを日本語に翻訳してキュレーションするDeaf Naviの世界版ページ。';
+const EN_SITE_DESC = 'Original, untranslated global news articles gathered from major media and multilingual regional Google News queries about deaf, hard-of-hearing, sign language, accessibility, health, education, culture, and deaf sports topics.';
 const INITIAL_VISIBLE = 150;
 
 const REGION_ORDER = ['all', 'asia_oceania', 'americas', 'europe_cis', 'middle_east_africa'];
@@ -309,11 +309,11 @@ function renderPage(data, mode = 'jp') {
   const title = isEn ? `${siteName} | Original global deaf news` : `${siteName} | 世界の聴覚障害ニュース`;
   const heading = isEn ? 'World News Original' : 'World News JP';
   const lead = isEn
-    ? 'Global news related to deaf, hard-of-hearing, sign language, accessibility, health, education, and culture is shown in its original wording without Japanese translation.'
-    : '世界中の主要メディアが報じる聴覚障害・ろう者・難聴・手話・情報保障のニュースを、日本語に翻訳して地域別にキュレーションします。';
+    ? 'Fresh global news related to deaf, hard-of-hearing, sign language, accessibility, health, education, and culture is gathered from major media plus multilingual regional searches.'
+    : '世界中の主要メディアと多言語の地域別検索から、聴覚障害・ろう者・難聴・手話・情報保障のニュースを日本語に翻訳してキュレーションします。';
   const note = isEn
-    ? 'Original titles and summaries are shown without Japanese translation.'
-    : 'タイトルと要約は日本語翻訳済みです。見出しとして読みやすくなるよう、ろう・難聴領域の用語を補正しています。';
+    ? 'Original titles and summaries are shown without Japanese translation. Recent articles are prioritized, then balanced across regions.'
+    : 'タイトルと要約は日本語翻訳済みです。鮮度を優先しつつ、地域が偏りすぎないように並べています。';
   const filterAria = isEn ? 'Deaf Navi World filters' : 'Deaf Navi World フィルタ';
   const regionLabel = isEn ? 'Region' : '地域';
   const topicLabel = isEn ? 'Topic' : 'カテゴリ';
@@ -424,7 +424,7 @@ ${articlesHtml}
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>${isEn ? 'Deaf Navi World-EN shows original, untranslated article titles and summaries gathered from Google News RSS and major media sources.' : 'Deaf Navi World-JP は Google News RSS を入口に、世界各地域の主要メディア発信記事を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正を通して掲載しています。'}</p>
+      <p>${isEn ? 'Deaf Navi World-EN shows original, untranslated article titles and summaries gathered from major media and multilingual regional Google News queries.' : 'Deaf Navi World-JP は Google News RSS を入口に、主要メディアと多言語の地域別検索を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正を通して掲載しています。'}</p>
       <p>${isEn ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳です。'}</p>
       <p><a href="./about.html">${isEn ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isEn ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${SITEMAP_URL}">${isEn ? 'Sitemap' : 'サイトマップ'}</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
