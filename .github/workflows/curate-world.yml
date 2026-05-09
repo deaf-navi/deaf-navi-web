@@ -40,6 +40,8 @@ jobs:
           CODEX_APP_SERVER_TIMEOUT_SECONDS: ${{ vars.CODEX_APP_SERVER_TIMEOUT_SECONDS || '120' }}
           WORLD_JP_CODEX_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_BATCH_SIZE || '20' }}
           WORLD_JP_CODEX_MAX_ITEMS: ${{ vars.WORLD_JP_CODEX_MAX_ITEMS || '600' }}
+          WORLD_JP_REQUIRE_CODEX_POST_EDIT: '1'
+          WORLD_REGION_MIN_ARTICLES: ${{ vars.WORLD_REGION_MIN_ARTICLES || '50' }}
         run: npm run generate:world
 
       - name: Commit & push world artifacts
@@ -68,16 +70,69 @@ jobs:
     if: failure()
     runs-on: ubuntu-latest
     steps:
-      - name: Create failure issue
+      - name: Create or update failure issue
         uses: actions/github-script@v7
         with:
           script: |
-            const title = `World curation failed: ${new Date().toISOString()}`;
-            const body = `Deaf Navi World のキュレーション Actions が失敗しました。\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body,
-              labels: ['curation-failure']
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const label = 'curation-failure';
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const title = 'Deaf Navi World curation requires attention';
+            const body = [
+              'Deaf Navi World のキュレーション Actions が失敗しました。',
+              '',
+              `Run: ${runUrl}`,
+              `Time: ${new Date().toISOString()}`,
+              '',
+              '想定される主な原因:',
+              '- VPS上の `deaf-navi-codex-app-server` が落ちている',
+              '- `CODEX_APP_SERVER_URL` / `CODEX_APP_SERVER_TOKEN` のGitHub Secretsが不一致',
+              '- Codex後処理が600件まで完了せず、公開更新を止めた',
+              '- Google News / 翻訳 / 外部通信の一時的な失敗',
+              '',
+              '初動確認:',
+              '- GitHub Actionsの該当Runログで `codex-postedit` とエラー箇所を確認',
+              '- VPSで `pm2 describe deaf-navi-codex-app-server` を確認',
+              '- VPSで `systemctl status deaf-navi-codex-healthcheck.timer` を確認',
+              '- トークン値はIssueやログに貼らない',
+              '',
+              'このIssueは重複作成を避けるため、未解決の同種Issueがあればコメント追記されます。復旧確認後にcloseしてください。',
+            ].join('\n');
+
+            try {
+              await github.rest.issues.createLabel({
+                owner,
+                repo,
+                name: label,
+                color: 'd73a4a',
+                description: 'Automated curation workflow failure',
+              });
+            } catch (error) {
+              if (error.status !== 422) throw error;
+            }
+
+            const existing = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: 'open',
+              labels: label,
+              per_page: 20,
             });
+            const issue = existing.data.find((item) => item.title === title);
+            if (issue) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issue.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: [label],
+              });
+            }

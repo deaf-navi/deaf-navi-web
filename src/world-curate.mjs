@@ -23,8 +23,10 @@ const CODEX_POST_EDIT_DELAY_MS = envInt('WORLD_JP_CODEX_DELAY_MS', 250, 0, 5000)
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
 const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
 const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT !== '0';
+const CODEX_POST_EDIT_REQUIRED = process.env.WORLD_JP_REQUIRE_CODEX_POST_EDIT === '1';
 const CODEX_POST_EDIT_PROVIDER = 'Codex App Server Japanese news editor v1';
 const TRANSLATION_PROVIDER = 'translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit';
+const REGION_MIN_ARTICLES = envInt('WORLD_REGION_MIN_ARTICLES', 50, 0, 100);
 
 const REGIONS = {
   asia_oceania: 'アジア・オセアニア',
@@ -929,7 +931,7 @@ function interleaveByRegion(articles) {
   return selected;
 }
 
-function selectFreshBalancedArticles(articles) {
+function selectFreshInterleavedArticles(articles) {
   const now = Date.now();
   const buckets = [
     (article) => ageDays(article, now) <= 7,
@@ -947,6 +949,36 @@ function selectFreshBalancedArticles(articles) {
       if (matchBucket(remaining[i])) bucket.push(...remaining.splice(i, 1));
     }
     selected.push(...interleaveByRegion(bucket));
+  }
+
+  return selected;
+}
+
+function selectFreshBalancedArticles(articles, limit = MAX_ARTICLES) {
+  const ordered = selectFreshInterleavedArticles(articles);
+  if (!REGION_MIN_ARTICLES) return ordered.slice(0, limit);
+
+  const selected = [];
+  const seen = new Set();
+  const regionCounts = new Map(REGION_ORDER.map((region) => [region, 0]));
+
+  for (const region of REGION_ORDER) {
+    const candidates = ordered.filter((article) => article.region === region);
+    for (const article of candidates) {
+      if ((regionCounts.get(region) ?? 0) >= REGION_MIN_ARTICLES) break;
+      if (seen.has(article.id)) continue;
+      selected.push(article);
+      seen.add(article.id);
+      regionCounts.set(region, (regionCounts.get(region) ?? 0) + 1);
+      if (selected.length >= limit) return selected;
+    }
+  }
+
+  for (const article of ordered) {
+    if (selected.length >= limit) break;
+    if (seen.has(article.id)) continue;
+    selected.push(article);
+    seen.add(article.id);
   }
 
   return selected;
@@ -1199,6 +1231,17 @@ async function requestCodexPostEdit(batch) {
   return normalizeCodexPostEditItems(json);
 }
 
+async function ensureCodexPostEditAvailable(endpoint) {
+  const healthUrl = endpoint.replace(/\/generate$/, '/health');
+  const health = await fetchRequestWithTimeout(healthUrl, { method: 'GET', headers: authHeaders() }, 3000);
+  const healthText = await health.text();
+  const healthJson = parseJsonObject(healthText);
+  if (!health.ok) throw new Error(`health HTTP ${health.status}`);
+  if (healthJson?.provider !== 'codex_app_server') {
+    throw new Error('health response is not Codex App Server');
+  }
+}
+
 async function applyCodexJapanesePostEdit(articles, cacheArticles) {
   const cached = articles.filter((article) => cacheArticles.get(articleCacheKey(article))?.postEdited).length;
   if (!CODEX_POST_EDIT_ENABLED || !CODEX_APP_SERVER_URL || CODEX_POST_EDIT_MAX_ITEMS <= 0) {
@@ -1216,21 +1259,17 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
   const targets = articles
     .filter((article) => !cacheArticles.get(articleCacheKey(article))?.postEdited)
     .slice(0, CODEX_POST_EDIT_MAX_ITEMS);
-  if (!targets.length) return { checked: 0, updated: 0, cached, skipped: 0, failed: 0, enabled: true };
 
-  try {
-    const healthUrl = endpoint.replace(/\/generate$/, '/health');
-    const health = await fetchRequestWithTimeout(healthUrl, { method: 'GET', headers: authHeaders() }, 3000);
-    const healthText = await health.text();
-    const healthJson = parseJsonObject(healthText);
-    if (!health.ok) throw new Error(`health HTTP ${health.status}`);
-    if (healthJson?.provider !== 'codex_app_server') {
-      throw new Error('health response is not Codex App Server');
+  if (CODEX_POST_EDIT_REQUIRED || targets.length) {
+    try {
+      await ensureCodexPostEditAvailable(endpoint);
+    } catch (err) {
+      console.warn(`[codex-postedit] skipped: Codex App Server is not available (${err.message})`);
+      return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: false };
     }
-  } catch (err) {
-    console.warn(`[codex-postedit] skipped: Codex App Server is not available (${err.message})`);
-    return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: false };
   }
+
+  if (!targets.length) return { checked: 0, updated: 0, cached, skipped: 0, failed: 0, enabled: true };
 
   let updated = 0;
   let failed = 0;
@@ -1322,6 +1361,16 @@ function countBy(items, key) {
   }, {});
 }
 
+function assertCodexPostEditComplete(articles, report) {
+  if (!CODEX_POST_EDIT_REQUIRED) return;
+  const postEdited = articles.filter((article) => article.japanesePostEditProvider === CODEX_POST_EDIT_PROVIDER).length;
+  const expected = articles.length;
+  if (!report?.enabled) throw new Error(`Codex post-edit is required, but Codex App Server was not available. postEdited=${postEdited}/${expected}`);
+  if (report.failed > 0) throw new Error(`Codex post-edit failed for ${report.failed} articles. postEdited=${postEdited}/${expected}`);
+  if (report.skipped > 0) throw new Error(`Codex post-edit skipped ${report.skipped} articles. postEdited=${postEdited}/${expected}`);
+  if (postEdited !== expected) throw new Error(`Codex post-edit incomplete. postEdited=${postEdited}/${expected}`);
+}
+
 async function loadWorldNews() {
   const jobs = buildQueryJobs();
   const all = [];
@@ -1346,8 +1395,9 @@ async function loadWorldNews() {
   if (!all.length) throw new Error('No world articles fetched.');
 
   const dedupedAll = dedupeArticles(all);
-  const selected = selectFreshBalancedArticles(dedupedAll).slice(0, MAX_ARTICLES);
+  const selected = selectFreshBalancedArticles(dedupedAll, MAX_ARTICLES);
   const postEditReport = await applyTranslations(selected);
+  assertCodexPostEditComplete(selected, postEditReport);
 
   return {
     articles: selected,
@@ -1362,6 +1412,7 @@ async function loadWorldNews() {
       recentLookback: RECENT_LOOKBACK,
       standardLookback: STANDARD_LOOKBACK,
       queryCount: jobs.length,
+      regionMinArticles: REGION_MIN_ARTICLES,
       translationProvider: TRANSLATION_PROVIDER,
       japanesePostEditProvider: CODEX_POST_EDIT_PROVIDER,
       japanesePostEdit: postEditReport,
