@@ -650,6 +650,7 @@ function polishJapanese(text) {
     .replace(/聞く手: 手話を使ってギャップを埋める/g, '聞こえる手: 手話で隔たりを埋める')
     .replace(/聴覚障害者のための/g, 'ろう者のための')
     .replace(/聴覚障害者向け/g, 'ろう者向け')
+    .replace(/(?:Auslan（)+オーストラリア手話(?:）)+/g, 'Auslan（オーストラリア手話）')
     .trim();
 }
 
