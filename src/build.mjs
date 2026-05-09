@@ -40,7 +40,7 @@ const SITE_TAGLINE = '聴覚障害・難聴・ろう者コミュニティの最�
 const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・医療・教育・地域情報を毎時自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
 const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途失聴,手話,情報保障,補聴器,人工内耳,手話言語条例,聴覚障害ニュース,手話ニュース,難聴者,デフ,deaf,字幕,電話リレー,要約筆記,ろう学校,聴覚特別支援';
 
-const CATEGORY_ORDER = ['all', 'policy', 'relay', 'medical', 'education', 'culture', 'sports', 'local', 'general'];
+const CATEGORY_ORDER = ['all', 'policy', 'medical', 'education', 'culture', 'sports', 'relay', 'local', 'general'];
 const CATEGORY_UI = {
   all: 'すべて',
   policy: '制度・政策',
