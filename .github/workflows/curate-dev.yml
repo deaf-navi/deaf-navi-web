@@ -1,6 +1,9 @@
 name: Curate & Build Dev
 
 on:
+  schedule:
+    # JST 06:00 / 12:00 / 18:00
+    - cron: '0 3,9,21 * * *'
   workflow_dispatch: {}
   push:
     branches: [main]

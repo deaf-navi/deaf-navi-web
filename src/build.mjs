@@ -37,7 +37,7 @@ const FEED_URL = `${SITE_URL}${FEED_FILE}`;
 const SITEMAP_URL = `${SITE_URL}${SITEMAP_FILE}`;
 const SITE_NAME = 'Deaf Navi Web';
 const SITE_TAGLINE = '聴覚障害・難聴・ろう者コミュニティの最新ニュース';
-const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・医療・教育・地域情報を毎時自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
+const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・医療・教育・地域情報を自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
 const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途失聴,手話,情報保障,補聴器,人工内耳,手話言語条例,聴覚障害ニュース,手話ニュース,難聴者,デフ,deaf,字幕,電話リレー,要約筆記,ろう学校,聴覚特別支援';
 
 const CATEGORY_ORDER = ['all', 'policy', 'medical', 'education', 'culture', 'sports', 'relay', 'local', 'general'];
@@ -246,7 +246,9 @@ function renderPage({ generatedAt, count, articles }) {
   const generatedLocal = formatDateJST(generatedAt);
   const jsonLd = renderJsonLd({ generatedAt, articles });
 
-  const pageTitle = `${IS_DEV ? '[DEV] ' : ''}${SITE_NAME} | ${SITE_TAGLINE} - 毎時自動更新`;
+  const updateLabel = IS_DEV ? '1日3回更新' : '毎時自動更新';
+  const leadUpdateText = IS_DEV ? 'JST 6:00 / 12:00 / 18:00に自動更新。' : '毎時自動更新。';
+  const pageTitle = `${IS_DEV ? '[DEV] ' : ''}${SITE_NAME} | ${SITE_TAGLINE} - ${updateLabel}`;
   const ogImage = `${SITE_URL}${OG_FILE}`;
   const robots = IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1';
   const googlebot = IS_DEV ? robots : 'index,follow';
@@ -317,7 +319,7 @@ function renderPage({ generatedAt, count, articles }) {
     </div>
     <div class="container">
       <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${headerSub}</span></h1>
-      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティのための、静かで確かなニュースキュレーション。手話・情報保障・制度・医療・教育・地域情報を毎時自動更新。</p>
+      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティのための、静かで確かなニュースキュレーション。手話・情報保障・制度・医療・教育・地域情報を${leadUpdateText}</p>
     </div>
   </header>
 
@@ -628,8 +630,8 @@ ${devSourceSection}
 
     <section aria-labelledby="about-update">
       <h2 id="about-update" class="about__h2">更新頻度・仕組み</h2>
-      <p>国内版は GitHub Actions による自動ジョブが毎時（JST 毎時0分ごろ）にRSSを収集。関連性フィルタ・重複除去・カテゴリ分類を行い、最大400件を保持し、初期表示では最新150件を表示しています。</p>
-      <p>Deaf Navi World は6時間ごと（JST 3:30 / 9:30 / 15:30 / 21:30ごろ）に海外ニュースを収集し、最大600件を保持します。World-JP は日本語翻訳版、World-Original は翻訳なしの原文版です。</p>
+      <p>国内本番版は GitHub Actions による自動ジョブが毎時（JST 毎時0分ごろ）にRSSを収集します。DEV版は1日3回（JST 6:00 / 12:00 / 18:00ごろ）に収集します。どちらも関連性フィルタ・重複除去・カテゴリ分類を行い、最大400件を保持し、初期表示では最新150件を表示しています。DEV版では400件を超えた記事を過去アーカイブに蓄積します。</p>
+      <p>Deaf Navi World は1日3回（JST 6:00 / 12:00 / 18:00ごろ）に海外ニュースを収集し、最大600件を保持します。World-JP は日本語翻訳版、World-Original は翻訳なしの原文版です。</p>
       <p>記事の本文・要約は各発信元のものを抜粋し、本文リンクはすべて各元記事の原文（外部サイト）に遷移します。記事の著作権はそれぞれの発信元に帰属します。</p>
     </section>
 
