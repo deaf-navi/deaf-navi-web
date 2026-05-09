@@ -37,18 +37,22 @@ const FEED_URL = `${SITE_URL}${FEED_FILE}`;
 const SITEMAP_URL = `${SITE_URL}${SITEMAP_FILE}`;
 const SITE_NAME = 'Deaf Navi Web';
 const SITE_TAGLINE = '聴覚障害・難聴・ろう者コミュニティの最新ニュース';
-const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・医療・教育・地域情報を自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
-const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途失聴,手話,情報保障,補聴器,人工内耳,手話言語条例,聴覚障害ニュース,手話ニュース,難聴者,デフ,deaf,字幕,電話リレー,要約筆記,ろう学校,聴覚特別支援';
+const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・情報保障・医療・教育・技術・防災・イベント情報を自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
+const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途失聴,手話,情報保障,アクセシビリティ,防災,技術,AI,イベント,講座,補聴器,人工内耳,手話言語条例,聴覚障害ニュース,手話ニュース,難聴者,デフ,deaf,字幕,電話リレー,要約筆記,ろう学校,聴覚特別支援';
 
-const CATEGORY_ORDER = ['all', 'policy', 'medical', 'education', 'culture', 'sports', 'relay', 'local', 'general'];
+const CATEGORY_ORDER = ['all', 'policy', 'accessibility', 'medical', 'education', 'technology', 'culture', 'sports', 'safety', 'event', 'relay', 'local', 'general'];
 const CATEGORY_UI = {
   all: 'すべて',
   policy: '制度・政策',
+  accessibility: '情報保障・アクセシビリティ',
   relay: '電話リレー・ヨメテル',
   medical: '医療',
   education: '教育',
+  technology: '技術・AI',
   culture: '文化・芸能',
   sports: 'デフスポーツ',
+  safety: '防災・安全',
+  event: 'イベント・講座',
   local: '地域',
   general: '一般',
 };
@@ -579,7 +583,7 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
     <section aria-labelledby="about-concept">
       <h2 id="about-concept" class="about__h2">このサイトについて</h2>
       <p>Deaf Navi Web は、<strong>聴覚障害・難聴・ろう者・中途失聴者</strong>のコミュニティに関わる情報を、信頼できる情報源から自動収集・分類してお届けする無料ニュースキュレーションサイトです。</p>
-      <p>国内ニュースを扱う Deaf Navi Web に加え、海外ニュースを扱う <a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版）と <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）を公開しています。情報保障・手話・制度・医療・教育・文化・デフスポーツなど、暮らしと権利に直結するトピックを幅広くカバーします。</p>
+      <p>国内ニュースを扱う Deaf Navi Web に加え、海外ニュースを扱う <a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版）と <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）を公開しています。情報保障・手話・制度・医療・教育・技術・防災・文化・デフスポーツなど、暮らしと権利に直結するトピックを幅広くカバーします。</p>
     </section>
 
     <section aria-labelledby="about-sources">
@@ -597,7 +601,7 @@ ${devSourceSection}
       <h3 class="about__h3">国内版: 主要報道機関・公的機関（Google News RSS）</h3>
       <ul>
         <li>朝日新聞・読売新聞・NHK系記事・自治体/公的機関・PR TIMES など、Google News RSS に掲載される国内ニュースを参照します。</li>
-        <li>キーワード: 聴覚障害 / 難聴 / ろう者 / 手話 / 情報保障 / 電話リレー / ヨメテル / 補聴器 / 人工内耳 / ろう学校 / デフスポーツ / ろう文化・芸能 ほか</li>
+        <li>キーワード: 聴覚障害 / 難聴 / ろう者 / 手話 / 情報保障 / アクセシビリティ / 防災 / 技術・AI / イベント・講座 / 電話リレー / ヨメテル / 補聴器 / 人工内耳 / ろう学校 / デフスポーツ / ろう文化・芸能 ほか</li>
         <li>電話リレー・ヨメテル系の記事は専用カテゴリで表示し、トップの「すべて」からは除外しています。</li>
       </ul>
 
@@ -618,11 +622,15 @@ ${devSourceSection}
       <p>記事はタイトル・要約から自動で以下のカテゴリに分類されます:</p>
       <ul>
         <li><strong>制度・政策</strong> — 法律・条例・給付・雇用・助成など</li>
+        <li><strong>情報保障・アクセシビリティ</strong> — 手話通訳・要約筆記・字幕・合理的配慮・窓口対応など</li>
         <li><strong>電話リレー・ヨメテル</strong> — 電話リレーサービス・ヨメテル・手話リンクなど</li>
         <li><strong>医療</strong> — 病院・治療・補聴器・人工内耳・診断など</li>
         <li><strong>教育</strong> — 学校・大学・授業・入試・研究など</li>
+        <li><strong>技術・AI</strong> — 音声認識・自動字幕・手話翻訳・支援技術・アプリなど</li>
         <li><strong>文化・芸能</strong> — ろう演劇・ろう映画・手話パフォーマンス・ろうアート・手話狂言など</li>
         <li><strong>デフスポーツ</strong> — デフリンピック・競技団体・選手・大会情報など</li>
+        <li><strong>防災・安全</strong> — 災害情報・避難・緊急通報・警察/消防対応など</li>
+        <li><strong>イベント・講座</strong> — 手話講座・講演会・セミナー・体験会・交流会など</li>
         <li><strong>地域</strong> — 都道府県・市区町村単位のローカル情報</li>
         <li><strong>一般</strong> — 上記以外の関連トピック</li>
       </ul>

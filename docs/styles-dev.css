@@ -35,10 +35,14 @@
   /* Category palette — botanical tones */
   --cat-policy:    #8b6b93; /* lavender */
   --cat-relay:     #2f7c86; /* teal */
+  --cat-accessibility: #4f8f8a; /* deep aqua */
   --cat-medical:   #b35e4b; /* terracotta */
   --cat-education: #5a7a9a; /* dusty blue */
+  --cat-technology:#627b52; /* olive */
   --cat-culture:   #a66b73; /* muted rose-wine (arts) */
   --cat-sports:    #c28840; /* warm amber (energetic) */
+  --cat-safety:    #9a5b42; /* burnt clay */
+  --cat-event:     #7b6fa6; /* muted violet */
   --cat-local:     #5a7a48; /* forest */
   --cat-general:   #7d694f; /* earth */
 
@@ -535,19 +539,27 @@ main {
 
 .chip--policy::before    { background: var(--cat-policy); }
 .chip--relay::before     { background: var(--cat-relay); }
+.chip--accessibility::before { background: var(--cat-accessibility); }
 .chip--medical::before   { background: var(--cat-medical); }
 .chip--education::before { background: var(--cat-education); }
+.chip--technology::before { background: var(--cat-technology); }
 .chip--culture::before   { background: var(--cat-culture); }
 .chip--sports::before    { background: var(--cat-sports); }
+.chip--safety::before    { background: var(--cat-safety); }
+.chip--event::before     { background: var(--cat-event); }
 .chip--local::before     { background: var(--cat-local); }
 .chip--general::before   { background: var(--cat-general); }
 
 .chip--policy    { color: var(--cat-policy); }
 .chip--relay     { color: var(--cat-relay); }
+.chip--accessibility { color: var(--cat-accessibility); }
 .chip--medical   { color: var(--cat-medical); }
 .chip--education { color: var(--cat-education); }
+.chip--technology { color: var(--cat-technology); }
 .chip--culture   { color: var(--cat-culture); }
 .chip--sports    { color: var(--cat-sports); }
+.chip--safety    { color: var(--cat-safety); }
+.chip--event     { color: var(--cat-event); }
 .chip--local     { color: var(--cat-local); }
 .chip--general   { color: var(--text-secondary); }
 

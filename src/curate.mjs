@@ -19,7 +19,9 @@ const DEV_MIN_SCORE = 5;
 const KEYWORD_GROUPS = [
   { query: '聴覚障害 OR 難聴', defaultCategory: 'general' },
   { query: 'ろう者 OR ろうあ者 OR 中途失聴', defaultCategory: 'general' },
-  { query: '手話 OR 情報保障', defaultCategory: 'general' },
+  { query: '手話 OR 情報保障', defaultCategory: 'accessibility' },
+  { query: '(聴覚障害 OR 難聴 OR ろう者 OR 手話) (情報保障 OR アクセシビリティ OR 合理的配慮)', defaultCategory: 'accessibility' },
+  { query: '(聴覚障害 OR 難聴 OR ろう者 OR 手話) (手話通訳 OR 要約筆記 OR 字幕 OR バリアフリー)', defaultCategory: 'accessibility' },
   { query: '聴覚障害 制度 OR 聴覚障害 支援', defaultCategory: 'policy' },
   { query: 'site:jfd.or.jp', defaultCategory: 'general' },
   { query: 'site:asahi.com 聴覚障害', defaultCategory: 'general' },
@@ -30,6 +32,9 @@ const KEYWORD_GROUPS = [
   { query: '手話 舞台 OR 手話パフォーマンス', defaultCategory: 'culture' },
   { query: 'ろう芸術 OR ろう映画 OR デフシアター', defaultCategory: 'culture' },
   { query: '手話映画 OR 手話 監督 OR ろう者 ドキュメンタリー', defaultCategory: 'culture' },
+  { query: '聴覚障害 AI OR 難聴 AI OR 手話 AI OR 自動字幕 OR 音声認識 字幕', defaultCategory: 'technology' },
+  { query: '聴覚障害 防災 OR ろう者 防災 OR 難聴 災害 OR 聴覚障害 避難', defaultCategory: 'safety' },
+  { query: '聴覚障害 イベント OR ろう者 講座 OR 難聴者 セミナー OR 手話講座', defaultCategory: 'event' },
   { query: 'デフリンピック', defaultCategory: 'sports' },
   { query: 'デフスポーツ OR ろう者 スポーツ OR 聴覚障害 選手', defaultCategory: 'sports' },
   { query: 'デフバスケ OR デフテニス OR デフサッカー OR デフバレー OR デフ柔道 OR デフ陸上', defaultCategory: 'sports' },
@@ -38,11 +43,14 @@ const KEYWORD_GROUPS = [
 const DEV_KEYWORD_GROUPS = [
   ...KEYWORD_GROUPS,
   { query: '盲ろう OR 盲ろう者 OR 盲ろう児', defaultCategory: 'policy' },
-  { query: '手話通訳 OR 要約筆記 OR 情報保障', defaultCategory: 'policy' },
+  { query: '手話通訳 OR 要約筆記 OR 情報保障', defaultCategory: 'accessibility' },
   { query: '電話リレー OR 遠隔手話 OR 手話リンク', defaultCategory: 'policy' },
   { query: '人工内耳 OR 補聴器 OR 新生児聴覚スクリーニング', defaultCategory: 'medical' },
   { query: 'ろう学校 OR 聴覚特別支援学校 OR 難聴児 教育', defaultCategory: 'education' },
-  { query: '字幕 バリアフリー OR UDCast OR 音声認識 字幕', defaultCategory: 'general' },
+  { query: '字幕 バリアフリー OR UDCast OR 音声認識 字幕', defaultCategory: 'accessibility' },
+  { query: 'AI字幕 OR リアルタイム字幕 OR 手話翻訳 OR 音声認識アプリ', defaultCategory: 'technology' },
+  { query: '聴覚障害 緊急通報 OR ろう者 避難所 OR 難聴者 災害情報', defaultCategory: 'safety' },
+  { query: '手話 研修会 OR 手話体験 OR ろう者 交流会 OR 難聴者 相談会', defaultCategory: 'event' },
 ];
 
 const DIRECT_FEEDS = [
@@ -67,7 +75,7 @@ const DIRECT_FEEDS = [
     url: 'https://shikaku.in/feed/event/',
     sourceName: 'しかくタイムズ（イベント）',
     sourceUrl: 'https://shikaku.in/',
-    defaultCategory: 'culture',
+    defaultCategory: 'event',
     sourceTier: 'specialist',
     passThrough: true,
   },
@@ -278,10 +286,11 @@ const DEV_SOCIAL_FEEDS = [
 
 const RELEVANT_KEYWORDS = [
   '聴覚障害', '難聴', 'ろう者', 'ろうあ者', 'ろうあ', '聾者', '聾唖',
-  'デフ', 'deaf', '手話', '情報保障', '字幕', '補聴器', '人工内耳',
+  'デフ', 'deaf', '手話', '情報保障', '補聴器', '人工内耳',
   '新生児スクリーニング', '手話言語', '手話通訳', '要約筆記',
-  '電話リレー', '音声認識', '聴力', '聴覚', '耳が聞こえ',
+  '電話リレー', '手話翻訳', '聴力', '聴覚', '耳が聞こえ',
   '中途失聴', '難聴者', 'ろう学校', '聴覚特別支援',
+  '手話講座', '手話研修', '手話体験',
   // 文化・芸能系
   'ろう文化', 'ろう劇団', '手話演劇', '手話狂言', '手話能', 'ろう映画',
   '手話落語', 'ろう芸術', 'デフシアター', '手話パフォーマンス',
@@ -297,12 +306,34 @@ const RELEVANT_KEYWORDS = [
   '耳の聞こえない', '耳の聞こえ',
 ];
 
+const CONTEXTUAL_RELEVANT_KEYWORDS = [
+  'アクセシビリティ', '字幕', '自動字幕', 'リアルタイム字幕', 'AI字幕',
+  '音声認識', '音声文字変換', '合理的配慮', 'バリアフリー',
+  '防災', '災害', '避難', '避難所', '緊急通報', '119番', '110番',
+  '警察', '消防', '災害情報', '緊急情報',
+  '講演会', 'セミナー', '研修会', '体験会', '交流会', '相談会',
+  '勉強会', 'フォーラム', 'シンポジウム',
+];
+
+const RELEVANCE_CONTEXT_KEYWORDS = [
+  '聴覚', '難聴', 'ろう', '聾', '手話', '耳', '聴力',
+  'デフ', 'deaf', '中途失聴', '情報保障',
+];
+
 const SCORE_TERMS = [
   ['聴覚障害', 8], ['聴覚障がい', 8], ['難聴', 8], ['ろう者', 8], ['ろうあ者', 8],
   ['中途失聴', 8], ['盲ろう', 8], ['聴覚特別支援', 8], ['ろう学校', 7],
-  ['手話通訳', 8], ['要約筆記', 8], ['情報保障', 8], ['電話リレー', 8],
-  ['遠隔手話', 8], ['手話リンク', 7], ['手話言語', 7], ['手話奉仕員', 7],
+  ['手話通訳', 8], ['要約筆記', 8], ['情報保障', 8], ['アクセシビリティ', 7],
+  ['合理的配慮', 7], ['バリアフリー字幕', 7], ['UDCast', 6],
+  ['電話リレー', 8], ['遠隔手話', 8], ['手話リンク', 7], ['手話言語', 7], ['手話奉仕員', 7],
   ['補聴器', 7], ['人工内耳', 7], ['新生児聴覚スクリーニング', 7],
+  ['AI字幕', 7], ['自動字幕', 7], ['リアルタイム字幕', 7], ['音声認識アプリ', 6],
+  ['手話翻訳', 7], ['手話アバター', 6], ['支援技術', 6],
+  ['防災', 7], ['災害情報', 7], ['避難所', 7], ['緊急通報', 7],
+  ['119番', 6], ['110番', 6], ['消防', 5], ['警察', 5],
+  ['手話講座', 7], ['講演会', 6], ['セミナー', 6], ['研修会', 6],
+  ['体験会', 6], ['交流会', 6], ['相談会', 6], ['勉強会', 5],
+  ['フォーラム', 5], ['シンポジウム', 5],
   ['デフリンピック', 8], ['デフスポーツ', 8], ['デフアスリート', 7],
   ['全国キャラバン', 6], ['標準手話', 6], ['手話練習帳', 6], ['Let’s手話', 6], ["Let's手話", 6],
   ['全国ろうあ者体育大会', 8], ['ろうあ者体育大会', 8],
@@ -320,7 +351,7 @@ const CONTEXT_TERMS = [
   ['制度', 2], ['政策', 2], ['法律', 2], ['条例', 2], ['支援', 2], ['助成', 2],
   ['雇用', 2], ['医療', 2], ['治療', 2], ['診断', 2], ['検査', 2], ['耳鼻', 2],
   ['教育', 2], ['学校', 2], ['授業', 2], ['入試', 2], ['保育', 2], ['研究', 2],
-  ['避難', 2], ['防災', 2], ['窓口', 2], ['講習', 2], ['相談', 2], ['研修', 2],
+  ['避難', 2], ['防災', 2], ['災害', 2], ['緊急', 2], ['窓口', 2], ['講習', 2], ['相談', 2], ['研修', 2],
   ['バリアフリー', 2], ['合理的配慮', 3],
 ];
 
@@ -358,7 +389,10 @@ function getVariant() {
 
 function isRelevantArticle(title, description) {
   const text = (title + ' ' + description).toLowerCase();
-  return RELEVANT_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()));
+  if (RELEVANT_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()))) return true;
+  const hasContextualTerm = CONTEXTUAL_RELEVANT_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()));
+  if (!hasContextualTerm) return false;
+  return RELEVANCE_CONTEXT_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()));
 }
 
 function guessCategory(title, summary) {
@@ -368,6 +402,10 @@ function guessCategory(title, summary) {
   if (/ろう[文劇芸映]|手話[演舞映落狂詩]|デフシアター|ろう映画|ろう芸術|手話パフォーマンス|手話能|手話狂言|手話文学|ろうアーティスト|デフリンピック.*(文化|芸術|プログラム)/.test(text)) return 'culture';
   // sports は culture の次（「デフリンピック文化プログラム」は culture に流れる）
   if (/デフリンピック|デフスポーツ|デフアスリート|デフ(バスケ|テニス|サッカー|バレー|柔道|剣道|陸上|水泳|ボウリング|ゴルフ|サーフィン|卓球|野球|バドミントン|ラグビー|ハンドボール|フットサル|ホッケー|スケート|スキー|ビリヤード|空手|レスリング)|聴覚障害者スポーツ|ろう者スポーツ|聴障スポーツ|全国ろうあ者体育大会|ろうあ者体育大会|聴覚障害.{0,6}(選手|代表|五輪|金メダル|銀メダル|銅メダル)/.test(text)) return 'sports';
+  if (/ai字幕|自動字幕|リアルタイム字幕|音声認識|音声文字変換|speech.?to.?text|手話翻訳|手話アバター|支援技術|アクセシビリティ技術|アプリ|\bai\b|人工知能/.test(text)) return 'technology';
+  if (/防災|災害|地震|台風|豪雨|避難|避難所|緊急通報|緊急情報|災害情報|119番|110番|消防|警察|救急|アラート/.test(text)) return 'safety';
+  if (/情報保障|アクセシビリティ|合理的配慮|バリアフリー|字幕|要約筆記|手話通訳|遠隔通訳|UDCast|UDトーク|窓口対応|コミュニケーション支援/.test(text)) return 'accessibility';
+  if (/手話講座|講座|講演会|セミナー|研修会|勉強会|体験会|交流会|相談会|説明会|フォーラム|シンポジウム|ワークショップ|参加者募集|受講者募集|申込|申し込み/.test(text)) return 'event';
   if (/制度|政策|法律|条例|給付|支援|雇用|助成|補助|手当/.test(text)) return 'policy';
   if (/医療|病院|治療|手術|補聴器|人工内耳|診断|検査|耳鼻/.test(text)) return 'medical';
   if (/学校|教育|就学|大学|授業|入試|保育|幼稚|研究/.test(text)) return 'education';
