@@ -16,7 +16,15 @@ const FETCH_TIMEOUT = 18_000;
 const FETCH_CONCURRENCY = 8;
 const TRANSLATE_BATCH_CHARS = 1600;
 const TRANSLATE_DELAY_MS = 220;
-const TRANSLATION_PROVIDER = 'translate.googleapis.com + Deaf Navi glossary v2';
+const CODEX_POST_EDIT_BATCH_SIZE = envInt('WORLD_JP_CODEX_BATCH_SIZE', 20, 1, 50);
+const CODEX_POST_EDIT_MAX_ITEMS = envInt('WORLD_JP_CODEX_MAX_ITEMS', MAX_ARTICLES, 0, MAX_ARTICLES);
+const CODEX_POST_EDIT_TIMEOUT_MS = envInt('CODEX_APP_SERVER_TIMEOUT_SECONDS', 120, 5, 600) * 1000;
+const CODEX_POST_EDIT_DELAY_MS = envInt('WORLD_JP_CODEX_DELAY_MS', 250, 0, 5000);
+const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
+const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
+const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT !== '0';
+const CODEX_POST_EDIT_PROVIDER = 'Codex App Server Japanese news editor v1';
+const TRANSLATION_PROVIDER = 'translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit';
 
 const REGIONS = {
   asia_oceania: 'アジア・オセアニア',
@@ -362,6 +370,14 @@ for (const group of SOURCE_GROUPS) {
   }
 }
 
+function envInt(name, fallback, min, max) {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+  const value = Number.parseInt(raw, 10);
+  if (!Number.isFinite(value)) return fallback;
+  return Math.max(min, Math.min(max, value));
+}
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -439,6 +455,16 @@ async function fetchWithTimeout(url, ms = FETCH_TIMEOUT) {
       signal: controller.signal,
       headers: { 'User-Agent': 'DeafNaviWorld/1.0 (+https://github.com/tamas-hub/deaf-navi-web)' },
     });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function fetchRequestWithTimeout(url, init, ms) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    return await fetch(url, { ...init, signal: controller.signal });
   } finally {
     clearTimeout(timer);
   }
@@ -762,15 +788,45 @@ async function loadTranslationCache() {
   try {
     const raw = await readFile(DATA_FILE, 'utf8');
     const data = JSON.parse(raw);
-    const cache = new Map();
+    const text = new Map();
+    const articles = new Map();
     for (const article of data.articles ?? []) {
-      if (article.originalTitle && article.title) cache.set(article.originalTitle, article.title);
-      if (article.originalSummary && article.summary) cache.set(article.originalSummary, article.summary);
+      const postEdited = article.japanesePostEditProvider === CODEX_POST_EDIT_PROVIDER;
+      if (article.originalTitle && article.title && !isWeakJapaneseTranslation(article.originalTitle, article.title)) {
+        text.set(article.originalTitle, article.title);
+      }
+      if (article.originalSummary && article.summary && !isWeakJapaneseTranslation(article.originalSummary, article.summary)) {
+        text.set(article.originalSummary, article.summary);
+      }
+      if (article.originalTitle && article.originalSummary && article.title && article.summary) {
+        articles.set(articleCacheKey(article), {
+          title: article.title,
+          summary: article.summary,
+          postEdited,
+        });
+      }
     }
-    return cache;
+    return { text, articles };
   } catch {
-    return new Map();
+    return { text: new Map(), articles: new Map() };
   }
+}
+
+function articleCacheKey(article) {
+  return `${article.originalTitle ?? ''}\n${article.originalSummary ?? ''}`;
+}
+
+function containsJapanese(text) {
+  return /[\u3040-\u30ff\u3400-\u9fff]/.test(String(text ?? ''));
+}
+
+function isWeakJapaneseTranslation(original, translated) {
+  const source = String(original ?? '').trim();
+  const value = String(translated ?? '').trim();
+  if (!value) return true;
+  if (value === source) return true;
+  if (!containsJapanese(value) && /[a-z]/i.test(source)) return true;
+  return false;
 }
 
 function fallbackJapanese(text) {
@@ -839,17 +895,218 @@ function polishJapanese(text) {
     .replace(/聞く手: 手話を使ってギャップを埋める/g, '聞こえる手: 手話で隔たりを埋める')
     .replace(/聴覚障害者のための/g, 'ろう者のための')
     .replace(/聴覚障害者向け/g, 'ろう者向け')
+    .replace(/Auslan（Auslan（オーストラリア手話））/g, 'Auslan（オーストラリア手話）')
+    .replace(/Auslan（オーストラリア手話）のAuslan/g, 'Auslan（オーストラリア手話）')
     .replace(/(?:Auslan（)+オーストラリア手話(?:）)+/g, 'Auslan（オーストラリア手話）')
     .trim();
 }
 
+function codexEndpoint(baseUrl = CODEX_APP_SERVER_URL) {
+  if (!baseUrl) return '';
+  if (!/^https?:\/\//i.test(baseUrl)) throw new Error('CODEX_APP_SERVER_URL must start with http:// or https://');
+  return `${baseUrl.replace(/\/+$/, '')}/generate`;
+}
+
+function authHeaders() {
+  const headers = { 'content-type': 'application/json' };
+  if (CODEX_APP_SERVER_TOKEN) {
+    headers.authorization = `Bearer ${CODEX_APP_SERVER_TOKEN}`;
+    headers['x-codex-app-token'] = CODEX_APP_SERVER_TOKEN;
+  }
+  return headers;
+}
+
+function stripJsonFence(text) {
+  return String(text ?? '')
+    .trim()
+    .replace(/^```json\s*/i, '')
+    .replace(/^```\s*/i, '')
+    .replace(/```$/i, '')
+    .trim();
+}
+
+function parseJsonObject(text) {
+  const stripped = stripJsonFence(text);
+  const start = stripped.indexOf('{');
+  const end = stripped.lastIndexOf('}');
+  const json = start >= 0 && end > start ? stripped.slice(start, end + 1) : stripped;
+  try {
+    const parsed = JSON.parse(json);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function normalizeCodexPostEditItems(json) {
+  const directItems = Array.isArray(json?.items) ? json.items : [];
+  const validDirect = directItems
+    .filter((item) => item && typeof item === 'object')
+    .map((item) => ({
+      id: String(item.id ?? '').trim(),
+      title: String(item.title ?? '').trim(),
+      summary: String(item.summary ?? item.body_excerpt ?? item.body ?? item.text ?? '').trim(),
+    }))
+    .filter((item) => item.id && item.title);
+  if (validDirect.length) return validDirect;
+
+  const candidates = [
+    json?.text,
+    json?.raw_text,
+    ...directItems.flatMap((item) => [item?.body, item?.text, item?.body_md, item?.title]),
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    const parsed = parseJsonObject(candidate);
+    const items = Array.isArray(parsed?.items) ? parsed.items : parsed?.id ? [parsed] : [];
+    const normalized = items
+      .filter((item) => item && typeof item === 'object')
+      .map((item) => ({
+        id: String(item.id ?? '').trim(),
+        title: String(item.title ?? '').trim(),
+        summary: String(item.summary ?? item.body_excerpt ?? item.body ?? item.text ?? '').trim(),
+      }))
+      .filter((item) => item.id && item.title);
+    if (normalized.length) return normalized;
+  }
+
+  return [];
+}
+
+async function requestCodexPostEdit(batch) {
+  const endpoint = codexEndpoint();
+  const requestItems = batch.map((article, index) => ({
+    id: String(index),
+    source: article.sourceName,
+    region: article.regionLabel,
+    topic: article.topicLabel,
+    original_title: article.originalTitle,
+    original_summary: article.originalSummary,
+    current_title_ja: article.title,
+    current_summary_ja: article.summary,
+  }));
+
+  const body = {
+    type: 'world_jp_post_edit',
+    tone: 'news-curation',
+    platform: 'deaf-navi-world-jp',
+    count: requestItems.length,
+    source_text: JSON.stringify({ items: requestItems }),
+    metadata: {
+      site: 'deaf-navi-world-jp',
+      article_count: requestItems.length,
+    },
+    system_prompt: [
+      'あなたはDeaf Navi World-JPの日本語ニュース編集者です。',
+      '海外ニュースのタイトルと短い要約を、事実を変えずに自然な日本語へ整えます。',
+      '聴覚障害、ろう者、難聴、手話、補聴器、人工内耳、情報保障などの用語を正確に扱ってください。',
+      '固有名詞、国名、団体名、人物名、競技名、数字、日付は原文の意味を保持します。',
+      '誇張、推測、本文にない情報の追加は禁止です。',
+      '返答はJSONのみ。Markdownや説明文は不要です。',
+    ].join('\n'),
+    user_prompt: [
+      '# Task',
+      '以下のitemsについて、current_title_ja/current_summary_jaをニュース見出しとして自然な日本語に整えてください。',
+      'タイトルは35文字から80文字程度を目安に、要約は1文で簡潔にしてください。',
+      '原文が英語以外でも、出力は日本語にしてください。',
+      '',
+      '# Output JSON shape',
+      '{"success":true,"provider":"codex_app_server","items":[{"id":"0","title":"自然な日本語タイトル","summary":"自然な日本語の短い要約"}]}',
+      '',
+      '# Items',
+      JSON.stringify({ items: requestItems }, null, 2),
+    ].join('\n'),
+  };
+
+  const res = await fetchRequestWithTimeout(endpoint, {
+    method: 'POST',
+    headers: authHeaders(),
+    body: JSON.stringify(body),
+  }, CODEX_POST_EDIT_TIMEOUT_MS);
+  const text = await res.text();
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${text.replace(/\s+/g, ' ').trim().slice(0, 600)}`);
+
+  const json = JSON.parse(text);
+  if (json.success === false) throw new Error(String(json.error ?? 'Codex App Server returned success=false'));
+  return normalizeCodexPostEditItems(json);
+}
+
+async function applyCodexJapanesePostEdit(articles, cacheArticles) {
+  const cached = articles.filter((article) => cacheArticles.get(articleCacheKey(article))?.postEdited).length;
+  if (!CODEX_POST_EDIT_ENABLED || !CODEX_APP_SERVER_URL || CODEX_POST_EDIT_MAX_ITEMS <= 0) {
+    return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: false };
+  }
+
+  let endpoint;
+  try {
+    endpoint = codexEndpoint();
+  } catch (err) {
+    console.warn(`[codex-postedit] skipped: ${err.message}`);
+    return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: false };
+  }
+
+  const targets = articles
+    .filter((article) => !cacheArticles.get(articleCacheKey(article))?.postEdited)
+    .slice(0, CODEX_POST_EDIT_MAX_ITEMS);
+  if (!targets.length) return { checked: 0, updated: 0, cached, skipped: 0, failed: 0, enabled: true };
+
+  try {
+    const healthUrl = endpoint.replace(/\/generate$/, '/health');
+    const health = await fetchRequestWithTimeout(healthUrl, { method: 'GET', headers: authHeaders() }, 3000);
+    const healthText = await health.text();
+    const healthJson = parseJsonObject(healthText);
+    if (!health.ok) throw new Error(`health HTTP ${health.status}`);
+    if (healthJson?.provider !== 'codex_app_server') {
+      throw new Error('health response is not Codex App Server');
+    }
+  } catch (err) {
+    console.warn(`[codex-postedit] skipped: Codex App Server is not available (${err.message})`);
+    return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: false };
+  }
+
+  let updated = 0;
+  let failed = 0;
+  const batches = chunk(targets, CODEX_POST_EDIT_BATCH_SIZE);
+  console.log(`[codex-postedit] target articles: ${targets.length}, batches: ${batches.length}`);
+
+  for (let i = 0; i < batches.length; i += 1) {
+    const batch = batches[i];
+    try {
+      const edited = await requestCodexPostEdit(batch);
+      const byId = new Map(edited.map((item) => [item.id, item]));
+      batch.forEach((article, index) => {
+        const item = byId.get(String(index));
+        if (!item?.title) return;
+        article.title = polishJapanese(item.title);
+        article.summary = polishJapanese(item.summary || item.title);
+        article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
+        updated += 1;
+      });
+    } catch (err) {
+      failed += batch.length;
+      console.warn(`[codex-postedit] batch ${i + 1}/${batches.length} failed: ${err.message}`);
+    }
+    if (i < batches.length - 1 && CODEX_POST_EDIT_DELAY_MS > 0) await sleep(CODEX_POST_EDIT_DELAY_MS);
+  }
+
+  return {
+    checked: targets.length,
+    updated,
+    cached,
+    skipped: Math.max(0, articles.length - cached - targets.length),
+    failed,
+    enabled: true,
+  };
+}
+
 async function applyTranslations(articles) {
   const cache = await loadTranslationCache();
+  const textCache = cache.text;
   const missing = [];
 
   for (const article of articles) {
-    const cachedTitle = cache.get(article.originalTitle);
-    const cachedSummary = cache.get(article.originalSummary);
+    const cachedTitle = textCache.get(article.originalTitle);
+    const cachedSummary = textCache.get(article.originalSummary);
     if (cachedTitle) article.title = cachedTitle;
     else missing.push(article.originalTitle);
     if (cachedSummary) article.summary = cachedSummary;
@@ -874,9 +1131,14 @@ async function applyTranslations(articles) {
   }
 
   for (const article of articles) {
-    article.title = polishJapanese(cache.get(article.originalTitle) ?? translated.get(article.originalTitle) ?? fallbackJapanese(article.originalTitle));
-    article.summary = polishJapanese(cache.get(article.originalSummary) ?? translated.get(article.originalSummary) ?? fallbackJapanese(article.originalSummary));
+    article.title = polishJapanese(textCache.get(article.originalTitle) ?? translated.get(article.originalTitle) ?? fallbackJapanese(article.originalTitle));
+    article.summary = polishJapanese(textCache.get(article.originalSummary) ?? translated.get(article.originalSummary) ?? fallbackJapanese(article.originalSummary));
+    if (cache.articles.get(articleCacheKey(article))?.postEdited) {
+      article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
+    }
   }
+
+  return applyCodexJapanesePostEdit(articles, cache.articles);
 }
 
 function stripInternal(article) {
@@ -917,12 +1179,12 @@ async function loadWorldNews() {
 
   const dedupedAll = dedupeArticles(all);
   const selected = selectFreshBalancedArticles(dedupedAll).slice(0, MAX_ARTICLES);
-  await applyTranslations(selected);
+  const postEditReport = await applyTranslations(selected);
 
   return {
     articles: selected,
     report: {
-      version: 'world-v3',
+      version: 'world-v4',
       rawCount: all.length,
       dedupedCount: dedupedAll.length,
       selectedCount: selected.length,
@@ -933,6 +1195,8 @@ async function loadWorldNews() {
       standardLookback: STANDARD_LOOKBACK,
       queryCount: jobs.length,
       translationProvider: TRANSLATION_PROVIDER,
+      japanesePostEditProvider: CODEX_POST_EDIT_PROVIDER,
+      japanesePostEdit: postEditReport,
       freshnessCounts: {
         last7d: selected.filter((article) => ageDays(article) <= 7).length,
         last30d: selected.filter((article) => ageDays(article) <= 30).length,

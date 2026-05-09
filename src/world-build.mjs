@@ -8,10 +8,12 @@ const DOCS = join(ROOT, 'docs');
 
 const DATA_FILE = join(DOCS, 'articles-world.json');
 const JP_HTML_OUT = join(DOCS, 'deaf-navi-world-jp.html');
-const EN_HTML_OUT = join(DOCS, 'deaf-navi-world-en.html');
+const ORIGINAL_HTML_OUT = join(DOCS, 'deaf-navi-world-original.html');
+const EN_LEGACY_HTML_OUT = join(DOCS, 'deaf-navi-world-en.html');
 const LEGACY_HTML_OUT = join(DOCS, 'deaf-navi-world.html');
 const FEED_OUT = join(DOCS, 'feed-world.xml');
-const EN_FEED_OUT = join(DOCS, 'feed-world-en.xml');
+const ORIGINAL_FEED_OUT = join(DOCS, 'feed-world-original.xml');
+const EN_LEGACY_FEED_OUT = join(DOCS, 'feed-world-en.xml');
 const SITEMAP_OUT = join(DOCS, 'sitemap-world.xml');
 const STYLES_SRC = join(__dirname, 'styles.css');
 const STYLES_OUT = join(DOCS, 'styles-world.css');
@@ -22,16 +24,16 @@ const OG_OUT = join(DOCS, 'og-image-world.svg');
 
 const SITE_URL = 'https://tamas-hub.github.io/deaf-navi-web/';
 const JP_PAGE_FILE = 'deaf-navi-world-jp.html';
-const EN_PAGE_FILE = 'deaf-navi-world-en.html';
+const ORIGINAL_PAGE_FILE = 'deaf-navi-world-original.html';
 const JP_PAGE_URL = `${SITE_URL}${JP_PAGE_FILE}`;
-const EN_PAGE_URL = `${SITE_URL}${EN_PAGE_FILE}`;
+const ORIGINAL_PAGE_URL = `${SITE_URL}${ORIGINAL_PAGE_FILE}`;
 const FEED_URL = `${SITE_URL}feed-world.xml`;
-const EN_FEED_URL = `${SITE_URL}feed-world-en.xml`;
+const ORIGINAL_FEED_URL = `${SITE_URL}feed-world-original.xml`;
 const SITEMAP_URL = `${SITE_URL}sitemap-world.xml`;
 const JP_SITE_NAME = 'Deaf Navi World-JP';
-const EN_SITE_NAME = 'Deaf Navi World-EN';
+const ORIGINAL_SITE_NAME = 'Deaf Navi World-Original';
 const SITE_DESC = '世界中の主要メディアと多言語の地域別Google News検索から、聴覚障害・ろう者・難聴・手話・情報保障関連ニュースを日本語に翻訳してキュレーションするDeaf Naviの世界版ページ。';
-const EN_SITE_DESC = 'Original, untranslated global news articles gathered from major media and multilingual regional Google News queries about deaf, hard-of-hearing, sign language, accessibility, health, education, culture, and deaf sports topics.';
+const ORIGINAL_SITE_DESC = 'Original-language global news articles gathered from major media and multilingual regional Google News queries about deaf, hard-of-hearing, sign language, accessibility, health, education, culture, and deaf sports topics.';
 const INITIAL_VISIBLE = 150;
 
 const REGION_ORDER = ['all', 'asia_oceania', 'americas', 'europe_cis', 'middle_east_africa'];
@@ -133,8 +135,26 @@ function refineJapanese(value) {
     .replace(/聞く手: 手話を使ってギャップを埋める/g, '聞こえる手: 手話で隔たりを埋める')
     .replace(/聴覚障害者のための/g, 'ろう者のための')
     .replace(/聴覚障害者向け/g, 'ろう者向け')
+    .replace(/Auslan（Auslan（オーストラリア手話））/g, 'Auslan（オーストラリア手話）')
+    .replace(/Auslan（オーストラリア手話）のAuslan/g, 'Auslan（オーストラリア手話）')
     .replace(/(?:Auslan（)+オーストラリア手話(?:）)+/g, 'Auslan（オーストラリア手話）')
     .trim();
+}
+
+function detectOriginalLang(text) {
+  const value = String(text ?? '');
+  if (/[\u0600-\u06ff]/.test(value)) return 'ar';
+  if (/[\uac00-\ud7af]/.test(value)) return 'ko';
+  if (/[\u3400-\u9fff]/.test(value)) return 'zh';
+  if (/[ぁ-んァ-ヶ]/.test(value)) return 'ja';
+  if (/[а-яё]/i.test(value)) return 'ru';
+  if (/[ğışİöüç]/i.test(value)) return 'tr';
+  if (/[äöüß]/i.test(value)) return 'de';
+  if (/[àâçéèêëîïôûùüÿœæ]/i.test(value)) return 'fr';
+  if (/[ãõáéíóúâêô]/i.test(value)) return 'pt';
+  if (/[ñ¿¡]/i.test(value)) return 'es';
+  if (/[àèéìíîòóùú]/i.test(value)) return 'it';
+  return 'en';
 }
 
 function relativeTime(iso) {
@@ -161,12 +181,13 @@ function renderButtons(items, ui, attr, allLabel) {
 }
 
 function articleText(article, mode) {
-  if (mode === 'en') {
+  if (mode === 'original') {
+    const title = article.originalTitle || article.title;
     return {
-      title: article.originalTitle || article.title,
+      title,
       summary: article.originalSummary || article.summary || article.originalTitle || article.title,
       original: '',
-      lang: 'en',
+      lang: detectOriginalLang(title),
     };
   }
 
@@ -180,8 +201,9 @@ function articleText(article, mode) {
 
 function renderArticle(article, index, mode = 'jp') {
   const hidden = index >= INITIAL_VISIBLE ? ' hidden' : '';
-  const regionUi = mode === 'en' ? REGION_UI_EN : REGION_UI;
-  const topicUi = mode === 'en' ? TOPIC_UI_EN : TOPIC_UI;
+  const isOriginal = mode === 'original';
+  const regionUi = isOriginal ? REGION_UI_EN : REGION_UI;
+  const topicUi = isOriginal ? TOPIC_UI_EN : TOPIC_UI;
   const regionLabel = regionUi[article.region] ?? article.regionLabel ?? 'Uncategorized';
   const topicLabel = topicUi[article.topic] ?? article.topicLabel ?? 'General';
   const text = articleText(article, mode);
@@ -224,10 +246,10 @@ function renderJsonLd({ generatedAt, articles, mode, pageUrl, siteName, siteDesc
         name: article.sourceName,
         url: article.sourceUrl,
       },
-      articleSection: mode === 'en'
+      articleSection: mode === 'original'
         ? TOPIC_UI_EN[article.topic] ?? 'General'
         : article.topicLabel ?? TOPIC_UI[article.topic] ?? '一般',
-      spatialCoverage: mode === 'en'
+      spatialCoverage: mode === 'original'
         ? REGION_UI_EN[article.region] ?? ''
         : article.regionLabel ?? REGION_UI[article.region] ?? '',
     };
@@ -263,7 +285,7 @@ ${JSON.stringify({
         url: pageUrl,
         name: siteName,
         description: siteDesc,
-        inLanguage: mode === 'jp' ? 'ja-JP' : 'en',
+        inLanguage: mode === 'jp' ? 'ja-JP' : 'und',
         isPartOf: { '@id': `${SITE_URL}#website` },
         dateModified: generatedAt,
       },
@@ -280,11 +302,12 @@ ${JSON.stringify({
 }
 
 function renderLanguageSwitch(mode) {
-  const aboutLabel = mode === 'en' ? 'About Deaf Navi' : 'Deaf Naviについて';
-  const ariaLabel = mode === 'en' ? 'World page navigation' : 'Worldページ内ナビゲーション';
+  const isOriginal = mode === 'original';
+  const aboutLabel = isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて';
+  const ariaLabel = isOriginal ? 'World page navigation' : 'Worldページ内ナビゲーション';
   return `<div class="world-language-switch" aria-label="${ariaLabel}">
         <a class="world-language-switch__item${mode === 'jp' ? ' is-active' : ''}" href="./${JP_PAGE_FILE}"${mode === 'jp' ? ' aria-current="page"' : ''}>JP 日本語</a>
-        <a class="world-language-switch__item${mode === 'en' ? ' is-active' : ''}" href="./${EN_PAGE_FILE}"${mode === 'en' ? ' aria-current="page"' : ''}>EN Original</a>
+        <a class="world-language-switch__item${isOriginal ? ' is-active' : ''}" href="./${ORIGINAL_PAGE_FILE}"${isOriginal ? ' aria-current="page"' : ''}>Original 原文</a>
         <a class="world-language-switch__item" href="./about.html">${aboutLabel}</a>
       </div>`;
 }
@@ -295,36 +318,35 @@ function renderPage(data, mode = 'jp') {
   const initialVisible = Math.min(INITIAL_VISIBLE, articles.length);
   const generatedLocal = formatDateJST(generatedAt);
   const articlesHtml = articles.map((article, index) => renderArticle(article, index, mode)).join('\n');
-  const isEn = mode === 'en';
-  const ogLocale = isEn ? 'en_US' : 'ja_JP';
-  const pageUrl = isEn ? EN_PAGE_URL : JP_PAGE_URL;
-  const pageFile = isEn ? EN_PAGE_FILE : JP_PAGE_FILE;
-  const siteName = isEn ? EN_SITE_NAME : JP_SITE_NAME;
-  const siteDesc = isEn ? EN_SITE_DESC : SITE_DESC;
-  const feedUrl = isEn ? EN_FEED_URL : FEED_URL;
-  const regionButtons = renderButtons(REGION_ORDER, isEn ? REGION_UI_EN : REGION_UI, 'data-filter-region', isEn ? 'All regions' : 'すべての地域');
-  const topicButtons = renderButtons(TOPIC_ORDER, isEn ? TOPIC_UI_EN : TOPIC_UI, 'data-filter-topic', isEn ? 'All topics' : 'すべてのカテゴリ');
+  const isOriginal = mode === 'original';
+  const ogLocale = isOriginal ? 'en_US' : 'ja_JP';
+  const pageUrl = isOriginal ? ORIGINAL_PAGE_URL : JP_PAGE_URL;
+  const siteName = isOriginal ? ORIGINAL_SITE_NAME : JP_SITE_NAME;
+  const siteDesc = isOriginal ? ORIGINAL_SITE_DESC : SITE_DESC;
+  const feedUrl = isOriginal ? ORIGINAL_FEED_URL : FEED_URL;
+  const regionButtons = renderButtons(REGION_ORDER, isOriginal ? REGION_UI_EN : REGION_UI, 'data-filter-region', isOriginal ? 'All regions' : 'すべての地域');
+  const topicButtons = renderButtons(TOPIC_ORDER, isOriginal ? TOPIC_UI_EN : TOPIC_UI, 'data-filter-topic', isOriginal ? 'All topics' : 'すべてのカテゴリ');
   const ogImage = `${SITE_URL}og-image-world.svg`;
   const jsonLd = renderJsonLd({ generatedAt, articles, mode, pageUrl, siteName, siteDesc });
-  const title = isEn ? `${siteName} | Original global deaf news` : `${siteName} | 世界の聴覚障害ニュース`;
-  const heading = isEn ? 'World News Original' : 'World News JP';
-  const lead = isEn
-    ? 'Fresh global news related to deaf, hard-of-hearing, sign language, accessibility, health, education, and culture is gathered from major media plus multilingual regional searches.'
+  const title = isOriginal ? `${siteName} | Original-language global deaf news` : `${siteName} | 世界の聴覚障害ニュース`;
+  const heading = isOriginal ? 'World News Original' : 'World News JP';
+  const lead = isOriginal
+    ? 'Fresh global news related to deaf, hard-of-hearing, sign language, accessibility, health, education, and culture is shown in each source article language.'
     : '世界中の主要メディアと多言語の地域別検索から、聴覚障害・ろう者・難聴・手話・情報保障のニュースを日本語に翻訳してキュレーションします。';
-  const note = isEn
-    ? 'Original titles and summaries are shown without Japanese translation. Recent articles are prioritized, then balanced across regions.'
-    : 'タイトルと要約は日本語翻訳済みです。鮮度を優先しつつ、地域が偏りすぎないように並べています。';
-  const filterAria = isEn ? 'Deaf Navi World filters' : 'Deaf Navi World フィルタ';
-  const regionLabel = isEn ? 'Region' : '地域';
-  const topicLabel = isEn ? 'Topic' : 'カテゴリ';
-  const showingLabel = isEn ? 'Showing' : '表示中';
-  const totalLabel = isEn ? 'total' : '全';
-  const updatedLabel = isEn ? 'Updated' : '最終更新';
-  const loadMoreLabel = isEn ? 'Load more' : 'もっと読む';
-  const remainingLabel = isEn ? `${articles.length - initialVisible} more` : `あと ${articles.length - initialVisible} 件`;
-  const emptyLabel = isEn ? 'No matching articles.' : '該当する記事がありません。';
-  const backLabel = isEn ? 'Back to Deaf Navi' : 'Deaf Navi に戻る';
-  const htmlLang = isEn ? 'en' : 'ja';
+  const note = isOriginal
+    ? 'Titles and summaries are not translated here; they stay in the original source language. Recent articles are prioritized, then balanced across regions.'
+    : 'タイトルと要約は日本語翻訳後にニュース見出しとして自然になるよう整えています。鮮度を優先しつつ、地域が偏りすぎないように並べています。';
+  const filterAria = isOriginal ? 'Deaf Navi World filters' : 'Deaf Navi World フィルタ';
+  const regionLabel = isOriginal ? 'Region' : '地域';
+  const topicLabel = isOriginal ? 'Topic' : 'カテゴリ';
+  const showingLabel = isOriginal ? 'Showing' : '表示中';
+  const totalLabel = isOriginal ? 'total' : '全';
+  const updatedLabel = isOriginal ? 'Updated' : '最終更新';
+  const loadMoreLabel = isOriginal ? 'Load more' : 'もっと読む';
+  const remainingLabel = isOriginal ? `${articles.length - initialVisible} more` : `あと ${articles.length - initialVisible} 件`;
+  const emptyLabel = isOriginal ? 'No matching articles.' : '該当する記事がありません。';
+  const backLabel = isOriginal ? 'Back to Deaf Navi' : 'Deaf Navi に戻る';
+  const htmlLang = isOriginal ? 'en' : 'ja';
 
   return `<!DOCTYPE html>
 <html lang="${htmlLang}">
@@ -340,8 +362,7 @@ function renderPage(data, mode = 'jp') {
   <meta name="theme-color" content="#5a7a48">
   <link rel="canonical" href="${pageUrl}">
   <link rel="alternate" hreflang="ja" href="${JP_PAGE_URL}">
-  <link rel="alternate" hreflang="en" href="${EN_PAGE_URL}">
-  <link rel="alternate" hreflang="x-default" href="${JP_PAGE_URL}">
+  <link rel="alternate" hreflang="x-default" href="${ORIGINAL_PAGE_URL}">
   <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)}" href="${feedUrl}">
 
   <meta property="og:type" content="website">
@@ -375,7 +396,7 @@ function renderPage(data, mode = 'jp') {
   <header class="site-header site-header--world" role="banner">
     <div class="container">
       <p class="site-breadcrumb"><a href="./">Deaf Navi</a> <span aria-hidden="true">›</span> <span>${escapeHtml(siteName)}</span></p>
-      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${isEn ? 'World-EN' : 'World-JP'}</span></h1>
+      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${isOriginal ? 'World-Original' : 'World-JP'}</span></h1>
       <p class="site-lead">${escapeHtml(lead)}</p>
       ${renderLanguageSwitch(mode)}
     </div>
@@ -403,7 +424,7 @@ function renderPage(data, mode = 'jp') {
       <div class="articles-head">
         <h2 id="articles-heading">${escapeHtml(heading)}</h2>
         <p class="meta">
-          ${escapeHtml(showingLabel)}: <strong id="visible-count">${initialVisible}</strong> / ${escapeHtml(totalLabel)} <strong id="total-count">${articles.length}</strong> ${isEn ? 'articles' : '件'}
+          ${escapeHtml(showingLabel)}: <strong id="visible-count">${initialVisible}</strong> / ${escapeHtml(totalLabel)} <strong id="total-count">${articles.length}</strong> ${isOriginal ? 'articles' : '件'}
           <span class="meta__sep" aria-hidden="true">/</span>
           ${escapeHtml(updatedLabel)}: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
         </p>
@@ -424,9 +445,9 @@ ${articlesHtml}
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>${isEn ? 'Deaf Navi World-EN shows original, untranslated article titles and summaries gathered from major media and multilingual regional Google News queries.' : 'Deaf Navi World-JP は Google News RSS を入口に、主要メディアと多言語の地域別検索を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正を通して掲載しています。'}</p>
-      <p>${isEn ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳です。'}</p>
-      <p><a href="./about.html">${isEn ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isEn ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${SITEMAP_URL}">${isEn ? 'Sitemap' : 'サイトマップ'}</a></p>
+      <p>${isOriginal ? 'Deaf Navi World-Original shows article titles and summaries in the original source language, gathered from major media and multilingual regional Google News queries.' : 'Deaf Navi World-JP は Google News RSS を入口に、主要メディアと多言語の地域別検索を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正、必要に応じたCodex App Server後編集を通して掲載しています。'}</p>
+      <p>${isOriginal ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳と編集補助です。'}</p>
+      <p><a href="./about.html">${isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isOriginal ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${SITEMAP_URL}">${isOriginal ? 'Sitemap' : 'サイトマップ'}</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>
@@ -443,14 +464,14 @@ ${articlesHtml}
 
 function renderRss(data, mode = 'jp') {
   const generatedAt = data.generatedAt ?? new Date().toISOString();
-  const isEn = mode === 'en';
-  const pageUrl = isEn ? EN_PAGE_URL : JP_PAGE_URL;
-  const siteName = isEn ? EN_SITE_NAME : JP_SITE_NAME;
-  const siteDesc = isEn ? EN_SITE_DESC : SITE_DESC;
+  const isOriginal = mode === 'original';
+  const pageUrl = isOriginal ? ORIGINAL_PAGE_URL : JP_PAGE_URL;
+  const siteName = isOriginal ? ORIGINAL_SITE_NAME : JP_SITE_NAME;
+  const siteDesc = isOriginal ? ORIGINAL_SITE_DESC : SITE_DESC;
   const items = (data.articles ?? []).slice(0, 80).map((article) => {
     const text = articleText(article, mode);
-    const categoryRegion = isEn ? REGION_UI_EN[article.region] : article.regionLabel ?? REGION_UI[article.region] ?? '';
-    const categoryTopic = isEn ? TOPIC_UI_EN[article.topic] : article.topicLabel ?? TOPIC_UI[article.topic] ?? '';
+    const categoryRegion = isOriginal ? REGION_UI_EN[article.region] : article.regionLabel ?? REGION_UI[article.region] ?? '';
+    const categoryTopic = isOriginal ? TOPIC_UI_EN[article.topic] : article.topicLabel ?? TOPIC_UI[article.topic] ?? '';
     return `    <item>
       <title>${escapeXml(text.title)}</title>
       <link>${escapeXml(article.id)}</link>
@@ -469,7 +490,7 @@ function renderRss(data, mode = 'jp') {
     <title>${siteName}</title>
     <link>${pageUrl}</link>
     <description>${siteDesc}</description>
-    <language>${isEn ? 'en' : 'ja'}</language>
+    <language>${isOriginal ? 'und' : 'ja'}</language>
     <lastBuildDate>${new Date(generatedAt).toUTCString()}</lastBuildDate>
 ${items}
   </channel>
@@ -488,7 +509,7 @@ function renderSitemap(data) {
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>${EN_PAGE_URL}</loc>
+    <loc>${ORIGINAL_PAGE_URL}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -515,20 +536,41 @@ function renderLegacyRedirect() {
 </html>`;
 }
 
+function renderOriginalLegacyRedirect() {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,follow">
+  <meta http-equiv="refresh" content="0; url=./${ORIGINAL_PAGE_FILE}">
+  <link rel="canonical" href="${ORIGINAL_PAGE_URL}">
+  <title>Moved to Deaf Navi World-Original</title>
+  <script>window.location.replace('./${ORIGINAL_PAGE_FILE}');</script>
+</head>
+<body>
+  <p><a href="./${ORIGINAL_PAGE_FILE}">Moved to Deaf Navi World-Original</a></p>
+</body>
+</html>`;
+}
+
 async function main() {
   const raw = await readFile(DATA_FILE, 'utf8');
   const data = JSON.parse(raw);
   await mkdir(DOCS, { recursive: true });
   await writeFile(JP_HTML_OUT, renderPage(data, 'jp'), 'utf8');
-  await writeFile(EN_HTML_OUT, renderPage(data, 'en'), 'utf8');
+  await writeFile(ORIGINAL_HTML_OUT, renderPage(data, 'original'), 'utf8');
+  await writeFile(EN_LEGACY_HTML_OUT, renderOriginalLegacyRedirect(), 'utf8');
   await writeFile(LEGACY_HTML_OUT, renderLegacyRedirect(), 'utf8');
   await writeFile(FEED_OUT, renderRss(data, 'jp'), 'utf8');
-  await writeFile(EN_FEED_OUT, renderRss(data, 'en'), 'utf8');
+  const originalFeed = renderRss(data, 'original');
+  await writeFile(ORIGINAL_FEED_OUT, originalFeed, 'utf8');
+  await writeFile(EN_LEGACY_FEED_OUT, originalFeed, 'utf8');
   await writeFile(SITEMAP_OUT, renderSitemap(data), 'utf8');
   await copyFile(STYLES_SRC, STYLES_OUT);
   await copyFile(APP_SRC, APP_OUT);
   await copyFile(OG_SRC, OG_OUT);
-  console.log(`Deaf Navi World: built ${JP_HTML_OUT} and ${EN_HTML_OUT}`);
+  console.log(`Deaf Navi World: built ${JP_HTML_OUT} and ${ORIGINAL_HTML_OUT}`);
 }
 
 main().catch((err) => {
