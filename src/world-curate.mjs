@@ -361,6 +361,39 @@ const NON_NOISE_HINT = /(sign language|hard of hearing|hearing impaired|hearing 
 const NON_NEWS_SOURCE_PATTERN = /(help\s*centre|help\s*center|help\s*forum|community|support|customer care|forum|facebook|wikimedia|pressreader|starbucks|disneyphile|iphone in canada|sennheiser)/i;
 const NON_NEWS_DOMAIN_PATTERN = /(^|\.)helpforum\.|(^|\.)support\.|(^|\.)community\.|(^|\.)forum\.|helpcentre|helpcenter|(^|\.)facebook\.com$|(^|\.)wikimedia\.org$|(^|\.)pressreader\.com$/i;
 
+const STORY_STOPWORDS = new Set([
+  'about', 'after', 'again', 'against', 'ahead', 'amid', 'among', 'around', 'because', 'been', 'before', 'being',
+  'could', 'first', 'from', 'have', 'into', 'more', 'most', 'near', 'over', 'says', 'than', 'that', 'their', 'there',
+  'these', 'this', 'through', 'under', 'when', 'where', 'while', 'with', 'without', 'would', 'will', 'your',
+  'deaf', 'hard', 'hearing', 'impaired', 'loss', 'sign', 'language', 'caption', 'captions', 'captioning',
+  'accessibility', 'accessible', 'interpreter', 'interpreters', 'cochlear', 'implant', 'implants', 'aid', 'aids',
+  'disability', 'disabled', 'community', 'people', 'student', 'students', 'child', 'children', 'school',
+  'sordo', 'sordos', 'sordas', 'sordera', 'auditiva', 'auditivo', 'lengua', 'senas', 'signos', 'panamericano',
+  'futsal', 'jornada', 'fecha', 'surdo', 'surdos', 'surdez', 'deficiencia', 'auditiva', 'libras',
+  'sourd', 'sourds', 'surdite', 'langue', 'signes', 'gehorlos', 'gehorlose', 'gebaerdensprache', 'gebardensprache',
+  'horverlust', 'schwerhorig', 'sordita', 'segni', 'işitme', 'isitme', 'işaret', 'isaret',
+]);
+
+const STORY_TOKEN_ALIASES = new Map([
+  ['approval', 'approve'],
+  ['approved', 'approve'],
+  ['approves', 'approve'],
+  ['approving', 'approve'],
+  ['authorised', 'approve'],
+  ['authorized', 'approve'],
+  ['authorises', 'approve'],
+  ['authorizes', 'approve'],
+  ['authorization', 'approve'],
+  ['trial', 'test'],
+  ['trials', 'test'],
+  ['testing', 'test'],
+  ['programme', 'program'],
+  ['programmes', 'program'],
+  ['children', 'child'],
+  ['kids', 'child'],
+  ['families', 'family'],
+]);
+
 const DOMAIN_REGION = new Map();
 const DOMAIN_META = new Map();
 for (const group of SOURCE_GROUPS) {
@@ -523,6 +556,16 @@ function extractActualUrl(description, fallback) {
   return match?.[1] ?? fallback;
 }
 
+function extractGoogleNewsClusterId(...values) {
+  for (const value of values) {
+    const text = String(value ?? '');
+    const match = text.match(/news\.google\.com\/rss\/articles\/([^?&#<"\s]+)/i)
+      ?? text.match(/news\.google\.com\/articles\/([^?&#<"\s]+)/i);
+    if (match?.[1]) return match[1];
+  }
+  return '';
+}
+
 function domainFromUrl(url) {
   try {
     return new URL(url).hostname.replace(/^www\./, '').toLowerCase();
@@ -555,7 +598,9 @@ function parseItems(xml, job) {
     const sourceMatch = block.match(/<source\s+url="([^"]*)"[^>]*>([^<]*)<\/source>/i);
     const sourceUrl = sourceMatch?.[1]?.trim() ?? 'https://news.google.com/';
     const sourceName = cleanHtml(sourceMatch?.[2] ?? 'Google News');
-    const link = extractTag(block, 'link') || extractTag(block, 'guid');
+    const guid = extractTag(block, 'guid');
+    const link = extractTag(block, 'link') || guid;
+    const googleNewsClusterId = extractGoogleNewsClusterId(link, guid);
     const rawDescription = extractTag(block, 'description');
     const articleUrl = extractActualUrl(rawDescription, link);
     const originalTitle = cleanNewsTitle(extractTag(block, 'title'), sourceName);
@@ -614,6 +659,7 @@ function parseItems(xml, job) {
       sourcePriority: sourceMeta?.priority ?? 50,
       sourceMode: job.sourceMode,
       translationProvider: TRANSLATION_PROVIDER,
+      _googleNewsClusterId: googleNewsClusterId,
       _dedupeKey: normalizeTitleKey(originalTitle),
     });
   }
@@ -694,38 +740,160 @@ function normalizeTitleKey(title) {
     .slice(0, 120);
 }
 
+function stripDiacritics(text) {
+  return String(text ?? '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function normalizeStoryToken(token) {
+  const value = STORY_TOKEN_ALIASES.get(token) ?? token;
+  if (value.length > 6 && value.endsWith('ing')) return value.slice(0, -3);
+  if (value.length > 5 && value.endsWith('ed')) return value.slice(0, -2);
+  if (value.length > 5 && value.endsWith('es')) return value.slice(0, -2);
+  if (value.length > 4 && value.endsWith('s')) return value.slice(0, -1);
+  return value;
+}
+
+function storyTokens(text) {
+  return stripDiacritics(text)
+    .toLowerCase()
+    .replace(/['’]s\b/g, '')
+    .replace(/https?:\/\/\S+/g, ' ')
+    .replace(/[^a-z0-9ぁ-んァ-ヶ一-龠가-힣]+/giu, ' ')
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .map(normalizeStoryToken)
+    .filter((token) => token.length >= 4 && !STORY_STOPWORDS.has(token))
+    .slice(0, 80);
+}
+
+function storyBigrams(tokens) {
+  const out = [];
+  for (let i = 0; i < tokens.length - 1; i += 1) {
+    out.push(`${tokens[i]}_${tokens[i + 1]}`);
+  }
+  return out;
+}
+
+function tokenStats(aTokens, bTokens, aSet = new Set(aTokens), bSet = new Set(bTokens)) {
+  if (!aTokens.length || !bTokens.length) return { intersection: 0, containment: 0, jaccard: 0 };
+  let intersection = 0;
+  for (const token of aSet) {
+    if (bSet.has(token)) intersection += 1;
+  }
+  const union = aSet.size + bSet.size - intersection;
+  return {
+    intersection,
+    containment: intersection / Math.min(aSet.size, bSet.size),
+    jaccard: union ? intersection / union : 0,
+  };
+}
+
+function daysBetween(a, b) {
+  const first = new Date(a).getTime();
+  const second = new Date(b).getTime();
+  if (Number.isNaN(first) || Number.isNaN(second)) return Number.POSITIVE_INFINITY;
+  return Math.abs(first - second) / 86_400_000;
+}
+
+function duplicateProfile(article) {
+  const titleTokens = storyTokens(article.originalTitle);
+  const bodyTokens = storyTokens(`${article.originalTitle} ${article.originalSummary}`);
+  const titleBigrams = storyBigrams(titleTokens);
+  const bodyBigrams = storyBigrams(bodyTokens);
+  return {
+    article,
+    titleTokens,
+    titleSet: new Set(titleTokens),
+    titleBigrams,
+    titleBigramSet: new Set(titleBigrams),
+    bodyTokens,
+    bodySet: new Set(bodyTokens),
+    bodyBigrams,
+    bodyBigramSet: new Set(bodyBigrams),
+  };
+}
+
+function isLikelySameStory(aProfile, bProfile) {
+  const a = aProfile.article;
+  const b = bProfile.article;
+  if (daysBetween(a.publishedAt, b.publishedAt) > 14) return false;
+
+  const title = tokenStats(aProfile.titleTokens, bProfile.titleTokens, aProfile.titleSet, bProfile.titleSet);
+  if (title.intersection >= 5 && title.containment >= 0.72 && title.jaccard >= 0.42) return true;
+  if (title.intersection >= 4 && title.containment >= 0.82 && title.jaccard >= 0.5) return true;
+
+  const titlePhrase = tokenStats(aProfile.titleBigrams, bProfile.titleBigrams, aProfile.titleBigramSet, bProfile.titleBigramSet);
+  if (titlePhrase.intersection >= 1 && title.intersection >= 3 && title.containment >= 0.55 && title.jaccard >= 0.32) return true;
+
+  const body = tokenStats(aProfile.bodyTokens, bProfile.bodyTokens, aProfile.bodySet, bProfile.bodySet);
+  const bodyPhrase = tokenStats(aProfile.bodyBigrams, bProfile.bodyBigrams, aProfile.bodyBigramSet, bProfile.bodyBigramSet);
+  if (titlePhrase.intersection >= 1 && body.intersection >= 5 && bodyPhrase.intersection >= 1 && body.containment >= 0.55) return true;
+  return title.intersection >= 3 && body.intersection >= 7 && body.containment >= 0.7 && body.jaccard >= 0.45;
+}
+
 function dedupeArticles(articles) {
   const byUrl = new Map();
   for (const article of articles) {
     const existing = byUrl.get(article.id);
-    if (!existing || article.curationScore > existing.curationScore) byUrl.set(article.id, article);
+    if (!existing || preferredDuplicateSort(article, existing) < 0) byUrl.set(article.id, article);
   }
 
-  const selected = [];
-  const titleKeys = new Map();
-  for (const article of [...byUrl.values()].sort(preferredSort)) {
-    const key = article._dedupeKey;
-    if (!key) {
-      selected.push(article);
-      continue;
+  const candidates = [...byUrl.values()];
+  const parent = new Array(candidates.length).fill(0).map((_, index) => index);
+  const profiles = candidates.map(duplicateProfile);
+
+  function find(index) {
+    while (parent[index] !== index) {
+      parent[index] = parent[parent[index]];
+      index = parent[index];
     }
-    const existingIndex = titleKeys.get(key);
-    if (existingIndex === undefined) {
-      titleKeys.set(key, selected.length);
-      selected.push(article);
-      continue;
-    }
-    if (preferredSort(article, selected[existingIndex]) < 0) selected[existingIndex] = article;
+    return index;
   }
 
-  return selected.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  function union(a, b) {
+    const rootA = find(a);
+    const rootB = find(b);
+    if (rootA !== rootB) parent[rootB] = rootA;
+  }
+
+  const keyBuckets = new Map();
+  for (let i = 0; i < candidates.length; i += 1) {
+    const article = candidates[i];
+    const keys = [
+      article._googleNewsClusterId ? `gnews:${article._googleNewsClusterId}` : '',
+      article._dedupeKey ? `title:${article._dedupeKey}` : '',
+    ].filter(Boolean);
+    for (const key of keys) {
+      const existing = keyBuckets.get(key);
+      if (existing !== undefined) union(existing, i);
+      else keyBuckets.set(key, i);
+    }
+  }
+
+  for (let i = 0; i < profiles.length; i += 1) {
+    for (let j = i + 1; j < profiles.length; j += 1) {
+      if (find(i) === find(j)) continue;
+      if (isLikelySameStory(profiles[i], profiles[j])) union(i, j);
+    }
+  }
+
+  const clusters = new Map();
+  for (let i = 0; i < candidates.length; i += 1) {
+    const root = find(i);
+    const existing = clusters.get(root);
+    if (!existing || preferredDuplicateSort(candidates[i], existing) < 0) clusters.set(root, candidates[i]);
+  }
+
+  return [...clusters.values()].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 }
 
-function preferredSort(a, b) {
-  const score = b.curationScore - a.curationScore;
-  if (score !== 0) return score;
+function preferredDuplicateSort(a, b) {
   const priority = (b.sourcePriority ?? 50) - (a.sourcePriority ?? 50);
   if (priority !== 0) return priority;
+  const score = (b.curationScore ?? 0) - (a.curationScore ?? 0);
+  if (score !== 0) return score;
   return new Date(b.publishedAt) - new Date(a.publishedAt);
 }
 
@@ -1142,7 +1310,7 @@ async function applyTranslations(articles) {
 }
 
 function stripInternal(article) {
-  const { _dedupeKey, ...clean } = article;
+  const { _dedupeKey, _googleNewsClusterId, ...clean } = article;
   return clean;
 }
 
