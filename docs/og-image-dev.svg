@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5efe3"/>
+      <stop offset="100%" stop-color="#efe6d3"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="85%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#7a9a65" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#7a9a65" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="15%" cy="85%" r="45%">
+      <stop offset="0%" stop-color="#b35e4b" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#b35e4b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- Decorative botanical leaves -->
+  <g transform="translate(870, 90) rotate(-18) scale(1.6)" fill="none" stroke="#5a7a48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.35">
+    <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z"/>
+    <path d="M40 170 C 70 140, 100 110, 160 30"/>
+    <path d="M70 145 C 75 130, 85 115, 110 95"/>
+    <path d="M95 135 C 100 120, 115 105, 135 85"/>
+    <path d="M55 160 C 60 150, 75 130, 95 115"/>
+  </g>
+
+  <g transform="translate(-50, 420) rotate(35) scale(1.2)" fill="none" stroke="#5a7a48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.18">
+    <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z"/>
+    <path d="M40 170 C 70 140, 100 110, 160 30"/>
+  </g>
+
+  <!-- Brand badge -->
+  <rect x="80" y="120" rx="100" ry="100" width="170" height="38" fill="rgba(122,154,101,0.18)" stroke="rgba(122,154,101,0.35)" stroke-width="1"/>
+  <text x="165" y="146" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#5a7a48" letter-spacing="3">DEAF NAVI WEB</text>
+
+  <!-- Main title -->
+  <text x="80" y="260" font-family="'Shippori Mincho B1', serif" font-size="72" font-weight="700" fill="#3d2f1f" letter-spacing="-2">聴覚障害・ろう者の</text>
+  <text x="80" y="345" font-family="'Shippori Mincho B1', serif" font-size="72" font-weight="700" fill="#3d2f1f" letter-spacing="-2">最新ニュースを、ひとつに。</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="420" font-family="Inter, 'Hiragino Sans', sans-serif" font-size="22" font-weight="400" fill="#6b5842" letter-spacing="0">制度 ・ 医療 ・ 教育 ・ 地域 ・ 手話 ・ 情報保障</text>
+  <text x="80" y="455" font-family="Inter, 'Hiragino Sans', sans-serif" font-size="22" font-weight="400" fill="#6b5842" letter-spacing="0">毎時自動更新のキュレーションサイト</text>
+
+  <!-- Bottom meta bar -->
+  <line x1="80" y1="530" x2="1120" y2="530" stroke="rgba(61,47,31,0.15)" stroke-width="1"/>
+  <text x="80" y="565" font-family="Inter, sans-serif" font-size="18" font-weight="500" fill="#7d694f">tamas-hub.github.io/deaf-navi-web</text>
+  <text x="1120" y="565" text-anchor="end" font-family="Inter, sans-serif" font-size="18" font-weight="500" fill="#7d694f">curated by TAMA</text>
+</svg>

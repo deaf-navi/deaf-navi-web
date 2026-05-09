@@ -5,16 +5,36 @@ import { dirname, join } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const DOCS = join(ROOT, 'docs');
-const DATA_FILE = join(DOCS, 'articles.json');
-const HTML_OUT = join(DOCS, 'index.html');
+
+const VARIANT = getVariant();
+const IS_DEV = VARIANT === 'dev';
+const SUFFIX = IS_DEV ? '-dev' : '';
+
+const DATA_FILE = join(DOCS, `articles${SUFFIX}.json`);
+const OLD_DATA_FILE = join(DOCS, `articles-old${SUFFIX}.json`);
+const HTML_OUT = join(DOCS, `index${SUFFIX}.html`);
+const OLD_HTML_OUT = join(DOCS, `index-old${SUFFIX}.html`);
 const STYLES_SRC = join(__dirname, 'styles.css');
-const STYLES_OUT = join(DOCS, 'styles.css');
+const STYLES_OUT = join(DOCS, `styles${SUFFIX}.css`);
 const APP_SRC = join(__dirname, 'app.js');
-const APP_OUT = join(DOCS, 'app.js');
+const APP_OUT = join(DOCS, `app${SUFFIX}.js`);
 const OG_SRC = join(__dirname, 'og-image.svg');
-const OG_OUT = join(DOCS, 'og-image.svg');
+const OG_OUT = join(DOCS, `og-image${SUFFIX}.svg`);
 
 const SITE_URL = 'https://tamas-hub.github.io/deaf-navi-web/';
+const PAGE_URL = IS_DEV ? `${SITE_URL}index-dev.html` : SITE_URL;
+const ABOUT_FILE = `about${SUFFIX}.html`;
+const OLD_INDEX_FILE = `index-old${SUFFIX}.html`;
+const FEED_FILE = `feed${SUFFIX}.xml`;
+const SITEMAP_FILE = `sitemap${SUFFIX}.xml`;
+const ROBOTS_FILE = `robots${SUFFIX}.txt`;
+const STYLES_FILE = `styles${SUFFIX}.css`;
+const APP_FILE = `app${SUFFIX}.js`;
+const OG_FILE = `og-image${SUFFIX}.svg`;
+const ABOUT_URL = `${SITE_URL}${ABOUT_FILE}`;
+const OLD_PAGE_URL = `${SITE_URL}${OLD_INDEX_FILE}`;
+const FEED_URL = `${SITE_URL}${FEED_FILE}`;
+const SITEMAP_URL = `${SITE_URL}${SITEMAP_FILE}`;
 const SITE_NAME = 'Deaf Navi Web';
 const SITE_TAGLINE = '聴覚障害・難聴・ろう者コミュニティの最新ニュース';
 const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・医療・教育・地域情報を毎時自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
@@ -37,6 +57,13 @@ const INITIAL_VISIBLE = 150;
 // Cloudflare Web Analytics — cookieless / privacy-friendly
 const CF_ANALYTICS_TOKEN = '6473e8a5f9904585a0f0f17c8a3edfe0';
 const CF_ANALYTICS_SNIPPET = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_ANALYTICS_TOKEN}"}'></script>`;
+
+function getVariant() {
+  if (process.env.CURATION_VARIANT === 'dev') return 'dev';
+  if (process.argv.includes('--dev')) return 'dev';
+  const variantArg = process.argv.find((arg) => arg.startsWith('--variant='));
+  return variantArg?.split('=')[1] === 'dev' ? 'dev' : 'prod';
+}
 
 function escapeHtml(s) {
   return String(s)
@@ -97,12 +124,30 @@ function renderArticle(a, index) {
       </article>`;
 }
 
+function renderArchiveArticle(a) {
+  const catLabel = CATEGORY_UI[a.category] ?? '一般';
+  return `
+          <article class="card archive-card" data-category="${escapeHtml(a.category)}">
+            <header class="card__head">
+              <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(catLabel)}</span>
+              <time class="card__time" datetime="${escapeHtml(a.publishedAt)}" title="${escapeHtml(formatDateJST(a.publishedAt))}">${escapeHtml(formatDateJST(a.publishedAt))}</time>
+            </header>
+            <h3 class="card__title">
+              <a href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.title)}</a>
+            </h3>
+            <p class="card__summary">${escapeHtml(a.summary)}</p>
+            <footer class="card__foot">
+              <a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>
+            </footer>
+          </article>`;
+}
+
 function renderFilterButtons() {
   const filters = CATEGORY_ORDER.map(
     (c) =>
       `<button type="button" class="filter${c === 'all' ? ' is-active' : ''}" data-filter="${c}" aria-pressed="${c === 'all' ? 'true' : 'false'}">${CATEGORY_UI[c]}</button>`,
   ).join('\n          ');
-  const aboutLink = `<a class="filter filter--about" href="./about.html" target="_blank" rel="noopener">Deaf Naviについて<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>`;
+  const aboutLink = `<a class="filter filter--about" href="./${ABOUT_FILE}" target="_blank" rel="noopener">Deaf Naviについて<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>`;
   return `${filters}\n          ${aboutLink}`;
 }
 
@@ -153,9 +198,9 @@ function renderJsonLd({ generatedAt, articles }) {
       },
       {
         '@type': 'CollectionPage',
-        '@id': `${SITE_URL}#webpage`,
-        url: SITE_URL,
-        name: `${SITE_NAME} | ${SITE_TAGLINE}`,
+        '@id': `${PAGE_URL}#webpage`,
+        url: PAGE_URL,
+        name: `${IS_DEV ? '[DEV] ' : ''}${SITE_NAME} | ${SITE_TAGLINE}`,
         description: SITE_DESC,
         inLanguage: 'ja-JP',
         isPartOf: { '@id': `${SITE_URL}#website` },
@@ -170,8 +215,8 @@ function renderJsonLd({ generatedAt, articles }) {
       },
       {
         '@type': 'ItemList',
-        '@id': `${SITE_URL}#itemlist`,
-        name: '聴覚障害関連ニュース最新記事',
+        '@id': `${PAGE_URL}#itemlist`,
+        name: `${IS_DEV ? '[DEV] ' : ''}聴覚障害関連ニュース最新記事`,
         numberOfItems: topArticles.length,
         itemListElement: itemList,
       },
@@ -189,8 +234,15 @@ function renderPage({ generatedAt, count, articles }) {
   const generatedLocal = formatDateJST(generatedAt);
   const jsonLd = renderJsonLd({ generatedAt, articles });
 
-  const pageTitle = `${SITE_NAME} | ${SITE_TAGLINE} - 毎時自動更新`;
-  const ogImage = `${SITE_URL}og-image.svg`;
+  const pageTitle = `${IS_DEV ? '[DEV] ' : ''}${SITE_NAME} | ${SITE_TAGLINE} - 毎時自動更新`;
+  const ogImage = `${SITE_URL}${OG_FILE}`;
+  const robots = IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1';
+  const googlebot = IS_DEV ? robots : 'index,follow';
+  const headerSub = IS_DEV ? 'Web DEV' : 'Web';
+  const leadPrefix = IS_DEV ? 'テスト版。dev品質フィルタで生成中。 ' : '';
+  const archiveLink = IS_DEV
+    ? `<p class="archive-link"><a href="./${OLD_INDEX_FILE}">過去アーカイブを見る</a></p>`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="ja">
@@ -201,19 +253,19 @@ function renderPage({ generatedAt, count, articles }) {
   <meta name="description" content="${escapeHtml(SITE_DESC)}">
   <meta name="keywords" content="${escapeHtml(SITE_KEYWORDS)}">
   <meta name="author" content="TAMA">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-  <meta name="googlebot" content="index,follow">
+  <meta name="robots" content="${robots}">
+  <meta name="googlebot" content="${googlebot}">
   <meta name="theme-color" content="#5a7a48">
 
-  <link rel="canonical" href="${SITE_URL}">
-  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)}" href="${SITE_URL}feed.xml">
+  <link rel="canonical" href="${IS_DEV ? SITE_URL : PAGE_URL}">
+  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)}" href="${FEED_URL}">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(SITE_DESC)}">
-  <meta property="og:url" content="${SITE_URL}">
+  <meta property="og:url" content="${PAGE_URL}">
   <meta property="og:image" content="${ogImage}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -232,7 +284,7 @@ function renderPage({ generatedAt, count, articles }) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&display=swap">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./${STYLES_FILE}">
 
   ${jsonLd}
 
@@ -252,8 +304,8 @@ function renderPage({ generatedAt, count, articles }) {
       </svg>
     </div>
     <div class="container">
-      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">Web</span></h1>
-      <p class="site-lead">聴覚障害・難聴・ろう者コミュニティのための、静かで確かなニュースキュレーション。手話・情報保障・制度・医療・教育・地域情報を毎時自動更新。</p>
+      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${headerSub}</span></h1>
+      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティのための、静かで確かなニュースキュレーション。手話・情報保障・制度・医療・教育・地域情報を毎時自動更新。</p>
     </div>
   </header>
 
@@ -284,6 +336,7 @@ ${articlesHtml}
           もっと読む<span class="load-more-btn__remain" id="load-more-remain">（あと ${count - initialVisible} 件）</span>
         </button>
       </div>
+      ${archiveLink}
 
       <aside class="app-cta" aria-label="Deaf Navi アプリのご案内">
         <div class="app-cta__text">
@@ -306,7 +359,7 @@ ${articlesHtml}
     <div class="container">
       <p>Deaf Navi Web は <a href="https://www.jfd.or.jp/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟</a>・<a href="https://www.tfd.deaf.tokyo/" target="_blank" rel="noopener noreferrer">東京都聴覚障害者連盟</a> 等のRSSフィードと Google News RSS を情報源にしています。</p>
       <p>記事の著作権は各発信元に帰属します。リンク先は外部サイトです。更新は自動で1時間毎に行われます。</p>
-      <p><a href="${SITE_URL}feed.xml">RSSフィード</a> ・ <a href="${SITE_URL}sitemap.xml">サイトマップ</a></p>
+      <p><a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_URL}">サイトマップ</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>
@@ -318,19 +371,135 @@ ${articlesHtml}
     </div>
   </footer>
 
-  <script src="./app.js" defer></script>
+  <script src="./${APP_FILE}" defer></script>
+</body>
+</html>
+`;
+}
+
+function monthKey(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return 'unknown';
+  const year = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo', year: 'numeric' }).format(d);
+  const month = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo', month: '2-digit' }).format(d);
+  return `${year}-${month}`;
+}
+
+function monthLabel(key) {
+  if (key === 'unknown') return '日付不明';
+  const [year, month] = key.split('-');
+  return `${year}年${Number(month)}月`;
+}
+
+function groupArticlesByMonth(articles) {
+  const groups = new Map();
+  for (const article of articles) {
+    const key = monthKey(article.publishedAt);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(article);
+  }
+  return [...groups.entries()].sort(([a], [b]) => b.localeCompare(a));
+}
+
+function renderArchivePage({ generatedAt, count, articles }) {
+  const groups = groupArticlesByMonth(articles);
+  const generatedLocal = formatDateJST(generatedAt);
+  const archiveSections = groups.map(([key, items]) => `
+    <section class="archive-month" aria-labelledby="archive-${escapeHtml(key)}">
+      <div class="archive-month__head">
+        <h2 id="archive-${escapeHtml(key)}">${escapeHtml(monthLabel(key))}</h2>
+        <p class="meta"><strong>${items.length}</strong> 件</p>
+      </div>
+      <div class="articles archive-articles">
+${items.map(renderArchiveArticle).join('\n')}
+      </div>
+    </section>`).join('\n');
+
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[DEV] Deaf Navi Web 過去アーカイブ</title>
+  <meta name="description" content="Deaf Navi Web dev版の400件超過分を年別・月別に蓄積した過去アーカイブ。">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="googlebot" content="noindex,nofollow,noarchive">
+  <link rel="canonical" href="${SITE_URL}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
+  <meta property="og:title" content="[DEV] Deaf Navi Web 過去アーカイブ">
+  <meta property="og:description" content="400件超過分を年別・月別に蓄積したdev版アーカイブ。">
+  <meta property="og:url" content="${OLD_PAGE_URL}">
+  <meta property="og:image" content="${SITE_URL}${OG_FILE}">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="theme-color" content="#5a7a48">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="./${STYLES_FILE}">
+
+  ${CF_ANALYTICS_SNIPPET}
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+
+  <header class="site-header site-header--slim" role="banner">
+    <div class="site-header__leaf" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
+        <path d="M40 170 C 70 140, 100 110, 160 30" />
+        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
+        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
+        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
+      </svg>
+    </div>
+    <div class="container">
+      <p class="site-breadcrumb"><a href="./index-dev.html">Deaf Navi Web DEV</a> <span aria-hidden="true">›</span> <span>過去アーカイブ</span></p>
+      <h1 class="site-title site-title--small"><span class="site-title__brand">過去アーカイブ</span></h1>
+      <p class="site-lead">400件を超えた記事を、年別・月別に蓄積しています。</p>
+    </div>
+  </header>
+
+  <main id="main" class="container archive" role="main">
+    <div class="articles-head">
+      <h2 id="articles-heading">アーカイブ</h2>
+      <p class="meta">
+        全 <strong>${count}</strong> 件
+        <span class="meta__sep" aria-hidden="true">/</span>
+        最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
+      </p>
+    </div>
+${archiveSections || '<p class="empty">アーカイブ対象の記事はまだありません。</p>'}
+    <p class="about__back"><a href="./index-dev.html">← DEVトップへ戻る</a></p>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="site-footer__copyright">
+        <span>&copy; ${new Date().getFullYear()} TAMA.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Take it easy.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Curated for the Deaf &amp; Hard-of-hearing community.</span>
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
 `;
 }
 
 function renderAboutPage() {
+  const aboutTitle = `${IS_DEV ? '[DEV] ' : ''}Deaf Naviについて | ${SITE_NAME}`;
+  const indexHref = IS_DEV ? './index-dev.html' : './';
+  const robots = IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow';
   const aboutJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    '@id': `${SITE_URL}about.html`,
-    url: `${SITE_URL}about.html`,
-    name: `Deaf Naviについて | ${SITE_NAME}`,
+    '@id': ABOUT_URL,
+    url: ABOUT_URL,
+    name: aboutTitle,
     description: 'Deaf Navi Web のコンセプト・情報源・更新頻度・運営者情報。',
     inLanguage: 'ja-JP',
     isPartOf: { '@id': `${SITE_URL}#website` },
@@ -341,23 +510,23 @@ function renderAboutPage() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deaf Naviについて | ${escapeHtml(SITE_NAME)}</title>
+  <title>${escapeHtml(aboutTitle)}</title>
   <meta name="description" content="Deaf Navi Web のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="${SITE_URL}about.html">
+  <meta name="robots" content="${robots}">
+  <link rel="canonical" href="${IS_DEV ? `${SITE_URL}about.html` : ABOUT_URL}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
-  <meta property="og:title" content="Deaf Naviについて | ${escapeHtml(SITE_NAME)}">
+  <meta property="og:title" content="${escapeHtml(aboutTitle)}">
   <meta property="og:description" content="Deaf Navi Web のコンセプト・情報源・更新頻度・運営者情報。">
-  <meta property="og:url" content="${SITE_URL}about.html">
-  <meta property="og:image" content="${SITE_URL}og-image.svg">
+  <meta property="og:url" content="${ABOUT_URL}">
+  <meta property="og:image" content="${SITE_URL}${OG_FILE}">
   <meta property="og:locale" content="ja_JP">
   <meta name="theme-color" content="#5a7a48">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&display=swap">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./${STYLES_FILE}">
 
   <script type="application/ld+json">
 ${JSON.stringify(aboutJsonLd, null, 2)}
@@ -379,8 +548,8 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
       </svg>
     </div>
     <div class="container">
-      <p class="site-breadcrumb"><a href="./">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>Deaf Naviについて</span></p>
-      <h1 class="site-title site-title--small"><span class="site-title__brand">Deaf Naviについて</span></h1>
+      <p class="site-breadcrumb"><a href="${indexHref}">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>Deaf Naviについて${IS_DEV ? ' DEV' : ''}</span></p>
+      <h1 class="site-title site-title--small"><span class="site-title__brand">Deaf Naviについて${IS_DEV ? ' DEV' : ''}</span></h1>
     </div>
   </header>
 
@@ -436,12 +605,12 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
     <section aria-labelledby="about-feeds">
       <h2 id="about-feeds" class="about__h2">配信・共有</h2>
       <ul>
-        <li><a href="${SITE_URL}feed.xml">RSS フィード</a>（最新50件）</li>
-        <li><a href="${SITE_URL}sitemap.xml">サイトマップ</a></li>
+        <li><a href="${FEED_URL}">RSS フィード</a>（最新50件）</li>
+        <li><a href="${SITEMAP_URL}">サイトマップ</a></li>
       </ul>
     </section>
 
-    <p class="about__back"><a href="./">← トップページへ戻る</a></p>
+    <p class="about__back"><a href="${indexHref}">← トップページへ戻る</a></p>
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -465,13 +634,13 @@ function renderSitemap({ generatedAt }) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${SITE_URL}</loc>
+    <loc>${PAGE_URL}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${SITE_URL}about.html</loc>
+    <loc>${ABOUT_URL}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -481,11 +650,23 @@ function renderSitemap({ generatedAt }) {
 }
 
 function renderRobots() {
+  if (IS_DEV) {
+    return `User-agent: *
+Disallow: /index-dev.html
+Disallow: /index-old-dev.html
+Disallow: /about-dev.html
+Disallow: /articles-dev.json
+Disallow: /articles-old-dev.json
+Disallow: /feed-dev.xml
+Disallow: /sitemap-dev.xml
+`;
+  }
+
   return `User-agent: *
 Allow: /
 Disallow: /articles.json$
 
-Sitemap: ${SITE_URL}sitemap.xml
+Sitemap: ${SITEMAP_URL}
 `;
 }
 
@@ -508,9 +689,9 @@ function renderRss({ generatedAt, articles }) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${escapeXml(SITE_NAME)}</title>
-    <link>${SITE_URL}</link>
-    <atom:link href="${SITE_URL}feed.xml" rel="self" type="application/rss+xml" />
+    <title>${escapeXml(IS_DEV ? `${SITE_NAME} DEV` : SITE_NAME)}</title>
+    <link>${PAGE_URL}</link>
+    <atom:link href="${FEED_URL}" rel="self" type="application/rss+xml" />
     <description>${escapeXml(SITE_DESC)}</description>
     <language>ja-JP</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
@@ -540,25 +721,39 @@ async function fileExists(p) {
 }
 
 async function main() {
+  console.log(`Build variant: ${VARIANT}`);
   const raw = await readFile(DATA_FILE, 'utf8');
   const data = JSON.parse(raw);
+  let oldData = null;
+  if (IS_DEV) {
+    try {
+      oldData = JSON.parse(await readFile(OLD_DATA_FILE, 'utf8'));
+    } catch {
+      oldData = { generatedAt: data.generatedAt, count: 0, articles: [] };
+    }
+  }
 
   await mkdir(DOCS, { recursive: true });
 
   await writeFile(HTML_OUT, renderPage(data), 'utf8');
   console.log(`書き出し: ${HTML_OUT}`);
 
-  await writeFile(join(DOCS, 'about.html'), renderAboutPage(), 'utf8');
-  console.log(`書き出し: ${join(DOCS, 'about.html')}`);
+  if (IS_DEV) {
+    await writeFile(OLD_HTML_OUT, renderArchivePage(oldData), 'utf8');
+    console.log(`書き出し: ${OLD_HTML_OUT}`);
+  }
 
-  await writeFile(join(DOCS, 'sitemap.xml'), renderSitemap(data), 'utf8');
-  console.log(`書き出し: ${join(DOCS, 'sitemap.xml')}`);
+  await writeFile(join(DOCS, ABOUT_FILE), renderAboutPage(), 'utf8');
+  console.log(`書き出し: ${join(DOCS, ABOUT_FILE)}`);
 
-  await writeFile(join(DOCS, 'robots.txt'), renderRobots(), 'utf8');
-  console.log(`書き出し: ${join(DOCS, 'robots.txt')}`);
+  await writeFile(join(DOCS, SITEMAP_FILE), renderSitemap(data), 'utf8');
+  console.log(`書き出し: ${join(DOCS, SITEMAP_FILE)}`);
 
-  await writeFile(join(DOCS, 'feed.xml'), renderRss(data), 'utf8');
-  console.log(`書き出し: ${join(DOCS, 'feed.xml')}`);
+  await writeFile(join(DOCS, ROBOTS_FILE), renderRobots(), 'utf8');
+  console.log(`書き出し: ${join(DOCS, ROBOTS_FILE)}`);
+
+  await writeFile(join(DOCS, FEED_FILE), renderRss(data), 'utf8');
+  console.log(`書き出し: ${join(DOCS, FEED_FILE)}`);
 
   if (await fileExists(STYLES_SRC)) {
     await copyFile(STYLES_SRC, STYLES_OUT);

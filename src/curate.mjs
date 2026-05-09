@@ -1,13 +1,20 @@
-import { writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const DATA_DIR = join(ROOT, 'docs');
-const DATA_FILE = join(DATA_DIR, 'articles.json');
+
+const VARIANT = getVariant();
+const IS_DEV = VARIANT === 'dev';
+const SUFFIX = IS_DEV ? '-dev' : '';
+const DATA_FILE = join(DATA_DIR, `articles${SUFFIX}.json`);
+const OLD_DATA_FILE = join(DATA_DIR, `articles-old${SUFFIX}.json`);
 
 const MAX_ARTICLES = 400;
+const MAX_OLD_ARTICLES = 5000;
+const DEV_MIN_SCORE = 5;
 
 const KEYWORD_GROUPS = [
   { query: '聴覚障害 OR 難聴', defaultCategory: 'general' },
@@ -28,18 +35,32 @@ const KEYWORD_GROUPS = [
   { query: 'デフバスケ OR デフテニス OR デフサッカー OR デフバレー OR デフ柔道 OR デフ陸上', defaultCategory: 'sports' },
 ];
 
+const DEV_KEYWORD_GROUPS = [
+  ...KEYWORD_GROUPS,
+  { query: '盲ろう OR 盲ろう者 OR 盲ろう児', defaultCategory: 'policy' },
+  { query: '手話通訳 OR 要約筆記 OR 情報保障', defaultCategory: 'policy' },
+  { query: '電話リレー OR 遠隔手話 OR 手話リンク', defaultCategory: 'policy' },
+  { query: '人工内耳 OR 補聴器 OR 新生児聴覚スクリーニング', defaultCategory: 'medical' },
+  { query: 'ろう学校 OR 聴覚特別支援学校 OR 難聴児 教育', defaultCategory: 'education' },
+  { query: '字幕 バリアフリー OR UDCast OR 音声認識 字幕', defaultCategory: 'general' },
+];
+
 const DIRECT_FEEDS = [
   {
     url: 'https://www.jfd.or.jp/feed',
     sourceName: '全日本ろうあ連盟',
     sourceUrl: 'https://www.jfd.or.jp/',
     defaultCategory: 'general',
+    sourceTier: 'official',
+    passThrough: true,
   },
   {
     url: 'https://www.jfd.or.jp/category/sl-act/feed',
     sourceName: '全日本ろうあ連盟（手話言語法）',
     sourceUrl: 'https://www.jfd.or.jp/',
     defaultCategory: 'policy',
+    sourceTier: 'official',
+    passThrough: true,
   },
   {
     // 旧 /feed/ は2012年で停止。イベントフィードに切替（稼働中）
@@ -47,19 +68,25 @@ const DIRECT_FEEDS = [
     sourceName: 'しかくタイムズ（イベント）',
     sourceUrl: 'https://shikaku.in/',
     defaultCategory: 'culture',
+    sourceTier: 'specialist',
+    passThrough: true,
   },
   {
     url: 'https://www.tfd.deaf.tokyo/feed/',
     sourceName: '東京都聴覚障害者連盟',
     sourceUrl: 'https://www.tfd.deaf.tokyo/',
     defaultCategory: 'local',
+    sourceTier: 'official',
+    passThrough: true,
   },
   {
-    // マガジンハウス運営の福祉クリエイティブマガジン。ろう文化系の深い記事を拾う
+    // マガジンハウス運営の福祉クリエイティブマガジン。devでは関連スコアで絞る
     url: 'https://co-coco.jp/feed/',
     sourceName: 'こここ',
     sourceUrl: 'https://co-coco.jp/',
     defaultCategory: 'culture',
+    sourceTier: 'broad',
+    minScore: 7,
   },
   {
     // 日本ろう者劇団（アメブロ）
@@ -67,13 +94,17 @@ const DIRECT_FEEDS = [
     sourceName: '日本ろう者劇団',
     sourceUrl: 'https://ameblo.jp/jtd2009/',
     defaultCategory: 'culture',
+    sourceTier: 'specialist',
+    passThrough: true,
   },
   {
-    // 全日本ろうあ連盟スポーツ委員会 — 国内デフスポーツ大会・選手団情報
+    // 全日本ろうあ連盟スポーツ委員会 - 国内デフスポーツ大会・選手団情報
     url: 'https://www.jfd.or.jp/sc/feed',
     sourceName: '全日本ろうあ連盟スポーツ委員会',
     sourceUrl: 'https://www.jfd.or.jp/sc/',
     defaultCategory: 'sports',
+    sourceTier: 'official',
+    passThrough: true,
   },
   {
     // 日本デフバスケットボール協会
@@ -81,6 +112,8 @@ const DIRECT_FEEDS = [
     sourceName: '日本デフバスケットボール協会',
     sourceUrl: 'https://jdba.sakura.ne.jp/',
     defaultCategory: 'sports',
+    sourceTier: 'specialist',
+    passThrough: true,
   },
   {
     // 日本デフ水泳協会
@@ -88,6 +121,8 @@ const DIRECT_FEEDS = [
     sourceName: '日本デフ水泳協会',
     sourceUrl: 'https://www.deafswim.or.jp/',
     defaultCategory: 'sports',
+    sourceTier: 'specialist',
+    passThrough: true,
   },
 ];
 
@@ -111,6 +146,64 @@ const RELEVANT_KEYWORDS = [
   // 関連する包含的表現
   '耳の聞こえない', '耳の聞こえ',
 ];
+
+const SCORE_TERMS = [
+  ['聴覚障害', 8], ['聴覚障がい', 8], ['難聴', 8], ['ろう者', 8], ['ろうあ者', 8],
+  ['中途失聴', 8], ['盲ろう', 8], ['聴覚特別支援', 8], ['ろう学校', 7],
+  ['手話通訳', 8], ['要約筆記', 8], ['情報保障', 8], ['電話リレー', 8],
+  ['遠隔手話', 8], ['手話リンク', 7], ['手話言語', 7], ['手話奉仕員', 7],
+  ['補聴器', 7], ['人工内耳', 7], ['新生児聴覚スクリーニング', 7],
+  ['デフリンピック', 8], ['デフスポーツ', 8], ['デフアスリート', 7],
+  ['全国ろうあ者体育大会', 8], ['ろうあ者体育大会', 8],
+  ['デフバスケ', 7], ['デフテニス', 7], ['デフサッカー', 7], ['デフバレー', 7],
+  ['デフ柔道', 7], ['デフ陸上', 7], ['デフ水泳', 7],
+  ['手話演劇', 7], ['手話狂言', 7], ['手話能', 7], ['手話落語', 7],
+  ['ろう文化', 7], ['ろう劇団', 7], ['ろう映画', 7], ['デフシアター', 7],
+  ['手話パフォーマンス', 7], ['ろう者ドキュメンタリー', 7],
+  ['サインシンガー', 6], ['UDCast', 6],
+  ['手話', 3], ['字幕', 3], ['音声認識', 3], ['聴力', 3], ['聴覚', 3],
+  ['耳の聞こえ', 4], ['耳が聞こえ', 4], ['deaf', 4], ['デフ', 3],
+];
+
+const CONTEXT_TERMS = [
+  ['制度', 2], ['政策', 2], ['法律', 2], ['条例', 2], ['支援', 2], ['助成', 2],
+  ['雇用', 2], ['医療', 2], ['治療', 2], ['診断', 2], ['検査', 2], ['耳鼻', 2],
+  ['教育', 2], ['学校', 2], ['授業', 2], ['入試', 2], ['保育', 2], ['研究', 2],
+  ['避難', 2], ['防災', 2], ['窓口', 2], ['講習', 2], ['相談', 2], ['研修', 2],
+  ['バリアフリー', 2], ['合理的配慮', 3],
+];
+
+const SOFT_NOISE_TERMS = [
+  ['Snow Man', -4], ['目黒蓮', -4], ['佐久間大介', -3], ['反響', -2], ['称賛', -2],
+  ['芸能人', -2], ['熱愛', -3], ['ドラマ', -2], ['アイドル', -3],
+];
+
+const AGGREGATOR_SOURCES = new Set([
+  'Yahoo!ニュース',
+  'ライブドアニュース',
+  'au Webポータル',
+  'ｄメニューニュース',
+  'dメニューニュース',
+]);
+
+const PREFERRED_SOURCES = new Map([
+  ['NHKニュース', 85],
+  ['朝日新聞', 75],
+  ['読売新聞', 75],
+  ['毎日新聞', 75],
+  ['日本経済新聞', 70],
+  ['東京新聞デジタル', 70],
+  ['FNNプライムオンライン', 65],
+  ['TBS NEWS DIG', 65],
+  ['PR TIMES', 45],
+]);
+
+function getVariant() {
+  if (process.env.CURATION_VARIANT === 'dev') return 'dev';
+  if (process.argv.includes('--dev')) return 'dev';
+  const variantArg = process.argv.find((arg) => arg.startsWith('--variant='));
+  return variantArg?.split('=')[1] === 'dev' ? 'dev' : 'prod';
+}
 
 function isRelevantArticle(title, description) {
   const text = (title + ' ' + description).toLowerCase();
@@ -159,21 +252,21 @@ function decodeEntities(text) {
     .replace(/&ensp;/g, ' ')
     .replace(/&emsp;/g, ' ')
     .replace(/&thinsp;/g, ' ')
-    .replace(/&hellip;/g, '…')
-    .replace(/&mdash;/g, '—')
-    .replace(/&ndash;/g, '–')
-    .replace(/&laquo;/g, '«')
-    .replace(/&raquo;/g, '»')
+    .replace(/&hellip;/g, '...')
+    .replace(/&mdash;/g, '-')
+    .replace(/&ndash;/g, '-')
+    .replace(/&laquo;/g, '"')
+    .replace(/&raquo;/g, '"')
     .replace(/&lsquo;/g, "'")
     .replace(/&rsquo;/g, "'")
     .replace(/&ldquo;/g, '"')
     .replace(/&rdquo;/g, '"')
-    .replace(/&middot;/g, '·')
+    .replace(/&middot;/g, '・')
     .replace(/&amp;/g, '&'); // &amp; は最後（多重エンコード対応）
 }
 
 function cleanHtml(text) {
-  // 1) 多重エンコード対策: 変化しなくなるまで最大3回デコード（例: &amp;nbsp; → &nbsp; → 空白）
+  // 1) 多重エンコード対策: 変化しなくなるまで最大3回デコード（例: &amp;nbsp; -> &nbsp; -> 空白）
   let decoded = text;
   for (let i = 0; i < 3; i++) {
     const next = decodeEntities(decoded);
@@ -233,6 +326,9 @@ function parseItems(xml, defaultCategory, sourceOverride) {
       sourceUrl,
       publishedAt,
       category,
+      _sourceTier: sourceOverride?.sourceTier ?? 'google',
+      _passThrough: Boolean(sourceOverride?.passThrough),
+      _minScore: sourceOverride?.minScore,
     });
   }
 
@@ -252,6 +348,232 @@ async function fetchWithTimeout(url, ms) {
   }
 }
 
+function normalizeForSearch(text) {
+  return String(text).normalize('NFKC').toLowerCase();
+}
+
+function scoreArticle(article) {
+  const text = normalizeForSearch(`${article.title} ${article.summary}`);
+  let score = 0;
+  const signals = [];
+
+  for (const [term, weight] of SCORE_TERMS) {
+    if (text.includes(normalizeForSearch(term))) {
+      score += weight;
+      signals.push(term);
+    }
+  }
+
+  let contextScore = 0;
+  for (const [term, weight] of CONTEXT_TERMS) {
+    if (text.includes(normalizeForSearch(term))) {
+      contextScore += weight;
+      signals.push(term);
+    }
+  }
+  score += Math.min(contextScore, 8);
+
+  for (const [term, weight] of SOFT_NOISE_TERMS) {
+    if (text.includes(normalizeForSearch(term))) score += weight;
+  }
+
+  if (article._sourceTier === 'official') score += 5;
+  if (article._sourceTier === 'specialist') score += 4;
+  if (/\.(go|lg)\.jp\b/.test(article.sourceUrl)) score += 2;
+  if (AGGREGATOR_SOURCES.has(article.sourceName)) score -= 2;
+
+  return {
+    score: Math.max(0, score),
+    signals: [...new Set(signals)].slice(0, 12),
+  };
+}
+
+function normalizeTitleKey(title) {
+  return String(title)
+    .normalize('NFKC')
+    .replace(/\s+[-－―]\s+[^-－―|｜]+$/u, '')
+    .replace(/[（(][^）)]{1,48}[）)]/gu, '')
+    .replace(/【[^】]{1,48}】/gu, '')
+    .replace(/(20\d{2}|令和\d+)年\d{1,2}月\d{1,2}日(掲載)?/gu, '')
+    .replace(/https?:\/\/\S+/gu, '')
+    .replace(/[!！?？。、「」『』“”"'\s・…:：;；｜|【】［］\[\]（）()]/gu, '')
+    .toLowerCase();
+}
+
+function bigrams(text) {
+  const s = normalizeTitleKey(text);
+  const result = new Set();
+  for (let i = 0; i < s.length - 1; i++) result.add(s.slice(i, i + 2));
+  return result;
+}
+
+function diceSimilarity(a, b) {
+  const aa = bigrams(a);
+  const bb = bigrams(b);
+  if (!aa.size || !bb.size) return 0;
+  let overlap = 0;
+  for (const x of aa) {
+    if (bb.has(x)) overlap += 1;
+  }
+  return (2 * overlap) / (aa.size + bb.size);
+}
+
+function isNearDuplicate(a, b) {
+  const ak = a._dedupeKey;
+  const bk = b._dedupeKey;
+  if (!ak || !bk) return false;
+  if (ak === bk) return true;
+  if (Math.min(ak.length, bk.length) >= 18 && (ak.includes(bk) || bk.includes(ak))) return true;
+  return diceSimilarity(ak, bk) >= 0.9;
+}
+
+function sourcePriority(article) {
+  let priority = PREFERRED_SOURCES.get(article.sourceName) ?? 50;
+
+  if (article._sourceTier === 'official') priority += 45;
+  if (article._sourceTier === 'specialist') priority += 35;
+  if (article._sourceTier === 'broad') priority -= 10;
+  if (AGGREGATOR_SOURCES.has(article.sourceName)) priority -= 45;
+  if (/\.go\.jp\b|\.lg\.jp\b|pref\./.test(article.sourceUrl)) priority += 12;
+  if (/news\.google\.com/.test(article.id)) priority -= 4;
+
+  return priority;
+}
+
+function preferredRank(article) {
+  const published = new Date(article.publishedAt).getTime();
+  const recency = Number.isFinite(published) ? published / 86_400_000 : 0;
+  return sourcePriority(article) * 1000 + (article.curationScore ?? 0) * 20 + recency;
+}
+
+function dedupeNearArticles(articles) {
+  const selected = [];
+  const duplicates = [];
+  const ranked = [...articles].sort((a, b) => preferredRank(b) - preferredRank(a));
+
+  for (const article of ranked) {
+    const duplicateIndex = selected.findIndex((existing) => isNearDuplicate(article, existing));
+    if (duplicateIndex === -1) {
+      selected.push(article);
+      continue;
+    }
+    duplicates.push({
+      kept: selected[duplicateIndex].title,
+      dropped: article.title,
+      droppedSource: article.sourceName,
+    });
+    if (preferredRank(article) > preferredRank(selected[duplicateIndex])) {
+      selected[duplicateIndex] = article;
+    }
+  }
+
+  return { articles: selected, duplicates };
+}
+
+function countBy(items, key) {
+  return items.reduce((acc, item) => {
+    const value = typeof key === 'function' ? key(item) : item[key];
+    acc[value] = (acc[value] ?? 0) + 1;
+    return acc;
+  }, {});
+}
+
+function curateDevArticles(allArticles) {
+  const scored = allArticles.map((article) => {
+    const { score, signals } = scoreArticle(article);
+    return {
+      ...article,
+      curationScore: score,
+      curationSignals: signals,
+      _dedupeKey: normalizeTitleKey(article.title),
+    };
+  });
+
+  const filtered = scored.filter((article) => {
+    const minScore = article._minScore ?? DEV_MIN_SCORE;
+    return article._passThrough || article.curationScore >= minScore;
+  });
+
+  const { articles: deduped, duplicates } = dedupeNearArticles(filtered);
+
+  deduped.sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
+
+  const visibleArticles = deduped.slice(0, MAX_ARTICLES);
+  const overflowArticles = deduped.slice(MAX_ARTICLES);
+
+  return {
+    articles: visibleArticles,
+    oldArticles: overflowArticles,
+    report: {
+      version: 'dev-score-v1',
+      rawCount: allArticles.length,
+      scoredCount: scored.length,
+      filteredCount: filtered.length,
+      lowScoreRemoved: scored.length - filtered.length,
+      nearDuplicateRemoved: duplicates.length,
+      finalCountBeforeLimit: deduped.length,
+      overflowCount: overflowArticles.length,
+      minScore: DEV_MIN_SCORE,
+      sourceCountsBefore: countBy(scored, 'sourceName'),
+      sourceCountsAfter: countBy(deduped, 'sourceName'),
+      categoryCountsAfter: countBy(deduped, 'category'),
+      duplicateSamples: duplicates.slice(0, 20),
+      droppedSamples: scored
+        .filter((article) => !article._passThrough && article.curationScore < (article._minScore ?? DEV_MIN_SCORE))
+        .sort((a, b) => b.curationScore - a.curationScore)
+        .slice(0, 20)
+        .map((article) => ({
+          title: article.title,
+          sourceName: article.sourceName,
+          score: article.curationScore,
+          signals: article.curationSignals,
+        })),
+    },
+  };
+}
+
+function stripInternal(article) {
+  const {
+    _sourceTier,
+    _passThrough,
+    _minScore,
+    _dedupeKey,
+    ...clean
+  } = article;
+  if (!IS_DEV) {
+    delete clean.curationScore;
+    delete clean.curationSignals;
+  }
+  return clean;
+}
+
+async function loadExistingOldArticles() {
+  try {
+    const raw = await readFile(OLD_DATA_FILE, 'utf8');
+    const data = JSON.parse(raw);
+    return Array.isArray(data.articles) ? data.articles : [];
+  } catch {
+    return [];
+  }
+}
+
+function mergeOldArticles(currentOldArticles, previousOldArticles) {
+  const byId = new Map();
+  for (const article of [...currentOldArticles, ...previousOldArticles]) {
+    if (!article?.id) continue;
+    const existing = byId.get(article.id);
+    if (!existing || preferredRank(article) > preferredRank(existing)) {
+      byId.set(article.id, article);
+    }
+  }
+
+  return [...byId.values()]
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, MAX_OLD_ARTICLES);
+}
+
 async function loadNews() {
   const allArticles = [];
 
@@ -263,10 +585,7 @@ async function loadNews() {
         continue;
       }
       const xml = await res.text();
-      const items = parseItems(xml, feed.defaultCategory, {
-        sourceName: feed.sourceName,
-        sourceUrl: feed.sourceUrl,
-      });
+      const items = parseItems(xml, feed.defaultCategory, feed);
       console.log(`[direct] ${feed.sourceName}: ${items.length} items`);
       allArticles.push(...items);
     } catch (err) {
@@ -274,7 +593,8 @@ async function loadNews() {
     }
   }
 
-  for (const { query, defaultCategory } of KEYWORD_GROUPS) {
+  const keywordGroups = IS_DEV ? DEV_KEYWORD_GROUPS : KEYWORD_GROUPS;
+  for (const { query, defaultCategory } of keywordGroups) {
     try {
       const res = await fetchWithTimeout(buildUrl(query), 15_000);
       if (!res.ok) {
@@ -294,6 +614,10 @@ async function loadNews() {
     throw new Error('全フィード取得失敗。処理を中断します。');
   }
 
+  if (IS_DEV) {
+    return curateDevArticles(allArticles);
+  }
+
   const directSourceNames = new Set(DIRECT_FEEDS.map((f) => f.sourceName));
   const filtered = allArticles.filter(
     (a) => directSourceNames.has(a.sourceName) || isRelevantArticle(a.title, a.summary),
@@ -310,22 +634,56 @@ async function loadNews() {
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
-  return deduped.slice(0, MAX_ARTICLES);
+  return {
+    articles: deduped.slice(0, MAX_ARTICLES),
+    oldArticles: [],
+    report: null,
+  };
 }
 
 async function main() {
-  console.log('Deaf Navi Web: キュレーション開始');
-  const articles = await loadNews();
-  console.log(`合計: ${articles.length}件（重複除去・関連性フィルタ後）`);
+  console.log(`Deaf Navi Web: キュレーション開始 (${VARIANT})`);
+  const { articles, oldArticles, report } = await loadNews();
+  console.log(`合計: ${articles.length}件（${IS_DEV ? 'dev品質フィルタ・近似重複除去後' : '重複除去・関連性フィルタ後'}）`);
 
   await mkdir(DATA_DIR, { recursive: true });
-  const payload = {
-    generatedAt: new Date().toISOString(),
-    count: articles.length,
-    articles,
-  };
+  const previousOldArticles = IS_DEV ? await loadExistingOldArticles() : [];
+  const mergedOldArticles = IS_DEV
+    ? mergeOldArticles(oldArticles.map(stripInternal), previousOldArticles)
+    : [];
+
+  const generatedAt = new Date().toISOString();
+  const payload = IS_DEV
+    ? {
+      generatedAt,
+      variant: VARIANT,
+      count: articles.length,
+      quality: report,
+      articles: articles.map(stripInternal),
+    }
+    : {
+      generatedAt,
+      count: articles.length,
+      articles: articles.map(stripInternal),
+    };
   await writeFile(DATA_FILE, JSON.stringify(payload, null, 2), 'utf8');
   console.log(`書き出し: ${DATA_FILE}`);
+
+  if (IS_DEV) {
+    const oldPayload = {
+      generatedAt,
+      variant: VARIANT,
+      count: mergedOldArticles.length,
+      source: {
+        currentOverflowCount: oldArticles.length,
+        previousOldCount: previousOldArticles.length,
+        maxOldArticles: MAX_OLD_ARTICLES,
+      },
+      articles: mergedOldArticles,
+    };
+    await writeFile(OLD_DATA_FILE, JSON.stringify(oldPayload, null, 2), 'utf8');
+    console.log(`書き出し: ${OLD_DATA_FILE}`);
+  }
 }
 
 main().catch((err) => {

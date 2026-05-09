@@ -6,8 +6,11 @@
   "type": "module",
   "scripts": {
     "curate": "node src/curate.mjs",
+    "curate:dev": "node src/curate.mjs --dev",
     "build": "node src/build.mjs",
+    "build:dev": "node src/build.mjs --dev",
     "generate": "npm run curate && npm run build",
+    "generate:dev": "npm run curate:dev && npm run build:dev",
     "serve": "node src/serve.mjs"
   },
   "engines": {
