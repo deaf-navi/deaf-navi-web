@@ -13,6 +13,7 @@ const APP_BASE_URL = `${SITE_URL}app/v1/`;
 const UPDATE_SCHEDULE_JST = ['06:00', '12:00', '18:00'];
 const SCHEMA_VERSION = 'deaf-navi-app-sync.v1';
 const IOS_ARTICLE_COMPAT_VERSION = 'deaf-navi-ios-article.v1';
+const IOS_ARTICLE_EXPANDED_VERSION = 'deaf-navi-ios-article.v2';
 
 const DOMESTIC_CATEGORIES = {
   all: 'すべて',
@@ -107,6 +108,18 @@ const LEGACY_WORLD_CATEGORY = {
 };
 
 const IOS_COMPAT_EXCLUDED_DOMESTIC_CATEGORIES = new Set(['relay']);
+
+const IOS_V2_WORLD_CATEGORY = {
+  accessibility: 'accessibility',
+  rights: 'policy',
+  health: 'medical',
+  education: 'education',
+  technology: 'technology',
+  culture: 'culture',
+  sports: 'sports',
+  safety: 'safety',
+  general: 'general',
+};
 
 function appUrl(file) {
   return `${APP_BASE_URL}${file}`;
@@ -297,9 +310,11 @@ function buildDomesticPayload(data, { variant, sourceFile, pageFile }) {
       categories: domesticFilters(),
     },
     compatibility: {
-      currentIosArticleUrl: appUrl('ios-news-v1.json'),
-      currentIosArticleSchema: IOS_ARTICLE_COMPAT_VERSION,
-      note: 'currentIosArticleUrl maps new web categories to the current iOS ArticleCategory set and omits relay from the default news list.',
+      currentIosArticleUrl: appUrl('ios-news-v2.json'),
+      currentIosArticleSchema: IOS_ARTICLE_EXPANDED_VERSION,
+      legacyIosArticleUrl: appUrl('ios-news-v1.json'),
+      legacyIosArticleSchema: IOS_ARTICLE_COMPAT_VERSION,
+      note: 'currentIosArticleUrl keeps expanded web categories for the current iOS app. legacyIosArticleUrl maps categories for older app builds.',
     },
     quality: qualitySummary(data.quality),
     counts: {
@@ -316,6 +331,14 @@ function buildDomesticCompatArray(data) {
     .map((article) => {
       const normalized = domesticArticle(article);
       return iosCompatibleArticle(normalized, normalized.legacyCategory);
+    });
+}
+
+function buildDomesticExpandedArray(data) {
+  return (data.articles ?? [])
+    .map((article) => {
+      const normalized = domesticArticle(article);
+      return iosCompatibleArticle(normalized, normalized.category);
     });
 }
 
@@ -439,9 +462,11 @@ function buildWorldPayload(data, mode) {
       topics: worldTopicFilters(data.topics),
     },
     compatibility: {
-      currentIosArticleUrl: appUrl(isOriginal ? 'ios-world-original-v1.json' : 'ios-world-jp-v1.json'),
-      currentIosArticleSchema: IOS_ARTICLE_COMPAT_VERSION,
-      note: 'World topics are mapped to the current iOS ArticleCategory set for compatibility.',
+      currentIosArticleUrl: appUrl(isOriginal ? 'ios-world-original-v2.json' : 'ios-world-jp-v2.json'),
+      currentIosArticleSchema: IOS_ARTICLE_EXPANDED_VERSION,
+      legacyIosArticleUrl: appUrl(isOriginal ? 'ios-world-original-v1.json' : 'ios-world-jp-v1.json'),
+      legacyIosArticleSchema: IOS_ARTICLE_COMPAT_VERSION,
+      note: 'currentIosArticleUrl keeps expanded World topics where the current iOS app supports them. legacyIosArticleUrl maps topics for older app builds.',
     },
     quality: qualitySummary(data.quality),
     counts: {
@@ -459,6 +484,14 @@ function buildWorldCompatArray(data, mode) {
     .map((article) => {
       const normalized = worldArticle(article, mode);
       return iosCompatibleArticle(normalized, normalized.legacyCategory);
+    });
+}
+
+function buildWorldExpandedArray(data, mode) {
+  return (data.articles ?? [])
+    .map((article) => {
+      const normalized = worldArticle(article, mode);
+      return iosCompatibleArticle(normalized, IOS_V2_WORLD_CATEGORY[normalized.topic] ?? 'general');
     });
 }
 
@@ -487,7 +520,8 @@ function buildManifest({ domestic, world }) {
         title: 'Deaf Navi Web',
         url: appUrl('domestic.json'),
         rawJsonUrl: siteUrl('articles.json'),
-        iosCompatibleUrl: appUrl('ios-news-v1.json'),
+        iosCompatibleUrl: appUrl('ios-news-v2.json'),
+        legacyIosCompatibleUrl: appUrl('ios-news-v1.json'),
         count: domestic?.articles?.length ?? 0,
         sourceGeneratedAt: isoSeconds(domestic?.generatedAt),
         categories: domesticFilters(),
@@ -497,7 +531,8 @@ function buildManifest({ domestic, world }) {
         title: 'Deaf Navi World-JP',
         url: appUrl('world-jp.json'),
         rawJsonUrl: siteUrl('articles-world.json'),
-        iosCompatibleUrl: appUrl('ios-world-jp-v1.json'),
+        iosCompatibleUrl: appUrl('ios-world-jp-v2.json'),
+        legacyIosCompatibleUrl: appUrl('ios-world-jp-v1.json'),
         count: world?.articles?.length ?? 0,
         sourceGeneratedAt: isoSeconds(world?.generatedAt),
         language: 'ja-JP',
@@ -513,7 +548,8 @@ function buildManifest({ domestic, world }) {
         title: 'Deaf Navi World-Original',
         url: appUrl('world-original.json'),
         rawJsonUrl: siteUrl('articles-world.json'),
-        iosCompatibleUrl: appUrl('ios-world-original-v1.json'),
+        iosCompatibleUrl: appUrl('ios-world-original-v2.json'),
+        legacyIosCompatibleUrl: appUrl('ios-world-original-v1.json'),
         count: world?.articles?.length ?? 0,
         sourceGeneratedAt: isoSeconds(world?.generatedAt),
         language: 'und',
@@ -532,12 +568,17 @@ function buildManifest({ domestic, world }) {
       },
     },
     compatibility: {
-      currentIosArticleSchema: IOS_ARTICLE_COMPAT_VERSION,
+      currentIosArticleSchema: IOS_ARTICLE_EXPANDED_VERSION,
+      legacyIosArticleSchema: IOS_ARTICLE_COMPAT_VERSION,
       dateFormat: 'ISO 8601 UTC without fractional seconds, compatible with JSONDecoder.DateDecodingStrategy.iso8601.',
       sourceURLKey: 'Swift Article.sourceURL is emitted as sourceURL; sourceUrl is also kept in rich sync payloads.',
       legacyCategoryMapping: {
         domestic: LEGACY_DOMESTIC_CATEGORY,
         worldTopics: LEGACY_WORLD_CATEGORY,
+      },
+      expandedCategoryMapping: {
+        domestic: DOMESTIC_CATEGORY_ORDER.filter((category) => category !== 'all'),
+        worldTopics: IOS_V2_WORLD_CATEGORY,
       },
     },
     sourcePolicy: {
@@ -562,12 +603,15 @@ async function main() {
     pageFile: '',
   }));
   await writeJson('ios-news-v1.json', buildDomesticCompatArray(domestic));
+  await writeJson('ios-news-v2.json', buildDomesticExpandedArray(domestic));
 
   await writeJson('world-jp.json', buildWorldPayload(world, 'jp'));
   await writeJson('world-original.json', buildWorldPayload(world, 'original'));
   await writeJson('world-multilingual.json', buildWorldPayload(world, 'multilingual'));
   await writeJson('ios-world-jp-v1.json', buildWorldCompatArray(world, 'jp'));
   await writeJson('ios-world-original-v1.json', buildWorldCompatArray(world, 'original'));
+  await writeJson('ios-world-jp-v2.json', buildWorldExpandedArray(world, 'jp'));
+  await writeJson('ios-world-original-v2.json', buildWorldExpandedArray(world, 'original'));
 
   const manifest = buildManifest({ domestic, world });
   await writeJson('manifest.json', manifest);

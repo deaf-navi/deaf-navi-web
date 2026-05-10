@@ -18,7 +18,8 @@
       "title": "Deaf Navi Web",
       "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/domestic.json",
       "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles.json",
-      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
+      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
+      "legacyIosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
       "count": 510,
       "sourceGeneratedAt": "2026-05-10T03:56:26Z",
       "categories": [
@@ -109,7 +110,8 @@
       "title": "Deaf Navi World-JP",
       "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-jp.json",
       "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
-      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
+      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json",
+      "legacyIosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
       "count": 600,
       "sourceGeneratedAt": "2026-05-10T03:56:23Z",
       "language": "ja-JP",
@@ -204,7 +206,8 @@
       "title": "Deaf Navi World-Original",
       "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-original.json",
       "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
-      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
+      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-original-v2.json",
+      "legacyIosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
       "count": 600,
       "sourceGeneratedAt": "2026-05-10T03:56:23Z",
       "language": "und",
@@ -367,7 +370,8 @@
     }
   },
   "compatibility": {
-    "currentIosArticleSchema": "deaf-navi-ios-article.v1",
+    "currentIosArticleSchema": "deaf-navi-ios-article.v2",
+    "legacyIosArticleSchema": "deaf-navi-ios-article.v1",
     "dateFormat": "ISO 8601 UTC without fractional seconds, compatible with JSONDecoder.DateDecodingStrategy.iso8601.",
     "sourceURLKey": "Swift Article.sourceURL is emitted as sourceURL; sourceUrl is also kept in rich sync payloads.",
     "legacyCategoryMapping": {
@@ -395,6 +399,33 @@
         "culture": "culture",
         "sports": "sports",
         "safety": "policy",
+        "general": "general"
+      }
+    },
+    "expandedCategoryMapping": {
+      "domestic": [
+        "policy",
+        "accessibility",
+        "medical",
+        "education",
+        "technology",
+        "culture",
+        "sports",
+        "safety",
+        "event",
+        "relay",
+        "local",
+        "general"
+      ],
+      "worldTopics": {
+        "accessibility": "accessibility",
+        "rights": "policy",
+        "health": "medical",
+        "education": "education",
+        "technology": "technology",
+        "culture": "culture",
+        "sports": "sports",
+        "safety": "safety",
         "general": "general"
       }
     }

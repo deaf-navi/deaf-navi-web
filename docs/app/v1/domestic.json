@@ -110,9 +110,11 @@
     ]
   },
   "compatibility": {
-    "currentIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
-    "currentIosArticleSchema": "deaf-navi-ios-article.v1",
-    "note": "currentIosArticleUrl maps new web categories to the current iOS ArticleCategory set and omits relay from the default news list."
+    "currentIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
+    "currentIosArticleSchema": "deaf-navi-ios-article.v2",
+    "legacyIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
+    "legacyIosArticleSchema": "deaf-navi-ios-article.v1",
+    "note": "currentIosArticleUrl keeps expanded web categories for the current iOS app. legacyIosArticleUrl maps categories for older app builds."
   },
   "quality": {
     "version": "expanded-score-v2",

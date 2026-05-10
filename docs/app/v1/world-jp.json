@@ -115,9 +115,11 @@
     ]
   },
   "compatibility": {
-    "currentIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
-    "currentIosArticleSchema": "deaf-navi-ios-article.v1",
-    "note": "World topics are mapped to the current iOS ArticleCategory set for compatibility."
+    "currentIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json",
+    "currentIosArticleSchema": "deaf-navi-ios-article.v2",
+    "legacyIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
+    "legacyIosArticleSchema": "deaf-navi-ios-article.v1",
+    "note": "currentIosArticleUrl keeps expanded World topics where the current iOS app supports them. legacyIosArticleUrl maps topics for older app builds."
   },
   "quality": {
     "version": "world-v4",
