@@ -8,6 +8,7 @@ const DATA_DIR = join(ROOT, 'docs');
 
 const VARIANT = getVariant();
 const IS_DEV = VARIANT === 'dev';
+const USE_EXPANDED_PROFILE = process.env.CURATION_PROFILE === 'legacy' ? IS_DEV : true;
 const SUFFIX = IS_DEV ? '-dev' : '';
 const DATA_FILE = join(DATA_DIR, `articles${SUFFIX}.json`);
 const OLD_DATA_FILE = join(DATA_DIR, `articles-old${SUFFIX}.json`);
@@ -736,7 +737,7 @@ function countBy(items, key) {
   }, {});
 }
 
-function curateDevArticles(allArticles) {
+function curateExpandedArticles(allArticles) {
   const scored = allArticles.map((article) => {
     const { score, signals } = scoreArticle(article);
     return {
@@ -765,7 +766,7 @@ function curateDevArticles(allArticles) {
     articles: visibleArticles,
     oldArticles: overflowArticles,
     report: {
-      version: 'dev-score-v1',
+      version: 'expanded-score-v1',
       rawCount: allArticles.length,
       scoredCount: scored.length,
       filteredCount: filtered.length,
@@ -837,7 +838,7 @@ function mergeOldArticles(currentOldArticles, previousOldArticles) {
 
 async function loadNews() {
   const allArticles = [];
-  const directFeeds = IS_DEV
+  const directFeeds = USE_EXPANDED_PROFILE
     ? [...DIRECT_FEEDS, ...DEV_DIRECT_FEEDS, ...DEV_SOCIAL_FEEDS]
     : DIRECT_FEEDS;
 
@@ -857,7 +858,7 @@ async function loadNews() {
     }
   }
 
-  const keywordGroups = IS_DEV ? DEV_KEYWORD_GROUPS : KEYWORD_GROUPS;
+  const keywordGroups = USE_EXPANDED_PROFILE ? DEV_KEYWORD_GROUPS : KEYWORD_GROUPS;
   for (const { query, defaultCategory } of keywordGroups) {
     try {
       const res = await fetchWithTimeout(buildUrl(query), 15_000);
@@ -878,8 +879,8 @@ async function loadNews() {
     throw new Error('全フィード取得失敗。処理を中断します。');
   }
 
-  if (IS_DEV) {
-    return curateDevArticles(allArticles);
+  if (USE_EXPANDED_PROFILE) {
+    return curateExpandedArticles(allArticles);
   }
 
   const directSourceNames = new Set(directFeeds.map((f) => f.sourceName));
@@ -908,19 +909,20 @@ async function loadNews() {
 async function main() {
   console.log(`Deaf Navi Web: キュレーション開始 (${VARIANT})`);
   const { articles, oldArticles, report } = await loadNews();
-  console.log(`合計: ${articles.length}件（${IS_DEV ? 'dev品質フィルタ・近似重複除去後' : '重複除去・関連性フィルタ後'}）`);
+  console.log(`合計: ${articles.length}件（${USE_EXPANDED_PROFILE ? '品質フィルタ・近似重複除去後' : '重複除去・関連性フィルタ後'}）`);
 
   await mkdir(DATA_DIR, { recursive: true });
-  const previousOldArticles = IS_DEV ? await loadExistingOldArticles() : [];
-  const mergedOldArticles = IS_DEV
+  const previousOldArticles = USE_EXPANDED_PROFILE ? await loadExistingOldArticles() : [];
+  const mergedOldArticles = USE_EXPANDED_PROFILE
     ? mergeOldArticles(oldArticles.map(stripInternal), previousOldArticles)
     : [];
 
   const generatedAt = new Date().toISOString();
-  const payload = IS_DEV
+  const payload = USE_EXPANDED_PROFILE
     ? {
       generatedAt,
       variant: VARIANT,
+      profile: 'expanded',
       count: articles.length,
       quality: report,
       articles: articles.map(stripInternal),
@@ -933,10 +935,11 @@ async function main() {
   await writeFile(DATA_FILE, JSON.stringify(payload, null, 2), 'utf8');
   console.log(`書き出し: ${DATA_FILE}`);
 
-  if (IS_DEV) {
+  if (USE_EXPANDED_PROFILE) {
     const oldPayload = {
       generatedAt,
       variant: VARIANT,
+      profile: 'expanded',
       count: mergedOldArticles.length,
       source: {
         currentOverflowCount: oldArticles.length,

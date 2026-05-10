@@ -8,6 +8,7 @@ const DOCS = join(ROOT, 'docs');
 
 const VARIANT = getVariant();
 const IS_DEV = VARIANT === 'dev';
+const HAS_ARCHIVE = true;
 const SUFFIX = IS_DEV ? '-dev' : '';
 
 const DATA_FILE = join(DOCS, `articles${SUFFIX}.json`);
@@ -250,15 +251,15 @@ function renderPage({ generatedAt, count, articles }) {
   const generatedLocal = formatDateJST(generatedAt);
   const jsonLd = renderJsonLd({ generatedAt, articles });
 
-  const updateLabel = IS_DEV ? '1日3回更新' : '毎時自動更新';
-  const leadUpdateText = IS_DEV ? 'JST 6:00 / 12:00 / 18:00に自動更新。' : '毎時自動更新。';
+  const updateLabel = '1日3回更新';
+  const leadUpdateText = 'JST 6:00 / 12:00 / 18:00に自動更新。';
   const pageTitle = `${IS_DEV ? '[DEV] ' : ''}${SITE_NAME} | ${SITE_TAGLINE} - ${updateLabel}`;
   const ogImage = `${SITE_URL}${OG_FILE}`;
   const robots = IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1';
   const googlebot = IS_DEV ? robots : 'index,follow';
   const headerSub = IS_DEV ? 'Web DEV' : 'Web';
   const leadPrefix = IS_DEV ? 'テスト版。dev品質フィルタで生成中。 ' : '';
-  const archiveLink = IS_DEV
+  const archiveLink = HAS_ARCHIVE
     ? `<p class="archive-link"><a href="./${OLD_INDEX_FILE}">過去アーカイブを見る</a></p>`
     : '';
 
@@ -422,6 +423,17 @@ function groupArticlesByMonth(articles) {
 function renderArchivePage({ generatedAt, count, articles }) {
   const groups = groupArticlesByMonth(articles);
   const generatedLocal = formatDateJST(generatedAt);
+  const archiveTitle = IS_DEV ? '[DEV] Deaf Navi Web 過去アーカイブ' : 'Deaf Navi Web 過去アーカイブ';
+  const archiveDescription = IS_DEV
+    ? 'Deaf Navi Web dev版の400件超過分を年別・月別に蓄積した過去アーカイブ。'
+    : 'Deaf Navi Web の400件超過分を年別・月別に蓄積した過去アーカイブ。';
+  const archiveOgDescription = IS_DEV
+    ? '400件超過分を年別・月別に蓄積したdev版アーカイブ。'
+    : '400件超過分を年別・月別に蓄積したアーカイブ。';
+  const archiveRobots = IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1';
+  const archiveHomeLabel = IS_DEV ? 'Deaf Navi Web DEV' : 'Deaf Navi Web';
+  const archiveBackLabel = IS_DEV ? 'DEVトップへ戻る' : 'トップへ戻る';
+  const archiveHomeFile = IS_DEV ? 'index-dev.html' : '';
   const archiveSections = groups.map(([key, items]) => `
     <section class="archive-month" aria-labelledby="archive-${escapeHtml(key)}">
       <div class="archive-month__head">
@@ -438,15 +450,15 @@ ${items.map(renderArchiveArticle).join('\n')}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[DEV] Deaf Navi Web 過去アーカイブ</title>
-  <meta name="description" content="Deaf Navi Web dev版の400件超過分を年別・月別に蓄積した過去アーカイブ。">
-  <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="googlebot" content="noindex,nofollow,noarchive">
-  <link rel="canonical" href="${SITE_URL}">
+  <title>${escapeHtml(archiveTitle)}</title>
+  <meta name="description" content="${escapeHtml(archiveDescription)}">
+  <meta name="robots" content="${archiveRobots}">
+  <meta name="googlebot" content="${archiveRobots}">
+  <link rel="canonical" href="${OLD_PAGE_URL}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
-  <meta property="og:title" content="[DEV] Deaf Navi Web 過去アーカイブ">
-  <meta property="og:description" content="400件超過分を年別・月別に蓄積したdev版アーカイブ。">
+  <meta property="og:title" content="${escapeHtml(archiveTitle)}">
+  <meta property="og:description" content="${escapeHtml(archiveOgDescription)}">
   <meta property="og:url" content="${OLD_PAGE_URL}">
   <meta property="og:image" content="${SITE_URL}${OG_FILE}">
   <meta property="og:locale" content="ja_JP">
@@ -473,7 +485,7 @@ ${items.map(renderArchiveArticle).join('\n')}
       </svg>
     </div>
     <div class="container">
-      <p class="site-breadcrumb"><a href="./index-dev.html">Deaf Navi Web DEV</a> <span aria-hidden="true">›</span> <span>過去アーカイブ</span></p>
+      <p class="site-breadcrumb"><a href="./${archiveHomeFile}">${archiveHomeLabel}</a> <span aria-hidden="true">›</span> <span>過去アーカイブ</span></p>
       <h1 class="site-title site-title--small"><span class="site-title__brand">過去アーカイブ</span></h1>
       <p class="site-lead">400件を超えた記事を、年別・月別に蓄積しています。</p>
     </div>
@@ -489,7 +501,7 @@ ${items.map(renderArchiveArticle).join('\n')}
       </p>
     </div>
 ${archiveSections || '<p class="empty">アーカイブ対象の記事はまだありません。</p>'}
-    <p class="about__back"><a href="./index-dev.html">← DEVトップへ戻る</a></p>
+    <p class="about__back"><a href="./${archiveHomeFile}">← ${archiveBackLabel}</a></p>
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -522,14 +534,14 @@ function renderAboutPage() {
     inLanguage: 'ja-JP',
     isPartOf: { '@id': `${SITE_URL}#website` },
   };
-  const devSourceSection = IS_DEV ? `
-      <h3 class="about__h3">DEV試験追加ソース</h3>
+  const expandedSourceSection = `
+      <h3 class="about__h3">国内版: 追加公式・専門ソース</h3>
       <ul>
         <li><a href="https://www.zennancho.or.jp/" target="_blank" rel="noopener noreferrer">全日本難聴者・中途失聴者団体連合会</a>、<a href="https://www.com-sagano.com/" target="_blank" rel="noopener noreferrer">全国手話研修センター</a>、<a href="https://www.jyoubun-center.or.jp/" target="_blank" rel="noopener noreferrer">聴力障害者情報文化センター</a> ほか</li>
         <li><a href="https://www.nftrs.or.jp/" target="_blank" rel="noopener noreferrer">電話リレーサービス</a>、<a href="https://zentsuken.cocolog-nifty.com/blog/" target="_blank" rel="noopener noreferrer">全通研NOW!!</a>、<a href="https://audiology-japan.jp/" target="_blank" rel="noopener noreferrer">日本聴覚医学会</a> ほか</li>
         <li>YouTube公式チャンネル、note、UDCast、Palabra、Silent Voice などの公開RSS/Atom</li>
         <li>追加ソースとSNS系は関連語スコアが一定以上の記事のみ掲載候補にしています</li>
-      </ul>` : '';
+      </ul>`;
 
   return `<!DOCTYPE html>
 <html lang="ja">
@@ -597,7 +609,7 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
         <li><a href="https://ameblo.jp/jtd2009/" target="_blank" rel="noopener noreferrer">日本ろう者劇団</a> — 手話狂言・公演情報</li>
         <li><a href="https://www.jfd.or.jp/sc/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟スポーツ委員会</a>、<a href="https://jdba.sakura.ne.jp/" target="_blank" rel="noopener noreferrer">日本デフバスケットボール協会</a>、<a href="https://www.deafswim.or.jp/" target="_blank" rel="noopener noreferrer">日本デフ水泳協会</a> — 国内デフスポーツ情報</li>
       </ul>
-${devSourceSection}
+${expandedSourceSection}
       <h3 class="about__h3">国内版: 主要報道機関・公的機関（Google News RSS）</h3>
       <ul>
         <li>朝日新聞・読売新聞・NHK系記事・自治体/公的機関・PR TIMES など、Google News RSS に掲載される国内ニュースを参照します。</li>
@@ -638,7 +650,7 @@ ${devSourceSection}
 
     <section aria-labelledby="about-update">
       <h2 id="about-update" class="about__h2">更新頻度・仕組み</h2>
-      <p>国内本番版は GitHub Actions による自動ジョブが毎時（JST 毎時0分ごろ）にRSSを収集します。DEV版は1日3回（JST 6:00 / 12:00 / 18:00ごろ）に収集します。どちらも関連性フィルタ・重複除去・カテゴリ分類を行い、最大400件を保持し、初期表示では最新150件を表示しています。DEV版では400件を超えた記事を過去アーカイブに蓄積します。</p>
+      <p>国内本番版は GitHub Actions による自動ジョブが1日3回（JST 6:00 / 12:00 / 18:00ごろ）RSSを収集します。関連性スコアフィルタ・近似重複除去・カテゴリ分類を行い、最大400件を保持し、初期表示では最新150件を表示しています。400件を超えた記事は過去アーカイブに蓄積します。</p>
       <p>Deaf Navi World は1日3回（JST 6:00 / 12:00 / 18:00ごろ）に海外ニュースを収集し、最大600件を保持します。World-JP は日本語翻訳版、World-Original は翻訳なしの原文版です。</p>
       <p>記事の本文・要約は各発信元のものを抜粋し、本文リンクはすべて各元記事の原文（外部サイト）に遷移します。記事の著作権はそれぞれの発信元に帰属します。</p>
     </section>
@@ -685,9 +697,16 @@ function renderSitemap({ generatedAt }) {
   <url>
     <loc>${PAGE_URL}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>hourly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+${HAS_ARCHIVE ? `  <url>
+    <loc>${OLD_PAGE_URL}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+` : ''}
   <url>
     <loc>${ABOUT_URL}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -726,6 +745,7 @@ Disallow: /sitemap-dev.xml
   return `User-agent: *
 Allow: /
 Disallow: /articles.json$
+Disallow: /articles-old.json$
 
 Sitemap: ${SITEMAP_URL}
 Sitemap: ${SITE_URL}sitemap-world.xml
@@ -787,7 +807,7 @@ async function main() {
   const raw = await readFile(DATA_FILE, 'utf8');
   const data = JSON.parse(raw);
   let oldData = null;
-  if (IS_DEV) {
+  if (HAS_ARCHIVE) {
     try {
       oldData = JSON.parse(await readFile(OLD_DATA_FILE, 'utf8'));
     } catch {
@@ -800,7 +820,7 @@ async function main() {
   await writeFile(HTML_OUT, renderPage(data), 'utf8');
   console.log(`書き出し: ${HTML_OUT}`);
 
-  if (IS_DEV) {
+  if (HAS_ARCHIVE) {
     await writeFile(OLD_HTML_OUT, renderArchivePage(oldData), 'utf8');
     console.log(`書き出し: ${OLD_HTML_OUT}`);
   }

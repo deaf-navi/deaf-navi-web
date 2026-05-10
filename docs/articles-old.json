@@ -1,12 +1,13 @@
 {
   "generatedAt": "2026-05-09T23:59:26.681Z",
-  "variant": "dev",
+  "variant": "prod",
   "profile": "expanded",
   "count": 1669,
   "source": {
     "currentOverflowCount": 1333,
     "previousOldCount": 1644,
-    "maxOldArticles": 5000
+    "maxOldArticles": 5000,
+    "promotedFrom": "articles-old-dev.json"
   },
   "articles": [
     {

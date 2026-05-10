@@ -5,11 +5,11 @@
 ## 概要
 
 - **URL**: `https://<github-user>.github.io/deaf-navi-web/`（公開後に確定）
-- **更新**: GitHub Actions が毎時 RSS を取得し `docs/` 配下を自動更新
+- **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00）RSS を取得し `docs/` 配下を自動更新
 - **ホスティング**: GitHub Pages（完全無料・SSL 付き）
 - **スタック**: Node 20（標準 fetch のみ）+ 静的 HTML/CSS/JS
 
-## 情報源（Deaf Navi アプリと同一）
+## 情報源
 
 ### 直接 RSS フィード
 
@@ -17,26 +17,36 @@
 - 全日本ろうあ連盟 / 手話言語法カテゴリ
 - しかくタイムズ
 - 東京都聴覚障害者連盟
+- 全日本難聴者・中途失聴者団体連合会
+- 全国手話研修センター
+- 聴力障害者情報文化センター
+- 電話リレーサービス / 日本財団電話リレーサービス
+- 全通研NOW!!
+- 日本聴覚医学会
+- デフスポーツ関連団体、YouTube公式チャンネル、note、UDCast、Palabra、Silent Voice など
 
-### Google News RSS（9 キーワード群）
+### Google News RSS
 
 - `聴覚障害 OR 難聴` / `ろう者 OR ろうあ者 OR 中途失聴` / `手話 OR 情報保障`
-- `聴覚障害 制度 OR 聴覚障害 支援`
+- `情報保障` / `アクセシビリティ` / `合理的配慮` / `手話通訳` / `要約筆記` / `字幕`
+- `制度・政策` / `医療` / `教育` / `技術・AI` / `防災・安全` / `イベント・講座`
+- `デフリンピック` / `デフスポーツ` / `ろう文化・芸能`
 - `site:jfd.or.jp` / `site:asahi.com 聴覚障害` / `site:yomiuri.co.jp 聴覚障害`
 - `site:prtimes.jp 聴覚障害` / `site:rehab.go.jp 聴覚障害`
 
 ### フィルタ
 
-- **関連性**: 55 キーワード辞書で本文・タイトルを照合（直接フィードはパス）
-- **カテゴリ自動分類**: policy / medical / education / local / general
-- **重複除去**: 記事 URL キーで dedupe
+- **関連性**: 関連語スコアで本文・タイトルを照合（公式・専門の一部はパス）
+- **カテゴリ自動分類**: policy / accessibility / relay / medical / education / technology / culture / sports / safety / event / local / general
+- **重複除去**: 記事 URL キーと近似タイトルで dedupe
 - **並び**: `publishedAt` 降順
+- **old退避**: 400件を超えた記事を `articles-old.json` / `index-old.html` に蓄積
 
 ## ディレクトリ構成
 
 ```
 deaf-navi-web/
-├── .github/workflows/curate.yml  # 毎時 cron + 失敗時 Issue 自動作成
+├── .github/workflows/curate.yml  # 1日3回 cron + 失敗時 Issue 自動作成
 ├── src/
 │   ├── curate.mjs                # RSS 取得 → docs/articles.json
 │   ├── build.mjs                 # docs/articles.json → docs/index.html
@@ -45,7 +55,9 @@ deaf-navi-web/
 │   └── serve.mjs                 # ローカル確認用簡易サーバー
 ├── docs/                         # ← GitHub Pages 公開ディレクトリ
 │   ├── index.html                # 自動生成
+│   ├── index-old.html            # 400件超過分の過去アーカイブ
 │   ├── articles.json             # 自動生成
+│   ├── articles-old.json         # 400件超過分の蓄積データ
 │   ├── styles.css                # build でコピー
 │   └── app.js                    # build でコピー
 ├── package.json
@@ -78,7 +90,7 @@ npm run serve     # http://localhost:5173 で確認
 
 | 頻度 | 作業 | 担当 |
 |---|---|---|
-| 自動（毎時） | RSS 取得・記事更新・コミット | GitHub Actions |
+| 自動（1日3回） | RSS 取得・記事更新・コミット | GitHub Actions |
 | 自動（失敗時） | Issue 自動作成 | Actions |
 | 月 1 | 情報源・キーワード辞書の見直し | rin エージェント |
 | 都度 | 新カテゴリ・UI 改善 | PR |
@@ -101,7 +113,7 @@ npm run serve     # http://localhost:5173 で確認
 ### コスト
 
 - **GitHub Pages**: 無料（ソフトリミット帯域 100GB/月）
-- **GitHub Actions**: 無料枠 2000 分/月、本プロジェクトの使用量は毎時 1 分 × 24 × 30 ≒ 720 分/月で十分収まる
+- **GitHub Actions**: 無料枠 2000 分/月、本プロジェクトの使用量は1日3回運用で十分収まる
 - **独自ドメイン**（オプション）: 取得費のみ（GitHub Pages 側の設定は無料）
 
 ## アクセシビリティ方針

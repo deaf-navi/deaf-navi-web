@@ -2,13 +2,14 @@ name: Curate & Build
 
 on:
   schedule:
-    # 毎時0分に実行（UTC）→ JST毎時
-    - cron: '0 * * * *'
+    # JST 06:00 / 12:00 / 18:00
+    - cron: '0 3,9,21 * * *'
   workflow_dispatch: {}
   push:
     branches: [main]
     paths:
       - 'src/**'
+      - 'package.json'
       - '.github/workflows/curate.yml'
 
 permissions:
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   curate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,7 +44,7 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/articles.json docs/index.html docs/about.html docs/styles.css docs/app.js docs/sitemap.xml docs/robots.txt docs/feed.xml docs/og-image.svg
+          git add docs/articles.json docs/articles-old.json docs/index.html docs/index-old.html docs/about.html docs/styles.css docs/app.js docs/sitemap.xml docs/robots.txt docs/feed.xml docs/og-image.svg
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
