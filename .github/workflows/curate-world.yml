@@ -17,7 +17,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: curate-shared-docs
+  group: curate-world
   cancel-in-progress: false
 
 jobs:
@@ -49,7 +49,7 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/articles-world.json docs/deaf-navi-world-jp.html docs/deaf-navi-world-original.html docs/deaf-navi-world-en.html docs/deaf-navi-world.html docs/styles-world.css docs/app-world.js docs/feed-world.xml docs/feed-world-original.xml docs/feed-world-en.xml docs/sitemap-world.xml docs/og-image-world.svg docs/app
+          git add docs/articles-world.json docs/deaf-navi-world-jp.html docs/deaf-navi-world-original.html docs/deaf-navi-world-en.html docs/deaf-navi-world.html docs/styles-world.css docs/app-world.js docs/feed-world.xml docs/feed-world-original.xml docs/feed-world-en.xml docs/sitemap-world.xml docs/og-image-world.svg
           if git diff --cached --quiet; then
             echo "No world changes to commit."
             exit 0

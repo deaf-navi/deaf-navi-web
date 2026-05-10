@@ -1,0 +1,95 @@
+name: Build App Sync
+
+on:
+  workflow_dispatch: {}
+  workflow_run:
+    workflows:
+      - Curate & Build
+      - Curate & Build Dev
+      - Curate & Build World
+    types:
+      - completed
+  push:
+    branches: [main]
+    paths:
+      - 'src/app-api-build.mjs'
+      - 'package.json'
+      - '.github/workflows/app-sync.yml'
+      - 'docs/articles.json'
+      - 'docs/articles-dev.json'
+      - 'docs/articles-world.json'
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: app-sync
+  cancel-in-progress: true
+
+jobs:
+  app-sync:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Refresh main
+        run: git pull --ff-only origin main
+
+      - name: Build app sync JSON
+        run: npm run build:app-api
+
+      - name: Commit & push app sync artifacts
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/app
+          if git diff --cached --quiet; then
+            echo "No app sync changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(app-sync): update app json $(date -u +'%Y-%m-%dT%H:%MZ')"
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push failed (attempt $attempt). Rebasing onto latest main and rebuilding app sync JSON..."
+            git pull --rebase origin main
+            npm run build:app-api
+            git add docs/app
+            if ! git diff --cached --quiet; then
+              git commit --amend --no-edit
+            fi
+          done
+          echo "Push failed after 3 attempts."
+          exit 1
+
+  notify-on-failure:
+    needs: app-sync
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create failure issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `App sync build failed: ${new Date().toISOString()}`;
+            const body = `Deaf Navi アプリ同期JSONの生成 Actions が失敗しました。ログを確認してください。\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['curation-failure']
+            });
