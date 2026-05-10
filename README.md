@@ -72,7 +72,6 @@ Web版の国内ニュース / World-JP / World-Original と同じ生成物から
 
 - `docs/app/v1/manifest.json`: 国内・World各フィードのURL、カテゴリ、地域、更新間隔、互換情報
 - `docs/app/v1/domestic.json`: 国内版のフルカテゴリ対応データ（`relay` は `excludedFromAll` で明示）
-- `docs/app/v1/domestic-dev.json`: dev版のフルカテゴリ対応データ
 - `docs/app/v1/world-jp.json`: World-JP表示用。Google翻訳ベース + Deaf Navi用語補正 + Codex App Server後編集メタデータ付き
 - `docs/app/v1/world-original.json`: World原文表示用。日本語訳は `translated` に保持
 - `docs/app/v1/world-multilingual.json`: 日本語訳と原文を `localized.ja` / `localized.original` にまとめた多言語切替向けデータ

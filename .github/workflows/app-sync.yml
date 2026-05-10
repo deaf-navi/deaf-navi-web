@@ -5,7 +5,6 @@ on:
   workflow_run:
     workflows:
       - Curate & Build
-      - Curate & Build Dev
       - Curate & Build World
     types:
       - completed
@@ -16,7 +15,6 @@ on:
       - 'package.json'
       - '.github/workflows/app-sync.yml'
       - 'docs/articles.json'
-      - 'docs/articles-dev.json'
       - 'docs/articles-world.json'
 
 permissions:

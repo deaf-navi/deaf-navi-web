@@ -151,14 +151,6 @@ async function readJson(file) {
   return JSON.parse(raw);
 }
 
-async function readJsonOptional(file) {
-  try {
-    return await readJson(file);
-  } catch {
-    return null;
-  }
-}
-
 async function writeJson(file, payload) {
   await writeFile(join(APP_DIR, file), `${JSON.stringify(compactObject(payload), null, 2)}\n`, 'utf8');
 }
@@ -275,13 +267,13 @@ function iosCompatibleArticle(article, legacyCategory) {
   };
 }
 
-function buildDomesticPayload(data, { variant, sourceFile, pageFile, dev = false }) {
+function buildDomesticPayload(data, { variant, sourceFile, pageFile }) {
   const articles = (data.articles ?? []).map(domesticArticle);
   const sourceGeneratedAt = isoSeconds(data.generatedAt);
   return {
     schemaVersion: SCHEMA_VERSION,
-    feedId: dev ? 'deaf-navi-domestic-dev' : 'deaf-navi-domestic',
-    title: dev ? 'Deaf Navi Web DEV' : 'Deaf Navi Web',
+    feedId: 'deaf-navi-domestic',
+    title: 'Deaf Navi Web',
     variant,
     profile: data.profile,
     generatedAt: sourceGeneratedAt,
@@ -297,7 +289,7 @@ function buildDomesticPayload(data, { variant, sourceFile, pageFile, dev = false
     source: {
       webPageUrl: siteUrl(pageFile),
       rawJsonUrl: siteUrl(sourceFile),
-      rssUrl: siteUrl(dev ? 'feed-dev.xml' : 'feed.xml'),
+      rssUrl: siteUrl('feed.xml'),
     },
     display: {
       defaultFilter: 'all',
@@ -305,7 +297,7 @@ function buildDomesticPayload(data, { variant, sourceFile, pageFile, dev = false
       categories: domesticFilters(),
     },
     compatibility: {
-      currentIosArticleUrl: appUrl(dev ? 'ios-news-dev-v1.json' : 'ios-news-v1.json'),
+      currentIosArticleUrl: appUrl('ios-news-v1.json'),
       currentIosArticleSchema: IOS_ARTICLE_COMPAT_VERSION,
       note: 'currentIosArticleUrl maps new web categories to the current iOS ArticleCategory set and omits relay from the default news list.',
     },
@@ -478,10 +470,10 @@ function latestIsoSecond(...values) {
   return isoSeconds(Math.max(...valid));
 }
 
-function buildManifest({ domestic, domesticDev, world }) {
+function buildManifest({ domestic, world }) {
   return {
     schemaVersion: SCHEMA_VERSION,
-    generatedAt: latestIsoSecond(domestic?.generatedAt, domesticDev?.generatedAt, world?.generatedAt),
+    generatedAt: latestIsoSecond(domestic?.generatedAt, world?.generatedAt),
     siteUrl: SITE_URL,
     appBaseUrl: APP_BASE_URL,
     refresh: {
@@ -498,16 +490,6 @@ function buildManifest({ domestic, domesticDev, world }) {
         iosCompatibleUrl: appUrl('ios-news-v1.json'),
         count: domestic?.articles?.length ?? 0,
         sourceGeneratedAt: isoSeconds(domestic?.generatedAt),
-        categories: domesticFilters(),
-        excludedFromAll: ['relay'],
-      },
-      domesticDev: {
-        title: 'Deaf Navi Web DEV',
-        url: appUrl('domestic-dev.json'),
-        rawJsonUrl: siteUrl('articles-dev.json'),
-        iosCompatibleUrl: appUrl('ios-news-dev-v1.json'),
-        count: domesticDev?.articles?.length ?? 0,
-        sourceGeneratedAt: isoSeconds(domesticDev?.generatedAt),
         categories: domesticFilters(),
         excludedFromAll: ['relay'],
       },
@@ -567,9 +549,8 @@ function buildManifest({ domestic, domesticDev, world }) {
 }
 
 async function main() {
-  const [domestic, domesticDev, world] = await Promise.all([
+  const [domestic, world] = await Promise.all([
     readJson('articles.json'),
-    readJsonOptional('articles-dev.json'),
     readJson('articles-world.json'),
   ]);
 
@@ -582,23 +563,13 @@ async function main() {
   }));
   await writeJson('ios-news-v1.json', buildDomesticCompatArray(domestic));
 
-  if (domesticDev) {
-    await writeJson('domestic-dev.json', buildDomesticPayload(domesticDev, {
-      variant: domesticDev.variant ?? 'dev',
-      sourceFile: 'articles-dev.json',
-      pageFile: 'index-dev.html',
-      dev: true,
-    }));
-    await writeJson('ios-news-dev-v1.json', buildDomesticCompatArray(domesticDev));
-  }
-
   await writeJson('world-jp.json', buildWorldPayload(world, 'jp'));
   await writeJson('world-original.json', buildWorldPayload(world, 'original'));
   await writeJson('world-multilingual.json', buildWorldPayload(world, 'multilingual'));
   await writeJson('ios-world-jp-v1.json', buildWorldCompatArray(world, 'jp'));
   await writeJson('ios-world-original-v1.json', buildWorldCompatArray(world, 'original'));
 
-  const manifest = buildManifest({ domestic, domesticDev, world });
+  const manifest = buildManifest({ domestic, world });
   await writeJson('manifest.json', manifest);
   await writeJson('index.json', manifest);
 
