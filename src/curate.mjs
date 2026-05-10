@@ -14,6 +14,7 @@ const DATA_FILE = join(DATA_DIR, `articles${SUFFIX}.json`);
 const OLD_DATA_FILE = join(DATA_DIR, `articles-old${SUFFIX}.json`);
 
 const MAX_ARTICLES = 400;
+const EXTRA_VISIBLE_CATEGORIES = new Set(['relay']);
 const MAX_OLD_ARTICLES = 5000;
 const DEV_MIN_SCORE = 5;
 
@@ -737,6 +738,29 @@ function countBy(items, key) {
   }, {});
 }
 
+function splitVisibleArticles(deduped) {
+  const primaryArticles = [];
+  const extraArticles = [];
+
+  for (const article of deduped) {
+    if (EXTRA_VISIBLE_CATEGORIES.has(article.category)) {
+      extraArticles.push(article);
+    } else if (primaryArticles.length < MAX_ARTICLES) {
+      primaryArticles.push(article);
+    }
+  }
+
+  const visibleIds = new Set([...primaryArticles, ...extraArticles].map((article) => article.id));
+  return {
+    primaryArticles,
+    extraArticles,
+    visibleArticles: [...primaryArticles, ...extraArticles].sort(
+      (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    ),
+    overflowArticles: deduped.filter((article) => !visibleIds.has(article.id)),
+  };
+}
+
 function curateExpandedArticles(allArticles) {
   const scored = allArticles.map((article) => {
     const { score, signals } = scoreArticle(article);
@@ -759,24 +783,33 @@ function curateExpandedArticles(allArticles) {
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
-  const visibleArticles = deduped.slice(0, MAX_ARTICLES);
-  const overflowArticles = deduped.slice(MAX_ARTICLES);
+  const {
+    primaryArticles,
+    extraArticles,
+    visibleArticles,
+    overflowArticles,
+  } = splitVisibleArticles(deduped);
 
   return {
     articles: visibleArticles,
     oldArticles: overflowArticles,
     report: {
-      version: 'expanded-score-v1',
+      version: 'expanded-score-v2',
       rawCount: allArticles.length,
       scoredCount: scored.length,
       filteredCount: filtered.length,
       lowScoreRemoved: scored.length - filtered.length,
       nearDuplicateRemoved: duplicates.length,
       finalCountBeforeLimit: deduped.length,
+      primaryCategoryLimit: MAX_ARTICLES,
+      primaryVisibleCount: primaryArticles.length,
+      extraVisibleCount: extraArticles.length,
+      extraVisibleCategoryCounts: countBy(extraArticles, 'category'),
       overflowCount: overflowArticles.length,
       minScore: DEV_MIN_SCORE,
       sourceCountsBefore: countBy(scored, 'sourceName'),
       sourceCountsAfter: countBy(deduped, 'sourceName'),
+      categoryCountsVisible: countBy(visibleArticles, 'category'),
       sourceTypeCountsAfter: countBy(deduped, (article) => article.sourceType ?? 'unknown'),
       sourceTierCountsAfter: countBy(deduped, (article) => article._sourceTier ?? 'unknown'),
       categoryCountsAfter: countBy(deduped, 'category'),
@@ -898,9 +931,10 @@ async function loadNews() {
   deduped.sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
+  const { visibleArticles } = splitVisibleArticles(deduped);
 
   return {
-    articles: deduped.slice(0, MAX_ARTICLES),
+    articles: visibleArticles,
     oldArticles: [],
     report: null,
   };
