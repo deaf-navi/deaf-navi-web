@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-05-10T03:48:44Z",
+  "generatedAt": "2026-05-10T03:49:08Z",
   "siteUrl": "https://tamas-hub.github.io/deaf-navi-web/",
   "appBaseUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/",
   "refresh": {
@@ -202,7 +202,7 @@
       "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
       "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-05-10T00:32:19Z",
+      "sourceGeneratedAt": "2026-05-10T03:49:08Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -282,9 +282,9 @@
         "provider": "translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "checked": 24,
-          "updated": 24,
-          "cached": 576,
+          "checked": 36,
+          "updated": 36,
+          "cached": 564,
           "skipped": 0,
           "failed": 0,
           "enabled": true
@@ -297,7 +297,7 @@
       "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
       "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-05-10T00:32:19Z",
+      "sourceGeneratedAt": "2026-05-10T03:49:08Z",
       "language": "und",
       "regions": [
         {
@@ -379,7 +379,7 @@
       "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-05-10T00:32:19Z",
+      "sourceGeneratedAt": "2026-05-10T03:49:08Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
