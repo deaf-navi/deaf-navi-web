@@ -8,6 +8,7 @@
 - **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00）RSS を取得し `docs/` 配下を自動更新
 - **ホスティング**: GitHub Pages（完全無料・SSL 付き）
 - **スタック**: Node 20（標準 fetch のみ）+ 静的 HTML/CSS/JS
+- **アプリ同期**: `docs/app/v1/` に Deaf Navi iOS アプリ参照用の同期JSONを生成
 
 ## 情報源
 
@@ -58,11 +59,34 @@ deaf-navi-web/
 │   ├── index-old.html            # 400件超過分の過去アーカイブ
 │   ├── articles.json             # 自動生成
 │   ├── articles-old.json         # 400件超過分の蓄積データ
+│   ├── app/v1/                   # iOSアプリ同期用JSON
 │   ├── styles.css                # build でコピー
 │   └── app.js                    # build でコピー
 ├── package.json
 └── README.md
 ```
+
+## アプリ同期JSON
+
+Web版の国内ニュース / World-JP / World-Original と同じ生成物から、iOS アプリが参照しやすい静的JSONを出力する。
+
+- `docs/app/v1/manifest.json`: 国内・World各フィードのURL、カテゴリ、地域、更新間隔、互換情報
+- `docs/app/v1/domestic.json`: 国内版のフルカテゴリ対応データ（`relay` は `excludedFromAll` で明示）
+- `docs/app/v1/domestic-dev.json`: dev版のフルカテゴリ対応データ
+- `docs/app/v1/world-jp.json`: World-JP表示用。Google翻訳ベース + Deaf Navi用語補正 + Codex App Server後編集メタデータ付き
+- `docs/app/v1/world-original.json`: World原文表示用。日本語訳は `translated` に保持
+- `docs/app/v1/world-multilingual.json`: 日本語訳と原文を `localized.ja` / `localized.original` にまとめた多言語切替向けデータ
+- `docs/app/v1/ios-news-v1.json`: 現行 iOS `Article` 互換の国内ニュース配列。現行enumに合わせ、`relay` は除外
+- `docs/app/v1/ios-world-jp-v1.json` / `ios-world-original-v1.json`: 現行 iOS `Article` 互換のWorld配列
+
+公開URL例:
+
+- `https://tamas-hub.github.io/deaf-navi-web/app/v1/manifest.json`
+- `https://tamas-hub.github.io/deaf-navi-web/app/v1/domestic.json`
+- `https://tamas-hub.github.io/deaf-navi-web/app/v1/world-jp.json`
+- `https://tamas-hub.github.io/deaf-navi-web/app/v1/world-multilingual.json`
+
+現行 iOS 互換JSONは `JSONDecoder.DateDecodingStrategy.iso8601` で扱いやすいよう、日時をミリ秒なしUTC（例: `2026-05-10T00:32:12Z`）で出力する。
 
 ## ローカル開発
 
@@ -70,6 +94,7 @@ deaf-navi-web/
 cd deaf-navi-web
 npm run curate    # RSS 取得 → docs/articles.json
 npm run build     # HTML 生成
+npm run build:app-api # docs/app/v1 のアプリ同期JSON生成
 npm run serve     # http://localhost:5173 で確認
 ```
 

@@ -1,0 +1,498 @@
+{
+  "schemaVersion": "deaf-navi-app-sync.v1",
+  "generatedAt": "2026-05-10T00:32:21Z",
+  "siteUrl": "https://tamas-hub.github.io/deaf-navi-web/",
+  "appBaseUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/",
+  "refresh": {
+    "scheduleTimezone": "Asia/Tokyo",
+    "scheduleJst": [
+      "06:00",
+      "12:00",
+      "18:00"
+    ],
+    "recommendedTtlSeconds": 21600,
+    "staleAfterSeconds": 86400
+  },
+  "endpoints": {
+    "domestic": {
+      "title": "Deaf Navi Web",
+      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/domestic.json",
+      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles.json",
+      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
+      "count": 511,
+      "sourceGeneratedAt": "2026-05-10T00:32:12Z",
+      "categories": [
+        {
+          "id": "all",
+          "label": "すべて",
+          "legacyCategory": "all",
+          "excludedFromAll": false
+        },
+        {
+          "id": "policy",
+          "label": "制度・政策",
+          "legacyCategory": "policy",
+          "excludedFromAll": false
+        },
+        {
+          "id": "accessibility",
+          "label": "情報保障・アクセシビリティ",
+          "legacyCategory": "policy",
+          "excludedFromAll": false
+        },
+        {
+          "id": "medical",
+          "label": "医療",
+          "legacyCategory": "medical",
+          "excludedFromAll": false
+        },
+        {
+          "id": "education",
+          "label": "教育",
+          "legacyCategory": "education",
+          "excludedFromAll": false
+        },
+        {
+          "id": "technology",
+          "label": "技術・AI",
+          "legacyCategory": "general",
+          "excludedFromAll": false
+        },
+        {
+          "id": "culture",
+          "label": "文化・芸能",
+          "legacyCategory": "culture",
+          "excludedFromAll": false
+        },
+        {
+          "id": "sports",
+          "label": "デフスポーツ",
+          "legacyCategory": "sports",
+          "excludedFromAll": false
+        },
+        {
+          "id": "safety",
+          "label": "防災・安全",
+          "legacyCategory": "policy",
+          "excludedFromAll": false
+        },
+        {
+          "id": "event",
+          "label": "イベント・講座",
+          "legacyCategory": "culture",
+          "excludedFromAll": false
+        },
+        {
+          "id": "relay",
+          "label": "電話リレー・ヨメテル",
+          "legacyCategory": "policy",
+          "excludedFromAll": true
+        },
+        {
+          "id": "local",
+          "label": "地域",
+          "legacyCategory": "local",
+          "excludedFromAll": false
+        },
+        {
+          "id": "general",
+          "label": "一般",
+          "legacyCategory": "general",
+          "excludedFromAll": false
+        }
+      ],
+      "excludedFromAll": [
+        "relay"
+      ]
+    },
+    "domesticDev": {
+      "title": "Deaf Navi Web DEV",
+      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/domestic-dev.json",
+      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-dev.json",
+      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-dev-v1.json",
+      "count": 510,
+      "sourceGeneratedAt": "2026-05-10T00:32:21Z",
+      "categories": [
+        {
+          "id": "all",
+          "label": "すべて",
+          "legacyCategory": "all",
+          "excludedFromAll": false
+        },
+        {
+          "id": "policy",
+          "label": "制度・政策",
+          "legacyCategory": "policy",
+          "excludedFromAll": false
+        },
+        {
+          "id": "accessibility",
+          "label": "情報保障・アクセシビリティ",
+          "legacyCategory": "policy",
+          "excludedFromAll": false
+        },
+        {
+          "id": "medical",
+          "label": "医療",
+          "legacyCategory": "medical",
+          "excludedFromAll": false
+        },
+        {
+          "id": "education",
+          "label": "教育",
+          "legacyCategory": "education",
+          "excludedFromAll": false
+        },
+        {
+          "id": "technology",
+          "label": "技術・AI",
+          "legacyCategory": "general",
+          "excludedFromAll": false
+        },
+        {
+          "id": "culture",
+          "label": "文化・芸能",
+          "legacyCategory": "culture",
+          "excludedFromAll": false
+        },
+        {
+          "id": "sports",
+          "label": "デフスポーツ",
+          "legacyCategory": "sports",
+          "excludedFromAll": false
+        },
+        {
+          "id": "safety",
+          "label": "防災・安全",
+          "legacyCategory": "policy",
+          "excludedFromAll": false
+        },
+        {
+          "id": "event",
+          "label": "イベント・講座",
+          "legacyCategory": "culture",
+          "excludedFromAll": false
+        },
+        {
+          "id": "relay",
+          "label": "電話リレー・ヨメテル",
+          "legacyCategory": "policy",
+          "excludedFromAll": true
+        },
+        {
+          "id": "local",
+          "label": "地域",
+          "legacyCategory": "local",
+          "excludedFromAll": false
+        },
+        {
+          "id": "general",
+          "label": "一般",
+          "legacyCategory": "general",
+          "excludedFromAll": false
+        }
+      ],
+      "excludedFromAll": [
+        "relay"
+      ]
+    },
+    "worldJp": {
+      "title": "Deaf Navi World-JP",
+      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-jp.json",
+      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
+      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
+      "count": 600,
+      "sourceGeneratedAt": "2026-05-10T00:32:19Z",
+      "language": "ja-JP",
+      "regions": [
+        {
+          "id": "all",
+          "label": "すべての地域"
+        },
+        {
+          "id": "asia_oceania",
+          "label": "アジア・オセアニア"
+        },
+        {
+          "id": "americas",
+          "label": "北米・中南米"
+        },
+        {
+          "id": "europe_cis",
+          "label": "ヨーロッパ・CIS"
+        },
+        {
+          "id": "middle_east_africa",
+          "label": "中東・アフリカ"
+        }
+      ],
+      "topics": [
+        {
+          "id": "all",
+          "label": "すべてのカテゴリ",
+          "legacyCategory": "all"
+        },
+        {
+          "id": "accessibility",
+          "label": "アクセシビリティ・情報保障",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "rights",
+          "label": "権利・制度",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "health",
+          "label": "医療・補聴",
+          "legacyCategory": "medical"
+        },
+        {
+          "id": "education",
+          "label": "教育",
+          "legacyCategory": "education"
+        },
+        {
+          "id": "technology",
+          "label": "技術・AI",
+          "legacyCategory": "general"
+        },
+        {
+          "id": "culture",
+          "label": "文化・社会",
+          "legacyCategory": "culture"
+        },
+        {
+          "id": "sports",
+          "label": "デフスポーツ",
+          "legacyCategory": "sports"
+        },
+        {
+          "id": "safety",
+          "label": "災害・安全",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "general",
+          "label": "一般",
+          "legacyCategory": "general"
+        }
+      ],
+      "translation": {
+        "provider": "translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit",
+        "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+        "japanesePostEdit": {
+          "checked": 24,
+          "updated": 24,
+          "cached": 576,
+          "skipped": 0,
+          "failed": 0,
+          "enabled": true
+        }
+      }
+    },
+    "worldOriginal": {
+      "title": "Deaf Navi World-Original",
+      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-original.json",
+      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
+      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
+      "count": 600,
+      "sourceGeneratedAt": "2026-05-10T00:32:19Z",
+      "language": "und",
+      "regions": [
+        {
+          "id": "all",
+          "label": "すべての地域"
+        },
+        {
+          "id": "asia_oceania",
+          "label": "アジア・オセアニア"
+        },
+        {
+          "id": "americas",
+          "label": "北米・中南米"
+        },
+        {
+          "id": "europe_cis",
+          "label": "ヨーロッパ・CIS"
+        },
+        {
+          "id": "middle_east_africa",
+          "label": "中東・アフリカ"
+        }
+      ],
+      "topics": [
+        {
+          "id": "all",
+          "label": "すべてのカテゴリ",
+          "legacyCategory": "all"
+        },
+        {
+          "id": "accessibility",
+          "label": "アクセシビリティ・情報保障",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "rights",
+          "label": "権利・制度",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "health",
+          "label": "医療・補聴",
+          "legacyCategory": "medical"
+        },
+        {
+          "id": "education",
+          "label": "教育",
+          "legacyCategory": "education"
+        },
+        {
+          "id": "technology",
+          "label": "技術・AI",
+          "legacyCategory": "general"
+        },
+        {
+          "id": "culture",
+          "label": "文化・社会",
+          "legacyCategory": "culture"
+        },
+        {
+          "id": "sports",
+          "label": "デフスポーツ",
+          "legacyCategory": "sports"
+        },
+        {
+          "id": "safety",
+          "label": "災害・安全",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "general",
+          "label": "一般",
+          "legacyCategory": "general"
+        }
+      ]
+    },
+    "worldMultilingual": {
+      "title": "Deaf Navi World Multilingual",
+      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-multilingual.json",
+      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
+      "count": 600,
+      "sourceGeneratedAt": "2026-05-10T00:32:19Z",
+      "defaultLocale": "ja-JP",
+      "regions": [
+        {
+          "id": "all",
+          "label": "すべての地域"
+        },
+        {
+          "id": "asia_oceania",
+          "label": "アジア・オセアニア"
+        },
+        {
+          "id": "americas",
+          "label": "北米・中南米"
+        },
+        {
+          "id": "europe_cis",
+          "label": "ヨーロッパ・CIS"
+        },
+        {
+          "id": "middle_east_africa",
+          "label": "中東・アフリカ"
+        }
+      ],
+      "topics": [
+        {
+          "id": "all",
+          "label": "すべてのカテゴリ",
+          "legacyCategory": "all"
+        },
+        {
+          "id": "accessibility",
+          "label": "アクセシビリティ・情報保障",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "rights",
+          "label": "権利・制度",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "health",
+          "label": "医療・補聴",
+          "legacyCategory": "medical"
+        },
+        {
+          "id": "education",
+          "label": "教育",
+          "legacyCategory": "education"
+        },
+        {
+          "id": "technology",
+          "label": "技術・AI",
+          "legacyCategory": "general"
+        },
+        {
+          "id": "culture",
+          "label": "文化・社会",
+          "legacyCategory": "culture"
+        },
+        {
+          "id": "sports",
+          "label": "デフスポーツ",
+          "legacyCategory": "sports"
+        },
+        {
+          "id": "safety",
+          "label": "災害・安全",
+          "legacyCategory": "policy"
+        },
+        {
+          "id": "general",
+          "label": "一般",
+          "legacyCategory": "general"
+        }
+      ]
+    }
+  },
+  "compatibility": {
+    "currentIosArticleSchema": "deaf-navi-ios-article.v1",
+    "dateFormat": "ISO 8601 UTC without fractional seconds, compatible with JSONDecoder.DateDecodingStrategy.iso8601.",
+    "sourceURLKey": "Swift Article.sourceURL is emitted as sourceURL; sourceUrl is also kept in rich sync payloads.",
+    "legacyCategoryMapping": {
+      "domestic": {
+        "all": "all",
+        "policy": "policy",
+        "accessibility": "policy",
+        "relay": "policy",
+        "medical": "medical",
+        "education": "education",
+        "technology": "general",
+        "culture": "culture",
+        "sports": "sports",
+        "safety": "policy",
+        "event": "culture",
+        "local": "local",
+        "general": "general"
+      },
+      "worldTopics": {
+        "accessibility": "policy",
+        "rights": "policy",
+        "health": "medical",
+        "education": "education",
+        "technology": "general",
+        "culture": "culture",
+        "sports": "sports",
+        "safety": "policy",
+        "general": "general"
+      }
+    }
+  },
+  "sourcePolicy": {
+    "domestic": "The app sync data is built from the same curated domestic JSON used by Deaf Navi Web.",
+    "world": "The app sync data is built from the same world JSON used by Deaf Navi World-JP and Deaf Navi World-Original.",
+    "worldJpTranslation": "Japanese text is Google-translation based with Deaf Navi glossary normalization; Codex App Server post-edit is reflected when present in articles-world.json."
+  }
+}

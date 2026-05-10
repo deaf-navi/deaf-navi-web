@@ -11,10 +11,11 @@
     "build": "node src/build.mjs",
     "build:dev": "node src/build.mjs --dev",
     "build:world": "node src/world-build.mjs",
+    "build:app-api": "node src/app-api-build.mjs",
     "codex-app-server": "node scripts/codex-app-server.mjs",
-    "generate": "npm run curate && npm run build",
-    "generate:dev": "npm run curate:dev && npm run build:dev",
-    "generate:world": "npm run curate:world && npm run build:world",
+    "generate": "npm run curate && npm run build && npm run build:app-api",
+    "generate:dev": "npm run curate:dev && npm run build:dev && npm run build:app-api",
+    "generate:world": "npm run curate:world && npm run build:world && npm run build:app-api",
     "serve": "node src/serve.mjs"
   },
   "engines": {
