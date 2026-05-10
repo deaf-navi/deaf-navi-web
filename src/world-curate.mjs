@@ -71,6 +71,8 @@ const SOURCE_GROUPS = [
       ['indianexpress.com', 'The Indian Express', 76],
       ['koreaherald.com', 'The Korea Herald', 74],
       ['koreatimes.co.kr', 'The Korea Times', 72],
+      ['yna.co.kr', 'Yonhap News Agency', 84],
+      ['newsis.com', 'Newsis', 76],
       ['taipeitimes.com', 'Taipei Times', 72],
     ],
   },
@@ -377,6 +379,7 @@ const STORY_STOPWORDS = new Set([
 ]);
 
 const STORY_TOKEN_ALIASES = new Map([
+  ['하나금융그룹', '하나금융'],
   ['approval', 'approve'],
   ['approved', 'approve'],
   ['approves', 'approve'],
@@ -394,6 +397,16 @@ const STORY_TOKEN_ALIASES = new Map([
   ['children', 'child'],
   ['kids', 'child'],
   ['families', 'family'],
+]);
+
+const STORY_ANCHOR_STOPWORDS = new Set([
+  ...STORY_STOPWORDS,
+  'about', 'report', 'news', 'update',
+  '청각장애', '청각', '장애', '농인', '난청', '수어', '수화', '수어교육', '교육', '인식', '개선', '이해',
+  '위한', '통해', '실시', '진행', '운영', '개강', '확대', '나선다', '앞장', '노력', '포용', '문화', '확산',
+  '임직원', '직원', '대상', '관련', '게시판',
+  '聴覚障害', '難聴', 'ろう者', '手話', '教育', '認識', '改善', '理解', '実施', '開始', '社員', '職員',
+  '聽障', '听障', '手語', '手语', '無障礙', '无障碍',
 ]);
 
 const DOMAIN_REGION = new Map();
@@ -745,16 +758,27 @@ function normalizeTitleKey(title) {
 function stripDiacritics(text) {
   return String(text ?? '')
     .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '');
+    .replace(/[\u0300-\u036f]/g, '')
+    .normalize('NFC');
 }
 
 function normalizeStoryToken(token) {
-  const value = STORY_TOKEN_ALIASES.get(token) ?? token;
+  const normalized = /^[가-힣]{3,}$/u.test(token) ? token.replace(/[은는이가을를의와과로도에]$/u, '') : token;
+  const value = STORY_TOKEN_ALIASES.get(normalized) ?? normalized;
   if (value.length > 6 && value.endsWith('ing')) return value.slice(0, -3);
   if (value.length > 5 && value.endsWith('ed')) return value.slice(0, -2);
   if (value.length > 5 && value.endsWith('es')) return value.slice(0, -2);
   if (value.length > 4 && value.endsWith('s')) return value.slice(0, -1);
   return value;
+}
+
+function hasCjk(token) {
+  return /[ぁ-んァ-ヶ一-龠가-힣]/u.test(token);
+}
+
+function shouldKeepStoryToken(token) {
+  const minLength = hasCjk(token) ? 2 : 4;
+  return token.length >= minLength && !STORY_STOPWORDS.has(token);
 }
 
 function storyTokens(text) {
@@ -766,8 +790,16 @@ function storyTokens(text) {
     .split(/\s+/)
     .map((token) => token.trim())
     .map(normalizeStoryToken)
-    .filter((token) => token.length >= 4 && !STORY_STOPWORDS.has(token))
+    .filter(shouldKeepStoryToken)
     .slice(0, 80);
+}
+
+function storyAnchorTokens(tokens) {
+  return tokens.filter((token) => {
+    if (STORY_ANCHOR_STOPWORDS.has(token)) return false;
+    if (hasCjk(token)) return token.length >= 3;
+    return token.length >= 5 || /\d/.test(token);
+  });
 }
 
 function storyBigrams(tokens) {
@@ -802,6 +834,7 @@ function daysBetween(a, b) {
 function duplicateProfile(article) {
   const titleTokens = storyTokens(article.originalTitle);
   const bodyTokens = storyTokens(`${article.originalTitle} ${article.originalSummary}`);
+  const anchorTokens = storyAnchorTokens(bodyTokens);
   const titleBigrams = storyBigrams(titleTokens);
   const bodyBigrams = storyBigrams(bodyTokens);
   return {
@@ -814,6 +847,9 @@ function duplicateProfile(article) {
     bodySet: new Set(bodyTokens),
     bodyBigrams,
     bodyBigramSet: new Set(bodyBigrams),
+    anchorTokens,
+    anchorSet: new Set(anchorTokens),
+    hasCjk: titleTokens.some(hasCjk) || bodyTokens.some(hasCjk),
   };
 }
 
@@ -823,16 +859,18 @@ function isLikelySameStory(aProfile, bProfile) {
   if (daysBetween(a.publishedAt, b.publishedAt) > 14) return false;
 
   const title = tokenStats(aProfile.titleTokens, bProfile.titleTokens, aProfile.titleSet, bProfile.titleSet);
-  if (title.intersection >= 5 && title.containment >= 0.72 && title.jaccard >= 0.42) return true;
-  if (title.intersection >= 4 && title.containment >= 0.82 && title.jaccard >= 0.5) return true;
+  const anchors = tokenStats(aProfile.anchorTokens, bProfile.anchorTokens, aProfile.anchorSet, bProfile.anchorSet);
+  const anchorOk = !aProfile.hasCjk || !bProfile.hasCjk || anchors.intersection >= 1 || title.jaccard >= 0.72;
+  if (anchorOk && title.intersection >= 5 && title.containment >= 0.72 && title.jaccard >= 0.42) return true;
+  if (anchorOk && title.intersection >= 4 && title.containment >= 0.82 && title.jaccard >= 0.5) return true;
 
   const titlePhrase = tokenStats(aProfile.titleBigrams, bProfile.titleBigrams, aProfile.titleBigramSet, bProfile.titleBigramSet);
-  if (titlePhrase.intersection >= 1 && title.intersection >= 3 && title.containment >= 0.55 && title.jaccard >= 0.32) return true;
+  if (anchorOk && titlePhrase.intersection >= 1 && title.intersection >= 3 && title.containment >= 0.55 && title.jaccard >= 0.32) return true;
 
   const body = tokenStats(aProfile.bodyTokens, bProfile.bodyTokens, aProfile.bodySet, bProfile.bodySet);
   const bodyPhrase = tokenStats(aProfile.bodyBigrams, bProfile.bodyBigrams, aProfile.bodyBigramSet, bProfile.bodyBigramSet);
-  if (titlePhrase.intersection >= 1 && body.intersection >= 5 && bodyPhrase.intersection >= 1 && body.containment >= 0.55) return true;
-  return title.intersection >= 3 && body.intersection >= 7 && body.containment >= 0.7 && body.jaccard >= 0.45;
+  if (anchorOk && titlePhrase.intersection >= 1 && body.intersection >= 5 && bodyPhrase.intersection >= 1 && body.containment >= 0.55) return true;
+  return anchorOk && title.intersection >= 3 && body.intersection >= 7 && body.containment >= 0.7 && body.jaccard >= 0.45;
 }
 
 function dedupeArticles(articles) {
