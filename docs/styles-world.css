@@ -317,6 +317,14 @@ button {
   .filter--world-link { margin-left: 0; }
 }
 
+@media (max-width: 720px) {
+  .filters {
+    position: static;
+    top: auto;
+    z-index: auto;
+  }
+}
+
 /* ---------- Main ---------- */
 main {
   padding: var(--s-6) var(--s-5) var(--s-12);
