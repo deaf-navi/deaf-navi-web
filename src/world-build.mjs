@@ -208,7 +208,7 @@ function renderArticle(article, index, mode = 'jp') {
   const topicLabel = topicUi[article.topic] ?? article.topicLabel ?? 'General';
   const text = articleText(article, mode);
   const originalHtml = mode === 'jp' && text.original
-    ? `<p class="card__original" lang="en">${escapeHtml(text.original)}</p>`
+    ? `\n        <p class="card__original" lang="en">${escapeHtml(text.original)}</p>`
     : '';
   return `
       <article class="card world-card" data-region="${escapeHtml(article.region)}" data-topic="${escapeHtml(article.topic)}" data-index="${index}"${hidden}>
@@ -220,8 +220,7 @@ function renderArticle(article, index, mode = 'jp') {
         <h3 class="card__title" lang="${text.lang}">
           <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text.title)}</a>
         </h3>
-        <p class="card__summary" lang="${text.lang}">${escapeHtml(text.summary)}</p>
-        ${originalHtml}
+        <p class="card__summary" lang="${text.lang}">${escapeHtml(text.summary)}</p>${originalHtml}
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
           <span class="world-card__score" title="curation score">score ${escapeHtml(article.curationScore ?? '')}</span>

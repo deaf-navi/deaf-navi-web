@@ -5,6 +5,7 @@
 
   const regionButtons = Array.from(document.querySelectorAll('[data-filter-region]'));
   const topicButtons = Array.from(document.querySelectorAll('[data-filter-topic]'));
+  const articlesContainer = document.getElementById('articles');
   const articles = Array.from(document.querySelectorAll('.world-card'));
   const emptyMsg = document.getElementById('empty-msg');
   const visibleCountEl = document.getElementById('visible-count');
@@ -33,25 +34,63 @@
     return regionMatch && topicMatch;
   }
 
+  function cardIndex(card) {
+    const value = Number.parseInt(card.getAttribute('data-index') || '', 10);
+    return Number.isFinite(value) ? value : Number.MAX_SAFE_INTEGER;
+  }
+
+  function balanceAllRegionCards(cards) {
+    const regionOrder = ['asia_oceania', 'americas', 'europe_cis', 'middle_east_africa'];
+    const groups = new Map(regionOrder.map((region) => [region, []]));
+    const fallbackRegion = regionOrder[0];
+
+    cards
+      .slice()
+      .sort((a, b) => cardIndex(a) - cardIndex(b))
+      .forEach((card) => {
+        const region = card.getAttribute('data-region');
+        const key = groups.has(region) ? region : fallbackRegion;
+        groups.get(key).push(card);
+      });
+
+    const ordered = [];
+    while ([...groups.values()].some((items) => items.length)) {
+      const active = regionOrder
+        .map((region) => groups.get(region))
+        .filter((items) => items?.length)
+        .sort((a, b) => cardIndex(a[0]) - cardIndex(b[0]));
+      active.forEach((items) => ordered.push(items.shift()));
+    }
+    return ordered;
+  }
+
+  function orderedMatches() {
+    const matchedCards = articles.filter(matchesFilters);
+    if (currentRegion === 'all') return balanceAllRegionCards(matchedCards);
+    return matchedCards.sort((a, b) => cardIndex(a) - cardIndex(b));
+  }
+
   function remainingText(count) {
     return isEnglish ? `(${count} more)` : `（あと ${count} 件）`;
   }
 
   function apply() {
-    let matched = 0;
-    let shown = 0;
+    const matchedCards = orderedMatches();
+    const visibleCards = new Set(matchedCards.slice(0, limit));
+    const matched = matchedCards.length;
+    const shown = visibleCards.size;
 
     articles.forEach((card) => {
-      if (!matchesFilters(card)) {
-        card.hidden = true;
-        return;
-      }
-
-      matched += 1;
-      const shouldShow = shown < limit;
-      card.hidden = !shouldShow;
-      if (shouldShow) shown += 1;
+      card.hidden = !visibleCards.has(card);
     });
+
+    if (articlesContainer) {
+      matchedCards.forEach((card) => articlesContainer.appendChild(card));
+      articles
+        .filter((card) => !matchesFilters(card))
+        .sort((a, b) => cardIndex(a) - cardIndex(b))
+        .forEach((card) => articlesContainer.appendChild(card));
+    }
 
     if (visibleCountEl) visibleCountEl.textContent = String(shown);
     if (totalCountEl) totalCountEl.textContent = String(matched);

@@ -1019,7 +1019,7 @@ function selectFreshBalancedArticles(articles, limit = MAX_ARTICLES) {
     seen.add(article.id);
   }
 
-  return selected;
+  return selectFreshInterleavedArticles(selected);
 }
 
 async function loadTranslationCache() {
@@ -1440,7 +1440,7 @@ async function loadWorldNews() {
   return {
     articles: selected,
     report: {
-      version: 'world-v4',
+      version: 'world-v5',
       rawCount: all.length,
       dedupedCount: dedupedAll.length,
       selectedCount: selected.length,
