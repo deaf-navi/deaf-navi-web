@@ -40,6 +40,8 @@ jobs:
           CODEX_APP_SERVER_TIMEOUT_SECONDS: ${{ vars.CODEX_APP_SERVER_TIMEOUT_SECONDS || '120' }}
           WORLD_JP_CODEX_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_BATCH_SIZE || '20' }}
           WORLD_JP_CODEX_MAX_ITEMS: ${{ vars.WORLD_JP_CODEX_MAX_ITEMS || '600' }}
+          WORLD_JP_CODEX_RETRIES: ${{ vars.WORLD_JP_CODEX_RETRIES || '1' }}
+          WORLD_JP_CODEX_MIN_COVERAGE: ${{ vars.WORLD_JP_CODEX_MIN_COVERAGE || '0.85' }}
           WORLD_JP_REQUIRE_CODEX_POST_EDIT: '1'
           WORLD_REGION_MIN_ARTICLES: ${{ vars.WORLD_REGION_MIN_ARTICLES || '50' }}
         run: npm run generate:world
@@ -88,7 +90,7 @@ jobs:
               '想定される主な原因:',
               '- VPS上の `deaf-navi-codex-app-server` が落ちている',
               '- `CODEX_APP_SERVER_URL` / `CODEX_APP_SERVER_TOKEN` のGitHub Secretsが不一致',
-              '- Codex後処理が600件まで完了せず、公開更新を止めた',
+              '- Codex後処理の成功率が必要なしきい値を下回った',
               '- Google News / 翻訳 / 外部通信の一時的な失敗',
               '',
               '初動確認:',
