@@ -115,7 +115,9 @@ function extractJson(text) {
 }
 
 function compactError(text) {
-  return text.replace(/\s+/g, ' ').trim().slice(0, 1200);
+  const compact = text.replace(/\s+/g, ' ').trim();
+  if (compact.length <= 1200) return compact;
+  return `${compact.slice(0, 500)} ... ${compact.slice(-700)}`;
 }
 
 function runCodex(prompt) {

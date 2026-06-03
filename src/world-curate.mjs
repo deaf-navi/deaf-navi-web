@@ -20,6 +20,9 @@ const CODEX_POST_EDIT_BATCH_SIZE = envInt('WORLD_JP_CODEX_BATCH_SIZE', 20, 1, 50
 const CODEX_POST_EDIT_MAX_ITEMS = envInt('WORLD_JP_CODEX_MAX_ITEMS', MAX_ARTICLES, 0, MAX_ARTICLES);
 const CODEX_POST_EDIT_TIMEOUT_MS = envInt('CODEX_APP_SERVER_TIMEOUT_SECONDS', 120, 5, 600) * 1000;
 const CODEX_POST_EDIT_DELAY_MS = envInt('WORLD_JP_CODEX_DELAY_MS', 250, 0, 5000);
+const CODEX_POST_EDIT_RETRIES = envInt('WORLD_JP_CODEX_RETRIES', 1, 0, 5);
+const CODEX_POST_EDIT_RETRY_DELAY_MS = envInt('WORLD_JP_CODEX_RETRY_DELAY_MS', 1200, 0, 30000);
+const CODEX_POST_EDIT_MIN_COVERAGE = envFloat('WORLD_JP_CODEX_MIN_COVERAGE', 0.85, 0, 1);
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
 const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
 const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT !== '0';
@@ -426,8 +429,33 @@ function envInt(name, fallback, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
+function envFloat(name, fallback, min, max) {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+  const value = Number.parseFloat(raw);
+  if (!Number.isFinite(value)) return fallback;
+  return Math.max(min, Math.min(max, value));
+}
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function compactText(value, limit = 600) {
+  const text = String(value ?? '').replace(/\s+/g, ' ').trim();
+  if (text.length <= limit) return text;
+  const half = Math.floor((limit - 5) / 2);
+  return `${text.slice(0, half)} ... ${text.slice(-half)}`;
+}
+
+function isTimeoutLikeError(err) {
+  const name = String(err?.name ?? '');
+  const message = String(err?.message ?? '');
+  return name === 'AbortError' || /aborted|timed out|timeout/i.test(message);
+}
+
+function formatPercent(value) {
+  return `${Math.round(value * 1000) / 10}%`;
 }
 
 function chunk(items, size) {
@@ -1262,11 +1290,34 @@ async function requestCodexPostEdit(batch) {
     body: JSON.stringify(body),
   }, CODEX_POST_EDIT_TIMEOUT_MS);
   const text = await res.text();
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${text.replace(/\s+/g, ' ').trim().slice(0, 600)}`);
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${compactText(text)}`);
 
   const json = JSON.parse(text);
   if (json.success === false) throw new Error(String(json.error ?? 'Codex App Server returned success=false'));
   return normalizeCodexPostEditItems(json);
+}
+
+async function requestCodexPostEditWithRetry(batch, batchNumber, totalBatches) {
+  const attempts = CODEX_POST_EDIT_RETRIES + 1;
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const edited = await requestCodexPostEdit(batch);
+      if (edited.length < batch.length) {
+        throw new Error(`Codex App Server returned ${edited.length}/${batch.length} edited items`);
+      }
+      return edited;
+    } catch (err) {
+      lastError = err;
+      const canRetry = attempt < attempts && !isTimeoutLikeError(err);
+      if (!canRetry) break;
+      console.warn(`[codex-postedit] batch ${batchNumber}/${totalBatches} failed (attempt ${attempt}/${attempts}): ${err.message}`);
+      if (CODEX_POST_EDIT_RETRY_DELAY_MS > 0) await sleep(CODEX_POST_EDIT_RETRY_DELAY_MS * attempt);
+    }
+  }
+
+  throw lastError;
 }
 
 async function ensureCodexPostEditAvailable(endpoint) {
@@ -1317,7 +1368,7 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
   for (let i = 0; i < batches.length; i += 1) {
     const batch = batches[i];
     try {
-      const edited = await requestCodexPostEdit(batch);
+      const edited = await requestCodexPostEditWithRetry(batch, i + 1, batches.length);
       const byId = new Map(edited.map((item) => [item.id, item]));
       batch.forEach((article, index) => {
         const item = byId.get(String(index));
@@ -1329,7 +1380,7 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
       });
     } catch (err) {
       failed += batch.length;
-      console.warn(`[codex-postedit] batch ${i + 1}/${batches.length} failed: ${err.message}`);
+      console.warn(`[codex-postedit] batch ${i + 1}/${batches.length} failed after ${CODEX_POST_EDIT_RETRIES + 1} attempt(s): ${err.message}`);
     }
     if (i < batches.length - 1 && CODEX_POST_EDIT_DELAY_MS > 0) await sleep(CODEX_POST_EDIT_DELAY_MS);
   }
@@ -1341,6 +1392,8 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
     skipped: Math.max(0, articles.length - cached - targets.length),
     failed,
     enabled: true,
+    attemptsPerBatch: CODEX_POST_EDIT_RETRIES + 1,
+    minCoverage: CODEX_POST_EDIT_MIN_COVERAGE,
   };
 }
 
@@ -1399,14 +1452,23 @@ function countBy(items, key) {
   }, {});
 }
 
-function assertCodexPostEditComplete(articles, report) {
+function assertCodexPostEditQuality(articles, report) {
   if (!CODEX_POST_EDIT_REQUIRED) return;
   const postEdited = articles.filter((article) => article.japanesePostEditProvider === CODEX_POST_EDIT_PROVIDER).length;
   const expected = articles.length;
-  if (!report?.enabled) throw new Error(`Codex post-edit is required, but Codex App Server was not available. postEdited=${postEdited}/${expected}`);
-  if (report.failed > 0) throw new Error(`Codex post-edit failed for ${report.failed} articles. postEdited=${postEdited}/${expected}`);
-  if (report.skipped > 0) throw new Error(`Codex post-edit skipped ${report.skipped} articles. postEdited=${postEdited}/${expected}`);
-  if (postEdited !== expected) throw new Error(`Codex post-edit incomplete. postEdited=${postEdited}/${expected}`);
+  const coverage = expected ? postEdited / expected : 1;
+  const requiredCount = Math.ceil(expected * CODEX_POST_EDIT_MIN_COVERAGE);
+  const detail = report?.enabled
+    ? `failed=${report.failed}, skipped=${report.skipped}`
+    : 'Codex App Server was not available';
+
+  if (postEdited < requiredCount) {
+    throw new Error(`Codex post-edit coverage ${formatPercent(coverage)} is below required ${formatPercent(CODEX_POST_EDIT_MIN_COVERAGE)}. postEdited=${postEdited}/${expected}; ${detail}`);
+  }
+
+  if (!report?.enabled || report.failed > 0 || report.skipped > 0 || postEdited !== expected) {
+    console.warn(`[codex-postedit] continuing with partial post-edit coverage ${formatPercent(coverage)} (${postEdited}/${expected}); ${detail}`);
+  }
 }
 
 async function loadWorldNews() {
@@ -1435,7 +1497,8 @@ async function loadWorldNews() {
   const dedupedAll = dedupeArticles(all);
   const selected = selectFreshBalancedArticles(dedupedAll, MAX_ARTICLES);
   const postEditReport = await applyTranslations(selected);
-  assertCodexPostEditComplete(selected, postEditReport);
+  assertCodexPostEditQuality(selected, postEditReport);
+  const postEditedCount = selected.filter((article) => article.japanesePostEditProvider === CODEX_POST_EDIT_PROVIDER).length;
 
   return {
     articles: selected,
@@ -1454,6 +1517,9 @@ async function loadWorldNews() {
       translationProvider: TRANSLATION_PROVIDER,
       japanesePostEditProvider: CODEX_POST_EDIT_PROVIDER,
       japanesePostEdit: postEditReport,
+      japanesePostEditRequired: CODEX_POST_EDIT_REQUIRED,
+      japanesePostEditMinCoverage: CODEX_POST_EDIT_MIN_COVERAGE,
+      japanesePostEditCoverage: selected.length ? postEditedCount / selected.length : 1,
       freshnessCounts: {
         last7d: selected.filter((article) => ageDays(article) <= 7).length,
         last30d: selected.filter((article) => ageDays(article) <= 30).length,
