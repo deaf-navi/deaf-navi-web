@@ -69,6 +69,7 @@ function validateRequestBody(body) {
 }
 
 function buildPrompt(body) {
+  const userPrompt = body.user_prompt ?? ['# Source text', body.source_text ?? ''].join('\n');
   return [
     'You are the Codex App Server text backend for Deaf Navi Web.',
     'Do not browse the web, inspect files, or call external tools.',
@@ -95,14 +96,13 @@ function buildPrompt(body) {
       platform: body.platform,
       count: body.count ?? 1,
       metadata: body.metadata ?? {},
-      source_text: body.source_text ?? null,
     }, null, 2),
     '',
     '# System prompt',
     body.system_prompt ?? '',
     '',
     '# User prompt',
-    body.user_prompt ?? '',
+    userPrompt,
   ].join('\n');
 }
 

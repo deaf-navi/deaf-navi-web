@@ -22,6 +22,7 @@ const CODEX_POST_EDIT_TIMEOUT_MS = envInt('CODEX_APP_SERVER_TIMEOUT_SECONDS', 12
 const CODEX_POST_EDIT_DELAY_MS = envInt('WORLD_JP_CODEX_DELAY_MS', 250, 0, 5000);
 const CODEX_POST_EDIT_RETRIES = envInt('WORLD_JP_CODEX_RETRIES', 1, 0, 5);
 const CODEX_POST_EDIT_RETRY_DELAY_MS = envInt('WORLD_JP_CODEX_RETRY_DELAY_MS', 1200, 0, 30000);
+const CODEX_POST_EDIT_SPLIT_BATCH_SIZE = envInt('WORLD_JP_CODEX_SPLIT_BATCH_SIZE', 10, 1, CODEX_POST_EDIT_BATCH_SIZE);
 const CODEX_POST_EDIT_MIN_COVERAGE = envFloat('WORLD_JP_CODEX_MIN_COVERAGE', 0.85, 0, 1);
 const CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE = process.env.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE === '1';
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
@@ -1240,10 +1241,10 @@ function normalizeCodexPostEditItems(json) {
   return [];
 }
 
-async function requestCodexPostEdit(batch) {
+async function requestCodexPostEdit(batch, idOffset = 0) {
   const endpoint = codexEndpoint();
   const requestItems = batch.map((article, index) => ({
-    id: String(index),
+    id: String(idOffset + index),
     source: article.sourceName,
     region: article.regionLabel,
     topic: article.topicLabel,
@@ -1298,13 +1299,13 @@ async function requestCodexPostEdit(batch) {
   return normalizeCodexPostEditItems(json);
 }
 
-async function requestCodexPostEditWithRetry(batch, batchNumber, totalBatches) {
+async function requestCodexPostEditWithRetry(batch, batchLabel, totalBatches, idOffset = 0) {
   const attempts = CODEX_POST_EDIT_RETRIES + 1;
   let lastError;
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
-      const edited = await requestCodexPostEdit(batch);
+      const edited = await requestCodexPostEdit(batch, idOffset);
       if (edited.length < batch.length) {
         throw new Error(`Codex App Server returned ${edited.length}/${batch.length} edited items`);
       }
@@ -1313,12 +1314,39 @@ async function requestCodexPostEditWithRetry(batch, batchNumber, totalBatches) {
       lastError = err;
       const canRetry = attempt < attempts && !isTimeoutLikeError(err);
       if (!canRetry) break;
-      console.warn(`[codex-postedit] batch ${batchNumber}/${totalBatches} failed (attempt ${attempt}/${attempts}): ${err.message}`);
+      console.warn(`[codex-postedit] batch ${batchLabel}/${totalBatches} failed (attempt ${attempt}/${attempts}): ${err.message}`);
       if (CODEX_POST_EDIT_RETRY_DELAY_MS > 0) await sleep(CODEX_POST_EDIT_RETRY_DELAY_MS * attempt);
     }
   }
 
   throw lastError;
+}
+
+async function requestCodexPostEditWithSplit(batch, batchNumber, totalBatches) {
+  try {
+    const edited = await requestCodexPostEditWithRetry(batch, String(batchNumber), totalBatches);
+    return { edited, failed: 0 };
+  } catch (err) {
+    if (batch.length <= CODEX_POST_EDIT_SPLIT_BATCH_SIZE) throw err;
+    console.warn(`[codex-postedit] splitting batch ${batchNumber}/${totalBatches} into ${CODEX_POST_EDIT_SPLIT_BATCH_SIZE}-item chunks after failure: ${err.message}`);
+  }
+
+  let failed = 0;
+  const edited = [];
+  const splitBatches = chunk(batch, CODEX_POST_EDIT_SPLIT_BATCH_SIZE);
+  for (let splitIndex = 0, offset = 0; splitIndex < splitBatches.length; splitIndex += 1) {
+    const splitBatch = splitBatches[splitIndex];
+    const splitLabel = `${batchNumber}.${splitIndex + 1}`;
+    try {
+      edited.push(...await requestCodexPostEditWithRetry(splitBatch, splitLabel, totalBatches, offset));
+    } catch (err) {
+      failed += splitBatch.length;
+      console.warn(`[codex-postedit] split batch ${splitLabel}/${totalBatches} failed after ${CODEX_POST_EDIT_RETRIES + 1} attempt(s): ${err.message}`);
+    }
+    offset += splitBatch.length;
+  }
+
+  return { edited, failed };
 }
 
 async function ensureCodexPostEditAvailable(endpoint) {
@@ -1369,7 +1397,8 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
   for (let i = 0; i < batches.length; i += 1) {
     const batch = batches[i];
     try {
-      const edited = await requestCodexPostEditWithRetry(batch, i + 1, batches.length);
+      const result = await requestCodexPostEditWithSplit(batch, i + 1, batches.length);
+      const edited = result.edited;
       const byId = new Map(edited.map((item) => [item.id, item]));
       batch.forEach((article, index) => {
         const item = byId.get(String(index));
@@ -1379,6 +1408,7 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
         article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
         updated += 1;
       });
+      failed += result.failed;
     } catch (err) {
       failed += batch.length;
       console.warn(`[codex-postedit] batch ${i + 1}/${batches.length} failed after ${CODEX_POST_EDIT_RETRIES + 1} attempt(s): ${err.message}`);
@@ -1394,6 +1424,7 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
     failed,
     enabled: true,
     attemptsPerBatch: CODEX_POST_EDIT_RETRIES + 1,
+    splitBatchSize: CODEX_POST_EDIT_SPLIT_BATCH_SIZE,
     minCoverage: CODEX_POST_EDIT_MIN_COVERAGE,
   };
 }
