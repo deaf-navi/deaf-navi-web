@@ -23,6 +23,7 @@ const CODEX_POST_EDIT_DELAY_MS = envInt('WORLD_JP_CODEX_DELAY_MS', 250, 0, 5000)
 const CODEX_POST_EDIT_RETRIES = envInt('WORLD_JP_CODEX_RETRIES', 1, 0, 5);
 const CODEX_POST_EDIT_RETRY_DELAY_MS = envInt('WORLD_JP_CODEX_RETRY_DELAY_MS', 1200, 0, 30000);
 const CODEX_POST_EDIT_SPLIT_BATCH_SIZE = envInt('WORLD_JP_CODEX_SPLIT_BATCH_SIZE', 10, 1, CODEX_POST_EDIT_BATCH_SIZE);
+const CODEX_POST_EDIT_MAX_CONSECUTIVE_FAILED_BATCHES = envInt('WORLD_JP_CODEX_MAX_CONSECUTIVE_FAILED_BATCHES', 2, 0, 20);
 const CODEX_POST_EDIT_MIN_COVERAGE = envFloat('WORLD_JP_CODEX_MIN_COVERAGE', 0.85, 0, 1);
 const CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE = process.env.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE === '1';
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
@@ -1391,11 +1392,16 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
 
   let updated = 0;
   let failed = 0;
+  let skippedAfterCircuitBreaker = 0;
+  let consecutiveFailedBatches = 0;
+  let stoppedAfterConsecutiveFailures = false;
   const batches = chunk(targets, CODEX_POST_EDIT_BATCH_SIZE);
   console.log(`[codex-postedit] target articles: ${targets.length}, batches: ${batches.length}`);
 
   for (let i = 0; i < batches.length; i += 1) {
     const batch = batches[i];
+    const updatedBeforeBatch = updated;
+    let batchFailed = 0;
     try {
       const result = await requestCodexPostEditWithSplit(batch, i + 1, batches.length);
       const edited = result.edited;
@@ -1408,11 +1414,27 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
         article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
         updated += 1;
       });
-      failed += result.failed;
+      batchFailed = result.failed;
+      failed += batchFailed;
     } catch (err) {
-      failed += batch.length;
+      batchFailed = batch.length;
+      failed += batchFailed;
       console.warn(`[codex-postedit] batch ${i + 1}/${batches.length} failed after ${CODEX_POST_EDIT_RETRIES + 1} attempt(s): ${err.message}`);
     }
+
+    const batchUpdated = updated - updatedBeforeBatch;
+    consecutiveFailedBatches = batchUpdated === 0 && batchFailed >= batch.length ? consecutiveFailedBatches + 1 : 0;
+    if (
+      CODEX_POST_EDIT_MAX_CONSECUTIVE_FAILED_BATCHES > 0
+      && consecutiveFailedBatches >= CODEX_POST_EDIT_MAX_CONSECUTIVE_FAILED_BATCHES
+      && i < batches.length - 1
+    ) {
+      skippedAfterCircuitBreaker = batches.slice(i + 1).reduce((sum, remainingBatch) => sum + remainingBatch.length, 0);
+      stoppedAfterConsecutiveFailures = true;
+      console.warn(`[codex-postedit] stopping post-edit attempts after ${consecutiveFailedBatches} consecutive failed batches; skipping ${skippedAfterCircuitBreaker} remaining articles`);
+      break;
+    }
+
     if (i < batches.length - 1 && CODEX_POST_EDIT_DELAY_MS > 0) await sleep(CODEX_POST_EDIT_DELAY_MS);
   }
 
@@ -1420,11 +1442,13 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
     checked: targets.length,
     updated,
     cached,
-    skipped: Math.max(0, articles.length - cached - targets.length),
+    skipped: Math.max(0, articles.length - cached - targets.length) + skippedAfterCircuitBreaker,
     failed,
     enabled: true,
     attemptsPerBatch: CODEX_POST_EDIT_RETRIES + 1,
     splitBatchSize: CODEX_POST_EDIT_SPLIT_BATCH_SIZE,
+    maxConsecutiveFailedBatches: CODEX_POST_EDIT_MAX_CONSECUTIVE_FAILED_BATCHES,
+    stoppedAfterConsecutiveFailures,
     minCoverage: CODEX_POST_EDIT_MIN_COVERAGE,
   };
 }
