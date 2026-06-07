@@ -23,6 +23,7 @@ const CODEX_POST_EDIT_DELAY_MS = envInt('WORLD_JP_CODEX_DELAY_MS', 250, 0, 5000)
 const CODEX_POST_EDIT_RETRIES = envInt('WORLD_JP_CODEX_RETRIES', 1, 0, 5);
 const CODEX_POST_EDIT_RETRY_DELAY_MS = envInt('WORLD_JP_CODEX_RETRY_DELAY_MS', 1200, 0, 30000);
 const CODEX_POST_EDIT_MIN_COVERAGE = envFloat('WORLD_JP_CODEX_MIN_COVERAGE', 0.85, 0, 1);
+const CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE = process.env.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE === '1';
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
 const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
 const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT !== '0';
@@ -1463,7 +1464,10 @@ function assertCodexPostEditQuality(articles, report) {
     : 'Codex App Server was not available';
 
   if (postEdited < requiredCount) {
-    throw new Error(`Codex post-edit coverage ${formatPercent(coverage)} is below required ${formatPercent(CODEX_POST_EDIT_MIN_COVERAGE)}. postEdited=${postEdited}/${expected}; ${detail}`);
+    const message = `Codex post-edit coverage ${formatPercent(coverage)} is below target ${formatPercent(CODEX_POST_EDIT_MIN_COVERAGE)}. postEdited=${postEdited}/${expected}; ${detail}`;
+    if (CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE) throw new Error(message);
+    console.warn(`[codex-postedit] ${message}; continuing with translated fallback content`);
+    return;
   }
 
   if (!report?.enabled || report.failed > 0 || report.skipped > 0 || postEdited !== expected) {
@@ -1519,6 +1523,7 @@ async function loadWorldNews() {
       japanesePostEdit: postEditReport,
       japanesePostEditRequired: CODEX_POST_EDIT_REQUIRED,
       japanesePostEditMinCoverage: CODEX_POST_EDIT_MIN_COVERAGE,
+      japanesePostEditFailOnLowCoverage: CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE,
       japanesePostEditCoverage: selected.length ? postEditedCount / selected.length : 1,
       freshnessCounts: {
         last7d: selected.filter((article) => ageDays(article) <= 7).length,
