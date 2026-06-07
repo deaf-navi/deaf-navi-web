@@ -21,22 +21,28 @@ set +a
 
 PORT="${CODEX_APP_SERVER_PORT:-8789}"
 TOKEN="${CODEX_APP_SERVER_TOKEN:-}"
-HEALTH_URL="http://127.0.0.1:${PORT}/health"
+DEEP_CHECK="${DEAF_NAVI_CODEX_HEALTHCHECK_DEEP:-1}"
+TIMEOUT_SECONDS="${DEAF_NAVI_CODEX_HEALTHCHECK_TIMEOUT_SECONDS:-90}"
+HEALTH_PATH="/health"
+if [[ "$DEEP_CHECK" != "0" ]]; then
+  HEALTH_PATH="/ready"
+fi
+HEALTH_URL="http://127.0.0.1:${PORT}${HEALTH_PATH}"
 
 if [[ -z "$TOKEN" ]]; then
   log "CODEX_APP_SERVER_TOKEN is empty"
   exit 1
 fi
 
-if curl -fsS -m 10 -H "Authorization: Bearer ${TOKEN}" "$HEALTH_URL" >/dev/null; then
+if curl -fsS -m "$TIMEOUT_SECONDS" -H "Authorization: Bearer ${TOKEN}" "$HEALTH_URL" >/dev/null; then
   exit 0
 fi
 
-log "health check failed; restarting ${SERVICE_NAME}"
+log "health check failed at ${HEALTH_PATH}; restarting ${SERVICE_NAME}"
 pm2 restart "$SERVICE_NAME" --update-env >/dev/null
 sleep 5
 
-if curl -fsS -m 10 -H "Authorization: Bearer ${TOKEN}" "$HEALTH_URL" >/dev/null; then
+if curl -fsS -m "$TIMEOUT_SECONDS" -H "Authorization: Bearer ${TOKEN}" "$HEALTH_URL" >/dev/null; then
   log "service recovered after restart"
   exit 0
 fi

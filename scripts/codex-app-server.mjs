@@ -11,11 +11,18 @@ const host = String(argValue('--host') ?? process.env.CODEX_APP_SERVER_HOST ?? '
 const token = String(argValue('--token') ?? process.env.CODEX_APP_SERVER_TOKEN ?? '').trim();
 const requireToken = process.env.CODEX_APP_SERVER_REQUIRE_TOKEN !== '0';
 const codexBin = String(process.env.CODEX_BIN ?? 'codex').trim();
-const model = String(process.env.CODEX_APP_SERVER_MODEL ?? '').trim();
-const timeoutMs = Number(process.env.CODEX_APP_SERVER_EXEC_TIMEOUT_MS ?? 180_000);
+const defaultModelFallbacks = ['gpt-5.2-codex', 'gpt-5.1-codex', 'gpt-5-codex'];
+const modelCandidates = uniqueValues([
+  ...splitList(process.env.CODEX_APP_SERVER_MODELS),
+  ...splitList(process.env.CODEX_APP_SERVER_MODEL),
+  ...splitList(process.env.CODEX_APP_SERVER_MODEL_FALLBACKS),
+  ...defaultModelFallbacks,
+]);
+const timeoutMs = Number(process.env.CODEX_APP_SERVER_EXEC_TIMEOUT_MS ?? 100_000);
 const outputLimitBytes = 1024 * 1024 * 4;
 const requestLimitBytes = Number(process.env.CODEX_APP_SERVER_REQUEST_LIMIT_BYTES ?? 768_000);
 const maxBatchItems = Number(process.env.CODEX_APP_SERVER_MAX_BATCH_ITEMS ?? 50);
+const exposeErrorDetails = process.env.CODEX_APP_SERVER_EXPOSE_ERROR_DETAILS === '1';
 const allowedTypes = new Set(
   (process.env.CODEX_APP_SERVER_ALLOWED_TYPES ?? 'world_jp_post_edit')
     .split(',')
@@ -27,14 +34,26 @@ if (requireToken && !token) {
   throw new Error('CODEX_APP_SERVER_TOKEN is required when CODEX_APP_SERVER_REQUIRE_TOKEN is enabled');
 }
 
+function splitList(value) {
+  return String(value ?? '')
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function uniqueValues(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
 function sendJson(res, status, body) {
   res.writeHead(status, { 'content-type': 'application/json; charset=utf-8' });
   res.end(JSON.stringify(body));
 }
 
-function httpError(statusCode, message) {
+function httpError(statusCode, message, extra = {}) {
   const error = new Error(message);
   error.statusCode = statusCode;
+  Object.assign(error, extra);
   return error;
 }
 
@@ -120,12 +139,15 @@ function compactError(text) {
   return `${compact.slice(0, 500)} ... ${compact.slice(-700)}`;
 }
 
-function runCodex(prompt) {
+function runCodexOnce(prompt, model) {
   const args = [
     'exec',
     '--sandbox',
     'read-only',
     '--skip-git-repo-check',
+    '--color',
+    'never',
+    '--ignore-rules',
   ];
   if (model) args.push('--model', model);
   args.push('-');
@@ -168,13 +190,31 @@ function runCodex(prompt) {
       settled = true;
       clearTimeout(timer);
       if (code === 0) {
-        resolve(stdout);
+        resolve({ stdout, model });
         return;
       }
       reject(new Error(`codex exec failed (${signal ? `signal ${signal}` : `exit ${code}`}): ${compactError(stderr || stdout)}`));
     });
 
     child.stdin.end(prompt);
+  });
+}
+
+async function runCodex(prompt) {
+  const failures = [];
+  for (const candidate of modelCandidates) {
+    try {
+      return await runCodexOnce(prompt, candidate);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      failures.push({ model: candidate, message });
+      console.error(`[codex-app-server] codex exec failed model=${candidate}: ${message}`);
+    }
+  }
+
+  throw httpError(502, 'codex exec failed for all configured models', {
+    code: 'codex_exec_failed',
+    failures,
   });
 }
 
@@ -200,6 +240,14 @@ function safeCodexEnv() {
     'XDG_DATA_HOME',
     'XDG_CACHE_HOME',
     'CODEX_HOME',
+    'OPENAI_API_KEY',
+    'OPENAI_ORG_ID',
+    'OPENAI_ORGANIZATION',
+    'OPENAI_PROJECT',
+    'OPENAI_BASE_URL',
+    'OPENAI_TIMEOUT_MS',
+    'OPENAI_MAX_RETRIES',
+    ...splitList(process.env.CODEX_APP_SERVER_ENV_PASSTHROUGH),
   ];
   const env = {};
   for (const key of pass) {
@@ -211,7 +259,7 @@ function safeCodexEnv() {
 async function generate(body) {
   validateRequestBody(body);
   const prompt = buildPrompt(body);
-  const stdout = await runCodex(prompt);
+  const { stdout, model } = await runCodex(prompt);
   const parsed = JSON.parse(extractJson(stdout));
   const items = Array.isArray(parsed.items)
     ? parsed.items
@@ -225,22 +273,89 @@ async function generate(body) {
   return {
     success: parsed.success !== false,
     provider: 'codex_app_server',
+    model,
     items,
   };
 }
 
+function selfTestBody() {
+  const item = {
+    id: '0',
+    source: 'Codex App Server self test',
+    region: 'self-test',
+    topic: 'health',
+    original_title: 'Deaf access service test',
+    original_summary: 'A short service readiness check for Deaf Navi.',
+    current_title_ja: 'ろう者向けサービス確認',
+    current_summary_ja: 'Deaf Naviの短い疎通確認です。',
+  };
+  return {
+    type: 'world_jp_post_edit',
+    tone: 'news-curation',
+    platform: 'deaf-navi-world-jp',
+    count: 1,
+    source_text: JSON.stringify({ items: [item] }),
+    metadata: { site: 'deaf-navi-world-jp', self_test: true },
+    system_prompt: '返答はJSONのみ。入力の意味を変えずに自然な日本語へ整えてください。',
+    user_prompt: [
+      '# Task',
+      'itemsを自然な日本語ニュース見出しに整えてください。',
+      '# Output JSON shape',
+      '{"success":true,"provider":"codex_app_server","items":[{"id":"0","title":"自然な日本語タイトル","summary":"自然な日本語の短い要約"}]}',
+      '# Items',
+      JSON.stringify({ items: [item] }, null, 2),
+    ].join('\n'),
+  };
+}
+
+function publicError(err, errorId) {
+  const statusCode = Number.isInteger(err?.statusCode) ? err.statusCode : 500;
+  const body = {
+    success: false,
+    error: err instanceof Error ? err.message : String(err),
+    error_id: errorId,
+  };
+  if (err?.code) body.code = err.code;
+  if (err?.failures) {
+    body.models_tried = err.failures.map((failure) => failure.model);
+    if (exposeErrorDetails) body.failures = err.failures;
+  }
+  if (statusCode >= 500 && !exposeErrorDetails) {
+    body.error = err?.code === 'codex_exec_failed'
+      ? 'codex exec failed for all configured models'
+      : `internal server error (${errorId})`;
+  }
+  return { statusCode, body };
+}
+
 const server = http.createServer(async (req, res) => {
   try {
-    if (req.method === 'GET' && req.url === '/health') {
+    const url = new URL(req.url ?? '/', `http://${host}:${port}`);
+    if (req.method === 'GET' && url.pathname === '/health') {
       if (!authorized(req)) {
         sendJson(res, 401, { success: false, error: 'unauthorized' });
         return;
       }
-      sendJson(res, 200, { ok: true, provider: 'codex_app_server' });
+      sendJson(res, 200, {
+        ok: true,
+        provider: 'codex_app_server',
+        codex_bin: codexBin,
+        models: modelCandidates,
+      });
       return;
     }
 
-    if (req.method !== 'POST' || req.url !== '/generate') {
+    if (req.method === 'GET' && url.pathname === '/ready') {
+      if (!authorized(req)) {
+        sendJson(res, 401, { success: false, error: 'unauthorized' });
+        return;
+      }
+      const result = await generate(selfTestBody());
+      sendJson(res, 200, { ok: true, provider: 'codex_app_server', model: result.model });
+      return;
+    }
+
+    if (req.method !== 'POST' || url.pathname !== '/generate') {
       sendJson(res, 404, { success: false, error: 'not found' });
       return;
     }
@@ -254,8 +369,10 @@ const server = http.createServer(async (req, res) => {
     const result = await generate(body);
     sendJson(res, 200, result);
   } catch (err) {
-    const statusCode = Number.isInteger(err?.statusCode) ? err.statusCode : 500;
-    sendJson(res, statusCode, { success: false, error: err instanceof Error ? err.message : String(err) });
+    const errorId = `codex-app-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+    console.error(`[codex-app-server] request failed id=${errorId}`, err);
+    const { statusCode, body } = publicError(err, errorId);
+    sendJson(res, statusCode, body);
   }
 });
 

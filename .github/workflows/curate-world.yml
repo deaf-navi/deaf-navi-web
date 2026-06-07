@@ -98,6 +98,8 @@ jobs:
               '初動確認:',
               '- GitHub Actionsの該当Runログで `codex-postedit` とエラー箇所を確認',
               '- VPSで `pm2 describe deaf-navi-codex-app-server` を確認',
+              '- VPSで `npm run codex-app-server:smoke` または `curl` で `/ready` を確認',
+              '- `/etc/deaf-navi-codex-app-server.env` の `CODEX_APP_SERVER_MODELS` と `OPENAI_API_KEY` を確認',
               '- VPSで `systemctl status deaf-navi-codex-healthcheck.timer` を確認',
               '- トークン値はIssueやログに貼らない',
               '',
