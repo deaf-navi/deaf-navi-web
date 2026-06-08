@@ -28,6 +28,7 @@ const CODEX_POST_EDIT_MIN_COVERAGE = envFloat('WORLD_JP_CODEX_MIN_COVERAGE', 0.8
 const CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE = process.env.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE === '1';
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
 const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
+const CODEX_APP_SERVER_READINESS_PATH = process.env.CODEX_APP_SERVER_READINESS_PATH?.trim() || '/ready';
 const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT !== '0';
 const CODEX_POST_EDIT_REQUIRED = process.env.WORLD_JP_REQUIRE_CODEX_POST_EDIT === '1';
 const CODEX_POST_EDIT_PROVIDER = 'Codex App Server Japanese news editor v1';
@@ -1351,14 +1352,18 @@ async function requestCodexPostEditWithSplit(batch, batchNumber, totalBatches) {
 }
 
 async function ensureCodexPostEditAvailable(endpoint) {
-  const healthUrl = endpoint.replace(/\/generate$/, '/health');
-  const health = await fetchRequestWithTimeout(healthUrl, { method: 'GET', headers: authHeaders() }, 3000);
+  const readinessPath = CODEX_APP_SERVER_READINESS_PATH.startsWith('/')
+    ? CODEX_APP_SERVER_READINESS_PATH
+    : `/${CODEX_APP_SERVER_READINESS_PATH}`;
+  const healthUrl = endpoint.replace(/\/generate$/, readinessPath);
+  const health = await fetchRequestWithTimeout(healthUrl, { method: 'GET', headers: authHeaders() }, CODEX_POST_EDIT_TIMEOUT_MS);
   const healthText = await health.text();
   const healthJson = parseJsonObject(healthText);
-  if (!health.ok) throw new Error(`health HTTP ${health.status}`);
+  if (!health.ok) throw new Error(`readiness HTTP ${health.status}: ${compactText(healthText)}`);
   if (healthJson?.provider !== 'codex_app_server') {
-    throw new Error('health response is not Codex App Server');
+    throw new Error('readiness response is not Codex App Server');
   }
+  if (healthJson.ok === false) throw new Error(`readiness failed: ${compactText(healthText)}`);
 }
 
 async function applyCodexJapanesePostEdit(articles, cacheArticles) {
