@@ -11,7 +11,7 @@ const host = String(argValue('--host') ?? process.env.CODEX_APP_SERVER_HOST ?? '
 const token = String(argValue('--token') ?? process.env.CODEX_APP_SERVER_TOKEN ?? '').trim();
 const requireToken = process.env.CODEX_APP_SERVER_REQUIRE_TOKEN !== '0';
 const codexBin = String(process.env.CODEX_BIN ?? 'codex').trim();
-const defaultModelFallbacks = ['gpt-5.2-codex', 'gpt-5.1-codex', 'gpt-5-codex'];
+const defaultModelFallbacks = ['gpt-5.4-mini', 'gpt-5.2-codex', 'gpt-5.1-codex', 'gpt-5-codex'];
 const modelCandidates = uniqueValues([
   ...splitList(process.env.CODEX_APP_SERVER_MODELS),
   ...splitList(process.env.CODEX_APP_SERVER_MODEL),
