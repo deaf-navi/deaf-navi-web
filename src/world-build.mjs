@@ -30,6 +30,7 @@ const ORIGINAL_PAGE_URL = `${SITE_URL}${ORIGINAL_PAGE_FILE}`;
 const FEED_URL = `${SITE_URL}feed-world.xml`;
 const ORIGINAL_FEED_URL = `${SITE_URL}feed-world-original.xml`;
 const SITEMAP_URL = `${SITE_URL}sitemap-world.xml`;
+const HTML_SITEMAP_URL = `${SITE_URL}sitemap.html`;
 const JP_SITE_NAME = 'Deaf Navi World-JP';
 const ORIGINAL_SITE_NAME = 'Deaf Navi World-Original';
 const SITE_DESC = '世界中の主要メディアと多言語の地域別Google News検索から、聴覚障害・ろう者・難聴・手話・情報保障関連ニュースを日本語に翻訳してキュレーションするDeaf Naviの世界版ページ。';
@@ -446,7 +447,7 @@ ${articlesHtml}
     <div class="container">
       <p>${isOriginal ? 'Deaf Navi World-Original shows article titles and summaries in the original source language, gathered from major media and multilingual regional Google News queries.' : 'Deaf Navi World-JP は Google News RSS を入口に、主要メディアと多言語の地域別検索を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正、必要に応じたCodex App Server後編集を通して掲載しています。'}</p>
       <p>${isOriginal ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳と編集補助です。'}</p>
-      <p><a href="./about.html">${isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isOriginal ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${SITEMAP_URL}">${isOriginal ? 'Sitemap' : 'サイトマップ'}</a></p>
+      <p><a href="./about.html">${isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isOriginal ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${HTML_SITEMAP_URL}">${isOriginal ? 'Sitemap' : 'サイトマップ'}</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>

@@ -427,6 +427,127 @@ main {
   font-size: 14px;
 }
 
+/* ---------- Sitemap page ---------- */
+.sitemap-page {
+  padding: var(--s-8) var(--s-5) var(--s-12);
+}
+
+.site-lead--compact {
+  max-width: 680px;
+  margin-top: var(--s-4);
+}
+
+.sitemap-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+  margin-bottom: var(--s-8);
+}
+
+.sitemap-summary > div {
+  min-width: 0;
+  padding: var(--s-4);
+  background: rgba(251, 247, 238, 0.76);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.sitemap-summary__label {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text-tertiary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sitemap-summary strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.sitemap-summary a {
+  color: var(--accent-deep);
+  border-bottom: 1px dotted var(--border-default);
+}
+
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+.sitemap-card {
+  padding: var(--s-5);
+  background:
+    linear-gradient(160deg, rgba(251, 247, 238, 0.94), rgba(239, 230, 211, 0.62)),
+    var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.sitemap-card h2 {
+  margin-bottom: var(--s-4);
+  color: var(--text-primary);
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.sitemap-card ul {
+  display: grid;
+  gap: var(--s-3);
+  list-style: none;
+  padding: 0;
+}
+
+.sitemap-card li {
+  min-width: 0;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sitemap-card li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.sitemap-card a {
+  color: var(--accent-deep);
+  font-weight: 700;
+  border-bottom: 1px dotted rgba(90, 122, 72, 0.32);
+}
+
+.sitemap-card a:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-deep);
+}
+
+.sitemap-card span {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .sitemap-summary,
+  .sitemap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sitemap-card {
+    padding: var(--s-4);
+  }
+}
+
 #articles-heading {
   font-family: var(--font-serif);
   font-size: 24px;

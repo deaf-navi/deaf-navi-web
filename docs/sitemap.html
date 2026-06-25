@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サイトマップ | Deaf Navi Web</title>
+  <meta name="description" content="Deaf Navi Web の主要ページ、RSS、XMLサイトマップ、アプリ連携用JSONへのリンクをまとめたHTMLサイトマップ。">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#5a7a48">
+  <link rel="canonical" href="https://tamas-hub.github.io/deaf-navi-web/sitemap.html">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+
+  <header class="site-header site-header--slim" role="banner">
+    <div class="site-header__leaf" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
+        <path d="M40 170 C 70 140, 100 110, 160 30" />
+        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
+        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
+        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
+      </svg>
+    </div>
+    <div class="container">
+      <p class="site-breadcrumb"><a href="./index.html">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>サイトマップ</span></p>
+      <h1 class="site-title site-title--small"><span class="site-title__brand">サイトマップ</span></h1>
+      <p class="site-lead site-lead--compact">Deaf Navi Web の公開ページと配信データへの入口をまとめています。</p>
+    </div>
+  </header>
+
+  <main id="main" class="container sitemap-page" role="main">
+    <section class="sitemap-summary" aria-label="サイトマップ概要">
+      <div>
+        <span class="sitemap-summary__label">Latest build</span>
+        <strong>2026-06-25 15:46 JST</strong>
+      </div>
+      <div>
+        <span class="sitemap-summary__label">Domestic articles</span>
+        <strong>511</strong>
+      </div>
+      <div>
+        <span class="sitemap-summary__label">Sitemap XML</span>
+        <strong><a href="./sitemap.xml">検索エンジン用</a></strong>
+      </div>
+    </section>
+
+    <div class="sitemap-grid">
+      <section class="sitemap-card" aria-labelledby="sitemap-domestic">
+        <h2 id="sitemap-domestic">国内ニュース</h2>
+        <ul>
+          <li><a href="./index.html">Deaf Navi Web トップ</a><span>聴覚障害・難聴・ろう者コミュニティ向け国内ニュース</span></li>
+          <li><a href="./index-old.html">過去アーカイブ</a><span>通常カテゴリ400件を超えた過去記事</span></li>
+          <li><a href="./feed.xml">RSSフィード</a><span>国内ニュース最新50件</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-world">
+        <h2 id="sitemap-world">World</h2>
+        <ul>
+          <li><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a><span>海外ニュースの日本語翻訳版</span></li>
+          <li><a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a><span>海外ニュースの原文版</span></li>
+          <li><a href="./feed-world.xml">World-JP RSSフィード</a><span>翻訳版の最新フィード</span></li>
+          <li><a href="./feed-world-original.xml">World-Original RSSフィード</a><span>原文版の最新フィード</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-info">
+        <h2 id="sitemap-info">サイト情報</h2>
+        <ul>
+          <li><a href="./about.html">Deaf Naviについて</a><span>情報源・更新頻度・運営情報</span></li>
+          <li><a href="./sitemap.xml">XMLサイトマップ</a><span>検索エンジン向けURL一覧</span></li>
+          <li><a href="./sitemap-world.xml">World XMLサイトマップ</a><span>Worldページ用URL一覧</span></li>
+          <li><a href="./robots.txt">robots.txt</a><span>クロール設定</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-api">
+        <h2 id="sitemap-api">アプリ連携JSON</h2>
+        <ul>
+          <li><a href="./app/v1/manifest.json">manifest.json</a><span>iOSアプリ同期用マニフェスト</span></li>
+          <li><a href="./app/v1/ios-news-v2.json">ios-news-v2.json</a><span>国内ニュース iOS 互換データ</span></li>
+          <li><a href="./app/v1/ios-world-jp-v2.json">ios-world-jp-v2.json</a><span>World-JP iOS 互換データ</span></li>
+          <li><a href="./app/v1/ios-world-original-v2.json">ios-world-original-v2.json</a><span>World-Original iOS 互換データ</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <p class="about__back"><a href="./index.html">← トップページへ戻る</a></p>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="site-footer__copyright">
+        <span>&copy; 2026 TAMA.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Take it easy.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Curated for the Deaf &amp; Hard-of-hearing community.</span>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

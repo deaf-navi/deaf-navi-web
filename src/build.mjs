@@ -28,6 +28,7 @@ const ABOUT_FILE = `about${SUFFIX}.html`;
 const OLD_INDEX_FILE = `index-old${SUFFIX}.html`;
 const FEED_FILE = `feed${SUFFIX}.xml`;
 const SITEMAP_FILE = `sitemap${SUFFIX}.xml`;
+const SITEMAP_HTML_FILE = `sitemap${SUFFIX}.html`;
 const ROBOTS_FILE = `robots${SUFFIX}.txt`;
 const STYLES_FILE = `styles${SUFFIX}.css`;
 const APP_FILE = `app${SUFFIX}.js`;
@@ -36,6 +37,7 @@ const ABOUT_URL = `${SITE_URL}${ABOUT_FILE}`;
 const OLD_PAGE_URL = `${SITE_URL}${OLD_INDEX_FILE}`;
 const FEED_URL = `${SITE_URL}${FEED_FILE}`;
 const SITEMAP_URL = `${SITE_URL}${SITEMAP_FILE}`;
+const SITEMAP_HTML_URL = `${SITE_URL}${SITEMAP_HTML_FILE}`;
 const SITE_NAME = 'Deaf Navi Web';
 const SITE_TAGLINE = '聴覚障害・難聴・ろう者コミュニティの最新ニュース';
 const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・情報保障・医療・教育・技術・防災・イベント情報を自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
@@ -378,7 +380,7 @@ ${articlesHtml}
     <div class="container">
       <p>Deaf Navi Web は <a href="https://www.jfd.or.jp/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟</a>・<a href="https://www.tfd.deaf.tokyo/" target="_blank" rel="noopener noreferrer">東京都聴覚障害者連盟</a> 等のRSSフィードと Google News RSS を情報源にしています。</p>
       <p>記事の著作権は各発信元に帰属します。リンク先は外部サイトです。更新は自動で1時間毎に行われます。</p>
-      <p><a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_URL}">サイトマップ</a></p>
+      <p><a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_HTML_URL}">サイトマップ</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>
@@ -667,11 +669,128 @@ ${expandedSourceSection}
         <li><a href="${FEED_URL}">RSS フィード</a>（最新50件）</li>
         <li><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版） / <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）</li>
         <li><a href="https://tamas-hub.github.io/deaf-navi-web/feed-world.xml">World-JP RSS フィード</a> / <a href="https://tamas-hub.github.io/deaf-navi-web/feed-world-original.xml">World-Original RSS フィード</a></li>
-        <li><a href="${SITEMAP_URL}">サイトマップ</a></li>
+        <li><a href="${SITEMAP_HTML_URL}">サイトマップ</a></li>
       </ul>
     </section>
 
     <p class="about__back"><a href="${indexHref}">← トップページへ戻る</a></p>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="site-footer__copyright">
+        <span>&copy; ${new Date().getFullYear()} TAMA.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Take it easy.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Curated for the Deaf &amp; Hard-of-hearing community.</span>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+`;
+}
+
+function renderSitemapPage({ generatedAt, count, articles }) {
+  const generatedLocal = formatDateJST(generatedAt);
+  const pageTitle = `${IS_DEV ? '[DEV] ' : ''}サイトマップ | ${SITE_NAME}`;
+  const currentCount = Array.isArray(articles) ? articles.length : count;
+  const archiveRow = HAS_ARCHIVE
+    ? `<li><a href="./${OLD_INDEX_FILE}">過去アーカイブ</a><span>通常カテゴリ400件を超えた過去記事</span></li>`
+    : '';
+
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHtml(pageTitle)}</title>
+  <meta name="description" content="Deaf Navi Web の主要ページ、RSS、XMLサイトマップ、アプリ連携用JSONへのリンクをまとめたHTMLサイトマップ。">
+  <meta name="robots" content="${IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow'}">
+  <meta name="theme-color" content="#5a7a48">
+  <link rel="canonical" href="${SITEMAP_HTML_URL}">
+  <link rel="stylesheet" href="./${STYLES_FILE}">
+  ${CF_ANALYTICS_SNIPPET}
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+
+  <header class="site-header site-header--slim" role="banner">
+    <div class="site-header__leaf" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
+        <path d="M40 170 C 70 140, 100 110, 160 30" />
+        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
+        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
+        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
+      </svg>
+    </div>
+    <div class="container">
+      <p class="site-breadcrumb"><a href="./${IS_DEV ? 'index-dev.html' : 'index.html'}">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>サイトマップ${IS_DEV ? ' DEV' : ''}</span></p>
+      <h1 class="site-title site-title--small"><span class="site-title__brand">サイトマップ${IS_DEV ? ' DEV' : ''}</span></h1>
+      <p class="site-lead site-lead--compact">Deaf Navi Web の公開ページと配信データへの入口をまとめています。</p>
+    </div>
+  </header>
+
+  <main id="main" class="container sitemap-page" role="main">
+    <section class="sitemap-summary" aria-label="サイトマップ概要">
+      <div>
+        <span class="sitemap-summary__label">Latest build</span>
+        <strong>${escapeHtml(generatedLocal)}</strong>
+      </div>
+      <div>
+        <span class="sitemap-summary__label">Domestic articles</span>
+        <strong>${escapeHtml(String(currentCount))}</strong>
+      </div>
+      <div>
+        <span class="sitemap-summary__label">Sitemap XML</span>
+        <strong><a href="./${SITEMAP_FILE}">検索エンジン用</a></strong>
+      </div>
+    </section>
+
+    <div class="sitemap-grid">
+      <section class="sitemap-card" aria-labelledby="sitemap-domestic">
+        <h2 id="sitemap-domestic">国内ニュース</h2>
+        <ul>
+          <li><a href="./${IS_DEV ? 'index-dev.html' : 'index.html'}">Deaf Navi Web トップ</a><span>聴覚障害・難聴・ろう者コミュニティ向け国内ニュース</span></li>
+          ${archiveRow}
+          <li><a href="./${FEED_FILE}">RSSフィード</a><span>国内ニュース最新50件</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-world">
+        <h2 id="sitemap-world">World</h2>
+        <ul>
+          <li><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a><span>海外ニュースの日本語翻訳版</span></li>
+          <li><a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a><span>海外ニュースの原文版</span></li>
+          <li><a href="./feed-world.xml">World-JP RSSフィード</a><span>翻訳版の最新フィード</span></li>
+          <li><a href="./feed-world-original.xml">World-Original RSSフィード</a><span>原文版の最新フィード</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-info">
+        <h2 id="sitemap-info">サイト情報</h2>
+        <ul>
+          <li><a href="./${ABOUT_FILE}">Deaf Naviについて</a><span>情報源・更新頻度・運営情報</span></li>
+          <li><a href="./${SITEMAP_FILE}">XMLサイトマップ</a><span>検索エンジン向けURL一覧</span></li>
+          <li><a href="./sitemap-world.xml">World XMLサイトマップ</a><span>Worldページ用URL一覧</span></li>
+          <li><a href="./${ROBOTS_FILE}">robots.txt</a><span>クロール設定</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-api">
+        <h2 id="sitemap-api">アプリ連携JSON</h2>
+        <ul>
+          <li><a href="./app/v1/manifest.json">manifest.json</a><span>iOSアプリ同期用マニフェスト</span></li>
+          <li><a href="./app/v1/ios-news-v2.json">ios-news-v2.json</a><span>国内ニュース iOS 互換データ</span></li>
+          <li><a href="./app/v1/ios-world-jp-v2.json">ios-world-jp-v2.json</a><span>World-JP iOS 互換データ</span></li>
+          <li><a href="./app/v1/ios-world-original-v2.json">ios-world-original-v2.json</a><span>World-Original iOS 互換データ</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <p class="about__back"><a href="./${IS_DEV ? 'index-dev.html' : 'index.html'}">← トップページへ戻る</a></p>
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -712,6 +831,12 @@ ${HAS_ARCHIVE ? `  <url>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>${SITEMAP_HTML_URL}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>${SITE_URL}deaf-navi-world-jp.html</loc>
@@ -827,6 +952,9 @@ async function main() {
 
   await writeFile(join(DOCS, ABOUT_FILE), renderAboutPage(), 'utf8');
   console.log(`書き出し: ${join(DOCS, ABOUT_FILE)}`);
+
+  await writeFile(join(DOCS, SITEMAP_HTML_FILE), renderSitemapPage(data), 'utf8');
+  console.log(`書き出し: ${join(DOCS, SITEMAP_HTML_FILE)}`);
 
   await writeFile(join(DOCS, SITEMAP_FILE), renderSitemap(data), 'utf8');
   console.log(`書き出し: ${join(DOCS, SITEMAP_FILE)}`);
