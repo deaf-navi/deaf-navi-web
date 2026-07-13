@@ -9,21 +9,36 @@ on:
     branches: [main]
     paths:
       - 'src/**'
+      - 'scripts/**'
       - 'package.json'
-      - '.github/workflows/curate.yml'
+      - '.github/workflows/**'
 
 permissions:
   contents: write
   issues: write
 
 concurrency:
-  group: curate
+  group: deaf-navi-publisher
   cancel-in-progress: false
 
 jobs:
   curate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
+    env:
+      CODEX_APP_SERVER_URL: ${{ secrets.CODEX_APP_SERVER_URL }}
+      CODEX_APP_SERVER_TOKEN: ${{ secrets.CODEX_APP_SERVER_TOKEN }}
+      CODEX_APP_SERVER_TIMEOUT_SECONDS: ${{ vars.CODEX_APP_SERVER_TIMEOUT_SECONDS || '120' }}
+      CODEX_APP_SERVER_READINESS_PATH: ${{ vars.CODEX_APP_SERVER_READINESS_PATH || '/ready' }}
+      WORLD_JP_CODEX_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_BATCH_SIZE || '20' }}
+      WORLD_JP_CODEX_MAX_ITEMS: ${{ vars.WORLD_JP_CODEX_MAX_ITEMS || '600' }}
+      WORLD_JP_CODEX_RETRIES: ${{ vars.WORLD_JP_CODEX_RETRIES || '1' }}
+      WORLD_JP_CODEX_SPLIT_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_SPLIT_BATCH_SIZE || '10' }}
+      WORLD_JP_CODEX_MAX_CONSECUTIVE_FAILED_BATCHES: ${{ vars.WORLD_JP_CODEX_MAX_CONSECUTIVE_FAILED_BATCHES || '2' }}
+      WORLD_JP_CODEX_MIN_COVERAGE: ${{ vars.WORLD_JP_CODEX_MIN_COVERAGE || '0.85' }}
+      WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE: ${{ vars.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE || '0' }}
+      WORLD_JP_REQUIRE_CODEX_POST_EDIT: '1'
+      WORLD_REGION_MIN_ARTICLES: ${{ vars.WORLD_REGION_MIN_ARTICLES || '50' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,20 +48,23 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Curate and build static site
-        run: npm run generate
+      - name: Generate all static artifacts
+        run: |
+          npm run generate
+          npm run generate:world
+          npm run build:app-api
 
       - name: Commit & push
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/articles.json docs/articles-old.json docs/index.html docs/index-old.html docs/about.html docs/styles.css docs/app.js docs/sitemap.xml docs/robots.txt docs/feed.xml docs/og-image.svg
+          git add docs
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "chore(curate): update articles $(date -u +'%Y-%m-%dT%H:%MZ')"
+          git commit -m "chore(publish): update all feeds $(date -u +'%Y-%m-%dT%H:%MZ')"
           # リモートが進んでいた場合に備えてリトライ付きpush
           for attempt in 1 2 3; do
             if git push; then

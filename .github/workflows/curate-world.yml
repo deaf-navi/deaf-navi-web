@@ -1,23 +1,14 @@
 name: Curate & Build World
 
 on:
-  schedule:
-    # JST 06:00 / 12:00 / 18:00
-    - cron: '0 3,9,21 * * *'
   workflow_dispatch: {}
-  push:
-    branches: [main]
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - '.github/workflows/curate-world.yml'
 
 permissions:
   contents: write
   issues: write
 
 concurrency:
-  group: curate-world
+  group: deaf-navi-publisher
   cancel-in-progress: false
 
 jobs:
