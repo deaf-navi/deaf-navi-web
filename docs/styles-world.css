@@ -319,8 +319,24 @@ button {
 
 .filter--world-link {
   margin-left: auto;
-  color: var(--accent-deep);
-  border-color: rgba(19, 123, 112, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--signal-blue);
+  border-color: rgba(49, 95, 143, 0.42);
+  background: rgba(49, 95, 143, 0.08);
+}
+
+.filter--world-link__icon {
+  flex: 0 0 auto;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.filter--world-link:hover {
+  color: #fff;
+  border-color: var(--signal-blue);
+  background: var(--signal-blue);
 }
 
 .discovery-tools {
@@ -1242,11 +1258,39 @@ main {
   padding: var(--s-10, 40px) 0 var(--s-8);
 }
 
+.world-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  flex-wrap: wrap;
+}
+
+.world-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 7px 14px;
+  border: 1px solid rgba(19, 123, 112, 0.42);
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.world-home-link:hover {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+  color: #fff;
+}
+
 .world-language-switch {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
-  margin-top: var(--s-5);
+  margin-top: 0;
 }
 
 .world-language-switch__item {

@@ -345,7 +345,8 @@ function renderPage(data, mode = 'jp') {
   const loadMoreLabel = isOriginal ? 'Load more' : 'もっと読む';
   const remainingLabel = isOriginal ? `${articles.length - initialVisible} more` : `あと ${articles.length - initialVisible} 件`;
   const emptyLabel = isOriginal ? 'No matching articles.' : '該当する記事がありません。';
-  const backLabel = isOriginal ? 'Back to Deaf Navi' : 'Deaf Navi に戻る';
+  const backLabel = isOriginal ? 'Back to Deaf Navi Web (Japan)' : '国内版 Deaf Navi Webへ戻る';
+  const homeLabel = isOriginal ? 'Domestic Deaf Navi Web' : '国内版 Deaf Navi Webへ';
   const htmlLang = isOriginal ? 'en' : 'ja';
 
   return `<!DOCTYPE html>
@@ -395,10 +396,13 @@ function renderPage(data, mode = 'jp') {
 
   <header class="site-header site-header--world" role="banner">
     <div class="container">
-      <p class="site-breadcrumb"><a href="./">Deaf Navi</a> <span aria-hidden="true">›</span> <span>${escapeHtml(siteName)}</span></p>
+      <p class="site-breadcrumb"><a href="./index.html">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>${escapeHtml(siteName)}</span></p>
       <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${isOriginal ? 'World-Original' : 'World-JP'}</span></h1>
       <p class="site-lead">${escapeHtml(lead)}</p>
-      ${renderLanguageSwitch(mode)}
+      <div class="world-header-actions">
+        <a class="world-home-link" href="./index.html"><span aria-hidden="true">←</span><span>${escapeHtml(homeLabel)}</span></a>
+        ${renderLanguageSwitch(mode)}
+      </div>
     </div>
   </header>
 

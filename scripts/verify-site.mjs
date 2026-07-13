@@ -11,9 +11,10 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-const [dataRaw, indexHtml, aboutHtml, sitemapXml] = await Promise.all([
+const [dataRaw, indexHtml, worldJpHtml, aboutHtml, sitemapXml] = await Promise.all([
   readFile(join(docs, 'articles.json'), 'utf8'),
   readFile(join(docs, 'index.html'), 'utf8'),
+  readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8'),
   readFile(join(docs, 'about.html'), 'utf8'),
   readFile(join(docs, 'sitemap.xml'), 'utf8'),
 ]);
@@ -47,11 +48,15 @@ for (const marker of [
   'id="news-search"',
   'id="source-filter"',
   'data-source-tier=',
+  'filter--world-link__icon',
   'SearchAction',
   'rel="canonical"',
 ]) {
   assert(indexHtml.includes(marker), `index.html に ${marker} がありません。`);
 }
+
+assert(worldJpHtml.includes('class="world-home-link"'), 'World-JP に国内版への導線がありません。');
+assert(worldJpHtml.includes('国内版 Deaf Navi Webへ'), 'World-JP の国内版リンク文言がありません。');
 
 assert(aboutHtml.includes('2026年7月14日'), 'About に更新日がありません。');
 assert(aboutHtml.includes('id="about-policy"'), 'About に選定方針がありません。');
