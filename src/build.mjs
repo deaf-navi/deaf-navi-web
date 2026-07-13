@@ -410,12 +410,6 @@ ${renderDiscoveryTools()}
       <a class="curation-overview__policy" href="./${ABOUT_FILE}#about-policy">選定方針を見る <span aria-hidden="true">→</span></a>
     </aside>
 
-    <a class="update-note" href="./${ABOUT_FILE}#updates">
-      <time datetime="${LATEST_UPDATE_DATE}">2026.07.14</time>
-      <span>キュレーション品質・検索・表示をアップデート</span>
-      <span aria-hidden="true">→</span>
-    </a>
-
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
         <h2 id="articles-heading">最新ニュース</h2>
