@@ -70,6 +70,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -81,6 +83,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -114,6 +118,8 @@ button {
 
 /* ---------- Utility ---------- */
 .container {
+  width: 100%;
+  min-width: 0;
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--s-5);
@@ -230,6 +236,7 @@ button {
 
 @media (max-width: 720px) {
   .site-title { font-size: 32px; }
+  .site-title { flex-wrap: wrap; }
 }
 
 /* ---------- Filters (sticky) ---------- */
@@ -251,6 +258,11 @@ button {
   gap: var(--s-2);
 }
 
+.filters__row > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .filter {
   padding: 8px 16px;
   font-size: 13px;
@@ -260,6 +272,9 @@ button {
   border: 1px solid var(--border-default);
   border-radius: var(--r-pill);
   min-height: 36px;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
   transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
 }
 
@@ -316,10 +331,12 @@ button {
   margin-top: var(--s-3);
   padding-top: var(--s-3);
   border-top: 1px solid var(--border-subtle);
+  min-width: 0;
 }
 
 .search-field {
   position: relative;
+  min-width: 0;
 }
 
 .search-field input,
@@ -373,6 +390,7 @@ button {
   grid-template-columns: auto 150px;
   gap: var(--s-2);
   align-items: center;
+  min-width: 0;
 }
 
 .source-select__label {
@@ -857,6 +875,7 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: var(--s-3);
+  flex-wrap: wrap;
 }
 
 /* Category chip: dot + text color（色依存にしない配慮） */
@@ -873,6 +892,8 @@ main {
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
   font-family: var(--font-sans);
+  max-width: 100%;
+  white-space: normal;
 }
 
 .chip::before {
@@ -965,6 +986,7 @@ main {
   align-items: center;
   gap: var(--s-2);
   min-width: 0;
+  flex-wrap: wrap;
 }
 
 .source-tier {
