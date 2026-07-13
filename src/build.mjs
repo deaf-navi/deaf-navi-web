@@ -39,9 +39,10 @@ const FEED_URL = `${SITE_URL}${FEED_FILE}`;
 const SITEMAP_URL = `${SITE_URL}${SITEMAP_FILE}`;
 const SITEMAP_HTML_URL = `${SITE_URL}${SITEMAP_HTML_FILE}`;
 const SITE_NAME = 'Deaf Navi Web';
-const SITE_TAGLINE = '聴覚障害・難聴・ろう者コミュニティの最新ニュース';
-const SITE_DESC = '聴覚障害・難聴・ろう者コミュニティ向けに、全日本ろうあ連盟や主要報道機関から最新ニュースを厳選。制度・政策・情報保障・医療・教育・技術・防災・イベント情報を自動更新するキュレーションサイト。手話・情報保障・補聴器・人工内耳・手話言語条例など幅広いテーマをカバー。';
+const SITE_TAGLINE = '聴覚障害・難聴・手話に関するニュースと一次情報';
+const SITE_DESC = '聴覚障害・難聴・ろう者・手話に関する一次情報と報道を、出典と選定区分を明示して届ける無料ニュースキュレーション。制度・情報保障・医療・教育・技術・防災・文化・デフスポーツを1日3回更新します。';
 const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途失聴,手話,情報保障,アクセシビリティ,防災,技術,AI,イベント,講座,補聴器,人工内耳,手話言語条例,聴覚障害ニュース,手話ニュース,難聴者,デフ,deaf,字幕,電話リレー,要約筆記,ろう学校,聴覚特別支援';
+const LATEST_UPDATE_DATE = '2026-07-14';
 
 const CATEGORY_ORDER = ['all', 'policy', 'accessibility', 'medical', 'education', 'technology', 'culture', 'sports', 'safety', 'event', 'relay', 'local', 'general'];
 const CATEGORY_UI = {
@@ -60,8 +61,14 @@ const CATEGORY_UI = {
   general: '一般',
 };
 
-const INITIAL_VISIBLE = 150;
+const INITIAL_VISIBLE = 60;
 const EXCLUDED_FROM_ALL = new Set(['relay']);
+const SOURCE_TIER_UI = {
+  official: { label: '一次情報', description: '公式団体・公的機関が発信した情報' },
+  specialist: { label: '専門情報', description: '専門団体・専門媒体が発信した情報' },
+  news: { label: '報道・発見', description: 'Google News等から発見した報道・公開情報' },
+  broad: { label: '関連媒体', description: '関連分野を扱う媒体が発信した情報' },
+};
 
 // Cloudflare Web Analytics — cookieless / privacy-friendly
 const CF_ANALYTICS_TOKEN = '6473e8a5f9904585a0f0f17c8a3edfe0';
@@ -118,11 +125,17 @@ function isDefaultVisibleCategory(category) {
   return !EXCLUDED_FROM_ALL.has(category);
 }
 
+function getSourceTier(article) {
+  return SOURCE_TIER_UI[article.sourceTier] ? article.sourceTier : 'news';
+}
+
 function renderArticle(a, index, defaultIndex = index) {
   const catLabel = CATEGORY_UI[a.category] ?? '一般';
+  const sourceTier = getSourceTier(a);
+  const sourceMeta = SOURCE_TIER_UI[sourceTier];
   const hidden = defaultIndex < 0 || defaultIndex >= INITIAL_VISIBLE ? ' hidden' : '';
   return `
-      <article class="card" data-category="${escapeHtml(a.category)}" data-index="${index}" data-default-index="${defaultIndex}"${hidden}>
+      <article class="card" data-category="${escapeHtml(a.category)}" data-source-tier="${escapeHtml(sourceTier)}" data-index="${index}" data-default-index="${defaultIndex}"${hidden}>
         <header class="card__head">
           <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(catLabel)}</span>
           <time class="card__time" datetime="${escapeHtml(a.publishedAt)}" title="${escapeHtml(formatDateJST(a.publishedAt))}">${escapeHtml(relativeTime(a.publishedAt))}</time>
@@ -132,7 +145,11 @@ function renderArticle(a, index, defaultIndex = index) {
         </h3>
         <p class="card__summary">${escapeHtml(a.summary)}</p>
         <footer class="card__foot">
-          <a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>
+          <div class="card__source-group">
+            <span class="source-tier source-tier--${escapeHtml(sourceTier)}" title="${escapeHtml(sourceMeta.description)}">${escapeHtml(sourceMeta.label)}</span>
+            <a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>
+          </div>
+          <a class="card__read" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a.title)}の記事を読む">記事を読む <span aria-hidden="true">↗</span></a>
         </footer>
       </article>`;
 }
@@ -165,6 +182,26 @@ function renderFilterButtons() {
   return `${filters}\n          ${worldLink}\n          ${aboutLink}`;
 }
 
+function renderDiscoveryTools() {
+  return `
+        <form class="discovery-tools" id="news-search-form" role="search">
+          <div class="search-field">
+            <label class="sr-only" for="news-search">ニュースを検索</label>
+            <input id="news-search" name="q" type="search" inputmode="search" autocomplete="off" placeholder="記事タイトル・要約・情報源を検索">
+            <button class="search-field__clear" id="news-search-clear" type="button" aria-label="検索語を消去" hidden>×</button>
+          </div>
+          <label class="source-select">
+            <span class="source-select__label">情報源</span>
+            <select id="source-filter" name="source">
+              <option value="all">すべて</option>
+              <option value="primary">一次・専門</option>
+              <option value="news">報道・発見</option>
+              <option value="other">関連媒体</option>
+            </select>
+          </label>
+        </form>`;
+}
+
 /** 構造化データ JSON-LD（WebSite + Organization + ItemList of NewsArticle） */
 function renderJsonLd({ generatedAt, articles }) {
   const topArticles = articles.slice(0, 30); // ItemListは上位30件に絞る
@@ -181,6 +218,7 @@ function renderJsonLd({ generatedAt, articles }) {
       dateModified: a.publishedAt,
       inLanguage: 'ja-JP',
       description: a.summary,
+      isAccessibleForFree: true,
       publisher: {
         '@type': 'Organization',
         name: a.sourceName,
@@ -203,6 +241,14 @@ function renderJsonLd({ generatedAt, articles }) {
         inLanguage: 'ja-JP',
         dateModified: generatedAt,
         publisher: { '@id': `${SITE_URL}#organization` },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${SITE_URL}?q={search_term_string}`,
+          },
+          'query-input': 'required name=search_term_string',
+        },
       },
       {
         '@type': 'Organization',
@@ -219,6 +265,7 @@ function renderJsonLd({ generatedAt, articles }) {
         inLanguage: 'ja-JP',
         isPartOf: { '@id': `${SITE_URL}#website` },
         dateModified: generatedAt,
+        mainEntity: { '@id': `${PAGE_URL}#itemlist` },
         about: [
           { '@type': 'Thing', name: '聴覚障害' },
           { '@type': 'Thing', name: '難聴' },
@@ -252,10 +299,18 @@ function renderPage({ generatedAt, count, articles }) {
   const initialVisible = Math.min(INITIAL_VISIBLE, defaultCount);
   const generatedLocal = formatDateJST(generatedAt);
   const jsonLd = renderJsonLd({ generatedAt, articles });
+  const sourceCounts = articles
+    .filter((article) => isDefaultVisibleCategory(article.category))
+    .reduce((counts, article) => {
+      const tier = getSourceTier(article);
+      counts[tier] = (counts[tier] ?? 0) + 1;
+      return counts;
+    }, {});
+  const primarySourceCount = (sourceCounts.official ?? 0) + (sourceCounts.specialist ?? 0);
+  const discoveredSourceCount = sourceCounts.news ?? 0;
 
   const updateLabel = '1日3回更新';
-  const leadUpdateText = 'JST 6:00 / 12:00 / 18:00に自動更新。';
-  const pageTitle = `${IS_DEV ? '[DEV] ' : ''}${SITE_NAME} | ${SITE_TAGLINE} - ${updateLabel}`;
+  const pageTitle = `${IS_DEV ? '[DEV] ' : ''}${SITE_NAME} | 聴覚障害・難聴・手話のニュース`;
   const ogImage = `${SITE_URL}${OG_FILE}`;
   const robots = IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1';
   const googlebot = IS_DEV ? robots : 'index,follow';
@@ -274,9 +329,10 @@ function renderPage({ generatedAt, count, articles }) {
   <meta name="description" content="${escapeHtml(SITE_DESC)}">
   <meta name="keywords" content="${escapeHtml(SITE_KEYWORDS)}">
   <meta name="author" content="TAMA">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="${robots}">
   <meta name="googlebot" content="${googlebot}">
-  <meta name="theme-color" content="#5a7a48">
+  <meta name="theme-color" content="#075e57">
 
   <link rel="canonical" href="${IS_DEV ? SITE_URL : PAGE_URL}">
   <link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)}" href="${FEED_URL}">
@@ -304,7 +360,7 @@ function renderPage({ generatedAt, count, articles }) {
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./${STYLES_FILE}">
 
   ${jsonLd}
@@ -326,23 +382,44 @@ function renderPage({ generatedAt, count, articles }) {
     </div>
     <div class="container">
       <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${headerSub}</span></h1>
-      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティのための、ニュースキュレーション。手話・情報保障・制度・医療・教育・地域情報を${leadUpdateText}</p>
+      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティに必要なニュースを、一次情報・専門情報・報道の区分とともに届けます。</p>
+      <p class="site-update-schedule">${updateLabel} <span aria-hidden="true">•</span> JST 6:00 / 12:00 / 18:00ごろ</p>
     </div>
   </header>
 
   <nav class="filters" role="navigation" aria-label="カテゴリフィルター">
     <div class="container">
-      <div class="filters__row" role="group" aria-label="カテゴリで絞り込む">
+        <div class="filters__row" role="group" aria-label="カテゴリで絞り込む">
           ${renderFilterButtons()}
+        </div>
+${renderDiscoveryTools()}
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <main id="main" class="container" role="main">
+    <aside class="curation-overview" aria-label="キュレーション状況">
+      <div>
+        <p class="curation-overview__eyebrow">選定状況</p>
+        <p class="curation-overview__summary">出典の種類を見分けながら、必要な情報へすばやく移動できます。</p>
+      </div>
+      <dl class="curation-overview__metrics">
+        <div><dt>一次・専門</dt><dd>${primarySourceCount}件</dd></div>
+        <div><dt>報道・発見</dt><dd>${discoveredSourceCount}件</dd></div>
+        <div><dt>最終更新</dt><dd><time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time></dd></div>
+      </dl>
+      <a class="curation-overview__policy" href="./${ABOUT_FILE}#about-policy">選定方針を見る <span aria-hidden="true">→</span></a>
+    </aside>
+
+    <a class="update-note" href="./${ABOUT_FILE}#updates">
+      <time datetime="${LATEST_UPDATE_DATE}">2026.07.14</time>
+      <span>キュレーション品質・検索・表示をアップデート</span>
+      <span aria-hidden="true">→</span>
+    </a>
+
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
         <h2 id="articles-heading">最新ニュース</h2>
-        <p class="meta">
+        <p class="meta" aria-live="polite">
           表示中: <strong id="visible-count">${initialVisible}</strong> / 全 <strong id="total-count">${defaultCount}</strong> 件
           <span class="meta__sep" aria-hidden="true">/</span>
           最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
@@ -378,9 +455,9 @@ ${articlesHtml}
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>Deaf Navi Web は <a href="https://www.jfd.or.jp/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟</a>・<a href="https://www.tfd.deaf.tokyo/" target="_blank" rel="noopener noreferrer">東京都聴覚障害者連盟</a> 等のRSSフィードと Google News RSS を情報源にしています。</p>
-      <p>記事の著作権は各発信元に帰属します。リンク先は外部サイトです。更新は自動で1時間毎に行われます。</p>
-      <p><a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_HTML_URL}">サイトマップ</a></p>
+      <p>公式・専門団体の直接配信と Google News RSS を情報源に、関連性・鮮度・重複を自動判定しています。内容の確認は各元記事をご覧ください。</p>
+      <p>記事の著作権は各発信元に帰属します。リンク先は外部サイトです。更新は1日3回です。</p>
+      <p><a href="./${ABOUT_FILE}#about-policy">選定方針</a> ・ <a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_HTML_URL}">サイトマップ</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>
@@ -464,11 +541,11 @@ ${items.map(renderArchiveArticle).join('\n')}
   <meta property="og:url" content="${OLD_PAGE_URL}">
   <meta property="og:image" content="${SITE_URL}${OG_FILE}">
   <meta property="og:locale" content="ja_JP">
-  <meta name="theme-color" content="#5a7a48">
+  <meta name="theme-color" content="#075e57">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./${STYLES_FILE}">
 
   ${CF_ANALYTICS_SNIPPET}
@@ -522,7 +599,7 @@ ${archiveSections || '<p class="empty">アーカイブ対象の記事はまだ�
 `;
 }
 
-function renderAboutPage() {
+function renderAboutPage({ generatedAt }) {
   const aboutTitle = `${IS_DEV ? '[DEV] ' : ''}Deaf Naviについて | ${SITE_NAME}`;
   const indexHref = IS_DEV ? './index-dev.html' : './';
   const robots = IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow';
@@ -534,6 +611,8 @@ function renderAboutPage() {
     name: aboutTitle,
     description: 'Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト・情報源・更新頻度・運営者情報。',
     inLanguage: 'ja-JP',
+    dateModified: generatedAt,
+    lastReviewed: LATEST_UPDATE_DATE,
     isPartOf: { '@id': `${SITE_URL}#website` },
   };
   const expandedSourceSection = `
@@ -552,8 +631,10 @@ function renderAboutPage() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(aboutTitle)}</title>
   <meta name="description" content="Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="${robots}">
   <link rel="canonical" href="${IS_DEV ? `${SITE_URL}about.html` : ABOUT_URL}">
+  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)}" href="${FEED_URL}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
   <meta property="og:title" content="${escapeHtml(aboutTitle)}">
@@ -561,11 +642,16 @@ function renderAboutPage() {
   <meta property="og:url" content="${ABOUT_URL}">
   <meta property="og:image" content="${SITE_URL}${OG_FILE}">
   <meta property="og:locale" content="ja_JP">
-  <meta name="theme-color" content="#5a7a48">
+  <meta property="article:modified_time" content="${escapeHtml(generatedAt)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(aboutTitle)}">
+  <meta name="twitter:description" content="Deaf Navi Web の情報源、選定方針、更新履歴をご案内します。">
+  <meta name="twitter:image" content="${SITE_URL}${OG_FILE}">
+  <meta name="theme-color" content="#075e57">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./${STYLES_FILE}">
 
   <script type="application/ld+json">
@@ -600,6 +686,23 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
       <p>国内ニュースを扱う Deaf Navi Web に加え、海外ニュースを扱う <a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版）と <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）を公開しています。情報保障・手話・制度・医療・教育・技術・防災・文化・デフスポーツなど、暮らしと権利に直結するトピックを幅広くカバーします。</p>
     </section>
 
+    <section id="updates" aria-labelledby="about-updates">
+      <h2 id="about-updates" class="about__h2">アップデート情報</h2>
+      <article class="release-note">
+        <header class="release-note__head">
+          <time datetime="${LATEST_UPDATE_DATE}">2026年7月14日</time>
+          <h3>キュレーション品質・検索・視認性を改善</h3>
+        </header>
+        <ul>
+          <li>記事ごとに「一次情報」「専門情報」「報道・発見」「関連媒体」の選定区分を表示</li>
+          <li>フィード取得の再試行と前回記事の短期補完を追加し、一時的な配信障害でも一覧が欠けにくい構成へ変更</li>
+          <li>公開日から180日を超える記事を最新一覧の候補から除外し、異なる日付・開催地の記事を誤って重複扱いしにくい判定へ改善</li>
+          <li>記事検索と情報源フィルターを追加し、文字サイズ・コントラスト・一覧密度を見直し</li>
+          <li>検索URL、構造化データ、ページ説明、更新情報を整備してSEOとサイトの透明性を強化</li>
+        </ul>
+      </article>
+    </section>
+
     <section aria-labelledby="about-sources">
       <h2 id="about-sources" class="about__h2">情報源</h2>
       <h3 class="about__h3">国内版: 公式・専門媒体（直接RSS/Atom）</h3>
@@ -631,6 +734,18 @@ ${expandedSourceSection}
       </ul>
     </section>
 
+    <section id="about-policy" aria-labelledby="about-policy-heading">
+      <h2 id="about-policy-heading" class="about__h2">選定方針と確実性</h2>
+      <div class="policy-levels" aria-label="情報源の選定区分">
+        <p><strong>一次情報</strong><span>公式団体・公的機関が発信した情報。直接フィードまたはGoogle News経由で取得</span></p>
+        <p><strong>専門情報</strong><span>聴覚障害、手話、医療、教育、デフスポーツ等の専門団体・媒体が発信した情報</span></p>
+        <p><strong>報道・発見</strong><span>Google News RSSを入口に発見し、関連度と出典優先度で選別した報道・公開情報</span></p>
+        <p><strong>関連媒体</strong><span>周辺分野を扱う媒体から、関連度が基準を満たした記事</span></p>
+      </div>
+      <p>同じ話題が複数ある場合は、公式・専門ソース、公的機関、主要報道機関を優先します。タイトルの近似だけでなくURL・日付・数字も見て重複を整理し、見出しとほぼ同じ要約や配信システム由来の定型文は表示しません。</p>
+      <p>自動キュレーションは記事の事実関係を独自に保証するものではありません。特に医療・制度・災害情報は、カードに表示される選定区分を参考にしつつ、必ずリンク先の公式情報・元記事で最新内容をご確認ください。</p>
+    </section>
+
     <section aria-labelledby="about-categories">
       <h2 id="about-categories" class="about__h2">カテゴリ分類</h2>
       <p>記事はタイトル・要約から自動で以下のカテゴリに分類されます:</p>
@@ -652,7 +767,7 @@ ${expandedSourceSection}
 
     <section aria-labelledby="about-update">
       <h2 id="about-update" class="about__h2">更新頻度・仕組み</h2>
-      <p>国内本番版は GitHub Actions による自動ジョブが1日3回（JST 6:00 / 12:00 / 18:00ごろ）RSSを収集します。関連性スコアフィルタ・近似重複除去・カテゴリ分類を行い、電話リレー・ヨメテルを除く通常カテゴリで最大400件を保持し、電話リレー・ヨメテル系の記事は専用カテゴリの別枠として保持します。初期表示では通常カテゴリの最新150件を表示し、通常カテゴリ400件を超えた記事は過去アーカイブに蓄積します。</p>
+      <p>国内本番版は GitHub Actions による自動ジョブが1日3回（JST 6:00 / 12:00 / 18:00ごろ）RSSを収集します。取得時の一時エラーは再試行し、前回取得した45日以内の記事を補完候補として使います。関連性・鮮度・出典優先度・近似重複・カテゴリを判定し、公開日から180日以内の候補を中心に、電話リレー・ヨメテルを除く通常カテゴリで最大400件を保持します。初期表示は60件で、追加表示しながら閲覧できます。</p>
       <p>Deaf Navi World は1日3回（JST 6:00 / 12:00 / 18:00ごろ）に海外ニュースを収集し、最大600件を保持します。World-JP は日本語翻訳版、World-Original は翻訳なしの原文版です。</p>
       <p>記事の本文・要約は各発信元のものを抜粋し、本文リンクはすべて各元記事の原文（外部サイト）に遷移します。記事の著作権はそれぞれの発信元に帰属します。</p>
     </section>
@@ -708,7 +823,7 @@ function renderSitemapPage({ generatedAt, count, articles }) {
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="Deaf Navi Web の主要ページ、RSS、XMLサイトマップ、アプリ連携用JSONへのリンクをまとめたHTMLサイトマップ。">
   <meta name="robots" content="${IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow'}">
-  <meta name="theme-color" content="#5a7a48">
+  <meta name="theme-color" content="#075e57">
   <link rel="canonical" href="${SITEMAP_HTML_URL}">
   <link rel="stylesheet" href="./${STYLES_FILE}">
   ${CF_ANALYTICS_SNIPPET}
@@ -950,7 +1065,7 @@ async function main() {
     console.log(`書き出し: ${OLD_HTML_OUT}`);
   }
 
-  await writeFile(join(DOCS, ABOUT_FILE), renderAboutPage(), 'utf8');
+  await writeFile(join(DOCS, ABOUT_FILE), renderAboutPage({ generatedAt: data.generatedAt }), 'utf8');
   console.log(`書き出し: ${join(DOCS, ABOUT_FILE)}`);
 
   await writeFile(join(DOCS, SITEMAP_HTML_FILE), renderSitemapPage(data), 'utf8');

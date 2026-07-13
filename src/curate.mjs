@@ -17,6 +17,12 @@ const MAX_ARTICLES = 400;
 const EXTRA_VISIBLE_CATEGORIES = new Set(['relay']);
 const MAX_OLD_ARTICLES = 5000;
 const DEV_MIN_SCORE = 5;
+const MAX_CURRENT_AGE_DAYS = 180;
+const FALLBACK_RETENTION_DAYS = 45;
+const FUTURE_TOLERANCE_HOURS = 24;
+const FETCH_TIMEOUT_MS = 15_000;
+const FETCH_ATTEMPTS = 3;
+const RETRYABLE_HTTP_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
 
 const KEYWORD_GROUPS = [
   { query: '聴覚障害 OR 難聴', defaultCategory: 'general' },
@@ -480,6 +486,42 @@ function cleanHtml(text) {
     .trim();
 }
 
+function escapeRegExp(text) {
+  return String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function cleanSummaryText(summary, title, sourceName) {
+  const cleaned = String(summary ?? '')
+    .replace(/\s+The post[\s\S]*?first appeared on[\s\S]*$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!cleaned) return '';
+
+  const withoutSource = sourceName
+    ? cleaned.replace(new RegExp(escapeRegExp(sourceName), 'giu'), '').trim()
+    : cleaned;
+  const summaryKey = normalizeTitleKey(withoutSource);
+  const titleKey = normalizeTitleKey(title);
+
+  if (!summaryKey || summaryKey === titleKey) return '';
+  if (summaryKey.startsWith(titleKey) && summaryKey.length - titleKey.length <= 8) return '';
+  return cleaned.substring(0, 220);
+}
+
+function inferDiscoverySourceTier(sourceName, sourceUrl) {
+  const target = `${sourceName ?? ''} ${sourceUrl ?? ''}`;
+  if (/(?:\.go\.jp|\.lg\.jp|\.ac\.jp)(?:[/:]|$)|\b(?:city|pref|town)\./iu.test(target)) {
+    return 'official';
+  }
+  if (/PR TIMES|アットプレス|共同通信PRワイヤー|クラウドファンディング|READYFOR|キャンプファイヤー|valuepress|newscast\.jp/iu.test(target)) {
+    return 'broad';
+  }
+  if (/福祉新聞|日本医事新報|CareNet|教育新聞|リセマム|パラサポ|医療政策|聴覚|ろう|手話/iu.test(sourceName ?? '')) {
+    return 'specialist';
+  }
+  return 'google';
+}
+
 function parseItems(xml, defaultCategory, sourceOverride) {
   const results = [];
   const itemMatches = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
@@ -490,7 +532,7 @@ function parseItems(xml, defaultCategory, sourceOverride) {
     const link = extractTag(block, 'link') || extractTag(block, 'guid');
     const pubDate = extractTag(block, 'pubDate');
     const rawDescription = extractTag(block, 'description');
-    const description = cleanHtml(rawDescription).substring(0, 200);
+    const rawSummary = cleanHtml(rawDescription);
     const articleUrl = sourceOverride ? link : extractActualUrl(rawDescription, link);
 
     let sourceName;
@@ -513,6 +555,7 @@ function parseItems(xml, defaultCategory, sourceOverride) {
       publishedAt = new Date().toISOString();
     }
 
+    const description = cleanSummaryText(rawSummary, title, sourceName);
     const category = guessCategory(title, description) ?? defaultCategory;
 
     results.push({
@@ -524,7 +567,7 @@ function parseItems(xml, defaultCategory, sourceOverride) {
       publishedAt,
       category,
       sourceType: sourceOverride?.sourceType ?? 'rss',
-      _sourceTier: sourceOverride?.sourceTier ?? 'google',
+      _sourceTier: sourceOverride?.sourceTier ?? inferDiscoverySourceTier(sourceName, sourceUrl),
       _passThrough: Boolean(sourceOverride?.passThrough),
       _minScore: sourceOverride?.minScore,
       _feedUrl: sourceOverride?.url,
@@ -544,7 +587,7 @@ function parseAtomEntries(xml, defaultCategory, sourceOverride) {
     const rawSummary = extractTag(block, 'summary')
       || extractTag(block, 'content')
       || extractTag(block, 'media:description');
-    const description = cleanHtml(rawSummary).substring(0, 200);
+    const cleanedSummary = cleanHtml(rawSummary);
     const alternateLink = extractAttr(block, 'link', 'href', 'rel=["\']alternate["\']')
       || extractAttr(block, 'link', 'href');
     const id = extractTag(block, 'id') || alternateLink;
@@ -564,6 +607,7 @@ function parseAtomEntries(xml, defaultCategory, sourceOverride) {
     const authorUri = extractTag(block, 'uri');
     const sourceName = sourceOverride?.sourceName ?? authorName ?? 'Atom Feed';
     const sourceUrl = sourceOverride?.sourceUrl ?? authorUri ?? articleUrl;
+    const description = cleanSummaryText(cleanedSummary, title, sourceName);
     const category = guessCategory(title, description) ?? defaultCategory;
 
     results.push({
@@ -575,7 +619,7 @@ function parseAtomEntries(xml, defaultCategory, sourceOverride) {
       publishedAt,
       category,
       sourceType: sourceOverride?.sourceType ?? 'atom',
-      _sourceTier: sourceOverride?.sourceTier ?? 'google',
+      _sourceTier: sourceOverride?.sourceTier ?? inferDiscoverySourceTier(sourceName, sourceUrl),
       _passThrough: Boolean(sourceOverride?.passThrough),
       _minScore: sourceOverride?.minScore,
       _feedUrl: sourceOverride?.url,
@@ -591,21 +635,51 @@ function parseFeedItems(xml, defaultCategory, sourceOverride) {
   return [...rssItems, ...atomItems];
 }
 
-async function fetchWithTimeout(url, ms) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), ms);
-  try {
-    return await fetch(url, {
-      signal: controller.signal,
-      headers: { 'User-Agent': 'DeafNaviWeb/1.0 (+https://github.com/)' },
-    });
-  } finally {
-    clearTimeout(timer);
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchWithTimeout(url, ms = FETCH_TIMEOUT_MS, attempts = FETCH_ATTEMPTS) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: { 'User-Agent': 'DeafNaviWeb/1.1 (+https://tamas-hub.github.io/deaf-navi-web/)' },
+      });
+      if (response.ok || !RETRYABLE_HTTP_STATUS.has(response.status) || attempt === attempts) {
+        return response;
+      }
+      lastError = new Error(`HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts) throw error;
+    } finally {
+      clearTimeout(timer);
+    }
+
+    await wait(400 * (2 ** (attempt - 1)));
   }
+
+  throw lastError ?? new Error('フィード取得に失敗しました。');
 }
 
 function normalizeForSearch(text) {
   return String(text).normalize('NFKC').toLowerCase();
+}
+
+function articleAgeDays(article, now = Date.now()) {
+  const published = new Date(article.publishedAt).getTime();
+  if (!Number.isFinite(published)) return Number.POSITIVE_INFINITY;
+  return (now - published) / 86_400_000;
+}
+
+function hasAcceptablePublishedAt(article, now = Date.now()) {
+  const ageDays = articleAgeDays(article, now);
+  return ageDays >= -(FUTURE_TOLERANCE_HOURS / 24) && ageDays <= MAX_CURRENT_AGE_DAYS;
 }
 
 function scoreArticle(article) {
@@ -650,8 +724,6 @@ function normalizeTitleKey(title) {
   return String(title)
     .normalize('NFKC')
     .replace(/\s+[-－―]\s+[^-－―|｜]+$/u, '')
-    .replace(/[（(][^）)]{1,48}[）)]/gu, '')
-    .replace(/【[^】]{1,48}】/gu, '')
     .replace(/(20\d{2}|令和\d+)年\d{1,2}月\d{1,2}日(掲載)?/gu, '')
     .replace(/https?:\/\/\S+/gu, '')
     .replace(/[!！?？。、「」『』“”"'\s・…:：;；｜|【】［］\[\]（）()]/gu, '')
@@ -677,20 +749,25 @@ function diceSimilarity(a, b) {
 }
 
 function isNearDuplicate(a, b) {
+  if (a.id && b.id && a.id === b.id) return true;
   const ak = a._dedupeKey;
   const bk = b._dedupeKey;
   if (!ak || !bk) return false;
+  const aNumbers = String(a.title).match(/\d+/g)?.join('|') ?? '';
+  const bNumbers = String(b.title).match(/\d+/g)?.join('|') ?? '';
+  if (aNumbers && bNumbers && aNumbers !== bNumbers) return false;
   if (ak === bk) return true;
-  if (Math.min(ak.length, bk.length) >= 18 && (ak.includes(bk) || bk.includes(ak))) return true;
-  return diceSimilarity(ak, bk) >= 0.9;
+  if (Math.min(ak.length, bk.length) >= 24 && (ak.includes(bk) || bk.includes(ak))) return true;
+  return diceSimilarity(ak, bk) >= 0.94;
 }
 
 function sourcePriority(article) {
   let priority = PREFERRED_SOURCES.get(article.sourceName) ?? 50;
+  const sourceTier = article._sourceTier ?? (article.sourceTier === 'news' ? 'google' : article.sourceTier);
 
-  if (article._sourceTier === 'official') priority += 45;
-  if (article._sourceTier === 'specialist') priority += 35;
-  if (article._sourceTier === 'broad') priority -= 10;
+  if (sourceTier === 'official') priority += 45;
+  if (sourceTier === 'specialist') priority += 35;
+  if (sourceTier === 'broad') priority -= 10;
   if (article.sourceType === 'video') priority -= 5;
   if (article.sourceType === 'social') priority -= 8;
   if (AGGREGATOR_SOURCES.has(article.sourceName)) priority -= 45;
@@ -738,6 +815,11 @@ function countBy(items, key) {
   }, {});
 }
 
+function isLowValueDiscoveryPage(article) {
+  if (article._feedUrl) return false;
+  return /(?:\d+\s*枚目の)?(?:写真・画像|写真一覧|画像一覧)|フォトギャラリー/iu.test(article.title);
+}
+
 function splitVisibleArticles(deduped) {
   const primaryArticles = [];
   const extraArticles = [];
@@ -761,7 +843,7 @@ function splitVisibleArticles(deduped) {
   };
 }
 
-function curateExpandedArticles(allArticles) {
+function curateExpandedArticles(allArticles, context = {}) {
   const scored = allArticles.map((article) => {
     const { score, signals } = scoreArticle(article);
     return {
@@ -772,7 +854,9 @@ function curateExpandedArticles(allArticles) {
     };
   });
 
-  const filtered = scored.filter((article) => {
+  const fresh = scored.filter((article) => hasAcceptablePublishedAt(article));
+  const eligible = fresh.filter((article) => !isLowValueDiscoveryPage(article));
+  const filtered = eligible.filter((article) => {
     const minScore = article._minScore ?? DEV_MIN_SCORE;
     return article._passThrough || article.curationScore >= minScore;
   });
@@ -794,11 +878,14 @@ function curateExpandedArticles(allArticles) {
     articles: visibleArticles,
     oldArticles: overflowArticles,
     report: {
-      version: 'expanded-score-v2',
+      version: 'expanded-score-v3',
       rawCount: allArticles.length,
       scoredCount: scored.length,
+      freshCount: fresh.length,
+      staleOrInvalidRemoved: scored.length - fresh.length,
+      lowValuePageRemoved: fresh.length - eligible.length,
       filteredCount: filtered.length,
-      lowScoreRemoved: scored.length - filtered.length,
+      lowScoreRemoved: eligible.length - filtered.length,
       nearDuplicateRemoved: duplicates.length,
       finalCountBeforeLimit: deduped.length,
       primaryCategoryLimit: MAX_ARTICLES,
@@ -807,6 +894,10 @@ function curateExpandedArticles(allArticles) {
       extraVisibleCategoryCounts: countBy(extraArticles, 'category'),
       overflowCount: overflowArticles.length,
       minScore: DEV_MIN_SCORE,
+      maxCurrentAgeDays: MAX_CURRENT_AGE_DAYS,
+      fallbackRetentionDays: FALLBACK_RETENTION_DAYS,
+      fallbackCandidateCount: context.fallbackCandidateCount ?? 0,
+      sourceHealth: context.sourceHealth ?? null,
       sourceCountsBefore: countBy(scored, 'sourceName'),
       sourceCountsAfter: countBy(deduped, 'sourceName'),
       categoryCountsVisible: countBy(visibleArticles, 'category'),
@@ -814,7 +905,7 @@ function curateExpandedArticles(allArticles) {
       sourceTierCountsAfter: countBy(deduped, (article) => article._sourceTier ?? 'unknown'),
       categoryCountsAfter: countBy(deduped, 'category'),
       duplicateSamples: duplicates.slice(0, 20),
-      droppedSamples: scored
+      droppedSamples: eligible
         .filter((article) => !article._passThrough && article.curationScore < (article._minScore ?? DEV_MIN_SCORE))
         .sort((a, b) => b.curationScore - a.curationScore)
         .slice(0, 20)
@@ -837,6 +928,14 @@ function stripInternal(article) {
     _feedUrl,
     ...clean
   } = article;
+  const sourceTier = (_sourceTier ?? clean.sourceTier) === 'google'
+    ? 'news'
+    : (_sourceTier ?? clean.sourceTier ?? 'news');
+  clean.summary = cleanSummaryText(clean.summary, clean.title, clean.sourceName);
+  clean.sourceTier = sourceTier;
+  clean.discoveryMethod = _feedUrl || clean.discoveryMethod === 'direct-feed'
+    ? 'direct-feed'
+    : 'google-news';
   if (!IS_DEV) {
     delete clean.curationScore;
     delete clean.curationSignals;
@@ -852,6 +951,28 @@ async function loadExistingOldArticles() {
   } catch {
     return [];
   }
+}
+
+async function loadExistingArticles() {
+  try {
+    const raw = await readFile(DATA_FILE, 'utf8');
+    const data = JSON.parse(raw);
+    return Array.isArray(data.articles) ? data.articles : [];
+  } catch {
+    return [];
+  }
+}
+
+function hydratePreviousArticle(article, directFeedByName) {
+  const directFeed = directFeedByName.get(article.sourceName);
+  const savedTier = article.sourceTier === 'news' ? 'google' : article.sourceTier;
+  return {
+    ...article,
+    _sourceTier: directFeed?.sourceTier ?? savedTier ?? 'google',
+    _passThrough: Boolean(directFeed?.passThrough),
+    _minScore: directFeed?.minScore,
+    _feedUrl: directFeed?.url ?? (article.discoveryMethod === 'direct-feed' ? article.sourceUrl : undefined),
+  };
 }
 
 function mergeOldArticles(currentOldArticles, previousOldArticles) {
@@ -874,46 +995,70 @@ async function loadNews() {
   const directFeeds = USE_EXPANDED_PROFILE
     ? [...DIRECT_FEEDS, ...DEV_DIRECT_FEEDS, ...DEV_SOCIAL_FEEDS]
     : DIRECT_FEEDS;
+  const sourceHealth = {
+    direct: { requested: directFeeds.length, succeeded: 0, failed: [] },
+    discovery: { requested: 0, succeeded: 0, failed: [] },
+  };
 
   for (const feed of directFeeds) {
     try {
-      const res = await fetchWithTimeout(feed.url, 15_000);
+      const res = await fetchWithTimeout(feed.url);
       if (!res.ok) {
         console.warn(`[skip] ${feed.sourceName}: HTTP ${res.status}`);
+        sourceHealth.direct.failed.push({ sourceName: feed.sourceName, status: res.status });
         continue;
       }
       const xml = await res.text();
       const items = parseFeedItems(xml, feed.defaultCategory, feed);
       console.log(`[direct] ${feed.sourceName}: ${items.length} items`);
+      sourceHealth.direct.succeeded += 1;
       allArticles.push(...items);
     } catch (err) {
       console.warn(`[fail] ${feed.sourceName}: ${err.message}`);
+      sourceHealth.direct.failed.push({ sourceName: feed.sourceName, error: err.name ?? 'Error' });
     }
   }
 
   const keywordGroups = USE_EXPANDED_PROFILE ? DEV_KEYWORD_GROUPS : KEYWORD_GROUPS;
+  sourceHealth.discovery.requested = keywordGroups.length;
   for (const { query, defaultCategory } of keywordGroups) {
     try {
-      const res = await fetchWithTimeout(buildUrl(query), 15_000);
+      const res = await fetchWithTimeout(buildUrl(query));
       if (!res.ok) {
         console.warn(`[skip] "${query}": HTTP ${res.status}`);
+        sourceHealth.discovery.failed.push({ query, status: res.status });
         continue;
       }
       const xml = await res.text();
       const items = parseFeedItems(xml, defaultCategory);
       console.log(`[google] "${query}": ${items.length} items`);
+      sourceHealth.discovery.succeeded += 1;
       allArticles.push(...items);
     } catch (err) {
       console.warn(`[fail] "${query}": ${err.message}`);
+      sourceHealth.discovery.failed.push({ query, error: err.name ?? 'Error' });
     }
   }
+
+  const directFeedByName = new Map(directFeeds.map((feed) => [feed.sourceName, feed]));
+  const previousArticles = await loadExistingArticles();
+  const fallbackArticles = previousArticles
+    .filter((article) => {
+      const ageDays = articleAgeDays(article);
+      return ageDays >= -(FUTURE_TOLERANCE_HOURS / 24) && ageDays <= FALLBACK_RETENTION_DAYS;
+    })
+    .map((article) => hydratePreviousArticle(article, directFeedByName));
+  allArticles.push(...fallbackArticles);
 
   if (allArticles.length === 0) {
     throw new Error('全フィード取得失敗。処理を中断します。');
   }
 
   if (USE_EXPANDED_PROFILE) {
-    return curateExpandedArticles(allArticles);
+    return curateExpandedArticles(allArticles, {
+      fallbackCandidateCount: fallbackArticles.length,
+      sourceHealth,
+    });
   }
 
   const directSourceNames = new Set(directFeeds.map((f) => f.sourceName));

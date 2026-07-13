@@ -10,9 +10,10 @@
     "build": "node src/build.mjs",
     "build:world": "node src/world-build.mjs",
     "build:app-api": "node src/app-api-build.mjs",
+    "verify": "node scripts/verify-site.mjs",
     "codex-app-server": "node scripts/codex-app-server.mjs",
     "codex-app-server:smoke": "node scripts/codex-app-server-smoke-test.mjs",
-    "generate": "npm run curate && npm run build",
+    "generate": "npm run curate && npm run build && npm run verify",
     "generate:world": "npm run curate:world && npm run build:world",
     "serve": "node src/serve.mjs"
   },

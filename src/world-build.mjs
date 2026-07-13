@@ -359,7 +359,7 @@ function renderPage(data, mode = 'jp') {
   <meta name="author" content="TAMA">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <meta name="googlebot" content="index,follow">
-  <meta name="theme-color" content="#5a7a48">
+  <meta name="theme-color" content="#075e57">
   <link rel="canonical" href="${pageUrl}">
   <link rel="alternate" hreflang="ja" href="${JP_PAGE_URL}">
   <link rel="alternate" hreflang="x-default" href="${ORIGINAL_PAGE_URL}">
@@ -384,7 +384,7 @@ function renderPage(data, mode = 'jp') {
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./styles-world.css">
 
   ${jsonLd}

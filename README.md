@@ -4,7 +4,7 @@
 
 ## 概要
 
-- **URL**: `https://<github-user>.github.io/deaf-navi-web/`（公開後に確定）
+- **URL**: `https://tamas-hub.github.io/deaf-navi-web/`
 - **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00）RSS を取得し `docs/` 配下を自動更新
 - **ホスティング**: GitHub Pages（完全無料・SSL 付き）
 - **スタック**: Node 20（標準 fetch のみ）+ 静的 HTML/CSS/JS
@@ -38,8 +38,11 @@
 ### フィルタ
 
 - **関連性**: 関連語スコアで本文・タイトルを照合（公式・専門の一部はパス）
+- **情報源の透明性**: 一次情報 / 専門情報 / 報道・発見 / 関連媒体の4段階と、直接フィード・Google News経由の取得方法を表示
+- **鮮度**: 原則180日以内に限定し、取得障害時は45日以内の前回データをフォールバック
 - **カテゴリ自動分類**: policy / accessibility / relay / medical / education / technology / culture / sports / safety / event / local / general
-- **重複除去**: 記事 URL キーと近似タイトルで dedupe
+- **重複除去**: 記事 URL キー、数字を保護した高精度の近似タイトル判定で dedupe
+- **取得耐性**: 一時的なHTTPエラーやタイムアウトを指数バックオフ付きで再試行
 - **並び**: `publishedAt` 降順
 - **old退避**: 400件を超えた記事を `articles-old.json` / `index-old.html` に蓄積
 
@@ -62,6 +65,7 @@ deaf-navi-web/
 │   ├── app/v1/                   # iOSアプリ同期用JSON
 │   ├── styles.css                # build でコピー
 │   └── app.js                    # build でコピー
+├── scripts/verify-site.mjs       # データ・SEO・主要UIの静的検証
 ├── package.json
 └── README.md
 ```
@@ -93,11 +97,12 @@ Web版の国内ニュース / World-JP / World-Original と同じ生成物から
 cd deaf-navi-web
 npm run curate    # RSS 取得 → docs/articles.json
 npm run build     # HTML 生成
+npm run verify    # データ品質・SEO・主要UIを検証
 npm run build:app-api # docs/app/v1 のアプリ同期JSON生成
 npm run serve     # http://localhost:5173 で確認
 ```
 
-一発: `npm run generate` で curate + build。
+一発: `npm run generate` で curate + build + verify。
 
 ## デプロイ手順（初回）
 
@@ -115,7 +120,7 @@ npm run serve     # http://localhost:5173 で確認
 | 頻度 | 作業 | 担当 |
 |---|---|---|
 | 自動（1日3回） | RSS 取得・記事更新・コミット | GitHub Actions |
-| 自動（失敗時） | Issue 自動作成 | Actions |
+| 自動（失敗時） | 既存の障害Issueへ集約（未作成時のみ新規作成） | Actions |
 | 月 1 | 情報源・キーワード辞書の見直し | rin エージェント |
 | 都度 | 新カテゴリ・UI 改善 | PR |
 
@@ -130,9 +135,9 @@ npm run serve     # http://localhost:5173 で確認
 
 ### Actions 失敗時の対応
 
-- `curation-failure` ラベルの Issue が自動作成される
-- 対象ソースの RSS が閉じた / Google News フォーマット変更が主因
-- 通常は該当ソースを一時的にコメントアウトして再実行
+- 同じ障害Issueへ失敗Runのリンクが集約される
+- 一時的なHTTPエラーは自動再試行し、一部ソース失敗時も取得済みデータと短期フォールバックから生成を継続する
+- 全体失敗が続く場合はRunログの `Source health` と対象フィードを確認する
 
 ### コスト
 
