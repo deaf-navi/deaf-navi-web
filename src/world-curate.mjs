@@ -14,6 +14,7 @@ const RECENT_LOOKBACK = '120d';
 const STANDARD_LOOKBACK = '365d';
 const FETCH_TIMEOUT = 18_000;
 const FETCH_CONCURRENCY = 8;
+const FETCH_FALLBACK_MAX_AGE_HOURS = envInt('WORLD_FETCH_FALLBACK_MAX_AGE_HOURS', 48, 0, 24 * 30);
 const TRANSLATE_BATCH_CHARS = 1600;
 const TRANSLATE_DELAY_MS = 220;
 const CODEX_POST_EDIT_BATCH_SIZE = envInt('WORLD_JP_CODEX_BATCH_SIZE', 20, 1, 50);
@@ -1082,6 +1083,39 @@ async function loadTranslationCache() {
   }
 }
 
+async function findReusableWorldSnapshot() {
+  if (FETCH_FALLBACK_MAX_AGE_HOURS <= 0) {
+    return { reusable: false, reason: 'cached fallback is disabled' };
+  }
+
+  try {
+    const raw = await readFile(DATA_FILE, 'utf8');
+    const data = JSON.parse(raw);
+    const articleCount = Array.isArray(data.articles) ? data.articles.length : 0;
+    const generatedAtMs = Date.parse(data.generatedAt);
+
+    if (!articleCount) return { reusable: false, reason: 'cached snapshot has no articles' };
+    if (!Number.isFinite(generatedAtMs)) return { reusable: false, reason: 'cached snapshot has no valid generatedAt' };
+
+    const ageHours = Math.max(0, Date.now() - generatedAtMs) / 3_600_000;
+    if (ageHours > FETCH_FALLBACK_MAX_AGE_HOURS) {
+      return {
+        reusable: false,
+        reason: `cached snapshot is ${ageHours.toFixed(1)}h old (maximum ${FETCH_FALLBACK_MAX_AGE_HOURS}h)`,
+      };
+    }
+
+    return {
+      reusable: true,
+      articleCount,
+      generatedAt: data.generatedAt,
+      ageHours,
+    };
+  } catch (err) {
+    return { reusable: false, reason: `cached snapshot is unreadable: ${err.message}` };
+  }
+}
+
 function articleCacheKey(article) {
   return `${article.originalTitle ?? ''}\n${article.originalSummary ?? ''}`;
 }
@@ -1556,7 +1590,17 @@ async function loadWorldNews() {
     }
   });
 
-  if (!all.length) throw new Error('No world articles fetched.');
+  if (!all.length) {
+    const cached = await findReusableWorldSnapshot();
+    if (cached.reusable) {
+      console.warn(
+        `[world] no fresh articles fetched; preserving cached snapshot from ${cached.generatedAt} `
+        + `(${cached.articleCount} articles, ${cached.ageHours.toFixed(1)}h old)`,
+      );
+      return { reusedExisting: true };
+    }
+    throw new Error(`No world articles fetched; ${cached.reason}.`);
+  }
 
   const dedupedAll = dedupeArticles(all);
   const selected = selectFreshBalancedArticles(dedupedAll, MAX_ARTICLES);
@@ -1600,7 +1644,12 @@ async function loadWorldNews() {
 
 async function main() {
   console.log('Deaf Navi World: curation start');
-  const { articles, report } = await loadWorldNews();
+  const result = await loadWorldNews();
+  if (result.reusedExisting) {
+    console.warn('Deaf Navi World: kept the existing snapshot because all fresh fetches failed.');
+    return;
+  }
+  const { articles, report } = result;
   await mkdir(DATA_DIR, { recursive: true });
   const generatedAt = new Date().toISOString();
   const payload = {

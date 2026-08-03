@@ -39,6 +39,7 @@ jobs:
       WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE: ${{ vars.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE || '0' }}
       WORLD_JP_REQUIRE_CODEX_POST_EDIT: '1'
       WORLD_REGION_MIN_ARTICLES: ${{ vars.WORLD_REGION_MIN_ARTICLES || '50' }}
+      WORLD_FETCH_FALLBACK_MAX_AGE_HOURS: ${{ vars.WORLD_FETCH_FALLBACK_MAX_AGE_HOURS || '48' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
