@@ -304,10 +304,12 @@ ${JSON.stringify({
 function renderLanguageSwitch(mode) {
   const isOriginal = mode === 'original';
   const aboutLabel = isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて';
+  const guideLabel = isOriginal ? 'Guide' : '暮らしのガイド';
   const ariaLabel = isOriginal ? 'World page navigation' : 'Worldページ内ナビゲーション';
   return `<div class="world-language-switch" aria-label="${ariaLabel}">
         <a class="world-language-switch__item${mode === 'jp' ? ' is-active' : ''}" href="./${JP_PAGE_FILE}"${mode === 'jp' ? ' aria-current="page"' : ''}>JP 日本語</a>
         <a class="world-language-switch__item${isOriginal ? ' is-active' : ''}" href="./${ORIGINAL_PAGE_FILE}"${isOriginal ? ' aria-current="page"' : ''}>Original 原文</a>
+        <a class="world-language-switch__item" href="./guide.html">${guideLabel}</a>
         <a class="world-language-switch__item" href="./about.html">${aboutLabel}</a>
       </div>`;
 }
@@ -451,7 +453,7 @@ ${articlesHtml}
     <div class="container">
       <p>${isOriginal ? 'Deaf Navi World-Original shows article titles and summaries in the original source language, gathered from major media and multilingual regional Google News queries.' : 'Deaf Navi World-JP は Google News RSS を入口に、主要メディアと多言語の地域別検索を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正、必要に応じたCodex App Server後編集を通して掲載しています。'}</p>
       <p>${isOriginal ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳と編集補助です。'}</p>
-      <p><a href="./about.html">${isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isOriginal ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${HTML_SITEMAP_URL}">${isOriginal ? 'Sitemap' : 'サイトマップ'}</a></p>
+      <p><a href="./guide.html">${isOriginal ? 'Guide' : '暮らしのガイド'}</a> ・ <a href="./about.html">${isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isOriginal ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${HTML_SITEMAP_URL}">${isOriginal ? 'Sitemap' : 'サイトマップ'}</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>

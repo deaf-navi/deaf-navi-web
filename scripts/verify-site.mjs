@@ -11,10 +11,12 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-const [dataRaw, indexHtml, worldJpHtml, aboutHtml, sitemapXml] = await Promise.all([
+const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml] = await Promise.all([
   readFile(join(docs, 'articles.json'), 'utf8'),
   readFile(join(docs, 'index.html'), 'utf8'),
   readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8'),
+  readFile(join(docs, 'deaf-navi-world-original.html'), 'utf8'),
+  readFile(join(docs, 'guide.html'), 'utf8'),
   readFile(join(docs, 'about.html'), 'utf8'),
   readFile(join(docs, 'sitemap.xml'), 'utf8'),
 ]);
@@ -48,6 +50,7 @@ for (const marker of [
   'id="news-search"',
   'id="source-filter"',
   'data-source-tier=',
+  'filter--guide-link',
   'filter--world-link__icon',
   'SearchAction',
   'rel="canonical"',
@@ -57,9 +60,17 @@ for (const marker of [
 
 assert(worldJpHtml.includes('class="world-home-link"'), 'World-JP に国内版への導線がありません。');
 assert(worldJpHtml.includes('国内版 Deaf Navi Webへ'), 'World-JP の国内版リンク文言がありません。');
+assert(worldJpHtml.includes('href="./guide.html"'), 'World-JP に暮らしのガイドへの導線がありません。');
+assert(worldOriginalHtml.includes('href="./guide.html"'), 'World-Original にGuideへの導線がありません。');
 
-assert(aboutHtml.includes('2026年7月14日'), 'About に更新日がありません。');
+assert(aboutHtml.includes('2026年8月5日'), 'About に更新日がありません。');
 assert(aboutHtml.includes('id="about-policy"'), 'About に選定方針がありません。');
+assert(guideHtml.includes('id="guide-search"'), '暮らしのガイドに検索欄がありません。');
+assert((guideHtml.match(/data-guide-item/g) ?? []).length === 16, '暮らしのガイドが16項目ではありません。');
+for (const marker of ['110番アプリシステム', 'NET118 海の緊急通報', '補聴器購入の医療費控除', '障害者就業・生活支援センター']) {
+  assert(guideHtml.includes(marker), `暮らしのガイドに ${marker} がありません。`);
+}
 assert(sitemapXml.includes('<loc>https://tamas-hub.github.io/deaf-navi-web/about.html</loc>'), 'サイトマップにAboutがありません。');
+assert(sitemapXml.includes('<loc>https://tamas-hub.github.io/deaf-navi-web/guide.html</loc>'), 'サイトマップに暮らしのガイドがありません。');
 
 console.log(`Site verification passed: ${data.articles.length} articles, ${ids.size} unique URLs.`);

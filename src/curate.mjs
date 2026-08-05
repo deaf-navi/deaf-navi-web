@@ -215,6 +215,46 @@ const DEV_DIRECT_FEEDS = [
     sourceTier: 'specialist',
     minScore: 6,
   },
+  {
+    url: 'https://www.hokurouren.jp/feed/',
+    sourceName: '北海道聴覚障がい者情報センター',
+    sourceUrl: 'https://www.hokurouren.jp/',
+    defaultCategory: 'local',
+    sourceTier: 'official',
+    minScore: 5,
+  },
+  {
+    url: 'https://www.sapporo-deaf.jp/feed/',
+    sourceName: '札幌聴覚障害者協会',
+    sourceUrl: 'https://www.sapporo-deaf.jp/',
+    defaultCategory: 'local',
+    sourceTier: 'official',
+    minScore: 5,
+  },
+  {
+    url: 'https://hyogocenter.jp/feed/',
+    sourceName: '兵庫県立聴覚障害者情報センター',
+    sourceUrl: 'https://hyogocenter.jp/',
+    defaultCategory: 'local',
+    sourceTier: 'official',
+    minScore: 5,
+  },
+  {
+    url: 'https://shichocenter.kagoshima.kagoshima.jp/feed/',
+    sourceName: '鹿児島県視聴覚障害者情報センター',
+    sourceUrl: 'https://shichocenter.kagoshima.kagoshima.jp/',
+    defaultCategory: 'local',
+    sourceTier: 'official',
+    minScore: 5,
+  },
+  {
+    url: 'https://www.otjc.org/feed/',
+    sourceName: '沖縄聴覚障害者情報センター',
+    sourceUrl: 'https://www.otjc.org/',
+    defaultCategory: 'local',
+    sourceTier: 'official',
+    minScore: 5,
+  },
 ];
 
 const DEV_SOCIAL_FEEDS = [
@@ -341,7 +381,7 @@ const SCORE_TERMS = [
   ['119番', 6], ['110番', 6], ['消防', 5], ['警察', 5],
   ['手話講座', 7], ['講演会', 6], ['セミナー', 6], ['研修会', 6],
   ['体験会', 6], ['交流会', 6], ['相談会', 6], ['勉強会', 5],
-  ['フォーラム', 5], ['シンポジウム', 5],
+  ['フォーラム', 5], ['シンポジウム', 5], ['上映会', 5], ['公演', 5],
   ['デフリンピック', 8], ['デフスポーツ', 8], ['デフアスリート', 7],
   ['全国キャラバン', 6], ['標準手話', 6], ['手話練習帳', 6], ['Let’s手話', 6], ["Let's手話", 6],
   ['全国ろうあ者体育大会', 8], ['ろうあ者体育大会', 8],
@@ -413,7 +453,7 @@ function guessCategory(title, summary) {
   if (/ai字幕|自動字幕|リアルタイム字幕|音声認識|音声文字変換|speech.?to.?text|手話翻訳|手話アバター|支援技術|アクセシビリティ技術|アプリ|\bai\b|人工知能/.test(text)) return 'technology';
   if (/防災|災害|地震|台風|豪雨|避難|避難所|緊急通報|緊急情報|災害情報|119番|110番|消防|警察|救急|アラート/.test(text)) return 'safety';
   if (/情報保障|アクセシビリティ|合理的配慮|バリアフリー|字幕|要約筆記|手話通訳|遠隔通訳|UDCast|UDトーク|窓口対応|コミュニケーション支援/.test(text)) return 'accessibility';
-  if (/手話講座|講座|講演会|セミナー|研修会|勉強会|体験会|交流会|相談会|説明会|フォーラム|シンポジウム|ワークショップ|参加者募集|受講者募集|申込|申し込み/.test(text)) return 'event';
+  if (/手話講座|講座|講演会|セミナー|研修会|勉強会|体験会|交流会|相談会|説明会|見学会|上映会|公演|発表会|フォーラム|シンポジウム|ワークショップ|参加者募集|参加募集|受講者募集|開催案内|申込|申し込み/.test(text)) return 'event';
   if (/制度|政策|法律|条例|給付|支援|雇用|助成|補助|手当/.test(text)) return 'policy';
   if (/医療|病院|治療|手術|補聴器|人工内耳|診断|検査|耳鼻/.test(text)) return 'medical';
   if (/学校|教育|就学|大学|授業|入試|保育|幼稚|研究/.test(text)) return 'education';

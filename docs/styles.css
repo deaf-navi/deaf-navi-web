@@ -419,6 +419,18 @@ button {
   padding: 8px 34px 8px 12px;
 }
 
+.filter--guide-link {
+  color: #8a4938;
+  border-color: rgba(154, 91, 66, 0.30);
+  background: rgba(179, 94, 75, 0.07);
+}
+
+.filter--guide-link:hover {
+  color: #733c2e;
+  border-color: rgba(154, 91, 66, 0.45);
+  background: rgba(179, 94, 75, 0.12);
+}
+
 .filter--world-link + .filter--about {
   margin-left: 0;
 }
@@ -1118,6 +1130,211 @@ main {
 
 .archive-articles {
   margin-top: 0;
+}
+
+/* ---------- Guide ---------- */
+.guide {
+  padding-top: var(--s-8);
+}
+
+.guide-search {
+  max-width: 760px;
+  margin-bottom: var(--s-6);
+}
+
+.guide-search__head,
+.guide-section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+
+.guide-search h2,
+.guide-section h2 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.guide-search__head > div > p,
+.guide-section__head > div > p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.guide-search__meta,
+.guide-section__count {
+  color: var(--text-tertiary);
+  font-size: 12px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.guide-search__label {
+  display: block;
+  margin-top: var(--s-4);
+  margin-bottom: var(--s-1);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.guide-search__input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.guide-search__input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.guide-search__input:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 2px;
+  border-color: var(--accent-deep);
+}
+
+.guide-search__reviewed {
+  margin-top: var(--s-2);
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.guide-alert {
+  display: grid;
+  gap: 2px;
+  margin-bottom: var(--s-8);
+  padding: var(--s-4);
+  border-left: 4px solid var(--cat-safety);
+  border-radius: var(--r-sm);
+  background: rgba(154, 91, 66, 0.08);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.guide-alert strong {
+  color: #733c2e;
+}
+
+.guide-section {
+  margin-top: var(--s-8);
+}
+
+.guide-section__head {
+  align-items: center;
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--s-5);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-sm);
+}
+
+.guide-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.guide-card__title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text-primary);
+}
+
+.guide-card__badge {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  border: 1px solid rgba(47, 124, 134, 0.28);
+  border-radius: var(--r-sm);
+  background: rgba(47, 124, 134, 0.09);
+  color: #286973;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.guide-card__summary {
+  margin-top: var(--s-3);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.guide-card__detail {
+  margin-top: var(--s-2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.guide-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: var(--s-4);
+  color: var(--accent-deep);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.guide-card__link:hover {
+  color: var(--text-primary);
+}
+
+.guide-disclaimer {
+  max-width: 760px;
+  margin-top: var(--s-10, 40px);
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--border-default);
+  color: var(--text-tertiary);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@media (max-width: 720px) {
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-search__head,
+  .guide-section__head {
+    align-items: flex-start;
+  }
+
+  .guide-card {
+    padding: var(--s-4);
+  }
 }
 
 .meta__sep {

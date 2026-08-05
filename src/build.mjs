@@ -1,6 +1,7 @@
 import { readFile, writeFile, copyFile, mkdir, stat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { GUIDE_LAST_REVIEWED, GUIDE_SECTIONS } from './guide-data.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -19,12 +20,15 @@ const STYLES_SRC = join(__dirname, 'styles.css');
 const STYLES_OUT = join(DOCS, `styles${SUFFIX}.css`);
 const APP_SRC = join(__dirname, 'app.js');
 const APP_OUT = join(DOCS, `app${SUFFIX}.js`);
+const GUIDE_JS_SRC = join(__dirname, 'guide.js');
+const GUIDE_JS_OUT = join(DOCS, `guide${SUFFIX}.js`);
 const OG_SRC = join(__dirname, 'og-image.svg');
 const OG_OUT = join(DOCS, `og-image${SUFFIX}.svg`);
 
 const SITE_URL = 'https://tamas-hub.github.io/deaf-navi-web/';
 const PAGE_URL = IS_DEV ? `${SITE_URL}index-dev.html` : SITE_URL;
 const ABOUT_FILE = `about${SUFFIX}.html`;
+const GUIDE_FILE = `guide${SUFFIX}.html`;
 const OLD_INDEX_FILE = `index-old${SUFFIX}.html`;
 const FEED_FILE = `feed${SUFFIX}.xml`;
 const SITEMAP_FILE = `sitemap${SUFFIX}.xml`;
@@ -32,8 +36,10 @@ const SITEMAP_HTML_FILE = `sitemap${SUFFIX}.html`;
 const ROBOTS_FILE = `robots${SUFFIX}.txt`;
 const STYLES_FILE = `styles${SUFFIX}.css`;
 const APP_FILE = `app${SUFFIX}.js`;
+const GUIDE_JS_FILE = `guide${SUFFIX}.js`;
 const OG_FILE = `og-image${SUFFIX}.svg`;
 const ABOUT_URL = `${SITE_URL}${ABOUT_FILE}`;
+const GUIDE_URL = `${SITE_URL}${GUIDE_FILE}`;
 const OLD_PAGE_URL = `${SITE_URL}${OLD_INDEX_FILE}`;
 const FEED_URL = `${SITE_URL}${FEED_FILE}`;
 const SITEMAP_URL = `${SITE_URL}${SITEMAP_FILE}`;
@@ -42,7 +48,7 @@ const SITE_NAME = 'Deaf Navi Web';
 const SITE_TAGLINE = '聴覚障害・難聴・手話に関するニュースと一次情報';
 const SITE_DESC = '聴覚障害・難聴・ろう者・手話に関する一次情報と報道を、出典と選定区分を明示して届ける無料ニュースキュレーション。制度・情報保障・医療・教育・技術・防災・文化・デフスポーツを1日3回更新します。';
 const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途失聴,手話,情報保障,アクセシビリティ,防災,技術,AI,イベント,講座,補聴器,人工内耳,手話言語条例,聴覚障害ニュース,手話ニュース,難聴者,デフ,deaf,字幕,電話リレー,要約筆記,ろう学校,聴覚特別支援';
-const LATEST_UPDATE_DATE = '2026-07-14';
+const LATEST_UPDATE_DATE = GUIDE_LAST_REVIEWED;
 
 const CATEGORY_ORDER = ['all', 'policy', 'accessibility', 'medical', 'education', 'technology', 'culture', 'sports', 'safety', 'event', 'relay', 'local', 'general'];
 const CATEGORY_UI = {
@@ -177,9 +183,10 @@ function renderFilterButtons() {
     (c) =>
       `<button type="button" class="filter${c === 'all' ? ' is-active' : ''}" data-filter="${c}" aria-pressed="${c === 'all' ? 'true' : 'false'}">${CATEGORY_UI[c]}</button>`,
   ).join('\n          ');
+  const guideLink = `<a class="filter filter--guide-link" href="./${GUIDE_FILE}">暮らしのガイド</a>`;
   const worldLink = `<a class="filter filter--world-link" href="./deaf-navi-world-jp.html"><span class="filter--world-link__icon" aria-hidden="true">🌐</span><span>Deaf Navi World-JP</span></a>`;
   const aboutLink = `<a class="filter filter--about" href="./${ABOUT_FILE}" target="_blank" rel="noopener">Deaf Naviについて<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>`;
-  return `${filters}\n          ${worldLink}\n          ${aboutLink}`;
+  return `${filters}\n          ${guideLink}\n          ${worldLink}\n          ${aboutLink}`;
 }
 
 function renderDiscoveryTools() {
@@ -451,7 +458,7 @@ ${articlesHtml}
     <div class="container">
       <p>公式・専門団体の直接配信と Google News RSS を情報源に、関連性・鮮度・重複を自動判定しています。内容の確認は各元記事をご覧ください。</p>
       <p>記事の著作権は各発信元に帰属します。リンク先は外部サイトです。更新は1日3回です。</p>
-      <p><a href="./${ABOUT_FILE}#about-policy">選定方針</a> ・ <a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_HTML_URL}">サイトマップ</a></p>
+      <p><a href="./${GUIDE_FILE}">暮らしのガイド</a> ・ <a href="./${ABOUT_FILE}#about-policy">選定方針</a> ・ <a href="${FEED_URL}">RSSフィード</a> ・ <a href="${SITEMAP_HTML_URL}">サイトマップ</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${new Date().getFullYear()} TAMA.</span>
@@ -593,6 +600,155 @@ ${archiveSections || '<p class="empty">アーカイブ対象の記事はまだ�
 `;
 }
 
+function renderGuideItem(item, sectionLabel) {
+  const searchText = [sectionLabel, item.title, item.summary, item.detail].join(' ');
+  const recommended = item.recommended
+    ? '\n            <span class="guide-card__badge">まず確認</span>'
+    : '';
+  return `
+        <article class="guide-card" data-guide-item data-guide-search="${escapeHtml(searchText)}">
+          <div class="guide-card__head">
+            <h3 class="guide-card__title">${escapeHtml(item.title)}</h3>${recommended}
+          </div>
+          <p class="guide-card__summary">${escapeHtml(item.summary)}</p>
+          <p class="guide-card__detail">${escapeHtml(item.detail)}</p>
+          <a class="guide-card__link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
+            公式情報を見る <span aria-hidden="true">↗</span>
+          </a>
+        </article>`;
+}
+
+function renderGuidePage() {
+  const guideTitle = `暮らしのガイド | ${SITE_NAME}`;
+  const description = '聴覚障害・難聴・ろう者の暮らしに役立つ緊急通報、医療、教育、就労、電話サービス、デフスポーツの公的情報を検索できるガイド。';
+  const totalItems = GUIDE_SECTIONS.reduce((total, section) => total + section.items.length, 0);
+  const reviewedLabel = '2026年8月5日';
+  const sectionsHtml = GUIDE_SECTIONS.map((section) => `
+    <section class="guide-section" data-guide-section aria-labelledby="guide-${escapeHtml(section.id)}">
+      <div class="guide-section__head">
+        <div>
+          <h2 id="guide-${escapeHtml(section.id)}">${escapeHtml(section.label)}</h2>
+          <p>${escapeHtml(section.summary)}</p>
+        </div>
+        <span class="guide-section__count" data-guide-section-count>${section.items.length}件</span>
+      </div>
+      <div class="guide-grid">
+${section.items.map((item) => renderGuideItem(item, section.label)).join('\n')}
+      </div>
+    </section>`).join('\n');
+  const guideJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': GUIDE_URL,
+    url: GUIDE_URL,
+    name: guideTitle,
+    description,
+    inLanguage: 'ja-JP',
+    dateModified: GUIDE_LAST_REVIEWED,
+    isPartOf: { '@id': `${SITE_URL}#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: totalItems,
+      itemListElement: GUIDE_SECTIONS.flatMap((section) => section.items).map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.title,
+        url: item.url,
+      })),
+    },
+  };
+
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHtml(guideTitle)}</title>
+  <meta name="description" content="${escapeHtml(description)}">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="${IS_DEV ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1'}">
+  <link rel="canonical" href="${GUIDE_URL}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
+  <meta property="og:title" content="${escapeHtml(guideTitle)}">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:url" content="${GUIDE_URL}">
+  <meta property="og:image" content="${SITE_URL}${OG_FILE}">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="theme-color" content="#075e57">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="./${STYLES_FILE}">
+
+  <script type="application/ld+json">
+${JSON.stringify(guideJsonLd, null, 2)}
+  </script>
+
+  ${CF_ANALYTICS_SNIPPET}
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+
+  <header class="site-header site-header--slim" role="banner">
+    <div class="site-header__leaf" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
+        <path d="M40 170 C 70 140, 100 110, 160 30" />
+        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
+        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
+      </svg>
+    </div>
+    <div class="container">
+      <p class="site-breadcrumb"><a href="./">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>暮らしのガイド</span></p>
+      <h1 class="site-title site-title--small"><span class="site-title__brand">暮らしのガイド</span></h1>
+      <p class="site-lead">緊急時、医療、教育、就労など、知りたい場面から公的な情報を探せます。</p>
+    </div>
+  </header>
+
+  <main id="main" class="container guide" role="main">
+    <section class="guide-search" aria-labelledby="guide-search-heading">
+      <div class="guide-search__head">
+        <div>
+          <h2 id="guide-search-heading">ガイドを検索</h2>
+          <p>制度名、場面、キーワードで絞り込めます。</p>
+        </div>
+        <p class="guide-search__meta" aria-live="polite"><strong id="guide-visible-count">${totalItems}</strong> / ${totalItems}件</p>
+      </div>
+      <label class="guide-search__label" for="guide-search">キーワード</label>
+      <input class="guide-search__input" id="guide-search" type="search" inputmode="search" autocomplete="off" placeholder="例: 110、補聴器、就職、受験">
+      <p class="guide-search__reviewed">最終確認: <time datetime="${GUIDE_LAST_REVIEWED}">${reviewedLabel}</time></p>
+    </section>
+
+    <aside class="guide-alert" aria-label="緊急通報に関する注意">
+      <strong>緊急時に備えて、事前登録と操作確認を。</strong>
+      <span>サービスごとに登録条件や対応地域が異なります。実際の緊急時には、利用できる手段ですぐに通報してください。</span>
+    </aside>
+
+${sectionsHtml}
+    <p id="guide-empty" class="empty" role="status" hidden>該当するガイドがありません。別のキーワードで検索してください。</p>
+
+    <p class="guide-disclaimer">掲載内容は公式情報への入口です。制度・受付期間・対応地域は変更される場合があるため、申請や利用の前にリンク先の最新情報をご確認ください。</p>
+    <p class="about__back"><a href="./">← ニュースへ戻る</a></p>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a> ・ <a href="./about.html">Deaf Naviについて</a></p>
+      <p class="site-footer__copyright">
+        <span>&copy; ${new Date().getFullYear()} TAMA.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Take it easy.</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="./${GUIDE_JS_FILE}" defer></script>
+</body>
+</html>`;
+}
+
 function renderAboutPage({ generatedAt }) {
   const aboutTitle = `${IS_DEV ? '[DEV] ' : ''}Deaf Naviについて | ${SITE_NAME}`;
   const indexHref = IS_DEV ? './index-dev.html' : './';
@@ -678,21 +834,20 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
       <h2 id="about-concept" class="about__h2">このサイトについて</h2>
       <p>Deaf Navi Web は、<strong>聴覚障害・難聴・ろう者・中途失聴者</strong>のコミュニティに関わる情報を、信頼できる情報源から自動収集・分類してお届けする無料ニュースキュレーションサイトです。</p>
       <p>国内ニュースを扱う Deaf Navi Web に加え、海外ニュースを扱う <a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版）と <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）を公開しています。情報保障・手話・制度・医療・教育・技術・防災・文化・デフスポーツなど、暮らしと権利に直結するトピックを幅広くカバーします。</p>
+      <p><a href="./${GUIDE_FILE}">暮らしのガイド</a>では、アプリ版と同じ方針で、緊急通報・医療・教育・就労・電話サービスなどの公式情報を探せます。</p>
     </section>
 
     <section id="updates" aria-labelledby="about-updates">
       <h2 id="about-updates" class="about__h2">アップデート情報</h2>
       <article class="release-note">
         <header class="release-note__head">
-          <time datetime="${LATEST_UPDATE_DATE}">2026年7月14日</time>
-          <h3>キュレーション品質・検索・視認性を改善</h3>
+          <time datetime="${LATEST_UPDATE_DATE}">2026年8月5日</time>
+          <h3>暮らしのガイドと公式イベント情報を追加</h3>
         </header>
         <ul>
-          <li>記事ごとに「一次情報」「専門情報」「報道・発見」「関連媒体」の選定区分を表示</li>
-          <li>フィード取得の再試行と前回記事の短期補完を追加し、一時的な配信障害でも一覧が欠けにくい構成へ変更</li>
-          <li>公開日から180日を超える記事を最新一覧の候補から除外し、異なる日付・開催地の記事を誤って重複扱いしにくい判定へ改善</li>
-          <li>記事検索と情報源フィルターを追加し、文字サイズ・コントラスト・一覧密度を見直し</li>
-          <li>検索URL、構造化データ、ページ説明、更新情報を整備してSEOとサイトの透明性を強化</li>
+          <li>110番アプリ、NET118、補聴器の医療費控除、就業・生活支援センターなど、公式情報16項目をまとめた「暮らしのガイド」を追加</li>
+          <li>北海道・札幌・兵庫・鹿児島・沖縄の公式フィードを追加し、地域の講座・上映会・公演・相談会などを発見しやすく改善</li>
+          <li>ニュース検索、情報源区分、取得再試行、前回記事の短期補完、180日以内の鮮度判定を維持しながらWeb版とアプリ版の内容を同期</li>
         </ul>
       </article>
     </section>
@@ -707,6 +862,7 @@ ${JSON.stringify(aboutJsonLd, null, 2)}
         <li><a href="https://co-coco.jp/" target="_blank" rel="noopener noreferrer">こここ</a> — マガジンハウス運営の福祉クリエイティブマガジン</li>
         <li><a href="https://ameblo.jp/jtd2009/" target="_blank" rel="noopener noreferrer">日本ろう者劇団</a> — 手話狂言・公演情報</li>
         <li><a href="https://www.jfd.or.jp/sc/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟スポーツ委員会</a>、<a href="https://jdba.sakura.ne.jp/" target="_blank" rel="noopener noreferrer">日本デフバスケットボール協会</a>、<a href="https://www.deafswim.or.jp/" target="_blank" rel="noopener noreferrer">日本デフ水泳協会</a> — 国内デフスポーツ情報</li>
+        <li>北海道・札幌・兵庫・鹿児島・沖縄の聴覚障害者情報センター、地域団体の公式フィード — 講座・交流会・相談会などの地域イベント情報</li>
       </ul>
 ${expandedSourceSection}
       <h3 class="about__h3">国内版: 主要報道機関・公的機関（Google News RSS）</h3>
@@ -775,6 +931,7 @@ ${expandedSourceSection}
     <section aria-labelledby="about-feeds">
       <h2 id="about-feeds" class="about__h2">配信・共有</h2>
       <ul>
+        <li><a href="./${GUIDE_FILE}">暮らしのガイド</a>（緊急通報・医療・教育・就労・電話サービス）</li>
         <li><a href="${FEED_URL}">RSS フィード</a>（最新50件）</li>
         <li><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版） / <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）</li>
         <li><a href="https://tamas-hub.github.io/deaf-navi-web/feed-world.xml">World-JP RSS フィード</a> / <a href="https://tamas-hub.github.io/deaf-navi-web/feed-world-original.xml">World-Original RSS フィード</a></li>
@@ -864,6 +1021,7 @@ function renderSitemapPage({ generatedAt, count, articles }) {
         <ul>
           <li><a href="./${IS_DEV ? 'index-dev.html' : 'index.html'}">Deaf Navi Web トップ</a><span>聴覚障害・難聴・ろう者コミュニティ向け国内ニュース</span></li>
           ${archiveRow}
+          <li><a href="./${GUIDE_FILE}">暮らしのガイド</a><span>緊急通報・医療・教育・就労などの公式情報</span></li>
           <li><a href="./${FEED_FILE}">RSSフィード</a><span>国内ニュース最新50件</span></li>
         </ul>
       </section>
@@ -940,6 +1098,12 @@ ${HAS_ARCHIVE ? `  <url>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>${GUIDE_URL}</loc>
+    <lastmod>${GUIDE_LAST_REVIEWED}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>${SITEMAP_HTML_URL}</loc>
@@ -1062,6 +1226,9 @@ async function main() {
   await writeFile(join(DOCS, ABOUT_FILE), renderAboutPage({ generatedAt: data.generatedAt }), 'utf8');
   console.log(`書き出し: ${join(DOCS, ABOUT_FILE)}`);
 
+  await writeFile(join(DOCS, GUIDE_FILE), renderGuidePage(), 'utf8');
+  console.log(`書き出し: ${join(DOCS, GUIDE_FILE)}`);
+
   await writeFile(join(DOCS, SITEMAP_HTML_FILE), renderSitemapPage(data), 'utf8');
   console.log(`書き出し: ${join(DOCS, SITEMAP_HTML_FILE)}`);
 
@@ -1081,6 +1248,10 @@ async function main() {
   if (await fileExists(APP_SRC)) {
     await copyFile(APP_SRC, APP_OUT);
     console.log(`コピー: ${APP_OUT}`);
+  }
+  if (await fileExists(GUIDE_JS_SRC)) {
+    await copyFile(GUIDE_JS_SRC, GUIDE_JS_OUT);
+    console.log(`コピー: ${GUIDE_JS_OUT}`);
   }
   if (await fileExists(OG_SRC)) {
     await copyFile(OG_SRC, OG_OUT);

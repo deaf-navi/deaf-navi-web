@@ -21,6 +21,7 @@
 - 全日本難聴者・中途失聴者団体連合会
 - 全国手話研修センター
 - 聴力障害者情報文化センター
+- 北海道・札幌・兵庫・鹿児島・沖縄の聴覚障害者情報センター、地域団体
 - 電話リレーサービス / 日本財団電話リレーサービス
 - 全通研NOW!!
 - 日本聴覚医学会
@@ -54,12 +55,15 @@ deaf-navi-web/
 ├── src/
 │   ├── curate.mjs                # RSS 取得 → docs/articles.json
 │   ├── build.mjs                 # docs/articles.json → docs/index.html
+│   ├── guide-data.mjs            # 暮らしのガイド掲載データ
+│   ├── guide.js                  # ガイド検索用クライアント JS
 │   ├── styles.css                # UI スタイル
 │   ├── app.js                    # フィルタボタン用クライアント JS
 │   └── serve.mjs                 # ローカル確認用簡易サーバー
 ├── docs/                         # ← GitHub Pages 公開ディレクトリ
 │   ├── index.html                # 自動生成
 │   ├── index-old.html            # 400件超過分の過去アーカイブ
+│   ├── guide.html                # 緊急通報・医療・教育・就労などのガイド
 │   ├── articles.json             # 自動生成
 │   ├── articles-old.json         # 400件超過分の蓄積データ
 │   ├── app/v1/                   # iOSアプリ同期用JSON
