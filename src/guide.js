@@ -1,4 +1,5 @@
 (() => {
+  // Service Worker 登録・表示設定は ui-controls.js が担当
   const input = document.querySelector('#guide-search');
   const sections = [...document.querySelectorAll('[data-guide-section]')];
   const items = [...document.querySelectorAll('[data-guide-item]')];

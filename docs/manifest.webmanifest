@@ -1,0 +1,40 @@
+{
+  "name": "Deaf Navi Web",
+  "short_name": "Deaf Navi",
+  "description": "聴覚障害・難聴・ろう者・手話に関するニュースと一次情報を届ける無料ポータル",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f5f4",
+  "theme_color": "#075e57",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "暮らしのガイド（緊急通報）",
+      "short_name": "ガイド",
+      "url": "./guide.html#guide-emergency",
+      "description": "110番アプリ・NET118・電話リレー緊急通報の公式情報"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+# PR検証用ワークフロー。
+# 本番のデータ更新・公開は curate.yml / curate-world.yml / app-sync.yml が担当し、
+# ここではコミット済みデータを入力に「テスト・ビルド・検証」だけを行う（書き込み権限なし・ネットワーク不要）。
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Unit / integration / iOS-compat tests
+        run: npm test
+
+      - name: Build site from committed data
+        run: npm run build
+
+      - name: Build app API from committed data
+        run: npm run build:app-api
+
+      - name: Verify site output
+        run: npm run verify

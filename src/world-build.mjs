@@ -1,6 +1,7 @@
 import { readFile, writeFile, copyFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { renderDisplayControls } from './templates/partials.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -268,6 +269,7 @@ function renderJsonLd({ generatedAt, articles, mode, pageUrl, siteName, siteDesc
     };
   });
 
+  // JSON.stringify は "<" を通すため < へ置換して script 脱出を防ぐ
   return `<script type="application/ld+json">
 ${JSON.stringify({
     '@context': 'https://schema.org',
@@ -297,7 +299,7 @@ ${JSON.stringify({
         itemListElement: itemList,
       },
     ],
-  }, null, 2)}
+  }, null, 2).replace(/</g, '\\u003c')}
 </script>`;
 }
 
@@ -367,6 +369,21 @@ function renderPage(data, mode = 'jp') {
   <link rel="alternate" hreflang="ja" href="${JP_PAGE_URL}">
   <link rel="alternate" hreflang="x-default" href="${ORIGINAL_PAGE_URL}">
   <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)}" href="${feedUrl}">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+
+  <!-- テーマ・文字サイズをペイント前に適用（FOUC防止・localStorage参照のみ） -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dn-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        var f = localStorage.getItem('dn-font');
+        if (f === 'large' || f === 'xlarge') document.documentElement.setAttribute('data-font', f);
+      } catch (e) { /* private mode 等は既定値で表示 */ }
+    })();
+  </script>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Deaf Navi">
@@ -399,7 +416,10 @@ function renderPage(data, mode = 'jp') {
   <header class="site-header site-header--world" role="banner">
     <div class="container">
       <p class="site-breadcrumb"><a href="./index.html">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>${escapeHtml(siteName)}</span></p>
-      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${isOriginal ? 'World-Original' : 'World-JP'}</span></h1>
+      <div class="site-header__top">
+        <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${isOriginal ? 'World-Original' : 'World-JP'}</span></h1>
+        ${renderDisplayControls()}
+      </div>
       <p class="site-lead">${escapeHtml(lead)}</p>
       <div class="world-header-actions">
         <a class="world-home-link" href="./index.html"><span aria-hidden="true">←</span><span>${escapeHtml(homeLabel)}</span></a>
@@ -463,6 +483,7 @@ ${articlesHtml}
     </div>
   </footer>
 
+  <script src="./ui-controls.js" defer></script>
   <script src="./app-world.js" defer></script>
 </body>
 </html>`;
