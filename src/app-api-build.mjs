@@ -261,6 +261,11 @@ function domesticArticle(article) {
     category,
     categoryLabel: DOMESTIC_CATEGORIES[category],
     legacyCategory: LEGACY_DOMESTIC_CATEGORY[category] ?? 'general',
+    // 2.0 追加（richペイロード限定の後方互換フィールド。ios-*-v1/v2 の8キー配列には出さない）
+    sourceTier: article.sourceTier,
+    discoveryMethod: article.discoveryMethod,
+    region: article.region,
+    prefecture: article.prefecture,
     curationScore: article.curationScore,
     curationSignals: article.curationSignals,
   };

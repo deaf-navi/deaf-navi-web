@@ -71,13 +71,16 @@ test('domestic.json: richペイロードの互換フィールド', () => {
   assert.match(dom.generatedAt, ISO_SECONDS);
   assert.equal(dom.display.excludedFromAll[0], 'relay');
   assert.equal(dom.display.categories.length, 13);
+  const tiers = new Set(['official', 'specialist', 'news', 'broad']);
   for (const a of dom.articles) {
     assert.ok(a.stableId.startsWith('domestic_') && a.stableId.length === 'domestic_'.length + 20, `stableId形式: ${a.stableId}`);
     assert.ok(a.sourceURL !== undefined && a.sourceUrl !== undefined, 'sourceURL/sourceUrl 両方が必要');
-    // 2.0で追加した region/prefecture がアプリ向けペイロードへ漏れていないこと
-    assert.equal(a.region, undefined, 'region がアプリ向けペイロードに漏れています');
-    assert.equal(a.prefecture, undefined, 'prefecture がアプリ向けペイロードに漏れています');
+    // 2.0追加のrichペイロード限定フィールド（アプリの選定区分バッジ・地域フィルタ用）
+    assert.ok(tiers.has(a.sourceTier), `domestic.json に sourceTier が必要: ${a.sourceTier}`);
+    assert.ok(['direct-feed', 'google-news'].includes(a.discoveryMethod), `discoveryMethod 不正: ${a.discoveryMethod}`);
+    if (a.region !== undefined) assert.equal(typeof a.region, 'string');
   }
+  assert.ok(dom.articles.some((a) => a.region), 'domestic.json に region 付き記事が1件もありません');
 });
 
 test('manifest.json と index.json は同一内容', () => {
