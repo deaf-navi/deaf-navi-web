@@ -102,6 +102,8 @@ ${items.map(renderArchiveArticle).join('\n')}
   </main>
 
 ${renderFooter({ year: new Date().getFullYear() })}
+
+  <script src="../ui-controls.js" defer></script>
 </body>
 </html>
 `;
@@ -156,6 +158,8 @@ ${groups.length ? `    <ul class="archive-index">\n${monthRows}\n    </ul>` : ' 
   </main>
 
 ${renderFooter({ year: new Date().getFullYear() })}
+
+  <script src="./ui-controls.js" defer></script>
 </body>
 </html>
 `;

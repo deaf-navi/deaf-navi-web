@@ -129,6 +129,7 @@ ${renderFooter({
     ],
   })}
 
+  <script src="./ui-controls.js" defer></script>
   <script src="./${files.guideJs}" defer></script>
 </body>
 </html>`;

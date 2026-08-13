@@ -43,7 +43,7 @@ async function fileExists(file) {
   }
 }
 
-const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml, oldIndexHtml, appJs] = await Promise.all([
+const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml, oldIndexHtml, uiControlsJs] = await Promise.all([
   readFile(join(docs, 'articles.json'), 'utf8'),
   readFile(join(docs, 'index.html'), 'utf8'),
   readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8'),
@@ -52,7 +52,7 @@ const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml,
   readFile(join(docs, 'about.html'), 'utf8'),
   readFile(join(docs, 'sitemap.xml'), 'utf8'),
   readFile(join(docs, 'index-old.html'), 'utf8'),
-  readFile(join(docs, 'app.js'), 'utf8'),
+  readFile(join(docs, 'ui-controls.js'), 'utf8'),
 ]);
 
 /* ---------- articles.json（iOS連携の入力スキーマ） ---------- */
@@ -158,7 +158,7 @@ for (const file of ['manifest.webmanifest', 'sw.js', 'offline.html', 'favicon.sv
 }
 const swJs = await readFile(join(docs, 'sw.js'), 'utf8');
 assert(!swJs.includes('__BUILD_ID__'), 'sw.js のビルドIDが未置換です。');
-assert(appJs.includes('serviceWorker'), 'app.js にService Worker登録がありません。');
+assert(uiControlsJs.includes('serviceWorker'), 'ui-controls.js にService Worker登録がありません。');
 
 /* ---------- 結果 ---------- */
 

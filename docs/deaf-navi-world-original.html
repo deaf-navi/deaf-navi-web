@@ -14,6 +14,21 @@
   <link rel="alternate" hreflang="ja" href="https://tamas-hub.github.io/deaf-navi-web/deaf-navi-world-jp.html">
   <link rel="alternate" hreflang="x-default" href="https://tamas-hub.github.io/deaf-navi-web/deaf-navi-world-original.html">
   <link rel="alternate" type="application/rss+xml" title="Deaf Navi World-Original" href="https://tamas-hub.github.io/deaf-navi-web/feed-world-original.xml">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+
+  <!-- テーマ・文字サイズをペイント前に適用（FOUC防止・localStorage参照のみ） -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dn-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        var f = localStorage.getItem('dn-font');
+        if (f === 'large' || f === 'xlarge') document.documentElement.setAttribute('data-font', f);
+      } catch (e) { /* private mode 等は既定値で表示 */ }
+    })();
+  </script>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Deaf Navi">
@@ -959,7 +974,17 @@
   <header class="site-header site-header--world" role="banner">
     <div class="container">
       <p class="site-breadcrumb"><a href="./index.html">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>Deaf Navi World-Original</span></p>
-      <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">World-Original</span></h1>
+      <div class="site-header__top">
+        <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">World-Original</span></h1>
+        <div class="display-controls" data-display-controls hidden>
+        <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
+          <span class="display-controls__icon" data-theme-icon><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><span data-theme-label>ダーク表示</span>
+        </button>
+        <button type="button" class="display-controls__btn" id="font-toggle" aria-pressed="false">
+          <span class="display-controls__icon display-controls__icon--text" aria-hidden="true">あ</span><span data-font-label>文字を大きく</span>
+        </button>
+      </div>
+      </div>
       <p class="site-lead">Fresh global news related to deaf, hard-of-hearing, sign language, accessibility, health, education, and culture is shown in each source article language.</p>
       <div class="world-header-actions">
         <a class="world-home-link" href="./index.html"><span aria-hidden="true">←</span><span>Domestic Deaf Navi Web</span></a>
@@ -1021,7 +1046,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-12T08:56:17.000Z" title="2026-08-12 17:56 JST">17時間前</time>
+        <time class="card__time" datetime="2026-08-12T08:56:17.000Z" title="2026-08-12 17:56 JST">23時間前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE8zWDZQdUxTbi1HWW1KV0x1cE12ZGhnc2haQ20tM3l6SzU0TnNGTGtaV2V4TUkya29ieWxzRjVmdW1Fd0xLNjdKUUt1cFJURHRGalpsX3E0dFFtZw?oc=5" target="_blank" rel="noopener noreferrer">BTS&#39; V reveals hearing loss, Jungkook performs through shin injury on world tour</a>
         </h3>
@@ -1037,7 +1062,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-12T08:22:03.000Z" title="2026-08-12 17:22 JST">18時間前</time>
+        <time class="card__time" datetime="2026-08-12T08:22:03.000Z" title="2026-08-12 17:22 JST">1日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPOTYyR2JBRE92ZDRJTWZMYWVjcmRLdl9aOVA2WWNEWTVCXzFoeHlrMEpKdEFadXozRTNuUHVaSlJIcm4xSkd0NHo3ZlpWbHZsOFc2ckZpRUZrVUZVUHJPZ2wtVzV1RHZJZV9iVnc2R2VYSkpBbjFid3AzdFNscXl1VFhSQ2xuTE55Zmo0VFZ2TkN3OFBJZHFudA?oc=5" target="_blank" rel="noopener noreferrer">Demant acelera un 7% en el primer semestre impulsado por los audífonos</a>
         </h3>
@@ -1085,7 +1110,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-12T08:34:00.000Z" title="2026-08-12 17:34 JST">18時間前</time>
+        <time class="card__time" datetime="2026-08-12T08:34:00.000Z" title="2026-08-12 17:34 JST">1日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxNZ2ZVLWFuNHB1bkR3MkltUGhjMEs3bDNwYldaTnFpdDBYQzA5UldCeUtPbG5SdXdETHphVWtfLW1GekRjSHVqak5SdW5nMXZFSElpSkV4UFJKV2REYkZoQWZnYUI1M1h2TW41b0JUNjZjcVRHMHlTZU9nc3hJdC1FaTBkX2k5V081VjVKQ2hMYjJzaDVCRENRUnJUb1UwRENWN21ZT2NqbmZBRXlwdmZRelhXNk9Iem9hMlFTMkd5b29rMkVfNWtGQjFFRExVNm5uNmfSAdcBQVVfeXFMUHNGSjFSZ2x0ZWFwaHB0MVg4dVljRGkwN3l3Z2ROVXU0al9BOWJaT21xQmY2OTRfTzg1QU93LXVHaGFsSXJxXy1mU0pkWXlDdjRLR3VUUFlUdUF0U1F6TmJKeGFFRWExN2M2YmFiOE04MWZEd2RGZmtxMHN1alk0MWlmejBtTnFCNV91YllVTnZ4OFFTU1dWRnNZQUw4WG1LQy1DSnhqemhSSU13czdkaXYyRWZfRERNQ2g4dXVNWG5WdEh6cUt3XzhkMnQ3cl9CLTRET29TZDQ?oc=5" target="_blank" rel="noopener noreferrer">FDA clears hearing aid feature on Samsung Galaxy Buds</a>
         </h3>
@@ -1245,7 +1270,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-08-10T08:00:05.000Z" title="2026-08-10 17:00 JST">2日前</time>
+        <time class="card__time" datetime="2026-08-10T08:00:05.000Z" title="2026-08-10 17:00 JST">3日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE1DWnFfZnNiYlRXa2RMRF91YURLSXNwSW9DbU9mOEZqWEtBMFV4blJ3c3IxM29VMERPMFdQVXlIenRNSnhJemtUcHZWUW1QWkxmZk9KdlNQUlFVMHRGWmVpS0lUMzNtNDk3RlVpUk1iZTNtdGpuS1E?oc=5" target="_blank" rel="noopener noreferrer">시립서대문농아인복지관, 신한은행과 함께한 청각장애 청년 대상 &#39;재테크 교육 및 모의투자대회&#39; 성황리 마무리</a>
         </h3>
@@ -1261,7 +1286,7 @@
           <span class="chip chip--world-region chip--region-middle_east_africa">Middle East / Africa</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T08:32:53.000Z" title="2026-08-07 17:32 JST">5日前</time>
+        <time class="card__time" datetime="2026-08-07T08:32:53.000Z" title="2026-08-07 17:32 JST">6日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNTEZXS0pRVlFBcjN1T0FzcDNyOU9nTDYtVkc5QWQzWE1LbmRwRnRHYXpQbWNrSkJweHJQeXNFYUZGb1J6eVV3VkdjRkd4OElMSGNsSGhZeWptOFludVJNMkVxRTFod01TWmxjM0tKbi0tWFZ6a09zcW0wZDFxRnVDZV9ISW9sWEZYUHZONzFvYmFsMjJCRFF1WlVYS3JkaXRnQjJXeE5jZElUdmVna1RGNnA5a2Z4SU91am5EdnNjOU9hN0ZMR3E3NjhR?oc=5" target="_blank" rel="noopener noreferrer">Oyo Pupils Showcase Sign Language Skills at Maiden Inclusive Education Competition</a>
         </h3>
@@ -1309,7 +1334,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-10T04:55:37.000Z" title="2026-08-10 13:55 JST">2日前</time>
+        <time class="card__time" datetime="2026-08-10T04:55:37.000Z" title="2026-08-10 13:55 JST">3日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE82X0gwZVE1c1VGYTZXUzNacC12X0gyX2JYaDR5S2RUdUx3dmhRdURVMjVpYnN3SDRWbXFRTnZDbm1PLVNMc1FUSkxxUTRSX2kyQXdBSlV6Ym5Gam5VZFNZMlY3RWREdGx4VG9V?oc=5" target="_blank" rel="noopener noreferrer">양평군 단월면, 난청·청각장애 어르신 10가구에 &#39;보이는 초인등&#39; 설치</a>
         </h3>
@@ -1325,7 +1350,7 @@
           <span class="chip chip--world-region chip--region-middle_east_africa">Middle East / Africa</span>
           <span class="chip chip--world-topic chip--topic-rights">Rights / policy</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T07:00:00.000Z" title="2026-08-07 16:00 JST">5日前</time>
+        <time class="card__time" datetime="2026-08-07T07:00:00.000Z" title="2026-08-07 16:00 JST">6日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi1gFBVV95cUxNVXhhSmVHTWVxSGd3WVh0U0tRdHFCQlZpREVmcFhHdndRdkkxQkt4VGFfMHZTcTlTanhIc1BxUnZOM0phQWd2YzNVaV83T0RRM1A1T1lEWFJrRmtHcy1fTXpGek9nRW5ZQ2dTZ1lNejZTdzhpeEkwZFVmd0ktS3NvV0VZYlZFblUxN3dXbklMWEtibGxxY2N0cmNzZDZRUDlsUjNSR0xoaXZBVVM5MHhlNWFuQl9iWlhGdVU2UDRFN1VIRGtUV2VSTE1zaHhWUUx1bXd6bGJB?oc=5" target="_blank" rel="noopener noreferrer">hearing impairment</a>
         </h3>
@@ -1341,7 +1366,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-11T05:12:01.000Z" title="2026-08-11 14:12 JST">1日前</time>
+        <time class="card__time" datetime="2026-08-11T05:12:01.000Z" title="2026-08-11 14:12 JST">2日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMi_AFBVV95cUxQQzE3dmI5ZWVjUlR5X2xhQVdHcXU2OXM3OW1HREdZTkNwNkk1WkI3MkdzX2ZBaElPUmNHT0UyOEVYOFN3M0VUMFZEdVVkRE1JWnpHcldxMHZfVmo1U0lfaHZjbi1tekgzSjBIdjIzOGdGalMwcE13Ti1ySjF4elJEZjFTVDEzdEFMYk94V0JQM2luZ0xsZWxhS1d5NVhBR3dGZWQ3Q3U3Nm1kZmxwc2hfaGhhbjBpYmctUUhYM2w5Y2l1VlpRdEhhQUYtU21sNnhtN2FVT1NJX19lZFo3WGhxRjdmLVNQLTJ3X05KNFNtVjdQNGt1Xzcyd2NaRjM?oc=5" target="_blank" rel="noopener noreferrer">Quel est ce nouveau projet de logement social, visant à réunir sourds et entendants, qui va sortir de terre à Toulouse ?</a>
         </h3>
@@ -1373,7 +1398,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-08-08T07:42:00.000Z" title="2026-08-08 16:42 JST">4日前</time>
+        <time class="card__time" datetime="2026-08-08T07:42:00.000Z" title="2026-08-08 16:42 JST">5日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxPUXM2bUg0MTI5WlJYSGFqR2YzX2xhVnlQMVYxUk5UaFhGVHhwU0hIM2ZsU3NBZFl3MGVSMHp2eHJiM3dFUUR2Z29JSGh3c1ctTEV0ZVFWeFpyYmFmcXNsbDZSRDJZQXVyMldSaS1DQ3lncnlvSXZLQ0QydzlLalYwcDJEUDJaSEp3eklEaS1CYXVTbV8tVmVkMWV1bU9qSm1OY2hTOXdydTVITjdzOUpmMHp6ZFBzVW1wWVotU3Jwb3NxMmdkeFF0VS05b1h1c2JrdzJlQXNBZw?oc=5" target="_blank" rel="noopener noreferrer">Student in China suffered temporary hearing loss after exposure to cicadas’ buzzing while camping</a>
         </h3>
@@ -1437,7 +1462,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T03:49:49.000Z" title="2026-08-07 12:49 JST">5日前</time>
+        <time class="card__time" datetime="2026-08-07T03:49:49.000Z" title="2026-08-07 12:49 JST">6日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1TRWpEVHd3UzcxeEhONGFBQWt5bUdjMHRkMG5zOHZNVU5sUkJHNzBaUjN4WXNneXFQMWNORjJmbmFnR3pWa2toVXBHbXoyd1NrTlE1UlpR?oc=5" target="_blank" rel="noopener noreferrer">양동면 지역사회보장협의체, 청각장애인·난청 어르신 위한 ‘빛으로 닿는 방문 알림’ 추진</a>
         </h3>
@@ -1501,7 +1526,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-10T07:00:00.000Z" title="2026-08-10 16:00 JST">2日前</time>
+        <time class="card__time" datetime="2026-08-10T07:00:00.000Z" title="2026-08-10 16:00 JST">3日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxOXzhwQjg3LWxJVVdrNk96c1FiWDZzNTB0VFgxc1lvbmRLWldCOUJZbXAtV0tfTHdCRFZZWl9aN1dXNVJybVdKeWN0Yk5NVnNJNjlVTTBPX3lET1U5dGlrX1FoTnp3M0NtMlpaYTVURzFBblJXaVllMk1DdjlueE9HLXRQX091Y25sQ3ZEclo0STRvTUtsVGc?oc=5" target="_blank" rel="noopener noreferrer">New Beltone Illuminate Hearing Aids Automatically Adapt to Noise, Helping People Hear More Clearly in Everyday Life</a>
         </h3>
@@ -1517,7 +1542,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T08:00:00.000Z" title="2026-08-07 17:00 JST">5日前</time>
+        <time class="card__time" datetime="2026-08-07T08:00:00.000Z" title="2026-08-07 17:00 JST">6日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxPd1Q0eGN4eGt0OVM0cDNRZ0cwZVBhOEpEb3UxUFF5R0szOTJBenhWN3NjS0Q3OHc1LWZuZHA3b1RVNnhUdUktRW5LUmpBUG1vN0R3d1ZyMDJLemRkeTEyQU45dWc3aVp3a1BpNmZhLWZGMUZZelRVaUJRWVd5Ym9mNkN3MFY0d1FoUUNWSmtCUDRWRERR0gGaAUFVX3lxTE9QOUNxQU5zY1k2TW5FRzdkRnFySmwwektSR2hudGhrQVU5YzJxbnZabUdiSy1LOGJPb29qTXM2ODZQUEVzUkFkdjBZUzF4UWJzYlltZm4xRm95cjFvQ3NySjZ6R0NKMzVEYjR6UU5vZjQ5NHZHdDdTWEpMMDJBS1ZzUWlCZ1pfc3h1UGYwUDhEaHFVczI0WHhGV1E?oc=5" target="_blank" rel="noopener noreferrer">“Todos los sordos saben leer los labios”</a>
         </h3>
@@ -1549,7 +1574,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-10T07:00:00.000Z" title="2026-08-10 16:00 JST">2日前</time>
+        <time class="card__time" datetime="2026-08-10T07:00:00.000Z" title="2026-08-10 16:00 JST">3日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQZElobFdPempndzQ2Rl9DY01hVXV3SngtSncyeWd3VzZSaTJiem5ocnFWR3J2TWVfTGphaENtZjJubnFvWWQwMmlZWjI0VzRNU2tfLWFzNXlOOXdiVEU2MGZpVjZ0YXk5bk9jd1VkbGVrRTZyblU2WnhabW9SeGM3c3FPaGFxdUlyRm5RcGRuenltaG5iM1RzSzJn?oc=5" target="_blank" rel="noopener noreferrer">Los nuevos audífonos ReSound Sensia™ realzan la voz que quieres oír, no solo la más alta</a>
         </h3>
@@ -1565,7 +1590,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-culture">Culture / society</span>
         </header>
-        <time class="card__time" datetime="2026-08-06T04:13:33.000Z" title="2026-08-06 13:13 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-06T04:13:33.000Z" title="2026-08-06 13:13 JST">7日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE0zeEdpX01DbHNpMFRFZmxBRWNYRVZ6dlBrQTc4SUF5UXN3dWR5MzBKN3RIT0IxZEdsaHQtTnJ2NnBtWkhBNzhteDAwQ1o3UnFrQUF0T2tiUTE4UQ?oc=5" target="_blank" rel="noopener noreferrer">West Norfolk deaf community&#39;s hub building given to new owner</a>
         </h3>
@@ -1677,7 +1702,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-08-09T07:00:00.000Z" title="2026-08-09 16:00 JST">3日前</time>
+        <time class="card__time" datetime="2026-08-09T07:00:00.000Z" title="2026-08-09 16:00 JST">4日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQZmtDMzJSak43TmlrQ3dDTlJlY1YwSjN0VE9weGVhWHg0QlVBWDFqNEU0QVU1bkhPVEZVdVZfTGZXQWxnX21XQzdCaDRhd3R5Q0dKQkxqLV81NldqaGFmN2x0Y2FpUE1rbDN1RVhaNHVSZkRxRjZvbTFOTXktUjVBNkhGNWtWUnFMUVdUb05rcEQ?oc=5" target="_blank" rel="noopener noreferrer">Dutch sign language cafes let guests order by hand</a>
         </h3>
@@ -1693,7 +1718,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-09T05:25:02.000Z" title="2026-08-09 14:25 JST">3日前</time>
+        <time class="card__time" datetime="2026-08-09T05:25:02.000Z" title="2026-08-09 14:25 JST">4日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMiuAJBVV95cUxQN1I1VTNLQWlkdjNUX0ZGaV8yTVhGbU83Nkg4aTVUZzRMLTJCUGhFaWV6cG9IZTh3TDZ5ZDBzaG1uOG5sWF91ZmRkN1pDV2RWbFZKZnJwQ1k0ZUVzM3UzVUw5cDlwanY1UVNXMjVvd3h0VnpxQnJzYmo2WUZocS1YNjhWUmt3RldPOWdGWjd5dFo0MzBEczFJdkVjRnBmOVZ2dXk5MjIyLWNfMXlJT0FKVUctSUZITGZEd0pDaHhrUWpmSDdmdmRtdjJSbWF2OWx4Z042Y1dTb0hrd3JxeEU2dk1ZU1FFWXNCblB1VHpZYTctekJTZVJSTE9JY0JueDV2eHpFb09MdkFuTGN4eDdLbUhVaWdWNjdLd2tDOThLV25zQjdsTHFrZzRoMFctQVYyVWZtY0NkZEs?oc=5" target="_blank" rel="noopener noreferrer">&quot;Le patient est beaucoup plus rassuré&quot; : des médecins aux interprètes, comment fonctionne l&#39;unité de soins pour sourds de Chambéry</a>
         </h3>
@@ -1741,7 +1766,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T04:31:30.000Z" title="2026-08-07 13:31 JST">5日前</time>
+        <time class="card__time" datetime="2026-08-07T04:31:30.000Z" title="2026-08-07 13:31 JST">6日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMikgJBVV95cUxOXzdFQkVZRFdVSlN0OGpnb3RoSXhaWUJyVjB2ZGtMVEtDblRNYy01U3BGZjllVHNGYUpXcjBEVHQ2RU1KODFvUGF4bTN0RE96NTVGZWxSZWw4OFlpZUowaS1EWVRLbXFLR1BNSUZ6WS1Vb1JTWFFZZHpJUmYyTWhIaFg2Z3o2cUFaYVZZT3FEazI4WE1hRmtkQzdNUldUOGhTVEE4NTZzdzBlV0MzR085SS1uS2FDSzJzeUxxV0xWaF93aElpc1I5dk9BZUhmN21GRGpPb3FWSnVUNGRfT1BYbU5jb09HYS1ENjhFWHoyWjlBWDI5bTNNU0swdkJYc1dRTG1YYzV3ZWs5Z01Wb1h5QWRn?oc=5" target="_blank" rel="noopener noreferrer">Sourds et entendants construisent ensemble une résidence pionnière à Toulouse, leur futur habitat inclusif</a>
         </h3>
@@ -1757,7 +1782,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-06T07:00:00.000Z" title="2026-08-06 16:00 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-06T07:00:00.000Z" title="2026-08-06 16:00 JST">7日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxOYTZ2bTR6OFdmUnMxZmlXWHl4b2ZPTzlTd3VBc3dXSklqczNlZFhyeUNwbnVGWkVycldsVkp1WTd4cjN0UkVVdGU2Z1RSVzBxTFBzNURrcHJTY1ZEeVpjcXRNUU5DTHJrVVJJV1haRmtPWVM1Skd0Q1dNNC1GdEpxR1NWaExFUHVROEFWOS1XQ3FBclZ2Q1BTZ0RCZw?oc=5" target="_blank" rel="noopener noreferrer">Animaux et Sourds : discriminés par leur absence de parole ?</a>
         </h3>
@@ -1773,7 +1798,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-06T03:46:00.000Z" title="2026-08-06 12:46 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-06T03:46:00.000Z" title="2026-08-06 12:46 JST">7日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMi8wFBVV95cUxNQUZiZTVRR29NVHhXNTItM3VXd2xMLTlwbzJuRG1PbV8zZ0xCUVgxcnpBcHBndnRhcXA1Wkw2M1RRekhZVDZScDUwQWV6UzJZeG9xcnZjUWFJQ1FVd3hIWnUyNUVXcE9WV1diMXNKVEFoZGdQZ0M0dkdlZ09ET2hOQkI4ZmZseXdyRTIzcGg4cXI4TE9fWE9pXzhZYmh2SWxZbm00VXVpMG9qN01qUFdhVkNYNEdiOVJ4Q0NIZFpMY3RuQ1RwRm93SGJFUU1ZZ2dtZWRYODZfa2ZQbGQxdFM4M3p4U2RsdTl1S3lWaG9keWhNenfSAY4CQVVfeXFMTi13c2hpRTJCdEc5OEtMOVl1VDdpdmM0QzdWNkE0Y1JzcURwUlZSV1ljYm1hMWdhaWZGelVlbmd2ZU1teU9nYVQtd3pRbkZ0Vk9YZTVOUmNzNzVwaExKTTBiMEY1THN1d3pSaUVnVU5zZFNkWl93UzAxNDhVSDVoODJ5WGZDaWp1VDhDZ3hGZlBYSFdEYjNPQnlVQzhGbXo1NVM2aGhQaGk3eHRFdVpjeWUwSGVRVldYdEJ2dDdMRURaMW9Ta3NtVVVoY0dUUC1KQlhVZy15WU5OTG45VWs3UVd6UXh1SWpVNlZVZ0ZvVmI3TWVIRlVCWUt2SDh5TDgxMG1ERlJFNXhuWTlaUlJn?oc=5" target="_blank" rel="noopener noreferrer">La lección de inclusión de un atleta sordo que inspiró a República Dominicana durante Santo Domingo 2026</a>
         </h3>
@@ -1901,7 +1926,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-08-05T06:00:09.000Z" title="2026-08-05 15:00 JST">7日前</time>
+        <time class="card__time" datetime="2026-08-05T06:00:09.000Z" title="2026-08-05 15:00 JST">8日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxNZVN2MFlDOFVRRl92U2M0c1IySlJUWHRRcnJiOW01c0RCZDdBTTVfZzA2QUZLZjdvbnZwTWc5aTN5cmg3YmZHZXRJYm9NMEcyVU01eWI2WVdURnVPLVR3dElVZmJaNm41aXlTLTdCN09VYjd6TFVMQ0ZqVHFmZkNMYjZZdnY2clNNTk5uYmd2MXd6aFA2SmpkX1c2ZldDajU5ZWlfdU4yd0g3SVliR2xlZ0N0NWktSnFzRW1tNVlFUk0yWHpxZUg1ZFFpVzhqODRfZHJsTWpHZER5dHR4QWZHalNtMzJTRXFrdUpDdNIB7AFBVV95cUxNZURjaHM1bHJsMGgxTXpzaVo1c1FoSXpRSW9wUWRjUXhqczQwanhnanNwVzJwRkJzY1BOdzhZVHQxMTZyRzRwYTVwd2J5TXRFd3Q1OHI1WXJxYlU2SHJOSWhmc1B5WjNRczhHNjk4LW5DZGlJRl9KS0psOVV1VGFVWmRqaU5Za01JcEpZZ3pzZ0VLb3AxVXljbGVqeGl1dlh0NzNhYzhOR0lid1BJdy0xRmZSbzJxNm1OQUt4c2hhZk9rSEFXTGYyZGJpVFZNczJsWGpwV1pxZi1EWXdZNEpFZW1YQVBPVjNwMEVwbA?oc=5" target="_blank" rel="noopener noreferrer">Chinese student suffers brief hearing loss after hours of cicada noise while camping</a>
         </h3>
@@ -1965,7 +1990,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-05T04:46:00.000Z" title="2026-08-05 13:46 JST">7日前</time>
+        <time class="card__time" datetime="2026-08-05T04:46:00.000Z" title="2026-08-05 13:46 JST">8日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5jT3k4VUxkS1VtWHZKWWZWWkFzelFIS3N2WkRnTXZEcmVNSVhfOVQzNDZOUU8yVWFwcWN1SExKRG1DVDJkbVNkNDRWTXBhVkJZblJQYlpPOEI4cmdLaDJqN0dPMFJFeWtVTndTRUoyaHg?oc=5" target="_blank" rel="noopener noreferrer">수성구 지산1동, 난청 어르신·청각장애인 가정에 화재경보기 및 방문초인등 설치 &gt; 뉴스</a>
         </h3>
@@ -1981,7 +2006,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-04T07:00:00.000Z" title="2026-08-04 16:00 JST">8日前</time>
+        <time class="card__time" datetime="2026-08-04T07:00:00.000Z" title="2026-08-04 16:00 JST">9日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQWjVSYWIwY2QxbE9odzItSFl1ZHRUX19td0dtbWxXS0haWTZWdFFncDhhMEUyVFFrTDVuN3V0amZaXzVDcHd0dk4weHJUNmZFRXlwb2Z4dmlEY21jZUJReDVuZ2swcGxjLVBXTHljZTF0anBFcTA1X0tlWV9odjNYQlBGVkVtTkhpRDlIVEVuYlhJaHdsckh3Vzg4OGZRX0paOVBwXzlIT3RCejRTNkpua21LRXYxM3VBTHBWRmVZcmc0ZVdDNENzbg?oc=5" target="_blank" rel="noopener noreferrer">Louhans-Châteaurenaud. Au Musée des sourds, une plongée ludique et passionnante dans le monde du silence</a>
         </h3>
@@ -1997,7 +2022,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-04T06:27:38.000Z" title="2026-08-04 15:27 JST">8日前</time>
+        <time class="card__time" datetime="2026-08-04T06:27:38.000Z" title="2026-08-04 15:27 JST">9日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxQdlFnZWhfQkJjNzk0dE9uckZlZzVjMmlZbHVZMDY3VFp5Q1JPVU05c1N4Y3BYU2JsbHhJaXMzZUthZ1B5NzB4aWtJaUd3NEIzZkVRYnRUeV81TlI3SFZJMmpNdFR2WlJTZGhPb0pkcm5GME8tVXVuS05UOEI4c1dIWkVLMkxicTl3aGlBc3dYYkVaR2FwSU5VZU50eDMyNmRUX0ItZGl2X1pSam5jVEgteA?oc=5" target="_blank" rel="noopener noreferrer">FreeClip 2 S: Huawei lanza en Chile la nueva versión de sus exitosos audífonos &#39;open-ear&#39;</a>
         </h3>
@@ -2013,7 +2038,7 @@
           <span class="chip chip--world-region chip--region-middle_east_africa">Middle East / Africa</span>
           <span class="chip chip--world-topic chip--topic-culture">Culture / society</span>
         </header>
-        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">22日前</time>
+        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">23日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxPVDFSc1IzY0ZJNDJCd1F1S1VjWFhrNkVnYTdkTTlBVnd4R09BM3JMbndoSFk4ckxITURzME04eVdENEF3bVhLZWFSSDRVN3ZWeGVIOVhJR3VHcW9XZm56NTJXQ2I1T2RxTjhoWGdlSjR5aXlGN3BoTzZ3d29FWUFmSER1R2hYekU?oc=5" target="_blank" rel="noopener noreferrer">Project ACT Trains Kwara Deaf Community in First Aid Skills</a>
         </h3>
@@ -2029,7 +2054,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-rights">Rights / policy</span>
         </header>
-        <time class="card__time" datetime="2026-08-05T04:39:51.000Z" title="2026-08-05 13:39 JST">7日前</time>
+        <time class="card__time" datetime="2026-08-05T04:39:51.000Z" title="2026-08-05 13:39 JST">8日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9qbldpbG5xa1V5cjB2TmJ1U3BudlhfMW12UXR5dXk0U2RDdTE3Q0pBTTkzS3dkLUlqUTU3UzdWR1dNajItRk03enhFTkZVQngtNnZVdnFrNkUzaldh?oc=5" target="_blank" rel="noopener noreferrer">比手語遭藍酸！沈伯洋斥不尊重、綠轟歧視：沒把聾人朋友放眼裡| 政治焦點</a>
         </h3>
@@ -2061,7 +2086,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-03T07:00:00.000Z" title="2026-08-03 16:00 JST">9日前</time>
+        <time class="card__time" datetime="2026-08-03T07:00:00.000Z" title="2026-08-03 16:00 JST">10日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxQbHN4X0lTU2lYLXBhcmRUdFZETzhhZEdGbUJZeFdGbTRYVk5oTU1VOExtbzZjSnVzT2djekV3SDRic3NCcmlsSGZCVkdCbllvazhWV2RjTVhsT25ZUnFFVU0wRlh1N1h1ajZIc0pRRnFMZnZidmZjSHZFMEpQRERTN0p4VjUxbWJ3WVRONUNVZWQyNi1Zd2k0TXdmc0FKcHh2dG5XX1RtWHU1Z0l3eVRkdlFJcHoyTGpqWVRTSjhkU1VDQWhma1Y4Ym8wN3TSAeABQVVfeXFMTThtMVhEWU1FUHo5cWJKTGNIZ2ZTMENfb2RuX2pVZC1jbW5PNmE4QV9yNC1jbE0tRGk4T0ZQaFliZG9TVERsY1d5SFk5ZlpqN1A5ZWFDcUtJQjZtTENRZElBSEhRaXhSbGFpOU9wR3VVZ2pROHR3YWVKV3lhMUo0N3I1N1JfNjdaWnloVmk4QmJyWms5eXRBTzBOcW96Y1FsM3hkX2VqNTRBMU1GTndzbnNjVTIzV2gxVWY5ejd2NWk3aUxJWEFkNG9UbUpCdTNFN3p2NUxWdHZFRUtsSFBud08?oc=5" target="_blank" rel="noopener noreferrer">Un día cualquiera en Gaza: “Oí un ruido sordo. Enseguida supe que me habían alcanzado”</a>
         </h3>
@@ -2077,7 +2102,7 @@
           <span class="chip chip--world-region chip--region-middle_east_africa">Middle East / Africa</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-07-18T07:00:00.000Z" title="2026-07-18 16:00 JST">25日前</time>
+        <time class="card__time" datetime="2026-07-18T07:00:00.000Z" title="2026-07-18 16:00 JST">26日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxOOWZ0aTVJZ3ROUGhzUzJGNjFsZDVWWVo5djhkVkF4cU0yZkNwQ2s2c1pUblA2V2YwMzhybWNXYmpsZWdfb1pnMjlQemYzU3cyUUdoQnlRa1duemEyNnpMVm5heFVaajVrRlVjaEJUUlMxemxJWktBcWFnMlFmS2pyQmNqWXoxX0JITm55S2htOFlfUDM4VDExOHAzUXFyQ081SFB4NlB5dGRqUGZUakQwRGIxcm1wT2Z2Qk5URUlqNGdwR05jZ2UyeXd4dDVsbWdaRzdIcGtKRnFzUmVlOEhpc19YUnc1aXgwUDY1WU52eFE?oc=5" target="_blank" rel="noopener noreferrer">Expressive Poetry in Ghanaian Sign Language: Honouring deaf children&#39;s creative and linguistic rights</a>
         </h3>
@@ -2093,7 +2118,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-08-05T03:02:09.000Z" title="2026-08-05 12:02 JST">7日前</time>
+        <time class="card__time" datetime="2026-08-05T03:02:09.000Z" title="2026-08-05 12:02 JST">8日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE10eHp5ckRua1V4aE1JRDAyTmJwek1nRUZ0dXhjV2FsM1h0UmVVWkZSUlhiVEZtaENpWDNVUmNpbGVXN0pHRHJFcFUxRVJxRWozU0E?oc=5" target="_blank" rel="noopener noreferrer">沈伯洋競選手語遭王鴻薇譏諷...林楚茵轟「沒把聾人朋友放眼裡」：國民黨沒文化難怪砍公視預算！</a>
         </h3>
@@ -2109,7 +2134,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-08-02T07:00:00.000Z" title="2026-08-02 16:00 JST">10日前</time>
+        <time class="card__time" datetime="2026-08-02T07:00:00.000Z" title="2026-08-02 16:00 JST">11日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxOcHV4eHZUdmtyYV9XcVpvOF9JczdZTDdpSUd1Rkw4X29XSXFVVE9zRW9weDdLczBndXV1cnRueC13WV9kT2Y0X2IxdDhzOE9UNnRkR1lGcHpudjBwcS1oSlRHdUF6NEVBMnFQZi1LVF9pRjBBQnVoTVpFSm1ZanhHR0dURDNOeVpXTGFsV09Vay1aV2g2ZjR6SXdNNEZjZ0gxS21hMlFsVXh2QdIBrwFBVV95cUxOTzA1RmhLQm95YmMzSEZOQjhBRU56Y21qWDBBOEFONUJwblpXTHktRFZyeDdaLUFCRXVxcVhlLWhSWDYzYXFwTkw1SnJ5TFVvUmVxSFJ3RjFaTnBjNERoVlBIa3l0clNpSE1OeVJrYmVvaUtweTRBVWhpUjZOR2VkWDJoVjZ5V0ctODF6TWVVQnlxeEZYaHVqVmpuNDEwU3Z1bkVyWlZDNUYtaFhTNFFZ?oc=5" target="_blank" rel="noopener noreferrer">Cataluña deja de pagar audífonos a partir de los 26 años: &quot;No pasa con ninguna otra prótesis&quot;</a>
         </h3>
@@ -2125,7 +2150,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">12日前</time>
+        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">13日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMi8wFBVV95cUxPUExNdjVrUkFuVTl1eU1PM1Z0c24wV01FWW16aHB0Y2NXcENIWjRSTlo2RjdXU084RDlEWVAwVDN3b09TcG9Ua0g5SUpCN1dkcmwxWFA5cmx6QjJCVUJOQW5NYkVPdk9za0JnVEd5anRFUGJyYWRRVzlVQl9wc1VaQ3BpRmxZTWlCS3lTMmZSRFUwYTdDZnY0aWl3Y1U5WUhmOTRDZkQwcm91QVM5aS1vTE5mckhlQ0Z6TlNTRE5CSnJVUFVLMmNuMVlYbWFlTkljQ0xnNlpJazI3MHBZQzhhWnAyemR3ampZQVhja1UtUHFfT0HSAY4CQVVfeXFMUDZsVVNyQjBhTmltcDJGOTJEdFhsVGI2ZWIzOTRmNXNYTV9LVU8zdlVHZjBTTjlELUw2VUkxb2phR01GbmdER2ctVDNNVVZ3Y1NCcVpqWmJMNS0zNTR3T0hGdkxXOTFLT2NSbndyUHFwQ2ZEUWltOEFTbnVUZWNWTFcwZDFjdDNKbGllTEk5alZMSmN5ZWJrdEEyOVUzTXJ3OWQ1YVBXelJFYzcwLWJLMVpEOXlZeHNfQXE2WkRVbHFUMkhRRjlMZXNsTkxHbW1kNmo2VzZkVlF6d2M1T042NGtPY0VpUjctSzNhUTBlLVFPZTRfZ3BiVUFLUzhCZ0lpNDE5by1UZDdPOUhUQWZB?oc=5" target="_blank" rel="noopener noreferrer">Proponen enseñanza de lengua de señas mexicana en escuelas para mejorar inclusión de personas con discapacidad en CDMX</a>
         </h3>
@@ -2157,7 +2182,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-01T07:00:00.000Z" title="2026-08-01 16:00 JST">11日前</time>
+        <time class="card__time" datetime="2026-08-01T07:00:00.000Z" title="2026-08-01 16:00 JST">12日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxQSkU4blFZRTJwbWNFTHVIckJveFkwODFpbzhqbXh1dEJJY3FUYmZhRUo5NmVUTXFweEMySVlKQV9uazZ1UXBXSFhJN0d5YnpLYURCbzJwZHFjV3ZrU2RnOGxUcWI5Q1BtaWUyT3RNQ1lMMDlrYmh2RU9HRk1RREo0Y3cySDZzSi1EM1hHQjkyaUpVZVM1QjF0cTI5Y1lyQ0JHOHU1YVlVQmFNNHBNb2V3QjJlZHVud29uNHpPMDFxUGJ5VU1LZWJMRGxWcExNQ2lEM1g5ZUFFRmc5ZDg?oc=5" target="_blank" rel="noopener noreferrer">Aachen: 17 Gehörlose nach Fest mit Magen-Darm-Beschwerden im Krankenhaus</a>
         </h3>
@@ -2173,7 +2198,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">12日前</time>
+        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">13日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxQeTVLZ1dpRmc4QlljUXV2ZmVvSHpKZG02R3hBRzI4aGhSNTBFUFRHWi1oWjJKVHduTDQ3bHBTaEgzM21aNnNDMTZpZzdCcDI2ZVpONmdvd3ExNGpORGptRWJkcjFiYmJKb1pvancxUWVwbjl2SUdaOUN0QlppOXVKbGZha0RwWG9LcXdUaDc5d2ZIc0VfbzlGSGNxYW1QanYyZVJXNFNQX2Y2VkRQSlNHSmxWZVo3R2dJS0lmVmRER3o2T1ZTSFN0YS1jN0xEZVFRUEVhWS13YW5FR1ZiemhpdNIB5gFBVV95cUxPaVYyaWhDZk9GMlN3MXF6d0g0d0c5VkdWYTh5b2RTekQ3QjJOM0xlWm5OTUNMUWlrdUFadDVVdXhZekJLZWlGeDg5OFhrUThiaWdaajdYMWtoT0xSNVp2ZUYxNi1YRERIeVBSdHhOdkpMZlE3MnFncmFTeXQwcnhCT2JkMEJlSWRFcGo3cGZHdDJMNUVoQ3k2MFRLMkVmMTNWREl1QmszNTlBMDVMa0QzSTlCRzRRcUxsYlJnN0xBdFloQXJqcG04UC1xbEtiZFJrTmNLc2hXaEdpSHRDamJucGM5anItUQ?oc=5" target="_blank" rel="noopener noreferrer">Audífonos Soundcore con resistencia al agua y estuche circular ahora tienen irresistible remate en México</a>
         </h3>
@@ -2205,7 +2230,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-01T07:00:00.000Z" title="2026-08-01 16:00 JST">11日前</time>
+        <time class="card__time" datetime="2026-08-01T07:00:00.000Z" title="2026-08-01 16:00 JST">12日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxNMktTc01maXpQamt2SG9pbnZMTHNtRUFKTWRwRDktVF9ieWtkM3lFQl94cUpyQkFDUnZrVXhmdUVUdW8tYy0yMUcwY0Q3a1k5TkU3TzlPcDZzaXhBUVpYLU1RZ3QwR3BvWmJPLW8zU0U0YjlVbFJBWDVHWHZTQTI3b1JxZGptbUtIQWlsYUpMSWpUOGdscWo5NEFnVUNSLTFGUkh5XzJueDBNanlnQXB3UlFkTGZEOXpVRGE5SHpkUU9vV2J0YmNLLUJkQUtBdUI1S2FFYnF6aw?oc=5" target="_blank" rel="noopener noreferrer">„Wenn es nur einer Person hilft“: 15-Jähriger entwickelt besondere Hilfe für Gehörlose im Krieg</a>
         </h3>
@@ -2221,7 +2246,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">14日前</time>
+        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">15日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPRmtXNHY3OEwyTjEwa2MwaTVaclRoenhHdG9raEJvLXBpb2xLX1Z6MWlMeDNrZVlOWHpTbzdtcjRXdFY4ak5aQm1uSmZWNFdIaFdnd0tianB1dmwzQzJkRDRmT2NaN0pVbXdteG94ZTZZQUp6Yi1GZHVMNHNuaWdzNTJpdzY?oc=5" target="_blank" rel="noopener noreferrer">No Single Over-the-Counter Hearing Aid Is Perfect for Everyone, So We Have Multiple Recommendations</a>
         </h3>
@@ -2237,7 +2262,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-08-02T07:00:00.000Z" title="2026-08-02 16:00 JST">10日前</time>
+        <time class="card__time" datetime="2026-08-02T07:00:00.000Z" title="2026-08-02 16:00 JST">11日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMi9AJBVV95cUxNZElTS3FILUVZeXd1cGFxSTFfTkRxaHMzaEdwM19LWlNpQmJEdkJVMlVqaDY5R1k0QzdOZUJYYVEtS2lQTEI3Y05DT3ZJYmd2c0x0eEtVcnI2V1g5ZkQ3eFFGT1R4UXMwVGpHakZWRWNzYUhpSXJjaVc2Nm1pMXhIclIwYVZKd3hqN3VNeTViSFcwUzYzakpheHBaTFNiejU1MGh0NTBYT1NyRHFqMlV0UlkyS1JZYnA5S1hFNE04T1RJaE5kV0pSSlFMQ0V4X0NjSnpLbWIzSzBoczZpOTAxeXR0YVMwMXVDS1FTM290T1A4MkZhcnVGaDI2TzNvaEZoOUFrVVcyZzhpS0ZmZnNuREJLbmp5cWdTYm9hWkwzRVl4bnY3bll1Mi1kb0tBRl9zVWxJT2NKVVZ3NFl1OHV0RTQ0aFFUNllwbnpCeS1YLTN2Vk5lRk1hcXVuX1dRTmh6c3pqZE9SMzB5aXpVQktqMkd0d28?oc=5" target="_blank" rel="noopener noreferrer">首位亞裔聾人女飛行員來臺 鼓勵聽障學子勇敢逐夢太空</a>
         </h3>
@@ -2253,7 +2278,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">12日前</time>
+        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">13日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMi8gFBVV95cUxQT2lMS0x0cWVYaXVoOTZucjVrMjBQcEhsRXZZcUFOdlZZMDRSeWcwOGF0WHZxam1pTFBOZkM1YWdsd1JUeVpMXy1WV1VCdklDQ3k5dnAwdVpTYVNRaDc4ZlhsLUNQSkFlVnpUYWprcE9ZdHJkeDd3OHUzbk1JZTFDczYzRTFic3h3YXlObnNaT3FCU0JLVE9wZlNLT3gtaC1QWjNHVDJvYVFBREs0aWpCTkRHY0hnem9oUnZ4bUo5b0tKUTB2RTItSWFzXzRLN1F2QlF3Q2pPVlVvY2xMSF9sMjJmazVSLU1lRFdzal9UR19oUQ?oc=5" target="_blank" rel="noopener noreferrer">Casson. Amandine Barbaroux consacre sa vie à l’inclusion des sourds</a>
         </h3>
@@ -2269,7 +2294,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-technology">Technology / AI</span>
         </header>
-        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">15日前</time>
+        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">16日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMitAJBVV95cUxQX2pzQ002STRRNnR6VWxsQmFoUUJrRzFxXzdWVGNzaU9TeDFoOXZMNEVELWRkR0NuNUdUQmlCOHJOREREcHpWUUNiczhpLW1SaU51Tl81OWYxNHFlWkxhLVZ0RUZsMUhLMUNZZTJsNmhZQkJrREhzd3ZMTFRpbERpV3A2TTRnNUxTOUd5TWUwOGZ1T3FBZFVqaTNWVURlYXpxLXpEWko0VFJkVmlmVThYVVljYWdxTDdJNnFQOGV5UWNnQUdkUDFxbzlsbE9ZdFUwMkNGSV9ZZXo3Z3BPQVFST3ZCU0VJZ1ljYU5ybGxfZVdUanJDSzl5RVFKbDM2ZGROckhMbWhCVjFFMk5tSEdiLUVBYnJXZ3d5RU1sUDVMZUwweFpXT3UtaEZZU0lZd0lCeGhiTQ?oc=5" target="_blank" rel="noopener noreferrer">Advanced Bionics Announces FDA Approval of Expanded Cochlear Implant Inclusion Criteria for Patients with Single-Sided Deafness and Asymmetric Hearing Loss</a>
         </h3>
@@ -2285,7 +2310,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">12日前</time>
+        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">13日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFBfcEJuZUs4TlpuQUtWR0hsdFZ6VjdkbkVhZ29zVlBJcVQ4eHJKWkFudEM2c3RvR1ZQcDVJNWhyaXAzLVNvdVNVeGwxRUJ0Tmh5MkVGbGJiWQ?oc=5" target="_blank" rel="noopener noreferrer">Christine Sun Kim turns sign language into a monumental fight against the world</a>
         </h3>
@@ -2301,7 +2326,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-technology">Technology / AI</span>
         </header>
-        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">12日前</time>
+        <time class="card__time" datetime="2026-07-31T07:00:00.000Z" title="2026-07-31 16:00 JST">13日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNNUlSY2JoR2Fnc0ZjQWt2bnd0UkZ6V0lnTS14eFItR2s3Yk5rS3dBM2sxWE5Ed0UxRTF4RnlkNk05NWg3VDRrajFHNXYyQzcxdzNHOFEzTEE5Z2JjU1kwdEsySS1XTDlsUEoyWG5PUkV6MXo5M1BzSV9yeE1Qd0tXYzM4QWt6eXdYR3g2aG9XbEFuZ0R2azZPb3A0RENhQ0hvM3VPYmtDVQ?oc=5" target="_blank" rel="noopener noreferrer">Tutto quello che sappiamo sulla ricerca che potrebbe curare la sordità</a>
         </h3>
@@ -2317,7 +2342,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">15日前</time>
+        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">16日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOOWxsUGxXV2RFXzNYb1dJdTdrdHZWVjBmOHVwOGFaMVR4eVEybXVjdVlYT3BZbWZhZmZjaVNsVUZmRUtaREE3ODZJSXB3dXE4QXJvRGx5ZmRuN1NsdzlYRjU5QUtwWnFnNlpvdE1sRGRPR0lGTDBTdVg2akU1dzM4OFlMSWlQc1pTZmNiWnh1V3c4REV3T1M4RldNdXpUOUJYQzdpYXZBQUd6OVpaZ2VsbkFuamhyeU1CdktxNw?oc=5" target="_blank" rel="noopener noreferrer">Dallas ISD ASL camp empowers deaf and hard-of-hearing students through sign language</a>
         </h3>
@@ -2333,7 +2358,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-culture">Culture / society</span>
         </header>
-        <time class="card__time" datetime="2026-07-31T03:13:05.000Z" title="2026-07-31 12:13 JST">12日前</time>
+        <time class="card__time" datetime="2026-07-31T03:13:05.000Z" title="2026-07-31 12:13 JST">13日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNd2stNFFYUkZFSTN0TThlTnY3MXZ5dmdwdk1OVXFNazVtMnNQbWdXUXVpQzE0cXoxa2JGWllENUlYbTRJOUtRV1ZfT2I3SWViZkVleHJ6c3l2YW8zMFo1ZS1WcUVXTnNyMUMwN1lBcnBzSm5mRFFVMktfZFFqUndfclI5M202cXV1Z0lR?oc=5" target="_blank" rel="noopener noreferrer">Humans of the Australian Deaf Community</a>
         </h3>
@@ -2365,7 +2390,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">16日前</time>
+        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">17日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxNakV4R0R2Qk5XSWV5N1VXRzgtNU1FMlFhallJQmpUZVNLRjJ3WlU1X1hCTDZacHpXRnUxZWNDNTVZcHp2N3dVRXJ2bjhtMGl1T1p6Tm8wMnJrOVNFblM4VUt6WXk4SFMxRkNiNWk1Q19FYWlUMG9peU40c1dLTTdKT2p4ZWt1RFF3WmRmV2RzNHBYUkFZcWdTNUJqTzdJWXozU08tSmVCR3VOLWs4clVmYmdBYXkxUVFHdWZyTFUzTUVoMnNIYTY3Wm5xM25Xak3SAdwBQVVfeXFMUFpZVTBTS3N4MGhMamRtUkNoZ0NENTlaMUY4OEwtV2ktOU5TRmlER3diZHpabmN3SVJSWF9wWEVOSVE5UVJfX1M4UWtBNHZzTlVxZTlkVXBCOU5uekRqUGkyeksydkVTejlGcTR4OU5KSVFVZy0zQkRTM3RMMjNXMW9mRGZfYWhLUHhnVjRibU5OODZUY3FXMWxBb1U0blZLdTZ0a3l0cHpZdGZSRGRpVW1VNkpYdnQ5ODJsaXNVajhpZ2habzdPaFkxMG5HaHhLYy1Vb0JxLVdGXzVnYg?oc=5" target="_blank" rel="noopener noreferrer">Los Viejitos Sordos dan clase de Independencia de Colombia, pero historia se distorsiona</a>
         </h3>
@@ -2397,7 +2422,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-30T07:00:00.000Z" title="2026-07-30 16:00 JST">13日前</time>
+        <time class="card__time" datetime="2026-07-30T07:00:00.000Z" title="2026-07-30 16:00 JST">14日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPVHltQXB6OG1YMkN0eDkzV1BpTFlTdWQ2dkxYdldCQnRUWk9nR2pQdk1hMFlUdHVoZkhiTWt4NWRKeEExMVNleF9hRVhMbTU0N3pfcXBoRlVHSzJCZ1pjOWs3cVh6VV9FU0xNVE83bERSdFhTclQ1YmRhM2t3bk5pdEYzdUR6TVpjRmt2QlZCdXdnQ0dQa3NkQVR2dkhISmNhZjhXNWczazE5VEhPLUpDTTBXREEyajZWc0FoUWtSOUtBZkE?oc=5" target="_blank" rel="noopener noreferrer">English to become official language of NZ alongside Te Reo Māori and sign language</a>
         </h3>
@@ -2413,7 +2438,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">16日前</time>
+        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">17日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxNM25xZXhodlpRYnp0REtLVFJIY3g5bW9MTTBJaFRhQVlwUGU5RUJlZjBmRGdRY3hNUXpzX0RGVG5fb1hkaDRQdFBTREp5c2I0VlppTVdsYU5fbVRBQUJIcGtTRWVLekxQd2MweVBnS0FqWFZnRTVET3o5Sk92MzRFOUJiVDdFTTB2aFpkd2VxVTZCQWZpa2dWWG1sYU5DODRUX2hZYVJ1alMzWENPVFJXT1E0Z1RGN3RoeHhBNVV0RHZBMm5YOTRRX3cwVWFqMXBmWUp1RmF3OXdoWTdncGM5LXNWdEotWE1faFM1MS1HMmx4el9fbW5yX0pn0gGUAkFVX3lxTE5Ec3JFTTZQQlNfZktIUzY4dTI2SmI5Qk9uQnM1VWkxbFBsUTFSLWFkVFh4Sng5cTZGQXRBc0hPTTFIQURUWUtEdWZCS1k0ZTVpU1NmZjFSUllJaHlOcDNmNU5nMHRPUWVacHhselE4NEVhR09LdnpKcG52aUF3YlNhUW96S1pkOE5LOURtYlhOX3NydWljMnZrOU5jNjhPd1JjRW41T3Q3dXhDcWRuSmtEczJpYlJjTFRYV2RsTnJkYXA5cHF6MlFPdnU2YnhRTXQ4blBrc0dRU0tfTDNtYUNlYTNDeGRHTmVWM3FtbTBxWGd0MFJIWWZmRmZqYmxTZDBzWmNrSnZLdnpHRkI1SS1MdEJXbQ?oc=5" target="_blank" rel="noopener noreferrer">Cómo funciona el método que logró reprogramar células del oído interno para reemplazar las destruidas por la sordera</a>
         </h3>
@@ -2429,7 +2454,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-30T07:00:00.000Z" title="2026-07-30 16:00 JST">13日前</time>
+        <time class="card__time" datetime="2026-07-30T07:00:00.000Z" title="2026-07-30 16:00 JST">14日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxQdWNnVDl2Yi1xbHo3YXZWSU1GZzVxMkRxWTRvOW1GN25lSV9adEF3ODNDa1VSTWtZUGFuckZ3d0tKd3NuSDRkZC1JbUFSNGhvN0N5MTB0N0M5eWNHcXdfM3Y3a21oS1lHMGZuWmhJalAtaFFXcndMRXYzeVJUTmQ3d0dZWGhhekhCNmpIWlhSd2kwZkxyeXNBWnJPQlhCLTg1clRSd2JmVnZRYWh1RzZ6b2luSzh1WEZFMUdFcHZJVTlYekdJTUFYcGVvMnRIMUx2WnFxSTIwSUlBTjJUeFE?oc=5" target="_blank" rel="noopener noreferrer">La ayuda de la Seguridad Social y las CCAA para prótesis, gafas y audífonos para familiares mayores</a>
         </h3>
@@ -2445,7 +2470,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-29T03:44:56.000Z" title="2026-07-29 12:44 JST">14日前</time>
+        <time class="card__time" datetime="2026-07-29T03:44:56.000Z" title="2026-07-29 12:44 JST">15日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTFBWRmRPUkU0R0t4Y0JiWlpYTW9kcm1Nb3BWOWV4bHNITzNYcU1EWlI2cHJJNWItQ2dBSG1oUFNKZFN2Uml5MXp0SWZWZmQ4SndZVUFTRm9jOW9DRWRqVkViUmZhUjg2WkJ4U2hUWFMwaUpjTGZLRFF6bGpvUFM?oc=5" target="_blank" rel="noopener noreferrer">Australian Movie Favourites with Arabic Subtitles</a>
         </h3>
@@ -2461,7 +2486,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-rights">Rights / policy</span>
         </header>
-        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">17日前</time>
+        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">18日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9kNUZRY19ianp1YnZYRlVoTUhEVkdRTUxFc3BWLWlBRDhERDhsNVBPMHNESzg1c1JaYlJZLTJTWll0RWszVVVtd251N3Vrd0U1M3g1UmZzVWZQQQ?oc=5" target="_blank" rel="noopener noreferrer">Selly Oak deafblind man loves work at Sense charity&#39;s Birmingham hub</a>
         </h3>
@@ -2493,7 +2518,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">15日前</time>
+        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">16日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE8xb3Z1SXZ1OVNQT0RZUFVuM0FuemhLTVZzSjlncHVYNnhqSW5OWHFUclNfWGJ6Ti1maG5iS0Z6bUl1ZmdjX2MydnVVUU5hN3RzbW04SW5EVlFqZw?oc=5" target="_blank" rel="noopener noreferrer">台灣手語聖經翻譯新里程 盼聾人「看見」上帝的話語</a>
         </h3>
@@ -2509,7 +2534,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">17日前</time>
+        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">18日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPSkpMY0laUVdqTDZOc3NvZVZNNVJmNGdGQ2lpaldDaFdESDJodFc1NEZpRHp1NERwRVNXRlFSd0pWakdLaWJkWnU1TnV4dnRBWTdtOHUwOXJ1LTE2S3ZVQTBJb1NRZ2NNMGx3d3VXMVdYLWNoTkl3SWZLRU5sV0RuUE5pZi1pNXlPQVowX3o0c2o?oc=5" target="_blank" rel="noopener noreferrer">B.C. woman faces &#39;disheartening&#39; 5-year wait for cochlear implant. She&#39;s not alone</a>
         </h3>
@@ -2525,7 +2550,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">14日前</time>
+        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">15日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxPWGpLNDlsUGpTeERwZFViMUpRLXdjdlJ5RWpHOTd6VjFRbnpIQllGekxpb20tVXAwV2VzcGd0MEYzN2FsbncwVTZPWTNCVno0djhud0NkWFpPZ1NaS0lvTnVkSjdnR25wZ2R6Mi1lNmplbDZZaGd0VUtlOEJibVFlN3NVY3lvNFRNNkNpd3NiMFFqV3hzZFUxQTFzdU1VZmU0N3VfWXpramZyeTFzeTItb1RNOVhqU2xCekFxRWsydkQ4RXloM3NOY2tnU0pub1ctaUctLWVadDdaYnlFRnJXbWt30gHnAUFVX3lxTE13XzZjS3Bvc0xkQmt5NURCaWtXM2VzZmtuMzIyYzVRN1dtWUMxajJlaUpvN1FOLWxhenRYZ2l3VWc2V1cxbTQwRjBSYWRjb3h2ZkR5Z3R2U2gyRWJOc3FvVUg5Qmo5WHdlbHZwQWl0QnJvN1k1SEdldWp6VDJQVXZRTGwyOVV0NlhFQ2JfZXdMUTlQbGZJQ04tNm00VFZNeDBMYUl6VW9uZnhNZHlVTUZDZWlOOVJtcmgtRTBIWE1MOXRVNURyY0VVaGc2WjZ0YkJ2RkRHSnlEWWZXSG1sb1hxX2tmcVc1MA?oc=5" target="_blank" rel="noopener noreferrer">Operarios mudos y sordos, el precedente de la fábrica de baterías sueca quebrada por el sabotaje chino que preocupa en Europa</a>
         </h3>
@@ -2541,7 +2566,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">15日前</time>
+        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">16日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1jU0JoMmZhbmh5QnBnYm12bTJMVXB4NkY4SVZiSE52QTY2LUxTWWFNZ1BKRW5kcEtleFNWc1lwN0dqVGVPeDZCS05mVG1KUzVOUWVJR2lOdnNuVmvSAWBBVV95cUxNUmF2d1EySDQyRktCUjBsU3QtaGJpNVlJWnEyeXVzYkFDQVdDSmhmTU9vV0xTbklzN1ZOR1RlckR1Q1lOcHhnb2IyR0JqWDY3OVdaVUNuSVl2eW1QMlRob0Y?oc=5" target="_blank" rel="noopener noreferrer">서울시, 청각장애인 요양보호사 10명 추가 배출</a>
         </h3>
@@ -2557,7 +2582,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">18日前</time>
+        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">19日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxOR3hWUlVJNTdYeXNlMVNabVdlNzFwMVZSMFNaLWlSb1dtaW5fZ2pBc3E2TEJ3YVBiVzhEQ05MMkdDZUNVREcya0hMQlZCTFE4X2tDQzM4QVVYTk00c2ZwdEkzcndLSTVpNEtmYWptZjdRR3F1RGlTVDdGLWRGdUdzMWxjUHdmcWpsSklNVjZDUEI5UXN6T3UxbDB2X0dETmVPTEpkNm5mbEV5WWxuU2hJZ1htVmlfMmlnZzJDWFN2R0IzVHZEd2gyRXpVUTZlVVdEVEhlelRwLWpjNWtxdXEwUWhJbWd1UXlraXRZdmtn?oc=5" target="_blank" rel="noopener noreferrer">Amazon México rebaja OPPO Reno14F 5G Azul en menos de 8 mil pesos; contiene audífonos inalámbricos de regalo</a>
         </h3>
@@ -2573,7 +2598,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">14日前</time>
+        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">15日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE0tTXNJaURTbU1sWEU3dzdieFhZVkp5MEQ2YWpkNUxVV1dVU29GbnFRb1hLRHNrNTJaMDc3d1JBdlNLb2dhbU5jM1JWQlVlNEtYQmdnTmVoeEx6akUtRng5OGU0ajNtNm1RcXUxNS1iX0MxUzZXV1lUdzdB?oc=5" target="_blank" rel="noopener noreferrer">Los mejores audífonos de conducción ósea</a>
         </h3>
@@ -2605,7 +2630,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-24T07:00:00.000Z" title="2026-07-24 16:00 JST">19日前</time>
+        <time class="card__time" datetime="2026-07-24T07:00:00.000Z" title="2026-07-24 16:00 JST">20日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxNX1hQckNTaXRmOG9HdWtNVGViMGNXdkxSTWVmaUVTRzljaWNBUy1wS0dycmRLbWY2dzJFcFRWeUhUeDU3bVpyMWx6eHE3d0pKMEJQMkliX283d09ISnZIeDlKSFlSczlTYzZNZm43c09fNnh2QzdDcS11TU1uN3l4aGJmdEpVNU1pdi1Pck55ZEgxSGRkdkJFOWpwUWdmTnoyV1gwS2x3X2UtNWNxQmh0X1RjZENQWkRhNXhlSHl2Sm9XUFMzMU9zZXZZZ2RJUi1sUlhTSnNOR0c?oc=5" target="_blank" rel="noopener noreferrer">¿Vale la pena comprar audífonos de diadema en 2026? Esto revelan los expertos</a>
         </h3>
@@ -2621,7 +2646,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">14日前</time>
+        <time class="card__time" datetime="2026-07-29T07:00:00.000Z" title="2026-07-29 16:00 JST">15日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPMVI2T0pCalhlNDFhaHQ5NUhNZDlOZjFGUUdHQUVmRW56bmh0czd6OFZQbW84WmpkT05nWXZDN2JMb2dhWFFoeXZScFRvSGtxeFdEZ1ZRTlUxNHM0dF8xOGlyeDRnUlpRQTNIS2F1MGZUS09fZVVrbzJMdmdWWlhRWTlJY3pQblVRVVp5LWh4NE54TXNqS0pYcDVhZi1CSHVlcy1iU05xTHVNOHJibThlaTJJX28?oc=5" target="_blank" rel="noopener noreferrer">Avec les Bleus lors des championnats du monde de tennis sourds et malentendants</a>
         </h3>
@@ -2653,7 +2678,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-20T07:00:00.000Z" title="2026-07-20 16:00 JST">23日前</time>
+        <time class="card__time" datetime="2026-07-20T07:00:00.000Z" title="2026-07-20 16:00 JST">24日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LOGN3TnRQeGxjNnZmaVhCMFVlU2oteHVHeWx1aDRINW5WaHJEV1R6Y1ZaQ1VBNkhPMkVnR0VTcEtZSm5KTlp5aTdKMHI0a0ljczVEcFpDcWVFUQ?oc=5" target="_blank" rel="noopener noreferrer">Sign language group set up to combat isolation</a>
         </h3>
@@ -2669,7 +2694,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">15日前</time>
+        <time class="card__time" datetime="2026-07-28T07:00:00.000Z" title="2026-07-28 16:00 JST">16日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxORlFaWThRc1Y2TWxqTlV4YVdtSGUzcjBKMjY4MlRhVDVMamh4d1VTTmlSbURQMUowSmg5RnpoQWlfeGdISDJVZGtLbTJNdEtUOGt6SU5qemk5dUlqQXB2aGtkRHVfZTBLZnVpMWFpUHladHpVVEFRcnhaWjFFLWgyZWFvWFhwaThqY1RJWmtZNmk3ajcxN2I4LWJycXh5WEh1MW9RQjhTcGpSWXhoLU9sRHBkUlpaNlNBYl9rMUM5WEJxWlRkTy1OMGhmZ2NybW5ZLXd0OWhvZjgzcms?oc=5" target="_blank" rel="noopener noreferrer">Schwerhörigkeit bei Kindern: „Für Josi sind die Hörgeräte ihre Ohren“</a>
         </h3>
@@ -2685,7 +2710,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">16日前</time>
+        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">17日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE1Ha0tuVldkMW16cDdQcWFFTjI4cnoxY08yUGJvZGx5SlduZ3dxT0tsaW5DYWMxZkE3T1JxTi1qVjBjMXdRZTJQRjlTWFFyQjlBQkhUdVVpcWlmRERPR0NycXZwWF9uMkV0QnJSb2xKSm5SNUVaZFV6Sg?oc=5" target="_blank" rel="noopener noreferrer">&quot;믿었던 수어 선생님이&quot;‥청각장애인 계좌로 &#39;대포통장&#39; 만들어</a>
         </h3>
@@ -2701,7 +2726,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-17T07:00:00.000Z" title="2026-07-17 16:00 JST">26日前</time>
+        <time class="card__time" datetime="2026-07-17T07:00:00.000Z" title="2026-07-17 16:00 JST">27日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE54aUxSeXRka3h4TWJJanNlX256dUpPLVowQnVlYVJWdGpNYUhGWWxibnR1VmRydVNNSVQ2SWItUU9rdE9ySE5nSm1yLU9xZ3NaY0pNUThSeU5OUQ?oc=5" target="_blank" rel="noopener noreferrer">Northampton primary pupils say learning sign language is &#39;fun&#39;</a>
         </h3>
@@ -2717,7 +2742,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-rights">Rights / policy</span>
         </header>
-        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">16日前</time>
+        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">17日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE1aR3g0cjVqZTkxWDVLSHRNZ1ZJMlhOeF9iNHVjN3hXTGc4WGhsWkxPSzlYTk92RkJpZ0t0VWZoMFR3NW1ybTB1Q0hRcU8wWmx2a3NRUHd5UUlXN3VmOU50SHZEbG5JR0J5d1YySVZR0gFzQVVfeXFMUGhXUS1LVTMzVFp6bWRSM1Q2Ull4ZDdnLVhiT1lZSmtCT2tEaV9QTmEzSmVyUXFKNEVlYWdrU1VFWkJZMUlBc1REcmRxN3MtbFhFY2gyX1F0YzhVTjNuUVdURy1OczBjbUNwWlV5UlduZnlBUQ?oc=5" target="_blank" rel="noopener noreferrer">청각장애인 명의 계좌 불법 도박조직에 넘긴 청각장애 수어통역사 구속</a>
         </h3>
@@ -2733,7 +2758,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">16日前</time>
+        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">17日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi-wFBVV95cUxNdXpJZ0R2ZWJGRGk1cVhycEROWnN6U1F5WG5Ed1dmWi1kT3NMbElnTy1IUEsyVFIwUG4wQlpSN0NVNlZpX3JEZXdDc2JkQktmUGowc0NacUIySXJucmF1MjFsQnZKNXB1OUhGU3padFFBdWxpUWoyVTFSTGJlOWtXNVJhd2ZWeEt6MTdvWkl0NXdfcHZwYkZCdkFqZGlwd0JvRHhuU1hpMndldnk3RU9CTEhvRllNZXZ4Tm5uR25SUmVXbVhjWDhMTnJRRVZiNFNWXzBXemFyWVl2eVVOeDJpWGJuOTdBbUNfa0JxZGVmc0NUVXhiY1JsUjY5NA?oc=5" target="_blank" rel="noopener noreferrer">L&#39;Istituto dei Sordi di Torino apre le iscrizioni per i nuovi corsi di Lingua dei Segni in programma ad Asti</a>
         </h3>
@@ -2749,7 +2774,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">27日前</time>
+        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">28日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxNM0tPNXd2d05xTENYNFljR2paMkprWFBIenZZZFZSeVdsalIxcUtzdUlmbVFkZWxrQVpvY2JDUHNISFA2dTZYMVhNSmJraXA3UGVBX2NzOV8xb3ExQlBIN3o2bGdycmVUUl9CaHV1cTk1bU1TYjVkeWU4S0xwbjdSNWJWa2JLaVBMTHRaRG1GM1d5Q0hhZHkxTDNia3hTVUnSAaQBQVVfeXFMUGpEQ0ctRVpNWl9GMC0yT2lrTllSU1E5bmxpM1k1OExuV1ZNYlR5d1BqbnNnSUh2UTNjQlhXRDRiSDRqeWdXbkNfQzFxZzZfVzhkNnczQm5wMDFUcTcxWmZMZkJmdTBEeUFHRnN4SUZqNGdqbTlGaGRvX29xOGZ4ZmR6TWNLY2VQMHNPMmRKU1ExdG9mTWpFT1RDZUU0ZUVCWDBxR0k?oc=5" target="_blank" rel="noopener noreferrer">Jovem cria aplicativo que permite traduzir Libras em tempo real com uso de IA e aprender língua de sinais</a>
         </h3>
@@ -2765,7 +2790,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">16日前</time>
+        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">17日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPNk45alN1XzN0a0tMWmFmeE10Wkc1eHQ5MW1STWJJdWFtR3hkSGZGZnphTV90aE5DSVlpNkkwTTNibnAwYXNkOGhETWVoOGVkNjl6eXlNVXZkZTBpLUNNQl9NVlRReUY5WDRHaGpmcUR6bXU2RTZ1SjFTTXJnbXRQNjdITnRSclN0dmF2d2NtTnhDQm5FWjN4WElvLWppbzRQZ1hzN2tQRTlob2dJR2lmcnVlX2NhbHVx0gG_AUFVX3lxTE01N2doZm9ESE8xbEt2bFJ0Q1lucnBhWXh6SkNzeHFudVRPWlI0TzFFcDJTcHF6cFFvLXpKb05Ja0o4THFJWHdYbThYcTdCNUN0NUg5aWJSMGpQQzdlSEhHaVZCU2ZyOENIcF9abjNlcTN0MmNpeXB5ck41MXp6VVRxM3JkUFFHbmQ0ZWhvZGNLS3gyRkI5R2pnU1BXQkdMVURWbFNhN3hncVpfby02MVFkZ0lwVk1qZURHMFU0bnNF?oc=5" target="_blank" rel="noopener noreferrer">The big three OTTs should lead the march on accessibility</a>
         </h3>
@@ -2781,7 +2806,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">16日前</time>
+        <time class="card__time" datetime="2026-07-27T07:00:00.000Z" title="2026-07-27 16:00 JST">17日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxPSklVaDJuZjd1MUFGbVJ2cmNUQUdMQlZQSkJFdEVzczFtOWhrdGRGT21Xa1g2ekxOM09RRFppZ2Nkb0w2RWhmRnJZdGdwM0VmMG9QR0h5bk02UDJuSFpBN2F5Y0hxRUU1T296TXM5WFUydHVTam5VdXBQYUV5MEdLUE5kLVhuMjdTbjk1RjVESWlUcXhPWm9hZWthSlRsSGc3a192MktTeFZpZVQwcThZLUl0SEt2eW9aMEVjcXpB?oc=5" target="_blank" rel="noopener noreferrer">Ayudas para audífonos y prótesis auditivas en 2026: requisitos para poder solicitarlas</a>
         </h3>
@@ -2797,7 +2822,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">27日前</time>
+        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">28日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxNU0xvTVUybHVJMEdLWHJsZ01XVUhsWFplLWZ6cXdDUGRkR3dkeC1kNVpaLXZNVkdiSnFEc3dxWXpaTWVaanVNdXU5eWdsejlra3RmeXdlUE03Z1BDaklPM2sySzZqbGxHS1ZIcHNCc0RRUkhQUDdKdHZsejNxdFpmLVhLM1ZHZV80NnFTRzlDOU1GSS1hbHNyeFZ5OS00VDduelRyOG5VWHJfR0l3bmU3aTEzcFVWZ1BKMjln?oc=5" target="_blank" rel="noopener noreferrer">Erick Ríos representará a México en el Panamericano de Sordos</a>
         </h3>
@@ -2813,7 +2838,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">17日前</time>
+        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">18日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOSW94czBDZkxpbGxiOUhGSE1Mc2QtekhGNk9MRUNMaGZwNEdFc0lqc3pGcDZnN21hdHc5Tk01N2k4MmhLZ0hBZU1oWE9HN1ItUzZ5MWtOOG5OdE9JWlpLSUU0T3BsU3AwVGFvaUR5Sjl4VGNteU5jTWh1M1hOYjlxTXdGMnJoOU0tRjVoSDFZMTZMaGt5bHotOXd2aXpEeUVxUjJr?oc=5" target="_blank" rel="noopener noreferrer">Hearing aid users fear being &#39;cut off from the world&#39; by service cuts</a>
         </h3>
@@ -2829,7 +2854,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-culture">Culture / society</span>
         </header>
-        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">18日前</time>
+        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">19日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMi6wFBVV95cUxQczVKQVhGbm5jdHJKYlo4bVhDblpKNXhqWktxY3FFMWlsWm92U1pubGlYQnA3d1BGRVpWTjhOUkhMS0Z0dzFlc2wtamxBM2tMYVhWODZ0UFdaeXowRjRvSTJTVThIV093RGsxWTM3dFJHOS0wc25TWjZYbmZfY1NVaEtKV2tPM3hEZmE4UU5XVnY2WDJLUGlXWllCZkpoZ3B3aHhVZm1UcF9Zd2d4ZEdtay01QVdYOTRLa0VWTllPaWZPSzJuTUFNSnRzc2dtMUY4NmFuXzlXV1RlZ0Y0YkVLTWlaeXBwRTJFMXI0?oc=5" target="_blank" rel="noopener noreferrer">La culture sourde à l’honneur à Montpellier pour la Journée mondiale des sourds en septembre</a>
         </h3>
@@ -2845,7 +2870,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-15T07:00:00.000Z" title="2026-07-15 16:00 JST">28日前</time>
+        <time class="card__time" datetime="2026-07-15T07:00:00.000Z" title="2026-07-15 16:00 JST">29日前</time>
         <h3 class="card__title" lang="pt">
           <a href="https://news.google.com/rss/articles/CBMi-wFBVV95cUxOekdyNkhrZUhKX0N5c3VFUjlEaUVvZGs0Sl84T0RHT1IxWnN0cnpIVGlOOFV6TU1ManBvN0FlMldZT0Zsa3pKSFpPcE90LWtHUFAyWWhxZkdtQVpyOGc2RXRucUxQRlNjZHlBS29lYTlsT2cyVF9FdXZLSEhuSHpvX0JHUVY5aGk0eGk4OXRIanJYRXFJcTRlU25acU1QZDQweUdOQ2N0c0FzUmQtV0x1MTBMNW8yaGw3SDU1MWF6emRGMHlzVko1UFdHMThVWmZ2RUR6T0ZteDBYOFY1UGVQMWI3OEhuSUhrdkRQUDlRMWJIcDQtMlAxZ3llb9IBnAJBVV95cUxPS1lrYVY0SGZoX2hVTmsyUlFfaEtsQWRNcHpESEwyUWdmc0k0bHFpZ1B4RF9SV2s5ZmNoZkdZVVlLWHRuakdXUG50WTZDdVFKV2h1S3RaRWxlRDB6N0lNc01pTGEyVy11WVhvcDk1MXRaNW5lc290QlF5ZHh6bGVsUEZoWTFaeklKdi0yZEJ2YmRIb08yb0ZnYmtVakR5MG1uQ184NTdSOW5CVHR5OGpyeDY5MDVlRktiVG84amFKZW9xQVdleDh1REFGZTIwSmFNNjd5QXN0b2xLdHJFbnpFNXZnNnZpTU9RNnpnaFFqVHg5XzE3c3FNZ0c5M1VfZ1lDd2M1WDBQRHRJVUFBM0dTdFhkWVl3bms4ckNPRQ?oc=5" target="_blank" rel="noopener noreferrer">De los audífonos con cable al hogar inteligente: las nuevas tendencias que están redefiniendo el consumo tecnológico en Chile</a>
         </h3>
@@ -2861,7 +2886,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">17日前</time>
+        <time class="card__time" datetime="2026-07-26T07:00:00.000Z" title="2026-07-26 16:00 JST">18日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5NRHlVZmt2SUFRZ1JHb0o2dzBUOXBHZFZhNDd2dkt2cXh1RWlWd2JLYTdLcWdJNkowb1EzWjA0aDl5dGRiZ1Bwc0QtVFFvT19uVkVVaGE1ZlQtNE9XSldwQ0xoN3hwU1NIWXd30gFwQVVfeXFMUDNWZC0xZkk0ZDM4Y0UtdHRRb3NZczVfOENITm85MmMwcE9GNDNiNVBobG0zc3h3UVZHQ0RFdzR4eUp0MkFaS252U0RoSV9NWEVQU0I1RThXRDZrVkxFVlM2QU0yN0FRQ0lzTmpWeVQzaA?oc=5" target="_blank" rel="noopener noreferrer">&quot;경찰입니다&quot; 수어 한마디로…청각장애인 39명 얽힌 &#39;특공 사기&#39; 풀었다 - 머니투데이</a>
         </h3>
@@ -2877,7 +2902,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">20日前</time>
+        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">21日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxNMjBtbHE0OFJhNnF1N011d3pRcjdCX2d3Zm94TkQyVTBxbmhkZmNkS0R4Q1huaWlJdHRnN3hSZEhXYmp4WHI3ei1mZTR3TFVYdDJTdlhrUVdza2Q3bl9kZFdqRjROdGFzQ1lUUXdVSDZ1RjF3TVpCVU1BTmhKdkJKNDZYMEZWelI0SVFpUmFaOGNGVmQwTHBLdUZLRkZwS1RFUnFZMm02akNBdGN6MTVJMkZ3bDhRbFJCSkhuc2MxQ0puaUdoTS1sTUZTMW9MNS1qbUhkMDZ0cHFkM1RZWUJfMFNQNnRpNTdfNng4UTFXdW9vcmN1Q2c?oc=5" target="_blank" rel="noopener noreferrer">Lässt gehörlose Kinder wieder hören: Neue Therapie kann bei Taubheit helfen</a>
         </h3>
@@ -2909,7 +2934,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">18日前</time>
+        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">19日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5TcERlYk5aWUdLbGhrMUFOV2ZTekEtZVVCODE5RkE4aE05RHNFektkdmdncWR4R2RSbU5fNWtNUl8tQWxhVUg2ZlhJbzBFU1V3eFQ0NGswUkdYNXfSAWBBVV95cUxQZzJJZGN1OExJcUpVS0JyUS1vQ05yem5UcjBRTVgyUWJlQVJKSnVfMjVRNGhkYVRtOXdYOXRCYkpFeDE5aFpjb3JFRGJoVjZIT1ZPaDR6ajhfNUtHVk1tZ1o?oc=5" target="_blank" rel="noopener noreferrer">울주 복지단체, 청각장애인·난청노인에 &#39;보이는 초인등&#39; 지원</a>
         </h3>
@@ -2925,7 +2950,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">20日前</time>
+        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">21日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxOTkpnV282RDRhZG41VTl1MU5EQnBPVjNCTFNKd1BGNGEwTkZRSF9ZQzc0RlNJQ3NJTFFMcDBqUVlSYVRHZ0ZwSFpESDRSbzBLZU9pMWJEeTFjNUl6QnhUVElFekREdEVDaHVMQVFXNXh4ZTZwWkV3S05vR3EzX0YtMWlwWTFZTmZ3bTdONEVVS0lZbWw5V2lVRThIODlPQ0RTbHIwc2c4blVBYnE5Zm4xaDRUeWxfeFo5VVZOV1RrdmRucHhMSGtFTV94TlYwMTJzME9ZM01LQkR5NUE1LWc?oc=5" target="_blank" rel="noopener noreferrer">„Arbeitgeber sollten mehr Mut haben“: Was die erste gehörlose Abgeordnete von Firmen fordert</a>
         </h3>
@@ -2941,7 +2966,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">18日前</time>
+        <time class="card__time" datetime="2026-07-25T07:00:00.000Z" title="2026-07-25 16:00 JST">19日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNR3htWG50d0o2WUNTQ0VMNTJpMHVDOFVmUkhsZUVDVDc4VXUzQVRPZURTd09hWVdWdF9rRFhHVy1yVEc3clhpdmY2VEdMb2NWZUxZR3BOQks5VUhaU2tlMTB3a0Q3Rll0ZkFabF9YSl81aWR4eEZXRlByV1hhbXFYWEJNdGpiVXRfV1NiejcySldGZHp5dHdsQ1lTWEE3VEhC?oc=5" target="_blank" rel="noopener noreferrer">Born with hearing loss, she found her voice on the musical theatre stage</a>
         </h3>
@@ -2957,7 +2982,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-technology">Technology / AI</span>
         </header>
-        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">20日前</time>
+        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">21日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxQNXVxSkMzUGRjTFVubGNhZ2lWcElEX3N2c3hkMG9qSzdJZ2ctZFp0QW9JUTBHSkkxSms2cmJBdmpWYkdNNktacExmTWRlcC1IdlZjOWc2a184QWtKT1J2Mlg4ZHJqRHl6WnlaZmlSR1Q0WXVEbmczVkh4Ui1xeERpd1RaTmV1UUdfdWNGZ2gxSDhVRGZXbGItUExRMGt6WVM0bVdCVlpxU3V6SlFBMnR0YVVhb0ZPZWdPVnVpazFZRmZWSmtibHk3ZWJvTUhpaDFP0gHKAUFVX3lxTFBOcTFiQVVVRWd6S2cyOG9uUzl0MWpqaFNENFNSbm9sR0dEcW1kZDBpYmRreGF5b3lKQU1QcjNYYXpBN3l4dTF2eDljUWJQQWZZZ2g0V3JUSTd2N0pBWlc5LXQzaUNaSFc5RG5GQXlDcDlJbk1ON2Q3NExTT1Jxc1JaUnppM1lWUjFwRXphN0Flcng3dTBFMUJ5MVNWNnBGYUlqNVhIc004Z1pRbnlaNVJhSV90bGdhU1R1WC04V2IzY1d3ZnBvLW15cEE?oc=5" target="_blank" rel="noopener noreferrer">Intelligenza artificiale e inclusione, a Bruxelles l’avatar che dialoga nella Lingua dei Segni</a>
         </h3>
@@ -2973,7 +2998,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-23T07:53:55.000Z" title="2026-07-23 16:53 JST">20日前</time>
+        <time class="card__time" datetime="2026-07-23T07:53:55.000Z" title="2026-07-23 16:53 JST">21日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5EYXc0T0FYQVY2QWdNaFVVcTZpZEZ0R3hQRXRGdXNIYWswdDJlaVU3TGxIcHVaMXZwUmhHS1MyeUxXMF85MGpaU2JLVnNvRDFqbnlFMUhDTllNVUxmU01TaDE4UjRLMWs3?oc=5" target="_blank" rel="noopener noreferrer">웅촌면 지역사회보장협의체, 청각장애인·난청어르신 초인등 지원</a>
         </h3>
@@ -2989,7 +3014,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-education">Education</span>
         </header>
-        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">21日前</time>
+        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">22日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi9wFBVV95cUxPcXB2MWxuVHQ5VkMwZE9HaG9ISzNzYmMtNzRVbk4tdlQtRktuTU1uOEF3alZYSUhWRmdzZmlQbjVEaDl0M2hYX0lNMVBGQUh3cENMNDk5YnVBdG1yV2xEdmdRRjl5YlpjSC14OUxpd1NveGFKMWNoSXJWZEtxeGFGU1dCR0F1Y0xDZ1lNQXFfRzByNFQtTlB4THpjQXNFWlVXak5KNXhJMTh1ZGZ2M0R3ZGtuNGptZG1sVUY1dzY0dVFYcnloVU03Nlo0ckNteVJmTUVIM0F6R0xlZEl6Z1lfMkt3MDJQVE9zQWVaMTdZRXFGTWRwRFRR0gH8AUFVX3lxTE9wNS01NkY3SmRFT2I5NHcxWGRsbzBhU2ozdXBpdXk4UVcxWVBTOFZWNmdaeUp4TFJ3YUdTM2ZRY3JDZlYyekZMaG1xZlFKVEVGMXZiR2c5dTI5QkhNeF9jS0ZEa2FMVHFEWmN6bXJpODE2dUcwQWxoZENzVFJZc3ROTEs3cE16YVNHNjVJR090UjJVRWtzVklhV21pbFZUbXh2c2ZxZEYtZjhwSFYyUEhxYjRMakpMdlRVQkZRMFBmaTVTYU1qXzZxd0RLMW82aUgxOG9oazV5a1pNTm5FcWFSU1VBeERuc0RFNjBRejMtVTMwOTFKNDJTV0lWSg?oc=5" target="_blank" rel="noopener noreferrer">La proposta di Jenny Serpi, lezioni di lingua dei segni a scuola</a>
         </h3>
@@ -3005,7 +3030,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">20日前</time>
+        <time class="card__time" datetime="2026-07-23T07:00:00.000Z" title="2026-07-23 16:00 JST">21日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTE9nZWJ5eEY0bWVxUUdXODNIM3NTZXF1M2h5TjZyeWtWTnM0Qlp0Q3FsNldPT3p4dnNVN0J0bmVGTGtva2pTX3JXTTlSdHPSAVJBVV95cUxOUXR4dXF1MW1KQkRxSFhEYVF3dzA0QS1rUk5LdDJaYXF3aFNEUGh3WVRLWkJPUGRoZ2xTRDhNc0x0WmVnOWJpSnlTR1d4SV9MbGt3?oc=5" target="_blank" rel="noopener noreferrer">《哥吉拉大戰金剛》聾人小女孩驚傳車禍身亡 爸爸比手語悲痛發聲</a>
         </h3>
@@ -3021,7 +3046,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">21日前</time>
+        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">22日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMi_AFBVV95cUxOUnpkVFFvTWt6YzI5VS1McVlfWkV1YTNMejBGY0NhSkUxdVc0UGZ6SU45UmxIX0VOUHRueHpLWlpNN3QyRk1ubXB2akRCZnRQWm1uNGNPTjZFOWtpMkZmLVRVOHdYNW5Kal9sU0JRM2pRTjBtUWZzMkJOV1o5bFNNNDRjR1B3SWtHYlBvTGpxMm1vUGRqeklJVHR3bkd4RjJuVXRCZ3FoQ0JwTHhIUXZfNDBweDJnLXBydDdEb19WZmJwNjRMeS03OTF4OWhWaFdYOVBoYkJpZktQYTFOS1hIUnV0eU50VXcxS2dFZFhDeHl1QmlETUUxajd6LTI?oc=5" target="_blank" rel="noopener noreferrer">Kaylee Hottle: Bekannt aus „Godzilla“ – Gehörlose US-Schauspielerin stirbt mit 18 Jahren bei Autounfall</a>
         </h3>
@@ -3037,7 +3062,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">21日前</time>
+        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">22日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBDMlViUjdENkZEcU9jWUgxS3Zab3Q5U2F5eVRFUWF0Q2lLbElDMzdBaUhWVW4zUTNKMmRnOGVRWDh3N2FCNzBLeFM1NzZlZHhIZXhFRnR3?oc=5" target="_blank" rel="noopener noreferrer">해운대백병원 백무진 교수, 난청·인공와우 치료 분야 전문성으로 청각 재활 이끈다</a>
         </h3>
@@ -3053,7 +3078,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">22日前</time>
+        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">23日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMiggJBVV95cUxQcnJlT3RjRFQ1a056TzNDdW9UcmtUS01BWXBWOHBSY0ROUUR1ZVNRSEdRLXNRM2ZlWjBaRWtrUlRIbjVLODJiNVZlNmpSZlNwYzk2SEo3VE91X1lkRnBhaGpfYkhyNzJoT0lJMGJuZTQ0ZUZZNnREVTRvVktRUjdwdUhpV0tYX2Q5anFVOV9TV3JLWGNNNWlJSmxvWXZJTFZEVFJrSU5za1lHWUF4Z0Nza1l0WThRclhMaHA0Y2pHby11QTlaNXptVjBTWHA3VV9scERuTHN6QV8xY0RheGF4S1hvNHYxTTBTSGlOU0NGcy1iSklMZ1dvYUVoTzZyQjdUQVHSAYcCQVVfeXFMT01TeGdZRThzbDVvVWVOdXBjRlhWdmZZWHZrNU9WbGhKS0JjS1lPbmlpRnhCS0xyLTAyUW1HSzI1UHJZRTZlb0N3anV3aVItanRGaVNGc3E0TFFRY3ltUzhySlpwWmhkdHBxV3FSTlBKeEhkS3hBOGFSa0FGVWNyXy11ZUpmeGtNQWJ3czNjMENoV3BGbDBYZGh5LXBOdTBhYXpRd1JqdlFoYlJORnVpTno2UWdKaUM0YU9TN1E5TnhEcWhIZTNOUTdaQlpSNWJNVDhGS3pHVC1yRG81b1FJREZPTXhvWW5uMUJ0dzhnYnNlR1FoQ1FIcUxjd0NpTmtlZ1Raell4ems?oc=5" target="_blank" rel="noopener noreferrer">&#39;Non è Francesco&#39;, il videopodcast di Avvenire anche nella lingua dei segni</a>
         </h3>
@@ -3069,7 +3094,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">21日前</time>
+        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">22日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFBFNC0yTVVqQVNWWnVlOV9ENGpoeDJIaFN1Um0tZFRhbWNxR0ZEd1hjQ0x1cWs2WHhFcUNTVWUyQXdzdE1uT1hDOFpuRGRTRXhIa3hRenkySDNKWmtCM1V4M2pQVi1hZGtt?oc=5" target="_blank" rel="noopener noreferrer">‘한국계 혼혈’ 케일리 호틀 사망 당시 음성 공개됐다 “청각장애인, 수어 필요”[할리우드비하인드]</a>
         </h3>
@@ -3085,7 +3110,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">22日前</time>
+        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">23日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNNkEtejBobGJKQWhOOWhJY2dIQXZBYy1rRVlvaGwtSVczU0dwZzRUVUVqMlRncnZvNW04NGFqTGhHWnZTQW81bWpNU1lGVzY3UHMwREtxakNfTmk1dlpSN01tTENMOXN3RlhxMXczb0xFbGhsODVaampRaHY3cW02TzV3dVdFS3lvRldKNk9JQ0xJTFU1OWdBR2lYZ18yS1ZJc1gwSzB0N1o5bHZleHR0dmgyYw?oc=5" target="_blank" rel="noopener noreferrer">NRW zahlt 77 Euro im Monat für Gehörlose: „Das muss dringend angepasst werden“</a>
         </h3>
@@ -3101,7 +3126,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">21日前</time>
+        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">22日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5wY2N0bHJZenVCOTB0VFZUbW5nQXhGSlc3QjdZMjQxVW5XOXRqY0xkYy0xTlJlemRFMWc0al9xdFVMc3pKQ2x3ejYwZEM4NF8zQy1UMG8xNzJhUQ?oc=5" target="_blank" rel="noopener noreferrer">「哥吉拉大戰金剛」18歲聽障女星凱莉霍特爾車禍亡 父手語悲痛證實| 電影</a>
         </h3>
@@ -3133,7 +3158,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-culture">Culture / society</span>
         </header>
-        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">21日前</time>
+        <time class="card__time" datetime="2026-07-22T07:00:00.000Z" title="2026-07-22 16:00 JST">22日前</time>
         <h3 class="card__title" lang="ko">
           <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE12Z1dBNkZUVkV0X09MWnBybnpOY2hYZTJna2dRYVFHbUFaZWpkRy1YbWdkcW50b3JPWml2M2R2VVppU0lkQk1MbDNHT0VKNnhwUFc5S21jakFiSTTSAWBBVV95cUxQNzBPQnhtd09fN2V1R3A1MnVfSVZLMFZOd0doTjZndVlaTXlVOUVmelYzLVZKM0NFNkZuQzBPTjU2SkVuWWxHSTJlREoxelVtZU5IRTRnRlJDOVVUNUlLejE?oc=5" target="_blank" rel="noopener noreferrer">&#39;고질라&#39;의 한국계 청각장애 배우 호틀, 교통사고로 18세에 사망</a>
         </h3>
@@ -3149,7 +3174,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-sports">Deaf sports</span>
         </header>
-        <time class="card__time" datetime="2026-07-18T07:00:00.000Z" title="2026-07-18 16:00 JST">25日前</time>
+        <time class="card__time" datetime="2026-07-18T07:00:00.000Z" title="2026-07-18 16:00 JST">26日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPVGdXZjl1NF9zNjhQeUZWWm5sakVRTmtCTkxoQy1GT0Q4YTBEUzlvYklibHg5OUpfaXk4ZWN5TjZ5RS1GaEdEVktIZEZsa3FtbmRON2R3RWl3T1Z1R0tYb2RMV2ItNWdpUVNyaHBtZ3ZqMElNcGF1XzBiZVFLMXRKOTBfUGNRMEdYVy13NmNfeXJCUXpEaThMUzlNTjJhbXNYeXdmY0hDblJndktBNXlvbFVLT07SAboBQVVfeXFMTmp1ZW9XZXZBMnQ4eGpBT0hNUnVzWE9jdmFiWkNLM19Hem1ycHRzZlFBZmNENS1lUjkxSHFlRVZwYktJRW9hS21SVjMtdUx1cjNIdDY1cFRfSW82bHlLU1BHYzVEUkMyUlJUZWNuX0Q4QTczVnJNeVJVVFpfamMtQXNrNTA4M2pwX1ZFcUt3N0MwN1g4VnRISk9PamdPNElkX2lvM2dTVmRjOFZ2d3NUSTBXRlg0ZHIxcG5n?oc=5" target="_blank" rel="noopener noreferrer">Inclusione in movimento: a Napoli il primo Festival dello sport campano per bambini e ragazzi sordi</a>
         </h3>
@@ -3165,7 +3190,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">22日前</time>
+        <time class="card__time" datetime="2026-07-21T07:00:00.000Z" title="2026-07-21 16:00 JST">23日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxORUVLWDlpNFlRb2Z3UUhJNTZBZ0tzN3dRM0ZnN0loYWdXRnRNYUwzdDRheFhiX0YyZlliMEcyMVBzWWlKZFR4MzJtQ3JyTlJmQjJ1amUzQWIxSWVXTGJuQmMwaExnLTFsaEFrUGRHMHJWdWE2RG9TQThoSG44OGc2MmNEM0dZZGw5VnlMVzFNOFlDMkw5TFRoRDRWbVlmOTR4TlR2X0tuSFNmVEt0WGxPTWFFUkNYVF8tNTZpVkdLV0ZBWDVPVWdPa0xIcnR0NnJqV0ZrOFlsREZ1MGVGaDh5U2dsQVg0RXNwSDdXVdIB8gFBVV95cUxOYUlnVWpGMC1yaGExLXNTY0JydG83VmdRd2VQN09fbDFHcTFXSkRoTlBHdHVfN0dyWHYtcEhoYWdqelVhd29SS2ZZN0pqcjBsRXZOakQ4QXhFUnJQVVI0aXpqMmp2MzRqOG1WckFWVE80WXI5ZXRCeXBNQ3dQeWhKQUsxQjk3NmQtclBjR1lVTXJFRklkc0E2ay1KRkVsa2RkalZ5ZnlaQml1T0IxckJkM3lnYWowTzhvbVlGOTFDY3k1ZHBiV19uVkxfZS1tQmRJY2hXdVc5TGdUb2ExQzhkYnVIVHgyZ1NXSGs5SVRoM0tIZw?oc=5" target="_blank" rel="noopener noreferrer">Ramol cracker factory blast: Main accused suffers hearing loss, probe hits hurdle</a>
         </h3>
@@ -3197,7 +3222,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-19T07:00:00.000Z" title="2026-07-19 16:00 JST">24日前</time>
+        <time class="card__time" datetime="2026-07-19T07:00:00.000Z" title="2026-07-19 16:00 JST">25日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NREZwS3F5eDhpbFpqZ2pWcnRlWjYza0FVRExTTHNfNTJhS0tnQzlha1FqM0NJbElpeG1tZmN2RmliNk9Ia2s0UEdrYjZ2Ni1K0gFWQVVfeXFMTmxXVUt1YlJLNktkSm9faC1rR2ZING8zY0lzMVBHOVlKSnh3MVVRMF9SU2hHSGxTSmpwYXBJaUFhY2JKV2lNcFBINVJRZWt6c21TQWpnTUE?oc=5" target="_blank" rel="noopener noreferrer">手語人權營走入228現場悼首位聽障罹難者 7處不義遺址標示今年上路</a>
         </h3>
@@ -3213,7 +3238,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">27日前</time>
+        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">28日前</time>
         <h3 class="card__title" lang="tr">
           <a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxOdXFJSGQyRldOZTFJQjh1S01PMUhZZWE0eUMtTXhaWHExcW10dUVxSXlvd1diTjdWdXEzbU1ZS1I0RnhOVjNLOFlodXFiYnE5OVlZR091WmZHanJaVjBENHN2VXByUlVOVEFKS2dsN2Vycnp1TExuanpsNk9JM3VlYzQ2S3dzZ3g1V01zSzYwSEdWMGh2MW1kMXFseTF0S1RGS1N2c0dfU1E3OHl3UGl0RGJFbk8tRDl6cjM3djQ1LWp4LTY5d0wzdnYwQ2JURHF0QmpQSy11azI4MWY1YXc?oc=5" target="_blank" rel="noopener noreferrer">İzmir Büyükşehir Belediyesi&#39;nden işitme engellilere umut ışığı: Ücretsiz işitme cihazı desteği başlıyor!</a>
         </h3>
@@ -3229,7 +3254,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-07-19T07:00:00.000Z" title="2026-07-19 16:00 JST">24日前</time>
+        <time class="card__time" datetime="2026-07-19T07:00:00.000Z" title="2026-07-19 16:00 JST">25日前</time>
         <h3 class="card__title" lang="zh">
           <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBCWHBGUm1CMTNadjB3NzRMdDJMUExPYVkteW9lQzBwLVg3V1JBQmluME5mSlN2WTQwSHNqQzdKWHN1TFF3UkZqWUxSZGgzQjRRUXhBSjBn?oc=5" target="_blank" rel="noopener noreferrer">重返228現場「原天馬茶房」手語人權營 悼首位聽障罹難者 7處不義遺址標示將上路 | Newtalk</a>
         </h3>
@@ -3245,7 +3270,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">27日前</time>
+        <time class="card__time" datetime="2026-07-16T07:00:00.000Z" title="2026-07-16 16:00 JST">28日前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxQNjZzVzJ6TTdNSHhOd0U1Z1cyWnNuWHVXSWlmejBtb1Bjbkd3aDVfRi00ZktTRzQ2eUI1RjhkdlJTVlZZZVQ0cUpudFpMUk8tMHlFREp3S28yenB1eUxNZ1N0dVJDbEswRjBlVnBQdlVZbDF5WXpIRjJhUWlBVXNYNVoyN1gzb2N4V3dnUDJhSzN1MWNlaGZnLUNMMG0zVFFZcDU0Mi15ZjREdFRiSUJOZDZRR2piZE5jSklMaUpUSGtGRHkweUtFVDVQWmNUZndSQnBNYWRjanNvNm1FUHoyVGJn?oc=5" target="_blank" rel="noopener noreferrer">Sordità e ipoacusia, alle Regioni 5,2 milioni dal Fondo unico disabilità</a>
         </h3>
@@ -3261,7 +3286,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2026-07-15T07:00:00.000Z" title="2026-07-15 16:00 JST">28日前</time>
+        <time class="card__time" datetime="2026-07-15T07:00:00.000Z" title="2026-07-15 16:00 JST">29日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxQSkF3a0dzSkdteE5wbkFTZ3ZsUjh2bTJWVHFXQ1pjbGlITW1Dd3Z6cU1YZnk5ZktKdnM5aUZLVVluUkd4LXVlTFU4NkVCMnNQZFliR3BoVHZXblpuR2VBM3FNV1JEMTRGdVFMcGJ4TUd2X0xCN2ZlaTJKRmtnTzE4U3dQY1dkV2xRT3M5RlZDanhTc01fa1B2czRaeVYwU190MklRcFFOdG45NGQ4TXJyOEtaR29YN05oLVlmRDVDTHZZNXlUTWI0RGVKdHdYRklmVGs5eWgwR0N6SGtGZTlF0gHmAUFVX3lxTE5qZDJHdVBXTk83aTVTUkhzYVQ1Q05rcjNEUmZOZE1YUFlmMC00ODY4ZWY3b2ZKeEVQQkF3a3lkdUxfN2pDc0ZfZWIwbXVBdE5UcV9yeS1Pa3FrbUItZ2dxTkZYTHQxbllGTUtxTnpWVW5Ga2RBWmkxcW1kVHcyUkhqanhYODBka1ZTV3YyWldMZlhDUnVXcDl0MGVLTWZqLUtmcTRvMnEtLTBZT0hFeWdjeWwtYk1hYW5YUEI2YnladjJ2ZTNkSmMteVh5cVIweEdlenc5cGVPWFdkT1EzVzR0WjVmWV9R?oc=5" target="_blank" rel="noopener noreferrer">‘Don’t ignore hearing loss’: Neurosurgeon shares six brain health tips for people over 70</a>
         </h3>
@@ -3277,7 +3302,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-general">General</span>
         </header>
-        <time class="card__time" datetime="2026-07-15T07:00:00.000Z" title="2026-07-15 16:00 JST">28日前</time>
+        <time class="card__time" datetime="2026-07-15T07:00:00.000Z" title="2026-07-15 16:00 JST">29日前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxNaFM4dEpXLXVHSG9KNWZTcklwb3k3Szh1ZllUdWVTRW1HTm9MZExYR2twOW16UDNra2lnY1drQ2dzenJ1NUlsTmlYa0FFQjFMNFdwUlNmb3Y1cm5OaFlsWXpITlgtVXdqYm9mRlBSajJGMEx5LTdOWEVWUlBhTmdRaVpPN0hoYS1yTGxXeUhXTW55Mkp0X241Xw?oc=5" target="_blank" rel="noopener noreferrer">Deaf people excluded from gene-editing debate | Letter</a>
         </h3>
@@ -3293,7 +3318,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-rights">Rights / policy</span>
         </header>
-        <time class="card__time" datetime="2026-07-14T07:00:00.000Z" title="2026-07-14 16:00 JST">29日前</time>
+        <time class="card__time" datetime="2026-07-14T07:00:00.000Z" title="2026-07-14 16:00 JST">1ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi2gFBVV95cUxPLVFNTThtZFl2NXg1UXdhYXNFOENhZmNUZmd4RHFjRFBoQmhVMG1TYXdBVWJoc0pieGJmUmtiSUpkQzlQVjF0X3oxc1FWMHhxZjg2NHZPTHkxMzIxYVVudmRvUGxNeWt5NWZWNTZNc3l2dEV5aEZGNUdKbmItX2lyTzdodXFpR2ZpUG5FMHVRSnJ3YXk4b3BqUFNpQTVDSGJiWUJVdWN1OExiR2JHWkJSdU9FcDZ1enVia053dnNZenp3UzJmdzJBazlRZ25WLW85Y0dWMFRlUktOQQ?oc=5" target="_blank" rel="noopener noreferrer">Government funding aims to increase Deafblind interpreter numbers: a welcome step with cautious optimism (BSL)</a>
         </h3>
@@ -5101,7 +5126,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-rights">Rights / policy</span>
         </header>
-        <time class="card__time" datetime="2026-04-15T07:00:00.000Z" title="2026-04-15 16:00 JST">3ヶ月前</time>
+        <time class="card__time" datetime="2026-04-15T07:00:00.000Z" title="2026-04-15 16:00 JST">4ヶ月前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5CLVpEQk1EWElIQTNMRlFBVUxVdHhYWEowZHdfYUgzazdXdlRrVHcybjF4ckhBVDJtMU5kclNhN0FGNDBuVjU3VXRuTi0wMTlIYnNWZUVlaEdqb2s?oc=5" target="_blank" rel="noopener noreferrer">Regards croisés sur la socialisation langagière des locuteurs sourds signants, de l’enfance à l’âge adulte</a>
         </h3>
@@ -5437,7 +5462,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-03-16T07:00:00.000Z" title="2026-03-16 16:00 JST">4ヶ月前</time>
+        <time class="card__time" datetime="2026-03-16T07:00:00.000Z" title="2026-03-16 16:00 JST">5ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5scTFVLWlvbW81ZGJhVEJrQXNHNGxtbTJMWDVrbHUxMFFsbGx6eGhQejZTYzcycWpic2ZtTHFOSVpDbFA2NnltUGJoRkVyWjhTWElYSUtZWnh6TmZ1YXZ3bnIwQlF2ZXczQjdySHpvb00?oc=5" target="_blank" rel="noopener noreferrer">‘I see everything in 3D’: Christine Sun Kim on echo chambers, sign language and Deaf life</a>
         </h3>
@@ -5613,7 +5638,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2026-03-16T07:00:00.000Z" title="2026-03-16 16:00 JST">4ヶ月前</time>
+        <time class="card__time" datetime="2026-03-16T07:00:00.000Z" title="2026-03-16 16:00 JST">5ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi-AFBVV95cUxOcm85dXdIcVpOazYyNDlPd3FvNnBOZW5TZVluUWFEajJkTllhc2ptUzdVUGhpdGFLMnI3NEdIdXNUM1dQdVJEXzRWVElaOElyeXhkYmE4SzNxUVR0NXdzS0tKeXluWHJiMTZFMnRXTVA4U1lvYk5yUmw0TlBtNDRhcVRURm9wS2IzWUdCY05MOWxPWjZiSEtvLWVKelBob2h2YktCdU5mT0UyWTJuZEwzbnEzb2VvVE9YZGNLTy1CZEZrRjRyTl9zUzRxNU9WYVZwVXJ0MDdNXzFvTEdpVHUxT3JYcjdwa3VraXZTWkRRLVptSFVJQzJ5MdIB_gFBVV95cUxPMmRod21BMDFzZWdtNFNYZXE0eklzOWNfd0hWWWYzX2pBUjRCZ0U4cUxhQk5rTWJFcS1TX2VwV2ZXNVUyVDMyWVBzZElsT2l5MEZ2NWVLMVZHaElzUVZjcUl1ekZESG9vdUxYOWRSQzZ6NTVlLUM4TDgtOERrRkRqdTNJYlRIODlLMFlCSktmeGhhTklRSndralloNGNPcGt6a2QxN0JnbC1kQnNtRk95dEM5a1JnOEdUMmRTRGNDbkZyNTFLUG5CZFRyOGEzbGdmV1lvNEd5RXRGUEptb1ZuQUI2SkUyTVllLWlsMUpIZW4yYV8tYWNzdk1xZ0NXdw?oc=5" target="_blank" rel="noopener noreferrer">Cinema for all? Subtitles and audio descriptions mandatory for all films</a>
         </h3>
@@ -6141,7 +6166,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-culture">Culture / society</span>
         </header>
-        <time class="card__time" datetime="2026-02-14T08:00:00.000Z" title="2026-02-14 17:00 JST">5ヶ月前</time>
+        <time class="card__time" datetime="2026-02-14T08:00:00.000Z" title="2026-02-14 17:00 JST">6ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxONFdXYkpaUG5Ec3BTTEUwQWwxS3Rod0REUnpiT01oSzJUYTc3a3ZaRkJrTTNuR3l5bGYxbEVVYmdHLVU4eC1tVjJwb0tfcEhzeUo0dUo4bVFteXB5alAyaWxzNnZIZXd1dXVjNzFOS1ExNDd1WXRWbVRPZjBpd2luUF9vZUVsNjRlUmxXbG1RZ0pyR1pkYnc?oc=5" target="_blank" rel="noopener noreferrer">Supporting and connecting Deaf people, Olivia finds her calling more than just a job</a>
         </h3>
@@ -6509,7 +6534,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-sports">Deaf sports</span>
         </header>
-        <time class="card__time" datetime="2026-01-15T08:00:00.000Z" title="2026-01-15 17:00 JST">6ヶ月前</time>
+        <time class="card__time" datetime="2026-01-15T08:00:00.000Z" title="2026-01-15 17:00 JST">7ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMilAJBVV95cUxNQnpQU2tOdlJ0amVmSTR2TEZKZ3lQZHpJd1lGenVnWk5pbkRrUkpLc0tTSE9vOGFkSjhoSDg4bW1OTU5sMFFXTHhGb0E1c2hrckpaNmNpeW9XV0Rua3BockN5OXNmZmZ5enJTdzBQUWNNS0trcTJRU1VBeUZrbF9sbVR3X0l1aVpJdGpxY01wX1drVW5tN19VSFNMeXlPTDRTQ3IxbXhpblM1YUFDOTF0Q1RTNUJURDNQZzhyOTYtbzQzZXBqRmxrSHZqMjFhVl84YWJ6aWI4Z0gxTHcxTjhabWtabm5meVRrdHQ1TTVpM1BLOFBSMVdQZ2VUWm1Wb2ZMYjZqTzRQNWlUc1RhSjlrVHJ5dUw?oc=5" target="_blank" rel="noopener noreferrer">Deaflympics Funding: Committee Chair welcomes commitments from Govt to progress funding talks</a>
         </h3>
@@ -6605,7 +6630,7 @@
           <span class="chip chip--world-region chip--region-middle_east_africa">Middle East / Africa</span>
           <span class="chip chip--world-topic chip--topic-sports">Deaf sports</span>
         </header>
-        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">8ヶ月前</time>
+        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">9ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxOMVc3a0t2R3hjbUZxWTFsV3p0QV85cVNwbFVpTnRremhEV2FXdllKaGxidkMwMjEtdWZfdVlYcFlpOUM1Y3BZb3RxNUtkLUppRzlja2k1eDhRU3RFRTVfVGstVGgtMEd1UUdIcU5IRmxrSW95bHFNbXRGdHY2V0JrWDZkcVJSWXVQQWdwUTNxUUVHWXo1bHhZSnd2dw?oc=5" target="_blank" rel="noopener noreferrer">Deaflympics: Kenya looks to bounce back in handball and basketball</a>
         </h3>
@@ -6765,7 +6790,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">Europe / CIS</span>
           <span class="chip chip--world-topic chip--topic-accessibility">Accessibility / interpreting</span>
         </header>
-        <time class="card__time" datetime="2025-12-16T08:00:00.000Z" title="2025-12-16 17:00 JST">7ヶ月前</time>
+        <time class="card__time" datetime="2025-12-16T08:00:00.000Z" title="2025-12-16 17:00 JST">8ヶ月前</time>
         <h3 class="card__title" lang="fr">
           <a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE1rZmFNam80cFlpb29fN2hYYm02bnh6bl8teTZELUc2V2hYUkZINjZmclBrR0pCUmxpRUxRM0J5cVJIT3NQZ2dVZQ?oc=5" target="_blank" rel="noopener noreferrer">Video | A Quiet Love, Ireland’s first feature doc told entirely through Irish Sign Language | RTÉ</a>
         </h3>
@@ -7277,7 +7302,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-sports">Deaf sports</span>
         </header>
-        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">8ヶ月前</time>
+        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">9ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNTZFYm9MMWVvc3VLMHlFa09hV2lQbTVuZnZJX1FXNlB6Ri13RDg5UURUZWk5ZnBDY0hTend3MEotcjBxX0JrdlBUWmdrbjlrYU5ZaXRRNDZRY3ctZ1NHc0FtdXE2ZHhMcDJhYjNuT3JyOURzWDdZNDRRam5GckpYcENWaXBRSjVvZXhn?oc=5" target="_blank" rel="noopener noreferrer">Tokyo Deaflympics kick off as Japan hosts games for first time</a>
         </h3>
@@ -7341,7 +7366,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-sports">Deaf sports</span>
         </header>
-        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">8ヶ月前</time>
+        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">9ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxNSXBVd1E2S21hdG1xZ3pfckZiczM3bEJJNFVQLUhXYktraFNTLVJhZ1QxeW03WG5UZ0NKZTliWkRmWVdjTWRzTGVuWXZvS3N2WWYtcW5LWUlfQlAxN2FsNjNBLWRrckdvU25OanpXUWJwd3JMa0Zma1VaNGtwaHdabGozWkdMRDIzNVNxZjRpd0NGNHY0enFBeVhON24yR1otamVmNHJkRkp6c1NPNktCeGJLdFpXQ3kyTkxtUndTbnM3bmQtUXRmM3RiWThIcHNuU0pMRk5lanVoazNm0gHiAUFVX3lxTE9zMXlseW52dlJIczlSTFpIVzhjVFRvNWV0OFdMZDRpY0tCT1diLVNXaTYtVkJNUGlzN2JDNklRelM3cDQ3VGIzNkhpMzRaUmZ2ckNWS2x1TjB6eEhSeWpvNnpJWUhSNzFlbnlXQzdKdFA0TUg2Z0NEMER2c2NZaVFMQ3NVTEg1V3dYYlZid19LajJCblp3Vk9jeXRqMGlKSnI3WjlZMFhWTWdOT0sxVHRtQk5OUHRvek5oTGRxaGRmbFIyYWFSbExhNm12SkdWZEhkMG9BcTUySmdaR2pLbVdGcHc?oc=5" target="_blank" rel="noopener noreferrer">Aces at the base: India’s badminton stars chase gold in Japan Deaflympics</a>
         </h3>
@@ -7405,7 +7430,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">Asia / Oceania</span>
           <span class="chip chip--world-topic chip--topic-sports">Deaf sports</span>
         </header>
-        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">8ヶ月前</time>
+        <time class="card__time" datetime="2025-11-16T08:00:00.000Z" title="2025-11-16 17:00 JST">9ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMijgJBVV95cUxObXUyZHdFTTJEeU42V2k1N2syNUZyX2RGQ2I1YmpQWDlTUlNPdm5yQnNUUTNwemw2eG9ZYlk4MHRKTW0xdlpLck45R0VYQnFSWGZrWEF5eDlEM1ZLZXkwUlNlX2FfNEp6dHZoTVlZOWNDZHZUdXlOUmJ0ODhXN0ZPVjNFbUplUG9wTXlLbF9VcXZFMTJDYmtnMEIzUTFpUjVDNVdyYXhUZE9UUG5ncDZiOEFqSGt4RHFrZ2JuRkduMlhQMnE4dkVwVmFKRzd2dllXdEpmczNKNmZnUWdXVm13X0RIcjBXMzZzQWhWVEU0VVVmTzhlWUVJb1VYQm5paHhHeXNVdDRlUUI3ckJJUnfSAZMCQVVfeXFMT3lDcE9WVjFGa2ZKaE5YVWpLbmZsS3FFVnRkQXZoVDBMR1dtZDlLc2RONEx4VUtSNXJ2Zzk4aGViTjlyandrek55YmtDT05KS0EtcTFHeFR6TEhDd1ZRLXdhUUc5dVZzM0hySXhXOW1zX1RJbXhEZURvbVVaeWsxZG9La3hUUzJVV0lqT1VMZm9hZTJiZkdZdjVSOXZwVlNLMHhUV1A0bENPSXg4NWpBNlRaMUprT3ZkMWpIOHk2dVItUktjdmZqV0ZDLWJBX0VzcGdpWkhBTVVOYms2NHdhTE96Sy1SMm9UQXhRSnlqZ3Z0V2Z4THpiRjhBUEZhRUloa2lOTno5MHJIRUdXR0x0aE5Ldlk?oc=5" target="_blank" rel="noopener noreferrer">Tokyo Deaflympics: Dhanush Srikanth sets world record in shooting as India open medal tally</a>
         </h3>
@@ -7773,7 +7798,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-health">Health / hearing</span>
         </header>
-        <time class="card__time" datetime="2025-12-16T08:00:00.000Z" title="2025-12-16 17:00 JST">7ヶ月前</time>
+        <time class="card__time" datetime="2025-12-16T08:00:00.000Z" title="2025-12-16 17:00 JST">8ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE9lalBVZjdPcGdtZmVYQTRvSmRVSEJnTTl2T3BqZ0JsNWl4Mm9jN1EyUmxIWGlKcG5NMjh0ZWZvT25FMm1kUjNIV0JnQ0czZDF0?oc=5" target="_blank" rel="noopener noreferrer">What&#39;s Up Docs? | What can you do about hearing loss?</a>
         </h3>
@@ -8589,7 +8614,7 @@
           <span class="chip chip--world-region chip--region-americas">Americas</span>
           <span class="chip chip--world-topic chip--topic-sports">Deaf sports</span>
         </header>
-        <time class="card__time" datetime="2025-10-17T07:00:00.000Z" title="2025-10-17 16:00 JST">9ヶ月前</time>
+        <time class="card__time" datetime="2025-10-17T07:00:00.000Z" title="2025-10-17 16:00 JST">10ヶ月前</time>
         <h3 class="card__title" lang="en">
           <a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxQb1JjZmZwOURoeTltcDdWR19CV2l5Z1B0d3lxWml5Tms1X21UbEppQzBQT2M4UUQwdDd1NnI0a183R0RTWXRJMWdIbW0wQlYwZWtOXzloQ1M1SXNuSmVmTC1JaEVZM0FQZ09OZ3pEXzI0XzVTWXNwdkFrdmQ2QWZjR0FiMDBKbFRoWHBTaXRNNmhtaHgzYWVWMmtJa0ZZQjJjbmZENFF0TGpubExZeU8wYm5lSFFRV1FRZVU3bHZ0T0ZiWHVoVTJHTFpJTEFyNkFsaGlFWFQzNA?oc=5" target="_blank" rel="noopener noreferrer">Holliston&#39;s Daniel De Moura only New England player representing Team USA soccer at Deaflympics</a>
         </h3>
@@ -10640,6 +10665,7 @@
     </div>
   </footer>
 
+  <script src="./ui-controls.js" defer></script>
   <script src="./app-world.js" defer></script>
 </body>
 </html>

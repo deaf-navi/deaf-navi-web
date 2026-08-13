@@ -151,6 +151,7 @@ async function main() {
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
   await copyAsset(join(__dirname, 'app.js'), FILES.app);
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
+  await copyAsset(join(__dirname, 'ui-controls.js'), 'ui-controls.js');
   await copyAsset(join(__dirname, 'og-image.svg'), FILES.og);
 
   // PWA・アイコン類（本番/devで共通名）

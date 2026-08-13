@@ -1,12 +1,5 @@
 (() => {
-  // オフライン対応（緊急時にガイドを参照できるようにする）
-  if ('serviceWorker' in navigator
-    && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(() => { /* 未対応環境は通常表示 */ });
-    });
-  }
-
+  // Service Worker 登録・表示設定は ui-controls.js が担当
   const input = document.querySelector('#guide-search');
   const sections = [...document.querySelectorAll('[data-guide-section]')];
   const items = [...document.querySelectorAll('[data-guide-item]')];

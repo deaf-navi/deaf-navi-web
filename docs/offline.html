@@ -6,7 +6,6 @@
   <title>オフライン | Deaf Navi Web</title>
   <meta name="robots" content="noindex">
   <style>
-    :root { color-scheme: light dark; }
     body {
       margin: 0;
       font-family: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', system-ui, sans-serif;
@@ -19,29 +18,37 @@
       box-sizing: border-box;
       line-height: 1.8;
     }
-    @media (prefers-color-scheme: dark) {
-      body { background: #131917; color: #e8eeec; }
-      .panel { background: #1c2421 !important; border-color: #3a4741 !important; }
-      a { color: #6cc2b5 !important; }
-    }
     .panel {
       max-width: 480px;
       background: #ffffff;
-      border: 1px solid #c7d0cc;
-      border-radius: 12px;
+      border: 1px solid rgba(23, 32, 29, 0.09);
+      border-radius: 16px;
+      box-shadow: 0 1px 2px rgba(23, 32, 29, 0.04), 0 1px 6px rgba(23, 32, 29, 0.03);
       padding: 32px;
       text-align: center;
     }
     h1 { font-size: 1.3rem; margin: 0 0 12px; }
     p { margin: 0 0 12px; }
     a { color: #075e57; font-weight: 700; }
-    .icon { font-size: 2.2rem; }
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(19, 123, 112, 0.08);
+      color: #075e57;
+      margin-bottom: 16px;
+    }
     ul { text-align: left; padding-left: 1.4em; margin: 12px 0; }
   </style>
 </head>
 <body>
   <div class="panel">
-    <p class="icon" aria-hidden="true">📡</p>
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+    </span>
     <h1>オフラインです</h1>
     <p>インターネットに接続できないため、このページを表示できません。</p>
     <ul>

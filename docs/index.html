@@ -813,10 +813,10 @@
         <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">Web</span></h1>
         <div class="display-controls" data-display-controls hidden>
         <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
-          <span class="display-controls__icon" aria-hidden="true">🌙</span>ダーク表示
+          <span class="display-controls__icon" data-theme-icon><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><span data-theme-label>ダーク表示</span>
         </button>
         <button type="button" class="display-controls__btn" id="font-toggle" aria-pressed="false">
-          <span class="display-controls__icon" aria-hidden="true">あ</span>文字を大きく
+          <span class="display-controls__icon display-controls__icon--text" aria-hidden="true">あ</span><span data-font-label>文字を大きく</span>
         </button>
       </div>
       </div>
@@ -837,29 +837,29 @@
 
   <main id="main" class="container" role="main">
     <nav class="quick-access" aria-label="よく使う情報への近道">
-      <a class="quick-access__item" href="./guide.html#guide-emergency">
-        <span class="quick-access__icon" aria-hidden="true">🆘</span>
+      <a class="quick-access__item quick-access__item--alert" href="./guide.html#guide-emergency">
+        <span class="quick-access__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg></span>
         <span class="quick-access__body">
           <span class="quick-access__title">緊急通報の準備</span>
           <span class="quick-access__desc">110番アプリ・NET118・電話リレー緊急通報の登録方法</span>
         </span>
       </a>
       <a class="quick-access__item" href="./?category=safety" data-quick-filter="safety">
-        <span class="quick-access__icon" aria-hidden="true">🚨</span>
+        <span class="quick-access__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
         <span class="quick-access__body">
           <span class="quick-access__title">防災・安全の新着</span>
           <span class="quick-access__desc">災害情報・避難・緊急通報に関するニュース</span>
         </span>
       </a>
       <a class="quick-access__item" href="./?category=policy" data-quick-filter="policy">
-        <span class="quick-access__icon" aria-hidden="true">🏛️</span>
+        <span class="quick-access__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21v-8"/><path d="M9.5 21v-8"/><path d="M14.5 21v-8"/><path d="M19 21v-8"/><path d="M3 10l9-6 9 6z"/></svg></span>
         <span class="quick-access__body">
           <span class="quick-access__title">制度・政策</span>
           <span class="quick-access__desc">法律・条例・給付・雇用・助成のニュース</span>
         </span>
       </a>
       <a class="quick-access__item" href="./guide.html">
-        <span class="quick-access__icon" aria-hidden="true">📖</span>
+        <span class="quick-access__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
         <span class="quick-access__body">
           <span class="quick-access__title">暮らしのガイド</span>
           <span class="quick-access__desc">医療・教育・就労・電話サービスの公式情報</span>
@@ -985,7 +985,7 @@
         <header class="card__head">
           <span class="chip chip--technology">技術・AI</span>
           <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T20:50:24.000Z" data-relative-time>2026-08-13 05:50<span class="card__time-rel">（6時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T20:50:24.000Z" data-relative-time>2026-08-13 05:50<span class="card__time-rel">（11時間前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxPOXJKY0x5TFVkQXZnUjVOcG9qcFNjR25wQnJvQVRZaU5SdENWS3dlTEZ4dUlCYnJQdWcxaExfcVI1RmhBV25QMzlnaXBMMEI2dXRIcFVmakRpZGFYazdUSmxKVkp1X3QzbXBJYUdSMkpfeDU5YzFGRkFuTEI4SXFzb3JuelVCR2oxcktFMVVUU0pIcGh2d19xNVNGQURRYXNqU05lU0NVZ3hIVTdfdE9pOFlyeUJ0M0NBZ3QtWVhOQ1I3YjBzRWVWM0hB?oc=5" target="_blank" rel="noopener noreferrer">Google、手話翻訳AI「SL2T」公開 Pixel 11に初搭載 - 디지털투데이</a>
@@ -1004,7 +1004,7 @@
         <header class="card__head">
           <span class="chip chip--local">地域</span>
           <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T15:00:00.000Z" data-relative-time>2026-08-13 00:00<span class="card__time-rel">（12時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T15:00:00.000Z" data-relative-time>2026-08-13 00:00<span class="card__time-rel">（17時間前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE51ZEhBek5DMTVEQTdZRDF2MEFJRjZlWnljRDF3QnNvSnRhQ0E2d2VfQ3hqUHlCczZqMVBKeHRwdmRPclJhMlhpZEhibkJtWTlCdWMyZGs5VE1lODdCQmhGNWUyZEo?oc=5" target="_blank" rel="noopener noreferrer">トゥンクトゥンク 手話で表現 県聴覚障害者連盟が発案 - タウンニュース</a>
@@ -1023,7 +1023,7 @@
         <header class="card__head">
           <span class="chip chip--medical">医療</span>
           <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T14:30:58.000Z" data-relative-time>2026-08-12 23:30<span class="card__time-rel">（12時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T14:30:58.000Z" data-relative-time>2026-08-12 23:30<span class="card__time-rel">（18時間前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFB2aDJyMkxzWHBxWkhzZjZkTTFvTGZUbDRHYUtNN2k5VE44dHU0NTJ6ME1PakxDY3JSRGUxYWdoakk3RXF6SWNKWW1Ha0RiaXdJTU14YmttbGR4NlRveUE?oc=5" target="_blank" rel="noopener noreferrer">Samsung Galaxy Buds、FDAクリアランス取得｜ワイヤレスイヤホンがOTC補聴器になる時代へ - innovaTopia</a>
@@ -1042,7 +1042,7 @@
         <header class="card__head">
           <span class="chip chip--technology">技術・AI</span>
           <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T14:24:39.000Z" data-relative-time>2026-08-12 23:24<span class="card__time-rel">（12時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T14:24:39.000Z" data-relative-time>2026-08-12 23:24<span class="card__time-rel">（18時間前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPMGZ4Mldmelc3T20xLUFQUHRlUjVWSEl0QXZHUTJ5czB6Q09neWY3aUZRN015V045X1ZhamdiTzlFckFVVXNpd19MVXZzRXdNNExZUFFkRVFuQVdkeFBqcGJCTnA1eVd5NkExUmdWQ29mcHQxY3F3b2FMMFZOcTZiVjd0UldtN3NuRUd4c2dIWHNKX213dDlVRQ?oc=5" target="_blank" rel="noopener noreferrer">Google DeepMind、スマートフォンで手話翻訳を実現するSL2Tをリリース - Unite.AI</a>
@@ -1061,7 +1061,7 @@
         <header class="card__head">
           <span class="chip chip--general">一般</span>
           <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T09:30:47.000Z" data-relative-time>2026-08-12 18:30<span class="card__time-rel">（17時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T09:30:47.000Z" data-relative-time>2026-08-12 18:30<span class="card__time-rel">（23時間前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE9XNDRpWm9jYjdBaG0xY2xWb3MzMEtxd1lFdkhxYzFFekFCUU14dGZoNmdlV1hjYW1WNjBTd2NCS3NycEhuSkhNV1VrUWFWcUhhTlQ3WnhkS0x3Q0hNaUtmRXNZcklPUQ?oc=5" target="_blank" rel="noopener noreferrer">性の多様性、ろう者向け初の教材 - デーリー東北</a>
@@ -1080,7 +1080,7 @@
         <header class="card__head">
           <span class="chip chip--general">一般</span>
           <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T09:02:58.000Z" data-relative-time>2026-08-12 18:02<span class="card__time-rel">（18時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T09:02:58.000Z" data-relative-time>2026-08-12 18:02<span class="card__time-rel">（23時間前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTFBac2pmQmQ0QW9lMVhSTWtJeTg2Qi1zd19aa3gyaFJVanFDYnc3b0dwUmpCZkt0SUQxaVFoSFFERlRicXFVdUVYNkIyOVBjXzBm?oc=5" target="_blank" rel="noopener noreferrer">性の多様性、ろう者向け初の教材 自認や指向「仲間いるよ」 - nnn.co.jp</a>
@@ -1098,8 +1098,7 @@
       <article class="card" data-category="general" data-source-tier="news" data-published="2026-08-12T08:14:07.000Z">
         <header class="card__head">
           <span class="chip chip--general">一般</span>
-          <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T08:14:07.000Z" data-relative-time>2026-08-12 17:14<span class="card__time-rel">（19時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T08:14:07.000Z" data-relative-time>2026-08-12 17:14<span class="card__time-rel">（1日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9OMmFHZE1FVkhEYVpBaVRIR3NZbm83VU1STnVUQVU1WF9pc3F4bVBILUlZNGdFNm0yemE0N2dYcThtR1JnS1A0VHlMNkVONXVUNFkxSklEakQwS1ZVc0hNb0FtZUc1NEJNcEFWSnB6MzZYNEZ0bEx1MmdzaXdpZzQ?oc=5" target="_blank" rel="noopener noreferrer">林家ペーが妻・パー子の現状明かす 難聴悪化で会話はほぼ「筆談」 自宅全焼から約1年…「死ぬまでパー子のそばにいないと」 - Yahoo!ニュース</a>
@@ -1117,8 +1116,7 @@
       <article class="card" data-category="accessibility" data-source-tier="broad" data-published="2026-08-12T06:45:54.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T06:45:54.000Z" data-relative-time>2026-08-12 15:45<span class="card__time-rel">（20時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T06:45:54.000Z" data-relative-time>2026-08-12 15:45<span class="card__time-rel">（1日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://udcast.net/workslist/actor-deaf2026-soda/" target="_blank" rel="noopener noreferrer">想田和弘監督『演劇1』『演劇2』日本語字幕付き映画上映会</a>
@@ -1136,8 +1134,7 @@
       <article class="card" data-category="medical" data-source-tier="news" data-published="2026-08-12T04:00:21.000Z">
         <header class="card__head">
           <span class="chip chip--medical">医療</span>
-          <span class="card__new-badge">NEW</span>
-          <time class="card__time" datetime="2026-08-12T04:00:21.000Z" data-relative-time>2026-08-12 13:00<span class="card__time-rel">（23時間前）</span></time>
+          <time class="card__time" datetime="2026-08-12T04:00:21.000Z" data-relative-time>2026-08-12 13:00<span class="card__time-rel">（1日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE5lMEJmekd1QVZFb05raGNvU1RTM01rYVVFd3I1MWVXM29NUjFkUmFCSmdzZ1dGT2s2N1lDQ0pWQnlrUGN2NUhkUWFRaTczaUhranBXcERRMXBMWGtIcUpPaFdsU2xSa0xCMk5feHFsc3VxTkJS?oc=5" target="_blank" rel="noopener noreferrer">サムスン「Galaxy Buds」、米FDA承認でOTC補聴器に変身…第4四半期に投入へ - BigGo ファイナンス</a>
@@ -1210,7 +1207,7 @@
       <article class="card" data-category="general" data-source-tier="official" data-published="2026-08-11T08:23:00.000Z">
         <header class="card__head">
           <span class="chip chip--general">一般</span>
-          <time class="card__time" datetime="2026-08-11T08:23:00.000Z" data-relative-time>2026-08-11 17:23<span class="card__time-rel">（1日前）</span></time>
+          <time class="card__time" datetime="2026-08-11T08:23:00.000Z" data-relative-time>2026-08-11 17:23<span class="card__time-rel">（2日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://hokurouren.jp/%e3%83%9b%e3%83%bc%e3%83%a0%e3%83%9a%e3%83%bc%e3%82%b8%e3%82%92%e3%83%aa%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab/" target="_blank" rel="noopener noreferrer">ホームページをリニューアル</a>
@@ -1228,7 +1225,7 @@
       <article class="card" data-category="sports" data-source-tier="news" data-published="2026-08-11T07:07:03.000Z">
         <header class="card__head">
           <span class="chip chip--sports">デフスポーツ</span>
-          <time class="card__time" datetime="2026-08-11T07:07:03.000Z" data-relative-time>2026-08-11 16:07<span class="card__time-rel">（1日前）</span></time>
+          <time class="card__time" datetime="2026-08-11T07:07:03.000Z" data-relative-time>2026-08-11 16:07<span class="card__time-rel">（2日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1TNHRhYUpvMjJPeTdYS1lrUEdZNWo3bldNLUtrcGVHRjVaZ0Vxc19OMzBzWk15VXpjX3NTcTBPaUhiMkk5NFF4UEdFUWE3d0dKWDJLTmVNN01aejlXNTBJ?oc=5" target="_blank" rel="noopener noreferrer">【赤羽体育館でデフバスケ金メダリスト交流の「夏季バスケットボール教室」へ！赤羽北ラジオ体操最終... - 選挙ドットコム</a>
@@ -1246,7 +1243,7 @@
       <article class="card" data-category="general" data-source-tier="broad" data-published="2026-08-11T06:14:02.000Z">
         <header class="card__head">
           <span class="chip chip--general">一般</span>
-          <time class="card__time" datetime="2026-08-11T06:14:02.000Z" data-relative-time>2026-08-11 15:14<span class="card__time-rel">（1日前）</span></time>
+          <time class="card__time" datetime="2026-08-11T06:14:02.000Z" data-relative-time>2026-08-11 15:14<span class="card__time-rel">（2日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiuwJBVV95cUxOT0FIZ2RVcVpISlJBYzVuSXVObnc0M0Z6VVBQZU9BYW9TekR1cGdoM1ZsTnlnYWp3bHNvWHNpSEtkaVM2c2ZtMVJ1VkpLUlBGa1J2RVdnS2pERkdkS2tHLUVMaXZlTXBGRDRsb0dwSml0NUxRUDZZTzhWeUFZRFU0SXlGZVZ1WG1RS1JGTmo3dzVuVnR1RmxfaGdXZkU1VGlZSEtQRXUwYnQyYVhHWldFMWJ5cjFrU1RFWlBhTkw3bWJTWDZNVng4OHdqQ2o4azdoaXU0bHdGTENuSHVmb1I3cWhSdllybk1PZkZpYTVkMUxsTzJKYkEzc2NVOWo5WU41cm5zYkJMdHNoRXNaMnFPWGlhZUdoeng4YmlZVkpLV2p0bnpwWG5DaUV4WWVMQWFVQmMwRXhyNzlUWDg?oc=5" target="_blank" rel="noopener noreferrer">社会福祉法人埼玉聴覚障害者福祉会に関するプレスリリース・ニュースリリース - PR TIMES</a>
@@ -1264,7 +1261,7 @@
       <article class="card" data-category="general" data-source-tier="news" data-published="2026-08-11T04:00:00.000Z">
         <header class="card__head">
           <span class="chip chip--general">一般</span>
-          <time class="card__time" datetime="2026-08-11T04:00:00.000Z" data-relative-time>2026-08-11 13:00<span class="card__time-rel">（1日前）</span></time>
+          <time class="card__time" datetime="2026-08-11T04:00:00.000Z" data-relative-time>2026-08-11 13:00<span class="card__time-rel">（2日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE8wcUtBS3M2Sl93ZXRZdnZNZkcwMF9lWHA5SUQ4WkNNa0s4QjJnUFJyMDNxMXNkLUNMcEo4aFhISEFJbWd3MEpOVUU5eW1EejQ0Nkd6eDU2QlFPVDlfQkdlbm1R?oc=5" target="_blank" rel="noopener noreferrer">堂本剛「突発性難聴の後遺症があるんです」歌唱時にヘッドホン付ける理由を詳しく説明「音響障害って言って…」…ぽかぽか - スポーツ報知</a>
@@ -1282,7 +1279,7 @@
       <article class="card" data-category="general" data-source-tier="news" data-published="2026-08-11T03:20:56.000Z">
         <header class="card__head">
           <span class="chip chip--general">一般</span>
-          <time class="card__time" datetime="2026-08-11T03:20:56.000Z" data-relative-time>2026-08-11 12:20<span class="card__time-rel">（1日前）</span></time>
+          <time class="card__time" datetime="2026-08-11T03:20:56.000Z" data-relative-time>2026-08-11 12:20<span class="card__time-rel">（2日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE1zZW5uT25wMXVBWnBFck5fMUZuQk9YZnZEY1F6c1FKeWM1QUdMazNpQ2pURERfMGwwaXBYVnJGeUt1cDNEN3hwWmMzc9IBR0FVX3lxTE5xaW93U1hyYTBReHdXSDZwdG95YWhFSEo3TlVXYXRvbk9NN180LTRLbXQ3NVFtamNiN2VSU2ozNHhpUlBOXzBF?oc=5" target="_blank" rel="noopener noreferrer">“1年前に自宅全焼”林家パー子、精神的ショックで人前に出ること困難に 難聴悪化で会話はほぼ筆談「人間が突然変わっちゃった」 夫・ぺーが告白 - モデルプレス</a>
@@ -1499,7 +1496,7 @@
       <article class="card" data-category="general" data-source-tier="news" data-published="2026-08-10T08:41:50.000Z">
         <header class="card__head">
           <span class="chip chip--general">一般</span>
-          <time class="card__time" datetime="2026-08-10T08:41:50.000Z" data-relative-time>2026-08-10 17:41<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T08:41:50.000Z" data-relative-time>2026-08-10 17:41<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9TbmRMTkREaURUZGdYZTJma3BWSENGTnlVM0pyenlUenJBMkJDdzc3M3hOTlMzLXl6YVFNNzBCVHVMS3fSAUhBVV95cUxPQTR4S1ZGTHA2U0dWS3d4dXQtU042NzZVVDNNMWJDSVZ3NlRyUkRfcnNqOVBaeHhraTZvcFluWm1pRGNwTGhUS1M?oc=5" target="_blank" rel="noopener noreferrer">林家ペー、妻・パー子の現在を明かす「外に出ない」難聴が悪化し会話はほぼ「筆談」 自宅全焼から約1年…「死ぬまでパー子のそばにいないと」林家ペーが語る夫婦の絆とこれから - エンタメラッシュ</a>
@@ -1517,7 +1514,7 @@
       <article class="card" data-category="local" data-source-tier="news" data-region="kinki" data-published="2026-08-10T08:30:00.000Z">
         <header class="card__head">
           <span class="chip chip--local">地域</span>
-          <time class="card__time" datetime="2026-08-10T08:30:00.000Z" data-relative-time>2026-08-10 17:30<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T08:30:00.000Z" data-relative-time>2026-08-10 17:30<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB6OFpoSjVSeXpZU3lhQzRrSWxmaWZsaFFkYmFweEVDbkl3NU9oM3ludm0zVTFOY25wWmVyRGVHYnF3NTRPRkp3SzNneG5NZV8wbkhtb3ZCM05Gck1qQXh5V3hST0djYnM?oc=5" target="_blank" rel="noopener noreferrer">性的少数者の10代ろう者へ 多様な「性のあり方」紹介する冊子発行 [兵庫県] - 朝日新聞</a>
@@ -1535,7 +1532,7 @@
       <article class="card" data-category="medical" data-source-tier="news" data-published="2026-08-10T07:44:11.000Z">
         <header class="card__head">
           <span class="chip chip--medical">医療</span>
-          <time class="card__time" datetime="2026-08-10T07:44:11.000Z" data-relative-time>2026-08-10 16:44<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T07:44:11.000Z" data-relative-time>2026-08-10 16:44<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9BVlFtcjdwdjJMcFpmZjRESWl2NjE2SFYzaklUdUQ1aDdMY2dUeWFwUXdKWEZQTFVFWVRYM2N5d3I4Q3AtS2NtRi1tLXZKQ25iTXpJYTQ1TGhOOFFrUm9n?oc=5" target="_blank" rel="noopener noreferrer">新しいReSound Sensia（TM）補聴器、最も大きな声だけを際立たせるのではなく、聞きたい声を際立たせる - 千葉テレビ放送</a>
@@ -1553,7 +1550,7 @@
       <article class="card" data-category="general" data-source-tier="news" data-published="2026-08-10T07:16:45.000Z">
         <header class="card__head">
           <span class="chip chip--general">一般</span>
-          <time class="card__time" datetime="2026-08-10T07:16:45.000Z" data-relative-time>2026-08-10 16:16<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T07:16:45.000Z" data-relative-time>2026-08-10 16:16<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxObmtWNlVNYUxFb25udmFjWG9lSlNxMVNYenpvWGw2dXpXbHNxNTFtWHJmYkNYVEN5c2pTRjFnQjY1SHE1ZFdlZHJnbnp6a0s4NW95SUVvMEhGakhyNVJETGNXTUN2LTdSd0RXX0VFczhhRGhENUt1YXZIWVVyMTRvRw?oc=5" target="_blank" rel="noopener noreferrer">両耳難聴のハンディはねのけ夢の甲子園へ 敦賀気比の川原成翔選手「勇気与えられたら」 - portal.uqmobile.jp</a>
@@ -1571,7 +1568,7 @@
       <article class="card" data-category="accessibility" data-source-tier="news" data-region="chugoku_shikoku" data-published="2026-08-10T07:00:00.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <time class="card__time" datetime="2026-08-10T07:00:00.000Z" data-relative-time>2026-08-10 16:00<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T07:00:00.000Z" data-relative-time>2026-08-10 16:00<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE9Kd0dZSmhlZzB4dEtZUXBXaGhjRDY5U0RXbDBGdENKNTB2MThiSXFLNmhkdG5Fa2lEQ0pNNFhRN1huRUFkWk04Mk1wd0Z5ZTFmQmc?oc=5" target="_blank" rel="noopener noreferrer">要約筆記の体験会開催 ２４日にきらめきプラザ 岡山県聴覚障害者センター - 山陽新聞</a>
@@ -1589,7 +1586,7 @@
       <article class="card" data-category="accessibility" data-source-tier="official" data-region="hokkaido_tohoku" data-published="2026-08-10T06:55:08.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <time class="card__time" datetime="2026-08-10T06:55:08.000Z" data-relative-time>2026-08-10 15:55<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T06:55:08.000Z" data-relative-time>2026-08-10 15:55<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://www.sapporo-deaf.jp/information/2026%e7%aa%81%e7%a0%b4%ef%bc%81%e7%b5%b1%e4%b8%80%e8%a9%a6%e9%a8%93%e5%ad%a6%e7%bf%92%e4%bc%9a%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/?utm_source=rss&amp;#038;utm_medium=rss&amp;#038;utm_campaign=2026%25e7%25aa%2581%25e7%25a0%25b4%25ef%25bc%2581%25e7%25b5%25b1%25e4%25b8%2580%25e8%25a9%25a6%25e9%25a8%2593%25e5%25ad%25a6%25e7%25bf%2592%25e4%25bc%259a%25e3%2581%25ae%25e3%2581%2594%25e6%25a1%2588%25e5%2586%2585" target="_blank" rel="noopener noreferrer">2026突破！統一試験学習会のご案内</a>
@@ -1608,7 +1605,7 @@
       <article class="card" data-category="accessibility" data-source-tier="official" data-region="hokkaido_tohoku" data-published="2026-08-10T06:20:36.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <time class="card__time" datetime="2026-08-10T06:20:36.000Z" data-relative-time>2026-08-10 15:20<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T06:20:36.000Z" data-relative-time>2026-08-10 15:20<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://www.sapporo-deaf.jp/information/2026%ef%bc%88%e4%bb%a4%e5%92%8c8%ef%bc%89%e5%b9%b4%e5%ba%a6-%e6%9c%ad%e5%b9%8c%e5%b8%82%e7%99%bb%e9%8c%b2%e6%89%8b%e8%a9%b1%e9%80%9a%e8%a8%b3%e8%80%85%e8%aa%8d%e5%ae%9a%e8%a9%a6%e9%a8%93%e3%81%ae/?utm_source=rss&amp;#038;utm_medium=rss&amp;#038;utm_campaign=2026%25ef%25bc%2588%25e4%25bb%25a4%25e5%2592%258c8%25ef%25bc%2589%25e5%25b9%25b4%25e5%25ba%25a6-%25e6%259c%25ad%25e5%25b9%258c%25e5%25b8%2582%25e7%2599%25bb%25e9%258c%25b2%25e6%2589%258b%25e8%25a9%25b1%25e9%2580%259a%25e8%25a8%25b3%25e8%2580%2585%25e8%25aa%258d%25e5%25ae%259a%25e8%25a9%25a6%25e9%25a8%2593%25e3%2581%25ae" target="_blank" rel="noopener noreferrer">2026（令和8）年度 札幌市登録手話通訳者認定試験のご案内</a>
@@ -1627,7 +1624,7 @@
       <article class="card" data-category="accessibility" data-source-tier="official" data-published="2026-08-10T04:31:07.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <time class="card__time" datetime="2026-08-10T04:31:07.000Z" data-relative-time>2026-08-10 13:31<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T04:31:07.000Z" data-relative-time>2026-08-10 13:31<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE9jeVV4aXdqbnpYQlVnUXEtTzRfd2JBcnYzMWRvQlVTRDQybVpSdlprUDVKaTE3WGxITGE1Vm8yaDd0RnZpdEwtc1I5Z1BaUFZTcHNWRnpJVDV5bkxobWtzRDh2MFpuSU45SzF0emRFLVd0N3h2aVkzRQ?oc=5" target="_blank" rel="noopener noreferrer">手話通訳付きギャラリーツアーを開催 - city.fukuoka.lg.jp</a>
@@ -1645,7 +1642,7 @@
       <article class="card" data-category="local" data-source-tier="news" data-published="2026-08-10T04:27:48.000Z">
         <header class="card__head">
           <span class="chip chip--local">地域</span>
-          <time class="card__time" datetime="2026-08-10T04:27:48.000Z" data-relative-time>2026-08-10 13:27<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T04:27:48.000Z" data-relative-time>2026-08-10 13:27<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxORzJ6d1F0SllXQkduOVp5SjJaekM4NTEtS3JBRjBpRzlXODR5S1dCWklJU3RjcHJBck55eUNHTDNFczdCUUpRMWt4eFBMQnJuSGJfY25ESEJWU0M0bFlmT1dWN1laZmtTX3ZSa1JveEdtdEE2UHc2XzlIMVRwZG5KSDlmWW9jYS1LM1lSadIBf0FVX3lxTE5kcWVfclRxbk5QN21XdHVRYWs3M2UyUmhuWVBvczNYRDNKTGpDMHR0Ql84aGxSc3FVYXdqcEV1SmItQzI3VmFBX09tNnhtcGZMNHdzcFl1WTB2QUhDOUx1VGJtZ1lIZ3VVeXp5TTJ5NFZGN1V1SHZWVDUzclo0VDA?oc=5" target="_blank" rel="noopener noreferrer">高校生ボランティアが難聴の子どもたちと夏祭り 名古屋の市中央療育センターで輪投げやボウリング - topics.smt.docomo.ne.jp</a>
@@ -1663,7 +1660,7 @@
       <article class="card" data-category="technology" data-source-tier="official" data-published="2026-08-10T04:24:27.000Z">
         <header class="card__head">
           <span class="chip chip--technology">技術・AI</span>
-          <time class="card__time" datetime="2026-08-10T04:24:27.000Z" data-relative-time>2026-08-10 13:24<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T04:24:27.000Z" data-relative-time>2026-08-10 13:24<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE94ZW5QaWI4UzJlZGJWZGxKYlZJR0Job2RGTC0wR3JRcHF5TkNpeFFtUDAtZV8xOTRPVWx5amhNUHprVGpkVGV3RXNNeV9IZm5QMV85Y1daTQ?oc=5" target="_blank" rel="noopener noreferrer">【プレスリリース】国立研究開発法人科学技術振興機構（JST）のSBIRフェーズ1支援に採択 AI×XRを活用し、補聴器の「脳の順応障壁」を克服する聴覚訓練システムを開発 ―難聴者の自立と社会参加を支援― - gunma-u.ac.jp</a>
@@ -1682,7 +1679,7 @@
       <article class="card" data-category="accessibility" data-source-tier="news" data-published="2026-08-10T03:42:22.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <time class="card__time" datetime="2026-08-10T03:42:22.000Z" data-relative-time>2026-08-10 12:42<span class="card__time-rel">（2日前）</span></time>
+          <time class="card__time" datetime="2026-08-10T03:42:22.000Z" data-relative-time>2026-08-10 12:42<span class="card__time-rel">（3日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE0xUVlCTkJudjg5MUtRY01haGVmcW1YQkI0XzU2Z3Y3MHNaMjVNY2xuRFRDbUpIZ2NEdUpTa2tWSHBvNVhmV2Vzbw?oc=5" target="_blank" rel="noopener noreferrer">手話通訳付きギャラリーツアー（「アジア美術の歩き方 東アジア編」） - 福岡市観光情報サイト よかなび</a>
@@ -1792,7 +1789,7 @@
       <article class="card" data-category="medical" data-source-tier="news" data-published="2026-08-09T08:00:30.000Z">
         <header class="card__head">
           <span class="chip chip--medical">医療</span>
-          <time class="card__time" datetime="2026-08-09T08:00:30.000Z" data-relative-time>2026-08-09 17:00<span class="card__time-rel">（3日前）</span></time>
+          <time class="card__time" datetime="2026-08-09T08:00:30.000Z" data-relative-time>2026-08-09 17:00<span class="card__time-rel">（4日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFByV2Q2b0hEOTE3emREXzE2Z1ZQc1poVEF6QWNZa2RpLUI5UHcxMkprMm01N1hIX1g4WWFQRG9hUmZUdlNyT082OHdDRFdjYlZPdFBnUjFacjdycGd6?oc=5" target="_blank" rel="noopener noreferrer">「秘密の監査」コンミョン“突発性難聴の治療を継続…よく寝てよく食べている” - Kstyle</a>
@@ -1810,7 +1807,7 @@
       <article class="card" data-category="accessibility" data-source-tier="news" data-published="2026-08-09T05:10:00.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <time class="card__time" datetime="2026-08-09T05:10:00.000Z" data-relative-time>2026-08-09 14:10<span class="card__time-rel">（3日前）</span></time>
+          <time class="card__time" datetime="2026-08-09T05:10:00.000Z" data-relative-time>2026-08-09 14:10<span class="card__time-rel">（4日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE4tVExJZ2JhTUJFY1NLZ0lzX0FGaFIzVVNjdDY5aGJwVVZtdG1ZNF9WQXNRQVR4ZnlpUWt6bzhleWp6UHpRU2luREx1OA?oc=5" target="_blank" rel="noopener noreferrer">「木ノ下歌舞伎」手話通訳や音声ガイドで鑑賞サポート 新潟市・りゅーとぴあで8月29日アクセシビリティ公演 - 47NEWS</a>
@@ -1828,7 +1825,7 @@
       <article class="card" data-category="accessibility" data-source-tier="news" data-region="chubu" data-published="2026-08-09T05:00:00.000Z">
         <header class="card__head">
           <span class="chip chip--accessibility">情報保障・アクセシビリティ</span>
-          <time class="card__time" datetime="2026-08-09T05:00:00.000Z" data-relative-time>2026-08-09 14:00<span class="card__time-rel">（3日前）</span></time>
+          <time class="card__time" datetime="2026-08-09T05:00:00.000Z" data-relative-time>2026-08-09 14:00<span class="card__time-rel">（4日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE4tNVBJSGwyMUp3Vm5CWWxqTUJOS3BETlBsLVo1bGNmdVVFU0dzMGdRaDFkczl6VGZkZnY5bTNfM1VyX2Jya3lkNGwyeTlIc3VlaHFnVU9rUndOZGJnZmc?oc=5" target="_blank" rel="noopener noreferrer">「木ノ下歌舞伎」手話通訳や音声ガイドで鑑賞サポート 新潟市・りゅーとぴあで8月29日アクセシビリティ公演 - 新潟日報</a>
@@ -1846,7 +1843,7 @@
       <article class="card" data-category="event" data-source-tier="news" data-published="2026-08-09T04:31:52.000Z">
         <header class="card__head">
           <span class="chip chip--event">イベント・講座</span>
-          <time class="card__time" datetime="2026-08-09T04:31:52.000Z" data-relative-time>2026-08-09 13:31<span class="card__time-rel">（3日前）</span></time>
+          <time class="card__time" datetime="2026-08-09T04:31:52.000Z" data-relative-time>2026-08-09 13:31<span class="card__time-rel">（4日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBpVzBqV3kya1BNR2tCOUVWWFRJSk9zMGFSYjcyZjY3MzU1M2hoenVXT0VxOVVlbEdnV1VXSVhyNUtVYWtNWXVEMm91cU1neldSYmh5UTlnVC0wRnky?oc=5" target="_blank" rel="noopener noreferrer">“世界初の手話K-POPアイドル”Big Ocean、日本公演初日が大盛況！ここでしか味わえない特別なステージ - Kstyle</a>
@@ -1918,7 +1915,7 @@
       <article class="card" data-category="event" data-source-tier="news" data-region="chugoku_shikoku" data-published="2026-08-08T07:00:00.000Z">
         <header class="card__head">
           <span class="chip chip--event">イベント・講座</span>
-          <time class="card__time" datetime="2026-08-08T07:00:00.000Z" data-relative-time>2026-08-08 16:00<span class="card__time-rel">（4日前）</span></time>
+          <time class="card__time" datetime="2026-08-08T07:00:00.000Z" data-relative-time>2026-08-08 16:00<span class="card__time-rel">（5日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBITFRzOHhKdXJPdjhJeFlLbzNoNGE1TDVraDBKZ3FtQUczSlpWY3MxaWllZlE2Mnhmb3BvZ2NYWVh6TFlQUUlzMmlfbHlEOHp2dmc?oc=5" target="_blank" rel="noopener noreferrer">8月22日（土）岡山県岡山市 市民公開講座（無料） 耳鼻咽喉科医が提案する、きこえの老化対策について～補聴器でもききとりにくい方へ～ - 山陽新聞</a>
@@ -1936,7 +1933,7 @@
       <article class="card" data-category="event" data-source-tier="specialist" data-published="2026-08-08T04:06:30.000Z">
         <header class="card__head">
           <span class="chip chip--event">イベント・講座</span>
-          <time class="card__time" datetime="2026-08-08T04:06:30.000Z" data-relative-time>2026-08-08 13:06<span class="card__time-rel">（4日前）</span></time>
+          <time class="card__time" datetime="2026-08-08T04:06:30.000Z" data-relative-time>2026-08-08 13:06<span class="card__time-rel">（5日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://ameblo.jp/jtd2009/entry-12975122864.html" target="_blank" rel="noopener noreferrer">日本ろう者劇団によるオムニバス公演</a>
@@ -2009,7 +2006,7 @@
       <article class="card" data-category="event" data-source-tier="news" data-published="2026-08-07T08:35:39.000Z">
         <header class="card__head">
           <span class="chip chip--event">イベント・講座</span>
-          <time class="card__time" datetime="2026-08-07T08:35:39.000Z" data-relative-time>2026-08-07 17:35<span class="card__time-rel">（5日前）</span></time>
+          <time class="card__time" datetime="2026-08-07T08:35:39.000Z" data-relative-time>2026-08-07 17:35<span class="card__time-rel">（6日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE11bDZITlE4UkhCYnY3d29hNERnNko5ZVF2S0xXbmJiZ3p2U2xqWXh2bTRscUxPLU5lZFBPZmZJNThUcW1mYW84alp3WXE5ZnBwY3plYUs4enA?oc=5" target="_blank" rel="noopener noreferrer">新たな言語でコミュニケーション 夏休み子ども向け手話講座 - KCTコミちゃん</a>
@@ -2027,7 +2024,7 @@
       <article class="card" data-category="policy" data-source-tier="official" data-published="2026-08-07T08:15:49.000Z">
         <header class="card__head">
           <span class="chip chip--policy">制度・政策</span>
-          <time class="card__time" datetime="2026-08-07T08:15:49.000Z" data-relative-time>2026-08-07 17:15<span class="card__time-rel">（5日前）</span></time>
+          <time class="card__time" datetime="2026-08-07T08:15:49.000Z" data-relative-time>2026-08-07 17:15<span class="card__time-rel">（6日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5GMWxUM0NwUFdOS25yUzR4TnNVZFZCZVlGVkNiSG5kQTRDSktUSGhZb01QV2szTUFrakgwSVpGdExKcGxlZDZzdHpYRzNvR2Y1MUtnRUU0UkxEM1FHTTVrdEZjaw?oc=5" target="_blank" rel="noopener noreferrer">前橋市手話言語条例が施行から10周年を迎えました - city.maebashi.gunma.jp</a>
@@ -2045,7 +2042,7 @@
       <article class="card" data-category="policy" data-source-tier="official" data-published="2026-08-07T07:00:00.000Z">
         <header class="card__head">
           <span class="chip chip--policy">制度・政策</span>
-          <time class="card__time" datetime="2026-08-07T07:00:00.000Z" data-relative-time>2026-08-07 16:00<span class="card__time-rel">（5日前）</span></time>
+          <time class="card__time" datetime="2026-08-07T07:00:00.000Z" data-relative-time>2026-08-07 16:00<span class="card__time-rel">（6日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPZ3BqUDVza1FhQUs2ZnpGWDNUTGRZVjdXVTd4alp4M2ZGSktSaTBHOW1kS2NWVWVfeXlJeEIxaUxIaXIyMHRvR1FrOEt1MkFnbEFzUDk3MVdENlE2alBzbzZYU3Zwby1oU19qeWdXQi11YmxxWEMzczQ0Wl80Zi1sMzZYd0hwN2swNGhVYkFEMS1xaDlHTE5rOWRCNGxRYkJ1czJKYmd3?oc=5" target="_blank" rel="noopener noreferrer">高齢者難聴補聴器購入費助成事業について - city.hashimoto.lg.jp</a>
@@ -2063,7 +2060,7 @@
       <article class="card" data-category="safety" data-source-tier="news" data-published="2026-08-07T03:38:31.000Z">
         <header class="card__head">
           <span class="chip chip--safety">防災・安全</span>
-          <time class="card__time" datetime="2026-08-07T03:38:31.000Z" data-relative-time>2026-08-07 12:38<span class="card__time-rel">（5日前）</span></time>
+          <time class="card__time" datetime="2026-08-07T03:38:31.000Z" data-relative-time>2026-08-07 12:38<span class="card__time-rel">（6日前）</span></time>
         </header>
         <h3 class="card__title">
           <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9rQ0RsdkFlZW1aQzR2UWNOaTYzQkJaS3FsdnhJaTRmb1NVb2RiM3ZNWHlpanZYV2xpVEpZQ0lUY1dmZzBxVklfSElhSjNRZFA2TTNlWnZ4S0dLTXl4WXhuTQ?oc=5" target="_blank" rel="noopener noreferrer">「音以外の情報収集手段や持病カード準備を」 今治で聴覚障害者に避難生活講習 - ehime-np.co.jp</a>
@@ -2137,6 +2134,7 @@
       </article>
   </template>
 
+  <script src="./ui-controls.js" defer></script>
   <script src="./app.js" defer></script>
 </body>
 </html>

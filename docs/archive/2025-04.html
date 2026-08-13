@@ -66,7 +66,17 @@
     </div>
     <div class="container">
       <p class="site-breadcrumb"><a href="../">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>アーカイブ 2025年4月</span></p>
-      <h1 class="site-title site-title--small"><span class="site-title__brand">2025年4月のアーカイブ</span></h1>
+      <div class="site-header__top">
+        <h1 class="site-title site-title--small"><span class="site-title__brand">2025年4月のアーカイブ</span></h1>
+        <div class="display-controls" data-display-controls hidden>
+        <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
+          <span class="display-controls__icon" data-theme-icon><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><span data-theme-label>ダーク表示</span>
+        </button>
+        <button type="button" class="display-controls__btn" id="font-toggle" aria-pressed="false">
+          <span class="display-controls__icon display-controls__icon--text" aria-hidden="true">あ</span><span data-font-label>文字を大きく</span>
+        </button>
+      </div>
+      </div>
       <p class="site-lead">2025年4月に掲載した記事 48件</p>
     </div>
   </header>
@@ -762,5 +772,7 @@
       </p>
     </div>
   </footer>
+
+  <script src="../ui-controls.js" defer></script>
 </body>
 </html>

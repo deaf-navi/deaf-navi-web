@@ -24,6 +24,31 @@ export const LEAF_SVG = `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/200
 export const EXTERNAL_ARROW_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>';
 
 /**
+ * 共通アイコンセット（絵文字不使用の方針）。
+ * 24pxグリッドのストロークSVG・currentColor・装飾用途は aria-hidden で使う。
+ */
+function icon(paths, { size = 24, strokeWidth = 1.8 } = {}) {
+  return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+}
+
+export const ICONS = {
+  /** 緊急通報（電話） */
+  phone: icon('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/>'),
+  /** 防災・安全（警告） */
+  alert: icon('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/>'),
+  /** 制度・政策（公共建築） */
+  landmark: icon('<path d="M3 21h18"/><path d="M5 21v-8"/><path d="M9.5 21v-8"/><path d="M14.5 21v-8"/><path d="M19 21v-8"/><path d="M3 10l9-6 9 6z"/>'),
+  /** ガイド（開いた本） */
+  book: icon('<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'),
+  /** ダーク表示（月） */
+  moon: icon('<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>', { size: 16 }),
+  /** ライト表示（太陽） */
+  sun: icon('<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.9 19.1 1.4-1.4"/><path d="m17.7 6.3 1.4-1.4"/>', { size: 16 }),
+  /** 地球（World導線） */
+  globe: icon('<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>', { size: 16 }),
+};
+
+/**
  * JSON-LD を <script> 内へ安全に埋め込む。
  * JSON.stringify は "<" をエスケープしないため、フィード由来のURL等に
  * "</script>" が含まれるとスクリプト脱出できてしまう。必ずこの関数を使うこと。
@@ -107,19 +132,19 @@ export function renderSkipLink() {
   return '<a class="skip-link" href="#main">メインコンテンツにスキップ</a>';
 }
 
-/** 表示設定（テーマ・文字サイズ）ボタン群 */
+/** 表示設定（テーマ・文字サイズ）ボタン群。ロジックは ui-controls.js */
 export function renderDisplayControls() {
   return `<div class="display-controls" data-display-controls hidden>
         <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
-          <span class="display-controls__icon" aria-hidden="true">🌙</span>ダーク表示
+          <span class="display-controls__icon" data-theme-icon>${ICONS.moon}</span><span data-theme-label>ダーク表示</span>
         </button>
         <button type="button" class="display-controls__btn" id="font-toggle" aria-pressed="false">
-          <span class="display-controls__icon" aria-hidden="true">あ</span>文字を大きく
+          <span class="display-controls__icon display-controls__icon--text" aria-hidden="true">あ</span><span data-font-label>文字を大きく</span>
         </button>
       </div>`;
 }
 
-/** スリムヘッダー（サブページ用・パンくず付き） */
+/** スリムヘッダー（サブページ用・パンくず＋表示設定付き） */
 export function renderSubHeader({ crumbLabel, title, lead = '', homeHref = './' }) {
   return `  <header class="site-header site-header--slim" role="banner">
     <div class="site-header__leaf" aria-hidden="true">
@@ -127,7 +152,10 @@ export function renderSubHeader({ crumbLabel, title, lead = '', homeHref = './' 
     </div>
     <div class="container">
       <p class="site-breadcrumb"><a href="${homeHref}">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>${escapeHtml(crumbLabel)}</span></p>
-      <h1 class="site-title site-title--small"><span class="site-title__brand">${escapeHtml(title)}</span></h1>
+      <div class="site-header__top">
+        <h1 class="site-title site-title--small"><span class="site-title__brand">${escapeHtml(title)}</span></h1>
+        ${renderDisplayControls()}
+      </div>
 ${lead ? `      <p class="site-lead">${escapeHtml(lead)}</p>\n` : ''}    </div>
   </header>`;
 }

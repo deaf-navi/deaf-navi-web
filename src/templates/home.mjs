@@ -33,6 +33,7 @@ import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import {
   EXTERNAL_ARROW_SVG,
+  ICONS,
   LEAF_SVG,
   getSourceTier,
   jsonLdScript,
@@ -147,33 +148,34 @@ function renderQuickAccess({ guideFile }) {
   const items = [
     {
       href: `./${guideFile}#guide-emergency`,
-      icon: '🆘',
+      icon: ICONS.phone,
+      tone: 'alert',
       title: '緊急通報の準備',
       desc: '110番アプリ・NET118・電話リレー緊急通報の登録方法',
     },
     {
       href: './?category=safety',
-      icon: '🚨',
+      icon: ICONS.alert,
       title: '防災・安全の新着',
       desc: '災害情報・避難・緊急通報に関するニュース',
       filter: 'safety',
     },
     {
       href: './?category=policy',
-      icon: '🏛️',
+      icon: ICONS.landmark,
       title: '制度・政策',
       desc: '法律・条例・給付・雇用・助成のニュース',
       filter: 'policy',
     },
     {
       href: `./${guideFile}`,
-      icon: '📖',
+      icon: ICONS.book,
       title: '暮らしのガイド',
       desc: '医療・教育・就労・電話サービスの公式情報',
     },
   ];
   return `    <nav class="quick-access" aria-label="よく使う情報への近道">
-${items.map((item) => `      <a class="quick-access__item" href="${item.href}"${item.filter ? ` data-quick-filter="${item.filter}"` : ''}>
+${items.map((item) => `      <a class="quick-access__item${item.tone ? ` quick-access__item--${item.tone}` : ''}" href="${item.href}"${item.filter ? ` data-quick-filter="${item.filter}"` : ''}>
         <span class="quick-access__icon" aria-hidden="true">${item.icon}</span>
         <span class="quick-access__body">
           <span class="quick-access__title">${escapeHtml(item.title)}</span>
@@ -415,6 +417,7 @@ ${renderFooter({
 
 ${renderCardTemplate()}
 
+  <script src="./ui-controls.js" defer></script>
   <script src="./${files.app}" defer></script>
 </body>
 </html>

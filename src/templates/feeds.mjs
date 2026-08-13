@@ -193,6 +193,8 @@ ${renderSubHeader({
   </main>
 
 ${renderFooter({ year: new Date().getFullYear() })}
+
+  <script src="./ui-controls.js" defer></script>
 </body>
 </html>
 `;

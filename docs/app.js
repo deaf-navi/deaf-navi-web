@@ -40,88 +40,7 @@
     broad: { label: '関連媒体', description: '関連分野を扱う媒体が発信した情報' },
   };
 
-  /* ---------- 表示設定（テーマ・文字サイズ） ---------- */
-
-  var docEl = document.documentElement;
-  var controls = document.querySelector('[data-display-controls]');
-  var themeBtn = document.getElementById('theme-toggle');
-  var fontBtn = document.getElementById('font-toggle');
-
-  function storageGet(key) {
-    try { return localStorage.getItem(key); } catch (e) { return null; }
-  }
-  function storageSet(key, value) {
-    try {
-      if (value === null) localStorage.removeItem(key);
-      else localStorage.setItem(key, value);
-    } catch (e) { /* private mode */ }
-  }
-
-  function isDarkActive() {
-    var manual = docEl.getAttribute('data-theme');
-    if (manual === 'dark') return true;
-    if (manual === 'light') return false;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-
-  function syncThemeButton() {
-    if (!themeBtn) return;
-    var dark = isDarkActive();
-    themeBtn.setAttribute('aria-pressed', String(dark));
-    themeBtn.innerHTML = dark
-      ? '<span class="display-controls__icon" aria-hidden="true">☀️</span>ライト表示'
-      : '<span class="display-controls__icon" aria-hidden="true">🌙</span>ダーク表示';
-  }
-
-  var FONT_STEPS = ['standard', 'large', 'xlarge'];
-  var FONT_LABELS = {
-    standard: '文字を大きく',
-    large: '文字をさらに大きく',
-    xlarge: '文字を標準に戻す',
-  };
-
-  function currentFontStep() {
-    var v = docEl.getAttribute('data-font');
-    return v === 'large' || v === 'xlarge' ? v : 'standard';
-  }
-
-  function syncFontButton() {
-    if (!fontBtn) return;
-    var step = currentFontStep();
-    fontBtn.setAttribute('aria-pressed', String(step !== 'standard'));
-    fontBtn.innerHTML = '<span class="display-controls__icon" aria-hidden="true">あ</span>' + FONT_LABELS[step];
-  }
-
-  if (controls) {
-    controls.hidden = false;
-    if (themeBtn) {
-      themeBtn.addEventListener('click', function () {
-        var next = isDarkActive() ? 'light' : 'dark';
-        docEl.setAttribute('data-theme', next);
-        storageSet('dn-theme', next);
-        syncThemeButton();
-      });
-    }
-    if (fontBtn) {
-      fontBtn.addEventListener('click', function () {
-        var idx = FONT_STEPS.indexOf(currentFontStep());
-        var next = FONT_STEPS[(idx + 1) % FONT_STEPS.length];
-        if (next === 'standard') {
-          docEl.removeAttribute('data-font');
-          storageSet('dn-font', null);
-        } else {
-          docEl.setAttribute('data-font', next);
-          storageSet('dn-font', next);
-        }
-        syncFontButton();
-      });
-    }
-    syncThemeButton();
-    syncFontButton();
-    if (window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncThemeButton);
-    }
-  }
+  /* 表示設定（テーマ・文字サイズ）と Service Worker 登録は ui-controls.js が担当 */
 
   /* ---------- 相対時刻の更新（ビルド時刻ズレの補正） ---------- */
 
@@ -161,15 +80,6 @@
   window.addEventListener('online', syncOfflineNote);
   window.addEventListener('offline', syncOfflineNote);
   syncOfflineNote();
-
-  /* ---------- Service Worker ---------- */
-
-  if ('serviceWorker' in navigator &&
-      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js').catch(function () { /* 登録失敗時は通常表示 */ });
-    });
-  }
 
   /* ---------- ニュース検索・絞り込み ---------- */
 
