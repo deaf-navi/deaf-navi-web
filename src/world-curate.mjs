@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { isHardNoiseWorldText } from './lib/world-relevance.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -364,10 +365,6 @@ const NOISE_PATTERNS = [
   /\b(realme|razer|sennheiser)\b.{0,100}\b(audífonos|auriculares|headphones|earbuds)\b/i,
 ];
 
-const HARD_NOISE_PATTERNS = [
-  /dialogue de sourds/i,
-];
-
 const NON_NOISE_HINT = /(sign language|hard of hearing|hearing impaired|hearing loss|hearing aid|cochlear|deafblind|deaf community|deaf student|deaf child|caption|interpreter|accessibility|sordo|sordera|surdo|surdez|sourd|surdité|gehörlos|gebärdensprache|sordità|lingua dei segni|işitme engelli|işaret dili|청각장애|농인|수어|聽障|听障|手語|手语|لغة الإشارة|ضعاف السمع|बधिर)/i;
 
 const NON_NEWS_SOURCE_PATTERN = /(help\s*centre|help\s*center|help\s*forum|community|support|customer care|forum|facebook|wikimedia|pressreader|starbucks|disneyphile|iphone in canada|sennheiser)/i;
@@ -726,7 +723,7 @@ function normalizeForSearch(text) {
 function scoreArticle(article) {
   const text = normalizeForSearch(`${article.originalTitle} ${article.originalSummary}`);
   const signals = [];
-  if (HARD_NOISE_PATTERNS.some((pattern) => pattern.test(text))) return { score: 0, signals: ['hard-noise'], isNoise: true };
+  if (isHardNoiseWorldText(text)) return { score: 0, signals: ['hard-noise'], isNoise: true };
   const hasNoise = NOISE_PATTERNS.some((pattern) => pattern.test(text));
   const hasNonNoiseHint = NON_NOISE_HINT.test(text);
   if (hasNoise && !hasNonNoiseHint) return { score: 0, signals: ['noise'], isNoise: true };
