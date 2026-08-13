@@ -7,7 +7,7 @@
  * 使い方:
  *   node src/curate.mjs             # 本番 (docs/articles.json)
  *   node src/curate.mjs --dev       # dev  (docs/articles-dev.json)
- *   CURATION_PROFILE=legacy         # 旧・縮小プロファイル（prodでは拡張が既定）
+ *   CURATION_PROFILE=legacy         # prod実行を旧・縮小プロファイルへ切替（dev実行は常に拡張。v1互換の挙動）
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';

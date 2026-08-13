@@ -35,6 +35,7 @@ import {
   EXTERNAL_ARROW_SVG,
   LEAF_SVG,
   getSourceTier,
+  jsonLdScript,
   renderArticleCard,
   renderDisplayControls,
   renderFooter,
@@ -139,9 +140,7 @@ function renderJsonLd({ generatedAt, articles, pageUrl, isDev }) {
     ],
   };
 
-  return `<script type="application/ld+json">
-${JSON.stringify(data, null, 2)}
-</script>`;
+  return jsonLdScript(data);
 }
 
 function renderQuickAccess({ guideFile }) {

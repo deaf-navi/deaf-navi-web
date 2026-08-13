@@ -11,6 +11,7 @@ import { GUIDE_LAST_REVIEWED } from '../guide-data.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJaJST } from '../lib/dates.mjs';
 import {
+  jsonLdScript,
   renderFooter,
   renderHead,
   renderSkipLink,
@@ -48,7 +49,7 @@ ${renderHead({
     ogUrl: aboutUrl,
     stylesFile: files.styles,
     feedUrl: `${SITE_URL}${files.feed}`,
-    jsonLd: `<script type="application/ld+json">\n${JSON.stringify(aboutJsonLd, null, 2)}\n  </script>`,
+    jsonLd: jsonLdScript(aboutJsonLd),
   })}
 </head>
 <body>

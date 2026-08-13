@@ -11,7 +11,7 @@
     "build:world": "node src/world-build.mjs",
     "build:app-api": "node src/app-api-build.mjs",
     "verify": "node scripts/verify-site.mjs",
-    "test": "node --test test/text.test.mjs test/feed-parser.test.mjs test/curation.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs",
+    "test": "node --test test/text.test.mjs test/feed-parser.test.mjs test/curation.test.mjs test/templates.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs",
     "codex-app-server": "node scripts/codex-app-server.mjs",
     "codex-app-server:smoke": "node scripts/codex-app-server-smoke-test.mjs",
     "generate": "npm run curate && npm run build && npm run verify",

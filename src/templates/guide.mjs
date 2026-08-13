@@ -7,6 +7,7 @@ import { GUIDE_LAST_REVIEWED, GUIDE_SECTIONS } from '../guide-data.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJaJST } from '../lib/dates.mjs';
 import {
+  jsonLdScript,
   renderFooter,
   renderHead,
   renderSkipLink,
@@ -82,7 +83,7 @@ ${renderHead({
     robots: isDev ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1',
     ogUrl: guideUrl,
     stylesFile: files.styles,
-    jsonLd: `<script type="application/ld+json">\n${JSON.stringify(guideJsonLd, null, 2)}\n  </script>`,
+    jsonLd: jsonLdScript(guideJsonLd),
   })}
 </head>
 <body>

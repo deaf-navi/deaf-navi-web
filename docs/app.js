@@ -252,6 +252,7 @@
   /* ---- データ取得 ---- */
 
   var fetchPromise = null;
+  var dataFailed = false;
   function ensureData() {
     if (fetchPromise) return fetchPromise;
     var src = articlesEl.getAttribute('data-src') || './articles.json';
@@ -270,9 +271,15 @@
       .catch(function () {
         // 取得失敗時はSSR済みDOMを対象に動作継続（60件フォールバック）
         allArticles = null;
+        dataFailed = true;
         return null;
       });
     return fetchPromise;
+  }
+
+  /** 全件データの取得待ちかどうか（relay等、SSRに存在しないカテゴリの誤「該当なし」防止） */
+  function isDataPending() {
+    return Boolean(fetchPromise) && !allArticles && !dataFailed;
   }
 
   /* ---- カード生成（<template id="card-template"> を複製） ---- */
@@ -427,7 +434,7 @@
   function updateMeta(shown, matched) {
     if (visibleCountEl) visibleCountEl.textContent = String(shown);
     if (totalCountEl) totalCountEl.textContent = String(matched);
-    if (emptyMsg) emptyMsg.hidden = matched > 0;
+    if (emptyMsg) emptyMsg.hidden = matched > 0 || isDataPending();
     if (searchClear) searchClear.hidden = !state.q;
     if (resetBtn) resetBtn.hidden = !hasActiveFilters();
     if (loadMoreBtn) {
@@ -560,8 +567,8 @@
   }
 
   if (hasActiveFilters()) {
+    syncAfterData(); // 先にfetchを開始してから適用（データ待ち中は「該当なし」を出さない）
     apply({ updateUrl: false });
-    syncAfterData();
   } else if ('requestIdleCallback' in window) {
     requestIdleCallback(syncAfterData, { timeout: 4000 });
   } else {

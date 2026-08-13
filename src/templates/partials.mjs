@@ -24,6 +24,16 @@ export const LEAF_SVG = `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/200
 export const EXTERNAL_ARROW_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>';
 
 /**
+ * JSON-LD を <script> 内へ安全に埋め込む。
+ * JSON.stringify は "<" をエスケープしないため、フィード由来のURL等に
+ * "</script>" が含まれるとスクリプト脱出できてしまう。必ずこの関数を使うこと。
+ */
+export function jsonLdScript(data) {
+  const json = JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
+  return `<script type="application/ld+json">\n${json}\n</script>`;
+}
+
+/**
  * 共通<head>要素。テーマ・文字サイズのFOUC防止スクリプトを含む。
  * @param {object} opts
  */
