@@ -43,17 +43,23 @@ jobs:
             exit 0
           fi
           git commit -m "chore(app-sync): update app json $(date -u +'%Y-%m-%dT%H:%MZ')"
+          # リモートが進んでいた場合: 最新mainへreset→再ビルド→新規commitで作り直す
           for attempt in 1 2 3; do
             if git push; then
               exit 0
             fi
-            echo "Push failed (attempt $attempt). Rebasing onto latest main and rebuilding app sync JSON..."
-            git pull --rebase origin main
+            echo "Push failed (attempt $attempt). Rebuilding app sync JSON on latest main..."
+            git rebase --abort 2>/dev/null || true
+            git merge --abort 2>/dev/null || true
+            git fetch origin main
+            git reset --hard origin/main
             npm run build:app-api
             git add docs/app
-            if ! git diff --cached --quiet; then
-              git commit --amend --no-edit
+            if git diff --cached --quiet; then
+              echo "No app sync changes after rebuild."
+              exit 0
             fi
+            git commit -m "chore(app-sync): update app json $(date -u +'%Y-%m-%dT%H:%MZ')"
           done
           echo "Push failed after 3 attempts."
           exit 1

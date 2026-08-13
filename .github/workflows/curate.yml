@@ -66,13 +66,31 @@ jobs:
             exit 0
           fi
           git commit -m "chore(publish): update all feeds $(date -u +'%Y-%m-%dT%H:%MZ')"
-          # リモートが進んでいた場合に備えてリトライ付きpush
+          # リモートが進んでいた場合: 生成物のrebaseは必ず衝突するため、
+          # 取得済みデータを退避 → 最新mainへreset → データ復元 → ビルドだけ再実行して作り直す
+          # （再クロール・再翻訳はしない。ソース変更が同時に入った場合も最新ソースでビルドされる）
           for attempt in 1 2 3; do
             if git push; then
               exit 0
             fi
-            echo "Push failed (attempt $attempt). Rebasing onto latest main..."
-            git pull --rebase origin main || true
+            echo "Push failed (attempt $attempt). Rebuilding on latest main..."
+            git rebase --abort 2>/dev/null || true
+            git merge --abort 2>/dev/null || true
+            cp docs/articles.json docs/articles-old.json docs/articles-world.json "$RUNNER_TEMP"/
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$RUNNER_TEMP"/articles.json "$RUNNER_TEMP"/articles-old.json "$RUNNER_TEMP"/articles-world.json docs/
+            npm run build
+            npm run verify
+            npm run build:world
+            npm run verify:world
+            npm run build:app-api
+            git add docs
+            if git diff --cached --quiet; then
+              echo "No changes after rebuild."
+              exit 0
+            fi
+            git commit -m "chore(publish): update all feeds $(date -u +'%Y-%m-%dT%H:%MZ')"
           done
           echo "Push failed after 3 attempts."
           exit 1

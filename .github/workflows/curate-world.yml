@@ -53,12 +53,26 @@ jobs:
             exit 0
           fi
           git commit -m "chore(curate-world): update world articles $(date -u +'%Y-%m-%dT%H:%MZ')"
+          # リモートが進んでいた場合: 取得済みWorldデータを退避→最新mainへreset→復元→ビルドのみ再実行
           for attempt in 1 2 3; do
             if git push; then
               exit 0
             fi
-            echo "Push failed (attempt $attempt). Rebasing onto latest main..."
-            git pull --rebase origin main || true
+            echo "Push failed (attempt $attempt). Rebuilding world on latest main..."
+            git rebase --abort 2>/dev/null || true
+            git merge --abort 2>/dev/null || true
+            cp docs/articles-world.json "$RUNNER_TEMP"/
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$RUNNER_TEMP"/articles-world.json docs/
+            npm run build:world
+            npm run verify:world
+            git add docs/articles-world.json docs/deaf-navi-world-jp.html docs/deaf-navi-world-original.html docs/deaf-navi-world-en.html docs/deaf-navi-world.html docs/styles-world.css docs/app-world.js docs/feed-world.xml docs/feed-world-original.xml docs/feed-world-en.xml docs/sitemap-world.xml docs/og-image-world.svg
+            if git diff --cached --quiet; then
+              echo "No world changes after rebuild."
+              exit 0
+            fi
+            git commit -m "chore(curate-world): update world articles $(date -u +'%Y-%m-%dT%H:%MZ')"
           done
           echo "Push failed after 3 attempts."
           exit 1
