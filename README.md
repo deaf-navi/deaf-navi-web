@@ -1,163 +1,139 @@
-# Deaf Navi Web
+# Deaf Navi Web 2.0
 
-聴覚障害・難聴・ろう者コミュニティ向けのニュースキュレーションサイト。Deaf Navi アプリで利用している選定条件を流用し、静的サイトとして公開する。
+聴覚障害・難聴・ろう者・中途失聴者コミュニティのための情報ポータル。
+信頼できる情報源からニュースを自動収集・分類し、緊急通報・制度などの公式情報への入口とあわせて届ける。
 
-## 概要
+- **URL**: https://tamas-hub.github.io/deaf-navi-web/
+- **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00ごろ）自動更新
+- **ホスティング**: GitHub Pages（月額0円・SSL付き）
+- **スタック**: Node 20+（標準ライブラリのみ・依存パッケージゼロ）+ 静的 HTML/CSS/JS
+- **アプリ連携**: `docs/app/v1/` に iOS アプリ「Deaf Navi」向け同期JSONを生成（後方互換を保証）
 
-- **URL**: `https://tamas-hub.github.io/deaf-navi-web/`
-- **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00）RSS を取得し `docs/` 配下を自動更新
-- **ホスティング**: GitHub Pages（完全無料・SSL 付き）
-- **スタック**: Node 20（標準 fetch のみ）+ 静的 HTML/CSS/JS
-- **アプリ同期**: `docs/app/v1/` に Deaf Navi iOS アプリ参照用の同期JSONを生成
+## 2.0 の主な機能
 
-## 情報源
-
-### 直接 RSS フィード
-
-- 全日本ろうあ連盟 (一般)
-- 全日本ろうあ連盟 / 手話言語法カテゴリ
-- しかくタイムズ
-- 東京都聴覚障害者連盟
-- 全日本難聴者・中途失聴者団体連合会
-- 全国手話研修センター
-- 聴力障害者情報文化センター
-- 北海道・札幌・兵庫・鹿児島・沖縄の聴覚障害者情報センター、地域団体
-- 電話リレーサービス / 日本財団電話リレーサービス
-- 全通研NOW!!
-- 日本聴覚医学会
-- デフスポーツ関連団体、YouTube公式チャンネル、note、UDCast、Palabra、Silent Voice など
-
-### Google News RSS
-
-- `聴覚障害 OR 難聴` / `ろう者 OR ろうあ者 OR 中途失聴` / `手話 OR 情報保障`
-- `情報保障` / `アクセシビリティ` / `合理的配慮` / `手話通訳` / `要約筆記` / `字幕`
-- `制度・政策` / `医療` / `教育` / `技術・AI` / `防災・安全` / `イベント・講座`
-- `デフリンピック` / `デフスポーツ` / `ろう文化・芸能`
-- `site:jfd.or.jp` / `site:asahi.com 聴覚障害` / `site:yomiuri.co.jp 聴覚障害`
-- `site:prtimes.jp 聴覚障害` / `site:rehab.go.jp 聴覚障害`
-
-### フィルタ
-
-- **関連性**: 関連語スコアで本文・タイトルを照合（公式・専門の一部はパス）
-- **情報源の透明性**: 一次情報 / 専門情報 / 報道・発見 / 関連媒体の4段階と、直接フィード・Google News経由の取得方法を表示
-- **鮮度**: 原則180日以内に限定し、取得障害時は45日以内の前回データをフォールバック
-- **カテゴリ自動分類**: policy / accessibility / relay / medical / education / technology / culture / sports / safety / event / local / general
-- **重複除去**: 記事 URL キー、数字を保護した高精度の近似タイトル判定で dedupe
-- **取得耐性**: 一時的なHTTPエラーやタイムアウトを指数バックオフ付きで再試行
-- **並び**: `publishedAt` 降順
-- **old退避**: 400件を超えた記事を `articles-old.json` / `index-old.html` に蓄積
+| 機能 | 内容 |
+|---|---|
+| 情報設計 | クイックアクセス（緊急通報・防災・制度・ガイド）と「注目」（公式・専門団体の新着）をトップに配置 |
+| 検索・絞り込み | フリーワード / カテゴリ12種 / 情報源区分 / 期間 / 地域ブロック。全条件をURLに同期（共有可能） |
+| 情報源の透明性 | 全記事に「一次情報 / 専門情報 / 報道・発見 / 関連媒体」の選定区分と取得方法を表示 |
+| 表示設定 | ダーク表示（OS連動＋手動）・文字サイズ3段階（高齢ユーザー配慮） |
+| PWA | ホーム画面追加・オフライン閲覧（暮らしのガイドをプリキャッシュ）・最終更新時刻の明示 |
+| 軽量化 | トップは初期60件のみサーバ生成し全件はJSONを遅延取得（v1比 約1/5 の容量） |
+| アクセシビリティ | WCAG 2.2 AA コントラスト達成・タッチターゲット44px・キーボード操作・スキップリンク |
 
 ## ディレクトリ構成
 
 ```
 deaf-navi-web/
-├── .github/workflows/curate.yml  # 1日3回 cron + 失敗時 Issue 自動作成
+├── config/                    # ★編集はここから（情報源・語彙・分類の定義）
+│   ├── site.mjs               # サイトURL・ブランド文言・外部サービス設定
+│   ├── sources.domestic.mjs   # 国内RSS/Atomフィード・Google Newsクエリ定義
+│   ├── scoring.mjs            # 関連度スコア語彙・しきい値・優先情報源
+│   ├── categories.mjs         # カテゴリ定義・自動分類ルール（判定順が仕様）
+│   └── regions.mjs            # 都道府県→地域ブロック判定テーブル
 ├── src/
-│   ├── curate.mjs                # RSS 取得 → docs/articles.json
-│   ├── build.mjs                 # docs/articles.json → docs/index.html
-│   ├── guide-data.mjs            # 暮らしのガイド掲載データ
-│   ├── guide.js                  # ガイド検索用クライアント JS
-│   ├── styles.css                # UI スタイル
-│   ├── app.js                    # フィルタボタン用クライアント JS
-│   └── serve.mjs                 # ローカル確認用簡易サーバー
-├── docs/                         # ← GitHub Pages 公開ディレクトリ
-│   ├── index.html                # 自動生成
-│   ├── index-old.html            # 400件超過分の過去アーカイブ
-│   ├── guide.html                # 緊急通報・医療・教育・就労などのガイド
-│   ├── articles.json             # 自動生成
-│   ├── articles-old.json         # 400件超過分の蓄積データ
-│   ├── app/v1/                   # iOSアプリ同期用JSON
-│   ├── styles.css                # build でコピー
-│   └── app.js                    # build でコピー
-├── scripts/verify-site.mjs       # データ・SEO・主要UIの静的検証
-├── package.json
-└── README.md
+│   ├── curate.mjs             # 国内キュレーション実行（取得→選定→JSON出力）
+│   ├── build.mjs              # 静的サイトビルド（articles.json→HTML群）
+│   ├── app-api-build.mjs      # iOSアプリ同期JSON生成（互換レイヤー・原則変更しない）
+│   ├── world-curate.mjs       # World版キュレーション（翻訳・Codex後編集含む）
+│   ├── world-build.mjs        # World版HTML生成
+│   ├── lib/                   # 純関数ライブラリ（I/Oなし・テスト対象）
+│   │   ├── text.mjs           #   テキスト正規化・エスケープ・類似度
+│   │   ├── feed-parser.mjs    #   RSS/Atomパーサ（不正日付はnull化）
+│   │   ├── fetch-retry.mjs    #   タイムアウト・指数バックオフ付きfetch
+│   │   ├── curation.mjs       #   分類・地域検出・スコア・重複除去・選定
+│   │   └── dates.mjs          #   JST日時表示
+│   ├── templates/             # ページテンプレート（home/archive/about/guide/feeds/partials）
+│   ├── assets/                # PWAアセット（manifest/sw.js/offline/アイコン/OGP画像）
+│   ├── styles.css             # デザインシステム2.0（World版と共通）
+│   ├── app.js                 # トップページのクライアント（検索・フィルタ・表示設定）
+│   ├── guide.js               # 暮らしのガイド検索
+│   ├── guide-data.mjs         # 暮らしのガイド掲載データ
+│   └── serve.mjs              # ローカル確認サーバ
+├── scripts/
+│   ├── verify-site.mjs        # 国内版の公開前検証（スキーマ・UI・PWA・アーカイブ）
+│   ├── verify-world.mjs       # World版の公開前検証（fail-soft）
+│   └── codex-app-server*.mjs  # VPS側 Codex App Server（World-JP日本語後編集用・本体はVPSで稼働）
+├── test/                      # node --test（unit/integration/iOS互換regression）
+├── docs/                      # ★GitHub Pages 公開ルート（自動生成物・直接編集しない）
+│   ├── index.html             # トップ（初期60件SSR）
+│   ├── articles.json          # 国内キュレーション結果（iOS API の入力・スキーマ互換必須）
+│   ├── articles-old.json      # 過去アーカイブデータ（最大5000件）
+│   ├── index-old.html         # アーカイブ目次 → archive/YYYY-MM.html へ月別分割
+│   ├── app/v1/                # iOSアプリ同期JSON（互換契約: dev-docs/architecture.md）
+│   ├── manifest.webmanifest / sw.js / offline.html / icons/  # PWA
+│   └── deaf-navi-world-*.html # World版ページ
+├── dev-docs/                  # 開発者向けドキュメント（docs/はPages公開用のため分離）
+│   ├── architecture.md        # アーキテクチャと互換契約
+│   ├── data-pipeline.md       # データ収集・品質ゲートの詳細
+│   └── operations.md          # 運用・障害対応
+└── .github/workflows/
+    ├── curate.yml             # 本番更新（1日3回cron: 国内+World+アプリJSON→commit）
+    ├── curate-world.yml       # World単独の手動更新
+    ├── app-sync.yml           # アプリJSON単独の手動更新
+    └── ci.yml                 # PR検証（test/build/verify・書き込み権限なし）
 ```
-
-## アプリ同期JSON
-
-Web版の国内ニュース / World-JP / World-Original と同じ生成物から、iOS アプリが参照しやすい静的JSONを出力する。
-
-- `docs/app/v1/manifest.json`: 国内・World各フィードのURL、カテゴリ、地域、更新間隔、互換情報
-- `docs/app/v1/domestic.json`: 国内版のフルカテゴリ対応データ（`relay` は `excludedFromAll` で明示）
-- `docs/app/v1/world-jp.json`: World-JP表示用。Google翻訳ベース + Deaf Navi用語補正 + Codex App Server後編集メタデータ付き
-- `docs/app/v1/world-original.json`: World原文表示用。日本語訳は `translated` に保持
-- `docs/app/v1/world-multilingual.json`: 日本語訳と原文を `localized.ja` / `localized.original` にまとめた多言語切替向けデータ
-- `docs/app/v1/ios-news-v1.json`: 現行 iOS `Article` 互換の国内ニュース配列。現行enumに合わせ、`relay` は除外
-- `docs/app/v1/ios-world-jp-v1.json` / `ios-world-original-v1.json`: 現行 iOS `Article` 互換のWorld配列
-
-公開URL例:
-
-- `https://tamas-hub.github.io/deaf-navi-web/app/v1/manifest.json`
-- `https://tamas-hub.github.io/deaf-navi-web/app/v1/domestic.json`
-- `https://tamas-hub.github.io/deaf-navi-web/app/v1/world-jp.json`
-- `https://tamas-hub.github.io/deaf-navi-web/app/v1/world-multilingual.json`
-
-現行 iOS 互換JSONは `JSONDecoder.DateDecodingStrategy.iso8601` で扱いやすいよう、日時をミリ秒なしUTC（例: `2026-05-10T00:32:12Z`）で出力する。
 
 ## ローカル開発
 
 ```bash
-cd deaf-navi-web
-npm run curate    # RSS 取得 → docs/articles.json
-npm run build     # HTML 生成
-npm run verify    # データ品質・SEO・主要UIを検証
+npm run curate        # 国内RSS取得 → docs/articles.json（要ネットワーク）
+npm run build         # HTML生成（コミット済みJSONがあればオフラインで可）
+npm run verify        # 公開前検証
+npm test              # テスト一式（node --test・ネットワーク不要）
+npm run serve         # http://localhost:5173 で確認
+npm run generate      # curate + build + verify（Actionsと同じ）
+npm run generate:world # World版一式（Codex App Serverなしでも動作、後編集はスキップされる）
 npm run build:app-api # docs/app/v1 のアプリ同期JSON生成
-npm run serve     # http://localhost:5173 で確認
 ```
 
-一発: `npm run generate` で curate + build + verify。
+## 情報源・カテゴリの追加方法
 
-## デプロイ手順（初回）
+1. **RSSフィードを増やす**: `config/sources.domestic.mjs` の `DIRECT_FEEDS`（または `EXPANDED_DIRECT_FEEDS`）に追記。`sourceTier`（official/specialist/broad）と、必要なら `minScore` / `passThrough` を設定
+2. **Google News検索語を増やす**: 同ファイルの `KEYWORD_GROUPS` に追記
+3. **関連語・スコアの調整**: `config/scoring.mjs`
+4. **カテゴリ判定の調整**: `config/categories.mjs` の `CATEGORY_RULES`（**判定順が仕様**。relay→culture→sports の順序は変更しない）
+5. PRを出すと CI（test/build/verify）が走る。マージすると次回cronから反映
 
-1. **GitHub リポジトリ作成** (`deaf-navi-web`)
-2. ローカルから `git push`
-3. **リポジトリ Settings → Pages**:
-    - Source: `Deploy from a branch`
-    - Branch: `main` / `/docs`
-4. **Actions 権限**: Settings → Actions → General → Workflow permissions を `Read and write permissions` に
-5. 初回は Actions タブで `Curate & Build` を手動実行 (`Run workflow`)
-6. 数分後、`https://<user>.github.io/deaf-navi-web/` にアクセスして確認
+**注意**: カテゴリ id の追加・変更は iOS アプリ互換（`src/app-api-build.mjs` と `dev-docs/architecture.md`）の確認が必須。
 
-## 運用・メンテナンス
+## データ品質・検証
 
-| 頻度 | 作業 | 担当 |
-|---|---|---|
-| 自動（1日3回） | RSS 取得・記事更新・コミット | GitHub Actions |
-| 自動（失敗時） | 既存の障害Issueへ集約（未作成時のみ新規作成） | Actions |
-| 月 1 | 情報源・キーワード辞書の見直し | rin エージェント |
-| 都度 | 新カテゴリ・UI 改善 | PR |
+- `npm run generate` は curate → build → **verify** の順で実行され、verify が失敗すると公開（commit）されない
+- verify の内容: articles.json スキーマ / URL・日付妥当性 / 重複 / カテゴリ・地域enum / 主要UI・SEO要素 / PWAアセット / アーカイブ整合
+- 日付が解釈できない記事は取り込まない（2.0で「取得時刻すり替え」を廃止）
+- 一時的な取得エラーは指数バックオフで再試行し、失敗ソースはスキップして継続（fail-soft）。全滅時のみ前回データを保持して中断
+- テスト: `npm test`（37件）— 分類・重複除去・パーサ・iOS互換スキーマ・クライアントラベル同期
 
-### 情報源・キーワードの更新方法
+## iOSアプリ連携（後方互換）
 
-`src/curate.mjs` を編集して PR → マージすれば、次回 cron から反映される。
+`docs/app/v1/` の12ファイルは出荷済みiOSアプリが参照する**互換契約**。URL・キー構成・日付形式（ISO 8601 秒精度Z）・カテゴリenumは変更しない。
+詳細: [dev-docs/architecture.md](dev-docs/architecture.md)。互換性は `test/ios-api-compat.test.mjs` が regression テストで担保する。
 
-- `DIRECT_FEEDS` に RSS URL を追加
-- `KEYWORD_GROUPS` に Google News 検索クエリを追加
-- `RELEVANT_KEYWORDS` でフィルタ語彙を調整
-- `guessCategory` の正規表現でカテゴリ判定を調整
+主要URL:
+- https://tamas-hub.github.io/deaf-navi-web/app/v1/manifest.json
+- https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v2.json （現行アプリ・国内）
+- https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json （現行アプリ・World）
 
-### Actions 失敗時の対応
+## 運用・障害対応
 
-- 同じ障害Issueへ失敗Runのリンクが集約される
-- 一時的なHTTPエラーは自動再試行し、一部ソース失敗時も取得済みデータと短期フォールバックから生成を継続する
-- 全体失敗が続く場合はRunログの `Source health` と対象フィードを確認する
+- Actions失敗時は固定タイトルのIssueに集約される（乱立しない）
+- World-JP の日本語後編集（Codex App Server）が落ちても、カバレッジ85%を下回らない限り公開は継続する
+- 詳細な障害対応手順: [dev-docs/operations.md](dev-docs/operations.md)
 
-### コスト
+## コスト
 
-- **GitHub Pages**: 無料（ソフトリミット帯域 100GB/月）
-- **GitHub Actions**: 無料枠 2000 分/月、本プロジェクトの使用量は1日3回運用で十分収まる
-- **独自ドメイン**（オプション）: 取得費のみ（GitHub Pages 側の設定は無料）
+- GitHub Pages: 無料（帯域ソフトリミット100GB/月）
+- GitHub Actions: 無料枠2000分/月で十分（1日3回運用）
+- 外部有料サービス: なし（Codex App Server は自前VPS上の任意コンポーネント。停止してもサイトは動く）
 
 ## アクセシビリティ方針
 
-- WCAG 2.1 AA 準拠を目標とする
-- セマンティック HTML（`header` / `nav` / `main` / `article` / `time` / `footer`）
-- キーボード操作完結・`focus-visible` 明示
-- スキップリンク・`aria-pressed` による状態提示
-- `prefers-color-scheme` でダークモード対応
-- `prefers-reduced-motion` でアニメーション抑制
-- 色依存に頼らずテキスト情報でも判別可能なカテゴリ表示
+- 目標: WCAG 2.2 AA（2.0でコントラスト全項目4.5:1以上を実測確認）
+- セマンティックHTML・キーボード完結・スキップリンク・`focus-visible`・`aria-pressed`/`aria-live`
+- ダーク表示: `prefers-color-scheme` 連動＋手動切替 / アニメーション: `prefers-reduced-motion` 抑制
+- 文字サイズ3段階切替・200%ズームで横スクロールなし・タッチターゲット44px
+- 状態は色だけに依存しない（カテゴリ=色ドット＋テキスト、選定区分=テキストバッジ）
 
 ## ライセンス
 
