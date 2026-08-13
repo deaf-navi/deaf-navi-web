@@ -7,16 +7,43 @@
   <meta name="description" content="聴覚障害・難聴・ろう者の暮らしに役立つ緊急通報、医療、教育、就労、電話サービス、デフスポーツの公的情報を検索できるガイド。">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta name="theme-color" content="#075e57">
   <link rel="canonical" href="https://tamas-hub.github.io/deaf-navi-web/guide.html">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Deaf Navi Web">
   <meta property="og:title" content="暮らしのガイド | Deaf Navi Web">
   <meta property="og:description" content="聴覚障害・難聴・ろう者の暮らしに役立つ緊急通報、医療、教育、就労、電話サービス、デフスポーツの公的情報を検索できるガイド。">
   <meta property="og:url" content="https://tamas-hub.github.io/deaf-navi-web/guide.html">
-  <meta property="og:image" content="https://tamas-hub.github.io/deaf-navi-web/og-image.svg">
+  <meta property="og:image" content="https://tamas-hub.github.io/deaf-navi-web/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Deaf Navi Web - 聴覚障害・ろう者向けニュースキュレーション">
   <meta property="og:locale" content="ja_JP">
-  <meta name="theme-color" content="#075e57">
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="暮らしのガイド | Deaf Navi Web">
+  <meta name="twitter:description" content="聴覚障害・難聴・ろう者の暮らしに役立つ緊急通報、医療、教育、就労、電話サービス、デフスポーツの公的情報を検索できるガイド。">
+  <meta name="twitter:image" content="https://tamas-hub.github.io/deaf-navi-web/og-image.png">
+
+  <!-- テーマ・文字サイズをペイント前に適用（FOUC防止・localStorage参照のみ） -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dn-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        var f = localStorage.getItem('dn-font');
+        if (f === 'large' || f === 'xlarge') document.documentElement.setAttribute('data-font', f);
+      } catch (e) { /* private mode 等は既定値で表示 */ }
+    })();
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -152,6 +179,7 @@
         <path d="M40 170 C 70 140, 100 110, 160 30" />
         <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
         <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
+        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
       </svg>
     </div>
     <div class="container">
@@ -198,7 +226,7 @@
           </div>
           <p class="guide-card__summary">文字・画像・位置情報で警察へ緊急通報。全国で利用でき、事前登録が必要です。</p>
           <p class="guide-card__detail">聴覚や発話に困難がある方が、スマートフォンから文字で警察へ通報できます。緊急時に備えて事前登録し、練習モードで操作を確認してください。</p>
-          <a class="guide-card__link" href="https://www.npa.go.jp/bureau/safetylife/110/app/" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.npa.go.jp/bureau/safetylife/110/app/" target="_blank" rel="noopener noreferrer" aria-label="110番アプリシステムの公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -210,7 +238,7 @@
           </div>
           <p class="guide-card__summary">スマートフォンから文字で救急・消防へ通報。利用地域での事前登録が必要です。</p>
           <p class="guide-card__detail">位置情報を添えて消防へ連絡できる緊急通報サービスです。登録方法はお住まいの地域を管轄する消防本部へ確認してください。</p>
-          <a class="guide-card__link" href="https://www.fdma.go.jp/mission/enrichment/kyukyumusen_kinkyutuhou/net119.html" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.fdma.go.jp/mission/enrichment/kyukyumusen_kinkyutuhou/net119.html" target="_blank" rel="noopener noreferrer" aria-label="Net119 緊急通報の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -222,7 +250,7 @@
           </div>
           <p class="guide-card__summary">手話・文字を通訳オペレータが音声につなぎ、24時間緊急通報できます。</p>
           <p class="guide-card__detail">電話リレーサービスの利用登録が必要です。平時のうちに登録と緊急通報の手順を確認してください。</p>
-          <a class="guide-card__link" href="https://www.nftrs.or.jp/about/" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.nftrs.or.jp/about/" target="_blank" rel="noopener noreferrer" aria-label="電話リレーサービス 緊急通報（110・118・119）の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -234,7 +262,7 @@
           </div>
           <p class="guide-card__summary">海での事件・事故を文字で海上保安庁へ通報。事前登録が必要です。</p>
           <p class="guide-card__detail">聴覚や発話に困難がある方のためのインターネット緊急通報サービスです。海へ出る前に登録を済ませてください。</p>
-          <a class="guide-card__link" href="https://www.kaiho.mlit.go.jp/doc/tel118.html" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.kaiho.mlit.go.jp/doc/tel118.html" target="_blank" rel="noopener noreferrer" aria-label="NET118 海の緊急通報の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -245,7 +273,7 @@
           </div>
           <p class="guide-card__summary">災害時の避難支援に備える名簿登録。市区町村の福祉・防災窓口で相談できます。</p>
           <p class="guide-card__detail">警報や避難指示を受け取りにくい場合に備え、個別避難計画とあわせて平時から確認しておく制度です。</p>
-          <a class="guide-card__link" href="https://www.bousai.go.jp/taisaku/hisaisyagyousei/yoshiensha.html" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.bousai.go.jp/taisaku/hisaisyagyousei/yoshiensha.html" target="_blank" rel="noopener noreferrer" aria-label="避難行動要支援者の事前登録の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -269,7 +297,7 @@
           </div>
           <p class="guide-card__summary">補聴器相談医の診療と所定の手続きにより、医療費控除の対象になる場合があります。</p>
           <p class="guide-card__detail">購入前に補聴器相談医へ相談し、必要書類と購入手順を確認してください。</p>
-          <a class="guide-card__link" href="https://www.jibika.or.jp/modules/hearingloss/index.php?content_id=7" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.jibika.or.jp/modules/hearingloss/index.php?content_id=7" target="_blank" rel="noopener noreferrer" aria-label="補聴器購入の医療費控除の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -280,7 +308,7 @@
           </div>
           <p class="guide-card__summary">補聴器の種類、選び方、認定補聴器技能者のいる販売店を確認できます。</p>
           <p class="guide-card__detail">購入後の調整も重要です。医療機関や認定補聴器技能者へ相談しながら選択してください。</p>
-          <a class="guide-card__link" href="https://www.techno-aids.or.jp/" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.techno-aids.or.jp/" target="_blank" rel="noopener noreferrer" aria-label="補聴器・認定補聴器技能者の情報の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -303,7 +331,7 @@
           </div>
           <p class="guide-card__summary">通常の学級に在籍しながら、一部の時間に個別の指導を受ける仕組みです。</p>
           <p class="guide-card__detail">発音、聴覚活用、コミュニケーションなどの指導について、学校や教育委員会へ相談できます。</p>
-          <a class="guide-card__link" href="https://www.mext.go.jp/a_menu/shotou/tokubetu/005.htm" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.mext.go.jp/a_menu/shotou/tokubetu/005.htm" target="_blank" rel="noopener noreferrer" aria-label="通級による指導の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -315,7 +343,7 @@
           </div>
           <p class="guide-card__summary">大学入学共通テストでは、放送問題の文字化などの受験上の配慮を申請できます。</p>
           <p class="guide-card__detail">令和9年度は第1期が2026年7月1日から8月28日、第2期が8月31日から10月2日までです。必要書類を確認し、余裕を持って申請してください。</p>
-          <a class="guide-card__link" href="https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/r9_hairyo_qa.html" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/r9_hairyo_qa.html" target="_blank" rel="noopener noreferrer" aria-label="大学入試の配慮・特例措置の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -338,7 +366,7 @@
           </div>
           <p class="guide-card__summary">民間企業の法定雇用率は2.7%（2026年7月から）。対象事業主は従業員37.5人以上です。</p>
           <p class="guide-card__detail">事業主には法定雇用率以上の障害者を雇用する義務があります。最新の制度資料は厚生労働省で確認できます。</p>
-          <a class="guide-card__link" href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/shougaishakoyou/index.html" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/shougaishakoyou/index.html" target="_blank" rel="noopener noreferrer" aria-label="障害者雇用促進法と法定雇用率の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -350,7 +378,7 @@
           </div>
           <p class="guide-card__summary">仕事と日常生活の悩みを一体で相談できる地域の支援窓口です。</p>
           <p class="guide-card__detail">就職準備、職場定着、健康管理、生活習慣などを支援し、本人・家族・事業主から相談できます。</p>
-          <a class="guide-card__link" href="https://www.mhlw.go.jp/stf/newpage_18012.html" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.mhlw.go.jp/stf/newpage_18012.html" target="_blank" rel="noopener noreferrer" aria-label="障害者就業・生活支援センターの公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -374,7 +402,7 @@
           </div>
           <p class="guide-card__summary">手話・文字と音声を通訳オペレータがつなぐ公共サービスです。</p>
           <p class="guide-card__detail">電話の発着信に加え、110・118・119への緊急通報にも対応しています。</p>
-          <a class="guide-card__link" href="https://www.nftrs.or.jp/about/" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.nftrs.or.jp/about/" target="_blank" rel="noopener noreferrer" aria-label="電話リレーサービスの公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -386,7 +414,7 @@
           </div>
           <p class="guide-card__summary">電話の相手の声を文字で読める、聴覚障害者向けの電話サービスです。</p>
           <p class="guide-card__detail">AIまたは文字入力オペレータによる文字化を選択できます。利用条件と対応端末は公式サイトで確認してください。</p>
-          <a class="guide-card__link" href="https://www.yometel.jp/" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.yometel.jp/" target="_blank" rel="noopener noreferrer" aria-label="ヨメテルの公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -410,7 +438,7 @@
           </div>
           <p class="guide-card__summary">全21競技の対戦結果、順位、記録を公式結果ページで確認できます。</p>
           <p class="guide-card__detail">閉幕した第25回夏季デフリンピック競技大会 東京2025の公式記録です。</p>
-          <a class="guide-card__link" href="https://www.deaflympics.com/games/tokyo-2025/results" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.deaflympics.com/games/tokyo-2025/results" target="_blank" rel="noopener noreferrer" aria-label="東京2025デフリンピック 公式記録の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -421,7 +449,7 @@
           </div>
           <p class="guide-card__summary">国内大会、日本代表選考、各競技団体の情報を確認できます。</p>
           <p class="guide-card__detail">国内のデフスポーツ情報と各競技団体への入口です。</p>
-          <a class="guide-card__link" href="https://www.jfd.or.jp/sc/" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://www.jfd.or.jp/sc/" target="_blank" rel="noopener noreferrer" aria-label="全日本ろうあ連盟スポーツ委員会の公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -432,7 +460,7 @@
           </div>
           <p class="guide-card__summary">デジタル障害者手帳に対応する交通機関、施設、サービスを探せます。</p>
           <p class="guide-card__detail">利用条件や割引内容は事業者ごとに異なるため、利用前に各施設の案内も確認してください。</p>
-          <a class="guide-card__link" href="https://mirairo-id.jp/place/" target="_blank" rel="noopener noreferrer">
+          <a class="guide-card__link" href="https://mirairo-id.jp/place/" target="_blank" rel="noopener noreferrer" aria-label="ミライロID 対応施設・サービスの公式情報を見る（新しいタブで開く）">
             公式情報を見る <span aria-hidden="true">↗</span>
           </a>
         </article>
@@ -447,10 +475,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a> ・ <a href="./about.html">Deaf Naviについて</a></p>
+      <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; 2026 TAMA.</span>
         <span class="dot" aria-hidden="true"></span>
-        <span>Take it easy.</span>
+        <span lang="en">Take it easy.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span lang="en">Curated for the Deaf &amp; Hard-of-hearing community.</span>
       </p>
     </div>
   </footer>

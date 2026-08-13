@@ -7,22 +7,44 @@
   <meta name="description" content="Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#075e57">
   <link rel="canonical" href="https://tamas-hub.github.io/deaf-navi-web/about.html">
   <link rel="alternate" type="application/rss+xml" title="Deaf Navi Web" href="https://tamas-hub.github.io/deaf-navi-web/feed.xml">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Deaf Navi Web">
   <meta property="og:title" content="Deaf Naviについて | Deaf Navi Web">
-  <meta property="og:description" content="Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト・情報源・更新頻度・運営者情報。">
+  <meta property="og:description" content="Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。">
   <meta property="og:url" content="https://tamas-hub.github.io/deaf-navi-web/about.html">
-  <meta property="og:image" content="https://tamas-hub.github.io/deaf-navi-web/og-image.svg">
+  <meta property="og:image" content="https://tamas-hub.github.io/deaf-navi-web/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Deaf Navi Web - 聴覚障害・ろう者向けニュースキュレーション">
   <meta property="og:locale" content="ja_JP">
-  <meta property="article:modified_time" content="2026-08-12T09:59:16.074Z">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Deaf Naviについて | Deaf Navi Web">
-  <meta name="twitter:description" content="Deaf Navi Web の情報源、選定方針、更新履歴をご案内します。">
-  <meta name="twitter:image" content="https://tamas-hub.github.io/deaf-navi-web/og-image.svg">
-  <meta name="theme-color" content="#075e57">
+  <meta name="twitter:description" content="Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。">
+  <meta name="twitter:image" content="https://tamas-hub.github.io/deaf-navi-web/og-image.png">
 
+  <!-- テーマ・文字サイズをペイント前に適用（FOUC防止・localStorage参照のみ） -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dn-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        var f = localStorage.getItem('dn-font');
+        if (f === 'large' || f === 'xlarge') document.documentElement.setAttribute('data-font', f);
+      } catch (e) { /* private mode 等は既定値で表示 */ }
+    })();
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -37,7 +59,7 @@
   "name": "Deaf Naviについて | Deaf Navi Web",
   "description": "Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト・情報源・更新頻度・運営者情報。",
   "inLanguage": "ja-JP",
-  "dateModified": "2026-08-12T09:59:16.074Z",
+  "dateModified": "2026-08-12T21:48:10.741Z",
   "lastReviewed": "2026-08-05",
   "isPartOf": {
     "@id": "https://tamas-hub.github.io/deaf-navi-web/#website"
@@ -78,6 +100,18 @@
       <h2 id="about-updates" class="about__h2">アップデート情報</h2>
       <article class="release-note">
         <header class="release-note__head">
+          <time datetime="2026-08-13">2026年8月13日</time>
+          <h3>Deaf Navi Web 2.0 公開</h3>
+        </header>
+        <ul>
+          <li>トップページを再設計。緊急通報・防災・制度への近道と「注目（公式・専門の新着）」を追加</li>
+          <li>期間・地域での絞り込みを追加し、検索を高速化。ページ容量を約5分の1に軽量化</li>
+          <li>ダーク表示・文字サイズ切替・ホーム画面への追加（PWA）・オフライン閲覧に対応</li>
+          <li>過去アーカイブを月別ページに分割し、スマートフォンでも快適に閲覧可能に</li>
+        </ul>
+      </article>
+      <article class="release-note">
+        <header class="release-note__head">
           <time datetime="2026-08-05">2026年8月5日</time>
           <h3>暮らしのガイドと公式イベント情報を追加</h3>
         </header>
@@ -101,7 +135,6 @@
         <li><a href="https://www.jfd.or.jp/sc/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟スポーツ委員会</a>、<a href="https://jdba.sakura.ne.jp/" target="_blank" rel="noopener noreferrer">日本デフバスケットボール協会</a>、<a href="https://www.deafswim.or.jp/" target="_blank" rel="noopener noreferrer">日本デフ水泳協会</a> — 国内デフスポーツ情報</li>
         <li>北海道・札幌・兵庫・鹿児島・沖縄の聴覚障害者情報センター、地域団体の公式フィード — 講座・交流会・相談会などの地域イベント情報</li>
       </ul>
-
       <h3 class="about__h3">国内版: 追加公式・専門ソース</h3>
       <ul>
         <li><a href="https://www.zennancho.or.jp/" target="_blank" rel="noopener noreferrer">全日本難聴者・中途失聴者団体連合会</a>、<a href="https://www.com-sagano.com/" target="_blank" rel="noopener noreferrer">全国手話研修センター</a>、<a href="https://www.jyoubun-center.or.jp/" target="_blank" rel="noopener noreferrer">聴力障害者情報文化センター</a> ほか</li>
@@ -157,6 +190,7 @@
         <li><strong>地域</strong> — 都道府県・市区町村単位のローカル情報</li>
         <li><strong>一般</strong> — 上記以外の関連トピック</li>
       </ul>
+      <p>2.0 から、記事タイトル・要約に含まれる都道府県名をもとにした<strong>地域の絞り込み</strong>（北海道・東北 / 関東 / 中部 / 近畿 / 中国・四国 / 九州・沖縄)にも対応しました。</p>
     </section>
 
     <section aria-labelledby="about-update">
@@ -188,12 +222,13 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
+      <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; 2026 TAMA.</span>
         <span class="dot" aria-hidden="true"></span>
-        <span>Take it easy.</span>
+        <span lang="en">Take it easy.</span>
         <span class="dot" aria-hidden="true"></span>
-        <span>Curated for the Deaf &amp; Hard-of-hearing community.</span>
+        <span lang="en">Curated for the Deaf &amp; Hard-of-hearing community.</span>
       </p>
     </div>
   </footer>
