@@ -548,14 +548,23 @@
   /* ---- 初期化 ---- */
 
   activateCategory(state.category);
-  apply({ updateUrl: false });
 
-  // 全件データは早めに取得（deep link時は即時、それ以外はアイドル時）
+  // deep link（URLパラメータ）がある場合のみ即時フィルタを適用する。
+  // 無い場合は SSR の初期表示（60件 / 全400件表記 / もっと読むボタン）を
+  // そのまま使い、全件データ取得後にカウント類を同期する。
+  // （DOMモードのapplyはSSRの60件しか見えず、件数表示を壊すため）
+  function syncAfterData() {
+    ensureData().then(function (loaded) {
+      if (loaded) apply({ updateUrl: false });
+    });
+  }
+
   if (hasActiveFilters()) {
-    ensureData().then(function () { apply({ updateUrl: false }); });
+    apply({ updateUrl: false });
+    syncAfterData();
   } else if ('requestIdleCallback' in window) {
-    requestIdleCallback(function () { ensureData(); }, { timeout: 4000 });
+    requestIdleCallback(syncAfterData, { timeout: 4000 });
   } else {
-    setTimeout(function () { ensureData(); }, 2500);
+    setTimeout(syncAfterData, 2000);
   }
 })();
