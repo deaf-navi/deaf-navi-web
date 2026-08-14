@@ -1,7 +1,11 @@
 import type { Lang } from '../../types'
 import { loadJSON, saveJSON } from '../../lib/storage'
 
-export const PHRASES_KEY = 'otomado:phrases:v1'
+export const LEGACY_PHRASES_KEY = 'otomado:phrases:v1'
+export const PHRASES_KEYS: Record<Lang, string> = {
+  ja: 'otomado:phrases:ja:v2',
+  en: 'otomado:phrases:en:v2',
+}
 export const BOARD_HISTORY_KEY = 'otomado:boardHistory:v1'
 
 export const MAX_PHRASES = 30
@@ -30,12 +34,54 @@ export function defaultPhrases(lang: Lang): string[] {
   ]
 }
 
-export function loadPhrases(lang: Lang): string[] {
-  return loadJSON<string[]>(PHRASES_KEY, defaultPhrases(lang))
+export function phrasesKey(lang: Lang): string {
+  return PHRASES_KEYS[lang]
 }
 
-export function savePhrases(phrases: string[]): void {
-  saveJSON(PHRASES_KEY, phrases)
+function readPhraseList(key: string): string[] | null {
+  const value = loadJSON<unknown>(key, null)
+  if (!Array.isArray(value) || !value.every((item) => typeof item === 'string')) return null
+  return value.slice(0, MAX_PHRASES)
+}
+
+function removeStoredValue(key: string): void {
+  try {
+    localStorage.removeItem(key)
+  } catch {
+    // 保存領域が使えなくても、既定の定型文で利用を続ける
+  }
+}
+
+function inferLegacyLanguage(phrases: string[], fallback: Lang): Lang {
+  if (phrases.some((phrase) => /[\u3040-\u30ff\u3400-\u9fff]/.test(phrase))) return 'ja'
+  const englishDefaults = new Set(defaultPhrases('en'))
+  if (phrases.some((phrase) => englishDefaults.has(phrase))) return 'en'
+  return fallback
+}
+
+/** 旧版の共通定型文を、内容に合う言語側へ一度だけ移す。 */
+function migrateLegacyPhrases(requestedLang: Lang): string[] | null {
+  const legacy = readPhraseList(LEGACY_PHRASES_KEY)
+  if (legacy === null) return null
+
+  const targetLang = inferLegacyLanguage(legacy, requestedLang)
+  const targetKey = phrasesKey(targetLang)
+  const existing = readPhraseList(targetKey)
+  if (existing === null) saveJSON(targetKey, legacy)
+  removeStoredValue(LEGACY_PHRASES_KEY)
+
+  if (targetLang !== requestedLang) return null
+  return existing ?? legacy
+}
+
+export function loadPhrases(lang: Lang): string[] {
+  const saved = readPhraseList(phrasesKey(lang))
+  if (saved !== null) return saved
+  return migrateLegacyPhrases(lang) ?? defaultPhrases(lang)
+}
+
+export function savePhrases(lang: Lang, phrases: string[]): void {
+  saveJSON(phrasesKey(lang), phrases)
 }
 
 /** 追加: 前後空白除去・重複排除・上限あり。変更がなければ同じ配列を返す。 */

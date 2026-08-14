@@ -108,6 +108,32 @@ p {
   font-weight: 800;
 }
 
+.product-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.product-header-language {
+  background: var(--surface);
+  box-shadow: 0 4px 12px rgb(25 79 70 / 8%);
+}
+
+.product-header-language .lang-option {
+  min-width: 88px;
+  justify-content: center;
+  gap: 0.3rem;
+  padding-inline: 0.7rem;
+}
+
+.product-header-language-code {
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
 .product-header-back {
   min-height: 44px;
   display: inline-flex;
@@ -124,6 +150,10 @@ p {
   font-size: 0.88rem;
   font-weight: 700;
   text-decoration: none;
+}
+
+.product-header-actions .product-header-back {
+  margin-left: 0;
 }
 
 .product-header-back:hover {
@@ -348,7 +378,7 @@ p {
 }
 
 .btn-sm {
-  min-height: 40px;
+  min-height: 44px;
   font-size: 0.92rem;
   padding: 0.35rem 0.8rem;
   align-self: flex-start;
@@ -682,6 +712,7 @@ button.phrase-chip:hover {
 }
 
 .phrase-remove {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -693,6 +724,13 @@ button.phrase-chip:hover {
   height: 28px;
   flex: none;
   cursor: pointer;
+}
+
+/* 見た目は小さく保ち、編集時のタップ領域を44pxへ拡張 */
+.phrase-remove::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
 }
 
 :is(:root[data-theme='dark'], :root[data-theme='green']) .phrase-remove {
@@ -771,7 +809,7 @@ button.phrase-chip:hover {
 .lang-option {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0.3rem 1rem;
   border-radius: 999px;
   font-weight: 700;

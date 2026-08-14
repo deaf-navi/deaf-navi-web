@@ -2,9 +2,11 @@ import { describe, expect, it } from 'vitest'
 import {
   addPhrase,
   defaultPhrases,
+  LEGACY_PHRASES_KEY,
   loadPhrases,
   MAX_HISTORY,
   MAX_PHRASES,
+  phrasesKey,
   pushHistory,
   removePhraseAt,
   savePhrases,
@@ -16,9 +18,29 @@ describe('phrases store', () => {
     expect(defaultPhrases('en')[0]).toContain('deaf')
   })
 
-  it('round-trips through localStorage', () => {
-    savePhrases(['a', 'b'])
-    expect(loadPhrases('ja')).toEqual(['a', 'b'])
+  it('stores Japanese and English phrases independently', () => {
+    savePhrases('ja', ['日本語の定型文'])
+    savePhrases('en', ['English phrase'])
+    expect(loadPhrases('ja')).toEqual(['日本語の定型文'])
+    expect(loadPhrases('en')).toEqual(['English phrase'])
+  })
+
+  it('migrates legacy Japanese phrases without showing them in English', () => {
+    localStorage.setItem(LEGACY_PHRASES_KEY, JSON.stringify(['筆談でお願いします', 'ありがとう']))
+
+    expect(loadPhrases('en')[0]).toContain('deaf')
+    expect(loadPhrases('ja')).toEqual(['筆談でお願いします', 'ありがとう'])
+    expect(localStorage.getItem(LEGACY_PHRASES_KEY)).toBeNull()
+    expect(JSON.parse(localStorage.getItem(phrasesKey('ja'))!)).toEqual([
+      '筆談でお願いします',
+      'ありがとう',
+    ])
+  })
+
+  it('migrates legacy English phrases into the English store', () => {
+    localStorage.setItem(LEGACY_PHRASES_KEY, JSON.stringify(defaultPhrases('en')))
+    expect(loadPhrases('en')).toEqual(defaultPhrases('en'))
+    expect(localStorage.getItem(phrasesKey('ja'))).toBeNull()
   })
 
   it('addPhrase trims, dedupes and caps', () => {

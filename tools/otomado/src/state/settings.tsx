@@ -91,18 +91,22 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
+  const t = useMemo(() => makeT(settings.lang), [settings.lang])
+
   // テーマ適用（端末設定には追従せず、利用者が選んだ配色を常に保つ）
   useEffect(() => {
     document.documentElement.dataset.theme = settings.theme
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLORS[settings.theme])
   }, [settings.theme])
 
-  // 言語適用
+  // 言語とブラウザ上のページ情報を揃える
   useEffect(() => {
     document.documentElement.lang = settings.lang
-  }, [settings.lang])
-
-  const t = useMemo(() => makeT(settings.lang), [settings.lang])
+    document.title = `${t('app.name')} — ${t('app.tagline')}`
+    document.querySelector('meta[name="description"]')?.setAttribute('content', t('home.lead'))
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', t('app.name'))
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', t('home.lead'))
+  }, [settings.lang, t])
 
   const value = useMemo(
     () => ({ settings, update, setCategoryEnabled, t }),

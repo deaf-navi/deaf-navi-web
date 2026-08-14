@@ -48,17 +48,44 @@ function BottomNav({ route }: { route: Route }) {
 }
 
 function ProductHeader() {
-  const { t } = useSettings()
+  const { settings, update, t } = useSettings()
   return (
     <header className="product-header">
       <div>
         <p className="product-header-kicker">{t('app.extension')}</p>
         <p className="product-header-name">{t('app.name')}</p>
       </div>
-      <a className="product-header-back" href="../index.html">
-        <IconHome size={18} />
-        <span>{t('app.backToDeafNavi')}</span>
-      </a>
+      <div className="product-header-actions">
+        <fieldset className="lang-toggle product-header-language">
+          <legend className="visually-hidden">{t('settings.lang')}</legend>
+          <label className={settings.lang === 'ja' ? 'lang-option selected' : 'lang-option'}>
+            <input
+              type="radio"
+              name="app-lang"
+              value="ja"
+              checked={settings.lang === 'ja'}
+              onChange={() => update({ lang: 'ja' })}
+            />
+            <span className="product-header-language-code">JP</span>
+            <span>日本語</span>
+          </label>
+          <label className={settings.lang === 'en' ? 'lang-option selected' : 'lang-option'}>
+            <input
+              type="radio"
+              name="app-lang"
+              value="en"
+              checked={settings.lang === 'en'}
+              onChange={() => update({ lang: 'en' })}
+            />
+            <span className="product-header-language-code">EN</span>
+            <span>English</span>
+          </label>
+        </fieldset>
+        <a className="product-header-back" href="../index.html">
+          <IconHome size={18} />
+          <span>{t('app.backToDeafNavi')}</span>
+        </a>
+      </div>
     </header>
   )
 }

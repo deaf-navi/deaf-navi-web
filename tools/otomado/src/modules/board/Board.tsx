@@ -62,7 +62,7 @@ export function Board() {
   const addCurrent = () => {
     setPhrases((prev) => {
       const next = addPhrase(prev, text)
-      if (next !== prev) savePhrases(next)
+      if (next !== prev) savePhrases(settings.lang, next)
       return next
     })
   }
@@ -70,7 +70,7 @@ export function Board() {
   const removeAt = (index: number) => {
     setPhrases((prev) => {
       const next = removePhraseAt(prev, index)
-      savePhrases(next)
+      savePhrases(settings.lang, next)
       return next
     })
   }
@@ -79,6 +79,12 @@ export function Board() {
     setHistory([])
     saveBoardHistory([])
   }
+
+  // UI言語ごとに、その言語の定型文へ切り替える
+  useEffect(() => {
+    setPhrases(loadPhrases(settings.lang))
+    setEditing(false)
+  }, [settings.lang])
 
   // 表示モード: Esc で戻る・フォーカスをダイアログ内に閉じ込める
   useEffect(() => {

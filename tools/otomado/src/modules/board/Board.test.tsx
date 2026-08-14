@@ -3,7 +3,7 @@ import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { SettingsProvider } from '../../state/settings'
 import { Board } from './Board'
-import { PHRASES_KEY } from './phrases'
+import { phrasesKey } from './phrases'
 
 function renderBoard() {
   return render(
@@ -59,6 +59,15 @@ describe('Board', () => {
     expect(within(dialog).getByText('ゆっくり、はっきり話してください')).toBeInTheDocument()
   })
 
+  it('shows English UI and English quick phrases when English is selected', () => {
+    localStorage.setItem('otomado:settings:v1', JSON.stringify({ lang: 'en' }))
+    renderBoard()
+
+    expect(screen.getByRole('heading', { name: 'Writing' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Please write it down.' })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'ゆっくり、はっきり話してください' })).not.toBeInTheDocument()
+  })
+
   it('shows with Ctrl+Enter', async () => {
     const user = userEvent.setup()
     renderBoard()
@@ -74,10 +83,10 @@ describe('Board', () => {
     renderBoard()
     await user.type(screen.getByLabelText('ひつだん'), '新しい定型文')
     await user.click(screen.getByRole('button', { name: 'いまの文を定型文に追加' }))
-    expect(JSON.parse(localStorage.getItem(PHRASES_KEY)!)).toContain('新しい定型文')
+    expect(JSON.parse(localStorage.getItem(phrasesKey('ja'))!)).toContain('新しい定型文')
 
     await user.click(screen.getByRole('button', { name: '定型文を編集' }))
     await user.click(screen.getByRole('button', { name: '定型文「新しい定型文」を削除' }))
-    expect(JSON.parse(localStorage.getItem(PHRASES_KEY)!)).not.toContain('新しい定型文')
+    expect(JSON.parse(localStorage.getItem(phrasesKey('ja'))!)).not.toContain('新しい定型文')
   })
 })

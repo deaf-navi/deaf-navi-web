@@ -2,7 +2,7 @@ import { useSettings } from '../../state/settings'
 import { clearAllAppData } from '../../lib/storage'
 import { vibrate } from '../../lib/vibrate'
 import { APP_VERSION } from '../../version'
-import type { Lang, ThemeSetting } from '../../types'
+import type { ThemeSetting } from '../../types'
 
 function ToggleRow({
   id,
@@ -48,10 +48,6 @@ export function SettingsScreen() {
     { value: 'light', label: t('settings.theme.light') },
     { value: 'green', label: t('settings.theme.green') },
   ]
-  const langOptions: Array<{ value: Lang; label: string }> = [
-    { value: 'ja', label: '日本語' },
-    { value: 'en', label: 'English' },
-  ]
   const alertOptions: Array<{ value: number; label: string }> = [
     { value: 0, label: t('settings.alertDuration.manual') },
     { value: 8, label: t('settings.alertDuration.s8') },
@@ -94,26 +90,6 @@ export function SettingsScreen() {
           </div>
         </fieldset>
 
-        <fieldset className="setting-fieldset">
-          <legend className="card-heading">{t('settings.lang')}</legend>
-          <div className="radio-row">
-            {langOptions.map((opt) => (
-              <label
-                key={opt.value}
-                className={settings.lang === opt.value ? 'radio-option selected' : 'radio-option'}
-              >
-                <input
-                  type="radio"
-                  name="lang"
-                  value={opt.value}
-                  checked={settings.lang === opt.value}
-                  onChange={() => update({ lang: opt.value })}
-                />
-                {opt.label}
-              </label>
-            ))}
-          </div>
-        </fieldset>
       </section>
 
       <section className="card">

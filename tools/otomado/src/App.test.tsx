@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { act, render, screen } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import App from './App'
 
 describe('App shell', () => {
@@ -8,6 +9,29 @@ describe('App shell', () => {
     expect(screen.getByRole('heading', { name: 'おとまど' })).toBeInTheDocument()
     const nav = screen.getByRole('navigation', { name: 'アプリ内ナビゲーション' })
     expect(nav).toBeInTheDocument()
+  })
+
+  it('renders the complete app shell in English and updates page metadata', () => {
+    localStorage.setItem('otomado:settings:v1', JSON.stringify({ lang: 'en' }))
+    render(<App />)
+
+    expect(screen.getByRole('heading', { name: 'OtoMado' })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: 'App navigation' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Back to Deaf Navi Web' })).toBeInTheDocument()
+    expect(document.documentElement.lang).toBe('en')
+    expect(document.title).toBe('OtoMado — A window to see sound.')
+  })
+
+  it('switches and persists the app language from the home screen', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const languageGroup = screen.getByRole('group', { name: '言語 / Language' })
+    await user.click(within(languageGroup).getByRole('radio', { name: 'EN English' }))
+
+    expect(screen.getByRole('heading', { name: 'OtoMado' })).toBeInTheDocument()
+    expect(document.documentElement.lang).toBe('en')
+    expect(JSON.parse(localStorage.getItem('otomado:settings:v1')!)).toMatchObject({ lang: 'en' })
   })
 
   it('has a skip link as the first focusable element', () => {
@@ -37,6 +61,7 @@ describe('App shell', () => {
       window.dispatchEvent(new HashChangeEvent('hashchange'))
     })
     expect(screen.getByRole('heading', { name: 'ひつだん' })).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: '言語 / Language' })).toBeInTheDocument()
     const nav = screen.getByRole('navigation', { name: 'アプリ内ナビゲーション' })
     const current = nav.querySelector('[aria-current="page"]')
     expect(current).toHaveTextContent('ひつだん')
