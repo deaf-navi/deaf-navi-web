@@ -1,4 +1,4 @@
-export const GUIDE_LAST_REVIEWED = '2026-08-05';
+export const GUIDE_LAST_REVIEWED = '2026-08-14';
 
 export const GUIDE_SECTIONS = [
   {
@@ -126,8 +126,15 @@ export const GUIDE_SECTIONS = [
   {
     id: 'life',
     label: '知る・暮らす',
-    summary: 'デフスポーツの記録と暮らしのアクセシビリティ',
+    summary: '暮らしを助けるツールとデフスポーツの情報',
     items: [
+      {
+        title: 'CUP ORDER（カフェ注文支援ツール）',
+        summary: 'カフェの注文内容を画面にまとめ、店員さんへ見せたり指さしたりして伝えられます。',
+        detail: '商品、サイズ、カスタマイズ、店内・持ち帰り、返答方法などを選んで注文カードを作れる非公式の試作ツールです。入力内容と保存データは端末のブラウザ内で処理されます。取扱商品や追加料金は注文時に店舗へ確認してください。',
+        url: 'https://cup-order.github.io/index.html',
+        linkLabel: 'ツールを開く',
+      },
       {
         title: '東京2025デフリンピック 公式記録',
         summary: '全21競技の対戦結果、順位、記録を公式結果ページで確認できます。',

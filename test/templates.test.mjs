@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import { jsonLdScript, renderArticleCard } from '../src/templates/partials.mjs';
 import { renderHomePage } from '../src/templates/home.mjs';
+import { renderGuidePage } from '../src/templates/guide.mjs';
 
 const FILES = {
   articlesJson: 'articles.json',
@@ -81,4 +82,18 @@ test('renderHomePage: おとまどへのサイト内導線を表示する', () =
   assert.ok(html.includes('aria-current="page"><span>ニュース</span>'), 'ニュースの現在地表示がありません');
   assert.ok(html.indexOf('class="site-footer__update"') > html.indexOf('</main>'), '更新時刻が最下部へ移動していません');
   assert.equal((html.match(/class="site-footer__update"/g) ?? []).length, 1, '更新時刻が重複しています');
+});
+
+test('renderGuidePage: CUP ORDERを非公式ツールとして案内する', () => {
+  const html = renderGuidePage({ isDev: false, files: FILES });
+  const linkIndex = html.indexOf('href="https://cup-order.github.io/index.html"');
+  const cardStart = html.lastIndexOf('<article class="guide-card"', linkIndex);
+  const cardEnd = html.indexOf('</article>', linkIndex);
+  const card = html.slice(cardStart, cardEnd);
+
+  assert.ok(linkIndex >= 0 && cardStart >= 0, 'CUP ORDERの案内がありません');
+  assert.ok(card.includes('https://cup-order.github.io/index.html'), 'CUP ORDERへのリンクがありません');
+  assert.ok(card.includes('非公式の試作ツール'), '非公式ツールである説明がありません');
+  assert.ok(card.includes('ツールを開く'), 'CUP ORDERのリンク表示が適切ではありません');
+  assert.ok(!card.includes('公式情報を見る'), 'CUP ORDERを公式情報として案内しています');
 });

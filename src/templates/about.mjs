@@ -9,7 +9,6 @@ import {
 } from '../../config/site.mjs';
 import { GUIDE_LAST_REVIEWED } from '../guide-data.mjs';
 import { escapeHtml } from '../lib/text.mjs';
-import { formatDateJaJST } from '../lib/dates.mjs';
 import {
   EXTERNAL_ARROW_SVG,
   jsonLdScript,
@@ -24,7 +23,6 @@ export function renderAboutPage({ generatedAt, isDev, files }) {
   const aboutUrl = `${SITE_URL}${files.about}`;
   const indexHref = isDev ? './index-dev.html' : './';
   const robots = isDev ? 'noindex,nofollow,noarchive' : 'index,follow';
-  const reviewedLabel = formatDateJaJST(GUIDE_LAST_REVIEWED);
   const aboutJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
@@ -105,7 +103,7 @@ ${renderSiteHeader({
         </section>
         <section class="about-app__feature" aria-labelledby="about-app-guide">
           <h3 id="about-app-guide">暮らしのガイド</h3>
-          <p>制度、医療、教育、就労、災害・緊急時など、生活に必要な公式情報へすばやく移動できます。</p>
+          <p>制度、医療、教育、就労、災害・緊急時などの公式情報と、暮らしに役立つ実用ツールへすばやく移動できます。</p>
         </section>
         <section class="about-app__feature" aria-labelledby="about-app-tools">
           <h3 id="about-app-tools">情報保障ツール</h3>
@@ -116,6 +114,16 @@ ${renderSiteHeader({
 
     <section id="updates" aria-labelledby="about-updates">
       <h2 id="about-updates" class="about__h2">アップデート情報</h2>
+      <article class="release-note">
+        <header class="release-note__head">
+          <time datetime="2026-08-14">2026年8月14日</time>
+          <h3>暮らしのガイドにCUP ORDERを追加</h3>
+        </header>
+        <ul>
+          <li>カフェの注文内容を画面にまとめ、店員さんへ見せたり指さしたりして伝えられる注文支援ツールへの案内を追加</li>
+          <li>非公式の試作ツールであること、入力内容と保存データが端末のブラウザ内で処理されることを明記</li>
+        </ul>
+      </article>
       <article class="release-note">
         <header class="release-note__head">
           <time datetime="2026-08-14">2026年8月14日</time>
@@ -141,7 +149,7 @@ ${renderSiteHeader({
       </article>
       <article class="release-note">
         <header class="release-note__head">
-          <time datetime="${GUIDE_LAST_REVIEWED}">${escapeHtml(reviewedLabel)}</time>
+          <time datetime="2026-08-05">2026年8月5日</time>
           <h3>暮らしのガイドと公式イベント情報を追加</h3>
         </header>
         <ul>

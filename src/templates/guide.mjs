@@ -16,6 +16,7 @@ import {
 
 function renderGuideItem(item, sectionLabel) {
   const searchText = [sectionLabel, item.title, item.summary, item.detail].join(' ');
+  const linkLabel = item.linkLabel ?? '公式情報を見る';
   const recommended = item.recommended
     ? '\n            <span class="guide-card__badge">まず確認</span>'
     : '';
@@ -26,8 +27,8 @@ function renderGuideItem(item, sectionLabel) {
           </div>
           <p class="guide-card__summary">${escapeHtml(item.summary)}</p>
           <p class="guide-card__detail">${escapeHtml(item.detail)}</p>
-          <a class="guide-card__link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.title)}の公式情報を見る（新しいタブで開く）">
-            公式情報を見る <span aria-hidden="true">↗</span>
+          <a class="guide-card__link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.title)}の${escapeHtml(linkLabel)}（新しいタブで開く）">
+            ${escapeHtml(linkLabel)} <span aria-hidden="true">↗</span>
           </a>
         </article>`;
 }
@@ -35,7 +36,7 @@ function renderGuideItem(item, sectionLabel) {
 export function renderGuidePage({ isDev, files }) {
   const guideTitle = `暮らしのガイド | ${SITE_NAME}`;
   const guideUrl = `${SITE_URL}${files.guide}`;
-  const description = '聴覚障害・難聴・ろう者の暮らしに役立つ緊急通報、医療、教育、就労、電話サービス、デフスポーツの公的情報を検索できるガイド。';
+  const description = '聴覚障害・難聴・ろう者の暮らしに役立つ緊急通報、医療、教育、就労、電話サービス、デフスポーツの公的情報と実用ツールを検索できるガイド。';
   const totalItems = GUIDE_SECTIONS.reduce((total, section) => total + section.items.length, 0);
   const reviewedLabel = formatDateJaJST(GUIDE_LAST_REVIEWED);
   const sectionsHtml = GUIDE_SECTIONS.map((section) => `
@@ -91,7 +92,7 @@ ${renderHead({
 
 ${renderSiteHeader({
     subLabel: '暮らしのガイド',
-    lead: '緊急時、医療、教育、就労など、知りたい場面から公的な情報を探せます。',
+    lead: '緊急時、医療、教育、就労など、知りたい場面から公的情報や実用ツールを探せます。',
     current: 'guide',
   })}
 
@@ -117,7 +118,7 @@ ${renderSiteHeader({
 ${sectionsHtml}
     <p id="guide-empty" class="empty" role="status" hidden>該当するガイドがありません。別のキーワードで検索してください。</p>
 
-    <p class="guide-disclaimer">掲載内容は公式情報への入口です。制度・受付期間・対応地域は変更される場合があるため、申請や利用の前にリンク先の最新情報をご確認ください。</p>
+    <p class="guide-disclaimer">掲載内容は公的情報や実用ツールへの入口です。制度・受付期間・対応地域・サービス内容は変更される場合があるため、申請や利用の前にリンク先の最新情報をご確認ください。</p>
     <p class="about__back"><a href="./">← ニュースへ戻る</a></p>
   </main>
 
