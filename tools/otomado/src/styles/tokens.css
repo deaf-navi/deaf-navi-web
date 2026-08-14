@@ -1,0 +1,246 @@
+/* ============================================================
+   おとまど デザイントークン
+   - UDフォント優先（BIZ UDPGothic）
+   - 全テキスト色は背景に対し WCAG AA (4.5:1) 以上、主要テキストは 7:1 目標
+   ============================================================ */
+
+:root {
+  --font-sans:
+    'Zen Kaku Gothic New', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI',
+    'Noto Sans JP', system-ui, -apple-system, sans-serif;
+  --radius-card: 16px;
+  --radius-btn: 14px;
+  --nav-height: 4.4rem;
+}
+
+:root[data-theme='aurora'] {
+  color-scheme: light;
+  --bg: #e8f3f0;
+  --surface: rgb(255 255 255 / 76%);
+  --sunken: rgb(222 237 232 / 82%);
+  --text: #17322e;
+  --muted: #49645f;
+  --border: rgb(36 102 92 / 24%);
+  --accent: #08766d;
+  --accent-hover: #075f59;
+  --on-accent: #ffffff;
+  --accent-tint: #d5f0ea;
+  --danger: #ad352d;
+  --danger-hover: #8e2923;
+  --danger-tint: #fbe8e5;
+  --focus-ring: #075f59;
+  --live: #14804a;
+  --switch-off: #71827f;
+  --cap-bg: #071917;
+  --cap-fg: #ffffff;
+  --cap-interim: #ffe16b;
+  --cap-placeholder: #b3c5c0;
+  --surface-shadow: 0 16px 34px rgb(25 79 70 / 10%);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7faf8;
+  --surface: #ffffff;
+  --sunken: #eaf1ef;
+  --text: #17322e;
+  --muted: #526962;
+  --border: #cddbd6;
+  --accent: #08766d;
+  --accent-hover: #075f59;
+  --on-accent: #ffffff;
+  --accent-tint: #d8eee9;
+  --danger: #ad352d;
+  --danger-hover: #8e2923;
+  --danger-tint: #fbe8e5;
+  --focus-ring: #075f59;
+  --live: #15803d;
+  --switch-off: #71827f;
+  /* 字幕エリアはテーマに依らず高コントラスト（TV字幕方式） */
+  --cap-bg: #101216;
+  --cap-fg: #ffffff;
+  --cap-interim: #ffd54d;
+  --cap-placeholder: #9aa3b2;
+  --surface-shadow: none;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #111214;
+  --surface: #1b1d20;
+  --sunken: #090a0b;
+  --text: #f4f5f6;
+  --muted: #b8bdc3;
+  --border: #3a3d42;
+  --accent: #d4d7db;
+  --accent-hover: #f2f3f5;
+  --on-accent: #17181a;
+  --accent-tint: #2b2e32;
+  --danger: #ff8a80;
+  --danger-hover: #ffa49c;
+  --danger-tint: #42201d;
+  --focus-ring: #f2f3f5;
+  --live: #57cf88;
+  --switch-off: #51545a;
+  --cap-bg: #000000;
+  --cap-fg: #ffffff;
+  --cap-interim: #ffd54d;
+  --cap-placeholder: #90949a;
+  --surface-shadow: none;
+}
+
+:root[data-theme='green'] {
+  color-scheme: dark;
+  --bg: #102522;
+  --surface: #17322e;
+  --sunken: #0c1c19;
+  --text: #effaf6;
+  --muted: #b2c9c2;
+  --border: #3a5a54;
+  --accent: #76d8ca;
+  --accent-hover: #a0e7db;
+  --on-accent: #073a35;
+  --accent-tint: #164943;
+  --danger: #ff8a80;
+  --danger-hover: #ffa49c;
+  --danger-tint: #43201d;
+  --focus-ring: #a0e7db;
+  --live: #4ade80;
+  --switch-off: #4b515c;
+  --cap-bg: #000000;
+  --cap-fg: #ffffff;
+  --cap-interim: #ffd54d;
+  --cap-placeholder: #8a93a3;
+  --surface-shadow: none;
+}
+
+/* ---- カテゴリ色（チップ・履歴・全画面アラート共通） ----
+   ライト: 濃色文字 on 淡色地 / ダーク: 淡色文字 on 濃色地。すべて 4.5:1 以上 */
+
+.cat-chime,
+[data-category='chime'] {
+  --cat-fg: #1e40af;
+  --cat-tint: #dbeafe;
+}
+.cat-siren,
+[data-category='siren'] {
+  --cat-fg: #991b1b;
+  --cat-tint: #fee2e2;
+}
+.cat-baby,
+[data-category='baby'] {
+  --cat-fg: #9d174d;
+  --cat-tint: #fce7f3;
+}
+.cat-phone,
+[data-category='phone'] {
+  --cat-fg: #5b21b6;
+  --cat-tint: #ede9fe;
+}
+.cat-beep,
+[data-category='beep'] {
+  --cat-fg: #92400e;
+  --cat-tint: #fef3c7;
+}
+.cat-knock,
+[data-category='knock'] {
+  --cat-fg: #44403c;
+  --cat-tint: #e7e5e4;
+}
+.cat-dog,
+[data-category='dog'] {
+  --cat-fg: #166534;
+  --cat-tint: #dcfce7;
+}
+.cat-shout,
+[data-category='shout'] {
+  --cat-fg: #9a3412;
+  --cat-tint: #ffedd5;
+}
+.cat-horn,
+[data-category='horn'] {
+  --cat-fg: #854d0e;
+  --cat-tint: #fef9c3;
+}
+.cat-loud,
+[data-category='loud'] {
+  --cat-fg: #334155;
+  --cat-tint: #e2e8f0;
+}
+
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-chime,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='chime'] {
+  --cat-fg: #a5c0fc;
+  --cat-tint: #1c2f63;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-siren,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='siren'] {
+  --cat-fg: #fda4a4;
+  --cat-tint: #4f1414;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-baby,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='baby'] {
+  --cat-fg: #f9a8d4;
+  --cat-tint: #4a1230;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-phone,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='phone'] {
+  --cat-fg: #c4b5fd;
+  --cat-tint: #322053;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-beep,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='beep'] {
+  --cat-fg: #fcd34d;
+  --cat-tint: #453306;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-knock,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='knock'] {
+  --cat-fg: #d6d3d1;
+  --cat-tint: #33302e;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-dog,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='dog'] {
+  --cat-fg: #86efac;
+  --cat-tint: #10381f;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-shout,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='shout'] {
+  --cat-fg: #fdba74;
+  --cat-tint: #48220a;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-horn,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='horn'] {
+  --cat-fg: #fde047;
+  --cat-tint: #3f3305;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .cat-loud,
+:is(:root[data-theme='dark'], :root[data-theme='green']) [data-category='loud'] {
+  --cat-fg: #cbd5e1;
+  --cat-tint: #2b3646;
+}
+
+/* ---- ホームのツールカード色 ---- */
+.tool-card[data-tone='sound'] {
+  --tool-color: #1e40af;
+  --tool-tint: #dbeafe;
+}
+.tool-card[data-tone='captions'] {
+  --tool-color: #0f766e;
+  --tool-tint: #ccfbf1;
+}
+.tool-card[data-tone='board'] {
+  --tool-color: #9a3412;
+  --tool-tint: #ffedd5;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .tool-card[data-tone='sound'] {
+  --tool-color: #a5c0fc;
+  --tool-tint: #1c2f63;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .tool-card[data-tone='captions'] {
+  --tool-color: #5eead4;
+  --tool-tint: #0d3833;
+}
+:is(:root[data-theme='dark'], :root[data-theme='green']) .tool-card[data-tone='board'] {
+  --tool-color: #fdba74;
+  --tool-tint: #48220a;
+}

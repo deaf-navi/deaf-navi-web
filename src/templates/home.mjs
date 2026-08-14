@@ -2,8 +2,8 @@
  * トップページ（index.html）テンプレート 2.0。
  *
  * 情報設計:
- *   1. ヘッダー（ナビ・最終更新・表示設定）
- *   2. いま必要な情報（緊急通報・防災・制度・ガイドへの大きな導線）
+ *   1. ヘッダー（ナビ・表示設定）
+ *   2. いま必要な情報（緊急通報・防災・制度・ガイド・ツールへの大きな導線）
  *   3. 注目: 公式・専門団体の新着
  *   4. 検索・絞り込みツールバー
  *   5. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
@@ -19,8 +19,6 @@ import {
   SITE_NAME,
   SITE_TAGLINE,
   SITE_URL,
-  UPDATE_SCHEDULE_DETAIL,
-  UPDATE_SCHEDULE_LABEL,
 } from '../../config/site.mjs';
 import {
   CATEGORY_ORDER,
@@ -34,14 +32,13 @@ import { formatDateJST } from '../lib/dates.mjs';
 import {
   EXTERNAL_ARROW_SVG,
   ICONS,
-  LEAF_SVG,
   getSourceTier,
   jsonLdScript,
   renderArticleCard,
-  renderDisplayControls,
   renderFooter,
   renderHead,
   renderSkipLink,
+  renderSiteHeader,
 } from './partials.mjs';
 
 export const INITIAL_VISIBLE = 60;
@@ -171,7 +168,14 @@ function renderQuickAccess({ guideFile }) {
       href: `./${guideFile}`,
       icon: ICONS.book,
       title: '暮らしのガイド',
-      desc: '医療・教育・就労・電話サービスの公式情報',
+      desc: '医療・教育・就労・電話の公式情報',
+    },
+    {
+      href: './otomado/',
+      icon: ICONS.waveform,
+      tone: 'tool',
+      title: 'おとまど',
+      desc: '周囲の音・字幕・筆談を見やすく',
     },
   ];
   return `    <nav class="quick-access" aria-label="よく使う情報への近道">
@@ -330,29 +334,15 @@ ${renderHead({
 <body>
   ${renderSkipLink()}
 
-  <header class="site-header" role="banner">
-    <div class="site-header__leaf" aria-hidden="true">
-      ${LEAF_SVG}
-    </div>
-    <div class="container">
-      <div class="site-header__top">
-        <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${isDev ? 'Web DEV' : 'Web'}</span></h1>
-        ${renderDisplayControls()}
-      </div>
-      <p class="site-lead">${leadPrefix}聴覚障害・難聴・ろう者コミュニティに必要なニュースを、一次情報・専門情報・報道の区分とともに届けます。</p>
-      <p class="site-update-schedule">
-        ${UPDATE_SCHEDULE_LABEL} <span aria-hidden="true">•</span> ${UPDATE_SCHEDULE_DETAIL}
-        <span class="meta__sep" aria-hidden="true">/</span>
-        最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
-      </p>
-      <nav class="site-nav" aria-label="サイト内ページ">
-        <a class="site-nav__link is-current" href="./" aria-current="page">ニュース</a>
-        <a class="site-nav__link" href="./${files.guide}">暮らしのガイド</a>
-        <a class="site-nav__link" href="./deaf-navi-world-jp.html">World</a>
-        <a class="site-nav__link" href="./${files.about}">Deaf Naviについて</a>
-      </nav>
-    </div>
-  </header>
+${renderSiteHeader({
+    subLabel: isDev ? 'Web DEV' : 'Web',
+    lead: `${leadPrefix}聴覚障害・難聴・ろう者コミュニティに必要なニュースを、一次情報・専門情報・報道の区分とともに届けます。`,
+    current: 'news',
+    nav: {
+      guideHref: `./${files.guide}`,
+      aboutHref: `./${files.about}`,
+    },
+  })}
 
   <main id="main" class="container" role="main">
 ${renderQuickAccess({ guideFile: files.guide })}
@@ -407,8 +397,10 @@ ${articlesHtml}
 
 ${renderFooter({
     year: new Date().getFullYear(),
+    updateScheduleAt: generatedAt,
     links: [
       { href: `./${files.guide}`, label: '暮らしのガイド' },
+      { href: './otomado/', label: 'おとまど' },
       { href: `./${files.about}#about-policy`, label: '選定方針' },
       { href: `${SITE_URL}${files.feed}`, label: 'RSSフィード' },
       { href: `${SITE_URL}${files.sitemapHtml}`, label: 'サイトマップ' },

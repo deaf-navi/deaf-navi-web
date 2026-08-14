@@ -11,11 +11,12 @@ import { GUIDE_LAST_REVIEWED } from '../guide-data.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJaJST } from '../lib/dates.mjs';
 import {
+  EXTERNAL_ARROW_SVG,
   jsonLdScript,
   renderFooter,
   renderHead,
   renderSkipLink,
-  renderSubHeader,
+  renderSiteHeader,
 } from './partials.mjs';
 
 export function renderAboutPage({ generatedAt, isDev, files }) {
@@ -35,6 +36,15 @@ export function renderAboutPage({ generatedAt, isDev, files }) {
     dateModified: generatedAt,
     lastReviewed: GUIDE_LAST_REVIEWED,
     isPartOf: { '@id': `${SITE_URL}#website` },
+    mainEntity: {
+      '@type': 'MobileApplication',
+      name: 'Deaf Navi',
+      operatingSystem: 'iOS',
+      applicationCategory: 'LifestyleApplication',
+      url: APP_STORE_URL,
+      image: `${SITE_URL}deaf-navi-ios-app-icon.png`,
+      description: '聴覚障害のある方、ろう者・難聴者、その家族や支援者のために、制度・イベント・ニュースとコミュニケーション支援をまとめたiOSアプリ。',
+    },
   };
 
   return `<!DOCTYPE html>
@@ -42,7 +52,7 @@ export function renderAboutPage({ generatedAt, isDev, files }) {
 <head>
 ${renderHead({
     title: aboutTitle,
-    description: 'Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト、情報源、更新頻度、運営者（TAMA）についてのご案内。聴覚障害・ろう者コミュニティ向けニュースキュレーションサイトのポリシー・背景情報。',
+    description: 'Deaf Navi Web、Deaf Navi World、iOSアプリ「Deaf Navi」の機能、コンセプト、情報源、更新頻度、運営者についてのご案内。',
     canonical: isDev ? `${SITE_URL}about.html` : aboutUrl,
     robots,
     ogType: 'article',
@@ -55,10 +65,15 @@ ${renderHead({
 <body>
   ${renderSkipLink()}
 
-${renderSubHeader({
-    crumbLabel: `Deaf Naviについて${isDev ? ' DEV' : ''}`,
-    title: `Deaf Naviについて${isDev ? ' DEV' : ''}`,
-    homeHref: indexHref,
+${renderSiteHeader({
+    subLabel: `について${isDev ? ' DEV' : ''}`,
+    lead: 'Web版・World・iOSアプリの役割、選定方針、更新の仕組みをご案内します。',
+    current: 'about',
+    nav: {
+      newsHref: indexHref,
+      guideHref: `./${files.guide}`,
+      aboutHref: `./${files.about}`,
+    },
   })}
 
   <main id="main" class="container about" role="main">
@@ -67,10 +82,51 @@ ${renderSubHeader({
       <p>Deaf Navi Web は、<strong>聴覚障害・難聴・ろう者・中途失聴者</strong>のコミュニティに関わる情報を、信頼できる情報源から自動収集・分類してお届けする無料ニュースキュレーションサイトです。</p>
       <p>国内ニュースを扱う Deaf Navi Web に加え、海外ニュースを扱う <a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版）と <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）を公開しています。情報保障・手話・制度・医療・教育・技術・防災・文化・デフスポーツなど、暮らしと権利に直結するトピックを幅広くカバーします。</p>
       <p><a href="./${files.guide}">暮らしのガイド</a>では、アプリ版と同じ方針で、緊急通報・医療・教育・就労・電話サービスなどの公式情報を探せます。</p>
+      <p><a href="./otomado/">おとまど</a>は、周囲の音の可視化、リアルタイム字幕、筆談ボードをひとつにまとめた、Deaf Navi Web の無料情報保障ツールです。</p>
+    </section>
+
+    <section id="ios-app" class="about-app" aria-labelledby="about-ios-app">
+      <div class="about-app__intro">
+        <img class="about-app__icon" src="./deaf-navi-ios-app-icon.png" width="160" height="160" loading="lazy" decoding="async" alt="Deaf Navi iOSアプリのアイコン">
+        <div class="about-app__copy">
+          <p class="about-app__eyebrow" lang="en">Deaf Navi for iOS</p>
+          <h2 id="about-ios-app">情報とコミュニケーション支援を、いつでも手元に。</h2>
+          <p class="about-app__lead">聴覚障害のある方、ろう者・難聴者、その家族や支援者のために、制度・イベント・ニュースと日常のコミュニケーション支援をひとつにまとめた情報アプリです。</p>
+          <p>Deaf Navi Webで選定した国内・海外ニュースをアプリでも確認でき、暮らしのガイドや情報保障ツールは必要な場面ですぐに開けます。</p>
+          <a class="about-app__store-link" href="${APP_STORE_URL}" target="_blank" rel="noopener noreferrer" aria-label="App StoreでDeaf Naviを開く（新しいタブで開く）">
+            App Storeで見る ${EXTERNAL_ARROW_SVG}
+          </a>
+        </div>
+      </div>
+      <div class="about-app__features" aria-label="iOSアプリの主な機能">
+        <section class="about-app__feature" aria-labelledby="about-app-news">
+          <h3 id="about-app-news">ニュース・イベント</h3>
+          <p>国内ニュース、Deaf Navi World、関係団体のイベント情報をまとめて確認できます。</p>
+        </section>
+        <section class="about-app__feature" aria-labelledby="about-app-guide">
+          <h3 id="about-app-guide">暮らしのガイド</h3>
+          <p>制度、医療、教育、就労、災害・緊急時など、生活に必要な公式情報へすばやく移動できます。</p>
+        </section>
+        <section class="about-app__feature" aria-labelledby="about-app-tools">
+          <h3 id="about-app-tools">情報保障ツール</h3>
+          <p>緊急カード、コミュニケーションボード、筆談・音声、周囲の音などを日常の場面に合わせて使えます。</p>
+        </section>
+      </div>
     </section>
 
     <section id="updates" aria-labelledby="about-updates">
       <h2 id="about-updates" class="about__h2">アップデート情報</h2>
+      <article class="release-note">
+        <header class="release-note__head">
+          <time datetime="2026-08-14">2026年8月14日</time>
+          <h3>情報保障ツール「おとまど」を追加</h3>
+        </header>
+        <ul>
+          <li>周囲の音を画面と振動で知らせる「おとセンサー」、リアルタイム字幕、筆談ボードを追加</li>
+          <li>Deaf Navi Web の表示設計に合わせ、Aurora・ダーク・ライト・グリーンの4テーマに対応</li>
+          <li>音検知は端末内処理を基本とし、字幕の音声処理方式は利用ブラウザにより異なることを画面内で案内</li>
+        </ul>
+      </article>
       <article class="release-note">
         <header class="release-note__head">
           <time datetime="2026-08-13">2026年8月13日</time>
@@ -175,14 +231,14 @@ ${renderSubHeader({
 
     <section aria-labelledby="about-operator">
       <h2 id="about-operator" class="about__h2">運営</h2>
-      <p>Deaf Navi Web は <strong>TAMA</strong> が運営しています。本サイトは Deaf Navi iOS アプリのニュースキュレーション機能を Web 版として提供するものです。</p>
-      <p>アプリ版: <a href="${APP_STORE_URL}" target="_blank" rel="noopener noreferrer">App Store で Deaf Navi を開く</a></p>
+      <p>Deaf Navi Web とiOSアプリ「Deaf Navi」は <strong>TAMA</strong> が運営しています。Web版で選定したニュースや暮らしの情報をアプリと共有し、それぞれの利用場面に合った形で提供しています。</p>
     </section>
 
     <section aria-labelledby="about-feeds">
       <h2 id="about-feeds" class="about__h2">配信・共有</h2>
       <ul>
         <li><a href="./${files.guide}">暮らしのガイド</a>（緊急通報・医療・教育・就労・電話サービス）</li>
+        <li><a href="./otomado/">おとまど</a>（音の可視化・リアルタイム字幕・筆談ボード）</li>
         <li><a href="${SITE_URL}${files.feed}">RSS フィード</a>（最新50件）</li>
         <li><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版） / <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）</li>
         <li><a href="${SITE_URL}feed-world.xml">World-JP RSS フィード</a> / <a href="${SITE_URL}feed-world-original.xml">World-Original RSS フィード</a></li>
@@ -193,7 +249,10 @@ ${renderSubHeader({
     <p class="about__back"><a href="${indexHref}">← トップページへ戻る</a></p>
   </main>
 
-${renderFooter({ year: new Date().getFullYear() })}
+${renderFooter({
+    year: new Date().getFullYear(),
+    updateScheduleAt: generatedAt,
+  })}
 
   <script src="./ui-controls.js" defer></script>
 </body>

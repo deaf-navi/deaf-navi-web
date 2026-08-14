@@ -66,3 +66,19 @@ test('renderArticleCard: HTML特殊文字を含むフィールドが全てエス
   assert.ok(!html.includes('<script>x</script>'), 'summary未エスケープ');
   assert.ok(html.includes('O&#39;Reilly &amp; &lt;Co&gt;'), 'sourceName未エスケープ');
 });
+
+test('renderHomePage: おとまどへのサイト内導線を表示する', () => {
+  const html = renderHomePage(
+    { generatedAt: new Date().toISOString(), count: 1, articles: [article({})] },
+    { isDev: false, files: FILES, keywords: 'k' },
+  );
+  assert.ok(html.includes('quick-access__item--tool'), 'おとまどのクイックアクセスカードがありません');
+  assert.ok(html.includes('href="./otomado/"'), 'おとまどの相対リンクがありません');
+  assert.ok(!html.includes('class="tool-extension"'), '旧おとまど導線が残っています');
+  assert.equal((html.match(/class="quick-access__item/g) ?? []).length, 5, 'クイックアクセスが5枚ではありません');
+  assert.ok(html.indexOf('href="./deaf-navi-world-jp.html"') < html.indexOf('href="./guide.html"'), '暮らしのガイドがWorldの右側にありません');
+  assert.ok(html.includes('site-nav__link--world'), 'World導線の専用表示がありません');
+  assert.ok(html.includes('aria-current="page"><span>ニュース</span>'), 'ニュースの現在地表示がありません');
+  assert.ok(html.indexOf('class="site-footer__update"') > html.indexOf('</main>'), '更新時刻が最下部へ移動していません');
+  assert.equal((html.match(/class="site-footer__update"/g) ?? []).length, 1, '更新時刻が重複しています');
+});

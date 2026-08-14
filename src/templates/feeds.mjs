@@ -32,6 +32,7 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
     })),
     { loc: `${SITE_URL}${files.about}`, lastmod, changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}${files.guide}`, lastmod: GUIDE_LAST_REVIEWED, changefreq: 'monthly', priority: '0.8' },
+    { loc: `${SITE_URL}otomado/`, lastmod, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE_URL}${files.sitemapHtml}`, lastmod, changefreq: 'weekly', priority: '0.4' },
     { loc: `${SITE_URL}deaf-navi-world-jp.html`, lastmod, changefreq: 'daily', priority: '0.8' },
     { loc: `${SITE_URL}deaf-navi-world-original.html`, lastmod, changefreq: 'daily', priority: '0.7' },
@@ -165,6 +166,13 @@ ${renderSubHeader({
           <li><a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a><span>海外ニュースの原文版</span></li>
           <li><a href="./feed-world.xml">World-JP RSSフィード</a><span>翻訳版の最新フィード</span></li>
           <li><a href="./feed-world-original.xml">World-Original RSSフィード</a><span>原文版の最新フィード</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-tools">
+        <h2 id="sitemap-tools">情報保障ツール</h2>
+        <ul>
+          <li><a href="./otomado/">おとまど</a><span>音の可視化・リアルタイム字幕・筆談ボード</span></li>
         </ul>
       </section>
 

@@ -43,7 +43,7 @@ async function fileExists(file) {
   }
 }
 
-const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml, oldIndexHtml, uiControlsJs] = await Promise.all([
+const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml, oldIndexHtml, uiControlsJs, otomadoHtml, otomadoManifestRaw, otomadoSwJs] = await Promise.all([
   readFile(join(docs, 'articles.json'), 'utf8'),
   readFile(join(docs, 'index.html'), 'utf8'),
   readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8'),
@@ -53,6 +53,9 @@ const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml,
   readFile(join(docs, 'sitemap.xml'), 'utf8'),
   readFile(join(docs, 'index-old.html'), 'utf8'),
   readFile(join(docs, 'ui-controls.js'), 'utf8'),
+  readFile(join(docs, 'otomado', 'index.html'), 'utf8'),
+  readFile(join(docs, 'otomado', 'manifest.webmanifest'), 'utf8'),
+  readFile(join(docs, 'otomado', 'sw.js'), 'utf8'),
 ]);
 
 /* ---------- articles.json（iOS連携の入力スキーマ） ---------- */
@@ -104,6 +107,9 @@ for (const marker of [
   'id="filter-reset"',
   'data-source-tier=',
   'class="quick-access"',
+  'quick-access__item--tool',
+  'class="site-footer__update"',
+  'href="./otomado/"',
   'SearchAction',
   'rel="canonical"',
   'rel="manifest"',
@@ -118,15 +124,25 @@ for (const marker of [
 
 /* ---------- World ページ（互換導線） ---------- */
 
-assert(worldJpHtml.includes('class="world-home-link"'), 'World-JP に国内版への導線がありません。');
+assert(worldJpHtml.includes('href="./index.html"'), 'World-JP に国内版への導線がありません。');
+assert(worldJpHtml.includes('site-nav__link--world is-current'), 'World-JP の共通ナビに現在地表示がありません。');
 assert(worldJpHtml.includes('href="./guide.html"'), 'World-JP に暮らしのガイドへの導線がありません。');
+assert(worldJpHtml.includes('href="./otomado/"'), 'World-JP におとまどへの導線がありません。');
 assert(worldOriginalHtml.includes('href="./guide.html"'), 'World-Original にGuideへの導線がありません。');
+assert(worldOriginalHtml.includes('href="./otomado/"'), 'World-Original にOtoMadoへの導線がありません。');
 
 /* ---------- About / ガイド（データから導出して検証） ---------- */
 
 assert(aboutHtml.includes('id="about-policy"'), 'About に選定方針がありません。');
 assert(aboutHtml.includes('Deaf Navi Web 2.0'), 'About に 2.0 の更新履歴がありません。');
+assert(aboutHtml.includes('href="./otomado/"'), 'About におとまどへの導線がありません。');
+assert(aboutHtml.includes('id="ios-app"'), 'About にiOSアプリ紹介がありません。');
+assert(aboutHtml.includes('deaf-navi-ios-app-icon.png'), 'About にiOSアプリアイコンがありません。');
+assert(aboutHtml.includes('https://apps.apple.com/jp/app/deaf-navi/id6761352199'), 'About にApp Store導線がありません。');
+assert(await fileExists('deaf-navi-ios-app-icon.png'), 'iOSアプリアイコンが公開ディレクトリにありません。');
+assert(aboutHtml.includes('class="site-footer__update"'), 'About の最下部に更新時刻がありません。');
 assert(guideHtml.includes('id="guide-search"'), '暮らしのガイドに検索欄がありません。');
+assert(guideHtml.includes('site-nav__link is-current') && guideHtml.includes('aria-current="page"><span>暮らしのガイド</span>'), '暮らしのガイドの共通ナビに現在地表示がありません。');
 
 const expectedGuideItems = GUIDE_SECTIONS.reduce((total, section) => total + section.items.length, 0);
 const actualGuideItems = (guideHtml.match(/data-guide-item/g) ?? []).length;
@@ -142,6 +158,7 @@ for (const section of GUIDE_SECTIONS) {
 
 assert(sitemapXml.includes(`<loc>https://tamas-hub.github.io/deaf-navi-web/about.html</loc>`), 'サイトマップにAboutがありません。');
 assert(sitemapXml.includes(`<loc>https://tamas-hub.github.io/deaf-navi-web/guide.html</loc>`), 'サイトマップに暮らしのガイドがありません。');
+assert(sitemapXml.includes(`<loc>https://tamas-hub.github.io/deaf-navi-web/otomado/</loc>`), 'サイトマップにおとまどがありません。');
 assert(oldIndexHtml.includes('archive-index') || oldIndexHtml.includes('アーカイブ対象の記事はまだありません'), 'アーカイブ目次が生成されていません。');
 
 // 目次に載せた月別ページが実在するか
@@ -159,6 +176,36 @@ for (const file of ['manifest.webmanifest', 'sw.js', 'offline.html', 'favicon.sv
 const swJs = await readFile(join(docs, 'sw.js'), 'utf8');
 assert(!swJs.includes('__BUILD_ID__'), 'sw.js のビルドIDが未置換です。');
 assert(uiControlsJs.includes('serviceWorker'), 'ui-controls.js にService Worker登録がありません。');
+
+/* ---------- おとまど ---------- */
+
+assert(otomadoHtml.includes('id="root"'), 'おとまどのReactマウント要素がありません。');
+assert(otomadoHtml.includes('rel="manifest"'), 'おとまどのmanifest参照がありません。');
+assert(otomadoHtml.includes('document.documentElement.dataset.theme'), 'おとまどにテーマの初期適用処理がありません。');
+for (const theme of ['aurora', 'dark', 'light', 'green']) {
+  assert(otomadoHtml.includes(`'${theme}'`), `おとまどの初期適用処理に ${theme} テーマがありません。`);
+}
+assert(otomadoSwJs.includes('otomado-app-'), 'おとまどのService Workerキャッシュ名がありません。');
+assert(
+  otomadoSwJs.includes("k.startsWith(CACHE_PREFIX)"),
+  'おとまどのService Workerが他アプリのキャッシュを削除しないよう限定されていません。',
+);
+const otomadoManifest = JSON.parse(otomadoManifestRaw);
+assert(otomadoManifest.start_url === './', 'おとまどのstart_urlが相対パスではありません。');
+assert(otomadoManifest.scope === './', 'おとまどのPWA scopeが相対パスではありません。');
+
+const otomadoAssetPaths = [
+  ...otomadoHtml.matchAll(/(?:src|href)="\.\/(assets\/[^"?#]+\.(?:js|css))"/g),
+].map((match) => `otomado/${match[1]}`);
+assert(otomadoAssetPaths.length >= 2, 'おとまどのビルド済みJS/CSSがindex.htmlから参照されていません。');
+for (const asset of otomadoAssetPaths) {
+  assert(await fileExists(asset), `おとまどのビルドアセットがありません: ${asset}`);
+}
+assert(!/Shippori|Mincho|Noto Serif|font-serif/i.test(otomadoHtml), 'おとまどのHTMLに明朝系フォント指定が残っています。');
+for (const asset of otomadoAssetPaths.filter((path) => path.endsWith('.css'))) {
+  const css = await readFile(join(docs, asset), 'utf8');
+  assert(!/Shippori|Mincho|Noto Serif|font-serif/i.test(css), `おとまどのCSSに明朝系フォント指定が残っています: ${asset}`);
+}
 
 /* ---------- 結果 ---------- */
 

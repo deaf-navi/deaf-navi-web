@@ -1,0 +1,22 @@
+{
+  "name": "おとまど — 音を、見える窓へ。",
+  "short_name": "おとまど",
+  "description": "ろう者・難聴者のための無料の情報保障ツールボックス。音の見張り・リアルタイム字幕・筆談ボード。",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e8f3f0",
+  "theme_color": "#08766d",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    {
+      "src": "icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

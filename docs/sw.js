@@ -19,6 +19,7 @@ const PRECACHE_URLS = [
   './app.js',
   './guide.html',
   './guide.js',
+  './otomado/',
   './offline.html',
   './favicon.svg',
   './manifest.webmanifest',

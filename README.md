@@ -18,6 +18,7 @@
 | 情報源の透明性 | 全記事に「一次情報 / 専門情報 / 報道・発見 / 関連媒体」の選定区分と取得方法を表示 |
 | 表示設定 | ダーク表示（OS連動＋手動）・文字サイズ3段階（高齢ユーザー配慮） |
 | PWA | ホーム画面追加・オフライン閲覧（暮らしのガイドをプリキャッシュ）・最終更新時刻の明示 |
+| 情報保障ツール | `otomado/` で音の可視化・リアルタイム字幕・筆談ボードを提供。React/Vite依存はツール配下に隔離 |
 | 軽量化 | トップは初期60件のみサーバ生成し全件はJSONを遅延取得（v1比 約1/5 の容量） |
 | アクセシビリティ | WCAG 2.2 AA コントラスト達成・タッチターゲット44px・キーボード操作・スキップリンク |
 
@@ -55,6 +56,7 @@ deaf-navi-web/
 │   ├── verify-world.mjs       # World版の公開前検証（fail-soft）
 │   └── codex-app-server*.mjs  # VPS側 Codex App Server（World-JP日本語後編集用・本体はVPSで稼働）
 ├── test/                      # node --test（unit/integration/iOS互換regression）
+├── tools/otomado/             # 情報保障PWA「おとまど」（React/Vite・独立package）
 ├── docs/                      # ★GitHub Pages 公開ルート（自動生成物・直接編集しない）
 │   ├── index.html             # トップ（初期60件SSR）
 │   ├── articles.json          # 国内キュレーション結果（iOS API の入力・スキーマ互換必須）
@@ -62,6 +64,7 @@ deaf-navi-web/
 │   ├── index-old.html         # アーカイブ目次 → archive/YYYY-MM.html へ月別分割
 │   ├── app/v1/                # iOSアプリ同期JSON（互換契約: dev-docs/architecture.md）
 │   ├── manifest.webmanifest / sw.js / offline.html / icons/  # PWA
+│   ├── otomado/               # tools/otomado の本番ビルド出力
 │   └── deaf-navi-world-*.html # World版ページ
 ├── dev-docs/                  # 開発者向けドキュメント（docs/はPages公開用のため分離）
 │   ├── architecture.md        # アーキテクチャと互換契約
@@ -85,6 +88,10 @@ npm run serve         # http://localhost:5173 で確認
 npm run generate      # curate + build + verify（Actionsと同じ）
 npm run generate:world # World版一式（Codex App Serverなしでも動作、後編集はスキップされる）
 npm run build:app-api # docs/app/v1 のアプリ同期JSON生成
+npm ci --prefix tools/otomado  # おとまど依存を初回セットアップ
+npm run test:otomado           # おとまどのVitest
+npm run build:otomado          # おとまどを docs/otomado/ へビルド
+npm run preview:otomado        # おとまどを含むdocs/をローカル配信
 ```
 
 ## 情報源・カテゴリの追加方法

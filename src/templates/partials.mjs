@@ -7,6 +7,8 @@ import {
   CF_ANALYTICS_SNIPPET,
   SITE_NAME,
   SITE_URL,
+  UPDATE_SCHEDULE_DETAIL,
+  UPDATE_SCHEDULE_LABEL,
 } from '../../config/site.mjs';
 import { CATEGORY_UI, SOURCE_TIER_UI } from '../../config/categories.mjs';
 import { REGION_UI } from '../../config/regions.mjs';
@@ -46,6 +48,8 @@ export const ICONS = {
   sun: icon('<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.9 19.1 1.4-1.4"/><path d="m17.7 6.3 1.4-1.4"/>', { size: 16 }),
   /** 地球（World導線） */
   globe: icon('<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>', { size: 16 }),
+  /** おとまど（音の可視化ツール） */
+  waveform: icon('<path d="M3 12h2"/><path d="M7 8v8"/><path d="M11 4v16"/><path d="M15 7v10"/><path d="M19 10v4"/><path d="M22 12h-1"/>'),
 };
 
 /**
@@ -144,6 +148,60 @@ export function renderDisplayControls() {
       </div>`;
 }
 
+/** 主要ページ間を移動する共通ナビゲーション。 */
+export function renderSiteNav({
+  current = '',
+  newsHref = './',
+  worldHref = './deaf-navi-world-jp.html',
+  guideHref = './guide.html',
+  toolHref = './otomado/',
+  aboutHref = './about.html',
+  locale = 'ja',
+} = {}) {
+  const isEnglish = locale === 'en';
+  const items = [
+    { key: 'news', href: newsHref, label: isEnglish ? 'Japan News' : 'ニュース' },
+    { key: 'world', href: worldHref, label: 'World', className: 'site-nav__link--world', icon: ICONS.globe },
+    { key: 'guide', href: guideHref, label: isEnglish ? 'Guide' : '暮らしのガイド' },
+    { key: 'tool', href: toolHref, label: isEnglish ? 'OtoMado' : 'おとまど', className: 'site-nav__link--tool' },
+    { key: 'about', href: aboutHref, label: isEnglish ? 'About Deaf Navi' : 'Deaf Naviについて' },
+  ];
+  const links = items.map((item) => {
+    const isCurrent = item.key === current;
+    const classes = ['site-nav__link', item.className, isCurrent ? 'is-current' : ''].filter(Boolean).join(' ');
+    const iconHtml = item.icon ? `<span class="site-nav__icon">${item.icon}</span>` : '';
+    return `<a class="${classes}" href="${escapeHtml(item.href)}"${isCurrent ? ' aria-current="page"' : ''}>${iconHtml}<span>${escapeHtml(item.label)}</span></a>`;
+  }).join('\n        ');
+  return `<nav class="site-nav" aria-label="${isEnglish ? 'Deaf Navi pages' : 'サイト内ページ'}">
+        ${links}
+      </nav>`;
+}
+
+/** トップ・World・暮らしのガイドで共有するブランドヘッダー。 */
+export function renderSiteHeader({
+  subLabel,
+  lead,
+  current,
+  nav = {},
+  modifier = '',
+  extra = '',
+}) {
+  const modifierClass = modifier ? ` ${modifier}` : '';
+  return `  <header class="site-header${modifierClass}" role="banner">
+    <div class="site-header__leaf" aria-hidden="true">
+      ${LEAF_SVG}
+    </div>
+    <div class="container">
+      <div class="site-header__top">
+        <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${escapeHtml(subLabel)}</span></h1>
+        ${renderDisplayControls()}
+      </div>
+      <p class="site-lead">${escapeHtml(lead)}</p>
+      ${renderSiteNav({ current, ...nav })}
+${extra ? `      ${extra}\n` : ''}    </div>
+  </header>`;
+}
+
 /** スリムヘッダー（サブページ用・パンくず＋表示設定付き） */
 export function renderSubHeader({ crumbLabel, title, lead = '', homeHref = './' }) {
   return `  <header class="site-header site-header--slim" role="banner">
@@ -160,13 +218,20 @@ ${lead ? `      <p class="site-lead">${escapeHtml(lead)}</p>\n` : ''}    </div>
   </header>`;
 }
 
-export function renderFooter({ year, links = [] }) {
+export function renderFooter({ year, links = [], updateScheduleAt = '' }) {
   const linksHtml = links.length
     ? `      <p>${links.map(({ href, label }) => `<a href="${href}">${escapeHtml(label)}</a>`).join(' ・ ')}</p>\n`
     : '';
+  const updateHtml = updateScheduleAt
+    ? `      <p class="site-footer__update">
+        ${UPDATE_SCHEDULE_LABEL} <span aria-hidden="true">•</span> ${UPDATE_SCHEDULE_DETAIL}
+        <span class="meta__sep" aria-hidden="true">/</span>
+        最終更新: <time datetime="${escapeHtml(updateScheduleAt)}">${escapeHtml(formatDateJST(updateScheduleAt))}</time>
+      </p>\n`
+    : '';
   return `  <footer class="site-footer" role="contentinfo">
     <div class="container">
-${linksHtml}      <hr class="site-footer__divider" aria-hidden="true">
+${linksHtml}${updateHtml}      <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; ${year} TAMA.</span>
         <span class="dot" aria-hidden="true"></span>

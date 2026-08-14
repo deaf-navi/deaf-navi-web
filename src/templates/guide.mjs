@@ -11,7 +11,7 @@ import {
   renderFooter,
   renderHead,
   renderSkipLink,
-  renderSubHeader,
+  renderSiteHeader,
 } from './partials.mjs';
 
 function renderGuideItem(item, sectionLabel) {
@@ -89,10 +89,10 @@ ${renderHead({
 <body>
   ${renderSkipLink()}
 
-${renderSubHeader({
-    crumbLabel: '暮らしのガイド',
-    title: '暮らしのガイド',
+${renderSiteHeader({
+    subLabel: '暮らしのガイド',
     lead: '緊急時、医療、教育、就労など、知りたい場面から公的な情報を探せます。',
+    current: 'guide',
   })}
 
   <main id="main" class="container guide" role="main">
@@ -125,6 +125,7 @@ ${renderFooter({
     year: new Date().getFullYear(),
     links: [
       { href: './deaf-navi-world-jp.html', label: 'Deaf Navi World-JP' },
+      { href: './otomado/', label: 'おとまど' },
       { href: './about.html', label: 'Deaf Naviについて' },
     ],
   })}

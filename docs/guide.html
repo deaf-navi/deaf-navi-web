@@ -172,7 +172,7 @@
 <body>
   <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
 
-  <header class="site-header site-header--slim" role="banner">
+  <header class="site-header" role="banner">
     <div class="site-header__leaf" aria-hidden="true">
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
@@ -183,9 +183,8 @@
       </svg>
     </div>
     <div class="container">
-      <p class="site-breadcrumb"><a href="./">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>暮らしのガイド</span></p>
       <div class="site-header__top">
-        <h1 class="site-title site-title--small"><span class="site-title__brand">暮らしのガイド</span></h1>
+        <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">暮らしのガイド</span></h1>
         <div class="display-controls" data-display-controls hidden>
         <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
           <span class="display-controls__icon" data-theme-icon><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><span data-theme-label>ダーク表示</span>
@@ -196,6 +195,13 @@
       </div>
       </div>
       <p class="site-lead">緊急時、医療、教育、就労など、知りたい場面から公的な情報を探せます。</p>
+      <nav class="site-nav" aria-label="サイト内ページ">
+        <a class="site-nav__link" href="./"><span>ニュース</span></a>
+        <a class="site-nav__link site-nav__link--world" href="./deaf-navi-world-jp.html"><span class="site-nav__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><span>World</span></a>
+        <a class="site-nav__link is-current" href="./guide.html" aria-current="page"><span>暮らしのガイド</span></a>
+        <a class="site-nav__link site-nav__link--tool" href="./otomado/"><span>おとまど</span></a>
+        <a class="site-nav__link" href="./about.html"><span>Deaf Naviについて</span></a>
+      </nav>
     </div>
   </header>
 
@@ -484,7 +490,7 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a> ・ <a href="./about.html">Deaf Naviについて</a></p>
+      <p><a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a> ・ <a href="./otomado/">おとまど</a> ・ <a href="./about.html">Deaf Naviについて</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; 2026 TAMA.</span>

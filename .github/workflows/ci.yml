@@ -30,6 +30,15 @@ jobs:
       - name: Unit / integration / iOS-compat tests
         run: npm test
 
+      - name: Install OtoMado dependencies
+        run: npm ci --prefix tools/otomado
+
+      - name: Test OtoMado
+        run: npm run test:otomado
+
+      - name: Build OtoMado
+        run: npm run build:otomado
+
       - name: Build site from committed data
         run: npm run build
 

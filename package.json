@@ -10,14 +10,17 @@
     "build": "node src/build.mjs",
     "build:world": "node src/world-build.mjs",
     "build:app-api": "node src/app-api-build.mjs",
+    "build:otomado": "npm --prefix tools/otomado run build",
     "verify": "node scripts/verify-site.mjs",
     "test": "node --test test/text.test.mjs test/feed-parser.test.mjs test/curation.test.mjs test/world-relevance.test.mjs test/templates.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs",
+    "test:otomado": "npm --prefix tools/otomado test",
     "codex-app-server": "node scripts/codex-app-server.mjs",
     "codex-app-server:smoke": "node scripts/codex-app-server-smoke-test.mjs",
     "generate": "npm run curate && npm run build && npm run verify",
     "verify:world": "node scripts/verify-world.mjs",
     "generate:world": "npm run curate:world && npm run build:world && npm run verify:world",
-    "serve": "node src/serve.mjs"
+    "serve": "node src/serve.mjs",
+    "preview:otomado": "npm run build:otomado && npm run serve"
   },
   "engines": {
     "node": ">=20"

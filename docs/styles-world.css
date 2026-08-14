@@ -302,12 +302,8 @@ input, select {
   margin-top: var(--s-2);
   color: var(--text-secondary);
   max-width: 46em;
-}
-
-.site-update-schedule {
-  margin-top: var(--s-2);
-  font-size: 0.9rem;
-  color: var(--text-tertiary);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .site-breadcrumb {
@@ -327,6 +323,7 @@ input, select {
 .site-nav__link {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   min-height: var(--touch-target);
   padding: var(--s-2) var(--s-4);
   border: 1px solid var(--hairline);
@@ -347,6 +344,37 @@ input, select {
   border-color: var(--accent-deep);
   color: var(--text-on-accent);
   font-weight: 700;
+}
+
+.site-nav__icon,
+.site-nav__icon svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.site-nav__link--world {
+  border-color: color-mix(in srgb, var(--signal-gold) 42%, transparent);
+  background: var(--signal-gold-soft);
+  color: var(--signal-gold);
+  font-weight: 700;
+}
+
+.site-nav__link--world:hover {
+  border-color: var(--signal-gold);
+  color: var(--signal-gold);
+}
+
+.site-nav__link--tool {
+  border-color: color-mix(in srgb, var(--signal-blue) 42%, transparent);
+  background: color-mix(in srgb, var(--signal-blue) 8%, var(--bg-elevated));
+  color: var(--signal-blue);
+  font-weight: 700;
+}
+
+.site-nav__link--tool:hover {
+  border-color: var(--signal-blue);
+  color: var(--signal-blue);
 }
 
 /* 表示設定（テーマ・文字サイズ） */
@@ -396,16 +424,19 @@ input, select {
 /* ---------- クイックアクセス（アイコンタイル + 平滑カード） ---------- */
 .quick-access {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: var(--s-3);
   margin: var(--s-6) 0;
 }
 
 .quick-access__item {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: var(--s-4);
-  padding: var(--s-5);
+  gap: var(--s-3);
+  min-width: 0;
+  height: 100%;
+  padding: var(--s-4);
   min-height: var(--touch-target);
   background: var(--bg-elevated);
   border: 1px solid var(--hairline);
@@ -441,12 +472,21 @@ input, select {
   color: var(--signal-red);
 }
 
-.quick-access__body { display: block; }
+.quick-access__item--tool .quick-access__icon {
+  background: color-mix(in srgb, var(--signal-blue) 12%, var(--bg-elevated));
+  color: var(--signal-blue);
+}
+
+.quick-access__body {
+  display: block;
+  min-width: 0;
+}
 
 .quick-access__title {
   display: block;
   font-weight: 700;
   color: var(--text-primary);
+  overflow-wrap: anywhere;
 }
 
 .quick-access__desc {
@@ -454,6 +494,19 @@ input, select {
   font-size: 0.85rem;
   color: var(--text-tertiary);
   margin-top: 2px;
+}
+
+@media (max-width: 799px) {
+  .quick-access { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 479px) {
+  .quick-access { grid-template-columns: 1fr; }
+  .quick-access__item {
+    flex-direction: row;
+    gap: var(--s-4);
+    padding: var(--s-5);
+  }
 }
 
 /* ---------- 注目（公式・専門の新着） ---------- */
@@ -1112,6 +1165,11 @@ input, select {
 
 .site-footer p + p { margin-top: var(--s-2); }
 
+.site-footer__update {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
 .site-footer__divider {
   border: none;
   border-top: 1px solid var(--border-subtle);
@@ -1160,6 +1218,140 @@ input, select {
 }
 
 .about__back { margin: var(--s-8) 0; }
+
+.about-app {
+  padding: var(--s-8) 0;
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.about-app__intro {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--s-8);
+}
+
+.about-app__icon {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid var(--border-subtle);
+  border-radius: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.about-app__eyebrow {
+  color: var(--accent-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.about-app__copy h2 {
+  max-width: 22em;
+  margin-top: var(--s-1);
+  font-size: 1.55rem;
+  line-height: 1.45;
+}
+
+.about-app__lead {
+  max-width: 48em;
+  margin-top: var(--s-3);
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.about-app__copy > p:not(.about-app__eyebrow, .about-app__lead) {
+  max-width: 52em;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.about-app__store-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: var(--touch-target);
+  margin-top: var(--s-4);
+  padding: var(--s-2) var(--s-5);
+  border: 1px solid var(--accent-deep);
+  border-radius: var(--r-sm);
+  background: var(--accent-deep);
+  color: var(--text-on-accent);
+  font-weight: 700;
+}
+
+.about-app__store-link:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+  color: var(--text-on-accent);
+  text-decoration: none;
+}
+
+.about-app__features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--hairline);
+}
+
+.about .about-app__feature {
+  margin: 0;
+  padding: 0 var(--s-5);
+}
+
+.about-app__feature:first-child { padding-left: 0; }
+.about-app__feature:last-child { padding-right: 0; }
+
+.about-app__feature + .about-app__feature {
+  border-left: 1px solid var(--hairline);
+}
+
+.about-app__feature h3 {
+  font-size: 1rem;
+  margin-bottom: var(--s-2);
+}
+
+.about-app__feature p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 719px) {
+  .about-app__intro {
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+
+  .about-app__icon {
+    width: 96px;
+    height: 96px;
+    border-radius: 20px;
+  }
+
+  .about-app__copy h2 { font-size: 1.25rem; }
+
+  .about-app__features {
+    grid-template-columns: 1fr;
+  }
+
+  .about-app__feature,
+  .about-app__feature:first-child,
+  .about-app__feature:last-child {
+    padding: var(--s-4) 0;
+  }
+
+  .about-app__feature + .about-app__feature {
+    border-top: 1px solid var(--hairline);
+    border-left: 0;
+  }
+}
 
 .policy-levels {
   display: grid;
@@ -1261,18 +1453,35 @@ input, select {
 
 .guide-alert {
   display: grid;
-  gap: 4px;
-  padding: var(--s-4);
-  margin: var(--s-4) 0;
-  border: 1px solid var(--signal-red);
-  border-left-width: 4px;
-  border-radius: var(--r-md);
-  background: var(--bg-elevated);
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 2fr);
+  align-items: start;
+  gap: var(--s-6);
+  padding: var(--s-4) 0 var(--s-4) var(--s-5);
+  margin: var(--s-6) 0 var(--s-8);
+  border: 0;
+  border-left: 3px solid var(--signal-red);
+  border-radius: 0;
+  background: transparent;
   font-size: 0.9rem;
 }
 
-.guide-alert strong { color: var(--signal-red); }
-.guide-alert span { color: var(--text-secondary); }
+.guide-alert strong {
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
+.guide-alert span {
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+@media (max-width: 719px) {
+  .guide-alert {
+    grid-template-columns: 1fr;
+    gap: var(--s-1);
+    padding-left: var(--s-4);
+  }
+}
 
 .guide-section { margin: var(--s-8) 0; }
 
@@ -1427,14 +1636,6 @@ input, select {
 /* ---------- World固有 ---------- */
 .site-header--world .site-title__sub { background: var(--accent-muted); }
 
-.world-header-actions {
-  display: flex;
-  gap: var(--s-2);
-  margin-top: var(--s-3);
-  flex-wrap: wrap;
-}
-
-.world-home-link,
 .world-language-switch__item {
   display: inline-flex;
   align-items: center;
@@ -1449,14 +1650,18 @@ input, select {
   font-weight: 500;
 }
 
-.world-home-link:hover,
 .world-language-switch__item:hover {
   border-color: var(--accent);
   color: var(--accent-deep);
   text-decoration: none;
 }
 
-.world-language-switch { display: inline-flex; gap: var(--s-1); }
+.world-language-switch {
+  display: flex;
+  gap: var(--s-1);
+  margin-top: var(--s-3);
+  flex-wrap: wrap;
+}
 
 .world-language-switch__item.is-active {
   background: var(--accent-deep);

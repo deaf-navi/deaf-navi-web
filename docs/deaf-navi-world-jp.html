@@ -1172,8 +1172,16 @@
   <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
 
   <header class="site-header site-header--world" role="banner">
+    <div class="site-header__leaf" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
+        <path d="M40 170 C 70 140, 100 110, 160 30" />
+        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
+        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
+        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
+      </svg>
+    </div>
     <div class="container">
-      <p class="site-breadcrumb"><a href="./index.html">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>Deaf Navi World-JP</span></p>
       <div class="site-header__top">
         <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">World-JP</span></h1>
         <div class="display-controls" data-display-controls hidden>
@@ -1186,15 +1194,17 @@
       </div>
       </div>
       <p class="site-lead">世界中の主要メディアと多言語の地域別検索から、聴覚障害・ろう者・難聴・手話・情報保障のニュースを日本語に翻訳してキュレーションします。</p>
-      <div class="world-header-actions">
-        <a class="world-home-link" href="./index.html"><span aria-hidden="true">←</span><span>国内版 Deaf Navi Webへ</span></a>
-        <div class="world-language-switch" aria-label="Worldページ内ナビゲーション">
+      <nav class="site-nav" aria-label="サイト内ページ">
+        <a class="site-nav__link" href="./index.html"><span>ニュース</span></a>
+        <a class="site-nav__link site-nav__link--world is-current" href="./deaf-navi-world-jp.html" aria-current="page"><span class="site-nav__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><span>World</span></a>
+        <a class="site-nav__link" href="./guide.html"><span>暮らしのガイド</span></a>
+        <a class="site-nav__link site-nav__link--tool" href="./otomado/"><span>おとまど</span></a>
+        <a class="site-nav__link" href="./about.html"><span>Deaf Naviについて</span></a>
+      </nav>
+      <nav class="world-language-switch" aria-label="Worldの表示言語">
         <a class="world-language-switch__item is-active" href="./deaf-navi-world-jp.html" aria-current="page">JP 日本語</a>
         <a class="world-language-switch__item" href="./deaf-navi-world-original.html">Original 原文</a>
-        <a class="world-language-switch__item" href="./guide.html">暮らしのガイド</a>
-        <a class="world-language-switch__item" href="./about.html">Deaf Naviについて</a>
-      </div>
-      </div>
+      </nav>
     </div>
   </header>
 
@@ -1246,7 +1256,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T16:33:24.000Z" title="2026-08-14 01:33 JST">5時間前</time>
+        <time class="card__time" datetime="2026-08-13T16:33:24.000Z" title="2026-08-14 01:33 JST">12時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxOaHhUX3pRa0oxUUdEb3hrcUttS3NOcEE1WlQwMjExQkg3T01jTjFUcERpaUNYdGhudjFsWGRaRzFubWNVTFFIQTFlY1pKdTlNTllORlVPdzZFZnMzajI3eEhpUWlKUUZEaFlRc2tITlM2Mkk2Vk1aRGdyLXA1LURpUzNQRE8tclRHNTFrUjRORDllVUNYWWxz?oc=5" target="_blank" rel="noopener noreferrer">GN、補聴器に頼らない将来像を描き欧州で物流体制を強化</a>
         </h3>
@@ -1263,7 +1273,7 @@
           <span class="chip chip--world-region chip--region-americas">北米・中南米</span>
           <span class="chip chip--world-topic chip--topic-sports">デフスポーツ</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T16:00:50.000Z" title="2026-08-14 01:00 JST">5時間前</time>
+        <time class="card__time" datetime="2026-08-13T16:00:50.000Z" title="2026-08-14 01:00 JST">12時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxQeFh2dVJUZ2t5OGkybGV2X1dMU2xXWDluWkROU3dpMFhZMXZjMUxTRG96dDlXYWN5VGZSNTFIemJyeklWalVuZUQ1Z05EWkd5ZWhxWHl1WWZtR2thTlhod0lmQjJHLTU1dGNpU2N6M2lUYnFJN2dnSnFMY1c3bUZPX2FpVm5XakNzYlFVbXhPOGF0WnhKM3JFb0cyaEl3cTR2cWxmUl8zRDF2QXBJM0tSbzJaMWU3Q3c?oc=5" target="_blank" rel="noopener noreferrer">サンフアンが2026年全国ろう者フットサルトーナメントの開催地に</a>
         </h3>
@@ -1280,7 +1290,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T06:45:26.000Z" title="2026-08-13 15:45 JST">14時間前</time>
+        <time class="card__time" datetime="2026-08-13T06:45:26.000Z" title="2026-08-13 15:45 JST">22時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTFBaamptR2tMX2FPcEVxdElyQ1ZkcUNVME9YRzkzZmttZENyZlNCaXFIRzBVWDBoYmJmZUR5OUt3NzdDU1pGaDZpeU8ybw?oc=5" target="_blank" rel="noopener noreferrer">Google Pixelに手話を文字に変換する新機能が加わり、聴覚障害者のやり取りがさらにしやすくなる。</a>
         </h3>
@@ -1314,7 +1324,7 @@
           <span class="chip chip--world-region chip--region-americas">北米・中南米</span>
           <span class="chip chip--world-topic chip--topic-sports">デフスポーツ</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T15:29:42.000Z" title="2026-08-14 00:29 JST">6時間前</time>
+        <time class="card__time" datetime="2026-08-13T15:29:42.000Z" title="2026-08-14 00:29 JST">13時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNUm1Mb205Z21na0FhZWh0VDZPTkRlMTNpcEUyYjQtaEs4LUdNWWRrZlV6LUd5Zi1Pc3kwQWV2REFMdnp0UHRrcEtpczdqSnpVdkMzQWlyN2didm0xNUFCRHBYTE1LS254emRMOE0wc1JRWUtrbU9YUFE0bk4zanZhbzZuZXJZN0JVbmJxRkl1LUltY0Y2Qzg3T3ZGUHFJSGNDbDVRRkt5UnlhSE9mNnZvVnk0by1xZHVBSGtLakdn?oc=5" target="_blank" rel="noopener noreferrer">サンフアン、全国ろう者フットサル大会に9チームを迎える</a>
         </h3>
@@ -1331,7 +1341,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T14:00:00.000Z" title="2026-08-13 23:00 JST">7時間前</time>
+        <time class="card__time" datetime="2026-08-13T14:00:00.000Z" title="2026-08-13 23:00 JST">14時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxPUmZjdk9DSDlpUnlEWm1uTVBmQUx0SDBEVkY3QkJmOXZnQXF2Sm5QbE9odi1XY0FvQkQxTnJDb2ZBNlc1VmJjVzczQmJ4X2FMYXdjdnNDbXVyd2twSGpHNlNEczJ0S29uR29pR1FtQ0VLNnNMN29UeENwSlhILWRyRUxxb0dhczZ5ay1ScjZIdllvZTBMVHc?oc=5" target="_blank" rel="noopener noreferrer">Bose、Meta、Beatsの運動向けヘッドホンを比較 注目モデルを紹介</a>
         </h3>
@@ -1348,7 +1358,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T05:49:12.000Z" title="2026-08-13 14:49 JST">15時間前</time>
+        <time class="card__time" datetime="2026-08-13T05:49:12.000Z" title="2026-08-13 14:49 JST">22時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxNVG9WVmVYRFJKc0VQNVVlRXB2d3U5bFhqQXJWTU5fZ2JhSUVUcC1pR1Y0NjItV2ttQWRjV3FoVVJ4OWV6WGRiOHk3OEhiZ0k1SDhlZzAyei05cVh6UERoUnJxZnFMY09sZ2syWElxY0s3dGtFMEFTWHh2emZxblFfc0NlOUNVLW52WVBwMWY1aHB1STNCbWtWcUEyek9ETUdNYUhGbmxKbEd2QdIBqgFBVV95cUxNVG9WVmVYRFJKc0VQNVVlRXB2d3U5bFhqQXJWTU5fZ2JhSUVUcC1pR1Y0NjItV2ttQWRjV3FoVVJ4OWV6WGRiOHk3OEhiZ0k1SDhlZzAyei05cVh6UERoUnJxZnFMY09sZ2syWElxY0s3dGtFMEFTWHh2emZxblFfc0NlOUNVLW52WVBwMWY1aHB1STNCbWtWcUEyek9ETUdNYUhGbmxKbEd2QQ?oc=5" target="_blank" rel="noopener noreferrer">インドネシアのろう者コミュニティが、手話を使って独立記念日を祝った。</a>
         </h3>
@@ -1382,7 +1392,7 @@
           <span class="chip chip--world-region chip--region-americas">北米・中南米</span>
           <span class="chip chip--world-topic chip--topic-sports">デフスポーツ</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T14:14:49.000Z" title="2026-08-13 23:14 JST">7時間前</time>
+        <time class="card__time" datetime="2026-08-13T14:14:49.000Z" title="2026-08-13 23:14 JST">14時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxPY21qRVVUS3lFelJCVGVXT0IxU0Fqc08ybDFMM1hwdEpoczZqajFnVWJxR3o4WDNOY25zZHlyNUJycHJOM3hBclRCa2oxSElOZm1ZQ3UzSmhOcGgwTGotUl9LS3VaQVB4NHNhUExNQkhiWHJNSFA0Rk9KSndNV1pqaTIyWTQwTEUySUQ3T3g4SWZzekFDQTRMTU1heE91N1hFOTZKd2pPLTduaU1zSElVcVJ6QjZZTzVwbTRIT1NR?oc=5" target="_blank" rel="noopener noreferrer">サンフアン、試合と入場無料で全国ろう者フットサル大会を開催</a>
         </h3>
@@ -1399,7 +1409,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-general">一般</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T13:20:51.000Z" title="2026-08-13 22:20 JST">8時間前</time>
+        <time class="card__time" datetime="2026-08-13T13:20:51.000Z" title="2026-08-13 22:20 JST">15時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxOLV9jYVRXRy1UQUE1YTJRXzA1YVZydlJYWjlJNHVWSFAxdDlpSW1ZLVV3T3dZaTB6ZGtJOXdPRXl5ZjFNNHA5Y0NsdW1OMzBhQUlKREhmeFZOUnM1STFxNVBIYmRfNFdJNkV6UDZqWkU3S0VTTHZXcW5NQUhzb3FNUFcxcmRDb2htX1VPSmdHd1NnWkFH?oc=5" target="_blank" rel="noopener noreferrer">ろう者と自閉症者が暮らしやすい住まいのモデルとして「Résidence Logited」が紹介された。</a>
         </h3>
@@ -1416,7 +1426,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T00:58:20.000Z" title="2026-08-13 09:58 JST">20時間前</time>
+        <time class="card__time" datetime="2026-08-13T00:58:20.000Z" title="2026-08-13 09:58 JST">1日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE1vWFgxY0xvRGU0RERVNWMwaGdSM05faXB4MndKajI1aHlmVF9GTjlPU2NHTFZnejhCbDFtYmtmYTE1ckszT2xQUW5sTXVCT3RfM3d1NDU5dTJ1cjQ3bGtISFd3?oc=5" target="_blank" rel="noopener noreferrer">聴覚障害者が実際に体験した証平の国家遺産が、手話動画で紹介される。</a>
         </h3>
@@ -1450,7 +1460,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T09:47:00.000Z" title="2026-08-13 18:47 JST">11時間前</time>
+        <time class="card__time" datetime="2026-08-13T09:47:00.000Z" title="2026-08-13 18:47 JST">18時間前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcDNVQ0pOWnlKRW15dUdReEk3SUpMVW5CbDNmTnAzRThQYmxRbmRTVGg1Wnl2WmFmOXBmUHhxUXRONnpjZktZblJoT1FyX3NRMUdZTUYzd2cycTRrc3VxMHl2ZHZhLU1CY3gzWUlOTElZY1VtMGM3VGRIaUllbFVKUk5xZVYzcG5UREVNSlYzRDVjcjBnazhzZm9SWWhYWkJsdzcxeGhJOG51aG8?oc=5" target="_blank" rel="noopener noreferrer">BTSのメンバーが、軍隊で悪化した難聴の治療を受けていることを明かした。</a>
         </h3>
@@ -1467,7 +1477,7 @@
           <span class="chip chip--world-region chip--region-americas">北米・中南米</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-13T04:09:12.000Z" title="2026-08-13 13:09 JST">17時間前</time>
+        <time class="card__time" datetime="2026-08-13T04:09:12.000Z" title="2026-08-13 13:09 JST">1日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1XS1lybFZ5OEFRaUhHWnNoOHFyV1NmTzg4elFiNDhHSWZ3c29QZmxNWkNocl9nbGFyLVNkb1FldkZuRXM0aG4wdmdwM0xvUUQyUXR5NDZLX1RIUQ?oc=5" target="_blank" rel="noopener noreferrer">BTSのVがライブ配信で、難聴との闘いを公表した。</a>
         </h3>
@@ -1569,7 +1579,7 @@
           <span class="chip chip--world-region chip--region-middle_east_africa">中東・アフリカ</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T22:00:00.000Z" title="2026-08-08 07:00 JST">5日前</time>
+        <time class="card__time" datetime="2026-08-07T22:00:00.000Z" title="2026-08-08 07:00 JST">6日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiRkFVX3lxTE93aTFNemtudzRuREtBOFBHdGd0SmoyREY1cjRXSnZNRkVnTnkyLWdaY0hPN2tuOW45NDdDY00xbGZQdEl2NHc?oc=5" target="_blank" rel="noopener noreferrer">イドリブで手話講座が終了し、15人の受講者が参加して聴覚障害者の社会参加促進を目指した。</a>
         </h3>
@@ -1722,7 +1732,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-11T22:55:00.000Z" title="2026-08-12 07:55 JST">1日前</time>
+        <time class="card__time" datetime="2026-08-11T22:55:00.000Z" title="2026-08-12 07:55 JST">2日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxNTEQ3ODVxYkVxYWZzYzFlZnNDWHBjSDEzSUVhUDZsSnJGcDQ2Y0RGVm93c2REQVRPVmM3Z2o2Y1l4VmRVbklrdnZpb2dEeUhOWUEwSmlsWjBId2pQWVZCUlR0WG5OaGQtdHdqOTlaRkdIaGRNX3lubXVPNGYxUndrVURsSmhEZEhxS0k1VUxBWXhPOXg0eFdzS080UmNnZ05WWVBJdDk5Rkl5NW9oTmJoTUdtRm5Fc1hHSFlQYkNKcHFlRnpGWHJiVUxfSUF6QVExaFR6QzdyQUdwbHJQM1d6SzF6QVhseDRBVllaaHBkZw?oc=5" target="_blank" rel="noopener noreferrer">FDAの承認により、選定されたSamsung Galaxy Budsの一部モデルが補聴器としても使えるようになる。</a>
         </h3>
@@ -1773,7 +1783,7 @@
           <span class="chip chip--world-region chip--region-middle_east_africa">中東・アフリカ</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T01:24:29.000Z" title="2026-08-07 10:24 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-07T01:24:29.000Z" title="2026-08-07 10:24 JST">7日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE5zTXVOU2hXMUJrWl95QzlFVzlmTmw3WGtudnlKMTNuLV8xb25fUVpyMG05VlREdTQ1dTlpc3BpeElXWXJVZ25OcHh5LWdxblowTnFCWkZvQlBHRXYxZ2VGTWJWbXFBVUwxeUFyNlJJdHhydjlpQXVoYw?oc=5" target="_blank" rel="noopener noreferrer">オヨ州の生徒たちが、初めて開かれた手話コンテストで健闘した。</a>
         </h3>
@@ -1960,7 +1970,7 @@
           <span class="chip chip--world-region chip--region-americas">北米・中南米</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T22:25:00.000Z" title="2026-08-08 07:25 JST">5日前</time>
+        <time class="card__time" datetime="2026-08-07T22:25:00.000Z" title="2026-08-08 07:25 JST">6日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxOMzFvSHNHbXVpZVAwNXVkZm5oLUVOREo0N2RaVFo3SXpINm9UT3pHLWRNcDJDbm9UZC1ndVp3dmVTdUVaOUlOSE1YLXZQYzBxWmFGcVFLZjZjT3RxRWJYazdBYjZsczIxb3hiVjFZNjFqQllhaENDMkxYVmlfTnl2RmxpU2xMS0pndmJCQ2g3Ymd6c01aNlIzTXRHY1RUOFROTDROczc4SldGMkxmNzdqWExTUkZraVVYRmpqd2ZSUHpJNGJVaDhRSFlPODZXaWl3Z1BJQg?oc=5" target="_blank" rel="noopener noreferrer">学生コンテストを通じて、アルゼンチン手話の学習を促進する取り組みが進められている。</a>
         </h3>
@@ -1977,7 +1987,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T03:49:49.000Z" title="2026-08-07 12:49 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-07T03:49:49.000Z" title="2026-08-07 12:49 JST">7日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1TRWpEVHd3UzcxeEhONGFBQWt5bUdjMHRkMG5zOHZNVU5sUkJHNzBaUjN4WXNneXFQMWNORjJmbmFnR3pWa2toVXBHbXoyd1NrTlE1UlpR?oc=5" target="_blank" rel="noopener noreferrer">楊東面の地域社会保障協議体が、聴覚障害者や難聴の高齢者向けに「光で届く訪問通知」を進めている。</a>
         </h3>
@@ -2028,7 +2038,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T02:09:15.000Z" title="2026-08-07 11:09 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-07T02:09:15.000Z" title="2026-08-07 11:09 JST">7日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE1hY0JCV3FWTHRMdk9KWTlfUGF1WHJjSFdOZWZBbmJhNjROeGtHc1VMTkc2d0c0Y2RSQmh0WlVsVGZuWGZDLXZQZnR6YkpINGZSU1lxSWlmeEZpeHNL0gFiQVVfeXFMUHdzeVJQSmJTbTUtU2xLYUhpQ0U4SnB0cnRNcDZXdFQ0d1c0eU51cGhyQXIzZHBWRzNIR1pSUkJORUx0MmRobUxOWjExRGItczdJYnZvRTB6aTNOTUtfZ0VPOUE?oc=5" target="_blank" rel="noopener noreferrer">シンガポールの手話通訳者たちが、NDP 2026をろう者コミュニティに届ける取り組みを紹介している。</a>
         </h3>
@@ -2079,7 +2089,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-education">教育</span>
         </header>
-        <time class="card__time" datetime="2026-08-10T00:36:27.000Z" title="2026-08-10 09:36 JST">3日前</time>
+        <time class="card__time" datetime="2026-08-10T00:36:27.000Z" title="2026-08-10 09:36 JST">4日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMi0wNBVV95cUxPR1ZNaG5kbHdxMWpob3E3aVp0VjVCVjRUU3M3NXpsS3B5dkNOcFlXaWw3T3JxYTRFMUd4OXR4TFRUTnRWclFnYXp2M1RKczF5V2t3bWM2YkZsVE1iTGx1QzRkcWF2V3hQbEk0ZG13R1dvZ0NXUktkY21ULUJfc2E2SUJoanB0QjRSemZOMjlqZEFVUmVrNVZvYjhzODZ3TFpwUUFEMl91cHNWVVNvTjdFSmgxemJDRWtveHR5VU5sVGFLRGRpRko5MURpNFhfM2lTWm9vLWNhSEhJT2cxUmZXYmRUTVk1WWJxRThiWFlYbkQ2c3dkUDRuMXltMHB3dTRZY3JmbjEwRUZ1NE9TSFo4bngydGFFWGZ6STlNalZXRFlOcW1IQm1VRUJIMHlYU1ZRSmRQcVpMd01XLUdTcmMtbk9ERWNLenZvS2NGV3UwUTM3QUllb3hSLW5uRFpUMTJfczgzRnhOek1RY29LWjMwSkM3RU95YWp6cmM3NnVBa1lYaktkMmFsY2pveFYwV3VvY0lxd3ZpdzkxaUdfMVlZYTJlVmJQMGlvY3BKRENrU1lLZ0xlWDQ0S0I1ZldHcUlNV2JicWt5eHFnSlFzM1htQWp2QQ?oc=5" target="_blank" rel="noopener noreferrer">聴覚障害児と知的障害児のための学校ギャラリーを、中国西南建築設計研究所有限公司が紹介している。</a>
         </h3>
@@ -2096,7 +2106,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-09T22:14:08.000Z" title="2026-08-10 07:14 JST">3日前</time>
+        <time class="card__time" datetime="2026-08-09T22:14:08.000Z" title="2026-08-10 07:14 JST">4日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPM1R5emtOWl9aS19KYjRfcm1JaVllVmU2cXpXM1cwNXE5NGxyWGJNaFFGWURBMVJqVVhRRUdtQTRrT0lCZzFrMnBmZDhrSFRObER5ODBFZ21DSFQyazY0ZjdoQ2FHamFrM2NZSmJZMG56Z3RqSXJpMXVPUnZoWjBweUVfbGNfQQ?oc=5" target="_blank" rel="noopener noreferrer">ブラジル人学生が、手話を翻訳するAIを開発した。</a>
         </h3>
@@ -2198,7 +2208,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-general">一般</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T04:31:30.000Z" title="2026-08-07 13:31 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-07T04:31:30.000Z" title="2026-08-07 13:31 JST">7日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMikgJBVV95cUxOXzdFQkVZRFdVSlN0OGpnb3RoSXhaWUJyVjB2ZGtMVEtDblRNYy01U3BGZjllVHNGYUpXcjBEVHQ2RU1KODFvUGF4bTN0RE96NTVGZWxSZWw4OFlpZUowaS1EWVRLbXFLR1BNSUZ6WS1Vb1JTWFFZZHpJUmYyTWhIaFg2Z3o2cUFaYVZZT3FEazI4WE1hRmtkQzdNUldUOGhTVEE4NTZzdzBlV0MzR085SS1uS2FDSzJzeUxxV0xWaF93aElpc1I5dk9BZUhmN21GRGpPb3FWSnVUNGRfT1BYbU5jb09HYS1ENjhFWHoyWjlBWDI5bTNNU0swdkJYc1dRTG1YYzV3ZWs5Z01Wb1h5QWRn?oc=5" target="_blank" rel="noopener noreferrer">トゥールーズで、ろう者と聴者が協力して、将来の共生型住宅の建設を進めている。</a>
         </h3>
@@ -2215,7 +2225,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-07T01:38:23.000Z" title="2026-08-07 10:38 JST">6日前</time>
+        <time class="card__time" datetime="2026-08-07T01:38:23.000Z" title="2026-08-07 10:38 JST">7日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQYnhISUtwN1doYmVDMDdQWE9vTmlYc2xzTl9YYUF4dk9WNGpxZ0ZUWHRKMW8yYVlFaHdNRGl6aWJwTDU2SkJKcHlmOUdkVDVWNFdxWW4zN3RSUVozeFI0MkVucWtFWlFRb25jVUNsYkcyaG80SklnekJrZE5pNUY2Z0hDUFR6Tmt4MUctXy1MU1ZCRGtnZXFNY25kX3R1VmtzWkhkSldrMjlRMVhsMjd4WHVTc0g2UjVqTFJyV3hhVHU?oc=5" target="_blank" rel="noopener noreferrer">Sertoma財団が経済的支援を通じて、フロリダの低所得家庭の補聴器購入を助けている。</a>
         </h3>
@@ -2249,7 +2259,7 @@
           <span class="chip chip--world-region chip--region-americas">北米・中南米</span>
           <span class="chip chip--world-topic chip--topic-culture">文化・社会</span>
         </header>
-        <time class="card__time" datetime="2026-08-06T04:13:33.000Z" title="2026-08-06 13:13 JST">7日前</time>
+        <time class="card__time" datetime="2026-08-06T04:13:33.000Z" title="2026-08-06 13:13 JST">8日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE0zeEdpX01DbHNpMFRFZmxBRWNYRVZ6dlBrQTc4SUF5UXN3dWR5MzBKN3RIT0IxZEdsaHQtTnJ2NnBtWkhBNzhteDAwQ1o3UnFrQUF0T2tiUTE4UQ?oc=5" target="_blank" rel="noopener noreferrer">ウェストノーフォークのろう者コミュニティの拠点だった建物が、新たな所有者に引き渡された。</a>
         </h3>
@@ -2266,7 +2276,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-08-06T01:39:53.000Z" title="2026-08-06 10:39 JST">7日前</time>
+        <time class="card__time" datetime="2026-08-06T01:39:53.000Z" title="2026-08-06 10:39 JST">8日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxPbzFLWFItVXNzOVByLTdtVkd2UjU1RV9YdXo4eHBrdWJRdmJTSUM4enNJdWZqZzQ3VUJjXzdLUlVOaUxCTGFvNGNubUZwakxTRmg4aUhjeEJtX1ktQ196QmlvZmc1Q0JXSklCV0VBd3g2VXB1V2VWanJ0cDdLWjZja3E0VmNTUG1pTnh3TFNtdWJTcXpYZllRVUpSSXZSQQ?oc=5" target="_blank" rel="noopener noreferrer">『Curious Australia』のドキュメンタリーが、アラビア語字幕付きで紹介されている。</a>
         </h3>
@@ -2300,7 +2310,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-08-05T23:38:00.000Z" title="2026-08-06 08:38 JST">7日前</time>
+        <time class="card__time" datetime="2026-08-05T23:38:00.000Z" title="2026-08-06 08:38 JST">8日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxNUE9INDJISm9PWDVQdjllYS0wNTI3LU1sUzVpQnFBdGxzbWgwM1VoM3BWUFR5dmtQNi1VX3NLTUZGel9xS1pSNWpQMTVEZm5lM2VyLWtkdVJEenhQaVFEVmc3aGZXbVhpWjhxcUZzcmNOeEZGYzJ0MlBvZ3RsdkE2S212dHB1eS1hT0poenViRkRaUGFQZmJ6YjZnN2hqaTItcmhpR0JtX0cydw?oc=5" target="_blank" rel="noopener noreferrer">マドリードで次に買う補聴器をお得に購入する方法を案内している。</a>
         </h3>
@@ -2504,7 +2514,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-rights">権利・制度</span>
         </header>
-        <time class="card__time" datetime="2026-08-05T04:39:51.000Z" title="2026-08-05 13:39 JST">8日前</time>
+        <time class="card__time" datetime="2026-08-05T04:39:51.000Z" title="2026-08-05 13:39 JST">9日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9qbldpbG5xa1V5cjB2TmJ1U3BudlhfMW12UXR5dXk0U2RDdTE3Q0pBTTkzS3dkLUlqUTU3UzdWR1dNajItRk03enhFTkZVQngtNnZVdnFrNkUzaldh?oc=5" target="_blank" rel="noopener noreferrer">沈伯洋氏が、手話をめぐる発言に対して不敬と差別だと批判した。</a>
         </h3>
@@ -2776,7 +2786,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-culture">文化・社会</span>
         </header>
-        <time class="card__time" datetime="2026-07-31T03:13:05.000Z" title="2026-07-31 12:13 JST">13日前</time>
+        <time class="card__time" datetime="2026-07-31T03:13:05.000Z" title="2026-07-31 12:13 JST">14日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNd2stNFFYUkZFSTN0TThlTnY3MXZ5dmdwdk1OVXFNazVtMnNQbWdXUXVpQzE0cXoxa2JGWllENUlYbTRJOUtRV1ZfT2I3SWViZkVleHJ6c3l2YW8zMFo1ZS1WcUVXTnNyMUMwN1lBcnBzSm5mRFFVMktfZFFqUndfclI5M202cXV1Z0lR?oc=5" target="_blank" rel="noopener noreferrer">オーストラリアのろうコミュニティで暮らす人々の姿を伝える。</a>
         </h3>
@@ -2912,7 +2922,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-07-29T22:10:18.000Z" title="2026-07-30 07:10 JST">14日前</time>
+        <time class="card__time" datetime="2026-07-29T22:10:18.000Z" title="2026-07-30 07:10 JST">15日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxOclZORl9qRUdUb2N0MFRTdFlGMTVCRVZoOTBZRTFucVVPWWZrS0FnTVVJVk1IdU5fV21nSFVjQU5XOHdCclVtMUpVRzZRMXQxcEhVdHlhbF96MU1QQ1FSN01oZ0Q5LTZ3cW5odkEzd25WRUZENWlzUmlsUzNWaEJ5XzdvdnR0QnFGUFFFME1JSE5vV3V5cEhwMk5CN0ZONDdu?oc=5" target="_blank" rel="noopener noreferrer">英国初の盲ろう者医師が、自らの経験と考えを語っている。</a>
         </h3>
@@ -3439,7 +3449,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-general">一般</span>
         </header>
-        <time class="card__time" datetime="2026-07-19T02:40:00.000Z" title="2026-07-19 11:40 JST">25日前</time>
+        <time class="card__time" datetime="2026-07-19T02:40:00.000Z" title="2026-07-19 11:40 JST">26日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQSE5hbnQyNTVOZnhRVWUxUmhNckx5ZDIzeGtSSFBaV1NiVTQxby1ycWlmVGJ3dzlUblVoanlvV19MMkJwaXIzX0FkdWpqZk9MRDlkbjJMblJqTzNISzZrNmM1MnAyb284M19YZ0Y5dkFvRUlNN1lXVkRxdFFlQ21qQlp0aEwyMU5aU0FkR0VROWFCZ3lxa0VUcWJmTFZONk9YaGJlb1JockQ3TlJXZEFXTUd0QU5xWkR1WGF1QjVKQ0RwREZO?oc=5" target="_blank" rel="noopener noreferrer">左派が、聴覚障害のある当事者向けの補償基金の創設を求めている。</a>
         </h3>
@@ -3507,7 +3517,7 @@
           <span class="chip chip--world-region chip--region-europe_cis">ヨーロッパ・CIS</span>
           <span class="chip chip--world-topic chip--topic-health">医療・補聴</span>
         </header>
-        <time class="card__time" datetime="2026-07-16T22:51:20.000Z" title="2026-07-17 07:51 JST">27日前</time>
+        <time class="card__time" datetime="2026-07-16T22:51:20.000Z" title="2026-07-17 07:51 JST">28日前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQRzFpeHFhTWlaeW1ldkpNVklHWjRBVGJFOXN5b1NFSmVIdUhkNnVyM0tHeWFsV2ZieXhmaFlyeEk5NDdzQUNsUjVpYzNUSUJkMWR4NGVBbEs3SXpFeURuVmxwUWlHNm13cmZmMDZQa3pfZHpZbm5aeHhEWVplREdJSnozYU9NbWQxWkZOcDN0b3BUazJvY2sxNDFNdkI1aExJS1VTNmtqQTY4UnoyOXBWMktlODQ3WUVJN2dZ?oc=5" target="_blank" rel="noopener noreferrer">難聴と認知症をめぐる研究で、補聴器が認知機能の低下を48％遅らせる可能性が示された。</a>
         </h3>
@@ -5768,7 +5778,7 @@
           <span class="chip chip--world-region chip--region-asia_oceania">アジア・オセアニア</span>
           <span class="chip chip--world-topic chip--topic-accessibility">アクセシビリティ・情報保障</span>
         </header>
-        <time class="card__time" datetime="2026-03-17T01:07:17.000Z" title="2026-03-17 10:07 JST">4ヶ月前</time>
+        <time class="card__time" datetime="2026-03-17T01:07:17.000Z" title="2026-03-17 10:07 JST">5ヶ月前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNeWFkYTF5ZUhZQjNzcmJWdW9rM0VEdUhGNXBTTWFpQjNMWmY2WFhmcThqTWpHa2pYVGt2Yy1NX08tb19vR1poZFU2ZnQ2ZjZRNC1TVkUyc21CYXhraEVSaVRrXzRDY09vTndVaGZTcktUNjU4cVlWeXp6emd5WlFlQ2lXYUttVkoyczE0?oc=5" target="_blank" rel="noopener noreferrer">2026年の王公武講義が、簡体字中国語字幕付きで配信される。</a>
         </h3>
@@ -6907,7 +6917,7 @@
           <span class="chip chip--world-region chip--region-americas">北米・中南米</span>
           <span class="chip chip--world-topic chip--topic-education">教育</span>
         </header>
-        <time class="card__time" datetime="2026-02-14T23:08:54.000Z" title="2026-02-15 08:08 JST">5ヶ月前</time>
+        <time class="card__time" datetime="2026-02-14T23:08:54.000Z" title="2026-02-15 08:08 JST">6ヶ月前</time>
         <h3 class="card__title" lang="ja">
           <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQM1FodEp6em1ENEI0TWVuZFVwa09jRkdwMmFRMTZUSkdoS0p4RWxqWVBadTFERzdmOXlqS29RUEtrQ2IwbXNqclcyVG9qWU1ybEd0YlNrUlNtU0hQdXZxNmNjREJhMXc5bkFBRHE5c1FQV1JNY2FvMzZ1bXlmZVRmamlHMGttSmsyaGpjOUtrenl2UdIBkwFBVV95cUxQbkx3SktqTEt0a3hSTVpxWmJQTHctNm5sVHk4N0hwcWd5ZTl1aDQyZ2xxS1B6T2U5Z0pRMlFFN2xyLXJmVkVRUE1TcHRiUF9sZE05bm93SUhpWGlJRkR4Yi1mS3IwNm0yRmFYdTV4aGozSUhweG54Ynkyc0dleDBwRlNuQ0NNT0pfMlQ5MFVyRFFTbXM?oc=5" target="_blank" rel="noopener noreferrer">人工内耳を使う女の子に合わせて、教室のエルフが彼女そっくりに作られた。</a>
         </h3>
@@ -11447,7 +11457,7 @@
           もっと読む<span class="load-more-btn__remain" id="load-more-remain">（あと 450 件）</span>
         </button>
       </div>
-      <p class="about__back"><a href="./">← 国内版 Deaf Navi Webへ戻る</a></p>
+      <p class="about__back"><a href="./index.html">← 国内ニュースへ戻る</a></p>
     </section>
   </main>
 
@@ -11455,7 +11465,7 @@
     <div class="container">
       <p>Deaf Navi World-JP は Google News RSS を入口に、主要メディアと多言語の地域別検索を関連性スコアで絞り込み、自動翻訳とDeaf Navi向け用語補正、必要に応じたCodex App Server後編集を通して掲載しています。</p>
       <p>記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳と編集補助です。</p>
-      <p><a href="./guide.html">暮らしのガイド</a> ・ <a href="./about.html">Deaf Naviについて</a> ・ <a href="https://tamas-hub.github.io/deaf-navi-web/feed-world.xml">RSSフィード</a> ・ <a href="https://tamas-hub.github.io/deaf-navi-web/sitemap.html">サイトマップ</a></p>
+      <p><a href="./guide.html">暮らしのガイド</a> ・ <a href="./otomado/">おとまど</a> ・ <a href="./about.html">Deaf Naviについて</a> ・ <a href="https://tamas-hub.github.io/deaf-navi-web/feed-world.xml">RSSフィード</a> ・ <a href="https://tamas-hub.github.io/deaf-navi-web/sitemap.html">サイトマップ</a></p>
       <hr class="site-footer__divider" aria-hidden="true">
       <p class="site-footer__copyright">
         <span>&copy; 2026 TAMA.</span>
