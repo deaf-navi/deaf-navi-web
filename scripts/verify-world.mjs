@@ -43,8 +43,16 @@ for (const file of ['deaf-navi-world-jp.html', 'deaf-navi-world-original.html', 
   }
 }
 
-const worldJp = await readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8');
-assert(worldJp.includes('class="world-home-link"'), 'World-JP に国内版への導線がありません。');
+const [worldJp, worldOriginal] = await Promise.all([
+  readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8'),
+  readFile(join(docs, 'deaf-navi-world-original.html'), 'utf8'),
+]);
+for (const [label, html] of [['World-JP', worldJp], ['World-Original', worldOriginal]]) {
+  assert(html.includes('href="./index.html"'), `${label} に国内版への導線がありません。`);
+  assert(html.includes('href="./guide.html"'), `${label} に暮らしのガイドへの導線がありません。`);
+  assert(html.includes('href="./otomado/"'), `${label} におとまどへの導線がありません。`);
+}
+assert(worldJp.includes('site-nav__link--world is-current'), 'World-JP の共通ナビに現在地表示がありません。');
 assert(worldJp.includes('data-region'), 'World-JP に地域フィルタ属性がありません。');
 
 if (failures > 0) {
