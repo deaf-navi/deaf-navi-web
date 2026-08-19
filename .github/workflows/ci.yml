@@ -42,8 +42,14 @@ jobs:
       - name: Build site from committed data
         run: npm run build
 
+      - name: Build World portal from committed data
+        run: npm run build:world
+
       - name: Build app API from committed data
         run: npm run build:app-api
 
       - name: Verify site output
         run: npm run verify
+
+      - name: Verify World portal output
+        run: npm run verify:world
