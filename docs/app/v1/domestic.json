@@ -19,9 +19,9 @@
     "staleAfterSeconds": 86400
   },
   "source": {
-    "webPageUrl": "https://tamas-hub.github.io/deaf-navi-web/",
-    "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles.json",
-    "rssUrl": "https://tamas-hub.github.io/deaf-navi-web/feed.xml"
+    "webPageUrl": "https://deaf-navi.github.io/deaf-navi-web/",
+    "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles.json",
+    "rssUrl": "https://deaf-navi.github.io/deaf-navi-web/feed.xml"
   },
   "display": {
     "defaultFilter": "all",
@@ -110,9 +110,9 @@
     ]
   },
   "compatibility": {
-    "currentIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
+    "currentIosArticleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
     "currentIosArticleSchema": "deaf-navi-ios-article.v2",
-    "legacyIosArticleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
+    "legacyIosArticleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
     "legacyIosArticleSchema": "deaf-navi-ios-article.v1",
     "note": "currentIosArticleUrl keeps expanded web categories for the current iOS app. legacyIosArticleUrl maps categories for older app builds."
   },

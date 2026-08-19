@@ -531,7 +531,7 @@ async function fetchWithTimeout(url, ms = FETCH_TIMEOUT) {
   try {
     return await fetch(url, {
       signal: controller.signal,
-      headers: { 'User-Agent': 'DeafNaviWorld/1.0 (+https://github.com/tamas-hub/deaf-navi-web)' },
+      headers: { 'User-Agent': 'DeafNaviWorld/1.0 (+https://github.com/deaf-navi/deaf-navi-web)' },
     });
   } finally {
     clearTimeout(timer);

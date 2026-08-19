@@ -18,6 +18,7 @@ import { GUIDE_SECTIONS } from '../src/guide-data.mjs';
 import { QUALITY_VERSION } from '../src/lib/curation.mjs';
 import { REGION_ORDER } from '../config/regions.mjs';
 import { CATEGORY_UI } from '../config/categories.mjs';
+import { SITE_URL } from '../config/site.mjs';
 
 const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const docs = join(root, 'docs');
@@ -156,9 +157,9 @@ for (const section of GUIDE_SECTIONS) {
 
 /* ---------- サイトマップ・アーカイブ ---------- */
 
-assert(sitemapXml.includes(`<loc>https://tamas-hub.github.io/deaf-navi-web/about.html</loc>`), 'サイトマップにAboutがありません。');
-assert(sitemapXml.includes(`<loc>https://tamas-hub.github.io/deaf-navi-web/guide.html</loc>`), 'サイトマップに暮らしのガイドがありません。');
-assert(sitemapXml.includes(`<loc>https://tamas-hub.github.io/deaf-navi-web/otomado/</loc>`), 'サイトマップにおとまどがありません。');
+assert(sitemapXml.includes(`<loc>${SITE_URL}about.html</loc>`), 'サイトマップにAboutがありません。');
+assert(sitemapXml.includes(`<loc>${SITE_URL}guide.html</loc>`), 'サイトマップに暮らしのガイドがありません。');
+assert(sitemapXml.includes(`<loc>${SITE_URL}otomado/</loc>`), 'サイトマップにおとまどがありません。');
 assert(oldIndexHtml.includes('archive-index') || oldIndexHtml.includes('アーカイブ対象の記事はまだありません'), 'アーカイブ目次が生成されていません。');
 
 // 目次に載せた月別ページが実在するか

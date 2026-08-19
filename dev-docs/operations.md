@@ -37,11 +37,12 @@
 
 ## デプロイ後の確認（リリース時）
 
-1. https://tamas-hub.github.io/deaf-navi-web/ — 最終更新時刻が新しいこと
+1. https://deaf-navi.github.io/deaf-navi-web/ — 最終更新時刻が新しいこと
 2. 検索・カテゴリ・期間・地域フィルタの動作
 3. DevTools → Application → Service Workers — `sw.js` が activated（PWA。HTTPSでのみ動作）
-4. https://tamas-hub.github.io/deaf-navi-web/app/v1/manifest.json — `generatedAt` 更新
-5. iOSアプリでニュースが表示されること（互換確認の最終防衛線）
+4. https://deaf-navi.github.io/deaf-navi-web/app/v1/manifest.json — `generatedAt` 更新
+5. https://tamas-hub.github.io/deaf-navi-web/app/v1/manifest.json — 旧URLでも同じ内容を取得できること
+6. iOSアプリでニュースが表示されること（互換確認の最終防衛線）
 
 ## 秘密情報
 

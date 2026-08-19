@@ -33,7 +33,8 @@ Google News（324クエリ・多言語）
 
 出荷済みiOSアプリが `docs/app/v1/` を参照している。以下は**破壊禁止**:
 
-1. **URL**: `https://tamas-hub.github.io/deaf-navi-web/app/v1/` 配下の12ファイル名
+1. **URL**: 正規URL `https://deaf-navi.github.io/deaf-navi-web/app/v1/` 配下の12ファイル名
+   - 出荷済みアプリ向けに、旧URL `https://tamas-hub.github.io/deaf-navi-web/app/v1/` でも同じJSONを互換配信する
 2. **フラット配列**（ios-news-v1/v2, ios-world-jp-v1/v2, ios-world-original-v1/v2）:
    キーは `id, title, summary, url, publishedAt, sourceName, sourceURL, category` の8個・この順序
 3. **日付形式**: ISO 8601 UTC 秒精度・ミリ秒なし（例 `2026-08-12T09:30:47Z`）。

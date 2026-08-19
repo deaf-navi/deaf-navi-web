@@ -1,8 +1,8 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
   "generatedAt": "2026-08-19T14:52:46Z",
-  "siteUrl": "https://tamas-hub.github.io/deaf-navi-web/",
-  "appBaseUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/",
+  "siteUrl": "https://deaf-navi.github.io/deaf-navi-web/",
+  "appBaseUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
     "scheduleJst": [
@@ -16,10 +16,10 @@
   "endpoints": {
     "domestic": {
       "title": "Deaf Navi Web",
-      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/domestic.json",
-      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles.json",
-      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
-      "legacyIosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
+      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/domestic.json",
+      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles.json",
+      "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
+      "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
       "count": 500,
       "sourceGeneratedAt": "2026-08-19T14:51:42Z",
       "categories": [
@@ -108,10 +108,10 @@
     },
     "worldJp": {
       "title": "Deaf Navi World-JP",
-      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-jp.json",
-      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
-      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json",
-      "legacyIosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
+      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/world-jp.json",
+      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
+      "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json",
+      "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
       "count": 600,
       "sourceGeneratedAt": "2026-08-19T14:52:46Z",
       "language": "ja-JP",
@@ -209,10 +209,10 @@
     },
     "worldOriginal": {
       "title": "Deaf Navi World-Original",
-      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-original.json",
-      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
-      "iosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-original-v2.json",
-      "legacyIosCompatibleUrl": "https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
+      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/world-original.json",
+      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
+      "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v2.json",
+      "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
       "count": 600,
       "sourceGeneratedAt": "2026-08-19T14:52:46Z",
       "language": "und",
@@ -293,8 +293,8 @@
     },
     "worldMultilingual": {
       "title": "Deaf Navi World Multilingual",
-      "url": "https://tamas-hub.github.io/deaf-navi-web/app/v1/world-multilingual.json",
-      "rawJsonUrl": "https://tamas-hub.github.io/deaf-navi-web/articles-world.json",
+      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/world-multilingual.json",
+      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
       "count": 600,
       "sourceGeneratedAt": "2026-08-19T14:52:46Z",
       "defaultLocale": "ja-JP",

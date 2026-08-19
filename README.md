@@ -3,7 +3,7 @@
 聴覚障害・難聴・ろう者・中途失聴者コミュニティのための情報ポータル。
 信頼できる情報源からニュースを自動収集・分類し、緊急通報・制度などの公式情報への入口とあわせて届ける。
 
-- **URL**: https://tamas-hub.github.io/deaf-navi-web/
+- **URL**: https://deaf-navi.github.io/deaf-navi-web/
 - **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00ごろ）自動更新
 - **ホスティング**: GitHub Pages（月額0円・SSL付き）
 - **スタック**: Node 20+（標準ライブラリのみ・依存パッケージゼロ）+ 静的 HTML/CSS/JS
@@ -118,9 +118,11 @@ npm run preview:otomado        # おとまどを含むdocs/をローカル配信
 詳細: [dev-docs/architecture.md](dev-docs/architecture.md)。互換性は `test/ios-api-compat.test.mjs` が regression テストで担保する。
 
 主要URL:
-- https://tamas-hub.github.io/deaf-navi-web/app/v1/manifest.json
-- https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-news-v2.json （現行アプリ・国内）
-- https://tamas-hub.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json （現行アプリ・World）
+- https://deaf-navi.github.io/deaf-navi-web/app/v1/manifest.json
+- https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v2.json （現行アプリ・国内）
+- https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json （現行アプリ・World）
+
+出荷済みアプリが参照する旧 `tamas-hub.github.io` のAPI URLは、互換リポジトリから同じJSONを継続配信する。
 
 ## 運用・障害対応
 

@@ -3,12 +3,13 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { SITE_URL } from '../config/site.mjs';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const DOCS = join(ROOT, 'docs');
 const APP_DIR = join(DOCS, 'app', 'v1');
 
-const SITE_URL = 'https://tamas-hub.github.io/deaf-navi-web/';
 const APP_BASE_URL = `${SITE_URL}app/v1/`;
 const UPDATE_SCHEDULE_JST = ['06:00', '12:00', '18:00'];
 const SCHEMA_VERSION = 'deaf-navi-app-sync.v1';

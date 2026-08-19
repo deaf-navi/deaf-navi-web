@@ -1,6 +1,7 @@
 import { readFile, writeFile, copyFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { SITE_URL } from '../config/site.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -23,7 +24,6 @@ const APP_OUT = join(DOCS, 'app-world.js');
 const OG_SRC = join(__dirname, 'og-image.svg');
 const OG_OUT = join(DOCS, 'og-image-world.svg');
 
-const SITE_URL = 'https://tamas-hub.github.io/deaf-navi-web/';
 const JP_PAGE_FILE = 'deaf-navi-world-jp.html';
 const ORIGINAL_PAGE_FILE = 'deaf-navi-world-original.html';
 const JP_PAGE_URL = `${SITE_URL}${JP_PAGE_FILE}`;
