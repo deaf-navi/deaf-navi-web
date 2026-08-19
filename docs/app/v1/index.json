@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-08-19T16:09:25Z",
+  "generatedAt": "2026-08-19T21:23:00Z",
   "siteUrl": "https://deaf-navi.github.io/deaf-navi-web/",
   "appBaseUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/",
   "refresh": {
@@ -21,7 +21,7 @@
       "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
       "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
       "count": 500,
-      "sourceGeneratedAt": "2026-08-19T16:08:20Z",
+      "sourceGeneratedAt": "2026-08-19T21:21:55Z",
       "categories": [
         {
           "id": "all",
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-08-19T16:09:25Z",
+      "sourceGeneratedAt": "2026-08-19T21:23:00Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -193,9 +193,9 @@
         "provider": "translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "checked": 14,
-          "updated": 14,
-          "cached": 586,
+          "checked": 13,
+          "updated": 13,
+          "cached": 587,
           "skipped": 0,
           "failed": 0,
           "enabled": true,
@@ -214,7 +214,7 @@
       "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-08-19T16:09:25Z",
+      "sourceGeneratedAt": "2026-08-19T21:23:00Z",
       "language": "und",
       "regions": [
         {
@@ -296,7 +296,7 @@
       "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-08-19T16:09:25Z",
+      "sourceGeneratedAt": "2026-08-19T21:23:00Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
