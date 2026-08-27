@@ -11,14 +11,19 @@
  *   データ更新のたびに verify を書き換えなくて済むようにする（fail-soft設計）
  */
 
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, readdir, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { GUIDE_SECTIONS } from '../src/guide-data.mjs';
 import { QUALITY_VERSION } from '../src/lib/curation.mjs';
 import { REGION_ORDER } from '../config/regions.mjs';
 import { CATEGORY_UI } from '../config/categories.mjs';
-import { SITE_URL } from '../config/site.mjs';
+import { ANALYTICS, SITE_URL } from '../config/site.mjs';
+import {
+  CLOUDFLARE_ANALYTICS_BEACON_URL,
+  isCloudflareAnalyticsEnabled,
+  renderCloudflareAnalyticsBeacon,
+} from '../src/lib/analytics.mjs';
 
 const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const docs = join(root, 'docs');
@@ -42,6 +47,19 @@ async function fileExists(file) {
   } catch {
     return false;
   }
+}
+
+async function listHtmlFiles(dir = docs, prefix = '') {
+  const files = [];
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const relative = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      files.push(...await listHtmlFiles(join(dir, entry.name), relative));
+    } else if (entry.isFile() && entry.name.endsWith('.html')) {
+      files.push(relative);
+    }
+  }
+  return files;
 }
 
 const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml, oldIndexHtml, uiControlsJs, otomadoHtml, otomadoManifestRaw, otomadoSwJs] = await Promise.all([
@@ -135,6 +153,7 @@ assert(worldOriginalHtml.includes('href="./otomado/"'), 'World-Original にOtoMa
 /* ---------- About / ガイド（データから導出して検証） ---------- */
 
 assert(aboutHtml.includes('id="about-policy"'), 'About に選定方針がありません。');
+assert(aboutHtml.includes('id="about-privacy"'), 'About にアクセス解析とプライバシーの説明がありません。');
 assert(aboutHtml.includes('Deaf Navi Web 2.0'), 'About に 2.0 の更新履歴がありません。');
 assert(aboutHtml.includes('href="./otomado/"'), 'About におとまどへの導線がありません。');
 assert(aboutHtml.includes('id="ios-app"'), 'About にiOSアプリ紹介がありません。');
@@ -178,6 +197,23 @@ const swJs = await readFile(join(docs, 'sw.js'), 'utf8');
 assert(!swJs.includes('__BUILD_ID__'), 'sw.js のビルドIDが未置換です。');
 assert(uiControlsJs.includes('serviceWorker'), 'ui-controls.js にService Worker登録がありません。');
 
+/* ---------- Cloudflare Web Analytics ---------- */
+
+const analyticsExpected = isCloudflareAnalyticsEnabled(ANALYTICS);
+const expectedAnalyticsBeacon = renderCloudflareAnalyticsBeacon(ANALYTICS);
+const analyticsExcludedHtml = new Set(['googleccd38064f50bffd0.html']);
+const publicHtmlFiles = (await listHtmlFiles()).filter((file) => !analyticsExcludedHtml.has(file));
+for (const file of publicHtmlFiles) {
+  const html = await readFile(join(docs, file), 'utf8');
+  const count = html.split(CLOUDFLARE_ANALYTICS_BEACON_URL).length - 1;
+  if (analyticsExpected) {
+    assert(count === 1, `${file} のCloudflare Analytics Beaconが1個ではありません（実際: ${count}）。`);
+    assert(html.includes(expectedAnalyticsBeacon), `${file} のAnalytics Beaconが現在の公式形式・設定と一致しません。`);
+  } else {
+    assert(count === 0, `${file} はAnalytics無効時にもBeaconを含んでいます。`);
+  }
+}
+
 /* ---------- おとまど ---------- */
 
 assert(otomadoHtml.includes('id="root"'), 'おとまどのReactマウント要素がありません。');
@@ -214,4 +250,4 @@ if (failures > 0) {
   console.error(`Site verification failed: ${failures} problem(s).`);
   process.exit(1);
 }
-console.log(`Site verification passed: ${data.articles.length} articles, ${ids.size} unique URLs, guide ${actualGuideItems} items, ${monthLinks.length} archive month pages.`);
+console.log(`Site verification passed: ${data.articles.length} articles, ${ids.size} unique URLs, guide ${actualGuideItems} items, ${monthLinks.length} archive month pages, analytics ${analyticsExpected ? `${publicHtmlFiles.length} pages` : 'disabled'}.`);

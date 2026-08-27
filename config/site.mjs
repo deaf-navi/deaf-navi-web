@@ -16,9 +16,13 @@ export const UPDATE_SCHEDULE_DETAIL = 'JST 6:00 / 12:00 / 18:00ごろ';
 
 export const CURATE_USER_AGENT = 'DeafNaviWeb/1.1 (+https://deaf-navi.github.io/deaf-navi-web/)';
 
-// Cloudflare Web Analytics — cookieless / privacy-friendly
-export const CF_ANALYTICS_TOKEN = '6473e8a5f9904585a0f0f17c8a3edfe0';
-export const CF_ANALYTICS_SNIPPET = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_ANALYTICS_TOKEN}"}'></script>`;
+// Cloudflare Web Analytics。Beacon token はクライアントHTMLに公開される識別子であり、
+// API Secretではない。変更・無効化はこの設定だけで行い、生成HTMLは直接編集しない。
+export const ANALYTICS = Object.freeze({
+  provider: 'cloudflare',
+  enabled: true,
+  token: '6473e8a5f9904585a0f0f17c8a3edfe0',
+});
 
 export const COPYRIGHT_HTML = (year) => `
         <span>&copy; ${year} TAMA.</span>

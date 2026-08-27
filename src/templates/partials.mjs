@@ -4,7 +4,6 @@
  */
 
 import {
-  CF_ANALYTICS_SNIPPET,
   SITE_NAME,
   SITE_URL,
   UPDATE_SCHEDULE_DETAIL,
@@ -128,8 +127,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}">
-${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}
-  ${CF_ANALYTICS_SNIPPET}`;
+${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
 
 export function renderSkipLink() {

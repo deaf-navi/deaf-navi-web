@@ -104,6 +104,29 @@ npm run preview:otomado        # おとまどを含むdocs/をローカル配信
 
 **注意**: カテゴリ id の追加・変更は iOS アプリ互換（`src/app-api-build.mjs` と `dev-docs/architecture.md`）の確認が必須。
 
+## Analytics
+
+公開HTMLの利用状況と表示性能は [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) で確認する。GitHub Pagesは維持し、Cloudflare Pages・Worker・独自のアクセス解析DBは使用しない。
+
+- 設定場所: `config/site.mjs` の `ANALYTICS`
+- 有効化: `provider: 'cloudflare'`、`enabled: true`、`token` にWeb AnalyticsのBeacon Tokenを設定
+- 無効化: `enabled: false`（token未設定・不正時もfail-softでBeaconを出力しない）
+- Tokenは最終的に公開HTMLへ含まれるサイト識別子であり、API Secretではない。GitHub Actions Secretや環境変数は使わない
+- 国内版・About・ガイド・サイトマップ・アーカイブ・オフラインページは `npm run build`、World 4ページは `npm run build:world`、おとまどは `npm run build:otomado` で同じ設定から生成される
+- `npm run verify` / `npm run verify:world` は、対象HTMLごとにBeaconがちょうど1個あることを確認する。Analytics無効時はBeaconなしを正常状態として扱う
+
+Tokenの登録・変更手順（Cloudflare Dashboardの2026年8月時点の案内）:
+
+1. Cloudflare Dashboardの **Analytics & Logs > Web Analytics** を開く
+2. **Add a site** を選び、hostnameに `deaf-navi.github.io` を入力して候補を選択し **Done**
+3. 対象サイトの **Manage site** でJS snippetを表示し、`data-cf-beacon` 内のtokenを取得
+4. `config/site.mjs` の `ANALYTICS.token` だけを置き換える（hostname移転後は登録hostnameも必ず確認する）
+5. `npm test`、`npm run build`、`npm run build:world`、`npm run build:otomado`、`npm run verify`、`npm run verify:world` を実行し、生成された `docs/` を公開する
+
+アクセス数はCloudflare Dashboardの **Web Analytics** で対象サイトを開き、期間を選択して確認する。Pathでトップ、国内版、World、`/otomado/`、archive、guideを比較でき、Referer、Country、Device type、Browser、Operating systemでも絞り込める。反映には数分かかる場合があり、広告ブロッカー等でBeaconが遮断されたアクセスは集計されない。
+
+Cloudflareの公式説明では、Web AnalyticsはCookieやlocalStorageなどのクライアント側状態を解析用途に使わず、IPアドレスやUser-Agentによる個人の継続追跡・フィンガープリントを行わない。クエリ文字列も記録しない。この導入のためのCookie同意バナーは追加していない。将来CSPを導入する場合は、`script-src` で `https://static.cloudflareinsights.com/beacon.min.js`、`connect-src` で `https://cloudflareinsights.com` を許可する。
+
 ## データ品質・検証
 
 - `npm run generate` は curate → build → **verify** の順で実行され、verify が失敗すると公開（commit）されない

@@ -12,7 +12,7 @@
     "build:app-api": "node src/app-api-build.mjs",
     "build:otomado": "npm --prefix tools/otomado run build",
     "verify": "node scripts/verify-site.mjs",
-    "test": "node --test test/text.test.mjs test/feed-parser.test.mjs test/curation.test.mjs test/world-relevance.test.mjs test/templates.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs",
+    "test": "node --test test/text.test.mjs test/feed-parser.test.mjs test/curation.test.mjs test/world-relevance.test.mjs test/templates.test.mjs test/analytics.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs",
     "test:otomado": "npm --prefix tools/otomado test",
     "codex-app-server": "node scripts/codex-app-server.mjs",
     "codex-app-server:smoke": "node scripts/codex-app-server-smoke-test.mjs",

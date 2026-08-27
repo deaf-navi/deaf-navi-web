@@ -76,7 +76,6 @@
 }
 </script>
 
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
 </head>
 <body>
   <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
@@ -277,6 +276,12 @@
       <p>記事の本文・要約は各発信元のものを抜粋し、本文リンクはすべて各元記事の原文（外部サイト）に遷移します。記事の著作権はそれぞれの発信元に帰属します。</p>
     </section>
 
+    <section aria-labelledby="about-privacy">
+      <h2 id="about-privacy" class="about__h2">アクセス解析とプライバシー</h2>
+      <p>サイトの利用状況と表示性能を把握するため、<a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer">Cloudflare Web Analytics</a> を利用しています。ページのURLパス、参照元、国・地域、デバイス、ブラウザ、OS、表示性能などを集計し、サイト改善に使用します。</p>
+      <p>Cloudflareの公式仕様では、このアクセス解析はCookieやlocalStorageなどのクライアント側状態を使用せず、IPアドレスやUser-Agentによる個人の継続追跡・フィンガープリントを行いません。クエリ文字列も解析画面には記録されません。解析用スクリプトが通信できない場合も、Deaf Naviの表示・PWA・情報保障ツールはそのまま利用できます。</p>
+    </section>
+
     <section aria-labelledby="about-operator">
       <h2 id="about-operator" class="about__h2">運営</h2>
       <p>Deaf Navi Web とiOSアプリ「Deaf Navi」は <strong>TAMA</strong> が運営しています。Web版で選定したニュースや暮らしの情報をアプリと共有し、それぞれの利用場面に合った形で提供しています。</p>
@@ -316,5 +321,6 @@
   </footer>
 
   <script src="./ui-controls.js" defer></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
 </body>
 </html>

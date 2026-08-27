@@ -47,7 +47,7 @@
 ## 秘密情報
 
 - リポジトリ Secrets: `CODEX_APP_SERVER_URL` / `CODEX_APP_SERVER_TOKEN`（World-JP後編集用・任意）
-- リポジトリに秘密情報はコミットしない。Cloudflare Analytics トークンは公開前提の値（cookieless beacon）
+- リポジトリに秘密情報はコミットしない。Cloudflare Web AnalyticsのBeacon Tokenは公開HTMLに含まれるサイト識別子で、`config/site.mjs` の `ANALYTICS` で一元管理する（詳細はREADMEの「Analytics」）
 
 ## 定期メンテナンス（月1目安）
 

@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import { SITE_KEYWORDS } from '../config/site.mjs';
+import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { renderHomePage } from './templates/home.mjs';
 import {
   groupArticlesByMonth,
@@ -72,7 +73,10 @@ async function fileExists(p) {
 }
 
 async function writeDoc(file, content) {
-  await writeFile(join(DOCS, file), content, 'utf8');
+  const output = file.toLowerCase().endsWith('.html')
+    ? injectCloudflareAnalytics(content)
+    : content;
+  await writeFile(join(DOCS, file), output, 'utf8');
   console.log(`書き出し: ${file}`);
 }
 
@@ -157,7 +161,10 @@ async function main() {
   // PWA・アイコン類（本番/devで共通名）
   await copyAsset(join(ASSETS, 'favicon.svg'), 'favicon.svg');
   await copyAsset(join(ASSETS, 'manifest.webmanifest'), 'manifest.webmanifest');
-  await copyAsset(join(ASSETS, 'offline.html'), 'offline.html');
+  const offlineHtml = join(ASSETS, 'offline.html');
+  if (await fileExists(offlineHtml)) {
+    await writeDoc('offline.html', await readFile(offlineHtml, 'utf8'));
+  }
   await copyAsset(join(ASSETS, 'og-image.png'), 'og-image.png');
   await copyAsset(join(ASSETS, 'deaf-navi-ios-app-icon.png'), 'deaf-navi-ios-app-icon.png');
   if (await fileExists(join(ASSETS, 'icons'))) {

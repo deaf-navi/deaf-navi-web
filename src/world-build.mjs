@@ -2,6 +2,7 @@ import { readFile, writeFile, copyFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { SITE_URL } from '../config/site.mjs';
+import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -80,9 +81,6 @@ const TOPIC_UI_EN = {
   safety: 'Safety / emergencies',
   general: 'General',
 };
-
-const CF_ANALYTICS_TOKEN = '6473e8a5f9904585a0f0f17c8a3edfe0';
-const CF_ANALYTICS_SNIPPET = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_ANALYTICS_TOKEN}"}'></script>`;
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -402,7 +400,6 @@ function renderPage(data, mode = 'jp') {
   <link rel="stylesheet" href="./styles-world.css">
 
   ${jsonLd}
-  ${CF_ANALYTICS_SNIPPET}
 </head>
 <body>
   <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
@@ -577,10 +574,10 @@ async function main() {
   const raw = await readFile(DATA_FILE, 'utf8');
   const data = JSON.parse(raw);
   await mkdir(DOCS, { recursive: true });
-  await writeFile(JP_HTML_OUT, renderPage(data, 'jp'), 'utf8');
-  await writeFile(ORIGINAL_HTML_OUT, renderPage(data, 'original'), 'utf8');
-  await writeFile(EN_LEGACY_HTML_OUT, renderOriginalLegacyRedirect(), 'utf8');
-  await writeFile(LEGACY_HTML_OUT, renderLegacyRedirect(), 'utf8');
+  await writeFile(JP_HTML_OUT, injectCloudflareAnalytics(renderPage(data, 'jp')), 'utf8');
+  await writeFile(ORIGINAL_HTML_OUT, injectCloudflareAnalytics(renderPage(data, 'original')), 'utf8');
+  await writeFile(EN_LEGACY_HTML_OUT, injectCloudflareAnalytics(renderOriginalLegacyRedirect()), 'utf8');
+  await writeFile(LEGACY_HTML_OUT, injectCloudflareAnalytics(renderLegacyRedirect()), 'utf8');
   await writeFile(FEED_OUT, renderRss(data, 'jp'), 'utf8');
   const originalFeed = renderRss(data, 'original');
   await writeFile(ORIGINAL_FEED_OUT, originalFeed, 'utf8');

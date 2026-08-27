@@ -9,6 +9,13 @@
 import { readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { ANALYTICS } from '../config/site.mjs';
+import {
+  CLOUDFLARE_ANALYTICS_BEACON_URL,
+  isCloudflareAnalyticsEnabled,
+  renderCloudflareAnalyticsBeacon,
+} from '../src/lib/analytics.mjs';
+
 const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const docs = join(root, 'docs');
 
@@ -43,9 +50,11 @@ for (const file of ['deaf-navi-world-jp.html', 'deaf-navi-world-original.html', 
   }
 }
 
-const [worldJp, worldOriginal] = await Promise.all([
+const [worldJp, worldOriginal, worldLegacy, worldEnLegacy] = await Promise.all([
   readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8'),
   readFile(join(docs, 'deaf-navi-world-original.html'), 'utf8'),
+  readFile(join(docs, 'deaf-navi-world.html'), 'utf8'),
+  readFile(join(docs, 'deaf-navi-world-en.html'), 'utf8'),
 ]);
 for (const [label, html] of [['World-JP', worldJp], ['World-Original', worldOriginal]]) {
   assert(html.includes('href="./index.html"'), `${label} に国内版への導線がありません。`);
@@ -54,6 +63,24 @@ for (const [label, html] of [['World-JP', worldJp], ['World-Original', worldOrig
 }
 assert(worldJp.includes('site-nav__link--world is-current'), 'World-JP の共通ナビに現在地表示がありません。');
 assert(worldJp.includes('data-region'), 'World-JP に地域フィルタ属性がありません。');
+
+const analyticsExpected = isCloudflareAnalyticsEnabled(ANALYTICS);
+const expectedAnalyticsBeacon = renderCloudflareAnalyticsBeacon(ANALYTICS);
+for (const [label, html] of [
+  ['World-JP', worldJp],
+  ['World-Original', worldOriginal],
+  ['World legacy', worldLegacy],
+  ['World-EN legacy', worldEnLegacy],
+]) {
+  const count = html.split(CLOUDFLARE_ANALYTICS_BEACON_URL).length - 1;
+  assert(
+    analyticsExpected ? count === 1 : count === 0,
+    `${label} のCloudflare Analytics Beacon数が設定と一致しません（実際: ${count}）。`,
+  );
+  if (analyticsExpected) {
+    assert(html.includes(expectedAnalyticsBeacon), `${label} のAnalytics Beaconが現在の公式形式・設定と一致しません。`);
+  }
+}
 
 if (failures > 0) {
   console.error(`World verification failed: ${failures} problem(s).`);
