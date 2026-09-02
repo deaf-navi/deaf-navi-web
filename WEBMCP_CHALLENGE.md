@@ -2,7 +2,7 @@
 
 Deaf Navi Web を、[OpenAI WebMCP Challenge](https://openai.com/webmcp-challenge/) に向けて「人とAgentが同じページ・同じ状態を見ながら操作できる」Web体験へ拡張した記録です。
 
-> **公開状況:** Challenge実装はcommit `7cb295c` まで完了しています。公開サイトへ反映されるまでは、下記のLive Demo URLがWebMCP対応版とは限りません。確認済み範囲は「動作確認状況」を参照してください。
+> **公開状況:** Challenge実装は公開済みです。WebMCP公開物を生成したcommitは `88dc244` で、ChatGPT内蔵ブラウザが公開URLから7 Toolを検出・実行できることを確認しました。後続の検証記録commitは公開資産を変更しません。確認済み範囲は「動作確認状況」を参照してください。
 
 - **Live Demo:** https://deaf-navi.github.io/deaf-navi-web/
 - **Source:** https://github.com/deaf-navi/deaf-navi-web
@@ -284,7 +284,7 @@ Challenge対応で変更または追加するソースは次のとおりです�
 
 ## ライセンス
 
-Challenge対応開始時、`package.json` とREADMEはコードをMITとしていましたが、リポジトリ直下に `LICENSE` はなく、GitHubのライセンス表示も未認識でした。commit `7cb295c` で標準MIT Licenseを追加しています。push後にGitHubがMITとして認識することを確認します。
+Challenge対応開始時、`package.json` とREADMEはコードをMITとしていましたが、リポジトリ直下に `LICENSE` はなく、GitHubのライセンス表示も未認識でした。commit `7cb295c` で標準MIT Licenseを追加し、公開後にGitHubが **MIT License** として認識することを確認しました。
 
 MITの対象はサイトのコードです。記事タイトル・要約等の権利は各発信元に帰属し、リンク先の外部コンテンツを再許諾しません。Deaf Naviのブランド、iOSアプリアイコン、PWAアイコン、OG画像等は制作・権利由来の文書化が未完了のため、Devpost提出前に所有者確認を行います。
 
@@ -391,20 +391,22 @@ Chrome 149以降のDevToolsでToolを手動確認する場合は、必要に応�
 | 国内版 / World版のbuild・静的verify | 確認済み | `npm run build`、`npm run build:world`、`npm run verify`、`npm run verify:world` 成功 |
 | 通常ブラウザで既存機能 | ローカル確認済み | Chromeで検索、情報源・期間filter、条件clear、テーマ、文字サイズを確認 |
 | WebMCP非対応ブラウザの通常利用 | ローカル確認済み | Chromeで `document.modelContext` がない状態でも通常検索と表示設定が動作 |
-| ChatGPT内蔵ブラウザでTool認識 | ローカル確認済み | in-app browserが7 ToolとSchemaを検出 |
-| Tool実行で実UIが更新 | ローカル確認済み | 奈良検索、公式0件、強調、表示設定、ガイド・筆談ボード遷移を確認 |
-| Agent Activity | ローカル確認済み | Tool操作の内容と件数が同じ画面に表示 |
-| Undo / 人の操作優先 | ローカル確認済み | 表示設定を復元。手入力、検索clear、もっと読む後はUndo履歴を無効化 |
+| ChatGPT内蔵ブラウザでTool認識 | 公開URLで確認済み | in-app browserが7 ToolとSchemaを検出 |
+| Tool実行で実UIが更新 | 公開URLで確認済み | 奈良検索、公式0件、強調、表示設定、緊急情報、共有状態、ガイド・筆談ボード遷移を確認 |
+| Agent Activity | 公開URLで確認済み | Tool操作の内容と件数が同じ画面に表示 |
+| Undo / 人の操作優先 | 公開URLで確認済み | 表示設定を復元。手入力、検索clear、もっと読む後はUndo履歴を無効化 |
 | Service Worker更新遷移 | ローカル確認済み | 旧キャッシュがあるin-app browserで1回の遷移後、再読み込みなしで同一hashのCSS/JSと7 Toolを確認 |
-| 公開GitHub Pages | 未検証 | commit / push / Pages反映後に確認する |
+| 公開GitHub Pages | 確認済み | WebMCP生成head `88dc244`、Pages run [`33693602875`](https://github.com/deaf-navi/deaf-navi-web/actions/runs/33693602875) 成功。公開HTMLも同一hashのCSS/JSと7 Toolを確認 |
+| 公開URLの通常Chrome / 375px | 確認済み | WebMCPなしの検索46件・条件clear・表示設定と、CSS幅375pxで横overflowなしを確認 |
 
 ## WebMCP関連コミット一覧
 
 | Commit | 日付 | 内容 |
 |---|---|---|
 | [`7cb295c`](https://github.com/deaf-navi/deaf-navi-web/commit/7cb295c97b4b40322277811376bcbaf44159c779) | 2026-09-03 | 7 WebMCP Tool、Agent Activity、Undo、テスト、MIT License |
+| [`feae753`](https://github.com/deaf-navi/deaf-navi-web/commit/feae753c456c55f48dcf28e21d72af0b0fb6806e) | 2026-09-03 | READMEのChallenge入口と本Challenge実装・検証文書 |
 
-自動収集の `chore(publish)` やWeb Analyticsの `c0d0632` はWebMCP関連コミットに含めません。Challenge説明と公開検証記録の文書commitは、公開確認後に追記します。
+最終公開head `88dc244` は、Challenge実装を含む最新ソースで生成物を再構築した自動 `chore(publish)` です。自動収集commitやWeb Analyticsの `c0d0632` はWebMCP実装commit一覧には含めません。また、この一覧更新自身の検証メタデータcommitは列挙対象外です。
 
 ## Challenge要件との対応
 
@@ -416,11 +418,6 @@ Chrome 149以降のDevToolsでToolを手動確認する場合は、必要に応�
 
 ## 提出前に残る確認
 
-- WebMCP対応版をpushし、GitHub Pagesの公開hashを確認する
-- 公開URLをChatGPT内蔵ブラウザで開き、7 Toolの検出と一連のDemo Promptsを確認する
-- Chrome testing flag / DevToolsでTool、Schema、戻り値を確認する
-- 公開URLで通常ブラウザ、WebMCP非対応ブラウザ、375px幅を確認する
-- Challenge説明のcommit hashを本書へ反映する
-- root `LICENSE`がGitHub上でMITとして認識されることを確認する
+- Chrome testing flag / DevToolsでもTool、Schema、戻り値を確認する（通常利用プロファイルのflagは変更していない）
 - ブランド、iOS / PWAアイコン、OG画像等の所有・利用権を確認する
 - Devpostの説明、3分以内のデモ動画、リポジトリURL、Live Demo URLを揃える

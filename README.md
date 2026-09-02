@@ -26,7 +26,7 @@
 
 Deaf Navi Webは、[OpenAI WebMCP Challenge](https://openai.com/webmcp-challenge/) に向けて、既存の検索・ガイド・表示設定・情報保障ツールを `document.modelContext.registerTool()` から操作できるようにしました。Agentの操作は同じページの **Agent Activity** に表示され、直近の状態変更は **Undo agent changes** で戻せます。WebMCP非対応ブラウザではTool登録だけを省略し、通常サイトとして利用できます。
 
-> **Status:** Challenge実装はcommit `7cb295c` まで完了しています。公開反映を確認するまでは、Live DemoがWebMCP対応版とは限りません。実装、Schema、検証状況、Challenge期間前後の区別は [WEBMCP_CHALLENGE.md](WEBMCP_CHALLENGE.md) を参照してください。
+> **Status:** Challenge実装は公開済みです。Live Demoで7つのSite Tool、共有UI、Agent Activity、Undoを確認できます。実装、Schema、検証状況、Challenge期間前後の区別は [WEBMCP_CHALLENGE.md](WEBMCP_CHALLENGE.md) を参照してください。
 
 ### Live Demo
 
