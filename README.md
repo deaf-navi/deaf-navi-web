@@ -22,6 +22,59 @@
 | 軽量化 | トップは初期60件のみサーバ生成し全件はJSONを遅延取得（v1比 約1/5 の容量） |
 | アクセシビリティ | WCAG 2.2 AA コントラスト達成・タッチターゲット44px・キーボード操作・スキップリンク |
 
+## WebMCP Challenge
+
+Deaf Navi Webは、[OpenAI WebMCP Challenge](https://openai.com/webmcp-challenge/) に向けて、既存の検索・ガイド・表示設定・情報保障ツールを `document.modelContext.registerTool()` から操作できるようにしました。Agentの操作は同じページの **Agent Activity** に表示され、直近の状態変更は **Undo agent changes** で戻せます。WebMCP非対応ブラウザではTool登録だけを省略し、通常サイトとして利用できます。
+
+> **Status:** Challenge実装はcommit `7cb295c` まで完了しています。公開反映を確認するまでは、Live DemoがWebMCP対応版とは限りません。実装、Schema、検証状況、Challenge期間前後の区別は [WEBMCP_CHALLENGE.md](WEBMCP_CHALLENGE.md) を参照してください。
+
+### Live Demo
+
+- https://deaf-navi.github.io/deaf-navi-web/
+- Source: https://github.com/deaf-navi/deaf-navi-web
+
+### WebMCP Tools
+
+| Tool | できること |
+|---|---|
+| `search_deaf_info` | キーワード、カテゴリ、地域、情報源、期間で既存一覧を検索・絞り込み |
+| `show_results` | 指定した記事を現在の一覧で強調表示 |
+| `get_emergency_resources` | 地域に関連する緊急・防災情報を一覧表示し、緊急通報ガイドのURLを返す |
+| `open_life_guide` | 制度・生活情報等のガイドを開く |
+| `set_accessibility_preferences` | 文字サイズとテーマを即時変更 |
+| `open_accessibility_tool` | 字幕、筆談ボード、音の可視化を開く |
+| `get_current_view_state` | 現在の検索条件、表示設定、結果を読み取る |
+
+### Demo Prompts
+
+次を一つの会話で順に実行します。
+
+```text
+奈良県に関係する最近の手話・制度情報を見せて
+公式情報だけに絞って
+重要なものを画面上で分かりやすく表示して
+文字を大きくして
+筆談ボードを開いて
+```
+
+### Architecture
+
+```text
+ChatGPT built-in browser / WebMCP Agent
+  → document.modelContext.registerTool()
+  → src/webmcp.js
+  → 既存の検索・フィルタ / 表示設定 / ガイド / おとまど
+  → 同じUI + URL + Agent Activity + Undo
+```
+
+WebMCPはクライアント側のprogressive enhancementです。新しいAPIサーバーや秘密情報を追加せず、GitHub Pagesの静的構成と人向けUIを維持します。
+
+### WebMCP Challenge work
+
+- **Challenge以前:** 検索・絞り込み、暮らしのガイド、テーマ・文字サイズ、おとまど、PWA
+- **2026年8月25日以降:** 7つのWebMCP Tool、Agent Activity、Undo、記事強調、fallback、最小回帰テスト
+- 詳細: [WEBMCP_CHALLENGE.md](WEBMCP_CHALLENGE.md)
+
 ## ディレクトリ構成
 
 ```
@@ -48,6 +101,7 @@ deaf-navi-web/
 │   ├── assets/                # PWAアセット（manifest/sw.js/offline/アイコン/OGP画像）
 │   ├── styles.css             # デザインシステム2.0（World版と共通）
 │   ├── app.js                 # トップページのクライアント（検索・フィルタ・表示設定）
+│   ├── webmcp.js              # WebMCP Tool・Agent Activity・Undo（progressive enhancement）
 │   ├── guide.js               # 暮らしのガイド検索
 │   ├── guide-data.mjs         # 暮らしのガイド掲載データ
 │   └── serve.mjs              # ローカル確認サーバ
@@ -62,6 +116,7 @@ deaf-navi-web/
 │   ├── articles.json          # 国内キュレーション結果（iOS API の入力・スキーマ互換必須）
 │   ├── articles-old.json      # 過去アーカイブデータ（最大5000件）
 │   ├── index-old.html         # アーカイブ目次 → archive/YYYY-MM.html へ月別分割
+│   ├── webmcp.js              # src/webmcp.js から生成時にコピー
 │   ├── app/v1/                # iOSアプリ同期JSON（互換契約: dev-docs/architecture.md）
 │   ├── manifest.webmanifest / sw.js / offline.html / icons/  # PWA
 │   ├── otomado/               # tools/otomado の本番ビルド出力
@@ -133,7 +188,7 @@ Cloudflareの公式説明では、Web AnalyticsはCookieやlocalStorageなどの
 - verify の内容: articles.json スキーマ / URL・日付妥当性 / 重複 / カテゴリ・地域enum / 主要UI・SEO要素 / PWAアセット / アーカイブ整合
 - 日付が解釈できない記事は取り込まない（2.0で「取得時刻すり替え」を廃止）
 - 一時的な取得エラーは指数バックオフで再試行し、失敗ソースはスキップして継続（fail-soft）。全滅時のみ前回データを保持して中断
-- テスト: `npm test`（37件）— 分類・重複除去・パーサ・iOS互換スキーマ・クライアントラベル同期
+- テスト: `npm test` — 分類・重複除去・パーサ・iOS互換スキーマ・クライアントラベル・WebMCP定義の同期
 
 ## iOSアプリ連携（後方互換）
 
@@ -169,5 +224,6 @@ Cloudflareの公式説明では、Web AnalyticsはCookieやlocalStorageなどの
 
 ## ライセンス
 
-- サイトのコード: MIT
+- サイトのコード: [MIT License](LICENSE)
 - 記事の著作権: 各発信元に帰属（タイトル・要約・外部リンクのみ表示）
+- 外部コンテンツはMITで再許諾しない。Deaf Naviのブランド・アイコン・OG画像等は、制作・権利関係を確認したうえで利用する
