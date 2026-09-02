@@ -16,6 +16,7 @@ function fakeElement() {
     title: '',
     addEventListener() {},
     appendChild(child) { this.children.push(child); },
+    getAttribute(name) { return attributes.get(name) ?? null; },
     hasAttribute(name) { return attributes.has(name); },
     querySelector() { return null; },
     querySelectorAll() { return []; },
@@ -25,11 +26,18 @@ function fakeElement() {
 }
 
 async function createHarness(overrides = {}) {
+  const sourceFilter = fakeElement();
+  sourceFilter.options = [];
+  sourceFilter.appendChild = function appendOption(child) {
+    this.children.push(child);
+    this.options.push(child);
+  };
   const elements = new Map([
     ['agent-activity', fakeElement()],
     ['agent-activity-log', fakeElement()],
     ['agent-activity-status', fakeElement()],
     ['agent-activity-undo', fakeElement()],
+    ['source-filter', sourceFilter],
   ]);
   const calls = [];
   const documentListeners = new Map();
@@ -156,6 +164,21 @@ test('WebMCP: 奈良検索と緊急情報の既定30日を実行時の共有UI�
     period: '30d',
     region: 'nara',
   });
+});
+
+test('WebMCP: 専用の情報源選択肢はTool実行時だけ共有UIへ追加する', async () => {
+  const harness = await createHarness();
+  const search = harness.calls.find(({ tool }) => tool.name === 'search_deaf_info').tool;
+  const sourceFilter = harness.elements.get('source-filter');
+
+  assert.equal(sourceFilter.options.length, 0);
+  await search.execute({ sourceType: 'official' });
+
+  assert.equal(sourceFilter.options.length, 1);
+  assert.equal(sourceFilter.options[0].value, 'official');
+  assert.equal(sourceFilter.options[0].textContent, '一次情報のみ');
+  assert.equal(sourceFilter.options[0].getAttribute('data-webmcp-only'), 'true');
+  assert.equal(harness.appCalls.setFilters[0].sourceType, 'official');
 });
 
 test('WebMCP: 失敗した変更をrollbackし、手動クリア・もっと読む後はUndoしない', async () => {

@@ -136,15 +136,16 @@ for (const marker of [
   'class="skip-link"',
   'id="theme-toggle"',
   'id="font-toggle"',
-  'id="agent-activity"',
+  'id="agent-activity" aria-labelledby="agent-activity-heading" hidden aria-hidden="true"',
   'id="agent-activity-undo"',
-  '<option value="official">',
   'src="./webmcp.js?v=',
   'apple-touch-icon',
   'og-image.png',
 ]) {
   assert(indexHtml.includes(marker), `index.html に ${marker} がありません。`);
 }
+assert(!indexHtml.includes('<option value="official"'), '通常フロントにWebMCP専用の一次情報filterがあります。');
+assert(!indexHtml.includes('<option value="specialist"'), '通常フロントにWebMCP専用の専門情報filterがあります。');
 
 /* ---------- World ページ（互換導線） ---------- */
 

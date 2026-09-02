@@ -228,8 +228,6 @@ function renderToolbar() {
               <span class="tool-select__label">情報源</span>
               <select id="source-filter" name="source">
                 <option value="all">すべて</option>
-                <option value="official">一次情報のみ</option>
-                <option value="specialist">専門情報のみ</option>
                 <option value="primary">一次・専門</option>
                 <option value="news">報道・発見</option>
                 <option value="other">関連媒体</option>
@@ -262,7 +260,7 @@ function renderToolbar() {
   }
 
 function renderAgentActivity() {
-  return `      <aside class="agent-activity" id="agent-activity" aria-labelledby="agent-activity-heading">
+  return `      <aside class="agent-activity" id="agent-activity" aria-labelledby="agent-activity-heading" hidden aria-hidden="true">
         <div class="agent-activity__head">
           <div>
             <p class="agent-activity__eyebrow">Human + Agent</p>

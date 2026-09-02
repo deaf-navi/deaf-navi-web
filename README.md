@@ -24,9 +24,9 @@
 
 ## WebMCP Challenge
 
-Deaf Navi Webは、[OpenAI WebMCP Challenge](https://openai.com/webmcp-challenge/) に向けて、既存の検索・ガイド・表示設定・情報保障ツールを `document.modelContext.registerTool()` から操作できるようにしました。Agentの操作は同じページの **Agent Activity** に表示され、直近の状態変更は **Undo agent changes** で戻せます。WebMCP非対応ブラウザではTool登録だけを省略し、通常サイトとして利用できます。
+Deaf Navi Webは、[OpenAI WebMCP Challenge](https://openai.com/webmcp-challenge/) に向けて、既存の検索・ガイド・表示設定・情報保障ツールを `document.modelContext.registerTool()` から操作できるようにしました。WebMCP非対応ブラウザではTool登録だけを省略し、通常サイトとして利用できます。
 
-> **Status:** Challenge実装は公開済みです。Live Demoで7つのSite Tool、共有UI、Agent Activity、Undoを確認できます。実装、Schema、検証状況、Challenge期間前後の区別は [WEBMCP_CHALLENGE.md](WEBMCP_CHALLENGE.md) を参照してください。
+> **Status:** 7つのSite Toolと内部実装は保持しています。2026年9月3日の方針変更により、通常のフロントはChallenge実装前の見た目へ戻し、Agent Activity / Undoパネルは一時的に非表示です。WebMCP専用の情報源選択肢は通常HTMLへ出さず、Toolが要求した時だけ動的に追加します。実装記録は [WEBMCP_CHALLENGE.md](WEBMCP_CHALLENGE.md) を参照してください。
 
 ### Live Demo
 
@@ -64,7 +64,7 @@ ChatGPT built-in browser / WebMCP Agent
   → document.modelContext.registerTool()
   → src/webmcp.js
   → 既存の検索・フィルタ / 表示設定 / ガイド / おとまど
-  → 同じUI + URL + Agent Activity + Undo
+  → 同じUI + URL（Agent Activity / Undoの実装は非表示で保持）
 ```
 
 WebMCPはクライアント側のprogressive enhancementです。新しいAPIサーバーや秘密情報を追加せず、GitHub Pagesの静的構成と人向けUIを維持します。

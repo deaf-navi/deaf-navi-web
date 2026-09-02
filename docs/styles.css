@@ -727,6 +727,8 @@ input, select {
 .filter--world-link__icon { font-size: 1rem; }
 
 /* ---------- Agent Activity（人とAgentの共有操作ログ） ---------- */
+.agent-activity[hidden] { display: none; }
+
 .agent-activity {
   margin: 0 0 var(--s-5);
   padding: var(--s-4);

@@ -219,9 +219,21 @@
     return args;
   }
 
+  function ensureWebMcpSourceOption(sourceType) {
+    if (sourceType !== 'official' && sourceType !== 'specialist') return;
+    var select = document.getElementById('source-filter');
+    if (!select || Array.prototype.some.call(select.options, function (option) { return option.value === sourceType; })) return;
+    var option = document.createElement('option');
+    option.value = sourceType;
+    option.textContent = SOURCE_LABELS[sourceType];
+    option.setAttribute('data-webmcp-only', 'true');
+    select.appendChild(option);
+  }
+
   async function executeSearch(input, options) {
     ensureNotAborted(options);
     var args = applyNaraSearchTerm(input && typeof input === 'object' ? input : {});
+    ensureWebMcpSourceOption(args.sourceType);
     var undoEntry = pushUndo('検索・絞り込み');
     try {
       clearHighlights();

@@ -4,6 +4,8 @@ Deaf Navi Web を、[OpenAI WebMCP Challenge](https://openai.com/webmcp-challeng
 
 > **公開状況:** Challenge実装は公開済みです。WebMCP公開物を生成したcommitは `88dc244` で、ChatGPT内蔵ブラウザが公開URLから7 Toolを検出・実行できることを確認しました。後続の検証記録commitは公開資産を変更しません。確認済み範囲は「動作確認状況」を参照してください。
 
+> **2026年9月3日 方針変更:** 音声付きデモ動画の作成を一旦見送り、通常のフロントはChallenge実装前の見た目へ戻しました。7 ToolとAgent Activity / Undoの内部実装は削除せず、Agent Activityパネルを公開UIで非表示にしています。WebMCP専用の情報源選択肢は通常HTMLへ出さず、Toolが要求した時だけ動的に追加します。以下は実装・公開検証時点の記録です。
+
 - **Live Demo:** https://deaf-navi.github.io/deaf-navi-web/
 - **Source:** https://github.com/deaf-navi/deaf-navi-web
 - **Challenge:** https://openai.com/webmcp-challenge/
@@ -321,10 +323,12 @@ npm run serve
 1. 通常の検索、カテゴリ、情報源、期間、地域フィルタが動く
 2. テーマと文字サイズが切り替わる
 3. 暮らしのガイドとおとまどへ移動できる
-4. WebMCP非対応ブラウザでは「Agent Activity」が非対応状態を示し、通常機能は利用できる
+4. 通常画面にAgent ActivityパネルやWebMCP専用の情報源選択肢が出ず、Challenge実装前と同じ見た目で利用できる
 5. WebMCP対応環境では7 Toolが登録される
-6. Tool実行後に一覧、URL、表示設定、Agent Activityが更新される
-7. `Undo agent changes` で直近の検索・表示設定が戻る
+6. Tool実行後に一覧、URL、表示設定が更新される
+7. `official` / `specialist` はTool実行時だけ情報源selectへ追加される
+
+Agent Activity / Undoの内部実装は保持していますが、2026年9月3日以降の通常画面では非表示です。再度Challengeデモを行う場合は、表示を戻してからActivityとUndoを確認します。
 
 最小自動検証は次を実行します。
 
@@ -343,8 +347,8 @@ OpenAIの[サイトツール公式ガイド](https://learn.chatgpt.com/docs/webm
 3. **設定 > ブラウザ > 権限** でサイトツールを有効にする
 4. ChatGPTの内蔵ブラウザでLive Demoまたは `http://localhost:5173/` を開く
 5. アドレスバーの「サイトツール」から、利用可能な7 ToolとSchemaを確認する
-6. 下記のDemo Promptsを順に送り、ページの検索条件、一覧、強調、文字サイズ、Agent Activityを確認する
-7. `Undo agent changes` を押し、直近のAgent操作が戻ることを確認する
+6. 下記のDemo Promptsを順に送り、ページの検索条件、一覧、強調、文字サイズを確認する
+7. 通常画面にはAgent Activity / Undoが表示されないことを確認する
 
 サイトツールの利用可否はアプリのrollout、アカウント、workspaceによって異なります。OpenAI公式ガイドでは、現時点でEnterprise / Edu workspaceは対象外と案内されています。
 
@@ -387,14 +391,14 @@ Chrome 149以降のDevToolsでToolを手動確認する場合は、必要に応�
 
 | 確認項目 | 状況 | 備考 |
 |---|---|---|
-| WebMCP定義・Schema・実行・rollback・人優先・アセット世代 | 確認済み | `node --test test/webmcp.test.mjs test/templates.test.mjs test/client-labels.test.mjs` — 14件成功。`npm test` — 55件成功 |
+| WebMCP定義・Schema・実行・rollback・人優先・アセット世代 | 確認済み | `node --test test/webmcp.test.mjs test/templates.test.mjs test/client-labels.test.mjs` — 15件成功。`npm test` — 56件成功 |
 | 国内版 / World版のbuild・静的verify | 確認済み | `npm run build`、`npm run build:world`、`npm run verify`、`npm run verify:world` 成功 |
 | 通常ブラウザで既存機能 | ローカル確認済み | Chromeで検索、情報源・期間filter、条件clear、テーマ、文字サイズを確認 |
 | WebMCP非対応ブラウザの通常利用 | ローカル確認済み | Chromeで `document.modelContext` がない状態でも通常検索と表示設定が動作 |
 | ChatGPT内蔵ブラウザでTool認識 | 公開URLで確認済み | in-app browserが7 ToolとSchemaを検出 |
 | Tool実行で実UIが更新 | 公開URLで確認済み | 奈良検索、公式0件、強調、表示設定、緊急情報、共有状態、ガイド・筆談ボード遷移を確認 |
-| Agent Activity | 公開URLで確認済み | Tool操作の内容と件数が同じ画面に表示 |
-| Undo / 人の操作優先 | 公開URLで確認済み | 表示設定を復元。手入力、検索clear、もっと読む後はUndo履歴を無効化 |
+| Agent Activity | 内部実装・過去の公開確認済み / 現在非表示 | Tool操作の記録処理は保持。2026年9月3日以降の通常画面には表示しない |
+| Undo / 人の操作優先 | 内部実装・過去の公開確認済み / 現在非表示 | 復元処理と人の操作による履歴無効化は保持。通常画面にはボタンを表示しない |
 | Service Worker更新遷移 | ローカル確認済み | 旧キャッシュがあるin-app browserで1回の遷移後、再読み込みなしで同一hashのCSS/JSと7 Toolを確認 |
 | 公開GitHub Pages | 確認済み | WebMCP生成head `88dc244`、Pages run [`33693602875`](https://github.com/deaf-navi/deaf-navi-web/actions/runs/33693602875) 成功。公開HTMLも同一hashのCSS/JSと7 Toolを確認 |
 | 公開URLの通常Chrome / 375px | 確認済み | WebMCPなしの検索46件・条件clear・表示設定と、CSS幅375pxで横overflowなしを確認 |
