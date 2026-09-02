@@ -119,6 +119,8 @@
   }
 
   function matchesSource(tier) {
+    if (state.source === 'official') return tier === 'official';
+    if (state.source === 'specialist') return tier === 'specialist';
     if (state.source === 'primary') return tier === 'official' || tier === 'specialist';
     if (state.source === 'news') return tier === 'news';
     if (state.source === 'other') return tier !== 'official' && tier !== 'specialist' && tier !== 'news';
@@ -354,6 +356,51 @@
     }
   }
 
+  function getVisibleResults(max) {
+    var requested = Number(max);
+    var limit = isFinite(requested) ? Math.max(1, Math.min(20, Math.floor(requested))) : 10;
+    return Array.prototype.slice.call(articlesEl.querySelectorAll('.card'))
+      .filter(function (card) { return !card.hidden; })
+      .slice(0, limit)
+      .map(function (card) {
+        var titleLink = card.querySelector('.card__title a');
+        var sourceLink = card.querySelector('.card__source');
+        var chip = card.querySelector('.chip');
+        var time = card.querySelector('.card__time');
+        return {
+          id: titleLink ? titleLink.href : '',
+          title: titleLink ? titleLink.textContent.trim() : '',
+          category: card.getAttribute('data-category') || 'general',
+          categoryLabel: chip ? chip.textContent.trim() : '一般',
+          sourceType: card.getAttribute('data-source-tier') || 'news',
+          sourceName: sourceLink ? sourceLink.textContent.trim() : '',
+          region: card.getAttribute('data-region') || null,
+          publishedAt: time ? time.getAttribute('datetime') : null,
+        };
+      });
+  }
+
+  function getFilterState() {
+    return {
+      q: state.q,
+      category: state.category,
+      source: state.source,
+      period: state.period,
+      region: state.region,
+      limit: state.limit,
+    };
+  }
+
+  function getViewState() {
+    return {
+      filters: getFilterState(),
+      visibleResultCount: Number(visibleCountEl ? visibleCountEl.textContent : 0) || 0,
+      matchedResultCount: Number(totalCountEl ? totalCountEl.textContent : 0) || 0,
+      results: getVisibleResults(10),
+      dataMode: allArticles ? 'all-data' : 'ssr-fallback',
+    };
+  }
+
   function apply(options) {
     var updateUrl = !options || options.updateUrl !== false;
     if (allArticles && cardTemplate) applyFromData();
@@ -375,6 +422,81 @@
     state.limit = INITIAL_VISIBLE;
     ensureData().then(function () { apply(); });
     apply();
+  }
+
+  function normalizeChoice(value, allowed, aliases, fieldName) {
+    var key = String(value == null ? '' : value).trim().toLowerCase();
+    if (aliases && aliases[key]) key = aliases[key];
+    if (allowed.indexOf(key) === -1) {
+      throw new Error(fieldName + ' の値が対応範囲外です: ' + value);
+    }
+    return key;
+  }
+
+  function setFilters(next) {
+    var input = next && typeof next === 'object' ? next : {};
+    var has = Object.prototype.hasOwnProperty;
+    var nextState = getFilterState();
+
+    if (has.call(input, 'query') || has.call(input, 'q')) {
+      var queryValue = has.call(input, 'query') ? input.query : input.q;
+      nextState.q = String(queryValue == null ? '' : queryValue).trim().slice(0, 200);
+    }
+    if (has.call(input, 'category')) {
+      nextState.category = normalizeChoice(
+        input.category,
+        Object.keys(CATEGORY_UI),
+        { 'sign-language': 'accessibility', sign_language: 'accessibility', sign: 'accessibility' },
+        'category',
+      );
+    }
+    if (has.call(input, 'sourceType') || has.call(input, 'source')) {
+      var sourceValue = has.call(input, 'sourceType') ? input.sourceType : input.source;
+      nextState.source = normalizeChoice(
+        sourceValue,
+        ['all', 'official', 'specialist', 'primary', 'news', 'other'],
+        { authoritative: 'official' },
+        'sourceType',
+      );
+    }
+    if (has.call(input, 'period')) {
+      nextState.period = normalizeChoice(
+        input.period,
+        ['all', '1', '7', '30'],
+        { '24h': '1', '1d': '1', '7d': '7', '30d': '30', day: '1', week: '7', month: '30' },
+        'period',
+      );
+    }
+    if (has.call(input, 'region')) {
+      nextState.region = normalizeChoice(
+        input.region,
+        ['all', 'hokkaido_tohoku', 'kanto', 'chubu', 'kinki', 'chugoku_shikoku', 'kyushu_okinawa'],
+        { nara: 'kinki', '奈良': 'kinki', '奈良県': 'kinki' },
+        'region',
+      );
+    }
+
+    nextState.limit = Number.isFinite(Number(input.limit))
+      ? Math.max(INITIAL_VISIBLE, Math.floor(Number(input.limit)))
+      : INITIAL_VISIBLE;
+
+    // すべての入力検証が済んでから状態へ反映し、途中失敗で部分更新しない。
+    state.q = nextState.q;
+    state.category = nextState.category;
+    state.source = nextState.source;
+    state.period = nextState.period;
+    state.region = nextState.region;
+    state.limit = nextState.limit;
+    if (searchInput) searchInput.value = state.q;
+    if (sourceFilter) sourceFilter.value = state.source;
+    if (periodFilter) periodFilter.value = state.period;
+    if (regionFilter) regionFilter.value = state.region;
+    activateCategory(state.category);
+
+    return ensureData().then(function () {
+      apply();
+      return getViewState();
+    });
   }
 
   /* ---- イベント ---- */
@@ -424,7 +546,7 @@
     });
   }
 
-  bindSelect(sourceFilter, 'source', ['all', 'primary', 'news', 'other']);
+  bindSelect(sourceFilter, 'source', ['all', 'official', 'specialist', 'primary', 'news', 'other']);
   bindSelect(periodFilter, 'period', ['all', '1', '7', '30']);
   bindSelect(regionFilter, 'region', ['all', 'hokkaido_tohoku', 'kanto', 'chubu', 'kinki', 'chugoku_shikoku', 'kyushu_okinawa']);
 
@@ -484,4 +606,13 @@
   } else {
     setTimeout(syncAfterData, 2000);
   }
+
+  // WebMCP は、この公開APIを通じて手動操作と同じ状態・描画処理を再利用する。
+  window.DeafNaviApp = Object.freeze({
+    getState: getFilterState,
+    getViewState: getViewState,
+    getResults: getVisibleResults,
+    setFilters: setFilters,
+    restoreState: setFilters,
+  });
 })();

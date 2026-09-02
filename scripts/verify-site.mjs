@@ -62,7 +62,7 @@ async function listHtmlFiles(dir = docs, prefix = '') {
   return files;
 }
 
-const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml, oldIndexHtml, uiControlsJs, otomadoHtml, otomadoManifestRaw, otomadoSwJs] = await Promise.all([
+const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml, sitemapXml, oldIndexHtml, uiControlsJs, webmcpJs, otomadoHtml, otomadoManifestRaw, otomadoSwJs] = await Promise.all([
   readFile(join(docs, 'articles.json'), 'utf8'),
   readFile(join(docs, 'index.html'), 'utf8'),
   readFile(join(docs, 'deaf-navi-world-jp.html'), 'utf8'),
@@ -72,6 +72,7 @@ const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml,
   readFile(join(docs, 'sitemap.xml'), 'utf8'),
   readFile(join(docs, 'index-old.html'), 'utf8'),
   readFile(join(docs, 'ui-controls.js'), 'utf8'),
+  readFile(join(docs, 'webmcp.js'), 'utf8'),
   readFile(join(docs, 'otomado', 'index.html'), 'utf8'),
   readFile(join(docs, 'otomado', 'manifest.webmanifest'), 'utf8'),
   readFile(join(docs, 'otomado', 'sw.js'), 'utf8'),
@@ -135,6 +136,10 @@ for (const marker of [
   'class="skip-link"',
   'id="theme-toggle"',
   'id="font-toggle"',
+  'id="agent-activity"',
+  'id="agent-activity-undo"',
+  '<option value="official">',
+  'src="./webmcp.js?v=',
   'apple-touch-icon',
   'og-image.png',
 ]) {
@@ -189,13 +194,36 @@ for (const link of monthLinks) {
 
 /* ---------- PWA ---------- */
 
-for (const file of ['manifest.webmanifest', 'sw.js', 'offline.html', 'favicon.svg', 'og-image.png',
+for (const file of ['manifest.webmanifest', 'sw.js', 'webmcp.js', 'offline.html', 'favicon.svg', 'og-image.png',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png']) {
   assert(await fileExists(file), `PWAアセットがありません: ${file}`);
 }
 const swJs = await readFile(join(docs, 'sw.js'), 'utf8');
 assert(!swJs.includes('__BUILD_ID__'), 'sw.js のビルドIDが未置換です。');
+assert(!swJs.includes('__ASSET_VERSION__'), 'sw.js のアセット世代が未置換です。');
 assert(uiControlsJs.includes('serviceWorker'), 'ui-controls.js にService Worker登録がありません。');
+
+const clientAssetVersions = [
+  /href="\.\/styles\.css\?v=([a-f0-9]{12})"/,
+  /src="\.\/ui-controls\.js\?v=([a-f0-9]{12})"/,
+  /src="\.\/app\.js\?v=([a-f0-9]{12})"/,
+  /src="\.\/webmcp\.js\?v=([a-f0-9]{12})"/,
+].map((pattern) => indexHtml.match(pattern)?.[1]);
+assert(clientAssetVersions.every(Boolean), 'index.html の共有アセット世代hashが不足しています。');
+assert(new Set(clientAssetVersions).size === 1, 'index.html のCSS/JS世代hashが一致しません。');
+
+for (const toolName of [
+  'search_deaf_info',
+  'show_results',
+  'get_emergency_resources',
+  'open_life_guide',
+  'set_accessibility_preferences',
+  'open_accessibility_tool',
+  'get_current_view_state',
+]) {
+  assert(webmcpJs.includes(`name: '${toolName}'`), `webmcp.js にTool ${toolName} がありません。`);
+}
+assert(webmcpJs.includes("!document.modelContext || typeof document.modelContext.registerTool !== 'function'"), 'webmcp.js に非対応ブラウザ向けのfeature guardがありません。');
 
 /* ---------- Cloudflare Web Analytics ---------- */
 

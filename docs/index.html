@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=77823b9b71db">
 
   <script type="application/ld+json">
 {
@@ -917,6 +917,8 @@
               <span class="tool-select__label">情報源</span>
               <select id="source-filter" name="source">
                 <option value="all">すべて</option>
+                <option value="official">一次情報のみ</option>
+                <option value="specialist">専門情報のみ</option>
                 <option value="primary">一次・専門</option>
                 <option value="news">報道・発見</option>
                 <option value="other">関連媒体</option>
@@ -964,6 +966,24 @@
           </div>
         </nav>
       </div>
+
+      <aside class="agent-activity" id="agent-activity" aria-labelledby="agent-activity-heading">
+        <div class="agent-activity__head">
+          <div>
+            <p class="agent-activity__eyebrow">Human + Agent</p>
+            <h2 id="agent-activity-heading">Agent Activity</h2>
+          </div>
+          <span class="agent-activity__status" id="agent-activity-status" data-status="checking">接続確認中</span>
+        </div>
+        <p class="agent-activity__intro">Agentが変えた検索条件や表示設定を、同じ画面で確認できます。</p>
+        <ol class="agent-activity__log" id="agent-activity-log" aria-live="polite" aria-relevant="additions text">
+          <li class="agent-activity__empty" data-agent-activity-empty>Agentの操作はまだありません。</li>
+        </ol>
+        <div class="agent-activity__actions">
+          <button class="agent-activity__undo" id="agent-activity-undo" type="button" disabled>Undo agent changes</button>
+          <span class="agent-activity__note">手動操作は常に優先されます</span>
+        </div>
+      </aside>
 
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
@@ -2152,8 +2172,9 @@
       </article>
   </template>
 
-  <script src="./ui-controls.js" defer></script>
-  <script src="./app.js" defer></script>
+  <script src="./ui-controls.js?v=77823b9b71db" defer></script>
+  <script src="./app.js?v=77823b9b71db" defer></script>
+  <script src="./webmcp.js?v=77823b9b71db" defer></script>
   <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
 </body>
 </html>

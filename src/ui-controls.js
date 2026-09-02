@@ -56,6 +56,20 @@
     if (labelEl) labelEl.textContent = dark ? 'ライト表示' : 'ダーク表示';
   }
 
+  function applyTheme(theme, persist) {
+    if (theme !== 'light' && theme !== 'dark') {
+      throw new Error('theme は light または dark を指定してください');
+    }
+    if (theme === 'dark') {
+      docEl.setAttribute('data-theme', 'dark');
+      if (persist !== false) storageSet('dn-theme', 'dark');
+    } else {
+      docEl.removeAttribute('data-theme');
+      if (persist !== false) storageSet('dn-theme', null);
+    }
+    syncThemeButton();
+  }
+
   var FONT_STEPS = ['standard', 'large', 'xlarge'];
   var FONT_LABELS = {
     standard: '文字を大きく',
@@ -76,18 +90,44 @@
     if (labelEl) labelEl.textContent = FONT_LABELS[step];
   }
 
+  function applyFontStep(step, persist) {
+    if (FONT_STEPS.indexOf(step) === -1) {
+      throw new Error('textSize は standard、large、xlarge のいずれかを指定してください');
+    }
+    if (step === 'standard') {
+      docEl.removeAttribute('data-font');
+      if (persist !== false) storageSet('dn-font', null);
+    } else {
+      docEl.setAttribute('data-font', step);
+      if (persist !== false) storageSet('dn-font', step);
+    }
+    syncFontButton();
+  }
+
+  function getPreferences() {
+    return {
+      theme: isDark() ? 'dark' : 'light',
+      textSize: currentFontStep(),
+    };
+  }
+
+  function setPreferences(next, options) {
+    var input = next && typeof next === 'object' ? next : {};
+    var persist = !options || options.persist !== false;
+    if (Object.prototype.hasOwnProperty.call(input, 'theme')) {
+      applyTheme(input.theme, persist);
+    }
+    if (Object.prototype.hasOwnProperty.call(input, 'textSize')) {
+      applyFontStep(input.textSize, persist);
+    }
+    return getPreferences();
+  }
+
   controls.hidden = false;
 
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
-      if (isDark()) {
-        docEl.removeAttribute('data-theme');
-        storageSet('dn-theme', null);
-      } else {
-        docEl.setAttribute('data-theme', 'dark');
-        storageSet('dn-theme', 'dark');
-      }
-      syncThemeButton();
+      applyTheme(isDark() ? 'light' : 'dark');
     });
   }
 
@@ -95,17 +135,16 @@
     fontBtn.addEventListener('click', function () {
       var idx = FONT_STEPS.indexOf(currentFontStep());
       var next = FONT_STEPS[(idx + 1) % FONT_STEPS.length];
-      if (next === 'standard') {
-        docEl.removeAttribute('data-font');
-        storageSet('dn-font', null);
-      } else {
-        docEl.setAttribute('data-font', next);
-        storageSet('dn-font', next);
-      }
-      syncFontButton();
+      applyFontStep(next);
     });
   }
 
   syncThemeButton();
   syncFontButton();
+
+  // WebMCP 等からも、手動ボタンと同じ表示設定処理を再利用できるようにする。
+  window.DeafNaviDisplay = Object.freeze({
+    getPreferences: getPreferences,
+    setPreferences: setPreferences,
+  });
 })();

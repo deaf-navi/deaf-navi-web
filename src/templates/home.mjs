@@ -228,6 +228,8 @@ function renderToolbar() {
               <span class="tool-select__label">情報源</span>
               <select id="source-filter" name="source">
                 <option value="all">すべて</option>
+                <option value="official">一次情報のみ</option>
+                <option value="specialist">専門情報のみ</option>
                 <option value="primary">一次・専門</option>
                 <option value="news">報道・発見</option>
                 <option value="other">関連媒体</option>
@@ -257,6 +259,26 @@ function renderToolbar() {
           </div>
         </nav>
       </div>`;
+  }
+
+function renderAgentActivity() {
+  return `      <aside class="agent-activity" id="agent-activity" aria-labelledby="agent-activity-heading">
+        <div class="agent-activity__head">
+          <div>
+            <p class="agent-activity__eyebrow">Human + Agent</p>
+            <h2 id="agent-activity-heading">Agent Activity</h2>
+          </div>
+          <span class="agent-activity__status" id="agent-activity-status" data-status="checking">接続確認中</span>
+        </div>
+        <p class="agent-activity__intro">Agentが変えた検索条件や表示設定を、同じ画面で確認できます。</p>
+        <ol class="agent-activity__log" id="agent-activity-log" aria-live="polite" aria-relevant="additions text">
+          <li class="agent-activity__empty" data-agent-activity-empty>Agentの操作はまだありません。</li>
+        </ol>
+        <div class="agent-activity__actions">
+          <button class="agent-activity__undo" id="agent-activity-undo" type="button" disabled>Undo agent changes</button>
+          <span class="agent-activity__note">手動操作は常に優先されます</span>
+        </div>
+      </aside>`;
 }
 
 /** クライアント描画用の記事カード雛形（app.js が clone して値を差し込む） */
@@ -288,6 +310,9 @@ function renderCardTemplate() {
 export function renderHomePage(data, opts) {
   const { generatedAt, articles } = data;
   const { isDev, files } = opts;
+  const assetVersion = opts.clientAssetVersion
+    ? `?v=${encodeURIComponent(opts.clientAssetVersion)}`
+    : '';
   const now = Date.now();
 
   const pageUrl = isDev ? `${SITE_URL}index-dev.html` : SITE_URL;
@@ -325,7 +350,7 @@ ${renderHead({
     canonical: isDev ? SITE_URL : pageUrl,
     robots,
     ogUrl: pageUrl,
-    stylesFile: files.styles,
+    stylesFile: `${files.styles}${assetVersion}`,
     feedUrl: `${SITE_URL}${files.feed}`,
     jsonLd,
     extraHead: `  <meta name="keywords" content="${escapeHtml(opts.keywords)}">\n  <meta name="author" content="TAMA">\n  <meta property="og:updated_time" content="${escapeHtml(generatedAt)}">\n`,
@@ -350,6 +375,8 @@ ${renderQuickAccess({ guideFile: files.guide })}
 ${renderFeatured(featured)}
 
 ${renderToolbar()}
+
+${renderAgentActivity()}
 
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
@@ -409,8 +436,9 @@ ${renderFooter({
 
 ${renderCardTemplate()}
 
-  <script src="./ui-controls.js" defer></script>
-  <script src="./${files.app}" defer></script>
+  <script src="./ui-controls.js${assetVersion}" defer></script>
+  <script src="./${files.app}${assetVersion}" defer></script>
+  <script src="./webmcp.js${assetVersion}" defer></script>
 </body>
 </html>
 `;

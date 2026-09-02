@@ -10,6 +10,7 @@
  */
 
 import { copyFile, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -87,6 +88,16 @@ async function copyAsset(src, destFile) {
   return true;
 }
 
+async function getClientAssetVersion() {
+  const clientFiles = ['styles.css', 'ui-controls.js', 'app.js', 'webmcp.js'];
+  const contents = await Promise.all(
+    clientFiles.map((file) => readFile(join(__dirname, file))),
+  );
+  const hash = createHash('sha256');
+  for (const content of contents) hash.update(content);
+  return hash.digest('hex').slice(0, 12);
+}
+
 async function main() {
   console.log(`Build variant: ${VARIANT}`);
   const data = JSON.parse(await readFile(join(DOCS, FILES.articlesJson), 'utf8'));
@@ -101,7 +112,10 @@ async function main() {
   await mkdir(join(DOCS, 'archive'), { recursive: true });
   await mkdir(join(DOCS, 'icons'), { recursive: true });
 
-  const opts = { isDev: IS_DEV, files: FILES, keywords: SITE_KEYWORDS };
+  // 同一世代のCSS/JSを必ず取得できるよう、内容hashを共有URLへ付ける。
+  // 旧Service Workerが制御中でも未キャッシュURLとなり、新旧JSの混在を防ぐ。
+  const clientAssetVersion = await getClientAssetVersion();
+  const opts = { isDev: IS_DEV, files: FILES, keywords: SITE_KEYWORDS, clientAssetVersion };
 
   // ---- ページ生成 ----
   await writeDoc(FILES.index, renderHomePage(data, opts));
@@ -154,6 +168,7 @@ async function main() {
   // ---- アセットコピー ----
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
   await copyAsset(join(__dirname, 'app.js'), FILES.app);
+  await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
   await copyAsset(join(__dirname, 'ui-controls.js'), 'ui-controls.js');
   await copyAsset(join(__dirname, 'og-image.svg'), FILES.og);
@@ -176,7 +191,10 @@ async function main() {
   // Service Worker はビルドIDを埋め込んでキャッシュを世代管理する
   const swSrc = join(ASSETS, 'sw.js');
   if (await fileExists(swSrc)) {
-    const sw = (await readFile(swSrc, 'utf8')).replaceAll('__BUILD_ID__', data.generatedAt ?? new Date().toISOString());
+    const generatedAt = data.generatedAt ?? new Date().toISOString();
+    const sw = (await readFile(swSrc, 'utf8'))
+      .replaceAll('__BUILD_ID__', `${generatedAt}-${clientAssetVersion}`)
+      .replaceAll('__ASSET_VERSION__', clientAssetVersion);
     await writeDoc('sw.js', sw);
   }
 }

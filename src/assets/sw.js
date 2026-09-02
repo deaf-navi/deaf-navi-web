@@ -7,16 +7,19 @@
  * - 静的アセット(CSS/JS/画像)はキャッシュ優先 + 背景更新
  * - 暮らしのガイドは災害時利用を想定してプリキャッシュ
  *
- * __BUILD_ID__ はビルド時に生成時刻へ置換され、キャッシュ世代を切り替える。
+ * __BUILD_ID__ と __ASSET_VERSION__ はビルド時に置換され、キャッシュ世代を切り替える。
  */
 
 const BUILD_ID = '__BUILD_ID__';
+const ASSET_VERSION = '__ASSET_VERSION__';
 const CACHE_NAME = `deaf-navi-${BUILD_ID}`;
 
 const PRECACHE_URLS = [
   './',
-  './styles.css',
-  './app.js',
+  `./styles.css?v=${ASSET_VERSION}`,
+  `./ui-controls.js?v=${ASSET_VERSION}`,
+  `./app.js?v=${ASSET_VERSION}`,
+  `./webmcp.js?v=${ASSET_VERSION}`,
   './guide.html',
   './guide.js',
   './otomado/',

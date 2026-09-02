@@ -84,6 +84,23 @@ test('renderHomePage: おとまどへのサイト内導線を表示する', () =
   assert.equal((html.match(/class="site-footer__update"/g) ?? []).length, 1, '更新時刻が重複しています');
 });
 
+test('renderHomePage: Agent ActivityとWebMCPを既存クライアントの後に読み込む', () => {
+  const html = renderHomePage(
+    { generatedAt: new Date().toISOString(), count: 1, articles: [article({})] },
+    { isDev: false, files: FILES, keywords: 'k', clientAssetVersion: 'abc123' },
+  );
+
+  assert.ok(html.includes('id="agent-activity"'), 'Agent Activity領域がありません');
+  assert.ok(html.includes('id="agent-activity-log"'), 'Agent Activityログがありません');
+  assert.ok(html.includes('id="agent-activity-undo"'), 'Undoボタンがありません');
+  assert.ok(html.includes('<option value="official">一次情報のみ</option>'), '一次情報だけの共有フィルタがありません');
+  assert.ok(html.includes('href="./styles.css?v=abc123"'), 'stylesheetに共有世代hashがありません');
+  assert.ok(html.includes('src="./ui-controls.js?v=abc123"'), '表示設定JSに共有世代hashがありません');
+  assert.ok(html.includes('src="./app.js?v=abc123"'), 'アプリJSに共有世代hashがありません');
+  assert.ok(html.includes('src="./webmcp.js?v=abc123"'), 'WebMCP JSに共有世代hashがありません');
+  assert.ok(html.indexOf('src="./app.js?v=abc123"') < html.indexOf('src="./webmcp.js?v=abc123"'), 'WebMCPが既存アプリより先に読み込まれています');
+});
+
 test('renderGuidePage: CUP ORDERを非公式ツールとして案内する', () => {
   const html = renderGuidePage({ isDev: false, files: FILES });
   const linkIndex = html.indexOf('href="https://cup-order.github.io/index.html"');
