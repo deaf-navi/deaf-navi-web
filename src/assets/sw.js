@@ -14,6 +14,12 @@ const BUILD_ID = '__BUILD_ID__';
 const ASSET_VERSION = '__ASSET_VERSION__';
 const CACHE_NAME = `deaf-navi-${BUILD_ID}`;
 
+self.addEventListener('message', (event) => {
+  if (event.data === 'DEAFNAVI_DIRECTORY_SAFETY' && event.ports[0]) {
+    event.ports[0].postMessage('NO_DIRECTORY_CACHE');
+  }
+});
+
 const PRECACHE_URLS = [
   './',
   `./styles.css?v=${ASSET_VERSION}`,

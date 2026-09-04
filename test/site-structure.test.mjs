@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { runInNewContext } from 'node:vm';
 
 const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const docs = join(root, 'docs');
@@ -38,4 +39,24 @@ test('404ページはnoindexで生成される', async () => {
   const html = await readFile(join(docs, '404.html'), 'utf8');
   assert.match(html, /<meta name="robots" content="noindex,follow">/);
   assert.match(html, /404 NOT FOUND/);
+});
+
+test('つながるの場所・コミュニティ導線を非表示にする', async () => {
+  for (const name of ['connect/index.html', 'sitemap.html']) {
+    const html = await readFile(join(docs, name), 'utf8');
+    assert.doesNotMatch(html, /href="(?:\.?\/)?connect\/(?:places|communities)\//);
+  }
+});
+
+test('深いURLでも共通スクリプト位置からルートのService Workerを登録する', async () => {
+  const source = await readFile(join(root, 'src/ui-controls.js'), 'utf8');
+  let registered;
+  runInNewContext(source, {
+    URL,
+    document: { documentElement: {}, querySelector: selector => selector.startsWith('script') ? { src: 'https://deafnavi.com/ui-controls.js' } : null },
+    location: { protocol: 'https:', hostname: 'deafnavi.com', href: 'https://deafnavi.com/connect/' },
+    navigator: { serviceWorker: { register: url => { registered = url; return Promise.resolve(); } } },
+    window: { addEventListener: (_event, fn) => fn() },
+  });
+  assert.equal(registered, 'https://deafnavi.com/sw.js');
 });

@@ -3,7 +3,7 @@ declare(strict_types=1);
 function page(string $title,string $body,string $path='',string $description='',array $structured=[],bool $private=false): string {
     $canonical=BASE.($path?:'/connect/sign-cafe/');
     $robots=$private?'noindex,nofollow':'index,follow';
-    $ld='<link rel="icon" href="/favicon.svg" type="image/svg+xml">';
+    $ld='<link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script>';
     if(!$private) {
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'つながる','item'=>BASE.'/connect/'],['@type'=>'ListItem','position'=>3,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
         if($path!=='/connect/sign-cafe/') $crumbs[]=['@type'=>'ListItem','position'=>4,'name'=>$title,'item'=>$canonical];

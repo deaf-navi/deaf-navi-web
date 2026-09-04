@@ -26,8 +26,8 @@
     && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
     window.addEventListener('load', function () {
       var swPath = document.querySelector('script[src*="ui-controls"]');
-      var base = swPath && swPath.getAttribute('src').indexOf('../') === 0 ? '../' : './';
-      navigator.serviceWorker.register(base + 'sw.js').catch(function () { /* 未対応環境は通常表示 */ });
+      var workerUrl = new URL('sw.js', swPath ? swPath.src : location.href);
+      navigator.serviceWorker.register(workerUrl.href).catch(function () { /* 未対応環境は通常表示 */ });
     });
   }
 
