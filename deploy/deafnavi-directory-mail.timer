@@ -1,0 +1,8 @@
+[Unit]
+Description=Check Deaf Navi directory notification outbox every five minutes
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+Unit=deafnavi-directory-mail.service
+[Install]
+WantedBy=timers.target

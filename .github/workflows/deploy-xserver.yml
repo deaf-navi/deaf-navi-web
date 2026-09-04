@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - 'docs/**'
+      - 'server/**'
       - '.github/workflows/deploy-xserver.yml'
   workflow_dispatch: {}
 
@@ -51,7 +52,12 @@ jobs:
           fi
 
       - name: Build release archive
-        run: tar -czf "$RUNNER_TEMP/deafnavi-site.tar.gz" -C docs .
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do php -l "$file"; done < <(find server -name '*.php' -print0)
+          php -r 'json_decode(file_get_contents("server/seed.json"),true,512,JSON_THROW_ON_ERROR);'
+          node test/directory.integration.mjs
+          tar -czf "$RUNNER_TEMP/deafnavi-site.tar.gz" --transform='s,^server,_backend,' -C docs . -C .. server
 
       - name: Configure SSH
         env:
@@ -118,6 +124,10 @@ jobs:
           test -s "$staging/app/v1/manifest.json"
           test -s "$staging/connect/sign-cafe/index.html"
           test -s "$staging/connect/sign-cafe/starbucks/index.html"
+          test -s "$staging/_backend/index.php"
+          test -s "$staging/directory.css"
+          while IFS= read -r -d '' file; do php -l "$file"; done < <(find "$staging/_backend" -name '*.php' -print0)
+          test -S /run/php/deafnavi.sock
           if find "$staging" -type l -print -quit | grep -q .; then
             echo 'Release contains a symbolic link.' >&2
             exit 1

@@ -1,0 +1,34 @@
+deafnavi.com {
+    root * /srv/deafnavi/current
+    encode zstd gzip
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+        X-Frame-Options SAMEORIGIN
+        Cache-Control "public, max-age=300, must-revalidate"
+    }
+    @mutable path / *.html *.json *.xml /manifest.webmanifest /sw.js
+    header @mutable Cache-Control "public, max-age=0, must-revalidate"
+    route {
+        @private path /_backend /_backend/* *.php *.sqlite *.sqlite3 *.sql /connect/places /connect/places/* /connect/communities /connect/communities/*
+        respond @private "Not Found" 404
+        @directory path /admin /admin/* /submit /submit/* /connect/sign-cafe /connect/sign-cafe/* /directory-sitemap.xml
+        handle @directory {
+            request_body {
+                max_size 64KB
+            }
+            header Cache-Control "private, no-store, max-age=0"
+            header X-Frame-Options DENY
+            rewrite * /_backend/index.php
+            php_fastcgi unix//run/php/deafnavi.sock
+        }
+        file_server
+    }
+    handle_errors {
+        rewrite * /404.html
+        file_server
+    }
+}
+www.deafnavi.com {
+    redir https://deafnavi.com{uri} permanent
+}

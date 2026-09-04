@@ -44,8 +44,6 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
       ['connect/sign-cafe/', 'weekly', '0.8'],
       ['connect/sign-cafe/starbucks/', 'weekly', '0.8'],
       ['connect/events/', 'weekly', '0.6'],
-      ['connect/places/', 'monthly', '0.5'],
-      ['connect/communities/', 'monthly', '0.5'],
       ['guide/', 'monthly', '0.8'],
       ['guide/systems/', 'monthly', '0.6'],
       ['guide/life/', 'monthly', '0.6'],
@@ -88,6 +86,7 @@ Disallow: /articles-old.json$
 
 Sitemap: ${SITE_URL}${files.sitemap}
 Sitemap: ${SITE_URL}sitemap-world.xml
+Sitemap: ${SITE_URL}directory-sitemap.xml
 `;
 }
 
@@ -197,11 +196,9 @@ ${renderSubHeader({
       <section class="sitemap-card" aria-labelledby="sitemap-connect">
         <h2 id="sitemap-connect">つながる</h2>
         <ul>
-          <li><a href="./connect/sign-cafe/">手話カフェ一覧</a><span>常設型の店舗・施設</span></li>
+          <li><a href="./connect/sign-cafe/">手話カフェ一覧</a><span>常設・限定営業・定期開催・特殊</span></li>
           <li><a href="./connect/sign-cafe/starbucks/">スターバックス</a><span>店舗での手話関連企画・開催履歴</span></li>
           <li><a href="./connect/events/">イベント</a><span>単発の手話カフェや交流イベント</span></li>
-          <li><a href="./connect/places/">場所</a><span>地域の場所・拠点</span></li>
-          <li><a href="./connect/communities/">コミュニティ</a><span>団体・活動への入口</span></li>
         </ul>
       </section>
 

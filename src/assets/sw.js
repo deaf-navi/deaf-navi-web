@@ -52,7 +52,7 @@ async function networkFirst(request, fallbackUrl) {
   const cache = await caches.open(CACHE_NAME);
   try {
     const response = await fetch(request);
-    if (response.ok) cache.put(request, response.clone());
+    if (response.ok && !/no-store|private/i.test(response.headers.get('Cache-Control') || '')) cache.put(request, response.clone());
     return response;
   } catch (err) {
     const cached = await cache.match(request, { ignoreSearch: request.mode === 'navigate' });
@@ -83,6 +83,8 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // フォント等の外部リソースはブラウザ任せ
+  // 管理画面・投稿・DB連動ページをオフラインキャッシュに保存しない。
+  if (/^\/(?:admin(?:\/|$)|submit(?:\/|$)|connect\/sign-cafe(?:\/|$)|directory-sitemap\.xml$)/.test(url.pathname)) return;
 
   if (request.mode === 'navigate') {
     event.respondWith(networkFirst(request, './offline.html'));

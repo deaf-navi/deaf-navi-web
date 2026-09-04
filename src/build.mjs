@@ -179,6 +179,7 @@ async function main() {
 
   // ---- アセットコピー ----
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
+  await copyAsset(join(ASSETS, 'directory.css'), 'directory.css');
   await copyAsset(join(__dirname, 'app.js'), FILES.app);
   await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);

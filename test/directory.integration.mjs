@@ -1,0 +1,88 @@
+// Isolated SQLite + PHP HTTP test. No production access, real email, or fixed passwords.
+import assert from 'node:assert/strict';
+import { spawn, spawnSync } from 'node:child_process';
+import { mkdtempSync, readFileSync, readdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { randomBytes } from 'node:crypto';
+const root=resolve(import.meta.dirname,'..');
+const dir=mkdtempSync(join(tmpdir(),'deafnavi-directory-test-'));
+const env={...process.env,DEAFNAVI_DATA_DIR:dir,DEAFNAVI_LOCAL_TEST:'1'};
+const initial=randomBytes(18).toString('hex'), next=randomBytes(18).toString('hex');
+const hashed=spawnSync('php',['test/directory-hash.php'],{cwd:root,input:initial,encoding:'utf8'});
+assert.equal(hashed.status,0);
+const init=spawnSync('php',['server/cli.php','init'],{cwd:root,env,input:JSON.stringify({username:'testadmin',password_hash:hashed.stdout}),encoding:'utf8'});
+assert.equal(init.status,0,init.stderr+init.stdout);assert.match(init.stdout,/DIRECTORY_INIT_OK/);
+const server=spawn('php',['-S','127.0.0.1:5187','-t','docs','server/local-router.php'],{cwd:root,env,stdio:['ignore','ignore','pipe']});
+let errors='';server.stderr.on('data',d=>{errors+=d.toString();});
+const base='http://127.0.0.1:5187';
+function client(){let cookie='';return async(path,data)=>{const r=await fetch(base+path,{method:data?'POST':'GET',redirect:'manual',headers:{...(cookie?{cookie}:{}),...(data?{'Content-Type':'application/x-www-form-urlencoded'}:{})},body:data?new URLSearchParams(data):undefined});for(const c of r.headers.getSetCookie())if(c.startsWith('deafnavi_directory='))cookie=c.split(';')[0];return {status:r.status,text:await r.text(),headers:r.headers};};}
+const anon=client(), admin=client(), editor=client();
+const token=t=>{const m=t.match(/name="csrf" value="([a-f0-9]+)"/);assert.ok(m,'CSRF token present');return m[1];};
+let checks=0;function ok(condition,message){assert.ok(condition,message);checks++;}
+try {
+  for(let i=0;i<40;i++){try{await fetch(base+'/');break;}catch{await new Promise(r=>setTimeout(r,100));}}
+  let r=await anon('/connect/sign-cafe/');ok(r.status===200,'public directory');ok(r.text.includes('Knot'),'verified seed');ok(!r.text.includes('びわこ手話カフェ「わ」'),'pending never rendered');ok(r.headers.get('cache-control').includes('no-store'),'no cache');
+  ok((await anon('/connect/sign-cafe/?q=大阪')).text.includes('2U'),'search');
+  ok(!(await anon('/connect/sign-cafe/?region=北海道')).text.includes('class="dn-card"'),'empty region');
+  ok((await anon('/connect/sign-cafe/biwako-wa/')).status===404,'pending details blocked');
+  ok(!(await anon('/directory-sitemap.xml')).text.includes('biwako-wa'),'pending sitemap excluded');
+  ok((await anon('/admin/',{action:'create_user'})).status===403,'CSRF rejected before mutation');
+  r=await admin('/admin/');let csrf=token(r.text);
+  r=await admin('/admin/',{csrf,action:'login',username:'testadmin',password:'wrong'});ok(r.status===401,'invalid login');
+  r=await admin('/admin/',{csrf,action:'login',username:'testadmin',password:initial});ok(r.status===303,'valid login');
+  r=await admin('/admin/');csrf=token(r.text);ok(r.text.includes('初期パスワードを変更'),'forced first change');
+  ok((await admin('/admin/',{csrf,action:'settings',notification_email:'test@example.invalid'})).status===403,'bootstrap cannot configure');
+  r=await admin('/admin/',{csrf,action:'password',current_password:initial,new_password:next,confirm_password:next});ok(r.status===303,'password changed');
+  r=await admin('/admin/');csrf=token(r.text);
+  const write=async(data)=>admin('/admin/',{csrf,...data});
+  const fixture={action:'save_record',kind:'cafe',id:'',revision:'0',slug:'test-fixture',name:'検証専用<script>alert(1)</script>',country_code:'JP',country_name:'日本',prefecture:'東京都',city:'テスト市',address:'テスト住所',type:'recurring',publication:'pending',status:'unknown',verification_level:'pending',last_verified_at:'',verification_sources:'',timezone:'Asia/Tokyo'};
+  ok((await write({...fixture,publication:'public'})).status===400,'cannot publish unverified');
+  ok((await write({...fixture,official_url:'javascript:alert(1)'})).status===400,'unsafe URL rejected');
+  ok((await write({...fixture,verification_sources:'https://www.google.com/search?q=test'})).status===400,'search result URL rejected');
+  ok((await write(fixture)).status===303,'draft created');
+  r=await admin('/admin/?view=records&kind=cafe');const draft=r.text.match(/kind=cafe&id=([a-f0-9]{32})/)[1];
+  ok((await anon('/connect/sign-cafe/test-fixture/')).status===404,'draft invisible');
+  const publicFixture={...fixture,id:draft,revision:'1',publication:'public',status:'open',verification_level:'official',last_verified_at:new Date().toISOString().slice(0,10),verification_sources:'https://example.org/verified'};
+  ok((await write(publicFixture)).status===303,'verified record published');
+  r=await anon('/connect/sign-cafe/test-fixture/');ok(r.status===200&&r.text.includes('&lt;script&gt;'),'stored XSS escaped');ok(!r.text.includes('"@type":"CafeOrCoffeeShop"'),'recurring not a fictitious restaurant');
+  ok((await write(publicFixture)).status===409,'stale edit rejected');
+  ok((await write({...publicFixture,revision:'2',publication:'deleted'})).status===303,'soft delete');
+  ok((await anon('/connect/sign-cafe/test-fixture/')).status===404,'deleted hidden');
+  ok((await write({...publicFixture,revision:'3',status:'closed'})).status===303,'restore as closed');
+  ok(!(await anon('/connect/sign-cafe/?q=検証専用')).text.includes('class="dn-card"'),'closed hidden by default');
+  ok((await anon('/connect/sign-cafe/?history=1&q=検証専用')).text.includes('class="dn-card"'),'closed retained');
+  const editorPw=randomBytes(18).toString('hex');
+  ok((await write({action:'create_user',username:'testeditor',new_password:editorPw,role:'editor'})).status===303,'create editor ID');
+  r=await editor('/admin/');let ec=token(r.text);await editor('/admin/',{csrf:ec,action:'login',username:'testeditor',password:editorPw});r=await editor('/admin/');ec=token(r.text);
+  await editor('/admin/',{csrf:ec,action:'password',current_password:editorPw,new_password:next+'e',confirm_password:next+'e'});r=await editor('/admin/');ec=token(r.text);
+  ok((await editor('/admin/?view=users')).status===403,'editor cannot inspect accounts');
+  ok((await editor('/admin/',{csrf:ec,action:'create_user',username:'forbidden',new_password:next,role:'admin'})).status===403,'editor cannot create admin');
+  r=await anon('/submit/');const sc=token(r.text);await new Promise(r=>setTimeout(r,3200));
+  const submission={action:'submit',csrf:sc,category:'cafe',report_type:'move',name:'手話カフェ2U',country_code:'JP',prefecture:'大阪府',city:'大阪市',email:'private@example.invalid',submitter:'非公開投稿者',consent:'1'};
+  ok((await anon('/submit/',{...submission,website_confirm:'bot'})).status===400,'honeypot');
+  ok((await anon('/submit/',{...submission,email:'x\r\nBcc: target@example.com'})).status===400,'email header injection');
+  ok((await anon('/submit/',submission)).status===303,'submission saved');
+  r=await anon('/submit/?received=1');ok(r.text.includes('すでに掲載されている可能性'),'duplicate warning but correction accepted');
+  r=await admin('/admin/');const sid=r.text.match(/view=submission&id=([a-f0-9]{32})/)[1];
+  r=await admin('/admin/?view=submission&id='+sid);ok(r.text.includes('private@example.invalid'),'admin receives private contact');
+  ok(!(await anon('/connect/sign-cafe/')).text.includes('private@example.invalid'),'contact never public');
+  ok((await anon('/admin/?view=submission&id='+sid)).text.includes('管理画面にログイン'),'unauthenticated submission blocked');
+  r=await admin('/admin/?view=edit&kind=cafe&submission='+sid);ok(r.status===200,'submission review form');
+  ok((await write({...publicFixture,revision:'4',submission:sid,submission_revision:'1',submission_status:'approved'})).status===303,'approve into existing record');
+  r=await admin('/admin/?view=submission&id='+sid);ok(r.text.includes('approved'),'submission approved');
+  const store={...fixture,kind:'store',slug:'test-store',name:'検証用店舗',publication:'public',status:'open',verification_level:'official',last_verified_at:new Date().toISOString().slice(0,10),verification_sources:'https://example.org/store',type:'special'};
+  ok((await write(store)).status===303,'store CRUD');r=await admin('/admin/?view=records&kind=store');const storeId=r.text.match(/kind=store&id=([a-f0-9]{32})/)[1];
+  const event={action:'save_record',kind:'event',slug:'test-event',id:'',revision:'0',name:'検証用開催',store_id:storeId,publication:'public',status:'scheduled',verification_level:'official',confidence:'official',event_date:'2020-01-01',start_time:'10:00',end_time:'12:00',timezone:'Asia/Tokyo',last_verified_at:new Date().toISOString().slice(0,10),verification_sources:'https://example.org/event'};
+  ok((await write(event)).status===303,'event CRUD');r=await anon('/connect/sign-cafe/starbucks/test-event/');ok(r.status===200&&r.text.includes('EventScheduled'),'confirmed Event structured data');
+  r=await anon('/connect/sign-cafe/starbucks/');ok(r.text.indexOf('検証用開催')>r.text.indexOf('過去の開催履歴'),'past scheduled event automatically in history');
+  const mail=spawnSync('php',['server/cli.php','mail'],{cwd:root,env,encoding:'utf8'});ok(mail.stdout.includes('MAIL_NOT_CONFIGURED'),'unconfigured mail never reported sent');
+  const check=spawnSync('php',['server/cli.php','check'],{cwd:root,env,encoding:'utf8'});ok(check.status===0&&JSON.parse(check.stdout).integrity==='ok','SQLite integrity');
+  r=await admin('/admin/');csrf=token(r.text);await write({action:'logout'});ok((await admin('/admin/')).text.includes('管理画面にログイン'),'logout');
+  // Clear POST token rotates; use repeated failed credentials to prove IP rate limiting.
+  r=await anon('/admin/');const lc=token(r.text);let last;
+  for(let i=0;i<12;i++)last=await anon('/admin/',{csrf:lc,action:'login',username:'none',password:'wrong'});
+  ok(last.status===429,'login rate limit');
+  ok(!/Fatal error|Warning:|Uncaught/.test(errors),'no PHP runtime warnings');
+  console.log(JSON.stringify({result:'DIRECTORY_HTTP_TESTS_OK',checks,dataDirectory:dir}));
+} finally {server.kill();}

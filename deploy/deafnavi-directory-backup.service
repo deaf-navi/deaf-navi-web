@@ -1,0 +1,14 @@
+[Unit]
+Description=Deaf Navi directory consistent SQLite backup
+[Service]
+Type=oneshot
+User=deafnavi-runtime
+Group=caddy
+UMask=0077
+Environment=DEAFNAVI_DATA_DIR=/srv/deafnavi/shared/directory
+ExecStart=/usr/bin/php /srv/deafnavi/current/_backend/cli.php backup /srv/deafnavi/shared/directory/backups
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/deafnavi/shared/directory

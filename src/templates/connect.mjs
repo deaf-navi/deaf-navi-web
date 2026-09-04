@@ -124,15 +124,13 @@ export function renderConnectPages({ places, signCafes, starbucksEntries }) {
     file: 'connect/index.html',
     html: renderPage({
       path: '/connect/', title: `つながる | ${SITE_NAME}`,
-      description: '手話カフェ、イベント、場所、コミュニティなど、ろう者・難聴者・手話に関わるつながりの入口です。',
+      description: '手話カフェやイベントなど、ろう者・難聴者・手話に関わるつながりの入口です。',
       crumbLabel: 'つながる', lead: '地域やテーマから、交流できる場所と機会を探せます。', current: 'connect',
       breadcrumbPaths: ['/connect/'], breadcrumbNames: ['ホーム', 'つながる'],
       body: `    <section class="directory-hero"><p class="eyebrow">CONNECT</p><h2>つながる情報を、種類ごとに。</h2><p>常設の場所と単発イベントを分け、確認できた情報源を添えて掲載します。</p></section>
 ${categoryCards([
-        { href: '/connect/sign-cafe/', title: '手話カフェ', text: '常設型の店舗・施設と、スターバックスでの企画を分けて掲載します。' },
+        { href: '/connect/sign-cafe/', title: '手話カフェ', text: '常設・限定営業・定期開催・サイニングストアを分類して探せます。スターバックスの企画は専用ページへ。' },
         { href: '/connect/events/', title: 'イベント', text: '単発の手話カフェや手話交流イベントはこちらです。' },
-        { href: '/connect/places/', title: '場所', text: '利用しやすい施設や交流拠点の情報を整理します。' },
-        { href: '/connect/communities/', title: 'コミュニティ', text: '地域やテーマで活動する団体への入口です。' },
       ])}`,
     }),
   });

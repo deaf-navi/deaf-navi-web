@@ -1,0 +1,8 @@
+[Unit]
+Description=Daily Deaf Navi directory backup
+[Timer]
+OnCalendar=*-*-* 19:30:00 UTC
+Persistent=true
+Unit=deafnavi-directory-backup.service
+[Install]
+WantedBy=timers.target
