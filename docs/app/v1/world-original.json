@@ -19,9 +19,9 @@
     "staleAfterSeconds": 86400
   },
   "source": {
-    "webPageUrl": "https://deaf-navi.github.io/deaf-navi-web/deaf-navi-world-original.html",
-    "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
-    "rssUrl": "https://deaf-navi.github.io/deaf-navi-web/feed-world-original.xml"
+    "webPageUrl": "https://deafnavi.com/deaf-navi-world-original.html",
+    "rawJsonUrl": "https://deafnavi.com/articles-world.json",
+    "rssUrl": "https://deafnavi.com/feed-world-original.xml"
   },
   "translation": {
     "provider": "translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit",
@@ -120,9 +120,9 @@
     ]
   },
   "compatibility": {
-    "currentIosArticleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v2.json",
+    "currentIosArticleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
     "currentIosArticleSchema": "deaf-navi-ios-article.v2",
-    "legacyIosArticleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
+    "legacyIosArticleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
     "legacyIosArticleSchema": "deaf-navi-ios-article.v1",
     "note": "currentIosArticleUrl keeps expanded World topics where the current iOS app supports them. legacyIosArticleUrl maps topics for older app builds."
   },

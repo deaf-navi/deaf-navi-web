@@ -1,8 +1,8 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
   "generatedAt": "2026-09-04T13:10:03Z",
-  "siteUrl": "https://deaf-navi.github.io/deaf-navi-web/",
-  "appBaseUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/",
+  "siteUrl": "https://deafnavi.com/",
+  "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
     "scheduleJst": [
@@ -16,10 +16,10 @@
   "endpoints": {
     "domestic": {
       "title": "Deaf Navi Web",
-      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/domestic.json",
-      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles.json",
-      "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v2.json",
-      "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v1.json",
+      "url": "https://deafnavi.com/app/v1/domestic.json",
+      "rawJsonUrl": "https://deafnavi.com/articles.json",
+      "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v2.json",
+      "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v1.json",
       "count": 452,
       "sourceGeneratedAt": "2026-09-04T13:07:53Z",
       "categories": [
@@ -108,10 +108,10 @@
     },
     "worldJp": {
       "title": "Deaf Navi World-JP",
-      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/world-jp.json",
-      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
-      "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json",
-      "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v1.json",
+      "url": "https://deafnavi.com/app/v1/world-jp.json",
+      "rawJsonUrl": "https://deafnavi.com/articles-world.json",
+      "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
+      "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
       "sourceGeneratedAt": "2026-09-04T13:10:03Z",
       "language": "ja-JP",
@@ -209,10 +209,10 @@
     },
     "worldOriginal": {
       "title": "Deaf Navi World-Original",
-      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/world-original.json",
-      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
-      "iosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v2.json",
-      "legacyIosCompatibleUrl": "https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-original-v1.json",
+      "url": "https://deafnavi.com/app/v1/world-original.json",
+      "rawJsonUrl": "https://deafnavi.com/articles-world.json",
+      "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
+      "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
       "sourceGeneratedAt": "2026-09-04T13:10:03Z",
       "language": "und",
@@ -293,8 +293,8 @@
     },
     "worldMultilingual": {
       "title": "Deaf Navi World Multilingual",
-      "url": "https://deaf-navi.github.io/deaf-navi-web/app/v1/world-multilingual.json",
-      "rawJsonUrl": "https://deaf-navi.github.io/deaf-navi-web/articles-world.json",
+      "url": "https://deafnavi.com/app/v1/world-multilingual.json",
+      "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
       "sourceGeneratedAt": "2026-09-04T13:10:03Z",
       "defaultLocale": "ja-JP",

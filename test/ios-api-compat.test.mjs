@@ -89,9 +89,9 @@ test('manifest.json と index.json は同一内容', () => {
   assert.equal(manifest, index);
 });
 
-test('manifest.json: 移転後のエンドポイントURLが固定されている', () => {
+test('manifest.json: 独自ドメインのエンドポイントURLが固定されている', () => {
   const man = readJson('manifest.json');
-  const base = 'https://deaf-navi.github.io/deaf-navi-web/app/v1/';
+  const base = 'https://deafnavi.com/app/v1/';
   assert.equal(man.endpoints.domestic.url, `${base}domestic.json`);
   assert.equal(man.endpoints.domestic.iosCompatibleUrl, `${base}ios-news-v2.json`);
   assert.equal(man.endpoints.domestic.legacyIosCompatibleUrl, `${base}ios-news-v1.json`);

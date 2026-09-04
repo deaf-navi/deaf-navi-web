@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全国の手話カフェ一覧 | Deaf Navi</title>
+  <meta name="description" content="店舗や施設そのものが、手話での交流をコンセプトとして運営されている全国の常設手話カフェ一覧。単発イベントは含みません。">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta name="theme-color" content="#075e57">
+  <link rel="canonical" href="https://deafnavi.com/connect/sign-cafe/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Deaf Navi Web">
+  <meta property="og:title" content="全国の手話カフェ一覧 | Deaf Navi">
+  <meta property="og:description" content="店舗や施設そのものが、手話での交流をコンセプトとして運営されている全国の常設手話カフェ一覧。単発イベントは含みません。">
+  <meta property="og:url" content="https://deafnavi.com/connect/sign-cafe/">
+  <meta property="og:image" content="https://deafnavi.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Deaf Navi Web - 聴覚障害・ろう者向けニュースキュレーション">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="全国の手話カフェ一覧 | Deaf Navi">
+  <meta name="twitter:description" content="店舗や施設そのものが、手話での交流をコンセプトとして運営されている全国の常設手話カフェ一覧。単発イベントは含みません。">
+  <meta name="twitter:image" content="https://deafnavi.com/og-image.png">
+
+  <!-- テーマ・文字サイズをペイント前に適用（FOUC防止・localStorage参照のみ） -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dn-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        var f = localStorage.getItem('dn-font');
+        if (f === 'large' || f === 'xlarge') document.documentElement.setAttribute('data-font', f);
+      } catch (e) { /* private mode 等は既定値で表示 */ }
+    })();
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ホーム",
+      "item": "https://deafnavi.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "つながる",
+      "item": "https://deafnavi.com/connect/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "手話カフェ",
+      "item": "https://deafnavi.com/connect/sign-cafe/"
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+  <header class="site-header site-header--slim" role="banner">
+    <div class="site-header__leaf" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
+        <path d="M40 170 C 70 140, 100 110, 160 30" />
+        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
+        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
+        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
+      </svg>
+    </div>
+    <div class="container">
+      <p class="site-breadcrumb"><a href="/">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>つながる › 手話カフェ</span></p>
+      <div class="site-header__top">
+        <h1 class="site-title site-title--small"><span class="site-title__brand">全国の手話カフェ一覧</span></h1>
+        <div class="display-controls" data-display-controls hidden>
+        <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
+          <span class="display-controls__icon" data-theme-icon><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><span data-theme-label>ダーク表示</span>
+        </button>
+        <button type="button" class="display-controls__btn" id="font-toggle" aria-pressed="false">
+          <span class="display-controls__icon display-controls__icon--text" aria-hidden="true">あ</span><span data-font-label>文字を大きく</span>
+        </button>
+      </div>
+      </div>
+      <p class="site-lead">常設の手話カフェとスターバックスでの企画は、掲載基準を分けています。</p>
+    </div>
+  </header>
+  <div class="container directory-nav"><nav class="site-nav" aria-label="サイト内ページ">
+        <a class="site-nav__link" href="/"><span>ニュース</span></a>
+        <a class="site-nav__link site-nav__link--world" href="/news/world/"><span class="site-nav__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><span>World</span></a>
+        <a class="site-nav__link is-current" href="/connect/" aria-current="page"><span>つながる</span></a>
+        <a class="site-nav__link" href="/guide/"><span>暮らしのガイド</span></a>
+        <a class="site-nav__link site-nav__link--tool" href="/otomado/"><span>おとまど</span></a>
+        <a class="site-nav__link" href="/about/"><span>Deaf Naviについて</span></a>
+      </nav></div>
+  <main id="main" class="container directory-page" role="main">
+    <nav class="section-tabs" aria-label="手話カフェの分類">
+    <a href="/connect/sign-cafe/" aria-current="page">手話カフェ一覧</a>
+    <a href="/connect/sign-cafe/starbucks/">スターバックス</a>
+  </nav>
+    <section class="directory-hero directory-hero--cafe" aria-labelledby="cafe-intro">
+      <p class="eyebrow">PERMANENT PLACES</p>
+      <h2 id="cafe-intro">手話で過ごせる、常設の場所</h2>
+      <p>店舗や施設そのものが、手話での交流をコンセプトとして運営されている場所を掲載しています。単発イベントは含みません。</p>
+    </section>
+    <section class="directory-section" aria-labelledby="cafe-list-heading">
+      <div class="directory-section__head"><div><p class="eyebrow">VERIFIED LIST</p><h2 id="cafe-list-heading">手話カフェ一覧</h2></div><span class="count-badge">確認済み 0件</span></div>
+      <div class="empty-state"><strong>現在、掲載基準と情報源を確認できた店舗を準備中です。</strong><p>未確認情報は断定して掲載しません。閉店した店舗も、確認後は過去の手話カフェとして残します。</p></div>
+    </section>
+    <aside class="info-callout"><h2>情報をお寄せください</h2><p>常設の手話カフェ、既存情報の修正、閉店情報を受け付ける仕組みを準備しています。</p><a class="primary-link" href="/submit/?type=sign-cafe">情報提供について確認する</a></aside>
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p><a href="/connect/sign-cafe/">手話カフェ一覧</a> ・ <a href="/connect/sign-cafe/starbucks/">スターバックス</a> ・ <a href="/submit/">情報提供</a> ・ <a href="/sitemap/">サイトマップ</a></p>
+      <hr class="site-footer__divider" aria-hidden="true">
+      <p class="site-footer__copyright">
+        <span>&copy; 2026 TAMA.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span lang="en">Take it easy.</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span lang="en">Curated for the Deaf &amp; Hard-of-hearing community.</span>
+      </p>
+    </div>
+  </footer>
+  <script src="/ui-controls.js" defer></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
+</body>
+</html>

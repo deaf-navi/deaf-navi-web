@@ -3,9 +3,9 @@
 聴覚障害・難聴・ろう者・中途失聴者コミュニティのための情報ポータル。
 信頼できる情報源からニュースを自動収集・分類し、緊急通報・制度などの公式情報への入口とあわせて届ける。
 
-- **URL**: https://deaf-navi.github.io/deaf-navi-web/
+- **URL**: https://deafnavi.com/
 - **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00ごろ）自動更新
-- **ホスティング**: GitHub Pages（月額0円・SSL付き）
+- **ホスティング**: XServer VPS（GitHub Pagesは旧URL転送・iOS JSON互換用として最低2027年9月5日まで維持）
 - **スタック**: Node 20+（標準ライブラリのみ・依存パッケージゼロ）+ 静的 HTML/CSS/JS
 - **アプリ連携**: `docs/app/v1/` に iOS アプリ「Deaf Navi」向け同期JSONを生成（後方互換を保証）
 
@@ -67,7 +67,7 @@ ChatGPT built-in browser / WebMCP Agent
   → 同じUI + URL（Agent Activity / Undoの実装は非表示で保持）
 ```
 
-WebMCPはクライアント側のprogressive enhancementです。新しいAPIサーバーや秘密情報を追加せず、GitHub Pagesの静的構成と人向けUIを維持します。
+WebMCPはクライアント側のprogressive enhancementです。新しいAPIサーバーや秘密情報を追加せず、静的構成と人向けUIを維持します。
 
 ### WebMCP Challenge work
 
@@ -111,7 +111,7 @@ deaf-navi-web/
 │   └── codex-app-server*.mjs  # VPS側 Codex App Server（World-JP日本語後編集用・本体はVPSで稼働）
 ├── test/                      # node --test（unit/integration/iOS互換regression）
 ├── tools/otomado/             # 情報保障PWA「おとまど」（React/Vite・独立package）
-├── docs/                      # ★GitHub Pages 公開ルート（自動生成物・直接編集しない）
+├── docs/                      # ★XServer公開物の正本（自動生成物・直接編集しない）
 │   ├── index.html             # トップ（初期60件SSR）
 │   ├── articles.json          # 国内キュレーション結果（iOS API の入力・スキーマ互換必須）
 │   ├── articles-old.json      # 過去アーカイブデータ（最大5000件）
@@ -121,13 +121,16 @@ deaf-navi-web/
 │   ├── manifest.webmanifest / sw.js / offline.html / icons/  # PWA
 │   ├── otomado/               # tools/otomado の本番ビルド出力
 │   └── deaf-navi-world-*.html # World版ページ
-├── dev-docs/                  # 開発者向けドキュメント（docs/はPages公開用のため分離）
+├── deploy/caddy/              # XServerのCaddy追加設定（既存Caddyfile全体は管理しない）
+├── dev-docs/                  # 開発者向けドキュメント（公開物から分離）
 │   ├── architecture.md        # アーキテクチャと互換契約
 │   ├── data-pipeline.md       # データ収集・品質ゲートの詳細
 │   └── operations.md          # 運用・障害対応
 └── .github/workflows/
     ├── curate.yml             # 本番更新（1日3回cron: 国内+World+アプリJSON→commit）
     ├── curate-world.yml       # World単独の手動更新
+    ├── deploy-xserver.yml     # docs/をリリース単位でXServerへ原子的に配置
+    ├── deploy-github-pages-compat.yml # HTML転送＋旧JSON互換のPages成果物を公開
     ├── app-sync.yml           # アプリJSON単独の手動更新
     └── ci.yml                 # PR検証（test/build/verify・書き込み権限なし）
 ```
@@ -161,7 +164,7 @@ npm run preview:otomado        # おとまどを含むdocs/をローカル配信
 
 ## Analytics
 
-公開HTMLの利用状況と表示性能は [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) で確認する。GitHub Pagesは維持し、Cloudflare Pages・Worker・独自のアクセス解析DBは使用しない。
+公開HTMLの利用状況と表示性能は既存の [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) で確認する。ホスティングにはCloudflare Pages・Workerを使わず、独自のアクセス解析DBも追加しない。
 
 - 設定場所: `config/site.mjs` の `ANALYTICS`
 - 有効化: `provider: 'cloudflare'`、`enabled: true`、`token` にWeb AnalyticsのBeacon Tokenを設定
@@ -173,7 +176,7 @@ npm run preview:otomado        # おとまどを含むdocs/をローカル配信
 Tokenの登録・変更手順（Cloudflare Dashboardの2026年8月時点の案内）:
 
 1. Cloudflare Dashboardの **Analytics & Logs > Web Analytics** を開く
-2. **Add a site** を選び、hostnameに `deaf-navi.github.io` を入力して候補を選択し **Done**
+2. **Add a site** を選び、hostnameに `deafnavi.com` を入力して候補を選択し **Done**
 3. 対象サイトの **Manage site** でJS snippetを表示し、`data-cf-beacon` 内のtokenを取得
 4. `config/site.mjs` の `ANALYTICS.token` だけを置き換える（hostname移転後は登録hostnameも必ず確認する）
 5. `npm test`、`npm run build`、`npm run build:world`、`npm run build:otomado`、`npm run verify`、`npm run verify:world` を実行し、生成された `docs/` を公開する
@@ -196,11 +199,11 @@ Cloudflareの公式説明では、Web AnalyticsはCookieやlocalStorageなどの
 詳細: [dev-docs/architecture.md](dev-docs/architecture.md)。互換性は `test/ios-api-compat.test.mjs` が regression テストで担保する。
 
 主要URL:
-- https://deaf-navi.github.io/deaf-navi-web/app/v1/manifest.json
-- https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-news-v2.json （現行アプリ・国内）
-- https://deaf-navi.github.io/deaf-navi-web/app/v1/ios-world-jp-v2.json （現行アプリ・World）
+- https://deafnavi.com/app/v1/manifest.json
+- https://deafnavi.com/app/v1/ios-news-v2.json （現行アプリ・国内）
+- https://deafnavi.com/app/v1/ios-world-jp-v2.json （現行アプリ・World）
 
-出荷済みアプリが参照する旧 `tamas-hub.github.io` のAPI URLは、互換リポジトリから同じJSONを継続配信する。
+`https://deaf-navi.github.io/deaf-navi-web/` は一般HTMLをパス・クエリ・ハッシュ付きで独自ドメインへ転送し、`app/v1/*.json` 等の非HTMLファイルは実体を継続配信する。出荷済みアプリが参照するさらに旧い `tamas-hub.github.io` のAPI URLも、互換リポジトリから同じJSONを継続配信する。両GitHub Pagesは最低2027年9月5日まで削除しない。
 
 ## 運用・障害対応
 
@@ -210,7 +213,8 @@ Cloudflareの公式説明では、Web AnalyticsはCookieやlocalStorageなどの
 
 ## コスト
 
-- GitHub Pages: 無料（帯域ソフトリミット100GB/月）
+- XServer VPS: 既存契約内で同居（Deaf Navi専用 `/srv/deafnavi` に分離）
+- GitHub Pages: 旧URL転送・API互換用として無料枠を継続利用
 - GitHub Actions: 無料枠2000分/月で十分（1日3回運用）
 - 外部有料サービス: なし（Codex App Server は自前VPS上の任意コンポーネント。停止してもサイトは動く）
 

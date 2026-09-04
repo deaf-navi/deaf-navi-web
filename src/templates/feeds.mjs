@@ -36,6 +36,24 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
     { loc: `${SITE_URL}${files.sitemapHtml}`, lastmod, changefreq: 'weekly', priority: '0.4' },
     { loc: `${SITE_URL}deaf-navi-world-jp.html`, lastmod, changefreq: 'daily', priority: '0.8' },
     { loc: `${SITE_URL}deaf-navi-world-original.html`, lastmod, changefreq: 'daily', priority: '0.7' },
+    ...[
+      ['news/japan/', 'daily', '0.8'],
+      ['news/world/', 'daily', '0.8'],
+      ['news/world/original/', 'daily', '0.7'],
+      ['connect/', 'weekly', '0.7'],
+      ['connect/sign-cafe/', 'weekly', '0.8'],
+      ['connect/sign-cafe/starbucks/', 'weekly', '0.8'],
+      ['connect/events/', 'weekly', '0.6'],
+      ['connect/places/', 'monthly', '0.5'],
+      ['connect/communities/', 'monthly', '0.5'],
+      ['guide/', 'monthly', '0.8'],
+      ['guide/systems/', 'monthly', '0.6'],
+      ['guide/life/', 'monthly', '0.6'],
+      ['guide/accessibility/', 'monthly', '0.6'],
+      ['about/', 'monthly', '0.5'],
+      ['submit/', 'monthly', '0.4'],
+      ['sitemap/', 'weekly', '0.4'],
+    ].map(([path, changefreq, priority]) => ({ loc: `${SITE_URL}${path}`, lastmod, changefreq, priority })),
   ];
   const body = urls.map((u) => `  <url>
     <loc>${u.loc}</loc>
@@ -173,6 +191,17 @@ ${renderSubHeader({
         <h2 id="sitemap-tools">情報保障ツール</h2>
         <ul>
           <li><a href="./otomado/">おとまど</a><span>音の可視化・リアルタイム字幕・筆談ボード</span></li>
+        </ul>
+      </section>
+
+      <section class="sitemap-card" aria-labelledby="sitemap-connect">
+        <h2 id="sitemap-connect">つながる</h2>
+        <ul>
+          <li><a href="./connect/sign-cafe/">手話カフェ一覧</a><span>常設型の店舗・施設</span></li>
+          <li><a href="./connect/sign-cafe/starbucks/">スターバックス</a><span>店舗での手話関連企画・開催履歴</span></li>
+          <li><a href="./connect/events/">イベント</a><span>単発の手話カフェや交流イベント</span></li>
+          <li><a href="./connect/places/">場所</a><span>地域の場所・拠点</span></li>
+          <li><a href="./connect/communities/">コミュニティ</a><span>団体・活動への入口</span></li>
         </ul>
       </section>
 

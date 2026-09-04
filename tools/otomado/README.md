@@ -43,7 +43,7 @@ npm run icons    # PWAアイコン再生成（依存ゼロの自前PNGエンコ�
 
 `base: './'` の相対パス構成で、Deaf Navi Web の `docs/otomado/` へビルドします。
 
-公開URL: `https://deaf-navi.github.io/deaf-navi-web/otomado/`
+公開URL: `https://deafnavi.com/otomado/`
 
 ## YAMNetモデルの取得戦略
 

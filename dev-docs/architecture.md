@@ -14,7 +14,8 @@ Google News（324クエリ・多言語）
 ```
 
 - **依存パッケージゼロ**（Node 20+ 標準のみ）。ビルドは数秒・サプライチェーンリスクなし
-- **docs/ = GitHub Pages 公開ルート**。自動生成物なので直接編集しない
+- **docs/ = XServer公開物の正本**。自動生成物なので直接編集しない
+- GitHub Pagesは `scripts/build-github-pages-compat.mjs` で別成果物を作り、HTMLだけを独自ドメインへ転送する。JSON/RSS等の非HTMLは旧クライアント互換のため実ファイルを残す
 - **静的生成 + 遅延ハイドレーション**: トップは最新60件をSSR（JSなしでも閲覧可）、
   検索・61件目以降は `articles.json` をクライアントが遅延取得して描画
 
@@ -33,7 +34,8 @@ Google News（324クエリ・多言語）
 
 出荷済みiOSアプリが `docs/app/v1/` を参照している。以下は**破壊禁止**:
 
-1. **URL**: 正規URL `https://deaf-navi.github.io/deaf-navi-web/app/v1/` 配下の12ファイル名
+1. **URL**: 正規URL `https://deafnavi.com/app/v1/` 配下の12ファイル名
+   - 移行前URL `https://deaf-navi.github.io/deaf-navi-web/app/v1/` でも同じJSONを互換配信する
    - 出荷済みアプリ向けに、旧URL `https://tamas-hub.github.io/deaf-navi-web/app/v1/` でも同じJSONを互換配信する
 2. **フラット配列**（ios-news-v1/v2, ios-world-jp-v1/v2, ios-world-original-v1/v2）:
    キーは `id, title, summary, url, publishedAt, sourceName, sourceURL, category` の8個・この順序

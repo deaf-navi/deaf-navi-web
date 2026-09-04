@@ -1,0 +1,142 @@
+name: Deploy XServer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/deploy-xserver.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deaf-navi-xserver-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate static release
+        run: |
+          set -euo pipefail
+          test -s docs/index.html
+          test -s docs/404.html
+          test -s docs/robots.txt
+          test -s docs/sitemap.xml
+          test -s docs/app/v1/manifest.json
+          test -s docs/connect/sign-cafe/index.html
+          test -s docs/connect/sign-cafe/starbucks/index.html
+          if find docs -type l -print -quit | grep -q .; then
+            echo 'Symbolic links are not allowed in the deployment archive.' >&2
+            exit 1
+          fi
+          grep -Fq 'https://deafnavi.com/' docs/index.html
+          grep -Fq 'https://deafnavi.com/app/v1/' docs/app/v1/manifest.json
+          if grep -RIEq 'Shippori|Mincho|Noto[ -]?Serif|font-serif|Hiragino Mincho|Yu Mincho|MS PMincho' docs \
+            --include='*.html' --include='*.css' --include='*.svg'; then
+            echo 'A prohibited serif/mincho font reference remains.' >&2
+            exit 1
+          fi
+
+      - name: Build release archive
+        run: tar -czf "$RUNNER_TEMP/deafnavi-site.tar.gz" -C docs .
+
+      - name: Configure SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEAFNAVI_DEPLOY_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEAFNAVI_DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_KEY"
+          test -n "$KNOWN_HOSTS"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deafnavi_deploy
+          chmod 600 ~/.ssh/deafnavi_deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Upload release archive
+        env:
+          DEPLOY_HOST: ${{ vars.DEAFNAVI_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEAFNAVI_DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_HOST"
+          test -n "$DEPLOY_USER"
+          archive="${GITHUB_SHA}-${GITHUB_RUN_ATTEMPT}.tar.gz"
+          scp -i ~/.ssh/deafnavi_deploy -o BatchMode=yes \
+            "$RUNNER_TEMP/deafnavi-site.tar.gz" \
+            "$DEPLOY_USER@$DEPLOY_HOST:/srv/deafnavi/incoming/$archive"
+
+      - name: Activate release atomically
+        env:
+          DEPLOY_HOST: ${{ vars.DEAFNAVI_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEAFNAVI_DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          archive="${GITHUB_SHA}-${GITHUB_RUN_ATTEMPT}.tar.gz"
+          release_id="${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          ssh -i ~/.ssh/deafnavi_deploy -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
+            bash -s -- "$archive" "$release_id" <<'REMOTE'
+          set -euo pipefail
+          archive_name="$1"
+          release_id="$2"
+          root=/srv/deafnavi
+          archive="$root/incoming/$archive_name"
+          staging="$root/releases/.staging-$release_id"
+          release="$root/releases/$release_id"
+
+          case "$archive_name$release_id" in
+            *[!A-Za-z0-9._-]*) echo 'Invalid release identifier.' >&2; exit 1 ;;
+          esac
+
+          exec 9>"$root/shared/deploy.lock"
+          flock -n 9 || { echo 'Another deployment is active.' >&2; exit 75; }
+          test -f "$archive"
+          test ! -e "$staging"
+          test ! -e "$release"
+          mkdir "$staging"
+          tar -xzf "$archive" -C "$staging"
+          rm -f "$archive"
+
+          test -s "$staging/index.html"
+          test -s "$staging/404.html"
+          test -s "$staging/robots.txt"
+          test -s "$staging/sitemap.xml"
+          test -s "$staging/app/v1/manifest.json"
+          test -s "$staging/connect/sign-cafe/index.html"
+          test -s "$staging/connect/sign-cafe/starbucks/index.html"
+          if find "$staging" -type l -print -quit | grep -q .; then
+            echo 'Release contains a symbolic link.' >&2
+            exit 1
+          fi
+          grep -Fq 'https://deafnavi.com/' "$staging/index.html"
+          grep -Fq 'https://deafnavi.com/app/v1/' "$staging/app/v1/manifest.json"
+          if grep -RIEq 'Shippori|Mincho|Noto[ -]?Serif|font-serif|Hiragino Mincho|Yu Mincho|MS PMincho' "$staging" \
+            --include='*.html' --include='*.css' --include='*.svg'; then
+            echo 'A prohibited serif/mincho font reference remains.' >&2
+            exit 1
+          fi
+
+          chgrp -R caddy "$staging"
+          find "$staging" -type d -exec chmod 750 {} +
+          find "$staging" -type f -exec chmod 640 {} +
+          mv "$staging" "$release"
+          ln -s "$release" "$root/.current-$release_id"
+          mv -Tf "$root/.current-$release_id" "$root/current"
+          printf '%s\n' "$release_id" > "$root/shared/last-release"
+          REMOTE
+
+      - name: Verify public release
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --max-time 20 https://deafnavi.com/ > /dev/null
+          curl --fail --silent --show-error --max-time 20 https://deafnavi.com/app/v1/manifest.json > /dev/null

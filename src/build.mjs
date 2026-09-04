@@ -24,6 +24,7 @@ import {
 } from './templates/archive.mjs';
 import { renderAboutPage } from './templates/about.mjs';
 import { renderGuidePage } from './templates/guide.mjs';
+import { renderConnectPages, renderNotFoundPage } from './templates/connect.mjs';
 import {
   renderRobots,
   renderRss,
@@ -74,6 +75,7 @@ async function fileExists(p) {
 }
 
 async function writeDoc(file, content) {
+  await mkdir(dirname(join(DOCS, file)), { recursive: true });
   const output = file.toLowerCase().endsWith('.html')
     ? injectCloudflareAnalytics(content)
     : content;
@@ -83,6 +85,7 @@ async function writeDoc(file, content) {
 
 async function copyAsset(src, destFile) {
   if (!(await fileExists(src))) return false;
+  await mkdir(dirname(join(DOCS, destFile)), { recursive: true });
   await copyFile(src, join(DOCS, destFile));
   console.log(`コピー: ${destFile}`);
   return true;
@@ -148,6 +151,15 @@ async function main() {
 
   await writeDoc(FILES.about, renderAboutPage({ generatedAt: data.generatedAt, ...opts }));
   await writeDoc(FILES.guide, renderGuidePage(opts));
+  const [places, signCafes, starbucksEntries] = await Promise.all([
+    readFile(join(ROOT, 'content', 'connect', 'places.json'), 'utf8').then(JSON.parse),
+    readFile(join(ROOT, 'content', 'connect', 'sign-cafes.json'), 'utf8').then(JSON.parse),
+    readFile(join(ROOT, 'content', 'connect', 'starbucks-entries.json'), 'utf8').then(JSON.parse),
+  ]);
+  for (const page of renderConnectPages({ places, signCafes, starbucksEntries })) {
+    await writeDoc(page.file, page.html);
+  }
+  await writeDoc('404.html', renderNotFoundPage());
   await writeDoc(FILES.sitemapHtml, renderSitemapHtmlPage({
     generatedAt: data.generatedAt,
     count: data.count ?? data.articles.length,
@@ -172,6 +184,9 @@ async function main() {
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
   await copyAsset(join(__dirname, 'ui-controls.js'), 'ui-controls.js');
   await copyAsset(join(__dirname, 'og-image.svg'), FILES.og);
+  await copyAsset(join(ROOT, 'content', 'connect', 'places.json'), join('data', 'connect', 'places.json'));
+  await copyAsset(join(ROOT, 'content', 'connect', 'sign-cafes.json'), join('data', 'connect', 'sign-cafes.json'));
+  await copyAsset(join(ROOT, 'content', 'connect', 'starbucks-entries.json'), join('data', 'connect', 'starbucks-entries.json'));
 
   // PWA・アイコン類（本番/devで共通名）
   await copyAsset(join(ASSETS, 'favicon.svg'), 'favicon.svg');

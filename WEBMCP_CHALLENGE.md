@@ -6,7 +6,7 @@ Deaf Navi Web を、[OpenAI WebMCP Challenge](https://openai.com/webmcp-challeng
 
 > **2026年9月3日 方針変更:** 音声付きデモ動画の作成を一旦見送り、通常のフロントはChallenge実装前の見た目へ戻しました。7 ToolとAgent Activity / Undoの内部実装は削除せず、Agent Activityパネルを公開UIで非表示にしています。WebMCP専用の情報源選択肢は通常HTMLへ出さず、Toolが要求した時だけ動的に追加します。以下は実装・公開検証時点の記録です。
 
-- **Live Demo:** https://deaf-navi.github.io/deaf-navi-web/
+- **Live Demo:** https://deafnavi.com/
 - **Source:** https://github.com/deaf-navi/deaf-navi-web
 - **Challenge:** https://openai.com/webmcp-challenge/
 - **WebMCP / site tools:** https://learn.chatgpt.com/docs/webmcp

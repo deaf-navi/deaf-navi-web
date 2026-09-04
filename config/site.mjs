@@ -3,7 +3,7 @@
  * URL・ブランド文言・外部サービス設定はここだけを編集する。
  */
 
-export const SITE_URL = 'https://deaf-navi.github.io/deaf-navi-web/';
+export const SITE_URL = 'https://deafnavi.com/';
 export const SITE_NAME = 'Deaf Navi Web';
 export const SITE_TAGLINE = '聴覚障害・難聴・手話に関するニュースと一次情報';
 export const SITE_DESC = '聴覚障害・難聴・ろう者・手話に関する一次情報と報道を、出典と選定区分を明示して届ける無料ニュースキュレーション。制度・情報保障・医療・教育・技術・防災・文化・デフスポーツを1日3回更新します。';
@@ -14,7 +14,7 @@ export const APP_STORE_URL = 'https://apps.apple.com/jp/app/deaf-navi/id67613521
 export const UPDATE_SCHEDULE_LABEL = '1日3回更新';
 export const UPDATE_SCHEDULE_DETAIL = 'JST 6:00 / 12:00 / 18:00ごろ';
 
-export const CURATE_USER_AGENT = 'DeafNaviWeb/1.1 (+https://deaf-navi.github.io/deaf-navi-web/)';
+export const CURATE_USER_AGENT = 'DeafNaviWeb/1.1 (+https://deafnavi.com/)';
 
 // Cloudflare Web Analytics。Beacon token はクライアントHTMLに公開される識別子であり、
 // API Secretではない。変更・無効化はこの設定だけで行い、生成HTMLは直接編集しない。

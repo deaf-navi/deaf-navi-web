@@ -125,7 +125,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
@@ -152,6 +152,7 @@ export function renderSiteNav({
   newsHref = './',
   worldHref = './deaf-navi-world-jp.html',
   guideHref = './guide.html',
+  connectHref = './connect/',
   toolHref = './otomado/',
   aboutHref = './about.html',
   locale = 'ja',
@@ -160,6 +161,7 @@ export function renderSiteNav({
   const items = [
     { key: 'news', href: newsHref, label: isEnglish ? 'Japan News' : 'ニュース' },
     { key: 'world', href: worldHref, label: 'World', className: 'site-nav__link--world', icon: ICONS.globe },
+    { key: 'connect', href: connectHref, label: isEnglish ? 'Connect' : 'つながる' },
     { key: 'guide', href: guideHref, label: isEnglish ? 'Guide' : '暮らしのガイド' },
     { key: 'tool', href: toolHref, label: isEnglish ? 'OtoMado' : 'おとまど', className: 'site-nav__link--tool' },
     { key: 'about', href: aboutHref, label: isEnglish ? 'About Deaf Navi' : 'Deaf Naviについて' },
