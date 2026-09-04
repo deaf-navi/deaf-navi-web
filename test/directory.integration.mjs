@@ -8,7 +8,7 @@ import { randomBytes } from 'node:crypto';
 const root=resolve(import.meta.dirname,'..');
 const dir=mkdtempSync(join(tmpdir(),'deafnavi-directory-test-'));
 const env={...process.env,DEAFNAVI_DATA_DIR:dir,DEAFNAVI_LOCAL_TEST:'1'};
-const initial=randomBytes(18).toString('hex'), next=randomBytes(18).toString('hex');
+const initial=randomBytes(18).toString('hex'), next=randomBytes(4).toString('hex');
 const hashed=spawnSync('php',['test/directory-hash.php'],{cwd:root,input:initial,encoding:'utf8'});
 assert.equal(hashed.status,0);
 const init=spawnSync('php',['server/cli.php','init'],{cwd:root,env,input:JSON.stringify({username:'testadmin',password_hash:hashed.stdout}),encoding:'utf8'});
@@ -24,7 +24,17 @@ try {
   for(let i=0;i<40;i++){try{await fetch(base+'/');break;}catch{await new Promise(r=>setTimeout(r,100));}}
   let r=await anon('/connect/sign-cafe/');ok(r.status===200,'public directory');ok(r.text.includes('Knot'),'verified seed');ok(!r.text.includes('びわこ手話カフェ「わ」'),'pending never rendered');ok(r.headers.get('cache-control').includes('no-store'),'no cache');
   ok((await anon('/connect/sign-cafe/?q=大阪')).text.includes('2U'),'search');
-  ok(!(await anon('/connect/sign-cafe/?region=北海道')).text.includes('class="dn-card"'),'empty region');
+  ok(r.text.includes('dn-cafe-theme')&&r.text.includes('営業時間・営業日'),'autumn sortable table');
+  ok(!r.text.match(/<thead>[\s\S]*?<\/thead>/)[0].includes('確認日'),'verification date absent from table headers');
+  const order=t=>[...t.matchAll(/class="dn-cafe-row" data-slug="([^"]+)"/g)].map(m=>m[1]);
+  const asc=await anon('/connect/sign-cafe/?sort=name&dir=asc');
+  const desc=await anon('/connect/sign-cafe/?sort=name&dir=desc');
+  ok(JSON.stringify(order(asc.text))===JSON.stringify(order(desc.text).reverse()),'server sorting reverses rows');
+  const area=await anon('/connect/sign-cafe/?sort=region');
+  ok(order(area.text).at(-1)==='knot','geographic region ordering');
+  r=await anon('/connect/sign-cafe/?q=大阪&sort=type&dir=desc');
+  ok(order(r.text).length===2&&r.text.includes('q=%E5%A4%A7%E9%98%AA'),'sorting preserves search');
+  ok(!(await anon('/connect/sign-cafe/?region=北海道')).text.includes('class="dn-cafe-row"'),'empty region');
   ok((await anon('/connect/sign-cafe/biwako-wa/')).status===404,'pending details blocked');
   ok(!(await anon('/directory-sitemap.xml')).text.includes('biwako-wa'),'pending sitemap excluded');
   ok((await anon('/admin/',{action:'create_user'})).status===403,'CSRF rejected before mutation');
@@ -33,6 +43,11 @@ try {
   r=await admin('/admin/',{csrf,action:'login',username:'testadmin',password:initial});ok(r.status===303,'valid login');
   r=await admin('/admin/');csrf=token(r.text);ok(r.text.includes('初期パスワードを変更'),'forced first change');
   ok((await admin('/admin/',{csrf,action:'settings',notification_email:'test@example.invalid'})).status===403,'bootstrap cannot configure');
+  ok(r.text.includes('minlength="8"')&&r.text.includes('8文字以上'),'visible 8 character limit');
+  for(const short of [next.slice(0,7),'あいうえおかき']){
+    ok((await admin('/admin/',{csrf,action:'password',current_password:initial,new_password:short,confirm_password:short})).status===400,'password change rejects seven characters');
+  }
+  ok((await admin('/admin/',{csrf,action:'password',current_password:initial,new_password:'x'.repeat(129),confirm_password:'x'.repeat(129)})).status===400,'password byte maximum enforced');
   r=await admin('/admin/',{csrf,action:'password',current_password:initial,new_password:next,confirm_password:next});ok(r.status===303,'password changed');
   r=await admin('/admin/');csrf=token(r.text);
   const write=async(data)=>admin('/admin/',{csrf,...data});
@@ -50,9 +65,11 @@ try {
   ok((await write({...publicFixture,revision:'2',publication:'deleted'})).status===303,'soft delete');
   ok((await anon('/connect/sign-cafe/test-fixture/')).status===404,'deleted hidden');
   ok((await write({...publicFixture,revision:'3',status:'closed'})).status===303,'restore as closed');
-  ok(!(await anon('/connect/sign-cafe/?q=検証専用')).text.includes('class="dn-card"'),'closed hidden by default');
-  ok((await anon('/connect/sign-cafe/?history=1&q=検証専用')).text.includes('class="dn-card"'),'closed retained');
+  ok(!(await anon('/connect/sign-cafe/?q=検証専用')).text.includes('class="dn-cafe-row"'),'closed hidden by default');
+  ok((await anon('/connect/sign-cafe/?history=1&q=検証専用')).text.includes('class="dn-cafe-row"'),'closed retained');
   const editorPw=randomBytes(18).toString('hex');
+  ok((await write({action:'create_user',username:'shortuser',new_password:next.slice(0,7),role:'editor'})).status===400,'ID creation rejects seven characters');
+  ok((await write({action:'create_user',username:'eightuser',new_password:next,role:'editor'})).status===303,'ID creation accepts eight characters');
   ok((await write({action:'create_user',username:'testeditor',new_password:editorPw,role:'editor'})).status===303,'create editor ID');
   r=await editor('/admin/');let ec=token(r.text);await editor('/admin/',{csrf:ec,action:'login',username:'testeditor',password:editorPw});r=await editor('/admin/');ec=token(r.text);
   await editor('/admin/',{csrf:ec,action:'password',current_password:editorPw,new_password:next+'e',confirm_password:next+'e'});r=await editor('/admin/');ec=token(r.text);

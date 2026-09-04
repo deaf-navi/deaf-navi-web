@@ -126,6 +126,7 @@ jobs:
           test -s "$staging/connect/sign-cafe/starbucks/index.html"
           test -s "$staging/_backend/index.php"
           test -s "$staging/directory.css"
+          test -s "$staging/directory-ui.js"
           while IFS= read -r -d '' file; do php -l "$file"; done < <(find "$staging/_backend" -name '*.php' -print0)
           test -S /run/php/deafnavi.sock
           if find "$staging" -type l -print -quit | grep -q .; then

@@ -109,7 +109,9 @@ function require_user(bool $admin=false): array {
     if($admin && $u['role']!=='admin') fail('管理者権限が必要です。',403);
     return $u;
 }
-function password_valid(string $p): void { if(strlen($p)<12 || strlen($p)>128) fail('新しいパスワードは12〜128バイトで入力してください。'); }
+function password_valid(string $p): void {
+    if(!preg_match('//u',$p) || preg_match_all('/./us',$p)<8 || strlen($p)>128) fail('新しいパスワードは8文字以上、128バイト以内で入力してください。');
+}
 function record(string $id): array { $r=query('SELECT * FROM records WHERE id=?',[$id])->fetch(); if(!$r) fail('情報が見つかりません。',404); return $r; }
 function expanded(array $r): array { return array_merge(json_decode($r['payload'],true,512,JSON_THROW_ON_ERROR),$r); }
 function record_fields(string $kind): array {

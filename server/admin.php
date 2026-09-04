@@ -9,7 +9,7 @@ function admin_page(): string {
     $view=input($_GET,'view',30)?:'dashboard';
     if($user['must_change']) { $view='password';$body.='<p class="dn-error">初期パスワードを変更してください。変更が完了するまで他の管理操作は利用できません。</p>'; }
     if($view==='password') {
-        $body.='<h2>パスワード変更</h2><p>12〜128バイトの、他で使っていないパスワードを設定してください。変更後は他の端末のログインも無効になります。</p><form method="post" class="dn-login">'.csrf().'<input type="hidden" name="action" value="password">'.field('current_password','現在のパスワード','','password',true).field('new_password','新しいパスワード','','password',true).field('confirm_password','新しいパスワード（確認）','','password',true).'<button>パスワードを変更</button></form>';
+        $body.='<h2>パスワード変更</h2><p>8文字以上・128バイト以内の、他で使っていないパスワードを設定してください。変更後は他の端末のログインも無効になります。</p><form method="post" class="dn-login">'.csrf().'<input type="hidden" name="action" value="password">'.field('current_password','現在のパスワード','','password',true).field('new_password','新しいパスワード','','password',true).field('confirm_password','新しいパスワード（確認）','','password',true).'<button>パスワードを変更</button></form>';
     } elseif($view==='users') {
         require_user(true);$body.='<h2>ログインIDの管理</h2><p>管理者はID作成・通知設定が可能です。編集者は掲載情報の編集と投稿の確認が可能です。新しいIDは初回ログイン時にパスワード変更が必要です。</p><div class="dn-admin-list">';
         foreach(query('SELECT id,username,role,active FROM users ORDER BY id')->fetchAll() as $u) {
@@ -17,7 +17,7 @@ function admin_page(): string {
             if($u['id']!==$user['id']) $body.='<form method="post">'.csrf().'<input type="hidden" name="action" value="toggle_user"><input type="hidden" name="id" value="'.e($u['id']).'"><input type="hidden" name="expected_active" value="'.e($u['active']).'"><button class="secondary">'.($u['active']?'このIDを停止':'このIDを有効化').'</button></form>';
             $body.='</div>';
         }
-        $body.='</div><h3>IDを作成</h3><form method="post" class="dn-form">'.csrf().'<input type="hidden" name="action" value="create_user"><div class="dn-form-grid">'.field('username','ID（英数字・ハイフン・アンダースコア、3〜40文字）','','text',true).field('new_password','初期パスワード（12文字以上）','','password',true).select_field('role','権限',['editor'=>'編集者','admin'=>'管理者'],'editor').'</div><p><button>IDを作成</button></p></form>';
+        $body.='</div><h3>IDを作成</h3><form method="post" class="dn-form">'.csrf().'<input type="hidden" name="action" value="create_user"><div class="dn-form-grid">'.field('username','ID（英数字・ハイフン・アンダースコア、3〜40文字）','','text',true).field('new_password','初期パスワード（8文字以上）','','password',true).select_field('role','権限',['editor'=>'編集者','admin'=>'管理者'],'editor').'</div><p><button>IDを作成</button></p></form>';
     } elseif($view==='settings') {
         require_user(true);$configured=is_file(data_dir().'/mail.php');
         $counts=query('SELECT status,count(*) AS count FROM outbox GROUP BY status')->fetchAll();
