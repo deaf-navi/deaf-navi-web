@@ -15,7 +15,7 @@ async function mount(){
   const group=L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:45,disableClusteringAtZoom:16,spiderfyOnMaxZoom:true,animate:!matchMedia('(prefers-reduced-motion: reduce)').matches,iconCreateFunction:cluster=>L.divIcon({className:'dn-map-cluster',html:'<span>'+cluster.getChildCount()+'</span>',iconSize:[44,44]})});
   const markers=new Map(),labels=new Map();let filtered=spots;
   spots.forEach((spot,i)=>{
-    const icon=L.divIcon({className:'dn-map-pin'+(spot.statusCode==='unknown'?' is-unknown':''),html:'<span>'+(i+1)+'</span>',iconSize:[34,42],iconAnchor:[17,40]});
+    const icon=L.divIcon({className:'dn-map-pin'+(spot.statusCode==='unknown'?' is-unknown':''),html:'<span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>',iconSize:[34,42],iconAnchor:[17,40]});
     const marker=L.marker([spot.latitude,spot.longitude],{icon,title:spot.name,alt:spot.name,keyboard:true,riseOnHover:true});
     const popup=document.createElement('article');popup.className='dn-map-popup';popup.append(node('p',spot.prefecture+' / '+spot.city),node('h2',spot.name),node('p',spot.type+' · '+spot.status),node('p',spot.hours),node('p',spot.address));
     const link=node('a','店舗の詳細・情報源');link.href=spot.path;link.className='dn-action-link';popup.append(link);
