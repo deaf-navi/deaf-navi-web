@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-09-04T23:45:21Z",
+  "generatedAt": "2026-09-05T00:24:42Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -21,7 +21,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v1.json",
       "count": 472,
-      "sourceGeneratedAt": "2026-09-04T23:44:25Z",
+      "sourceGeneratedAt": "2026-09-05T00:23:38Z",
       "categories": [
         {
           "id": "all",
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-04T23:45:21Z",
+      "sourceGeneratedAt": "2026-09-05T00:24:42Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -193,9 +193,9 @@
         "provider": "translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "checked": 9,
-          "updated": 9,
-          "cached": 591,
+          "checked": 15,
+          "updated": 15,
+          "cached": 585,
           "skipped": 0,
           "failed": 0,
           "enabled": true,
@@ -214,7 +214,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-04T23:45:21Z",
+      "sourceGeneratedAt": "2026-09-05T00:24:42Z",
       "language": "und",
       "regions": [
         {
@@ -296,7 +296,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-04T23:45:21Z",
+      "sourceGeneratedAt": "2026-09-05T00:24:42Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
