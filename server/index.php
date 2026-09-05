@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require __DIR__.'/core.php';
 require __DIR__.'/views.php';
+require __DIR__.'/public-profile.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/map.php';
 require __DIR__.'/map-2d.php';

@@ -60,6 +60,8 @@ jobs:
           while IFS= read -r -d '' file; do php -l "$file"; done < <(find server -name '*.php' -print0)
           php -r 'json_decode(file_get_contents("server/seed.json"),true,512,JSON_THROW_ON_ERROR);'
           node test/directory.integration.mjs
+          php test/public-profile.test.php
+          node test/social-import.mjs
           tar -czf "$RUNNER_TEMP/deafnavi-site.tar.gz" --transform='s,^server,_backend,' -C docs . -C .. server
 
       - name: Configure SSH

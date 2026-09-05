@@ -117,7 +117,7 @@ function expanded(array $r): array { return array_merge(json_decode($r['payload'
 function record_fields(string $kind): array {
     $common=['name'=>'店舗・活動名','name_kana'=>'名称の読み','country_code'=>'国コード（例 JP / US）','country_name'=>'国名','prefecture'=>'都道府県・州','city'=>'市区町村','address'=>'住所','map_url'=>'地図URL','latitude'=>'緯度','longitude'=>'経度','timezone'=>'タイムゾーン（例 Asia/Tokyo）','subtypes'=>'補助ラベル（1行1件）','business_hours'=>'営業時間','event_schedule'=>'営業曜日・開催曜日','holidays'=>'定休日','reservation'=>'予約の要否','description'=>'特徴・説明','sign_support'=>'手話対応の内容','official_url'=>'公式サイト','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','operator'=>'運営団体','verification_sources'=>'情報源URL（1行1件）','last_verified_at'=>'情報確認日','internal_note'=>'管理者メモ（非公開）'];
     if($kind==='event') $common=['name'=>'企画名','event_date'=>'開催日','start_time'=>'開始時刻','end_time'=>'終了時刻','timezone'=>'タイムゾーン','event_schedule'=>'定期開催日程','organizer'=>'主催者','partners'=>'共催・協力団体','description'=>'内容','conditions'=>'参加条件','application'=>'申込方法','official_url'=>'公式サイト','verification_sources'=>'情報源URL（1行1件）','published_at'=>'情報公開日','last_verified_at'=>'最終確認日','internal_note'=>'管理者メモ（非公開）'];
-    if($kind!=='event') $common+=['coordinate_accuracy'=>'地図位置の精度（address_vicinity / unknown）','coordinate_source_url'=>'座標の確認元URL'];
+    if($kind!=='event') $common+=['line_url'=>'LINE','youtube_url'=>'YouTube','coordinate_accuracy'=>'地図位置の精度（address_vicinity / unknown）','coordinate_source_url'=>'座標の確認元URL'];
     else $common+=['observation_only'=>'開催実績の観測記録（1=日時不詳の実績 / 0=個別開催）'];
     return $common;
 }

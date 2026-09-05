@@ -3,7 +3,7 @@ declare(strict_types=1);
 function page(string $title,string $body,string $path='',string $description='',array $structured=[],bool $private=false): string {
     $canonical=BASE.($path?:'/connect/sign-cafe/');
     $robots=$private?'noindex,nofollow':'index,follow';
-    $ld='<link rel="stylesheet" href="/directory-community.css?v=1"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script><script src="/directory-ui.js?v=20260905c" defer></script>';
+    $ld='<link rel="stylesheet" href="/directory-community.css?v=2"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script><script src="/directory-ui.js?v=20260905c" defer></script>';
     if(!$private) {
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'つながる','item'=>BASE.'/connect/'],['@type'=>'ListItem','position'=>3,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
         if($path!=='/connect/sign-cafe/') $crumbs[]=['@type'=>'ListItem','position'=>4,'name'=>$title,'item'=>$canonical];
@@ -29,7 +29,7 @@ function select_field(string $name,string $label,array $options,string $selected
 }
 function record_path(array $r): string { return '/connect/sign-cafe/'.($r['kind']==='event'?'starbucks/':'').$r['slug'].'/'; }
 function sources_html(array $p): string {
-    $out='<div class="dn-sources"><span>情報確認日：'.e($p['last_verified_at']?:'未確認').'</span><details><summary>情報源を確認する</summary><ul>';
+    $out='<div class="dn-sources"><span>情報確認日：'.e(($p['last_verified_at']??'')?:'未確認').'</span><details><summary>情報源を確認する</summary><ul>';
     foreach($p['verification_sources']??[] as $i=>$url) $out.='<li>'.ext_link($url,'情報源 '.($i+1).' · '.(parse_url($url,PHP_URL_HOST)?:'')).'</li>';
     return $out.'</ul></details></div>';
 }
@@ -39,7 +39,7 @@ function cafe_card(array $p): string {
     if($p['status']!=='open') $out.='<span class="dn-badge dn-warning">'.e(STATUSES[$p['status']]).'</span>';
     foreach($p['subtypes']??[] as $tag) $out.='<span class="dn-tag">'.e($tag).'</span>';
     $out.='</div><p class="dn-location">'.e(($p['country_code']!=='JP'?($p['country_name']?:$p['country_code']).' / ':'').$p['prefecture'].' / '.$p['city']).'</p><h2><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h2><p>'.nl2br(e($p['description']??'')).'</p><dl class="dn-facts"><dt>営業・開催日</dt><dd>'.e(($p['event_schedule']??'')?:'未確認・公式情報をご確認ください').'</dd><dt>時間</dt><dd>'.e(($p['business_hours']??'')?:'未確認').'</dd></dl><div class="dn-links">';
-    foreach(['official_url'=>'公式サイト','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook'] as $key=>$label) $out.=ext_link($p[$key]??'',$label);
+    $out.=official_links($p);
     $out.='</div>'.sources_html($p);
     if($p['kind']==='store') $out.='<p>'.action_link('/connect/sign-cafe/starbucks/','スターバックスの手話関連情報','page').'</p>';
     return $out.'</article>';
@@ -95,11 +95,11 @@ function cafe_table(array $list): string {
     $out.='<th scope="col">営業時間・営業日</th></tr></thead><tbody>';
     foreach($list as $p){
         $id='cafe-detail-'.$p['slug'];
-        $out.='<tr class="dn-cafe-row" data-slug="'.e($p['slug']).'"';foreach(['name','region','type'] as $k)$out.=' data-sort-'.$k.'="'.e(cafe_sort_key($p,$k)).'"';$out.='><th scope="row"><a class="dn-cafe-name" href="'.e(record_path($p)).'">'.e($p['name']).'</a><button type="button" class="dn-expand" data-cafe-expand="'.e($id).'" aria-expanded="false" aria-controls="'.e($id).'" hidden>詳細を開く ＋</button></th><td><span>'.e(($p['country_code']!=='JP'?($p['country_name']?:$p['country_code']).' / ':'').$p['prefecture']).'</span><span class="dn-cell-secondary">'.e($p['city']).'</span></td><td><span class="dn-badge">'.e(TYPES[$p['type']]).'</span>'.($p['status']!=='open'?'<span class="dn-cell-secondary dn-operating-state">'.e(STATUSES[$p['status']]).'</span>':'').'</td><td class="dn-hours">'.nl2br(e(($p['business_hours']??'')?:'営業時間未確認')).(!empty($p['event_schedule'])?'<span class="dn-cell-secondary">営業・開催日：'.nl2br(e($p['event_schedule'])).'</span>':'').'</td></tr>';
+        $out.='<tr class="dn-cafe-row" data-slug="'.e($p['slug']).'"';foreach(['name','region','type'] as $k)$out.=' data-sort-'.$k.'="'.e(cafe_sort_key($p,$k)).'"';$out.='><th scope="row"><a class="dn-cafe-name" href="'.e(record_path($p)).'">'.e($p['name']).'</a><button type="button" class="dn-expand" data-cafe-expand="'.e($id).'" aria-expanded="false" aria-controls="'.e($id).'" hidden>詳細を開く ＋</button></th><td><span>'.e(($p['country_code']!=='JP'?($p['country_name']?:$p['country_code']).' / ':'').$p['prefecture']).'</span><span class="dn-cell-secondary">'.e($p['city']).'</span></td><td><span class="dn-badge">'.e(TYPES[$p['type']]).'</span>'.($p['status']!=='open'?'<span class="dn-cell-secondary dn-operating-state">'.e(STATUSES[$p['status']]).'</span>':'').'</td><td class="dn-hours">'.nl2br(e(($p['business_hours']??'')?:'営業時間未確認')).(!empty($p['event_schedule'])?'<span class="dn-cell-secondary">営業・開催日：'.nl2br(e($p['event_schedule'])).'</span>':'').official_links($p,true).'</td></tr>';
         $out.='<tr class="dn-cafe-expanded" id="'.e($id).'" hidden><td colspan="4"><div class="dn-expanded-inner"><h2>'.e($p['name']).'</h2><p>'.nl2br(e($p['description']??'')).'</p><dl class="dn-facts">';
         foreach(['address'=>'住所','holidays'=>'定休日','reservation'=>'予約','sign_support'=>'手話対応'] as $k=>$label)if(!empty($p[$k]))$out.='<dt>'.$label.'</dt><dd>'.nl2br(e($p[$k])).'</dd>';
-        $out.='</dl><div class="dn-links">';foreach(['official_url'=>'公式サイト','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','map_url'=>'地図'] as $k=>$label)$out.=ext_link($p[$k]??'',$label);
-        $out.=action_link(record_path($p),'個別ページを見る','page').'</div>'.sources_html($p).'</div></td></tr>';
+        $out.='</dl>'.official_links($p).'<div class="dn-links">';if(!empty($p['map_url']))$out.=ext_link($p['map_url'],'地図・行き方');
+        $out.=action_link(record_path($p),'お店について詳しく見る','page').'</div>'.sources_html($p).'</div></td></tr>';
     }
     return $out.'</tbody></table></div><p class="dn-visually-hidden" data-cafe-announcement role="status"></p>';
 }
@@ -142,13 +142,7 @@ function detail(string $slug,bool $event): string {
     $body=tabs($event).'<p><a href="'.($event?'/connect/sign-cafe/starbucks/':'/connect/sign-cafe/').'">← 一覧へ</a></p>';$schema=[];
     $store=$event?expanded(record($p['store_id'])):$p;
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
-    $body.=$event?event_card($p,$store):cafe_card($p);
-    $body.='<dl class="dn-detail">';
-    foreach(record_fields($p['kind']) as $k=>$label) {
-        if(in_array($k,['name','observation_only','internal_note','verification_sources','subtypes'])||!isset($p[$k])||$p[$k]===''||$p[$k]===null) continue;
-        $body.='<dt>'.e($label).'</dt><dd>'.(str_ends_with($k,'_url')?ext_link($p[$k],$label):nl2br(e($p[$k]))).'</dd>';
-    }
-    $body.='</dl>';
+    $body.=$event?event_card($p,$store).visitor_event_details($p):visitor_profile($p);
     if($event) $body.='<h2>開催店舗</h2><p>'.e($store['name'].' / '.$store['address']).'</p>'.disclaimer();
     if(!$event && $p['kind']==='store') {
         $body.='<h2>この店舗の開催履歴</h2>';
