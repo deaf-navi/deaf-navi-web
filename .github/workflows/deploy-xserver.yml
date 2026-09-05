@@ -39,6 +39,9 @@ jobs:
           test -s docs/app/v1/manifest.json
           test -s docs/connect/sign-cafe/index.html
           test -s docs/connect/sign-cafe/starbucks/index.html
+          test -s docs/cafe-map/world.js
+          test -s docs/cafe-map/japan.json
+          test -s docs/cafe-map/vendor/three.module.min.js
           if find docs -type l -print -quit | grep -q .; then
             echo 'Symbolic links are not allowed in the deployment archive.' >&2
             exit 1

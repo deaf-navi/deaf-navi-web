@@ -58,7 +58,7 @@ function filters(array $all): string {
 function filtered(array $all): array {
     $q=normalized(input($_GET,'q',200)); $reg=input($_GET,'region',40);$pref=input($_GET,'prefecture',100);$type=input($_GET,'type',40);$history=input($_GET,'history',1)==='1';
     return array_values(array_filter($all,function($p)use($q,$reg,$pref,$type,$history){
-        return ($history || $p['status']==='open') && ($reg==='' || region($p['prefecture'],$p['country_code'])===$reg) && ($pref==='' || $p['prefecture']===$pref) && ($type==='' || ($p['type']??'')===$type) && ($q==='' || str_contains(normalized(implode(' ',[$p['name'],$p['name_kana']??'',$p['prefecture'],$p['city'],$p['description']??'',implode(' ',$p['subtypes']??[])])),$q));
+        return ($history || in_array($p['status'],['open','unknown'],true)) && ($reg==='' || region($p['prefecture'],$p['country_code'])===$reg) && ($pref==='' || $p['prefecture']===$pref) && ($type==='' || ($p['type']??'')===$type) && ($q==='' || str_contains(normalized(implode(' ',[$p['name'],$p['name_kana']??'',$p['prefecture'],$p['city'],$p['description']??'',implode(' ',$p['subtypes']??[])])),$q));
     }));
 }
 function submission_form(array $values=[]): string {
@@ -72,6 +72,8 @@ function submission_form(array $values=[]): string {
 function cafe_list(): string {
     $all=array_values(array_filter(visible_records(),fn($p)=>$p['kind']==='cafe'||($p['kind']==='store'&&($p['signing_store']??false)))); $list=filtered($all);
     $body=tabs().'<section class="dn-cafe-intro"><p>手話・ろう文化・筆談での交流を継続して行う店舗や活動を掲載しています。常設・限定営業・定期開催・特殊の4分類で案内し、単発イベントは含みません。正式なサイニングストアは「特殊」として掲載します。</p><a href="#request">情報を提供する ↓</a></section>'.filters($all).'<p class="dn-result">該当 <strong>'.count($list).'</strong>件 <span>営業時間は変更される場合があります。訪問前に公式情報をご確認ください。</span></p>';
+    $body=str_replace('>営業・活動確認済</option>','>休業・閉店を除く</option>',$body);
+    $body.='<p><a class="dn-cta" href="/connect/sign-cafe/map/">全国の手話スポット3Dマップを試す →</a></p><p class="dn-muted">実在・活動実績は確認できても現在の営業が不明な場所は「営業状況未確認」と表示しています。営業中と断定するものではありません。</p>';
     $body.=$list?cafe_table($list):'<p class="dn-empty">条件に一致する掲載情報はありません。検索条件を変更してください。</p>';
     return page('全国の手話カフェ一覧',$body.submission_form(),'/connect/sign-cafe/','全国の手話カフェ、ろう者が運営するカフェ、手話・筆談で交流できる店舗、定期開催の手話カフェ、サイニングストアなどを地域別に紹介します。');
 }

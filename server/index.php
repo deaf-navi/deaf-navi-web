@@ -3,6 +3,7 @@ declare(strict_types=1);
 require __DIR__.'/core.php';
 require __DIR__.'/views.php';
 require __DIR__.'/admin.php';
+require __DIR__.'/map.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: private, no-store, max-age=0');
@@ -40,7 +41,7 @@ try {
         $_SESSION['csrf']=uid();$_SESSION['receipt']=true;$_SESSION['duplicate_notice']=$duplicate;unset($_SESSION['form_issued']);
         header('Location: /submit/?received=1',true,303);exit;
     }
-    if($path==='/admin' || $path==='/submit' || $path==='/connect/sign-cafe' || $path==='/connect/sign-cafe/starbucks') {header('Location: '.$path.'/'.(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;}
+    if($path==='/admin' || $path==='/submit' || $path==='/connect/sign-cafe' || $path==='/connect/sign-cafe/starbucks' || $path==='/connect/sign-cafe/map') {header('Location: '.$path.'/'.(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;}
     if($path==='/admin/') {header('X-Robots-Tag: noindex, nofollow');echo admin_page();}
     elseif($path==='/submit/') {
         start_session();$body='';
@@ -50,12 +51,15 @@ try {
         } else $body=submission_form(['category'=>input($_GET,'category',20)?:'cafe']);
         echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
     } elseif($path==='/connect/sign-cafe/') echo cafe_list();
+    elseif($path==='/connect/sign-cafe/map/')echo map_page();
+    elseif($path==='/connect/sign-cafe/map/data.json'){header('Content-Type: application/json; charset=UTF-8');echo json(map_data());}
     elseif($path==='/connect/sign-cafe/starbucks/')echo starbucks_list();
     elseif(preg_match('#^/connect/sign-cafe/(starbucks/)?([a-z0-9-]+)/$#D',$path,$m))echo detail($m[2],$m[1]!=='');
     elseif($path==='/directory-sitemap.xml') {
         header('Content-Type: application/xml; charset=UTF-8');
         $all=visible_records();$stores=[];foreach($all as $p)if($p['kind']==='store')$stores[$p['id']]=true;
         echo '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        echo '<url><loc>'.BASE.'/connect/sign-cafe/map/</loc></url>';
         foreach($all as $p)if($p['kind']!=='event'||isset($stores[$p['store_id']]))echo '<url><loc>'.e(BASE.record_path($p)).'</loc><lastmod>'.e(substr($p['updated_at'],0,10)).'</lastmod></url>';
         echo '</urlset>';
     } else fail('情報が見つかりません。',404);

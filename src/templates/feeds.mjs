@@ -42,6 +42,7 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
       ['news/world/original/', 'daily', '0.7'],
       ['connect/', 'weekly', '0.7'],
       ['connect/sign-cafe/', 'weekly', '0.8'],
+      ['connect/sign-cafe/map/', 'monthly', '0.6'],
       ['connect/sign-cafe/starbucks/', 'weekly', '0.8'],
       ['connect/events/', 'weekly', '0.6'],
       ['guide/', 'monthly', '0.8'],
@@ -197,6 +198,7 @@ ${renderSubHeader({
         <h2 id="sitemap-connect">つながる</h2>
         <ul>
           <li><a href="./connect/sign-cafe/">手話カフェ一覧</a><span>常設・限定営業・定期開催・特殊</span></li>
+          <li><a href="./connect/sign-cafe/map/">全国の手話スポット3Dマップ</a><span>日本地図から探す・HTML一覧あり</span></li>
           <li><a href="./connect/sign-cafe/starbucks/">スターバックス</a><span>店舗での手話関連企画・開催履歴</span></li>
           <li><a href="./connect/events/">イベント</a><span>単発の手話カフェや交流イベント</span></li>
         </ul>

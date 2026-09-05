@@ -5,7 +5,7 @@ const TYPES = ['permanent'=>'常設','limited'=>'限定営業','recurring'=>'定
 const STATUSES = ['open'=>'営業・活動確認済','temporarily_closed'=>'休業中','unknown'=>'営業状況未確認','closed'=>'閉店・活動終了'];
 const EVENT_STATUSES = ['scheduled'=>'開催予定','ongoing'=>'開催中','recurring'=>'定期開催','ended'=>'開催終了','cancelled'=>'中止','date_unknown'=>'日程未確認'];
 const PUBLICATIONS = ['pending'=>'保留・確認中','public'=>'公開','private'=>'非公開','deleted'=>'削除済み（復元可能）'];
-const LEVELS = ['official'=>'公式確認済み','authority'=>'公的団体で確認','multiple_sources'=>'複数情報源で確認','pending'=>'要確認'];
+const LEVELS = ['official'=>'公式確認済み','authority'=>'団体の公開資料で確認','organizer'=>'主催者発信で確認','reporting'=>'報道で確認','multiple_sources'=>'複数情報源で確認','pending'=>'要確認'];
 const CONFIDENCE = ['official'=>'公式確認済み','organizer'=>'主催者発信','store'=>'店舗発信','participant'=>'参加者提供','unverified'=>'未確認情報'];
 const REPORT_TYPES = ['new'=>'新しい手話カフェ','move'=>'移転','hours'=>'営業時間変更','url'=>'URL変更','rest'=>'休業','closed'=>'閉店','other'=>'その他'];
 const BASE = 'https://deafnavi.com';
@@ -117,9 +117,11 @@ function expanded(array $r): array { return array_merge(json_decode($r['payload'
 function record_fields(string $kind): array {
     $common=['name'=>'店舗・活動名','name_kana'=>'名称の読み','country_code'=>'国コード（例 JP / US）','country_name'=>'国名','prefecture'=>'都道府県・州','city'=>'市区町村','address'=>'住所','map_url'=>'地図URL','latitude'=>'緯度','longitude'=>'経度','timezone'=>'タイムゾーン（例 Asia/Tokyo）','subtypes'=>'補助ラベル（1行1件）','business_hours'=>'営業時間','event_schedule'=>'営業曜日・開催曜日','holidays'=>'定休日','reservation'=>'予約の要否','description'=>'特徴・説明','sign_support'=>'手話対応の内容','official_url'=>'公式サイト','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','operator'=>'運営団体','verification_sources'=>'情報源URL（1行1件）','last_verified_at'=>'情報確認日','internal_note'=>'管理者メモ（非公開）'];
     if($kind==='event') $common=['name'=>'企画名','event_date'=>'開催日','start_time'=>'開始時刻','end_time'=>'終了時刻','timezone'=>'タイムゾーン','event_schedule'=>'定期開催日程','organizer'=>'主催者','partners'=>'共催・協力団体','description'=>'内容','conditions'=>'参加条件','application'=>'申込方法','official_url'=>'公式サイト','verification_sources'=>'情報源URL（1行1件）','published_at'=>'情報公開日','last_verified_at'=>'最終確認日','internal_note'=>'管理者メモ（非公開）'];
+    if($kind!=='event') $common+=['coordinate_accuracy'=>'地図位置の精度（address_vicinity / unknown）','coordinate_source_url'=>'座標の確認元URL'];
     return $common;
 }
 function validated_record(array $post, string $kind): array {
+    foreach(['latitude','longitude'] as $key) if(isset($post[$key]) && (is_int($post[$key]) || is_float($post[$key]))) $post[$key]=(string)$post[$key];
     $p=[];
     foreach(record_fields($kind) as $key=>$label) {
         $p[$key]=input($post,$key,in_array($key,['description','internal_note','verification_sources'])?6000:2000);
@@ -127,7 +129,7 @@ function validated_record(array $post, string $kind): array {
     }
     if($p['name']==='' || strlen($p['name'])>300) fail('名称を300バイト以内で入力してください。');
     $p['slug']=input($post,'slug',100);
-    if(!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$p['slug']) || in_array($p['slug'],['starbucks','index','admin'],true)) fail('URL名は半角小文字・数字・ハイフンで指定してください。');
+    if(!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$p['slug']) || in_array($p['slug'],['starbucks','index','admin','map'],true)) fail('URL名は半角小文字・数字・ハイフンで指定してください。');
     $p['publication']=choice(input($post,'publication'),PUBLICATIONS);
     $p['verification_level']=choice(input($post,'verification_level'),LEVELS);
     $p['last_verified_at']=date_value($p['last_verified_at']);
@@ -154,10 +156,12 @@ function validated_record(array $post, string $kind): array {
             elseif(!is_numeric($p[$k]) || abs((float)$p[$k])>$range) fail('緯度・経度が不正です。');
             else $p[$k]=(float)$p[$k];
         }
+        $p['coordinate_accuracy']=choice($p['coordinate_accuracy']?:'unknown',['unknown'=>1,'address_vicinity'=>1]);
+        if($p['coordinate_accuracy']==='address_vicinity' && ($p['latitude']===null || $p['longitude']===null || $p['coordinate_source_url']==='' || $p['address']==='')) fail('地図位置には住所・緯度経度・確認元URLが必要です。');
         $p['signing_store']=($kind==='store' && input($post,'signing_store',1)==='1');
     }
     if($p['timezone']!=='' && !in_array($p['timezone'],DateTimeZone::listIdentifiers(),true)) fail('タイムゾーンが不正です。');
-    if($p['publication']==='public' && ($p['verification_level']==='pending' || !$p['verification_sources'] || $p['last_verified_at']==='' || $p['status']==='unknown')) fail('公開には情報源・確認日・確認済みの情報確度・営業状態が必要です。');
+    if($p['publication']==='public' && ($p['verification_level']==='pending' || !$p['verification_sources'] || $p['last_verified_at']==='')) fail('公開には情報源・確認日・確認済みの情報確度が必要です。営業未確認の場合はその状態を明示してください。');
     return $p;
 }
 function save_record(array $p, string $kind, string $id='', int $revision=0): string {
@@ -175,5 +179,5 @@ function save_record(array $p, string $kind, string $id='', int $revision=0): st
     audit('save_'.$kind,$id); return $id;
 }
 function publicly_visible(array $p): bool {
-    return $p['publication']==='public' && ($p['verification_level']??'pending')!=='pending' && !empty($p['last_verified_at']) && !empty($p['verification_sources']) && $p['status']!=='unknown';
+    return $p['publication']==='public' && ($p['verification_level']??'pending')!=='pending' && !empty($p['last_verified_at']) && !empty($p['verification_sources']);
 }

@@ -9,7 +9,7 @@
  *   node src/build.mjs --dev    # dev 変種（index-dev.html 等を生成）
  */
 
-import { copyFile, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import { copyFile, cp, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -182,6 +182,7 @@ async function main() {
   await copyAsset(join(ASSETS, 'directory.css'), 'directory.css');
   await copyAsset(join(ASSETS, 'directory-safety.js'), 'directory-safety.js');
   await copyAsset(join(ASSETS, 'directory-ui.js'), 'directory-ui.js');
+  await cp(join(ASSETS, 'cafe-map'), join(DOCS, 'cafe-map'), {recursive: true});
   await copyAsset(join(__dirname, 'app.js'), FILES.app);
   await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
