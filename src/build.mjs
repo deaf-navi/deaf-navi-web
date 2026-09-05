@@ -183,6 +183,7 @@ async function main() {
   await copyAsset(join(ASSETS, 'directory-safety.js'), 'directory-safety.js');
   await copyAsset(join(ASSETS, 'directory-ui.js'), 'directory-ui.js');
   await copyAsset(join(ASSETS, 'directory-community.css'), 'directory-community.css');
+  await copyAsset(join(ASSETS, 'admin-dashboard.css'), 'admin-dashboard.css');
   await cp(join(ASSETS, 'cafe-map'), join(DOCS, 'cafe-map'), {recursive: true});
   await copyAsset(join(__dirname, 'app.js'), FILES.app);
   await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
