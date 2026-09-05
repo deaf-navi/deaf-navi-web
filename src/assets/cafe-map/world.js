@@ -41,22 +41,29 @@ export async function mount(){
   const ctx=glowCanvas.getContext('2d');const gradient=ctx.createRadialGradient(32,32,0,32,32,32);
   gradient.addColorStop(0,'rgba(255,245,207,1)');gradient.addColorStop(.18,'rgba(255,209,122,.95)');gradient.addColorStop(.45,'rgba(242,155,56,.38)');gradient.addColorStop(1,'rgba(242,155,56,0)');
   ctx.fillStyle=gradient;ctx.fillRect(0,0,64,64);const texture=new THREE.CanvasTexture(glowCanvas);
-  const markers=[];
+  const markers=[],sized=[];
   for(const spot of data.spots){
     const [x,y]=project(spot.longitude,spot.latitude);
     const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,transparent:true,depthTest:false,opacity:spot.statusCode==='unknown'?.48:1}));
     sprite.position.set(x,1.5,-y);sprite.scale.set(2.3,2.3,1);sprite.userData=spot;sprite.renderOrder=3;scene.add(sprite);markers.push(sprite);
+    sized.push({object:sprite,pixels:24,diameter:1});
     if(spot.statusCode!=='unknown'){
       const dot=new THREE.Mesh(new THREE.SphereGeometry(.19,12,8),new THREE.MeshBasicMaterial({color:0xffa735,depthTest:false}));dot.position.set(x,1.7,-y);dot.renderOrder=4;scene.add(dot);
+      sized.push({object:dot,pixels:4,diameter:.38});
     }
     if(spot.statusCode==='unknown'){
       const ring=new THREE.Mesh(new THREE.RingGeometry(.22,.3,24),new THREE.MeshBasicMaterial({color:0xffd28d,side:THREE.DoubleSide,depthTest:false}));
       ring.rotation.x=-Math.PI/2;ring.position.set(x,1.6,-y);scene.add(ring);
+      sized.push({object:ring,pixels:10,diameter:.6});
     }
   }
   const selection=new THREE.Mesh(new THREE.RingGeometry(.55,.68,40),new THREE.MeshBasicMaterial({color:0xfff6df,side:THREE.DoubleSide,depthTest:false}));
   selection.rotation.x=-Math.PI/2;selection.visible=false;scene.add(selection);
-  const render=()=>renderer.render(scene,camera);
+  sized.push({object:selection,pixels:28,diameter:1.36});
+  const render=()=>{
+    for(const {object,pixels,diameter} of sized){const scale=camera.position.distanceTo(object.position)*2*Math.tan(camera.fov*Math.PI/360)/Math.max(1,stage.clientHeight)*pixels/diameter;object.scale.setScalar(scale);}
+    renderer.render(scene,camera);
+  };
   const resize=()=>{const width=stage.clientWidth,height=stage.clientHeight;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();render();};
   const bounds=new THREE.Box3(),outline=[];
   for(const polygon of land.geometry.coordinates)for(const ring of polygon)for(const [lon,lat] of ring){const [x,y]=project(lon,lat),v=new THREE.Vector3(x,1,-y);bounds.expandByPoint(v);outline.push(v);}
@@ -81,12 +88,13 @@ export async function mount(){
     const [x,y]=project(spot.longitude,spot.latitude);selection.position.set(x,1.9,-y);selection.visible=true;render();
   }
   function select(slug){const marker=markers.find(m=>m.userData.slug===slug);if(!marker)return;showCard(marker.userData);controls.target.copy(marker.position);camera.position.copy(marker.position).add(new THREE.Vector3(0,10,5));controls.update();render();}
-  const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let down;
+  let down;
   const onDown=event=>{down=[event.clientX,event.clientY];};
   const onUp=event=>{
     if(!down||Math.hypot(event.clientX-down[0],event.clientY-down[1])>7)return;
-    const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);
-    const hits=raycaster.intersectObjects(markers).map(hit=>hit.object.userData);
+    const rect=renderer.domElement.getBoundingClientRect();
+    // Pick by visual distance, not billboard ray depth; nearby Tokyo/Osaka points must remain selectable.
+    const hits=markers.map(marker=>{const p=marker.position.clone().project(camera);return {spot:marker.userData,distance:p.z>1?Infinity:Math.hypot((p.x+1)*rect.width/2-(event.clientX-rect.left),(1-p.y)*rect.height/2-(event.clientY-rect.top))};}).filter(hit=>hit.distance<=18).sort((a,b)=>a.distance-b.distance).map(hit=>hit.spot);
     if(!hits.length)return;
     showCard(hits[0]);
     if(hits.length>1){card.append(node('p','この付近の光点（拡大して選べます）'));const list=document.createElement('ul');for(const spot of hits){const li=document.createElement('li'),button=node('button',spot.name);button.type='button';button.addEventListener('click',()=>select(spot.slug));li.append(button);list.append(li);}card.append(list);}

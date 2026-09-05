@@ -3,7 +3,7 @@ const status=document.querySelector('#map-status');
 let atlas;
 if(start){
   start.hidden=false;
-  const load=()=>atlas??=import('./world.js?v=1').then(m=>m.mount()).catch(error=>{
+  const load=()=>atlas??=import('./world.js?v=2').then(m=>m.mount()).catch(error=>{
     atlas=null;start.disabled=false;start.textContent='もう一度3Dを試す';
     status.textContent='この環境では3Dを表示できませんでした。下のHTML一覧をご利用ください。';
     document.querySelector('#map-stage').dataset.state='error';
