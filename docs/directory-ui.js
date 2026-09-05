@@ -58,4 +58,11 @@
     };
     input.addEventListener('input', update); update();
   });
+  document.querySelectorAll('[data-starbucks-form]').forEach(form=>{
+    const store=form.querySelector('[name="store_id"]'),other=form.querySelector('[data-new-starbucks]');
+    const update=()=>{other.hidden=store.value!=='';other.querySelectorAll('input').forEach(input=>{input.disabled=store.value!=='';input.required=store.value==='';});};
+    store.addEventListener('change',update);update();
+    const area=form.querySelector('[data-short-count]'),counter=form.querySelector('[data-short-counter]');
+    const count=()=>{const n=[...area.value].length;counter.textContent=n+' / 500文字';area.setCustomValidity(n>500?'500文字以内で入力してください。':'');};area.addEventListener('input',count);count();
+  });
 })();

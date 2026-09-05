@@ -1,0 +1,147 @@
+{
+  "date": "2026-09-05",
+  "purpose": "公式店舗情報と地域団体の発信に基づく開催実績。今後の開催予定ではない。",
+  "additions": [
+    {
+      "kind": "store",
+      "id": "starbucks-machida-pario",
+      "slug": "starbucks-machida-pario",
+      "name": "スターバックス コーヒー 町田パリオ店",
+      "country_code": "JP",
+      "country_name": "日本",
+      "timezone": "Asia/Tokyo",
+      "prefecture": "東京都",
+      "city": "町田市",
+      "address": "東京都町田市森野1-15-13 パリオビル",
+      "type": "permanent",
+      "status": "open",
+      "publication": "public",
+      "verification_level": "official",
+      "last_verified_at": "2026-09-05",
+      "signing_store": false,
+      "official_url": "https://store.starbucks.co.jp/detail-898/",
+      "verification_sources": [
+        "https://store.starbucks.co.jp/detail-898/"
+      ],
+      "description": "手話関連企画の開催実績が確認された店舗です。通常営業時の手話対応や今後の開催を保証するものではありません。"
+    },
+    {
+      "kind": "store",
+      "id": "starbucks-machida-twins-east",
+      "slug": "starbucks-machida-twins-east",
+      "name": "スターバックス コーヒー 町田東急ツインズEAST店",
+      "country_code": "JP",
+      "country_name": "日本",
+      "timezone": "Asia/Tokyo",
+      "prefecture": "東京都",
+      "city": "町田市",
+      "address": "東京都町田市原町田6-4-1 町田東急ツインズ イースト2階",
+      "type": "permanent",
+      "status": "open",
+      "publication": "public",
+      "verification_level": "official",
+      "last_verified_at": "2026-09-05",
+      "signing_store": false,
+      "official_url": "https://store.starbucks.co.jp/detail-4421/",
+      "verification_sources": [
+        "https://store.starbucks.co.jp/detail-4421/"
+      ],
+      "description": "手話関連企画の開催実績が確認された店舗です。通常営業時の手話対応や今後の開催を保証するものではありません。"
+    },
+    {
+      "kind": "store",
+      "id": "starbucks-shikishima-park",
+      "slug": "starbucks-shikishima-park",
+      "name": "スターバックス コーヒー 敷島公園店",
+      "country_code": "JP",
+      "country_name": "日本",
+      "timezone": "Asia/Tokyo",
+      "prefecture": "群馬県",
+      "city": "前橋市",
+      "address": "群馬県前橋市敷島町77",
+      "type": "permanent",
+      "status": "open",
+      "publication": "public",
+      "verification_level": "official",
+      "last_verified_at": "2026-09-05",
+      "signing_store": false,
+      "official_url": "https://store.starbucks.co.jp/detail-1787/",
+      "verification_sources": [
+        "https://store.starbucks.co.jp/detail-1787/"
+      ],
+      "description": "手話関連企画の開催実績が確認された店舗です。通常営業時の手話対応や今後の開催を保証するものではありません。"
+    },
+    {
+      "kind": "event",
+      "id": "observed-machida-pario",
+      "slug": "observed-machida-pario",
+      "name": "手話べり場Sの開催実績（町田パリオ店）",
+      "store_id": "starbucks-machida-pario",
+      "country_code": "JP",
+      "prefecture": "東京都",
+      "city": "町田市",
+      "timezone": "Asia/Tokyo",
+      "publication": "public",
+      "status": "ended",
+      "observation_only": "1",
+      "confidence": "organizer",
+      "verification_level": "authority",
+      "last_verified_at": "2026-09-05",
+      "event_date": "",
+      "published_at": "2025-12-05",
+      "verification_sources": [
+        "https://machida-support.or.jp/report/20251106vol8/"
+      ],
+      "organizer": "手話べり場S",
+      "description": "まちだサポートの活動報告で、手話べり場Sが開催場所として紹介しています。報告会の日付は手話カフェの開催日ではないため、個別日時は未確認としています。"
+    },
+    {
+      "kind": "event",
+      "id": "observed-machida-twins-east",
+      "slug": "observed-machida-twins-east",
+      "name": "手話べり場Sの開催実績（町田東急ツインズEAST店）",
+      "store_id": "starbucks-machida-twins-east",
+      "country_code": "JP",
+      "prefecture": "東京都",
+      "city": "町田市",
+      "timezone": "Asia/Tokyo",
+      "publication": "public",
+      "status": "ended",
+      "observation_only": "1",
+      "confidence": "organizer",
+      "verification_level": "authority",
+      "last_verified_at": "2026-09-05",
+      "event_date": "",
+      "published_at": "2025-12-05",
+      "verification_sources": [
+        "https://machida-support.or.jp/report/20251106vol8/"
+      ],
+      "organizer": "手話べり場S",
+      "description": "まちだサポートの活動報告で、手話べり場Sが開催場所として紹介しています。報告会の日付は手話カフェの開催日ではないため、個別日時は未確認としています。"
+    },
+    {
+      "kind": "event",
+      "id": "observed-shikishima-park",
+      "slug": "observed-shikishima-park",
+      "name": "手話カフェの開催実績（敷島公園店）",
+      "store_id": "starbucks-shikishima-park",
+      "country_code": "JP",
+      "prefecture": "群馬県",
+      "city": "前橋市",
+      "timezone": "Asia/Tokyo",
+      "publication": "public",
+      "status": "ended",
+      "observation_only": "1",
+      "confidence": "organizer",
+      "verification_level": "authority",
+      "last_verified_at": "2026-09-05",
+      "event_date": "",
+      "published_at": "",
+      "verification_sources": [
+        "https://www.mae-shakyo.or.jp/chiiki/contribution/renkei.html"
+      ],
+      "organizer": "",
+      "description": "前橋市社会福祉協議会の公開資料に、敷島公園店での手話カフェ開催の記載があります。個別の開催日時と今後の予定は確認できていません。"
+    }
+  ]
+}

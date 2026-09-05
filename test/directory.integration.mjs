@@ -39,8 +39,8 @@ try {
   r=await anon('/connect/sign-cafe/hands-place/');
   ok(r.status===200&&r.text.includes('営業状況未確認')&&!r.text.includes('"@type":"Place"'),'unknown operation shown without confirmed Place schema');
   r=await anon('/connect/sign-cafe/map/');
-  ok(r.status===200&&r.text.includes('全国の手話スポット3Dマップ')&&r.text.includes('位置確認待ち'),'map HTML fallback');
-  ok(!r.text.includes('three.module')&&r.text.includes('map-start'),'heavy renderer not eagerly loaded');
+  ok(r.status===200&&r.text.includes('全国の手話カフェマップ')&&r.text.includes('位置確認待ち'),'map HTML fallback');
+  ok(!r.text.includes('three.module')&&r.text.includes('atlas-start'),'2D map opt-in');
   ok((await anon('/connect/sign-cafe/map?x=1')).headers.get('location')==='/connect/sign-cafe/map/?x=1','map slash redirect preserves query');
   const map=JSON.parse((await anon('/connect/sign-cafe/map/data.json')).text);
   ok(map.spots.length===14,'14 verified approximate coordinates');

@@ -41,7 +41,7 @@ function admin_page(): string {
         $submission=input($_GET,'submission',64);$sub=null;
         if($submission) {
             $sub=query('SELECT * FROM submissions WHERE id=?',[$submission])->fetch();if(!$sub)fail('投稿が見つかりません。',404);
-            if(!$id) { $p=array_merge($p,json_decode($sub['payload'],true)); $p['verification_sources']=array_filter([$p['source_url']??'']); $p['slug']='cafe-'.substr($submission,0,12); }
+            if(!$id) { $p=array_merge($p,json_decode($sub['payload'],true)); $p['verification_sources']=array_filter([$p['source_url']??'']); $p['slug']=($kind==='event'?'event-':'cafe-').substr($submission,0,12); if($kind==='event'){$p['status']=['past'=>'ended','cancelled'=>'cancelled','scheduled'=>'scheduled','unknown'=>'date_unknown'][$p['report_state']??'unknown'];$p['confidence']='unverified';}if($kind==='store'&&isset($p['store_name']))$p['name']=$p['store_name']; }
             $body.='<p class="dn-notice">投稿内容を確認し、情報源と営業状態を検証してから保存してください。修正報告は既存の店舗を選び、重複を作らずに反映してください。</p>';
             $choices=[''=>'新しい情報として登録'];foreach(query("SELECT id,name FROM records WHERE kind=? AND publication!='deleted'",[$kind])->fetchAll() as $r)$choices[$r['id']]=$r['name'];
             $body.='<form method="get"><input type="hidden" name="view" value="edit"><input type="hidden" name="kind" value="'.e($kind).'"><input type="hidden" name="submission" value="'.e($submission).'">'.select_field('id','反映先の既存情報',$choices,$id).'<button class="secondary">反映先を選択</button></form>';
@@ -51,7 +51,7 @@ function admin_page(): string {
         if($kind!=='event') $body.=select_field('type','分類',TYPES,$p['type']??'permanent');
         if($kind==='store') $body.=select_field('signing_store','正式な常設サイニングストア（一般一覧にも掲載）',['0'=>'いいえ','1'=>'はい'],!empty($p['signing_store'])?'1':'0');
         if($kind==='event') {
-            $stores=[];foreach(query("SELECT id,name FROM records WHERE kind='store' AND publication!='deleted'")->fetchAll() as $s)$stores[$s['id']]=$s['name'];
+            $stores=[''=>'開催店舗を選択してください'];foreach(query("SELECT id,name FROM records WHERE kind='store' AND publication!='deleted'")->fetchAll() as $s)$stores[$s['id']]=$s['name'];
             $body.=select_field('store_id','開催店舗（先に店舗を登録）',$stores,$p['store_id']??'').select_field('confidence','情報の確度',CONFIDENCE,$p['confidence']??'unverified');
         }
         foreach(record_fields($kind) as $k=>$label) {
@@ -65,7 +65,8 @@ function admin_page(): string {
     } elseif($view==='submission') {
         $id=input($_GET,'id',64);$s=query('SELECT * FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);
         $body.='<h2>情報提供の確認</h2><p>状態：'.e($s['status']).' / '.e($s['created_at']).'</p><dl class="dn-detail">';
-        $labels=record_fields('cafe')+['category'=>'情報カテゴリ','report_type'=>'情報種別','source_url'=>'情報元URL','notes'=>'補足','submitter'=>'投稿者（非公開）','email'=>'連絡先メール（非公開）'];
+        $labels=record_fields('cafe')+record_fields('event')+['store_name'=>'開催店舗名','store_id'=>'既存店舗ID','report_state'=>'投稿内容の種別','category'=>'情報カテゴリ','report_type'=>'情報種別','source_url'=>'情報元URL','notes'=>'補足','submitter'=>'投稿者（非公開）','email'=>'連絡先メール（非公開）'];
+        if(($p['category']??'')==='starbucks'&&empty($p['store_id']))$body.='<dt>新規店舗</dt><dd><a href="/admin/?view=edit&kind=store&submission='.e($id).'">先に開催店舗を登録（投稿状態は確認中のまま保存）</a></dd>';
         foreach($p as $k=>$v) if(is_string($v)&&$v!=='')$body.='<dt>'.e($labels[$k]??$k).'</dt><dd>'.nl2br(e($v)).'</dd>';
         $body.='</dl><h3>重複候補（名称・住所・公式URL・Instagramで比較）</h3><ul>';
         foreach(duplicate_records($p) as $r)$body.='<li>'.e($r['name']).' — <a href="/admin/?view=edit&kind='.e($r['kind']).'&id='.e($r['id']).'&submission='.e($id).'">この情報に反映</a></li>';

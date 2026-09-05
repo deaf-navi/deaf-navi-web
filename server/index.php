@@ -4,6 +4,8 @@ require __DIR__.'/core.php';
 require __DIR__.'/views.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/map.php';
+require __DIR__.'/map-2d.php';
+require __DIR__.'/starbucks-community.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: private, no-store, max-age=0');
@@ -13,6 +15,7 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
 header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 ini_set('display_errors','0');
 $path=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
+if($path==='/connect/sign-cafe/map/')header("Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 try {
     if(str_ends_with($path,'/index.html') && preg_match('#^/(admin/|submit/|connect/sign-cafe/)#',$path)) {
         header('Location: '.substr($path,0,-10).(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;
@@ -25,6 +28,8 @@ try {
         check_csrf();rate_limit('submit',5,3600);
         if(input($_POST,'website_confirm',500)!=='' || time()-($_SESSION['form_issued']??time())<3)fail('フォームを確認してから送信してください。');
         if(input($_POST,'consent',1)!=='1')fail('保存と通知への同意が必要です。');
+        if(input($_POST,'form_kind',20)==='starbucks')$p=starbucks_submission($_POST);
+        else {
         $p=[];
         foreach(['name','country_code','prefecture','city','address','official_url','instagram_url','x_url','facebook_url','event_schedule','business_hours','description','source_url','notes','submitter','email'] as $k){$p[$k]=input($_POST,$k,in_array($k,['description','notes'])?6000:1000);if(str_ends_with($k,'_url'))$p[$k]=safe_url($p[$k]);}
         foreach(['name','prefecture','city'] as $k)if($p[$k]===''||strlen($p[$k])>300)fail('店舗名・都道府県・市区町村を300バイト以内で入力してください。');
@@ -32,6 +37,7 @@ try {
         if($p['email']!==''&&!filter_var($p['email'],FILTER_VALIDATE_EMAIL))fail('連絡先メールアドレスが不正です。');
         $p['category']=choice(input($_POST,'category',20),['cafe'=>1,'starbucks'=>1,'correction'=>1,'closure'=>1,'other'=>1]);
         $p['report_type']=choice(input($_POST,'report_type',20),REPORT_TYPES);
+        }
         $duplicate=(bool)duplicate_records($p);$id=uid();$stamp=now();
         db()->exec('BEGIN IMMEDIATE');
         try {
@@ -48,10 +54,10 @@ try {
         if(isset($_GET['received']) && !empty($_SESSION['receipt'])) {
             $body='<div class="dn-notice" role="status"><h2>情報提供を受け付けました</h2><p>確認中として保存しました。管理者が内容を確認します。公開やメール通知の完了を意味するものではありません。</p>'.(!empty($_SESSION['duplicate_notice'])?'<p>すでに掲載されている可能性があります。修正・移転・閉店のご報告としても管理者が確認します。</p>':'').'</div>';
             unset($_SESSION['receipt'],$_SESSION['duplicate_notice']);
-        } else $body=submission_form(['category'=>input($_GET,'category',20)?:'cafe']);
+        } else $body=input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form(['category'=>input($_GET,'category',20)?:'cafe']);
         echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
     } elseif($path==='/connect/sign-cafe/') echo cafe_list();
-    elseif($path==='/connect/sign-cafe/map/')echo map_page();
+    elseif($path==='/connect/sign-cafe/map/')echo map_page_2d();
     elseif($path==='/connect/sign-cafe/map/data.json'){header('Content-Type: application/json; charset=UTF-8');echo json(map_data());}
     elseif($path==='/connect/sign-cafe/starbucks/')echo starbucks_list();
     elseif(preg_match('#^/connect/sign-cafe/(starbucks/)?([a-z0-9-]+)/$#D',$path,$m))echo detail($m[2],$m[1]!=='');

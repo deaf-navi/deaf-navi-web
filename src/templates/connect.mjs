@@ -99,7 +99,7 @@ function categoryCards(items) {
 ${items.map(({ href, title, text }) => `    <a class="directory-card" href="${href}">
       <span class="directory-card__title">${title}</span>
       <span>${text}</span>
-      <span class="directory-card__arrow" aria-hidden="true">→</span>
+      <span class="directory-card__arrow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H5v18h14V8Z M14 3v5h5M8 12h8M8 16h8"/></svg></span>
     </a>`).join('\n')}
   </div>`;
 }
