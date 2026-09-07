@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-09-07T05:58:22Z",
+  "generatedAt": "2026-09-07T06:59:27Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -20,8 +20,8 @@
       "rawJsonUrl": "https://deafnavi.com/articles.json",
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v1.json",
-      "count": 432,
-      "sourceGeneratedAt": "2026-09-07T05:58:22Z",
+      "count": 479,
+      "sourceGeneratedAt": "2026-09-07T06:58:20Z",
       "categories": [
         {
           "id": "all",
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-07T05:23:07Z",
+      "sourceGeneratedAt": "2026-09-07T06:59:27Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -193,9 +193,9 @@
         "provider": "translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "checked": 11,
-          "updated": 11,
-          "cached": 589,
+          "checked": 12,
+          "updated": 12,
+          "cached": 588,
           "skipped": 0,
           "failed": 0,
           "enabled": true,
@@ -214,7 +214,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-07T05:23:07Z",
+      "sourceGeneratedAt": "2026-09-07T06:59:27Z",
       "language": "und",
       "regions": [
         {
@@ -296,7 +296,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-07T05:23:07Z",
+      "sourceGeneratedAt": "2026-09-07T06:59:27Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
