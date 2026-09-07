@@ -84,7 +84,7 @@ function world_filters(array $all,array $f):string {
         .select_field('relation','ろう者・手話との関わり',[''=>'すべて']+WORLD_RELATIONS,$f['relation']).select_field('tag','補助地域',[''=>'すべて']+WORLD_TAGS,$f['tag'])
         .select_field('history','休業・閉店の履歴',[''=>'営業状態の条件に従う','1'=>'履歴も含める'],$f['history']).'<button>詳しい条件で探す</button></div></details>';
     $out.='<div class="dn-filter-bottom">'.select_field('sort','並べ替え',['location'=>'所在地','name'=>'店舗名','type'=>'店舗タイプ','brand'=>'ブランド'],world_sort())
-        .select_field('dir','順序',['asc'=>'昇順','desc'=>'降順'],input($_GET,'dir',4)==='desc'?'desc':'asc')
+        .select_field('dir','順序',['asc'=>'昇順','desc'=>'降順'],world_direction())
         .select_field('view','表示方法',['table'=>'比較表','cards'=>'カード'],world_view())
         .'<input type="hidden" name="per_page" value="'.world_page_size().'"><button>表示を更新</button><a href="/connect/sign-cafe/overseas/">条件をクリア</a></div></form>';
     return $out;
@@ -103,6 +103,7 @@ function world_page():string {
     return page('海外の手話カフェ',$body.'<p><a href="/submit/?scope=overseas#request">海外の手話カフェの情報を教えてください</a></p>','/connect/sign-cafe/overseas/','世界の手話カフェを地域・国・ブランド・手話との関係から探す。');
 }
 function world_sort():string {$v=input($_GET,'sort',20);return in_array($v,['name','location','type','brand'],true)?$v:'location';}
+function world_direction():string {$v=input($_GET,'dir',4);return in_array($v,['asc','desc'],true)?$v:(world_sort()==='location'?'desc':'asc');}
 function world_view():string {return input($_GET,'view',10)==='cards'?'cards':'table';}
 function world_page_size():int {return input($_GET,'per_page',3)==='100'?100:50;}
 function world_type_label(array $p):string {
@@ -122,7 +123,7 @@ function world_details(array $p):string {
     return $out.'</div>'.sources_html($p);
 }
 function world_table(array $list,array $filters):string {
-    $sort=world_sort();$direction=input($_GET,'dir',4)==='desc'?'desc':'asc';$view=world_view();
+    $sort=world_sort();$direction=world_direction();$view=world_view();
     $key=fn($p)=>$sort==='location'?sprintf('%02d',array_search($p['world_region']??'',array_keys(WORLD_REGIONS),true)).' '.$p['country_code'].' '.$p['city']:($sort==='type'?world_type_label($p):($p[$sort]??''));
     $collator=class_exists('Collator')?new Collator('ja_JP'):null;
     usort($list,fn($a,$b)=>($direction==='desc'?-1:1)*(($collator?$collator->compare($key($a),$key($b)):strcmp($key($a),$key($b)))?:strcmp($a['slug'],$b['slug'])));
