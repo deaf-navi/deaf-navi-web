@@ -1,0 +1,82 @@
+/* A small illustrated cafe guide. Listing density and native controls stay intact. */
+.dn-cafe-hub {
+  --cafe-bg: #faf9f5;
+  --cafe-soft: #edf3ee;
+  --cafe-line: #d7e1dc;
+  background: var(--cafe-bg);
+}
+.dn-cafe-icon { display: inline-block; width: 22px; height: 22px; flex: 0 0 auto; vertical-align: middle; }
+.dn-cafe-welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 38%);
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  min-height: 236px;
+  margin: 22px 0 18px;
+  border: 1px solid #e7dcc8;
+  border-radius: 16px;
+  background: #f7eedf;
+}
+.dn-welcome--overseas { background: #edf3e9; border-color: #d8e5d5; }
+.dn-welcome--community { background: #eaf2ec; border-color: #d4e2d9; }
+.dn-welcome-copy { min-width: 0; padding: 28px 0 28px 32px; }
+.dn-welcome-eyebrow {
+  margin: 0 0 12px;
+  color: #536d61;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+.dn-cafe-hub .dn-cafe-welcome h1 {
+  margin: 0;
+  font-size: clamp(24px, 2.3vw, 32px);
+  line-height: 1.55;
+  color: #234e47;
+  overflow-wrap: anywhere;
+}
+.dn-welcome-line { margin: 14px 0 0; color: #4b6258; font-size: 16px; line-height: 1.8; }
+.dn-welcome-art { display: block; width: 100%; height: auto; max-height: 250px; object-fit: contain; }
+.dn-cafe-hub .dn-tabs {
+  margin: 18px 0 22px;
+  border-radius: 10px;
+  background: #fffefb;
+}
+.dn-cafe-hub .dn-tabs a { display: flex; justify-content: center; align-items: center; gap: 12px; min-height: 76px; color: #49605b; }
+.dn-tab-art { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #f7eedf; color: #7f593c; flex: 0 0 auto; }
+.dn-tabs a:nth-child(2) .dn-tab-art { background: #e8efe5; color: #4d7658; }
+.dn-tabs a:nth-child(3) .dn-tab-art { background: #f6e8de; color: #94624b; }
+.dn-cafe-hub .dn-tabs [aria-current] { background: #e6efea; color: #1d5f54; }
+.dn-cafe-hub .dn-tabs [aria-current] .dn-tab-art { background: #397468; color: #fffef5; }
+.dn-cafe-hub .dn-tabs a:hover { background: #f1f3eb; }
+.dn-cafe-hub .dn-section-links { gap: 8px 24px; }
+.dn-cafe-hub .dn-section-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.dn-cafe-hub .dn-section-links .dn-cafe-icon { width: 19px; height: 19px; color: #60836e; }
+.dn-cafe-hub h2>.dn-cafe-icon { width: 28px; height: 28px; margin-right: 10px; color: #6d8667; }
+.dn-cafe-hub .dn-region-links>div { border-radius: 10px; border-color: var(--cafe-line); }
+.dn-cafe-hub .dn-region-links>div:nth-child(3n+1) { background: #f5f0e6; }
+.dn-cafe-hub .dn-region-links>div:nth-child(3n+2) { background: #eef3ec; }
+.dn-cafe-hub .dn-region-links>div:nth-child(3n) { background: #f7eee8; }
+.dn-cafe-hub .dn-submit { background: #edf1e7; }
+.dn-cafe-hub .dn-world-map-panel { background: #fffdf6; }
+.dn-cafe-hub .dn-world-map-panel summary>.dn-cafe-icon { margin-right: 8px; color: #60836e; }
+@media (max-width: 900px) {
+  .dn-cafe-welcome { grid-template-columns: minmax(0, 1fr) 32%; }
+  .dn-welcome-copy { padding: 24px 0 24px 24px; }
+  .dn-cafe-hub .dn-tabs a { gap: 8px; font-size: 14px; }
+}
+@media (max-width: 600px) {
+  .dn-cafe-welcome { display: block; min-height: 0; margin-top: 18px; border-radius: 12px; }
+  .dn-welcome-copy { padding: 22px 20px 18px; }
+  .dn-welcome-eyebrow { font-size: 10px; margin-bottom: 10px; }
+  .dn-cafe-hub .dn-cafe-welcome h1 { font-size: 23px; line-height: 1.6; }
+  .dn-welcome-line { font-size: 14px; padding-right: 104px; min-height: 70px; margin-top: 16px; }
+  .dn-welcome-line span { display: block; }
+  .dn-welcome-art { position: absolute; bottom: 15px; right: 5px; width: 118px; height: 80px; }
+  .dn-cafe-hub .dn-tabs { margin: 16px 0 20px; }
+  .dn-cafe-hub .dn-tabs a { flex-direction: column; gap: 6px; padding: 12px 4px; font-size: 12px; line-height: 1.5; }
+  .dn-tab-art { width: 30px; height: 30px; }
+  .dn-tab-art .dn-cafe-icon { width: 19px; height: 19px; }
+  .dn-cafe-hub .dn-section-links { column-gap: 16px; font-size: 13px; }
+  .dn-cafe-hub h2>.dn-cafe-icon { width: 23px; height: 23px; margin-right: 7px; }
+}

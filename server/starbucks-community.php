@@ -27,6 +27,6 @@ function starbucks_observed(array $stores,array $events,string $pref='',string $
         usort($history,fn($a,$b)=>strcmp($b['last_verified_at']??'',$a['last_verified_at']??''));
         $rows.='<tr><th scope="row"><a href="'.e(record_path($s)).'">'.e($s['name']).'</a></th><td>'.e($s['prefecture']).'<span class="dn-cell-secondary">'.e($s['city']).'</span></td><td><span class="dn-badge">開催実績あり</span><p>'.e($history[0]['description']??'').'</p></td><td>'.sources_html($history[0]).'<a href="'.e(record_path($s)).'">開催履歴・情報源</a></td></tr>';
     }
-    $body='<section class="dn-section" id="observed"><h2>手話カフェの開催実績がある店舗 <small>'.$count.'店舗</small></h2><p>店舗・主催者・地域団体の発信で開催実績を確認した店舗です。現在の開催予定や定期開催を保証するものではありません。</p>';
+    $body='<section class="dn-section" id="observed"><h2>'.cafe_icon('chat').'手話カフェの開催実績がある店舗 <small>'.$count.'店舗</small></h2><p>店舗・主催者・地域団体の発信で開催実績を確認した店舗です。現在の開催予定や定期開催を保証するものではありません。</p>';
     return $body.($count?'<p class="dn-table-hint">店舗名から詳細へ。表は横にスクロールできます。</p><div class="dn-table-scroll" role="region" aria-label="開催実績のある店舗" tabindex="0"><table class="dn-data-table"><caption class="dn-visually-hidden">手話カフェ開催実績のある店舗一覧</caption><thead><tr><th scope="col">店舗名</th><th scope="col">所在地</th><th scope="col">活動・開催実績</th><th scope="col">確認情報</th></tr></thead><tbody>'.$rows.'</tbody></table></div>':'<p>この条件で開催実績を確認できた店舗はありません。</p>').'</section>';
 }
