@@ -155,4 +155,16 @@
 .dn-compare{margin-top:2rem}
 .dn-place-card .dn-links a,.dn-place-card>p:last-child a{display:inline-flex;align-items:center;min-height:44px}
 .dn-cafe-table .dn-visit-time{min-width:180px}
+/* Compact comparison rows; supporting notes and sources live in expanded details. */
+.dn-cafe-table{font-size:14px;line-height:1.45}
+.dn-cafe-table thead th:nth-child(1){width:30%}.dn-cafe-table thead th:nth-child(2){width:14%}.dn-cafe-table thead th:nth-child(3){width:19%}.dn-cafe-table thead th:nth-child(4){width:37%}
+.dn-cafe-row>th,.dn-cafe-row>td{padding:10px 14px}
+.dn-cafe-row .dn-cafe-name{font-size:15px;line-height:1.5}
+.dn-row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:2px 12px;margin-top:3px;font-size:12px;color:var(--cafe-muted)}
+.dn-row-meta .dn-expand{display:inline-flex;align-items:center;min-height:28px;margin:0;padding:2px 0;font-size:12px;line-height:1.4}
+.dn-cafe-row .dn-cell-secondary{margin-top:3px;line-height:1.45;font-size:12px}
+.dn-cafe-row .dn-badge{padding:1px 5px;font-size:12px;white-space:normal;line-height:1.5}
+.dn-table-schedule span{display:block;line-height:1.55}.dn-table-schedule span+span{margin-top:3px}.dn-schedule-muted{color:var(--cafe-muted);font-size:13px}
+@media(max-width:700px){.dn-cafe-table{width:570px;min-width:570px}.dn-cafe-table thead th:nth-child(1){width:145px}.dn-cafe-table thead th:nth-child(2){width:100px}.dn-cafe-table thead th:nth-child(3){width:145px}.dn-cafe-table thead th:nth-child(4){width:180px}.dn-cafe-row>th,.dn-cafe-row>td{padding:8px 10px}.dn-cafe-row .dn-cafe-name{font-size:14px}.dn-row-meta{gap:0 8px}.dn-row-meta .dn-expand{min-height:36px}.dn-row-meta>span{font-size:11px}}
+@media(max-width:350px){.dn-cafe-table{width:490px;min-width:490px}.dn-cafe-table thead th:nth-child(1){width:120px}.dn-cafe-table thead th:nth-child(2){width:100px}.dn-cafe-table thead th:nth-child(3){width:120px}.dn-cafe-table thead th:nth-child(4){width:150px}}
 @media(max-width:700px){.dn-domestic-main{grid-template-columns:repeat(2,minmax(0,1fr))}.dn-domestic-main .dn-field:first-child{grid-column:1/-1}.dn-place-grid{grid-template-columns:1fr}.dn-place-card{padding:1.1rem}.dn-domestic-filter .dn-filter-more{padding:.65rem}.dn-feature-checks{display:grid;grid-template-columns:1fr}.dn-filter-bottom{align-items:stretch}.dn-filter-bottom .dn-field{min-width:90px}.dn-result-bar{flex-wrap:wrap}.dn-domestic-main button{grid-column:1/-1}}

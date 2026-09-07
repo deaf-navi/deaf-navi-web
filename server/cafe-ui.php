@@ -21,6 +21,14 @@ function cafe_schedule_html(array $p):string {
     return $out.'</div>';
 }
 function cafe_correction_url(array $p):string {return '/submit/?'.http_build_query(['category'=>'correction','record'=>$p['id']]);}
+function cafe_table_schedule(array $p):string {
+    if(in_array($p['status'],['needs_review','unknown'],true))return '<span class="dn-schedule-muted">日程確認中</span>';
+    if($p['status']==='temporarily_closed')return '<span class="dn-schedule-muted">休業中</span>';
+    if(in_array($p['status'],['closed','permanently_closed'],true))return '<span class="dn-schedule-muted">営業・活動終了</span>';
+    $days=($p['recurrence']??'')?:($p['event_schedule']??'');$hours=$p['business_hours']??'';
+    if($days===''&&$hours==='')return '<span class="dn-schedule-muted">日程・時間未確認</span>';
+    return '<div class="dn-table-schedule">'.($days!==''?'<span>'.nl2br(e($days)).'</span>':'').($hours!==''?'<span>'.nl2br(e($hours)).'</span>':'<span class="dn-schedule-muted">時間未確認</span>').'</div>';
+}
 function domestic_card(array $p):string {
     $out='<article class="dn-card dn-place-card" data-cafe-id="'.e($p['id']).'"><p class="dn-location">'.e($p['prefecture'].' '.$p['city']).'</p><h2><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h2>'.cafe_badges($p).cafe_schedule_html($p);
     if(!empty($p['notes']))$out.='<p class="dn-visit-note">'.nl2br(e($p['notes'])).'</p>';

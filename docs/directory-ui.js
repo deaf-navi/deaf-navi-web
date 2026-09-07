@@ -12,7 +12,7 @@
       button.addEventListener('click', () => {
         detail.hidden = !detail.hidden;
         button.setAttribute('aria-expanded', String(!detail.hidden));
-        button.textContent = detail.hidden ? '詳細を開く ＋' : '詳細を閉じる −';
+        button.textContent = detail.hidden ? '詳細 ＋' : '閉じる −';
       });
     });
     const links = [...table.querySelectorAll('[data-cafe-sort]')];
