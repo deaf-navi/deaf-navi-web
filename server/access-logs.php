@@ -89,6 +89,7 @@ function access_entry(string $line): ?array {
 }
 
 function access_report(array $options): array {
+    $summary = ($options['summary'] ?? false) === true;
     $report = ['available'=>false, 'partial'=>false, 'invalid'=>0, 'total'=>0, 'pages'=>0, 'not_found'=>0, 'errors'=>0,
         'latest'=>null, 'oldest'=>null, 'paths'=>[], 'days'=>[], 'rows'=>[]];
     $dir = realpath(access_log_dir());
@@ -98,7 +99,7 @@ function access_report(array $options): array {
     usort($files, function($a, $b) {
         return (filemtime($b) <=> filemtime($a)) ?: strcmp($b, $a);
     });
-    $bytes = 0; $scanned = 0; $deadline = microtime(true)+4;
+    $bytes = 0; $scanned = 0; $deadline = microtime(true)+($summary ? 0.5 : 4);
     $index = access_maintenance_state()['file_index'] ?? [];
     $offset = ($options['page']-1)*$options['limit'];
     foreach ($files as $file) {
@@ -119,7 +120,7 @@ function access_report(array $options): array {
             }
             foreach (access_reverse_lines($handle) as $line) {
                 $bytes += strlen($line)+1; $scanned++;
-                if ($bytes > 64*1024*1024 || $scanned > 200000 || ($scanned%512 === 0 && microtime(true) > $deadline)) {
+                if ($bytes > ($summary ? 8 : 64)*1024*1024 || $scanned > ($summary ? 25000 : 200000) || ($scanned%512 === 0 && microtime(true) > $deadline)) {
                     $report['partial'] = true; break 2;
                 }
                 $r = access_entry($line);
@@ -135,6 +136,14 @@ function access_report(array $options): array {
                 if ($r['group'] === 'pages' && $r['method'] === 'GET' && $r['status'] >= 200 && $r['status'] < 300) $report['pages']++;
                 if ($r['status'] === 404) $report['not_found']++;
                 if ($r['status'] >= 500) $report['errors']++;
+                if ($summary) {
+                    if ($r['group']==='pages' && $r['method']==='GET' && (count($report['rows'])<5 || $r['ts']>$report['rows'][4]['ts'])) {
+                        $report['rows'][]=$r;
+                        usort($report['rows'],fn($a,$b)=>$b['ts']<=>$a['ts']);
+                        if (count($report['rows'])>5) array_pop($report['rows']);
+                    }
+                    continue;
+                }
                 $key = $r['host'].$r['path'];
                 if (!isset($report['paths'][$key])) $report['paths'][$key] = ['host'=>$r['host'],'path'=>$r['path'],'count'=>0,'errors'=>0];
                 $report['paths'][$key]['count']++;
@@ -180,11 +189,35 @@ function access_maintenance_state(): array {
     return is_array($state) ? $state : [];
 }
 
+function admin_access_summary(): string {
+    require_user(true);
+    $today = new DateTimeImmutable('today', new DateTimeZone('Asia/Tokyo'));
+    $day = $today->format('Y-m-d');
+    $o = ['from'=>$day,'to'=>$day,'start'=>$today->getTimestamp(),'end'=>$today->modify('+1 day')->getTimestamp(),
+        'group'=>'all','client'=>'all','status'=>'','q'=>'','page'=>1,'limit'=>5,'summary'=>true];
+    $r = access_report($o); $uu = access_unique_report($o);
+    $base = ['view'=>'access','from'=>$day,'to'=>$day];
+    $out = '<section class="admin-panel admin-access-summary" aria-labelledby="access-summary-title"><div class="admin-access-summary-heading"><div><h2 id="access-summary-title">今日のアクセス</h2><p>'.e($today->format('Y/m/d')).'・日本時間</p></div><a href="'.admin_query($base).'">アクセスログで詳細分析 →</a></div>';
+    if (!$r['available']) $out .= '<p class="dn-error" role="status">アクセスログを読み取れません。0件という意味ではありません。</p>';
+    elseif ($r['partial'] || $r['invalid']) $out .= '<p class="dn-notice" role="status">リクエスト数と履歴は読み取れた範囲の部分集計です。詳細分析でもご確認ください。</p>';
+    $out .= '<div class="admin-access-summary-metrics">';
+    foreach ([['リクエスト',$r['available']?$r['total']:null,'件',['tab'=>'requests']],['推定ユニーク数',$uu['available']?$uu['total']:null,'人',['tab'=>'unique']],['サーバーエラー（5xx）',$r['available']?$r['errors']:null,'件',['tab'=>'requests','status'=>'5xx']]] as [$label,$count,$unit,$filter]) {
+        $out .= '<a href="'.admin_query($base,$filter).'"><span>'.e($label).'</span><strong>'.($count===null?'未取得':number_format($count).'<small>'.e($unit).'</small>').'</strong></a>';
+    }
+    $out .= '</div><p class="admin-access-summary-note">リクエストは画像・bot等も含みます。UUは一般ブラウザーの推定人数です。</p><h3>直近の公開ページアクセス<span>今日・最大5件</span></h3><ol class="admin-access-recent">';
+    foreach ($r['rows'] as $row) {
+        $at = (new DateTimeImmutable('@'.(int)$row['ts']))->setTimezone(new DateTimeZone('Asia/Tokyo'));
+        $out .= '<li><time datetime="'.e($at->format('c')).'">'.e($at->format('H:i:s')).'</time><div><span class="admin-access-path">'.e($row['path']).'</span><small>'.e(ACCESS_CLIENTS[$row['client']]).'</small></div><span class="admin-access-status'.($row['status']>=400?' is-error':'').'" aria-label="HTTP応答 '.(int)$row['status'].'">'.(int)$row['status'].'</span></li>';
+    }
+    if (!$r['rows']) $out .= '<li class="admin-access-empty">'.(!$r['available']?'履歴は未取得です。':(($r['partial']||$r['invalid'])?'読み取れた範囲に公開ページアクセスはありません。':'今日の公開ページアクセスはまだありません。')).'</li>';
+    return $out.'</ol></section>';
+}
+
 function admin_access_logs(): string {
     require_user(true);
     $o = access_options(); $r = access_report($o); $uu = access_unique_report($o);
     $base = ['view'=>'access','from'=>$o['from'],'to'=>$o['to'],'group'=>$o['group'],'client'=>$o['client'],'status'=>$o['status'],'q'=>$o['q'],'tab'=>$o['tab'],'limit'=>$o['limit']];
-    $out = '<p class="admin-lead">Deaf Naviの全コンテンツに届いたリクエストを確認できます。日時は日本時間です。</p>';
+    $out = '<p class="admin-lead">全コンテンツのアクセスを期間・URL・分類で詳しく分析できます。日時は日本時間です。</p>';
     $out .= '<form method="get" class="admin-filters"><input type="hidden" name="view" value="access"><input type="hidden" name="tab" value="'.e($o['tab']).'">'
         .field('from','開始日',$o['from'],'date',true).field('to','終了日',$o['to'],'date',true)
         .($o['tab']==='unique'?'':select_field('group','対象',ACCESS_GROUPS,$o['group']).select_field('client','アクセス元の分類',ACCESS_CLIENTS,$o['client']).select_field('status','応答',[''=>'すべて','2xx'=>'成功（2xx）','3xx'=>'転送等（3xx）','4xx'=>'要求エラー（4xx）','5xx'=>'サーバーエラー（5xx）'],$o['status']))

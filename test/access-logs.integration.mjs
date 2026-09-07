@@ -58,9 +58,12 @@ try {
     }
     ok((await editor('/admin/?view=access')).status===403,'editor denied direct view');
     ok(!(await editor('/admin/')).text.includes('view=access'),'editor menu hidden');
+    ok(!(await editor('/admin/')).text.includes('今日のアクセス'),'editor cannot see dashboard access summary');
     ok((await admin('/admin/')).text.includes('view=access'),'admin menu visible');
     r = await admin('/admin/?view=access');
     ok(r.status===200 && r.text.includes('アクセスログを読み取れません') && !r.text.includes('選択条件のリクエスト'),'missing is not zero');
+    r=await admin('/admin/');
+    ok(r.status===200 && r.text.includes('今日のアクセス') && r.text.includes('履歴は未取得です。'),'dashboard remains usable when logs unavailable');
     mkdirSync(logsDir);
     writeFileSync(join(logsDir,'access.log'),'');
     r = await admin('/admin/?view=access');
@@ -77,6 +80,12 @@ try {
     ok(report({q:'sign-cafe'}).total===1,'path search');
     ok(report({page:2,limit:3}).rows[0].path===a.rows[3].path,'page slice');
     ok(report({q:"' OR 1=1 --"}).total===0,'search is literal');
+    const compact=report({summary:true});
+    ok(compact.total===a.total && compact.errors===a.errors && compact.rows.length===5 && compact.rows.every(p=>p.group==='pages' && p.method==='GET'),'summary totals match detail and recent list excludes assets and HEAD');
+    r=await admin('/admin/?from=2000-01-01&to=2000-01-02&group=assets&q=no-match');
+    const summary=r.text.match(/<section class="admin-panel admin-access-summary"[\s\S]*?<\/section>/)?.[0]??'';
+    ok(summary.includes('今日のアクセス') && summary.includes('<strong>11<small>件') && summary.includes('from='+day) && summary.includes('to='+day),'dashboard always summarizes today and links to matching detail period');
+    ok(summary.includes('&lt;img') && !summary.includes('<img') && !summary.includes('PRIVATE_MARKER'),'summary escapes log content and omits query data');
     for (const tab of ['paths','days','requests','unique']) {
         r = await admin('/admin/?view=access'+query+'&tab='+tab);
         ok(r.status===200 && r.text.includes('アクセスログ'),'view '+tab);
@@ -93,6 +102,7 @@ try {
     appendFileSync(join(logsDir,'access.log'),'broken}\n');
     ok(report({}).invalid===1,'malformed complete line reported');
     ok((await admin('/admin/?view=access'+query)).text.includes('一部のログを集計できていません'),'partial disclosure');
+    ok((await admin('/admin/')).text.includes('読み取れた範囲の部分集計'),'dashboard discloses partial log reads');
     // Chunk boundary, oversized rows and data shape errors must remain bounded.
     writeFileSync(join(logsDir,'access.log'),Array.from({length:700},(_,i)=>JSON.stringify(entry('/long-'+i+'/'+'a'.repeat(150),start+100+i))).join('\n')+'\n');
     ok(report({}).total===703 && report({}).rows[0].path.startsWith('/long-699/'),'reverse reader spans 64 KiB boundary');
@@ -106,6 +116,7 @@ try {
     const rotated=join(logsDir,'access-v2-2026-09-08T00-00-00-time.log');
     writeFileSync(rotated,JSON.stringify(entry('/v2/',start+200,{client_kind:'automation'}))+'\n');
     ok(report({q:'/v2/'}).total===1,'new rotated filenames supported');
+    ok(report({summary:true}).rows[0].path==='/v2/','summary recent entries are sorted across rotated files');
     ok((await admin('/admin/?view=access&client=untrusted')).status===400,'invalid category rejected');
     const from180=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo'}).format(new Date(Date.now()-179*86400000));
     ok((await admin('/admin/?view=access&from='+from180+'&to='+day)).status===200,'full 180-day range accepted');
@@ -113,6 +124,8 @@ try {
     ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide/','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
     r=await admin('/admin/?view=access&tab=unique'+query);
     ok(r.text.includes('1 人') && r.text.includes('Cookieや端末への識別子保存は使いません') && !r.text.includes('推定ユニーク数を取得できません'),'unique viewer and estimation explanation');
+    r=await admin('/admin/');
+    ok(r.text.includes('推定ユニーク数</span><strong>1<small>人') && r.text.includes('tab=unique'),'dashboard unique metric opens detailed unique analysis');
     const baseline=report({}).total;
     const recent=join(logsDir,'access-v2-2099-01-01T00-00-00-time.log');
     writeFileSync(recent,(JSON.stringify(entry('/recent/',start+86401))+'\n').repeat(200001));

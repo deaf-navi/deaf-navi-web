@@ -106,9 +106,11 @@ function access_unique_report(array $options): array {
         $s = $db->prepare('SELECT day,COUNT(DISTINCT visitor) AS count FROM visits WHERE '.$where.' GROUP BY day ORDER BY day DESC');
         $s->execute($args);
         foreach ($s as $r) { $result['days'][$r['day']]=(int)$r['count']; $result['total']+=(int)$r['count']; }
-        $s = $db->prepare('SELECT path,COUNT(*) AS count FROM visits WHERE '.$where.' GROUP BY path ORDER BY count DESC LIMIT 50');
-        $s->execute($args);
-        $result['paths']=$s->fetchAll(); $result['available']=true;
+        if (($options['summary']??false)!==true) {
+            $s = $db->prepare('SELECT path,COUNT(*) AS count FROM visits WHERE '.$where.' GROUP BY path ORDER BY count DESC LIMIT 50');
+            $s->execute($args); $result['paths']=$s->fetchAll();
+        }
+        $result['available']=true;
     } catch (Throwable) { /* Display unavailable, never invent a zero. */ }
     return $result;
 }

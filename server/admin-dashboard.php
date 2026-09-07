@@ -6,7 +6,7 @@ function admin_cafe_scope():string {
     if(input($_GET,'view',30)==='edit'&&input($_GET,'id',64)!=='')return record(input($_GET,'id',64))['country_code']==='JP'?'domestic':'overseas';
     return 'domestic';
 }
-const ADMIN_TITLES=['dashboard'=>'ダッシュボード','records'=>'掲載情報','edit'=>'掲載情報の編集','submissions'=>'情報提供・承認待ち','submission'=>'投稿内容の確認','users'=>'ID・権限管理','user'=>'IDの設定','settings'=>'通知設定','preferences'=>'表示・入力設定','password'=>'パスワード変更','audit'=>'操作履歴','access'=>'アクセスログ'];
+const ADMIN_TITLES=['dashboard'=>'ダッシュボード','records'=>'掲載情報','edit'=>'掲載情報の編集','submissions'=>'情報提供・承認待ち','submission'=>'投稿内容の確認','users'=>'ID・権限管理','user'=>'IDの設定','settings'=>'通知設定','preferences'=>'表示・入力設定','password'=>'パスワード変更','audit'=>'操作履歴','access'=>'アクセスログ・詳細分析'];
 function admin_shell(string $body,array $user,string $view):string {
     $kind=input($_GET,'kind',10);$title=ADMIN_TITLES[$view]??'ダッシュボード';if($view==='records')$title=['cafe'=>'手話カフェ一覧','store'=>'スターバックス店舗一覧','event'=>'スターバックス開催情報'][$kind]??$title;
     $scope=admin_cafe_scope();$navKind=$kind;if($kind==='store'&&$scope==='overseas'&&input($_GET,'id',64)!=='')$navKind='cafe';if($navKind==='cafe'&&$scope==='overseas'&&in_array($view,['records','edit'],true))$title=$view==='records'?'海外の手話カフェ一覧':'海外の手話カフェの編集';
@@ -72,7 +72,7 @@ function admin_overview():string {
     $metrics=[['確認待ちの投稿',"SELECT count(*) FROM submissions WHERE status='pending'",'/admin/?view=submissions&status=pending'],['公開中の手話カフェ',"SELECT count(*) FROM records WHERE kind='cafe' AND country_code='JP' AND publication='public'",'/admin/?view=records&kind=cafe&scope=domestic&publication=public'],['公開中の海外の手話カフェ',"SELECT count(*) FROM records WHERE kind IN ('cafe','store') AND country_code!='JP' AND publication='public'",'/admin/?view=records&kind=cafe&scope=overseas&publication=public'],['スターバックス店舗',"SELECT count(*) FROM records WHERE kind='store' AND publication!='deleted'",'/admin/?view=records&kind=store'],['開催情報',"SELECT count(*) FROM records WHERE kind='event' AND publication!='deleted'",'/admin/?view=records&kind=event']];
     $out='<p class="admin-lead">掲載情報と、みなさんから届いた情報を管理します。</p><div class="admin-metrics">';
     foreach($metrics as [$label,$sql,$url])$out.='<a href="'.e($url).'"><span>'.e($label).'</span><strong>'.(int)query($sql)->fetchColumn().'<small>件</small></strong></a>';
-    return $out.'</div>'.cafe_admin_metrics().admin_submissions_table(true).admin_activity(true);
+    return $out.'</div>'.((current_user()['role']??'')==='admin'?admin_access_summary():'').cafe_admin_metrics().admin_submissions_table(true).admin_activity(true);
 }
 function admin_edit_fields(array $p,string $kind):string {
     $all=record_fields($kind);
