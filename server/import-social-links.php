@@ -20,8 +20,7 @@ try {
                 if(($p[$key]??'')!==$url)$changed=true;
                 $p[$key]=safe_url($url);
             }
-            foreach(['verification_sources','subtypes'] as $key)$p[$key]=implode("\n",$p[$key]??[]);
-            $prepared[]=[$r,validated_record($p,'cafe')];
+            $prepared[]=[$r,validated_record(cafe_post($p),'cafe')];
         }
         if(!$changed)throw new RuntimeException('Already applied');
         umask(0077);$backup=$dir.'/social-links-'.gmdate('Ymd_His').'-'.substr(uid(),0,6).'.sqlite';

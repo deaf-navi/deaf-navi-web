@@ -8,7 +8,7 @@ try {
     if(!is_file($file)||is_link($file)||!is_dir($backupDir)||is_link($backupDir))throw new RuntimeException('Valid manifest and backup directory required');
     $manifest=json_decode(file_get_contents($file),true,512,JSON_THROW_ON_ERROR);
     if(($manifest['date']??'')!=='2026-09-05'||count($manifest['updates']??[])>30||count($manifest['additions']??[])>5)throw new RuntimeException('Unexpected manifest');
-    $post=function(array $row):array{foreach(['verification_sources','subtypes'] as $k)if(isset($row[$k])&&is_array($row[$k]))$row[$k]=implode("\n",$row[$k]);if(isset($row['signing_store']))$row['signing_store']=$row['signing_store']?'1':'0';return $row;};
+    $post=fn(array $row):array=>cafe_post($row);
     db()->exec('BEGIN IMMEDIATE');
     try {
         if(query('PRAGMA integrity_check')->fetchColumn()!=='ok')throw new RuntimeException('Integrity failure');
@@ -16,7 +16,7 @@ try {
         foreach($manifest['updates'] as $u){
             if(isset($ids[$u['id']]))throw new RuntimeException('Duplicate target');$ids[$u['id']]=true;
             $r=record($u['id']);if($r['revision']!==$u['expected_revision']||!in_array($r['kind'],['cafe','store'],true))throw new RuntimeException('Revision or kind conflict: '.$u['id']);
-            $p=validated_record($post(array_merge(expanded($r),$u['changes'])),$r['kind']);
+            $p=validated_record($post(array_merge(json_decode($r['payload'],true,512,JSON_THROW_ON_ERROR),$u['changes'])),$r['kind']);
             $prepared[]=[$p,$r['kind'],$r['id'],$r['revision']];
         }
         foreach($manifest['additions'] as $p){

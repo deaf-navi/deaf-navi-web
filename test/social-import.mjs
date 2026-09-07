@@ -7,6 +7,7 @@ const env={...process.env,DEAFNAVI_DATA_DIR:join(dir,'data'),DEAFNAVI_LOCAL_TEST
 const hash=run(['test/directory-hash.php'],randomBytes(24).toString('hex')).stdout;assert.equal(run([join(backend,'cli.php'),'init'],JSON.stringify({username:'testadmin',password_hash:hash})).status,0);
 const core=join(root,'server/core.php').replaceAll('\\','/');
 const state=()=>JSON.parse(run(['-r',`require '${core}';echo json(['users'=>query('SELECT * FROM users')->fetchAll(),'settings'=>query('SELECT * FROM settings')->fetchAll(),'submissions'=>query('SELECT * FROM submissions')->fetchAll(),'outbox'=>query('SELECT * FROM outbox')->fetchAll(),'records'=>query('SELECT * FROM records ORDER BY id')->fetchAll()]);`]).stdout);
+const v2=run(['-r',`require '${core}';$r=record('knot');$p=json_decode($r['payload'],true);$p['has_deaf_staff']=true;$p['attribute_sources']=['https://example.org/published-attribute'];$p['recurrence']='毎月第3月曜日';$p['future_extension']=['nested'=>['KEEP']];query('UPDATE records SET payload=? WHERE id=?',[json($p),'knot']);`]);assert.equal(v2.status,0,v2.stderr);
 const before=state();let result=run(['server/import-social-links.php','content/connect/social-links-20260906.json',backup]);assert.equal(result.status,0,result.stderr);
 const after=state();for(const k of ['users','settings','submissions','outbox'])assert.deepEqual(after[k],before[k]);
 assert.equal(after.records.length,29);let count=0;

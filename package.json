@@ -22,7 +22,7 @@
     "generate:world": "npm run curate:world && npm run build:world && npm run verify:world",
     "serve": "node src/serve.mjs",
     "preview:otomado": "npm run build:otomado && npm run serve",
-    "test:cafes": "php test/cafe-model.php && node test/cafe-migration.integration.mjs && node test/directory.integration.mjs && php test/world-cafes.php && php test/public-profile.test.php && node test/admin-dashboard.integration.mjs && node test/overseas-cafes.integration.mjs"
+    "test:cafes": "php test/cafe-model.php && node test/cafe-migration.integration.mjs && node test/directory.integration.mjs && php test/world-cafes.php && php test/public-profile.test.php && node test/admin-dashboard.integration.mjs && node test/overseas-cafes.integration.mjs && node test/social-import.mjs && node test/research-import.mjs"
   },
   "engines": {
     "node": ">=20"
