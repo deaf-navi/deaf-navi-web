@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/cafe-seo.php';
 function cafe_status_label(array $p):string {return STATUSES[$p['status']]??'営業状況未確認';}
 function cafe_badges(array $p):string {
     $p=cafe_model($p);$out='<div class="dn-badges"><span class="dn-badge">'.e(SHOP_TYPES[$p['shop_type']]).'</span><span class="dn-badge'.(in_array($p['status'],['open','active_recurring'],true)?'':' dn-warning').'">'.e(cafe_status_label($p)).'</span></div>';
@@ -75,9 +76,11 @@ function domestic_empty(array $f):string {
 function domestic_cafe_page():string {
     $all=array_values(array_filter(visible_records(),fn($p)=>$p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&!empty($p['signing_store'])))));
     $f=domestic_filter_values();$list=array_values(array_filter($all,fn($p)=>domestic_matches($p,$f)));$sort=in_array($f['sort'],['name','type','region'],true)?$f['sort']:'region';
-    usort($list,fn($a,$b)=>($f['dir']==='desc'?-1:1)*(strcmp(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort))?:strcmp($a['slug'],$b['slug'])));
+    $collator=class_exists('Collator')?new Collator('ja_JP'):null;
+    usort($list,fn($a,$b)=>($f['dir']==='desc'?-1:1)*(($collator?$collator->compare(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)):strcmp(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)))?:strcmp($a['slug'],$b['slug'])));
     $total=count($list);$size=in_array($f['per_page'],['24','48','96'],true)?(int)$f['per_page']:24;$page=min(max(1,(int)$f['page']),max(1,(int)ceil($total/$size)));$list=array_slice($list,($page-1)*$size,$size);
-    $body='<p class="dn-eyebrow" lang="en">Deaf Navi – Sign Cafe</p><p class="dn-lead">手話で過ごせる場所と、行ける日を探す。</p>'.tabs().'<p>常設のカフェから、間借り・公共施設での定期開催まで。営業状態と手話で利用できる日程を分けてご案内します。</p>'.domestic_filters($f).'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p><a href="/connect/sign-cafe/map/">地図から探す</a></div><p class="dn-muted">「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。訪問前に公式サイト・SNSをご確認ください。</p>';
+    $seo=cafe_directory_seo($f,$list,$total,$page,$size);
+    $body='<p class="dn-eyebrow" lang="en">Deaf Navi – Sign Cafe</p><p class="dn-lead">手話カフェ探しは、Deaf Naviから。</p>'.tabs().'<p>日本全国の手話カフェを、地域・営業日・手話対応から探せます。常設のお店から、間借り・公共施設での定期開催まで。公式サイト・SNSと情報確認日を添えて、お出かけに役立つ情報をご案内します。</p><nav class="dn-section-links" aria-label="手話カフェの探し方"><a href="#cafes">一覧から探す</a><a href="/connect/sign-cafe/map/">地図から探す</a><a href="#cafe-regions">地域から探す</a><a href="#cafe-guide">初めての方へ</a><a href="#cafe-policy">掲載・更新方針</a></nav><section id="cafes" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading">手話カフェを探す</h2>'.domestic_filters($f).'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p><a href="/connect/sign-cafe/map/">地図から探す</a></div><p class="dn-muted">「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。訪問前に公式サイト・SNSをご確認ください。</p>';
     if(!$list)$body.=domestic_empty($f);
     elseif($f['view']==='table')$body.=cafe_table($list);
     else{$body.='<div class="dn-place-grid">'.implode('',array_map('domestic_card',$list)).'</div><details class="dn-compare"><summary>同じ結果を表で比較する</summary>'.cafe_table($list).'</details>';}
@@ -85,8 +88,8 @@ function domestic_cafe_page():string {
     if($page>1)$body.='<a href="?'.e(http_build_query($params+['page'=>$page-1])).'">← 前のページ</a>';
     $body.='<span>全'.$total.'件中 '.($total?($page-1)*$size+1:0).'〜'.min($page*$size,$total).'件</span>';
     if($page*$size<$total)$body.='<a href="?'.e(http_build_query($params+['page'=>$page+1])).'">次のページ →</a>';
-    $body.='</nav>';
-    return page('Deaf Navi｜手話カフェ',$body.submission_form(),'/connect/sign-cafe/','日本の手話カフェを地域・営業形態・手話対応と開催日程から探せます。');
+    $body.='</nav></section>'.cafe_discovery_guide($all);
+    return page(CAFE_DIRECTORY_NAME,$body.submission_form(),'/connect/sign-cafe/',CAFE_DIRECTORY_DESCRIPTION,$seo['structured'],false,$seo);
 }
 function cafe_admin_fields(array $p):string {
     $p=cafe_model($p);$out='<fieldset class="admin-fieldset"><legend>店舗タイプ・手話対応と再確認</legend><p>不明な属性は未確認。オーナー・スタッフ属性は本人・店舗の公表元URLが必要です。調査しただけの日を情報確認日にしないでください。</p><div class="dn-form-grid">';

@@ -63,6 +63,7 @@ jobs:
           node test/admin-dashboard.integration.mjs
           node test/overseas-cafes.integration.mjs
           php test/world-cafes.php
+          node test/cafe-seo.integration.mjs
           php test/public-profile.test.php
           node test/social-import.mjs
           tar -czf "$RUNNER_TEMP/deafnavi-site.tar.gz" --transform='s,^server,_backend,' -C docs . -C .. server

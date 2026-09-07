@@ -129,7 +129,7 @@ export function renderConnectPages({ places, signCafes, starbucksEntries }) {
       breadcrumbPaths: ['/connect/'], breadcrumbNames: ['ホーム', 'つながる'],
       body: `    <section class="directory-hero"><p class="eyebrow">CONNECT</p><h2>つながる情報を、種類ごとに。</h2><p>常設の場所と単発イベントを分け、確認できた情報源を添えて掲載します。</p></section>
 ${categoryCards([
-        { href: '/connect/sign-cafe/', title: '手話カフェ', text: '常設・限定営業・定期開催・サイニングストアを分類して探せます。スターバックスの企画は専用ページへ。' },
+        { href: '/connect/sign-cafe/', title: '全国の手話カフェ一覧', text: '地域・営業日・手話対応から、お出かけ先を探せます。常設店舗・定期開催・サイニングストアの情報を、公式リンクと確認日を添えてご紹介します。' },
         { href: '/connect/events/', title: 'イベント', text: '単発の手話カフェや手話交流イベントはこちらです。' },
       ])}`,
     }),

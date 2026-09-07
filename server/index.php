@@ -73,7 +73,7 @@ try {
         header('Content-Type: application/xml; charset=UTF-8');
         $all=visible_records();$stores=[];foreach($all as $p)if($p['kind']==='store')$stores[$p['id']]=true;
         echo '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-        echo '<url><loc>'.BASE.'/connect/sign-cafe/map/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/overseas/</loc></url>';
+        echo '<url><loc>'.BASE.'/connect/sign-cafe/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/starbucks/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/map/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/overseas/</loc></url>';
         foreach($all as $p)if($p['kind']!=='event'||isset($stores[$p['store_id']]))echo '<url><loc>'.e(BASE.record_path($p)).'</loc><lastmod>'.e(substr($p['updated_at'],0,10)).'</lastmod></url>';
         echo '</urlset>';
     } else fail('情報が見つかりません。',404);

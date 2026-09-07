@@ -128,6 +128,19 @@
 /* Keep each scrollable column narrower than the viewport beside the pinned name. */
 @media(max-width:650px){.dn-data-table{width:630px;min-width:630px}.dn-data-table thead th:first-child{width:140px}.dn-data-table thead th:nth-child(2){width:130px}.dn-data-table thead th:nth-child(3),.dn-data-table thead th:nth-child(4){width:180px}}
 @media(max-width:350px){.dn-data-table{width:550px;min-width:550px}.dn-data-table thead th:first-child{width:120px}.dn-data-table thead th:nth-child(2){width:130px}.dn-data-table thead th:nth-child(3),.dn-data-table thead th:nth-child(4){width:150px}.dn-cafe-table{width:525px;min-width:525px}.dn-cafe-table thead th:first-child{width:120px}.dn-cafe-table thead th:nth-child(2){width:130px}.dn-cafe-table thead th:nth-child(3){width:125px}.dn-cafe-table thead th:nth-child(4){width:150px}}
+/* Discovery guidance complements the searchable directory below the results. */
+.dn-cafe-guide{margin:2.5rem 0;padding-top:1.5rem;border-top:1px solid var(--cafe-line);scroll-margin-top:1rem}
+.dn-cafe-guide>p{max-width:70em}
+.dn-cafe-guide details{border-bottom:1px solid var(--cafe-line);padding:.5rem 0}
+.dn-cafe-guide summary{padding:.75rem 0;min-height:44px;font-weight:700;cursor:pointer}
+.dn-cafe-guide details p{margin:.25rem 0 1rem;max-width:70em}
+.dn-region-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem 2rem}
+.dn-region-links h3{font-size:1rem;margin:.5rem 0}
+.dn-region-links ul{list-style:none;margin:0;padding:0}
+.dn-region-links a{display:inline-flex;align-items:center;min-height:44px}
+#cafes{scroll-margin-top:1rem}
+#cafes>h2{margin:1.5rem 0 0}
+@media(max-width:700px){.dn-region-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.dn-region-links a{font-size:14px}.dn-cafe-guide{margin-top:2rem}}
 /* Domestic cafe discovery: comfortable Japanese text and a clear visit schedule. */
 .dn-domestic-filter{border-block:1px solid var(--cafe-line);padding:1.25rem 0;margin:1.5rem 0}
 .dn-domestic-main{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:end}
