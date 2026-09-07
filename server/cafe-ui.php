@@ -32,6 +32,7 @@ function domestic_card(array $p):string {
 function domestic_filter_values():array {
     $out=[];foreach(['q'=>200,'region'=>40,'prefecture'=>100,'shop_type'=>40,'status'=>30,'operator_type'=>40,'sign_language_level'=>40,'events'=>1,'history'=>1,'type'=>40,'sort'=>20,'dir'=>4,'view'=>10,'page'=>8,'per_page'=>3]+array_fill_keys(array_keys(CAFE_FEATURES),1) as $k=>$max)$out[$k]=input($_GET,$k,$max);
     foreach(CAFE_FEATURES as $k=>$label)if($out[$k]!==''&&$out[$k]!=='1')fail('特徴の選択値が不正です。');
+    $out['view']=$out['view']==='cards'?'cards':'table';
     return $out;
 }
 function domestic_matches(array $p,array $f):bool {
@@ -53,7 +54,7 @@ function domestic_filters(array $f):string {
     $advanced=array_filter(array_intersect_key($f,array_flip(['operator_type','sign_language_level','events',...array_keys(CAFE_FEATURES)])));
     $out.='<details class="dn-filter-more"'.($advanced?' open':'').'><summary>詳しい条件：運営・手話対応・特徴'.($advanced?'（選択中）':'').'</summary><div class="dn-domestic-main">'.select_field('operator_type','運営形態',[''=>'すべて']+OPERATOR_TYPES,$f['operator_type']).select_field('sign_language_level','手話対応レベル',[''=>'すべて']+SIGN_LEVELS,$f['sign_language_level']).'</div><fieldset class="dn-feature-checks"><legend>特徴（公表・確認できた情報のみ）</legend>';
     foreach(CAFE_FEATURES+['events'=>'単発イベントも表示'] as $k=>$label)$out.='<label class="dn-check"><input type="checkbox" name="'.$k.'" value="1"'.($f[$k]==='1'?' checked':'').'>'.e($label).'</label>';
-    $out.='</fieldset><button>詳しい条件で探す</button></details><div class="dn-filter-bottom">'.select_field('sort','並べ替え',['region'=>'所在地','name'=>'店舗名','type'=>'店舗タイプ'],$f['sort']?:'region').select_field('dir','順序',['asc'=>'昇順','desc'=>'降順'],$f['dir']?:'asc').select_field('view','表示方法',['cards'=>'カード','table'=>'比較表'],$f['view']?:'cards').'<button>表示を更新</button><a href="/connect/sign-cafe/">条件をクリア</a></div></form>';
+    $out.='</fieldset><button>詳しい条件で探す</button></details><div class="dn-filter-bottom">'.select_field('sort','並べ替え',['region'=>'所在地','name'=>'店舗名','type'=>'店舗タイプ'],$f['sort']?:'region').select_field('dir','順序',['asc'=>'昇順','desc'=>'降順'],$f['dir']?:'asc').select_field('view','表示方法',['table'=>'比較表','cards'=>'カード'],$f['view']?:'table').'<button>表示を更新</button><a href="/connect/sign-cafe/">条件をクリア</a></div></form>';
     return $out;
 }
 function domestic_empty(array $f):string {
