@@ -85,7 +85,7 @@ def verified_gzip(source, target):
         temporary.unlink(missing_ok=True)
 
 
-def archive_logs(root, cutoff, active="access-v2.log"):
+def archive_logs(root, cutoff, active="access-v2.log", index=None):
     archived = []
     for source in sorted(root.glob("access*.log")):
         if source.name == active:
@@ -96,6 +96,7 @@ def archive_logs(root, cutoff, active="access-v2.log"):
         if before.st_size == 0:
             continue
         latest = 0
+        earliest = float("inf")
         with source.open("rb") as f:
             for line in f:
                 if len(line) > 1024 * 1024 or not line.endswith(b"\n"):
@@ -105,7 +106,11 @@ def archive_logs(root, cutoff, active="access-v2.log"):
                 if not 0 < stamp < 4102444800:
                     raise RuntimeError("Invalid timestamp; log retained")
                 latest = max(latest, stamp)
+                earliest = min(earliest, stamp)
         if latest >= cutoff.timestamp():
+            after = source.stat()
+            if index is not None and (before.st_ino, before.st_size, before.st_mtime_ns) == (after.st_ino, after.st_size, after.st_mtime_ns):
+                index[source.name] = {"bytes": before.st_size, "mtime": int(before.st_mtime), "first": earliest, "last": latest}
             continue
         month = dt.datetime.fromtimestamp(latest, JST).strftime("%Y-%m")
         target = archive_path(root, month, source.name + ".gz")
@@ -176,13 +181,13 @@ def maintain(root, visitor_root, now, force_monthly=False):
     days = 180 if monthly else 208
     cutoff = now - dt.timedelta(days=days)
     result = {"time": now.isoformat(), "mode": "monthly" if monthly else "210_day_guard", "retention_days": 180,
-        "cutoff": cutoff.isoformat(), "status": "ok", "logs": [], "visitors": []}
+        "cutoff": cutoff.isoformat(), "status": "ok", "logs": [], "visitors": [], "file_index": {}}
     previous = root / "maintenance.json"
     if previous.is_file() and not previous.is_symlink():
         old = json.loads(previous.read_text())
         result["last_monthly"] = old.get("last_monthly")
     try:
-        result["logs"] = archive_logs(root, cutoff)
+        result["logs"] = archive_logs(root, cutoff, index=result["file_index"])
         if visitor_root.exists():
             result["visitors"] = archive_visitors(visitor_root.resolve(strict=True), cutoff)
     except Exception as ex:

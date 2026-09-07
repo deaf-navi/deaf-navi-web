@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {spawn, spawnSync} from 'node:child_process';
-import {mkdtempSync, mkdirSync, writeFileSync, appendFileSync, renameSync, readFileSync} from 'node:fs';
+import {mkdtempSync, mkdirSync, writeFileSync, appendFileSync, renameSync, readFileSync, statSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join, resolve} from 'node:path';
 import {randomBytes} from 'node:crypto';
@@ -113,6 +113,16 @@ try {
     ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide/','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
     r=await admin('/admin/?view=access&tab=unique'+query);
     ok(r.text.includes('1 人') && r.text.includes('Cookieや端末への識別子保存は使いません') && !r.text.includes('推定ユニーク数を取得できません'),'unique viewer and estimation explanation');
+    const baseline=report({}).total;
+    const recent=join(logsDir,'access-v2-2099-01-01T00-00-00-time.log');
+    writeFileSync(recent,(JSON.stringify(entry('/recent/',start+86401))+'\n').repeat(200001));
+    ok(report({}).partial,'unindexed data remains subject to read budget');
+    const stat=statSync(recent);
+    writeFileSync(join(logsDir,'maintenance.json'),JSON.stringify({status:'ok',file_index:{'access-v2-2099-01-01T00-00-00-time.log':{bytes:stat.size,mtime:Math.floor(stat.mtimeMs/1000),first:start+86401,last:start+86401}}}));
+    ok(!report({}).partial && report({}).total===baseline,'indexed unrelated files do not block historical lookup');
+    appendFileSync(recent,JSON.stringify(entry('/changed/',start+86402))+'\n');
+    ok(report({}).partial,'changed log invalidates saved index');
+    renameSync(recent,recent+'.fixture');
     ok(!/Fatal error|Warning:|Uncaught/.test(errors),'no PHP warnings');
     console.log(JSON.stringify({result:'ACCESS_LOGS_TESTS_OK',checks,productionWrites:false}));
     if(preview){

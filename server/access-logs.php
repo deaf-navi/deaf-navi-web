@@ -99,6 +99,7 @@ function access_report(array $options): array {
         return (filemtime($b) <=> filemtime($a)) ?: strcmp($b, $a);
     });
     $bytes = 0; $scanned = 0; $deadline = microtime(true)+4;
+    $index = access_maintenance_state()['file_index'] ?? [];
     $offset = ($options['page']-1)*$options['limit'];
     foreach ($files as $file) {
         if (is_link($file) || !is_file($file) || !is_readable($file) || dirname(realpath($file) ?: '') !== $dir) { $report['partial'] = true; continue; }
@@ -106,6 +107,16 @@ function access_report(array $options): array {
         if ($handle === false) { $report['partial'] = true; continue; }
         $report['available'] = true;
         try {
+            $range = $index[basename($file)] ?? null;
+            $stat = fstat($handle);
+            if (is_array($range) && ($range['bytes']??null)===$stat['size'] && ($range['mtime']??null)===$stat['mtime']
+                && is_numeric($range['first']??null) && is_numeric($range['last']??null)
+                && ($range['first'] >= $options['end'] || $range['last'] < $options['start'])) {
+                // Index covers complete closed files and is invalidated by size/mtime changes.
+                $report['oldest'] = min($report['oldest'] ?? $range['first'], $range['first']);
+                $report['latest'] = max($report['latest'] ?? 0, $range['last']);
+                continue;
+            }
             foreach (access_reverse_lines($handle) as $line) {
                 $bytes += strlen($line)+1; $scanned++;
                 if ($bytes > 64*1024*1024 || $scanned > 200000 || ($scanned%512 === 0 && microtime(true) > $deadline)) {
@@ -154,14 +165,19 @@ function access_storage_html(): string {
     foreach (glob($dir.'/access*.log') ?: [] as $file) if (is_file($file) && !is_link($file)) $bytes += filesize($file);
     $database = access_visitor_dir().'/visitors.sqlite';
     $visitorBytes = is_file($database) && !is_link($database) ? filesize($database) : null;
-    $stateFile = $dir.'/maintenance.json';
-    $state = is_file($stateFile) && !is_link($stateFile) && filesize($stateFile)<1048576 ? json_decode(file_get_contents($stateFile),true) : null;
+    $state = access_maintenance_state();
     $out = '<details class="admin-panel"><summary>保存容量と圧縮バックアップ</summary><p>アクセスログ '.number_format($bytes/1048576,2).' MiB / 推定UUデータ '.($visitorBytes===null?'未設定':number_format($visitorBytes/1048576,2).' MiB').'。';
-    if (!is_array($state)) return $out.'保存処理の実行記録をまだ確認できません。</p></details>';
+    if (!$state) return $out.'保存処理の実行記録をまだ確認できません。</p></details>';
     $archive = (float)($state['archive_bytes']??0)+(float)($state['visitor_archive_bytes']??0);
     $out .= '圧縮済み '.number_format($archive/1048576,2).' MiB（直近の保存処理時点）。</p><p>直近の確認：'.e(access_iso_time($state['time']??null)).' / 最終月次処理：'.e(access_iso_time($state['last_monthly']??null)).'。</p>';
     if (($state['status']??'')!=='ok') $out .= '<p class="dn-error">保存処理でエラーが発生しました。検証できない記録は削除せず保持しています。</p>';
     return $out.'</details>';
+}
+
+function access_maintenance_state(): array {
+    $file = access_log_dir().'/maintenance.json';
+    $state = is_file($file) && is_readable($file) && !is_link($file) && filesize($file)<1048576 ? json_decode(file_get_contents($file),true) : null;
+    return is_array($state) ? $state : [];
 }
 
 function admin_access_logs(): string {
