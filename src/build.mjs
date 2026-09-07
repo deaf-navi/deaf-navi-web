@@ -16,6 +16,7 @@ import { dirname, join } from 'node:path';
 
 import { SITE_KEYWORDS } from '../config/site.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
+import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderHomePage } from './templates/home.mjs';
 import {
   groupArticlesByMonth,
@@ -77,7 +78,7 @@ async function fileExists(p) {
 async function writeDoc(file, content) {
   await mkdir(dirname(join(DOCS, file)), { recursive: true });
   const output = file.toLowerCase().endsWith('.html')
-    ? injectCloudflareAnalytics(content)
+    ? injectAccessVisit(injectCloudflareAnalytics(content))
     : content;
   await writeFile(join(DOCS, file), output, 'utf8');
   console.log(`書き出し: ${file}`);
@@ -178,6 +179,7 @@ async function main() {
   }));
 
   // ---- アセットコピー ----
+  await copyAsset(join(__dirname, 'access-visit.js'), 'access-visit.js');
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
   await copyAsset(join(ASSETS, 'directory.css'), 'directory.css');
   await copyAsset(join(ASSETS, 'world-cafes.css'), 'world-cafes.css');

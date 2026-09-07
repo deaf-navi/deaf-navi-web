@@ -77,7 +77,7 @@ try {
     ok(report({q:'sign-cafe'}).total===1,'path search');
     ok(report({page:2,limit:3}).rows[0].path===a.rows[3].path,'page slice');
     ok(report({q:"' OR 1=1 --"}).total===0,'search is literal');
-    for (const tab of ['paths','days','requests']) {
+    for (const tab of ['paths','days','requests','unique']) {
         r = await admin('/admin/?view=access'+query+'&tab='+tab);
         ok(r.status===200 && r.text.includes('アクセスログ'),'view '+tab);
         ok(!r.text.includes('PRIVATE_MARKER') && !r.text.includes('<img src=x onerror='),'secret and markup absent');
@@ -101,6 +101,18 @@ try {
     writeFileSync(join(logsDir,'access.log'),JSON.stringify({ts:now,request:'wrong'})+'\n');
     ok(report({}).invalid===1,'invalid shape handled');
     ok(run(['server/cli.php','check']).status===0,'application DB intact');
+    writeFileSync(join(logsDir,'access.log'),['human','ai','bot','automation','unknown'].map((client_kind,i)=>JSON.stringify(entry('/class-'+i+'/',start+100+i,{client_kind}))).join('\n')+'\n');
+    ok(report({client:'ai'}).total===1 && report({client:'bot'}).total===1 && report({client:'human'}).total===1,'category filter');
+    const rotated=join(logsDir,'access-v2-2026-09-08T00-00-00-time.log');
+    writeFileSync(rotated,JSON.stringify(entry('/v2/',start+200,{client_kind:'automation'}))+'\n');
+    ok(report({q:'/v2/'}).total===1,'new rotated filenames supported');
+    ok((await admin('/admin/?view=access&client=untrusted')).status===400,'invalid category rejected');
+    const from180=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo'}).format(new Date(Date.now()-179*86400000));
+    ok((await admin('/admin/?view=access&from='+from180+'&to='+day)).status===200,'full 180-day range accepted');
+    const visitors=join(dir,'access-visitors');mkdirSync(visitors);
+    ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide/','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
+    r=await admin('/admin/?view=access&tab=unique'+query);
+    ok(r.text.includes('1 人') && r.text.includes('Cookieや端末への識別子保存は使いません') && !r.text.includes('推定ユニーク数を取得できません'),'unique viewer and estimation explanation');
     ok(!/Fatal error|Warning:|Uncaught/.test(errors),'no PHP warnings');
     console.log(JSON.stringify({result:'ACCESS_LOGS_TESTS_OK',checks,productionWrites:false}));
     if(preview){

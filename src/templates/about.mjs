@@ -239,6 +239,7 @@ ${renderSiteHeader({
 
     <section aria-labelledby="about-privacy">
       <h2 id="about-privacy" class="about__h2">アクセス解析とプライバシー</h2>
+      <p>運営サーバーでは、URLパス・日時・応答結果とアクセス元の分類を記録します。日別の利用者数は、接続IPとブラウザー情報をサーバー内で日ごとにHMAC化して重複を除いた推定値です。この計測にCookieや端末への識別子保存は使わず、生のIP・ブラウザー情報・入力内容・音声・URLの検索条件は保存しません。管理者向けの記録は180日を閲覧対象とし、古い分は月次で圧縮して非公開で保管します。</p>
       <p>サイトの利用状況と表示性能を把握するため、<a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer">Cloudflare Web Analytics</a> を利用しています。ページのURLパス、参照元、国・地域、デバイス、ブラウザ、OS、表示性能などを集計し、サイト改善に使用します。</p>
       <p>Cloudflareの公式仕様では、このアクセス解析はCookieやlocalStorageなどのクライアント側状態を使用せず、IPアドレスやUser-Agentによる個人の継続追跡・フィンガープリントを行いません。クエリ文字列も解析画面には記録されません。解析用スクリプトが通信できない場合も、Deaf Naviの表示・PWA・情報保障ツールはそのまま利用できます。</p>
     </section>

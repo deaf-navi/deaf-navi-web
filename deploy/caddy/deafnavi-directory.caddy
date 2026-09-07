@@ -1,12 +1,28 @@
+(deafnavi_access_class) {
+    map {http.request.header.User-Agent} {access_ua_class} {
+        ~(?i)GPTBot|OAI-SearchBot|ChatGPT|OpenAI|Codex|Claude|Anthropic|Perplexity|Bytespider|cohere-ai ai
+        ~(?i)bot|crawler|spider|slurp|facebookexternalhit|WhatsApp|TelegramBot bot
+        ~(?i)curl|wget|python|httpx|headless|playwright|puppeteer|selenium|deafnavi-release|uptime|monitor|Go-http-client|node|undici automation
+        ~(?i)Mozilla/|Opera/ human
+        default unknown
+    }
+    map "{http.request.header.X-DeafNavi-Client}:{query.dn_client}" {access_client_class} {
+        ~(?i)codex|openai ai
+        default {access_ua_class}
+    }
+    log_append <client_kind {access_client_class}
+}
 deafnavi.com {
+    import deafnavi_access_class
     log deafnavi_access {
         hostnames deafnavi.com www.deafnavi.com
-        output file /srv/deafnavi/shared/access-logs/access.log {
+        output file /srv/deafnavi/shared/access-logs/access-v2.log {
             mode 0640
             roll_size 10MiB
             roll_interval 24h
-            roll_keep 31
-            roll_keep_for 720h
+            # Verified monthly compression owns retention; Caddy must not delete records.
+            roll_keep 0
+            roll_keep_for 0
             roll_uncompressed
         }
         format filter {
@@ -39,7 +55,7 @@ deafnavi.com {
     route {
         @private path /_backend /_backend/* *.php *.sqlite *.sqlite3 *.sql /connect/places /connect/places/* /connect/communities /connect/communities/*
         respond @private "Not Found" 404
-        @directory path /admin /admin/* /submit /submit/* /connect/sign-cafe /connect/sign-cafe/* /directory-sitemap.xml
+        @directory path /admin /admin/* /submit /submit/* /connect/sign-cafe /connect/sign-cafe/* /directory-sitemap.xml /_access/visit
         handle @directory {
             request_body {
                 max_size 64KB
@@ -57,5 +73,6 @@ deafnavi.com {
     }
 }
 www.deafnavi.com {
+    import deafnavi_access_class
     redir https://deafnavi.com{uri} permanent
 }

@@ -1,0 +1,16 @@
+[Unit]
+Description=Deaf Navi monthly access-log archive and 210-day guard
+[Service]
+Type=oneshot
+User=root
+Group=caddy
+UMask=0027
+ExecStartPre=/usr/bin/curl --head --fail --silent --show-error --output /dev/null --max-time 15 --user-agent DeafNavi-Monitor https://deafnavi.com/
+ExecStart=/usr/bin/python3 /srv/deafnavi/current/_backend/access-maintenance.py
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/deafnavi/shared/access-logs /srv/deafnavi/shared/access-visitors
+InaccessiblePaths=/srv/deafnavi/shared/directory
+TimeoutStartSec=10min

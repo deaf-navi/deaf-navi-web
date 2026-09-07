@@ -7,6 +7,7 @@ function page(string $title,string $body,string $path='',string $description='',
     $robots=$private?'noindex,nofollow':($meta['robots']??'index,follow');
     $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script><script src="/directory-ui.js?v=20260907slim" defer></script>';
     if(!$private) {
+        $ld.='<script src="/access-visit.js" defer></script>';
         if($meta)$ld.='<meta property="og:site_name" content="Deaf Navi"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'.e($documentTitle).'"><meta name="twitter:description" content="'.e($description).'"><meta name="twitter:image" content="'.BASE.'/og-image.png">';
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'つながる','item'=>BASE.'/connect/'],['@type'=>'ListItem','position'=>3,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
         if($path!=='/connect/sign-cafe/') $crumbs[]=['@type'=>'ListItem','position'=>4,'name'=>$title,'item'=>$canonical];
