@@ -4,14 +4,14 @@ function page(string $title,string $body,string $path='',string $description='',
     $canonical=BASE.($path?:'/connect/sign-cafe/');
     $documentTitle=$title==='Deaf Navi｜手話カフェ'?$title:$title.' | Deaf Navi';
     $robots=$private?'noindex,nofollow':'index,follow';
-    $ld='<link rel="stylesheet" href="/directory-community.css?v=2"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script><script src="/directory-ui.js?v=20260905c" defer></script>';
+    $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script><script src="/directory-ui.js?v=20260905c" defer></script>';
     if(!$private) {
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'つながる','item'=>BASE.'/connect/'],['@type'=>'ListItem','position'=>3,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
         if($path!=='/connect/sign-cafe/') $crumbs[]=['@type'=>'ListItem','position'=>4,'name'=>$title,'item'=>$canonical];
         $structured[]=['@context'=>'https://schema.org','@type'=>'BreadcrumbList','itemListElement'=>$crumbs];
         foreach($structured as $schema) $ld.='<script type="application/ld+json">'.json_encode($schema,JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_UNESCAPED_UNICODE).'</script>';
     }
-    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($documentTitle).'</title><meta name="description" content="'.e($description).'"><meta name="robots" content="'.$robots.'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($documentTitle).'"><meta property="og:description" content="'.e($description).'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:type" content="website"><meta property="og:image" content="'.BASE.'/og-image.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/directory.css?v=20260905c">'.$ld.'</head><body class="dn-directory'.(str_starts_with($path,'/connect/sign-cafe/')?' dn-cafe-theme':'').'"><a class="dn-skip" href="#main">本文へ</a><header class="dn-header"><a class="dn-brand" href="/">Deaf Navi<span>知る。つながる。自分らしく。</span></a><nav aria-label="メイン"><a href="/">ニュース</a><a href="/connect/" aria-current="page">つながる</a><a href="/guide/">暮らしのガイド</a></nav></header><main id="main" class="dn-main"><nav class="dn-breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/connect/">つながる</a> / <a href="/connect/sign-cafe/">手話カフェ</a></nav><h1>'.e($title).'</h1>'.$body.'</main><footer class="dn-footer"><a href="/about/">Deaf Naviについて</a><a href="/submit/">情報提供</a><a href="/admin/">管理画面</a><p>営業・開催状況は変更される場合があります。訪問前に情報源をご確認ください。</p></footer></body></html>';
+    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($documentTitle).'</title><meta name="description" content="'.e($description).'"><meta name="robots" content="'.$robots.'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($documentTitle).'"><meta property="og:description" content="'.e($description).'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:type" content="website"><meta property="og:image" content="'.BASE.'/og-image.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/directory.css?v=20260907tables">'.$ld.'</head><body class="dn-directory'.(str_starts_with($path,'/connect/sign-cafe/')?' dn-cafe-theme':'').'"><a class="dn-skip" href="#main">本文へ</a><header class="dn-header"><a class="dn-brand" href="/">Deaf Navi<span>知る。つながる。自分らしく。</span></a><nav aria-label="メイン"><a href="/">ニュース</a><a href="/connect/" aria-current="page">つながる</a><a href="/guide/">暮らしのガイド</a></nav></header><main id="main" class="dn-main"><nav class="dn-breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/connect/">つながる</a> / <a href="/connect/sign-cafe/">手話カフェ</a></nav><h1>'.e($title).'</h1>'.$body.'</main><footer class="dn-footer"><a href="/about/">Deaf Naviについて</a><a href="/submit/">情報提供</a><a href="/admin/">管理画面</a><p>営業・開催状況は変更される場合があります。訪問前に情報源をご確認ください。</p></footer></body></html>';
 }
 function tabs(bool $starbucks=false,bool $overseas=false): string { return '<nav class="dn-tabs" aria-label="手話カフェの分類"><a href="/connect/sign-cafe/"'.(!$starbucks&&!$overseas?' aria-current="page"':'').'>日本の手話カフェ</a><a href="/connect/sign-cafe/overseas/"'.($overseas?' aria-current="page"':'').'>海外の手話カフェ</a><a href="/connect/sign-cafe/starbucks/"'.($starbucks?' aria-current="page"':'').'>スターバックス</a></nav>'; }
 function ext_link(string $url,string $label): string { if($url==='') return ''; return '<a href="'.e(safe_url($url)).'" target="_blank" rel="noopener noreferrer">'.e($label).' ↗</a>'; }
@@ -115,28 +115,32 @@ function event_card(array $p,array $store): string {
     return '<article class="dn-card"><span class="dn-badge">'.e((($p['observation_only']??'0')==='1'?'開催実績・個別日時未確認':EVENT_STATUSES[event_state($p)])).'</span><h3><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h3><p>'.e($store['name'].' / '.$store['prefecture'].' '.$store['city']).'</p><p>'.e(($p['event_date']?:'日程未確認').' '.($p['start_time']??'').' '.($p['event_schedule']??'')).'</p><p>'.nl2br(e($p['description']??'')).'</p><p>情報の確度：'.e(CONFIDENCE[$p['confidence']??'unverified']).'</p>'.sources_html($p).'</article>';
 }
 function disclaimer(): string { return '<aside class="dn-disclaimer">本ページはDeaf Naviによる非公式の情報ページです。スターバックス コーヒー ジャパン株式会社が運営・監修するものではありません。開催状況や参加方法は、掲載している情報源または各店舗・主催者へご確認ください。</aside>'; }
+function event_table(array $events,array $stores):string {
+    $out='<p class="dn-table-hint">店舗名・企画名から詳細へ。表は横にスクロールできます。</p><div class="dn-table-scroll" role="region" aria-label="手話イベント比較表" tabindex="0"><table class="dn-data-table"><caption class="dn-visually-hidden">手話イベントの日時・店舗・確認情報</caption><thead><tr><th scope="col">店舗・企画</th><th scope="col">所在地</th><th scope="col">開催日時・状態</th><th scope="col">確認情報</th></tr></thead><tbody>';
+    foreach($events as $p){$store=$stores[$p['store_id']];$out.='<tr><th scope="row"><a href="'.e(record_path($p)).'">'.e($p['name']).'</a><span class="dn-cell-secondary">'.e($store['name']).'</span></th><td>'.e($store['prefecture'].' '.$store['city']).'</td><td>'.e(($p['event_date']?:'日程未確認').' '.($p['start_time']??'')).'<span class="dn-cell-secondary">'.e($p['event_schedule']??'').'</span><span class="dn-badge">'.e(($p['observation_only']??'0')==='1'?'開催実績・個別日時未確認':EVENT_STATUSES[event_state($p)]).'</span></td><td>'.e(CONFIDENCE[$p['confidence']??'unverified']).sources_html($p).'</td></tr>';}
+    return $out.'</tbody></table></div>';
+}
 function starbucks_list(): string {
     $all=visible_records();$stores=[];$events=[];
-    foreach($all as $p) if($p['kind']==='store'&&$p['country_code']==='JP') $stores[$p['id']]=$p;
-    foreach($all as $p) if($p['kind']==='event'&&isset($stores[$p['store_id']])) $events[]=$p;
+    foreach($all as $p)if($p['kind']==='store'&&$p['country_code']==='JP')$stores[$p['id']]=$p;
+    $pref=input($_GET,'prefecture',100);$selected=input($_GET,'store',64);$q=input($_GET,'q',200);
+    $matched=array_filter($stores,fn($s)=>($pref===''||$s['prefecture']===$pref)&&($selected===''||$s['id']===$selected)&&($q===''||str_contains(normalized($s['name'].' '.$s['prefecture'].' '.$s['city']),normalized($q))));
+    foreach($all as $p)if($p['kind']==='event'&&isset($matched[$p['store_id']]))$events[]=$p;
     usort($events,fn($a,$b)=>strcmp($a['event_date']??'',$b['event_date']??''));
-    $pref=input($_GET,'prefecture',100); $selected=input($_GET,'store',64);
-    $events=array_values(array_filter($events,fn($p)=>($pref===''||$stores[$p['store_id']]['prefecture']===$pref)&&($selected===''||$p['store_id']===$selected)));
-    $body=tabs(true).'<p class="dn-lead">全国のスターバックス店舗で実施される手話カフェや手話関連企画の情報を、公開情報および情報提供をもとに掲載しています。</p>'.disclaimer();
-    $body.='<div class="dn-community-invite"><div>'.ui_icon('edit').'<h2>みんなで、開催情報を持ち寄る</h2><p>見つけた告知、参加した日のこと、次回の日程を教えてください。</p></div>'.action_link('#starbucks-post','開催情報を投稿','edit').'</div>';
-    foreach(['開催予定'=>['scheduled','ongoing'],'定期開催・常設的な取り組み'=>['recurring']] as $heading=>$states) {
-        $body.='<section class="dn-section"><h2>'.$heading.'</h2><div class="dn-grid">';$count=0;
-        foreach($events as $p) if(in_array(event_state($p),$states,true)) { $body.=event_card($p,$stores[$p['store_id']]);$count++; }
-        if($heading==='定期開催・常設的な取り組み') foreach($stores as $s) if(($s['signing_store']??false)&&($pref===''||$s['prefecture']===$pref)&&($selected===''||$s['id']===$selected)) {$body.=cafe_card($s);$count++;}
-        if(!$count) $body.='<p class="dn-empty">'.($heading==='開催予定'?'現在確認できている開催予定はありません。':'現在掲載している確認済み情報はありません。').'</p>';
-        $body.='</div></section>';
+    $prefs=[];$opts=[];foreach($stores as $s){$prefs[$s['prefecture']]=$s['prefecture'];$opts[$s['id']]=$s['name'];}ksort($prefs);
+    $body=tabs(true).'<p class="dn-lead">国内の開催予定と、手話カフェの開催実績を探す。</p><p class="dn-cafe-intro">海外のSigning Storeは <a href="/connect/sign-cafe/overseas/?brand=starbucks">海外の手話カフェ一覧</a> に掲載しています。</p><form class="dn-filter" method="get" aria-label="スターバックスの検索と絞り込み">'.field('q','店舗名・地域',$q,'search').select_field('prefecture','都道府県',[''=>'すべて']+$prefs,$pref).select_field('store','店舗',[''=>'すべての店舗']+$opts,$selected).'<div class="dn-actions"><button>絞り込む</button><a href="/connect/sign-cafe/starbucks/">すべて解除</a></div></form><nav class="dn-section-links" aria-label="ページ内の案内"><a href="#upcoming">開催予定</a><a href="#regular">常設・定期開催</a><a href="#observed">開催実績のある店舗</a><a href="#past">過去の開催履歴</a><a href="#starbucks-post">情報を投稿</a></nav><p class="dn-result">対象 <strong>'.count($matched).'</strong>店舗 <span>開催予定と開催実績を分けて表示しています。</span></p>';
+    foreach(['開催予定'=>['upcoming',['scheduled','ongoing']],'定期開催・常設的な取り組み'=>['regular',['recurring']]] as $heading=>[$anchor,$states]){
+        $items=array_values(array_filter($events,fn($p)=>($p['observation_only']??'0')!=='1'&&in_array(event_state($p),$states,true)));
+        $signing=$anchor==='regular'?array_values(array_filter($matched,fn($s)=>!empty($s['signing_store']))):[];
+        $body.='<section class="dn-section" id="'.$anchor.'"><h2>'.$heading.' <small>'.(count($items)+count($signing)).'件</small></h2>';
+        if($items)$body.=event_table($items,$stores);
+        if($signing)$body.=cafe_table($signing);
+        if(!$items&&!$signing)$body.='<p class="dn-empty">'.($anchor==='upcoming'?'現在確認できている開催予定はありません。':'現在掲載している確認済み情報はありません。').'</p>';
+        $body.='</section>';
     }
-    $body.=starbucks_observed($stores,$events,$pref,$selected);
-    $prefs=[];$opts=[];foreach($stores as $s){$prefs[$s['prefecture']]=$s['prefecture'];$opts[$s['id']]=$s['name'];}
-    $body.='<section class="dn-section"><h2>地域・都道府県から探す</h2><form class="dn-filter" method="get">'.select_field('prefecture','都道府県・州',[''=>'すべて']+$prefs,$pref).select_field('store','店舗',[''=>'すべての店舗']+$opts,$selected).'<button>絞り込む</button></form></section><section class="dn-section"><h2>過去の開催履歴</h2><div class="dn-grid">';$count=0;
-    foreach(array_reverse($events) as $p) if(in_array(event_state($p),['ended','cancelled'],true)) {$body.=event_card($p,$stores[$p['store_id']]);$count++;}
-    if(!$count)$body.='<p>現在掲載している開催履歴はありません。</p>';
-    $body.='</div></section><section class="dn-section" id="starbucks-post">'.starbucks_form($selected).'</section><section class="dn-section"><h2>このページについて</h2><p>開催情報と店舗情報を分け、確認した情報源・確認日・情報の確度を表示します。参加予定登録機能は現在提供していません。申込方法は各情報源をご確認ください。</p></section>';
+    $body.=starbucks_observed($matched,$events,$pref,$selected);
+    $past=array_values(array_filter(array_reverse($events),fn($p)=>in_array(event_state($p),['ended','cancelled'],true)&&($p['observation_only']??'0')!=='1'));
+    $body.='<section class="dn-section" id="past"><h2>過去の開催履歴 <small>'.count($past).'件</small></h2>'.($past?event_table($past,$stores):'<p>現在掲載している開催履歴はありません。</p>').'</section>'.disclaimer().'<section class="dn-section" id="starbucks-post"><details><summary class="dn-post-summary">開催情報を投稿する</summary>'.starbucks_form($selected).'</details></section>';
     return page('スターバックスの手話カフェ・手話イベント情報',$body,'/connect/sign-cafe/starbucks/','スターバックスの手話カフェ・手話関連企画、サイニングストアと開催履歴。');
 }
 function detail(string $slug,bool $event): string {

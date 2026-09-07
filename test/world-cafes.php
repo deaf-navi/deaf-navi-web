@@ -16,4 +16,12 @@ $p=array_replace($base,['latitude'=>1.0,'longitude'=>2.0,'coordinate_accuracy'=>
 $post=['world_region'=>'asia','region_tags'=>"southeast_asia",'deaf_relation'=>'official_signing_store','verification_status'=>'verified','is_chain'=>'1'];check(world_validate($post,$base)['is_chain']===true);
 foreach([['is_chain'=>'maybe'],['world_region'=>'invalid'],['deaf_relation'=>'fake'],['verification_status'=>'stale'],['deaf_relation'=>'unknown']] as $patch){try{world_validate(array_replace($post,$patch),$base);check(false);}catch(DomainException){check(true);}}
 for($i=0;$i<500;$i++)check(world_matches(array_replace($base,['name'=>'Store '.$i]),['region'=>'asia','brand'=>'starbucks']));
+require __DIR__.'/../server/views.php';
+$rows=[];for($i=0;$i<105;$i++)$rows[]=array_replace($base,['kind'=>'store','slug'=>'fixture-'.$i,'name'=>'Fixture '.sprintf('%03d',$i)]);
+$_GET=['sort'=>'name'];$html=world_table($rows,['country'=>'MY']);check(substr_count($html,'data-slug=')===50);check(str_contains($html,'country=MY'));check(str_contains($html,'page=2'));check(str_contains($html,'aria-sort="ascending"'));
+$_GET=['sort'=>'name','page'=>'3'];$html=world_table($rows,['country'=>'MY']);check(substr_count($html,'data-slug=')===5);check(str_contains($html,'101–105 / 105件'));check(str_contains($html,'fixture-104'));
+$_GET=['sort'=>'name','dir'=>'desc','per_page'=>'100','page'=>'2'];$html=world_table($rows,[]);check(substr_count($html,'data-slug=')===5);check(str_contains($html,'fixture-0'));check(!str_contains($html,'fixture-104'));check(str_contains($html,'aria-sort="descending"'));
+$_GET=['page'=>'999999','per_page'=>'999'];$html=world_table($rows,[]);check(substr_count($html,'data-slug=')===5);
+$_GET=[];$html=world_table([array_replace($rows[0],['name'=>'<script>alert(1)</script>'])],[]);check(!str_contains($html,'<script>'));check(str_contains($html,'&lt;script&gt;'));
+$_GET=[];
 echo json(['result'=>'WORLD_CAFES_TESTS_OK','checks'=>$checks])."\n";

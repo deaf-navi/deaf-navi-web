@@ -21,11 +21,12 @@ function starbucks_submission(array $post):array {
     return ['category'=>'starbucks','report_type'=>$state==='cancelled'?'closed':'other','report_state'=>$state,'name'=>'手話カフェ開催情報：'.$name,'store_name'=>$name,'store_id'=>$id,'country_code'=>$store['country_code']??'JP','prefecture'=>$pref,'city'=>$store['city']??'','event_date'=>$date,'start_time'=>$start,'end_time'=>$end,'conditions'=>$conditions,'description'=>$conditions,'source_url'=>safe_url(input($post,'source_url',1000)),'timezone'=>$store['timezone']??'Asia/Tokyo'];
 }
 function starbucks_observed(array $stores,array $events,string $pref='',string $selected=''):string {
-    $observed=[];foreach($events as $ev){if(($ev['observation_only']??'')==='1'||event_state($ev)==='ended')$observed[$ev['store_id']][]=$ev;}
-    $body='<section class="dn-section" id="observed"><h2>手話カフェの開催実績がある店舗</h2><p>店舗・主催者・地域団体の発信で開催実績を確認した店舗です。現在の開催予定や定期開催を保証するものではありません。</p><div class="dn-observed-grid">';$count=0;
+    $observed=[];foreach($events as $ev)if(($ev['observation_only']??'')==='1'||event_state($ev)==='ended')$observed[$ev['store_id']][]=$ev;
+    $rows='';$count=0;
     foreach($observed as $id=>$history){$s=$stores[$id]??null;if(!$s||($pref!==''&&$s['prefecture']!==$pref)||($selected!==''&&$selected!==$id))continue;$count++;
-        $body.='<article class="dn-observed-card"><div class="dn-observed-icon">'.ui_icon('pin').'</div><p class="dn-location">'.e($s['prefecture'].' / '.$s['city']).'</p><h3><a href="'.e(record_path($s)).'">'.e($s['name']).'</a></h3><span class="dn-badge">開催実績あり</span><p>'.e($history[0]['description']??'').'</p><div class="dn-observed-links">'.action_link(record_path($s),'開催履歴・情報源','page').action_link('/submit/?category=starbucks&store='.rawurlencode($id),'この店舗の情報を投稿','edit').'</div></article>';
+        usort($history,fn($a,$b)=>strcmp($b['last_verified_at']??'',$a['last_verified_at']??''));
+        $rows.='<tr><th scope="row"><a href="'.e(record_path($s)).'">'.e($s['name']).'</a></th><td>'.e($s['prefecture']).'<span class="dn-cell-secondary">'.e($s['city']).'</span></td><td><span class="dn-badge">開催実績あり</span><p>'.e($history[0]['description']??'').'</p></td><td>'.sources_html($history[0]).'<a href="'.e(record_path($s)).'">開催履歴・情報源</a></td></tr>';
     }
-    if(!$count)$body.='<p>この条件で開催実績を確認できた店舗はありません。</p>';
-    return $body.'</div></section>';
+    $body='<section class="dn-section" id="observed"><h2>手話カフェの開催実績がある店舗 <small>'.$count.'店舗</small></h2><p>店舗・主催者・地域団体の発信で開催実績を確認した店舗です。現在の開催予定や定期開催を保証するものではありません。</p>';
+    return $body.($count?'<p class="dn-table-hint">店舗名から詳細へ。表は横にスクロールできます。</p><div class="dn-table-scroll" role="region" aria-label="開催実績のある店舗" tabindex="0"><table class="dn-data-table"><caption class="dn-visually-hidden">手話カフェ開催実績のある店舗一覧</caption><thead><tr><th scope="col">店舗名</th><th scope="col">所在地</th><th scope="col">活動・開催実績</th><th scope="col">確認情報</th></tr></thead><tbody>'.$rows.'</tbody></table></div>':'<p>この条件で開催実績を確認できた店舗はありません。</p>').'</section>';
 }
