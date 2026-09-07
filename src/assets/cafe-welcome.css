@@ -49,6 +49,7 @@
 .dn-cafe-hub .dn-tabs [aria-current] { background: #e6efea; color: #1d5f54; }
 .dn-cafe-hub .dn-tabs [aria-current] .dn-tab-art { background: #397468; color: #fffef5; }
 .dn-cafe-hub .dn-tabs a:hover { background: #f1f3eb; }
+.dn-cafe-hub .dn-tabs a:focus-visible { outline-offset: -4px; }
 .dn-cafe-hub .dn-section-links { gap: 8px 24px; }
 .dn-cafe-hub .dn-section-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
 .dn-cafe-hub .dn-section-links .dn-cafe-icon { width: 19px; height: 19px; color: #60836e; }
