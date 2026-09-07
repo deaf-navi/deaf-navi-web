@@ -69,7 +69,9 @@ function access_entry(string $line): ?array {
     if (!is_array($r) || !is_numeric($r['ts'] ?? null) || !is_array($r['request'] ?? null)) return null;
     $req = $r['request'];
     $host = $req['host'] ?? '';
-    if (!is_string($host) || !in_array(strtolower($host), ['deafnavi.com','www.deafnavi.com'], true)) return null;
+    if (!is_string($host)) return null;
+    $host = preg_replace('/:(?:80|443)$/D', '', strtolower($host));
+    if (!in_array($host, ['deafnavi.com','www.deafnavi.com'], true)) return null;
     $path = $req['uri'] ?? '';
     if (!is_string($path)) return null;
     $path = explode('?', $path, 2)[0];
@@ -82,7 +84,7 @@ function access_entry(string $line): ?array {
     if (!is_finite($ts) || $ts <= 0 || $ts > 4102444800) return null;
     $duration = is_numeric($r['duration'] ?? null) ? (float)$r['duration'] : null;
     if ($duration !== null && (!is_finite($duration) || $duration < 0)) $duration = null;
-    return ['ts'=>$ts, 'host'=>strtolower($host), 'path'=>$path, 'method'=>$method, 'status'=>$status,
+    return ['ts'=>$ts, 'host'=>$host, 'path'=>$path, 'method'=>$method, 'status'=>$status,
         'duration'=>$duration, 'size'=>is_int($r['size'] ?? null) && $r['size'] >= 0 ? $r['size'] : null,
         'client'=>is_string($r['client_kind']??null) && isset(ACCESS_CLIENTS[$r['client_kind']]) && $r['client_kind']!=='all' ? $r['client_kind'] : 'unknown',
         'group'=>access_group($path)];

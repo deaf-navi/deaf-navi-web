@@ -110,6 +110,10 @@ try {
     ok(report({}).partial,'oversized record bounded');
     writeFileSync(join(logsDir,'access.log'),JSON.stringify({ts:now,request:'wrong'})+'\n');
     ok(report({}).invalid===1,'invalid shape handled');
+    writeFileSync(join(logsDir,'access.log'),['deafnavi.com:443','WWW.DEAFNAVI.COM:80','deafnavi.com.evil.test:443','deafnavi.com:invalid'].map(host=>JSON.stringify(entry('/port-test/',start+100,{request:{host,method:'GET',uri:'/port-test/'}}))).join('\n')+'\n');
+    const hostReport=report({q:'/port-test/'});
+    ok(hostReport.total===2 && hostReport.rows.every(r=>['deafnavi.com','www.deafnavi.com'].includes(r.host)),'standard HTTP ports normalize to site host');
+    ok(hostReport.invalid===2,'foreign hosts and malformed ports remain rejected');
     ok(run(['server/cli.php','check']).status===0,'application DB intact');
     writeFileSync(join(logsDir,'access.log'),['human','ai','bot','automation','unknown'].map((client_kind,i)=>JSON.stringify(entry('/class-'+i+'/',start+100+i,{client_kind}))).join('\n')+'\n');
     ok(report({client:'ai'}).total===1 && report({client:'bot'}).total===1 && report({client:'human'}).total===1,'category filter');

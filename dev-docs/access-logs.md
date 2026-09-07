@@ -44,6 +44,6 @@ UA等から `human / bot / ai / automation / unknown` に分類。既存のUAを
 
 復旧はtimerを停止し、前のリリースとバックアップしたDeaf Navi snippetを復元・validate・reloadする。ログ、UU、秘密鍵、圧縮バックアップは保持する。圧縮ログはmanifestに従って展開し照合してから別の作業場所で読む。UU復元はSQLiteのコピーにJSONLをINSERT OR IGNOREし整合性を確認する。業務DBは復旧のために書き換えない。
 
-検証：アクセスログ・簡易表示62項目、CookieなしUU28項目、保存処理6ケース、Caddy分類8ケース、既存管理画面と公開ページ、375px/1280px表示。テストで使うIP・UAは合成値。実利用者の値を出力しない。
+検証：アクセスログ・簡易表示64項目、CookieなしUU28項目、保存処理6ケース、Caddy分類8ケース、既存管理画面と公開ページ、375px/1280px表示。テストで使うIP・UAは合成値。実利用者の値を出力しない。
 
 公式仕様：[Caddy access logging](https://caddyserver.com/docs/caddyfile/directives/log)。
