@@ -5,6 +5,7 @@ require __DIR__.'/views.php';
 require __DIR__.'/public-profile.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/admin-dashboard.php';
+require __DIR__.'/access-logs.php';
 require __DIR__.'/map.php';
 require __DIR__.'/map-2d.php';
 require __DIR__.'/starbucks-community.php';

@@ -61,6 +61,7 @@ jobs:
           php -r 'json_decode(file_get_contents("server/seed.json"),true,512,JSON_THROW_ON_ERROR);'
           node test/directory.integration.mjs
           node test/admin-dashboard.integration.mjs
+          node test/access-logs.integration.mjs
           node test/overseas-cafes.integration.mjs
           php test/world-cafes.php
           node test/cafe-seo.integration.mjs

@@ -10,6 +10,7 @@ function admin_page(): string {
     if($user['must_change']) { $view='password';$body.='<p class="dn-error">初期パスワードを変更してください。変更が完了するまで他の管理操作は利用できません。</p>'; }
     if($view==='submissions') {$body.=admin_submissions_table();}
     elseif($view==='audit') {$body.=admin_activity();}
+    elseif($view==='access') {$body.=admin_access_logs();}
     elseif($view==='preferences') {$body.=admin_preferences();}
     elseif($view==='user') {$body.=admin_user_detail($user);}
     elseif($view==='password') {

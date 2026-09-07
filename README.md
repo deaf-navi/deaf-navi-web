@@ -164,7 +164,7 @@ npm run preview:otomado        # おとまどを含むdocs/をローカル配信
 
 ## Analytics
 
-公開HTMLの利用状況と表示性能は既存の [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) で確認する。ホスティングにはCloudflare Pages・Workerを使わず、独自のアクセス解析DBも追加しない。
+静的HTMLの利用状況と表示性能は既存の [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) で確認する。全コンテンツのサーバー到達ログはCaddyで取得し、管理者ログイン後の `/admin/?view=access` でURL別・日別集計と個別履歴を参照する。詳細と導入手順は [アクセスログの運用](dev-docs/access-logs.md)。独自のアクセス解析DBは追加しない。
 
 - 設定場所: `config/site.mjs` の `ANALYTICS`
 - 有効化: `provider: 'cloudflare'`、`enabled: true`、`token` にWeb AnalyticsのBeacon Tokenを設定
