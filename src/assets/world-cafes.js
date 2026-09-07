@@ -1,7 +1,17 @@
 'use strict';
-const filters=document.querySelector('.dn-world-filters');
-if(filters&&matchMedia('(min-width: 800px)').matches)filters.open=true;
-filters?.querySelector('[name=region]')?.addEventListener('change',()=>{const form=filters.querySelector('form');form.elements.country.value='';form.elements.tag.value='';form.requestSubmit();});
+const filters=document.querySelector('.dn-world-search');
+if(filters){
+ const region=filters.elements.region,country=filters.elements.country;
+ const updateCountries=()=>{
+  for(const option of country.options){
+   const outside=option.value!==''&&region.value!==''&&!JSON.parse(option.dataset.regions||'[]').includes(region.value);
+   option.hidden=outside&&!option.selected;option.disabled=outside&&!option.selected;
+  }
+ };
+ region.addEventListener('change',()=>{country.value='';filters.elements.tag.value='';updateCountries();});
+ updateCountries();
+}
+document.querySelector('a[href="#world-map-panel"]')?.addEventListener('click',()=>{document.querySelector('#world-map-panel').open=true;});
 const start=document.querySelector('#world-map-start');
 function loadScript(src){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=reject;document.head.append(s);});}
 function css(href){const link=document.createElement('link');link.rel='stylesheet';link.href=href;document.head.append(link);}

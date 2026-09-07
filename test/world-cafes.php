@@ -17,11 +17,27 @@ $post=['world_region'=>'asia','region_tags'=>"southeast_asia",'deaf_relation'=>'
 foreach([['is_chain'=>'maybe'],['world_region'=>'invalid'],['deaf_relation'=>'fake'],['verification_status'=>'stale'],['deaf_relation'=>'unknown']] as $patch){try{world_validate(array_replace($post,$patch),$base);check(false);}catch(DomainException){check(true);}}
 for($i=0;$i<500;$i++)check(world_matches(array_replace($base,['name'=>'Store '.$i]),['region'=>'asia','brand'=>'starbucks']));
 require __DIR__.'/../server/views.php';
+require __DIR__.'/../server/public-profile.php';
+require __DIR__.'/../server/map-2d.php';
 $rows=[];for($i=0;$i<105;$i++)$rows[]=array_replace($base,['kind'=>'store','slug'=>'fixture-'.$i,'name'=>'Fixture '.sprintf('%03d',$i)]);
 $_GET=['sort'=>'name'];$html=world_table($rows,['country'=>'MY']);check(substr_count($html,'data-slug=')===50);check(str_contains($html,'country=MY'));check(str_contains($html,'page=2'));check(str_contains($html,'aria-sort="ascending"'));
-$_GET=['sort'=>'name','page'=>'3'];$html=world_table($rows,['country'=>'MY']);check(substr_count($html,'data-slug=')===5);check(str_contains($html,'101–105 / 105件'));check(str_contains($html,'fixture-104'));
+$_GET=['sort'=>'name','page'=>'3'];$html=world_table($rows,['country'=>'MY']);check(substr_count($html,'data-slug=')===5);check(str_contains($html,'全105件中 101〜105件'));check(str_contains($html,'fixture-104'));
 $_GET=['sort'=>'name','dir'=>'desc','per_page'=>'100','page'=>'2'];$html=world_table($rows,[]);check(substr_count($html,'data-slug=')===5);check(str_contains($html,'fixture-0'));check(!str_contains($html,'fixture-104'));check(str_contains($html,'aria-sort="descending"'));
 $_GET=['page'=>'999999','per_page'=>'999'];$html=world_table($rows,[]);check(substr_count($html,'data-slug=')===5);
 $_GET=[];$html=world_table([array_replace($rows[0],['name'=>'<script>alert(1)</script>'])],[]);check(!str_contains($html,'<script>'));check(str_contains($html,'&lt;script&gt;'));
+$_GET=[];
+// Explicit status choices include paused/closed records without silently broadening other queries.
+check(world_matches(array_replace($base,['status'=>'temporarily_closed']),['status'=>'temporarily_closed']));
+check(!world_matches($base,['status'=>'temporarily_closed']));
+foreach(['unknown','needs_review'] as $status)check(world_matches(array_replace($base,['status'=>$status]),['status'=>'needs_review']));
+foreach(['closed','permanently_closed'] as $status){check(!world_matches(array_replace($base,['status'=>$status]),[]));check(world_matches(array_replace($base,['status'=>$status]),['status'=>'permanently_closed']));}
+// Old deep links keep working, and unsafe attributes remain escaped in expanded content.
+check(world_matches(array_replace($base,['status'=>'closed']),['history'=>'1','country'=>'MY']));
+$_GET=['sort'=>'name','page'=>'2','view'=>'cards'];$html=world_table($rows,['country'=>'MY','relation'=>'official_signing_store','status'=>'open']);
+check(substr_count($html,'data-slug=')===50);check(str_contains($html,'view=cards'));check(str_contains($html,'relation=official_signing_store'));check(str_contains($html,'status=open'));check(str_contains($html,'data-slug="fixture-50"'));
+$_GET=[];$p=array_replace($rows[0],['local_name'=>'<img src=x onerror=alert(1)>','status'=>'unknown','business_hours'=>'OLD SCHEDULE']);$html=world_table([$p],[]);
+check(str_contains($html,'aria-controls="world-detail-fixture-0"'));check(str_contains($html,'id="world-detail-fixture-0" hidden'));
+check(!str_contains($html,'OLD SCHEDULE'));check(!str_contains($html,'<img src=x'));check(str_contains($html,'&lt;img'));
+$f=world_filter_values();$f['brand']='starbucks';$html=world_filters([$base,$eu],$f);check(str_contains($html,'class="dn-filter-more" open'));check(str_contains($html,'value="starbucks" selected'));check(str_contains($html,'data-regions='));
 $_GET=[];
 echo json(['result'=>'WORLD_CAFES_TESTS_OK','checks'=>$checks])."\n";
