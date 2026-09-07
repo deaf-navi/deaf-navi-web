@@ -33,8 +33,8 @@ try {
         if(input($_POST,'form_kind',20)==='starbucks')$p=starbucks_submission($_POST);
         else {
         $p=[];
-        foreach(['name','country_code','prefecture','city','address','official_url','instagram_url','x_url','facebook_url','event_schedule','business_hours','description','source_url','notes','submitter','email'] as $k){$p[$k]=input($_POST,$k,in_array($k,['description','notes'])?6000:1000);if(str_ends_with($k,'_url'))$p[$k]=safe_url($p[$k]);}
-        foreach(['name','prefecture','city'] as $k)if($p[$k]===''||strlen($p[$k])>300)fail('店舗名・都道府県・市区町村を300バイト以内で入力してください。');
+        foreach(['name','country_code','country_name','prefecture','city','address','official_url','instagram_url','x_url','facebook_url','event_schedule','business_hours','description','source_url','notes','submitter','email'] as $k){$p[$k]=input($_POST,$k,in_array($k,['description','notes'])?6000:1000);if(str_ends_with($k,'_url'))$p[$k]=safe_url($p[$k]);}
+        foreach(['name','city'] as $k)if($p[$k]===''||strlen($p[$k])>300)fail('店舗名・市区町村を300バイト以内で入力してください。');
         if(!preg_match('/^[A-Z]{2}$/D',$p['country_code']))fail('国コードはJPなどの英大文字2文字です。');
         if($p['email']!==''&&!filter_var($p['email'],FILTER_VALIDATE_EMAIL))fail('連絡先メールアドレスが不正です。');
         $p['category']=choice(input($_POST,'category',20),['cafe'=>1,'starbucks'=>1,'correction'=>1,'closure'=>1,'other'=>1]);
@@ -49,16 +49,17 @@ try {
         $_SESSION['csrf']=uid();$_SESSION['receipt']=true;$_SESSION['duplicate_notice']=$duplicate;unset($_SESSION['form_issued']);
         header('Location: /submit/?received=1',true,303);exit;
     }
-    if($path==='/admin' || $path==='/submit' || $path==='/connect/sign-cafe' || $path==='/connect/sign-cafe/starbucks' || $path==='/connect/sign-cafe/map') {header('Location: '.$path.'/'.(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;}
+    if($path==='/admin' || $path==='/submit' || $path==='/connect/sign-cafe' || $path==='/connect/sign-cafe/starbucks' || $path==='/connect/sign-cafe/map' || $path==='/connect/sign-cafe/overseas') {header('Location: '.$path.'/'.(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;}
     if($path==='/admin/') {header('X-Robots-Tag: noindex, nofollow');echo admin_page();}
     elseif($path==='/submit/') {
         start_session();$body='';
         if(isset($_GET['received']) && !empty($_SESSION['receipt'])) {
             $body='<div class="dn-notice" role="status"><h2>情報提供を受け付けました</h2><p>確認中として保存しました。管理者が内容を確認します。公開やメール通知の完了を意味するものではありません。</p>'.(!empty($_SESSION['duplicate_notice'])?'<p>すでに掲載されている可能性があります。修正・移転・閉店のご報告としても管理者が確認します。</p>':'').'</div>';
             unset($_SESSION['receipt'],$_SESSION['duplicate_notice']);
-        } else $body=input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form(['category'=>input($_GET,'category',20)?:'cafe']);
+        } else $body=input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form(['category'=>input($_GET,'category',20)?:'cafe']+(input($_GET,'scope',20)==='overseas'?['country_code'=>'']:[]));
         echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
     } elseif($path==='/connect/sign-cafe/') echo cafe_list();
+    elseif($path==='/connect/sign-cafe/overseas/')echo cafe_list(true);
     elseif($path==='/connect/sign-cafe/map/')echo map_page_2d();
     elseif($path==='/connect/sign-cafe/map/data.json'){header('Content-Type: application/json; charset=UTF-8');echo json(map_data());}
     elseif($path==='/connect/sign-cafe/starbucks/')echo starbucks_list();
@@ -67,7 +68,7 @@ try {
         header('Content-Type: application/xml; charset=UTF-8');
         $all=visible_records();$stores=[];foreach($all as $p)if($p['kind']==='store')$stores[$p['id']]=true;
         echo '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-        echo '<url><loc>'.BASE.'/connect/sign-cafe/map/</loc></url>';
+        echo '<url><loc>'.BASE.'/connect/sign-cafe/map/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/overseas/</loc></url>';
         foreach($all as $p)if($p['kind']!=='event'||isset($stores[$p['store_id']]))echo '<url><loc>'.e(BASE.record_path($p)).'</loc><lastmod>'.e(substr($p['updated_at'],0,10)).'</lastmod></url>';
         echo '</urlset>';
     } else fail('情報が見つかりません。',404);

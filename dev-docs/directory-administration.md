@@ -5,7 +5,7 @@
 最新版の指示により、常設・限定営業・定期開催・特殊の4分類を採用する。単発イベントは別扱い。nonowa国立のような正式なサイニングストアは一般一覧にも表示し、店舗は1レコードのみ保存する。
 
 - `/connect/` は手話カフェとイベントのみ。場所・コミュニティのリンクとサイトマップ掲載を停止する。
-- `/connect/sign-cafe/` は導入、2タブ、検索/地域/分類/営業状態、ソート可能な表、情報提供フォームの順。表は店舗名・所在地・営業形態・営業時間/営業日。確認日・情報源・住所・予約条件は詳細展開内に表示する。個別ページのURLも保持する。
+- `/connect/sign-cafe/` は導入、3タブ、検索/地域/分類/営業状態、ソート可能な表、情報提供フォームの順。表は店舗名・所在地・営業形態・営業時間/営業日。確認日・情報源・住所・予約条件は詳細展開内に表示する。個別ページのURLも保持する。
 - `/connect/sign-cafe/{slug}/` は店舗詳細、情報源、確認日、訂正の導線。
 - `/connect/sign-cafe/starbucks/` は開催予定、定期・常設、地域/店舗検索、過去履歴、情報提供、このページについての順。
 - `/connect/sign-cafe/starbucks/{slug}/` は開催回の詳細。店舗とは `store_id` で関連付ける。
@@ -20,6 +20,15 @@
 PHP 8.1 + PDO SQLite。`/srv/deafnavi/shared/directory/directory.sqlite` は公開root外。GitHub Actionsはプログラムのみをリリースし、DB・セッション・通知設定を上書きしない。専用PHP-FPMプールと実行ユーザーを使い、公開ソースへの書込権限を与えない。
 
 `records` の種類は cafe / store / event。共通列は id / kind / slug / name / country_code / prefecture / city / publication / status / store_id / payload / revision / created_at / updated_at。国コード・国名・州/県・都市・タイムゾーン・緯度経度を保持できる。未確認座標はnull。
+
+### 海外の手話カフェ（2026-09-07）
+
+- `/connect/sign-cafe/overseas/` を「手話カフェ一覧」と同列のタブに追加。国内は `country_code=JP`、海外は `JP` 以外。カフェと正式なサイニングストアをそれぞれの国に応じて表示する。個別URLは従来形式のまま保持し、海外店舗の詳細からは海外一覧へ戻る。
+- 海外の掲載情報が0件なら「掲載準備中」。国・地域、州、分類、営業状態、キーワードで絞り込める。営業時間は現地時間として案内する。
+- 管理メニュー「海外の手話カフェ」から追加・編集・公開・非公開・ソフト削除・復元が可能。国・地域名の検索、国による絞り込み、ソートとページ切替に対応する。
+- 海外の新規作成では国・国名・タイムゾーンを空欄にし、推測した初期値を入れない。国コード、国・地域名、都市・所在地を入力する。州がない地域では州を空欄にできる。掲載先と国コードが一致しない保存を拒否する。手話対応には現地の手話や筆談の具体的な内容を入力する。
+- 情報源・確認日・確認状況がそろうまで公開できない。既存の認証・CSRF・編集競合検出を利用し、権限やDBスキーマは変更しない。
+- 初回データ27件（23 cafe・4 Signing Store）は本番DBへ保留登録する。seedは変更しない。海外の管理一覧は正式Signing Storeも含める。投入manifestは非公開領域に保存する。テストは独立した合成DBで実施する。追加検証：`node test/overseas-cafes.integration.mjs`（本番デプロイ前のチェックにも組み込む）。
 
 payloadの店舗項目：name_kana、country_name、address、map_url、latitude、longitude、timezone、type、subtypes、business_hours、event_schedule、holidays、reservation、description、sign_support、official_url、instagram_url、x_url、facebook_url、operator、verification_level、verification_sources、last_verified_at、internal_note。店舗種別storeには signing_store。
 

@@ -31,6 +31,7 @@ function admin_page(): string {
     } elseif($view==='edit') {
         $kind=choice(input($_GET,'kind',10),['cafe'=>1,'store'=>1,'event'=>1]);$id=input($_GET,'id',64);
         $p=$id?expanded(record($id)):['country_code'=>setting('default_country_code')?:'JP','country_name'=>setting('default_country_name')?:'日本','timezone'=>setting('default_timezone')?:'Asia/Tokyo','publication'=>'pending','type'=>'permanent','verification_level'=>'pending'];
+        if(!$id&&$kind==='cafe'&&input($_GET,'scope',20)!==''){$overseas=admin_cafe_scope()==='overseas';$p['country_code']=$overseas?'':'JP';$p['country_name']=$overseas?'':'日本';$p['timezone']=$overseas?'':'Asia/Tokyo';}
         if($id && $p['kind']!==$kind) fail('情報の種別が一致しません。');
         $submission=input($_GET,'submission',64);$sub=null;
         if($submission) {
@@ -42,6 +43,7 @@ function admin_page(): string {
         }
         $body.='<h2>掲載情報の編集</h2><p>公開・非公開・保留は営業状態と別に管理します。未確認の値は空欄にしてください。削除は履歴を残す非表示処理です。</p><form method="post" class="dn-form">'.csrf().'<input type="hidden" name="action" value="save_record"><input type="hidden" name="kind" value="'.$kind.'"><input type="hidden" name="id" value="'.e($id).'"><input type="hidden" name="revision" value="'.e($p['revision']??0).'"><input type="hidden" name="submission" value="'.e($submission).'"><input type="hidden" name="submission_revision" value="'.e($sub['revision']??0).'"><div class="dn-form-grid">';
         $body.=field('slug','個別URL名（公開後は原則変更しない）',$p['slug']??'','text',true).select_field('publication','公開状態',PUBLICATIONS,$p['publication']??'pending').select_field('status',$kind==='event'?'開催状態':'営業状態',$kind==='event'?EVENT_STATUSES:STATUSES,$p['status']??($kind==='event'?'date_unknown':'unknown')).select_field('verification_level','情報の確認状況',LEVELS,$p['verification_level']??'pending');
+        if($kind!=='event')$body.=select_field('scope','掲載先（国コードと合わせて指定）',['domestic'=>'国内の手話カフェ','overseas'=>'海外の手話カフェ'],($p['country_code']??'')==='JP'?'domestic':'overseas');
         if($kind!=='event') $body.=select_field('type','分類',TYPES,$p['type']??'permanent');
         if($kind==='store') $body.=select_field('signing_store','正式な常設サイニングストア（一般一覧にも掲載）',['0'=>'いいえ','1'=>'はい'],!empty($p['signing_store'])?'1':'0');
         if($kind==='event') {
@@ -50,7 +52,8 @@ function admin_page(): string {
         }
         $body.='</div>'.admin_edit_fields($p,$kind);
         if($sub)$body.=select_field('submission_status','投稿の確認結果',['pending'=>'確認中のまま','approved'=>'承認（正式データへ反映）','rejected'=>'不採用'],$sub['status']);
-        $body.='<p><button>変更を保存</button></p></form>';
+        $overseasStore=$kind==='store'&&($p['country_code']??'JP')!=='JP'&&!empty($p['signing_store']);
+        $body.='<p><button>変更を保存</button></p></form><p><a href="/admin/?view=records&kind='.($overseasStore?'cafe':$kind).($kind==='cafe'||$overseasStore?'&scope='.(($p['country_code']??'')==='JP'?'domestic':'overseas'):'').'">一覧へ戻る</a></p>';
         if($id)$body.='<aside class="dn-danger"><h3>削除・復元について</h3><p>「公開状態」を「削除済み」にして保存すると、公開画面から除外されます。閉店情報は「閉店・活動終了」で残してください。復元は公開状態を変更します。</p></aside>';
     } elseif($view==='submission') {
         $id=input($_GET,'id',64);$s=query('SELECT * FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);

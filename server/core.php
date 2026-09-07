@@ -130,7 +130,7 @@ function validated_record(array $post, string $kind): array {
     }
     if($p['name']==='' || strlen($p['name'])>300) fail('名称を300バイト以内で入力してください。');
     $p['slug']=input($post,'slug',100);
-    if(!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$p['slug']) || in_array($p['slug'],['starbucks','index','admin','map'],true)) fail('URL名は半角小文字・数字・ハイフンで指定してください。');
+    if(!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$p['slug']) || in_array($p['slug'],['starbucks','index','admin','map','overseas'],true)) fail('URL名は半角小文字・数字・ハイフンで指定してください。');
     $p['publication']=choice(input($post,'publication'),PUBLICATIONS);
     $p['verification_level']=choice(input($post,'verification_level'),LEVELS);
     $p['last_verified_at']=date_value($p['last_verified_at']);
@@ -154,6 +154,9 @@ function validated_record(array $post, string $kind): array {
         $p['type']=choice(input($post,'type'),TYPES);
         $p['subtypes']=array_values(array_filter(array_map('trim',explode("\n",$p['subtypes']))));
         if(!preg_match('/^[A-Z]{2}$/D',$p['country_code'])) fail('国コードは英大文字2文字で入力してください。');
+        $scope=input($post,'scope',20);
+        if($scope!==''){choice($scope,['domestic'=>1,'overseas'=>1]);if(($p['country_code']!=='JP')!==($scope==='overseas'))fail('掲載先と国コードが一致しません。日本は国内（JP）、海外はJP以外を指定してください。');}
+        if($p['country_code']!=='JP'&&($p['country_name']===''||$p['city']===''))fail('海外の店舗には国・地域名と都市・所在地を入力してください。');
         foreach(['latitude'=>90,'longitude'=>180] as $k=>$range) {
             if($p[$k]==='') $p[$k]=null;
             elseif(!is_numeric($p[$k]) || abs((float)$p[$k])>$range) fail('緯度・経度が不正です。');
