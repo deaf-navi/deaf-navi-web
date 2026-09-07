@@ -12,7 +12,7 @@ if(start){start.hidden=false;start.addEventListener('click',async()=>{
   if(!L.markerClusterGroup)await loadScript('/cafe-map/leaflet/leaflet.markercluster.js');
   const response=await fetch('/connect/sign-cafe/overseas/map.json'+location.search);if(!response.ok)throw Error('data');const {spots}=await response.json();
   document.querySelector('#world-map').hidden=false;
-  const map=L.map('world-map',{scrollWheelZoom:false,minZoom:1,maxZoom:18}).setView([20,0],2);
+  const map=L.map('world-map',{scrollWheelZoom:false,minZoom:0,maxZoom:18}).setView([20,0],2);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19,updateWhenIdle:true,keepBuffer:1}).addTo(map).on('tileerror',()=>{state.textContent='背景地図を取得できません。店舗一覧をご利用ください。';});
   const group=L.markerClusterGroup({chunkedLoading:true,showCoverageOnHover:false,animate:false,iconCreateFunction:c=>L.divIcon({className:'dn-world-map-cluster',html:String(c.getChildCount()),iconSize:[40,40]})});
   for(const s of spots){const popup=document.createElement('div'),a=document.createElement('a'),p=document.createElement('p');a.textContent=s.name;a.href=s.path;p.textContent=s.country+' / '+s.city;popup.append(a,p);L.marker([s.latitude,s.longitude],{title:s.name,alt:s.name,keyboard:true,icon:L.divIcon({className:'dn-world-map-pin',html:'',iconSize:[20,20]})}).bindPopup(popup).addTo(group);}
