@@ -128,3 +128,31 @@
 /* Keep each scrollable column narrower than the viewport beside the pinned name. */
 @media(max-width:650px){.dn-data-table{width:630px;min-width:630px}.dn-data-table thead th:first-child{width:140px}.dn-data-table thead th:nth-child(2){width:130px}.dn-data-table thead th:nth-child(3),.dn-data-table thead th:nth-child(4){width:180px}}
 @media(max-width:350px){.dn-data-table{width:550px;min-width:550px}.dn-data-table thead th:first-child{width:120px}.dn-data-table thead th:nth-child(2){width:130px}.dn-data-table thead th:nth-child(3),.dn-data-table thead th:nth-child(4){width:150px}.dn-cafe-table{width:525px;min-width:525px}.dn-cafe-table thead th:first-child{width:120px}.dn-cafe-table thead th:nth-child(2){width:130px}.dn-cafe-table thead th:nth-child(3){width:125px}.dn-cafe-table thead th:nth-child(4){width:150px}}
+/* Domestic cafe discovery: comfortable Japanese text and a clear visit schedule. */
+.dn-domestic-filter{border-block:1px solid var(--cafe-line);padding:1.25rem 0;margin:1.5rem 0}
+.dn-domestic-main{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:end}
+.dn-domestic-main .dn-field:first-child{grid-column:span 2}
+.dn-domestic-filter .dn-filter-more{margin-top:1rem;padding:1rem;background:var(--cafe-soft);border-radius:8px}
+.dn-domestic-filter summary,.dn-compare summary{cursor:pointer;padding:.5rem;font-weight:700;min-height:44px}
+.dn-feature-checks{display:flex;gap:.5rem 1.2rem;flex-wrap:wrap;border:0;padding:1rem 0}
+.dn-feature-checks legend{font-size:.9rem;color:var(--cafe-muted);padding-top:1rem}
+.dn-feature-checks label{min-height:44px;margin:0}
+.dn-filter-bottom{display:flex;flex-wrap:wrap;align-items:end;gap:.8rem;margin-top:1rem}
+.dn-filter-bottom .dn-field{flex:1;min-width:110px;max-width:200px}
+.dn-result-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.dn-place-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
+.dn-place-card{min-width:0;display:flex;flex-direction:column;gap:.6rem;padding:1.4rem;border:1px solid var(--cafe-line);border-radius:10px;background:var(--cafe-paper);box-shadow:none;overflow-wrap:anywhere}
+.dn-place-card h2{font-size:1.35rem;line-height:1.5;margin:0 0 .2rem}
+.dn-place-card p{margin:.2rem 0;line-height:1.7}
+.dn-place-card .dn-location{font-size:.9rem;color:var(--cafe-muted)}
+.dn-support-level{font-size:.92rem}
+.dn-visit-time{border-left:3px solid var(--cafe-accent);background:var(--cafe-soft);padding:.75rem 1rem;margin:.6rem 0;display:flex;flex-direction:column;gap:.35rem}
+.dn-visit-time p{font-size:.85rem;color:var(--cafe-muted);margin:0}
+.dn-visit-time strong{font-size:1.05rem;line-height:1.65}
+.dn-visit-time span{line-height:1.65}
+.dn-place-card .dn-sources{margin-top:auto;padding-top:.8rem;font-size:.85rem}
+.dn-freshness,.dn-visit-note{font-size:.9rem;line-height:1.65}
+.dn-compare{margin-top:2rem}
+.dn-place-card .dn-links a,.dn-place-card>p:last-child a{display:inline-flex;align-items:center;min-height:44px}
+.dn-cafe-table .dn-visit-time{min-width:180px}
+@media(max-width:700px){.dn-domestic-main{grid-template-columns:repeat(2,minmax(0,1fr))}.dn-domestic-main .dn-field:first-child{grid-column:1/-1}.dn-place-grid{grid-template-columns:1fr}.dn-place-card{padding:1.1rem}.dn-domestic-filter .dn-filter-more{padding:.65rem}.dn-feature-checks{display:grid;grid-template-columns:1fr}.dn-filter-bottom{align-items:stretch}.dn-filter-bottom .dn-field{min-width:90px}.dn-result-bar{flex-wrap:wrap}.dn-domestic-main button{grid-column:1/-1}}

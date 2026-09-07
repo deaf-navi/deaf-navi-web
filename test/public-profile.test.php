@@ -11,6 +11,8 @@ $p['internal_note']='PRIVATE_SENTINEL';$p['future_admin_field']='FUTURE_PRIVATE'
 $html=visitor_profile($p);
 foreach(['国コード','タイムゾーン','座標','緯度','経度','address_vicinity','PRIVATE_SENTINEL','FUTURE_PRIVATE','34.123456'] as $term)expect(!str_contains($html,$term),'Internal detail leaked');
 foreach(['営業時間・ご利用案内','アクセス','公式サイト（HP）','Instagram','Facebook','LINE','地図・行き方','掲載情報について'] as $term)expect(str_contains($html,$term),'Public information missing');
+$review=array_replace($p,['status'=>'needs_review','business_hours'=>'OLD_HOURS_SENTINEL','event_schedule'=>'OLD_DAYS_SENTINEL']);
+expect(!str_contains(visitor_profile($review),'OLD_'),'Unconfirmed old schedule suppressed throughout profile');
 $p['name']='<script>attack</script>';$p['description']='<img src=x onerror=attack()>';
 expect(!str_contains(visitor_profile($p),'<script>attack'),'XSS escaped');
 $p=['name'=>'空欄のお店','kind'=>'cafe','country_code'=>'JP','prefecture'=>'東京都','city'=>'','status'=>'unknown'];

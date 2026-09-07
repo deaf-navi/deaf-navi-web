@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 function map_records(): array {
-    return array_values(array_filter(visible_records(),fn($p)=>$p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&($p['signing_store']??false)))&&in_array($p['status'],['open','unknown'],true)));
+    return array_values(array_filter(visible_records(),fn($p)=>$p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&($p['signing_store']??false)))&&in_array($p['status'],['open','active_recurring','unknown','needs_review'],true)&&cafe_model($p)['shop_type']!=='event'));
 }
 function map_located(array $p): bool {
     return $p['country_code']==='JP' && ($p['coordinate_accuracy']??'')==='address_vicinity' && !empty($p['coordinate_source_url']) && !empty($p['address']) && is_numeric($p['latitude']??null) && is_numeric($p['longitude']??null) && $p['latitude']>=24 && $p['latitude']<=46 && $p['longitude']>=122 && $p['longitude']<=146;
@@ -10,7 +10,7 @@ function map_data(): array {
     $spots=[];
     foreach(map_records() as $p) if(map_located($p)) {
         // Explicit public allowlist. Never return raw payloads, internal notes, users or submissions.
-        $spots[]=['slug'=>$p['slug'],'name'=>$p['name'],'latitude'=>(float)$p['latitude'],'longitude'=>(float)$p['longitude'],'prefecture'=>$p['prefecture'],'city'=>$p['city'],'address'=>$p['address'],'type'=>TYPES[$p['type']],'status'=>STATUSES[$p['status']],'statusCode'=>$p['status'],'hours'=>($p['business_hours']??'')?:'営業時間未確認','description'=>$p['description']??'','path'=>record_path($p),'sources'=>$p['verification_sources'],'verifiedAt'=>$p['last_verified_at'],'coordinateSource'=>$p['coordinate_source_url']];
+        $spots[]=['slug'=>$p['slug'],'name'=>$p['name'],'latitude'=>(float)$p['latitude'],'longitude'=>(float)$p['longitude'],'prefecture'=>$p['prefecture'],'city'=>$p['city'],'address'=>$p['address'],'type'=>SHOP_TYPES[cafe_model($p)['shop_type']],'status'=>STATUSES[$p['status']],'statusCode'=>$p['status'],'hours'=>($p['business_hours']??'')?:'営業時間未確認','description'=>$p['description']??'','path'=>record_path($p),'sources'=>$p['verification_sources'],'verifiedAt'=>$p['last_verified_at'],'coordinateSource'=>$p['coordinate_source_url']];
     }
     return ['version'=>1,'spots'=>$spots];
 }

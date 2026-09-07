@@ -1,17 +1,18 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/cafe-ui.php';
 function page(string $title,string $body,string $path='',string $description='',array $structured=[],bool $private=false): string {
     $canonical=BASE.($path?:'/connect/sign-cafe/');
     $documentTitle=$title==='Deaf Navi｜手話カフェ'?$title:$title.' | Deaf Navi';
     $robots=$private?'noindex,nofollow':'index,follow';
-    $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script><script src="/directory-ui.js?v=20260905c" defer></script>';
+    $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js" defer></script><script src="/directory-ui.js?v=20260907cafes2" defer></script>';
     if(!$private) {
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'つながる','item'=>BASE.'/connect/'],['@type'=>'ListItem','position'=>3,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
         if($path!=='/connect/sign-cafe/') $crumbs[]=['@type'=>'ListItem','position'=>4,'name'=>$title,'item'=>$canonical];
         $structured[]=['@context'=>'https://schema.org','@type'=>'BreadcrumbList','itemListElement'=>$crumbs];
         foreach($structured as $schema) $ld.='<script type="application/ld+json">'.json_encode($schema,JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_UNESCAPED_UNICODE).'</script>';
     }
-    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($documentTitle).'</title><meta name="description" content="'.e($description).'"><meta name="robots" content="'.$robots.'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($documentTitle).'"><meta property="og:description" content="'.e($description).'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:type" content="website"><meta property="og:image" content="'.BASE.'/og-image.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/directory.css?v=20260907tables">'.$ld.'</head><body class="dn-directory'.(str_starts_with($path,'/connect/sign-cafe/')?' dn-cafe-theme':'').'"><a class="dn-skip" href="#main">本文へ</a><header class="dn-header"><a class="dn-brand" href="/">Deaf Navi<span>知る。つながる。自分らしく。</span></a><nav aria-label="メイン"><a href="/">ニュース</a><a href="/connect/" aria-current="page">つながる</a><a href="/guide/">暮らしのガイド</a></nav></header><main id="main" class="dn-main"><nav class="dn-breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/connect/">つながる</a> / <a href="/connect/sign-cafe/">手話カフェ</a></nav><h1>'.e($title).'</h1>'.$body.'</main><footer class="dn-footer"><a href="/about/">Deaf Naviについて</a><a href="/submit/">情報提供</a><a href="/admin/">管理画面</a><p>営業・開催状況は変更される場合があります。訪問前に情報源をご確認ください。</p></footer></body></html>';
+    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($documentTitle).'</title><meta name="description" content="'.e($description).'"><meta name="robots" content="'.$robots.'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($documentTitle).'"><meta property="og:description" content="'.e($description).'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:type" content="website"><meta property="og:image" content="'.BASE.'/og-image.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/directory.css?v=20260907domestic">'.$ld.'</head><body class="dn-directory'.(str_starts_with($path,'/connect/sign-cafe/')?' dn-cafe-theme':'').'"><a class="dn-skip" href="#main">本文へ</a><header class="dn-header"><a class="dn-brand" href="/">Deaf Navi<span>知る。つながる。自分らしく。</span></a><nav aria-label="メイン"><a href="/">ニュース</a><a href="/connect/" aria-current="page">つながる</a><a href="/guide/">暮らしのガイド</a></nav></header><main id="main" class="dn-main"><nav class="dn-breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/connect/">つながる</a> / <a href="/connect/sign-cafe/">手話カフェ</a></nav><h1>'.e($title).'</h1>'.$body.'</main><footer class="dn-footer"><a href="/about/">Deaf Naviについて</a><a href="/submit/">情報提供</a><a href="/admin/">管理画面</a><p>営業・開催状況は変更される場合があります。訪問前に情報源をご確認ください。</p></footer></body></html>';
 }
 function tabs(bool $starbucks=false,bool $overseas=false): string { return '<nav class="dn-tabs" aria-label="手話カフェの分類"><a href="/connect/sign-cafe/"'.(!$starbucks&&!$overseas?' aria-current="page"':'').'>日本の手話カフェ</a><a href="/connect/sign-cafe/overseas/"'.($overseas?' aria-current="page"':'').'>海外の手話カフェ</a><a href="/connect/sign-cafe/starbucks/"'.($starbucks?' aria-current="page"':'').'>スターバックス</a></nav>'; }
 function ext_link(string $url,string $label): string { if($url==='') return ''; return '<a href="'.e(safe_url($url)).'" target="_blank" rel="noopener noreferrer">'.e($label).' ↗</a>'; }
@@ -32,7 +33,7 @@ function record_path(array $r): string { return '/connect/sign-cafe/'.($r['kind'
 function sources_html(array $p): string {
     $out='<div class="dn-sources"><span>情報確認日：'.e(($p['last_verified_at']??'')?:'未確認').'</span><details><summary>情報源を確認する</summary><ul>';
     foreach($p['verification_sources']??[] as $i=>$url) $out.='<li>'.ext_link($url,'情報源 '.($i+1).' · '.(parse_url($url,PHP_URL_HOST)?:'')).'</li>';
-    return $out.'</ul></details></div>';
+    return $out.'</ul></details></div>'.cafe_freshness_html($p);
 }
 function cafe_card(array $p): string {
     $type=TYPES[$p['type']??'special']??'特殊';
@@ -44,12 +45,6 @@ function cafe_card(array $p): string {
     $out.='</div>'.sources_html($p);
     if($p['kind']==='store') $out.='<p>'.action_link('/connect/sign-cafe/starbucks/','スターバックスの手話関連情報','page').'</p>';
     return $out.'</article>';
-}
-function region(string $prefecture,string $country): string {
-    if($country!=='JP') return '海外';
-    $regions=['北海道'=>['北海道'],'東北'=>['青森県','岩手県','宮城県','秋田県','山形県','福島県'],'関東'=>['茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県'],'中部'=>['新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県'],'近畿'=>['三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県'],'中国'=>['鳥取県','島根県','岡山県','広島県','山口県'],'四国'=>['徳島県','香川県','愛媛県','高知県'],'九州・沖縄'=>['福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県']];
-    foreach($regions as $name=>$prefs) if(in_array($prefecture,$prefs,true)) return $name;
-    return '未分類';
 }
 function visible_records(): array { return array_values(array_filter(array_map('expanded',query("SELECT * FROM records WHERE publication='public' ORDER BY prefecture,name")->fetchAll()),'publicly_visible')); }
 function filters(array $all,bool $overseas=false): string {
@@ -72,6 +67,7 @@ function submission_form(array $values=[]): string {
     return $out.'</div><label class="dn-check"><input type="checkbox" name="consent" value="1" required> 内容確認のための保存と管理者への通知に同意します。第三者の非公開の個人情報は記載しません。</label><p class="dn-muted">任意の連絡先は確認連絡のみに使用し、確認完了後の保管期間は最長1年を目安に管理者が削除します。情報提供は店舗への予約にはなりません。</p><button>確認待ちとして送信する</button></form></details></section>';
 }
 function cafe_list(bool $overseas=false): string {
+    if(!$overseas)return domestic_cafe_page();
     if($overseas)return world_page();
     $all=array_values(array_filter(visible_records(),fn($p)=>(($p['country_code']!=='JP')===$overseas)&&($p['kind']==='cafe'||($p['kind']==='store'&&($p['signing_store']??false))))); $list=filtered($all);
     $body=($overseas?'':'<p class="dn-eyebrow" lang="en">Deaf Navi – Sign Cafe</p><p class="dn-lead">日本と世界の、手話でつながるカフェを探す。</p>').tabs(false,$overseas).'<section class="dn-cafe-intro"><p>手話・ろう文化・筆談での交流を継続して行う店舗や活動を掲載しています。常設・限定営業・定期開催・特殊の4分類で案内し、単発イベントは含みません。'.($overseas?'正式なSigning Storeも掲載対象です。':'正式なサイニングストアは「特殊」として掲載します。').'</p><a href="#request">情報を提供する ↓</a></section>'.($overseas?'<p class="dn-notice">海外の店舗・活動をご紹介します。手話は国や地域によって異なります。対応する手話や筆談の方法は店舗の案内をご確認ください。営業時間は現地時間です。</p>':'').filters($all,$overseas).'<p class="dn-result">該当 <strong>'.count($list).'</strong>件 <span>営業時間は変更される場合があります。訪問前に公式情報をご確認ください。</span></p>';
@@ -82,7 +78,7 @@ function cafe_list(bool $overseas=false): string {
 }
 function cafe_sort_key(array $p,string $key): string {
     if($key==='name')return ($p['name_kana']??'')?:$p['name'];
-    if($key==='type')return (string)(array_search($p['type'],array_keys(TYPES),true)?:0);
+    if($key==='type')return (string)(array_search(cafe_model($p)['shop_type'],array_keys(SHOP_TYPES),true)?:0);
     $prefs=explode(' ','北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県');
     $rank=array_search($p['prefecture'],$prefs,true);
     return $p['country_code']==='JP'?'0-'.sprintf('%02d',$rank===false?99:$rank).'-'.$p['city']:'1-'.$p['country_code'].'-'.$p['prefecture'].'-'.$p['city'];
@@ -92,13 +88,13 @@ function cafe_table(array $list): string {
     $dir=input($_GET,'dir',4)==='desc'?'desc':'asc';
     $collator=class_exists('Collator')?new Collator('ja_JP'):null;
     usort($list,function($a,$b)use($sort,$dir,$collator){$ka=cafe_sort_key($a,$sort);$kb=cafe_sort_key($b,$sort);$cmp=$collator?$collator->compare($ka,$kb):strcmp($ka,$kb);return ($dir==='desc'?-1:1)*($cmp?:strcmp($a['slug'],$b['slug']));});
-    $params=[];foreach(['q'=>200,'country'=>2,'region'=>40,'prefecture'=>100,'type'=>40,'history'=>1] as $k=>$max){$v=input($_GET,$k,$max);if($v!=='')$params[$k]=$v;}
-    $out='<p class="dn-table-hint" id="cafe-table-help">列名で並べ替えできます。店舗名から個別ページへ移動できます。<span class="dn-mobile-hint">表は横にスクロールできます。</span></p><div class="dn-table-scroll" role="region" aria-label="手話カフェの比較表" tabindex="0"><table class="dn-cafe-table" aria-describedby="cafe-table-help" data-sort="'.$sort.'" data-dir="'.$dir.'"><caption class="dn-visually-hidden">手話カフェ一覧・所在地・営業形態・営業時間</caption><thead><tr>';
+    $params=[];foreach(['q'=>200,'country'=>2,'region'=>40,'prefecture'=>100,'type'=>40,'history'=>1,'shop_type'=>40,'status'=>30,'operator_type'=>40,'sign_language_level'=>40,'events'=>1,'view'=>10,'per_page'=>3]+array_fill_keys(array_keys(CAFE_FEATURES),1) as $k=>$max){$v=input($_GET,$k,$max);if($v!=='')$params[$k]=$v;}
+    $out='<p class="dn-table-hint" id="cafe-table-help">列名で並べ替えできます。店舗名から個別ページへ移動できます。<span class="dn-mobile-hint">表は横にスクロールできます。</span></p><div class="dn-table-scroll" role="region" aria-label="手話カフェの比較表" tabindex="0"><table class="dn-cafe-table" data-server-sort="1" aria-describedby="cafe-table-help" data-sort="'.$sort.'" data-dir="'.$dir.'"><caption class="dn-visually-hidden">手話カフェ一覧・所在地・営業形態・営業時間</caption><thead><tr>';
     foreach(['name'=>'店舗名','region'=>'所在地','type'=>'営業形態'] as $key=>$label){$url='?'.http_build_query($params+['sort'=>$key,'dir'=>$sort===$key&&$dir==='asc'?'desc':'asc']);$out.='<th scope="col" aria-sort="'.($sort===$key?($dir==='asc'?'ascending':'descending'):'none').'"><a href="'.e($url).'" data-cafe-sort="'.$key.'">'.$label.' <span aria-hidden="true">'.($sort===$key?($dir==='asc'?'↑':'↓'):'↕').'</span></a></th>';}
     $out.='<th scope="col">営業時間・営業日</th></tr></thead><tbody>';
     foreach($list as $p){
         $id='cafe-detail-'.$p['slug'];
-        $out.='<tr class="dn-cafe-row" data-slug="'.e($p['slug']).'"';foreach(['name','region','type'] as $k)$out.=' data-sort-'.$k.'="'.e(cafe_sort_key($p,$k)).'"';$out.='><th scope="row"><a class="dn-cafe-name" href="'.e(record_path($p)).'">'.e($p['name']).'</a><button type="button" class="dn-expand" data-cafe-expand="'.e($id).'" aria-expanded="false" aria-controls="'.e($id).'" hidden>詳細を開く ＋</button></th><td><span>'.e(($p['country_code']!=='JP'?($p['country_name']?:$p['country_code']).' / ':'').$p['prefecture']).'</span><span class="dn-cell-secondary">'.e($p['city']).'</span></td><td><span class="dn-badge">'.e(TYPES[$p['type']]).'</span>'.($p['status']!=='open'?'<span class="dn-cell-secondary dn-operating-state">'.e(STATUSES[$p['status']]).'</span>':'').'</td><td class="dn-hours">'.nl2br(e(($p['business_hours']??'')?:'営業時間未確認')).(!empty($p['event_schedule'])?'<span class="dn-cell-secondary">営業・開催日：'.nl2br(e($p['event_schedule'])).'</span>':'').official_links($p,true).'</td></tr>';
+        $out.='<tr class="dn-cafe-row" data-slug="'.e($p['slug']).'"';foreach(['name','region','type'] as $k)$out.=' data-sort-'.$k.'="'.e(cafe_sort_key($p,$k)).'"';$out.='><th scope="row"><a class="dn-cafe-name" href="'.e(record_path($p)).'">'.e($p['name']).'</a><button type="button" class="dn-expand" data-cafe-expand="'.e($id).'" aria-expanded="false" aria-controls="'.e($id).'" hidden>詳細を開く ＋</button></th><td><span>'.e(($p['country_code']!=='JP'?($p['country_name']?:$p['country_code']).' / ':'').$p['prefecture']).'</span><span class="dn-cell-secondary">'.e($p['city']).'</span></td><td><span class="dn-badge">'.e(SHOP_TYPES[cafe_model($p)['shop_type']]).'</span><span class="dn-cell-secondary dn-operating-state">'.e(cafe_status_label($p)).'</span>'.'</td><td class="dn-hours">'.cafe_schedule_html($p).official_links($p,true).sources_html($p).'</td></tr>';
         $out.='<tr class="dn-cafe-expanded" id="'.e($id).'" hidden><td colspan="4"><div class="dn-expanded-inner"><h2>'.e($p['name']).'</h2><p>'.nl2br(e($p['description']??'')).'</p><dl class="dn-facts">';
         foreach(['address'=>'住所','holidays'=>'定休日','reservation'=>'予約','sign_support'=>'手話対応'] as $k=>$label)if(!empty($p[$k]))$out.='<dt>'.$label.'</dt><dd>'.nl2br(e($p[$k])).'</dd>';
         $out.='</dl>'.official_links($p).'<div class="dn-links">';if(!empty($p['map_url']))$out.=ext_link($p['map_url'],'地図・行き方');
@@ -161,6 +157,6 @@ function detail(string $slug,bool $event): string {
     if($event && ($p['observation_only']??'0')!=='1' && in_array($p['confidence']??'',['official','organizer','store'],true) && $p['event_date'] && $p['start_time'] && $p['timezone'] && !empty($store['address']) && in_array(event_state($p),['scheduled','ongoing','ended','cancelled'],true)) {
         $schema[]=['@context'=>'https://schema.org','@type'=>'Event','name'=>$p['name'],'url'=>BASE.record_path($p),'startDate'=>(new DateTimeImmutable($p['event_date'].'T'.$p['start_time'],new DateTimeZone($p['timezone'])))->format('c'),'eventStatus'=>'https://schema.org/'.(event_state($p)==='cancelled'?'EventCancelled':'EventScheduled'),'location'=>['@type'=>'Place','name'=>$store['name'],'address'=>['@type'=>'PostalAddress','streetAddress'=>$store['address'],'addressCountry'=>$store['country_code']]]];
     }
-    $body.='<p><a href="/submit/?category=correction">この情報の修正を知らせる</a></p>';
+    $body.='<p><a href="'.e(cafe_correction_url($p)).'">この情報の修正を知らせる</a></p>';
     return page($p['name'],$body,record_path($p),$p['description']??'',$schema);
 }

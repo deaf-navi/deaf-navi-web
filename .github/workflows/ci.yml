@@ -30,6 +30,12 @@ jobs:
       - name: Unit / integration / iOS-compat tests
         run: npm test
 
+      - name: Install PHP SQLite runtime
+        run: sudo apt-get update && sudo apt-get install -y php-cli php-sqlite3 php-mbstring
+
+      - name: Cafe schema, migration and directory regression
+        run: npm run test:cafes
+
       - name: Install OtoMado dependencies
         run: npm ci --prefix tools/otomado
 

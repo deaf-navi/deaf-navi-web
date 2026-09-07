@@ -20,12 +20,15 @@ function visitor_profile(array $p):string {
     if(!empty($p['name_kana']))$out.='<p class="dn-muted">'.e($p['name_kana']).'</p>';
     if($p['status']!=='open')$out.='<p class="dn-notice">'.e(STATUSES[$p['status']]).'。訪問前にお店の最新の案内をご確認ください。</p>';
     $out.=($p['country_code']!=='JP'?'<link rel="stylesheet" href="/world-cafes.css?v=1">'.world_badges($p):'');
+    $out.=($p['country_code']==='JP'?cafe_badges($p).cafe_schedule_html($p):'');
+    if($p['country_code']==='JP'&&!empty($p['notes']))$out.='<p class="dn-notice">'.nl2br(e($p['notes'])).'</p>';
     $out.='<p class="dn-profile-intro">'.nl2br(e($p['description']??'')).'</p>'.official_links($p);
     $out.='<section class="dn-visitor-section"><h2>営業時間・ご利用案内</h2>';
-    $facts=visitor_facts($p,['business_hours'=>'営業時間','event_schedule'=>'営業日','holidays'=>'お休み','reservation'=>'予約について']);
+    $scheduleUnconfirmed=$p['country_code']==='JP'&&in_array($p['status'],['needs_review','unknown'],true);
+    $facts=$scheduleUnconfirmed?'<p>現在の営業日・営業時間は確認中です。過去の案内を訪問予定に使わず、公式の最新情報をご確認ください。</p>':visitor_facts($p,['business_hours'=>'営業時間','event_schedule'=>'営業日','holidays'=>'お休み','reservation'=>'予約について']);
     $out.=($facts?:'<p>営業時間・営業日は、お店の最新の案内をご確認ください。</p>').'</section>';
     if(!empty($p['sign_support']))$out.='<section class="dn-visitor-section"><h2>手話でのコミュニケーション</h2><p>'.nl2br(e($p['sign_support'])).'</p></section>';
-    $out.='<section class="dn-visitor-section"><h2>アクセス</h2>'.visitor_facts($p,['address'=>'住所']);
+    $out.='<section class="dn-visitor-section"><h2>アクセス</h2>'.visitor_facts($p,['address'=>'現在所在地','previous_address'=>'旧所在地（現在の会場ではありません）','moved_at'=>'移転年月','venue_name'=>'開催会場','venue_address'=>'会場所在地']);
     if(!empty($p['map_url'])||!empty($p['address'])){
         $map=($p['map_url']??'')?:'https://www.google.com/maps/search/?api=1&query='.rawurlencode($p['address'].' '.$p['name']);
         $out.='<p><a class="dn-action-link" href="'.e(safe_url($map)).'" target="_blank" rel="noopener noreferrer">'.ui_icon('map').'<span>地図・行き方を確認する</span></a></p>';

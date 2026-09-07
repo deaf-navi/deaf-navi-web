@@ -2,13 +2,14 @@
 declare(strict_types=1);
 
 const TYPES = ['permanent'=>'常設','limited'=>'限定営業','recurring'=>'定期開催','special'=>'特殊'];
-const STATUSES = ['open'=>'営業・活動確認済','temporarily_closed'=>'休業中','unknown'=>'営業状況未確認','closed'=>'閉店・活動終了'];
+const STATUSES = ['open'=>'営業中','active_recurring'=>'定期開催中','temporarily_closed'=>'一時休業','permanently_closed'=>'閉店・活動終了','needs_review'=>'確認中','unknown'=>'営業状況未確認','closed'=>'閉店・活動終了（旧分類）'];
 const EVENT_STATUSES = ['scheduled'=>'開催予定','ongoing'=>'開催中','recurring'=>'定期開催','ended'=>'開催終了','cancelled'=>'中止','date_unknown'=>'日程未確認'];
 const PUBLICATIONS = ['pending'=>'保留・確認中','public'=>'公開','private'=>'非公開','deleted'=>'削除済み（復元可能）'];
 const LEVELS = ['official'=>'公式確認済み','authority'=>'団体の公開資料で確認','organizer'=>'主催者発信で確認','reporting'=>'報道で確認','multiple_sources'=>'複数情報源で確認','pending'=>'要確認'];
 const CONFIDENCE = ['official'=>'公式確認済み','organizer'=>'主催者発信','store'=>'店舗発信','participant'=>'参加者提供','unverified'=>'未確認情報'];
 const REPORT_TYPES = ['new'=>'新しい手話カフェ','move'=>'移転','hours'=>'営業時間変更','url'=>'URL変更','rest'=>'休業','closed'=>'閉店','other'=>'その他'];
 require_once __DIR__.'/world-cafes.php';
+require_once __DIR__.'/cafe-model.php';
 const BASE = 'https://deafnavi.com';
 
 function data_dir(): string { return getenv('DEAFNAVI_DATA_DIR') ?: '/srv/deafnavi/shared/directory'; }
@@ -114,7 +115,7 @@ function password_valid(string $p): void {
     if(!preg_match('//u',$p) || preg_match_all('/./us',$p)<8 || strlen($p)>128) fail('新しいパスワードは8文字以上、128バイト以内で入力してください。');
 }
 function record(string $id): array { $r=query('SELECT * FROM records WHERE id=?',[$id])->fetch(); if(!$r) fail('情報が見つかりません。',404); return $r; }
-function expanded(array $r): array { return array_merge(json_decode($r['payload'],true,512,JSON_THROW_ON_ERROR),$r); }
+function expanded(array $r): array { return cafe_model(array_merge(json_decode($r['payload'],true,512,JSON_THROW_ON_ERROR),$r)); }
 function record_fields(string $kind): array {
     $common=['name'=>'店舗・活動名','name_kana'=>'名称の読み','country_code'=>'国コード（例 JP / US）','country_name'=>'国名','prefecture'=>'都道府県・州','city'=>'市区町村','address'=>'住所','map_url'=>'地図URL','latitude'=>'緯度','longitude'=>'経度','timezone'=>'タイムゾーン（例 Asia/Tokyo）','subtypes'=>'補助ラベル（1行1件）','business_hours'=>'営業時間','event_schedule'=>'営業曜日・開催曜日','holidays'=>'定休日','reservation'=>'予約の要否','description'=>'特徴・説明','sign_support'=>'手話対応の内容','official_url'=>'公式サイト','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','operator'=>'運営団体','verification_sources'=>'情報源URL（1行1件）','last_verified_at'=>'情報確認日','internal_note'=>'管理者メモ（非公開）'];
     if($kind==='event') $common=['name'=>'企画名','event_date'=>'開催日','start_time'=>'開始時刻','end_time'=>'終了時刻','timezone'=>'タイムゾーン','event_schedule'=>'定期開催日程','organizer'=>'主催者','partners'=>'共催・協力団体','description'=>'内容','conditions'=>'参加条件','application'=>'申込方法','official_url'=>'公式サイト','verification_sources'=>'情報源URL（1行1件）','published_at'=>'情報公開日','last_verified_at'=>'最終確認日','internal_note'=>'管理者メモ（非公開）'];
@@ -170,10 +171,13 @@ function validated_record(array $post, string $kind): array {
     if($p['timezone']!=='' && !in_array($p['timezone'],DateTimeZone::listIdentifiers(),true)) fail('タイムゾーンが不正です。');
     if($p['publication']==='public' && ($p['verification_level']==='pending' || !$p['verification_sources'] || $p['last_verified_at']==='')) fail('公開には情報源・確認日・確認済みの情報確度が必要です。営業未確認の場合はその状態を明示してください。');
     if($kind!=='event'&&$p['country_code']!=='JP')$p=world_validate($post,$p);
+    if($kind!=='event')$p=cafe_validate($post,$p);
     return $p;
 }
 function save_record(array $p, string $kind, string $id='', int $revision=0): string {
     $id=$id?:uid(); $stamp=now();
+    // Keep unexposed payload extensions when older editors/importers save a row.
+    if($revision)$p=array_replace(json_decode(record($id)['payload'],true,512,JSON_THROW_ON_ERROR),$p);
     $collision=query('SELECT id FROM records WHERE slug=? AND id!=? AND '.($kind==='event'?"kind='event'":"kind IN ('cafe','store')"),[$p['slug'],$id])->fetch();
     if($collision) fail('このURL名は既に使われています。別のURL名を指定してください。',409);
     $args=[$p['slug'],$p['name'],$p['country_code'],$p['prefecture'],$p['city'],$p['publication'],$p['status'],$p['store_id']??null,json($p),$stamp];

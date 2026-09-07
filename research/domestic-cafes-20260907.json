@@ -1,0 +1,480 @@
+{
+  "version": 2,
+  "batch": "domestic-cafes-20260907-v3",
+  "date": "2026-09-07",
+  "records": [
+    {
+      "id": "kagura-kobe",
+      "slug": "kagura-kobe",
+      "name": "KAGURA",
+      "prefecture": "兵庫県",
+      "city": "神戸市",
+      "aliases": [],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "status": "needs_review",
+        "confirmation_status": "needs_review",
+        "notes": "神戸市周辺の存在候補。正式名称・住所・営業形態・営業日・営業時間・運営者・現在の活動は未確認。",
+        "review_notes": "ユーザー提供のInstagram URL。本文取得不可、検索で同一店舗を裏付けられず。地域もユーザー提供の候補情報。SNS以外の公式URL、ろう者運営・手話スタッフは未確認。",
+        "shop_type": "unknown",
+        "instagram_url": "https://www.instagram.com/kagura.kobe/",
+        "verification_level": "pending",
+        "verification_sources": []
+      }
+    },
+    {
+      "id": "kurenote-cafe",
+      "slug": "kurenote-cafe",
+      "name": "くれのてカフェ",
+      "prefecture": "広島県",
+      "city": "呉市",
+      "aliases": [],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://kurend.com/pages/13/"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "active_recurring",
+        "shop_type": "recurring_popup",
+        "type": "recurring",
+        "operator_type": "welfare",
+        "operator": "社会福祉法人くれんど／でふらく",
+        "venue_name": "豆ナ茶屋",
+        "recurrence": "毎月第3月曜日",
+        "event_schedule": "毎月第3月曜日",
+        "business_hours": "13:00〜16:00",
+        "started_at": "2026-07",
+        "schedule_verified_at": "2026-09-07",
+        "latest_source_date": "2026-08-20",
+        "sign_language_level": "event_only",
+        "has_deaf_staff": true,
+        "sign_language_support": true,
+        "writing_support": true,
+        "beginner_welcome": true,
+        "regular_events": true,
+        "attribute_sources": [
+          "https://kurend.com/pages/13/"
+        ],
+        "description": "豆ナ茶屋を会場に、ろう者スタッフが手話や筆談で接客する月1回のカフェ。",
+        "notes": "2026年7月20日に定期営業を開始。詳細住所・最新SNS・各回の変更有無は主催者の案内で確認してください。",
+        "review_notes": "詳細住所と最新SNSは一次資料で未確認。初日は2026-07-20。",
+        "official_url": "https://kurend.com/pages/13/"
+      }
+    },
+    {
+      "id": "hoshinomori",
+      "slug": "hoshinomori",
+      "name": "café 星の森",
+      "prefecture": "大分県",
+      "city": "大分市",
+      "aliases": [],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://hoshinomori-cafe.com/about/"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "open",
+        "shop_type": "permanent",
+        "type": "permanent",
+        "address": "大分県大分市庄の原2-2-1",
+        "official_url": "https://hoshinomori-cafe.com/",
+        "instagram_url": "https://www.instagram.com/hoshi_no_mori_19/",
+        "sign_language_level": "full",
+        "sign_language_support": true,
+        "beginner_welcome": true,
+        "event_schedule": "火〜土（第2・第4火曜を除く）",
+        "business_hours": "11:00〜15:00（L.O.14:00）",
+        "holidays": "日・月・祝日・第2/第4火曜",
+        "schedule_verified_at": "2026-09-07",
+        "description": "手話で対応できるスタッフを中心に運営する、自然に囲まれたカフェ。",
+        "notes": "営業時間は公式サイトの案内を採用。臨時休業などはSNSでご確認ください。",
+        "review_notes": "ろう者オーナー・ろう者スタッフの属性は公表根拠未確認のためnull。口コミ媒体の10:00〜15:30とは異なり公式を優先。"
+      }
+    },
+    {
+      "id": "acoustic-cafe-sign",
+      "slug": "acoustic-cafe-sign",
+      "name": "Acoustic Cafe 手話カフェ",
+      "prefecture": "北海道",
+      "city": "札幌市",
+      "aliases": [
+        "Acoustic Cafe"
+      ],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "status": "needs_review",
+        "confirmation_status": "needs_review",
+        "notes": "通常のカフェ営業と手話対応日は別です。2026年7月24〜26日の手話カフェ告知を確認しましたが、次回日程・現在の頻度は未確認です。",
+        "review_notes": "2026-02-17と2026-07-24〜26の複数実績を店舗公式で確認。通常店の営業時間を手話対応時間へ転用しない。",
+        "shop_type": "recurring_program",
+        "type": "recurring",
+        "official_url": "https://acousticcafe-sapporo.com/",
+        "instagram_url": "https://www.instagram.com/acoustic_cafe_sapporo/",
+        "venue_name": "Acoustic Cafe",
+        "venue_url": "https://acousticcafe-sapporo.com/",
+        "sign_language_level": "event_only",
+        "sign_language_support": true,
+        "beginner_welcome": true,
+        "regular_events": true,
+        "verification_level": "official",
+        "verification_sources": [
+          "https://acousticcafe-sapporo.com/?cat=10",
+          "https://acousticcafe-sapporo.com/?p=950"
+        ],
+        "latest_source_date": "2026-07-24",
+        "description": "通常店舗の特定日だけ、手話で注文・交流ができる取り組み。"
+      }
+    },
+    {
+      "id": "ishikari-shuwa-cafe",
+      "slug": "ishikari-shuwa-cafe",
+      "name": "石狩市 手話カフェ",
+      "prefecture": "北海道",
+      "city": "石狩市",
+      "aliases": [],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://www.city.ishikari.hokkaido.jp/kenko/fukushi/1001864/1003111.html"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "active_recurring",
+        "shop_type": "public_recurring",
+        "type": "recurring",
+        "operator_type": "organization",
+        "operator": "北海道手話通訳問題研究会 道央支部石狩班",
+        "venue_name": "石狩市役所1F喫茶コーナー",
+        "address": "北海道石狩市花川北6条1丁目30番地2",
+        "recurrence": "毎月第2水曜日",
+        "event_schedule": "毎月第2水曜日",
+        "business_hours": "10:00〜11:00",
+        "schedule_verified_at": "2026-09-07",
+        "latest_source_date": "2026-06-15",
+        "sign_language_level": "event_only",
+        "regular_events": true,
+        "description": "公共施設の喫茶コーナーで開く、手話で交流する定期的な集まり。",
+        "notes": "市公式の団体紹介に掲載された日程。各回の会場変更等は主催者へ確認してください。",
+        "review_notes": "公共施設利用と自治体運営は別。主催は手話通訳問題研究会石狩班。6月市広報の個別回会場はりんくるのため各回確認を案内。",
+        "official_url": "https://www.city.ishikari.hokkaido.jp/kenko/fukushi/1001864/1003111.html"
+      }
+    },
+    {
+      "id": "zipangu-shuwa-cafe",
+      "slug": "zipangu-shuwa-cafe",
+      "name": "じぱんぐ 手話カフェ",
+      "prefecture": "広島県",
+      "city": "広島市",
+      "aliases": [],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "status": "needs_review",
+        "confirmation_status": "needs_review",
+        "notes": "じぱんぐを会場とする継続開催の候補。最新日程・開催頻度・主催者の公式告知を再確認中です。",
+        "review_notes": "2023年主催関係ブログと2024年訪問記を確認。検索転載に2026-08-29 14〜15時の記載あり、元SNS未取得のため最新開催日・住所・主催者を確定しない。",
+        "shop_type": "recurring_program",
+        "type": "recurring",
+        "venue_name": "じぱんぐ",
+        "sign_language_level": "event_only",
+        "verification_level": "pending",
+        "verification_sources": [
+          "https://ameblo.jp/koueimaru/entry-12821746662.html",
+          "https://aki-tokitamago.hatenablog.com/entry/2024/06/04/120000"
+        ],
+        "description": "通常店舗内で手話交流を行う開催候補。"
+      }
+    },
+    {
+      "id": "amanto-shuwa-cafe",
+      "slug": "amanto-shuwa-cafe",
+      "name": "天人手話カフェ",
+      "prefecture": "大阪府",
+      "city": "大阪市北区",
+      "aliases": [],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "status": "needs_review",
+        "confirmation_status": "needs_review",
+        "notes": "定期開催の案内がありますが、公式ページ間で火曜・水曜の記載が異なります。現在の曜日・時間は開催元へご確認ください。",
+        "review_notes": "公式eventページの検索本文は毎週火曜19〜21時。projectページは毎週水曜19時。更新日比較不可のためいずれも現行のrecurrenceとして確定しない。",
+        "shop_type": "recurring_program",
+        "type": "recurring",
+        "venue_name": "Salon de AManTo 天人",
+        "official_url": "https://amanto.jp/cafe/event/",
+        "venue_url": "https://amanto.jp/",
+        "sign_language_level": "event_only",
+        "beginner_welcome": true,
+        "regular_events": true,
+        "verification_level": "official",
+        "verification_sources": [
+          "https://amanto.jp/cafe/event/",
+          "https://amanto.jp/japanese/project/"
+        ],
+        "description": "手話経験の有無を問わず交流する定期型の手話カフェ。"
+      }
+    },
+    {
+      "id": "mori-shuwa-cafe",
+      "slug": "mori-shuwa-cafe",
+      "name": "森の手話カフェ",
+      "prefecture": "千葉県",
+      "city": "流山市",
+      "aliases": [],
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "status": "needs_review",
+        "confirmation_status": "needs_review",
+        "notes": "2023年の開設とろう者スタッフによる接客を市公式で確認。現在の営業日・時間は森の倶楽部へご確認ください。",
+        "review_notes": "2023-11-26開設。市公式は2023年12月の営業日のみ、1月以降は要問合せ。最新日程を過去の第1・第3水曜等から推定しない。",
+        "shop_type": "facility_cafe",
+        "type": "recurring",
+        "venue_name": "高齢者福祉センター 森の倶楽部",
+        "operator_type": "organization",
+        "operator": "流山市デフ協会",
+        "started_at": "2023-11",
+        "sign_language_level": "primary",
+        "has_deaf_staff": true,
+        "sign_language_support": true,
+        "beginner_welcome": true,
+        "attribute_sources": [
+          "https://www.city.nagareyama.chiba.jp/1000009/1010866/1041796/1044368/1044071.html"
+        ],
+        "verification_level": "authority",
+        "verification_sources": [
+          "https://www.city.nagareyama.chiba.jp/1000009/1010866/1041796/1044368/1044071.html"
+        ],
+        "latest_source_date": "2023-12-01",
+        "description": "市デフ協会による施設内カフェ。手話での対面接客や手話の紹介を行う活動。"
+      }
+    },
+    {
+      "id": "kamome",
+      "slug": "kamome",
+      "name": "KOBE手話カフェかもめ",
+      "prefecture": "兵庫県",
+      "city": "神戸市",
+      "aliases": [],
+      "expected_revision": 2,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "status": "needs_review",
+        "confirmation_status": "needs_review",
+        "notes": "継続的な手話カフェ活動の実績があります。現在の開催曜日・時間・会場は主催者へご確認ください。",
+        "review_notes": "2024年報道は毎週月曜。公式は動画・画像中心で現行日程を確定できない。事務局住所をカフェ会場に転記しない。",
+        "shop_type": "recurring_popup",
+        "operator_type": "organization",
+        "operator": "一般社団法人デフサポートかもめ",
+        "sign_language_level": "event_only"
+      }
+    },
+    {
+      "id": "rendeaf",
+      "slug": "rendeaf",
+      "name": "Rendeaf Coffee",
+      "prefecture": "東京都",
+      "city": "文京区",
+      "aliases": [],
+      "expected_revision": 2,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://rendeafcoffee.com/",
+          "https://tabelog.com/tokyo/A1311/A131105/13271274/"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "open",
+        "shop_type": "permanent",
+        "address": "東京都文京区本郷4-3-11 ヴィサーレ本郷1階",
+        "previous_address": "東京都荒川区西日暮里5-27-4 エル・アルカサルフジ1F",
+        "sign_language_level": "full",
+        "sign_language_support": true,
+        "regular_events": true,
+        "notes": "現在は本郷。旧西日暮里の住所・営業時間とは区別しています。最新の営業時間は公式案内をご確認ください。",
+        "review_notes": "移転年月は食べログに2026年4月の記載があるが一次告知未取得のため未確定。旧所在地は移転前ページを参照。最新SNS投稿日も取得できず。"
+      }
+    },
+    {
+      "id": "lamunedou",
+      "slug": "lamunedou",
+      "name": "吉祥寺らむね堂（LamuneDou）",
+      "prefecture": "東京都",
+      "city": "武蔵野市",
+      "aliases": [],
+      "expected_revision": 3,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://lamunedou.com/",
+          "https://lamunedou.com/info/6893495"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "open",
+        "shop_type": "permanent",
+        "sign_language_level": "primary",
+        "has_deaf_staff": true,
+        "sign_language_support": true,
+        "regular_events": true,
+        "attribute_sources": [
+          "https://lamunedou.com/"
+        ],
+        "event_schedule": "土・日（不定休）。金曜はイベントのみ。",
+        "business_hours": "土日15:00〜18:00を基本に営業カレンダーで確認",
+        "schedule_verified_at": "2026-09-07",
+        "notes": "2026年6月から金曜の通常営業は終了。9月カレンダー・Instagramで臨時変更をご確認ください。",
+        "review_notes": "公式の店舗情報欄に旧金曜時間が残るが、2026年6月以降の新しい案内を優先。SNS最新投稿日は本文取得不可で未確定。"
+      }
+    },
+    {
+      "id": "hands-place",
+      "slug": "hands-place",
+      "name": "ハンズプレイス・カフェ",
+      "prefecture": "東京都",
+      "city": "狛江市",
+      "aliases": [],
+      "expected_revision": 3,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "status": "needs_review",
+        "confirmation_status": "needs_review",
+        "notes": "手話・筆談で交流する拠点としての実績は確認済み。現在の営業継続・曜日・時間は未確認です。",
+        "review_notes": "公式の新着情報は2021年まで。過去の休業告知だけで閉店とは判定しない。",
+        "shop_type": "unknown",
+        "operator_type": "organization",
+        "writing_support": true,
+        "sign_language_level": "unknown"
+      }
+    },
+    {
+      "id": "cafe-2u",
+      "slug": "cafe-2u",
+      "name": "手話カフェ2U",
+      "prefecture": "大阪府",
+      "city": "大阪市",
+      "aliases": [],
+      "expected_revision": 3,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://cosignstore.myshopify.com/"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "open",
+        "shop_type": "permanent",
+        "operator": "CO:SIGN.LAB合同会社",
+        "operator_type": "other",
+        "event_schedule": "週末（平日は休み）",
+        "business_hours": "10:00〜16:00",
+        "schedule_verified_at": "2026-09-07",
+        "sign_language_level": "primary",
+        "notes": "カフェは週末営業。平日9〜17時の案内はコサインラボの営業時間です。",
+        "review_notes": "最新SNS投稿日は本文を取得できず未確定。"
+      }
+    },
+    {
+      "id": "anuvanda",
+      "slug": "anuvanda",
+      "name": "Cafe ANUVANDA",
+      "prefecture": "大阪府",
+      "city": "大阪市北区",
+      "aliases": [],
+      "expected_revision": 2,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "organizer",
+        "verification_sources": [
+          "https://ameblo.jp/tenohirade/entry-12846213553.html",
+          "https://ameblo.jp/tenohirade/entry-12976400959.html"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "open",
+        "shop_type": "permanent",
+        "moved_at": "2026-07",
+        "address": "大阪府大阪市北区浮田2-2-14 辻芳ビル2階",
+        "sign_language_level": "primary",
+        "writing_support": true,
+        "notes": "2026年7月に浮田へ移転。開催関係者の2026年8月の案内でも同会場を確認。営業日と臨時変更はInstagramでご確認ください。",
+        "review_notes": "旧所在地は正確な番地の一次情報が未確認のため空欄を維持。Instagram本文取得不可、最新SNS投稿日も未確定。"
+      }
+    },
+    {
+      "id": "oneness",
+      "slug": "oneness",
+      "name": "ONENESS CAFE & BAR",
+      "prefecture": "大阪府",
+      "city": "大阪市鶴見区",
+      "aliases": [],
+      "expected_revision": 2,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://onenesscafebar-0.stores.jp/"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "open",
+        "shop_type": "permanent",
+        "sign_language_level": "primary",
+        "has_deaf_staff": true,
+        "sign_language_support": true,
+        "beginner_welcome": true,
+        "attribute_sources": [
+          "https://onenesscafebar-0.stores.jp/"
+        ],
+        "notes": "店舗公式に、耳が聞こえない店長と手話での交流を案内。最新の営業時間は公式案内をご確認ください。",
+        "review_notes": "ろう者店長と所有者は別のためis_deaf_ownedはnull。"
+      }
+    },
+    {
+      "id": "knot",
+      "slug": "knot",
+      "name": "芦屋川手話cafe & BAR〈Knot〉",
+      "prefecture": "兵庫県",
+      "city": "芦屋市",
+      "aliases": [],
+      "expected_revision": 3,
+      "fields": {
+        "last_researched_at": "2026-09-07",
+        "confirmation_status": "confirmed",
+        "verification_level": "official",
+        "verification_sources": [
+          "https://www.k-knot2018.com/p/34/"
+        ],
+        "last_verified_at": "2026-09-07",
+        "status": "open",
+        "shop_type": "permanent",
+        "operator_type": "individual",
+        "sign_language_level": "primary",
+        "is_deaf_owned": true,
+        "sign_language_support": true,
+        "writing_support": true,
+        "beginner_welcome": true,
+        "regular_events": true,
+        "attribute_sources": [
+          "https://www.k-knot2018.com/p/34/"
+        ],
+        "event_schedule": "日・月・木・金・土",
+        "business_hours": "日・月13:00〜18:30／木13:00〜20:30／金・土18:00〜23:00",
+        "schedule_verified_at": "2026-09-07",
+        "notes": "通常営業時間と筆談cafe/BARなどの企画時間は異なります。訪問前に公式のカレンダーをご確認ください。"
+      }
+    }
+  ],
+  "preserve_ids": [
+    "hohoemi"
+  ]
+}

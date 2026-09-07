@@ -18,7 +18,9 @@
     const links = [...table.querySelectorAll('[data-cafe-sort]')];
     links.forEach(link => link.addEventListener('click', event => {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
+        // Paginated results must be sorted across the whole result set.
+        if (table.dataset.serverSort === '1') return;
+        event.preventDefault();
       const key = link.dataset.cafeSort;
       const direction = table.dataset.sort === key && table.dataset.dir === 'asc' ? 'desc' : 'asc';
       const sign = direction === 'asc' ? 1 : -1;

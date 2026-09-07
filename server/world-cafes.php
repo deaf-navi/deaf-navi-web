@@ -41,7 +41,7 @@ function world_matches(array $p,array $f):bool {
     if($brand==='independent'&&($p['is_chain']??null)!==false)return false;
     if($brand==='other_chain'&&(($p['is_chain']??null)!==true||in_array($actual,['Starbucks','Sign Language Coffee Bar'],true)))return false;
     if($brand!==''&&!in_array($brand,['independent','other_chain'],true)&&normalized($brand)!==normalized($actual))return false;
-    if(($f['history']??'')!=='1'&&!in_array($p['status'],['open','unknown'],true))return false;
+    if(($f['history']??'')!=='1'&&!in_array($p['status'],['open','active_recurring','unknown','needs_review'],true))return false;
     $q=normalized($f['q']??'');
     return $q===''||str_contains(normalized(implode(' ',array_map(fn($k)=>(string)($p[$k]??''),['name','local_name','brand','chain_name','country_code','country_name','country_name_en','city','prefecture','description']))),$q);
 }

@@ -56,7 +56,11 @@ try {
         if(isset($_GET['received']) && !empty($_SESSION['receipt'])) {
             $body='<div class="dn-notice" role="status"><h2>情報提供を受け付けました</h2><p>確認中として保存しました。管理者が内容を確認します。公開やメール通知の完了を意味するものではありません。</p>'.(!empty($_SESSION['duplicate_notice'])?'<p>すでに掲載されている可能性があります。修正・移転・閉店のご報告としても管理者が確認します。</p>':'').'</div>';
             unset($_SESSION['receipt'],$_SESSION['duplicate_notice']);
-        } else $body=input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form(['category'=>input($_GET,'category',20)?:'cafe']+(input($_GET,'scope',20)==='overseas'?['country_code'=>'']:[]));
+        } else {
+            $values=['category'=>input($_GET,'category',20)?:'cafe']+(input($_GET,'scope',20)==='overseas'?['country_code'=>'']:[]);
+            $rid=input($_GET,'record',64);if($rid!==''){ $place=expanded(record($rid));if(!publicly_visible($place))fail('情報が見つかりません。',404);foreach(['name','country_code','country_name','prefecture','city','address','official_url','instagram_url'] as $key)$values[$key]=$place[$key]??'';$values['notes']='対象ページ: '.BASE.record_path($place);$values['report_type']='other';}
+            $body=input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form($values);
+        }
         echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
     } elseif($path==='/connect/sign-cafe/') echo cafe_list();
     elseif($path==='/connect/sign-cafe/overseas/map.json'){header('Content-Type: application/json; charset=UTF-8');echo json(world_map_data());}

@@ -34,7 +34,7 @@ try {
   ok(order(area.text).at(-1)==='yubicchi','geographic region ordering');
   r=await anon('/connect/sign-cafe/?q=大阪&sort=type&dir=desc');
   ok(order(r.text).length===3&&r.text.includes('q=%E5%A4%A7%E9%98%AA'),'sorting preserves search');
-  ok(order((await anon('/connect/sign-cafe/')).text).length===18,'18 normal listings');
+  ok(order((await anon('/connect/sign-cafe/')).text).length===19,'19 listings include explicitly paused cafe');
   ok(order((await anon('/connect/sign-cafe/?history=1')).text).length===19,'19 including paused history');
   r=await anon('/connect/sign-cafe/hands-place/');
   ok(r.status===200&&r.text.includes('営業状況未確認')&&!r.text.includes('"@type":"Place"'),'unknown operation shown without confirmed Place schema');
@@ -47,7 +47,7 @@ try {
   ok(!JSON.stringify(map).match(/internal_note|payload|password|biwako-wa|hohoemi|kurashi-cafe|submitter/),'map safe public fields only');
   ok(map.spots.some(p=>p.slug==='hands-place'&&p.statusCode==='unknown'),'unknown status retained on map');
   ok((await anon('/directory-sitemap.xml')).text.includes('/connect/sign-cafe/map/'),'map sitemap');
-  ok(!(await anon('/connect/sign-cafe/?region=北海道')).text.includes('class="dn-cafe-row"'),'empty region');
+  ok(!(await anon('/connect/sign-cafe/?prefecture=奈良県')).text.includes('class="dn-cafe-row"'),'empty prefecture');
   ok((await anon('/connect/sign-cafe/biwako-wa/')).status===404,'pending details blocked');
   ok(!(await anon('/directory-sitemap.xml')).text.includes('biwako-wa'),'pending sitemap excluded');
   ok((await anon('/admin/',{action:'create_user'})).status===403,'CSRF rejected before mutation');
@@ -70,12 +70,24 @@ try {
   ok((await write({...fixture,coordinate_accuracy:'address_vicinity',latitude:'35',longitude:'139'})).status===400,'map coordinates require address source');
   ok((await write({...fixture,official_url:'javascript:alert(1)'})).status===400,'unsafe URL rejected');
   ok((await write({...fixture,verification_sources:'https://www.google.com/search?q=test'})).status===400,'search result URL rejected');
+  ok((await write({...fixture,has_deaf_staff:'true'})).status===400,'v2 staff attribute requires published source');
+  ok((await write({...fixture,shop_type:'invented'})).status===400,'v2 invalid shop type rejected');
+  ok((await write({...fixture,last_researched_at:'2099-01-01'})).status===400,'v2 future verification rejected');
   ok((await write(fixture)).status===303,'draft created');
   r=await admin('/admin/?view=records&kind=cafe');const draft=r.text.match(/kind=cafe&id=([a-f0-9]{32})/)[1];
   ok((await anon('/connect/sign-cafe/test-fixture/')).status===404,'draft invisible');
-  const publicFixture={...fixture,id:draft,revision:'1',publication:'public',status:'open',verification_level:'official',last_verified_at:new Date().toISOString().slice(0,10),verification_sources:'https://example.org/verified'};
+  const publicFixture={...fixture,id:draft,revision:'1',publication:'public',status:'open',verification_level:'official',last_verified_at:new Date().toISOString().slice(0,10),verification_sources:'https://example.org/verified',shop_type:'recurring_popup',confirmation_status:'confirmed',recurrence:'毎月第3月曜日',has_deaf_staff:'true',attribute_sources:'https://example.org/verified'};
   ok((await write(publicFixture)).status===303,'verified record published');
   r=await anon('/connect/sign-cafe/test-fixture/');ok(r.status===200&&r.text.includes('&lt;script&gt;'),'stored XSS escaped');ok(!r.text.includes('"@type":"CafeOrCoffeeShop"'),'recurring not a fictitious restaurant');
+  ok((await anon('/connect/sign-cafe/?has_deaf_staff=1')).text.includes('test-fixture'),'v2 confirmed staff filter');
+  ok(!(await anon('/connect/sign-cafe/?has_deaf_staff=1')).text.includes('data-slug="knot"'),'v2 unknown staff excluded from filter');
+  ok((await anon('/connect/sign-cafe/?shop_type=recurring_popup')).text.includes('毎月第3月曜日'),'v2 recurrence visible');
+  ok(!(await anon('/connect/sign-cafe/?operator_type=municipality')).text.includes('data-slug="test-fixture"'),'v2 operator filter');
+  const correction=await anon('/submit/?category=correction&record='+draft);
+  ok(correction.status===200&&correction.text.includes('test-fixture')&&correction.text.includes('&lt;script&gt;'),'v2 correction context escaped');
+  const v2edit=await admin('/admin/?view=edit&kind=cafe&id='+draft);
+  ok(v2edit.text.includes('name="shop_type"')&&v2edit.text.includes('name="recurrence"')&&v2edit.text.includes('name="has_deaf_staff"'),'v2 management fields rendered');
+  ok((await admin('/admin/?view=records&kind=cafe&freshness=12')).status===200,'v2 stale management filter');
   ok((await write(publicFixture)).status===409,'stale edit rejected');
   ok((await write({...publicFixture,revision:'2',publication:'deleted'})).status===303,'soft delete');
   ok((await anon('/connect/sign-cafe/test-fixture/')).status===404,'deleted hidden');
@@ -109,6 +121,13 @@ try {
   ok((await write(event)).status===303,'event CRUD');r=await anon('/connect/sign-cafe/starbucks/test-event/');ok(r.status===200&&r.text.includes('EventScheduled'),'confirmed Event structured data');
   r=await anon('/connect/sign-cafe/starbucks/');ok(r.text.indexOf('検証用開催')>r.text.indexOf('過去の開催履歴'),'past scheduled event automatically in history');
   const mail=spawnSync('php',['server/cli.php','mail'],{cwd:root,env,encoding:'utf8'});ok(mail.stdout.includes('MAIL_NOT_CONFIGURED'),'unconfigured mail never reported sent');
+  const bulk=spawnSync('php',['-r',`require 'server/core.php';$p=json_decode(record('knot')['payload'],true);for($i=1;$i<=30;$i++){$p['slug']='pagination-'.sprintf('%02d',$i);$p['name']='ページ分割検証'.sprintf('%02d',$i);save_record($p,'cafe','pagination-'.$i,0);}`],{cwd:root,env,encoding:'utf8'});
+  ok(bulk.status===0,'pagination fixture inserted');
+  const paged=await anon('/connect/sign-cafe/?q=ページ分割検証');
+  ok(order(paged.text).length===24&&paged.text.includes('全30件中 1〜24件'),'pagination first page and total');
+  ok(order((await anon('/connect/sign-cafe/?q=ページ分割検証&page=2')).text).length===6,'pagination second page');
+  const sorted=await anon('/connect/sign-cafe/?q=ページ分割検証&sort=name&dir=desc&view=table');
+  ok(order(sorted.text)[0]==='pagination-30'&&sorted.text.includes('data-server-sort="1"'),'server sorts full set before pagination');
   const check=spawnSync('php',['server/cli.php','check'],{cwd:root,env,encoding:'utf8'});ok(check.status===0&&JSON.parse(check.stdout).integrity==='ok','SQLite integrity');
   r=await admin('/admin/');csrf=token(r.text);await write({action:'logout'});ok((await admin('/admin/')).text.includes('管理画面にログイン'),'logout');
   // Clear POST token rotates; use repeated failed credentials to prove IP rate limiting.

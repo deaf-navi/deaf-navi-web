@@ -51,7 +51,7 @@ function admin_page(): string {
             $stores=[''=>'開催店舗を選択してください'];foreach(query("SELECT id,name FROM records WHERE kind='store' AND publication!='deleted'")->fetchAll() as $s)$stores[$s['id']]=$s['name'];
             $body.=select_field('store_id','開催店舗（先に店舗を登録）',$stores,$p['store_id']??'').select_field('confidence','情報の確度',CONFIDENCE,$p['confidence']??'unverified');
         }
-        $body.='</div>'.admin_edit_fields($p,$kind);
+        $body.='</div>'.admin_edit_fields($p,$kind).($kind!=='event'?cafe_admin_fields($p):'');
         if($sub)$body.=select_field('submission_status','投稿の確認結果',['pending'=>'確認中のまま','approved'=>'承認（正式データへ反映）','rejected'=>'不採用'],$sub['status']);
         $overseasStore=$kind==='store'&&($p['country_code']??'JP')!=='JP';
         $body.='<p><button>変更を保存</button></p></form><p><a href="/admin/?view=records&kind='.($overseasStore?'cafe':$kind).($kind==='cafe'||$overseasStore?'&scope='.(($p['country_code']??'')==='JP'?'domestic':'overseas'):'').'">一覧へ戻る</a></p>';
@@ -108,7 +108,7 @@ function admin_action(): void {
         require_user(true);if(input($_POST,'confirm',1)!=='1')fail('再送の確認が必要です。');
         $id=(int)input($_POST,'id',20);$s=query("UPDATE outbox SET status='pending',last_error=NULL,updated_at=? WHERE id=? AND status IN ('failed','uncertain')",[now(),$id]);if($s->rowCount()!==1)fail('通知状態が変わりました。再読み込みしてください。',409);audit('mail_retry_requested',(string)$id);
     } elseif($action==='save_record') {
-        $kind=choice(input($_POST,'kind',10),['cafe'=>1,'store'=>1,'event'=>1]);$p=validated_record($_POST,$kind);$id=input($_POST,'id',64);$rev=(int)input($_POST,'revision',10);
+        $kind=choice(input($_POST,'kind',10),['cafe'=>1,'store'=>1,'event'=>1]);$id=input($_POST,'id',64);$post=$_POST;if($id){$oldPayload=json_decode(record($id)['payload'],true,512,JSON_THROW_ON_ERROR);$extensionKeys=array_merge(array_keys(CAFE_TEXT_FIELDS),CAFE_TRI_FIELDS,['shop_type','operator_type','sign_language_level','confirmation_status']);$post=array_replace(array_intersect_key(cafe_post($oldPayload),array_flip($extensionKeys)),$_POST);}$p=validated_record($post,$kind);$rev=(int)input($_POST,'revision',10);
         if(($id==='')!==($rev===0))fail('編集対象が不正です。');
         if($id && record($id)['slug']!==$p['slug'])fail('既存URLの変更は転送設定が必要なため、管理画面では変更できません。');
         $sid=input($_POST,'submission',64);$sr=(int)input($_POST,'submission_revision',10);$state=$sid?choice(input($_POST,'submission_status',20),['pending'=>1,'approved'=>1,'rejected'=>1]):'';
