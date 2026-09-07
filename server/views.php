@@ -72,6 +72,7 @@ function submission_form(array $values=[]): string {
     return $out.'</div><label class="dn-check"><input type="checkbox" name="consent" value="1" required> 内容確認のための保存と管理者への通知に同意します。第三者の非公開の個人情報は記載しません。</label><p class="dn-muted">任意の連絡先は確認連絡のみに使用し、確認完了後の保管期間は最長1年を目安に管理者が削除します。情報提供は店舗への予約にはなりません。</p><button>確認待ちとして送信する</button></form></details></section>';
 }
 function cafe_list(bool $overseas=false): string {
+    if($overseas)return world_page();
     $all=array_values(array_filter(visible_records(),fn($p)=>(($p['country_code']!=='JP')===$overseas)&&($p['kind']==='cafe'||($p['kind']==='store'&&($p['signing_store']??false))))); $list=filtered($all);
     $body=($overseas?'':'<p class="dn-eyebrow" lang="en">Deaf Navi – Sign Cafe</p><p class="dn-lead">日本と世界の、手話でつながるカフェを探す。</p>').tabs(false,$overseas).'<section class="dn-cafe-intro"><p>手話・ろう文化・筆談での交流を継続して行う店舗や活動を掲載しています。常設・限定営業・定期開催・特殊の4分類で案内し、単発イベントは含みません。'.($overseas?'正式なSigning Storeも掲載対象です。':'正式なサイニングストアは「特殊」として掲載します。').'</p><a href="#request">情報を提供する ↓</a></section>'.($overseas?'<p class="dn-notice">海外の店舗・活動をご紹介します。手話は国や地域によって異なります。対応する手話や筆談の方法は店舗の案内をご確認ください。営業時間は現地時間です。</p>':'').filters($all,$overseas).'<p class="dn-result">該当 <strong>'.count($list).'</strong>件 <span>営業時間は変更される場合があります。訪問前に公式情報をご確認ください。</span></p>';
     $body=str_replace('>営業・活動確認済</option>','>休業・閉店を除く</option>',$body);

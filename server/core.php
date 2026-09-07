@@ -8,6 +8,7 @@ const PUBLICATIONS = ['pending'=>'保留・確認中','public'=>'公開','privat
 const LEVELS = ['official'=>'公式確認済み','authority'=>'団体の公開資料で確認','organizer'=>'主催者発信で確認','reporting'=>'報道で確認','multiple_sources'=>'複数情報源で確認','pending'=>'要確認'];
 const CONFIDENCE = ['official'=>'公式確認済み','organizer'=>'主催者発信','store'=>'店舗発信','participant'=>'参加者提供','unverified'=>'未確認情報'];
 const REPORT_TYPES = ['new'=>'新しい手話カフェ','move'=>'移転','hours'=>'営業時間変更','url'=>'URL変更','rest'=>'休業','closed'=>'閉店','other'=>'その他'];
+require_once __DIR__.'/world-cafes.php';
 const BASE = 'https://deafnavi.com';
 
 function data_dir(): string { return getenv('DEAFNAVI_DATA_DIR') ?: '/srv/deafnavi/shared/directory'; }
@@ -168,6 +169,7 @@ function validated_record(array $post, string $kind): array {
     }
     if($p['timezone']!=='' && !in_array($p['timezone'],DateTimeZone::listIdentifiers(),true)) fail('タイムゾーンが不正です。');
     if($p['publication']==='public' && ($p['verification_level']==='pending' || !$p['verification_sources'] || $p['last_verified_at']==='')) fail('公開には情報源・確認日・確認済みの情報確度が必要です。営業未確認の場合はその状態を明示してください。');
+    if($kind!=='event'&&$p['country_code']!=='JP')$p=world_validate($post,$p);
     return $p;
 }
 function save_record(array $p, string $kind, string $id='', int $revision=0): string {
@@ -185,5 +187,5 @@ function save_record(array $p, string $kind, string $id='', int $revision=0): st
     audit('save_'.$kind,$id); return $id;
 }
 function publicly_visible(array $p): bool {
-    return $p['publication']==='public' && ($p['verification_level']??'pending')!=='pending' && !empty($p['last_verified_at']) && !empty($p['verification_sources']);
+    return $p['publication']==='public' && world_verification($p)==='verified' && ($p['verification_level']??'pending')!=='pending' && !empty($p['last_verified_at']) && !empty($p['verification_sources']);
 }

@@ -47,7 +47,7 @@ try{
  const published={...fixture,id,revision:'1',publication:'public',verification_level:'official',verification_sources:'https://example.org/source',last_verified_at:new Date().toISOString().slice(0,10)};
  ok((await post(published)).status===303,'publish verified fixture');
  r=await anon(path+'?country=US&q='+encodeURIComponent('アメリカ'));
- ok(r.text.includes('data-slug="overseas-fixture"')&&r.text.includes('country=US'),'country search and sortable links preserve filter');
+ ok(r.text.includes('data-slug="overseas-fixture"')&&r.text.includes('value="US" selected'),'country search and selected filter persist');
  ok(!r.text.includes('<script>bad</script>')&&r.text.includes('&lt;script&gt;'),'stored text escaped');
  ok(!(await anon(path+'?country=GB')).text.includes('data-slug="overseas-fixture"'),'country filter excludes other country');
  ok((await anon('/connect/sign-cafe/')).text.match(/<tbody>[\s\S]*?<\/tbody>/)[0]===domesticBefore,'domestic listing unchanged');

@@ -1,0 +1,19 @@
+# 海外手話カフェの世界地域・ブランド対応
+
+ユーザー添付の再設計・候補投入指示と世界地図の依頼に基づく、XserverのDeaf Navi限定の改修。
+
+既存SQLite records.payloadへworld_region/region_tags/local_name/country_name_en/subregion/venue_type/operation_type/is_chain/chain_name/brand/deaf_relation/verification_statusを追加する。is_chainのnullとfalseは別扱い。国内の既存フィールド、DBスキーマ、認証、通知は維持する。
+
+営業status、確認verification_status、公開publicationを分離。pending/stale/rejectedは公開ページ・詳細・地図・サイトマップから除外する。旧レコードに確認状態がない場合だけ既存verification_levelから互換判定する。非表示は既存privateを利用し、deletedも物理削除しない。情報源の種類verification_levelは確認状態から独立して保持する。
+
+海外一覧は非JPのcafe/storeを一緒に表示し、ブランドと公式Signing Storeを別バッジにする。地域・タグ・国・ブランド・形態・手話との関係をGET条件として共有可能。チェーン名・現地語名称・英語国名も検索対象。地域・国ごとのカード表示とスマートフォンの折り畳み条件パネル。追加ブランドと国はデータから選択肢を生成する。
+
+地図は既存LeafletとMarkerClusterをクリック時に読み込み、公開済み・確認済み・位置情報の根拠があるレコードだけを限定JSONに出す。管理者メモや生payloadは返さない。地図画像はOpenStreetMapの表示範囲のみ。現住所の取得、有料API、自動ジオコーディングは組み込まない。7件は公式住所とOSM番地を一度だけ照合し、結果を作業領域へ保存した。建物付近の概略位置を表示する。
+
+候補manifestは公開リポジトリ・public rootへ置かない。第一弾27件の全フィールドを照合し、同一IDに分類を追加。Permas Cityは既存を更新、Burmah Road等を新規に追加する。Canton Towerと東方文徳店は別レコード。中国は19店を個別に特定したが現在の住所・営業は未確認なのでstale/pending。20店の総数を満たすための架空店舗を作らない。
+
+データ投入は固定ハッシュ・全件トランザクション・一貫DBバックアップ・重複拒否・既存27件照合・無関係29件とユーザー等の不変検証を実施。実行結果・件数・情報源・未確認事項はタスクのoutputsへ記録する。
+
+検証：既存のdirectory/admin/public-profile/overseasとnpm test、新しいworld-cafes.php。合成DBで51件登録、管理・複合絞り込み、非公開除外、地図7件、PC/375pxを確認。ビルドでworld-cafes.css/jsをsrc/assetsからdocsへコピーする。
+
+復旧は旧releaseへcurrentを原子的に戻す。新規候補はpendingのまま保持できる。データ復旧は後続編集のrevisionを照合して対象IDだけを処理し、DB全体の安易な巻き戻しはしない。プログラムの旧版でもpendingは非公開。

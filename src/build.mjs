@@ -180,6 +180,8 @@ async function main() {
   // ---- アセットコピー ----
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
   await copyAsset(join(ASSETS, 'directory.css'), 'directory.css');
+  await copyAsset(join(ASSETS, 'world-cafes.css'), 'world-cafes.css');
+  await copyAsset(join(ASSETS, 'world-cafes.js'), 'world-cafes.js');
   await copyAsset(join(ASSETS, 'directory-safety.js'), 'directory-safety.js');
   await copyAsset(join(ASSETS, 'directory-ui.js'), 'directory-ui.js');
   await copyAsset(join(ASSETS, 'directory-community.css'), 'directory-community.css');

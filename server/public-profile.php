@@ -19,6 +19,7 @@ function visitor_profile(array $p):string {
     $out='<article class="dn-visitor-profile"><p class="dn-location">'.e(($p['country_code']!=='JP'?($p['country_name']?:'海外').' / ':'').$p['prefecture'].' / '.$p['city']).'</p>';
     if(!empty($p['name_kana']))$out.='<p class="dn-muted">'.e($p['name_kana']).'</p>';
     if($p['status']!=='open')$out.='<p class="dn-notice">'.e(STATUSES[$p['status']]).'。訪問前にお店の最新の案内をご確認ください。</p>';
+    $out.=($p['country_code']!=='JP'?world_badges($p):'');
     $out.='<p class="dn-profile-intro">'.nl2br(e($p['description']??'')).'</p>'.official_links($p);
     $out.='<section class="dn-visitor-section"><h2>営業時間・ご利用案内</h2>';
     $facts=visitor_facts($p,['business_hours'=>'営業時間','event_schedule'=>'営業日','holidays'=>'お休み','reservation'=>'予約について']);

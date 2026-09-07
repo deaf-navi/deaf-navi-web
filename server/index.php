@@ -17,7 +17,7 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
 header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 ini_set('display_errors','0');
 $path=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
-if($path==='/connect/sign-cafe/map/')header("Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
+if(in_array($path,['/connect/sign-cafe/map/','/connect/sign-cafe/overseas/'],true))header("Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 try {
     if(str_ends_with($path,'/index.html') && preg_match('#^/(admin/|submit/|connect/sign-cafe/)#',$path)) {
         header('Location: '.substr($path,0,-10).(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;
@@ -59,6 +59,7 @@ try {
         } else $body=input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form(['category'=>input($_GET,'category',20)?:'cafe']+(input($_GET,'scope',20)==='overseas'?['country_code'=>'']:[]));
         echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
     } elseif($path==='/connect/sign-cafe/') echo cafe_list();
+    elseif($path==='/connect/sign-cafe/overseas/map.json'){header('Content-Type: application/json; charset=UTF-8');echo json(world_map_data());}
     elseif($path==='/connect/sign-cafe/overseas/')echo cafe_list(true);
     elseif($path==='/connect/sign-cafe/map/')echo map_page_2d();
     elseif($path==='/connect/sign-cafe/map/data.json'){header('Content-Type: application/json; charset=UTF-8');echo json(map_data());}
