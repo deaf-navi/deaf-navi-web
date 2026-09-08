@@ -87,6 +87,7 @@ function access_entry(string $line): ?array {
     if ($duration !== null && (!is_finite($duration) || $duration < 0)) $duration = null;
     $client = is_string($r['client_kind']??null) && isset(ACCESS_CLIENTS[$r['client_kind']]) && $r['client_kind']!=='all' ? $r['client_kind'] : 'unknown';
     if (preg_match('#^/admin(?:/|$)#',$path) && in_array($client,['human','unknown'],true)) $client='internal';
+    if (in_array($path,['/sw.js','/otomado/sw.js'],true) && in_array($client,['human','unknown'],true)) $client='automation';
     return ['ts'=>$ts, 'host'=>$host, 'path'=>$path, 'method'=>$method, 'status'=>$status,
         'duration'=>$duration, 'size'=>is_int($r['size'] ?? null) && $r['size'] >= 0 ? $r['size'] : null,
         'client'=>$client,

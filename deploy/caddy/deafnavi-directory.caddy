@@ -13,6 +13,7 @@
     }
     map "{access_referrer_class}:{http.request.uri.path}" {access_path_class} {
         ~^(?:human|unknown):/admin(?:/|$) internal
+        ~^(?:human|unknown):/(?:otomado/)?sw[.]js$ automation
         default {access_referrer_class}
     }
     map "{http.request.header.X-DeafNavi-Client}:{query.dn_client}" {access_client_class} {

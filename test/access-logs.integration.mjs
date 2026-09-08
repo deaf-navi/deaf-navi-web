@@ -125,6 +125,8 @@ try {
     ok(run(['server/cli.php','check']).status===0,'application DB intact');
     writeFileSync(join(logsDir,'access.log'),['human','ai','bot','automation','unknown'].map((client_kind,i)=>JSON.stringify(entry('/class-'+i+'/',start+100+i,{client_kind}))).join('\n')+'\n');
     ok(report({client:'ai'}).total===1 && report({client:'bot'}).total===1 && report({client:'human'}).total===4,'category filter');
+    appendFileSync(join(logsDir,'access.log'),['/sw.js','/otomado/sw.js'].map(path=>JSON.stringify(entry(path,start+150))).join('\n')+'\n');
+    ok(report({client:'human'}).total===4 && report({client:'automation'}).total===3,'browser service worker update checks excluded including earlier logs');
     r=await admin('/admin/');
     const cleanSummary=r.text.match(/<section class="admin-panel admin-access-summary"[\s\S]*?<\/section>/)?.[0]??'';
     ok(cleanSummary.includes('/class-0/') && !cleanSummary.includes('/class-1/') && !cleanSummary.includes('/class-2/') && !cleanSummary.includes('/class-3/') && !cleanSummary.includes('/class-4/'),'past classified Codex, bots, automation and unknown are excluded from summary');
