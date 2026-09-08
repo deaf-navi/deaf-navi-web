@@ -1,5 +1,15 @@
 // Progressive enhancement only: server-rendered links and individual pages work without JS.
 (() => {
+  // Keep filters available without JS; on phones, start with the results in view.
+  const filterPanel = document.querySelector('.dn-filter-panel');
+  if (filterPanel) {
+    const chosen = [...filterPanel.querySelectorAll('[name="q"], [name="region"], [name="prefecture"], [name="country"]')]
+      .filter(control => control.value !== '')
+      .map(control => control.tagName === 'SELECT' ? control.selectedOptions[0].textContent : control.value);
+    if (filterPanel.querySelector('.dn-filter-more[open]')) chosen.push('詳しい条件あり');
+    if (chosen.length) filterPanel.querySelector('.dn-filter-panel-note').textContent = chosen.join(' / ');
+    if (window.matchMedia('(max-width: 900px)').matches) filterPanel.open = false;
+  }
   const table = document.querySelector('.dn-cafe-table');
   if (table) {
     const body = table.tBodies[0];
