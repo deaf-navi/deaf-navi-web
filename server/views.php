@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__.'/cafe-ui.php';
+require_once __DIR__.'/cafe-contact.php';
 require_once __DIR__.'/cafe-visuals.php';
 function page(string $title,string $body,string $path='',string $description='',array $structured=[],bool $private=false,array $meta=[]): string {
     $scope=$private?'':match($path){'/connect/sign-cafe/'=>'domestic','/connect/sign-cafe/overseas/'=>'overseas','/connect/sign-cafe/starbucks/'=>'community',default=>''};
@@ -18,11 +19,11 @@ function page(string $title,string $body,string $path='',string $description='',
         $structured[]=['@context'=>'https://schema.org','@type'=>'BreadcrumbList','itemListElement'=>$crumbs];
         foreach($structured as $schema) $ld.='<script type="application/ld+json">'.json_encode($schema,JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_UNESCAPED_UNICODE).'</script>';
     }
-    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($documentTitle).'</title><meta name="description" content="'.e($description).'"><meta name="robots" content="'.$robots.'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($documentTitle).'"><meta property="og:description" content="'.e($description).'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:type" content="website"><meta property="og:image" content="'.BASE.'/og-image.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/directory.css?v=20260908seo">'.$ld.'</head><body class="dn-directory'.(str_starts_with($path,'/connect/sign-cafe/')?' dn-cafe-theme':'').($scope!==''?' dn-cafe-hub':'').'"><a class="dn-skip" href="#main">本文へ</a><header class="dn-header"><a class="dn-brand" href="/">Deaf Navi</a><nav aria-label="メイン"><a href="/">ニュース</a><a href="/connect/" aria-current="page">つながる</a><a href="/guide/">暮らしのガイド</a></nav></header><main id="main" class="dn-main"><nav class="dn-breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/connect/">つながる</a> / <a href="/connect/sign-cafe/">手話カフェ</a></nav>'.$heading.$body.'</main><footer class="dn-footer"><a href="/about/">Deaf Naviについて</a><a href="/submit/">情報提供</a><a href="/admin/">管理画面</a><p>営業・開催状況は変更される場合があります。訪問前に情報源をご確認ください。</p></footer></body></html>';
+    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($documentTitle).'</title><meta name="description" content="'.e($description).'"><meta name="robots" content="'.$robots.'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($documentTitle).'"><meta property="og:description" content="'.e($description).'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:type" content="website"><meta property="og:image" content="'.BASE.'/og-image.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/directory.css?v=20260908contact">'.$ld.'</head><body class="dn-directory'.(str_starts_with($path,'/connect/sign-cafe/')?' dn-cafe-theme':'').($scope!==''?' dn-cafe-hub':'').'"><a class="dn-skip" href="#main">本文へ</a><header class="dn-header"><a class="dn-brand" href="/">Deaf Navi</a><nav aria-label="メイン"><a href="/">ニュース</a><a href="/connect/" aria-current="page">つながる</a><a href="/guide/">暮らしのガイド</a></nav></header><main id="main" class="dn-main"><nav class="dn-breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/connect/">つながる</a> / <a href="/connect/sign-cafe/">手話カフェ</a></nav>'.$heading.$body.'</main><footer class="dn-footer"><a href="/about/">Deaf Naviについて</a><a href="/submit/">情報提供</a><a href="/admin/">管理画面</a><p>営業・開催状況は変更される場合があります。訪問前に情報源をご確認ください。</p></footer></body></html>';
 }
 function tabs(bool $starbucks=false,bool $overseas=false,bool $decorated=false): string {
-    $active=$starbucks?2:($overseas?1:0);$out='<nav class="dn-tabs" aria-label="手話カフェの分類">';
-    foreach([['/connect/sign-cafe/','日本の手話カフェ','cup'],['/connect/sign-cafe/overseas/','海外の手話カフェ','globe'],['/connect/sign-cafe/starbucks/','スターバックス','chat']] as $i=>[$url,$label,$icon])$out.='<a href="'.$url.'"'.($i===$active?' aria-current="page"':'').'>'.($decorated?'<span class="dn-tab-art">'.cafe_icon($icon).'</span><span>'.$label.'</span>':$label).'</a>';
+    $active=$overseas?1:0;$out='<nav class="dn-tabs" aria-label="手話カフェの分類">';
+    foreach([['/connect/sign-cafe/','日本の手話カフェ','cup'],['/connect/sign-cafe/overseas/','海外の手話カフェ','globe']] as $i=>[$url,$label,$icon])$out.='<a href="'.$url.'"'.($i===$active?' aria-current="page"':'').'>'.($decorated?'<span class="dn-tab-art">'.cafe_icon($icon).'</span><span>'.$label.'</span>':$label).'</a>';
     return $out.'</nav>';
 }
 function ext_link(string $url,string $label): string { if($url==='') return ''; return '<a href="'.e(safe_url($url)).'" target="_blank" rel="noopener noreferrer">'.e($label).' ↗</a>'; }
@@ -53,7 +54,6 @@ function cafe_card(array $p): string {
     $out.='</div><p class="dn-location">'.e(($p['country_code']!=='JP'?($p['country_name']?:$p['country_code']).' / ':'').$p['prefecture'].' / '.$p['city']).'</p><h2><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h2><p>'.nl2br(e($p['description']??'')).'</p><dl class="dn-facts"><dt>営業・開催日</dt><dd>'.e(($p['event_schedule']??'')?:'未確認・公式情報をご確認ください').'</dd><dt>時間</dt><dd>'.e(($p['business_hours']??'')?:'未確認').'</dd></dl><div class="dn-links">';
     $out.=official_links($p);
     $out.='</div>'.sources_html($p);
-    if($p['kind']==='store') $out.='<p>'.action_link('/connect/sign-cafe/starbucks/','スターバックスの手話関連情報','page').'</p>';
     return $out.'</article>';
 }
 function visible_records(): array { return array_values(array_filter(array_map('expanded',query("SELECT * FROM records WHERE publication='public' ORDER BY prefecture,name")->fetchAll()),'publicly_visible')); }
@@ -126,34 +126,11 @@ function event_table(array $events,array $stores):string {
     foreach($events as $p){$store=$stores[$p['store_id']];$out.='<tr><th scope="row"><a href="'.e(record_path($p)).'">'.e($p['name']).'</a><span class="dn-cell-secondary">'.e($store['name']).'</span></th><td>'.e($store['prefecture'].' '.$store['city']).'</td><td>'.e(($p['event_date']?:'日程未確認').' '.($p['start_time']??'')).'<span class="dn-cell-secondary">'.e($p['event_schedule']??'').'</span><span class="dn-badge">'.e(($p['observation_only']??'0')==='1'?'開催実績・個別日時未確認':EVENT_STATUSES[event_state($p)]).'</span></td><td>'.e(CONFIDENCE[$p['confidence']??'unverified']).sources_html($p).'</td></tr>';}
     return $out.'</tbody></table></div>';
 }
-function starbucks_list(): string {
-    $all=visible_records();$stores=[];$events=[];
-    foreach($all as $p)if($p['kind']==='store'&&$p['country_code']==='JP')$stores[$p['id']]=$p;
-    $pref=input($_GET,'prefecture',100);$selected=input($_GET,'store',64);$q=input($_GET,'q',200);
-    $matched=array_filter($stores,fn($s)=>($pref===''||$s['prefecture']===$pref)&&($selected===''||$s['id']===$selected)&&($q===''||str_contains(normalized($s['name'].' '.$s['prefecture'].' '.$s['city']),normalized($q))));
-    foreach($all as $p)if($p['kind']==='event'&&isset($matched[$p['store_id']]))$events[]=$p;
-    usort($events,fn($a,$b)=>strcmp($a['event_date']??'',$b['event_date']??''));
-    $prefs=[];$opts=[];foreach($stores as $s){$prefs[$s['prefecture']]=$s['prefecture'];$opts[$s['id']]=$s['name'];}ksort($prefs);
-    $body=tabs(true,false,true).'<p class="dn-cafe-intro">国内の開催予定と、手話カフェの開催実績を探せます。海外のSigning Storeは <a href="/connect/sign-cafe/overseas/?brand=starbucks">海外の手話カフェ一覧</a> に掲載しています。</p><form class="dn-filter" method="get" aria-label="スターバックスの検索と絞り込み">'.field('q','店舗名・地域',$q,'search').select_field('prefecture','都道府県',[''=>'すべて']+$prefs,$pref).select_field('store','店舗',[''=>'すべての店舗']+$opts,$selected).'<div class="dn-actions"><button>絞り込む</button><a href="/connect/sign-cafe/starbucks/">すべて解除</a></div></form><nav class="dn-section-links" aria-label="ページ内の案内">'.cafe_guide_link('#upcoming','開催予定','calendar').cafe_guide_link('#regular','常設・定期開催','cup').cafe_guide_link('#observed','開催実績のある店舗','chat').cafe_guide_link('#past','過去の開催履歴','clock').cafe_guide_link('#starbucks-post','情報を投稿','edit').'</nav><p class="dn-result">対象 <strong>'.count($matched).'</strong>店舗 <span>開催予定と開催実績を分けて表示しています。</span></p>';
-    foreach(['開催予定'=>['upcoming',['scheduled','ongoing']],'定期開催・常設的な取り組み'=>['regular',['recurring']]] as $heading=>[$anchor,$states]){
-        $items=array_values(array_filter($events,fn($p)=>($p['observation_only']??'0')!=='1'&&in_array(event_state($p),$states,true)));
-        $signing=$anchor==='regular'?array_values(array_filter($matched,fn($s)=>!empty($s['signing_store']))):[];
-        $body.='<section class="dn-section" id="'.$anchor.'"><h2>'.cafe_icon($anchor==='upcoming'?'calendar':'cup').$heading.' <small>'.(count($items)+count($signing)).'件</small></h2>';
-        if($items)$body.=event_table($items,$stores);
-        if($signing)$body.=cafe_table($signing);
-        if(!$items&&!$signing)$body.='<p class="dn-empty">'.($anchor==='upcoming'?'現在確認できている開催予定はありません。':'現在掲載している確認済み情報はありません。').'</p>';
-        $body.='</section>';
-    }
-    $body.=starbucks_observed($matched,$events,$pref,$selected);
-    $past=array_values(array_filter(array_reverse($events),fn($p)=>in_array(event_state($p),['ended','cancelled'],true)&&($p['observation_only']??'0')!=='1'));
-    $body.='<section class="dn-section" id="past"><h2>'.cafe_icon('clock').'過去の開催履歴 <small>'.count($past).'件</small></h2>'.($past?event_table($past,$stores):'<p>現在掲載している開催履歴はありません。</p>').'</section>'.disclaimer().'<section class="dn-section" id="starbucks-post"><details><summary class="dn-post-summary">開催情報を投稿する</summary>'.starbucks_form($selected).'</details></section>';
-    return page('スターバックスの手話カフェ・手話イベント情報',$body,'/connect/sign-cafe/starbucks/','スターバックスの手話カフェ・手話関連企画、サイニングストアと開催履歴。');
-}
 function detail(string $slug,bool $event): string {
     $r=query('SELECT * FROM records WHERE slug=? AND '.($event?"kind='event'":"kind IN ('cafe','store')"),[$slug])->fetch();
     if(!$r || !publicly_visible($p=expanded($r))) fail('情報が見つかりません。',404);
     $overseas=!$event&&$p['country_code']!=='JP';
-    $body=tabs($event,$overseas).'<p><a href="'.($event?'/connect/sign-cafe/starbucks/':($overseas?'/connect/sign-cafe/overseas/':'/connect/sign-cafe/')).'">← 一覧へ</a></p>';$schema=[];
+    $body=tabs($event,$overseas).'<p><a href="'.($overseas?'/connect/sign-cafe/overseas/':'/connect/sign-cafe/').'">← 一覧へ</a></p>';$schema=[];
     $store=$event?expanded(record($p['store_id'])):$p;
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
     $body.=$event?event_card($p,$store).visitor_event_details($p):visitor_profile($p);

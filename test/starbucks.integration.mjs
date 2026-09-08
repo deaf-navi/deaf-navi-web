@@ -15,7 +15,7 @@ const token=t=>t.match(/name="csrf" value="([a-f0-9]+)"/)[1];
 const reset=()=>assert.equal(run(['-r',`require '${core}';query('DELETE FROM limits');`]).status,0);
 try{
 for(let i=0;i<50;i++){try{await request('/');break;}catch{await new Promise(r=>setTimeout(r,100));}}
-let r=await request('/connect/sign-cafe/starbucks/');assert.equal((r.text.match(/class="dn-observed-card"/g)||[]).length,3);
+let r=await request('/connect/sign-cafe/starbucks/');assert.equal(r.status,410);
 assert.equal((await request('/connect/sign-cafe/starbucks/observed-machida-pario/')).text.includes('"@type":"Event"'),false);
 const fixture={form_kind:'starbucks',store_id:'starbucks-machida-pario',report_state:'scheduled',event_date:'',conditions:'あ'.repeat(500),consent:'1'};
 for(const bad of [{conditions:'あ'.repeat(501)},{event_date:'2026-02-30'},{start_time:'24:00'},{start_time:'12:00',end_time:'11:00'},{source_url:'javascript:alert(1)'},{store_id:'knot'},{consent:'0'},{store_id:'',store_name:'新店舗',prefecture:''}]){

@@ -36,7 +36,7 @@ function admin_page(): string {
         if($id && $p['kind']!==$kind) fail('情報の種別が一致しません。');
         $submission=input($_GET,'submission',64);$sub=null;
         if($submission) {
-            $sub=query('SELECT * FROM submissions WHERE id=?',[$submission])->fetch();if(!$sub)fail('投稿が見つかりません。',404);
+            $sub=query('SELECT * FROM submissions WHERE id=?',[$submission])->fetch();if(!$sub)fail('投稿が見つかりません。',404);require_record_submission($sub);
             if(!$id) { $p=array_merge($p,json_decode($sub['payload'],true)); $p['verification_sources']=array_filter([$p['source_url']??'']); $p['slug']=($kind==='event'?'event-':'cafe-').substr($submission,0,12); if($kind==='event'){$p['status']=['past'=>'ended','cancelled'=>'cancelled','scheduled'=>'scheduled','unknown'=>'date_unknown'][$p['report_state']??'unknown'];$p['confidence']='unverified';}if($kind==='store'&&isset($p['store_name']))$p['name']=$p['store_name']; }
             $body.='<p class="dn-notice">投稿内容を確認し、情報源と営業状態を検証してから保存してください。修正報告は既存の店舗を選び、重複を作らずに反映してください。</p>';
             $choices=[''=>'新しい情報として登録'];foreach(query("SELECT id,name FROM records WHERE kind=? AND publication!='deleted'",[$kind])->fetchAll() as $r)$choices[$r['id']]=$r['name'];
@@ -59,6 +59,8 @@ function admin_page(): string {
         if($id)$body.='<aside class="dn-danger"><h3>削除・復元について</h3><p>「公開状態」を「削除済み」にして保存すると、公開画面から除外されます。閉店情報は「閉店・活動終了」で残してください。復元は公開状態を変更します。</p></aside>';
     } elseif($view==='submission') {
         $id=input($_GET,'id',64);$s=query('SELECT * FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);
+        if(is_cafe_contact($p))$body.=cafe_contact_admin_detail($s,$p);
+        else {
         $body.='<h2>情報提供の確認</h2><p>状態：'.e($s['status']).' / '.e($s['created_at']).'</p><dl class="dn-detail">';
         $labels=record_fields('cafe')+record_fields('event')+['store_name'=>'開催店舗名','store_id'=>'既存店舗ID','report_state'=>'投稿内容の種別','category'=>'情報カテゴリ','report_type'=>'情報種別','source_url'=>'情報元URL','notes'=>'補足','submitter'=>'投稿者（非公開）','email'=>'連絡先メール（非公開）'];
         if(($p['category']??'')==='starbucks'&&empty($p['store_id']))$body.='<dt>新規店舗</dt><dd><a href="/admin/?view=edit&kind=store&submission='.e($id).'">先に開催店舗を登録（投稿状態は確認中のまま保存）</a></dd>';
@@ -66,6 +68,7 @@ function admin_page(): string {
         $body.='</dl><h3>重複候補（名称・住所・公式URL・Instagramで比較）</h3><ul>';
         foreach(duplicate_records($p) as $r)$body.='<li>'.e($r['name']).' — <a href="/admin/?view=edit&kind='.e($r['kind']).'&id='.e($r['id']).'&submission='.e($id).'">この情報に反映</a></li>';
         $body.='</ul><div class="dn-actions"><a class="dn-cta" href="/admin/?view=edit&kind='.($p['category']==='starbucks'?'event':'cafe').'&submission='.e($id).'">確認して正式データへ反映</a></div><form method="post">'.csrf().'<input type="hidden" name="action" value="review"><input type="hidden" name="id" value="'.e($id).'"><input type="hidden" name="revision" value="'.(int)$s['revision'].'">'.select_field('status','投稿状態',['pending'=>'確認中','rejected'=>'不採用'],$s['status']).'<button class="secondary">投稿状態のみ変更</button></form><form method="post" class="dn-danger">'.csrf().'<input type="hidden" name="action" value="redact_submission"><input type="hidden" name="id" value="'.e($id).'"><input type="hidden" name="revision" value="'.(int)$s['revision'].'"><label><input type="checkbox" name="confirm" value="1" required> 投稿者名・メール・補足を削除します（元に戻せません）</label><p><button class="secondary">投稿者情報を削除</button></p></form>';
+        }
     } else {
         $body.=admin_overview();
     }
@@ -113,6 +116,7 @@ function admin_action(): void {
         if(($id==='')!==($rev===0))fail('編集対象が不正です。');
         if($id && record($id)['slug']!==$p['slug'])fail('既存URLの変更は転送設定が必要なため、管理画面では変更できません。');
         $sid=input($_POST,'submission',64);$sr=(int)input($_POST,'submission_revision',10);$state=$sid?choice(input($_POST,'submission_status',20),['pending'=>1,'approved'=>1,'rejected'=>1]):'';
+        if($sid){$submissionRow=query('SELECT payload FROM submissions WHERE id=?',[$sid])->fetch();if(!$submissionRow)fail('投稿が見つかりません。',404);require_record_submission($submissionRow);}
         if($state==='approved' && ($p['verification_level']==='pending'||!$p['verification_sources']||!$p['last_verified_at']))fail('承認前に情報源・確認日・確認状況を設定してください。');
         db()->exec('BEGIN IMMEDIATE');
         try {
@@ -123,10 +127,11 @@ function admin_action(): void {
             db()->exec('COMMIT');
         }catch(Throwable $ex){db()->exec('ROLLBACK');throw $ex;}
     } elseif($action==='review') {
-        $state=choice(input($_POST,'status',20),['pending'=>1,'rejected'=>1]);$id=input($_POST,'id',64);
+        $id=input($_POST,'id',64);$row=query('SELECT payload FROM submissions WHERE id=?',[$id])->fetch();if(!$row)fail('投稿が見つかりません。',404);
+        $states=is_cafe_contact(json_decode($row['payload'],true))?['pending'=>1,'approved'=>1,'rejected'=>1]:['pending'=>1,'rejected'=>1];$state=choice(input($_POST,'status',20),$states);
         $s=query('UPDATE submissions SET status=?,revision=revision+1,updated_at=? WHERE id=? AND revision=?',[$state,now(),$id,(int)input($_POST,'revision',10)]);if($s->rowCount()!==1)fail('投稿が既に変更されています。',409);audit('submission_'.$state,$id);
     } elseif($action==='redact_submission') {
-        if(input($_POST,'confirm',1)!=='1')fail('削除の確認が必要です。');$id=input($_POST,'id',64);$s=query('SELECT payload FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);unset($p['email'],$p['submitter'],$p['notes']);
+        if(input($_POST,'confirm',1)!=='1')fail('削除の確認が必要です。');$id=input($_POST,'id',64);$s=query('SELECT payload FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);unset($p['email'],$p['submitter'],$p['notes']);if(is_cafe_contact($p))unset($p['private_message'],$p['name'],$p['source_url']);
         $s=query('UPDATE submissions SET payload=?,revision=revision+1,updated_at=? WHERE id=? AND revision=?',[json($p),now(),$id,(int)input($_POST,'revision',10)]);if($s->rowCount()!==1)fail('投稿が既に変更されています。',409);audit('submission_contact_redacted',$id);
     } else fail('不明な操作です。');
     $_SESSION['flash']='保存しました。';

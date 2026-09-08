@@ -157,6 +157,8 @@ async function main() {
     readFile(join(ROOT, 'content', 'connect', 'sign-cafes.json'), 'utf8').then(JSON.parse),
     readFile(join(ROOT, 'content', 'connect', 'starbucks-entries.json'), 'utf8').then(JSON.parse),
   ]);
+  // Retired page: remove only this known generated file on incremental builds.
+  await rm(join(DOCS, 'connect', 'sign-cafe', 'starbucks', 'index.html'), { force: true });
   for (const page of renderConnectPages({ places, signCafes, starbucksEntries })) {
     await writeDoc(page.file, page.html);
   }

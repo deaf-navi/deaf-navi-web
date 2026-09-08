@@ -121,7 +121,35 @@ try {
   ok((await write(store)).status===303,'store CRUD');r=await admin('/admin/?view=records&kind=store');const storeId=r.text.match(/kind=store&id=([a-f0-9]{32})/)[1];
   const event={action:'save_record',kind:'event',slug:'test-event',id:'',revision:'0',name:'検証用開催',store_id:storeId,publication:'public',status:'scheduled',verification_level:'official',confidence:'official',event_date:'2020-01-01',start_time:'10:00',end_time:'12:00',timezone:'Asia/Tokyo',last_verified_at:new Date().toISOString().slice(0,10),verification_sources:'https://example.org/event'};
   ok((await write(event)).status===303,'event CRUD');r=await anon('/connect/sign-cafe/starbucks/test-event/');ok(r.status===200&&r.text.includes('EventScheduled'),'confirmed Event structured data');
-  r=await anon('/connect/sign-cafe/starbucks/');ok(r.text.indexOf('検証用開催')>r.text.indexOf('過去の開催履歴'),'past scheduled event automatically in history');
+  for(const path of ['/connect/sign-cafe/starbucks/','/connect/sign-cafe/starbucks','/connect/sign-cafe/starbucks/index.html'])ok((await anon(path)).status===410,'retired hub '+path);
+  ok(!(await anon('/directory-sitemap.xml')).text.includes('<loc>https://deafnavi.com/connect/sign-cafe/starbucks/</loc>'),'retired hub not in sitemap');
+  // Contacts share submission safeguards but can never be converted into public records.
+  const resetLimits=()=>spawnSync('php',['-r',`require 'server/core.php';query('DELETE FROM limits');`],{cwd:root,env,encoding:'utf8'});
+  resetLimits();
+  for(const path of ['/connect/sign-cafe/','/connect/sign-cafe/overseas/']){
+    const page=await anon(path);ok(page.text.includes('運営者が個人で調べ')&&page.text.includes('name="form_kind" value="cafe_contact"'),'notice and real contact form '+path);
+    ok(!page.text.includes('href="/connect/sign-cafe/starbucks/"'),'removed hub navigation '+path);
+    const ids=[...page.text.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1]);ok(ids.length===new Set(ids).size,'contact controls have unique ids');
+  }
+  const contactPage=await anon('/submit/?form=contact&scope=overseas');const contactCsrf=token(contactPage.text);
+  ok(contactPage.text.includes('https://deafnavi.com/connect/sign-cafe/overseas/'),'contact page context');
+  await new Promise(r=>setTimeout(r,3200));
+  const contact={form_kind:'cafe_contact',category:'removal',name:'お問い合わせ検証',private_message:'PRIVATE_CONTACT_SENTINEL<script>not public</script>',email:'contact@example.invalid',source_url:'https://deafnavi.com/connect/sign-cafe/knot/',consent:'1',csrf:contactCsrf};
+  ok((await anon('/submit/',{...contact,csrf:'invalid'})).status===403,'contact CSRF rejection');
+  for(const bad of [{private_message:''},{source_url:'javascript:alert(1)'},{email:'bad address'},{category:'invented'},{website_confirm:'bot'},{consent:'0'}]){resetLimits();ok((await anon('/submit/',{...contact,...bad})).status===400,'invalid contact rejected');}
+  resetLimits();ok((await anon('/submit/',contact)).status===303,'contact saved without country or city');
+  ok((await anon('/submit/?received=1')).text.includes('お問い合わせを受け付けました'),'contact receipt');
+  const contactState=JSON.parse(spawnSync('php',['-r',`require 'server/core.php';$r=query("SELECT * FROM submissions WHERE json_extract(payload,'$.form_kind')='cafe_contact'")->fetch();echo json(['id'=>$r['id'],'payload'=>json_decode($r['payload'],true),'outbox'=>(int)query('SELECT count(*) FROM outbox WHERE submission_id=?',[$r['id']])->fetchColumn()]);`],{cwd:root,env,encoding:'utf8'}).stdout);
+  ok(contactState.outbox===1&&contactState.payload.private_message===contact.private_message,'contact and notification queued atomically');
+  ok(!('description' in contactState.payload)&&!('notes' in contactState.payload),'contact body is not a publication field');
+  const contactId=contactState.id;
+  const contactReview=await admin('/admin/?view=submission&id='+contactId);ok(contactReview.text.includes('&lt;script&gt;')&&!contactReview.text.includes('正式データへ反映'),'private contact review escapes and has no publish path');
+  ok((await admin('/admin/?view=edit&kind=cafe&submission='+contactId)).status===400,'contact GET conversion rejected');
+  ok((await write({...publicFixture,revision:'5',submission:contactId,submission_revision:'1',submission_status:'approved'})).status===400,'contact POST conversion rejected');
+  ok(!(await anon('/connect/sign-cafe/')).text.includes('PRIVATE_CONTACT_SENTINEL'),'contact never public');
+  ok((await write({action:'review',id:contactId,revision:'1',status:'approved'})).status===303,'contact can be marked handled without publishing');
+  ok((await write({action:'redact_submission',id:contactId,revision:'2',confirm:'1'})).status===303,'contact private fields can be erased');
+  const redacted=await admin('/admin/?view=submission&id='+contactId);ok(!redacted.text.includes('PRIVATE_CONTACT_SENTINEL')&&!redacted.text.includes('contact@example.invalid'),'contact redaction includes body and email');
   const mail=spawnSync('php',['server/cli.php','mail'],{cwd:root,env,encoding:'utf8'});ok(mail.stdout.includes('MAIL_NOT_CONFIGURED'),'unconfigured mail never reported sent');
   const bulk=spawnSync('php',['-r',`require 'server/core.php';$p=json_decode(record('knot')['payload'],true);for($i=1;$i<=30;$i++){$p['slug']='pagination-'.sprintf('%02d',$i);$p['name']='ページ分割検証'.sprintf('%02d',$i);save_record($p,'cafe','pagination-'.$i,0);}`],{cwd:root,env,encoding:'utf8'});
   ok(bulk.status===0,'pagination fixture inserted');

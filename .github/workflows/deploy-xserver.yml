@@ -38,7 +38,7 @@ jobs:
           test -s docs/sitemap.xml
           test -s docs/app/v1/manifest.json
           test -s docs/connect/sign-cafe/index.html
-          test -s docs/connect/sign-cafe/starbucks/index.html
+          test ! -e docs/connect/sign-cafe/starbucks/index.html
           test -s docs/cafe-map/map-2d.js
           test -s docs/cafe-map/leaflet/leaflet.js
           test -s docs/directory-community.css
@@ -136,7 +136,7 @@ jobs:
           test -s "$staging/sitemap.xml"
           test -s "$staging/app/v1/manifest.json"
           test -s "$staging/connect/sign-cafe/index.html"
-          test -s "$staging/connect/sign-cafe/starbucks/index.html"
+          test ! -e "$staging/connect/sign-cafe/starbucks/index.html"
           test -s "$staging/_backend/index.php"
           test -s "$staging/directory.css"
           test -s "$staging/directory-ui.js"

@@ -92,7 +92,7 @@ function world_filters(array $all,array $f):string {
 function world_page():string {
     $all=world_records();$f=world_filter_values();$list=array_values(array_filter($all,fn($p)=>world_matches($p,$f)));
     $body='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui"><script src="/world-cafes.js?v=20260908ui" defer></script>'
-        .tabs(false,true,true)
+        .tabs(false,true,true).cafe_listing_notice()
         .'<p>国や都市、お店のタイプから、気になるカフェを探してみませんか。手話との関わりや、定期開催の情報もご案内しています。</p>'
         .world_filters($all,$f).'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.count($list).'</strong>件</p><a href="#world-map-panel">世界地図から探す</a></div>'
         .'<p class="dn-muted">営業時間・開催日は現地時間です。手話は国や地域によって異なります。お出かけ前に、お店の公式サイトやSNSで営業日・手話対応をご確認ください。営業状況が分からないお店は「確認中」「営業状況未確認」と表示しています。</p>';
@@ -100,7 +100,7 @@ function world_page():string {
     $body.='<details class="dn-world-map-panel" id="world-map-panel"><summary>'.cafe_icon('globe').'世界地図から探す（'.$mapped.'件）</summary><p>住所付近の位置を確認できた'.$mapped.'件を表示できます。位置確認待ちの店舗も下の一覧に掲載しています。位置は建物付近の概略で、入口や階を示すものではありません。</p><button type="button" id="world-map-start" hidden>世界地図を開く</button><p class="dn-muted">開いたときだけOpenStreetMapの地図画像を読み込みます。現在地は取得しません。位置は店舗・施設の案内と地図資料を照合しています。地図：<a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>。</p><div id="world-map" hidden aria-label="海外の手話カフェ地図"></div><p id="world-map-status" role="status"></p></details>';
     if($list)$body.=world_table($list,$f);
     else $body.='<section class="dn-empty"><h2>'.(!$all?'海外の手話カフェ情報は掲載準備中です':'条件に合うカフェは、まだ掲載されていません').'</h2><p>確認できたお店から順にご紹介しています。地域を広げたり、条件を少し変えたりして探してみてください。</p><a href="/connect/sign-cafe/overseas/">条件をクリアして探す</a></section>';
-    return page('海外の手話カフェ',$body.'<p><a href="/submit/?scope=overseas#request">海外の手話カフェの情報を教えてください</a></p>','/connect/sign-cafe/overseas/','世界の手話カフェを地域・国・ブランド・手話との関係から探す。');
+    return page('海外の手話カフェ',$body.cafe_contact_form(true).'<p><a href="/submit/?scope=overseas#request">海外の手話カフェの情報を教えてください</a></p>','/connect/sign-cafe/overseas/','世界の手話カフェを地域・国・ブランド・手話との関係から探す。');
 }
 function world_sort():string {$v=input($_GET,'sort',20);return in_array($v,['name','location','type','brand'],true)?$v:'location';}
 function world_direction():string {$v=input($_GET,'dir',4);return in_array($v,['asc','desc'],true)?$v:(world_sort()==='location'?'desc':'asc');}

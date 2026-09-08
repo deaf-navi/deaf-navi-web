@@ -7,15 +7,13 @@ import { runInNewContext } from 'node:vm';
 const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const docs = join(root, 'docs');
 
-test('手話カフェとスターバックスを別URL・別掲載基準で公開する', async () => {
+test('スターバックス専用ページを生成せず、導線を残さない', async () => {
   const cafe = await readFile(join(docs, 'connect', 'sign-cafe', 'index.html'), 'utf8');
-  const starbucks = await readFile(join(docs, 'connect', 'sign-cafe', 'starbucks', 'index.html'), 'utf8');
-  assert.match(cafe, /<title>全国の手話カフェ一覧 \| Deaf Navi<\/title>/);
-  assert.match(cafe, /単発イベントは含みません/);
-  assert.match(starbucks, /<title>スターバックスの手話カフェ・手話イベント情報 \| Deaf Navi<\/title>/);
-  assert.match(starbucks, /Deaf Naviによる非公式の情報ページ/);
-  assert.match(starbucks, /現在確認できている開催予定はありません/);
-  assert.doesNotMatch(starbucks, /参加予定(?:数|登録|ボタン)/);
+  assert.match(cafe, /全国の手話カフェ一覧/);
+  await assert.rejects(readFile(join(docs, 'connect', 'sign-cafe', 'starbucks', 'index.html')), { code: 'ENOENT' });
+  for (const file of ['connect/index.html', 'sitemap.html', 'sitemap.xml', '404.html']) {
+    assert.doesNotMatch(await readFile(join(docs, file), 'utf8'), /connect\/sign-cafe\/starbucks\//);
+  }
 });
 
 test('公開HTML・CSS・SVGに明朝系フォント指定を含めない', async () => {

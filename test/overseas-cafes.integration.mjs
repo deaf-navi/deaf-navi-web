@@ -67,7 +67,7 @@ try{
  ok((await post({...published,id:'',revision:'0',kind:'store',signing_store:'1',slug:'overseas-signing-fixture',name:'Overseas Signing Fixture'})).status===303,'foreign signing store created as store');
  ok((await anon(path)).text.includes('data-slug="overseas-signing-fixture"'),'signing store included in overseas public list');
  r=await admin('/admin/?view=records&kind=cafe&scope=overseas');ok(r.text.includes('Overseas Signing Fixture')&&r.text.includes('kind=store&id='),'overseas admin includes signing store with correct edit kind');
- ok(!(await anon('/connect/sign-cafe/starbucks/')).text.includes('Overseas Signing Fixture'),'Japan Starbucks list excludes overseas store');
+ ok((await anon('/connect/sign-cafe/starbucks/')).status===410,'Starbucks hub is retired');
  ok(!(await anon('/connect/sign-cafe/overseas-signing-fixture/')).text.includes('スターバックス コーヒー ジャパン株式会社'),'foreign detail does not imply Japan operator');
  ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no PHP runtime warnings');
  ok(run(['server/cli.php','check']).status===0,'database integrity');

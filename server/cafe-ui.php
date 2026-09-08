@@ -94,7 +94,7 @@ function domestic_cafe_page():string {
     usort($list,fn($a,$b)=>($f['dir']==='desc'?-1:1)*(($collator?$collator->compare(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)):strcmp(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)))?:strcmp($a['slug'],$b['slug'])));
     $total=count($list);$size=in_array($f['per_page'],['24','48','96'],true)?(int)$f['per_page']:24;$page=min(max(1,(int)$f['page']),max(1,(int)ceil($total/$size)));$list=array_slice($list,($page-1)*$size,$size);
     $seo=cafe_directory_seo($f,$list,$total,$page,$size);
-    $body=tabs(false,false,true).'<p>日本全国の手話カフェを、地域・営業日・手話対応から探せます。常設のお店から、間借り・公共施設での定期開催まで。公式サイト・SNSと情報確認日を添えて、お出かけに役立つ情報をご案内します。</p><nav class="dn-section-links" aria-label="手話カフェの探し方">'.cafe_guide_link('#cafes','一覧から探す','search').cafe_guide_link('/connect/sign-cafe/map/','地図から探す','map').cafe_guide_link('#cafe-regions','地域から探す','pin').cafe_guide_link('#cafe-guide','初めての方へ','book').cafe_guide_link('#cafe-policy','掲載・更新方針','edit').'</nav><section id="cafes" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading">'.cafe_icon('search').'手話カフェを探す</h2>'.domestic_filters($f).'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p><a href="/connect/sign-cafe/map/">地図から探す</a></div><p class="dn-muted">「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。訪問前に公式サイト・SNSをご確認ください。</p>';
+    $body=tabs(false,false,true).cafe_listing_notice().'<p>日本全国の手話カフェを、地域・営業日・手話対応から探せます。常設のお店から、間借り・公共施設での定期開催まで。公式サイト・SNSと情報確認日を添えて、お出かけに役立つ情報をご案内します。</p><nav class="dn-section-links" aria-label="手話カフェの探し方">'.cafe_guide_link('#cafes','一覧から探す','search').cafe_guide_link('/connect/sign-cafe/map/','地図から探す','map').cafe_guide_link('#cafe-regions','地域から探す','pin').cafe_guide_link('#cafe-guide','初めての方へ','book').cafe_guide_link('#cafe-policy','掲載・更新方針','edit').'</nav><section id="cafes" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading">'.cafe_icon('search').'手話カフェを探す</h2>'.domestic_filters($f).'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p><a href="/connect/sign-cafe/map/">地図から探す</a></div><p class="dn-muted">「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。訪問前に公式サイト・SNSをご確認ください。</p>';
     if(!$list)$body.=domestic_empty($f);
     elseif($f['view']==='table')$body.=cafe_table($list);
     else{$body.='<div class="dn-place-grid">'.implode('',array_map('domestic_card',$list)).'</div><details class="dn-compare"><summary>同じ結果を表で比較する</summary>'.cafe_table($list).'</details>';}
@@ -103,7 +103,7 @@ function domestic_cafe_page():string {
     $body.='<span>全'.$total.'件中 '.($total?($page-1)*$size+1:0).'〜'.min($page*$size,$total).'件</span>';
     if($page*$size<$total)$body.='<a href="?'.e(http_build_query($params+['page'=>$page+1])).'">次のページ →</a>';
     $body.='</nav></section>'.cafe_discovery_guide($all);
-    return page(cafe_listing_title($f),$body.submission_form(),'/connect/sign-cafe/',CAFE_DIRECTORY_DESCRIPTION,$seo['structured'],false,$seo);
+    return page(cafe_listing_title($f),$body.cafe_contact_form().submission_form(),'/connect/sign-cafe/',CAFE_DIRECTORY_DESCRIPTION,$seo['structured'],false,$seo);
 }
 function cafe_admin_fields(array $p):string {
     $p=cafe_model($p);$out='<fieldset class="admin-fieldset"><legend>店舗タイプ・手話対応と再確認</legend><p>不明な属性は未確認。オーナー・スタッフ属性は本人・店舗の公表元URLが必要です。調査しただけの日を情報確認日にしないでください。</p><div class="dn-form-grid">';

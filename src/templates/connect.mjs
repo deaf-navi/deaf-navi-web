@@ -68,7 +68,7 @@ ${renderFooter({
     year: new Date().getFullYear(),
     links: [
       { href: '/connect/sign-cafe/', label: '手話カフェ一覧' },
-      { href: '/connect/sign-cafe/starbucks/', label: 'スターバックス' },
+      { href: '/connect/sign-cafe/overseas/', label: '海外の手話カフェ' },
       { href: '/submit/', label: '情報提供' },
       { href: '/sitemap/', label: 'サイトマップ' },
     ],
@@ -107,16 +107,12 @@ ${items.map(({ href, title, text }) => `    <a class="directory-card" href="${hr
 function signCafeTabs(current) {
   return `<nav class="section-tabs" aria-label="手話カフェの分類">
     <a href="/connect/sign-cafe/"${current === 'cafes' ? ' aria-current="page"' : ''}>手話カフェ一覧</a>
-    <a href="/connect/sign-cafe/starbucks/"${current === 'starbucks' ? ' aria-current="page"' : ''}>スターバックス</a>
+    <a href="/connect/sign-cafe/overseas/">海外の手話カフェ</a>
   </nav>`;
 }
 
-export function renderConnectPages({ places, signCafes, starbucksEntries }) {
+export function renderConnectPages({ places, signCafes }) {
   const approvedCafes = signCafes.signCafes.filter((item) => item.published === true);
-  const approvedEntries = starbucksEntries.entries.filter((item) => item.published === true);
-  const upcoming = approvedEntries.filter((item) => ['scheduled', 'ongoing'].includes(item.event_status));
-  const recurring = approvedEntries.filter((item) => item.event_status === 'recurring');
-  const past = approvedEntries.filter((item) => ['ended', 'cancelled'].includes(item.event_status));
   void places;
 
   const pages = [];
@@ -140,7 +136,7 @@ ${categoryCards([
     html: renderPage({
       path: '/connect/sign-cafe/', title: `全国の手話カフェ一覧 | ${SITE_NAME.replace(' Web', '')}`,
       description: '店舗や施設そのものが、手話での交流をコンセプトとして運営されている全国の常設手話カフェ一覧。単発イベントは含みません。',
-      crumbLabel: 'つながる › 手話カフェ', lead: '常設の手話カフェとスターバックスでの企画は、掲載基準を分けています。', current: 'connect',
+      crumbLabel: 'つながる › 手話カフェ', lead: '地域・営業日・手話対応から、交流できる場所を探せます。', current: 'connect',
       breadcrumbPaths: ['/connect/', '/connect/sign-cafe/'], breadcrumbNames: ['ホーム', 'つながる', '手話カフェ'],
       body: `    ${signCafeTabs('cafes')}
     <section class="directory-hero directory-hero--cafe" aria-labelledby="cafe-intro">
@@ -153,29 +149,6 @@ ${categoryCards([
       ${approvedCafes.length === 0 ? '<div class="empty-state"><strong>現在、掲載基準と情報源を確認できた店舗を準備中です。</strong><p>未確認情報は断定して掲載しません。閉店した店舗も、確認後は過去の手話カフェとして残します。</p></div>' : ''}
     </section>
     <aside class="info-callout"><h2>情報をお寄せください</h2><p>常設の手話カフェ、既存情報の修正、閉店情報を受け付ける仕組みを準備しています。</p><a class="primary-link" href="/submit/?type=sign-cafe">情報提供について確認する</a></aside>`,
-    }),
-  });
-
-  pages.push({
-    file: 'connect/sign-cafe/starbucks/index.html',
-    html: renderPage({
-      path: '/connect/sign-cafe/starbucks/', title: `スターバックスの手話カフェ・手話イベント情報 | ${SITE_NAME.replace(' Web', '')}`,
-      description: '全国のスターバックス店舗で実施される手話カフェ、手話交流イベント、関連企画、サイニングストア等の情報。',
-      crumbLabel: 'つながる › 手話カフェ › スターバックス', lead: '開催情報と常設的な取り組みを、情報源と確認状況とともに掲載します。', current: 'connect',
-      breadcrumbPaths: ['/connect/', '/connect/sign-cafe/', '/connect/sign-cafe/starbucks/'], breadcrumbNames: ['ホーム', 'つながる', '手話カフェ', 'スターバックス'],
-      body: `    ${signCafeTabs('starbucks')}
-    <section class="directory-hero directory-hero--starbucks" aria-labelledby="starbucks-intro">
-      <p class="eyebrow">INDEPENDENT INFORMATION</p>
-      <h2 id="starbucks-intro">スターバックスでの手話関連企画</h2>
-      <p>全国のスターバックス店舗で実施される手話カフェや手話関連企画の情報を、公開情報および情報提供をもとに掲載しています。</p>
-    </section>
-    <aside class="brand-disclaimer" aria-label="非公式ページについて"><strong>非公式の情報ページです</strong><p>本ページはDeaf Naviによる非公式の情報ページです。スターバックス コーヒー ジャパン株式会社が運営・監修するものではありません。開催状況や参加方法は、掲載している情報源または各店舗・主催者へご確認ください。</p></aside>
-    <section class="directory-section" aria-labelledby="upcoming-heading"><p class="section-number">01</p><h2 id="upcoming-heading">開催予定</h2>${upcoming.length === 0 ? '<div class="empty-state"><strong>現在確認できている開催予定はありません。</strong><p>情報源を確認でき次第、開催日・店舗・参加方法とともに掲載します。</p></div>' : ''}</section>
-    <section class="directory-section" aria-labelledby="recurring-heading"><p class="section-number">02</p><h2 id="recurring-heading">定期開催・常設的な取り組み</h2>${recurring.length === 0 ? '<p class="muted-copy">現在掲載している確認済み情報はありません。</p>' : ''}</section>
-    <section class="directory-section" aria-labelledby="region-heading"><p class="section-number">03</p><h2 id="region-heading">地域・都道府県から探す</h2><p class="muted-copy">掲載情報が追加された後、地域別に探せるようになります。</p></section>
-    <section class="directory-section" aria-labelledby="history-heading"><p class="section-number">04</p><h2 id="history-heading">過去の開催履歴</h2>${past.length === 0 ? '<p class="muted-copy">現在掲載している確認済みの開催履歴はありません。</p>' : ''}</section>
-    <section class="directory-section" aria-labelledby="provide-heading"><p class="section-number">05</p><h2 id="provide-heading">情報提供</h2><p>開催予定、既存情報の修正、中止情報をお寄せいただく仕組みを準備しています。</p><p><a class="primary-link" href="/submit/?type=starbucks">情報提供について確認する</a></p></section>
-    <section class="directory-section" aria-labelledby="about-page-heading"><p class="section-number">06</p><h2 id="about-page-heading">このページについて</h2><p>店舗自体を常設の「手話カフェ」として扱わず、各開催回と常設的な取り組みを分けて記録します。日時・場所・開催状態を確認できない情報にはEvent構造化データを出しません。</p></section>`,
     }),
   });
 
