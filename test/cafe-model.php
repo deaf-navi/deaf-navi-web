@@ -38,4 +38,19 @@ ok(array_key_exists('opening_days',$export)&&array_key_exists('source_urls',$exp
 ok(!str_contains(cafe_schedule_html(array_replace($p,['status'=>'needs_review','event_schedule'=>'OLD_SCHEDULE','business_hours'=>'OLD_HOURS'])),'OLD_'),'unknown schedule not presented as current');
 ok(cafe_identity_url('https://www.instagram.com/example.name/?utm_source=x')===cafe_identity_url('https://instagram.com/example.name'),'SNS tracking parameters ignored for identity');
 ok(cafe_identity_url('https://instagram.com/example.name')!==cafe_identity_url('https://instagram.com/examplename'),'distinct Instagram handles retained');
+foreach(['bar'=>'BarOrPub','restaurant'=>'Restaurant'] as $type=>$schema){
+    $typed=cafe_validate(['shop_type'=>$type],$p);
+    ok(cafe_schema_type($typed)===$schema&&domestic_matches($typed,['shop_type'=>$type]),'type filter and schema '.$type);
+}
+$activity=cafe_validate(['activity_date'=>'2099-09-13','shop_type'=>'event'],array_replace($p,['status'=>'unknown']));
+ok(cafe_activity_state($activity,new DateTimeImmutable('2099-09-12'))==='scheduled','future activity dates allowed');
+ok(cafe_activity_state($activity,new DateTimeImmutable('2099-09-13'))==='today','activity date boundary');
+ok(cafe_activity_state($activity,new DateTimeImmutable('2099-09-14'))==='date_elapsed','past announcement expires without a DB write');
+ok(cafe_status_label(array_replace($activity,['status'=>'permanently_closed']))==='活動終了','explicit end does not imply date elapsed');
+ok(cafe_activity_state(array_replace($activity,['confirmation_status'=>'needs_review']))==='date_unknown','unconfirmed event is not scheduled');
+ok(rejects(fn()=>cafe_validate(['activity_date'=>'2026-02-30'],$activity)),'invalid activity date rejected');
+ok(cafe_validate(['activity_date'=>''],$activity)['activity_date']==='','admin can clear activity date');
+$activity['business_hours']='10:00〜12:00';
+ok(str_contains(cafe_table_schedule($activity),'2099-09-13')&&str_contains(cafe_schedule_html($activity),'開催日（告知情報）'),'known date visible without treating venue as open');
+ok(!domestic_matches($activity,[])&&domestic_matches($activity,['events'=>'1']),'dated activity is opt in');
 echo json(['result'=>'CAFE_MODEL_TESTS_OK','checks'=>$checks])."\n";

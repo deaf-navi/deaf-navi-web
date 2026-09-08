@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__.'/cafe-seo.php';
-function cafe_status_label(array $p):string {return STATUSES[$p['status']]??'営業状況未確認';}
+function cafe_status_label(array $p):string {
+    return match(cafe_activity_state($p)){'scheduled'=>'開催予定','today'=>'本日開催予定','date_elapsed'=>'開催予定日経過','ended'=>'活動終了','date_unknown'=>'開催日未確認',default=>STATUSES[$p['status']]??'営業状況未確認'};
+}
 function cafe_badges(array $p):string {
     $p=cafe_model($p);$out='<div class="dn-badges"><span class="dn-badge">'.e(SHOP_TYPES[$p['shop_type']]).'</span><span class="dn-badge'.(in_array($p['status'],['open','active_recurring'],true)?'':' dn-warning').'">'.e(cafe_status_label($p)).'</span></div>';
     $out.='<p class="dn-support-level">'.e(SIGN_LEVELS[$p['sign_language_level']]).'</p><div class="dn-badges">';
@@ -13,6 +15,7 @@ function cafe_freshness_html(array $p):string {
 }
 function cafe_schedule_html(array $p):string {
     $p=cafe_model($p);$recurring=in_array($p['shop_type'],['recurring_program','recurring_popup','public_recurring','facility_cafe'],true);
+    if($p['shop_type']==='event')return '<div class="dn-visit-time"><p>開催日（告知情報）</p>'.cafe_table_schedule($p).($p['venue_name']!==''?'<span>会場：'.e($p['venue_name']).'</span>':'').'</div>';
     $days=$p['recurrence']?:($p['event_schedule']??'');
     // Old schedules remain stored, but are not presented as current after a review warning.
     if(in_array($p['status'],['needs_review','unknown'],true))$days='現在の開催日・営業時間は確認中';
@@ -23,6 +26,10 @@ function cafe_schedule_html(array $p):string {
 }
 function cafe_correction_url(array $p):string {return '/submit/?'.http_build_query(['category'=>'correction','record'=>$p['id']]);}
 function cafe_table_schedule(array $p):string {
+    if(($p['shop_type']??'')==='event'){
+        if(cafe_activity_state($p)==='date_unknown')return '<span class="dn-schedule-muted">開催日未確認</span>';
+        return '<div class="dn-table-schedule"><span>'.e(($p['activity_date']??'')?:'日付未確認').'</span><span>'.e(($p['business_hours']??'')?:'時間未確認').'</span></div>';
+    }
     if(in_array($p['status'],['needs_review','unknown'],true))return '<span class="dn-schedule-muted">日程確認中</span>';
     if($p['status']==='temporarily_closed')return '<span class="dn-schedule-muted">休業中</span>';
     if(in_array($p['status'],['closed','permanently_closed'],true))return '<span class="dn-schedule-muted">営業・活動終了</span>';
@@ -93,6 +100,7 @@ function domestic_cafe_page():string {
 }
 function cafe_admin_fields(array $p):string {
     $p=cafe_model($p);$out='<fieldset class="admin-fieldset"><legend>店舗タイプ・手話対応と再確認</legend><p>不明な属性は未確認。オーナー・スタッフ属性は本人・店舗の公表元URLが必要です。調査しただけの日を情報確認日にしないでください。</p><div class="dn-form-grid">';
+    $out.=field('activity_date','単発イベントの開催予定日（店舗営業日は空欄）',$p['activity_date'],'date');
     foreach(['shop_type'=>['店舗タイプ',SHOP_TYPES],'operator_type'=>['運営形態',OPERATOR_TYPES],'sign_language_level'=>['手話対応レベル',SIGN_LEVELS],'confirmation_status'=>['内容の確認状態',['confirmed'=>'確認済み','needs_review'=>'要確認','unknown'=>'不明']]] as $k=>[$label,$choices])$out.=select_field($k,$label,$choices,$p[$k]);
     foreach(CAFE_TRI_FIELDS as $k)$out.=select_field($k,CAFE_FEATURES[$k]??['spoken_language_support'=>'音声対応','reservation_required'=>'予約必須'][$k],['unknown'=>'未確認','true'=>'はい（確認済み）','false'=>'いいえ（確認済み）'],$p[$k]===null?'unknown':($p[$k]?'true':'false'));
     foreach(CAFE_TEXT_FIELDS as $k=>$label)$out.=field($k,$label,$p[$k],in_array($k,['attribute_sources','notes','review_notes'],true)?'textarea':(str_ends_with($k,'_url')?'url':(str_ends_with($k,'_at')&&!in_array($k,['moved_at','started_at'],true)||$k==='latest_source_date'?'date':'text')));

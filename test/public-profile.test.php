@@ -19,4 +19,10 @@ $p=['name'=>'空欄のお店','kind'=>'cafe','country_code'=>'JP','prefecture'=>
 expect(!str_contains(visitor_profile($p),'<dt>'),'Missing values omitted');expect(official_links($p)==='','Missing social links omitted');
 $ev=['conditions'=>'ドリンク注文','timezone'=>'Asia/Tokyo','observation_only'=>'1','internal_note'=>'PRIVATE_SENTINEL'];
 expect(!str_contains(visitor_event_details($ev),'Asia/Tokyo'),'Event internal fields hidden');
+$activity=array_replace($p,['shop_type'=>'event','confirmation_status'=>'confirmed','activity_date'=>'2099-09-13','business_hours'=>'10:00〜12:00','venue_name'=>'公民館']);
+$html=visitor_profile($activity);
+foreach(['開催予定','2099-09-13','開催・参加の案内','単発イベントの告知情報','10:00〜12:00'] as $term)expect(str_contains($html,$term),'Activity presentation '.$term);
+expect(!str_contains($html,'営業状況未確認')&&!str_contains($html,'<dt>営業時間</dt>'),'Activity is not venue business hours');
+$html=visitor_profile(array_replace($activity,['confirmation_status'=>'needs_review']));
+expect(!str_contains($html,'2099-09-13')&&!str_contains($html,'10:00〜12:00'),'Unconfirmed activity date is suppressed throughout profile');
 echo "PUBLIC_PROFILE_TESTS_OK\n";
