@@ -11,7 +11,7 @@ import {
 const absoluteNav = {
   newsHref: '/',
   worldHref: '/news/world/',
-  connectHref: '/connect/',
+  connectHref: '/connect/sign-cafe/',
   guideHref: '/guide/',
   toolHref: '/otomado/',
   aboutHref: '/about/',
@@ -90,7 +90,7 @@ export function renderNotFoundPage() {
     robots: 'noindex,follow',
     breadcrumbPaths: ['/404.html'],
     breadcrumbNames: ['ホーム', 'ページが見つかりません'],
-    body: `    <section class="directory-hero"><p class="eyebrow">404 NOT FOUND</p><h2>ページが見つかりません</h2><p>トップページ、つながる、暮らしのガイド、サイトマップからお探しください。</p><p><a class="primary-link" href="/">トップページへ戻る</a> <a class="secondary-link" href="/sitemap/">サイトマップを見る</a></p></section>`,
+    body: `    <section class="directory-hero"><p class="eyebrow">404 NOT FOUND</p><h2>ページが見つかりません</h2><p>トップページ、手話カフェ、暮らしのガイド、サイトマップからお探しください。</p><p><a class="primary-link" href="/">トップページへ戻る</a> <a class="secondary-link" href="/sitemap/">サイトマップを見る</a></p></section>`,
   });
 }
 
@@ -126,7 +126,6 @@ export function renderConnectPages({ places, signCafes }) {
       body: `    <section class="directory-hero"><p class="eyebrow">CONNECT</p><h2>つながる情報を、種類ごとに。</h2><p>常設の場所と単発イベントを分け、確認できた情報源を添えて掲載します。</p></section>
 ${categoryCards([
         { href: '/connect/sign-cafe/', title: '全国の手話カフェ一覧', text: '地域・営業日・手話対応から、お出かけ先を探せます。常設店舗・定期開催・サイニングストアの情報を、公式リンクと確認日を添えてご紹介します。' },
-        { href: '/connect/events/', title: 'イベント', text: '単発の手話カフェや手話交流イベントはこちらです。' },
       ])}`,
     }),
   });
@@ -136,8 +135,8 @@ ${categoryCards([
     html: renderPage({
       path: '/connect/sign-cafe/', title: `全国の手話カフェ一覧 | ${SITE_NAME.replace(' Web', '')}`,
       description: '店舗や施設そのものが、手話での交流をコンセプトとして運営されている全国の常設手話カフェ一覧。単発イベントは含みません。',
-      crumbLabel: 'つながる › 手話カフェ', lead: '地域・営業日・手話対応から、交流できる場所を探せます。', current: 'connect',
-      breadcrumbPaths: ['/connect/', '/connect/sign-cafe/'], breadcrumbNames: ['ホーム', 'つながる', '手話カフェ'],
+      crumbLabel: '手話カフェ', lead: '地域・営業日・手話対応から、交流できる場所を探せます。', current: 'connect',
+      breadcrumbPaths: ['/connect/sign-cafe/'], breadcrumbNames: ['ホーム', '手話カフェ'],
       body: `    ${signCafeTabs('cafes')}
     <section class="directory-hero directory-hero--cafe" aria-labelledby="cafe-intro">
       <p class="eyebrow">PERMANENT PLACES</p>
@@ -152,8 +151,18 @@ ${categoryCards([
     }),
   });
 
+  pages.push({
+    file: 'connect/events/index.html',
+    html: renderPage({
+      path: '/connect/events/', title: `イベントページは公開休止中です | ${SITE_NAME}`,
+      description: 'イベントページは現在、公開を休止しています。手話カフェの情報は一覧ページからご覧いただけます。',
+      crumbLabel: 'イベント', current: '', robots: 'noindex,follow',
+      breadcrumbPaths: ['/connect/events/'], breadcrumbNames: ['ホーム', 'イベント'],
+      body: `    <section class="directory-hero"><h2>イベントページは公開休止中です</h2><p>手話カフェの情報は、以下の一覧からご覧ください。</p><p><a class="primary-link" href="/connect/sign-cafe/">手話カフェ一覧を見る</a></p></section>`,
+    }),
+  });
+
   const simplePages = [
-    ['connect/events/index.html', '/connect/events/', 'イベント', 'スターバックス以外の単発手話カフェや手話交流イベントを掲載するページです。', '単発イベントは常設店舗一覧と混在させません。確認済み情報を準備中です。', 'connect'],
     ['connect/places/index.html', '/connect/places/', '場所', 'ろう者・難聴者・手話利用者が利用しやすい場所を探すページです。', '掲載基準と情報源を確認した場所から順次掲載します。', 'connect'],
     ['connect/communities/index.html', '/connect/communities/', 'コミュニティ', '地域やテーマで活動するコミュニティを探すページです。', '確認済みの団体情報を準備中です。', 'connect'],
     ['news/japan/index.html', '/news/japan/', '国内ニュース', '聴覚障害・難聴・ろう者・手話に関する国内ニュースの入口です。', '最新の国内ニュースはトップページで公開しています。', 'news'],

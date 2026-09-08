@@ -20,6 +20,8 @@ try{
  let {html}=await request(route);ok(html.includes('<title>全国の手話カフェ一覧｜地域・営業日から探す | Deaf Navi</title>'),'clear title');ok(html.includes('<h1>全国の手話カフェ一覧</h1>'),'one descriptive H1');
  ok(meta(html,'robots').startsWith('index,follow'),'directory indexable');ok(canonical(html)==='https://deafnavi.com'+route,'clean root canonical');
  let graph=ld(html),collection=graph.find(x=>x['@type']==='CollectionPage');ok(graph.some(x=>x['@type']==='BreadcrumbList'),'breadcrumb retained');
+ assert.deepEqual(graph.find(x=>x['@type']==='BreadcrumbList').itemListElement.map(x=>[x.position,x.name,x.item]),[[1,'ホーム','https://deafnavi.com/'],[2,'手話カフェ','https://deafnavi.com/connect/sign-cafe/']]);checks++;
+ ok(html.includes('<a href="/connect/sign-cafe/" aria-current="page">手話カフェ</a>')&&!html.includes('href="/connect/"'),'navigation bypasses retained connect hub');
  let paths=[...html.matchAll(/class="dn-cafe-name" href="([^"]+)"/g)].map(m=>'https://deafnavi.com'+m[1]);assert.deepEqual(collection.mainEntity.itemListElement.map(x=>x.url),paths);checks++;
  ok(paths.length===24,'paginated schema describes rendered 24 rows');ok(!html.includes('PRIVATE_SEO_SENTINEL')&&!html.includes('>SEO fixture 29<'),'private details not exposed');
  ok(html.includes('id="cafe-guide"')&&html.includes('id="cafe-policy"'),'visible helpful content');ok(html.includes('手話カフェの情報をお待ちしています'),'approved copy retained');
@@ -30,6 +32,7 @@ try{
  ({html}=await request(route+'?q='+encodeURIComponent('"></script><script>alert(1)</script>')));ok(!html.includes('</script><script>alert(1)'),'query safely encoded');ok(meta(html,'robots').startsWith('noindex'),'empty search excluded');ld(html);
  ({html}=await request('/admin/'));ok(meta(html,'robots')==='noindex,nofollow','private robots unchanged');
  ({html}=await request('/connect/sign-cafe/overseas/'));ok(!ld(html).some(x=>x['@type']==='CollectionPage'),'domestic schema not applied overseas');
+ assert.deepEqual(ld(html).find(x=>x['@type']==='BreadcrumbList').itemListElement.map(x=>[x.position,x.item]),[[1,'https://deafnavi.com/'],[2,'https://deafnavi.com/connect/sign-cafe/'],[3,'https://deafnavi.com/connect/sign-cafe/overseas/']]);checks++;
  ({html}=await request('/directory-sitemap.xml'));ok(html.includes('<loc>https://deafnavi.com/connect/sign-cafe/</loc>'),'directory sitemap contains hub');ok(!html.includes('seo-fixture-29/'),'private record absent from sitemap');
  ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no PHP warnings');console.log(JSON.stringify({result:'CAFE_SEO_TESTS_OK',checks,productionWrites:false}));
 }finally{server.kill();}

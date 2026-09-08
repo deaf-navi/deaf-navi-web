@@ -43,7 +43,6 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
       ['connect/', 'weekly', '0.7'],
       ['connect/sign-cafe/', 'weekly', '0.8'],
       ['connect/sign-cafe/map/', 'monthly', '0.6'],
-      ['connect/events/', 'weekly', '0.6'],
       ['guide/', 'monthly', '0.8'],
       ['guide/systems/', 'monthly', '0.6'],
       ['guide/life/', 'monthly', '0.6'],
@@ -194,11 +193,10 @@ ${renderSubHeader({
       </section>
 
       <section class="sitemap-card" aria-labelledby="sitemap-connect">
-        <h2 id="sitemap-connect">つながる</h2>
+        <h2 id="sitemap-connect">手話カフェ</h2>
         <ul>
           <li><a href="./connect/sign-cafe/">手話カフェ一覧</a><span>常設・限定営業・定期開催・特殊</span></li>
           <li><a href="./connect/sign-cafe/map/">全国の手話カフェマップ</a><span>2D地図から店舗を探す</span></li>
-          <li><a href="./connect/events/">イベント</a><span>単発の手話カフェや交流イベント</span></li>
         </ul>
       </section>
 
