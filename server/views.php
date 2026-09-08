@@ -10,7 +10,7 @@ function page(string $title,string $body,string $path='',string $description='',
     $documentTitle=$meta['title']??($title==='Deaf Navi｜手話カフェ'?$title:$title.' | Deaf Navi');
     $robots=$private?'noindex,nofollow':($meta['robots']??'index,follow');
     $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script src="/directory-safety.js?v=20260908loading" defer></script><script src="/directory-ui.js?v=20260907slim" defer></script>';
-    if($scope!=='')$ld.='<link rel="stylesheet" href="/cafe-welcome.css?v=20260908a">';
+    if($scope!=='')$ld.='<link rel="stylesheet" href="/cafe-welcome.css?v=20260908design">';
     if(!$private) {
         $ld.='<script src="/access-visit.js" defer></script>';
         if($meta)$ld.='<meta property="og:site_name" content="Deaf Navi"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'.e($documentTitle).'"><meta name="twitter:description" content="'.e($description).'"><meta name="twitter:image" content="'.BASE.'/og-image.png">';

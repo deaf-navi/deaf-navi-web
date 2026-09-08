@@ -24,7 +24,16 @@ function cafe_welcome(string $scope,string $title):string {
         'community'=>['CAFE & COMMUNITY','いつもの一杯に、新しい出会いを。'],
     };
     [$first,$second]=explode('、',$line,2);
-    return '<header class="dn-cafe-welcome dn-welcome--'.$scope.'"><div class="dn-welcome-copy"><p class="dn-welcome-eyebrow" lang="en">'.e($eyebrow).'</p><h1>'.e($title).'</h1><p class="dn-welcome-line"><span>'.e($first).'、</span><span>'.e($second).'</span></p></div><img class="dn-welcome-art" src="/cafe-art/'.$scope.'.svg?v=20260908" width="520" height="320" alt="" decoding="async"></header>';
+    $description=match($scope){
+        'domestic'=>'常設のお店から、定期開催の交流の場まで。地域や手話対応から、あなたの行ってみたい場所を探せます。',
+        'overseas'=>'国や都市、お店のタイプから、世界の手話カフェへ。手話との関わりや、定期開催の情報もご案内します。',
+        'community'=>'手話や筆談での交流を楽しめる場所をご案内します。',
+    };
+    return '<header class="dn-cafe-welcome dn-welcome--'.$scope.'"><div class="dn-welcome-copy"><p class="dn-welcome-eyebrow" lang="en">'.e($eyebrow).'</p><h1>'.e($title).'</h1><p class="dn-welcome-line"><span>'.e($first).'、</span><span>'.e($second).'</span></p><p class="dn-welcome-description">'.e($description).'</p></div><div class="dn-welcome-illustration"><img class="dn-welcome-art" src="/cafe-art/'.$scope.'.svg?v=20260908" width="520" height="320" alt="" decoding="async"><span class="dn-art-caption" aria-hidden="true">COFFEE &amp; CONNECTION</span></div></header>';
+}
+
+function cafe_notice_link():string {
+    return '<p class="dn-guide-note">'.cafe_icon('book').'<span>訪問前に、お店・主催者の公式情報をご確認ください。<a href="#cafe-information-heading">掲載情報について</a></span></p>';
 }
 
 function cafe_guide_link(string $url,string $label,string $icon):string {
