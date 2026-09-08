@@ -16,7 +16,9 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches
       .open(APP_CACHE)
-      .then((cache) => cache.addAll(PRECACHE))
+      .then((cache) => cache.addAll(PRECACHE.map((url) => new Request(new URL(url,self.location.href), {
+        headers: {'X-DeafNavi-Client': 'automation'},
+      }))))
       .then(() => self.skipWaiting()),
   )
 })
@@ -80,7 +82,9 @@ self.addEventListener('fetch', (event) => {
   if (url.origin === self.location.origin) {
     event.respondWith(
       caches.match(request).then((hit) => {
-        const network = fetch(request)
+        const refreshUrl = new URL(request.url)
+        if (hit) refreshUrl.searchParams.set('dn_client','automation')
+        const network = fetch(hit ? new Request(refreshUrl,request) : request)
           .then((res) => {
             if (res.ok) {
               const copy = res.clone()

@@ -63,6 +63,7 @@ jobs:
           node test/admin-dashboard.integration.mjs
           node test/access-logs.integration.mjs
           node test/access-visitors.integration.mjs
+          node test/access-sw.test.mjs
           python3 test/access-maintenance.test.py
           node test/overseas-cafes.integration.mjs
           php test/world-cafes.php

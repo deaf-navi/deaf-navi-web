@@ -38,7 +38,9 @@ self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     // 1件の失敗で全体を止めない（addAllは使わない）
-    await Promise.allSettled(PRECACHE_URLS.map((url) => cache.add(url)));
+    await Promise.allSettled(PRECACHE_URLS.map((url) => cache.add(new Request(new URL(url,self.location.href), {
+      headers: {'X-DeafNavi-Client': 'automation'},
+    }))));
     await self.skipWaiting();
   })());
 });
@@ -74,7 +76,10 @@ async function networkFirst(request, fallbackUrl) {
 async function cacheFirstWithRefresh(request) {
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(request);
-  const refresh = fetch(request)
+  // Cache refreshes are background work; preserve the original cache key and request mode.
+  const refreshUrl = new URL(request.url);
+  if (cached) refreshUrl.searchParams.set('dn_client','automation');
+  const refresh = fetch(cached ? new Request(refreshUrl,request) : request)
     .then((response) => {
       if (response.ok) cache.put(request, response.clone());
       return response;

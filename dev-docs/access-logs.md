@@ -10,6 +10,8 @@
 
 通常のダッシュボード・詳細分析は `client=human` を既定とし、Codex・AI・bot・自動操作・管理画面・分類不明を除外する。既存ログにも表示時に適用する。元ログは保持し、「すべての分類（調査用）」等で確認できる。一般ブラウザーでも画像等を含むHTTPリクエスト数で、利用者数や厳密なPVではない。公開ページの成功GETは公開ページ相当のパスへのGET・2xxを数える。オフライン表示、外部サイト、取得開始前の履歴は含まない。
 
+サイト共通とおとまどのService Workerによるオフライン用先読み・キャッシュの背景更新はautomationに分類する。キャッシュの保存キーとオフラインでの参照先は変更しない。先読みから生じた通信を一般アクセスの増加として表示しない。
+
 詳細分析には日別リクエスト・日別推定UUの棒グラフを表示する。7日・30日・180日の切替、棒から当日の明細への遷移に対応。リクエストは全フィルタ、UUは期間・URL条件と一般ブラウザーが対象。計測開始前は未取得の灰色表示にし、0件と混同させない。数値表と併用でき、外部のグラフサービスやライブラリを使わない。
 
 ## 記録と保存
@@ -52,6 +54,6 @@ UA等から `human / bot / ai / automation / internal / unknown` に分類。既
 
 追加導入時はUU DBの整合バックアップを取得し、新しい `access-visitors.php init` をruntimeユーザーで実行して除外表を追加する。既存の秘密鍵・訪問行・計測開始日時は変更しない。
 
-検証：アクセスログ・簡易表示・グラフ72項目、CookieなしUU37項目、保存処理8ケース、Caddy分類16ケース、既存管理画面58項目、375px/1280px表示。テストで使うIP・UAは合成値。実利用者の値を出力しない。
+検証：アクセスログ・簡易表示・グラフ72項目、CookieなしUU37項目、先読み・背景更新10項目、保存処理8ケース、Caddy分類16ケース、既存管理画面58項目、375px/1280px表示。テストで使うIP・UAは合成値。実利用者の値を出力しない。
 
 公式仕様：[Caddy access logging](https://caddyserver.com/docs/caddyfile/directives/log)、[map](https://caddyserver.com/docs/caddyfile/directives/map)、[log_append](https://caddyserver.com/docs/caddyfile/directives/log_append)。
