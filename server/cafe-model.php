@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 // Versioned additive payload, shared by domestic and overseas places.
-const SHOP_TYPES=['permanent'=>'常設店舗','restaurant'=>'レストラン・食堂','bar'=>'Bar','recurring_program'=>'定期開催（通常店舗内）','recurring_popup'=>'間借り・定期開催','public_recurring'=>'公共施設・定期開催','facility_cafe'=>'福祉施設内カフェ','chain_signing_store'=>'チェーン / Signing Store','event'=>'単発イベント','unknown'=>'形態確認中'];
+const SHOP_TYPES=['permanent'=>'常設店舗','restaurant'=>'レストラン・食堂','bar'=>'Bar','sign_friendly_cafe'=>'手話対応カフェ','community_space'=>'手話交流スポット','community_program'=>'不定期・シリーズ企画','related_organization'=>'関連団体・講座','recurring_program'=>'定期開催（通常店舗内）','recurring_popup'=>'間借り・定期開催','public_recurring'=>'公共施設・定期開催','facility_cafe'=>'福祉施設内カフェ','chain_signing_store'=>'チェーン / Signing Store','event'=>'単発イベント','unknown'=>'形態確認中'];
 const OPERATOR_TYPES=['individual'=>'個人店','organization'=>'NPO / 団体','municipality'=>'自治体','welfare'=>'福祉法人等','chain'=>'チェーン','other'=>'その他','unknown'=>'未確認'];
 const SIGN_LEVELS=['primary'=>'手話・ろう文化が中心','full'=>'手話で接客可能','partial'=>'一部スタッフが対応','event_only'=>'特定日時のみ対応','unknown'=>'手話対応レベル未確認'];
 const CAFE_FEATURES=['is_deaf_owned'=>'ろう者オーナー','has_deaf_staff'=>'ろう者スタッフ','sign_language_support'=>'手話で注文可能','beginner_welcome'=>'初心者歓迎','writing_support'=>'筆談対応','regular_events'=>'定期イベントあり'];
@@ -33,7 +33,7 @@ function cafe_validate(array $post,array $p):array {
     if(array_filter(CAFE_TRI_FIELDS,fn($k)=>in_array($k,['is_deaf_owned','has_deaf_staff'],true)&&isset($p[$k]))&&empty($p['attribute_sources']))fail('オーナー・スタッフ属性には本人・店舗が公表した根拠URLが必要です。');
     if(($p['shop_type']??'')==='chain_signing_store'&&empty($p['signing_store']))fail('Signing Storeは正式な店舗登録に合わせて指定してください。');
     if(($p['confirmation_status']??'')!=='confirmed'&&isset($p['confirmation_status'])&&in_array($p['status'],['open','active_recurring'],true))fail('営業中・定期開催中の登録には確認済みの根拠が必要です。');
-    if(($p['status']??'')==='active_recurring'&&isset($p['shop_type'])&&!in_array($p['shop_type'],['recurring_program','recurring_popup','public_recurring','facility_cafe'],true))fail('定期開催中には定期開催の形態を指定してください。');
+    if(($p['status']??'')==='active_recurring'&&isset($p['shop_type'])&&!in_array($p['shop_type'],['recurring_program','recurring_popup','public_recurring','facility_cafe','community_space'],true))fail('定期開催中には定期開催の形態を指定してください。');
     return $p;
 }
 // A dated one-off activity is separate from its venue's operating status.
@@ -45,8 +45,11 @@ function cafe_activity_state(array $p,?DateTimeImmutable $today=null):?string {
     $date=$today->format('Y-m-d');
     return $p['activity_date']<$date?'date_elapsed':($p['activity_date']===$date?'today':'scheduled');
 }
+function cafe_listing_group(array $p):string {
+    return match($p['shop_type']??''){'community_space'=>'spots','related_organization'=>'organizations',default=>'cafes'};
+}
 function cafe_schema_type(array $p):string {
-    return match($p['shop_type']??''){'bar'=>'BarOrPub','restaurant'=>'Restaurant',default=>($p['type']??'')==='permanent'?'CafeOrCoffeeShop':'Place'};
+    return match($p['shop_type']??''){'bar'=>'BarOrPub','restaurant'=>'Restaurant','community_space','community_program'=>'Place','related_organization'=>'Organization',default=>($p['type']??'')==='permanent'?'CafeOrCoffeeShop':'Place'};
 }
 function cafe_post(array $p):array {
     foreach($p as $k=>$v){if(is_array($v)&&in_array($k,['subtypes','verification_sources','attribute_sources','region_tags','deaf_relation'],true))$p[$k]=implode("\n",$v);elseif(is_bool($v))$p[$k]=$v?'1':'0';elseif($v===null)$p[$k]='';elseif(is_numeric($v))$p[$k]=(string)$v;}

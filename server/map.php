@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 function map_records(): array {
-    return array_values(array_filter(visible_records(),fn($p)=>$p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&($p['signing_store']??false)))&&in_array($p['status'],['open','active_recurring','unknown','needs_review'],true)&&cafe_model($p)['shop_type']!=='event'));
+    return array_values(array_filter(visible_records(),fn($p)=>$p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&($p['signing_store']??false)))&&in_array($p['status'],['open','active_recurring','unknown','needs_review'],true)&&cafe_listing_group($p)==='cafes'&&cafe_model($p)['shop_type']!=='event'));
 }
 function map_located(array $p): bool {
     return $p['country_code']==='JP' && ($p['coordinate_accuracy']??'')==='address_vicinity' && !empty($p['coordinate_source_url']) && !empty($p['address']) && is_numeric($p['latitude']??null) && is_numeric($p['longitude']??null) && $p['latitude']>=24 && $p['latitude']<=46 && $p['longitude']>=122 && $p['longitude']<=146;

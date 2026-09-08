@@ -25,4 +25,6 @@ foreach(['開催予定','2099-09-13','開催・参加の案内','単発イベン
 expect(!str_contains($html,'営業状況未確認')&&!str_contains($html,'<dt>営業時間</dt>'),'Activity is not venue business hours');
 $html=visitor_profile(array_replace($activity,['confirmation_status'=>'needs_review']));
 expect(!str_contains($html,'2099-09-13')&&!str_contains($html,'10:00〜12:00'),'Unconfirmed activity date is suppressed throughout profile');
+$html=visitor_profile(array_replace($p,['shop_type'=>'related_organization']));
+expect(str_contains($html,'店舗型のカフェではありません')&&str_contains($html,'活動・利用の案内'),'Related organization clearly separated from cafe');
 echo "PUBLIC_PROFILE_TESTS_OK\n";

@@ -4,6 +4,9 @@ declare(strict_types=1);
 const CAFE_DIRECTORY_NAME='全国の手話カフェ一覧';
 const CAFE_DIRECTORY_DESCRIPTION='全国の手話カフェを地域・営業日・手話対応から探せるDeaf Navi。常設店舗、間借りや公共施設での定期開催、サイニングストアを一覧と地図で紹介。営業時間、公式サイト・SNS、情報確認日を掲載し、初めての訪問にも役立つ情報をまとめています。';
 
+function cafe_listing_title(array $f):string {
+    return match($f['listing']??''){'spots'=>'手話交流スポット','organizations'=>'手話の関連団体・講座','all'=>'手話カフェ・交流スポット・関連団体',default=>match($f['shop_type']??''){'community_space'=>'手話交流スポット','related_organization'=>'手話の関連団体・講座',default=>CAFE_DIRECTORY_NAME}};
+}
 function cafe_directory_seo(array $filters,array $rows,int $total,int $page,int $size):array {
     $params=array_filter($filters,fn($v)=>$v!=='');
     unset($params['page'],$params['per_page'],$params['view'],$params['sort'],$params['dir']);
@@ -15,12 +18,13 @@ function cafe_directory_seo(array $filters,array $rows,int $total,int $page,int 
     $variant=(bool)$params;
     if($page>1)$params['page']=$page;
     $canonical=BASE.'/connect/sign-cafe/'.($params?'?'.http_build_query($params):'');
-    $name=$filtered?'手話カフェの検索結果':CAFE_DIRECTORY_NAME;
+    $name=cafe_listing_title($filters);
+    if($filtered&&$name===CAFE_DIRECTORY_NAME)$name='手話カフェの検索結果';
     if($page>1)$name.='（'.$page.'ページ目）';
     $title=$name.($filtered?'':'｜地域・営業日から探す').' | Deaf Navi';
     $items=[];
     foreach($rows as $i=>$p)$items[]=['@type'=>'ListItem','position'=>($page-1)*$size+$i+1,'name'=>$p['name'],'url'=>BASE.record_path($p)];
-    $schema=['@context'=>'https://schema.org','@type'=>'CollectionPage','@id'=>$canonical.'#webpage','url'=>$canonical,'name'=>$name,'description'=>CAFE_DIRECTORY_DESCRIPTION,'inLanguage'=>'ja','publisher'=>['@type'=>'Organization','name'=>'Deaf Navi','url'=>BASE.'/about/'],'mainEntity'=>['@type'=>'ItemList','name'=>'掲載中の手話カフェ','numberOfItems'=>$total,'itemListElement'=>$items]];
+    $schema=['@context'=>'https://schema.org','@type'=>'CollectionPage','@id'=>$canonical.'#webpage','url'=>$canonical,'name'=>$name,'description'=>CAFE_DIRECTORY_DESCRIPTION,'inLanguage'=>'ja','publisher'=>['@type'=>'Organization','name'=>'Deaf Navi','url'=>BASE.'/about/'],'mainEntity'=>['@type'=>'ItemList','name'=>cafe_listing_title($filters),'numberOfItems'=>$total,'itemListElement'=>$items]];
     return ['title'=>$title,'canonical'=>$canonical,'robots'=>($variant||!$total?'noindex,follow':'index,follow').',max-image-preview:large','structured'=>[$schema]];
 }
 

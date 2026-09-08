@@ -53,4 +53,20 @@ ok(cafe_validate(['activity_date'=>''],$activity)['activity_date']==='','admin c
 $activity['business_hours']='10:00〜12:00';
 ok(str_contains(cafe_table_schedule($activity),'2099-09-13')&&str_contains(cafe_schedule_html($activity),'開催日（告知情報）'),'known date visible without treating venue as open');
 ok(!domestic_matches($activity,[])&&domestic_matches($activity,['events'=>'1']),'dated activity is opt in');
+foreach(['community_space'=>'spots','related_organization'=>'organizations'] as $type=>$group){
+    $place=cafe_validate(['shop_type'=>$type],$p);
+    ok(!domestic_matches($place,[])&&domestic_matches($place,['listing'=>$group]),'related category is separately discoverable '.$type);
+    ok(domestic_matches($place,['shop_type'=>$type])&&domestic_matches($place,['listing'=>'all']),'explicit category and all listing '.$type);
+    ok(!domestic_matches($place,['listing'=>'cafes'])&&!domestic_matches($place,['listing'=>$group,'region'=>'四国']),'category respects group and region');
+    ok(cafe_schema_type($place)!=='CafeOrCoffeeShop','related place is not a cafe in schema');
+}
+ok(domestic_matches(cafe_validate(['shop_type'=>'sign_friendly_cafe'],$p),[]),'sign friendly cafe remains in cafe list');
+ok(cafe_listing_title(['listing'=>'organizations'])==='手話の関連団体・講座','organization listing title');
+foreach(['spots','organizations','all'] as $group){
+    $_GET=['listing'=>$group,'region'=>'四国'];
+    preg_match_all('/href="([^"]+)" data-cafe-sort=/',cafe_table([]),$links);
+    ok(count($links[1])===3,'three sort links');
+    foreach($links[1] as $url){parse_str(substr(html_entity_decode($url),1),$params);ok(($params['listing']??'')===$group&&($params['region']??'')==='四国','sorting preserves listing and region');}
+}
+$_GET=[];
 echo json(['result'=>'CAFE_MODEL_TESTS_OK','checks'=>$checks])."\n";
