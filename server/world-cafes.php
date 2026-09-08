@@ -90,7 +90,7 @@ function world_filters(array $all,array $f):string {
 }
 function world_page():string {
     $all=world_records();$f=world_filter_values();$list=array_values(array_filter($all,fn($p)=>world_matches($p,$f)));
-    $body='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui"><script src="/world-cafes.js?v=20260908ui" defer></script>'
+    $body='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui"><script src="/world-cafes.js?v=20260908design" defer></script>'
         .tabs(false,true,true)
         .'<nav class="dn-section-links" aria-label="海外の手話カフェの探し方">'.cafe_guide_link('#world-map-panel','世界地図から探す','globe').cafe_guide_link('#cafe-information-heading','掲載情報について','book').cafe_guide_link('#contact','訂正・お問い合わせ','edit').'</nav>'
         .'<section id="cafes" class="dn-directory-results" aria-labelledby="cafe-list-heading"><div class="dn-search-heading"><h2 id="cafe-list-heading">海外の手話カフェを探す</h2><span>国や都市から、世界の一軒へ。</span></div>'
