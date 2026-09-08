@@ -175,6 +175,8 @@
 .dn-cafe-row .dn-cafe-name{font-size:15px;line-height:1.5}
 .dn-row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:2px 12px;margin-top:3px;font-size:12px;color:var(--cafe-muted)}
 .dn-row-meta .dn-expand{display:inline-flex;align-items:center;min-height:28px;margin:0;padding:2px 0;font-size:12px;line-height:1.4}
+/* Reserve only the enhancement button; expanded content stays fully hidden. */
+.dn-directory .dn-row-meta .dn-expand[hidden]{display:inline-flex!important;visibility:hidden}
 .dn-cafe-row .dn-cell-secondary{margin-top:3px;line-height:1.45;font-size:12px}
 .dn-cafe-row .dn-badge{padding:1px 5px;font-size:12px;white-space:normal;line-height:1.5}
 .dn-table-schedule span{display:block;line-height:1.55}.dn-table-schedule span+span{margin-top:3px}.dn-schedule-muted{color:var(--cafe-muted);font-size:13px}

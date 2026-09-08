@@ -383,6 +383,19 @@ input, select {
   flex-wrap: wrap;
 }
 
+/* Keep the header in place while the saved display settings are initialized. */
+.display-controls[hidden] {
+  display: flex !important;
+  visibility: hidden;
+}
+
+.display-controls [data-font-label] {
+  display: inline-block;
+  min-inline-size: 9em;
+  text-align: start;
+  white-space: nowrap;
+}
+
 .display-controls__btn {
   display: inline-flex;
   align-items: center;

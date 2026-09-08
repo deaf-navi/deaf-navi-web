@@ -126,7 +126,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="${basePath}${stylesFile}">
+  <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260908loading'}">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
 

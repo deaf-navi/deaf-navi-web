@@ -2,13 +2,16 @@
 (() => {
   if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller) return;
   let ready = false;
-  const forms = [...document.querySelectorAll('form[method="post"]')];
+  const forms = [...document.querySelectorAll('form[method="post" i]')];
   for (const form of forms) form.addEventListener('submit', event => { if (!ready) event.preventDefault(); });
-  const controls = forms.flatMap(form => [...form.querySelectorAll('button[type="submit"],button:not([type])')]);
-  controls.forEach(button => { button.disabled = true; });
-  const notice = document.createElement('p'); notice.className = 'dn-notice'; notice.setAttribute('role', 'status');
-  notice.textContent = 'フォームの保護状態を確認しています…';
-  document.querySelector('main')?.prepend(notice);
+  const controls = new Map(forms.flatMap(form => [...form.querySelectorAll('button[type="submit"],button:not([type]),input[type="submit"],input[type="image"]')]).map(button => [button, button.disabled]));
+  const busy = new Map(forms.map(form => [form, form.getAttribute('aria-busy')]));
+  controls.forEach((_disabled, button) => { button.disabled = true; });
+  forms.forEach(form => form.setAttribute('aria-busy', 'true'));
+  // Routine checks must not insert/remove visible content or move the page.
+  function restoreBusy() {
+    busy.forEach((value, form) => value === null ? form.removeAttribute('aria-busy') : form.setAttribute('aria-busy', value));
+  }
   function safeWorker() {
     if (!navigator.serviceWorker.controller) return Promise.resolve(true);
     return new Promise(resolve => {
@@ -40,6 +43,15 @@
         location.reload(); return;
       }
     }
-    ready = true; controls.forEach(button => { button.disabled = false; }); notice.remove();
-  })().catch(() => { notice.textContent = '保護状態を確認できません。ページを再読み込みしてから操作してください。'; });
+    ready = true;
+    controls.forEach((disabled, button) => { button.disabled = disabled; });
+    restoreBusy();
+  })().catch(() => {
+    restoreBusy();
+    for (const target of forms.length ? forms : [document.querySelector('main')].filter(Boolean)) {
+      const notice = document.createElement('p'); notice.className = 'dn-error'; notice.setAttribute('role', 'alert');
+      notice.textContent = '送信の準備を完了できませんでした。ページを再読み込みしてから、もう一度お試しください。';
+      target.append(notice);
+    }
+  });
 })();
