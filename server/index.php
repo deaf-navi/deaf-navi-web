@@ -28,7 +28,11 @@ try {
     if((int)($_SERVER['CONTENT_LENGTH']??0)>65536)fail('送信内容が大きすぎます。',413);
     if(!in_array($_SERVER['REQUEST_METHOD'],['GET','HEAD','POST'],true))fail('この操作は利用できません。',405);
     if($_SERVER['REQUEST_METHOD']==='POST') {
-        if($path==='/admin/') { admin_action();header('Location: /admin/',true,303);exit; }
+        if($path==='/admin/') {
+            admin_action();
+            $marker=$_GET['dn_client']??null;
+            header('Location: /admin/'.(in_array($marker,['codex','automation'],true)?'?dn_client='.$marker:''),true,303);exit;
+        }
         if($path!=='/submit/')fail('情報が見つかりません。',404);
         check_csrf();rate_limit('submit',5,3600);
         if(input($_POST,'website_confirm',500)!=='' || time()-($_SESSION['form_issued']??time())<3)fail('フォームを確認してから送信してください。');

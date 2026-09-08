@@ -129,7 +129,7 @@ def archive_logs(root, cutoff, active="access-v2.log", index=None):
     return archived
 
 
-def archive_visitors(root, cutoff):
+def archive_visitors(root, cutoff, table="visits"):
     database = root / "visitors.sqlite"
     if not database.is_file():
         return []
@@ -139,27 +139,33 @@ def archive_visitors(root, cutoff):
     db.row_factory = sqlite3.Row
     archived = []
     try:
+        if table not in ("visits", "excluded_visitors"):
+            raise RuntimeError("Unexpected visitor table")
+        if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (table,)).fetchone():
+            return []
+        prefix = "visitors-" if table == "visits" else "excluded-visitors-"
+        order = "visitor,path" if table == "visits" else "visitor"
         # day is Japan time; leave a boundary day intact until every record is old enough.
-        days = [r[0] for r in db.execute("SELECT DISTINCT day FROM visits WHERE day < ? ORDER BY day", (cutoff.strftime("%Y-%m-%d"),))]
+        days = [r[0] for r in db.execute("SELECT DISTINCT day FROM " + table + " WHERE day < ? ORDER BY day", (cutoff.strftime("%Y-%m-%d"),))]
         for day in days:
             if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", day):
                 raise RuntimeError("Unexpected visitor day")
             db.execute("BEGIN IMMEDIATE")
             tmp = None
             try:
-                rows = [dict(r) for r in db.execute("SELECT * FROM visits WHERE day=? ORDER BY visitor,path", (day,))]
+                rows = [dict(r) for r in db.execute("SELECT * FROM " + table + " WHERE day=? ORDER BY " + order, (day,))]
                 with tempfile.NamedTemporaryFile(dir=root, prefix=".visitors-", mode="w", delete=False) as f:
                     tmp = Path(f.name)
                     for row in rows:
                         f.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
                     f.flush()
                     os.fsync(f.fileno())
-                target = archive_path(root, day[:7], "visitors-" + day + ".jsonl.gz")
+                target = archive_path(root, day[:7], prefix + day + ".jsonl.gz")
                 checksum, size = verified_gzip(tmp, target)
                 atomic_json(target.with_suffix(".json"), {"day": day, "rows": len(rows), "sha256": checksum, "bytes": size, "verified": True})
-                db.execute("DELETE FROM visits WHERE day=?", (day,))
+                db.execute("DELETE FROM " + table + " WHERE day=?", (day,))
                 db.commit()
-                archived.append({"day": day, "rows": len(rows), "gzip_bytes": target.stat().st_size})
+                archived.append({"table": table, "day": day, "rows": len(rows), "gzip_bytes": target.stat().st_size})
             except BaseException:
                 db.rollback()
                 raise
@@ -190,6 +196,7 @@ def maintain(root, visitor_root, now, force_monthly=False):
         result["logs"] = archive_logs(root, cutoff, index=result["file_index"])
         if visitor_root.exists():
             result["visitors"] = archive_visitors(visitor_root.resolve(strict=True), cutoff)
+            result["visitors"] += archive_visitors(visitor_root.resolve(strict=True), cutoff, "excluded_visitors")
     except Exception as ex:
         result["status"] = "error"
         result["error_type"] = type(ex).__name__  # No request data or secrets in operational output.

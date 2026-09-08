@@ -97,6 +97,32 @@ class Retention(unittest.TestCase):
         self.assertEqual(db.execute('SELECT COUNT(*) FROM visits').fetchone()[0], 1)
         db.close()
 
+    def test_exclusion_backup_and_retention(self):
+        db = sqlite3.connect(self.visitors / 'visitors.sqlite')
+        db.execute('CREATE TABLE visits(day TEXT,visitor TEXT,path TEXT)')
+        db.execute('CREATE TABLE excluded_visitors(day TEXT,visitor TEXT,reason TEXT,PRIMARY KEY(day,visitor)) WITHOUT ROWID')
+        db.executemany('INSERT INTO excluded_visitors VALUES(?,?,?)', [('2026-03-01','a'*64,'ai'),('2026-08-31','b'*64,'automation')])
+        db.commit()
+        result = m.maintain(self.logs, self.visitors, self.now)
+        self.assertEqual(result['visitors'][0]['table'], 'excluded_visitors')
+        archive = next((self.visitors/'archive').glob('*/excluded-visitors-*.gz'))
+        self.assertEqual(json.loads(gzip.decompress(archive.read_bytes()))['reason'], 'ai')
+        self.assertEqual(db.execute('SELECT day FROM excluded_visitors').fetchall(), [('2026-08-31',)])
+        self.assertEqual(m.maintain(self.logs, self.visitors, self.now)['visitors'], [])
+        db.close()
+
+    def test_exclusion_conflict_preserves_original(self):
+        db = sqlite3.connect(self.visitors / 'visitors.sqlite')
+        db.execute('CREATE TABLE excluded_visitors(day TEXT,visitor TEXT,reason TEXT)')
+        db.execute("INSERT INTO excluded_visitors VALUES('2026-03-01','anonymous','ai')")
+        db.commit()
+        target = m.archive_path(self.visitors, '2026-03', 'excluded-visitors-2026-03-01.jsonl.gz')
+        target.write_bytes(gzip.compress(b'wrong copy'))
+        with self.assertRaises(RuntimeError):
+            m.maintain(self.logs, self.visitors, self.now)
+        self.assertEqual(db.execute('SELECT COUNT(*) FROM excluded_visitors').fetchone()[0], 1)
+        db.close()
+
 
 if __name__ == '__main__':
     unittest.main()

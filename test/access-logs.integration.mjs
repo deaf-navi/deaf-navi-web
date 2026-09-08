@@ -34,7 +34,7 @@ const admin = client(), editor = client(), anon = client();
 const csrf = text => text.match(/name="csrf" value="([a-f0-9]+)"/)[1];
 let checks = 0;
 const ok = (v,m) => {assert.ok(v,m); checks++;};
-const entry = (uri, ts, extra={}) => ({ts,request:{host:'deafnavi.com',method:'GET',uri},status:200,duration:0.0123,size:1234,...extra});
+const entry = (uri, ts, extra={}) => ({ts,request:{host:'deafnavi.com',method:'GET',uri},status:200,duration:0.0123,size:1234,client_kind:'human',...extra});
 const now = Math.floor(Date.now()/1000);
 const day = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo'}).format(new Date());
 const start = Date.parse(`${day}T00:00:00+09:00`)/1000;
@@ -54,7 +54,9 @@ try {
     ok(r.status===200 && r.text.includes('管理画面にログイン') && !r.text.includes('URL別件数'),'anonymous sees login only');
     for (const [c,name] of [[admin,'testadmin'],[editor,'testeditor']]) {
         r = await c('/admin/');
-        ok((await c('/admin/',{csrf:csrf(r.text),action:'login',username:name,password})).status===303,'login');
+        const login=await c('/admin/'+(name==='testadmin'?'?dn_client=codex':''),{csrf:csrf(r.text),action:'login',username:name,password});
+        ok(login.status===303,'login');
+        ok(login.headers.get('location')==='/admin/'+(name==='testadmin'?'?dn_client=codex':''),'login redirect preserves only explicit automation marker');
     }
     ok((await editor('/admin/?view=access')).status===403,'editor denied direct view');
     ok(!(await editor('/admin/')).text.includes('view=access'),'editor menu hidden');
@@ -80,12 +82,18 @@ try {
     ok(report({q:'sign-cafe'}).total===1,'path search');
     ok(report({page:2,limit:3}).rows[0].path===a.rows[3].path,'page slice');
     ok(report({q:"' OR 1=1 --"}).total===0,'search is literal');
-    const compact=report({summary:true});
-    ok(compact.total===a.total && compact.errors===a.errors && compact.rows.length===5 && compact.rows.every(p=>p.group==='pages' && p.method==='GET'),'summary totals match detail and recent list excludes assets and HEAD');
+    const compact=report({summary:true,client:'human'});
+    ok(compact.total===report({client:'human'}).total && compact.errors===a.errors && compact.rows.length===5 && compact.rows.every(p=>p.group==='pages' && p.method==='GET'),'summary totals match human detail and recent list excludes assets and HEAD');
     r=await admin('/admin/?from=2000-01-01&to=2000-01-02&group=assets&q=no-match');
     const summary=r.text.match(/<section class="admin-panel admin-access-summary"[\s\S]*?<\/section>/)?.[0]??'';
-    ok(summary.includes('今日のアクセス') && summary.includes('<strong>11<small>件') && summary.includes('from='+day) && summary.includes('to='+day),'dashboard always summarizes today and links to matching detail period');
+    ok(summary.includes('今日のアクセス') && summary.includes('<strong>10<small>件') && summary.includes('client=human') && summary.includes('from='+day) && summary.includes('to='+day),'dashboard always summarizes today without admin traffic and links to matching detail period');
     ok(summary.includes('&lt;img') && !summary.includes('<img') && !summary.includes('PRIVATE_MARKER'),'summary escapes log content and omits query data');
+    r=await admin('/admin/?view=access'+query);
+    ok(r.text.includes('value="human" selected') && r.text.includes('Codex・AI・bot・自動操作・管理画面・分類不明は除外'),'normal detail excludes non-human traffic by default');
+    ok((r.text.match(/<svg /g)||[]).length===1 && r.text.includes('アクセスの推移') && r.text.includes('未取得のためグラフ'),'request chart available while missing UU stays unavailable');
+    ok(r.text.includes('直近180日</a>') && r.text.includes('tab=requests') && r.text.includes('日別・件'),'chart period and day drilldown available');
+    const series=run(['-r',`require '${core}';require '${access}';echo json(access_chart_series(['from'=>'2026-09-06','to'=>'2026-09-08'],['2026-09-07'=>2],(float)strtotime('2026-09-07T00:00:00+09:00')));`]);
+    ok(JSON.stringify(JSON.parse(series.stdout))===JSON.stringify({'2026-09-06':null,'2026-09-07':2,'2026-09-08':0}),'chart distinguishes not collected, positive counts and zero');
     for (const tab of ['paths','days','requests','unique']) {
         r = await admin('/admin/?view=access'+query+'&tab='+tab);
         ok(r.status===200 && r.text.includes('アクセスログ'),'view '+tab);
@@ -116,7 +124,10 @@ try {
     ok(hostReport.invalid===2,'foreign hosts and malformed ports remain rejected');
     ok(run(['server/cli.php','check']).status===0,'application DB intact');
     writeFileSync(join(logsDir,'access.log'),['human','ai','bot','automation','unknown'].map((client_kind,i)=>JSON.stringify(entry('/class-'+i+'/',start+100+i,{client_kind}))).join('\n')+'\n');
-    ok(report({client:'ai'}).total===1 && report({client:'bot'}).total===1 && report({client:'human'}).total===1,'category filter');
+    ok(report({client:'ai'}).total===1 && report({client:'bot'}).total===1 && report({client:'human'}).total===4,'category filter');
+    r=await admin('/admin/');
+    const cleanSummary=r.text.match(/<section class="admin-panel admin-access-summary"[\s\S]*?<\/section>/)?.[0]??'';
+    ok(cleanSummary.includes('/class-0/') && !cleanSummary.includes('/class-1/') && !cleanSummary.includes('/class-2/') && !cleanSummary.includes('/class-3/') && !cleanSummary.includes('/class-4/'),'past classified Codex, bots, automation and unknown are excluded from summary');
     const rotated=join(logsDir,'access-v2-2026-09-08T00-00-00-time.log');
     writeFileSync(rotated,JSON.stringify(entry('/v2/',start+200,{client_kind:'automation'}))+'\n');
     ok(report({q:'/v2/'}).total===1,'new rotated filenames supported');
@@ -128,6 +139,7 @@ try {
     ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide/','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
     r=await admin('/admin/?view=access&tab=unique'+query);
     ok(r.text.includes('1 人') && r.text.includes('Cookieや端末への識別子保存は使いません') && !r.text.includes('推定ユニーク数を取得できません'),'unique viewer and estimation explanation');
+    ok((r.text.match(/<svg /g)||[]).length===2 && r.text.includes('日別・人'),'UU chart renders alongside request chart');
     r=await admin('/admin/');
     ok(r.text.includes('推定ユニーク数</span><strong>1<small>人') && r.text.includes('tab=unique'),'dashboard unique metric opens detailed unique analysis');
     const baseline=report({}).total;

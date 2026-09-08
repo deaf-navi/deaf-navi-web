@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__.'/access-visitors.php';
+require_once __DIR__.'/access-charts.php';
 
 // Read only. Logs are written by Caddy, outside the public root and application DB.
 const ACCESS_GROUPS = ['all'=>'すべてのリクエスト','pages'=>'公開ページ','data'=>'API・JSON・RSS等','assets'=>'画像・CSS・JavaScript等','management'=>'管理・情報提供'];
@@ -25,7 +26,7 @@ function access_options(): array {
     $start = new DateTimeImmutable($from, new DateTimeZone('Asia/Tokyo'));
     $end = new DateTimeImmutable($to, new DateTimeZone('Asia/Tokyo'));
     if ($end < $start || $start->diff($end)->days > 179 || $start < $today->modify('-179 days') || $end > $today) fail('直近180日以内の期間を指定してください。');
-    $client = input($_GET, 'client', 20) ?: 'all';
+    $client = input($_GET, 'client', 20) ?: 'human';
     choice($client, ACCESS_CLIENTS);
     $group = input($_GET, 'group', 20) ?: 'all';
     choice($group, ACCESS_GROUPS);
@@ -84,9 +85,11 @@ function access_entry(string $line): ?array {
     if (!is_finite($ts) || $ts <= 0 || $ts > 4102444800) return null;
     $duration = is_numeric($r['duration'] ?? null) ? (float)$r['duration'] : null;
     if ($duration !== null && (!is_finite($duration) || $duration < 0)) $duration = null;
+    $client = is_string($r['client_kind']??null) && isset(ACCESS_CLIENTS[$r['client_kind']]) && $r['client_kind']!=='all' ? $r['client_kind'] : 'unknown';
+    if (preg_match('#^/admin(?:/|$)#',$path) && in_array($client,['human','unknown'],true)) $client='internal';
     return ['ts'=>$ts, 'host'=>$host, 'path'=>$path, 'method'=>$method, 'status'=>$status,
         'duration'=>$duration, 'size'=>is_int($r['size'] ?? null) && $r['size'] >= 0 ? $r['size'] : null,
-        'client'=>is_string($r['client_kind']??null) && isset(ACCESS_CLIENTS[$r['client_kind']]) && $r['client_kind']!=='all' ? $r['client_kind'] : 'unknown',
+        'client'=>$client,
         'group'=>access_group($path)];
 }
 
@@ -196,9 +199,9 @@ function admin_access_summary(): string {
     $today = new DateTimeImmutable('today', new DateTimeZone('Asia/Tokyo'));
     $day = $today->format('Y-m-d');
     $o = ['from'=>$day,'to'=>$day,'start'=>$today->getTimestamp(),'end'=>$today->modify('+1 day')->getTimestamp(),
-        'group'=>'all','client'=>'all','status'=>'','q'=>'','page'=>1,'limit'=>5,'summary'=>true];
+        'group'=>'all','client'=>'human','status'=>'','q'=>'','page'=>1,'limit'=>5,'summary'=>true];
     $r = access_report($o); $uu = access_unique_report($o);
-    $base = ['view'=>'access','from'=>$day,'to'=>$day];
+    $base = ['view'=>'access','from'=>$day,'to'=>$day,'client'=>'human'];
     $out = '<section class="admin-panel admin-access-summary" aria-labelledby="access-summary-title"><div class="admin-access-summary-heading"><div><h2 id="access-summary-title">今日のアクセス</h2><p>'.e($today->format('Y/m/d')).'・日本時間</p></div><a href="'.admin_query($base).'">アクセスログで詳細分析 →</a></div>';
     if (!$r['available']) $out .= '<p class="dn-error" role="status">アクセスログを読み取れません。0件という意味ではありません。</p>';
     elseif ($r['partial'] || $r['invalid']) $out .= '<p class="dn-notice" role="status">リクエスト数と履歴は読み取れた範囲の部分集計です。詳細分析でもご確認ください。</p>';
@@ -206,7 +209,7 @@ function admin_access_summary(): string {
     foreach ([['リクエスト',$r['available']?$r['total']:null,'件',['tab'=>'requests']],['推定ユニーク数',$uu['available']?$uu['total']:null,'人',['tab'=>'unique']],['サーバーエラー（5xx）',$r['available']?$r['errors']:null,'件',['tab'=>'requests','status'=>'5xx']]] as [$label,$count,$unit,$filter]) {
         $out .= '<a href="'.admin_query($base,$filter).'"><span>'.e($label).'</span><strong>'.($count===null?'未取得':number_format($count).'<small>'.e($unit).'</small>').'</strong></a>';
     }
-    $out .= '</div><p class="admin-access-summary-note">リクエストは画像・bot等も含みます。UUは一般ブラウザーの推定人数です。</p><h3>直近の公開ページアクセス<span>今日・最大5件</span></h3><ol class="admin-access-recent">';
+    $out .= '</div><p class="admin-access-summary-note">一般ブラウザーのみ。Codex・AI・bot・自動操作・管理画面・分類不明を除外しています。リクエストには画像等も含み、UUは推定人数です。</p><h3>直近の公開ページアクセス<span>今日・最大5件</span></h3><ol class="admin-access-recent">';
     foreach ($r['rows'] as $row) {
         $at = (new DateTimeImmutable('@'.(int)$row['ts']))->setTimezone(new DateTimeZone('Asia/Tokyo'));
         $out .= '<li><time datetime="'.e($at->format('c')).'">'.e($at->format('H:i:s')).'</time><div><span class="admin-access-path">'.e($row['path']).'</span><small>'.e(ACCESS_CLIENTS[$row['client']]).'</small></div><span class="admin-access-status'.($row['status']>=400?' is-error':'').'" aria-label="HTTP応答 '.(int)$row['status'].'">'.(int)$row['status'].'</span></li>';
@@ -220,6 +223,7 @@ function admin_access_logs(): string {
     $o = access_options(); $r = access_report($o); $uu = access_unique_report($o);
     $base = ['view'=>'access','from'=>$o['from'],'to'=>$o['to'],'group'=>$o['group'],'client'=>$o['client'],'status'=>$o['status'],'q'=>$o['q'],'tab'=>$o['tab'],'limit'=>$o['limit']];
     $out = '<p class="admin-lead">全コンテンツのアクセスを期間・URL・分類で詳しく分析できます。日時は日本時間です。</p>';
+    $out .= '<p class="dn-notice">'.($o['client']==='human'?'一般ブラウザーのみ集計しています。Codex・AI・bot・自動操作・管理画面・分類不明は除外しています。':'調査用の分類を表示しています。このリクエスト数を一般ユーザーの利用数として扱わないでください。').'</p>';
     $out .= '<form method="get" class="admin-filters"><input type="hidden" name="view" value="access"><input type="hidden" name="tab" value="'.e($o['tab']).'">'
         .field('from','開始日',$o['from'],'date',true).field('to','終了日',$o['to'],'date',true)
         .($o['tab']==='unique'?'':select_field('group','対象',ACCESS_GROUPS,$o['group']).select_field('client','アクセス元の分類',ACCESS_CLIENTS,$o['client']).select_field('status','応答',[''=>'すべて','2xx'=>'成功（2xx）','3xx'=>'転送等（3xx）','4xx'=>'要求エラー（4xx）','5xx'=>'サーバーエラー（5xx）'],$o['status']))
@@ -232,7 +236,7 @@ function admin_access_logs(): string {
     foreach ([['選択条件のリクエスト',$r['total']],['公開ページの成功GET',$r['pages']],['見つからないURL（404）',$r['not_found']],['サーバーエラー（5xx）',$r['errors']]] as [$label,$count])
         $out .= '<a href="'.admin_query($base,['tab'=>'requests']).'"><span>'.e($label).'</span><strong>'.number_format($count).'<small>件</small></strong></a>';
     $out .= '<a href="'.admin_query($base,['tab'=>'unique']).'"><span>日別推定ユニークの合計</span><strong>'.($uu['available']?number_format($uu['total']).'<small>人日</small>':'未取得').'</strong><small>期間とURL条件・一般ブラウザーのみ</small></a>';
-    $out .= '</div><nav class="dn-admin-nav" aria-label="アクセスログの表示切替">';
+    $out .= '</div>'.access_charts_html($o,$r,$uu,$base).'<nav class="dn-admin-nav" aria-label="アクセスログの表示切替">';
     foreach (['paths'=>'URL別件数','days'=>'日別件数','requests'=>'個別のアクセス履歴','unique'=>'推定ユニーク数'] as $tab=>$label)
         $out .= '<a href="'.admin_query($base,['tab'=>$tab,'page'=>1]).'"'.($tab===$o['tab']?' aria-current="page"':'').'>'.e($label).'</a> ';
     $out .= '</nav>';
@@ -261,5 +265,5 @@ function admin_access_logs(): string {
     }
     $out .= '</tbody></table></div>';
     if ($o['tab'] === 'requests') $out .= admin_pager($o['page'],$r['total'],$o['limit'],$base);
-    return $out.access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。既知のbot・AI・Codex・自動操作は推定ユニーク数から除外します。判別情報のない通常ブラウザーの自動操作は見分けられません。分類開始前のログは「不明」です。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。</p><p>生のIP・User-Agent・Cookie・認証情報・参照元・入力本文・URLの検索条件は保存しません。公開領域外で管理者のみ参照できます。180日超を月初にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。210日超は日次でも確認します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
+    return $out.access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。通常集計は一般ブラウザーのみで、Codex・AI・bot・自動操作・管理画面・分類不明を除外します。除外した分類は調査用に切り替えて確認できます。判別情報のない通常ブラウザーの自動操作は見分けられません。過去に一般ブラウザーとして保存された記録を、後から完全に分類し直すことはできません。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。同じ日の接続が後からCodex等と判定された場合は、その日の推定UUから除外します。</p><p>生のIP・User-Agent・Cookie・認証情報・参照元・入力本文・URLの検索条件は保存しません。公開領域外で管理者のみ参照できます。180日超を月初にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。210日超は日次でも確認します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
 }

@@ -2,10 +2,11 @@
 declare(strict_types=1);
 
 // Separate from sessions and the directory database. No network identifiers are stored.
-const ACCESS_CLIENTS = ['all'=>'すべての分類','human'=>'一般ブラウザー（推定）','bot'=>'bot・検索クローラー','ai'=>'AI・Codex','automation'=>'自動操作・監視','unknown'=>'不明・分類開始前'];
+const ACCESS_CLIENTS = ['human'=>'一般ブラウザー（推定）','all'=>'すべての分類（調査用）','bot'=>'bot・検索クローラー','ai'=>'AI・Codex','automation'=>'自動操作・監視','internal'=>'管理画面','unknown'=>'不明・分類開始前'];
 
 function access_client(string $ua, string $marker=''): string {
     if (preg_match('/codex|openai/i', $marker)) return 'ai';
+    if ($marker === 'automation') return 'automation';
     if (preg_match('/GPTBot|OAI-SearchBot|ChatGPT|OpenAI|Codex|Claude|Anthropic|Perplexity|Bytespider|cohere-ai/i', $ua)) return 'ai';
     if (preg_match('/bot|crawler|spider|slurp|facebookexternalhit|WhatsApp|TelegramBot/i', $ua)) return 'bot';
     if (preg_match('/curl|wget|python|httpx|headless|playwright|puppeteer|selenium|deafnavi-release|uptime|monitor|Go-http-client|node|undici/i', $ua)) return 'automation';
@@ -46,23 +47,43 @@ function access_visitor_init(): void {
         day TEXT NOT NULL, visitor TEXT NOT NULL, path TEXT NOT NULL,
         PRIMARY KEY(day,visitor,path)
     ) WITHOUT ROWID; CREATE INDEX IF NOT EXISTS visits_path_day ON visits(path,day);
-    CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);');
+    CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS excluded_visitors (
+        day TEXT NOT NULL, visitor TEXT NOT NULL, reason TEXT NOT NULL,
+        PRIMARY KEY(day,visitor)
+    ) WITHOUT ROWID;');
     $s = $db->prepare('INSERT OR IGNORE INTO metadata(key,value) VALUES(?,?)');
     $s->execute(['started_at', gmdate('c')]);
 }
 
-function access_record_visit(string $path, string $ip, string $ua, ?DateTimeImmutable $at=null): void {
+function access_visitor_identity(string $ip, string $ua, ?DateTimeImmutable $at=null): ?array {
     $packed = @inet_pton($ip);
-    if ($packed === false || $ua === '' || strlen($ua)>2048) return;
+    if ($packed === false || $ua === '' || strlen($ua)>2048) return null;
     $day = ($at ?? new DateTimeImmutable())->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y-m-d');
     $key = access_visitor_dir().'/secret.key';
     if (is_link($key) || !is_file($key)) throw new RuntimeException('Visitor key unavailable');
     $secret = file_get_contents($key);
     if (strlen($secret)!==32) throw new RuntimeException('Invalid visitor key');
     $visitor = hash_hmac('sha256', $day."\0".$packed."\0".$ua, $secret);
+    return [$day,$visitor];
+}
+
+function access_exclude_visitor(string $ip, string $ua, string $reason, ?DateTimeImmutable $at=null): void {
+    if (!in_array($reason,['ai','automation'],true)) return;
+    $identity = access_visitor_identity($ip,$ua,$at);
+    if (!$identity) return;
+    $s = access_visitor_db(true)->prepare('INSERT OR IGNORE INTO excluded_visitors(day,visitor,reason) VALUES(?,?,?)');
+    $s->execute([...$identity,$reason]);
+}
+
+function access_record_visit(string $path, string $ip, string $ua, ?DateTimeImmutable $at=null): void {
+    $identity = access_visitor_identity($ip,$ua,$at);
+    if (!$identity) return;
+    [$day,$visitor] = $identity;
     // One row per day, inferred visitor and page. A reload or retry adds no duplicate.
-    $s = access_visitor_db(true)->prepare('INSERT OR IGNORE INTO visits(day,visitor,path) VALUES(?,?,?)');
-    $s->execute([$day,$visitor,$path]);
+    $s = access_visitor_db(true)->prepare('INSERT OR IGNORE INTO visits(day,visitor,path)
+        SELECT ?,?,? WHERE NOT EXISTS (SELECT 1 FROM excluded_visitors WHERE day=? AND visitor=?)');
+    $s->execute([$day,$visitor,$path,$day,$visitor]);
 }
 
 function access_visit_endpoint(): never {
@@ -87,8 +108,14 @@ function access_visit_endpoint(): never {
     if (!str_starts_with($path,'/connect/sign-cafe/') && (!is_file($file) || !str_ends_with($file,'.html'))) { http_response_code(400); exit; }
     $ua = substr($_SERVER['HTTP_USER_AGENT']??'',0,2049);
     $marker = substr($_SERVER['HTTP_X_DEAFNAVI_CLIENT']??'',0,100);
-    if (access_client($ua,$marker)!=='human' || ($data['automated']??false)===true) { http_response_code(204); exit; }
+    $client = access_client($ua,$marker);
     try {
+        if ($client !== 'human' || ($data['automated']??false)===true) {
+            // A normal browser identified as Codex later also leaves today's earlier UU out.
+            // Keep the original visit rows; do not guess at other connections or earlier days.
+            if (access_client($ua)==='human') access_exclude_visitor($_SERVER['REMOTE_ADDR']??'',$ua,$client==='ai'?'ai':'automation');
+            http_response_code(204); exit;
+        }
         // REMOTE_ADDR is provided by Caddy. Never trust public X-Forwarded-For headers.
         access_record_visit($path,$_SERVER['REMOTE_ADDR']??'',$ua);
         http_response_code(204);
@@ -101,7 +128,7 @@ function access_unique_report(array $options): array {
     try {
         $db = access_visitor_db();
         $result['started_at'] = $db->query("SELECT value FROM metadata WHERE key='started_at'")->fetchColumn() ?: null;
-        $where = 'day>=? AND day<=?'; $args = [$options['from'],$options['to']];
+        $where = 'day>=? AND day<=? AND NOT EXISTS (SELECT 1 FROM excluded_visitors x WHERE x.day=visits.day AND x.visitor=visits.visitor)'; $args = [$options['from'],$options['to']];
         if ($options['q']!=='') { $where .= ' AND instr(lower(path),lower(?))>0'; $args[]=$options['q']; }
         $s = $db->prepare('SELECT day,COUNT(DISTINCT visitor) AS count FROM visits WHERE '.$where.' GROUP BY day ORDER BY day DESC');
         $s->execute($args);

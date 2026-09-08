@@ -6,9 +6,19 @@
         ~(?i)Mozilla/|Opera/ human
         default unknown
     }
+    map {http.request.header.Referer} {access_referrer_class} {
+        ~(?i)^https?://(?:www[.])?deafnavi[.]com(?::(?:80|443))?/[^\s]*[?&]dn_client=(?:codex|openai)(?:&|$) ai
+        ~(?i)^https?://(?:www[.])?deafnavi[.]com(?::(?:80|443))?/[^\s]*[?&]dn_client=automation(?:&|$) automation
+        default {access_ua_class}
+    }
+    map "{access_referrer_class}:{http.request.uri.path}" {access_path_class} {
+        ~^(?:human|unknown):/admin(?:/|$) internal
+        default {access_referrer_class}
+    }
     map "{http.request.header.X-DeafNavi-Client}:{query.dn_client}" {access_client_class} {
         ~(?i)codex|openai ai
-        default {access_ua_class}
+        ~(?i)automation automation
+        default {access_path_class}
     }
     log_append <client_kind {access_client_class}
 }
