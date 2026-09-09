@@ -1,13 +1,15 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
+import { retryCandidates, settleTranslations, isTranslatedArticle } from './lib/world-pending.mjs';
 import { isHardNoiseWorldText } from './lib/world-relevance.mjs';
-import { articleCacheKey, createTranslationCache, isWeakJapaneseTranslation, assertJapaneseTranslations, makeTranslationBatches, translateBatch, polishJapanese } from './lib/world-translation.mjs';
+import { articleCacheKey, createTranslationCache, isWeakJapaneseTranslation, assertJapaneseTranslations, translateBatch, polishJapanese } from './lib/world-translation.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const DATA_DIR = join(ROOT, 'docs');
 const DATA_FILE = join(DATA_DIR, 'articles-world.json');
+const PENDING_FILE = join(ROOT, '.state', 'world-translation.json');
 
 const MAX_ARTICLES = 600;
 const MIN_SCORE = 8;
@@ -21,6 +23,7 @@ const TRANSLATE_DELAY_MS = 220;
 const CODEX_POST_EDIT_BATCH_SIZE = envInt('WORLD_JP_CODEX_BATCH_SIZE', 20, 1, 50);
 const CODEX_POST_EDIT_MAX_ITEMS = envInt('WORLD_JP_CODEX_MAX_ITEMS', MAX_ARTICLES, 0, MAX_ARTICLES);
 const CODEX_POST_EDIT_TIMEOUT_MS = envInt('CODEX_APP_SERVER_TIMEOUT_SECONDS', 120, 5, 600) * 1000;
+const CODEX_POST_EDIT_BUDGET_MS = envInt('WORLD_JP_CODEX_BUDGET_SECONDS', 360, 30, 900) * 1000;
 const CODEX_POST_EDIT_DELAY_MS = envInt('WORLD_JP_CODEX_DELAY_MS', 250, 0, 5000);
 const CODEX_POST_EDIT_RETRIES = envInt('WORLD_JP_CODEX_RETRIES', 1, 0, 5);
 const CODEX_POST_EDIT_RETRY_DELAY_MS = envInt('WORLD_JP_CODEX_RETRY_DELAY_MS', 1200, 0, 30000);
@@ -34,7 +37,7 @@ const CODEX_APP_SERVER_READINESS_PATH = process.env.CODEX_APP_SERVER_READINESS_P
 const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT !== '0';
 const CODEX_POST_EDIT_REQUIRED = process.env.WORLD_JP_REQUIRE_CODEX_POST_EDIT === '1';
 const CODEX_POST_EDIT_PROVIDER = 'Codex App Server Japanese news editor v1';
-const TRANSLATION_PROVIDER = 'translate.googleapis.com + Deaf Navi glossary v2 + optional Codex App Server post-edit';
+const TRANSLATION_PROVIDER = 'Codex App Server + Google fallback + Deaf Navi glossary v2';
 const REGION_MIN_ARTICLES = envInt('WORLD_REGION_MIN_ARTICLES', 50, 0, 100);
 
 const REGIONS = {
@@ -1204,6 +1207,7 @@ async function requestCodexPostEdit(batch, idOffset = 0) {
       '以下のitemsについて、current_title_ja/current_summary_jaをニュース見出しとして自然な日本語に整えてください。',
       'タイトルは35文字から80文字程度を目安に、要約は1文で簡潔にしてください。',
       '原文が英語以外でも、出力は日本語にしてください。',
+      'current_title_ja/current_summary_jaが空の場合はoriginal_title/original_summaryから直接日本語へ翻訳してください。',
       '',
       '# Output JSON shape',
       '{"success":true,"provider":"codex_app_server","items":[{"id":"0","title":"自然な日本語タイトル","summary":"自然な日本語の短い要約"}]}',
@@ -1219,7 +1223,7 @@ async function requestCodexPostEdit(batch, idOffset = 0) {
     body: JSON.stringify(body),
   }, CODEX_POST_EDIT_TIMEOUT_MS);
   const text = await res.text();
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${compactText(text)}`);
+  if (!res.ok) throw Object.assign(new Error(`Codex App Server HTTP ${res.status}`), { serviceUnavailable: true });
 
   const json = JSON.parse(text);
   if (json.success === false) throw new Error(String(json.error ?? 'Codex App Server returned success=false'));
@@ -1233,13 +1237,11 @@ async function requestCodexPostEditWithRetry(batch, batchLabel, totalBatches, id
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
       const edited = await requestCodexPostEdit(batch, idOffset);
-      if (edited.length < batch.length) {
-        throw new Error(`Codex App Server returned ${edited.length}/${batch.length} edited items`);
-      }
+      // Accept partial responses; valid items are cached, and only missing items enter the retry queue.
       return edited;
     } catch (err) {
       lastError = err;
-      const canRetry = attempt < attempts && !isTimeoutLikeError(err);
+      const canRetry = attempt < attempts && !err.serviceUnavailable && !isTimeoutLikeError(err);
       if (!canRetry) break;
       console.warn(`[codex-postedit] batch ${batchLabel}/${totalBatches} failed (attempt ${attempt}/${attempts}): ${err.message}`);
       if (CODEX_POST_EDIT_RETRY_DELAY_MS > 0) await sleep(CODEX_POST_EDIT_RETRY_DELAY_MS * attempt);
@@ -1254,6 +1256,7 @@ async function requestCodexPostEditWithSplit(batch, batchNumber, totalBatches) {
     const edited = await requestCodexPostEditWithRetry(batch, String(batchNumber), totalBatches);
     return { edited, failed: 0 };
   } catch (err) {
+    if (err.serviceUnavailable || isTimeoutLikeError(err)) throw err;
     if (batch.length <= CODEX_POST_EDIT_SPLIT_BATCH_SIZE) throw err;
     console.warn(`[codex-postedit] splitting batch ${batchNumber}/${totalBatches} into ${CODEX_POST_EDIT_SPLIT_BATCH_SIZE}-item chunks after failure: ${err.message}`);
   }
@@ -1307,9 +1310,10 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
 
   const targets = articles
     .filter((article) => !cacheArticles.get(articleCacheKey(article))?.postEdited)
+    .sort((a, b) => Number(isTranslatedArticle(a)) - Number(isTranslatedArticle(b)))
     .slice(0, CODEX_POST_EDIT_MAX_ITEMS);
 
-  if (CODEX_POST_EDIT_REQUIRED || targets.length) {
+  if (targets.length) {
     try {
       await ensureCodexPostEditAvailable(endpoint);
     } catch (err) {
@@ -1326,9 +1330,15 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
   let consecutiveFailedBatches = 0;
   let stoppedAfterConsecutiveFailures = false;
   const batches = chunk(targets, CODEX_POST_EDIT_BATCH_SIZE);
+  const deadline = Date.now() + CODEX_POST_EDIT_BUDGET_MS;
   console.log(`[codex-postedit] target articles: ${targets.length}, batches: ${batches.length}`);
 
   for (let i = 0; i < batches.length; i += 1) {
+    if (Date.now() >= deadline) {
+      skippedAfterCircuitBreaker = batches.slice(i).reduce((sum, batch) => sum + batch.length, 0);
+      console.warn(`[codex-postedit] run budget reached; deferring ${skippedAfterCircuitBreaker} articles`);
+      break;
+    }
     const batch = batches[i];
     const updatedBeforeBatch = updated;
     let batchFailed = 0;
@@ -1389,49 +1399,53 @@ export async function applyTranslations(articles, options = {}) {
   const translate = options.translate ?? translateBatch;
   const postEdit = options.postEdit ?? applyCodexJapanesePostEdit;
   const pause = options.pause ?? sleep;
-  const textCache = cache.text;
-  const missing = [];
-
+  const textCache = new Map(cache.text);
   for (const article of articles) {
-    const cachedTitle = textCache.get(article.originalTitle);
-    const cachedSummary = textCache.get(article.originalSummary);
-    if (cachedTitle) article.title = cachedTitle;
-    else missing.push(article.originalTitle);
-    if (cachedSummary) article.summary = cachedSummary;
-    else missing.push(article.originalSummary);
+    article.title = textCache.get(article.originalTitle) ?? '';
+    article.summary = textCache.get(article.originalSummary) ?? '';
+    if (cache.articles.get(articleCacheKey(article))?.postEdited) article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
+    else delete article.japanesePostEditProvider;
   }
 
-  const uniqueMissing = [...new Set(missing.filter(Boolean))];
-  const translated = new Map();
-  const batches = makeTranslationBatches(uniqueMissing);
-
-  console.log(`[translate] missing texts: ${uniqueMissing.length}, batches: ${batches.length}`);
-  for (let i = 0; i < batches.length; i += 1) {
-    const batch = batches[i];
-    try {
-      const result = await translate(batch);
-      result.forEach((value, index) => translated.set(batch[index], value));
-    } catch (err) {
-      console.warn(`[translate] batch ${i + 1}/${batches.length} failed: ${err.message}`);
-      // Leave the failed fields empty for optional post-edit; never cache source text as Japanese.
-    }
-    if (i < batches.length - 1) await pause(TRANSLATE_DELAY_MS);
+  // The authenticated editor can translate source text directly, avoiding Google's shared-IP quota.
+  let report;
+  try { report = await postEdit(articles, cache.articles); }
+  catch (error) {
+    console.warn(`[codex-postedit] unavailable: ${error.message}`);
+    report = { enabled: false, failed: articles.length };
   }
-
   for (const article of articles) {
-    article.title = polishJapanese(textCache.get(article.originalTitle) ?? translated.get(article.originalTitle) ?? '');
-    article.summary = polishJapanese(textCache.get(article.originalSummary) ?? translated.get(article.originalSummary) ?? '');
-    if (cache.articles.get(articleCacheKey(article))?.postEdited) {
-      article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
-    } else {
-      delete article.japanesePostEditProvider;
+    for (const [original, field] of [['originalTitle', 'title'], ['originalSummary', 'summary']]) {
+      if (!isWeakJapaneseTranslation(article[original], article[field])) textCache.set(article[original], article[field]);
     }
   }
 
-  const report = await postEdit(articles, cache.articles);
-  // Throw before main writes articles-world.json or the publisher commits anything.
-  assertJapaneseTranslations(articles);
-  return report;
+  let requested = 0, circuitOpen = false, failures = 0;
+  const maxFallbackTexts = options.maxFallbackTexts ?? 100;
+  // Retry only missing fields, independently. One malformed article cannot discard another's success.
+  for (const article of articles) {
+    for (const [original, field] of [['originalTitle', 'title'], ['originalSummary', 'summary']]) {
+      const source = article[original];
+      if (textCache.has(source)) { article[field] = textCache.get(source); continue; }
+      if (circuitOpen || requested >= maxFallbackTexts) continue;
+      requested++;
+      try {
+        const [value] = await translate([source]);
+        if (isWeakJapaneseTranslation(source, value)) throw new Error('untranslated result');
+        article[field] = polishJapanese(value);
+        textCache.set(source, article[field]);
+      } catch (error) {
+        failures++;
+        console.warn(`[translate] field deferred: ${error.message}`);
+        if (error.retryable || [401, 403, 429].includes(error.status) || /HTTP (401|403|429|5[0-9]{2})/.test(error.message)
+          || ['TypeError', 'AbortError', 'TimeoutError'].includes(error.name)) circuitOpen = true;
+      }
+      if (!circuitOpen) await pause(TRANSLATE_DELAY_MS);
+    }
+  }
+  console.log(`[translate] fallback fields=${requested}, failures=${failures}, circuitOpen=${circuitOpen}`);
+  if (!options.allowPartial) assertJapaneseTranslations(articles);
+  return { ...report, fallback: { requested, failures, circuitOpen } };
 }
 
 function stripInternal(article) {
@@ -1503,15 +1517,30 @@ async function loadWorldNews() {
   }
 
   const dedupedAll = dedupeArticles(all);
-  const selected = selectFreshBalancedArticles(dedupedAll, MAX_ARTICLES);
-  const postEditReport = await applyTranslations(selected);
+  const fresh = selectFreshBalancedArticles(dedupedAll, MAX_ARTICLES);
+  const previous = JSON.parse(await readFile(DATA_FILE, 'utf8')).articles;
+  let entries = [];
+  try { entries = JSON.parse(await readFile(PENDING_FILE, 'utf8')).pending; }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const { candidates, active } = retryCandidates(fresh, entries);
+  const cache = createTranslationCache([...active.map((entry) => entry.article), ...previous], CODEX_POST_EDIT_PROVIDER);
+  const postEditReport = await applyTranslations(candidates, { cache, allowPartial: true });
+  const settled = settleTranslations(candidates, previous, active);
+  // Preserve the last good publication even during a complete provider outage.
+  await mkdir(dirname(PENDING_FILE), { recursive: true });
+  await writeFile(PENDING_FILE, JSON.stringify({ version: 1, checkedAt: new Date().toISOString(), pending: settled.pending }, null, 2) + '\n');
+  if (!settled.articles.length) throw new Error('No translated World articles available; pending items saved.');
+  const selected = selectFreshInterleavedArticles(settled.articles);
+  postEditReport.pending = settled.pending.length;
+  postEditReport.retainedPrevious = settled.retained;
+  console.log(`[world] translated=${selected.length}, pending=${settled.pending.length}, retained=${settled.retained}`);
   assertCodexPostEditQuality(selected, postEditReport);
   const postEditedCount = selected.filter((article) => article.japanesePostEditProvider === CODEX_POST_EDIT_PROVIDER).length;
 
   return {
     articles: selected,
     report: {
-      version: 'world-v5',
+      version: 'world-v6',
       rawCount: all.length,
       dedupedCount: dedupedAll.length,
       selectedCount: selected.length,

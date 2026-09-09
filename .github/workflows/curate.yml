@@ -18,28 +18,13 @@ permissions:
   issues: write
 
 concurrency:
-  group: deaf-navi-publisher
+  group: deaf-navi-domestic-publisher
   cancel-in-progress: false
 
 jobs:
   curate:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-    env:
-      CODEX_APP_SERVER_URL: ${{ secrets.CODEX_APP_SERVER_URL }}
-      CODEX_APP_SERVER_TOKEN: ${{ secrets.CODEX_APP_SERVER_TOKEN }}
-      CODEX_APP_SERVER_TIMEOUT_SECONDS: ${{ vars.CODEX_APP_SERVER_TIMEOUT_SECONDS || '120' }}
-      CODEX_APP_SERVER_READINESS_PATH: ${{ vars.CODEX_APP_SERVER_READINESS_PATH || '/ready' }}
-      WORLD_JP_CODEX_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_BATCH_SIZE || '20' }}
-      WORLD_JP_CODEX_MAX_ITEMS: ${{ vars.WORLD_JP_CODEX_MAX_ITEMS || '600' }}
-      WORLD_JP_CODEX_RETRIES: ${{ vars.WORLD_JP_CODEX_RETRIES || '1' }}
-      WORLD_JP_CODEX_SPLIT_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_SPLIT_BATCH_SIZE || '10' }}
-      WORLD_JP_CODEX_MAX_CONSECUTIVE_FAILED_BATCHES: ${{ vars.WORLD_JP_CODEX_MAX_CONSECUTIVE_FAILED_BATCHES || '2' }}
-      WORLD_JP_CODEX_MIN_COVERAGE: ${{ vars.WORLD_JP_CODEX_MIN_COVERAGE || '0.85' }}
-      WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE: ${{ vars.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE || '0' }}
-      WORLD_JP_REQUIRE_CODEX_POST_EDIT: '1'
-      WORLD_REGION_MIN_ARTICLES: ${{ vars.WORLD_REGION_MIN_ARTICLES || '50' }}
-      WORLD_FETCH_FALLBACK_MAX_AGE_HOURS: ${{ vars.WORLD_FETCH_FALLBACK_MAX_AGE_HOURS || '48' }}
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,10 +34,9 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate all static artifacts
+      - name: Generate domestic news and app API
         run: |
           npm run generate
-          npm run generate:world
           npm run build:app-api
 
       - name: Commit & push
@@ -65,7 +49,7 @@ jobs:
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "chore(publish): update all feeds $(date -u +'%Y-%m-%dT%H:%MZ')"
+          git commit -m "chore(publish): update domestic feeds $(date -u +'%Y-%m-%dT%H:%MZ')"
           # リモートが進んでいた場合: 生成物のrebaseは必ず衝突するため、
           # 取得済みデータを退避 → 最新mainへreset → データ復元 → ビルドだけ再実行して作り直す
           # （再クロール・再翻訳はしない。ソース変更が同時に入った場合も最新ソースでビルドされる）
@@ -76,21 +60,19 @@ jobs:
             echo "Push failed (attempt $attempt). Rebuilding on latest main..."
             git rebase --abort 2>/dev/null || true
             git merge --abort 2>/dev/null || true
-            cp docs/articles.json docs/articles-old.json docs/articles-world.json "$RUNNER_TEMP"/
+            cp docs/articles.json docs/articles-old.json "$RUNNER_TEMP"/
             git fetch origin main
             git reset --hard origin/main
-            cp "$RUNNER_TEMP"/articles.json "$RUNNER_TEMP"/articles-old.json "$RUNNER_TEMP"/articles-world.json docs/
+            cp "$RUNNER_TEMP"/articles.json "$RUNNER_TEMP"/articles-old.json docs/
             npm run build
             npm run verify
-            npm run build:world
-            npm run verify:world
             npm run build:app-api
             git add docs
             if git diff --cached --quiet; then
               echo "No changes after rebuild."
               exit 0
             fi
-            git commit -m "chore(publish): update all feeds $(date -u +'%Y-%m-%dT%H:%MZ')"
+            git commit -m "chore(publish): update domestic feeds $(date -u +'%Y-%m-%dT%H:%MZ')"
           done
           echo "Push failed after 3 attempts."
           exit 1

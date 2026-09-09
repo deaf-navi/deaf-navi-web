@@ -11,13 +11,14 @@ const host = String(argValue('--host') ?? process.env.CODEX_APP_SERVER_HOST ?? '
 const token = String(argValue('--token') ?? process.env.CODEX_APP_SERVER_TOKEN ?? '').trim();
 const requireToken = process.env.CODEX_APP_SERVER_REQUIRE_TOKEN !== '0';
 const codexBin = String(process.env.CODEX_BIN ?? 'codex').trim();
-const defaultModelFallbacks = ['gpt-5.4-mini', 'gpt-5.2-codex', 'gpt-5.1-codex', 'gpt-5-codex'];
-const modelCandidates = uniqueValues([
+const configuredModels = uniqueValues([
   ...splitList(process.env.CODEX_APP_SERVER_MODELS),
   ...splitList(process.env.CODEX_APP_SERVER_MODEL),
   ...splitList(process.env.CODEX_APP_SERVER_MODEL_FALLBACKS),
-  ...defaultModelFallbacks,
 ]);
+// Respect the configured list; absent an override, use the CLI's configured default.
+// Retired hard-coded fallback models can fail for every ChatGPT-authenticated request.
+const modelCandidates = configuredModels.length ? configuredModels : [''];
 const timeoutMs = Number(process.env.CODEX_APP_SERVER_EXEC_TIMEOUT_MS ?? 100_000);
 const outputLimitBytes = 1024 * 1024 * 4;
 const requestLimitBytes = Number(process.env.CODEX_APP_SERVER_REQUEST_LIMIT_BYTES ?? 768_000);
@@ -134,9 +135,13 @@ function extractJson(text) {
 }
 
 function compactError(text) {
-  const compact = text.replace(/\s+/g, ' ').trim();
-  if (compact.length <= 1200) return compact;
-  return `${compact.slice(0, 500)} ... ${compact.slice(-700)}`;
+  if (/not supported when using Codex|model.*not found/i.test(text)) return 'configured model is unavailable for this account';
+  if (/usage limit|quota|rate_limit_exceeded/i.test(text)) return 'Codex usage limit reached; retry after the account limit resets';
+  if (/token.*expired|unauthorized|401/i.test(text)) return 'Codex authentication requires attention';
+  if (/unknown variant|failed to decode models response/i.test(text)) return 'Codex CLI is incompatible with the model catalog';
+  if (/unexpected argument|unrecognized option/i.test(text)) return 'Codex CLI does not support a configured argument';
+  // CLI stderr can contain prompts or model metadata. Never send it to HTTP clients or service logs.
+  return 'Codex execution failed; check CLI compatibility and authenticated readiness';
 }
 
 function runCodexOnce(prompt, model) {

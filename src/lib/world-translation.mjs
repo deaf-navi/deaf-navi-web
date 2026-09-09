@@ -60,8 +60,8 @@ export function makeTranslationBatches(texts, maxChars = 1600) {
   return batches;
 }
 
-function translationError(message, retryable = false, retryAfterMs = 0) {
-  return Object.assign(new Error(message), { retryable, retryAfterMs });
+function translationError(message, retryable = false, retryAfterMs = 0, status = null) {
+  return Object.assign(new Error(message), { retryable, retryAfterMs, status });
 }
 
 function retryAfterMs(value) {
@@ -82,7 +82,7 @@ export async function translateBatch(texts, { fetchImpl = fetch, sleep = wait, r
         headers: { 'User-Agent': 'DeafNaviWorld/1.0 (+https://github.com/deaf-navi/deaf-navi-web)' },
       });
       if (!response.ok) {
-        throw translationError(`translate HTTP ${response.status}`, response.status === 429 || response.status >= 500, retryAfterMs(response.headers?.get('retry-after')));
+        throw translationError(`translate HTTP ${response.status}`, response.status === 429 || response.status >= 500, retryAfterMs(response.headers?.get('retry-after')), response.status);
       }
       const json = await response.json();
       const value = Array.isArray(json?.[0]) ? json[0].map((part) => part?.[0] ?? '').join('') : '';

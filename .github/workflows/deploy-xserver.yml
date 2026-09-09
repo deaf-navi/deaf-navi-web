@@ -2,7 +2,7 @@ name: Deploy XServer
 
 on:
   workflow_run:
-    workflows: ['Curate & Build']
+    workflows: ['Curate & Build', 'Curate & Build World']
     types: [completed]
   push:
     branches: [main]
