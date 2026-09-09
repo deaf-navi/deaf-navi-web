@@ -21,7 +21,9 @@ try{
  ok(meta(html,'robots').startsWith('index,follow'),'directory indexable');ok(canonical(html)==='https://deafnavi.com'+route,'clean root canonical');
  let graph=ld(html),collection=graph.find(x=>x['@type']==='CollectionPage');ok(graph.some(x=>x['@type']==='BreadcrumbList'),'breadcrumb retained');
  assert.deepEqual(graph.find(x=>x['@type']==='BreadcrumbList').itemListElement.map(x=>[x.position,x.name,x.item]),[[1,'ホーム','https://deafnavi.com/'],[2,'手話カフェ','https://deafnavi.com/connect/sign-cafe/']]);checks++;
- ok(html.includes('<a href="/connect/sign-cafe/" aria-current="page">手話カフェ</a>')&&!html.includes('href="/connect/"'),'navigation bypasses retained connect hub');
+ const siteNav=html.match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1]??'';
+ const navLinks=[...siteNav.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
+ ok(navLinks.some(([,attrs,label])=>attrs.includes('href="/connect/sign-cafe/"')&&attrs.includes('aria-current="page"')&&label.replace(/<[^>]+>/g,'').trim()==='手話カフェ')&&!html.includes('href="/connect/"'),'navigation bypasses retained connect hub');
  let paths=[...html.matchAll(/class="dn-cafe-name" href="([^"]+)"/g)].map(m=>'https://deafnavi.com'+m[1]);assert.deepEqual(collection.mainEntity.itemListElement.map(x=>x.url),paths);checks++;
  ok(paths.length===24,'paginated schema describes rendered 24 rows');ok(!html.includes('PRIVATE_SEO_SENTINEL')&&!html.includes('>SEO fixture 29<'),'private details not exposed');
  ok(html.includes('id="cafe-guide"')&&html.includes('id="cafe-policy"'),'visible helpful content');ok(html.includes('手話カフェの情報をお待ちしています'),'approved copy retained');
