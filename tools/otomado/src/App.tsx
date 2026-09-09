@@ -16,6 +16,7 @@ import {
 import type { Route } from './types'
 import type { MsgKey } from './i18n'
 import type { ComponentType } from 'react'
+import { SiteHeader } from './components/SiteHeader'
 
 const NAV_ITEMS: Array<[Route, MsgKey, ComponentType<{ size?: number }>]> = [
   ['home', 'nav.home', IconHome],
@@ -111,6 +112,7 @@ function Shell() {
       <a className="skip-link" href="#main-content">
         {t('a11y.skipToContent')}
       </a>
+      <SiteHeader />
       <ProductHeader />
       <main id="main-content" ref={mainRef} tabIndex={-1} className="app-main">
         {route === 'home' && <Home />}

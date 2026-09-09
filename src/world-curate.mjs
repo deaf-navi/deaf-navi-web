@@ -1,7 +1,8 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { isHardNoiseWorldText } from './lib/world-relevance.mjs';
+import { articleCacheKey, createTranslationCache, isWeakJapaneseTranslation, assertJapaneseTranslations, makeTranslationBatches, translateBatch, polishJapanese } from './lib/world-translation.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -16,7 +17,6 @@ const STANDARD_LOOKBACK = '365d';
 const FETCH_TIMEOUT = 18_000;
 const FETCH_CONCURRENCY = 8;
 const FETCH_FALLBACK_MAX_AGE_HOURS = envInt('WORLD_FETCH_FALLBACK_MAX_AGE_HOURS', 48, 0, 24 * 30);
-const TRANSLATE_BATCH_CHARS = 1600;
 const TRANSLATE_DELAY_MS = 220;
 const CODEX_POST_EDIT_BATCH_SIZE = envInt('WORLD_JP_CODEX_BATCH_SIZE', 20, 1, 50);
 const CODEX_POST_EDIT_MAX_ITEMS = envInt('WORLD_JP_CODEX_MAX_ITEMS', MAX_ARTICLES, 0, MAX_ARTICLES);
@@ -1056,25 +1056,7 @@ async function loadTranslationCache() {
   try {
     const raw = await readFile(DATA_FILE, 'utf8');
     const data = JSON.parse(raw);
-    const text = new Map();
-    const articles = new Map();
-    for (const article of data.articles ?? []) {
-      const postEdited = article.japanesePostEditProvider === CODEX_POST_EDIT_PROVIDER;
-      if (article.originalTitle && article.title && !isWeakJapaneseTranslation(article.originalTitle, article.title)) {
-        text.set(article.originalTitle, article.title);
-      }
-      if (article.originalSummary && article.summary && !isWeakJapaneseTranslation(article.originalSummary, article.summary)) {
-        text.set(article.originalSummary, article.summary);
-      }
-      if (article.originalTitle && article.originalSummary && article.title && article.summary) {
-        articles.set(articleCacheKey(article), {
-          title: article.title,
-          summary: article.summary,
-          postEdited,
-        });
-      }
-    }
-    return { text, articles };
+    return createTranslationCache(data.articles ?? [], CODEX_POST_EDIT_PROVIDER);
   } catch {
     return { text: new Map(), articles: new Map() };
   }
@@ -1092,6 +1074,7 @@ async function findReusableWorldSnapshot() {
     const generatedAtMs = Date.parse(data.generatedAt);
 
     if (!articleCount) return { reusable: false, reason: 'cached snapshot has no articles' };
+    assertJapaneseTranslations(data.articles);
     if (!Number.isFinite(generatedAtMs)) return { reusable: false, reason: 'cached snapshot has no valid generatedAt' };
 
     const ageHours = Math.max(0, Date.now() - generatedAtMs) / 3_600_000;
@@ -1111,95 +1094,6 @@ async function findReusableWorldSnapshot() {
   } catch (err) {
     return { reusable: false, reason: `cached snapshot is unreadable: ${err.message}` };
   }
-}
-
-function articleCacheKey(article) {
-  return `${article.originalTitle ?? ''}\n${article.originalSummary ?? ''}`;
-}
-
-function containsJapanese(text) {
-  return /[\u3040-\u30ff\u3400-\u9fff]/.test(String(text ?? ''));
-}
-
-function isWeakJapaneseTranslation(original, translated) {
-  const source = String(original ?? '').trim();
-  const value = String(translated ?? '').trim();
-  if (!value) return true;
-  if (value === source) return true;
-  if (!containsJapanese(value) && /[a-z]/i.test(source)) return true;
-  return false;
-}
-
-function fallbackJapanese(text) {
-  return `海外メディアの記事: ${String(text).trim()}`;
-}
-
-function makeTranslationBatches(texts) {
-  const batches = [];
-  let current = [];
-  let chars = 0;
-  for (const text of texts) {
-    const size = text.length + 48;
-    if (current.length && chars + size > TRANSLATE_BATCH_CHARS) {
-      batches.push(current);
-      current = [];
-      chars = 0;
-    }
-    current.push(text);
-    chars += size;
-  }
-  if (current.length) batches.push(current);
-  return batches;
-}
-
-function collectTranslation(json) {
-  return Array.isArray(json?.[0]) ? json[0].map((part) => part?.[0] ?? '').join('') : '';
-}
-
-async function translateBatch(texts) {
-  if (!texts.length) return [];
-  const separator = '\n<<<DEAF_NAVI_WORLD_SPLIT>>>\n';
-  const joined = texts.join(separator);
-  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&q=${encodeURIComponent(joined)}`;
-  const res = await fetchWithTimeout(url, 20_000);
-  if (!res.ok) throw new Error(`translate HTTP ${res.status}`);
-  const json = await res.json();
-  const translated = collectTranslation(json)
-    .replace(/\n?\s*<<<\s*DEAF_NAVI_WORLD_SPLIT\s*>>>\s*\n?/g, '<<<DEAF_NAVI_WORLD_SPLIT>>>');
-  const parts = translated.split('<<<DEAF_NAVI_WORLD_SPLIT>>>').map(polishJapanese);
-  if (parts.length !== texts.length) throw new Error(`translation split mismatch ${parts.length}/${texts.length}`);
-  return parts;
-}
-
-function polishJapanese(text) {
-  return String(text)
-    .replace(/\s+/g, ' ')
-    .replace(/\s+([、。！？])/g, '$1')
-    .replace(/（ /g, '（')
-    .replace(/ ）/g, '）')
-    .replace(/オーストラリア手話/g, 'Auslan（オーストラリア手話）')
-    .replace(/オースラン語/g, 'Auslan')
-    .replace(/オースラン/g, 'Auslan')
-    .replace(/デフコミュニティ/g, 'ろう者コミュニティ')
-    .replace(/聴覚障害者コミュニティ/g, 'ろう者コミュニティ')
-    .replace(/聴覚障害者および難聴の/g, 'ろう・難聴の')
-    .replace(/聴覚障害者および難聴者/g, 'ろう・難聴者')
-    .replace(/どれほど耳が遠いのか知りませんでした/g, 'どれほど聞こえていなかったのか気づいていませんでした')
-    .replace(/ニュースを「見逃す」のではないかと懸念/g, 'ニュースから取り残される懸念')
-    .replace(/6月に最終回を放送する/g, '6月に最終回を迎える')
-    .replace(/この物語は(.+?)で解釈されています。?/g, 'この記事は$1で通訳されています。')
-    .replace(/キウイの 6 人に 1 人/g, 'ニュージーランド人の6人に1人')
-    .replace(/SA の学校/g, '南アフリカの学校')
-    .replace(/AI WhatsApp ボット/g, 'WhatsApp対応AIボット')
-    .replace(/手話のロックで/g, '手話通訳で')
-    .replace(/リオの手話のロック/g, 'ロック・イン・リオの手話通訳')
-    .replace(/聞く手: 手話を使ってギャップを埋める/g, '聞こえる手: 手話で隔たりを埋める')
-    .replace(/聴覚障害者のための/g, 'ろう者のための')
-    .replace(/聴覚障害者向け/g, 'ろう者向け')
-    .replace(/Auslan（Auslan（オーストラリア手話））/g, 'Auslan（オーストラリア手話）')
-    .replace(/Auslan（オーストラリア手話）のAuslan/g, 'Auslan（オーストラリア手話）')
-    .replace(/(?:Auslan（)+オーストラリア手話(?:）)+/g, 'Auslan（オーストラリア手話）')
-    .trim();
 }
 
 function codexEndpoint(baseUrl = CODEX_APP_SERVER_URL) {
@@ -1444,13 +1338,14 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
       const byId = new Map(edited.map((item) => [item.id, item]));
       batch.forEach((article, index) => {
         const item = byId.get(String(index));
-        if (!item?.title) return;
+        if (!item?.title || isWeakJapaneseTranslation(article.originalTitle, item.title)
+          || isWeakJapaneseTranslation(article.originalSummary, item.summary || item.title)) return;
         article.title = polishJapanese(item.title);
         article.summary = polishJapanese(item.summary || item.title);
         article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
         updated += 1;
       });
-      batchFailed = result.failed;
+      batchFailed = Math.max(result.failed, batch.length - (updated - updatedBeforeBatch));
       failed += batchFailed;
     } catch (err) {
       batchFailed = batch.length;
@@ -1489,8 +1384,11 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
   };
 }
 
-async function applyTranslations(articles) {
-  const cache = await loadTranslationCache();
+export async function applyTranslations(articles, options = {}) {
+  const cache = options.cache ?? await loadTranslationCache();
+  const translate = options.translate ?? translateBatch;
+  const postEdit = options.postEdit ?? applyCodexJapanesePostEdit;
+  const pause = options.pause ?? sleep;
   const textCache = cache.text;
   const missing = [];
 
@@ -1511,24 +1409,29 @@ async function applyTranslations(articles) {
   for (let i = 0; i < batches.length; i += 1) {
     const batch = batches[i];
     try {
-      const result = await translateBatch(batch);
+      const result = await translate(batch);
       result.forEach((value, index) => translated.set(batch[index], value));
     } catch (err) {
       console.warn(`[translate] batch ${i + 1}/${batches.length} failed: ${err.message}`);
-      batch.forEach((value) => translated.set(value, fallbackJapanese(value)));
+      // Leave the failed fields empty for optional post-edit; never cache source text as Japanese.
     }
-    if (i < batches.length - 1) await sleep(TRANSLATE_DELAY_MS);
+    if (i < batches.length - 1) await pause(TRANSLATE_DELAY_MS);
   }
 
   for (const article of articles) {
-    article.title = polishJapanese(textCache.get(article.originalTitle) ?? translated.get(article.originalTitle) ?? fallbackJapanese(article.originalTitle));
-    article.summary = polishJapanese(textCache.get(article.originalSummary) ?? translated.get(article.originalSummary) ?? fallbackJapanese(article.originalSummary));
+    article.title = polishJapanese(textCache.get(article.originalTitle) ?? translated.get(article.originalTitle) ?? '');
+    article.summary = polishJapanese(textCache.get(article.originalSummary) ?? translated.get(article.originalSummary) ?? '');
     if (cache.articles.get(articleCacheKey(article))?.postEdited) {
       article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
+    } else {
+      delete article.japanesePostEditProvider;
     }
   }
 
-  return applyCodexJapanesePostEdit(articles, cache.articles);
+  const report = await postEdit(articles, cache.articles);
+  // Throw before main writes articles-world.json or the publisher commits anything.
+  assertJapaneseTranslations(articles);
+  return report;
 }
 
 function stripInternal(article) {
@@ -1662,7 +1565,7 @@ async function main() {
   console.log(`Deaf Navi World: wrote ${articles.length} articles to ${DATA_FILE}`);
 }
 
-main().catch((err) => {
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) main().catch((err) => {
   console.error('Deaf Navi World curation failed:', err);
   process.exit(1);
 });

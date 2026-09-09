@@ -87,15 +87,15 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg-base:      #131917;
-  --bg-elevated:  #1c2421;
-  --bg-raised:    #232d29;
-  --bg-deep:      #2a3531;
+  --bg-base:      #181818;
+  --bg-elevated:  #222222;
+  --bg-raised:    #2b2b2b;
+  --bg-deep:      #343434;
 
-  --text-primary:   #e8eeec;
-  --text-secondary: #c0ccc8;
-  --text-tertiary:  #9fada8;
-  --text-on-accent: #0c1210;
+  --text-primary:   #ededed;
+  --text-secondary: #c9c9c9;
+  --text-tertiary:  #aaaaaa;
+  --text-on-accent: #141414;
 
   --accent:       #55b3a6;
   --accent-deep:  #6cc2b5;
@@ -110,9 +110,9 @@
   --new-badge-bg:     #c96a63;
   --new-badge-text:   #17100f;
 
-  --border-subtle:  #2c3733;
-  --border-default: #3a4741;
-  --border-strong:  #566560;
+  --border-subtle:  #383838;
+  --border-default: #484848;
+  --border-strong:  #626262;
   --hairline: rgba(232, 238, 236, 0.10);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
@@ -2083,4 +2083,61 @@ input, select {
   .card__read { width: 100%; justify-content: center; }
   .app-cta { padding: var(--s-4); }
   .curation-overview__metrics { gap: var(--s-3); }
+}
+
+
+/* September 2026: compact editorial surfaces, aligned to the common shell. */
+:root { --container: 1280px; --bg-base: #f6f8f6; --r-md: 8px; --r-lg: 10px; }
+:root[data-theme="dark"] { --bg-base: #181818; }
+.container { padding-inline: 32px; }
+.toolbar { margin-top: 24px; border: 1px solid var(--border-default); border-radius: 8px; box-shadow: none; padding: 18px 20px; }
+.search-field input, .guide-search__input { border-radius: 6px; background: var(--bg-elevated); }
+.filter { border-radius: 5px; }
+.quick-access { gap: 0; margin-block: 20px; padding-block: 12px; border-block: 1px solid var(--border-subtle); }
+.quick-access__item { flex-direction: row; align-items: flex-start; gap: 10px; padding: 8px 14px; border: 0; border-right: 1px solid var(--border-subtle); border-radius: 0; background: none; box-shadow: none; }
+.quick-access__item:first-child { padding-left: 0; }
+.quick-access__item:last-child { border-right: 0; padding-right: 0; }
+.quick-access__item:hover { background: var(--accent-soft); box-shadow: none; transform: none; }
+.quick-access__icon { width: 30px; height: 30px; border-radius: 6px; background: none; }
+.quick-access__icon svg { width: 20px; height: 20px; }
+.quick-access__title { font-size: .8rem; }
+.quick-access__desc { font-size: .72rem; line-height: 1.7; }
+.featured { margin-block: 24px; padding: 18px 22px; border-radius: 8px; border: 1px solid var(--border-subtle); box-shadow: none; }
+.featured__head { border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; }
+.featured__head h2 { font-size: 1rem; }
+.featured__list { grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 28px; margin: 0; }
+.featured__item + .featured__item { border-top: 0; }
+.featured__item:nth-child(n+3) { border-top: 1px solid var(--border-subtle); }
+.featured__title { font-size: .875rem; }
+.featured__meta { font-size: .72rem; }
+.featured__link .chip { font-size: .68rem; }
+.card, .guide-card, .sitemap-card, .about-card { border-radius: 8px; box-shadow: none; border-color: var(--border-subtle); }
+.card { padding: 20px 22px; }
+.card:hover { transform: none; box-shadow: none; border-color: var(--border-strong); }
+.card__title { font-size: 1.02rem; line-height: 1.65; }
+.card__read { border-radius: 5px; }
+.articles-head { padding-bottom: 12px; border-bottom: 2px solid var(--text-primary); margin-bottom: 18px; }
+.guide-search { padding: 22px; border-radius: 8px; border: 1px solid var(--border-default); box-shadow: none; }
+.guide-section__head { padding-bottom: 14px; border-bottom: 1px solid var(--border-default); }
+.guide-card { padding: 22px; }
+.guide-card__title { line-height: 1.6; }
+.guide-card__link { min-height: 44px; align-items: center; }
+.site-footer { background: var(--bg-elevated); margin-top: 40px; }
+@media(max-width:800px) {
+  .container { padding-inline: 20px; }
+  .quick-access { grid-template-columns: repeat(2,minmax(0,1fr)); row-gap: 8px; }
+  .quick-access__item { padding: 10px 8px; border-right: 0; }
+  .quick-access__item:first-child { padding-left: 8px; }
+  .quick-access__item:last-child { grid-column: 1/-1; }
+}
+@media(max-width:520px) {
+  .toolbar { margin-top: 20px; padding: 16px; }
+  .featured { padding: 16px; }
+  .featured__list { grid-template-columns: 1fr; }
+  .featured__item + .featured__item { border-top: 1px solid var(--border-subtle); }
+  .quick-access__item { gap: 6px; }
+  .quick-access__icon { width: 24px; }
+  .quick-access__desc { font-size: .7rem; }
+  .card, .guide-card { padding: 18px; }
+  .guide-search { padding: 18px; }
 }

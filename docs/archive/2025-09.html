@@ -47,26 +47,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="../styles.css?v=20260908loading">
+  <link rel="stylesheet" href="../styles.css?v=20260909ui2">
+  <link rel="stylesheet" href="../site-shell.css?v=20260909ui3">
 
 </head>
 <body>
   <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
 
-  <header class="site-header site-header--slim" role="banner">
-    <div class="site-header__leaf" aria-hidden="true">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
-        <path d="M40 170 C 70 140, 100 110, 160 30" />
-        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
-        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
-        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
-      </svg>
-    </div>
-    <div class="container">
-      <p class="site-breadcrumb"><a href="../">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>アーカイブ 2025年9月</span></p>
-      <div class="site-header__top">
-        <h1 class="site-title site-title--small"><span class="site-title__brand">2025年9月のアーカイブ</span></h1>
+<header class="dn-site-shell" role="banner">
+    <div class="dn-shell-inner">
+      <div class="dn-shell-top">
+        <a class="dn-shell-brand" href="../" aria-label="Deaf Navi ホーム">
+          <span class="dn-shell-mark" aria-hidden="true"><img src="../favicon.svg" alt="" width="36" height="36"></span>
+          <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">Web</span></span><small>ニュースと、つながりと、暮らし。</small></span>
+        </a>
         <div class="display-controls" data-display-controls hidden>
         <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
           <span class="display-controls__icon" data-theme-icon><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><span data-theme-label>ダーク表示</span>
@@ -76,9 +70,23 @@
         </button>
       </div>
       </div>
-      <p class="site-lead">2025年9月に掲載した記事 174件</p>
+      <nav class="site-nav" aria-label="サイト内ページ">
+        <a class="site-nav__link is-current" href="../" aria-current="page"><span>ニュース</span></a>
+        <a class="site-nav__link site-nav__link--world" href="../deaf-navi-world-jp.html"><span>World</span></a>
+        <a class="site-nav__link" href="../connect/sign-cafe/"><span>手話カフェ</span></a>
+        <a class="site-nav__link" href="../guide.html"><span>暮らしのガイド</span></a>
+        <a class="site-nav__link site-nav__link--tool" href="../otomado/"><span>おとまど</span></a>
+        <a class="site-nav__link" href="../about.html"><span>サイトについて</span></a>
+      </nav>
     </div>
   </header>
+  <div class="dn-page-intro dn-page-intro--sub">
+    <div class="container">
+      <p class="site-breadcrumb"><a href="../">ホーム</a> <span aria-hidden="true">/</span> <span>アーカイブ 2025年9月</span></p>
+      <h1 class="dn-page-title">2025年9月のアーカイブ</h1>
+      <p class="site-lead">2025年9月に掲載した記事 174件</p>
+    </div>
+  </div>
 
   <main id="main" class="container archive" role="main">
     <p class="site-breadcrumb"><a href="../index-old.html">← アーカイブ目次へ戻る</a></p>

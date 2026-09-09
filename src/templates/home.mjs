@@ -368,11 +368,11 @@ ${renderSiteHeader({
   })}
 
   <main id="main" class="container" role="main">
+${renderToolbar()}
+
 ${renderQuickAccess({ guideFile: files.guide })}
 
 ${renderFeatured(featured)}
-
-${renderToolbar()}
 
 ${renderAgentActivity()}
 

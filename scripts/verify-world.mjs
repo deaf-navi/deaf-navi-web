@@ -2,7 +2,7 @@
  * World版の軽量検証（generate:world の最終段）。
  *
  * World は外部翻訳・Codex App Server に依存するため、検証は
- * 「公開を止めるべき壊れ方」だけに絞る（fail-soft方針）。
+ * 日本語訳が揃わない更新は止め、直前の公開データを保持する。
  * 文言・件数のような変わりやすい内容には依存しない。
  */
 
@@ -10,6 +10,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { ANALYTICS } from '../config/site.mjs';
+import { assertJapaneseTranslations } from '../src/lib/world-translation.mjs';
 import {
   CLOUDFLARE_ANALYTICS_BEACON_URL,
   isCloudflareAnalyticsEnabled,
@@ -33,6 +34,8 @@ const data = JSON.parse(raw);
 assert(Array.isArray(data.articles) && data.articles.length > 0, 'articles-world.json に記事がありません。');
 assert(typeof data.generatedAt === 'string', 'articles-world.json に generatedAt がありません。');
 assert(data.regions && data.topics, 'articles-world.json に regions/topics がありません。');
+
+try { assertJapaneseTranslations(data.articles ?? []); } catch (err) { assert(false, err.message); }
 
 const REQUIRED = ['id', 'title', 'summary', 'originalTitle', 'originalSummary', 'sourceName', 'sourceUrl', 'publishedAt', 'region', 'topic'];
 for (const article of data.articles.slice(0, 50)) {

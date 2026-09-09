@@ -1,0 +1,137 @@
+/* Shared public shell. Loaded after each product's own styles. */
+:root { --site-font: var(--font-sans, system-ui, sans-serif); }
+.dn-site-shell {
+  --shell-paper: var(--bg-elevated, var(--surface, #fff));
+  --shell-ink: var(--text-primary, var(--text, #172b26));
+  --shell-muted: var(--text-secondary, var(--muted, #4e625a));
+  --shell-line: var(--border-subtle, var(--border, #dce5df));
+  --shell-accent: var(--accent-deep, var(--accent, #075e57));
+  --shell-soft: var(--accent-soft, var(--accent-tint, #e9f2ee));
+  background: var(--shell-paper);
+  color: var(--shell-ink);
+  border-top: 3px solid var(--shell-accent);
+  border-bottom: 1px solid var(--shell-line);
+  font-family: var(--site-font);
+  position: relative;
+  z-index: 20;
+}
+.dn-site-shell *, .dn-site-shell *::before, .dn-site-shell *::after { box-sizing: border-box; }
+.dn-shell-inner { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 32px; }
+.dn-shell-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 82px; padding-block: 14px; }
+.dn-site-shell .dn-shell-brand { display: inline-flex; align-items: center; gap: 12px; color: var(--shell-ink); text-decoration: none; flex: 0 1 auto; min-width: 0; }
+.dn-shell-wordmark { min-width: 0; }
+.dn-shell-name { display: flex; align-items: center; flex-wrap: wrap; gap: 7px 10px; }
+.dn-shell-edition { display: inline-flex; align-items: center; padding: 4px 13px; border: 1px solid #d5e2e3; border-radius: 999px; background: #edf5f5; color: #006b72; font-size: 16px; font-weight: 700; line-height: 1.25; letter-spacing: .02em; white-space: nowrap; }
+:root[data-theme="dark"] .dn-shell-edition { background: #303334; border-color: #4a5556; color: #9edbd8; }
+.dn-shell-brand strong { display: block; font-size: 26px; line-height: 1.15; font-weight: 700; letter-spacing: -.04em; white-space: nowrap; }
+.dn-shell-brand small { display: block; margin-top: 6px; font-size: 11px; color: var(--shell-muted); letter-spacing: .05em; line-height: 1.4; }
+.dn-shell-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9px; background: #075e57; color: #fff; flex-shrink: 0; overflow: hidden; }
+.dn-shell-mark svg { width: 29px; height: 29px; stroke-width: 8; }
+.dn-shell-mark img { display: block; width: 36px; height: 36px; }
+.dn-site-shell .site-nav { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0 8px; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; }
+.dn-site-shell .site-nav__link {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 49px; padding: 11px 20px 12px; margin: 0; color: var(--shell-muted);
+  font-size: 14px; font-weight: 500; line-height: 1.55;
+  border: 0; border-bottom: 3px solid transparent; border-radius: 5px 5px 0 0;
+  box-shadow: none; background: none; text-decoration: none; white-space: normal;
+}
+.dn-site-shell .site-nav__link:hover { background: var(--shell-soft); color: var(--shell-accent); }
+.dn-site-shell .site-nav__link[aria-current] { background: var(--shell-soft); color: var(--shell-accent); border-bottom-color: var(--shell-accent); font-weight: 700; }
+.dn-site-shell .display-controls { display: flex; gap: 8px; align-items: center; margin: 0; }
+.dn-site-shell .display-controls[hidden] { display: none; }
+.dn-site-shell .display-controls__btn, .dn-shell-settings {
+  display: inline-flex; justify-content: center; align-items: center; gap: 7px;
+  min-width: 44px; min-height: 44px; padding: 9px 12px; margin: 0;
+  border: 1px solid var(--shell-line); border-radius: 7px;
+  background: var(--shell-paper); color: var(--shell-muted); box-shadow: none;
+  font-family: inherit; font-size: 12px; line-height: 1.4; font-weight: 500; text-decoration: none; cursor: pointer;
+}
+.dn-site-shell .display-controls__btn:hover, .dn-shell-settings:hover { border-color: var(--shell-accent); background: var(--shell-soft); color: var(--shell-accent); }
+/* Legacy directory button rules use !important; scope this correction to the shell. */
+.dn-public .dn-site-shell .display-controls__btn { color: var(--shell-muted) !important; }
+.dn-site-shell .display-controls__icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 17px; font-size: 16px; font-weight: 700; }
+.dn-site-shell :focus-visible { outline: 3px solid var(--shell-accent); outline-offset: 3px; }
+.dn-page-intro { padding: 26px 0 22px; background: var(--bg-elevated); border-bottom: 1px solid var(--border-subtle); }
+.dn-page-intro__row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
+.dn-page-title { font-family: inherit; font-size: clamp(1.55rem, 2.5vw, 2rem); line-height: 1.4; font-weight: 700; letter-spacing: -.035em; margin: 0; color: var(--text-primary); overflow-wrap: anywhere; }
+.dn-page-intro .site-lead { max-width: none; margin: 8px 0 0; font-size: .875rem; line-height: 1.9; }
+.dn-page-intro .site-breadcrumb { font-size: .75rem; margin: 0 0 10px; color: var(--text-tertiary); }
+.dn-page-intro .language-switch { margin: 0; }
+
+/* Public PHP pages inherit the site's palette; management pages keep their own styles. */
+.dn-public, .dn-public.dn-cafe-hub {
+  --cafe-bg: var(--bg-base); --cafe-paper: var(--bg-elevated); --cafe-soft: var(--bg-raised);
+  --cafe-line: var(--border-subtle); --cafe-ink: var(--text-primary); --cafe-muted: var(--text-secondary);
+  --cafe-accent: var(--accent-deep); --cafe-button-text: var(--text-on-accent);
+  background: var(--bg-base); color: var(--text-primary); font-family: var(--font-sans);
+}
+.dn-public .dn-main, .dn-public .dn-footer, .dn-public.dn-cafe-hub .dn-main, .dn-public.dn-cafe-hub .dn-footer {
+  max-width: 1280px; margin-inline: auto; padding-inline: 32px;
+}
+.dn-public .dn-main { padding-top: 24px; }
+.dn-public .dn-breadcrumb { font-size: .75rem; line-height: 1.6; }
+.dn-public .dn-cafe-welcome { padding-block: 20px 24px; }
+.dn-public .dn-cafe-navigation { border-top: 1px solid var(--cafe-line); }
+.dn-public .dn-cafe-welcome h1 { font-size: clamp(1.6rem, 2.6vw, 2rem); letter-spacing: -.035em; }
+.dn-public .dn-welcome-eyebrow { font-size: .72rem; }
+.dn-public .dn-directory-layout { gap: 28px; }
+.dn-public .dn-filter-sidebar { border: 1px solid var(--cafe-line); border-radius: 8px; background: var(--cafe-paper); padding: 20px 16px; }
+.dn-public.dn-cafe-hub .dn-field input, .dn-public.dn-cafe-hub .dn-field select, .dn-public.dn-cafe-hub .dn-field textarea { border-color: var(--border-default); border-radius: 5px; }
+.dn-public.dn-cafe-hub .dn-search-button, .dn-public.dn-cafe-hub .dn-cta { border-radius: 5px; }
+.dn-public .dn-table-scroll { background: var(--cafe-paper); border: 1px solid var(--cafe-line); border-radius: 8px; }
+.dn-public .dn-cafe-table { border: 0; }
+.dn-public .dn-cafe-table thead { background: var(--cafe-soft); }
+.dn-public .dn-cafe-table th, .dn-public .dn-cafe-table td { border-color: var(--cafe-line); }
+.dn-public .dn-section, .dn-public .dn-submit, .dn-public .dn-detail, .dn-public .dn-card, .dn-public .dn-notice, .dn-public .dn-login { background: var(--cafe-paper); color: var(--cafe-ink); border-color: var(--cafe-line); border-radius: 8px; }
+.dn-public .dn-footer { margin-top: 36px; padding-block: 24px; border-top: 1px solid var(--cafe-line); color: var(--cafe-muted); font-size: .8rem; }
+.dn-public .dn-atlas, .dn-public .dn-atlas-sidebar, .dn-public .dn-atlas-list li { background: var(--cafe-paper); border-color: var(--cafe-line); }
+.dn-public #atlas-cover, .dn-public .dn-atlas-controls, .dn-public .dn-atlas-list-heading { background: var(--cafe-soft); color: var(--cafe-ink); }
+.dn-public #atlas-state { background: var(--cafe-paper); color: var(--cafe-muted); }
+.dn-public .dn-atlas-list .dn-atlas-area, .dn-public .dn-visitor-facts dt { color: var(--cafe-muted); }
+.dn-public .dn-map-emblem { color: var(--cafe-accent); border-color: var(--border-default); border-radius: 16px; padding: 18px; }
+.dn-public .dn-atlas-list li.is-selected { background: var(--cafe-soft); border-left-color: var(--cafe-accent); }
+.dn-public .dn-atlas-controls input, .dn-public .dn-atlas-controls select { background: var(--cafe-paper); color: var(--cafe-ink); border-color: var(--border-default); }
+.dn-public .dn-cafe-table :is(th,td):first-child { padding-left: 14px; }
+/* Rem sizes make the existing display preference effective in PHP content too. */
+.dn-public .dn-cafe-table { font-size: .875rem; }
+.dn-public .dn-cafe-table .dn-cell-secondary { font-size: .75rem; }
+.dn-public.dn-cafe-hub .dn-cafe-row .dn-cafe-name { font-size: 1.0625rem; }
+.dn-public .dn-welcome-description, .dn-public .dn-visitor-facts { font-size: .875rem; }
+.dn-public .dn-atlas-list p { font-size: .75rem; }
+.dn-public .dn-atlas-list h3 { font-size: 1rem; }
+.dn-public.dn-cafe-hub .dn-field :is(input,select,textarea) { font-size: .875rem; }
+:root[data-theme="dark"] .dn-public .dn-cafe-table :is(th,td),
+:root[data-theme="dark"] .dn-public :is(.dn-expanded-inner,.dn-cafe-expanded,.dn-detail,.dn-feature,.dn-profile-section,.dn-panel) { background: var(--cafe-paper); color: var(--cafe-ink); }
+:root[data-theme="dark"] .dn-public :is(.dn-intro,.dn-notice,.dn-map-help,.dn-badge,.dn-tag,.dn-facts,.dn-contact-line,.dn-verification-panel) { background: var(--cafe-soft); color: var(--cafe-ink); border-color: var(--cafe-line); }
+
+@media (max-width: 800px) {
+  .dn-shell-inner { padding-inline: 20px; }
+  .dn-site-shell .site-nav { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0; }
+  .dn-site-shell .site-nav__link { padding: 9px 8px; font-size: 13px; min-height: 44px; }
+  .dn-shell-brand small { display: none; }
+  .dn-shell-top { min-height: 72px; }
+  .dn-page-intro { padding-block: 20px; }
+  .dn-public .dn-main, .dn-public .dn-footer, .dn-public.dn-cafe-hub .dn-main, .dn-public.dn-cafe-hub .dn-footer { padding-inline: 20px; }
+}
+@media (max-width: 520px) {
+  .dn-shell-inner { padding-inline: 16px; }
+  .dn-shell-top { gap: 10px; min-height: 68px; padding-block: 12px; }
+  .dn-site-shell .display-controls { flex-shrink: 0; align-self: flex-start; }
+  .dn-shell-name { column-gap: 7px; }
+  .dn-shell-edition { font-size: 12px; padding: 3px 9px; }
+  .dn-shell-brand strong { font-size: 24px; }
+  .dn-site-shell .dn-shell-brand { gap: 9px; }
+  .dn-site-shell .display-controls { gap: 5px; }
+  .dn-site-shell .display-controls__btn { padding: 9px; width: 44px; }
+  .dn-site-shell .display-controls__btn [data-theme-label], .dn-site-shell .display-controls__btn [data-font-label] {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .dn-site-shell .site-nav__link { font-size: 12px; padding-inline: 5px; }
+  .dn-public .dn-filter-sidebar { padding: 14px; }
+  .dn-public .dn-cafe-welcome { padding-block: 16px 20px; }
+  .dn-public .dn-main { padding-top: 16px; }
+  .dn-public.dn-cafe-hub .dn-field :is(input,select,textarea) { font-size: 1rem; }
+}
+@media print { .dn-site-shell { border-top: 0; } .dn-site-shell .display-controls { display: none; } }

@@ -11,6 +11,7 @@ import {
 } from '../../config/site.mjs';
 import { CATEGORY_UI, SOURCE_TIER_UI } from '../../config/categories.mjs';
 import { REGION_UI } from '../../config/regions.mjs';
+import SITE_NAVIGATION from '../../config/site-navigation.json' with { type: 'json' };
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST, relativeTime } from '../lib/dates.mjs';
 
@@ -126,7 +127,8 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260908loading'}">
+  <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
+  <link rel="stylesheet" href="${basePath}site-shell.css?v=20260909ui3">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
 
@@ -158,16 +160,13 @@ export function renderSiteNav({
   locale = 'ja',
 } = {}) {
   const isEnglish = locale === 'en';
-  const items = [
-    { key: 'news', href: newsHref, label: isEnglish ? 'Japan News' : 'ニュース' },
-    { key: 'world', href: worldHref, label: 'World', className: 'site-nav__link--world', icon: ICONS.globe },
-    { key: 'connect', href: connectHref, label: isEnglish ? 'Sign Cafes' : '手話カフェ' },
-    { key: 'guide', href: guideHref, label: isEnglish ? 'Guide' : '暮らしのガイド' },
-    { key: 'tool', href: toolHref, label: isEnglish ? 'OtoMado' : 'おとまど', className: 'site-nav__link--tool' },
-    { key: 'about', href: aboutHref, label: isEnglish ? 'About Deaf Navi' : 'Deaf Naviについて' },
-  ];
+  const hrefs = { news: newsHref, world: worldHref, guide: guideHref, connect: connectHref, tool: toolHref, about: aboutHref };
+  const items = SITE_NAVIGATION.map(item => ({
+    key: item.key, href: hrefs[item.key], label: item[isEnglish ? 'en' : 'ja'],
+    className: ['world', 'tool'].includes(item.key) ? `site-nav__link--${item.key}` : '',
+  }));
   const links = items.map((item) => {
-    const isCurrent = item.key === current;
+    const isCurrent = item.key === (current === 'worldOriginal' ? 'world' : current);
     const classes = ['site-nav__link', item.className, isCurrent ? 'is-current' : ''].filter(Boolean).join(' ');
     const iconHtml = item.icon ? `<span class="site-nav__icon">${item.icon}</span>` : '';
     return `<a class="${classes}" href="${escapeHtml(item.href)}"${isCurrent ? ' aria-current="page"' : ''}>${iconHtml}<span>${escapeHtml(item.label)}</span></a>`;
@@ -177,45 +176,45 @@ export function renderSiteNav({
       </nav>`;
 }
 
-/** トップ・World・暮らしのガイドで共有するブランドヘッダー。 */
-export function renderSiteHeader({
-  subLabel,
-  lead,
-  current,
-  nav = {},
-  modifier = '',
-  extra = '',
-}) {
-  const modifierClass = modifier ? ` ${modifier}` : '';
-  return `  <header class="site-header${modifierClass}" role="banner">
-    <div class="site-header__leaf" aria-hidden="true">
-      ${LEAF_SVG}
-    </div>
-    <div class="container">
-      <div class="site-header__top">
-        <h1 class="site-title"><span class="site-title__brand">Deaf Navi</span><span class="site-title__sub">${escapeHtml(subLabel)}</span></h1>
+/** Public navigation shared across static pages, with the same contract as PHP and OtoMado. */
+export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', edition = current === 'connect' ? 'Cafe' : current === 'worldOriginal' ? 'World-Original' : current === 'world' ? 'World-JP' : 'Web' } = {}) {
+  const en = nav.locale === 'en';
+  return `<header class="dn-site-shell" role="banner">
+    <div class="dn-shell-inner">
+      <div class="dn-shell-top">
+        <a class="dn-shell-brand" href="${escapeHtml(homeHref)}" aria-label="Deaf Navi ${en ? 'home' : 'ホーム'}">
+          <span class="dn-shell-mark" aria-hidden="true"><img src="${escapeHtml(homeHref.includes('index') ? homeHref.slice(0, homeHref.lastIndexOf('/') + 1) : homeHref)}favicon.svg" alt="" width="36" height="36"></span>
+          <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">${escapeHtml(edition)}</span></span><small>${en ? 'News, places & everyday support' : 'ニュースと、つながりと、暮らし。'}</small></span>
+        </a>
         ${renderDisplayControls()}
       </div>
-      <p class="site-lead">${escapeHtml(lead)}</p>
       ${renderSiteNav({ current, ...nav })}
-${extra ? `      ${extra}\n` : ''}    </div>
+    </div>
   </header>`;
 }
 
-/** スリムヘッダー（サブページ用・パンくず＋表示設定付き） */
-export function renderSubHeader({ crumbLabel, title, lead = '', homeHref = './' }) {
-  return `  <header class="site-header site-header--slim" role="banner">
-    <div class="site-header__leaf" aria-hidden="true">
-      ${LEAF_SVG}
-    </div>
+export function renderSiteHeader({ subLabel, lead, current, nav = {}, modifier = '', extra = '' }) {
+  const title = current === 'about' ? 'Deaf Naviについて' : subLabel === 'Web' ? 'ニュース' : subLabel;
+  return `${renderGlobalHeader({ current, nav, homeHref: nav.newsHref || './' })}
+  <div class="dn-page-intro ${escapeHtml(modifier)}">
     <div class="container">
-      <p class="site-breadcrumb"><a href="${homeHref}">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>${escapeHtml(crumbLabel)}</span></p>
-      <div class="site-header__top">
-        <h1 class="site-title site-title--small"><span class="site-title__brand">${escapeHtml(title)}</span></h1>
-        ${renderDisplayControls()}
-      </div>
-${lead ? `      <p class="site-lead">${escapeHtml(lead)}</p>\n` : ''}    </div>
-  </header>`;
+      <div class="dn-page-intro__row"><h1 class="dn-page-title">${escapeHtml(title)}</h1>${extra}</div>
+      <p class="site-lead">${escapeHtml(lead)}</p>
+    </div>
+  </div>`;
+}
+
+export function renderSubHeader({ crumbLabel, title, lead = '', homeHref = './', current = '', nav = {}, edition }) {
+  const root = homeHref.includes('index') ? homeHref.slice(0, homeHref.lastIndexOf('/') + 1) : homeHref;
+  const paths = Object.fromEntries(SITE_NAVIGATION.map(item => [`${item.key === 'tool' ? 'tool' : item.key}Href`, root + item.path]));
+  return `${renderGlobalHeader({ current, homeHref, edition, nav: { ...paths, ...nav } })}
+  <div class="dn-page-intro dn-page-intro--sub">
+    <div class="container">
+      <p class="site-breadcrumb"><a href="${escapeHtml(homeHref)}">ホーム</a> <span aria-hidden="true">/</span> <span>${escapeHtml(crumbLabel)}</span></p>
+      <h1 class="dn-page-title">${escapeHtml(title)}</h1>
+${lead ? `      <p class="site-lead">${escapeHtml(lead)}</p>` : ''}
+    </div>
+  </div>`;
 }
 
 export function renderFooter({ year, links = [], updateScheduleAt = '' }) {

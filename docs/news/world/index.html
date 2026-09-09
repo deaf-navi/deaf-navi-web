@@ -47,7 +47,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="/styles.css?v=20260908loading">
+  <link rel="stylesheet" href="/styles.css?v=20260909ui2">
+  <link rel="stylesheet" href="/site-shell.css?v=20260909ui3">
 
   <script type="application/ld+json">
 {
@@ -73,20 +74,13 @@
 </head>
 <body>
   <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
-  <header class="site-header site-header--slim" role="banner">
-    <div class="site-header__leaf" aria-hidden="true">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
-        <path d="M40 170 C 70 140, 100 110, 160 30" />
-        <path d="M70 145 C 75 130, 85 115, 110 95" opacity="0.8" />
-        <path d="M95 135 C 100 120, 115 105, 135 85" opacity="0.8" />
-        <path d="M55 160 C 60 150, 75 130, 95 115" opacity="0.6" />
-      </svg>
-    </div>
-    <div class="container">
-      <p class="site-breadcrumb"><a href="/">Deaf Navi Web</a> <span aria-hidden="true">›</span> <span>海外ニュース</span></p>
-      <div class="site-header__top">
-        <h1 class="site-title site-title--small"><span class="site-title__brand">海外ニュース</span></h1>
+<header class="dn-site-shell" role="banner">
+    <div class="dn-shell-inner">
+      <div class="dn-shell-top">
+        <a class="dn-shell-brand" href="/" aria-label="Deaf Navi ホーム">
+          <span class="dn-shell-mark" aria-hidden="true"><img src="/favicon.svg" alt="" width="36" height="36"></span>
+          <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">World-JP</span></span><small>ニュースと、つながりと、暮らし。</small></span>
+        </a>
         <div class="display-controls" data-display-controls hidden>
         <button type="button" class="display-controls__btn" id="theme-toggle" aria-pressed="false">
           <span class="display-controls__icon" data-theme-icon><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span><span data-theme-label>ダーク表示</span>
@@ -96,17 +90,23 @@
         </button>
       </div>
       </div>
-      <p class="site-lead">海外のろう者・難聴者・手話・アクセシビリティ関連ニュースの入口です。</p>
-    </div>
-  </header>
-  <div class="container directory-nav"><nav class="site-nav" aria-label="サイト内ページ">
+      <nav class="site-nav" aria-label="サイト内ページ">
         <a class="site-nav__link" href="/"><span>ニュース</span></a>
-        <a class="site-nav__link site-nav__link--world is-current" href="/news/world/" aria-current="page"><span class="site-nav__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><span>World</span></a>
+        <a class="site-nav__link site-nav__link--world is-current" href="/news/world/" aria-current="page"><span>World</span></a>
         <a class="site-nav__link" href="/connect/sign-cafe/"><span>手話カフェ</span></a>
         <a class="site-nav__link" href="/guide/"><span>暮らしのガイド</span></a>
         <a class="site-nav__link site-nav__link--tool" href="/otomado/"><span>おとまど</span></a>
-        <a class="site-nav__link" href="/about/"><span>Deaf Naviについて</span></a>
-      </nav></div>
+        <a class="site-nav__link" href="/about/"><span>サイトについて</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="dn-page-intro dn-page-intro--sub">
+    <div class="container">
+      <p class="site-breadcrumb"><a href="/">ホーム</a> <span aria-hidden="true">/</span> <span>海外ニュース</span></p>
+      <h1 class="dn-page-title">海外ニュース</h1>
+      <p class="site-lead">海外のろう者・難聴者・手話・アクセシビリティ関連ニュースの入口です。</p>
+    </div>
+  </div>
   <main id="main" class="container directory-page" role="main">
     <section class="directory-hero"><p class="eyebrow">DEAF NAVI</p><h2>海外ニュース</h2><p><a class="primary-link" href="/deaf-navi-world-jp.html">日本語版を読む</a> <a class="secondary-link" href="/news/world/original/">原文版を見る</a></p></section>
   </main>

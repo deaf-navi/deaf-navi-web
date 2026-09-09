@@ -167,5 +167,5 @@ jobs:
       - name: Verify public release
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --location --max-time 20 https://deafnavi.com/ > /dev/null
-          curl --fail --silent --show-error --max-time 20 https://deafnavi.com/app/v1/manifest.json > /dev/null
+          curl --fail --silent --show-error --location --max-time 20 --user-agent 'Codex-DeafNavi-Verification' https://deafnavi.com/ > /dev/null
+          curl --fail --silent --show-error --max-time 20 --user-agent 'Codex-DeafNavi-Verification' https://deafnavi.com/app/v1/manifest.json > /dev/null

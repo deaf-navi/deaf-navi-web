@@ -2,6 +2,7 @@ import { readFile, writeFile, copyFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { SITE_URL } from '../config/site.mjs';
+import { assertJapaneseTranslations } from './lib/world-translation.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
@@ -306,8 +307,8 @@ function renderLanguageSwitch(mode) {
   const isOriginal = mode === 'original';
   const ariaLabel = isOriginal ? 'World language pages' : 'Worldの表示言語';
   return `<nav class="world-language-switch" aria-label="${ariaLabel}">
-        <a class="world-language-switch__item${mode === 'jp' ? ' is-active' : ''}" href="./${JP_PAGE_FILE}"${mode === 'jp' ? ' aria-current="page"' : ''}>JP 日本語</a>
-        <a class="world-language-switch__item${isOriginal ? ' is-active' : ''}" href="./${ORIGINAL_PAGE_FILE}"${isOriginal ? ' aria-current="page"' : ''}>Original 原文</a>
+        <a class="world-language-switch__item${mode === 'jp' ? ' is-active' : ''}" href="./${JP_PAGE_FILE}"${mode === 'jp' ? ' aria-current="page"' : ''}>World-JP</a>
+        <a class="world-language-switch__item${isOriginal ? ' is-active' : ''}" href="./${ORIGINAL_PAGE_FILE}"${isOriginal ? ' aria-current="page"' : ''}>World-Original</a>
       </nav>`;
 }
 
@@ -398,7 +399,8 @@ function renderPage(data, mode = 'jp') {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="./styles-world.css?v=20260908loading">
+  <link rel="stylesheet" href="./styles-world.css?v=20260909ui2">
+  <link rel="stylesheet" href="./site-shell.css?v=20260909ui3">
 
   ${jsonLd}
 </head>
@@ -408,7 +410,7 @@ function renderPage(data, mode = 'jp') {
 ${renderSiteHeader({
     subLabel: isOriginal ? 'World-Original' : 'World-JP',
     lead,
-    current: 'world',
+    current: isOriginal ? 'worldOriginal' : 'world',
     locale: htmlLang,
     modifier: 'site-header--world',
     nav: {
@@ -574,6 +576,7 @@ function renderOriginalLegacyRedirect() {
 async function main() {
   const raw = await readFile(DATA_FILE, 'utf8');
   const data = JSON.parse(raw);
+  assertJapaneseTranslations(data.articles ?? []);
   await mkdir(DOCS, { recursive: true });
   await writeFile(JP_HTML_OUT, injectAccessVisit(injectCloudflareAnalytics(renderPage(data, 'jp'))), 'utf8');
   await writeFile(ORIGINAL_HTML_OUT, injectAccessVisit(injectCloudflareAnalytics(renderPage(data, 'original'))), 'utf8');

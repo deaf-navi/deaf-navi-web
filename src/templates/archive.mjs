@@ -88,6 +88,7 @@ ${renderHead({
 
 ${renderSubHeader({
     crumbLabel: `アーカイブ ${label}`,
+    current: 'news',
     title: `${label}のアーカイブ`,
     lead: `${label}に掲載した記事 ${items.length}件`,
     homeHref: '../',
@@ -139,6 +140,7 @@ ${renderHead({
 
 ${renderSubHeader({
     crumbLabel: '過去アーカイブ',
+    current: 'news',
     title: '過去アーカイブ',
     lead: '掲載期間を過ぎた記事を月別に保管しています。月を選んでください。',
     homeHref: isDev ? './index-dev.html' : './',
