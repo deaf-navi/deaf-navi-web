@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__.'/access-visitors.php';
 require_once __DIR__.'/access-charts.php';
+require_once __DIR__.'/access-pages.php';
 
 // Read only. Logs are written by Caddy, outside the public root and application DB.
 const ACCESS_GROUPS = ['all'=>'すべてのリクエスト','pages'=>'公開ページ','data'=>'API・JSON・RSS等','assets'=>'画像・CSS・JavaScript等','management'=>'管理・情報提供'];
@@ -26,6 +27,10 @@ function access_options(): array {
     $start = new DateTimeImmutable($from, new DateTimeZone('Asia/Tokyo'));
     $end = new DateTimeImmutable($to, new DateTimeZone('Asia/Tokyo'));
     if ($end < $start || $start->diff($end)->days > 179 || $start < $today->modify('-179 days') || $end > $today) fail('直近180日以内の期間を指定してください。');
+    $mode = input($_GET, 'mode', 10) ?: 'views';
+    choice($mode, ['views'=>1,'requests'=>1]);
+    $content = input($_GET, 'content', 20) ?: 'all';
+    choice($content, ['all'=>'すべて']+ACCESS_CONTENTS);
     $client = input($_GET, 'client', 20) ?: 'human';
     choice($client, ACCESS_CLIENTS);
     $group = input($_GET, 'group', 20) ?: 'all';
@@ -34,8 +39,9 @@ function access_options(): array {
     choice($status, [''=>1,'2xx'=>1,'3xx'=>1,'4xx'=>1,'5xx'=>1]);
     $tab = input($_GET, 'tab', 12) ?: 'paths';
     choice($tab, ['paths'=>1,'days'=>1,'requests'=>1,'unique'=>1]);
+    if ($mode==='views') { $client='human'; $group='all'; $status=''; }
     return ['from'=>$from, 'to'=>$to, 'start'=>$start->getTimestamp(), 'end'=>$end->modify('+1 day')->getTimestamp(),
-        'group'=>$group, 'client'=>$client, 'status'=>$status, 'q'=>input($_GET, 'q', 200), 'tab'=>$tab,
+        'mode'=>$mode, 'content'=>$content, 'group'=>$group, 'client'=>$client, 'status'=>$status, 'q'=>input($_GET, 'q', 200), 'tab'=>$tab,
         'page'=>max(1, (int)input($_GET, 'page', 6)), 'limit'=>admin_size()];
 }
 
@@ -97,7 +103,8 @@ function access_entry(string $line): ?array {
 function access_report(array $options): array {
     $summary = ($options['summary'] ?? false) === true;
     $report = ['available'=>false, 'partial'=>false, 'invalid'=>0, 'total'=>0, 'pages'=>0, 'not_found'=>0, 'errors'=>0,
-        'latest'=>null, 'oldest'=>null, 'paths'=>[], 'days'=>[], 'rows'=>[]];
+        'latest'=>null, 'oldest'=>null, 'paths'=>[], 'days'=>[], 'rows'=>[], 'raw_total'=>0,
+        'excluded'=>array_fill_keys(array_keys(ACCESS_EXCLUSIONS),0), 'contents'=>array_fill_keys(array_keys(ACCESS_CONTENTS),0)];
     $dir = realpath(access_log_dir());
     if ($dir === false || !is_dir($dir) || !is_readable($dir)) return $report;
     $files = glob($dir.'/access*.log') ?: [];
@@ -134,6 +141,14 @@ function access_report(array $options): array {
                 $report['latest'] = max($report['latest'] ?? 0, $r['ts']);
                 $report['oldest'] = min($report['oldest'] ?? $r['ts'], $r['ts']);
                 if ($r['ts'] < $options['start'] || $r['ts'] >= $options['end']) continue;
+                if ($options['q'] !== '' && stripos($r['path'], $options['q']) === false) continue;
+                $reason = access_exclusion($r);
+                $content = $reason===null ? access_content($r['path']) : null;
+                $report['raw_total']++;
+                if ($reason!==null) $report['excluded'][$reason]++;
+                else $report['contents'][$content]++;
+                if (($options['mode']??'requests')==='views' && $reason!==null) continue;
+                if (($options['content']??'all')!=='all' && $content!==$options['content']) continue;
                 if ($options['group'] !== 'all' && $r['group'] !== $options['group']) continue;
                 if (($options['client'] ?? 'all') !== 'all' && $r['client'] !== $options['client']) continue;
                 if ($options['status'] !== '' && intdiv($r['status'], 100) !== (int)$options['status'][0]) continue;
@@ -200,17 +215,17 @@ function admin_access_summary(): string {
     $today = new DateTimeImmutable('today', new DateTimeZone('Asia/Tokyo'));
     $day = $today->format('Y-m-d');
     $o = ['from'=>$day,'to'=>$day,'start'=>$today->getTimestamp(),'end'=>$today->modify('+1 day')->getTimestamp(),
-        'group'=>'all','client'=>'human','status'=>'','q'=>'','page'=>1,'limit'=>5,'summary'=>true];
+        'mode'=>'views','content'=>'all','group'=>'all','client'=>'human','status'=>'','q'=>'','page'=>1,'limit'=>5,'summary'=>true];
     $r = access_report($o); $uu = access_unique_report($o);
     $base = ['view'=>'access','from'=>$day,'to'=>$day,'client'=>'human'];
     $out = '<section class="admin-panel admin-access-summary" aria-labelledby="access-summary-title"><div class="admin-access-summary-heading"><div><h2 id="access-summary-title">今日のアクセス</h2><p>'.e($today->format('Y/m/d')).'・日本時間</p></div><a href="'.admin_query($base).'">アクセスログで詳細分析 →</a></div>';
     if (!$r['available']) $out .= '<p class="dn-error" role="status">アクセスログを読み取れません。0件という意味ではありません。</p>';
     elseif ($r['partial'] || $r['invalid']) $out .= '<p class="dn-notice" role="status">リクエスト数と履歴は読み取れた範囲の部分集計です。詳細分析でもご確認ください。</p>';
     $out .= '<div class="admin-access-summary-metrics">';
-    foreach ([['リクエスト',$r['available']?$r['total']:null,'件',['tab'=>'requests']],['推定ユニーク数',$uu['available']?$uu['total']:null,'人',['tab'=>'unique']],['サーバーエラー（5xx）',$r['available']?$r['errors']:null,'件',['tab'=>'requests','status'=>'5xx']]] as [$label,$count,$unit,$filter]) {
+    foreach ([['ページ閲覧',$r['available']?$r['total']:null,'件',['tab'=>'requests']],['推定ユニーク数',$uu['available']?$uu['total']:null,'人',['tab'=>'unique']],['集計から除外',$r['available']?array_sum($r['excluded']):null,'件',['tab'=>'requests','mode'=>'requests','client'=>'all']]] as [$label,$count,$unit,$filter]) {
         $out .= '<a href="'.admin_query($base,$filter).'"><span>'.e($label).'</span><strong>'.($count===null?'未取得':number_format($count).'<small>'.e($unit).'</small>').'</strong></a>';
     }
-    $out .= '</div><p class="admin-access-summary-note">一般ブラウザーのみ。Codex・AI・bot・自動操作・管理画面・分類不明を除外しています。リクエストには画像等も含み、UUは推定人数です。</p><h3>直近の公開ページアクセス<span>今日・最大5件</span></h3><ol class="admin-access-recent">';
+    $out .= '</div><p class="admin-access-summary-note">一般ブラウザーのみ。Codex・AI・bot・自動操作・管理画面・分類不明を除外しています。画像・API・404・不審な探索は閲覧に含めません。UUは推定人数です。</p><h3>直近の公開ページアクセス<span>今日・最大5件</span></h3><ol class="admin-access-recent">';
     foreach ($r['rows'] as $row) {
         $at = (new DateTimeImmutable('@'.(int)$row['ts']))->setTimezone(new DateTimeZone('Asia/Tokyo'));
         $out .= '<li><time datetime="'.e($at->format('c')).'">'.e($at->format('H:i:s')).'</time><div><span class="admin-access-path">'.e($row['path']).'</span><small>'.e(ACCESS_CLIENTS[$row['client']]).'</small></div><span class="admin-access-status'.($row['status']>=400?' is-error':'').'" aria-label="HTTP応答 '.(int)$row['status'].'">'.(int)$row['status'].'</span></li>';
@@ -222,27 +237,30 @@ function admin_access_summary(): string {
 function admin_access_logs(): string {
     require_user(true);
     $o = access_options(); $r = access_report($o); $uu = access_unique_report($o);
-    $base = ['view'=>'access','from'=>$o['from'],'to'=>$o['to'],'group'=>$o['group'],'client'=>$o['client'],'status'=>$o['status'],'q'=>$o['q'],'tab'=>$o['tab'],'limit'=>$o['limit']];
-    $out = '<p class="admin-lead">全コンテンツのアクセスを期間・URL・分類で詳しく分析できます。日時は日本時間です。</p>';
+    $base = ['view'=>'access','from'=>$o['from'],'to'=>$o['to'],'mode'=>$o['mode'],'content'=>$o['content'],'group'=>$o['group'],'client'=>$o['client'],'status'=>$o['status'],'q'=>$o['q'],'tab'=>$o['tab'],'limit'=>$o['limit']];
+    $out = '<p class="admin-lead">正常な公開ページ閲覧をコンテンツ別に集計します。日時は日本時間です。</p>';
+    $out .= '<p>'.($o['mode']==='views'?'閲覧数からbot・AI・不審なURL探索・404・管理操作・画像やAPIの取得を除外します。':'調査用の生リクエスト表示です。閲覧数として扱わないでください。').'</p>';
     $out .= '<p class="dn-notice">'.($o['client']==='human'?'一般ブラウザーのみ集計しています。Codex・AI・bot・自動操作・管理画面・分類不明は除外しています。':'調査用の分類を表示しています。このリクエスト数を一般ユーザーの利用数として扱わないでください。').'</p>';
     $out .= '<form method="get" class="admin-filters"><input type="hidden" name="view" value="access"><input type="hidden" name="tab" value="'.e($o['tab']).'">'
+        .select_field('mode','集計方法',['views'=>'ページ閲覧のみ','requests'=>'全リクエスト（調査用）'],$o['mode']).select_field('content','コンテンツ',['all'=>'すべて']+ACCESS_CONTENTS,$o['content'])
         .field('from','開始日',$o['from'],'date',true).field('to','終了日',$o['to'],'date',true)
-        .($o['tab']==='unique'?'':select_field('group','対象',ACCESS_GROUPS,$o['group']).select_field('client','アクセス元の分類',ACCESS_CLIENTS,$o['client']).select_field('status','応答',[''=>'すべて','2xx'=>'成功（2xx）','3xx'=>'転送等（3xx）','4xx'=>'要求エラー（4xx）','5xx'=>'サーバーエラー（5xx）'],$o['status']))
+        .($o['tab']==='unique'||$o['mode']==='views'?'':select_field('group','対象',ACCESS_GROUPS,$o['group']).select_field('client','アクセス元の分類',ACCESS_CLIENTS,$o['client']).select_field('status','応答',[''=>'すべて','2xx'=>'成功（2xx）','3xx'=>'転送等（3xx）','4xx'=>'要求エラー（4xx）','5xx'=>'サーバーエラー（5xx）'],$o['status']))
         .field('q','URLパスで検索',$o['q']).select_field('limit','履歴の表示件数',['25'=>'25件','50'=>'50件','100'=>'100件'],(string)$o['limit'])
         .'<button>表示を更新</button><a href="/admin/?view=access">条件を解除</a></form>';
     if (!$r['available']) return $out.'<div class="dn-notice" role="status"><h2>アクセスログを読み取れません</h2><p>ログが未設定、または保存先を読み取れない状態です。アクセス数が0件という意味ではありません。</p></div>';
     if ($r['partial'] || $r['invalid']) $out .= '<div class="dn-error" role="status">一部のログを集計できていません。読込上限・保存中の切替・読取エラー等のため、以下は読み取れた範囲の集計です。'.($r['invalid']?'形式を確認できなかった記録：'.number_format($r['invalid']).'件。':'').'</div>';
     $out .= '<p class="dn-muted">確認できた保存範囲：'.e(access_time($r['oldest'])).' ～ '.e(access_time($r['latest'])).'。管理画面は直近180日を表示します。180日を過ぎた分は月初に圧縮保存し、日次処理で210日超の滞留も確認します。</p>';
     $out .= '<div class="admin-metrics admin-access-metrics">';
-    foreach ([['選択条件のリクエスト',$r['total']],['公開ページの成功GET',$r['pages']],['見つからないURL（404）',$r['not_found']],['サーバーエラー（5xx）',$r['errors']]] as [$label,$count])
+    $metrics = $o['mode']==='views' ? [['ページ閲覧数',$r['total']],['集計から除外したアクセス',array_sum($r['excluded'])]] : [['選択条件のリクエスト',$r['total']],['公開ページの成功GET',$r['pages']],['見つからないURL（404）',$r['not_found']],['サーバーエラー（5xx）',$r['errors']]];
+    foreach ($metrics as [$label,$count])
         $out .= '<a href="'.admin_query($base,['tab'=>'requests']).'"><span>'.e($label).'</span><strong>'.number_format($count).'<small>件</small></strong></a>';
-    $out .= '<a href="'.admin_query($base,['tab'=>'unique']).'"><span>日別推定ユニークの合計</span><strong>'.($uu['available']?number_format($uu['total']).'<small>人日</small>':'未取得').'</strong><small>期間とURL条件・一般ブラウザーのみ</small></a>';
-    $out .= '</div>'.access_charts_html($o,$r,$uu,$base).'<nav class="dn-admin-nav" aria-label="アクセスログの表示切替">';
+    $out .= '<a href="'.admin_query($base,['tab'=>'unique']).'"><span>日別推定ユニークの合計</span><strong>'.($uu['available']?number_format($uu['total']).'<small>人日</small>':'未取得').'</strong><small>期間・コンテンツ・URL条件・一般ブラウザーのみ</small></a>';
+    $out .= '</div>'.access_content_html($o,$r,$uu,$base).access_charts_html($o,$r,$uu,$base).'<nav class="dn-admin-nav" aria-label="アクセスログの表示切替">';
     foreach (['paths'=>'URL別件数','days'=>'日別件数','requests'=>'個別のアクセス履歴','unique'=>'推定ユニーク数'] as $tab=>$label)
         $out .= '<a href="'.admin_query($base,['tab'=>$tab,'page'=>1]).'"'.($tab===$o['tab']?' aria-current="page"':'').'>'.e($label).'</a> ';
     $out .= '</nav>';
     if ($o['tab'] === 'unique') {
-        $out .= '<h2>日別の推定ユニーク数</h2><p>日本時間の1日ごとに、同じ接続IPとブラウザー情報の重複を除きます。期間とURL検索条件が対象です。同じ人の別ページは日別人数で重複しません。複数日の合計は「人日」で、期間全体の実人数ではありません。</p>';
+        $out .= '<h2>日別の推定ユニーク数</h2><p>日本時間の1日ごとに、同じ接続IPとブラウザー情報の重複を除きます。期間・コンテンツ・URL検索条件が対象です。同じ人の別ページは日別人数で重複しません。複数日の合計は「人日」で、期間全体の実人数ではありません。</p>';
         if (!$uu['available']) $out .= '<p class="dn-error">推定ユニーク数を取得できません。0人という意味ではありません。</p>';
         $out .= '<p>計測開始：'.e(access_iso_time($uu['started_at']??null)).'。JavaScriptによるページ表示の通知を受け取った分を集計します。</p>'.admin_table_open('日別推定ユニーク数').'<thead><tr><th scope="col">日付（日本時間）</th><th scope="col">推定ユニーク数</th></tr></thead><tbody>';
         foreach ($uu['days'] as $day=>$count) $out .= '<tr><th scope="row">'.e($day).'</th><td>'.number_format($count).' 人</td></tr>';
@@ -267,4 +285,16 @@ function admin_access_logs(): string {
     $out .= '</tbody></table></div>';
     if ($o['tab'] === 'requests') $out .= admin_pager($o['page'],$r['total'],$o['limit'],$base);
     return $out.access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。通常集計は一般ブラウザーのみで、Codex・AI・bot・自動操作・管理画面・分類不明を除外します。除外した分類は調査用に切り替えて確認できます。判別情報のない通常ブラウザーの自動操作は見分けられません。過去に一般ブラウザーとして保存された記録を、後から完全に分類し直すことはできません。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。同じ日の接続が後からCodex等と判定された場合は、その日の推定UUから除外します。</p><p>生のIP・User-Agent・Cookie・認証情報・参照元・入力本文・URLの検索条件は保存しません。公開領域外で管理者のみ参照できます。180日超を月初にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。210日超は日次でも確認します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
+}
+
+function access_content_html(array $options, array $report, array $unique, array $base): string {
+    $out = '<section class="admin-panel"><h2>コンテンツ別アクセス</h2><p>選択期間・URL検索条件の一般ブラウザーによるページ閲覧です。詳細ページも各コンテンツへ含めます。</p>';
+    $out .= admin_table_open('コンテンツ別アクセス').'<thead><tr><th scope="col">コンテンツ</th><th scope="col">閲覧数</th><th scope="col">日別推定UUの合計</th></tr></thead><tbody>';
+    foreach (ACCESS_CONTENTS as $key=>$label) {
+        $out .= '<tr><th scope="row"><a href="'.admin_query($base,['mode'=>'views','content'=>$key,'client'=>'human','group'=>'all','status'=>'','page'=>1]).'">'.e($label).'</a></th><td>'.number_format($report['contents'][$key]).' 件</td><td>'.($unique['available']?number_format($unique['contents'][$key]??0).' 人日':'未取得').'</td></tr>';
+    }
+    $out .= '</tbody></table></div><p>同じ人が複数コンテンツを閲覧すると、それぞれに計上されます。UUのコンテンツ別合計は全体人数と一致しません。</p></section>';
+    $out .= '<details class="admin-panel" open><summary>集計から除外したアクセス</summary><p>選択期間の生ログ '.number_format($report['raw_total']).' 件中、除外 '.number_format(array_sum($report['excluded'])).' 件。除外は重複しない理由別の件数です。</p><ul>';
+    foreach (ACCESS_EXCLUSIONS as $key=>$label) $out .= '<li>'.e($label).'：'.number_format($report['excluded'][$key]).' 件</li>';
+    return $out.'</ul><p>ブラウザー情報からの推定です。人を装う自動アクセスを完全に判別することはできません。調査用ログは削除せず保持します。</p></details>';
 }

@@ -13,7 +13,7 @@ let checks=0; const ok=(value,label)=>{assert.ok(value,label);checks++;};
 const ua='Mozilla/5.0 TestBrowser';
 const fixture=run(`$at=new DateTimeImmutable('2026-09-08T00:00:00+09:00');
     for($i=0;$i<20;$i++) access_record_visit('/','192.0.2.1','${ua}',$at);
-    access_record_visit('/guide/','192.0.2.1','${ua}',$at);
+    access_record_visit('/guide.html','192.0.2.1','${ua}',$at);
     access_record_visit('/','192.0.2.2','${ua}',$at);
     access_record_visit('/','192.0.2.1','${ua} Other',$at);
     access_record_visit('/','192.0.2.1','${ua}',$at->modify('-1 second'));
@@ -25,12 +25,14 @@ ok(new Set(rows.map(r=>r.visitor)).size===4,'no cross-day identifier');
 ok(rows.every(r=>/^[0-9a-f]{64}$/.test(r.visitor)),'HMAC only');
 const report=JSON.parse(run(`echo json_encode(access_unique_report(['from'=>'2026-09-07','to'=>'2026-09-08','q'=>'']));`).stdout);
 ok(report.days['2026-09-08']===3 && report.total===4,'same visitor across pages counted once per day');
+const contentReport=JSON.parse(run(`echo json_encode(access_unique_report(['from'=>'2026-09-07','to'=>'2026-09-08','q'=>'','content'=>'guide']));`).stdout);
+ok(contentReport.total===1 && contentReport.contents.guide===1 && contentReport.contents.web===4,'content UU counts deduplicate per day and filter the total');
 ok(!readFileSync(join(dir,'visitors.sqlite')).includes(Buffer.from('192.0.2.')) && !readFileSync(join(dir,'visitors.sqlite')).includes(Buffer.from(ua)),'raw IP and UA absent from DB');
 for(const [agent,marker,expected] of [[ua,'','human'],['Googlebot','','bot'],['GPTBot','','ai'],['curl/8','','automation'],[ua,'codex','ai'],['','','unknown']])
     ok(run(`echo access_client(${JSON.stringify(agent)},${JSON.stringify(marker)});`).stdout===expected,'class '+expected);
 // Concurrent retries resolve through the unique database key.
 await Promise.all(Array.from({length:8},()=>new Promise((resolve,reject)=>{
-    const p=spawn('php',['-r',`require 'server/access-visitors.php';access_record_visit('/guide/','192.0.2.3','${ua}',new DateTimeImmutable('2026-09-08'));`],{cwd:root,env,stdio:'ignore'});
+    const p=spawn('php',['-r',`require 'server/access-visitors.php';access_record_visit('/guide.html','192.0.2.3','${ua}',new DateTimeImmutable('2026-09-08'));`],{cwd:root,env,stdio:'ignore'});
     p.on('exit',code=>code===0?resolve():reject(new Error('parallel insert '+code)));
 })));
 ok(run("echo access_visitor_db()->query('SELECT COUNT(*) FROM visits')->fetchColumn();").stdout==='6','concurrent requests dedup');
@@ -49,11 +51,11 @@ try {
     await post({path:'/'});
     const count=()=>Number(run("echo access_visitor_db()->query('SELECT COUNT(*) FROM visits')->fetchColumn();").stdout);
     ok(count()===before+1,'same browser repeated beacon adds one row');
-    for(const data of [{path:'/guide/',automated:true},{path:'/guide/'}]) {
+    for(const data of [{path:'/guide.html',automated:true},{path:'/guide.html'}]) {
         const headers=data.automated?{}:{'User-Agent':'Googlebot'};
         ok((await post(data,headers)).status===204,'bot acknowledged');
     }
-    await post({path:'/guide/'},{'X-DeafNavi-Client':'codex'});
+    await post({path:'/guide.html'},{'X-DeafNavi-Client':'codex'});
     ok(count()===before+1,'bot, webdriver and Codex excluded');
     ok((await post({path:'/'},{Origin:'https://elsewhere.invalid'})).status===403,'cross-origin rejected');
     for(const path of ['/admin/','/submit/','/../../secret','/app/v1/index.json','/?q=PRIVATE','/unknown-not-a-page/'])

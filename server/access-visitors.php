@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/access-pages.php';
 
 // Separate from sessions and the directory database. No network identifiers are stored.
 const ACCESS_CLIENTS = ['human'=>'一般ブラウザー（推定）','all'=>'すべての分類（調査用）','bot'=>'bot・検索クローラー','ai'=>'AI・Codex','automation'=>'自動操作・監視','internal'=>'管理画面','unknown'=>'不明・分類開始前'];
@@ -106,6 +107,8 @@ function access_visit_endpoint(): never {
     $root = getenv('DEAFNAVI_LOCAL_TEST') === '1' ? realpath(__DIR__.'/../docs') : '/srv/deafnavi/current';
     $file = $root.$path.(str_ends_with($path,'/')?'index.html':'');
     if (!str_starts_with($path,'/connect/sign-cafe/') && (!is_file($file) || !str_ends_with($file,'.html'))) { http_response_code(400); exit; }
+    try { if (access_content($path)===null) { http_response_code(400); exit; } }
+    catch (Throwable) { http_response_code(503); exit; }
     $ua = substr($_SERVER['HTTP_USER_AGENT']??'',0,2049);
     $marker = substr($_SERVER['HTTP_X_DEAFNAVI_CLIENT']??'',0,100);
     $client = access_client($ua,$marker);
@@ -124,12 +127,18 @@ function access_visit_endpoint(): never {
 }
 
 function access_unique_report(array $options): array {
-    $result = ['available'=>false,'days'=>[],'paths'=>[],'total'=>0,'started_at'=>null];
+    $result = ['available'=>false,'days'=>[],'paths'=>[],'total'=>0,'started_at'=>null,'contents'=>[]];
     try {
         $db = access_visitor_db();
         $result['started_at'] = $db->query("SELECT value FROM metadata WHERE key='started_at'")->fetchColumn() ?: null;
         $where = 'day>=? AND day<=? AND NOT EXISTS (SELECT 1 FROM excluded_visitors x WHERE x.day=visits.day AND x.visitor=visits.visitor)'; $args = [$options['from'],$options['to']];
         if ($options['q']!=='') { $where .= ' AND instr(lower(path),lower(?))>0'; $args[]=$options['q']; }
+        $db->sqliteCreateFunction('content_key', fn($path)=>access_content($path), 1);
+        $where .= ' AND content_key(path) IS NOT NULL';
+        $s = $db->prepare('SELECT content_key(path) AS content,COUNT(DISTINCT day || ":" || visitor) AS count FROM visits WHERE '.$where.' GROUP BY content_key(path)');
+        $s->execute($args);
+        foreach ($s as $row) $result['contents'][$row['content']] = (int)$row['count'];
+        if (($options['content']??'all')!=='all') { $where .= ' AND content_key(path)=?'; $args[]=$options['content']; }
         $s = $db->prepare('SELECT day,COUNT(DISTINCT visitor) AS count FROM visits WHERE '.$where.' GROUP BY day ORDER BY day DESC');
         $s->execute($args);
         foreach ($s as $r) { $result['days'][$r['day']]=(int)$r['count']; $result['total']+=(int)$r['count']; }

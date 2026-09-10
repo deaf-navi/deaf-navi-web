@@ -44,8 +44,8 @@ function access_charts_html(array $options, array $report, array $unique, array 
     $today = new DateTimeImmutable('today',new DateTimeZone('Asia/Tokyo'));
     foreach ([7,30,180] as $days) $out .= '<a href="'.admin_query($base,['from'=>$today->modify('-'.($days-1).' days')->format('Y-m-d'),'to'=>$today->format('Y-m-d'),'page'=>1]).'">直近'.$days.'日</a>';
     $out .= '</nav><div class="admin-chart-pair">';
-    $out .= access_daily_chart('リクエスト数','件',access_chart_series($options,$report['days'],$report['oldest']),array_merge($base,['tab'=>'requests']),$report['available']);
+    $out .= access_daily_chart(($options['mode']??'requests')==='views'?'ページ閲覧数':'リクエスト数','件',access_chart_series($options,$report['days'],$report['oldest']),array_merge($base,['tab'=>'requests']),$report['available']);
     $started = is_string($unique['started_at']) ? strtotime($unique['started_at']) : false;
     $out .= access_daily_chart('推定ユニーク数','人',access_chart_series($options,$unique['days'],$started===false?null:(float)$started),array_merge($base,['tab'=>'unique']),$unique['available']);
-    return $out.'</div><p class="admin-chart-help">リクエストは選択中の全条件、推定UUは期間・URL条件と一般ブラウザーが対象です。計測開始日は開始時刻以降の値です。日別の数値は下の表示切替でも確認できます。</p></section>';
+    return $out.'</div><p class="admin-chart-help">リクエストは選択中の全条件、推定UUは期間・コンテンツ・URL条件と一般ブラウザーが対象です。計測開始日は開始時刻以降の値です。日別の数値は下の表示切替でも確認できます。</p></section>';
 }

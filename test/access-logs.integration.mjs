@@ -17,6 +17,7 @@ assert.equal(run(['server/cli.php','init'], JSON.stringify({username:'testadmin'
 const core = join(root,'server/core.php').replaceAll('\\','/');
 const access = join(root,'server/access-logs.php').replaceAll('\\','/');
 const sql = code => run(['-r', `require '${core}';${code}`]);
+assert.equal(sql("foreach(['jp'=>'JP','fr'=>'FR','fr-two'=>'FR'] as $slug=>$country) query(\"INSERT INTO records(id,kind,slug,name,country_code,payload,created_at,updated_at) VALUES(?,'cafe',?,?,?,'{}','2026-09-10','2026-09-10')\",[$slug,$slug,$slug,$country]);").status,0);
 assert.equal(sql("query('UPDATE users SET must_change=0');query('INSERT INTO users(username,password_hash,role,must_change,created_at) SELECT ?,password_hash,?,0,created_at FROM users WHERE id=1',['testeditor','editor']);").status, 0);
 const port = preview ? 5199 : 5198;
 const server = spawn('php',['-S',`127.0.0.1:${port}`,'-t','docs','server/local-router.php'],{cwd:root,env,stdio:['ignore','ignore','pipe']});
@@ -39,7 +40,7 @@ const now = Math.floor(Date.now()/1000);
 const day = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo'}).format(new Date());
 const start = Date.parse(`${day}T00:00:00+09:00`)/1000;
 const query = `&from=${day}&to=${day}`;
-const fixture = [entry('/previous-day/',start-1),entry('/midnight/',start),entry('/world/',start+1),entry('/connect/sign-cafe/overseas/',start+2),
+const fixture = [entry('/previous-day/',start-1),entry('/',start),entry('/deaf-navi-world-jp.html',start+1),entry('/connect/sign-cafe/overseas/',start+2),
     entry('/app/v1/index.json',start+3),entry('/directory.css',start+4),entry('/admin/?csrf=PRIVATE_MARKER',start+5),
     entry('/missing/',start+6,{status:404}),entry('/broken/',start+7,{status:503}),entry('/head/',start+8,{request:{host:'deafnavi.com',method:'HEAD',uri:'/head/'}}),
     entry('/%3Cscript%3E/',start+9),entry('/<img src=x onerror=alert(1)>/',start+10),entry('/next-day/',start+86400)];
@@ -82,14 +83,25 @@ try {
     ok(report({q:'sign-cafe'}).total===1,'path search');
     ok(report({page:2,limit:3}).rows[0].path===a.rows[3].path,'page slice');
     ok(report({q:"' OR 1=1 --"}).total===0,'search is literal');
+    const clean=report({mode:'views',client:'human'});
+    const categories=run(['-r',`require '${core}';require '${access}';echo json(array_map('access_content',json_decode($argv[1],true)));`,JSON.stringify(['/index.html','/deaf-navi-world-jp.html','/deaf-navi-world-original.html','/connect/sign-cafe/jp/','/connect/sign-cafe/fr/','/guide.html','/otomado/index.html','/about.html','/.env','/connect/sign-cafe/missing/'])]);
+    ok(JSON.stringify(JSON.parse(categories.stdout))===JSON.stringify(['web','world_jp','world_original','cafe','cafe_overseas','guide','otomado','about',null,null]),'all eight contents, aliases, overseas detail and unknown probes classified');
+    const outcomes=run(['-r',`require '${core}';require '${access}';$base=['path'=>'/','client'=>'human','method'=>'GET','status'=>200,'group'=>'pages'];echo json(array_map(fn($r)=>access_exclusion(array_replace($base,$r)),json_decode($argv[1],true)));`,JSON.stringify([{status:304},{client:'bot'},{client:'ai'},{client:'unknown'},{status:404},{status:302},{method:'POST'},{path:'/wp-login.php'},{path:'/%2eenv'},{path:'/robots.txt',group:'assets'},{path:'/arbitrary.html'}])]);
+    ok(JSON.stringify(JSON.parse(outcomes.stdout))===JSON.stringify([null,'bot','ai','unknown','not_found','unsuccessful','unsuccessful','probe','probe','resource','unlisted']),'cached views count once; bot, scan, unsuccessful and resource requests excluded');
+    ok(clean.total===3 && clean.contents.web===1 && clean.contents.world_jp===1 && clean.contents.cafe_overseas===1,'public page views exclude assets, admin, probes, unknown URLs, errors and HEAD');
+    ok(clean.raw_total===11 && Object.values(clean.excluded).reduce((a,b)=>a+b,0)===8,'every excluded request has exactly one reason');
+    ok(report({mode:'views',content:'world_jp',client:'human'}).total===1,'content filter applies to rows and chart totals');
+    r=await admin('/admin/?view=access'+query);
+    ok(r.text.includes('コンテンツ別アクセス') && r.text.includes('World-Original') && r.text.includes('手話カフェ 海外') && r.text.includes('集計から除外したアクセス'),'eight-content overview and exclusion reasons visible');
+    ok((await admin('/admin/?view=access&content=invalid')).status===400 && (await admin('/admin/?view=access&mode=invalid')).status===400,'invalid content and mode rejected');
     const compact=report({summary:true,client:'human'});
     ok(compact.total===report({client:'human'}).total && compact.errors===a.errors && compact.rows.length===5 && compact.rows.every(p=>p.group==='pages' && p.method==='GET'),'summary totals match human detail and recent list excludes assets and HEAD');
     r=await admin('/admin/?from=2000-01-01&to=2000-01-02&group=assets&q=no-match');
     const summary=r.text.match(/<section class="admin-panel admin-access-summary"[\s\S]*?<\/section>/)?.[0]??'';
-    ok(summary.includes('今日のアクセス') && summary.includes('<strong>10<small>件') && summary.includes('client=human') && summary.includes('from='+day) && summary.includes('to='+day),'dashboard always summarizes today without admin traffic and links to matching detail period');
-    ok(summary.includes('&lt;img') && !summary.includes('<img') && !summary.includes('PRIVATE_MARKER'),'summary escapes log content and omits query data');
+    ok(summary.includes('今日のアクセス') && summary.includes('<strong>3<small>件') && summary.includes('client=human') && summary.includes('from='+day) && summary.includes('to='+day),'dashboard always summarizes today without admin traffic and links to matching detail period');
+    ok(!summary.includes('&lt;img') && !summary.includes('<img') && !summary.includes('PRIVATE_MARKER'),'summary escapes log content and omits query data');
     r=await admin('/admin/?view=access'+query);
-    ok(r.text.includes('value="human" selected') && r.text.includes('Codex・AI・bot・自動操作・管理画面・分類不明は除外'),'normal detail excludes non-human traffic by default');
+    ok(r.text.includes('value="views" selected') && r.text.includes('Codex・AI・bot・自動操作・管理画面・分類不明は除外'),'normal detail excludes non-human traffic by default');
     ok((r.text.match(/<svg /g)||[]).length===1 && r.text.includes('アクセスの推移') && r.text.includes('未取得のためグラフ'),'request chart available while missing UU stays unavailable');
     ok(r.text.includes('直近180日</a>') && r.text.includes('tab=requests') && r.text.includes('日別・件'),'chart period and day drilldown available');
     const series=run(['-r',`require '${core}';require '${access}';echo json(access_chart_series(['from'=>'2026-09-06','to'=>'2026-09-08'],['2026-09-07'=>2],(float)strtotime('2026-09-07T00:00:00+09:00')));`]);
@@ -123,13 +135,13 @@ try {
     ok(hostReport.total===2 && hostReport.rows.every(r=>['deafnavi.com','www.deafnavi.com'].includes(r.host)),'standard HTTP ports normalize to site host');
     ok(hostReport.invalid===2,'foreign hosts and malformed ports remain rejected');
     ok(run(['server/cli.php','check']).status===0,'application DB intact');
-    writeFileSync(join(logsDir,'access.log'),['human','ai','bot','automation','unknown'].map((client_kind,i)=>JSON.stringify(entry('/class-'+i+'/',start+100+i,{client_kind}))).join('\n')+'\n');
+    writeFileSync(join(logsDir,'access.log'),['human','ai','bot','automation','unknown'].map((client_kind,i)=>JSON.stringify(entry(i===0?'/about.html':'/class-'+i+'/',start+100+i,{client_kind}))).join('\n')+'\n');
     ok(report({client:'ai'}).total===1 && report({client:'bot'}).total===1 && report({client:'human'}).total===4,'category filter');
     appendFileSync(join(logsDir,'access.log'),['/sw.js','/otomado/sw.js'].map(path=>JSON.stringify(entry(path,start+150))).join('\n')+'\n');
     ok(report({client:'human'}).total===4 && report({client:'automation'}).total===3,'browser service worker update checks excluded including earlier logs');
     r=await admin('/admin/');
     const cleanSummary=r.text.match(/<section class="admin-panel admin-access-summary"[\s\S]*?<\/section>/)?.[0]??'';
-    ok(cleanSummary.includes('/class-0/') && !cleanSummary.includes('/class-1/') && !cleanSummary.includes('/class-2/') && !cleanSummary.includes('/class-3/') && !cleanSummary.includes('/class-4/'),'past classified Codex, bots, automation and unknown are excluded from summary');
+    ok(cleanSummary.includes('/about.html') && !cleanSummary.includes('/class-1/') && !cleanSummary.includes('/class-2/') && !cleanSummary.includes('/class-3/') && !cleanSummary.includes('/class-4/'),'past classified Codex, bots, automation and unknown are excluded from summary');
     const rotated=join(logsDir,'access-v2-2026-09-08T00-00-00-time.log');
     writeFileSync(rotated,JSON.stringify(entry('/v2/',start+200,{client_kind:'automation'}))+'\n');
     ok(report({q:'/v2/'}).total===1,'new rotated filenames supported');
@@ -138,7 +150,7 @@ try {
     const from180=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo'}).format(new Date(Date.now()-179*86400000));
     ok((await admin('/admin/?view=access&from='+from180+'&to='+day)).status===200,'full 180-day range accepted');
     const visitors=join(dir,'access-visitors');mkdirSync(visitors);
-    ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide/','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
+    ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide.html','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
     r=await admin('/admin/?view=access&tab=unique'+query);
     ok(r.text.includes('1 人') && r.text.includes('Cookieや端末への識別子保存は使いません') && !r.text.includes('推定ユニーク数を取得できません'),'unique viewer and estimation explanation');
     ok((r.text.match(/<svg /g)||[]).length===2 && r.text.includes('日別・人'),'UU chart renders alongside request chart');
@@ -155,6 +167,8 @@ try {
     ok(report({}).partial,'changed log invalidates saved index');
     renameSync(recent,recent+'.fixture');
     ok(!/Fatal error|Warning:|Uncaught/.test(errors),'no PHP warnings');
+    const contentUnique=run(['-r',`require '${core}';require '${access}';foreach(['/connect/sign-cafe/fr/','/connect/sign-cafe/fr-two/'] as $path) access_record_visit($path,'192.0.2.41','Mozilla/5.0 LocalTest');echo json(access_unique_report(['from'=>'${day}','to'=>'${day}','q'=>'','content'=>'cafe_overseas']));`]);
+    ok(JSON.parse(contentUnique.stdout).total===1 && JSON.parse(contentUnique.stdout).contents.cafe_overseas===1,'overseas content UU deduplicates visits to multiple overseas cafe details');
     console.log(JSON.stringify({result:'ACCESS_LOGS_TESTS_OK',checks,productionWrites:false}));
     if(preview){
         writeFileSync(join(logsDir,'access.log'),fixture.slice(4).map(JSON.stringify).join('\n')+'\n');
