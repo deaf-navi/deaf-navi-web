@@ -287,8 +287,10 @@ function renderCardTemplate() {
           <span class="chip"></span>
           <time class="card__time" data-relative-time></time>
         </header>
+        <div class="card__content"><div class="card__text">
         <h3 class="card__title"><a target="_blank" rel="noopener noreferrer"></a></h3>
         <p class="card__summary"></p>
+        </div></div>
         <footer class="card__foot">
           <div class="card__source-group">
             <span class="source-tier"></span>

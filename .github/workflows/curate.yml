@@ -38,13 +38,14 @@ jobs:
         run: |
           npm run generate
           npm run build:app-api
+          test -f .state/thumbnails-domestic.json || { mkdir -p .state; printf '{"version":1,"entries":{}}\n' > .state/thumbnails-domestic.json; }
 
       - name: Commit & push
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs
+          git add docs .state/thumbnails-domestic.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
@@ -61,13 +62,16 @@ jobs:
             git rebase --abort 2>/dev/null || true
             git merge --abort 2>/dev/null || true
             cp docs/articles.json docs/articles-old.json "$RUNNER_TEMP"/
+            cp .state/thumbnails-domestic.json "$RUNNER_TEMP"/
             git fetch origin main
             git reset --hard origin/main
             cp "$RUNNER_TEMP"/articles.json "$RUNNER_TEMP"/articles-old.json docs/
+            mkdir -p .state
+            cp "$RUNNER_TEMP"/thumbnails-domestic.json .state/
             npm run build
             npm run verify
             npm run build:app-api
-            git add docs
+            git add docs .state/thumbnails-domestic.json
             if git diff --cached --quiet; then
               echo "No changes after rebuild."
               exit 0

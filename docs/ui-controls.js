@@ -11,6 +11,41 @@
 
   var docEl = document.documentElement;
 
+  // External article pictures are optional. Remove failures, including cached
+  // failures that occurred before this deferred script started.
+  function removeFailedThumbnail(event) {
+    var img = event.target;
+    if (img && img.classList && img.classList.contains('card__thumbnail')) img.remove();
+  }
+  document.addEventListener('error', removeFailedThumbnail, true);
+  document.querySelectorAll('img.card__thumbnail').forEach(function (img) {
+    if (img.complete && img.naturalWidth === 0) img.remove();
+  });
+  window.DeafNaviThumbnails = {
+    append: function (container, value) {
+      if (!container || typeof value !== 'string') return;
+      var url;
+      try { url = new URL(value); } catch (e) { return; }
+      if (url.protocol !== 'https:' || url.username || url.password
+        || !url.hostname.includes('.') || /[\[\]:]/.test(url.hostname)
+        || /^[\d.]+$/.test(url.hostname) || (url.port && url.port !== '443')
+        || /(?:^|\.)(?:localhost|local|internal|test|invalid|onion)$/.test(url.hostname)
+        || url.hostname === 'news.google.com' || /\.svg$/i.test(url.pathname)
+        || /(?:logo|favicon|placeholder|no[-_]?image|default[-_]?image|GoogleDiscoverThumbnail)/i.test(url.pathname.split('/').pop())) return;
+      var img = document.createElement('img');
+      img.className = 'card__thumbnail';
+      img.alt = '';
+      img.width = 112;
+      img.height = 84;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.referrerPolicy = 'no-referrer';
+      img.addEventListener('error', removeFailedThumbnail);
+      img.src = url.href;
+      container.insertBefore(img, container.firstChild);
+    },
+  };
+
   function storageGet(key) {
     try { return localStorage.getItem(key); } catch (e) { return null; }
   }

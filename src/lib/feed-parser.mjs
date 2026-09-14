@@ -9,6 +9,7 @@
  */
 
 import { cleanHtml, cleanSummaryText } from './text.mjs';
+import { feedThumbnail } from './thumbnail-metadata.mjs';
 
 export function extractTag(xml, tag) {
   const cdata = xml.match(new RegExp(`<${tag}[^>]*>\\s*<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, 'i'));
@@ -64,6 +65,7 @@ function parseRssItems(xml, sourceOverride) {
 
     results.push({
       id: articleUrl,
+      ...(feedThumbnail(block, articleUrl) ? { _thumbnailCandidate: feedThumbnail(block, articleUrl) } : {}),
       title,
       summary: cleanSummaryText(rawSummary, title, sourceName),
       sourceName,
@@ -102,6 +104,7 @@ function parseAtomEntries(xml, sourceOverride) {
 
     results.push({
       id: articleUrl,
+      ...(feedThumbnail(block, articleUrl) ? { _thumbnailCandidate: feedThumbnail(block, articleUrl) } : {}),
       title,
       summary: cleanSummaryText(cleanedSummary, title, sourceName),
       sourceName,

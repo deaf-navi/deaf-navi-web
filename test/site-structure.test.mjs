@@ -82,7 +82,8 @@ test('深いURLでも共通スクリプト位置からルートのService Worker
   let registered;
   runInNewContext(source, {
     URL,
-    document: { documentElement: {}, querySelector: selector => selector.startsWith('script') ? { src: 'https://deafnavi.com/ui-controls.js' } : null },
+    document: { documentElement: {}, addEventListener() {}, querySelectorAll: () => [],
+      querySelector: selector => selector.startsWith('script') ? { src: 'https://deafnavi.com/ui-controls.js' } : null },
     location: { protocol: 'https:', hostname: 'deafnavi.com', href: 'https://deafnavi.com/connect/' },
     navigator: { serviceWorker: { register: url => { registered = url; return Promise.resolve(); } } },
     window: { addEventListener: (_event, fn) => fn() },

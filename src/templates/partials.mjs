@@ -10,6 +10,7 @@ import {
   UPDATE_SCHEDULE_LABEL,
 } from '../../config/site.mjs';
 import { CATEGORY_UI, SOURCE_TIER_UI } from '../../config/categories.mjs';
+import { renderThumbnail } from './thumbnail.mjs';
 import { REGION_UI } from '../../config/regions.mjs';
 import SITE_NAVIGATION from '../../config/site-navigation.json' with { type: 'json' };
 import { escapeHtml } from '../lib/text.mjs';
@@ -274,10 +275,12 @@ export function renderArticleCard(a, { hidden = false, featured = false, now = D
           <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(catLabel)}</span>${newBadge}
           <time class="card__time" datetime="${escapeHtml(a.publishedAt)}" data-relative-time>${escapeHtml(formatDateJST(a.publishedAt).replace(' JST', ''))}<span class="card__time-rel">（${escapeHtml(relativeTime(a.publishedAt, now))}）</span></time>
         </header>
+        <div class="card__content">${renderThumbnail(a)}<div class="card__text">
         <h3 class="card__title">
           <a href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.title)}</a>
         </h3>${a.summary ? `
         <p class="card__summary">${escapeHtml(a.summary)}</p>` : ''}
+        </div></div>
         <footer class="card__foot">
           <div class="card__source-group">
             <span class="source-tier source-tier--${escapeHtml(sourceTier)}" title="${escapeHtml(sourceMeta.description)}">${escapeHtml(sourceMeta.label)}</span>

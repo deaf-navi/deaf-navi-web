@@ -2,6 +2,8 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { retryCandidates, settleTranslations, isTranslatedArticle } from './lib/world-pending.mjs';
+import { feedThumbnail } from './lib/thumbnail-metadata.mjs';
+import { enrichNewsThumbnails } from './lib/news-thumbnails.mjs';
 import { isHardNoiseWorldText } from './lib/world-relevance.mjs';
 import { articleCacheKey, createTranslationCache, isWeakJapaneseTranslation, assertJapaneseTranslations, translateBatch, polishJapanese } from './lib/world-translation.mjs';
 
@@ -690,6 +692,7 @@ function parseItems(xml, job) {
 
     out.push({
       id: articleUrl,
+      ...(feedThumbnail(block, articleUrl) ? { _thumbnailCandidate: feedThumbnail(block, articleUrl) } : {}),
       title: originalTitle,
       summary: originalSummary || originalTitle,
       originalTitle,
@@ -1449,7 +1452,7 @@ export async function applyTranslations(articles, options = {}) {
 }
 
 function stripInternal(article) {
-  const { _dedupeKey, _googleNewsClusterId, ...clean } = article;
+  const { _dedupeKey, _googleNewsClusterId, _thumbnailCandidate, ...clean } = article;
   return clean;
 }
 
@@ -1579,6 +1582,10 @@ async function main() {
     return;
   }
   const { articles, report } = result;
+  report.thumbnails = await enrichNewsThumbnails(articles, {
+    cacheFile: join(ROOT, '.state', 'thumbnails-world.json'),
+  });
+  console.log('[thumbnails-world]', JSON.stringify(report.thumbnails));
   await mkdir(DATA_DIR, { recursive: true });
   const generatedAt = new Date().toISOString();
   const payload = {

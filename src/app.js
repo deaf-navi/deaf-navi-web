@@ -230,6 +230,9 @@
     var titleLink = node.querySelector('.card__title a');
     titleLink.href = a.id;
     titleLink.textContent = a.title;
+    if (a.thumbnail && window.DeafNaviThumbnails) {
+      window.DeafNaviThumbnails.append(node.querySelector('.card__content'), a.thumbnail.url);
+    }
 
     var summary = node.querySelector('.card__summary');
     if (a.summary) summary.textContent = a.summary;

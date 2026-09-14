@@ -25,6 +25,7 @@ import {
 } from '../config/sources.domestic.mjs';
 import { fetchWithTimeout } from './lib/fetch-retry.mjs';
 import { parseFeedEntries } from './lib/feed-parser.mjs';
+import { enrichNewsThumbnails } from './lib/news-thumbnails.mjs';
 import {
   buildArticle,
   curateArticles,
@@ -175,6 +176,11 @@ async function loadNews() {
 async function main() {
   console.log(`Deaf Navi Web: キュレーション開始 (${VARIANT})`);
   const { articles, oldArticles, report } = await loadNews();
+  const thumbnails = await enrichNewsThumbnails(articles, {
+    cacheFile: join(ROOT, '.state', `thumbnails-domestic${SUFFIX}.json`),
+  });
+  console.log('[thumbnails]', JSON.stringify(thumbnails));
+  if (report) report.thumbnails = thumbnails;
   console.log(`合計: ${articles.length}件（${USE_EXPANDED_PROFILE ? '品質フィルタ・近似重複除去後' : '重複除去・関連性フィルタ後'}）`);
 
   await mkdir(DATA_DIR, { recursive: true });

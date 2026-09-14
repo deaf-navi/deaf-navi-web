@@ -1,11 +1,13 @@
 import { readFile, writeFile, copyFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { SITE_URL } from '../config/site.mjs';
 import { assertJapaneseTranslations } from './lib/world-translation.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
+import { renderThumbnail } from './templates/thumbnail.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -26,6 +28,9 @@ const APP_SRC = join(__dirname, 'world-app.js');
 const APP_OUT = join(DOCS, 'app-world.js');
 const OG_SRC = join(__dirname, 'og-image.svg');
 const OG_OUT = join(DOCS, 'og-image-world.svg');
+const CLIENT_VERSION = createHash('sha256')
+  .update(await readFile(STYLES_SRC)).update(await readFile(APP_SRC))
+  .update(await readFile(join(__dirname, 'ui-controls.js'))).digest('hex').slice(0, 12);
 
 const JP_PAGE_FILE = 'deaf-navi-world-jp.html';
 const ORIGINAL_PAGE_FILE = 'deaf-navi-world-original.html';
@@ -219,10 +224,12 @@ function renderArticle(article, index, mode = 'jp') {
           <span class="chip chip--world-topic chip--topic-${escapeHtml(article.topic)}">${escapeHtml(topicLabel)}</span>
         </header>
         <time class="card__time" datetime="${escapeHtml(article.publishedAt)}" title="${escapeHtml(formatDateJST(article.publishedAt))}">${escapeHtml(relativeTime(article.publishedAt))}</time>
+        <div class="card__content">${renderThumbnail(article)}<div class="card__text">
         <h3 class="card__title" lang="${text.lang}">
           <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text.title)}</a>
         </h3>
         <p class="card__summary" lang="${text.lang}">${escapeHtml(text.summary)}</p>${originalHtml}
+        </div></div>
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
           <span class="world-card__score" title="curation score">score ${escapeHtml(article.curationScore ?? '')}</span>
@@ -399,7 +406,7 @@ function renderPage(data, mode = 'jp') {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="./styles-world.css?v=20260909ui2">
+  <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
   <link rel="stylesheet" href="./site-shell.css?v=20260909ui3">
 
   ${jsonLd}
@@ -475,8 +482,8 @@ ${articlesHtml}
     </div>
   </footer>
 
-  <script src="./ui-controls.js" defer></script>
-  <script src="./app-world.js" defer></script>
+  <script src="./ui-controls.js?v=${CLIENT_VERSION}" defer></script>
+  <script src="./app-world.js?v=${CLIENT_VERSION}" defer></script>
 </body>
 </html>`;
 }
@@ -589,6 +596,7 @@ async function main() {
   await writeFile(SITEMAP_OUT, renderSitemap(data), 'utf8');
   await copyFile(STYLES_SRC, STYLES_OUT);
   await copyFile(APP_SRC, APP_OUT);
+  await copyFile(join(__dirname, 'ui-controls.js'), join(DOCS, 'ui-controls.js'));
   await copyFile(OG_SRC, OG_OUT);
   console.log(`Deaf Navi World: built ${JP_HTML_OUT} and ${ORIGINAL_HTML_OUT}`);
 }

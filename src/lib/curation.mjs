@@ -354,6 +354,7 @@ export function stripInternal(article, { keepScores = false } = {}) {
     _minScore,
     _dedupeKey,
     _feedUrl,
+    _thumbnailCandidate,
     ...clean
   } = article;
   const sourceTier = (_sourceTier ?? clean.sourceTier) === 'google'
