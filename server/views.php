@@ -10,7 +10,7 @@ function page(string $title,string $body,string $path='',string $description='',
     $canonical=$meta['canonical']??BASE.($path?:'/connect/sign-cafe/');
     $documentTitle=$meta['title']??($title==='Deaf Navi｜手話カフェ'?$title:$title.' | Deaf Navi');
     $robots=$private?'noindex,nofollow':($meta['robots']??'index,follow');
-    $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.ico?v=20260917b" sizes="16x16 32x32 48x48"><link rel="icon" href="/icons/favicon-48.png?v=20260917b" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=20260917b" sizes="180x180"><script src="/directory-safety.js?v=20260908loading" defer></script><script src="/directory-ui.js?v=20260908editorial" defer></script>';
+    $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.ico?v=20260917c" sizes="16x16 32x32 48x48"><link rel="icon" href="/icons/favicon-48.png?v=20260917c" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=20260917c" sizes="180x180"><script src="/directory-safety.js?v=20260908loading" defer></script><script src="/directory-ui.js?v=20260908editorial" defer></script>';
     if($scope!=='')$ld.='<link rel="stylesheet" href="/cafe-welcome.css?v=20260908editorial">';
     if(!$private) {
         $ld.='<script src="/access-visit.js" defer></script>';
