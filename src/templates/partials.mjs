@@ -90,9 +90,10 @@ export function renderHead({
   <meta name="robots" content="${robots}">
   <meta name="theme-color" content="#075e57">
   <link rel="canonical" href="${canonical}">
-${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)}" href="${feedUrl}">\n` : ''}  <link rel="icon" href="${basePath}favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="${basePath}icons/apple-touch-icon.png">
-  <link rel="manifest" href="${basePath}manifest.webmanifest">
+${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)}" href="${feedUrl}">\n` : ''}  <link rel="icon" href="${basePath}favicon.ico?v=20260917" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="${basePath}icons/favicon-48.png?v=20260917" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="${basePath}icons/apple-touch-icon.png?v=20260917" sizes="180x180">
+  <link rel="manifest" href="${basePath}manifest.webmanifest?v=20260917">
 
   <!-- Open Graph -->
   <meta property="og:type" content="${ogType}">
@@ -129,7 +130,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
-  <link rel="stylesheet" href="${basePath}site-shell.css?v=20260909ui3">
+  <link rel="stylesheet" href="${basePath}site-shell.css?v=20260917icon">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
 
@@ -184,7 +185,7 @@ export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', ed
     <div class="dn-shell-inner">
       <div class="dn-shell-top">
         <a class="dn-shell-brand" href="${escapeHtml(homeHref)}" aria-label="Deaf Navi ${en ? 'home' : 'ホーム'}">
-          <span class="dn-shell-mark" aria-hidden="true"><img src="${escapeHtml(homeHref.includes('index') ? homeHref.slice(0, homeHref.lastIndexOf('/') + 1) : homeHref)}favicon.svg" alt="" width="36" height="36"></span>
+          <span class="dn-shell-mark" aria-hidden="true"><img src="${escapeHtml(homeHref.includes('index') ? homeHref.slice(0, homeHref.lastIndexOf('/') + 1) : homeHref)}icons/icon-192.png?v=20260917" alt="" width="36" height="36"></span>
           <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">${escapeHtml(edition)}</span></span><small>${en ? 'News, places & everyday support' : 'ニュースと、つながりと、暮らし。'}</small></span>
         </a>
         ${renderDisplayControls()}

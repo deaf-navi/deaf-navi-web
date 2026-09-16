@@ -22,7 +22,7 @@ self.addEventListener('message', (event) => {
 
 const PRECACHE_URLS = [
   './',
-  './site-shell.css?v=20260909ui3',
+  './site-shell.css?v=20260917icon',
   `./styles.css?v=${ASSET_VERSION}`,
   `./ui-controls.js?v=${ASSET_VERSION}`,
   `./app.js?v=${ASSET_VERSION}`,
@@ -31,8 +31,10 @@ const PRECACHE_URLS = [
   './guide.js',
   './otomado/',
   './offline.html',
-  './favicon.svg',
-  './manifest.webmanifest',
+  './favicon.ico?v=20260917',
+  './icons/favicon-48.png?v=20260917',
+  './icons/icon-192.png?v=20260917',
+  './manifest.webmanifest?v=20260917',
 ];
 
 self.addEventListener('install', (event) => {

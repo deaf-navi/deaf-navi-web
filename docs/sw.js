@@ -7,11 +7,11 @@
  * - 静的アセット(CSS/JS/画像)はキャッシュ優先 + 背景更新
  * - 暮らしのガイドは災害時利用を想定してプリキャッシュ
  *
- * 2026-09-16T14:03:01.208Z-567e1f511d49 と 567e1f511d49 はビルド時に置換され、キャッシュ世代を切り替える。
+ * 2026-09-16T14:03:01.208Z-6284e4bc234b と 6284e4bc234b はビルド時に置換され、キャッシュ世代を切り替える。
  */
 
-const BUILD_ID = '2026-09-16T14:03:01.208Z-567e1f511d49';
-const ASSET_VERSION = '567e1f511d49';
+const BUILD_ID = '2026-09-16T14:03:01.208Z-6284e4bc234b';
+const ASSET_VERSION = '6284e4bc234b';
 const CACHE_NAME = `deaf-navi-${BUILD_ID}`;
 
 self.addEventListener('message', (event) => {
@@ -22,7 +22,7 @@ self.addEventListener('message', (event) => {
 
 const PRECACHE_URLS = [
   './',
-  './site-shell.css?v=20260909ui3',
+  './site-shell.css?v=20260917icon',
   `./styles.css?v=${ASSET_VERSION}`,
   `./ui-controls.js?v=${ASSET_VERSION}`,
   `./app.js?v=${ASSET_VERSION}`,
@@ -31,8 +31,10 @@ const PRECACHE_URLS = [
   './guide.js',
   './otomado/',
   './offline.html',
-  './favicon.svg',
-  './manifest.webmanifest',
+  './favicon.ico?v=20260917',
+  './icons/favicon-48.png?v=20260917',
+  './icons/icon-192.png?v=20260917',
+  './manifest.webmanifest?v=20260917',
 ];
 
 self.addEventListener('install', (event) => {

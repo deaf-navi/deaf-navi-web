@@ -206,6 +206,7 @@ async function main() {
 
   // PWA・アイコン類（本番/devで共通名）
   await copyAsset(join(ASSETS, 'favicon.svg'), 'favicon.svg');
+  await copyAsset(join(ASSETS, 'favicon.ico'), 'favicon.ico');
   await copyAsset(join(ASSETS, 'manifest.webmanifest'), 'manifest.webmanifest');
   const offlineHtml = join(ASSETS, 'offline.html');
   if (await fileExists(offlineHtml)) {

@@ -195,7 +195,7 @@ for (const link of monthLinks) {
 
 /* ---------- PWA ---------- */
 
-for (const file of ['manifest.webmanifest', 'sw.js', 'webmcp.js', 'offline.html', 'favicon.svg', 'og-image.png',
+for (const file of ['manifest.webmanifest', 'sw.js', 'webmcp.js', 'offline.html', 'favicon.svg', 'favicon.ico', 'icons/favicon-48.png', 'og-image.png',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png']) {
   assert(await fileExists(file), `PWAアセットがありません: ${file}`);
 }
