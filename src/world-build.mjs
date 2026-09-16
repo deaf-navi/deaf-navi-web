@@ -370,10 +370,10 @@ function renderPage(data, mode = 'jp') {
   <link rel="alternate" hreflang="ja" href="${JP_PAGE_URL}">
   <link rel="alternate" hreflang="x-default" href="${ORIGINAL_PAGE_URL}">
   <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)}" href="${feedUrl}">
-  <link rel="icon" href="./favicon.ico?v=20260917" sizes="16x16 32x32 48x48">
-  <link rel="icon" href="./icons/favicon-48.png?v=20260917" type="image/png" sizes="48x48">
-  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png?v=20260917" sizes="180x180">
-  <link rel="manifest" href="./manifest.webmanifest?v=20260917">
+  <link rel="icon" href="./favicon.ico?v=20260917b" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="./icons/favicon-48.png?v=20260917b" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png?v=20260917b" sizes="180x180">
+  <link rel="manifest" href="./manifest.webmanifest?v=20260917b">
 
   <!-- テーマ・文字サイズをペイント前に適用（FOUC防止・localStorage参照のみ） -->
   <script>

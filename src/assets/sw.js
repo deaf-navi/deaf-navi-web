@@ -31,10 +31,10 @@ const PRECACHE_URLS = [
   './guide.js',
   './otomado/',
   './offline.html',
-  './favicon.ico?v=20260917',
-  './icons/favicon-48.png?v=20260917',
-  './icons/icon-192.png?v=20260917',
-  './manifest.webmanifest?v=20260917',
+  './favicon.ico?v=20260917b',
+  './icons/favicon-48.png?v=20260917b',
+  './icons/icon-192.png?v=20260917b',
+  './manifest.webmanifest?v=20260917b',
 ];
 
 self.addEventListener('install', (event) => {
