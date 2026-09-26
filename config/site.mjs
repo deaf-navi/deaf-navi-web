@@ -12,7 +12,7 @@ export const SITE_KEYWORDS = '聴覚障害,難聴,ろう者,ろうあ者,中途�
 export const APP_STORE_URL = 'https://apps.apple.com/jp/app/deaf-navi/id6761352199';
 
 export const UPDATE_SCHEDULE_LABEL = '1日3回更新';
-export const UPDATE_SCHEDULE_DETAIL = 'JST 6:00 / 12:00 / 18:00ごろ';
+export const UPDATE_SCHEDULE_DETAIL = 'JST 06:10 / 12:10 / 18:10ごろ';
 
 export const CURATE_USER_AGENT = 'DeafNaviWeb/1.1 (+https://deafnavi.com/)';
 

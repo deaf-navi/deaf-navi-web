@@ -11,7 +11,7 @@ const DOCS = join(ROOT, 'docs');
 const APP_DIR = join(DOCS, 'app', 'v1');
 
 const APP_BASE_URL = `${SITE_URL}app/v1/`;
-const UPDATE_SCHEDULE_JST = ['06:00', '12:00', '18:00'];
+const UPDATE_SCHEDULE_JST = ['06:10', '12:10', '18:10'];
 const SCHEMA_VERSION = 'deaf-navi-app-sync.v1';
 const IOS_ARTICLE_COMPAT_VERSION = 'deaf-navi-ios-article.v1';
 const IOS_ARTICLE_EXPANDED_VERSION = 'deaf-navi-ios-article.v2';
