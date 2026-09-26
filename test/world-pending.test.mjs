@@ -41,7 +41,7 @@ test('default curation never calls Codex even when an endpoint exists', async (t
   assert.doesNotThrow(() => assertJapaneseTranslations(articles));
 });
 
-test('optional Codex readiness outage still publishes newly translated articles', async (t) => {
+test('successful Google translation does not call even an enabled Codex endpoint', async (t) => {
   const apply = await configuredTranslator(t, '1');
   const requests = [];
   t.mock.method(globalThis, 'fetch', async (url) => {
@@ -53,13 +53,54 @@ test('optional Codex readiness outage still publishes newly translated articles'
   const articles = [source('new')];
   const report = await apply(articles, { cache: createTranslationCache([], 'test'), pause: async () => {}, allowPartial: true });
   const result = settleTranslations(articles, [translated('old')], [], { now, limit: 1 });
-  assert.equal(requests[0], 'https://codex.invalid/health');
-  assert.equal(requests.length, 3);
+  assert.equal(requests.length, 2);
+  assert.ok(requests.every((url) => url.startsWith('https://translate.googleapis.com/')));
   assert.equal(report.enabled, false);
   assert.equal(report.fallback.failures, 0);
   assert.equal(result.articles[0].id, 'new');
   assert.equal(result.pending.length, 0);
   assert.equal(result.retained, 0);
+});
+
+test('Google quota exhaustion invokes Codex only for missing translations', async (t) => {
+  const apply = await configuredTranslator(t, '1');
+  const requests = [];
+  t.mock.method(globalThis, 'fetch', async (url) => {
+    requests.push(String(url));
+    if (String(url).startsWith('https://translate.googleapis.com/')) return new Response('', { status: 429, headers: { 'Retry-After': '120' } });
+    if (String(url).endsWith('/health')) return new Response(JSON.stringify({ ok: true, provider: 'codex_app_server' }));
+    assert.equal(String(url), 'https://codex.invalid/generate');
+    return new Response(JSON.stringify({ success: true, items: [{ id: '0', title: '新しい手話教育', summary: 'ろう学生の手話教育を支援します' }] }));
+  });
+  const articles = [source('old'), source('new')];
+  const report = await apply(articles, { cache: createTranslationCache([translated('old')], 'test'), pause: async () => {}, allowPartial: true });
+  assert.equal(requests.length, 3);
+  assert.ok(requests[0].startsWith('https://translate.googleapis.com/'));
+  assert.equal(report.updated, 1);
+  assert.equal(report.checked, 1);
+  assert.equal(report.fallback.failures, 1);
+  assert.equal(articles[0].title, '記事old');
+  assert.equal(articles[1].title, '新しい手話教育');
+  assert.doesNotThrow(() => assertJapaneseTranslations(articles));
+});
+
+test('actual Google and optional Codex outage retains prior publication and queues new articles', async (t) => {
+  const apply = await configuredTranslator(t, '1');
+  const requests = [];
+  t.mock.method(globalThis, 'fetch', async (url) => {
+    requests.push(String(url));
+    if (String(url).startsWith('https://translate.googleapis.com/')) return new Response('', { status: 429, headers: { 'Retry-After': '120' } });
+    assert.equal(String(url), 'https://codex.invalid/health');
+    return new Response('', { status: 503 });
+  });
+  const articles = [source('new')];
+  const report = await apply(articles, { cache: createTranslationCache([], 'test'), pause: async () => {}, allowPartial: true });
+  const result = settleTranslations(articles, [translated('old')], [], { now, limit: 1 });
+  assert.equal(requests.length, 2);
+  assert.equal(report.enabled, false);
+  assert.equal(result.articles[0].id, 'old');
+  assert.equal(result.pending.length, 1);
+  assert.equal(result.retained, 1);
 });
 
 test('a bad field does not discard a successful sibling article or partial translation', async () => {
@@ -101,6 +142,7 @@ test('direct Codex translation avoids Google requests and preserves originals', 
   const items = [source('a')];
   const original = { ...items[0] };
   await applyTranslations(items, { ...options,
+    fallbackOnly: false,
     postEdit: async (articles) => { articles[0].title = '新しい記事'; articles[0].summary = '日本語に翻訳した要約です'; return { enabled: true }; },
     translate: async () => { throw new Error('Google must not be called'); },
   });

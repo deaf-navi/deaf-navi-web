@@ -46,13 +46,16 @@ jobs:
 
       - name: Curate and build Deaf Navi World
         env:
-          WORLD_JP_CODEX_POST_EDIT: ${{ inputs.use_codex_post_edit && '1' || '0' }}
-          CODEX_APP_SERVER_URL: ${{ inputs.use_codex_post_edit && secrets.CODEX_APP_SERVER_URL || '' }}
-          CODEX_APP_SERVER_TOKEN: ${{ inputs.use_codex_post_edit && secrets.CODEX_APP_SERVER_TOKEN || '' }}
+          # Google first; enable the dedicated editor only for missing translations.
+          # Set WORLD_JP_CODEX_FALLBACK=0 to stop all scheduled Codex consumption.
+          WORLD_JP_CODEX_POST_EDIT: ${{ inputs.use_codex_post_edit && '1' || vars.WORLD_JP_CODEX_FALLBACK || '1' }}
+          WORLD_JP_CODEX_FALLBACK_ONLY: ${{ inputs.use_codex_post_edit && '0' || '1' }}
+          CODEX_APP_SERVER_URL: ${{ secrets.CODEX_APP_SERVER_URL }}
+          CODEX_APP_SERVER_TOKEN: ${{ secrets.CODEX_APP_SERVER_TOKEN }}
           CODEX_APP_SERVER_TIMEOUT_SECONDS: ${{ vars.CODEX_APP_SERVER_TIMEOUT_SECONDS || '120' }}
           CODEX_APP_SERVER_READINESS_PATH: ${{ vars.CODEX_APP_SERVER_READINESS_PATH || '/health' }}
           WORLD_JP_CODEX_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_BATCH_SIZE || '20' }}
-          WORLD_JP_CODEX_MAX_ITEMS: ${{ vars.WORLD_JP_CODEX_MAX_ITEMS || '600' }}
+          WORLD_JP_CODEX_MAX_ITEMS: ${{ vars.WORLD_JP_CODEX_MAX_ITEMS || '50' }}
           WORLD_JP_CODEX_RETRIES: ${{ vars.WORLD_JP_CODEX_RETRIES || '1' }}
           WORLD_JP_CODEX_SPLIT_BATCH_SIZE: ${{ vars.WORLD_JP_CODEX_SPLIT_BATCH_SIZE || '10' }}
           WORLD_JP_CODEX_MAX_CONSECUTIVE_FAILED_BATCHES: ${{ vars.WORLD_JP_CODEX_MAX_CONSECUTIVE_FAILED_BATCHES || '2' }}

@@ -3,7 +3,7 @@
 ## 定時更新の保護
 
 - `DEAF_NAVI_PROTECTED_SERVICE`: 国内・WorldのActionsと公開経路は「不要なCodex関連処理の一括停止」から除外する。停止にはDeaf Naviの対象Workflowを名指しした明示指示が必要。
-- Codex追加校正は任意。通常の定時更新でCodex・Work・有料APIを有効にしない。専用PM2/healthcheckの状態とActionsの有効・無効は別管理。
+- 国内はCodex不要。WorldはGoogle翻訳失敗分のみ専用Codexで補完する例外（2026-09-27、GitHub実行環境の429を実測）。全記事への定期校正や有料APIへの切替は行わない。専用PM2/healthcheckの状態とActionsの有効・無効は別管理。
 - 他アプリの停止済みプロセスは復元しない。PM2 dump全体の復元は禁止。詳細は `CURATION_OPERATIONS.md`。
 
 - 本番の通常集計にCodexの確認アクセスを混ぜない。HTTPクライアントは `User-Agent: Codex-DeafNavi-Verification` または `X-DeafNavi-Client: codex` を必ず付ける。

@@ -18,9 +18,13 @@
 
 国内はRSS/記事取得、分類、静的ビルド、app APIをGitHub Actions内で生成する。Codex・ChatGPT Work・有料AI APIは不要。
 
-Worldの通常実行もCodexを呼ばない。既存の `translate.googleapis.com/translate_a/single?client=gtx` による翻訳とDeaf Navi用語補正、既存の翻訳キャッシュを使用する。有料翻訳APIのキー・契約・請求先は設定しない。外部翻訳の可用性・品質保証はなく、429/5xx等は回数制限とcircuit breakerで打ち切り、訳せた記事だけを公開する。未翻訳記事は `.state/world-translation.json` に保留し、前回の検証済み記事を維持して次回再試行する。既存のCodex校正済み記事はキャッシュとして保持する。
+Worldは既存の `translate.googleapis.com/translate_a/single?client=gtx` による翻訳とDeaf Navi用語補正、翻訳キャッシュを先に使う。2026-09-27の実ActionsではGoogleが429となり、新着33件が未翻訳のまま保留された。そのため、ユーザー指定の例外として、訳せない記事だけ専用Codexで補完する（既定は1回最大50件）。日本語になっているキャッシュ・Google翻訳済み記事は自動で再校正しない。Googleが成功した回はCodexを呼ばない。
 
-Codex校正は手動実行の `use_codex_post_edit=true` だけで有効。通常のschedule/push/手動実行はfalse。秘密はtrueの場合だけ渡す。失敗・低カバレッジでも翻訳fallbackで更新を続ける。ローカルで必要な場合も `WORLD_JP_CODEX_POST_EDIT=1` を明示する。明示した追加校正はCodex利用枠を消費する。
+有料翻訳APIのキー・契約・請求先は新設しない。429/5xx等は回数制限とcircuit breakerで打ち切る。Codexも利用不能なら、未翻訳記事を `.state/world-translation.json` に保留し、前回の検証済み記事を維持して公開を続け、次回再試行する。Codexなしで公開は継続できるが、Googleも使えない間のWorld新着翻訳は保証できない。
+
+通常のschedule/push/手動実行は `WORLD_JP_CODEX_FALLBACK_ONLY=1`。全体への追加校正は手動の `use_codex_post_edit=true` だけ。Codex失敗・低カバレッジは公開の致命的エラーにしない。ローカルでCodexを使う場合も `WORLD_JP_CODEX_POST_EDIT=1` を明示する。
+
+WorldでCodex補完が実行された場合は利用枠を消費する。完全に止める場合は、ユーザー指示を受けてリポジトリ変数 `WORLD_JP_CODEX_FALLBACK=0` を明示設定する。未翻訳新着が保留される可能性を記録する。Workflow自体や国内更新は止めない。
 
 専用サーバーの `/health` は認証確認だけで生成しない。`/ready` とsmoke testは生成するため定期監視には使わない。本番タイマーは非生成の `/health` を使用する。GitHub Actionsと既存VPSは基盤として継続使用するため、基盤の契約・利用時間とAI課金は区別する。
 

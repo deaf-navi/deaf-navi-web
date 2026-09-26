@@ -9,7 +9,7 @@
 - **スタック**: Node 20+（標準ライブラリのみ・依存パッケージゼロ）+ 静的 HTML/CSS/JS
 - **アプリ連携**: `docs/app/v1/` に iOS アプリ「Deaf Navi」向け同期JSONを生成（後方互換を保証）
 
-定時更新は国内・WorldともCodex/ChatGPT Workを呼びません。Worldは既存のGoogle翻訳＋用語補正を使い、Codex追加校正は明示した手動実行だけで有効になります。停止・再実行・通知テストの手順は [キュレーション運用](CURATION_OPERATIONS.md) を参照してください。
+国内の定時更新はCodex/ChatGPT Workを呼びません。WorldはGoogle翻訳＋用語補正を先に使い、訳せない記事だけ専用Codexで補完します（1回最大50件、補完時はCodex利用枠を消費）。Codexも使えない場合は前回記事を維持して公開を続けます。全体への追加校正は明示した手動実行だけです。停止・再実行・通知テストの手順は [キュレーション運用](CURATION_OPERATIONS.md) を参照してください。
 
 ## 2.0 の主な機能
 

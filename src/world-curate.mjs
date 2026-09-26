@@ -38,6 +38,7 @@ const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
 const CODEX_APP_SERVER_READINESS_PATH = process.env.CODEX_APP_SERVER_READINESS_PATH?.trim() || '/health';
 // Generation consumes Codex usage: opt in explicitly, including outside Actions.
 const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT === '1';
+const CODEX_POST_EDIT_FALLBACK_ONLY = process.env.WORLD_JP_CODEX_FALLBACK_ONLY !== '0';
 const CODEX_POST_EDIT_REQUIRED = process.env.WORLD_JP_REQUIRE_CODEX_POST_EDIT === '1';
 const CODEX_POST_EDIT_PROVIDER = 'Codex App Server Japanese news editor v1';
 const TRANSLATION_PROVIDER = CODEX_POST_EDIT_ENABLED
@@ -1405,6 +1406,7 @@ export async function applyTranslations(articles, options = {}) {
   const translate = options.translate ?? translateBatch;
   const postEdit = options.postEdit ?? applyCodexJapanesePostEdit;
   const pause = options.pause ?? sleep;
+  const fallbackOnly = options.fallbackOnly ?? CODEX_POST_EDIT_FALLBACK_ONLY;
   const textCache = new Map(cache.text);
   for (const article of articles) {
     article.title = textCache.get(article.originalTitle) ?? '';
@@ -1413,19 +1415,23 @@ export async function applyTranslations(articles, options = {}) {
     else delete article.japanesePostEditProvider;
   }
 
-  // The authenticated editor can translate source text directly, avoiding Google's shared-IP quota.
-  let report;
-  try { report = await postEdit(articles, cache.articles); }
-  catch (error) {
-    console.warn(`[codex-postedit] unavailable: ${error.message}`);
-    report = { enabled: false, failed: articles.length };
-  }
-  console.log(`[codex-postedit] enabled=${report.enabled}, checked=${report.checked ?? 0}, updated=${report.updated ?? 0}, cached=${report.cached ?? 0}`);
-  for (const article of articles) {
-    for (const [original, field] of [['originalTitle', 'title'], ['originalSummary', 'summary']]) {
-      if (!isWeakJapaneseTranslation(article[original], article[field])) textCache.set(article[original], article[field]);
+  const cached = articles.filter((article) => cache.articles.get(articleCacheKey(article))?.postEdited).length;
+  let report = { enabled: false, checked: 0, updated: 0, cached, failed: 0, skipped: 0 };
+  async function edit(items) {
+    if (!items.length) return;
+    try { report = { ...await postEdit(items, cache.articles), cached }; }
+    catch (error) {
+      console.warn(`[codex-postedit] unavailable: ${error.message}`);
+      report = { ...report, enabled: false, failed: items.length };
+    }
+    for (const article of items) {
+      for (const [original, field] of [['originalTitle', 'title'], ['originalSummary', 'summary']]) {
+        if (!isWeakJapaneseTranslation(article[original], article[field])) textCache.set(article[original], article[field]);
+      }
     }
   }
+  // Full quality editing is manual. Scheduled runs use Google/cache first.
+  if (!fallbackOnly) await edit(articles);
 
   let requested = 0, circuitOpen = false, failures = 0;
   const maxFallbackTexts = options.maxFallbackTexts ?? 100;
@@ -1450,6 +1456,9 @@ export async function applyTranslations(articles, options = {}) {
       if (!circuitOpen) await pause(TRANSLATE_DELAY_MS);
     }
   }
+  // Spend Codex usage only on still-untranslated articles, never on valid Google/cache results.
+  if (fallbackOnly) await edit(articles.filter((article) => !isTranslatedArticle(article)));
+  console.log(`[codex-postedit] fallbackOnly=${fallbackOnly}, enabled=${report.enabled}, checked=${report.checked ?? 0}, updated=${report.updated ?? 0}, cached=${report.cached ?? 0}`);
   console.log(`[translate] fallback fields=${requested}, failures=${failures}, circuitOpen=${circuitOpen}`);
   if (!options.allowPartial) assertJapaneseTranslations(articles);
   return { ...report, fallback: { requested, failures, circuitOpen } };

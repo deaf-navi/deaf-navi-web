@@ -10,8 +10,8 @@ module.exports = async function notifyCuration({ github, context, core }, { worl
     '',
     '記事取得・翻訳・ビルド・Git pushの失敗箇所を確認してください。',
     ...(world ? [
-      '通常更新はCodex不要です。翻訳429/5xx、pending件数を確認してください。',
-      'Codex追加校正を明示した手動実行だけ、専用PM2と認証付き /health を確認してください。',
+      'Google翻訳429/5xx、pending件数、Codexによる未翻訳補完の結果を確認してください。',
+      'Codexも利用できない場合は前回記事を維持します。専用PM2と認証付き /health を確認してください。',
       '/ready やsmokeは生成を実行するため、定期監視には使用しません。',
     ] : []),
     'トークン値をIssueやログに貼らないでください。復旧確認後にcloseしてください。',
