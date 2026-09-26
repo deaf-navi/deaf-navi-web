@@ -4,10 +4,12 @@
 信頼できる情報源からニュースを自動収集・分類し、緊急通報・制度などの公式情報への入口とあわせて届ける。
 
 - **URL**: https://deafnavi.com/
-- **更新**: GitHub Actions が1日3回（JST 6:00 / 12:00 / 18:00ごろ）自動更新
+- **更新**: GitHub Actions が1日3回（JST 06:10 / 12:10 / 18:10予定）自動更新。GitHub側の混雑による遅延あり。
 - **ホスティング**: XServer VPS（GitHub Pagesは旧URL転送・iOS JSON互換用として最低2027年9月5日まで維持）
 - **スタック**: Node 20+（標準ライブラリのみ・依存パッケージゼロ）+ 静的 HTML/CSS/JS
 - **アプリ連携**: `docs/app/v1/` に iOS アプリ「Deaf Navi」向け同期JSONを生成（後方互換を保証）
+
+定時更新は国内・WorldともCodex/ChatGPT Workを呼びません。Worldは既存のGoogle翻訳＋用語補正を使い、Codex追加校正は明示した手動実行だけで有効になります。停止・再実行・通知テストの手順は [キュレーション運用](CURATION_OPERATIONS.md) を参照してください。
 
 ## 2.0 の主な機能
 

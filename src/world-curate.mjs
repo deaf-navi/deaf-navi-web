@@ -35,11 +35,14 @@ const CODEX_POST_EDIT_MIN_COVERAGE = envFloat('WORLD_JP_CODEX_MIN_COVERAGE', 0.8
 const CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE = process.env.WORLD_JP_CODEX_FAIL_ON_LOW_COVERAGE === '1';
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
 const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
-const CODEX_APP_SERVER_READINESS_PATH = process.env.CODEX_APP_SERVER_READINESS_PATH?.trim() || '/ready';
-const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT !== '0';
+const CODEX_APP_SERVER_READINESS_PATH = process.env.CODEX_APP_SERVER_READINESS_PATH?.trim() || '/health';
+// Generation consumes Codex usage: opt in explicitly, including outside Actions.
+const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT === '1';
 const CODEX_POST_EDIT_REQUIRED = process.env.WORLD_JP_REQUIRE_CODEX_POST_EDIT === '1';
 const CODEX_POST_EDIT_PROVIDER = 'Codex App Server Japanese news editor v1';
-const TRANSLATION_PROVIDER = 'Codex App Server + Google fallback + Deaf Navi glossary v2';
+const TRANSLATION_PROVIDER = CODEX_POST_EDIT_ENABLED
+  ? 'Codex App Server + Google fallback + Deaf Navi glossary v2'
+  : 'Google Translate + Deaf Navi glossary v2';
 const REGION_MIN_ARTICLES = envInt('WORLD_REGION_MIN_ARTICLES', 50, 0, 100);
 
 const REGIONS = {
@@ -1417,6 +1420,7 @@ export async function applyTranslations(articles, options = {}) {
     console.warn(`[codex-postedit] unavailable: ${error.message}`);
     report = { enabled: false, failed: articles.length };
   }
+  console.log(`[codex-postedit] enabled=${report.enabled}, checked=${report.checked ?? 0}, updated=${report.updated ?? 0}, cached=${report.cached ?? 0}`);
   for (const article of articles) {
     for (const [original, field] of [['originalTitle', 'title'], ['originalSummary', 'summary']]) {
       if (!isWeakJapaneseTranslation(article[original], article[field])) textCache.set(article[original], article[field]);

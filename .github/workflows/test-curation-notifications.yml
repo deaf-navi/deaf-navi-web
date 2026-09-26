@@ -1,0 +1,22 @@
+name: Test curation notifications
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  notify-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test the domestic and World issue notification paths
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const notify = require('./scripts/notify-curation.cjs');
+            await notify({ github, context, core }, { testing: true });
+            await notify({ github, context, core }, { world: true, testing: true });

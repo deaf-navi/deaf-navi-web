@@ -9,6 +9,59 @@ const source = (id) => ({ id, originalTitle: `Title ${id}`, originalSummary: `Su
 const translated = (id) => ({ ...source(id), title: `記事${id}`, summary: `要約です${id}` });
 const options = { cache: createTranslationCache([], 'test'), postEdit: async () => ({ enabled: false }), pause: async () => {}, allowPartial: true };
 
+async function configuredTranslator(t, enabled) {
+  const config = { WORLD_JP_CODEX_POST_EDIT: enabled, CODEX_APP_SERVER_URL: 'https://codex.invalid', CODEX_APP_SERVER_READINESS_PATH: '/health' };
+  const previous = Object.fromEntries(Object.keys(config).map((key) => [key, process.env[key]]));
+  for (const [key, value] of Object.entries(config)) {
+    if (value === undefined) delete process.env[key];
+    else process.env[key] = value;
+  }
+  t.after(() => {
+    for (const [key, value] of Object.entries(previous)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  });
+  return (await import(`../src/world-curate.mjs?mode=${enabled}`)).applyTranslations;
+}
+
+test('default curation never calls Codex even when an endpoint exists', async (t) => {
+  const apply = await configuredTranslator(t, undefined);
+  const requests = [];
+  t.mock.method(globalThis, 'fetch', async (url) => {
+    requests.push(String(url));
+    if (String(url).startsWith('https://codex.invalid')) return new Response('', { status: 503 });
+    return new Response(JSON.stringify([[['ろう学生の手話教育']]]));
+  });
+  const articles = [source('new')];
+  const report = await apply(articles, { cache: createTranslationCache([], 'test'), pause: async () => {} });
+  assert.equal(requests.filter((url) => url.startsWith('https://codex.invalid')).length, 0);
+  assert.equal(report.enabled, false);
+  assert.equal(report.fallback.requested, 2);
+  assert.doesNotThrow(() => assertJapaneseTranslations(articles));
+});
+
+test('optional Codex readiness outage still publishes newly translated articles', async (t) => {
+  const apply = await configuredTranslator(t, '1');
+  const requests = [];
+  t.mock.method(globalThis, 'fetch', async (url) => {
+    requests.push(String(url));
+    if (String(url) === 'https://codex.invalid/health') return new Response('', { status: 503 });
+    assert.ok(String(url).startsWith('https://translate.googleapis.com/'));
+    return new Response(JSON.stringify([[['ろう学生の手話教育']]]));
+  });
+  const articles = [source('new')];
+  const report = await apply(articles, { cache: createTranslationCache([], 'test'), pause: async () => {}, allowPartial: true });
+  const result = settleTranslations(articles, [translated('old')], [], { now, limit: 1 });
+  assert.equal(requests[0], 'https://codex.invalid/health');
+  assert.equal(requests.length, 3);
+  assert.equal(report.enabled, false);
+  assert.equal(report.fallback.failures, 0);
+  assert.equal(result.articles[0].id, 'new');
+  assert.equal(result.pending.length, 0);
+  assert.equal(result.retained, 0);
+});
+
 test('a bad field does not discard a successful sibling article or partial translation', async () => {
   const items = [source('a'), source('b')];
   await applyTranslations(items, { ...options, translate: async ([text]) => {
