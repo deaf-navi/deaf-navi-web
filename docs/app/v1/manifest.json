@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-09-30T00:22:29Z",
+  "generatedAt": "2026-09-30T00:26:19Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-29T09:46:56Z",
+      "sourceGeneratedAt": "2026-09-30T00:26:19Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -193,16 +193,21 @@
         "provider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "enabled": false,
-          "checked": 0,
-          "updated": 0,
-          "cached": 578,
-          "failed": 0,
+          "checked": 34,
+          "updated": 34,
+          "cached": 548,
           "skipped": 0,
+          "failed": 0,
+          "enabled": true,
+          "attemptsPerBatch": 2,
+          "splitBatchSize": 10,
+          "maxConsecutiveFailedBatches": 2,
+          "stoppedAfterConsecutiveFailures": false,
+          "minCoverage": 0.85,
           "fallback": {
-            "requested": 22,
-            "failures": 0,
-            "circuitOpen": false
+            "requested": 1,
+            "failures": 1,
+            "circuitOpen": true
           },
           "pending": 0,
           "retainedPrevious": 0
@@ -216,7 +221,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-29T09:46:56Z",
+      "sourceGeneratedAt": "2026-09-30T00:26:19Z",
       "language": "und",
       "regions": [
         {
@@ -298,7 +303,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-09-29T09:46:56Z",
+      "sourceGeneratedAt": "2026-09-30T00:26:19Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
