@@ -31,7 +31,7 @@ function world_admin_fields(array $p):string {
     foreach(['region_tags'=>['地域タグ',WORLD_TAGS],'deaf_relation'=>['ろう者・手話との関係',WORLD_RELATIONS]] as $k=>[$label,$values])$out.=field($k,$label.'（1行1コード）',$p[$k]??[],'textarea').'<p class="dn-muted">'.e(implode(' / ',array_map(fn($key,$value)=>$key.'：'.$value,array_keys($values),$values))).'</p>';
     return $out.'</div></fieldset>';
 }
-function world_records():array {return array_values(array_filter(visible_records(),fn($p)=>$p['country_code']!=='JP'&&in_array($p['kind'],['cafe','store'],true)));}
+function world_records():array {return array_values(array_filter(visible_records(),fn($p)=>$p['country_code']!=='JP'&&in_array($p['kind'],['cafe','store'],true)&&cafe_listing_group($p)!=='events'));}
 function world_matches(array $p,array $f):bool {
     $tags=$p['region_tags']??[];$r=$f['region']??'';
     if($r!==''&&$r!==($p['world_region']??'')&&!in_array($r,$tags,true))return false;

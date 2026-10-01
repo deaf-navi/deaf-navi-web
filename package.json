@@ -14,6 +14,7 @@
     "verify": "node scripts/verify-site.mjs",
     "test": "node --test --test-concurrency=1 test/text.test.mjs test/feed-parser.test.mjs test/news-thumbnails.test.mjs test/curation.test.mjs test/curation-notifications.test.mjs test/world-relevance.test.mjs test/world-translation.test.mjs test/world-pending.test.mjs test/templates.test.mjs test/analytics.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs test/webmcp.test.mjs test/github-pages-compat.test.mjs test/site-structure.test.mjs test/directory-safety.test.mjs",
     "test:directory": "node test/directory.integration.mjs",
+    "test:cafe-events": "node test/cafe-events.integration.mjs",
     "test:otomado": "npm --prefix tools/otomado test",
     "codex-app-server": "node scripts/codex-app-server.mjs",
     "codex-app-server:smoke": "node scripts/codex-app-server-smoke-test.mjs",

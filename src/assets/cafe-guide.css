@@ -382,3 +382,27 @@
   .dn-advice-note {display:none}
   .dn-directory.dn-cafe-theme .dn-listing-advice {margin-bottom:10px}
 }
+
+/* Dated activities have their own list, separate from permanent/recurring cafes. */
+.dn-event-periods {display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;border-bottom:1px solid var(--cafe-line);padding-bottom:14px}
+.dn-event-periods a {display:flex;align-items:center;gap:9px;border:1px solid var(--cafe-line);border-radius:5px;padding:9px 13px;text-decoration:none;color:var(--cafe-muted);font-size:calc(13px * var(--cafe-scale));min-height:44px}
+.dn-directory.dn-cafe-theme .dn-event-periods a[aria-current],.dn-directory.dn-cafe-theme .dn-event-periods a[aria-current]:hover {background:var(--cafe-ink);border-color:var(--cafe-ink);color:var(--cafe-paper)}
+.dn-event-periods a>span {font-variant-numeric:tabular-nums;font-size:11px;opacity:.9}
+.dn-event-intro {font-size:calc(13px * var(--cafe-scale));margin:0 0 20px;color:var(--cafe-muted)}
+.dn-event-heading {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--cafe-line);padding-bottom:15px;margin-bottom:18px}
+.dn-event-date {display:flex;align-items:center;gap:8px;font-size:calc(18px * var(--cafe-scale));font-weight:700;font-variant-numeric:tabular-nums}
+.dn-directory.dn-cafe-theme .dn-event-card .dn-facts {display:grid;grid-template-columns:72px minmax(0,1fr);gap:7px 12px;font-size:calc(13px * var(--cafe-scale));margin:12px 0 18px}
+.dn-event-card .dn-facts dt {color:var(--cafe-muted)}
+.dn-event-card .dn-facts dd {margin:0;overflow-wrap:anywhere}
+.dn-event-card .dn-card-intro {font-size:calc(14px * var(--cafe-scale));line-height:1.9}
+.dn-directory.dn-cafe-theme .dn-event-history-note {border-left:2px solid var(--cafe-accent);padding:10px 13px;background:var(--cafe-bg);font-size:calc(12px * var(--cafe-scale));color:var(--cafe-muted);margin:10px 0 20px}
+.dn-event-card .dn-visit-note {font-size:calc(13px * var(--cafe-scale))}
+@media(max-width:700px){
+  .dn-directory.dn-cafe-theme .dn-tabs {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .dn-directory.dn-cafe-theme .dn-tabs a {min-width:0;min-height:64px;padding:9px 4px;justify-content:center;line-height:1.6;font-size:calc(11px * var(--cafe-scale));gap:5px}
+  .dn-directory.dn-cafe-theme .dn-tabs a>span {min-width:0;overflow-wrap:anywhere}
+  .dn-directory.dn-cafe-theme .dn-tabs .dn-cafe-icon {flex-shrink:0}
+  .dn-event-periods {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+  .dn-event-periods a {justify-content:center;flex-wrap:wrap;gap:3px 7px;font-size:calc(11px * var(--cafe-scale));padding:8px 5px;line-height:1.6;overflow-wrap:anywhere}
+  .dn-event-date {font-size:calc(17px * var(--cafe-scale))}
+}

@@ -21,18 +21,19 @@ function cafe_icon(string $name):string {
 }
 
 function cafe_welcome(string $scope,string $title):string {
-    $area=match($scope){'domestic'=>'日本','overseas'=>'海外',default=>'交流の場'};
+    $area=match($scope){'domestic'=>'日本','overseas'=>'海外','events'=>'イベント',default=>'交流の場'};
     $description=match($scope){
         'domestic'=>'手話で過ごせるお店と、定期開催のカフェ。地域・営業日・手話対応を調べて、訪問先を探せます。',
         'overseas'=>'世界の手話カフェとサイニングストア。国・都市・営業日と、それぞれのお店の手話対応をご案内します。',
         'community'=>'手話や筆談での交流を楽しめる場所をご案内します。',
+        'events'=>'一日だけ開く手話カフェや交流企画。開催日・会場・参加条件から、次のお出かけを探せます。',
     };
     $art='<svg viewBox="0 0 160 140" fill="none" aria-hidden="true" focusable="false"><path d="M26 118h106M42 64h66v30a24 24 0 0 1-24 24H66a24 24 0 0 1-24-24V64Z"/><path d="M109 69h8a15 15 0 0 1 0 30h-10M65 51c-12-14 12-17 0-31M85 51c-12-14 12-17 0-31"/><path class="dn-cup-chat" d="M114 14h30v22h-9l-10 8v-8h-11V14Z"/><path d="M122 22h14M122 28h9"/></svg>';
     return '<header class="dn-cafe-welcome dn-welcome--'.$scope.'"><div class="dn-welcome-copy"><p class="dn-welcome-eyebrow"><span lang="en">DEAF NAVI / SIGN CAFE GUIDE</span><span>'.e($area).'</span></p><h1>'.e($title).'</h1></div><div class="dn-welcome-aside"><div class="dn-welcome-illustration">'.$art.'</div><div><p class="dn-welcome-message">手話のある、ひと息を。</p><p class="dn-welcome-description">'.e($description).'</p></div></div></header>';
 }
 
-function cafe_filter_panel(string $form):string {
-    return '<aside class="dn-filter-sidebar" aria-label="検索条件"><details class="dn-filter-panel" open><summary><span class="dn-filter-heading">'.cafe_icon('search').'<span>条件で絞り込む</span></span><span class="dn-filter-panel-note">地域・お店の種類・手話対応</span></summary>'.$form.'</details><p class="dn-filter-tip">'.cafe_icon('chat').'<span>手話対応が不明な項目は、推測で補わず「未確認」と表示します。</span></p></aside>';
+function cafe_filter_panel(string $form,bool $events=false):string {
+    return '<aside class="dn-filter-sidebar" aria-label="検索条件"><details class="dn-filter-panel" open><summary><span class="dn-filter-heading">'.cafe_icon('search').'<span>条件で絞り込む</span></span><span class="dn-filter-panel-note">'.($events?'開催日・地域・キーワード':'地域・お店の種類・手話対応').'</span></summary>'.$form.'</details><p class="dn-filter-tip">'.cafe_icon('chat').'<span>'.($events?'開催告知と実施報告を区別して掲載します。':'手話対応が不明な項目は、推測で補わず「未確認」と表示します。').'</span></p></aside>';
 }
 
 function cafe_view_tools(bool $overseas,array $filters):string {

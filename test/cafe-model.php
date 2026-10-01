@@ -27,7 +27,7 @@ ok(!domestic_matches(array_replace($p,['has_deaf_staff'=>null]),['has_deaf_staff
 ok(!domestic_matches(array_replace($p,['has_deaf_staff'=>false]),['has_deaf_staff'=>'1']),'false does not satisfy feature');
 ok(domestic_matches($v,['has_deaf_staff'=>'1']),'true satisfies feature');
 ok(!domestic_matches(array_replace($p,['shop_type'=>'event']),[]),'single event off by default');
-ok(domestic_matches(array_replace($p,['shop_type'=>'event']),['events'=>'1']),'single event opt in');
+ok(!domestic_matches(array_replace($p,['shop_type'=>'event']),['events'=>'1']),'single event stays in separate event list');
 ok(!domestic_matches(array_replace($p,['status'=>'permanently_closed']),[]),'closed off by default');
 ok(domestic_matches(array_replace($p,['status'=>'temporarily_closed']),['status'=>'temporarily_closed']),'paused selectable');
 ok(region('沖縄県','JP')==='沖縄'&&region('大分県','JP')==='九州','distinct Kyushu and Okinawa');
@@ -52,7 +52,7 @@ ok(rejects(fn()=>cafe_validate(['activity_date'=>'2026-02-30'],$activity)),'inva
 ok(cafe_validate(['activity_date'=>''],$activity)['activity_date']==='','admin can clear activity date');
 $activity['business_hours']='10:00〜12:00';
 ok(str_contains(cafe_table_schedule($activity),'2099-09-13')&&str_contains(cafe_schedule_html($activity),'開催日（告知情報）'),'known date visible without treating venue as open');
-ok(!domestic_matches($activity,[])&&domestic_matches($activity,['events'=>'1']),'dated activity is opt in');
+ok(!domestic_matches($activity,[])&&!domestic_matches($activity,['events'=>'1']),'dated activity never enters cafe list');
 foreach(['community_space'=>'spots','related_organization'=>'organizations'] as $type=>$group){
     $place=cafe_validate(['shop_type'=>$type],$p);
     ok(!domestic_matches($place,[])&&domestic_matches($place,['listing'=>$group]),'related category is separately discoverable '.$type);

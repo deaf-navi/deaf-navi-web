@@ -4,14 +4,15 @@ require_once __DIR__.'/site-shell.php';
 require_once __DIR__.'/cafe-ui.php';
 require_once __DIR__.'/cafe-contact.php';
 require_once __DIR__.'/cafe-visuals.php';
+require_once __DIR__.'/cafe-events.php';
 function page(string $title,string $body,string $path='',string $description='',array $structured=[],bool $private=false,array $meta=[]): string {
-    $scope=$private?'':match($path){'/connect/sign-cafe/'=>'domestic','/connect/sign-cafe/overseas/'=>'overseas','/connect/sign-cafe/starbucks/'=>'community',default=>''};
+    $scope=$private?'':match($path){'/connect/sign-cafe/'=>'domestic','/connect/sign-cafe/overseas/'=>'overseas','/connect/sign-cafe/events/'=>'events','/connect/sign-cafe/starbucks/'=>'community',default=>''};
     $heading=$scope!==''?cafe_welcome($scope,$title):'<h1>'.e($title).'</h1>';
     $canonical=$meta['canonical']??BASE.($path?:'/connect/sign-cafe/');
     $documentTitle=$meta['title']??($title==='Deaf Navi｜手話カフェ'?$title:$title.' | Deaf Navi');
     $robots=$private?'noindex,nofollow':($meta['robots']??'index,follow');
     $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.ico?v=20260917c" sizes="16x16 32x32 48x48"><link rel="icon" href="/icons/favicon-48.png?v=20260917c" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=20260917c" sizes="180x180"><script src="/directory-safety.js?v=20260908loading" defer></script><script src="/directory-ui.js?v=20261001guide" defer></script>';
-    $cafeStyle=str_starts_with($path,'/connect/sign-cafe/')?'<link rel="stylesheet" href="/cafe-guide.css?v=20261001preview1">':'';
+    $cafeStyle=str_starts_with($path,'/connect/sign-cafe/')?'<link rel="stylesheet" href="/cafe-guide.css?v=20261001events1">':'';
     if($scope==='overseas')$ld.='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui">';
     if(!$private) {
         $ld.='<script src="/access-visit.js" defer></script>';
@@ -23,9 +24,9 @@ function page(string $title,string $body,string $path='',string $description='',
     }
     return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($documentTitle).'</title><meta name="description" content="'.e($description).'"><meta name="robots" content="'.$robots.'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($documentTitle).'"><meta property="og:description" content="'.e($description).'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:type" content="website"><meta property="og:image" content="'.BASE.'/og-image.png"><link rel="stylesheet" href="/styles.css?v=20260909ui2"><link rel="stylesheet" href="/directory.css?v=20260908loading">'.$ld.site_shell_head($cafeStyle!=='').$cafeStyle.'</head><body class="dn-directory dn-public'.(str_starts_with($path,'/connect/sign-cafe/')?' dn-cafe-theme':'').($scope!==''?' dn-cafe-hub':'').'"><a class="dn-skip" href="#main">本文へ</a>'.site_shell_header($private?'':'connect').'<main id="main" class="dn-main"><nav class="dn-breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/connect/sign-cafe/">手話カフェ</a></nav>'.$heading.$body.'</main><footer class="dn-footer"><a href="/about/">Deaf Naviについて</a><a href="/submit/">情報提供</a><a href="/admin/">管理画面</a><p>営業・開催状況は変更される場合があります。訪問前に情報源をご確認ください。</p></footer></body></html>';
 }
-function tabs(bool $starbucks=false,bool $overseas=false,bool $decorated=false): string {
-    $active=$overseas?1:0;$out='<nav class="dn-tabs" aria-label="手話カフェの分類">';
-    foreach([['/connect/sign-cafe/','日本の手話カフェ','cup'],['/connect/sign-cafe/overseas/','海外の手話カフェ','globe']] as $i=>[$url,$label,$icon])$out.='<a href="'.$url.'"'.($i===$active?' aria-current="page"':'').'>'.($decorated?'<span class="dn-tab-art">'.cafe_icon($icon).'</span><span>'.$label.'</span>':cafe_icon($icon).'<span>'.$label.'</span>').'</a>';
+function tabs(bool $starbucks=false,bool $overseas=false,bool $decorated=false,bool $events=false): string {
+    $active=($events||$starbucks)?2:($overseas?1:0);$out='<nav class="dn-tabs" aria-label="手話カフェの分類">';
+    foreach([['/connect/sign-cafe/','日本の手話カフェ','cup'],['/connect/sign-cafe/overseas/','海外の手話カフェ','globe'],['/connect/sign-cafe/events/','手話カフェイベント','calendar']] as $i=>[$url,$label,$icon])$out.='<a href="'.$url.'"'.($i===$active?' aria-current="page"':'').'>'.($decorated?'<span class="dn-tab-art">'.cafe_icon($icon).'</span><span>'.$label.'</span>':cafe_icon($icon).'<span>'.$label.'</span>').'</a>';
     return $out.'</nav>';
 }
 function ext_link(string $url,string $label): string { if($url==='') return ''; return '<a href="'.e(safe_url($url)).'" target="_blank" rel="noopener noreferrer">'.e($label).' ↗</a>'; }
@@ -132,7 +133,8 @@ function detail(string $slug,bool $event): string {
     $r=query('SELECT * FROM records WHERE slug=? AND '.($event?"kind='event'":"kind IN ('cafe','store')"),[$slug])->fetch();
     if(!$r || !publicly_visible($p=expanded($r))) fail('情報が見つかりません。',404);
     $overseas=!$event&&$p['country_code']!=='JP';
-    $body=tabs($event,$overseas).'<p><a href="'.($overseas?'/connect/sign-cafe/overseas/':'/connect/sign-cafe/').'">← 一覧へ</a></p>';$schema=[];
+    $singleEvent=$event||($p['shop_type']??'')==='event';
+    $body=tabs($event,$overseas,false,$singleEvent).'<p><a href="'.($singleEvent?CAFE_EVENTS_PATH:($overseas?'/connect/sign-cafe/overseas/':'/connect/sign-cafe/')).'">← 一覧へ</a></p>';$schema=[];
     $store=$event?expanded(record($p['store_id'])):$p;
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
     $body.=$event?event_card($p,$store).visitor_event_details($p):visitor_profile($p);

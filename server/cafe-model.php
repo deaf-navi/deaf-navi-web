@@ -46,6 +46,7 @@ function cafe_activity_state(array $p,?DateTimeImmutable $today=null):?string {
     return $p['activity_date']<$date?'date_elapsed':($p['activity_date']===$date?'today':'scheduled');
 }
 function cafe_listing_group(array $p):string {
+    if(($p['kind']??'')==='event'||($p['shop_type']??'')==='event')return 'events';
     return match($p['shop_type']??''){'community_space'=>'spots','related_organization'=>'organizations',default=>'cafes'};
 }
 function cafe_schema_type(array $p):string {
