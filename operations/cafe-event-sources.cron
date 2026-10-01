@@ -1,0 +1,6 @@
+# Install as /etc/cron.d/deafnavi-cafe-event-sources (root-owned, mode 0600).
+# The existing server timezone is Asia/Tokyo. Use the database runtime owner;
+# deployment users must not receive access to the private directory database.
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+40 6 * * * deafnavi-runtime (umask 077; /usr/bin/php /srv/deafnavi/current/_backend/check-cafe-event-sources.php --apply) >> /srv/deafnavi/shared/directory/cafe-event-source-check.log 2>&1
