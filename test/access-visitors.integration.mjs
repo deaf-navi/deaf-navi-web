@@ -62,6 +62,12 @@ try {
         ok((await post({path})).status===400,'reject non-public page '+path);
     ok((await fetch(origin+'/_access/visit')).status===405,'GET cannot record');
     ok((await post({path:'/',unused:'x'.repeat(1100)})).status===413,'body bounded');
+    const beforeEvent=count();
+    r=await post({path:'/connect/sign-cafe/events/'},{'User-Agent':ua+' EventRoute'});
+    ok(r.status===204&&!r.headers.has('set-cookie')&&count()===beforeEvent+1,'public cafe event tab recognized without cookies');
+    for(const path of ['/connect/sign-cafe/events/','/connect/sign-cafe/events/index.html'])
+        ok((await post({path},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'})).status===204,'Codex event beacon acknowledged '+path);
+    ok(count()===beforeEvent+1,'event verification visits excluded from normal measurement');
 } finally {server.kill();}
 // Browser script payload never includes search values, cookies, referrer or page text.
 const source=readFileSync(join(root,'src/access-visit.js'),'utf8');

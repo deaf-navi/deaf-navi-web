@@ -9,7 +9,7 @@ function access_content(string $path): ?string {
     if (preg_match('#[\x00-\x20\x7f\\\\]|\.\.|//#', $path)) return null;
     $path = preg_replace('#/index\.html$#D', '/', $path);
     $fixed = ['/' => 'web','/index-old.html'=>'web','/deaf-navi-world-jp.html'=>'world_jp','/deaf-navi-world-original.html'=>'world_original',
-        '/connect/'=>'cafe','/connect/sign-cafe/'=>'cafe','/connect/sign-cafe/map/'=>'cafe',
+        '/connect/'=>'cafe','/connect/sign-cafe/'=>'cafe','/connect/sign-cafe/map/'=>'cafe','/connect/sign-cafe/events/'=>'cafe',
         '/connect/sign-cafe/overseas/'=>'cafe_overseas','/guide.html'=>'guide','/otomado/'=>'otomado','/about.html'=>'about'];
     if (isset($fixed[$path])) return $fixed[$path];
     if (preg_match('#^/archive/(?:[0-9]{4}-[0-9]{2}|legacy)\.html$#D', $path)) return 'web';
