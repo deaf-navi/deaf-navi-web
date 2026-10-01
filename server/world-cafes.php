@@ -90,11 +90,11 @@ function world_filters(array $all,array $f):string {
 }
 function world_page():string {
     $all=world_records();$f=world_filter_values();$list=array_values(array_filter($all,fn($p)=>world_matches($p,$f)));
-    $body='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui"><script src="/world-cafes.js?v=20260908design" defer></script>'
+    $body='<script src="/world-cafes.js?v=20260908design" defer></script>'
         .'<div class="dn-cafe-navigation">'.tabs(false,true,false)
-        .'<nav class="dn-section-links" aria-label="海外の手話カフェの探し方">'.cafe_guide_link('#world-map-panel','世界地図から探す','globe').cafe_guide_link('#cafe-information-heading','掲載情報について','book').cafe_guide_link('#contact','訂正・お問い合わせ','edit').'</nav></div>'
-        .'<div class="dn-directory-layout">'.cafe_filter_panel(world_filters($all,$f)).'<section id="cafes" class="dn-directory-results" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading" class="dn-visually-hidden">海外の手話カフェを探す</h2>'.'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.count($list).'</strong>件</p><span class="dn-time-note">'.cafe_icon('clock').'営業時間は現地時間</span></div>'
-        .'<p class="dn-muted dn-results-note">手話は国や地域によって異なります。訪問前に公式サイト・SNSで営業日と手話対応をご確認ください。営業状況が不明なお店は「確認中」「営業状況未確認」と表示しています。</p>';
+        .'<details class="dn-guide-menu"><summary>使い方・掲載方針<span aria-hidden="true">＋</span></summary><nav class="dn-section-links" aria-label="海外の手話カフェの探し方">'.cafe_guide_link('#world-map-panel','世界地図から探す','globe').cafe_guide_link('#cafe-information-heading','掲載情報について','book').cafe_guide_link('#contact','訂正・お問い合わせ','edit').'</nav></details></div>'
+        .'<div class="dn-directory-layout">'.cafe_filter_panel(world_filters($all,$f)).'<section id="cafes" class="dn-directory-results" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading" class="dn-visually-hidden">海外の手話カフェを探す</h2>'.cafe_result_bar(count($list),true,$f).cafe_active_filters($f,true).cafe_quick_places($all,true)
+        .cafe_listing_advice(true);
     $mapped=count(array_filter($list,'world_located'));
     $body.='<details class="dn-world-map-panel" id="world-map-panel"><summary>'.cafe_icon('globe').'世界地図から探す（'.$mapped.'件）</summary><p>住所付近の位置を確認できた'.$mapped.'件を表示できます。位置確認待ちの店舗も下の一覧に掲載しています。位置は建物付近の概略で、入口や階を示すものではありません。</p><button type="button" id="world-map-start" hidden>世界地図を開く</button><p class="dn-muted">開いたときだけOpenStreetMapの地図画像を読み込みます。現在地は取得しません。位置は店舗・施設の案内と地図資料を照合しています。地図：<a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>。</p><div id="world-map" hidden aria-label="海外の手話カフェ地図"></div><p id="world-map-status" role="status"></p></details>';
     if($list)$body.=world_table($list,$f);
@@ -128,7 +128,7 @@ function world_table(array $list,array $filters):string {
     usort($list,fn($a,$b)=>($direction==='desc'?-1:1)*(($collator?$collator->compare($key($a),$key($b)):strcmp($key($a),$key($b)))?:strcmp($a['slug'],$b['slug'])));
     $size=world_page_size();$total=count($list);$pages=max(1,(int)ceil($total/$size));$current=min($pages,max(1,(int)input($_GET,'page',8)));
     $params=array_filter($filters,fn($v)=>$v!=='')+['sort'=>$sort,'dir'=>$direction,'view'=>$view,'per_page'=>$size];
-    $out='<p class="dn-table-hint" id="world-table-help">'.($view==='cards'?'店舗名から、お店の詳しい情報をご覧いただけます。':'列名で並べ替えできます。店舗名から個別ページへ移動できます。<span class="dn-mobile-hint">表は横にスクロールできます。</span>').'</p>';
+    $out='<p class="dn-table-hint" id="world-table-help">'.($view==='cards'?'店舗名から、お店の詳しい情報をご覧いただけます。':'列名で並べ替えできます。店舗名から個別ページへ移動できます。<span class="dn-mobile-hint">小さな画面では店舗ごとに表示します。</span>').'</p>';
     if($view==='table'){
         $out.='<div class="dn-table-scroll" role="region" aria-label="海外手話カフェの比較表" tabindex="0"><table class="dn-cafe-table dn-world-table" data-server-sort="1" aria-describedby="world-table-help"><caption class="dn-visually-hidden">海外の手話カフェ一覧・所在地・営業形態・営業時間</caption><thead><tr>';
         foreach(['name'=>'店舗名','location'=>'国・都市','type'=>'営業形態'] as $k=>$label){
@@ -144,7 +144,7 @@ function world_table(array $list,array $filters):string {
             continue;
         }
         $id='world-detail-'.$p['slug'];
-        $out.='<tr class="dn-cafe-row" data-slug="'.e($p['slug']).'"><th scope="row"><a class="dn-cafe-name" href="'.e(record_path($p)).'">'.e($p['name']).'</a><div class="dn-row-meta"><button type="button" class="dn-expand" data-cafe-expand="'.e($id).'" aria-expanded="false" aria-controls="'.e($id).'" hidden>詳細 ＋</button><span>確認 '.e(($p['last_verified_at']??'')?:'未確認').'</span></div></th><td>'.$location.'<span class="dn-cell-secondary">'.$city.'</span></td><td><span class="dn-badge">'.$type.'</span><span class="dn-cell-secondary dn-operating-state">'.$status.'</span></td><td class="dn-hours">'.cafe_table_schedule($p).'</td></tr>';
+        $out.='<tr class="dn-cafe-row" data-slug="'.e($p['slug']).'"><th scope="row"><a class="dn-cafe-name" href="'.e(record_path($p)).'">'.e($p['name']).'</a><div class="dn-row-meta"><button type="button" class="dn-expand" data-cafe-expand="'.e($id).'" aria-expanded="false" aria-controls="'.e($id).'" hidden>詳細 ＋</button><span>確認 '.e(($p['last_verified_at']??'')?:'未確認').'</span></div></th><td data-label="国・都市">'.$location.'<span class="dn-cell-secondary">'.$city.'</span></td><td data-label="営業形態"><span class="dn-badge">'.$type.'</span><span class="dn-cell-secondary dn-operating-state" data-state="'.e($p['status']).'">'.$status.'</span></td><td class="dn-hours" data-label="営業時間・開催日（現地時間）">'.cafe_table_schedule($p).'</td></tr>';
         $out.='<tr class="dn-cafe-expanded" id="'.e($id).'" hidden><td colspan="4"><div class="dn-expanded-inner">'.world_details($p).'</div></td></tr>';
     }
     $out.=($view==='table'?'</tbody></table></div>':'</div>').'<nav class="dn-pagination" aria-label="海外一覧のページ">';

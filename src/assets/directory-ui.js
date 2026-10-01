@@ -10,8 +10,26 @@
     if (chosen.length) filterPanel.querySelector('.dn-filter-panel-note').textContent = chosen.join(' / ');
     if (window.matchMedia('(max-width: 900px)').matches) filterPanel.open = false;
   }
-  const table = document.querySelector('.dn-cafe-table');
-  if (table) {
+  if (document.body.classList.contains('dn-cafe-hub')) {
+    const search = filterPanel?.querySelector('input[type="search"]');
+    if (search) {
+      search.placeholder = '例：東京、手話、店名';
+      search.setAttribute('aria-keyshortcuts', '/');
+      document.addEventListener('keydown', event => {
+        if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey || event.isComposing) return;
+        if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+        event.preventDefault(); filterPanel.open = true; search.focus();
+      });
+    }
+  }
+  document.querySelectorAll('.dn-cafe-table').forEach(table => {
+    const narrow = window.matchMedia('(max-width: 700px)');
+    const headerLinks = table.querySelectorAll('thead a');
+    const syncHeaderFocus = () => headerLinks.forEach(link => {
+      if (narrow.matches) link.setAttribute('tabindex', '-1');
+      else link.removeAttribute('tabindex');
+    });
+    syncHeaderFocus(); narrow.addEventListener('change', syncHeaderFocus);
     const body = table.tBodies[0];
     const pairs = [...body.querySelectorAll('.dn-cafe-row')].map(row => [row, row.nextElementSibling]);
     const collator = new Intl.Collator('ja');
@@ -58,7 +76,7 @@
       }
       document.querySelector('[data-cafe-announcement]').textContent = '一覧を' + link.textContent.replace(/[↑↓↕]/g, '').trim() + 'の' + (direction === 'asc' ? '昇順' : '降順') + 'で並べ替えました。';
     }));
-  }
+  });
   document.querySelectorAll('[data-password-limit]').forEach(input => {
     const count = document.getElementById(input.getAttribute('aria-describedby'))?.querySelector('[data-password-count]');
     if (!count) return;
