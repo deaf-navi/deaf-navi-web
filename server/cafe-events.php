@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/cafe-event-registry.php';
 
 const CAFE_EVENTS_PATH='/connect/sign-cafe/events/';
 const CAFE_EVENTS_DESCRIPTION='単発の手話カフェ・交流イベントを開催日と地域から探せます。今後の開催告知と過去の開催情報を分け、会場・参加条件・公式情報を紹介します。';
@@ -54,7 +55,16 @@ function cafe_event_period_links(array $f,array $counts):string {
 function cafe_event_filter_form(array $f,array $all):string {
     $countries=[];foreach($all as $p)$countries[$p['country_code']]=($p['country_name']??'')?:$p['country_code'];asort($countries);
     $regions=['北海道','東北','関東','中部','近畿','中国','四国','九州','沖縄','海外'];
-    return '<form method="get" class="dn-event-filter" aria-label="手話カフェイベントを絞り込む"><input type="hidden" name="period" value="'.e($f['period']).'"><div class="dn-search-primary">'.field('q','イベント名・会場・キーワード',$f['q'],'search').select_field('country','国・地域',[''=>'すべて']+$countries,$f['country']).select_field('region','開催地域',[''=>'すべて']+array_combine($regions,$regions),$f['region']).'<button class="dn-search-button">'.cafe_icon('search').'<span>この条件で探す</span></button></div><div class="dn-filter-bottom"><a href="'.CAFE_EVENTS_PATH.'">条件をクリア</a></div></form>';
+    $prefectures=array_combine(explode(' ',JP_PREFECTURES),explode(' ',JP_PREFECTURES));
+    foreach($all as $p)if($p['country_code']!=='JP'&&$p['prefecture']!=='')$prefectures[$p['prefecture']]=$p['prefecture'];
+    return '<form method="get" class="dn-event-filter" aria-label="手話カフェイベントを絞り込む"><input type="hidden" name="period" value="'.e($f['period']).'"><div class="dn-search-primary">'.field('q','イベント名・会場・キーワード',$f['q'],'search').select_field('country','国・地域',[''=>'すべて']+$countries,$f['country']).select_field('region','開催地域',[''=>'すべて']+array_combine($regions,$regions),$f['region']).select_field('prefecture','都道府県・州',[''=>'すべて']+$prefectures,$f['prefecture']).'<button class="dn-search-button">'.cafe_icon('search').'<span>この条件で探す</span></button></div><div class="dn-filter-bottom"><a href="'.CAFE_EVENTS_PATH.'">条件をクリア</a></div></form>';
+}
+function cafe_event_regions(array $f,array $all):string {
+    $counts=array_fill_keys(['北海道','東北','関東','中部','近畿','中国','四国','九州','沖縄','海外'],0);
+    foreach($all as $p)if(cafe_event_period($p)===$f['period']){$name=region($p['prefecture'],$p['country_code']);$counts[$name]=($counts[$name]??0)+1;}
+    $out='<nav class="dn-event-regions" aria-label="地域から手話カフェイベントを探す">';
+    foreach($counts as $name=>$count){$params=['period'=>$f['period'],'region'=>$name];$out.='<a href="?'.e(http_build_query($params)).'"'.($f['region']===$name?' aria-current="page"':'').'>'.e($name).'<span>'.$count.'</span></a>';}
+    return $out.'</nav><p class="dn-event-coverage">件数はこの開催時期の掲載数です。0件の地域も順次情報を確認しています。</p>';
 }
 function cafe_event_card(array $p):string {
     $date=cafe_event_date($p);$venue=($p['venue_name']??'')?:'会場未確認';
@@ -73,9 +83,10 @@ function cafe_events_page():string {
     usort($list,function($a,$b)use($f){$comparison=strcmp(cafe_event_date($a),cafe_event_date($b));return ($f['period']==='past'?-$comparison:$comparison)?:strcmp($a['name'],$b['name']);});
     $total=count($list);$size=24;$page=min(max(1,(int)$f['page']),max(1,(int)ceil($total/$size)));$list=array_slice($list,($page-1)*$size,$size);
     $body='<div class="dn-cafe-navigation">'.tabs(false,false,false,true).'</div><div class="dn-directory-layout">'.cafe_filter_panel(cafe_event_filter_form($f,$all),true).'<section id="cafe-events" class="dn-directory-results" aria-labelledby="event-list-heading"><h2 id="event-list-heading" class="dn-visually-hidden">手話カフェイベントを探す</h2>'.cafe_event_period_links($f,$counts).'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p></div>';
-    $body.='<p class="dn-event-intro">単発開催を日付ごとに掲載しています。<a href="/connect/sign-cafe/">常設店・定期開催はカフェ一覧へ</a>。</p>';
+    $body.='<p class="dn-event-intro">単発開催を日付ごとに掲載しています。<a href="/connect/sign-cafe/">常設店・定期開催はカフェ一覧へ</a>。</p>'.cafe_event_regions($f,$all);
+    $researched=cafe_registry_public_update();if($researched!=='')$body.='<p class="dn-event-coverage">開催情報の調査：<time datetime="'.e($researched).'">'.e(str_replace('-','.',$researched)).'</time> · 各掲載の確認日は情報源の欄をご覧ください。</p>';
     if($f['period']==='past')$body.='<p class="dn-event-history-note">過去の告知・開催報告を掲載しています。日付の経過だけで、実際に開催されたと判断していません。</p>';
-    $body.=$list?'<div class="dn-place-grid dn-event-grid">'.implode('',array_map('cafe_event_card',$list)).'</div>':'<section class="dn-empty"><h2>この条件のイベント情報はまだありません</h2><p>開催時期や検索条件を変えると、ほかの掲載情報を確認できます。</p></section>';
+    $body.=$list?'<div class="dn-place-grid dn-event-grid">'.implode('',array_map('cafe_event_card',$list)).'</div>':'<section class="dn-empty"><h2>この条件のイベント情報はまだありません</h2><p>開催時期や検索条件を変えると、ほかの掲載情報を確認できます。掲載がないことは、その地域で開催がないことを意味しません。</p></section>';
     $params=array_filter($f,fn($value)=>$value!=='');unset($params['page']);$body.='<nav class="dn-pagination" aria-label="手話カフェイベントのページ">';
     if($page>1)$body.='<a href="?'.e(http_build_query($params+['page'=>$page-1])).'">← 前のページ</a>';
     $body.='<span>全'.$total.'件中 '.($total?($page-1)*$size+1:0).'〜'.min($page*$size,$total).'件</span>';

@@ -51,3 +51,7 @@ scheduled run自体が起動しない場合、失敗ジョブも起動しない�
 ソース差分はGit履歴で保持。デプロイは `/srv/deafnavi/releases/` に新releaseを作成し、検証後に `current` を原子的に切り替える。直前のreleaseは保持する。障害時はその実在パスと現状を確認し、対象サイトだけを戻す。公開DB・アップロード・他サービスを変更しない。
 
 2026-09-27調査時、両Workflowはactive、専用PM2はonline、healthcheckはactive/enabledかつsuccessだった。昨日20:23 JSTに専用サービスは復旧済みで、その後22時台のWorld・国内・XServer実行も成功。今朝06:00分は07:29時点でrunが未作成。GitHub側の遅延/未配信と整合するが、GitHub内部の具体的原因はUNKNOWN。
+
+## 手話カフェイベント
+
+手話カフェイベントの毎日確認・次回追跡・年次棚卸は CAFE_EVENT_CURATION.md を参照。既存の国内・World更新の定時、翻訳経路、サービス停止状態は維持する。

@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/cafe-event-admin.php';
 function admin_nav(): string { return '<nav class="dn-admin-nav"><a href="/admin/">概要・投稿確認</a><a href="/admin/?view=records&kind=cafe">手話カフェ</a><a href="/admin/?view=records&kind=store">スターバックス店舗</a><a href="/admin/?view=records&kind=event">スターバックス開催情報</a><a href="/admin/?view=password">パスワード変更</a><a href="/admin/?view=users">ID管理</a><a href="/admin/?view=settings">通知設定</a></nav><form method="post">'.csrf().'<input type="hidden" name="action" value="logout"><button class="secondary">ログアウト</button></form>'; }
 function admin_page(): string {
     $user=current_user();
@@ -8,7 +9,8 @@ function admin_page(): string {
     if(isset($_SESSION['flash'])) {$body.='<p class="dn-notice" role="status">'.e($_SESSION['flash']).'</p>';unset($_SESSION['flash']);}
     $view=input($_GET,'view',30)?:'dashboard';
     if($user['must_change']) { $view='password';$body.='<p class="dn-error">初期パスワードを変更してください。変更が完了するまで他の管理操作は利用できません。</p>'; }
-    if($view==='submissions') {$body.=admin_submissions_table();}
+    if($view==='cafe-events') {$body.=cafe_event_admin();}
+    elseif($view==='submissions') {$body.=admin_submissions_table();}
     elseif($view==='audit') {$body.=admin_activity();}
     elseif($view==='access') {$body.=admin_access_logs();}
     elseif($view==='preferences') {$body.=admin_preferences();}
