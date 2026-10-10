@@ -34,6 +34,8 @@ function cafe_event_fingerprint(string $body,string $type):?string {
         $converted=iconv($encodings[$encoding],'UTF-8//IGNORE',$body);if($converted===false)return null;$body=$converted;
     }
     $text=preg_replace('#<(script|style|form|nav|header|footer)\b[^>]*>.*?</\1>#is','',$body);
+    // Large navigation or inline scripts can exceed the regex backtrack limit.
+    if($text===null)return null;
     $text=html_entity_decode(strip_tags($text),ENT_QUOTES|ENT_HTML5,'UTF-8');
     $text=preg_replace('/[\s\p{Z}]+/u',' ',trim($text));
     if($text===null||strlen($text)<100)return null;
