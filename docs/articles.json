@@ -1,47 +1,39 @@
 {
-  "generatedAt": "2026-10-11T00:26:04.615Z",
+  "generatedAt": "2026-10-11T10:08:40.250Z",
   "variant": "prod",
   "profile": "expanded",
-  "count": 426,
+  "count": 425,
   "quality": {
     "version": "expanded-score-v4",
-    "rawCount": 827,
-    "scoredCount": 827,
+    "rawCount": 851,
+    "scoredCount": 851,
     "missingDateRemoved": 0,
-    "freshCount": 642,
-    "staleOrInvalidRemoved": 185,
+    "freshCount": 647,
+    "staleOrInvalidRemoved": 204,
     "lowValuePageRemoved": 0,
-    "filteredCount": 595,
+    "filteredCount": 600,
     "lowScoreRemoved": 47,
-    "nearDuplicateRemoved": 43,
-    "finalCountBeforeLimit": 552,
+    "nearDuplicateRemoved": 46,
+    "finalCountBeforeLimit": 554,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
-    "extraVisibleCount": 26,
+    "extraVisibleCount": 25,
     "extraVisibleCategoryCounts": {
-      "relay": 26
+      "relay": 25
     },
-    "overflowCount": 126,
+    "overflowCount": 129,
     "minScore": 5,
     "maxCurrentAgeDays": 180,
     "fallbackRetentionDays": 45,
-    "fallbackCandidateCount": 417,
+    "fallbackCandidateCount": 416,
     "sourceHealth": {
       "direct": {
         "requested": 31,
-        "succeeded": 28,
+        "succeeded": 30,
         "failed": [
           {
             "sourceName": "全通研NOW!!",
             "status": 403
-          },
-          {
-            "sourceName": "全日本ろうあ連盟 YouTube",
-            "status": 404
-          },
-          {
-            "sourceName": "全国手話研修センター YouTube",
-            "status": 404
           }
         ]
       },
@@ -194,6 +186,8 @@
       "兵庫県立聴覚障害者情報センター": 104,
       "鹿児島県視聴覚障害者情報センター": 11,
       "沖縄聴覚障害者情報センター": 10,
+      "全日本ろうあ連盟 YouTube": 16,
+      "全国手話研修センター YouTube": 10,
       "ONTELOPE note": 25,
       "うりぼー note": 25,
       "UDCast": 11,
@@ -352,7 +346,6 @@
       "ultrasports.jp": 1,
       "政府広報オンライン": 1,
       "radiko news": 1,
-      "全日本ろうあ連盟 YouTube": 1,
       "福島民友新聞社": 1,
       "news.kobekeizai.jp": 1,
       "pref.saitama.lg.jp": 1,
@@ -366,10 +359,10 @@
       "竹田市": 1,
       "starnewskorea.com": 1,
       "新周南新聞社": 1,
-      "宮崎日日新聞DIGITAL": 1,
-      "soumu.go.jp": 1
+      "宮崎日日新聞DIGITAL": 1
     },
     "sourceCountsAfter": {
+      "全日本ろうあ連盟": 11,
       "山陽新聞": 10,
       "TBS NEWS DIG": 14,
       "motion-gallery.net": 1,
@@ -385,9 +378,8 @@
       "タウンニュース": 2,
       "TVer": 8,
       "Vietnam.vn": 8,
-      "全日本ろうあ連盟": 11,
       "選挙ドットコム": 18,
-      "兵庫県立聴覚障害者情報センター": 36,
+      "兵庫県立聴覚障害者情報センター": 35,
       "聴力障害者情報文化センター": 8,
       "www.chukei-news.co.jp": 1,
       "北海道新聞デジタル": 4,
@@ -537,7 +529,7 @@
       "ultrasports.jp": 1,
       "政府広報オンライン": 1,
       "radiko news": 1,
-      "全日本ろうあ連盟 YouTube": 1,
+      "全日本ろうあ連盟 YouTube": 5,
       "福島民友新聞社": 1,
       "news.kobekeizai.jp": 1,
       "pref.saitama.lg.jp": 1,
@@ -557,12 +549,12 @@
       "宮崎日日新聞DIGITAL": 1,
       "全日本ろうあ連盟スポーツ委員会": 2,
       "ONTELOPE note": 1,
-      "soumu.go.jp": 1,
       "日本財団電話リレーサービス": 2,
       "しかくタイムズ（イベント）": 2
     },
     "categoryCountsVisible": {
-      "local": 79,
+      "policy": 25,
+      "local": 78,
       "medical": 25,
       "sports": 35,
       "general": 84,
@@ -571,9 +563,8 @@
       "safety": 24,
       "accessibility": 31,
       "technology": 12,
-      "policy": 24,
       "education": 14,
-      "relay": 26
+      "relay": 25
     },
     "regionCountsVisible": {
       "chugoku_shikoku": 50,
@@ -581,32 +572,32 @@
       "chubu": 6,
       "hokkaido_tohoku": 18,
       "kanto": 16,
-      "kyushu_okinawa": 26
+      "kyushu_okinawa": 25
     },
     "sourceTypeCountsAfter": {
-      "rss": 544,
+      "rss": 542,
       "social": 7,
-      "video": 1
+      "video": 5
     },
     "sourceTierCountsAfter": {
+      "official": 165,
       "google": 339,
-      "official": 163,
       "broad": 19,
       "specialist": 31
     },
     "categoryCountsAfter": {
+      "policy": 26,
       "local": 95,
       "medical": 26,
       "sports": 39,
-      "general": 122,
+      "general": 123,
       "culture": 44,
       "event": 60,
-      "safety": 27,
-      "accessibility": 57,
+      "safety": 29,
+      "accessibility": 56,
       "technology": 15,
-      "policy": 25,
       "education": 16,
-      "relay": 26
+      "relay": 25
     },
     "duplicateSamples": [
       {
@@ -800,6 +791,15 @@
         "signals": []
       },
       {
+        "title": "特別支援教育とアートの視点から、一人ひとりの子どもの「ば」を考える展示が渋谷で開催｜10/10〜11/8",
+        "sourceName": "こここ",
+        "score": 4,
+        "signals": [
+          "支援",
+          "教育"
+        ]
+      },
+      {
         "title": "学校の“ふつう”は、誰にとっての“ふつう”？ 子どもと考える、学校生活アップデート全4つの授業プラン【無料配布中】学校生活をアップデートしていく",
         "sourceName": "こここ",
         "score": 4,
@@ -839,29 +839,38 @@
         "signals": [
           "支援"
         ]
-      },
-      {
-        "title": "誰かの困りごとは、みんなの困りごと。車椅子ユーザーが中心のIT事業所が追求する働きやすい環境とは？（愛知県名古屋市）",
-        "sourceName": "こここ",
-        "score": 2,
-        "signals": [
-          "支援"
-        ]
       }
     ],
     "thumbnails": {
-      "articles": 426,
+      "articles": 425,
       "attempted": 13,
-      "cached": 374,
-      "acquired": 0,
+      "cached": 341,
+      "acquired": 1,
       "missing": 0,
-      "failed": 13,
-      "deferred": 39,
-      "withImage": 268,
+      "failed": 12,
+      "deferred": 71,
+      "withImage": 267,
       "googleStopped": false
     }
   },
   "articles": [
+    {
+      "id": "https://www.jfd.or.jp/2026/10/11/pid30797",
+      "title": "厚生労働省にきこえない・きこえにくい者の権利保障に関する要望書を提出",
+      "summary": "10/7（水）、福祉基本政策プロジェクトチームより厚生労働省へ要望書を提出しました。 担当課 「福祉基本政策プロジェクトチーム」 ●社会・援護局 障害保健福祉部 企画課 自立支援振興室 障害福祉課 福祉サービス […]",
+      "sourceName": "全日本ろうあ連盟",
+      "sourceUrl": "https://www.jfd.or.jp/",
+      "publishedAt": "2026-10-11T04:12:23.000Z",
+      "sourceType": "rss",
+      "category": "policy",
+      "thumbnail": {
+        "url": "https://www.jfd.or.jp/wordpress/wp-content/uploads/2026/10/20261007-yobo-koro.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.jfd.or.jp/2026/10/11/pid30797"
+      },
+      "sourceTier": "official",
+      "discoveryMethod": "direct-feed"
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9fRjBvTU9WZ0hUcWZPaXBBTnpLMXNRYUN1VUR6MUxtN3dZa0M2X3c3aEJnMWRIbUlEQk1kclpVUU1va0NjYm96ZDVWcTJwN0N5RzNRRkkxNzlYU2hvU09YOVlZV085NEk?oc=5",
       "title": "手話で行政相談可能に 聴覚障害者ら向け、浅口市が新サービス - 山陽新聞",
@@ -7249,25 +7258,6 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5iY2NrZEpTeThLbjFtSTJJeGd5RUdUX1RiNVpNOG10QnRhYnhpdmNFVmktRGxVY2N1bmxzR2hINmloM2FBVFZ6aTJNSDhxeXhlMV9hTVN3?oc=5",
-      "title": "［長崎県］眼鏡橋青色に演出 諫早市、手話言語国際デー - 西日本新聞me",
-      "summary": "",
-      "sourceName": "西日本新聞me",
-      "sourceUrl": "https://www.nishinippon.co.jp",
-      "publishedAt": "2026-09-18T21:00:00.000Z",
-      "sourceType": "rss",
-      "category": "local",
-      "region": "kyushu_okinawa",
-      "prefecture": "長崎県",
-      "thumbnail": {
-        "url": "https://www.nishinippon.co.jp/uploads/image/1941025/sns_IP260918JAA000383000.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.nishinippon.co.jp/item/1539897/"
-      },
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
       "id": "https://www.nftrs.or.jp/news/fy2026/md20260913",
       "title": "【新聞】横浜ベイシェラトンが手話リンクを導入（東京読売新聞）",
       "summary": "★手話リンクメディア掲載一覧★",
@@ -7450,23 +7440,6 @@
       },
       "sourceTier": "news",
       "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB2U1BocVB4ZWh3NFVNQVZTS3BUVHJKWjlZX0RGRm9oMFVza0FlWHZfckZUTHpPME5lSUd5aGVFZ1B4SGROMkR4alRYUmxRYkM2VUItZW10ZXlTYVQ1QzhXZlkwSXVaLVlaS3c5OQ?oc=5",
-      "title": "（一財）日本財団電話リレーサービス視察 - soumu.go.jp",
-      "summary": "",
-      "sourceName": "soumu.go.jp",
-      "sourceUrl": "https://www.soumu.go.jp",
-      "publishedAt": "2026-08-27T09:55:41.000Z",
-      "sourceType": "rss",
-      "category": "relay",
-      "sourceTier": "official",
-      "discoveryMethod": "google-news",
-      "thumbnail": {
-        "url": "https://www.soumu.go.jp/main_content/000372150.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.soumu.go.jp/photo_gallery/02koho03_03005876.html"
-      }
     },
     {
       "id": "https://www.nftrs.or.jp/news/fy2026/md20260824",

@@ -4,9 +4,9 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-11T00:26:04Z",
-  "sourceGeneratedAt": "2026-10-11T00:26:04Z",
-  "count": 426,
+  "generatedAt": "2026-10-11T10:08:40Z",
+  "sourceGeneratedAt": "2026-10-11T10:08:40Z",
+  "count": 425,
   "language": "ja-JP",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
@@ -118,19 +118,20 @@
   },
   "quality": {
     "version": "expanded-score-v4",
-    "rawCount": 827,
-    "scoredCount": 827,
-    "filteredCount": 595,
+    "rawCount": 851,
+    "scoredCount": 851,
+    "filteredCount": 600,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
-    "extraVisibleCount": 26,
+    "extraVisibleCount": 25,
     "extraVisibleCategoryCounts": {
-      "relay": 26
+      "relay": 25
     },
-    "overflowCount": 126,
+    "overflowCount": 129,
     "minScore": 5,
     "categoryCountsVisible": {
-      "local": 79,
+      "policy": 25,
+      "local": 78,
       "medical": 25,
       "sports": 35,
       "general": 84,
@@ -139,14 +140,14 @@
       "safety": 24,
       "accessibility": 31,
       "technology": 12,
-      "policy": 24,
       "education": 14,
-      "relay": 26
+      "relay": 25
     }
   },
   "counts": {
     "byCategory": {
-      "local": 79,
+      "policy": 25,
+      "local": 78,
       "medical": 25,
       "sports": 35,
       "general": 84,
@@ -155,21 +156,38 @@
       "safety": 24,
       "accessibility": 31,
       "technology": 12,
-      "policy": 24,
       "education": 14,
-      "relay": 26
+      "relay": 25
     },
     "byLegacyCategory": {
-      "local": 79,
+      "policy": 105,
+      "local": 78,
       "medical": 25,
       "sports": 35,
       "general": 96,
       "culture": 72,
-      "policy": 105,
       "education": 14
     }
   },
   "articles": [
+    {
+      "id": "https://www.jfd.or.jp/2026/10/11/pid30797",
+      "stableId": "domestic_95a1a489d39aad2b5531",
+      "url": "https://www.jfd.or.jp/2026/10/11/pid30797",
+      "title": "厚生労働省にきこえない・きこえにくい者の権利保障に関する要望書を提出",
+      "summary": "10/7（水）、福祉基本政策プロジェクトチームより厚生労働省へ要望書を提出しました。 担当課 「福祉基本政策プロジェクトチーム」 ●社会・援護局 障害保健福祉部 企画課 自立支援振興室 障害福祉課 福祉サービス […]",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-11T04:12:23Z",
+      "sourceName": "全日本ろうあ連盟",
+      "sourceURL": "https://www.jfd.or.jp/",
+      "sourceUrl": "https://www.jfd.or.jp/",
+      "sourceType": "rss",
+      "category": "policy",
+      "categoryLabel": "制度・政策",
+      "legacyCategory": "policy",
+      "sourceTier": "official",
+      "discoveryMethod": "direct-feed"
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9fRjBvTU9WZ0hUcWZPaXBBTnpLMXNRYUN1VUR6MUxtN3dZa0M2X3c3aEJnMWRIbUlEQk1kclpVUU1va0NjYm96ZDVWcTJwN0N5RzNRRkkxNzlYU2hvU09YOVlZV085NEk?oc=5",
       "stableId": "domestic_e2951ac94edde37d3470",
@@ -7691,26 +7709,6 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5iY2NrZEpTeThLbjFtSTJJeGd5RUdUX1RiNVpNOG10QnRhYnhpdmNFVmktRGxVY2N1bmxzR2hINmloM2FBVFZ6aTJNSDhxeXhlMV9hTVN3?oc=5",
-      "stableId": "domestic_0560b5a5b694f02df513",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5iY2NrZEpTeThLbjFtSTJJeGd5RUdUX1RiNVpNOG10QnRhYnhpdmNFVmktRGxVY2N1bmxzR2hINmloM2FBVFZ6aTJNSDhxeXhlMV9hTVN3?oc=5",
-      "title": "［長崎県］眼鏡橋青色に演出 諫早市、手話言語国際デー - 西日本新聞me",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-18T21:00:00Z",
-      "sourceName": "西日本新聞me",
-      "sourceURL": "https://www.nishinippon.co.jp",
-      "sourceUrl": "https://www.nishinippon.co.jp",
-      "sourceType": "rss",
-      "category": "local",
-      "categoryLabel": "地域",
-      "legacyCategory": "local",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "region": "kyushu_okinawa",
-      "prefecture": "長崎県"
-    },
-    {
       "id": "https://www.nftrs.or.jp/news/fy2026/md20260913",
       "stableId": "domestic_189ad55df7cebd154aab",
       "url": "https://www.nftrs.or.jp/news/fy2026/md20260913",
@@ -7918,24 +7916,6 @@
       "categoryLabel": "電話リレー・ヨメテル",
       "legacyCategory": "policy",
       "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB2U1BocVB4ZWh3NFVNQVZTS3BUVHJKWjlZX0RGRm9oMFVza0FlWHZfckZUTHpPME5lSUd5aGVFZ1B4SGROMkR4alRYUmxRYkM2VUItZW10ZXlTYVQ1QzhXZlkwSXVaLVlaS3c5OQ?oc=5",
-      "stableId": "domestic_8030628db815ade82a10",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB2U1BocVB4ZWh3NFVNQVZTS3BUVHJKWjlZX0RGRm9oMFVza0FlWHZfckZUTHpPME5lSUd5aGVFZ1B4SGROMkR4alRYUmxRYkM2VUItZW10ZXlTYVQ1QzhXZlkwSXVaLVlaS3c5OQ?oc=5",
-      "title": "（一財）日本財団電話リレーサービス視察 - soumu.go.jp",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-08-27T09:55:41Z",
-      "sourceName": "soumu.go.jp",
-      "sourceURL": "https://www.soumu.go.jp",
-      "sourceUrl": "https://www.soumu.go.jp",
-      "sourceType": "rss",
-      "category": "relay",
-      "categoryLabel": "電話リレー・ヨメテル",
-      "legacyCategory": "policy",
-      "sourceTier": "official",
       "discoveryMethod": "google-news"
     },
     {
