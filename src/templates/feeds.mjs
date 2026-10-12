@@ -21,21 +21,21 @@ import {
 export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = [] }) {
   const lastmod = new Date(generatedAt).toISOString();
   const pageUrl = isDev ? `${SITE_URL}index-dev.html` : SITE_URL;
+  // ニュースの生成日時を、更新日を追跡していない別ページへ転用しない。
   const urls = [
     { loc: pageUrl, lastmod, changefreq: 'daily', priority: '1.0' },
-    { loc: `${SITE_URL}${files.oldIndex}`, lastmod, changefreq: 'daily', priority: '0.6' },
+    { loc: `${SITE_URL}${files.oldIndex}`, changefreq: 'daily', priority: '0.6' },
     ...archiveMonths.map((key) => ({
       loc: `${SITE_URL}archive/${key}${isDev ? '-dev' : ''}.html`,
-      lastmod,
       changefreq: 'weekly',
       priority: '0.3',
     })),
-    { loc: `${SITE_URL}${files.about}`, lastmod, changefreq: 'monthly', priority: '0.5' },
+    { loc: `${SITE_URL}${files.about}`, changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}${files.guide}`, lastmod: GUIDE_LAST_REVIEWED, changefreq: 'monthly', priority: '0.8' },
-    { loc: `${SITE_URL}otomado/`, lastmod, changefreq: 'monthly', priority: '0.8' },
+    { loc: `${SITE_URL}otomado/`, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE_URL}${files.sitemapHtml}`, lastmod, changefreq: 'weekly', priority: '0.4' },
-    { loc: `${SITE_URL}deaf-navi-world-jp.html`, lastmod, changefreq: 'daily', priority: '0.8' },
-    { loc: `${SITE_URL}deaf-navi-world-original.html`, lastmod, changefreq: 'daily', priority: '0.7' },
+    { loc: `${SITE_URL}deaf-navi-world-jp.html`, changefreq: 'daily', priority: '0.8' },
+    { loc: `${SITE_URL}deaf-navi-world-original.html`, changefreq: 'daily', priority: '0.7' },
     ...[
       ['news/japan/', 'daily', '0.8'],
       ['news/world/', 'daily', '0.8'],
@@ -49,11 +49,10 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
       ['guide/accessibility/', 'monthly', '0.6'],
       ['about/', 'monthly', '0.5'],
       ['sitemap/', 'weekly', '0.4'],
-    ].map(([path, changefreq, priority]) => ({ loc: `${SITE_URL}${path}`, lastmod, changefreq, priority })),
+    ].map(([path, changefreq, priority]) => ({ loc: `${SITE_URL}${path}`, changefreq, priority })),
   ];
   const body = urls.map((u) => `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
+    <loc>${u.loc}</loc>${u.lastmod ? `\n    <lastmod>${u.lastmod}</lastmod>` : ''}
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join('\n');
