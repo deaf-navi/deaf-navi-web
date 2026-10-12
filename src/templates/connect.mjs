@@ -167,7 +167,7 @@ ${categoryCards([
     ['news/japan/index.html', '/news/japan/', '国内ニュース', '聴覚障害・難聴・ろう者・手話に関する国内ニュースの入口です。', '最新の国内ニュースはトップページで公開しています。', 'news'],
     ['news/world/index.html', '/news/world/', '海外ニュース', '海外のろう者・難聴者・手話・アクセシビリティ関連ニュースの入口です。', '<a class="primary-link" href="/deaf-navi-world-jp.html">日本語版を読む</a> <a class="secondary-link" href="/news/world/original/">原文版を見る</a>', 'world'],
     ['news/world/original/index.html', '/news/world/original/', '海外ニュース・原文版', '海外ニュースを原文で確認するための入口です。', '<a class="primary-link" href="/deaf-navi-world-original.html">原文版を読む</a>', 'worldOriginal'],
-    ['guide/index.html', '/guide/', '暮らしのガイド', '制度・生活・アクセシビリティの公式情報を目的別に探す入口です。', '既存のガイド情報を新しい3分類へ整理しています。', 'guide'],
+    ['guide/index.html', '/guide/', '暮らしのガイド', '制度・生活・アクセシビリティの公式情報を目的別に探す入口です。', '<a class="primary-link" href="/guide.html">現在の暮らしのガイドを開く</a>', 'guide'],
     ['guide/systems/index.html', '/guide/systems/', '制度', '聴覚障害・難聴に関わる制度の公式情報を探すページです。', '<a class="primary-link" href="/guide.html">現在の暮らしのガイドを開く</a>', 'guide'],
     ['guide/life/index.html', '/guide/life/', '生活', '医療・教育・就労など生活に関わる公式情報を探すページです。', '<a class="primary-link" href="/guide.html">現在の暮らしのガイドを開く</a>', 'guide'],
     ['guide/accessibility/index.html', '/guide/accessibility/', 'アクセシビリティ', '情報保障、電話、コミュニケーション支援の公式情報を探すページです。', '<a class="primary-link" href="/guide.html">現在の暮らしのガイドを開く</a>', 'guide'],

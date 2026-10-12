@@ -5,9 +5,23 @@ import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
 import { renderConnectPages } from '../src/templates/connect.mjs';
 import { renderSiteNav } from '../src/templates/partials.mjs';
+import { renderSitemapXml, renderSitemapHtmlPage } from '../src/templates/feeds.mjs';
 
 const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const docs = join(root, 'docs');
+
+test('検索対象サイトマップからnoindexの情報提供フォームを除き、カフェの公開分類を案内する', async () => {
+  const files = { oldIndex: 'index-old.html', about: 'about.html', guide: 'guide.html', sitemapHtml: 'sitemap.html', sitemap: 'sitemap.xml', feed: 'feed.xml', robots: 'robots.txt' };
+  const options = { generatedAt: '2026-10-12T00:00:00Z', isDev: false, files, count: 1 };
+  for (const xml of [renderSitemapXml(options), await readFile(join(docs, 'sitemap.xml'), 'utf8')]) {
+    assert.doesNotMatch(xml, /<loc>https:\/\/deafnavi\.com\/(?:submit|admin)\//);
+    assert.match(xml, /<loc>https:\/\/deafnavi\.com\/connect\/sign-cafe\/<\/loc>/);
+  }
+  for (const html of [renderSitemapHtmlPage(options), await readFile(join(docs, 'sitemap.html'), 'utf8')]) {
+    assert.match(html, /href="\.\/connect\/sign-cafe\/overseas\/"/);
+    assert.match(html, /href="\.\/connect\/sign-cafe\/events\/"/);
+  }
+});
 
 test('スターバックス専用ページを生成せず、導線を残さない', async () => {
   const cafe = await readFile(join(docs, 'connect', 'sign-cafe', 'index.html'), 'utf8');

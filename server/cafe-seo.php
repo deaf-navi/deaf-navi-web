@@ -4,6 +4,12 @@ declare(strict_types=1);
 const CAFE_DIRECTORY_NAME='全国の手話カフェ一覧';
 const CAFE_DIRECTORY_DESCRIPTION='全国の手話カフェを地域・営業日・手話対応から探せるDeaf Navi。常設店舗、間借りや公共施設での定期開催、サイニングストアを一覧と地図で紹介。営業時間、公式サイト・SNS、情報確認日を掲載し、初めての訪問にも役立つ情報をまとめています。';
 
+function cafe_record_seo(array $p):array {
+    if(($p['country_code']??'')!=='JP'||($p['kind']??'')!=='cafe'||cafe_listing_group($p)!=='cafes')return [];
+    $location=trim(($p['prefecture']??'').' '.($p['city']??''));
+    return ['title'=>$p['name'].($location!==''?'（'.$location.'）':'').'｜手話カフェ | Deaf Navi'];
+}
+
 function cafe_listing_title(array $f):string {
     return match($f['listing']??''){'spots'=>'手話交流スポット','organizations'=>'手話の関連団体・講座','all'=>'手話カフェ・交流スポット・関連団体',default=>match($f['shop_type']??''){'community_space'=>'手話交流スポット','related_organization'=>'手話の関連団体・講座',default=>CAFE_DIRECTORY_NAME}};
 }

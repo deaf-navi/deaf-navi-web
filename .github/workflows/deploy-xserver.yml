@@ -171,3 +171,4 @@ jobs:
           set -euo pipefail
           curl --fail --silent --show-error --location --max-time 20 --user-agent 'Codex-DeafNavi-Verification' https://deafnavi.com/ > /dev/null
           curl --fail --silent --show-error --max-time 20 --user-agent 'Codex-DeafNavi-Verification' https://deafnavi.com/app/v1/manifest.json > /dev/null
+          node scripts/audit-seo.mjs --verify-release --changed-only

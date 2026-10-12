@@ -48,7 +48,6 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
       ['guide/life/', 'monthly', '0.6'],
       ['guide/accessibility/', 'monthly', '0.6'],
       ['about/', 'monthly', '0.5'],
-      ['submit/', 'monthly', '0.4'],
       ['sitemap/', 'weekly', '0.4'],
     ].map(([path, changefreq, priority]) => ({ loc: `${SITE_URL}${path}`, lastmod, changefreq, priority })),
   ];
@@ -197,6 +196,8 @@ ${renderSubHeader({
         <ul>
           <li><a href="./connect/sign-cafe/">手話カフェ一覧</a><span>常設・限定営業・定期開催・特殊</span></li>
           <li><a href="./connect/sign-cafe/map/">全国の手話カフェマップ</a><span>2D地図から店舗を探す</span></li>
+          <li><a href="./connect/sign-cafe/overseas/">海外の手話カフェ一覧</a><span>国・都市・手話との関わりから探す</span></li>
+          <li><a href="./connect/sign-cafe/events/">手話カフェイベント</a><span>単発の開催案内・過去の開催情報</span></li>
         </ul>
       </section>
 
