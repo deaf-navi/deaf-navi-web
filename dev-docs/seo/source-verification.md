@@ -15,3 +15,5 @@
 | 構造化データ | [Googleの構造化データ方針](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)、既存PHPテスト | 表示内容と一致させ、非公開情報・架空レビュー等を含めない | rich resultの適用・表示を保証しない。日時不詳のイベントへEventを新設しない |
 
 新しい営業・支援・参加条件は今回追加0件。SNS自動巡回の対象・方法は拡張していない。一次資料を再読するまで西尾茶屋の曜日相違は解消扱いにしない。
+
+公開追記: 本人が既存Appを設定後、`deaf-navi` installation170420565で対象repoへの読取と作業ブランチへの書込が成功。PR27は最終CI success後、既存PR経路でマージされ、commit dfd13462d2f419843c502ffc2bb898209171a9beのDeploy XServer run38187812469がsuccess。Appの権限追加・新しい認証をこちらから実施していない。基本HTTPの既存公開確認は成功したが、4変更URLの内容再読は環境の接続制約で未取得。
