@@ -11,7 +11,7 @@
 | サーバーアクセス・推定UU | 仕組みあり、管理画面実データは未取得 | Caddy→既存アクセスログ/日別HMACのSQLite。管理者認証を変更しない |
 | Core Web Vitals（LCP/INP/CLSのフィールド値） | 未取得 | ローカルviewport確認やHTML容量を実ユーザーのCWVと置き換えない |
 | 確認済み掲載比率・鮮度 | 分母を未取得 | 公開DBの確認状態・対象範囲・確認日の基準を揃えてから算出。サイト全体の網羅率は不明 |
-| 公開HTTP/DNS/SEO項目 | 未取得（実行環境出口403、GitHub書込403でCIを開始できず） | 実URLstatus/title/description/canonical/robots/JSON-LDを `audit-seo.mjs` で記録。完成したスクリプトの本番実行は未完了 |
+| 公開HTTP/DNS/SEO項目 | 正規Deployと既存の基本HTTP確認は成功。4変更URLの独立再読・DNSは未取得（環境出口403） | CI run 38187667049、Deploy run 38187812469。実URLの内容・title/canonical等の再読は `audit-seo.mjs --changed-only --verify-release` で継続 |
 
 ## 比較期間（Asia/Tokyo）
 
@@ -27,3 +27,5 @@ GSCデータの遅延とGA4集計定義を保持する。季節性、既存施�
 変更前 `npm test`: 105件成功。変更後106件成功。国内のverifyは記事425/重複なし、ガイド17項目、月別アーカイブ21ページ、Analytics対象49ページ。Worldは600記事の既存検証成功。この数値はローカルのコミット済みデータの検証件数であり、検索流入や本番DBの件数ではない。
 
 375/1280px、トップ・ガイド入口・ガイド本文・About・HTMLサイトマップ・World-JP・おとまどの7ページをローカルChromiumで確認。14表示ともHTTP200、横はみ出しなし、JavaScript例外なし。外部画像・Beaconはローカルテストでは遮断。PHPによる全国/海外/イベントのブラウザー実操作とWCAG全項目、実機iOSは未取得/未実施。
+
+公開前の最終GitHub CIは全工程success。PHP SEO38項目、カフェモデル75、migration17、directory HTTP117、海外カフェ50、Worldカフェ571等が成功。これらは隔離された回帰テストの件数で、訪問数や本番掲載件数ではない。検索効果は未測定。

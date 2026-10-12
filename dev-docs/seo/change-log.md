@@ -2,7 +2,7 @@
 
 ## 2026-10-12 初回改善
 
-状態: ローカル実装・静的検証済み、未公開。GitHub App書込403と環境出口403でdraft PR/CI/正規公開が未実施。
+現在の状態: 承認済み4修正はPR #27から正規公開済み。最終CIとDeploy XServerの公開確認工程は成功。環境の出口403により、変更した4URLの内容・メタデータの独立した再読は未完了。以下の初回403・未公開の記録は公開前の履歴。
 
 実装commit: `da465bd363ac3e467d0c9896f0fb26c9710b389a`（この環境のローカルcommit、リモート未反映）。運営記録の最終状態は別commitで追記する。
 
@@ -58,3 +58,17 @@ draft PR #27 / commit `279098cbe748366fe5d92aba0f81826fcb8b21ef` を作成。最
 固定fixture後のCI run `38187374433` / commit `0075a2a5b513782fc39c04e222c55e39d2363224` はPHP SEO回帰・既存ディレクトリ・おとまど・国内/World/iOSの全工程に成功。
 
 mainへの直接反映は自動承認レビューに拒否された。理由はDeploy workflowの変更が未承認であり、draft PRのマージ経路を省略する承認がないこと。本番は未変更。すべてのworkflow差分を除外して既存PR経路で再検証する。独立した読取用auditスクリプトは運営資料として保持するが、CI/Deployへ自動追加しない。拒否を別認証・間接実行で迂回しない。
+
+## 正規公開結果（2026-10-12 09:24 JST）
+
+- PR: [#27](https://github.com/deaf-navi/deaf-navi-web/pull/27)。draftで作成し、workflow差分をすべて除外した最終headのCI成功後に通常のPRマージ経路でsquashした。
+- 検証head: `6aea36a214c4de6d3609a7efd291a1174bd85228`。
+- CI: [run 38187667049](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38187667049)、全工程success。Node106件、PHP SEO38項目、既存カフェ・取込・海外・おとまど・国内/World/iOSを検証。
+- 公開commit: `dfd13462d2f419843c502ffc2bb898209171a9be`。
+- Deploy XServer: [run 38187812469](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38187812469)、全工程success。release `dfd13462d2f419843c502ffc2bb898209171a9be-38187812469-1` を検証後に原子的に切替。
+- 既存の公開確認: 専用UA付きの `/` と `/app/v1/manifest.json` のcurl --fail確認工程が成功。旧GitHub Pages互換の [run 38187812477](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38187812477) もsuccess。
+- 本番DB変更、認証・権限追加、DNS変更、新規サービス、定時処理変更は0件。最終差分にworkflowファイルは含まれない。既存の国内更新は通常のpushトリガで継続している。
+
+変更内容の実URL再読は別項目として未完了。通常HTTP/Chromiumは出口403、接続済みWeb読取でも `dn_client=codex` を付けた `/connect/sign-cafe/knot/`、`/sitemap.xml`、`/sitemap.html`、`/guide/` を取得できなかった。公開失敗やサイト側403とは判断しない。独立した読取確認ができる既存環境で `node scripts/audit-seo.mjs --changed-only --verify-release` を実行し、出力を台帳へ追記する。取得できない内容を確認済みに置き換えない。
+
+親からの環境切断通知後も、GitHub APIのPR merged・main SHA・Deploy successと環境のローカル読取を確認できた。不明な書込や二重マージはない。再デプロイや認証変更を行わず、残る実URL確認だけを引き継げる。
