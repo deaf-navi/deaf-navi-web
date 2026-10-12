@@ -149,5 +149,8 @@ function detail(string $slug,bool $event): string {
         $schema[]=['@context'=>'https://schema.org','@type'=>'Event','name'=>$p['name'],'url'=>BASE.record_path($p),'startDate'=>(new DateTimeImmutable($p['event_date'].'T'.$p['start_time'],new DateTimeZone($p['timezone'])))->format('c'),'eventStatus'=>'https://schema.org/'.(event_state($p)==='cancelled'?'EventCancelled':'EventScheduled'),'location'=>['@type'=>'Place','name'=>$store['name'],'address'=>['@type'=>'PostalAddress','streetAddress'=>$store['address'],'addressCountry'=>$store['country_code']]]];
     }
     $body.='<p><a href="'.e(cafe_correction_url($p)).'">この情報の修正を知らせる</a></p>';
-    return page($p['name'],$body,record_path($p),$p['description']??'',$schema,false,cafe_record_seo($p));
+    $seo=cafe_record_seo($p);
+    // Public response provenance only; never expose record/admin fields.
+    header('X-DeafNavi-Cafe-SEO: locality-20261012-2; mode='.($seo?'applied':'default'));
+    return page($p['name'],$body,record_path($p),$p['description']??'',$schema,false,$seo);
 }

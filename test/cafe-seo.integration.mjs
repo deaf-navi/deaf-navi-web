@@ -33,6 +33,17 @@ try{
  ({html}=await request(route+'?page=1'));ok(canonical(html)==='https://deafnavi.com'+route,'page one consolidates');
  ({html}=await request(route+'?q='+encodeURIComponent('"></script><script>alert(1)</script>')));ok(!html.includes('</script><script>alert(1)'),'query safely encoded');ok(meta(html,'robots').startsWith('noindex'),'empty search excluded');ld(html);
  ({html}=await request('/admin/'));ok(meta(html,'robots')==='noindex,nofollow','private robots unchanged');
+ for(const [slug,name,location] of [['very-you','サインカフェ ベリーユー','東京都 小平市'],['rendeaf','Rendeaf Coffee','東京都 文京区']]){
+  const expected=name+'（'+location+'）｜手話カフェ | Deaf Navi';
+  for(const suffix of ['', '?dn_client=codex']){
+   const result=await request(route+slug+'/'+suffix);html=result.html;
+   ok(html.includes('<title>'+expected+'</title>'),'real cafe fixture locality title '+slug+suffix);
+   ok(html.includes('<meta property="og:title" content="'+expected+'">'),'OG title matches real cafe '+slug+suffix);
+   ok(html.includes('<h1>'+name+'</h1>'),'real cafe visible name retained '+slug+suffix);
+   ok(canonical(html)==='https://deafnavi.com'+route+slug+'/','real cafe canonical retained '+slug+suffix);
+   ok(result.response.headers.get('x-deafnavi-cafe-seo')==='locality-20261012-2; mode=applied','current code path proven '+slug+suffix);
+  }
+ }
  const location=JSON.parse(run(['-r',`require '${core}';$p=expanded(query("SELECT * FROM records WHERE slug='seo-fixture-0'")->fetch());echo json(['prefecture'=>$p['prefecture'],'city'=>$p['city']]);`]));
  ({html}=await request(route+'seo-fixture-0/'));
  ok(html.includes('<title>SEO fixture 0（'+location.prefecture+' '+location.city+'）｜手話カフェ | Deaf Navi</title>'),'domestic detail title identifies the published place');
@@ -41,7 +52,7 @@ try{
  const titleBefore=html.match(/<title>([^<]+)<\/title>/)?.[1];
  run(['-r',`require '${core}';$r=query("SELECT * FROM records WHERE slug='seo-fixture-0'")->fetch();$p=expanded($r);$p['status']='permanently_closed';save_record($p,'cafe',$r['id'],(int)$r['revision']);`]);
  ({html}=await request(route+'seo-fixture-0/'));ok(html.match(/<title>([^<]+)<\/title>/)?.[1]===titleBefore,'historical record keeps its identity');ok(!ld(html).some(x=>x['@type']==='CafeOrCoffeeShop'),'closed place does not acquire active business schema');
- ({html}=await request(route+'seo-fixture-29/'));ok(html.includes('noindex,nofollow')&&!html.includes('PRIVATE_SEO_SENTINEL'),'private detail cannot expose metadata or private fields');
+ const privateResult=await request(route+'seo-fixture-29/');html=privateResult.html;ok(html.includes('noindex,nofollow')&&!html.includes('PRIVATE_SEO_SENTINEL'),'private detail cannot expose metadata or private fields');ok(!privateResult.response.headers.has('x-deafnavi-cafe-seo'),'no private response diagnostics');
  ({html}=await request('/connect/sign-cafe/overseas/'));ok(!ld(html).some(x=>x['@type']==='CollectionPage'),'domestic schema not applied overseas');
  assert.deepEqual(ld(html).find(x=>x['@type']==='BreadcrumbList').itemListElement.map(x=>[x.position,x.item]),[[1,'https://deafnavi.com/'],[2,'https://deafnavi.com/connect/sign-cafe/'],[3,'https://deafnavi.com/connect/sign-cafe/overseas/']]);checks++;
  ({html}=await request('/directory-sitemap.xml'));ok(html.includes('<loc>https://deafnavi.com/connect/sign-cafe/</loc>'),'directory sitemap contains hub');ok(!html.includes('seo-fixture-29/'),'private record absent from sitemap');
