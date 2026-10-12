@@ -50,3 +50,7 @@
 CI workflowの変更と広い公開監査の自動実行を除外。PHP SEO回帰は既存 `test:cafes` コマンドへ加え、既存CIで公開前に実行する。公開HTTPの出口403は継続しているため、既存Deployの公開確認工程へ4修正だけを読む1行を追加する。cron・秘密・認証・デプロイ経路は変更しない。
 
 `audit-seo.mjs --changed-only` はローカル合成HTTPで、3導線/サイトマップと店舗の所在地title、対象外storeの保持を検証成功。本番確認結果とは扱わない。公開状態はCI・Deploy・実URLの結果後に追記する。
+
+draft PR #27 / commit `279098cbe748366fe5d92aba0f81826fcb8b21ef` を作成。最初のCI run `38187163033` はNode106件とPHP/ディレクトリ/海外等の既存検証に成功した後、既存 `research-import.mjs` の過去commit参照が浅いcheckoutにないためexit128で失敗。公開は実行していない。
+
+過去の `34a7b1d:server/seed.json` とGit blobが一致する固定fixtureをテストへ同梱し、履歴の有無に依存しないようにする。取込の件数・バックアップ・二重実行拒否・利用者/設定/投稿保持の検証は変更しない。本番取込コード・データを変更しない。

@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
-import {mkdtempSync,mkdirSync,cpSync,writeFileSync,readdirSync} from 'node:fs';
+import {mkdtempSync,mkdirSync,cpSync,writeFileSync,readdirSync,readFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {randomBytes} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..'),dir=mkdtempSync(join(tmpdir(),'deafnavi-research-import-'));
 const backend=join(dir,'backend'),backup=join(dir,'backup'),data=join(dir,'data');mkdirSync(backup);cpSync(join(root,'server'),backend,{recursive:true});
-const baseline=spawnSync('git',['show','34a7b1d:server/seed.json'],{cwd:root,encoding:'utf8'});assert.equal(baseline.status,0);writeFileSync(join(backend,'seed.json'),baseline.stdout);
+// Exact seed from 34a7b1d; keep this regression reproducible in shallow CI checkouts.
+const baseline=readFileSync(join(root,'test/fixtures/research-import-baseline-20260905.json'),'utf8');writeFileSync(join(backend,'seed.json'),baseline);
 const env={...process.env,DEAFNAVI_DATA_DIR:data,DEAFNAVI_LOCAL_TEST:'1'};
 const hash=spawnSync('php',['test/directory-hash.php'],{cwd:root,input:randomBytes(24).toString('hex'),encoding:'utf8'}).stdout;
 const run=(args,input)=>spawnSync('php',args,{cwd:root,env,input,encoding:'utf8'});
