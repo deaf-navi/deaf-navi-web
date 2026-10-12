@@ -6,9 +6,33 @@ import { runInNewContext } from 'node:vm';
 import { renderConnectPages } from '../src/templates/connect.mjs';
 import { renderSiteNav } from '../src/templates/partials.mjs';
 import { renderSitemapXml, renderSitemapHtmlPage } from '../src/templates/feeds.mjs';
+import { GUIDE_LAST_REVIEWED } from '../src/guide-data.mjs';
 
 const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const docs = join(root, 'docs');
+
+test('ニュースの更新日時をカフェ・ツール・過去月へ流用せず、確認済みガイド日付を保つ', () => {
+  for (const isDev of [false, true]) {
+    const suffix = isDev ? '-dev' : '';
+    const files = { oldIndex: `index-old${suffix}.html`, about: `about${suffix}.html`, guide: `guide${suffix}.html`, sitemapHtml: `sitemap${suffix}.html` };
+    const readEntries = generatedAt => new Map([...renderSitemapXml({ generatedAt, isDev, files, archiveMonths: ['2026-09', '2026-08'] }).matchAll(/<url>([\s\S]*?)<\/url>/g)]
+      .map(([, item]) => [item.match(/<loc>(.*?)<\/loc>/)[1], item.match(/<lastmod>(.*?)<\/lastmod>/)?.[1] ?? null]));
+    const before = readEntries('2026-10-12T00:00:00Z');
+    const after = readEntries('2026-10-13T00:00:00Z');
+    assert.deepEqual([...after.keys()], [...before.keys()], '更新日時だけでは検索対象URLを変更しない');
+    for (const path of ['connect/sign-cafe/', 'connect/sign-cafe/map/', 'otomado/', 'about/', files.about, files.oldIndex, `archive/2026-08${suffix}.html`, 'deaf-navi-world-jp.html']) {
+      const url = 'https://deafnavi.com/' + path;
+      assert.ok(after.has(url), path);
+      assert.equal(before.get(url), null, path);
+      assert.equal(after.get(url), null, path);
+    }
+    const home = isDev ? 'https://deafnavi.com/index-dev.html' : 'https://deafnavi.com/';
+    assert.equal(after.get(home), '2026-10-13T00:00:00.000Z');
+    assert.notEqual(after.get(home), before.get(home));
+    assert.equal(after.get('https://deafnavi.com/' + files.guide), GUIDE_LAST_REVIEWED);
+    assert.equal(after.get('https://deafnavi.com/' + files.guide), before.get('https://deafnavi.com/' + files.guide));
+  }
+});
 
 test('検索対象サイトマップからnoindexの情報提供フォームを除き、カフェの公開分類を案内する', async () => {
   const files = { oldIndex: 'index-old.html', about: 'about.html', guide: 'guide.html', sitemapHtml: 'sitemap.html', sitemap: 'sitemap.xml', feed: 'feed.xml', robots: 'robots.txt' };
