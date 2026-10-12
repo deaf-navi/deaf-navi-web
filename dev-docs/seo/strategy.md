@@ -36,4 +36,4 @@
 - `change-log.md`: 実装・CI・公開・復旧状態
 - `metrics.md`: 取得済みと未取得、比較期間
 - `source-verification.md`: 正本・一次情報・確認日・未確認事項
-- `scripts/audit-seo.mjs`: 識別付きの読取専用HTTP/DNS確認。手動で全体の観測に使い、正規デプロイ末尾では `--changed-only` で今回4修正の実URLだけを確認する。新たな定時ジョブは作らない。
+- `scripts/audit-seo.mjs`: 識別付きの読取専用HTTP/DNS確認。手動で全体の観測、`--changed-only` で今回4修正の実URLを確認する。CI/Deployへ自動追加せず、新たな定時ジョブは作らない。

@@ -54,3 +54,7 @@ CI workflowの変更と広い公開監査の自動実行を除外。PHP SEO回�
 draft PR #27 / commit `279098cbe748366fe5d92aba0f81826fcb8b21ef` を作成。最初のCI run `38187163033` はNode106件とPHP/ディレクトリ/海外等の既存検証に成功した後、既存 `research-import.mjs` の過去commit参照が浅いcheckoutにないためexit128で失敗。公開は実行していない。
 
 過去の `34a7b1d:server/seed.json` とGit blobが一致する固定fixtureをテストへ同梱し、履歴の有無に依存しないようにする。取込の件数・バックアップ・二重実行拒否・利用者/設定/投稿保持の検証は変更しない。本番取込コード・データを変更しない。
+
+固定fixture後のCI run `38187374433` / commit `0075a2a5b513782fc39c04e222c55e39d2363224` はPHP SEO回帰・既存ディレクトリ・おとまど・国内/World/iOSの全工程に成功。
+
+mainへの直接反映は自動承認レビューに拒否された。理由はDeploy workflowの変更が未承認であり、draft PRのマージ経路を省略する承認がないこと。本番は未変更。すべてのworkflow差分を除外して既存PR経路で再検証する。独立した読取用auditスクリプトは運営資料として保持するが、CI/Deployへ自動追加しない。拒否を別認証・間接実行で迂回しない。
