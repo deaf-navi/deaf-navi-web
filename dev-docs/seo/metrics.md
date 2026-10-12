@@ -11,7 +11,7 @@
 | サーバーアクセス・推定UU | 仕組みあり、管理画面実データは未取得 | Caddy→既存アクセスログ/日別HMACのSQLite。管理者認証を変更しない |
 | Core Web Vitals（LCP/INP/CLSのフィールド値） | 未取得 | ローカルviewport確認やHTML容量を実ユーザーのCWVと置き換えない |
 | 確認済み掲載比率・鮮度 | 分母を未取得 | 公開DBの確認状態・対象範囲・確認日の基準を揃えてから算出。サイト全体の網羅率は不明 |
-| 公開HTTP/DNS/SEO項目 | 正規Deployと既存の基本HTTP確認は成功。4変更URLの独立再読・DNSは未取得（環境出口403） | CI run 38187667049、Deploy run 38187812469。実URLの内容・title/canonical等の再読は `audit-seo.mjs --changed-only --verify-release` で継続 |
+| 公開HTTP/DNS/SEO項目 | 正規Deployと既存基本HTTP確認は成功。静的3修正は親の独立本番読取で確認。カフェtitleはPR29後も旧表示。DNS直接読取は未取得 | PR29: CI 38190566024、Deploy 38191032136。10:22〜10:23 JSTの2店title/OG未反映、canonical正常。識別headerと本番PHP実行パスは未確認。`title-diagnosis-20261012.md` を参照 |
 
 ## 比較期間（Asia/Tokyo）
 
