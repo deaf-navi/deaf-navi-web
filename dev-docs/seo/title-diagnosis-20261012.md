@@ -60,3 +60,21 @@ php_fastcgi unix//run/php/deafnavi.sock {
 この保存環境にはVPSのパス/socket/既存読取接続がなく、手動スクリプトの本番実行は未実施。ブラウザーDOMのh2/type表示はkind=storeや関連団体の条件を絞る補助になるが、HTTP headerやPHP実行パスの代用にはしない。診断だけの追加公開を繰り返さない。
 
 設定変更が必要と判明した場合の承認対象は、既存運用資料の `/etc/caddy/deafnavi.caddy` 内、Deaf Navi専用socket `/run/php/deafnavi.sock` の `php_fastcgi` ブロックに上記1設定を追加する差分（実際の有効ファイルを読取後に確定）。目的はrelease symlinkの実体パスをFastCGIへ渡すこと。リスクはPHP動的ページの配信失敗。承認後も元snippetをhash付きバックアップし、有効な全体Caddy設定をvalidateしてからgraceful reloadし、2店のtitle/OGとprivate経路を確認する。失敗時は当該snippetだけを戻して再validate/reloadする。current・DB・DNS・FPMの共有サービスは変更しない。Caddyバイナリがこの環境にないため、この候補の構文検証も未実施。
+
+## 2026-10-14 最新観測と読取診断
+
+親の正式dotクラウドChromeから受領した本番証拠:
+
+- 00:33:54 UTC（09:33:54 JST）: Aboutは最新main HTMLと一致。新本文リンクからカフェ一覧へ遷移でき、JSON-LDの日付2項目省略、canonical・iOS/app情報保持を確認。
+- 00:34:32 UTC: very-youのtitle/OGは `サインカフェ ベリーユー | Deaf Navi`、所在地東京都/小平市。rendeafも `Rendeaf Coffee | Deaf Navi`、所在地東京都/文京区。静的修正の成功とPHP詳細タイトルの未完を分ける。
+
+確認対象mainは4717062368fd0c6d0141d0c445465e7174d0a4ef。PR29公開a7e54cfからPHP・deploy設定・workflowに差分はない。最新リポジトリで次を再読した:
+
+- `detail()`は新しい`cafe_record_seo()`を呼んでpageの第7引数へ渡す。HTMLとOGは同じdocumentTitleを使う。適用条件はcountry_code=JP / kind=cafe / listing_group=cafes。公開seedと実DBは同じとは限らず、expanded()ではSQL列がpayloadを上書きする。通常DeployはDBを更新しない。
+- 正規tarはserverを_backendへ変換し、同じ__DIR__からindex→views→cafe-ui→cafe-seoを読む。正規Deployはstagingの全PHPをlintし、専用socket存在を確認してcurrentを原子的に切り替える。今回のAbout実読は静的配信成功の証拠だが、FastCGIの実行ファイルを証明しない。
+- リポジトリCaddyはcurrentをroot、カフェURLを_backend/index.phpへrewriteし、専用socketへ渡す。resolve_root_symlinkは記載なし。DeployにはOPcache失効処理がない。PHPプールの追跡ファイルにもOPcache値はなく、有効な全体設定・稼働値は未取得。symlink/OPcacheで旧PHPを実行する仮説、実際の別root/handler、実DB条件の不一致をまだ区別できていない。
+- 実際のSSH送信先・ユーザーは既存ActionsのDEAFNAVI_DEPLOY_HOST/USER、鍵は同Actionsの既存Secretから設定される。値・鍵をこの子環境へ取り出していない。子環境にはSSH config、対象alias、agent socket、標準identity/known_hosts、対象host/user変数がない。remote-exec/SSH読取ツールも現在露出していない。この環境からのVPS実体・有効設定・実DBの読取接続がないことと、既存DeployのSSH成功を混同しない。
+
+安全に確定したコード不具合はまだないため、タイトルの重複修正・新たな診断だけのデプロイは行わない。PR30スクリプト実行とCaddy変更は未承認で未実施（拒否・結果不明ではなく保留）。新しい認証・権限・外部サービスを追加しない。
+
+次に必要な情報は、親の既存Chromeで読める `.dn-location` 全文、H2一覧、店舗タイプ/関連団体のnotice、twitter:title、可能なら公開JSON-LDのaddressCountry/type。kind=storeの国内詳細なら「この店舗の開催履歴」が出るため、所在地文字列だけより適用条件を絞れる。これでも実行版を確定できなければ、既存の承認済みVPS読取接続でcurrent実体・PHP hash・有効FastCGI root/socket・FPMキャッシュ値・公開2レコードの条件を確認する必要がある。実行方法がPR30のscriptになる場合は、その実行について別の明示承認が必要。Caddy変更は実読と原因確定の後の承認対象のまま。
