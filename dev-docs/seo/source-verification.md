@@ -17,3 +17,11 @@
 新しい営業・支援・参加条件は今回追加0件。SNS自動巡回の対象・方法は拡張していない。一次資料を再読するまで西尾茶屋の曜日相違は解消扱いにしない。
 
 公開追記: 本人が既存Appを設定後、`deaf-navi` installation170420565で対象repoへの読取と作業ブランチへの書込が成功。PR27は最終CI success後、既存PR経路でマージされ、commit dfd13462d2f419843c502ffc2bb898209171a9beのDeploy XServer run38187812469がsuccess。Appの権限追加・新しい認証をこちらから実施していない。基本HTTPの既存公開確認は成功したが、4変更URLの内容再読は環境の接続制約で未取得。
+
+## 2026-10-14 追記
+
+- 本人指示書は同じLibrary IDの全512行を再取得。19840 bytes、最終更新2026-10-11T23:01:55.298096Zで継続指示を確認。materializeの過去2回の失敗を成功に置き換えず、他環境の原本パスは使わない。
+- 親の正式Chromeによる10/13 08:29 JSTの本番XML観測を受領。42 loc / 3 lastmod、homeとsitemap.htmlは2026-10-12T23:24:07.941Z、guide.htmlは2026-08-14、カフェ・おとまどは日付なし、submitなし。子環境の直接取得結果とは区別する。
+- PR30は本人の明示承認後に資料5ファイルだけをmain508bc1393b857933d1875f73eab0edc4396a0601へマージ済み。含まれる読取スクリプトの実行・Caddy変更は未承認。
+- [Schema.org dateModified](https://schema.org/dateModified)は対象CreativeWorkの変更日、[lastReviewed](https://schema.org/lastReviewed)はそのWebPageを正確性・完全性について確認した日を表すと10/14に一次仕様で確認。AboutPageに転用するニュース生成日時・ガイド確認日は、About自身の根拠ではないため省略する。[Googleの構造化データ方針](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)の、ページ内容を正確に表す方針も再読。
+- 最新main904e4d8d49449ea248b96db1e6d19bcbde2481b6の `server/cafe-ui.php` の地域・店舗タイプの絞り込みを読取。Aboutからの既存カフェ一覧への案内はこの既存機能だけを説明し、新しい営業・支援・予約条件を追加しない。
