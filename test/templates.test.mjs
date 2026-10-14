@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { jsonLdScript, renderArticleCard } from '../src/templates/partials.mjs';
 import { renderHomePage } from '../src/templates/home.mjs';
 import { renderGuidePage } from '../src/templates/guide.mjs';
+import { renderAboutPage } from '../src/templates/about.mjs';
 
 const FILES = {
   articlesJson: 'articles.json',
@@ -19,6 +20,27 @@ const FILES = {
   robots: 'robots.txt',
   og: 'og-image.svg',
 };
+
+test('Aboutの構造化データへニュースの生成日時や別ページの確認日を転用しない', () => {
+  for (const isDev of [false, true]) {
+    const read = generatedAt => {
+      const html = renderAboutPage({ generatedAt, isDev, files: FILES });
+      const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
+      assert.match(main, /href="\.\/connect\/sign-cafe\/">全国の手話カフェ一覧<\/a>/);
+      return JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+    };
+    const before = read('2026-10-13T00:00:00Z');
+    const after = read('2026-10-14T00:00:00Z');
+    assert.deepEqual(after, before, 'ニュースだけの更新でAboutの意味を変えない');
+    assert.equal(after['@type'], 'AboutPage');
+    assert.equal(after.url, 'https://deafnavi.com/about.html');
+    assert.equal(Object.hasOwn(after, 'dateModified'), false);
+    assert.equal(Object.hasOwn(after, 'lastReviewed'), false);
+    assert.equal(after.mainEntity['@type'], 'MobileApplication');
+    assert.equal(after.mainEntity.operatingSystem, 'iOS');
+    assert.ok(after.mainEntity.url.startsWith('https://apps.apple.com/'));
+  }
+});
 
 function article(overrides) {
   return {

@@ -7,7 +7,6 @@ import {
   SITE_NAME,
   SITE_URL,
 } from '../../config/site.mjs';
-import { GUIDE_LAST_REVIEWED } from '../guide-data.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import {
   EXTERNAL_ARROW_SVG,
@@ -31,8 +30,6 @@ export function renderAboutPage({ generatedAt, isDev, files }) {
     name: aboutTitle,
     description: 'Deaf Navi Web と Deaf Navi World-JP/Original のコンセプト・情報源・更新頻度・運営者情報。',
     inLanguage: 'ja-JP',
-    dateModified: generatedAt,
-    lastReviewed: GUIDE_LAST_REVIEWED,
     isPartOf: { '@id': `${SITE_URL}#website` },
     mainEntity: {
       '@type': 'MobileApplication',
@@ -79,6 +76,7 @@ ${renderSiteHeader({
       <h2 id="about-concept" class="about__h2">このサイトについて</h2>
       <p>Deaf Navi Web は、<strong>聴覚障害・難聴・ろう者・中途失聴者</strong>のコミュニティに関わる情報を、信頼できる情報源から自動収集・分類してお届けする無料ニュースキュレーションサイトです。</p>
       <p>国内ニュースを扱う Deaf Navi Web に加え、海外ニュースを扱う <a href="./deaf-navi-world-jp.html">Deaf Navi World-JP</a>（日本語翻訳版）と <a href="./deaf-navi-world-original.html">Deaf Navi World-Original</a>（原文版）を公開しています。情報保障・手話・制度・医療・教育・技術・防災・文化・デフスポーツなど、暮らしと権利に直結するトピックを幅広くカバーします。</p>
+      <p><a href="./connect/sign-cafe/">全国の手話カフェ一覧</a>から、地域や営業形態で掲載情報を探せます。</p>
       <p><a href="./${files.guide}">暮らしのガイド</a>では、アプリ版と同じ方針で、緊急通報・医療・教育・就労・電話サービスなどの公式情報を探せます。</p>
       <p><a href="./otomado/">おとまど</a>は、周囲の音の可視化、リアルタイム字幕、筆談ボードをひとつにまとめた、Deaf Navi Web の無料情報保障ツールです。</p>
     </section>
