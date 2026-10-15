@@ -4,6 +4,8 @@
 
 10/14追記: SEO-08は10/13 08:29 JSTに親の正式クラウドChromeで本番XMLを確認済み（42 loc / 3 lastmod、guide.htmlは2026-08-14、カフェ・おとまどの日付なし、submitなし）。これはGoogleのインデックス数ではない。10/14にカフェ2店とAboutの識別付きHTTPを再試行したが、この環境ではCONNECT段階403、Webも取得不可。今日のカフェtitle/OGは未取得であり、10/12の旧表示を今日も観測したとは扱わない。GSC/GA4の実集計は引き続き未取得で、利用可能ツールに該当読取機能は確認できず、新規認証は実施していない。
 
+10/14後続の親観測: 09:33:54 JSTに本番Aboutの新リンク遷移・構造化日付省略・canonical/app保持を確認しSEO-11完了。09:34 JSTのカフェ2店は所在地なしのtitle/OGを再確認しSEO-01未完。これは親から受領した最新本番証拠であり、子環境の直接取得エラーと区別する。自然検索クリック・CTR・順位・organic session・CWVの値は依然未取得。
+
 | 指標 | 接続・基準値 | 定義・次の取得 |
 |---|---|---|
 | GSC 自然検索クリック・表示回数・CTR・平均掲載順位 | 未取得 | 親の接続調査で直接ツールなし、対象候補は未接続。新規認証なし。対象プロパティを確認して日本/検索タイプWeb/日別・ページ別・クエリ別を取得 |
@@ -14,6 +16,12 @@
 | Core Web Vitals（LCP/INP/CLSのフィールド値） | 未取得 | ローカルviewport確認やHTML容量を実ユーザーのCWVと置き換えない |
 | 確認済み掲載比率・鮮度 | 分母を未取得 | 公開DBの確認状態・対象範囲・確認日の基準を揃えてから算出。サイト全体の網羅率は不明 |
 | 公開HTTP/DNS/SEO項目 | 正規Deployと既存基本HTTP確認は成功。静的3修正は親の独立本番読取で確認。カフェtitleはPR29後も旧表示。DNS直接読取は未取得 | PR29: CI 38190566024、Deploy 38191032136。10:22〜10:23 JSTの2店title/OG未反映、canonical正常。識別headerと本番PHP実行パスは未確認。`title-diagnosis-20261012.md` を参照 |
+
+## 2026-10-16の観測
+
+親の正式クラウドChromeによる10/15 23:35:32 UTC（10/16 08:35:32 JST）のvery-you、23:35:55 UTCのrendeafは、title/OGが引き続き `サインカフェ ベリーユー | Deaf Navi` / `Rendeaf Coffee | Deaf Navi`。Twitter title/cardなし、self-canonical。両店ともLDはCafeOrCoffeeShop + BreadcrumbList、addressCountry=JP。本文は各東京の現住所、店舗開催履歴H2なし。この公開証拠は実DBのkind・掲載区分や稼働PHP版を直接確定するものではない。子の識別付きHTTPはCONNECT403、既存SSH設定・鍵・agent・host/userなし。既存ActionsのDeploy成功とは区別する。
+
+開始時main `f5bcded2aac6adc05d4ba9c6fb4d6590a06c5152`、[XServer 38749125217](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38749125217)と互換Pages38749125444がsuccess。GSC/GA4/CWVの実集計は引き続き未取得。SEO-12の技術検証件数は検索効果として数えない。
 
 ## 比較期間（Asia/Tokyo）
 

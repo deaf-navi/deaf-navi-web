@@ -72,3 +72,11 @@ mainへの直接反映は自動承認レビューに拒否された。理由はD
 変更内容の実URL再読は別項目として未完了。通常HTTP/Chromiumは出口403、接続済みWeb読取でも `dn_client=codex` を付けた `/connect/sign-cafe/knot/`、`/sitemap.xml`、`/sitemap.html`、`/guide/` を取得できなかった。公開失敗やサイト側403とは判断しない。独立した読取確認ができる既存環境で `node scripts/audit-seo.mjs --changed-only --verify-release` を実行し、出力を台帳へ追記する。取得できない内容を確認済みに置き換えない。
 
 親からの環境切断通知後も、GitHub APIのPR merged・main SHA・Deploy successと環境のローカル読取を確認できた。不明な書込や二重マージはない。再デプロイや認証変更を行わず、残る実URL確認だけを引き継げる。
+
+## 2026-10-16 World操作案内と記録整合
+
+SEO-12: `src/world-build.mjs`でWorld-Originalのskip-linkと地域/カテゴリのaria-labelを既存英語UIへ揃える。World-JPは同じ日本語を保持。記事・収集・翻訳・分類・JS・URLを変更しない。source-verificationに一次根拠を記録。
+
+PR32 / commit `91f032710ce00397de55dcb9b54abbdecd91fc29`はCI38487910410・Deploy38488779068がsuccess、後続main4717062368fd0c6d0141d0c445465e7174d0a4efのDeploy38489470209もsuccess。親の10/14 09:33:54 JSTの正式ChromeでAboutのリンク遷移と日付省略・canonical/app保持を確認済み。日次・backlog・metricsへ完了証拠を統合する。10/16朝のカフェ旧titleの公開証拠も記録し、原因未確定を維持する。
+
+今回のローカル検証・CI・マージcommit・World生成commit・Deploy・実URL結果は当該PRと10/16日次に追記する。生成HTMLは最新リモートの既存World workflowを正規経路とし、ローカル旧データを公開しない。復旧はWorld生成元の小差分をrevertし、同じ既存World生成→XServer公開経路を使う。
