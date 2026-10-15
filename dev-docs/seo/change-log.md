@@ -80,3 +80,13 @@ SEO-12: `src/world-build.mjs`でWorld-Originalのskip-linkと地域/カテゴリ
 PR32 / commit `91f032710ce00397de55dcb9b54abbdecd91fc29`はCI38487910410・Deploy38488779068がsuccess、後続main4717062368fd0c6d0141d0c445465e7174d0a4efのDeploy38489470209もsuccess。親の10/14 09:33:54 JSTの正式ChromeでAboutのリンク遷移と日付省略・canonical/app保持を確認済み。日次・backlog・metricsへ完了証拠を統合する。10/16朝のカフェ旧titleの公開証拠も記録し、原因未確定を維持する。
 
 今回のローカル検証・CI・マージcommit・World生成commit・Deploy・実URL結果は当該PRと10/16日次に追記する。生成HTMLは最新リモートの既存World workflowを正規経路とし、ローカル旧データを公開しない。復旧はWorld生成元の小差分をrevertし、同じ既存World生成→XServer公開経路を使う。
+
+公開結果: [PR34](https://github.com/deaf-navi/deaf-navi-web/pull/34)を通常squashマージ。検証head `c244a767acf216b40c812e5af0cb487f802d6af1` の[CI38825400067](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38825400067)は全工程success（Node108、PHP SEO59、おとまど14 files/86 tests、国内470/World600/iOS）。実装commit `62c346af5bb40e6bb1e0e447a376a27b1889103c`、既存World生成38825595142と国内38825595079がsuccess。最新生成commit `a7aa38cc5e1d757457552c432ac2b374470bc42e` の[XServer38825903281](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38825903281)は10/16 08:50:38 JSTにsuccess、Pages互換38825903195もsuccess。既存Deployの基本HTTPは成功。GitHub上の最新生成HTMLでOriginalの英語操作文言5か所・JPの従来日本語、各600カード・self-canonicalを確認。これは配布物確認である。公開後の子HTTPはCONNECT403だが、下記の親の独立した実URL確認に成功。
+
+### SEO-12の本番確認完了（10/16 JST）
+
+親の正式クラウドブラウザーが2026-10-15 23:53:18〜23:54:58 UTC（10/16 08:53:18〜08:54:58 JST）、viewport 1180×757で独立した本番確認に成功。World-OriginalはDOMとAXの双方で操作案内5か所の英語反映を確認。TabでSkipリンク表示、Enterで#main、次のTabで最初の記事へ移動。EnterでAsia/Oceaniaを選ぶと150/151件、SpaceでEducationを加えると15/15件となり、表示全件が両条件に一致。Allへ戻すと150/600件。World-JPは日本語5ラベルとhtml lang=jaを保持し、同じキーボード・絞り込み検証に成功。両版とも横はみ出しなし。
+
+本番の375/1280px表示とスクリーンリーダー音声は未検証。375/1280pxの成功は子環境のローカルChromium検証であり、今回の親の1180×757の本番確認と区別する。DOM/AX確認を読み上げ音声やWCAG全項目の適合確認とは扱わない。
+
+公開証跡の保留commit `33b5bfb292c71868924b74c7980f1d4f5d9e4022` の4ファイルを、この独立確認と併せてmainへ統合する。今回の差分はdev-docs/seo内4文書だけで、既存の自動公開pathsに該当しない。公開や収集のworkflowを手動起動しない。未解決のカフェtitleとGSC/GA4未取得は維持する。
