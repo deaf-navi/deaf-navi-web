@@ -39,3 +39,5 @@ GSCデータの遅延とGA4集計定義を保持する。季節性、既存施�
 375/1280px、トップ・ガイド入口・ガイド本文・About・HTMLサイトマップ・World-JP・おとまどの7ページをローカルChromiumで確認。14表示ともHTTP200、横はみ出しなし、JavaScript例外なし。外部画像・Beaconはローカルテストでは遮断。PHPによる全国/海外/イベントのブラウザー実操作とWCAG全項目、実機iOSは未取得/未実施。
 
 公開前の最終GitHub CIは全工程success。PHP SEO38項目、カフェモデル75、migration17、directory HTTP117、海外カフェ50、Worldカフェ571等が成功。これらは隔離された回帰テストの件数で、訪問数や本番掲載件数ではない。検索効果は未測定。
+
+SEO-12の技術結果: PR34のCI38825400067はNode108/PHP SEO59/おとまど86/国内470/World600/iOS成功。生成commit `a7aa38cc5e1d757457552c432ac2b374470bc42e` のXServer38825903281が10/16 08:50:38 JSTにsuccess。生成HTMLの操作案内を確認済み、本番実表示は子CONNECT403のため親の正式Chrome読取待ち。検索のクリック/表示/CTR/順位/organic sessionは未取得のまま。
