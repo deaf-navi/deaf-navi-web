@@ -344,6 +344,9 @@ function renderPage(data, mode = 'jp') {
     ? 'Titles and summaries are not translated here; they stay in the original source language. Recent articles are prioritized, then balanced across regions.'
     : 'タイトルと要約は日本語翻訳後にニュース見出しとして自然になるよう整えています。鮮度を優先しつつ、地域が偏りすぎないように並べています。';
   const filterAria = isOriginal ? 'Deaf Navi World filters' : 'Deaf Navi World フィルタ';
+  const skipLabel = isOriginal ? 'Skip to main content' : 'メインコンテンツにスキップ';
+  const regionAria = isOriginal ? 'Filter by region' : '地域で絞り込み';
+  const topicAria = isOriginal ? 'Filter by topic' : 'カテゴリで絞り込み';
   const regionLabel = isOriginal ? 'Region' : '地域';
   const topicLabel = isOriginal ? 'Topic' : 'カテゴリ';
   const showingLabel = isOriginal ? 'Showing' : '表示中';
@@ -413,7 +416,7 @@ function renderPage(data, mode = 'jp') {
   ${jsonLd}
 </head>
 <body>
-  <a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+  <a class="skip-link" href="#main">${escapeHtml(skipLabel)}</a>
 
 ${renderSiteHeader({
     subLabel: isOriginal ? 'World-Original' : 'World-JP',
@@ -430,15 +433,15 @@ ${renderSiteHeader({
 
   <nav class="filters filters--world" role="navigation" aria-label="${escapeHtml(filterAria)}">
     <div class="container">
-      <div class="world-filter-group" aria-label="地域で絞り込み">
+      <div class="world-filter-group" aria-label="${escapeHtml(regionAria)}">
         <span class="filters__label">${escapeHtml(regionLabel)}</span>
-        <div class="filters__row" role="group" aria-label="地域で絞り込み">
+        <div class="filters__row" role="group" aria-label="${escapeHtml(regionAria)}">
           ${regionButtons}
         </div>
       </div>
-      <div class="world-filter-group" aria-label="カテゴリで絞り込み">
+      <div class="world-filter-group" aria-label="${escapeHtml(topicAria)}">
         <span class="filters__label">${escapeHtml(topicLabel)}</span>
-        <div class="filters__row" role="group" aria-label="カテゴリで絞り込み">
+        <div class="filters__row" role="group" aria-label="${escapeHtml(topicAria)}">
           ${topicButtons}
         </div>
       </div>

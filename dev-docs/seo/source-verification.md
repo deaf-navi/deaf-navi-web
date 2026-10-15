@@ -25,3 +25,9 @@
 - PR30は本人の明示承認後に資料5ファイルだけをmain508bc1393b857933d1875f73eab0edc4396a0601へマージ済み。含まれる読取スクリプトの実行・Caddy変更は未承認。
 - [Schema.org dateModified](https://schema.org/dateModified)は対象CreativeWorkの変更日、[lastReviewed](https://schema.org/lastReviewed)はそのWebPageを正確性・完全性について確認した日を表すと10/14に一次仕様で確認。AboutPageに転用するニュース生成日時・ガイド確認日は、About自身の根拠ではないため省略する。[Googleの構造化データ方針](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)の、ページ内容を正確に表す方針も再読。
 - 最新main904e4d8d49449ea248b96db1e6d19bcbde2481b6の `server/cafe-ui.php` の地域・店舗タイプの絞り込みを読取。Aboutからの既存カフェ一覧への案内はこの既存機能だけを説明し、新しい営業・支援・予約条件を追加しない。
+
+## 2026-10-16 World-Originalの操作案内
+
+- [W3C WCAG 2.2・Language of Parts](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html)を10/16 JSTに実読。ページの既定言語と異なる表現を支援技術が判別できることが目的。今回、既存英語UIに対応する操作文言を英語へ揃える範囲を選ぶ。WCAG全項目適合や実機読み上げ音声の検証済みとは主張しない。
+- main `f5bcded2aac6adc05d4ba9c6fb4d6590a06c5152` の `src/world-build.mjs`（blob `67e08906cc1ec37dfcd02be018cb907e7706d873`）とローカル原本が一致。World-Originalはhtml lang=enでRegion/Topicを表示するが、skip-linkと各2個のaria-labelが日本語。`Skip to main content` / `Filter by region` / `Filter by topic`へmodeに応じて切替。World-JPの日本語、記事本文・言語判定、収集・翻訳・PWA・URL・JSは変更しない。
+- 生成物は最新main上の既存Curate & Build Worldが生成し、既存Deploy XServerへ渡す。古いローカル600記事のHTMLやアプリJSONをリモートへ上書きしない。未取得の公開HTML全文を取得済みとは報告しない。
