@@ -18,6 +18,7 @@ import {
   RELEVANT_KEYWORDS,
   SCORE_TERMS,
   SOFT_NOISE_TERMS,
+  PUBLICATION_NOISE_RULES,
 } from '../../config/scoring.mjs';
 import { PREFECTURES } from '../../config/regions.mjs';
 import {
@@ -39,7 +40,7 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'publication-quality-v5';
+export const QUALITY_VERSION = 'publication-quality-v6';
 
 /* ---------- 分類 ---------- */
 
@@ -208,11 +209,16 @@ export function isNearDuplicate(a, b) {
   if (a.prefecture && b.prefecture && a.prefecture !== b.prefecture) return false;
   const gap = Math.abs(Date.parse(a.publishedAt) - Date.parse(b.publishedAt));
   if (Number.isFinite(gap) && gap > 3 * 86_400_000) return false;
-  const ak = a._dedupeKey;
-  const bk = b._dedupeKey;
+  // Normalize publisher wrappers only for comparison, never overwrite the headline.
+  const comparisonTitle = article => cleanArticleTitle(article.title, article.sourceName)
+    .normalize('NFKC')
+    .replace(/\s*\((?:[^()]{0,30}(?:新聞|テレビ|通信|ニュース|放送|オンライン)|NOSWEB|スポニチアネックス)\)\s*$/u, '')
+    .replace(/消防本部/gu, '消防').replace(/市の消防/gu, '市消防');
+  const ak = normalizeTitleKey(comparisonTitle(a));
+  const bk = normalizeTitleKey(comparisonTitle(b));
   if (!ak || !bk) return false;
-  const aNumbers = String(a.title).match(/\d+/g)?.join('|') ?? '';
-  const bNumbers = String(b.title).match(/\d+/g)?.join('|') ?? '';
+  const aNumbers = comparisonTitle(a).match(/\d+/g)?.join('|') ?? '';
+  const bNumbers = comparisonTitle(b).match(/\d+/g)?.join('|') ?? '';
   if (aNumbers && bNumbers && aNumbers !== bNumbers) return false;
   if (ak === bk) return true;
   if (Math.min(ak.length, bk.length) >= 24 && (ak.includes(bk) || bk.includes(ak))) return true;
@@ -258,6 +264,9 @@ export function publicationExclusionReason(article) {
   if (!title || /^(?:工事中|準備中|作成中|テスト投稿|under construction|coming soon)[。.!！\s]*$/iu.test(title)) return 'placeholder';
   if (isLowValueDiscoveryPage(article)) return 'low-value-page';
   if (/市場規模|市場予測/u.test(title) && /レポート|成長率|予測|CAGR/iu.test(title)) return 'market-report';
+  for (const rule of PUBLICATION_NOISE_RULES) {
+    if (rule.pattern.test(title) && !rule.unless.test(`${title} ${article.summary || ''}`)) return rule.reason;
+  }
   const communityFeed = article._feedUrl && ['official', 'specialist'].includes(article._sourceTier);
   if (!article._passThrough && !communityFeed && !isRelevantArticle(title, article.summary)) return 'unrelated';
   return null;

@@ -68,7 +68,7 @@ export function normalizeTitleKey(title) {
     .replace(/\s+[-－―]\s+[^-－―|｜]+$/u, '')
     .replace(/(20\d{2}|令和\d+)年\d{1,2}月\d{1,2}日(掲載)?/gu, '')
     .replace(/https?:\/\/\S+/gu, '')
-    .replace(/[!！?？。、「」『』“”"'\s・…:：;；｜|【】［］\[\]（）()]/gu, '')
+    .replace(/[!！?？。、「」『』“”"'\s・…:：;；｜|【】［］\[\]（）()〈〉《》]/gu, '')
     .toLowerCase();
 }
 

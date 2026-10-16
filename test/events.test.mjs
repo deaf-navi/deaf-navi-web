@@ -1,9 +1,26 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {parseOioiSchedule,verifyReviewedEvent,reviewedVisualEvent,eventSourceText,eventHash,eventPeriod,mergeEventSnapshot,validEvent,eventDateLabel} from '../src/lib/events.mjs';
 import {renderEventsPage} from '../src/templates/events.mjs';
+import {eventDateWindow} from '../src/events.js';
 const now=Date.parse('2026-10-16T01:00:00Z');
 const base={id:'reviewed-event',title:'手話交流会',startDate:'2026-11-14',endDate:'2026-11-14',prefecture:'岩手県',venue:'公式会場',kind:'exchange',sourceUrl:'https://example.org/event',sourceName:'主催者',verifiedAt:new Date(now).toISOString(),verification:'verified',evidenceHash:'a'.repeat(64),status:'announced'};
 const source={id:'test',url:'https://example.org/schedule',name:'出演団体'};
+test('quick windows use Japan time and include only the remaining weekend/month',()=>{
+ assert.deepEqual(eventDateWindow('weekend',Date.parse('2026-10-16T06:00:00Z')),['2026-10-17','2026-10-18']);
+ assert.deepEqual(eventDateWindow('weekend',Date.parse('2026-10-17T15:00:00Z')),['2026-10-18','2026-10-18']);
+ assert.deepEqual(eventDateWindow('weekend',Date.parse('2026-10-18T15:00:00Z')),['2026-10-24','2026-10-25']);
+ assert.deepEqual(eventDateWindow('month',Date.parse('2026-12-31T15:00:00Z')),['2027-01-01','2027-01-31']);
+ assert.deepEqual(eventDateWindow('month',Date.parse('2028-02-15T00:00:00Z')),['2028-02-15','2028-02-29']);
+ assert.equal(eventDateWindow('',now),null);
+});
+test('known participation terms are visible outside disclosure and official links remain specific',()=>{
+ const html=renderEventsPage({events:[{...base,fee:'無料',target:'市内在住者。10月20日までに申込。',detailUrl:'https://example.org/apply'}]});
+ const row=html.slice(html.indexOf('<article'),html.indexOf('</article>'));
+ assert.ok(row.indexOf('無料')<row.indexOf('<details>'));
+ assert.ok(row.indexOf('10月20日まで')<row.indexOf('<details>'));
+ assert.match(row,/href="https:\/\/example.org\/apply"[^>]+aria-label="手話交流会の公式案内/);
+ assert.match(html,/data-range="weekend"/);assert.match(html,/type="module" src="\.\/events.js/);
+});
 const row=(date='11月14日(土)',pref='京都')=>`<li class="p-postList__item"><a href=https://example.org/detail><span class="c-postThumb__cat">${pref}</span><h4 class="event-date">${date}</h4><h5><time datetime="2026年10月1日"></time>手話交流会</h5><div class="p-postList__times">公式会場</div></a></li>`;
 test('publisher year and event-date determine occurrence, never post timestamp',()=>{const {events}=parseOioiSchedule('<h3>2026年</h3>'+row(),source,now);assert.equal(events[0].startDate,'2026-11-14');assert.equal(events[0].prefecture,'京都府');assert.equal(events[0].organizer,null)});
 test('publisher layout/date failure holds data, including missing year and impossible dates',()=>{for(const html of [row(),'<h3>2026年</h3>'+row('2月30日(月)'),'<h3>2026年</h3>'+row('近日開催'),'<h3>2026年</h3>'+row('11月14日(土)','架空')])assert.throws(()=>parseOioiSchedule(html,source,now))});
@@ -14,7 +31,7 @@ test('visual review does not extend itself on an automatic update',()=>{const en
 test('missing or failed source preserves prior event for review, never assumes cancellation',()=>{const events=mergeEventSnapshot([base],[],[],now);assert.equal(events.length,1);assert.equal(events[0].verification,'needs_review');assert.equal(events[0].status,'announced');assert.equal(mergeEventSnapshot([base],[base],[],now).length,1)});
 test('same occurrence from multiple sources is deduplicated without collapsing separate dates',()=>{assert.equal(mergeEventSnapshot([],[base,{...base,id:'second-source'}],[],now).length,1);assert.equal(mergeEventSnapshot([],[base,{...base,id:'next-date',startDate:'2026-11-15',endDate:'2026-11-15'}],[],now).length,2)});
 test('an unverified manual duplicate cannot replace a freshly checked occurrence',()=>{const events=mergeEventSnapshot([],[{...base,sourceId:'schedule'},{...base,id:'manual-copy',verification:'needs_review'}],[],now);assert.equal(events.length,1);assert.equal(events[0].verification,'verified')});
-test('event output escapes source text and provides source/dates without pretending unknown fees',()=>{const html=renderEventsPage({events:[{...base,title:'<script>bad</script>'}]},{files:{styles:'styles.css'}});assert.ok(html.includes('&lt;script&gt;bad'));assert.ok(!html.includes('<script>bad'));assert.ok(html.includes('参加条件・情報源'));assert.ok(html.includes('告知をご確認ください'));assert.ok(html.includes('events.html'))});
+test('event output escapes source text and provides source/dates without pretending unknown fees',()=>{const html=renderEventsPage({events:[{...base,title:'<script>bad</script>'}]},{files:{styles:'styles.css'}});assert.ok(html.includes('&lt;script&gt;bad'));assert.ok(!html.includes('<script>bad'));assert.ok(html.includes('主催・情報源'));assert.ok(html.includes('告知をご確認ください'));assert.ok(html.includes('events.html'));assert.ok(!html.includes('class="event-participation"'))});
 test('theater announcements retain sold-out status and can be found separately',()=>{
  const html='<h3>2026年</h3>'+row().replace('手話交流会','【満員御礼】手話新喜劇３');
  const event=parseOioiSchedule(html,source,now).events[0];
