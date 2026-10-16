@@ -20,6 +20,7 @@ export function Captions() {
   const [listening, setListening] = useState(false)
   const [error, setError] = useState<CaptionError | null>(null)
   const [copied, setCopied] = useState(false)
+  const [copyFailed, setCopyFailed] = useState(false)
   const [recLang, setRecLang] = useState(settings.lang === 'en' ? 'en-US' : 'ja-JP')
 
   const engineRef = useRef<CaptionEngine | null>(null)
@@ -103,12 +104,13 @@ export function Captions() {
   }
 
   const copyAll = async () => {
+    setCopyFailed(false); setCopied(false)
     try {
       await navigator.clipboard.writeText(state.finals.join('\n'))
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // クリップボード不可の環境では黙って何もしない
+      setCopyFailed(true)
     }
   }
 
@@ -139,6 +141,7 @@ export function Captions() {
       </header>
 
       <section className="card cap-controls">
+        <p className="start-note">{t('captions.privacy')}</p>
         {listening ? (
           <button type="button" className="btn btn-stop btn-xl" onClick={stop}>
             {t('captions.stop')}
@@ -166,6 +169,9 @@ export function Captions() {
           </p>
         )}
 
+        {error === 'other' && <p className="error-note" role="alert">{t('captions.error.other')}</p>}
+        {error === 'audio-capture' && <p className="error-note" role="alert">{t('captions.error.noMic')}</p>}
+        {error && <a href={routeToHash('board')}>{t('captions.goBoard')}</a>}
         <div className="cap-toolbar">
           <fieldset className="lang-toggle">
             <legend className="visually-hidden">{t('captions.langLabel')}</legend>
@@ -260,7 +266,7 @@ export function Captions() {
         </button>
       </div>
 
-      <p className="privacy-note">{t('captions.privacy')}</p>
+      <p role="status" className="hint">{copyFailed ? t('captions.copyFailed') : copied ? t('captions.copied') : ''}</p>
       {/* 稼働状態の通知は常設のライブリージョンで行う（内容ごと新規挿入だとSRが読まないため） */}
       <div aria-live="polite" className="visually-hidden">
         {listening ? t('captions.listening') : ''}

@@ -27,6 +27,7 @@ function renderGuideItem(item, sectionLabel) {
           </div>
           <p class="guide-card__summary">${escapeHtml(item.summary)}</p>
           <p class="guide-card__detail">${escapeHtml(item.detail)}</p>
+          ${item.reviewedAt ? `<p class="guide-card__reviewed">掲載説明の確認: <time datetime="${escapeHtml(item.reviewedAt)}">${escapeHtml(item.reviewedAt)}</time></p>` : ''}
           <a class="guide-card__link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.title)}の${escapeHtml(linkLabel)}（新しいタブで開く）">
             ${escapeHtml(linkLabel)} <span aria-hidden="true">↗</span>
           </a>
@@ -101,14 +102,15 @@ ${renderSiteHeader({
       <div class="guide-search__head">
         <div>
           <h2 id="guide-search-heading">ガイドを検索</h2>
-          <p>制度名、場面、キーワードで絞り込めます。</p>
         </div>
         <p class="guide-search__meta" aria-live="polite"><strong id="guide-visible-count">${totalItems}</strong> / ${totalItems}件</p>
       </div>
       <label class="guide-search__label" for="guide-search">キーワード</label>
-      <input class="guide-search__input" id="guide-search" type="search" inputmode="search" autocomplete="off" placeholder="例: 110、補聴器、就職、受験">
-      <p class="guide-search__reviewed">最終確認: <time datetime="${GUIDE_LAST_REVIEWED}">${escapeHtml(reviewedLabel)}</time></p>
+      <div class="guide-search-row"><input class="guide-search__input" id="guide-search" name="q" type="search" inputmode="search" autocomplete="off" placeholder="例: 補聴器 医療費"><button type="button" class="filter" id="guide-clear" hidden>検索をクリア</button></div>
+      <p class="guide-search__reviewed">リンク先・掲載説明の確認: <time datetime="${GUIDE_LAST_REVIEWED}">${escapeHtml(reviewedLabel)}</time></p>
     </section>
+
+    <nav class="guide-topics" aria-label="場面から探す">${GUIDE_SECTIONS.map(section => `<a href="#guide-${escapeHtml(section.id)}">${escapeHtml(section.label)}</a>`).join('')}</nav>
 
     <aside class="guide-alert" aria-label="緊急通報に関する注意">
       <strong>緊急時に備えて、事前登録と操作確認を。</strong>
@@ -118,6 +120,7 @@ ${renderSiteHeader({
 ${sectionsHtml}
     <p id="guide-empty" class="empty" role="status" hidden>該当するガイドがありません。別のキーワードで検索してください。</p>
 
+    <p class="guide-related">会話の補助に <a href="./otomado/#/board">おとまどの筆談</a> ／ 出かける場所を探すなら <a href="./connect/sign-cafe/">手話カフェ</a></p>
     <p class="guide-disclaimer">掲載内容は公的情報や実用ツールへの入口です。制度・受付期間・対応地域・サービス内容は変更される場合があるため、申請や利用の前にリンク先の最新情報をご確認ください。</p>
     <p class="about__back"><a href="./">← ニュースへ戻る</a></p>
   </main>

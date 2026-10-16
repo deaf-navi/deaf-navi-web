@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { SettingsProvider } from '../../state/settings'
@@ -65,6 +65,27 @@ afterEach(() => {
 })
 
 describe('Captions', () => {
+  it.each(['language-not-supported', 'audio-capture'])('stops and offers writing for %s errors', async (error) => {
+    const user = userEvent.setup()
+    renderCaptions()
+    await user.click(screen.getByRole('button', { name: '字幕をはじめる' }))
+    act(() => lastRec().onerror?.({ error }))
+    expect(screen.getByRole('alert')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'ひつだんを開く' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '字幕をはじめる' })).toBeInTheDocument()
+  })
+
+  it('explains copy failure without losing captions', async () => {
+    const user = userEvent.setup()
+    const copy = vi.spyOn(navigator.clipboard, 'writeText').mockRejectedValue(new Error('denied'))
+    renderCaptions()
+    await user.click(screen.getByRole('button', { name: '字幕をはじめる' }))
+    fireResult('保存したい字幕', true)
+    await user.click(screen.getByRole('button', { name: '全文をコピー' }))
+    expect(screen.getByRole('status')).toHaveTextContent('コピーできませんでした')
+    expect(screen.getByText('保存したい字幕')).toBeInTheDocument()
+    copy.mockRestore()
+  })
   it('shows the unsupported message when SpeechRecognition is missing', () => {
     delete (window as unknown as W).webkitSpeechRecognition
     renderCaptions()

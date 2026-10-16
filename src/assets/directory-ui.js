@@ -41,6 +41,8 @@
         detail.hidden = !detail.hidden;
         button.setAttribute('aria-expanded', String(!detail.hidden));
         button.textContent = detail.hidden ? '詳細 ＋' : '閉じる −';
+        const name = button.closest('tr')?.querySelector('.dn-cafe-name')?.textContent || '';
+        button.setAttribute('aria-label', `${name}の詳細${detail.hidden ? 'を開く' : 'を閉じる'}`);
       });
     });
     const links = [...table.querySelectorAll('[data-cafe-sort]')];

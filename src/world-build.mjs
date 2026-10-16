@@ -46,7 +46,7 @@ const JP_SITE_NAME = 'Deaf Navi World-JP';
 const ORIGINAL_SITE_NAME = 'Deaf Navi World-Original';
 const SITE_DESC = '世界中の主要メディアと多言語の地域別Google News検索から、聴覚障害・ろう者・難聴・手話・情報保障関連ニュースを日本語に翻訳してキュレーションするDeaf Naviの世界版ページ。';
 const ORIGINAL_SITE_DESC = 'Original-language global news articles gathered from major media and multilingual regional Google News queries about deaf, hard-of-hearing, sign language, accessibility, health, education, culture, and deaf sports topics.';
-const INITIAL_VISIBLE = 150;
+const INITIAL_VISIBLE = 40;
 
 const REGION_ORDER = ['all', 'asia_oceania', 'americas', 'europe_cis', 'middle_east_africa'];
 const TOPIC_ORDER = ['all', 'accessibility', 'rights', 'health', 'education', 'technology', 'culture', 'sports', 'safety', 'general'];
@@ -127,6 +127,7 @@ function refineJapanese(value) {
     .replace(/ ）/g, '）')
     .replace(/オーストラリア手話/g, 'Auslan（オーストラリア手話）')
     .replace(/オースラン語/g, 'Auslan')
+    .replace(/人工ワウ/g, '人工内耳')
     .replace(/オースラン/g, 'Auslan')
     .replace(/デフコミュニティ/g, 'ろう者コミュニティ')
     .replace(/聴覚障害者コミュニティ/g, 'ろう者コミュニティ')
@@ -154,19 +155,19 @@ function detectOriginalLang(text) {
   const value = String(text ?? '');
   if (/[\u0600-\u06ff]/.test(value)) return 'ar';
   if (/[\uac00-\ud7af]/.test(value)) return 'ko';
-  if (/[\u3400-\u9fff]/.test(value)) return 'zh';
   if (/[ぁ-んァ-ヶ]/.test(value)) return 'ja';
+  if (/[\u3400-\u9fff]/.test(value)) return 'zh';
   if (/[а-яё]/i.test(value)) return 'ru';
-  if (/[ğışİöüç]/i.test(value)) return 'tr';
-  if (/[äöüß]/i.test(value)) return 'de';
-  if (/[àâçéèêëîïôûùüÿœæ]/i.test(value)) return 'fr';
-  if (/[ãõáéíóúâêô]/i.test(value)) return 'pt';
-  if (/[ñ¿¡]/i.test(value)) return 'es';
-  if (/[àèéìíîòóùú]/i.test(value)) return 'it';
-  return 'en';
+  // Script can be detected, but Latin letters alone do not identify a language.
+  return 'und';
 }
 
-function relativeTime(iso) {
+function relativeTime(iso, locale = 'ja') {
+  if (locale === 'en') {
+    const seconds = Math.max(0, (Date.now() - Date.parse(iso)) / 1000);
+    const [unit, divisor] = seconds >= 86400 ? ['day', 86400] : seconds >= 3600 ? ['hour', 3600] : ['minute', 60];
+    return new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(-Math.floor(seconds / divisor), unit);
+  }
   const now = Date.now();
   const t = new Date(iso).getTime();
   const diff = Math.max(0, now - t);
@@ -218,7 +219,7 @@ function renderArticle(article, index, mode = 'jp') {
   const text = articleText(article, mode);
   const summary = cleanSummaryText(text.summary, text.title, article.sourceName);
   const originalHtml = mode === 'jp' && text.original
-    ? `\n        <p class="card__original" lang="en">${escapeHtml(text.original)}</p>`
+    ? `\n        <details class="world-original"><summary>原題を確認</summary><p class="card__original" lang="${detectOriginalLang(text.original)}" dir="auto">${escapeHtml(text.original)}</p></details>`
     : '';
   return `
       <article class="card world-card" data-region="${escapeHtml(article.region)}" data-topic="${escapeHtml(article.topic)}" data-index="${index}"${hidden}>
@@ -226,11 +227,11 @@ function renderArticle(article, index, mode = 'jp') {
           <span class="chip chip--world-region chip--region-${escapeHtml(article.region)}">${escapeHtml(regionLabel)}</span>
           <span class="chip chip--world-topic chip--topic-${escapeHtml(article.topic)}">${escapeHtml(topicLabel)}</span>
         </header>
-        <time class="card__time" datetime="${escapeHtml(article.publishedAt)}" title="${escapeHtml(formatDateJST(article.publishedAt))}">${escapeHtml(relativeTime(article.publishedAt))}</time>
+        <time class="card__time" datetime="${escapeHtml(article.publishedAt)}" title="${escapeHtml(formatDateJST(article.publishedAt))}">${escapeHtml(relativeTime(article.publishedAt, isOriginal ? 'en' : 'ja'))}</time>
         <div class="card__content">${renderThumbnail(article)}<div class="card__text">
-        <h3 class="card__title" lang="${text.lang}">
+        <h3 class="card__title" lang="${text.lang}" dir="auto">
           <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text.title)}</a>
-        </h3>${summary ? `\n        <p class="card__summary" lang="${text.lang}">${escapeHtml(summary)}</p>` : ''}${originalHtml}
+        </h3>${summary ? `\n        <p class="card__summary" lang="${text.lang}" dir="auto">${escapeHtml(summary)}</p>` : ''}${originalHtml}
         </div></div>
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
@@ -339,11 +340,11 @@ function renderPage(data, mode = 'jp') {
   const title = isOriginal ? `${siteName} | Original-language global deaf news` : `${siteName} | 世界の聴覚障害ニュース`;
   const heading = isOriginal ? 'World News Original' : 'World News JP';
   const lead = isOriginal
-    ? 'Fresh global news related to deaf, hard-of-hearing, sign language, accessibility, health, education, and culture is shown in each source article language.'
-    : '世界中の主要メディアと多言語の地域別検索から、聴覚障害・ろう者・難聴・手話・情報保障のニュースを日本語に翻訳してキュレーションします。';
+    ? 'Deaf news from around the world, in the original source language.'
+    : '世界のろう・難聴・手話のニュースを、日本語で。';
   const note = isOriginal
     ? 'Titles and summaries are not translated here; they stay in the original source language. Recent articles are prioritized, then balanced across regions.'
-    : 'タイトルと要約は日本語翻訳後にニュース見出しとして自然になるよう整えています。鮮度を優先しつつ、地域が偏りすぎないように並べています。';
+    : '自動翻訳を含みます。制度・医療の詳細は原題と出典を確認してください。';
   const filterAria = isOriginal ? 'Deaf Navi World filters' : 'Deaf Navi World フィルタ';
   const skipLabel = isOriginal ? 'Skip to main content' : 'メインコンテンツにスキップ';
   const regionAria = isOriginal ? 'Filter by region' : '地域で絞り込み';
@@ -415,6 +416,7 @@ function renderPage(data, mode = 'jp') {
   <link rel="stylesheet" href="./site-shell.css?v=20260917mark">
 
   ${jsonLd}
+  <noscript><style>.world-card[hidden]{display:block!important}.filters--world,.load-more-wrap{display:none}</style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">${escapeHtml(skipLabel)}</a>
@@ -434,6 +436,8 @@ ${renderSiteHeader({
 
   <nav class="filters filters--world" role="navigation" aria-label="${escapeHtml(filterAria)}">
     <div class="container">
+      <div class="world-search-row"><label for="world-search">${isOriginal ? 'Search' : 'キーワード'}</label><input id="world-search" type="search" name="q" maxlength="200" autocomplete="off" placeholder="${isOriginal ? 'Search news…' : '例: 手話 教育'}"><button type="button" class="filter" data-world-reset>${isOriginal ? 'Reset' : '条件を解除'}</button></div>
+      <details class="world-filter-details"><summary id="world-filter-summary">${isOriginal ? 'Region / topic' : '地域・カテゴリ'}</summary>
       <div class="world-filter-group" aria-label="${escapeHtml(regionAria)}">
         <span class="filters__label">${escapeHtml(regionLabel)}</span>
         <div class="filters__row" role="group" aria-label="${escapeHtml(regionAria)}">
@@ -446,6 +450,7 @@ ${renderSiteHeader({
           ${topicButtons}
         </div>
       </div>
+      </details>
     </div>
   </nav>
 
@@ -453,7 +458,7 @@ ${renderSiteHeader({
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
         <h2 id="articles-heading">${escapeHtml(heading)}</h2>
-        <p class="meta">
+        <p class="meta" aria-live="polite" aria-atomic="true">
           ${escapeHtml(showingLabel)}: <strong id="visible-count">${initialVisible}</strong> / ${escapeHtml(totalLabel)} <strong id="total-count">${articles.length}</strong> ${isOriginal ? 'articles' : '件'}
           <span class="meta__sep" aria-hidden="true">/</span>
           ${escapeHtml(updatedLabel)}: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>
@@ -463,7 +468,7 @@ ${renderSiteHeader({
       <div id="articles" class="articles">
 ${articlesHtml}
       </div>
-      <p id="empty-msg" class="empty" hidden>${escapeHtml(emptyLabel)}</p>
+      <div id="empty-msg" class="empty" role="status" hidden><p>${escapeHtml(emptyLabel)}</p><button class="filter" type="button" data-world-reset>${isOriginal ? 'Clear all filters' : 'すべての条件を解除'}</button></div>
       <div class="load-more-wrap">
         <button type="button" id="load-more-btn" class="load-more-btn"${articles.length <= INITIAL_VISIBLE ? ' hidden' : ''}>
           ${escapeHtml(loadMoreLabel)}<span class="load-more-btn__remain" id="load-more-remain">（${escapeHtml(remainingLabel)}）</span>

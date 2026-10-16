@@ -77,7 +77,7 @@ function domestic_filters(array $f):string {
     $shopTypes=SHOP_TYPES;unset($shopTypes['event']);
     $out.='<details class="dn-filter-more"'.($advanced?' open':'').'><summary>詳しい条件を追加'.($advanced?'（選択中）':'').'</summary><div class="dn-more-fields">'.select_field('listing','掲載区分',[''=>'カフェ・飲食店と定期開催','spots'=>'手話交流スポット','organizations'=>'関連団体・講座','all'=>'すべての区分'],$f['listing']??'').select_field('shop_type','店舗タイプ',[''=>'すべて']+$shopTypes,$f['shop_type']).select_field('status','営業状態',[''=>'閉店を除くすべて','open'=>'営業中','active_recurring'=>'定期開催中','temporarily_closed'=>'一時休業','needs_review'=>'確認中・未確認','permanently_closed'=>'閉店・活動終了'],$f['status']).select_field('operator_type','運営形態',[''=>'すべて']+OPERATOR_TYPES,$f['operator_type']).select_field('sign_language_level','手話対応レベル',[''=>'すべて']+SIGN_LEVELS,$f['sign_language_level']).'</div><p class="dn-filter-related"><a href="?listing=spots">手話交流スポットを見る</a><a href="?listing=organizations">関連団体・講座を見る</a></p><fieldset class="dn-feature-checks"><legend>特徴（公表・確認できた情報のみ）</legend>';
     foreach(CAFE_FEATURES as $k=>$label)$out.='<label class="dn-check"><input type="checkbox" name="'.$k.'" value="1"'.($f[$k]==='1'?' checked':'').'>'.e($label).'</label>';
-    $out.='</fieldset><button>詳しい条件で探す</button></details><div class="dn-filter-bottom">'.select_field('sort','並べ替え',['region'=>'所在地','name'=>'店舗名','type'=>'店舗タイプ'],$f['sort']?:'region').select_field('dir','順序',['asc'=>'昇順','desc'=>'降順'],$f['dir']?:'asc').select_field('view','表示方法',['table'=>'比較表','cards'=>'カード'],$f['view']?:'table').'<button>表示を更新</button><a href="/connect/sign-cafe/">条件をクリア</a></div></form>';
+    $out.='</fieldset><button>詳しい条件で探す</button></details><div class="dn-filter-bottom">'.select_field('sort','並べ替え',['confirmed'=>'確認情報を優先','region'=>'所在地','name'=>'店舗名','type'=>'店舗タイプ'],$f['sort']?:'confirmed').select_field('dir','順序',['asc'=>'昇順','desc'=>'降順'],$f['dir']?:'asc').select_field('view','表示方法',['table'=>'比較表','cards'=>'カード'],$f['view']?:'table').'<button>表示を更新</button><a href="/connect/sign-cafe/">条件をクリア</a></div></form>';
     return $out;
 }
 function domestic_empty(array $f):string {
@@ -85,13 +85,18 @@ function domestic_empty(array $f):string {
     $neighbors=$f['prefecture']==='奈良県'?['大阪府','京都府','兵庫県']:array_values(array_filter($prefs,fn($p)=>$p!==$f['prefecture']&&region($p,'JP')===$reg));
     $out='<section class="dn-empty"><h2>条件に一致する掲載情報はまだありません</h2><p>未調査・確認待ちの店舗もあります。お店が存在しないという意味ではありません。</p><div class="dn-links">';
     foreach($neighbors as $pref)$out.='<a href="?'.e(http_build_query(['prefecture'=>$pref])).'">'.e($pref).'を見る</a>';
-    return $out.'<a href="?'.e(http_build_query(['region'=>$reg,'shop_type'=>'recurring_program'])).'">地域の定期開催を見る</a><a href="/connect/sign-cafe/events/">手話カフェイベントを見る</a><a href="/submit/">新しい情報を提供する</a></div></section>';
+    return $out.'<a href="?'.e(http_build_query(['region'=>$reg,'shop_type'=>'recurring_program'])).'">地域の定期開催を見る</a><a href="/connect/sign-cafe/events/">手話カフェイベントを見る</a><a href="/connect/sign-cafe/">条件をすべて解除</a><a href="/submit/">新しい情報を提供する</a></div></section>';
+}
+// Use published states and dates only; this does not imply a venue is open now.
+function cafe_priority_compare(array $a,array $b):int {
+    $rank=fn($p)=>in_array($p['status']??'',['open','active_recurring'],true)?0:1;
+    return ($rank($a)<=>$rank($b))?:strcmp($b['last_verified_at']??'',$a['last_verified_at']??'')?:strcmp($a['slug'],$b['slug']);
 }
 function domestic_cafe_page():string {
     $all=array_values(array_filter(visible_records(),fn($p)=>$p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&!empty($p['signing_store'])))));
-    $f=domestic_filter_values();$list=array_values(array_filter($all,fn($p)=>domestic_matches($p,$f)));$sort=in_array($f['sort'],['name','type','region'],true)?$f['sort']:'region';
+    $f=domestic_filter_values();$list=array_values(array_filter($all,fn($p)=>domestic_matches($p,$f)));$sort=in_array($f['sort'],['name','type','region'],true)?$f['sort']:'confirmed';
     $collator=class_exists('Collator')?new Collator('ja_JP'):null;
-    usort($list,fn($a,$b)=>($f['dir']==='desc'?-1:1)*(($collator?$collator->compare(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)):strcmp(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)))?:strcmp($a['slug'],$b['slug'])));
+    usort($list,fn($a,$b)=>($f['dir']==='desc'?-1:1)*($sort==='confirmed'?cafe_priority_compare($a,$b):(($collator?$collator->compare(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)):strcmp(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)))?:strcmp($a['slug'],$b['slug']))));
     $total=count($list);$size=in_array($f['per_page'],['24','48','96'],true)?(int)$f['per_page']:24;$page=min(max(1,(int)$f['page']),max(1,(int)ceil($total/$size)));$list=array_slice($list,($page-1)*$size,$size);
     $seo=cafe_directory_seo($f,$list,$total,$page,$size);
     $body='<div class="dn-cafe-navigation">'.tabs(false,false,false).'<details class="dn-guide-menu"><summary>使い方・掲載方針<span aria-hidden="true">＋</span></summary><nav class="dn-section-links" aria-label="手話カフェの探し方">'.cafe_guide_link('/connect/sign-cafe/map/','地図から探す','map').cafe_guide_link('#cafe-regions','地域から探す','pin').cafe_guide_link('#cafe-guide','初めての方へ','book').cafe_guide_link('#cafe-policy','掲載・更新方針','edit').'</nav></details></div><div class="dn-directory-layout">'.cafe_filter_panel(domestic_filters($f)).'<section id="cafes" class="dn-directory-results" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading" class="dn-visually-hidden">手話カフェを探す</h2>'.cafe_result_bar($total,false,$f).cafe_active_filters($f).cafe_quick_places($all).cafe_listing_advice();

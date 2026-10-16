@@ -72,6 +72,8 @@ ${renderSiteHeader({
   })}
 
   <main id="main" class="container about" role="main">
+    <nav class="about-toc" aria-label="このページの目次"><a href="#about-policy">選定方針</a><a href="#about-correction">訂正・問い合わせ</a><a href="#about-operator">運営者</a><a href="#about-privacy">プライバシー</a><a href="#updates">更新履歴</a></nav>
+
     <section aria-labelledby="about-concept">
       <h2 id="about-concept" class="about__h2">このサイトについて</h2>
       <p>Deaf Navi Web は、<strong>聴覚障害・難聴・ろう者・中途失聴者</strong>のコミュニティに関わる情報を、信頼できる情報源から自動収集・分類してお届けする無料ニュースキュレーションサイトです。</p>
@@ -80,6 +82,30 @@ ${renderSiteHeader({
       <p><a href="./${files.guide}">暮らしのガイド</a>では、アプリ版と同じ方針で、緊急通報・医療・教育・就労・電話サービスなどの公式情報を探せます。</p>
       <p><a href="./otomado/">おとまど</a>は、周囲の音の可視化、リアルタイム字幕、筆談ボードをひとつにまとめた、Deaf Navi Web の無料情報保障ツールです。</p>
     </section>
+    <section id="about-policy" aria-labelledby="about-policy-heading">
+      <h2 id="about-policy-heading" class="about__h2">選定方針と確実性</h2>
+      <div class="policy-levels" aria-label="情報源の選定区分">
+        <p><strong>一次情報</strong><span>公式団体・公的機関が発信した情報。直接フィードまたはGoogle News経由で取得</span></p>
+        <p><strong>専門情報</strong><span>聴覚障害、手話、医療、教育、デフスポーツ等の専門団体・媒体が発信した情報</span></p>
+        <p><strong>報道・発見</strong><span>Google News RSSを入口に発見し、関連度と出典優先度で選別した報道・公開情報</span></p>
+        <p><strong>関連媒体</strong><span>周辺分野を扱う媒体から、関連度が基準を満たした記事</span></p>
+      </div>
+      <p>同じ話題が複数ある場合は、公式・専門ソース、公的機関、主要報道機関を優先します。タイトルの近似だけでなくURL・日付・数字も見て重複を整理し、見出しとほぼ同じ要約や配信システム由来の定型文は表示しません。</p>
+      <p>自動キュレーションは記事の事実関係を独自に保証するものではありません。特に医療・制度・災害情報は、カードに表示される選定区分を参考にしつつ、必ずリンク先の公式情報・元記事で最新内容をご確認ください。</p>
+    </section>
+    <section id="about-correction" aria-labelledby="about-correction-heading">
+      <h2 id="about-correction-heading" class="about__h2">自動更新と、訂正・問い合わせ</h2>
+      <p>国内ニュースは収集・分類・掲載条件の判定を自動で行います。Worldの日本語版は自動翻訳を含み、翻訳できなかった記事は専用のAI処理で補完します。すべての記事を人が事前確認しているわけではありません。</p>
+      <p>編集メモは、対象団体の一次情報の本文を取得・照合して自動更新する短い引用欄です。掲載日から7日以内、かつ本文確認から24時間以内の情報を表示し、再確認できなければ非表示にします。</p>
+      <p>誤訳・誤分類・古い情報にお気づきの場合は、該当ページのURL、問題の箇所、確認できる公式情報を <a href="mailto:info@flamenut.com?subject=Deaf%20Navi%20掲載情報の訂正">info@flamenut.com</a> へお知らせください。確認できた内容に基づいて修正します。手話カフェには各掲載ページの「この情報の修正を知らせる」からも連絡できます。</p>
+    </section>
+    <section aria-labelledby="about-operator">
+      <h2 id="about-operator" class="about__h2">運営</h2>
+      <p>Deaf Navi Web とiOSアプリ「Deaf Navi」は <strong>TAMA</strong> が運営しています。Web版で選定したニュースや暮らしの情報をアプリと共有し、それぞれの利用場面に合った形で提供しています。</p>
+      <p>Deaf Navi は、TAMAによる独立系ソフトウェア／AIスタジオ <a href="https://flamenut.com/">FlameNut</a> のプロジェクトです。</p>
+      <p>お問い合わせ：<a href="mailto:info@flamenut.com">info@flamenut.com</a></p>
+    </section>
+
 
     <section id="ios-app" class="about-app" aria-labelledby="about-ios-app">
       <div class="about-app__intro">
@@ -112,6 +138,8 @@ ${renderSiteHeader({
 
     <section id="updates" aria-labelledby="about-updates">
       <h2 id="about-updates" class="about__h2">アップデート情報</h2>
+      <p><time datetime="2026-10-16">2026年10月16日</time>：ニュースの掲載品質・編集メモの自動更新と、World、ガイド、おとまど、関連ページの使いやすさを改善しました。</p>
+      <details class="about-details"><summary>更新履歴を開く</summary>
       <article class="release-note">
         <header class="release-note__head">
           <time datetime="2026-08-14">2026年8月14日</time>
@@ -156,10 +184,12 @@ ${renderSiteHeader({
           <li>ニュース検索、情報源区分、取得再試行、前回記事の短期補完、180日以内の鮮度判定を維持しながらWeb版とアプリ版の内容を同期</li>
         </ul>
       </article>
+      </details>
     </section>
 
     <section aria-labelledby="about-sources">
       <h2 id="about-sources" class="about__h2">情報源</h2>
+      <details class="about-details"><summary>情報源の一覧を開く</summary>
       <h3 class="about__h3">国内版: 公式・専門媒体（直接RSS/Atom）</h3>
       <ul>
         <li><a href="https://www.jfd.or.jp/" target="_blank" rel="noopener noreferrer">全日本ろうあ連盟</a> — 全国規模の連盟公式情報（制度・手話言語法を含む）</li>
@@ -192,21 +222,12 @@ ${renderSiteHeader({
         <li>ヨーロッパ・CIS: BBC News、Reuters、Deutsche Welle、France 24、Euronews、POLITICO Europe、Le Monde、The Kyiv Independent ほか</li>
         <li>中東・アフリカ: Al Jazeera、The National、Arab News、Africanews、News24、Daily Maverick、Nation Africa ほか</li>
         <li>英語に加えて、スペイン語、ポルトガル語、フランス語、ドイツ語、イタリア語、トルコ語、韓国語、中国語、アラビア語などの検索語を使い、鮮度を優先しながら地域が偏りすぎないように並べています。</li>
-        <li>Deaf Navi World-JP は自動翻訳後に「ろう」「難聴」「手話」「補聴器」「Auslan」などの用語補正を行い、Codex App Server が利用できる環境ではタイトル・要約をニュース見出しとして自然な日本語に整えます。Deaf Navi World-Original では翻訳せず、各ソースの原文タイトル・要約を表示します。</li>
+        <li>Deaf Navi World-JP は自動翻訳後に「ろう」「難聴」「手話」「補聴器」「Auslan」などの用語補正を行い、翻訳取得に失敗した記事は専用のAI処理で補完します。Deaf Navi World-Original では翻訳せず、各ソースの原文タイトル・要約を表示します。</li>
       </ul>
+      </details>
     </section>
 
-    <section id="about-policy" aria-labelledby="about-policy-heading">
-      <h2 id="about-policy-heading" class="about__h2">選定方針と確実性</h2>
-      <div class="policy-levels" aria-label="情報源の選定区分">
-        <p><strong>一次情報</strong><span>公式団体・公的機関が発信した情報。直接フィードまたはGoogle News経由で取得</span></p>
-        <p><strong>専門情報</strong><span>聴覚障害、手話、医療、教育、デフスポーツ等の専門団体・媒体が発信した情報</span></p>
-        <p><strong>報道・発見</strong><span>Google News RSSを入口に発見し、関連度と出典優先度で選別した報道・公開情報</span></p>
-        <p><strong>関連媒体</strong><span>周辺分野を扱う媒体から、関連度が基準を満たした記事</span></p>
-      </div>
-      <p>同じ話題が複数ある場合は、公式・専門ソース、公的機関、主要報道機関を優先します。タイトルの近似だけでなくURL・日付・数字も見て重複を整理し、見出しとほぼ同じ要約や配信システム由来の定型文は表示しません。</p>
-      <p>自動キュレーションは記事の事実関係を独自に保証するものではありません。特に医療・制度・災害情報は、カードに表示される選定区分を参考にしつつ、必ずリンク先の公式情報・元記事で最新内容をご確認ください。</p>
-    </section>
+
 
     <section aria-labelledby="about-categories">
       <h2 id="about-categories" class="about__h2">カテゴリ分類</h2>
@@ -237,17 +258,12 @@ ${renderSiteHeader({
 
     <section aria-labelledby="about-privacy">
       <h2 id="about-privacy" class="about__h2">アクセス解析とプライバシー</h2>
-      <p>運営サーバーでは、URLパス・日時・応答結果とアクセス元の分類を記録します。日別の利用者数は、接続IPとブラウザー情報をサーバー内で日ごとにHMAC化して重複を除いた推定値です。この計測にCookieや端末への識別子保存は使わず、生のIP・ブラウザー情報・入力内容・音声・URLの検索条件は保存しません。管理者向けの記録は180日を閲覧対象とし、古い分は月次で圧縮して非公開で保管します。</p>
+      <p>運営サーバーでは、URLパス・日時・応答結果とアクセス元の分類を記録します。日別の利用者数は、接続IPとブラウザー情報をサーバー内で日ごとにHMAC化して重複を除いた推定値です。この計測にCookieや端末への識別子保存は使わず、アクセス記録には、生のIP・ブラウザー情報・フォームの入力内容・音声・URLの検索条件を含めません。手話カフェへの情報提供・問い合わせは、フォームに記載した目的と保存条件に従って別途受け付けます。管理者向けの記録は180日を閲覧対象とし、古い分は月次で圧縮して非公開で保管します。</p>
       <p>サイトの利用状況と表示性能を把握するため、<a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer">Cloudflare Web Analytics</a> を利用しています。ページのURLパス、参照元、国・地域、デバイス、ブラウザ、OS、表示性能などを集計し、サイト改善に使用します。</p>
       <p>Cloudflareの公式仕様では、このアクセス解析はCookieやlocalStorageなどのクライアント側状態を使用せず、IPアドレスやUser-Agentによる個人の継続追跡・フィンガープリントを行いません。クエリ文字列も解析画面には記録されません。解析用スクリプトが通信できない場合も、Deaf Naviの表示・PWA・情報保障ツールはそのまま利用できます。</p>
     </section>
 
-    <section aria-labelledby="about-operator">
-      <h2 id="about-operator" class="about__h2">運営</h2>
-      <p>Deaf Navi Web とiOSアプリ「Deaf Navi」は <strong>TAMA</strong> が運営しています。Web版で選定したニュースや暮らしの情報をアプリと共有し、それぞれの利用場面に合った形で提供しています。</p>
-      <p>Deaf Navi は、TAMAによる独立系ソフトウェア／AIスタジオ <a href="https://flamenut.com/">FlameNut</a> のプロジェクトです。</p>
-      <p>お問い合わせ：<a href="mailto:info@flamenut.com">info@flamenut.com</a></p>
-    </section>
+
 
     <section aria-labelledby="about-feeds">
       <h2 id="about-feeds" class="about__h2">配信・共有</h2>

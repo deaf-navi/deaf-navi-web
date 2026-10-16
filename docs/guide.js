@@ -5,6 +5,7 @@
   const items = [...document.querySelectorAll('[data-guide-item]')];
   const visibleCount = document.querySelector('#guide-visible-count');
   const empty = document.querySelector('#guide-empty');
+  const clear = document.querySelector('#guide-clear');
 
   if (!input || !items.length) return;
 
@@ -19,7 +20,7 @@
     let count = 0;
 
     for (const item of items) {
-      const matches = !query || normalize(item.dataset.guideSearch).includes(query);
+      const matches = query.split(' ').filter(Boolean).every(word => normalize(item.dataset.guideSearch).includes(word));
       item.hidden = !matches;
       if (matches) count += 1;
     }
@@ -33,9 +34,13 @@
 
     visibleCount.textContent = String(count);
     empty.hidden = count !== 0;
+    if (clear) clear.hidden = !query;
   };
 
   input.addEventListener('input', update);
+  const reset = () => { input.value = ''; update(); };
+  clear?.addEventListener('click', () => { reset(); input.focus(); });
+  document.querySelectorAll('.guide-topics a').forEach(link => link.addEventListener('click', reset));
   input.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || !input.value) return;
     input.value = '';

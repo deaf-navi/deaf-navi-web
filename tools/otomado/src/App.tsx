@@ -52,10 +52,7 @@ function ProductHeader() {
   const { settings, update, t } = useSettings()
   return (
     <header className="product-header">
-      <div>
-        <p className="product-header-kicker">{t('app.extension')}</p>
-        <p className="product-header-name">{t('app.name')}</p>
-      </div>
+
       <div className="product-header-actions">
         <fieldset className="lang-toggle product-header-language">
           <legend className="visually-hidden">{t('settings.lang')}</legend>

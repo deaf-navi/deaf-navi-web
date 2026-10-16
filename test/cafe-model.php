@@ -69,4 +69,13 @@ foreach(['spots','organizations','all'] as $group){
     foreach($links[1] as $url){parse_str(substr(html_entity_decode($url),1),$params);ok(($params['listing']??'')===$group&&($params['region']??'')==='四国','sorting preserves listing and region');}
 }
 $_GET=[];
+$priority=[
+    ['slug'=>'unknown','status'=>'unknown','last_verified_at'=>'2026-10-16'],
+    ['slug'=>'older','status'=>'open','last_verified_at'=>'2026-09-01'],
+    ['slug'=>'recent','status'=>'active_recurring','last_verified_at'=>'2026-10-01'],
+    ['slug'=>'undated','status'=>'open','last_verified_at'=>''],
+];
+usort($priority,'cafe_priority_compare');
+ok(array_column($priority,'slug')===['recent','older','undated','unknown'],'published operating states precede unknown; newest confirmation first; missing date last within state');
+ok(cafe_priority_compare(['slug'=>'a','status'=>'open'],['slug'=>'b','status'=>'open'])<0,'equal confirmation uses stable slug order');
 echo json(['result'=>'CAFE_MODEL_TESTS_OK','checks'=>$checks])."\n";
