@@ -380,7 +380,7 @@ ${renderSiteHeader({
   })}
 
   <main id="main" class="container" role="main">
-    <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./guide/emergency.html">緊急時の連絡方法</a></nav>
+    <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
 ${renderEditorial(opts.editorialNotes ?? EDITORIAL_NOTES, now)}
 ${renderFeatured(featured)}
 

@@ -28,6 +28,7 @@ test('home prioritizes sourced editorial and news; expired notes disappear and f
   assert.ok(html.indexOf('id="editorial-note"') < html.indexOf('id="news-toolbar"'));
   assert.ok(html.indexOf('id="articles"') < html.indexOf('class="quick-access"'));
   assert.match(html, /<details class="news-filters" id="news-filters">/);
+  assert.match(html, /href="\.\/guide\.html#guide-emergency">緊急時の連絡方法<\/a>/);
   assert.ok(html.includes('&lt;script&gt;bad&lt;/script&gt;'));
   assert.ok(!render('2026-10-23').includes('id="editorial-note"'));
 });
