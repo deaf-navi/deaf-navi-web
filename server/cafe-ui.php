@@ -67,12 +67,15 @@ function domestic_matches(array $p,array $f):bool {
     if($status===''&&($f['history']??'')!=='1'&&in_array($p['status'],['closed','permanently_closed'],true))return false;
     if(($f['type']??'')!==''&&$f['type']!==($p['type']??''))return false;
     foreach(CAFE_FEATURES as $k=>$label)if(($f[$k]??'')==='1'&&$p[$k]!==true)return false;
-    $q=normalized($f['q']??'');
-    return $q===''||str_contains(normalized(implode(' ',array_map(fn($k)=>(string)($p[$k]??''),['name','name_kana','prefecture','city','address','venue_name','description','sign_support','operator','recurrence']))),$q);
+    $words=array_filter(array_map('normalized',preg_split('/[\s\p{Z}]+/u',$f['q']??'')?:[]),fn($word)=>$word!=='');
+    $search=normalized(implode(' ',array_map(fn($k)=>(string)($p[$k]??''),['name','name_kana','prefecture','city','address','venue_name','description','sign_support','operator','recurrence'])));
+    foreach($words as $word)if(!str_contains($search,$word))return false;
+    return true;
 }
 function domestic_filters(array $f):string {
     $regions=['北海道','東北','関東','中部','近畿','中国','四国','九州','沖縄'];$prefs=explode(' ',JP_PREFECTURES);
-    $out='<form method="get" class="dn-domestic-filter" aria-label="日本の手話カフェを絞り込む"><div class="dn-search-primary">'.field('q','店舗名・地域・キーワード',$f['q'],'search').select_field('region','地域',[''=>'全国']+array_combine($regions,$regions),$f['region']).select_field('prefecture','都道府県',[''=>'すべて']+array_combine($prefs,$prefs),$f['prefecture']).'<button class="dn-search-button">'.cafe_icon('search').'<span>この条件で探す</span></button></div>';
+    $prefRegions=array_combine($prefs,array_map(fn($pref)=>region($pref,'JP'),$prefs));
+    $out='<form method="get" data-pref-regions="'.e(json_encode($prefRegions,JSON_UNESCAPED_UNICODE)).'" class="dn-domestic-filter" aria-label="日本の手話カフェを絞り込む"><div class="dn-search-primary">'.field('q','店舗名・地域・キーワード',$f['q'],'search').select_field('region','地域',[''=>'全国']+array_combine($regions,$regions),$f['region']).select_field('prefecture','都道府県',[''=>'すべて']+array_combine($prefs,$prefs),$f['prefecture']).'<button class="dn-search-button">'.cafe_icon('search').'<span>この条件で探す</span></button></div>';
     $advanced=array_filter(array_intersect_key($f,array_flip(['listing','shop_type','status','operator_type','sign_language_level','events',...array_keys(CAFE_FEATURES)])));
     $shopTypes=SHOP_TYPES;unset($shopTypes['event']);
     $out.='<details class="dn-filter-more"'.($advanced?' open':'').'><summary>詳しい条件を追加'.($advanced?'（選択中）':'').'</summary><div class="dn-more-fields">'.select_field('listing','掲載区分',[''=>'カフェ・飲食店と定期開催','spots'=>'手話交流スポット','organizations'=>'関連団体・講座','all'=>'すべての区分'],$f['listing']??'').select_field('shop_type','店舗タイプ',[''=>'すべて']+$shopTypes,$f['shop_type']).select_field('status','営業状態',[''=>'閉店を除くすべて','open'=>'営業中','active_recurring'=>'定期開催中','temporarily_closed'=>'一時休業','needs_review'=>'確認中・未確認','permanently_closed'=>'閉店・活動終了'],$f['status']).select_field('operator_type','運営形態',[''=>'すべて']+OPERATOR_TYPES,$f['operator_type']).select_field('sign_language_level','手話対応レベル',[''=>'すべて']+SIGN_LEVELS,$f['sign_language_level']).'</div><p class="dn-filter-related"><a href="?listing=spots">手話交流スポットを見る</a><a href="?listing=organizations">関連団体・講座を見る</a></p><fieldset class="dn-feature-checks"><legend>特徴（公表・確認できた情報のみ）</legend>';

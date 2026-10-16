@@ -1,0 +1,35 @@
+/* Keep the cafe directory's comparison tools; align its reading surface with news. */
+.dn-directory.dn-cafe-theme {
+  --cafe-bg:var(--bg-elevated);--cafe-paper:var(--bg-elevated);--cafe-soft:var(--accent-soft);
+  --cafe-line:var(--border-default);--cafe-ink:var(--text-primary);--cafe-muted:var(--text-secondary);
+  --cafe-accent:var(--accent-deep);--cafe-button-text:var(--text-on-accent);
+  --cafe-orange:var(--accent-deep);--cafe-peach:var(--accent-soft);
+}
+:root[data-theme="dark"] .dn-directory.dn-cafe-theme {
+  --cafe-bg:var(--bg-elevated);--cafe-paper:var(--bg-elevated);--cafe-soft:var(--accent-soft);
+  --cafe-line:var(--border-default);--cafe-ink:var(--text-primary);--cafe-muted:var(--text-secondary);
+  --cafe-accent:var(--accent-deep);--cafe-button-text:var(--text-on-accent);
+  --cafe-orange:var(--accent-deep);--cafe-peach:var(--accent-soft);
+}
+.dn-directory.dn-cafe-theme .dn-cafe-welcome { display:block; padding:22px 0; }
+.dn-directory.dn-cafe-theme .dn-cafe-welcome h1 { color:var(--cafe-accent);font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.5;letter-spacing:-.025em; }
+.dn-directory.dn-cafe-theme .dn-welcome-aside { display:block;max-width:70em;margin-top:8px; }
+.dn-directory.dn-cafe-theme .dn-welcome-message { font-size:calc(14px * var(--cafe-scale));color:var(--cafe-muted);margin:0 0 4px; }
+.dn-directory.dn-cafe-theme .dn-welcome-description { display:block;font-size:calc(14px * var(--cafe-scale));line-height:1.85; }
+.dn-directory.dn-cafe-theme .dn-filter-panel { border:0;border-block:1px solid var(--cafe-line);border-radius:0;padding:16px 0; }
+.dn-directory.dn-cafe-theme .dn-field input,.dn-directory.dn-cafe-theme .dn-field select { background:var(--bg-base);border-radius:6px; }
+.dn-directory.dn-cafe-theme .dn-result-bar { border-bottom:2px solid var(--cafe-accent); }
+.dn-directory.dn-cafe-theme .dn-result strong { font-size:1.75rem;letter-spacing:0;color:var(--cafe-accent); }
+.dn-directory.dn-cafe-theme .dn-filter-panel-note,.dn-directory.dn-cafe-theme .dn-filter-tip,.dn-directory.dn-cafe-theme .dn-results-note { font-size:calc(12px * var(--cafe-scale)); }
+.dn-directory.dn-cafe-theme .dn-tabs [aria-current] { color:var(--cafe-accent);border-color:var(--cafe-accent); }
+.dn-directory.dn-cafe-theme .dn-guide-menu>summary,.dn-directory.dn-cafe-theme .dn-listing-advice>summary { min-height:44px; }
+.dn-directory.dn-cafe-theme .dn-place-card,.dn-directory.dn-cafe-theme .dn-event-card { border:0;border-top:1px solid var(--cafe-line);border-radius:0;padding:22px 0;box-shadow:none; }
+.dn-directory.dn-cafe-theme .dn-event-date,.dn-directory.dn-cafe-theme .dn-cafe-guide>h2 { color:var(--cafe-accent); }
+.dn-directory.dn-cafe-theme .dn-cafe-name { font-size:calc(15px * var(--cafe-scale));line-height:1.7; }
+.dn-directory.dn-cafe-theme .dn-view-tools [aria-current],.dn-directory.dn-cafe-theme .dn-event-periods a[aria-current],.dn-directory.dn-cafe-theme .dn-event-regions a[aria-current] { background:var(--cafe-accent);color:var(--cafe-button-text); }
+@media(max-width:700px) {
+  .dn-directory.dn-cafe-theme .dn-cafe-welcome { padding:16px 0 18px; }
+  .dn-directory.dn-cafe-theme .dn-tabs a { font-size:calc(12px * var(--cafe-scale)); }
+  .dn-directory.dn-cafe-theme .dn-tabs .dn-cafe-icon { display:none; }
+  .dn-directory.dn-cafe-theme .dn-result-bar { flex-wrap:wrap; }
+}

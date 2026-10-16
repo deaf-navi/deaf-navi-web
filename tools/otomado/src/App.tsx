@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SettingsProvider, useSettings } from './state/settings'
 import { useRoute, routeToHash } from './router'
 import { Home } from './modules/home/Home'
@@ -90,6 +90,8 @@ function ProductHeader() {
 
 function Shell() {
   const route = useRoute()
+  // Keep an unfinished message only in memory while switching tools.
+  const [boardDraft, setBoardDraft] = useState('')
   const { t } = useSettings()
   const mainRef = useRef<HTMLElement>(null)
   const firstRender = useRef(true)
@@ -115,7 +117,7 @@ function Shell() {
         {route === 'home' && <Home />}
         {route === 'sound' && <SoundSentinel />}
         {route === 'captions' && <Captions />}
-        {route === 'board' && <Board />}
+        {route === 'board' && <Board draft={boardDraft} onDraftChange={setBoardDraft} />}
         {route === 'settings' && <SettingsScreen />}
       </main>
       <BottomNav route={route} />

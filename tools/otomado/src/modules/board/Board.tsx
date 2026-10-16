@@ -12,9 +12,10 @@ import {
   savePhrases,
 } from './phrases'
 
-export function Board() {
+export function Board({ draft = '', onDraftChange }: { draft?: string; onDraftChange?: (value: string) => void }) {
   const { settings, t } = useSettings()
-  const [text, setText] = useState('')
+  const [text, setLocalText] = useState(draft)
+  const setText = (value: string) => { setLocalText(value); onDraftChange?.(value) }
   const [mode, setMode] = useState<'compose' | 'show'>('compose')
   const [displayText, setDisplayText] = useState('')
   const [flipped, setFlipped] = useState(false)
@@ -136,7 +137,7 @@ export function Board() {
           placeholder={t('board.placeholder')}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && !e.nativeEvent.isComposing) {
               e.preventDefault()
               show(text)
             }
@@ -151,6 +152,7 @@ export function Board() {
           {t('board.show')}
         </button>
         <p className="hint">{t('board.showHint')}</p>
+        <p className="hint">{t('board.draftHint')}</p>
       </section>
 
       <section className="card" aria-labelledby="phrases-heading">

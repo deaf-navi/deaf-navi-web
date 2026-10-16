@@ -10,12 +10,14 @@ function ToolCard({
   title,
   desc,
   tone,
+  hint,
 }: {
   route: Route
   icon: ReactNode
   title: string
   desc: string
   tone: 'sound' | 'captions' | 'board'
+  hint: string
 }) {
   return (
     <a className="tool-card" data-tone={tone} href={routeToHash(route)}>
@@ -25,6 +27,7 @@ function ToolCard({
       <span className="tool-card-body">
         <span className="tool-card-title">{title}</span>
         <span className="tool-card-desc">{desc}</span>
+        <span className="tool-card-hint">{hint}</span>
       </span>
     </a>
   )
@@ -50,6 +53,7 @@ export function Home() {
           icon={<IconSound size={30} />}
           title={t('nav.sound')}
           desc={t('home.sound.desc')}
+          hint={t('home.micHint')}
         />
         <ToolCard
           route="captions"
@@ -57,6 +61,7 @@ export function Home() {
           icon={<IconCaptions size={30} />}
           title={t('nav.captions')}
           desc={t('home.captions.desc')}
+          hint={t('home.captionsHint')}
         />
         <ToolCard
           route="board"
@@ -64,6 +69,7 @@ export function Home() {
           icon={<IconPen size={30} />}
           title={t('nav.board')}
           desc={t('home.board.desc')}
+          hint={t('home.boardHint')}
         />
       </nav>
 

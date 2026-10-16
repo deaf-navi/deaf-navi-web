@@ -1,0 +1,37 @@
+/* A quiet shared surface; sound/caption alerts keep their dedicated contrast. */
+:root { --radius-card:8px; --radius-btn:6px; }
+:root[data-theme='aurora'], :root[data-theme='light'] {
+  --bg:#ffffff;--surface:#ffffff;--sunken:#f3f5f4;--text:#17201d;--muted:#485a53;
+  --border:#c7d0cc;--accent:#075e57;--accent-hover:#064d47;--accent-tint:#eaf5f2;
+  --focus-ring:#075e57;--surface-shadow:none;
+}
+:root[data-theme='aurora'] body { background:var(--bg); }
+.hero { grid-template-columns:minmax(0,1fr);padding-block:24px 20px;border-radius:0; }
+.hero-mark { display:none; }
+.hero-title { color:var(--accent);font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.5;letter-spacing:-.025em;margin:0; }
+.hero-tagline,.hero-lead { grid-column:1;margin-top:8px; }
+.hero-tagline { font-weight:500;color:var(--muted); }
+.tool-list { grid-template-columns:1fr;gap:0;border-top:2px solid var(--accent);margin-top:0; }
+.tool-card { flex-direction:row;align-items:flex-start;gap:20px;border:0;border-bottom:1px solid var(--border);border-radius:0;padding:22px 0;background:none;box-shadow:none; }
+.tool-card:hover { transform:none;box-shadow:none;background:var(--sunken); }
+.tool-card-icon { width:44px;height:44px;border-radius:6px; }
+.tool-card[data-tone] .tool-card-icon { color:var(--accent);background:var(--accent-tint); }
+.tool-card-body { min-width:0; }
+.tool-card-title { font-size:1.125rem;line-height:1.7; }
+.tool-card-desc { line-height:1.85; }
+.tool-card-hint { display:block;margin-top:6px;color:var(--accent);font-size:.8125rem; }
+.home-privacy { border:0;border-top:1px solid var(--border);border-radius:0;padding:20px 0;background:none;box-shadow:none; }
+.page-header h1 { color:var(--accent);letter-spacing:-.025em; }
+.page-header { border-bottom:2px solid var(--accent);padding-bottom:16px; }
+.page>.card { box-shadow:none; }
+.bottom-nav { backdrop-filter:none;background:var(--surface); }
+.product-header-language { border-radius:6px; }
+.product-header-language .lang-option { border-radius:4px; }
+@media(min-width:800px) {
+  .tool-card-body { display:grid;grid-template-columns:11rem minmax(0,1fr);gap:4px 24px;width:100%; }
+  .tool-card-hint { grid-column:2;margin:0; }
+}
+@media(max-width:650px) {
+  .hero { padding-block:18px;gap:0; }
+  .tool-card { padding-block:18px;gap:14px; }
+}
