@@ -59,7 +59,7 @@ ${renderHead({
 </head>
 <body class="${path === "/404.html" ? "support-page" : ""}">
   ${renderSkipLink()}
-${renderSubHeader({ crumbLabel, title: title.replace(/ \| Deaf Navi(?: Web)?$/, ''), lead, homeHref: '/', current, nav: absoluteNav, edition: path.startsWith('/connect/sign-cafe/') ? 'Cafe' : path.startsWith('/news/world/original/') ? 'World-Original' : path.startsWith('/news/world/') ? 'World-JP' : 'Web' })}
+${renderSubHeader({ crumbLabel, title: title.replace(/ \| Deaf Navi(?: Web)?$/, ''), lead, homeHref: '/', current, nav: absoluteNav, edition: 'Web' })}
   <main id="main" class="container directory-page" role="main">
 ${body}
   </main>

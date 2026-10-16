@@ -22,6 +22,8 @@
       // FOUC防止: 保存済みテーマを描画前に適用する
       (function () {
         try {
+          var font = localStorage.getItem('dn-font');
+          if (font === 'large' || font === 'xlarge') document.documentElement.dataset.font = font;
           var raw = localStorage.getItem('otomado:settings:v1');
           var theme = raw ? JSON.parse(raw).theme : 'aurora';
           document.documentElement.dataset.theme = ['aurora', 'dark', 'light', 'green'].indexOf(theme) >= 0 ? theme : 'aurora';

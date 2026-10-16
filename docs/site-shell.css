@@ -1,5 +1,8 @@
 /* Shared public shell. Loaded after each product's own styles. */
-:root { --site-font: var(--font-sans, system-ui, sans-serif); }
+:root { --site-font: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', system-ui, sans-serif; }
+html { scrollbar-gutter: stable; }
+html[data-font="large"] { font-size: 112.5%; }
+html[data-font="xlarge"] { font-size: 125%; }
 .dn-site-shell {
   --shell-paper: var(--bg-elevated, var(--surface, #fff));
   --shell-ink: var(--text-primary, var(--text, #172b26));
@@ -12,6 +15,8 @@
   border-top: 3px solid var(--shell-accent);
   border-bottom: 1px solid var(--shell-line);
   font-family: var(--site-font);
+  line-height: 1.7;
+  letter-spacing: normal;
   position: relative;
   z-index: 20;
 }
@@ -28,18 +33,21 @@
 .dn-shell-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 11px; background: #087ef5; color: #fff; flex-shrink: 0; overflow: hidden; }
 .dn-shell-mark svg { width: 29px; height: 29px; stroke-width: 8; }
 .dn-shell-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.dn-site-shell .site-nav { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0 8px; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; }
+/* Stable tracks keep active-link weight and page-specific fonts from moving tabs. */
+.dn-site-shell .site-nav { display: grid; grid-template-columns: minmax(0,6fr) minmax(0,5fr) minmax(0,6fr) minmax(0,7fr) minmax(0,9fr) minmax(0,6fr) minmax(0,9fr); width: min(100%, 808px); align-items: stretch; gap: 0 8px; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; }
 .dn-site-shell .site-nav__link {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 49px; padding: 11px 20px 12px; margin: 0; color: var(--shell-muted);
+  min-width: 0; min-height: 49px; padding: 11px 12px 12px; margin: 0; color: var(--shell-muted);
   font-size: 14px; font-weight: 500; line-height: 1.55;
   border: 0; border-bottom: 3px solid transparent; border-radius: 5px 5px 0 0;
   box-shadow: none; background: none; text-decoration: none; white-space: normal;
 }
 .dn-site-shell .site-nav__link:hover { background: var(--shell-soft); color: var(--shell-accent); }
 .dn-site-shell .site-nav__link[aria-current] { background: var(--shell-soft); color: var(--shell-accent); border-bottom-color: var(--shell-accent); font-weight: 700; }
-.dn-site-shell .display-controls { display: flex; gap: 8px; align-items: center; margin: 0; }
-.dn-site-shell .display-controls[hidden] { display: none; }
+.dn-site-shell .display-controls { display: flex; flex-wrap: nowrap; flex-shrink: 0; gap: 8px; align-items: center; margin: 0; }
+.dn-site-shell .display-controls[hidden] { display: flex !important; visibility: hidden; }
+.dn-site-shell [data-font-label] { display: inline-block; min-inline-size: 9em; text-align: start; white-space: nowrap; }
+.dn-site-shell [data-theme-label] { display: inline-block; min-inline-size: 5em; text-align: start; white-space: nowrap; }
 .dn-site-shell .display-controls__btn, .dn-shell-settings {
   display: inline-flex; justify-content: center; align-items: center; gap: 7px;
   min-width: 44px; min-height: 44px; padding: 9px 12px; margin: 0;
@@ -50,7 +58,7 @@
 .dn-site-shell .display-controls__btn:hover, .dn-shell-settings:hover { border-color: var(--shell-accent); background: var(--shell-soft); color: var(--shell-accent); }
 /* Legacy directory button rules use !important; scope this correction to the shell. */
 .dn-public .dn-site-shell .display-controls__btn { color: var(--shell-muted) !important; }
-.dn-site-shell .display-controls__icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 17px; font-size: 16px; font-weight: 700; }
+.dn-site-shell .display-controls__icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 17px; font-size: 16px; font-weight: 700; line-height: 1; }
 .dn-site-shell :focus-visible { outline: 3px solid var(--shell-accent); outline-offset: 3px; }
 .dn-page-intro { padding: 26px 0 22px; background: var(--bg-elevated); border-bottom: 1px solid var(--border-subtle); }
 .dn-page-intro__row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
@@ -107,7 +115,7 @@
 
 @media (max-width: 800px) {
   .dn-shell-inner { padding-inline: 20px; }
-  .dn-site-shell .site-nav { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 0; }
+  .dn-site-shell .site-nav { grid-template-columns: repeat(12,minmax(0,1fr)); width: 100%; gap: 0; }
   .dn-site-shell .site-nav__link { grid-column:span 3; padding: 9px 8px; font-size: 13px; min-height: 44px; }
   .dn-site-shell .site-nav__link:nth-child(n+5) { grid-column:span 4; }
   .dn-shell-brand small { display: none; }
@@ -127,7 +135,7 @@
   .dn-site-shell .display-controls { gap: 5px; }
   .dn-site-shell .display-controls__btn { padding: 9px; width: 44px; }
   .dn-site-shell .display-controls__btn [data-theme-label], .dn-site-shell .display-controls__btn [data-font-label] {
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    position: absolute; width: 1px; height: 1px; min-inline-size: 0; padding: 0; margin: -1px;
     overflow: hidden; clip-path: inset(50%); white-space: nowrap;
   }
   .dn-site-shell .site-nav__link { font-size: 12px; padding-inline: 5px; }
@@ -142,6 +150,7 @@
   .dn-shell-mark { width: 36px; height: 36px; border-radius: 9px; }
   .dn-shell-brand strong { font-size: 22px; }
   .dn-shell-name { column-gap: 4px; }
-  .dn-shell-edition { font-size: 11px; padding: 3px 5px; }
+  .dn-shell-edition { display: none; }
+  .dn-site-shell .site-nav__link { padding-inline: 3px; }
 }
 @media print { .dn-site-shell { border-top: 0; } .dn-site-shell .display-controls { display: none; } }

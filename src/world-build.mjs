@@ -414,7 +414,7 @@ function renderPage(data, mode = 'jp') {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
-  <link rel="stylesheet" href="./site-shell.css?v=20260917mark">
+  <link rel="stylesheet" href="./site-shell.css?v=20261017header">
   <link rel="stylesheet" href="./browse.css?v=${CLIENT_VERSION}">
 
   ${jsonLd}

@@ -4,6 +4,26 @@ import userEvent from '@testing-library/user-event'
 import App from './App'
 
 describe('App shell', () => {
+  it('uses the shared text size preference and keeps it across tools and reloads', async () => {
+    localStorage.setItem('dn-font', 'large')
+    const user = userEvent.setup()
+    const app = render(<App />)
+    expect(document.documentElement.dataset.font).toBe('large')
+    await user.click(screen.getByRole('button', { name: '文字をさらに大きく' }))
+    expect(document.documentElement.dataset.font).toBe('xlarge')
+    expect(localStorage.getItem('dn-font')).toBe('xlarge')
+    await act(async () => {
+      window.location.hash = '#/board'
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    })
+    expect(document.documentElement.dataset.font).toBe('xlarge')
+    app.unmount()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: '文字を標準に戻す' }))
+    expect(document.documentElement.dataset.font).toBeUndefined()
+    expect(localStorage.getItem('dn-font')).toBeNull()
+  })
+
   it('keeps an unfinished board message across tools without saving it to storage', async () => {
     const user = userEvent.setup()
     const app = render(<App />)
