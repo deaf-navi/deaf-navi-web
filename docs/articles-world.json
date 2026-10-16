@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-16T04:46:31.776Z",
+  "generatedAt": "2026-10-16T06:04:10.086Z",
   "variant": "world",
-  "count": 600,
+  "count": 599,
   "regions": {
     "asia_oceania": "アジア・オセアニア",
     "americas": "北米・中南米",
@@ -21,8 +21,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3749,
-    "dedupedCount": 2291,
+    "rawCount": 3738,
+    "dedupedCount": 2280,
     "selectedCount": 600,
     "maxArticles": 600,
     "minScore": 8,
@@ -34,19 +34,24 @@
     "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "enabled": false,
-      "checked": 0,
+      "checked": 24,
       "updated": 0,
-      "cached": 534,
-      "failed": 0,
+      "cached": 517,
       "skipped": 0,
+      "failed": 24,
+      "enabled": true,
+      "attemptsPerBatch": 2,
+      "splitBatchSize": 10,
+      "maxConsecutiveFailedBatches": 2,
+      "stoppedAfterConsecutiveFailures": false,
+      "minCoverage": 0.85,
       "fallback": {
-        "requested": 19,
-        "failures": 0,
-        "circuitOpen": false
+        "requested": 1,
+        "failures": 1,
+        "circuitOpen": true
       },
-      "pending": 0,
-      "retainedPrevious": 1
+      "pending": 24,
+      "retainedPrevious": 25
     },
     "japanesePostEditRequired": false,
     "japanesePostEditMinCoverage": 0.85,
@@ -92,7 +97,7 @@
       "뉴시스": 5,
       "بوابة أخبار اليوم الإلكترونية": 1,
       "Mondosanità": 2,
-      "BOM DIA SOROCABA": 1,
+      "agenciasp.sp.gov.br": 2,
       "蕃新聞": 1,
       "Gazzetta di Siena": 1,
       "Infobae": 2,
@@ -126,10 +131,10 @@
       "매일신문": 1,
       "20Minutos": 1,
       "Click Guarulhos": 1,
+      "동아일보": 1,
       "Saray Medya": 1,
       "اليوم السابع": 3,
       "Infocielo": 1,
-      "동아일보": 1,
       "lanouvellerepublique.fr": 4,
       "G1": 7,
       "allAfrica.com": 10,
@@ -140,12 +145,12 @@
       "Le JSL": 2,
       "MyJoyOnline": 1,
       "The Times of India": 29,
-      "Diario Correo": 1,
       "Quotidiano Di Puglia": 1,
       "The Jerusalem Post": 8,
+      "The Washington Post": 4,
       "guadeloupe.franceantilles.fr": 1,
       "씨원뉴스": 1,
-      "The Washington Post": 4,
+      "Diario Correo": 1,
       "전자신문": 1,
       "YouTube": 1,
       "Ente Nazionale Sordi ETS-APS": 1,
@@ -158,13 +163,12 @@
       "المصري اليوم": 1,
       "강원일보": 1,
       "Le Parisien": 2,
-      "agenciasp.sp.gov.br": 1,
       "Son Dakika": 1,
       "Manila Bulletin": 1,
       "The Eastleigh Voice": 1,
+      "CSB Central dos Sindicatos Brasileiros": 1,
       "hessenschau.de": 1,
       "The Indian Express": 5,
-      "CSB Central dos Sindicatos Brasileiros": 1,
       "France 3 Régions": 1,
       "People Daily": 1,
       "www.gov.br": 1,
@@ -175,8 +179,8 @@
       "The Korea Herald": 4,
       "Adnkronos": 1,
       "New Jersey Jewish News": 1,
-      "Agirc-Arrco": 1,
       "CNN Brasil": 1,
+      "Agirc-Arrco": 1,
       "ici.fr": 1,
       "RNZ": 4,
       "Diário PcD": 1,
@@ -282,53 +286,23 @@
     },
     "sourceModeCounts": {
       "regional-fresh": 161,
-      "major-media": 339,
-      "major-media-fresh": 89,
+      "major-media": 324,
+      "major-media-fresh": 104,
       "regional-multilingual": 11
     },
     "thumbnails": {
       "articles": 600,
-      "attempted": 31,
-      "cached": 355,
-      "acquired": 13,
-      "missing": 6,
-      "failed": 12,
-      "deferred": 214,
-      "withImage": 322,
+      "attempted": 12,
+      "cached": 384,
+      "acquired": 2,
+      "missing": 2,
+      "failed": 8,
+      "deferred": 204,
+      "withImage": 323,
       "googleStopped": false
     }
   },
   "articles": [
-    {
-      "id": "https://news.google.com/rss/articles/CBMijAJBVV95cUxONUJiZUo2STRrcmZMRTVVdTMzRlQxSEcxY1F3aG5kb1F1U0FLeVpvdlBPTXlIWGVsb3hQbXNhaWZXTlVLY1pyX0dnTjNkWGpLTjlMdDgyVkdDeUs5VWt1Zlc1ZkFzWEt6OUd0Qjd1aXhuRXZtbWdXc2dSeGx5SjJraVFLaTZ0Tkdzd2VaMVZoR3o2UkY3MFJ4TU5XcjYxc19JNW5aaUtrMzh6cDZIY21JSEdyOUNjcFVLelNvT1gwTUJDU3JueXJIZEdHMlVJNU5PQkg5cFVqckZ6cEZjTjNabkJFQWYwRnFYN01wSTNKeDUzNnVBTXZ3XzlTM1ZuaVhBUXJEOUQzNXF5MjU20gGaAkFVX3lxTFAtMVpZbDZBMzIzTzZXTXV6TDFRcFFRWEVxempPV3dCd0VyNEFEQy1MSEdNamp0SS1wUVV6RE5TaTQwUzFULXZFYnl0cXBQUGtRdTF4WC0yYVBySldZQzN3RlNLTnV6ZmFuSk50WUVqSG13enozTHZURUNUcHdXSjRBUHFWc05CTHFrLVNiVG8xWVVxd051THczNDRYa2ZhX1E3LWwxSFVsdWNJaDdmN3JpSVhKZ3V3YUF3alNfa1JEMkhVOWtLd255NE9wa0NEWGhyWWM1V2wzN3MxT3l3QzhVTXVlenBDNDZmcEFXdGUyZ21OMUQyc3J6aXViM3lHTzI1dUg4WUZWVHEzVzBBdXJaYWV5MEV4VGlKQQ?oc=5",
-      "title": "Razerとポケモンが、リザードン、ルカリオ、ニンフィアをデザインした無線・発光対応ヘッドセットを展開します。",
-      "summary": "Razerとポケモンが、リザードン、ルカリオ、ニンフィアをデザインした無線・発光対応ヘッドセットを展開します。",
-      "originalTitle": "Audífonos Razer x Pokémon: así son los headsets de Charizard, Lucario y Sylveon con audio inalámbrico y luces",
-      "originalSummary": "Audífonos Razer x Pokémon: así son los headsets de Charizard, Lucario y Sylveon con audio inalámbrico y luces",
-      "sourceName": "La Lista",
-      "sourceUrl": "https://la-lista.com",
-      "publishedAt": "2026-10-15T22:35:51.000Z",
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
-      "curationSignals": [
-        "audífono",
-        "audífonos",
-        "multilingual"
-      ],
-      "sourceDomain": "la-lista.com",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "thumbnail": {
-        "url": "https://assets.ejecentral.com.mx/dims4/default/51dee15/2147483647/strip/true/crop/1200x630+0+35/resize/1200x630!/quality/90/?url=https%3A%2F%2Fk3-prod-ejecentral.s3.us-west-2.amazonaws.com%2Fbrightspot%2Ff0%2F03%2F1e09d8fb4809a30823af57926ffb%2Faudifonos-pokemon-charizard.jpg",
-        "source": "og:image",
-        "pageUrl": "https://la-lista.com/entretenimiento/audifonos-razer-x-pokemon-asi-son-los-headsets-de-charizard-lucario-y-sylveon-con-audio-inalambrico-y-luces-rgb-precio-y-cuando-llegan-a-mexico"
-      }
-    },
     {
       "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOLXZ5UnNRa0FiMURnOVY4Q0ZEOG9UYmUtSVhRcFFrdW00SDNJMjZ1LXFYaHg1bDJsS0R2ZDJnMjBjTWVwVTFwSU5TM1FWWXZPTzRWT1gzSG1pSDM1R3g3a2ppOUtWaEFhQzdzQzNvZlZDX2dwdGNqT2V1aTlkOGpRSk4yUHRuUWQ5aUlGTFlxVU1uREx0QjJIR3dtRjY2LWlkY2RvaUN3aVFqMTl3UVJ2TExicXpNdTVJSElVdWktVlZ2WmZyZGl3V0RpRDNNajFXbG43Z21vQmFLdw?oc=5",
       "title": "ララ・アスマー王女が、人工内耳手術後のモロッコとパナマの子どもたちを訪問しました。",
@@ -389,13 +363,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1peEhsbm56dnZzSUx0R0RQWVY4NUR2SGZ6c0pXMTNQbG9WVVFHZllxM1pPelEwM1JvRF9hMmE2ZnNuODdVNkthVUlKYUJ1S0F2b3lzSFFKV3huQks2LUstQ093djBMREVELTBjM0ttbl9jY0tS0gF4QVVfeXFMTlQtX0xjVTJNdUI4YThuM2VnVnJzSHNOc0ExRXpRR3pPSHVaRUhOdmZSSTRpckhKNHVpZzF0NjA0c1JfWFVYWDZSTGphRjgtTVh5M0dpQXNKS2RWNUIyV1JxUmxlRlNDeGlWSWRTUVZWNk9ZVEhTVEow?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBOc3h6YzBkeFAtRW5HY0tjZ2RlYnB0VzdRRk9wSEx3QlA5T0NxY2tBMWhtQjZoaHMzMjRSU1hOLXV0OVRmeVJoUHJkQ2xBQWozcnltZzM4U0lzeHRrdHlEenR3ckg0dXlPeTZGdFlxdTltU2wtcVHSAXhBVV95cUxOVC1fTGNVMk11QjhhOG4zZWdWcnNIc05zQTFFelFHek9IdVpFSE52ZlJJNGlySEo0dWlnMXQ2MDRzUl9YVVhYNlJMamFGOC1NWHkzR2lBc0pLZFY1QjJXUnFSbGVGU0N4aVZJZFNRVlY2T1lUSFNUSjA?oc=5",
       "title": "サムスン・ソリセム福祉館が、聴覚障害者と難聴者を対象に秋夕の交流行事を開催しました。",
       "summary": "サムスン・ソリセム福祉館が、聴覚障害者と難聴者を対象に秋夕の交流行事を開催しました。",
       "originalTitle": "삼성소리샘복지관, 청각장애인·난청인 대상 추석 나눔행사",
       "originalSummary": "삼성소리샘복지관, 청각장애인·난청인 대상 추석 나눔행사",
       "sourceName": "한국장애인신문",
-      "sourceUrl": "http://www.koreadisablednews.com",
+      "sourceUrl": "https://www.koreadisablednews.com",
       "publishedAt": "2026-10-15T07:05:09.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -776,14 +750,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPTlF0SmgzNkw2MzQ0aGNXM2hTNm9BbHZCX3Y1cFVsUTcwYVNMMXZwMWtsWi1OYXlRY1V1RkpQVUFyOXR5MGt0MnhRNXktWDR4ZjZaNmdibWRvWnhUYWhlUzlQNXZnQ1k0YW51WnBlTVN5MFROMllvUmZsZDloaU43YjY3c0REMVIxOW5hOTItcFdQUnc1X3lrcWZaTFhzMGVGajU2X2Y3Q05nS1RXUlQxVFU4NTVGWWJjNGdsbzk5SUg3MmY0dWU3V1BSVWdSTGctYnVzMFhMODNCMmVVVE5F?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOWUdNaTl0MWNIT2pSR2xCcmVIQV9NZ3JtcmRfRHdib0thZFg5czM1X3JlQUtjUC1TYXhybVhLblhZTVg0ZVR6YzZJR3VYcFdqMDlzSDRRbXpQa19teGJOQ1p6amxQSUZoN3p0OWxTVDZ6dnJoV1RUemR3cm1lcEFTQXF5RGUyS09tVVZIZmpyNWl6TTZUeFhmRFJzTXhfakdFSEFVNVJ4R3A1aDEtSGR0bEUtNEpGUnNsREJwSVVySk9ybThuNEhrQkNZN2U?oc=5",
       "title": "長官は「São Paulo São Libras」事業について、ろう者の市民としての権利行使を可能にする取り組みだと述べました。",
       "summary": "長官は「São Paulo São Libras」事業について、ろう者の市民としての権利行使を可能にする取り組みだと述べました。",
       "originalTitle": "“É a possibilidade do surdo exercer sua cidadania”, diz secretário sobre programa São Paulo São Libras",
       "originalSummary": "“É a possibilidade do surdo exercer sua cidadania”, diz secretário sobre programa São Paulo São Libras",
-      "sourceName": "BOM DIA SOROCABA",
-      "sourceUrl": "https://bomdiasorocaba.com.br",
-      "publishedAt": "2026-10-14T11:31:00.000Z",
+      "sourceName": "agenciasp.sp.gov.br",
+      "sourceUrl": "https://www.agenciasp.sp.gov.br",
+      "publishedAt": "2026-10-14T11:12:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
       "topic": "accessibility",
@@ -794,15 +768,15 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "bomdiasorocaba.com.br",
+      "sourceDomain": "agenciasp.sp.gov.br",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
-        "url": "https://str1.lnmimg.net/img/2026/10/14/b9f0d8977f3510bc15a7ca233594e22f.webp?w=700&h=338",
+        "url": "https://www.agenciasp.sp.gov.br/wp-content/uploads/2026/10/sppod_marcos02.webp",
         "source": "og:image",
-        "pageUrl": "https://bomdiasorocaba.com.br/noticia/103880/le-a-possibilidade-do-surdo-exercer-sua-cidadaniar-diz-secretario-sobre-programa-sao-paulo-sao-libras"
+        "pageUrl": "https://www.agenciasp.sp.gov.br/sp-pod/e-a-possibilidade-do-surdo-exercer-sua-cidadania-diz-secretario-sobre-programa-sao-paulo-sao-libras/"
       }
     },
     {
@@ -1780,32 +1754,33 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5BaDJoQzVuck5KQmVHU0FzdGI3TG5XaTM3RlhieTRCcTkybVhBb2ttWWdSN1FGbkJhSlJvajUxcDNiZkM1VkZkSThoa2FvMUN6ZDQxOXVpZVlJc0xOSjQ3a9IBeEFVX3lxTE5Ed05sOGxlVVZyZ3R5RE5DckotSVRqX2JqemlsTHVNWHRsX3ZFOFYwRHFLak0zSEV1TC1ocEx2R0h5S21NUk5uZDNNT29mTU5EUE4zRk5XMnNGWkp3cGJtaHE1SHZsZWNmMUNBNEJWNW01TExraXdITA?oc=5",
-      "title": "【大邱ニュース】東部警察、聴覚・言語障害者対応修語教育など",
-      "summary": "【大邱ニュース】東部警察、聴覚・言語障害者対応修語教育など",
-      "originalTitle": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
-      "originalSummary": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
-      "sourceName": "뉴시스",
-      "sourceUrl": "https://www.newsis.com",
+      "id": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBlN3kzck05bmhyYkh0TUNVMDgwNUpiaXdLcmd6T1lwRHI4YWludmExdzNGaGVFeVRGdlgxYTgydDBpUGRpQVJNWUZkdFJKM2hDN2R0M0g5MXJLbWpjSHhuNk9BMkxFR0VRSzI2d0tMSm1aRVZELWfSAWZBVV95cUxPOTBxRGlhVnFLcjVlQkZMZUllWFVPYmpOOHRzVlNWVW1OTVd4cGxUQkJYX2p6Yi1fY0tSejlaeUFqT0Iya0h5UjVsbF9abVJJdlU2NGVKSWFlWXctQWNwSjZFekJoN3c?oc=5",
+      "title": "聴覚リハビリを受けた高度難聴患者は認知症リスクが低く、人工内耳群では45％低かった。",
+      "summary": "聴覚リハビリを受けた高度難聴患者は認知症リスクが低く、人工内耳群では45％低かった。",
+      "originalTitle": "청각재활 받은 고도난청 환자, 치매 위험 낮았다…인공와우군 45% 낮아",
+      "originalSummary": "청각재활 받은 고도난청 환자, 치매 위험 낮았다…인공와우군 45% 낮아",
+      "sourceName": "동아일보",
+      "sourceUrl": "https://www.donga.com",
       "publishedAt": "2026-10-07T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
-      "topic": "education",
-      "topicLabel": "教育",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
       "curationScore": 21,
       "curationSignals": [
-        "수어",
-        "major-media",
+        "인공와우",
+        "난청",
         "multilingual"
       ],
-      "sourceDomain": "newsis.com",
-      "sourcePriority": 76,
+      "sourceDomain": "donga.com",
+      "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
-        "url": "https://img1.newsis.com/2026/10/07/NISI20261007_0002257622_web.jpg",
+        "url": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/10/07/134802993.1.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.newsis.com/view/NISX20261007_0003817476"
+        "pageUrl": "https://www.donga.com/news/Society/article/all/20261007/134802889/1"
       }
     },
     {
@@ -1831,7 +1806,12 @@
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "thumbnail": {
+        "url": "https://img.saraymedya.com/manset/2026/10/camiye-gelen-isitme-engellilere-isaret-dili-destegi-1791133470.webp",
+        "source": "og:image",
+        "pageUrl": "https://www.saraymedya.com/foto/camiye-gelen-isitme-engellilere-isaret-dili-destegi_310274/"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxPaExmR0pMWFZnREV1UkZOUXNZcmYyeUpscXAwVnJ1bFZJTmJVTEI0V2VLS1RpRlFYaVlCZEVFbG5MakppNXRCczJic29pQWctb3NTQ0VHMHg0N1o5cHcxOFlEejRXT1BobFBreVlrd1dibFhCeDVTMGRnVWQzd0N2THZ4OUdKM3NMd2YyNU1ZYmpRQm1rSjJtZWthWjlobkVrTHVqa1hMZXpHem5OSjhEN1MzOVB0U0c3OHNIYnhtTGk2VkFFODdmX0x3WXFxVi1aMWx1bEp6anVkUzBkUHJuQ3BJTXNQYkFyejEzT190QS01NmVzSTdaNmprMkdoWFNVdnpvaUdMRGlXX1pGZmtIQ3lzeC1rQjVnSTZnTmRHU1ZiMGV6UmFGd2phRE9FNFpOb3drY1dyUmJHWlp3RjBzTlhUT1R4SFVwMW1fQU5QM0l0cXVWd2tpSGxKNUlQTkl5LVpLWmNqZmJ5Q2ZJLWttWTdBQUZSWndYS0Z3bmdpY3pOYlhDNHViU1ZQVUl2U1FmODZZMm9iMEJjenNsT0RPQjN5VWdhYkNaQ3VTcHMyX0E5MzZiT1Zjall0OTJlSnpielY2OHlwTXRSTkVvR1lXeXRsRnI0YXIwdEHSAdQDQVVfeXFMTUNqR2NwcDg0MHk4LXNfQlFGSkJhQjdZTzFIRWJJTnVHVkl5dlFlQkJJOXg1ZWVnZ0NQRWhFSjBsaVpYNnJLTm9zdGNqdi05cE5xSEdCVWZvekZCdmtMTVI5Mlo4dXZiUmRGV29oYUIzSUtwOFBPbTQxYnVDWnJoRjdiMDU1QUV5SkVWb2dYRUlfdXczZHRGN2liR25WcGJBYmtFa1FwXzF0THZaWEpLUGwyYmdlbzZpdG8ta3A4QWc0amx1aXhrSFItYjRhN21iR21uRk9HZC1XXzVtX0plNHV5ZXY2VE52WUxyN0JSRXk0MDZhZTV6ZHNpeUFsQjhKTWxCQm9wVFV5T3FHaVVSVmZnN1FwbHVLY2NwUGtyRHRmc1RHMk90SjNQZjJZcVYwMFlsSFg3RzQ1LUdXZXJvUENRMkxmeW5idGcyTTBHNzYzczRlY3hPZWVobW13MzVjZTQ5alJLUWxrNV9sQUtvd2VYalByOHpZYzF2UnVjSm8tRzBYZFY3ckE0M0FVYlI3RFZyQ3AwcG9mNTY2M0dCV2VyTjB0T3dCN0MwZmNRYjZHckR1UTJ6aG83M1RieHdZNVdDcjNzQWlBZ2VneXFBeEFwUW1s?oc=5",
@@ -1888,33 +1868,32 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBlN3kzck05bmhyYkh0TUNVMDgwNUpiaXdLcmd6T1lwRHI4YWludmExdzNGaGVFeVRGdlgxYTgydDBpUGRpQVJNWUZkdFJKM2hDN2R0M0g5MXJLbWpjSHhuNk9BMkxFR0VRSzI2d0tMSm1aRVZELWfSAWZBVV95cUxPOTBxRGlhVnFLcjVlQkZMZUllWFVPYmpOOHRzVlNWVW1OTVd4cGxUQkJYX2p6Yi1fY0tSejlaeUFqT0Iya0h5UjVsbF9abVJJdlU2NGVKSWFlWXctQWNwSjZFekJoN3c?oc=5",
-      "title": "聴覚リハビリを受けた高度難聴患者は認知症リスクが低く、人工内耳群では45％低かった。",
-      "summary": "聴覚リハビリを受けた高度難聴患者は認知症リスクが低く、人工内耳群では45％低かった。",
-      "originalTitle": "청각재활 받은 고도난청 환자, 치매 위험 낮았다…인공와우군 45% 낮아",
-      "originalSummary": "청각재활 받은 고도난청 환자, 치매 위험 낮았다…인공와우군 45% 낮아",
-      "sourceName": "동아일보",
-      "sourceUrl": "https://www.donga.com",
-      "publishedAt": "2026-10-07T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5BaDJoQzVuck5KQmVHU0FzdGI3TG5XaTM3RlhieTRCcTkybVhBb2ttWWdSN1FGbkJhSlJvajUxcDNiZkM1VkZkSThoa2FvMUN6ZDQxOXVpZVlJc0xOSjQ3a9IBeEFVX3lxTE5Ed05sOGxlVVZyZ3R5RE5DckotSVRqX2JqemlsTHVNWHRsX3ZFOFYwRHFLak0zSEV1TC1ocEx2R0h5S21NUk5uZDNNT29mTU5EUE4zRk5XMnNGWkp3cGJtaHE1SHZsZWNmMUNBNEJWNW01TExraXdITA?oc=5",
+      "title": "【大邱ニュース】東部警察、聴覚・言語障害者対応修語教育など",
+      "summary": "【大邱ニュース】東部警察、聴覚・言語障害者対応修語教育など",
+      "originalTitle": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
+      "originalSummary": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
+      "sourceName": "뉴시스",
+      "sourceUrl": "https://www.newsis.com",
+      "publishedAt": "2026-10-07T05:39:24.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
+      "topic": "education",
+      "topicLabel": "教育",
       "curationScore": 21,
       "curationSignals": [
-        "인공와우",
-        "난청",
+        "수어",
+        "major-media",
         "multilingual"
       ],
-      "sourceDomain": "donga.com",
-      "sourcePriority": 50,
+      "sourceDomain": "newsis.com",
+      "sourcePriority": 76,
       "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
-        "url": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/10/07/134802993.1.jpg",
+        "url": "https://img1.newsis.com/2026/10/07/NISI20261007_0002257622_web.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.donga.com/news/Society/article/all/20261007/134802889/1"
+        "pageUrl": "https://www.newsis.com/view/NISX20261007_0003817476"
       }
     },
     {
@@ -2233,33 +2212,33 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxORE5wZl9wR21lajJTd1hoN0RnWjdTZlgwbDNzelVnY284Zkd6T1pONXpLS3VSTEJmVEtISE02d29ua1FkQ3k0WGFuZkZKZnM5WHVnZ0JURmlZVmpWZnM0QlVMSTRJcTdFX2JNUi1SV21rXzhLRWRkMVg2UG94QWgzU0V1ajFEcjhGWTZUUXFtaVlCV2hNaDZSSjIwdm84cjNUa1JyR2xzNlpyY0gzWE0zZlRZVmhfZ9IBygFBVV95cUxQazA3QVlqdVBLeElXeTdjd0VmRC1IemJNQjhWcGpyTzNlV1BBM1Yxb3l0UnRnSERzU196amloVDhCX0JJSy1LWk1TSXhydkllRG9PTjI5V0ZJMXhiR1ZwYVJCemtXdUlVLXV1OUs2N013SDRPZlhwWGQ3VENiWGtZV0NXRGpKUDhsUzR2dl9SckNNMUZHdjNQVlNNNWNBRm5hb1JrUkl4UENpVXoyMjNuSVloZEwxTFVqakZ0bGI1VUd0T3hrejRyZ3NB?oc=5",
-      "title": "HONORがペルーで新しいタブレット、スマートウォッチ、イヤホンを発売し、それぞれの特徴を発表した。",
-      "summary": "HONORがペルーで新しいタブレット、スマートウォッチ、イヤホンを発売し、それぞれの特徴を発表した。",
-      "originalTitle": "HONOR lanza en Perú nueva tablet, smartwatch y audífonos: características",
-      "originalSummary": "HONOR lanza en Perú nueva tablet, smartwatch y audífonos: características",
-      "sourceName": "Diario Correo",
-      "sourceUrl": "https://diariocorreo.pe",
-      "publishedAt": "2026-10-01T16:33:04.000Z",
+      "id": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOLU12enNrOWp5c3pEZnNuOU1URjVnMEdROHY2RElHYXZOdUNocWFSTXpVZTFCNG1haVlSNUxBR09BNGdnejB5cW5FNzBJNEVuZ3Zibk1mSlZyWEs2dnZQREFqUl8wSU11VUtzcjg5VVd5TUtNVTdwV0haSlpua09CUkFXUjJMX0lTNDJBRFlPd3ZmYnpqbG5kNU94SndyVVRXSktUbjM4VTFJZWdMaG1KUUVYeWJTcFlCMlEtdU9lNW51akhWTVB1VEwwaWt5b2gxLWVITnc0QzRrQnRITlFuSmI0X290cmln0gH3AUFVX3lxTE1leVNkbHhoUjN6a19QZXdGZWFqSDFSQnN2alRxZm5IVjRUQnVfSkkyOWRvWUIwZ3lrVlNGMFlkSG9vX0RhbGl3UDV1M2JTbk93Sm5xYmlab01ydThxQ2tYRlIxWVV5XzhLNzFXdkd0ajl3TVBBVDQ3WkNjR25hbGNQbmp0Q1BXMG43bWFad1FWVmZCSUJrMmFOOGRNWW5NNkdnUlN1VmFyN0lOVVdkLTZuSDhqQ1VZTU1KQzhxRlBTUE1hYUw5MzFUd2x6RXJEU2tmVWMxakJldEgxN2ZYa1otVWFLT0JKLUE5WXNQUVUtYVFadlJub1k?oc=5",
+      "title": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
+      "summary": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
+      "originalTitle": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
+      "originalSummary": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
+      "sourceName": "G1",
+      "sourceUrl": "https://g1.globo.com",
+      "publishedAt": "2026-10-01T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 23,
       "curationSignals": [
-        "audífono",
-        "audífonos",
+        "surdo",
+        "libras",
         "multilingual"
       ],
-      "sourceDomain": "diariocorreo.pe",
+      "sourceDomain": "g1.globo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
-        "url": "https://diariocorreo.pe/resizer/v2/JDKQSDTV2VEMHIUYMSRGODRH4A.jpeg?auth=f7a22859dc81df4cdc4a9d02e5ba19fe6dcffabf81aea733b440af4bc538690a&width=980&height=528&quality=75&smart=true",
+        "url": "https://s01.video.glbimg.com/x720/15010960.jpg",
         "source": "og:image",
-        "pageUrl": "https://diariocorreo.pe/tecnologia/honor-lanza-en-peru-nueva-tablet-smartwatch-y-audifonos-caracteristicas-noticia/"
+        "pageUrl": "https://g1.globo.com/sp/sorocaba-jundiai/videos-tem-noticias-1-edicao/video/eleitor-surdo-tera-atendimento-em-libras-nas-secoes-eleitorais-15010960.ghtml"
       }
     },
     {
@@ -2317,34 +2296,28 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOLU12enNrOWp5c3pEZnNuOU1URjVnMEdROHY2RElHYXZOdUNocWFSTXpVZTFCNG1haVlSNUxBR09BNGdnejB5cW5FNzBJNEVuZ3Zibk1mSlZyWEs2dnZQREFqUl8wSU11VUtzcjg5VVd5TUtNVTdwV0haSlpua09CUkFXUjJMX0lTNDJBRFlPd3ZmYnpqbG5kNU94SndyVVRXSktUbjM4VTFJZWdMaG1KUUVYeWJTcFlCMlEtdU9lNW51akhWTVB1VEwwaWt5b2gxLWVITnc0QzRrQnRITlFuSmI0X290cmln0gH3AUFVX3lxTE1leVNkbHhoUjN6a19QZXdGZWFqSDFSQnN2alRxZm5IVjRUQnVfSkkyOWRvWUIwZ3lrVlNGMFlkSG9vX0RhbGl3UDV1M2JTbk93Sm5xYmlab01ydThxQ2tYRlIxWVV5XzhLNzFXdkd0ajl3TVBBVDQ3WkNjR25hbGNQbmp0Q1BXMG43bWFad1FWVmZCSUJrMmFOOGRNWW5NNkdnUlN1VmFyN0lOVVdkLTZuSDhqQ1VZTU1KQzhxRlBTUE1hYUw5MzFUd2x6RXJEU2tmVWMxakJldEgxN2ZYa1otVWFLT0JKLUE5WXNQUVUtYVFadlJub1k?oc=5",
-      "title": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
-      "summary": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
-      "originalTitle": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
-      "originalSummary": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
-      "sourceName": "G1",
-      "sourceUrl": "https://g1.globo.com",
+      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQY1dYa2JIMFQ1Y1EyaUgzX1ktYVBSMEFqaFNPcmp2aEIxdzQyc1JtazZVMTFMVmlkUlA3TF96dEpXZkYzN0xKYTk2QXl0UnFsRU5JNUNyb3JPWGUtdGxldXZBTXV1T1ZFU0l3Z29OTW9SMVdtQWx5cGpoMGJLLXZoMkZubEdBN2psZmJHTk1vbThvYW1acjE3LWMzRDB1MG94NHc?oc=5",
+      "title": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
+      "summary": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
+      "originalTitle": "Not all hearing loss is the same. Here’s what can help.",
+      "originalSummary": "Not all hearing loss is the same. Here’s what can help.",
+      "sourceName": "The Washington Post",
+      "sourceUrl": "https://www.washingtonpost.com",
       "publishedAt": "2026-10-01T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 23,
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
       "curationSignals": [
-        "surdo",
-        "libras",
-        "multilingual"
+        "hearing loss",
+        "major-media"
       ],
-      "sourceDomain": "g1.globo.com",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
+      "sourceDomain": "washingtonpost.com",
+      "sourcePriority": 90,
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "thumbnail": {
-        "url": "https://s01.video.glbimg.com/x720/15010960.jpg",
-        "source": "og:image",
-        "pageUrl": "https://g1.globo.com/sp/sorocaba-jundiai/videos-tem-noticias-1-edicao/video/eleitor-surdo-tera-atendimento-em-libras-nas-secoes-eleitorais-15010960.ghtml"
-      }
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNOFZPbnQ1cTdScWV6YXc1QVRTOW9NQVY5TlZKbHVKaUl4QnM1V0I4c0Y2cG1wLWVRcE03M182TTdyYzhkSjFZN0tTUlNZNnFDcG5kS0cyOHpxbUFCRDFQdjNXZk0xLWZLSUh0T0dWR0JNOWtaVTRDUzZiR05fRVd1SWp3NktXamxaUTgyLXA5dXplSTJ2Nk80SGx5RlFEdHNVZzFUQUl0ZFdLbjRqZFRlQTZyLTZXclpJMzM3VXFpZUxpWW44TEVCTkkxRHh0X1RfOERCZm5SYndhdFoyM3NqVzV1TDRhZw?oc=5",
@@ -2431,13 +2404,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQY1dYa2JIMFQ1Y1EyaUgzX1ktYVBSMEFqaFNPcmp2aEIxdzQyc1JtazZVMTFMVmlkUlA3TF96dEpXZkYzN0xKYTk2QXl0UnFsRU5JNUNyb3JPWGUtdGxldXZBTXV1T1ZFU0l3Z29OTW9SMVdtQWx5cGpoMGJLLXZoMkZubEdBN2psZmJHTk1vbThvYW1acjE3LWMzRDB1MG94NHc?oc=5",
-      "title": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
-      "summary": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
-      "originalTitle": "Not all hearing loss is the same. Here’s what can help.",
-      "originalSummary": "Not all hearing loss is the same. Here’s what can help.",
-      "sourceName": "The Washington Post",
-      "sourceUrl": "https://www.washingtonpost.com",
+      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxORE5wZl9wR21lajJTd1hoN0RnWjdTZlgwbDNzelVnY284Zkd6T1pONXpLS3VSTEJmVEtISE02d29ua1FkQ3k0WGFuZkZKZnM5WHVnZ0JURmlZVmpWZnM0QlVMSTRJcTdFX2JNUi1SV21rXzhLRWRkMVg2UG94QWgzU0V1ajFEcjhGWTZUUXFtaVlCV2hNaDZSSjIwdm84cjNUa1JyR2xzNlpyY0gzWE0zZlRZVmhfZ9IBygFBVV95cUxQazA3QVlqdVBLeElXeTdjd0VmRC1IemJNQjhWcGpyTzNlV1BBM1Yxb3l0UnRnSERzU196amloVDhCX0JJSy1LWk1TSXhydkllRG9PTjI5V0ZJMXhiR1ZwYVJCemtXdUlVLXV1OUs2N013SDRPZlhwWGQ3VENiWGtZV0NXRGpKUDhsUzR2dl9SckNNMUZHdjNQVlNNNWNBRm5hb1JrUkl4UENpVXoyMjNuSVloZEwxTFVqakZ0bGI1VUd0T3hrejRyZ3NB?oc=5",
+      "title": "HONORがペルーで新しいタブレット、スマートウォッチ、イヤホンを発売し、それぞれの特徴を発表した。",
+      "summary": "HONORがペルーで新しいタブレット、スマートウォッチ、イヤホンを発売し、それぞれの特徴を発表した。",
+      "originalTitle": "HONOR lanza en Perú nueva tablet, smartwatch y audífonos: características",
+      "originalSummary": "HONOR lanza en Perú nueva tablet, smartwatch y audífonos: características",
+      "sourceName": "Diario Correo",
+      "sourceUrl": "https://diariocorreo.pe",
       "publishedAt": "2026-10-01T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -2445,14 +2418,20 @@
       "topicLabel": "医療・補聴",
       "curationScore": 20,
       "curationSignals": [
-        "hearing loss",
-        "major-media"
+        "audífono",
+        "audífonos",
+        "multilingual"
       ],
-      "sourceDomain": "washingtonpost.com",
-      "sourcePriority": 90,
-      "sourceMode": "major-media",
+      "sourceDomain": "diariocorreo.pe",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "thumbnail": {
+        "url": "https://diariocorreo.pe/resizer/v2/JDKQSDTV2VEMHIUYMSRGODRH4A.jpeg?auth=f7a22859dc81df4cdc4a9d02e5ba19fe6dcffabf81aea733b440af4bc538690a&width=980&height=528&quality=75&smart=true",
+        "source": "og:image",
+        "pageUrl": "https://diariocorreo.pe/tecnologia/honor-lanza-en-peru-nueva-tablet-smartwatch-y-audifonos-caracteristicas-noticia/"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMisgJBVV95cUxOLV9YOUNPeW5jWEltNy05eEJtMEoyNUxEUDRnalpGb0R3MXQ3QlROOHdoZFZDa2cxTFhHVXVROVVjc1JWM1c0M1hHUlMxQy1UcnlaVUtMQWVYYkc5am9ORDBHcWZYeGhmZWtaTVFZN1pkWTB4bllTdXdRbndSWjFaMWdtVmpEdERXd0o1cVFxaHR6UFpGeUJobnBYdlJ4Skd2TzVCYnZPNHBjWkt0SG10SzlGR1lNOEQwcEtFUFM0R1Vub3ZKVjdjeHdxZllfcm8ySjd3bU9UemhGX0w4dG5CcDZvZHdKWE11QTF0Y2hSOFBXY3Q4SDB6aVdGUHlFaDlyeHBwRS1OSVY3bFZ0cmdISXRhaGxqREtiSjRzMm9VemhxSmtJLXhva1RfUHNOdl9IU0E?oc=5",
@@ -2767,11 +2746,11 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMingJBVV95cUxPQjQ0bXhieVU5cF9fOFAyWk8ySHU2d2RMVjMyWDRYdEpPTDI1NEFaT0VLTlptdmVWendzWWNiT2Q1MVlhN1dXeWtQMGZyOGVZTGl5emZBd2c0eHZScXBGSHh2Z2U0Tk5ZQ3JqTENQUEtZMU44bmZMZWxNdS1SdGV3OFNGWVpxSUk3SlFyWWxBaWNiTE1CaWlXVjl2UFdWdkJ0dl9mUjRPSno0dnNzLVFlVFE5YTRlUnpFdGZUREpxWDZyMEFLdGF5MGtfLUo3ODNrY3hhOGVXWlhSYkNUQmxqdDFCdjR0VTIxRVFDdkp0ZnV5bS1zODFWa1YxcHhJRWlOb1JCeDFfN0tvYm1hYkFMT0FKZllsa2xtSXI5TjB30gGsAkFVX3lxTFBXWlQ3Rm82QmV1a2FuYVFjbDRuZWQwOTU5V0FEVzVqendkV1ZGUG9NajY3Y2FlekcyQ3NsYTVXVU5tMFRTc0NTU0NaWC13Mk5KUVROMWE4N1VtbjlKQzlrZDVlVC10OFdpTHFVUVVWVm4xb3d4Y1lGcFd2bDdtdHctMnd3MGlTUXlCOEhpNHNHT3U1c0M0Q2VtZmR6cEk5Vl9tbGIyYV9jbnR1dUhLTVBLWnAzeUNzMVluaXRPaEttdkp2VlhlN0VMQ3h1Y1VyMC1xWEM2SklWeXIxSDVISG9Sb3FkcGRRUUdCTHhaRjRXd1RFWUIybEliVmxSdUxETmRjWkh5WXMxVi1KejI1UHBHQ05PX29PdjFDSGtXWWhwRFNrVms0aWtCdDhleQ?oc=5",
-      "title": "TRE は聴覚障害のある有権者の投票を支援するために中部地域にブラジル手話を提供しています",
-      "summary": "TRE は聴覚障害のある有権者の投票を支援するために中部地域にブラジル手話を提供しています",
-      "originalTitle": "TRE disponibiliza na região Central de Libras para auxiliar eleitores surdos na votação",
-      "originalSummary": "TRE disponibiliza na região Central de Libras para auxiliar eleitores surdos na votação",
+      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "originalTitle": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+      "originalSummary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
       "sourceName": "G1",
       "sourceUrl": "https://g1.globo.com",
       "publishedAt": "2026-09-30T07:00:00.000Z",
@@ -2788,7 +2767,8 @@
       "sourceDomain": "g1.globo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2"
+      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPZVhvVUthLVk5UVBaREYxZjVnZGV6c1JUUmQzWDZNQlBnbWlMOGZXdS1sR2M4RVFWVGt6NWx0Rm9BUFRZTEhGT1dQYUJEZHFTbnZlVzdrNHh6b0lSUTk5eTA2X3pJTGVjX2hYZ2h1a3poU0VLZGhEdmxaMGdZRC1oeURQak5Xb0xZclplc3RNV0cwVTdfTjlhTkRqZlUwVEVPb3BhZTNNZw?oc=5",
@@ -2875,11 +2855,11 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
-      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-      "originalTitle": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-      "originalSummary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+      "id": "https://news.google.com/rss/articles/CBMingJBVV95cUxPQjQ0bXhieVU5cF9fOFAyWk8ySHU2d2RMVjMyWDRYdEpPTDI1NEFaT0VLTlptdmVWendzWWNiT2Q1MVlhN1dXeWtQMGZyOGVZTGl5emZBd2c0eHZScXBGSHh2Z2U0Tk5ZQ3JqTENQUEtZMU44bmZMZWxNdS1SdGV3OFNGWVpxSUk3SlFyWWxBaWNiTE1CaWlXVjl2UFdWdkJ0dl9mUjRPSno0dnNzLVFlVFE5YTRlUnpFdGZUREpxWDZyMEFLdGF5MGtfLUo3ODNrY3hhOGVXWlhSYkNUQmxqdDFCdjR0VTIxRVFDdkp0ZnV5bS1zODFWa1YxcHhJRWlOb1JCeDFfN0tvYm1hYkFMT0FKZllsa2xtSXI5TjB30gGsAkFVX3lxTFBXWlQ3Rm82QmV1a2FuYVFjbDRuZWQwOTU5V0FEVzVqendkV1ZGUG9NajY3Y2FlekcyQ3NsYTVXVU5tMFRTc0NTU0NaWC13Mk5KUVROMWE4N1VtbjlKQzlrZDVlVC10OFdpTHFVUVVWVm4xb3d4Y1lGcFd2bDdtdHctMnd3MGlTUXlCOEhpNHNHT3U1c0M0Q2VtZmR6cEk5Vl9tbGIyYV9jbnR1dUhLTVBLWnAzeUNzMVluaXRPaEttdkp2VlhlN0VMQ3h1Y1VyMC1xWEM2SklWeXIxSDVISG9Sb3FkcGRRUUdCTHhaRjRXd1RFWUIybEliVmxSdUxETmRjWkh5WXMxVi1KejI1UHBHQ05PX29PdjFDSGtXWWhwRFNrVms0aWtCdDhleQ?oc=5",
+      "title": "TRE は聴覚障害のある有権者の投票を支援するために中部地域にブラジル手話を提供しています",
+      "summary": "TRE は聴覚障害のある有権者の投票を支援するために中部地域にブラジル手話を提供しています",
+      "originalTitle": "TRE disponibiliza na região Central de Libras para auxiliar eleitores surdos na votação",
+      "originalSummary": "TRE disponibiliza na região Central de Libras para auxiliar eleitores surdos na votação",
       "sourceName": "G1",
       "sourceUrl": "https://g1.globo.com",
       "publishedAt": "2026-09-30T07:00:00.000Z",
@@ -2896,8 +2876,7 @@
       "sourceDomain": "g1.globo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
+      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE45eWZkRGw2Y2RsVUNXanFFV2gwQk11YWdYWWl6OGE1bV8zb2dZdFMwQnR2eDZQb2paMEJQRzRaeWJKNXlPb1hXQWo2SnpGTHdIVkpKWkZRRXU1eDQ?oc=5",
@@ -3091,13 +3070,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOX0pTMVdqYmgtaDZRbGdlTkVpdENYNG9fd2oyODVIeEpYYmlzck12VkxQVGNoa0NwWXZCckNCTmtOUWdiR1VSNllPY29kUUNORHN3c1FueElTN0FlbWplcnhfYnRLZjNuUmozZUcxTHRHUTVGand4dlNKQ19SdmdTcmdVNnE4RTY1amZhcVU2QVg4WEdmaHU0U3NlZDZ5UHc4SXZ5c2FkalNYb1Zlc3ZSWS0tcVJXejZFN0tyazVERlAwZXQ5T0Q2X1p6VjUxMXpnYkFsOFczQ3V4bVpZMW9zSHBrTFczS29pX0U3Vm90TVLSAf8BQVVfeXFMT2s5YnA3bHZWY1NsQ1VteHc5XzlmUlNtU0xibTh3TzVwT0gyQlZYcjdhN2hVY29UMUg1aVBNak42Njd4MVBiSjJRUkpsZTdxcEN1T196ZTd6YnVBLUhqRXZKeE9zMEs0b2I4T04zMEo2WDluZVg4aXNFQmtEaUs5MEljQXlUcHl2dEp0TTVQM2hDVVdDckZ4YTJfNy1NODFJb0o4ekxMT2NYWWF1WFB2bWowazM0VlYxNTR1alZEbGY1VjFJS09qV0xTdUJjc2lvNHJfRkNUdUtKdm1OaFZEcmlmUVJtdkNzV1hRUk16YXB4Qmtwc1dyNl9FN1Z1aU53?oc=5",
-      "title": "聴覚障害者は、公共サービスを支援するためにLibrasの通訳者とビデオ通話を行っています。それがどのように機能するかを見てください",
-      "summary": "聴覚障害者は、公共サービスを支援するためにLibrasの通訳者とビデオ通話を行っています。それがどのように機能するかを見てください",
-      "originalTitle": "Surdos têm videochamada com intérprete de Libras para ajudar em serviços públicos; veja como funciona",
-      "originalSummary": "Surdos têm videochamada com intérprete de Libras para ajudar em serviços públicos; veja como funciona",
-      "sourceName": "G1",
-      "sourceUrl": "https://g1.globo.com",
+      "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQM3VUaE85MjNuc1V1VXNFYlRLMmdWenNnbGdrNmRpcjhXU2pXY3NldmNDSEd6WkF2Zm1sYjJRaGF4SDkxMTdfc0Vucy04bUdLbGE5aFFqdGl3eG45a1ExRVFwVWhwRzNubng5SW1LRm9aajQyUEZYNVpBdEd5VC00TWZnZWdka2NjcTlpXzBybw?oc=5",
+      "title": "ブラジルの裁判所は、ブラジル手話（Libras）の通訳なしで解雇されたろう者労働者の退職届を無効としました。",
+      "summary": "ブラジルの裁判所は、ブラジル手話（Libras）の通訳なしで解雇されたろう者労働者の退職届を無効としました。",
+      "originalTitle": "Justiça anula pedido de demissão de trabalhador surdo dispensado sem intérprete de Libras",
+      "originalSummary": "Justiça anula pedido de demissão de trabalhador surdo dispensado sem intérprete de Libras",
+      "sourceName": "CSB Central dos Sindicatos Brasileiros",
+      "sourceUrl": "https://csb.org.br",
       "publishedAt": "2026-09-28T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -3109,10 +3088,16 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "g1.globo.com",
+      "sourceDomain": "csb.org.br",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2"
+      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "thumbnail": {
+        "url": "https://csb.org.br/wp-content/uploads/2026/09/capa-site-19.jpg",
+        "source": "og:image",
+        "pageUrl": "https://csb.org.br/noticias/justica-anula-pedido-demissao-trabalhador-surdo-sem-libras"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPWUFRWUoxTmdKS0ZxR2RqY09rUWZmZU80emVlRmU1ajFWSHNaRmszOXphOTNweGhxeEZ1Mlg5bHV6a21sckUyTnFzbjY2bkljd3BDQmF5R3NpTGdWQWF4c2dFSmIyYkdTMDZyRTNSRGFpRGpuLWhlS1paYk0wUkVyRWlzdE1qYVRFWXFfbmVCOUlfbi1GOV85LUk4QXlKWjlHdTk1UGR6d2VYOEx2STAtdFlsa0kyWlNaSWF0SENBQTVHWlhhV0JMNUpyMWZhVHJhVF80OGltSTcybmpWdnZhMjBoWFU?oc=5",
@@ -3188,18 +3173,18 @@
       ],
       "sourceDomain": "indianexpress.com",
       "sourcePriority": 76,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQM3VUaE85MjNuc1V1VXNFYlRLMmdWenNnbGdrNmRpcjhXU2pXY3NldmNDSEd6WkF2Zm1sYjJRaGF4SDkxMTdfc0Vucy04bUdLbGE5aFFqdGl3eG45a1ExRVFwVWhwRzNubng5SW1LRm9aajQyUEZYNVpBdEd5VC00TWZnZWdka2NjcTlpXzBybw?oc=5",
-      "title": "ブラジルの裁判所は、ブラジル手話（Libras）の通訳なしで解雇されたろう者労働者の退職届を無効としました。",
-      "summary": "ブラジルの裁判所は、ブラジル手話（Libras）の通訳なしで解雇されたろう者労働者の退職届を無効としました。",
-      "originalTitle": "Justiça anula pedido de demissão de trabalhador surdo dispensado sem intérprete de Libras",
-      "originalSummary": "Justiça anula pedido de demissão de trabalhador surdo dispensado sem intérprete de Libras",
-      "sourceName": "CSB Central dos Sindicatos Brasileiros",
-      "sourceUrl": "https://csb.org.br",
+      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOX0pTMVdqYmgtaDZRbGdlTkVpdENYNG9fd2oyODVIeEpYYmlzck12VkxQVGNoa0NwWXZCckNCTmtOUWdiR1VSNllPY29kUUNORHN3c1FueElTN0FlbWplcnhfYnRLZjNuUmozZUcxTHRHUTVGand4dlNKQ19SdmdTcmdVNnE4RTY1amZhcVU2QVg4WEdmaHU0U3NlZDZ5UHc4SXZ5c2FkalNYb1Zlc3ZSWS0tcVJXejZFN0tyazVERlAwZXQ5T0Q2X1p6VjUxMXpnYkFsOFczQ3V4bVpZMW9zSHBrTFczS29pX0U3Vm90TVLSAf8BQVVfeXFMT2s5YnA3bHZWY1NsQ1VteHc5XzlmUlNtU0xibTh3TzVwT0gyQlZYcjdhN2hVY29UMUg1aVBNak42Njd4MVBiSjJRUkpsZTdxcEN1T196ZTd6YnVBLUhqRXZKeE9zMEs0b2I4T04zMEo2WDluZVg4aXNFQmtEaUs5MEljQXlUcHl2dEp0TTVQM2hDVVdDckZ4YTJfNy1NODFJb0o4ekxMT2NYWWF1WFB2bWowazM0VlYxNTR1alZEbGY1VjFJS09qV0xTdUJjc2lvNHJfRkNUdUtKdm1OaFZEcmlmUVJtdkNzV1hRUk16YXB4Qmtwc1dyNl9FN1Z1aU53?oc=5",
+      "title": "聴覚障害者は、公共サービスを支援するためにLibrasの通訳者とビデオ通話を行っています。それがどのように機能するかを見てください",
+      "summary": "聴覚障害者は、公共サービスを支援するためにLibrasの通訳者とビデオ通話を行っています。それがどのように機能するかを見てください",
+      "originalTitle": "Surdos têm videochamada com intérprete de Libras para ajudar em serviços públicos; veja como funciona",
+      "originalSummary": "Surdos têm videochamada com intérprete de Libras para ajudar em serviços públicos; veja como funciona",
+      "sourceName": "G1",
+      "sourceUrl": "https://g1.globo.com",
       "publishedAt": "2026-09-28T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -3211,16 +3196,10 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "csb.org.br",
+      "sourceDomain": "g1.globo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "thumbnail": {
-        "url": "https://csb.org.br/wp-content/uploads/2026/09/capa-site-19.jpg",
-        "source": "og:image",
-        "pageUrl": "https://csb.org.br/noticias/justica-anula-pedido-demissao-trabalhador-surdo-sem-libras"
-      }
+      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
@@ -3459,7 +3438,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -3631,13 +3610,13 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
-      "title": "全国ろう者の日を記念し、ブラジル手話通訳者が同行する歴史散策が行われた。",
-      "summary": "全国ろう者の日を記念し、ブラジル手話通訳者が同行する歴史散策が行われた。",
-      "originalTitle": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
-      "originalSummary": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
-      "sourceName": "G1",
-      "sourceUrl": "https://g1.globo.com",
+      "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNSmEyTW4taVBDRzk4RlJ4TlVtWEIxdTBpTjk4LW1Nb19kcWZVSEVZa0pwWHhmUGtRXzdhcnk3VTBPTzJNWmtzWjlOZnBCVjFhelNQR21adDdEOG93X0NYUXlyOEwtNl8zZHdvN0dKQm1zWUVFQ3NnbE5kS2IyYmRZWWRyUWZmVDIyT3JGYW9Hc2xjZG82bXBINHRSVWlMM2Jmbzd4d0NPSno3bDhlWHdHYmx0MHcteEE?oc=5",
+      "title": "全国ろう者の日に合わせ、ブラジル手話（Libras）と書記ポルトガル語で学べる教育の保障が訴えられました。",
+      "summary": "全国ろう者の日に合わせ、ブラジル手話（Libras）と書記ポルトガル語で学べる教育の保障が訴えられました。",
+      "originalTitle": "Dia Nacional do Surdo: garantia de ensino em Libras e português escrito",
+      "originalSummary": "Dia Nacional do Surdo: garantia de ensino em Libras e português escrito",
+      "sourceName": "CNN Brasil",
+      "sourceUrl": "https://www.cnnbrasil.com.br",
       "publishedAt": "2026-09-26T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -3649,15 +3628,15 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "g1.globo.com",
+      "sourceDomain": "cnnbrasil.com.br",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
-        "url": "https://s03.video.glbimg.com/x720/14998130.jpg",
+        "url": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/04/pexels-kevin-malik-9017018.jpg?w=1200&h=630&crop=1",
         "source": "og:image",
-        "pageUrl": "https://g1.globo.com/rn/rio-grande-do-norte/videos-rntv-2-edicao/video/caminhada-historica-com-interpretes-de-libras-marca-dia-nacional-do-surdo-14998130.ghtml"
+        "pageUrl": "https://www.cnnbrasil.com.br/nacional/brasil/dia-nacional-do-surdo-garantia-de-ensino-em-libras-e-portugues-escrito/"
       }
     },
     {
@@ -3709,13 +3688,13 @@
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNSmEyTW4taVBDRzk4RlJ4TlVtWEIxdTBpTjk4LW1Nb19kcWZVSEVZa0pwWHhmUGtRXzdhcnk3VTBPTzJNWmtzWjlOZnBCVjFhelNQR21adDdEOG93X0NYUXlyOEwtNl8zZHdvN0dKQm1zWUVFQ3NnbE5kS2IyYmRZWWRyUWZmVDIyT3JGYW9Hc2xjZG82bXBINHRSVWlMM2Jmbzd4d0NPSno3bDhlWHdHYmx0MHcteEE?oc=5",
-      "title": "全国ろう者の日に合わせ、ブラジル手話（Libras）と書記ポルトガル語で学べる教育の保障が訴えられました。",
-      "summary": "全国ろう者の日に合わせ、ブラジル手話（Libras）と書記ポルトガル語で学べる教育の保障が訴えられました。",
-      "originalTitle": "Dia Nacional do Surdo: garantia de ensino em Libras e português escrito",
-      "originalSummary": "Dia Nacional do Surdo: garantia de ensino em Libras e português escrito",
-      "sourceName": "CNN Brasil",
-      "sourceUrl": "https://www.cnnbrasil.com.br",
+      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
+      "title": "全国ろう者の日を記念し、ブラジル手話通訳者が同行する歴史散策が行われた。",
+      "summary": "全国ろう者の日を記念し、ブラジル手話通訳者が同行する歴史散策が行われた。",
+      "originalTitle": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
+      "originalSummary": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
+      "sourceName": "G1",
+      "sourceUrl": "https://g1.globo.com",
       "publishedAt": "2026-09-26T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -3727,15 +3706,15 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "cnnbrasil.com.br",
+      "sourceDomain": "g1.globo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
-        "url": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/04/pexels-kevin-malik-9017018.jpg?w=1200&h=630&crop=1",
+        "url": "https://s03.video.glbimg.com/x720/14998130.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.cnnbrasil.com.br/nacional/brasil/dia-nacional-do-surdo-garantia-de-ensino-em-libras-e-portugues-escrito/"
+        "pageUrl": "https://g1.globo.com/rn/rio-grande-do-norte/videos-rntv-2-edicao/video/caminhada-historica-com-interpretes-de-libras-marca-dia-nacional-do-surdo-14998130.ghtml"
       }
     },
     {
@@ -3837,7 +3816,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -5283,7 +5262,7 @@
       ],
       "sourceDomain": "reuters.com",
       "sourcePriority": 98,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -7215,7 +7194,7 @@
       ],
       "sourceDomain": "aljazeera.com",
       "sourcePriority": 92,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -7574,7 +7553,7 @@
       ],
       "sourceDomain": "koreaherald.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -7704,7 +7683,7 @@
       ],
       "sourceDomain": "npr.org",
       "sourcePriority": 92,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -7920,7 +7899,7 @@
       ],
       "sourceDomain": "npr.org",
       "sourcePriority": 92,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -7944,7 +7923,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -8782,7 +8761,7 @@
       ],
       "sourceDomain": "arabnews.com",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -9048,7 +9027,7 @@
       ],
       "sourceDomain": "apnews.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -9096,7 +9075,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "thumbnail": {
         "url": "https://www.rte.ie/images/0023f510-500.jpg",
@@ -9202,7 +9181,7 @@
       ],
       "sourceDomain": "euronews.com",
       "sourcePriority": 86,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -10136,7 +10115,7 @@
       ],
       "sourceDomain": "koreatimes.co.kr",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -10214,7 +10193,7 @@
       ],
       "sourceDomain": "bbc.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -10238,7 +10217,7 @@
       ],
       "sourceDomain": "abc.net.au",
       "sourcePriority": 95,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -11061,7 +11040,7 @@
       ],
       "sourceDomain": "bbc.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -11331,7 +11310,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -11853,7 +11832,7 @@
       ],
       "sourceDomain": "koreaherald.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -12503,7 +12482,7 @@
       ],
       "sourceDomain": "bbc.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -12532,7 +12511,7 @@
       ],
       "sourceDomain": "bbc.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -12928,7 +12907,7 @@
       ],
       "sourceDomain": "swissinfo.ch",
       "sourcePriority": 76,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -13980,7 +13959,7 @@
       ],
       "sourceDomain": "koreatimes.co.kr",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -14907,7 +14886,7 @@
       ],
       "sourceDomain": "bbc.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -14960,7 +14939,7 @@
       ],
       "sourceDomain": "dw.com",
       "sourcePriority": 88,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -15138,7 +15117,7 @@
       ],
       "sourceDomain": "koreatimes.co.kr",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -15598,7 +15577,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -15886,7 +15865,7 @@
       ],
       "sourceDomain": "indianexpress.com",
       "sourcePriority": 76,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -16059,7 +16038,7 @@
       ],
       "sourceDomain": "timesofisrael.com",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
     },
@@ -16213,7 +16192,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -16266,7 +16245,7 @@
       ],
       "sourceDomain": "arabnews.com",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "thumbnail": {
@@ -16461,5 +16440,16 @@
       "sourceMode": "major-media",
       "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2"
     }
-  ]
+  ],
+  "publicationReview": {
+    "version": "publication-quality-v5",
+    "inputGeneratedAt": "2026-10-16T06:04:10.086Z",
+    "removed": [
+      {
+        "id": "https://news.google.com/rss/articles/CBMijAJBVV95cUxONUJiZUo2STRrcmZMRTVVdTMzRlQxSEcxY1F3aG5kb1F1U0FLeVpvdlBPTXlIWGVsb3hQbXNhaWZXTlVLY1pyX0dnTjNkWGpLTjlMdDgyVkdDeUs5VWt1Zlc1ZkFzWEt6OUd0Qjd1aXhuRXZtbWdXc2dSeGx5SjJraVFLaTZ0Tkdzd2VaMVZoR3o2UkY3MFJ4TU5XcjYxc19JNW5aaUtrMzh6cDZIY21JSEdyOUNjcFVLelNvT1gwTUJDU3JueXJIZEdHMlVJNU5PQkg5cFVqckZ6cEZjTjNabkJFQWYwRnFYN01wSTNKeDUzNnVBTXZ3XzlTM1ZuaVhBUXJEOUQzNXF5MjU20gGaAkFVX3lxTFAtMVpZbDZBMzIzTzZXTXV6TDFRcFFRWEVxempPV3dCd0VyNEFEQy1MSEdNamp0SS1wUVV6RE5TaTQwUzFULXZFYnl0cXBQUGtRdTF4WC0yYVBySldZQzN3RlNLTnV6ZmFuSk50WUVqSG13enozTHZURUNUcHdXSjRBUHFWc05CTHFrLVNiVG8xWVVxd051THczNDRYa2ZhX1E3LWwxSFVsdWNJaDdmN3JpSVhKZ3V3YUF3alNfa1JEMkhVOWtLd255NE9wa0NEWGhyWWM1V2wzN3MxT3l3QzhVTXVlenBDNDZmcEFXdGUyZ21OMUQyc3J6aXViM3lHTzI1dUg4WUZWVHEzVzBBdXJaYWV5MEV4VGlKQQ?oc=5",
+        "title": "Razerとポケモンが、リザードン、ルカリオ、ニンフィアをデザインした無線・発光対応ヘッドセットを展開します。",
+        "reason": "unrelated"
+      }
+    ]
+  }
 }
