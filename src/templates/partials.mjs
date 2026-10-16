@@ -136,7 +136,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
-  <link rel="stylesheet" href="${basePath}site-shell.css?v=20261017cafeheader">
+  <link rel="stylesheet" href="${basePath}site-shell.css?v=20261017worldheader">
   <link rel="stylesheet" href="${basePath}support.css?v=20261016mobile2">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
@@ -187,7 +187,7 @@ export function renderSiteNav({
 }
 
 /** Public navigation shared across static pages, with the same contract as PHP and OtoMado. */
-export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', edition = 'Web' } = {}) {
+export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', edition = ['world', 'worldOriginal'].includes(current) ? 'World' : 'Web' } = {}) {
   const en = nav.locale === 'en';
   return `<header class="dn-site-shell" role="banner">
     <div class="dn-shell-inner">
