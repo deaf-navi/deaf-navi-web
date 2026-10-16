@@ -14,11 +14,11 @@ test('transient timeout is retried once and concurrent occurrences share the sam
 });
 test('repeated timeout remains unavailable after two attempts',async()=>{
   let attempts=0;const get=createEventSourceFetcher({sleep:async()=>{},fetchResource:async()=>{attempts++;throw Object.assign(new Error('timeout'),{code:'ETIMEDOUT'});}});
-  await assert.rejects(get(url),/timeout/);assert.equal(attempts,2);
+  await assert.rejects(get(url),error=>error.code==='ETIMEDOUT' && /attempts=2/.test(error.message) && /ETIMEDOUT/.test(error.message));assert.equal(attempts,2);
 });
 test('access denial, rate limit, invalid HTML and unsafe destinations are never retried',async()=>{
   for(const response of [{...ok,status:403},{...ok,status:429},{...ok,headers:{'content-type':'image/png'}},new Error('Non-public DNS answer')]){
     let attempts=0;const get=createEventSourceFetcher({sleep:async()=>{},fetchResource:async()=>{attempts++;if(response instanceof Error)throw response;return response;}});
-    await assert.rejects(get(url));assert.equal(attempts,1);
+    await assert.rejects(get(url),error=>response instanceof Error ? /attempts=1/.test(error.message) : error.message.includes('status='+response.status));assert.equal(attempts,1);
   }
 });
