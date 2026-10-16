@@ -30,6 +30,7 @@
 @media(max-width:700px) {
   .dn-directory.dn-cafe-theme .dn-cafe-welcome { padding:16px 0 18px; }
   .dn-directory.dn-cafe-theme .dn-tabs a { font-size:calc(12px * var(--cafe-scale)); }
+  .dn-directory.dn-cafe-theme .dn-tabs a>span { text-wrap:balance; }
   .dn-directory.dn-cafe-theme .dn-tabs .dn-cafe-icon { display:none; }
   .dn-directory.dn-cafe-theme .dn-result-bar { flex-wrap:wrap; }
 }
