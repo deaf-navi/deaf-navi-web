@@ -3,7 +3,7 @@
  *
  * 情報設計:
  *   1. ヘッダー（ナビ・表示設定）
- *   2. いま必要な情報（緊急通報・防災・制度・ガイド・ツールへの大きな導線）
+ *   2. 出典・期限付きの短い編集メモ
  *   3. 注目: 公式・専門団体の新着
  *   4. 検索・絞り込みツールバー
  *   5. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
@@ -27,6 +27,8 @@ import {
   EXCLUDED_FROM_ALL,
 } from '../../config/categories.mjs';
 import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
+import { EDITORIAL_NOTES } from '../../config/editorial.mjs';
+import { selectEditorialNotes } from '../lib/editorial.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import {
@@ -42,7 +44,7 @@ import {
 } from './partials.mjs';
 
 export const INITIAL_VISIBLE = 60;
-export const FEATURED_COUNT = 4;
+export const FEATURED_COUNT = 2;
 export const FEATURED_MAX_AGE_DAYS = 14;
 
 /** 「注目」= 公式・専門情報源の新着（透明なルール。スコア等の権威付けはしない） */
@@ -189,6 +191,19 @@ ${items.map((item) => `      <a class="quick-access__item${item.tone ? ` quick-a
     </nav>`;
 }
 
+function renderEditorial(notes, now) {
+  const active = selectEditorialNotes(notes, now);
+  if (!active.length) return '';
+  return `    <aside class="editorial-note" id="editorial-note" aria-labelledby="editorial-heading">
+      <h2 id="editorial-heading">編集メモ</h2>
+${active.map((note) => `      <div class="editorial-note__item" data-editorial-expires="${escapeHtml(note.expiresAt)}">
+        <h3><a href="${escapeHtml(note.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(note.title)}</a></h3>
+        <p>${escapeHtml(note.text)}</p>
+        <p class="editorial-note__meta">出典：${escapeHtml(note.sourceName)} · <time datetime="${escapeHtml(note.reviewedAt)}">${escapeHtml(formatDateJST(note.reviewedAt).split(' ')[0])}</time>確認</p>
+      </div>`).join('\n')}
+    </aside>`;
+}
+
 function renderFeatured(featured) {
   if (!featured.length) return '';
   const items = featured.map((a) => `        <li class="featured__item">
@@ -198,7 +213,7 @@ function renderFeatured(featured) {
             <span class="featured__meta">${escapeHtml(a.sourceName)} ・ <time datetime="${escapeHtml(a.publishedAt)}" data-relative-time>${escapeHtml(formatDateJST(a.publishedAt).replace(' JST', ''))}</time></span>
           </a>
         </li>`).join('\n');
-  return `    <section class="featured" aria-labelledby="featured-heading">
+  return `    <section class="featured" id="featured-news" aria-labelledby="featured-heading">
       <div class="featured__head">
         <h2 id="featured-heading">注目 <span class="featured__note">公式・専門団体の新着</span></h2>
       </div>
@@ -223,6 +238,9 @@ function renderToolbar() {
             <input id="news-search" name="q" type="search" inputmode="search" autocomplete="off" placeholder="キーワードで検索（例: 手話通訳、補聴器）">
             <button class="search-field__clear" id="news-search-clear" type="button" aria-label="検索語を消去" hidden>×</button>
           </div>
+        </form>
+        <details class="news-filters" id="news-filters">
+          <summary>カテゴリ・地域などで絞り込む<span id="filter-active-count"></span></summary>
           <div class="discovery-tools__row">
             <label class="tool-select">
               <span class="tool-select__label">情報源</span>
@@ -250,12 +268,12 @@ function renderToolbar() {
             </label>
             <button type="button" class="toolbar__reset" id="filter-reset" hidden>条件をクリア</button>
           </div>
-        </form>
         <nav class="filters" role="navigation" aria-label="カテゴリフィルター">
           <div class="filters__row" role="group" aria-label="カテゴリで絞り込む">
           ${categoryChips}
           </div>
         </nav>
+        </details>
       </div>`;
   }
 
@@ -313,7 +331,7 @@ export function renderHomePage(data, opts) {
   const assetVersion = opts.clientAssetVersion
     ? `?v=${encodeURIComponent(opts.clientAssetVersion)}`
     : '';
-  const now = Date.now();
+  const now = opts.now ?? Date.now();
 
   const pageUrl = isDev ? `${SITE_URL}index-dev.html` : SITE_URL;
   const pageTitle = `${isDev ? '[DEV] ' : ''}${SITE_NAME} | 聴覚障害・難聴・手話のニュース`;
@@ -329,14 +347,6 @@ export function renderHomePage(data, opts) {
   const articlesHtml = initialCards
     .map((a) => renderArticleCard(a, { now }))
     .join('\n');
-
-  const sourceCounts = defaultVisible.reduce((counts, article) => {
-    const tier = getSourceTier(article);
-    counts[tier] = (counts[tier] ?? 0) + 1;
-    return counts;
-  }, {});
-  const primarySourceCount = (sourceCounts.official ?? 0) + (sourceCounts.specialist ?? 0);
-  const discoveredSourceCount = sourceCounts.news ?? 0;
 
   const jsonLd = renderJsonLd({ generatedAt, articles, pageUrl, isDev });
   const leadPrefix = isDev ? 'テスト版。dev品質フィルタで生成中。 ' : '';
@@ -356,12 +366,12 @@ ${renderHead({
     extraHead: `  <meta name="keywords" content="${escapeHtml(opts.keywords)}">\n  <meta name="author" content="TAMA">\n  <meta property="og:updated_time" content="${escapeHtml(generatedAt)}">\n`,
   })}
 </head>
-<body>
+<body class="news-page">
   ${renderSkipLink()}
 
 ${renderSiteHeader({
     subLabel: isDev ? 'Web DEV' : 'Web',
-    lead: `${leadPrefix}聴覚障害・難聴・ろう者コミュニティに必要なニュースを、一次情報・専門情報・報道の区分とともに届けます。`,
+    lead: `${leadPrefix}きこえない・きこえにくい人のためのニュース。`,
     current: 'news',
     nav: {
       guideHref: `./${files.guide}`,
@@ -370,10 +380,8 @@ ${renderSiteHeader({
   })}
 
   <main id="main" class="container" role="main">
-${renderToolbar()}
-
-${renderQuickAccess({ guideFile: files.guide })}
-
+    <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./guide/emergency.html">緊急時の連絡方法</a></nav>
+${renderEditorial(opts.editorialNotes ?? EDITORIAL_NOTES, now)}
 ${renderFeatured(featured)}
 
 ${renderAgentActivity()}
@@ -385,14 +393,8 @@ ${renderAgentActivity()}
           表示中: <strong id="visible-count">${initialVisibleCount}</strong> / 全 <strong id="total-count">${totalDefaultCount}</strong> 件
         </p>
       </div>
-      <aside class="curation-overview" aria-label="キュレーション状況">
-        <dl class="curation-overview__metrics">
-          <div><dt>一次・専門</dt><dd>${primarySourceCount}件</dd></div>
-          <div><dt>報道・発見</dt><dd>${discoveredSourceCount}件</dd></div>
-          <div><dt>最終更新</dt><dd><time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time></dd></div>
-        </dl>
-        <a class="curation-overview__policy" href="./${files.about}#about-policy">選定方針を見る <span aria-hidden="true">→</span></a>
-      </aside>
+${renderToolbar()}
+      <p class="news-update">更新 <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time> · <a href="./${files.about}#about-policy">選定方針</a></p>
       <p class="offline-note" id="offline-note" role="status" hidden>オフライン表示中です。保存済みの内容を表示しています（最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>）。</p>
       <div id="articles" class="articles" data-total="${totalDefaultCount}" data-initial="${initialVisibleCount}" data-src="./${files.articlesJson}">
 ${articlesHtml}
@@ -407,6 +409,8 @@ ${articlesHtml}
         </button>
       </div>
       <p class="archive-link"><a href="./${files.oldIndex}">過去アーカイブを見る</a></p>
+
+${renderQuickAccess({ guideFile: files.guide })}
 
       <aside class="app-cta" aria-label="Deaf Navi アプリのご案内">
         <div class="app-cta__text">

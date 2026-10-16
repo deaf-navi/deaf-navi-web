@@ -53,8 +53,17 @@ export function normalizeForSearch(text) {
   return String(text).normalize('NFKC').toLowerCase();
 }
 
+/** Remove publisher labels only; preserve parentheses that are part of the story. */
+export function cleanArticleTitle(title, sourceName = '') {
+  let value = String(title ?? '').trim();
+  if (sourceName) {
+    value = value.replace(new RegExp(`\\s+[-－―|｜]\\s*${escapeRegExp(sourceName)}$`, 'iu'), '').trim();
+  }
+  return value.replace(/\s*[（(](?:共同通信|時事通信)[）)]\s*$/u, '').trim();
+}
+
 export function normalizeTitleKey(title) {
-  return String(title)
+  return cleanArticleTitle(title)
     .normalize('NFKC')
     .replace(/\s+[-－―]\s+[^-－―|｜]+$/u, '')
     .replace(/(20\d{2}|令和\d+)年\d{1,2}月\d{1,2}日(掲載)?/gu, '')
@@ -69,6 +78,7 @@ export function cleanSummaryText(summary, title, sourceName) {
     .replace(/\s+/g, ' ')
     .trim();
   if (!cleaned) return '';
+  if (normalizeTitleKey(cleaned) === normalizeTitleKey(title)) return '';
 
   const withoutSource = sourceName
     ? cleaned.replace(new RegExp(escapeRegExp(sourceName), 'giu'), '').trim()

@@ -16,6 +16,7 @@ import { join } from 'node:path';
 
 import { GUIDE_SECTIONS } from '../src/guide-data.mjs';
 import { QUALITY_VERSION } from '../src/lib/curation.mjs';
+import { prepareDomesticPublication } from '../src/lib/publication-quality.mjs';
 import { REGION_ORDER } from '../config/regions.mjs';
 import { CATEGORY_UI } from '../config/categories.mjs';
 import { ANALYTICS, SITE_URL } from '../config/site.mjs';
@@ -82,7 +83,10 @@ const [dataRaw, indexHtml, worldJpHtml, worldOriginalHtml, guideHtml, aboutHtml,
 
 const data = JSON.parse(dataRaw);
 assert(Array.isArray(data.articles) && data.articles.length > 0, 'articles.json に記事がありません。');
-assert(data.quality?.version === QUALITY_VERSION, `キュレーション品質バージョンが ${QUALITY_VERSION} ではありません: ${data.quality?.version}`);
+const reviewedSnapshot = data.publicationReview?.version === QUALITY_VERSION
+  && data.publicationReview?.inputGeneratedAt === data.generatedAt;
+assert(data.quality?.version === QUALITY_VERSION || reviewedSnapshot, `掲載品質バージョンが ${QUALITY_VERSION} ではありません`);
+assert(prepareDomesticPublication(data) === data, '掲載データが現在の品質チェックを通過していません');
 assert(typeof data.generatedAt === 'string' && Number.isFinite(new Date(data.generatedAt).getTime()), 'generatedAt が不正です。');
 
 // 鮮度は「生成時点」を基準に検証する（CIで過去データを検証しても壊れないように）
