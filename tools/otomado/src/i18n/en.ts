@@ -24,6 +24,10 @@ export const en: Record<MsgKey, string> = {
   'home.captions.desc': 'Turn speech into large, easy-to-read live captions.',
   'home.board.desc': 'Show big text to the person in front of you. Flip it 180° with one tap.',
   'home.open': 'Open',
+  'home.micHint': 'Uses your microphone',
+  'home.captionsHint': 'Requires a microphone and a supported browser',
+  'home.boardHint': 'No microphone needed',
+  'board.draftHint': 'Your draft stays when you switch tools. Reloading clears it.',
   'home.privacyTitle': 'Privacy',
   'home.privacy.sound': 'Sound Watch processes audio entirely on this device. Nothing is sent anywhere.',
   'home.privacy.captions':

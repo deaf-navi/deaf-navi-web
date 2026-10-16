@@ -23,6 +23,10 @@ export const ja = {
   'home.captions.desc': '相手の話し声を、その場で大きな字幕にします。',
   'home.board.desc': '文字を大きく表示して見せる筆談ボード。180°反転もワンタップ。',
   'home.open': '開く',
+  'home.micHint': 'マイクを使います',
+  'home.captionsHint': 'マイク・対応ブラウザが必要です',
+  'home.boardHint': 'マイク不要で使えます',
+  'board.draftHint': '画面を切り替えても入力中の文字は残ります。再読み込みすると消えます。',
   'home.privacyTitle': 'プライバシー',
   'home.privacy.sound': 'おとセンサーの音声処理は、すべてこの端末の中で完結します。外部には送信されません。',
   'home.privacy.captions':

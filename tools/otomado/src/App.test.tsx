@@ -4,6 +4,24 @@ import userEvent from '@testing-library/user-event'
 import App from './App'
 
 describe('App shell', () => {
+  it('keeps an unfinished board message across tools without saving it to storage', async () => {
+    const user = userEvent.setup()
+    const app = render(<App />)
+    const navigate = async (route: string) => act(async () => {
+      window.location.hash = `#/${route}`
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    })
+    await navigate('board')
+    await user.type(screen.getByLabelText('ひつだん'), '入力途中のメッセージ')
+    await navigate('settings')
+    await navigate('board')
+    expect(screen.getByLabelText('ひつだん')).toHaveValue('入力途中のメッセージ')
+    expect(Object.values(localStorage).join('')).not.toContain('入力途中のメッセージ')
+    app.unmount()
+    render(<App />)
+    expect(screen.getByLabelText('ひつだん')).toHaveValue('')
+  })
+
   it('renders the home screen with the three tools', () => {
     render(<App />)
     expect(screen.getByRole('heading', { name: 'おとまど' })).toBeInTheDocument()

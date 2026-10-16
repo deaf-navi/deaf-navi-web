@@ -26,6 +26,12 @@ try {
   ok(r.text.includes('class="dn-cafe-table"')&&!r.text.includes('dn-place-grid'),'table is the default listing');
   ok((await anon('/connect/sign-cafe/?view=cards')).text.includes('dn-place-grid'),'cards require explicit selection');
   ok((await anon('/connect/sign-cafe/?q=大阪')).text.includes('2U'),'search');
+  for (const q of ['大阪 2U','2U　大阪','  大阪   ２Ｕ  ']) {
+    const hit=await anon('/connect/sign-cafe/?q='+encodeURIComponent(q));
+    ok(hit.text.includes('class="dn-cafe-row"')&&hit.text.includes('2U'),'multi-word search across location and name: '+q);
+  }
+  ok(!(await anon('/connect/sign-cafe/?q='+encodeURIComponent('大阪 unmatched-token-xyz'))).text.includes('class="dn-cafe-row"'),'all search words are required');
+  ok(r.text.includes('data-pref-regions=')&&r.text.includes('cafe-search.js'),'region enhancement uses the canonical prefecture map');
   ok(r.text.includes('dn-cafe-theme')&&r.text.includes('営業時間・営業日'),'autumn sortable table');
   ok(!r.text.match(/<thead>[\s\S]*?<\/thead>/)[0].includes('確認日'),'verification date absent from table headers');
   const order=t=>[...t.matchAll(/class="dn-cafe-row" data-slug="([^"]+)"/g)].map(m=>m[1]);
