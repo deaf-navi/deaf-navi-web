@@ -43,12 +43,10 @@ export function renderGuidePage({ isDev, files }) {
   const sectionsHtml = GUIDE_SECTIONS.map((section) => `
     <section class="guide-section" data-guide-section aria-labelledby="guide-${escapeHtml(section.id)}">
       <div class="guide-section__head">
-        <div>
-          <h2 id="guide-${escapeHtml(section.id)}">${escapeHtml(section.label)}</h2>
-          <p>${escapeHtml(section.summary)}</p>
-        </div>
+        <h2 id="guide-${escapeHtml(section.id)}">${escapeHtml(section.label)}</h2>
         <span class="guide-section__count" data-guide-section-count>${section.items.length}件</span>
       </div>
+      <p class="guide-section__summary">${escapeHtml(section.summary)}</p>
       <div class="guide-grid">
 ${section.items.map((item) => renderGuideItem(item, section.label)).join('\n')}
       </div>
