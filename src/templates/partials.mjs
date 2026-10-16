@@ -130,7 +130,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
-  <link rel="stylesheet" href="${basePath}site-shell.css?v=20260917mark">
+  <link rel="stylesheet" href="${basePath}site-shell.css?v=20261016events">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
 
@@ -155,6 +155,7 @@ export function renderSiteNav({
   current = '',
   newsHref = './',
   worldHref = './deaf-navi-world-jp.html',
+  eventsHref,
   guideHref = './guide.html',
   connectHref = './connect/sign-cafe/',
   toolHref = './otomado/',
@@ -162,7 +163,7 @@ export function renderSiteNav({
   locale = 'ja',
 } = {}) {
   const isEnglish = locale === 'en';
-  const hrefs = { news: newsHref, world: worldHref, guide: guideHref, connect: connectHref, tool: toolHref, about: aboutHref };
+  const hrefs = { events: eventsHref || newsHref.replace(/index(?:-dev)?\.html$/, '') + 'events.html', news: newsHref, world: worldHref, guide: guideHref, connect: connectHref, tool: toolHref, about: aboutHref };
   const items = SITE_NAVIGATION.map(item => ({
     key: item.key, href: hrefs[item.key], label: item[isEnglish ? 'en' : 'ja'],
     className: ['world', 'tool'].includes(item.key) ? `site-nav__link--${item.key}` : '',

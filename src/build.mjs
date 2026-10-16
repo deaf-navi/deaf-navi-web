@@ -26,6 +26,7 @@ import {
 } from './templates/archive.mjs';
 import { renderAboutPage } from './templates/about.mjs';
 import { renderGuidePage } from './templates/guide.mjs';
+import { renderEventsPage } from './templates/events.mjs';
 import { renderConnectPages, renderNotFoundPage } from './templates/connect.mjs';
 import {
   renderRobots,
@@ -164,6 +165,9 @@ async function main() {
 
   await writeDoc(FILES.about, renderAboutPage({ generatedAt: data.generatedAt, ...opts }));
   await writeDoc(FILES.guide, renderGuidePage(opts));
+  const eventSnapshot = JSON.parse(await readFile(join(ROOT, '.state/events.json'), 'utf8'));
+  await writeDoc('events.html', renderEventsPage(eventSnapshot, opts));
+  await writeDoc('events.json', JSON.stringify({ version: 1, checkedAt: eventSnapshot.checkedAt, events: eventSnapshot.events }, null, 2) + '\n');
   const [places, signCafes, starbucksEntries] = await Promise.all([
     readFile(join(ROOT, 'content', 'connect', 'places.json'), 'utf8').then(JSON.parse),
     readFile(join(ROOT, 'content', 'connect', 'sign-cafes.json'), 'utf8').then(JSON.parse),
@@ -212,6 +216,8 @@ async function main() {
   await copyAsset(join(__dirname, 'app.js'), FILES.app);
   await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
+  await copyAsset(join(__dirname, 'events.js'), 'events.js');
+  await copyAsset(join(ASSETS, 'events.css'), 'events.css');
   await copyAsset(join(__dirname, 'ui-controls.js'), 'ui-controls.js');
   await copyAsset(join(__dirname, 'og-image.svg'), FILES.og);
   await copyAsset(join(ROOT, 'content', 'connect', 'places.json'), join('data', 'connect', 'places.json'));

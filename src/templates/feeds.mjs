@@ -32,6 +32,7 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
     })),
     { loc: `${SITE_URL}${files.about}`, changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}${files.guide}`, lastmod: GUIDE_LAST_REVIEWED, changefreq: 'monthly', priority: '0.8' },
+    { loc: `${SITE_URL}events.html`, changefreq: 'daily', priority: '0.8' },
     { loc: `${SITE_URL}otomado/`, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE_URL}${files.sitemapHtml}`, lastmod, changefreq: 'weekly', priority: '0.4' },
     { loc: `${SITE_URL}deaf-navi-world-jp.html`, changefreq: 'daily', priority: '0.8' },
@@ -191,8 +192,9 @@ ${renderSubHeader({
       </section>
 
       <section class="sitemap-card" aria-labelledby="sitemap-connect">
-        <h2 id="sitemap-connect">手話カフェ</h2>
+        <h2 id="sitemap-connect">イベント・手話カフェ</h2>
         <ul>
+          <li><a href="./events.html">国内の手話イベント</a><span>開催日・地域・種類から探す</span></li>
           <li><a href="./connect/sign-cafe/">手話カフェ一覧</a><span>常設・限定営業・定期開催・特殊</span></li>
           <li><a href="./connect/sign-cafe/map/">全国の手話カフェマップ</a><span>2D地図から店舗を探す</span></li>
           <li><a href="./connect/sign-cafe/overseas/">海外の手話カフェ一覧</a><span>国・都市・手話との関わりから探す</span></li>

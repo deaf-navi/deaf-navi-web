@@ -7,11 +7,11 @@
  * - 静的アセット(CSS/JS/画像)はキャッシュ優先 + 背景更新
  * - 暮らしのガイドは災害時利用を想定してプリキャッシュ
  *
- * 2026-10-16T01:44:47.566Z-4a9a8fd80102 と 4a9a8fd80102 はビルド時に置換され、キャッシュ世代を切り替える。
+ * 2026-10-16T01:44:47.566Z-c531d7e265c0 と c531d7e265c0 はビルド時に置換され、キャッシュ世代を切り替える。
  */
 
-const BUILD_ID = '2026-10-16T01:44:47.566Z-4a9a8fd80102';
-const ASSET_VERSION = '4a9a8fd80102';
+const BUILD_ID = '2026-10-16T01:44:47.566Z-c531d7e265c0';
+const ASSET_VERSION = 'c531d7e265c0';
 const CACHE_NAME = `deaf-navi-${BUILD_ID}`;
 
 self.addEventListener('message', (event) => {

@@ -19,6 +19,7 @@ import { QUALITY_VERSION } from '../src/lib/curation.mjs';
 import { prepareDomesticPublication } from '../src/lib/publication-quality.mjs';
 import { REGION_ORDER } from '../config/regions.mjs';
 import { CATEGORY_UI } from '../config/categories.mjs';
+import { validEvent } from '../src/lib/events.mjs';
 import { ANALYTICS, SITE_URL } from '../config/site.mjs';
 import {
   CLOUDFLARE_ANALYTICS_BEACON_URL,
@@ -276,6 +277,22 @@ for (const asset of otomadoAssetPaths.filter((path) => path.endsWith('.css'))) {
   const css = await readFile(join(docs, asset), 'utf8');
   assert(!/Shippori|Mincho|Noto Serif|font-serif/i.test(css), `おとまどのCSSに明朝系フォント指定が残っています: ${asset}`);
 }
+
+/* ---------- イベント ---------- */
+const eventData=JSON.parse(await readFile(join(docs,'events.json'),'utf8'));
+const eventHtml=await readFile(join(docs,'events.html'),'utf8');
+assert(Array.isArray(eventData.events),'events.json のイベント配列がありません');
+const eventIds=new Set();
+for(const event of eventData.events||[]){
+  assert(Boolean(validEvent(event)),`イベントの必須項目・根拠が不正です: ${event.id}`);
+  assert(!eventIds.has(event.id),`イベントIDが重複しています: ${event.id}`);
+  eventIds.add(event.id);
+  assert(eventHtml.includes(`id="${event.id}"`),`イベントがHTMLにありません: ${event.id}`);
+}
+assert(eventHtml.includes('id="event-filters"')&&eventHtml.includes('data-recheck-ms="172800000"'),'イベントの絞り込み・鮮度判定がありません');
+assert(sitemapXml.includes('/events.html'),'サイトマップにイベントがありません');
+for(const asset of ['events.js','events.css'])assert(await fileExists(asset),`イベントのアセットがありません: ${asset}`);
+for(const [name,html] of [['news',indexHtml],['world',worldJpHtml],['guide',guideHtml],['about',aboutHtml]])assert(html.includes('events.html'),'共通ナビにイベントがありません: '+name);
 
 /* ---------- 結果 ---------- */
 
