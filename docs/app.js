@@ -350,7 +350,6 @@
   function updateMeta(shown, matched) {
     var featured = document.getElementById('featured-news');
     if (featured) featured.hidden = hasActiveFilters();
-    refreshEditorial();
     var filterCount = document.getElementById('filter-active-count');
     if (filterCount) {
       var count = [state.category, state.source, state.period, state.region].filter(function (value) { return value !== 'all'; }).length;
@@ -598,27 +597,6 @@
 
   /* ---- 初期化 ---- */
 
-  // Expired notes also disappear from cached/offline pages when opened or resumed.
-  var editorialExpiryTimer;
-  function refreshEditorial() {
-    var section = document.getElementById('editorial-note');
-    if (!section) return;
-    clearTimeout(editorialExpiryTimer);
-    var now = Date.now();
-    var nextExpiry = Infinity;
-    var active = 0;
-    Array.prototype.slice.call(section.querySelectorAll('[data-editorial-expires]')).forEach(function (item) {
-      var expires = Date.parse(item.getAttribute('data-editorial-expires'));
-      var reviewed = Date.parse(item.getAttribute('data-editorial-reviewed'));
-      item.hidden = !isFinite(expires) || !isFinite(reviewed) || reviewed > now || now >= expires;
-      if (!item.hidden) { active += 1; nextExpiry = Math.min(nextExpiry, expires); }
-    });
-    section.hidden = !active || hasActiveFilters();
-    if (active) editorialExpiryTimer = setTimeout(refreshEditorial, Math.min(nextExpiry - now + 1, 2147483647));
-  }
-  refreshEditorial();
-  window.addEventListener('pageshow', refreshEditorial);
-  document.addEventListener('visibilitychange', refreshEditorial);
   var filterDetails = document.getElementById('news-filters');
   if (filterDetails && hasActiveFilters()) filterDetails.open = true;
 
