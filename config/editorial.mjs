@@ -1,12 +1,14 @@
-/** Source-checked notes. Scheduled curation never invents editorial commentary. */
-export const EDITORIAL_NOTES = [
-  {
-    id: 'jfd-welfare-request-202610',
-    title: '福祉の要望書で知る、暮らしの課題',
-    text: '全日本ろうあ連盟が、情報提供施設や手話通訳者、ろう高齢者の支援を求める要望書を公開しました。制度改正の決定ではありません。',
-    sourceName: '全日本ろうあ連盟',
-    sourceUrl: 'https://www.jfd.or.jp/2026/10/11/pid30797',
-    reviewedAt: '2026-10-16T00:00:00+09:00',
-    expiresAt: '2026-10-23T00:00:00+09:00',
-  },
-];
+// Only sources with a verified article body/date layout are eligible.
+export const EDITORIAL_POLICY = Object.freeze({
+  maxAgeMs: 7 * 86400000,
+  recheckWithinMs: 24 * 3600000,
+  maxCandidates: 6,
+  budgetMs: 45000,
+});
+
+export const EDITORIAL_SOURCES = Object.freeze([
+  { host: 'www.jfd.or.jp', name: '全日本ろうあ連盟', path: /^\/20\d{2}\/\d{2}\/\d{2}\/pid\d+\/?$/, layout: 'jfd' },
+  { host: 'www.jyoubun-center.or.jp', name: '聴力障害者情報文化センター', path: /^\/[^/]+\/$/, layout: 'swell' },
+  { host: 'shigajou.or.jp', name: '滋賀県立聴覚障害者センター', path: /^\/info\/[^/]+\.html$/, layout: 'entry' },
+  { host: 'www.sapporo-deaf.jp', name: '札幌聴覚障害者協会', path: /^\/information\/[^/]+\/$/, layout: 'entry' },
+]);

@@ -27,7 +27,6 @@ import {
   EXCLUDED_FROM_ALL,
 } from '../../config/categories.mjs';
 import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
-import { EDITORIAL_NOTES } from '../../config/editorial.mjs';
 import { selectEditorialNotes } from '../lib/editorial.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
@@ -194,12 +193,12 @@ ${items.map((item) => `      <a class="quick-access__item${item.tone ? ` quick-a
 function renderEditorial(notes, now) {
   const active = selectEditorialNotes(notes, now);
   if (!active.length) return '';
-  return `    <aside class="editorial-note" id="editorial-note" aria-labelledby="editorial-heading">
+  return `    <aside class="editorial-note" id="editorial-note" aria-labelledby="editorial-heading" hidden>
       <h2 id="editorial-heading">編集メモ</h2>
-${active.map((note) => `      <div class="editorial-note__item" data-editorial-expires="${escapeHtml(note.expiresAt)}">
+${active.map((note) => `      <div class="editorial-note__item" data-editorial-reviewed="${escapeHtml(note.reviewedAt)}" data-editorial-expires="${escapeHtml(note.expiresAt)}">
         <h3><a href="${escapeHtml(note.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(note.title)}</a></h3>
-        <p>${escapeHtml(note.text)}</p>
-        <p class="editorial-note__meta">出典：${escapeHtml(note.sourceName)} · <time datetime="${escapeHtml(note.reviewedAt)}">${escapeHtml(formatDateJST(note.reviewedAt).split(' ')[0])}</time>確認</p>
+        <p>${note.mode === 'primary-excerpt' ? '「' : ''}${escapeHtml(note.text)}${note.mode === 'primary-excerpt' ? '」' : ''}</p>
+        <p class="editorial-note__meta">${note.mode === 'primary-excerpt' ? '一次情報から抜粋・自動更新<br>' : ''}出典：${escapeHtml(note.sourceName)} · <time datetime="${escapeHtml(note.reviewedAt)}">${escapeHtml(formatDateJST(note.reviewedAt))}</time>確認</p>
       </div>`).join('\n')}
     </aside>`;
 }
@@ -381,7 +380,7 @@ ${renderSiteHeader({
 
   <main id="main" class="container" role="main">
     <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
-${renderEditorial(opts.editorialNotes ?? EDITORIAL_NOTES, now)}
+${renderEditorial(opts.editorialNotes ?? [], now)}
 ${renderFeatured(featured)}
 
 ${renderAgentActivity()}

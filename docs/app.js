@@ -609,7 +609,8 @@
     var active = 0;
     Array.prototype.slice.call(section.querySelectorAll('[data-editorial-expires]')).forEach(function (item) {
       var expires = Date.parse(item.getAttribute('data-editorial-expires'));
-      item.hidden = !isFinite(expires) || now >= expires;
+      var reviewed = Date.parse(item.getAttribute('data-editorial-reviewed'));
+      item.hidden = !isFinite(expires) || !isFinite(reviewed) || reviewed > now || now >= expires;
       if (!item.hidden) { active += 1; nextExpiry = Math.min(nextExpiry, expires); }
     });
     section.hidden = !active || hasActiveFilters();

@@ -236,8 +236,6 @@ ${linksHtml}${updateHtml}      <hr class="site-footer__divider" aria-hidden="tru
       <p class="site-footer__copyright">
         <span>&copy; ${year} TAMA.</span>
         <span class="dot" aria-hidden="true"></span>
-        <span lang="en">Take it easy.</span>
-        <span class="dot" aria-hidden="true"></span>
         <span lang="en">Curated for the Deaf &amp; Hard-of-hearing community.</span>
       </p>
     </div>

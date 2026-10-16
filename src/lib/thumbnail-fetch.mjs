@@ -36,6 +36,7 @@ function publicLookup(hostname, options, callback) {
 export async function fetchThumbnailResource(input, {
   method = 'GET', body, signal, timeoutMs = 8000, maxBytes = 1_250_000,
   userAgent = 'DeafNaviWeb-Thumbnails/1.0 (+https://deafnavi.com/)',
+  allowUrl = () => true,
 } = {}) {
   let url = publicUrl(input);
   if (!url) throw new Error('Invalid public URL');
@@ -45,6 +46,7 @@ export async function fetchThumbnailResource(input, {
   }
   const requestSignal = signal ? AbortSignal.any([signal, AbortSignal.timeout(timeoutMs)]) : AbortSignal.timeout(timeoutMs);
   for (let redirects = 0; redirects <= 4; redirects++) {
+    if (!allowUrl(url)) throw new Error('Disallowed metadata destination');
     const result = await new Promise((resolve, reject) => {
       const parsed = new URL(url);
       const request = (parsed.protocol === 'https:' ? https : http).request(parsed, {
