@@ -20,7 +20,7 @@ test('ニュースの更新日時をカフェ・ツール・過去月へ流用�
     const before = readEntries('2026-10-12T00:00:00Z');
     const after = readEntries('2026-10-13T00:00:00Z');
     assert.deepEqual([...after.keys()], [...before.keys()], '更新日時だけでは検索対象URLを変更しない');
-    for (const path of ['connect/sign-cafe/', 'connect/sign-cafe/map/', 'otomado/', 'about/', files.about, files.oldIndex, `archive/2026-08${suffix}.html`, 'deaf-navi-world-jp.html']) {
+    for (const path of ['connect/sign-cafe/', 'connect/sign-cafe/map/', 'otomado/', files.about, files.oldIndex, `archive/2026-08${suffix}.html`, 'deaf-navi-world-jp.html']) {
       const url = 'https://deafnavi.com/' + path;
       assert.ok(after.has(url), path);
       assert.equal(before.get(url), null, path);
@@ -102,13 +102,13 @@ test('手話カフェへ直接案内し、つながるページは閲覧用に�
   }
 });
 
-test('イベントページをnoindexの公開休止案内にし、一覧への導線を残す', async () => {
+test('旧イベント入口は現在のイベント一覧へ正規化する', async () => {
   const generated = renderConnectPages({places: {}, signCafes: {signCafes: []}});
   const eventPage = generated.find(page => page.file === 'connect/events/index.html').html;
   for (const html of [eventPage, await readFile(join(docs, 'connect/events/index.html'), 'utf8')]) {
-    assert.match(html, /<meta name="robots" content="noindex,follow">/);
-    assert.match(html, /イベントページは公開休止中です/);
-    assert.match(html, /href="\/connect\/sign-cafe\/">手話カフェ一覧を見る<\/a>/);
+    assert.match(html, /rel="canonical" href="https:\/\/deafnavi.com\/events.html"/);
+    assert.match(html, /content="0;url=\/events.html"/);
+    assert.match(html, /href="\/events.html"/);
   }
   for (const file of ['connect/index.html', 'sitemap.html', 'sitemap.xml']) {
     assert.doesNotMatch(await readFile(join(docs, file), 'utf8'), /connect\/events\//, file);

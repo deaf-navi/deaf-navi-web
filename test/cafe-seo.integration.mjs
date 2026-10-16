@@ -56,5 +56,18 @@ try{
  ({html}=await request('/connect/sign-cafe/overseas/'));ok(!ld(html).some(x=>x['@type']==='CollectionPage'),'domestic schema not applied overseas');
  assert.deepEqual(ld(html).find(x=>x['@type']==='BreadcrumbList').itemListElement.map(x=>[x.position,x.item]),[[1,'https://deafnavi.com/'],[2,'https://deafnavi.com/connect/sign-cafe/'],[3,'https://deafnavi.com/connect/sign-cafe/overseas/']]);checks++;
  ({html}=await request('/directory-sitemap.xml'));ok(html.includes('<loc>https://deafnavi.com/connect/sign-cafe/</loc>'),'directory sitemap contains hub');ok(!html.includes('seo-fixture-29/'),'private record absent from sitemap');
+ for(const [slug,pref] of [['tokyo','東京都'],['kanagawa','神奈川県']]){
+  const regional=await request(route+'area/'+slug+'/');ok(regional.response.status===200,'region available');
+  const schema=ld(regional.html).find(x=>x['@type']==='CollectionPage');
+  const expected=JSON.parse(run(['-r',`require '${core}';require '${resolve(root,'server/views.php').replaceAll('\\','/')}';echo json(array_values(array_map(fn($p)=>BASE.record_path($p),array_filter(visible_records(),fn($p)=>$p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&!empty($p['signing_store'])))&&domestic_matches($p,['prefecture'=>'${pref}'])))));`]));
+  assert.deepEqual(schema.mainEntity.itemListElement.map(p=>p.url).sort(),expected.sort());checks++;
+  ok(canonical(regional.html)==='https://deafnavi.com'+route+'area/'+slug+'/','region canonical');
+  ok(!regional.html.includes('PRIVATE_SEO_SENTINEL')&&!regional.html.includes('SEO fixture 29'),'private data excluded');
+ }
+ ok((await request(route+'area/unknown/')).response.status===404,'unknown area is a real 404');
+ const redirects=JSON.parse(await (await import('node:fs/promises')).readFile(resolve(root,'config/entry-redirects.json'),'utf8'));
+ for(const entry of redirects)for(const path of [entry.from.slice(0,-1),entry.from,entry.from+'index.html']){
+  const r=await request(path+'?dn_client=codex&q=a%20b');ok(r.response.status===301,'permanent old entry');ok(r.response.headers.get('location')===entry.to+'?dn_client=codex&q=a%20b','query preserved');
+ }
  ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no PHP warnings');console.log(JSON.stringify({result:'CAFE_SEO_TESTS_OK',checks,productionWrites:false}));
 }finally{server.kill();}

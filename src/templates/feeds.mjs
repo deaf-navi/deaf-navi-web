@@ -9,6 +9,9 @@ import {
 } from '../../config/site.mjs';
 import { CATEGORY_UI } from '../../config/categories.mjs';
 import { GUIDE_LAST_REVIEWED } from '../guide-data.mjs';
+import { GUIDE_TOPICS, GUIDE_TOPIC_REVIEWED } from '../guide-topics.mjs';
+import { validEvent, eventPeriod } from '../lib/events.mjs';
+import { eventDetailPath } from './event-detail.mjs';
 import { escapeHtml, escapeXml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import {
@@ -18,7 +21,7 @@ import {
   renderSubHeader,
 } from './partials.mjs';
 
-export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = [] }) {
+export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = [], events = [], now = Date.now() }) {
   const lastmod = new Date(generatedAt).toISOString();
   const pageUrl = isDev ? `${SITE_URL}index-dev.html` : SITE_URL;
   // ニュースの生成日時を、更新日を追跡していない別ページへ転用しない。
@@ -33,23 +36,16 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
     { loc: `${SITE_URL}${files.about}`, changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}${files.guide}`, lastmod: GUIDE_LAST_REVIEWED, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE_URL}events.html`, changefreq: 'daily', priority: '0.8' },
+    ...events.filter(event=>validEvent(event)&&eventPeriod(event,now)!=='review').map(event=>({loc:new URL(eventDetailPath(event),SITE_URL).href,changefreq:'daily',priority:'0.6'})),
+    ...GUIDE_TOPICS.map(topic=>({loc:`${SITE_URL}guide/${topic.slug}/`,lastmod:GUIDE_TOPIC_REVIEWED,changefreq:'monthly',priority:'0.7'})),
     { loc: `${SITE_URL}otomado/`, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE_URL}${files.sitemapHtml}`, lastmod, changefreq: 'weekly', priority: '0.4' },
     { loc: `${SITE_URL}deaf-navi-world-jp.html`, changefreq: 'daily', priority: '0.8' },
     { loc: `${SITE_URL}deaf-navi-world-original.html`, changefreq: 'daily', priority: '0.7' },
     ...[
-      ['news/japan/', 'daily', '0.8'],
-      ['news/world/', 'daily', '0.8'],
-      ['news/world/original/', 'daily', '0.7'],
       ['connect/', 'weekly', '0.7'],
       ['connect/sign-cafe/', 'weekly', '0.8'],
       ['connect/sign-cafe/map/', 'monthly', '0.6'],
-      ['guide/', 'monthly', '0.8'],
-      ['guide/systems/', 'monthly', '0.6'],
-      ['guide/life/', 'monthly', '0.6'],
-      ['guide/accessibility/', 'monthly', '0.6'],
-      ['about/', 'monthly', '0.5'],
-      ['sitemap/', 'weekly', '0.4'],
     ].map(([path, changefreq, priority]) => ({ loc: `${SITE_URL}${path}`, changefreq, priority })),
   ];
   const body = urls.map((u) => `  <url>
@@ -170,6 +166,9 @@ ${renderSubHeader({
           <li><a href="./${indexFile}">Deaf Navi Web トップ</a><span>聴覚障害・難聴・ろう者コミュニティ向け国内ニュース</span></li>
           <li><a href="./${files.oldIndex}">過去アーカイブ</a><span>掲載期間を過ぎた記事の月別アーカイブ</span></li>
           <li><a href="./${files.guide}">暮らしのガイド</a><span>緊急通報・医療・教育・就労などの公式情報</span></li>
+          ${GUIDE_TOPICS.map(topic=>`<li><a href="/guide/${topic.slug}/">${escapeHtml(topic.label)}</a></li>`).join('')}
+          <li><a href="/events.html">国内の手話イベント</a><span>日程・参加条件・公式案内</span></li>
+          <li><a href="/connect/sign-cafe/area/tokyo/">東京の手話カフェ</a></li><li><a href="/connect/sign-cafe/area/kanagawa/">神奈川の手話カフェ</a></li>
           <li><a href="./${files.feed}">RSSフィード</a><span>国内ニュース最新50件</span></li>
         </ul>
       </section>

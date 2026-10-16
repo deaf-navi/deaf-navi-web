@@ -4,6 +4,7 @@
 
 import { SITE_NAME, SITE_URL } from '../../config/site.mjs';
 import { GUIDE_LAST_REVIEWED, GUIDE_SECTIONS } from '../guide-data.mjs';
+import { GUIDE_TOPICS } from '../guide-topics.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJaJST } from '../lib/dates.mjs';
 import {
@@ -89,6 +90,7 @@ ${renderHead({
   })}
   <link rel="stylesheet" href="./browse.css?v=${escapeHtml(clientAssetVersion)}">
   <link rel="stylesheet" href="./info.css?v=${escapeHtml(clientAssetVersion)}">
+  <link rel="stylesheet" href="./reader.css?v=20261017seo">
 </head>
 <body class="browse-page guide-page">
   ${renderSkipLink()}
@@ -100,6 +102,7 @@ ${renderSiteHeader({
   })}
 
   <main id="main" class="container guide" role="main">
+    <section class="guide-reading" aria-labelledby="guide-reading-heading"><h2 id="guide-reading-heading">困っている場面から読む</h2><nav class="reader-links" aria-label="困りごと別ガイド">${GUIDE_TOPICS.map(topic=>`<a href="/guide/${topic.slug}/">${escapeHtml(topic.label)}</a>`).join('')}</nav></section>
     <section class="guide-search" aria-labelledby="guide-search-heading">
       <div class="guide-search__head">
         <div>

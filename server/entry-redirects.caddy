@@ -1,0 +1,21 @@
+# Generated from config/entry-redirects.json. Import inside the Deaf Navi route.
+@deafnavi_entry_0 path /guide /guide/ /guide/index.html
+redir @deafnavi_entry_0 /guide.html{?query} 301
+
+@deafnavi_entry_1 path /about /about/ /about/index.html
+redir @deafnavi_entry_1 /about.html{?query} 301
+
+@deafnavi_entry_2 path /sitemap /sitemap/ /sitemap/index.html
+redir @deafnavi_entry_2 /sitemap.html{?query} 301
+
+@deafnavi_entry_3 path /news/japan /news/japan/ /news/japan/index.html
+redir @deafnavi_entry_3 /{?query} 301
+
+@deafnavi_entry_4 path /news/world /news/world/ /news/world/index.html
+redir @deafnavi_entry_4 /deaf-navi-world-jp.html{?query} 301
+
+@deafnavi_entry_5 path /news/world/original /news/world/original/ /news/world/original/index.html
+redir @deafnavi_entry_5 /deaf-navi-world-original.html{?query} 301
+
+@deafnavi_entry_6 path /connect/events /connect/events/ /connect/events/index.html
+redir @deafnavi_entry_6 /events.html{?query} 301

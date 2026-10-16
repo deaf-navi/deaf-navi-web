@@ -1,4 +1,5 @@
 import { SITE_NAME, SITE_URL } from '../../config/site.mjs';
+import { ENTRY_REDIRECTS, renderEntryRedirect } from './entry-redirect.mjs';
 import {
   jsonLdScript,
   renderFooter,
@@ -10,11 +11,11 @@ import {
 
 const absoluteNav = {
   newsHref: '/',
-  worldHref: '/news/world/',
+  worldHref: '/deaf-navi-world-jp.html',
   connectHref: '/connect/sign-cafe/',
-  guideHref: '/guide/',
+  guideHref: '/guide.html',
   toolHref: '/otomado/',
-  aboutHref: '/about/',
+  aboutHref: '/about.html',
 };
 
 function breadcrumbJsonLd(path, names) {
@@ -69,7 +70,7 @@ ${renderFooter({
       { href: '/connect/sign-cafe/', label: '手話カフェ一覧' },
       { href: '/connect/sign-cafe/overseas/', label: '海外の手話カフェ' },
       { href: '/submit/', label: '情報提供' },
-      { href: '/sitemap/', label: 'サイトマップ' },
+      { href: '/sitemap.html', label: 'サイトマップ' },
     ],
   })}
   <script src="/ui-controls.js" defer></script>
@@ -89,7 +90,7 @@ export function renderNotFoundPage() {
     robots: 'noindex,follow',
     breadcrumbPaths: ['/404.html'],
     breadcrumbNames: ['ホーム', 'ページが見つかりません'],
-    body: `    <section class="directory-hero"><p class="eyebrow">404 NOT FOUND</p><h2>ページが見つかりません</h2><p>トップページ、手話カフェ、暮らしのガイド、サイトマップからお探しください。</p><p><a class="primary-link" href="/">トップページへ戻る</a> <a class="secondary-link" href="/sitemap/">サイトマップを見る</a></p></section>`,
+    body: `    <section class="directory-hero"><p class="eyebrow">404 NOT FOUND</p><h2>ページが見つかりません</h2><p>トップページ、手話カフェ、暮らしのガイド、サイトマップからお探しください。</p><p><a class="primary-link" href="/">トップページへ戻る</a> <a class="secondary-link" href="/sitemap.html">サイトマップを見る</a></p></section>`,
   });
 }
 
@@ -187,5 +188,8 @@ ${categoryCards([
     <div class="empty-state"><strong>現在、このページから情報を送信することはできません。</strong><p>承認待ち保存、入力検証、連続送信対策を確認してから受付を開始します。氏名・メールアドレス・電話番号・住所・SNSアカウントは初期段階では収集しません。</p></div>`,
     }),
   });
-  return pages;
+  return pages.map(page => {
+    const redirect = ENTRY_REDIRECTS.find(r => page.file === r.from.slice(1) + 'index.html');
+    return redirect ? {...page, html:renderEntryRedirect(redirect)} : page;
+  });
 }
