@@ -1,0 +1,76 @@
+/* Reading surfaces use the same paper and quiet rules as the news pages. */
+.guide-page .guide-search {
+  margin: 0 0 12px;
+  padding: 16px 0;
+  border: 0;
+  border-block: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.guide-page .guide-search__head { align-items: baseline; }
+.guide-page .guide-search__head h2 { font-size: 1.125rem; }
+.guide-page .guide-search__meta { font-variant-numeric: tabular-nums; }
+.guide-page .guide-search__input { min-width: 0; }
+.guide-page .guide-topics { gap: 0 20px; margin-block: 8px 20px; }
+.guide-page .guide-topics a { min-height: 44px; }
+.guide-page .guide-alert {
+  padding: 16px;
+  margin-block: 16px 28px;
+  border: 0;
+  border-top: 1px solid var(--signal-red);
+  border-radius: 6px;
+  background: var(--bg-base);
+}
+.guide-page .guide-section { margin-block: 32px; }
+.guide-page .guide-section__head {
+  padding-block: 12px;
+  border-bottom: 2px solid var(--accent-deep);
+  background: var(--bg-elevated);
+}
+.guide-page .guide-section__head h2 { color: var(--accent-deep); font-size: 1.4rem; line-height: 1.5; }
+.guide-page .guide-grid { gap: 0 36px; }
+.guide-page .guide-card {
+  padding: 22px 0;
+  border: 0;
+  border-top: 1px solid var(--border-default);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  min-width: 0;
+}
+.guide-page .guide-card__title { font-size: 1.125rem; line-height: 1.7; }
+.guide-page .guide-card__badge { border-radius: 3px; }
+.guide-page .guide-card__summary { font-size: 1rem; line-height: 1.85; }
+.guide-page .guide-card__detail { color: var(--text-secondary); line-height: 1.85; }
+.guide-page .guide-card__link { width: fit-content; text-underline-offset: 4px; }
+.guide-page .guide-disclaimer { border-radius: 6px; line-height: 1.85; }
+
+/* A shorter measure gives the long policy and service descriptions room to read. */
+.about-page .about, .about-page .dn-page-intro > .container { max-width: 960px; }
+.about-page .about-toc { padding-block: 6px; border-block: 1px solid var(--border-subtle); margin: 0 0 32px; gap: 0 20px; }
+.about-page .about-toc a { min-height: 44px; }
+.about-page .about > section { margin-block: 36px; }
+.about-page .about__h2 { color: var(--accent-deep); font-size: 1.4rem; line-height: 1.5; padding-bottom: 12px; margin-bottom: 18px; border-bottom: 2px solid var(--accent-deep); }
+.about-page .about p, .about-page .about li { line-height: 1.9; overflow-wrap: anywhere; }
+.about-page .about p + p { margin-top: 12px; }
+.about-page .about a { text-underline-offset: 4px; }
+.about-page .policy-levels { gap: 0; margin-block: 16px 24px; }
+.about-page .policy-levels p { margin: 0; padding: 14px 0; border: 0; border-bottom: 1px solid var(--border-default); border-radius: 0; background: none; }
+.about-page .about-details > summary { min-height: 44px; color: var(--accent-deep); }
+.about-page .release-note { padding: 20px 0; border: 0; border-bottom: 1px solid var(--border-default); border-radius: 0; background: none; }
+.about-page .about-app__intro { grid-template-columns: 112px minmax(0, 1fr); gap: 24px; }
+.about-page .about-app__icon { width: 112px; height: 112px; border-radius: 24px; box-shadow: none; }
+.about-page .about-app__copy h2 { color: var(--accent-deep); line-height: 1.6; }
+.about-page .about-app__store-link { border-radius: 6px; }
+
+@media (max-width: 719px) {
+  .guide-page .guide-section__head h2, .about-page .about__h2 { font-size: 1.25rem; }
+  .guide-page .guide-card { padding-block: 20px; }
+  .guide-page .guide-card__title { font-size: 1.0625rem; }
+  .guide-page .guide-alert { padding: 12px; }
+  .about-page .about > section { margin-block: 28px; }
+  .about-page .policy-levels p { grid-template-columns: 1fr; gap: 4px; }
+  .about-page .about-app__intro { grid-template-columns: 1fr; gap: 16px; }
+  .about-page .about-app__icon { width: 88px; height: 88px; border-radius: 18px; }
+}
