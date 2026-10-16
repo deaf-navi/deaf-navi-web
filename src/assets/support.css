@@ -26,6 +26,11 @@
 .dn-reader-page .dn-submit h2 { color:var(--accent-deep);font-size:1.25rem;line-height:1.7;text-wrap:balance; }
 .dn-reader-page .dn-breadcrumb { display:flex;align-items:center;gap:6px;flex-wrap:wrap; }
 .dn-reader-page .dn-breadcrumb a { display:inline-flex;align-items:center;min-height:44px; }
+.dn-reader-page #atlas-cover { background:var(--bg-raised);color:var(--text-primary); }
+.dn-reader-page #atlas-cover .dn-muted { color:var(--text-secondary); }
+/* Override the legacy action link's fixed !important color in both themes. */
+.dn-reader-page .dn-action-link { color:var(--accent-deep)!important; }
+.dn-reader-page .dn-action-link:hover { background:var(--bg-raised); }
 @media(max-width:700px) {
   .dn-directory.dn-reader-page .dn-field :is(input,select,textarea),
   .dn-directory.dn-reader-page .dn-atlas-controls :is(input,select) { font-size:max(16px,1rem); }

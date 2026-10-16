@@ -131,7 +131,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
   <link rel="stylesheet" href="${basePath}site-shell.css?v=20261016events">
-  <link rel="stylesheet" href="${basePath}support.css?v=20261016mobile1">
+  <link rel="stylesheet" href="${basePath}support.css?v=20261016mobile2">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
 
