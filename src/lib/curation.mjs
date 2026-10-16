@@ -26,6 +26,7 @@ import {
   normalizeForSearch,
   normalizeTitleKey,
   cleanSummaryText,
+  cleanArticleTitle,
 } from './text.mjs';
 
 const {
@@ -38,7 +39,7 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'expanded-score-v4';
+export const QUALITY_VERSION = 'publication-quality-v5';
 
 /* ---------- 分類 ---------- */
 
@@ -52,23 +53,36 @@ export function classifyCategory(title, summary) {
 
 /** タイトル・要約から都道府県と地域ブロックを推定する（見つからなければ null） */
 export function detectRegion(title, summary) {
-  const text = String(title + ' ' + summary).normalize('NFKC');
-  for (const pref of PREFECTURES) {
-    for (const matcher of pref.matchers) {
-      if (text.includes(matcher)) {
-        return { region: pref.region, prefecture: pref.name };
-      }
-    }
+  // A headline's location takes precedence over incidental places in the summary.
+  for (const value of [title, summary]) {
+    const text = String(value ?? '').normalize('NFKC');
+    const explicit = PREFECTURES.filter((pref) => text.includes(pref.name));
+    if (explicit.length > 1) return null;
+    if (explicit.length === 1) return { region: explicit[0].region, prefecture: explicit[0].name };
+    const matches = PREFECTURES.flatMap((pref) => pref.matchers
+      .filter((word) => word === '津市' ? /(?<![\p{Script=Han}々])津市/u.test(text) : text.includes(word))
+      .map((word) => ({ pref, word })));
+    // 大津市 / 草津市 must not also match 津市; multi-prefecture stories stay unlabelled.
+    const specific = matches.filter((match) => !matches.some((other) =>
+      other.word.length > match.word.length && other.word.includes(match.word)));
+    const places = [...new Map(specific.map(({ pref }) => [pref.name, pref])).values()];
+    if (places.length > 1) return null;
+    if (places.length === 1) return { region: places[0].region, prefecture: places[0].name };
   }
   return null;
 }
 
 export function isRelevantArticle(title, description) {
   const text = (title + ' ' + description).toLowerCase();
-  if (RELEVANT_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()))) return true;
+  if (RELEVANT_KEYWORDS.filter((kw) => !['デフ', 'deaf'].includes(kw)).some((kw) => text.includes(kw.toLowerCase()))) return true;
+  if (/デフ(?!レ|ォ|ラグ)|\bdeaf\b/iu.test(text)) return true;
+  if (/サインエール|みみカレッジ|聞こえの|きこえの/u.test(text)) return true;
+  if (/音声認識/u.test(text) && /字幕|文字起こし/u.test(text)) return true;
+  if (/udcast|hellomovie|バリアフリー字幕|日本語字幕|リアルタイム字幕|自動字幕|ai字幕|音声文字変換|音声認識アプリ|きこえない|きこえにくい|聞こえない|聞こえにくい|聾|盲ろう/iu.test(text)) return true;
   const hasContextualTerm = CONTEXTUAL_RELEVANT_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()));
   if (!hasContextualTerm) return false;
-  return RELEVANCE_CONTEXT_KEYWORDS.some((kw) => text.includes(kw.toLowerCase()));
+  return RELEVANCE_CONTEXT_KEYWORDS.filter((kw) => !['耳', 'ろう', 'デフ', 'deaf'].includes(kw))
+    .some((kw) => text.includes(kw.toLowerCase()));
 }
 
 export function inferDiscoverySourceTier(sourceName, sourceUrl) {
@@ -91,6 +105,7 @@ export function inferDiscoverySourceTier(sourceName, sourceUrl) {
  * @param {object|null} feedDef 直接フィード定義（発見系は null）
  */
 export function buildArticle(entry, feedDef = null) {
+  entry = { ...entry, title: cleanArticleTitle(entry.title, entry.sourceName) };
   const category = classifyCategory(entry.title, entry.summary);
   const location = detectRegion(entry.title, entry.summary);
   return {
@@ -190,6 +205,9 @@ export function preferredRank(article) {
 
 export function isNearDuplicate(a, b) {
   if (a.id && b.id && a.id === b.id) return true;
+  if (a.prefecture && b.prefecture && a.prefecture !== b.prefecture) return false;
+  const gap = Math.abs(Date.parse(a.publishedAt) - Date.parse(b.publishedAt));
+  if (Number.isFinite(gap) && gap > 3 * 86_400_000) return false;
   const ak = a._dedupeKey;
   const bk = b._dedupeKey;
   if (!ak || !bk) return false;
@@ -216,6 +234,8 @@ export function dedupeNearArticles(articles) {
       kept: selected[duplicateIndex].title,
       dropped: article.title,
       droppedSource: article.sourceName,
+      droppedId: article.id,
+      keptId: selected[duplicateIndex].id,
     });
     if (preferredRank(article) > preferredRank(selected[duplicateIndex])) {
       selected[duplicateIndex] = article;
@@ -230,6 +250,17 @@ export function dedupeNearArticles(articles) {
 export function isLowValueDiscoveryPage(article) {
   if (article._feedUrl) return false;
   return /(?:\d+\s*枚目の)?(?:写真・画像|写真一覧|画像一覧)|フォトギャラリー/iu.test(article.title);
+}
+
+/** Relevance is a gate, not a score boost. Trusted community feeds retain routine notices. */
+export function publicationExclusionReason(article) {
+  const title = cleanArticleTitle(article.title, article.sourceName).normalize('NFKC');
+  if (!title || /^(?:工事中|準備中|作成中|テスト投稿|under construction|coming soon)[。.!！\s]*$/iu.test(title)) return 'placeholder';
+  if (isLowValueDiscoveryPage(article)) return 'low-value-page';
+  if (/市場規模|市場予測/u.test(title) && /レポート|成長率|予測|CAGR/iu.test(title)) return 'market-report';
+  const communityFeed = article._feedUrl && ['official', 'specialist'].includes(article._sourceTier);
+  if (!article._passThrough && !communityFeed && !isRelevantArticle(title, article.summary)) return 'unrelated';
+  return null;
 }
 
 export function splitVisibleArticles(deduped) {
@@ -260,7 +291,8 @@ export function splitVisibleArticles(deduped) {
  * v1 の curateExpandedArticles と同じ流れ。日付不明記事の除外を追加（v4）。
  */
 export function curateArticles(allArticles, context = {}, now = Date.now()) {
-  const scored = allArticles.map((article) => {
+  const scored = allArticles.map((original) => {
+    const article = { ...original, title: cleanArticleTitle(original.title, original.sourceName) };
     const { score, signals } = scoreArticle(article);
     return {
       ...article,
@@ -272,7 +304,8 @@ export function curateArticles(allArticles, context = {}, now = Date.now()) {
 
   const dated = scored.filter((article) => article.publishedAt);
   const fresh = dated.filter((article) => hasAcceptablePublishedAt(article, now));
-  const eligible = fresh.filter((article) => !isLowValueDiscoveryPage(article));
+  const excluded = fresh.filter((article) => publicationExclusionReason(article));
+  const eligible = fresh.filter((article) => !publicationExclusionReason(article));
   const filtered = eligible.filter((article) => {
     const minScore = article._minScore ?? DEFAULT_MIN_SCORE;
     return article._passThrough || article.curationScore >= minScore;
@@ -301,7 +334,9 @@ export function curateArticles(allArticles, context = {}, now = Date.now()) {
       missingDateRemoved: scored.length - dated.length,
       freshCount: fresh.length,
       staleOrInvalidRemoved: dated.length - fresh.length,
-      lowValuePageRemoved: fresh.length - eligible.length,
+      lowValuePageRemoved: excluded.filter((article) => publicationExclusionReason(article) === 'low-value-page').length,
+      publicationRemoved: excluded.length,
+      publicationExclusions: excluded.map((article) => ({ id: article.id, title: article.title, reason: publicationExclusionReason(article) })),
       filteredCount: filtered.length,
       lowScoreRemoved: eligible.length - filtered.length,
       nearDuplicateRemoved: duplicates.length,
@@ -376,8 +411,13 @@ export function stripInternal(article, { keepScores = false } = {}) {
 export function hydratePreviousArticle(article, directFeedByName) {
   const directFeed = directFeedByName.get(article.sourceName);
   const savedTier = article.sourceTier === 'news' ? 'google' : article.sourceTier;
+  const title = cleanArticleTitle(article.title, article.sourceName);
+  const location = detectRegion(title, article.summary);
+  const { region, prefecture, ...rest } = article;
   return {
-    ...article,
+    ...rest,
+    title,
+    ...(location ?? {}),
     _sourceTier: directFeed?.sourceTier ?? savedTier ?? 'google',
     _passThrough: Boolean(directFeed?.passThrough),
     _minScore: directFeed?.minScore,

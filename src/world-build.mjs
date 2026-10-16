@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { SITE_URL } from '../config/site.mjs';
 import { assertJapaneseTranslations } from './lib/world-translation.mjs';
+import { prepareWorldPublication } from './lib/publication-quality.mjs';
+import { cleanSummaryText } from './lib/text.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
@@ -214,6 +216,7 @@ function renderArticle(article, index, mode = 'jp') {
   const regionLabel = regionUi[article.region] ?? article.regionLabel ?? 'Uncategorized';
   const topicLabel = topicUi[article.topic] ?? article.topicLabel ?? 'General';
   const text = articleText(article, mode);
+  const summary = cleanSummaryText(text.summary, text.title, article.sourceName);
   const originalHtml = mode === 'jp' && text.original
     ? `\n        <p class="card__original" lang="en">${escapeHtml(text.original)}</p>`
     : '';
@@ -227,12 +230,10 @@ function renderArticle(article, index, mode = 'jp') {
         <div class="card__content">${renderThumbnail(article)}<div class="card__text">
         <h3 class="card__title" lang="${text.lang}">
           <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text.title)}</a>
-        </h3>
-        <p class="card__summary" lang="${text.lang}">${escapeHtml(text.summary)}</p>${originalHtml}
+        </h3>${summary ? `\n        <p class="card__summary" lang="${text.lang}">${escapeHtml(summary)}</p>` : ''}${originalHtml}
         </div></div>
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
-          <span class="world-card__score" title="curation score">score ${escapeHtml(article.curationScore ?? '')}</span>
         </footer>
       </article>`;
 }
@@ -586,8 +587,10 @@ function renderOriginalLegacyRedirect() {
 
 async function main() {
   const raw = await readFile(DATA_FILE, 'utf8');
-  const data = JSON.parse(raw);
+  const savedData = JSON.parse(raw);
+  const data = prepareWorldPublication(savedData);
   assertJapaneseTranslations(data.articles ?? []);
+  if (data !== savedData) await writeFile(DATA_FILE, JSON.stringify(data, null, 2) + '\n');
   await mkdir(DOCS, { recursive: true });
   await writeFile(JP_HTML_OUT, injectAccessVisit(injectCloudflareAnalytics(renderPage(data, 'jp'))), 'utf8');
   await writeFile(ORIGINAL_HTML_OUT, injectAccessVisit(injectCloudflareAnalytics(renderPage(data, 'original'))), 'utf8');

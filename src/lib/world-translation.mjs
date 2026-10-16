@@ -1,11 +1,23 @@
 const SEPARATOR = '<<<DEAF_NAVI_WORLD_SPLIT>>>';
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+function hasLibrasSignContext(text) {
+  return /\bLibras\b/u.test(text)
+    && /surd|sina[il]|ensina|curso|int[eé]rprete|interpreta|inclus|acessib|tradu|l[ií]ngua|comunica|oficina|educa|aprendiz|em Libras/iu.test(text)
+    && !/\bLibras\s+(?:esterlinas|brit[aâ]nicas|de peso)\b/iu.test(text);
+}
+
+export function hasMistranslatedLibras(original, translated) {
+  return hasLibrasSignContext(String(original ?? ''))
+    && /天秤座|てんびん座|ポンド/u.test(String(translated ?? ''));
+}
+
 // A Japanese prefix must never turn an untranslated source into a cache hit.
 export function isWeakJapaneseTranslation(original, translated) {
   const source = String(original ?? '').trim();
   const value = String(translated ?? '').trim();
   if (!value || /海外メディアの記事\s*[:：]|<<<|DEAF_NAVI_WORLD_SPLIT/.test(value)) return true;
+  if (hasMistranslatedLibras(source, value)) return true;
   if (!/[\u3040-\u30ff\u3400-\u9fff]/.test(value)) return true;
   // Kana may legitimately be unchanged when the source is already Japanese.
   if (value === source && !/[\u3041-\u3096\u30a1-\u30fa]/.test(source)) return true;
@@ -73,7 +85,10 @@ function retryAfterMs(value) {
 /** Bounded retries for 429/5xx/network failures; split only malformed successful batches. */
 export async function translateBatch(texts, { fetchImpl = fetch, sleep = wait, retries = 2 } = {}) {
   if (!texts.length) return [];
-  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&q=${encodeURIComponent(texts.join(`\n${SEPARATOR}\n`))}`;
+  // Expand the Brazilian sign-language acronym before machine translation.
+  const prepared = texts.map((text) => hasLibrasSignContext(text)
+    ? text.replace(/\bLibras\b/gu, 'Língua Brasileira de Sinais') : text);
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&q=${encodeURIComponent(prepared.join(`\n${SEPARATOR}\n`))}`;
   let result;
   for (let attempt = 0; ; attempt += 1) {
     try {

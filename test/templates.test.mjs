@@ -21,6 +21,17 @@ const FILES = {
   og: 'og-image.svg',
 };
 
+test('home prioritizes sourced editorial and news; expired notes disappear and filters remain native', () => {
+  const note = { id: 'test', title: '<script>bad</script>', text: '短い編集文', sourceName: '公式', sourceUrl: 'https://example.org/news', reviewedAt: '2026-10-16', expiresAt: '2026-10-23' };
+  const render = now => renderHomePage({ generatedAt: '2026-10-16', articles: [] }, { isDev: false, files: FILES, now: Date.parse(now), editorialNotes: [note] });
+  const html = render('2026-10-17');
+  assert.ok(html.indexOf('id="editorial-note"') < html.indexOf('id="news-toolbar"'));
+  assert.ok(html.indexOf('id="articles"') < html.indexOf('class="quick-access"'));
+  assert.match(html, /<details class="news-filters" id="news-filters">/);
+  assert.ok(html.includes('&lt;script&gt;bad&lt;/script&gt;'));
+  assert.ok(!render('2026-10-23').includes('id="editorial-note"'));
+});
+
 test('Aboutの構造化データへニュースの生成日時や別ページの確認日を転用しない', () => {
   for (const isDev of [false, true]) {
     const read = generatedAt => {

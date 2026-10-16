@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import { SITE_KEYWORDS } from '../config/site.mjs';
+import { prepareDomesticPublication } from './lib/publication-quality.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderHomePage } from './templates/home.mjs';
@@ -104,7 +105,9 @@ async function getClientAssetVersion() {
 
 async function main() {
   console.log(`Build variant: ${VARIANT}`);
-  const data = JSON.parse(await readFile(join(DOCS, FILES.articlesJson), 'utf8'));
+  const savedData = JSON.parse(await readFile(join(DOCS, FILES.articlesJson), 'utf8'));
+  const data = prepareDomesticPublication(savedData);
+  if (data !== savedData) await writeFile(join(DOCS, FILES.articlesJson), JSON.stringify(data, null, 2) + '\n');
   let oldData;
   try {
     oldData = JSON.parse(await readFile(join(DOCS, FILES.oldArticlesJson), 'utf8'));
