@@ -96,10 +96,10 @@
       "sourceName": "宮城県聴覚障害者情報センター（みみサポみやぎ）",
       "eventId": "mimisuppo-shiroishi-2026-10-27",
       "state": "published",
-      "reason": "PR #41・#42の公開後、本番で掲載を確認済み。",
+      "reason": "公式予定表に別イベントの追記あり。白石市10月27日の本文を再読し、開催日・会場・時間・対象・事前申込不要に変更がないことを確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-16T03:18:59.963Z",
+      "checkedAt": "2026-10-16T06:06:31.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z"
     },
     {
@@ -154,10 +154,10 @@
       "sourceName": "中嶋元美（主催者のCAMPFIRE告知）",
       "eventId": "dream-begin-2026-11-01",
       "state": "published_ready",
-      "reason": "公式本文・PDFを確認。公開待ち。",
+      "reason": "GitHubで本文ハッシュ不一致。公開ブラウザで開催日・会場・料金・一部完売を実際に再確認したためvisualへ。48時間で失効し、次回も実画面を読む。",
       "missing": [],
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "checkedAt": "2026-10-16T06:06:31.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z"
     },
     {
@@ -216,6 +216,30 @@
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T05:50:29.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.oioi-sign.com/events_list/",
+      "sourceName": "oioi 公式予定表",
+      "state": "transport_recheck",
+      "reason": "GitHub Actionsでは30秒×2回の取得がタイムアウト。手元の通常HTTPSでは本文を再取得できた。承認を迂回せず、次の公開後に状態を確認する。",
+      "checkedAt": "2026-10-16T06:06:31.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "missing": [
+        "GitHub公開後の最新照合結果"
+      ],
+      "discoveredOn": "2026-10-16"
+    },
+    {
+      "sourceUrl": "https://fureailand.jp/events/8898",
+      "sourceName": "ふれあいランド岩手",
+      "state": "transport_recheck",
+      "reason": "GitHub Actionsでは30秒×2回の取得がタイムアウト。手元の通常HTTPSでは本文を再取得できた。承認を迂回せず、次の公開後に状態を確認する。",
+      "checkedAt": "2026-10-16T06:06:31.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "missing": [
+        "GitHub公開後の最新照合結果"
+      ],
+      "discoveredOn": "2026-10-16"
     }
   ],
   "lastResearch": {
