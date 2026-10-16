@@ -187,7 +187,7 @@ export function renderSiteNav({
 }
 
 /** Public navigation shared across static pages, with the same contract as PHP and OtoMado. */
-export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', edition = ['world', 'worldOriginal'].includes(current) ? 'World' : 'Web' } = {}) {
+export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', edition = current === 'events' ? 'Events' : ['world', 'worldOriginal'].includes(current) ? 'World' : 'Web' } = {}) {
   const en = nav.locale === 'en';
   return `<header class="dn-site-shell" role="banner">
     <div class="dn-shell-inner">
