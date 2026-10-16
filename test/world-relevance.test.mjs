@@ -28,3 +28,9 @@ test('World relevance distinguishes dialogue idioms and surnames from Deaf repor
   assert.equal(isHardNoiseWorldText('Unai Sordo pide intérpretes de lengua de signos para trabajadores sordos'), false);
   assert.equal(isHardNoiseWorldText('Sordos ganan el campeonato de fútbol'), false);
 });
+test('Spanish consumer headsets do not become hearing-aid news',()=>{
+ assert.equal(isHardNoiseWorldText('Audífonos Razer x Pokémon: así son los headsets de Charizard, Lucario y Sylveon con audio inalámbrico y luces'),true);
+ assert.equal(isHardNoiseWorldText('Audífonos y auriculares inalámbricos para escuchar música'),true);
+ assert.equal(isHardNoiseWorldText('Audífonos Bluetooth para personas con pérdida de audición'),false);
+ assert.equal(isHardNoiseWorldText('Razer desarrolla headsets accesibles para jugadores sordos'),false);
+});

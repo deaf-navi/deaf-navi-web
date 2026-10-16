@@ -10,6 +10,10 @@ export function validEventDate(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
     && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
 }
+export function eventDateLabel(value) {
+  if (!validEventDate(value)) return '';
+  return `${value.replaceAll('-', '.')}（${'日月火水木金土'[new Date(value+'T00:00:00Z').getUTCDay()]}）`;
+}
 export function eventSourceText(html) {
   const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] || html;
   return cleanHtml(body.replace(/<!--[^]*?-->|<(script|style|noscript|nav|header|footer)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, '').replace(/<[^>]+>/g, ' ')).normalize('NFKC');
@@ -54,7 +58,7 @@ export function parseOioiSchedule(html, source, now = Date.now()) {
       const startDate = date ? `${year}-${date[1].padStart(2,'0')}-${date[2].padStart(2,'0')}` : '';
       const evidenceHash = eventHash([title, startDate, prefecture, venue].join('\n'));
       const event = { id: 'oioi-' + eventHash(url).slice(0,20), title, startDate, endDate:startDate, prefecture, venue,
-        kind:/講座|学習|講演/.test(title)?'course':/交流|トーク|トーーク/.test(title)?'exchange':'culture',
+        kind:/手話(?:劇|演劇|狂言|新喜劇)|ろう(?:者)?演劇/.test(title)?'theater':/講座|学習|講演/.test(title)?'course':/交流|トーク|トーーク/.test(title)?'exchange':'culture',
         sourceId:source.id, sourceName:source.name, sourceUrl:source.url, detailUrl:url,
         organizer:null, time:null, fee:null, target:null,
         status:/中止/.test(title)?'cancelled':/満員|受付終了|募集終了/.test(title)?'closed':'announced',
