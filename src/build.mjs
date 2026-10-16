@@ -122,7 +122,16 @@ async function main() {
   // 同一世代のCSS/JSを必ず取得できるよう、内容hashを共有URLへ付ける。
   // 旧Service Workerが制御中でも未キャッシュURLとなり、新旧JSの混在を防ぐ。
   const clientAssetVersion = await getClientAssetVersion();
-  const opts = { isDev: IS_DEV, files: FILES, keywords: SITE_KEYWORDS, clientAssetVersion };
+  let editorialNotes = [];
+  try {
+    const snapshot = JSON.parse(await readFile(join(ROOT, '.state/editorial.json'), 'utf8'));
+    if (snapshot.version === 1 && Array.isArray(snapshot.notes)) {
+      editorialNotes = snapshot.notes.filter(note => note?.mode === 'primary-excerpt');
+    }
+  } catch {
+    console.warn('Editorial snapshot unavailable; hiding the note.');
+  }
+  const opts = { isDev: IS_DEV, files: FILES, keywords: SITE_KEYWORDS, clientAssetVersion, editorialNotes };
 
   // ---- ページ生成 ----
   await writeDoc(FILES.index, renderHomePage(data, opts));

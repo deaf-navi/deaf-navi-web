@@ -27,6 +27,4 @@ export const ANALYTICS = Object.freeze({
 export const COPYRIGHT_HTML = (year) => `
         <span>&copy; ${year} TAMA.</span>
         <span class="dot" aria-hidden="true"></span>
-        <span lang="en">Take it easy.</span>
-        <span class="dot" aria-hidden="true"></span>
         <span lang="en">Curated for the Deaf &amp; Hard-of-hearing community.</span>`;
