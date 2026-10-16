@@ -68,6 +68,11 @@ try {
     for(const path of ['/connect/sign-cafe/events/','/connect/sign-cafe/events/index.html'])
         ok((await post({path},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'})).status===204,'Codex event beacon acknowledged '+path);
     ok(count()===beforeEvent+1,'event verification visits excluded from normal measurement');
+    ok(run("echo access_content('/events.html');").stdout==='events','general event page has a separate content category');
+    r=await post({path:'/events.html'},{'User-Agent':ua+' GeneralEventRoute'});
+    ok(r.status===204&&count()===beforeEvent+2,'general event page beacon accepted');
+    r=await post({path:'/events.html'},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'});
+    ok(r.status===204&&count()===beforeEvent+2,'general event verification remains excluded');
 } finally {server.kill();}
 // Browser script payload never includes search values, cookies, referrer or page text.
 const source=readFileSync(join(root,'src/access-visit.js'),'utf8');

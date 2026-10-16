@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const ACCESS_CONTENTS = ['web'=>'Deaf Navi Web','world_jp'=>'World-JP','world_original'=>'World-Original','cafe'=>'手話カフェ','cafe_overseas'=>'手話カフェ 海外','guide'=>'暮らしのガイド','otomado'=>'おとまど','about'=>'サイトについて'];
+const ACCESS_CONTENTS = ['web'=>'Deaf Navi Web','world_jp'=>'World-JP','world_original'=>'World-Original','events'=>'イベント','cafe'=>'手話カフェ','cafe_overseas'=>'手話カフェ 海外','guide'=>'暮らしのガイド','otomado'=>'おとまど','about'=>'サイトについて'];
 const ACCESS_EXCLUSIONS = ['bot'=>'bot・検索エンジン','ai'=>'AI・Codex','automation'=>'自動取得・監視','internal'=>'管理・情報提供','unknown'=>'分類不明','probe'=>'不審なURL探索','not_found'=>'その他の404','unsuccessful'=>'転送・エラー・GET以外','resource'=>'API・画像・システム取得','unlisted'=>'対象外のページ'];
 
 function access_content(string $path): ?string {
@@ -9,7 +9,7 @@ function access_content(string $path): ?string {
     if (preg_match('#[\x00-\x20\x7f\\\\]|\.\.|//#', $path)) return null;
     $path = preg_replace('#/index\.html$#D', '/', $path);
     $fixed = ['/' => 'web','/index-old.html'=>'web','/deaf-navi-world-jp.html'=>'world_jp','/deaf-navi-world-original.html'=>'world_original',
-        '/connect/'=>'cafe','/connect/sign-cafe/'=>'cafe','/connect/sign-cafe/map/'=>'cafe','/connect/sign-cafe/events/'=>'cafe',
+        '/events.html'=>'events','/connect/'=>'cafe','/connect/sign-cafe/'=>'cafe','/connect/sign-cafe/map/'=>'cafe','/connect/sign-cafe/events/'=>'cafe',
         '/connect/sign-cafe/overseas/'=>'cafe_overseas','/guide.html'=>'guide','/otomado/'=>'otomado','/about.html'=>'about'];
     if (isset($fixed[$path])) return $fixed[$path];
     if (preg_match('#^/archive/(?:[0-9]{4}-[0-9]{2}|legacy)\.html$#D', $path)) return 'web';

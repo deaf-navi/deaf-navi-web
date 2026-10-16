@@ -107,8 +107,9 @@
 
 @media (max-width: 800px) {
   .dn-shell-inner { padding-inline: 20px; }
-  .dn-site-shell .site-nav { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0; }
-  .dn-site-shell .site-nav__link { padding: 9px 8px; font-size: 13px; min-height: 44px; }
+  .dn-site-shell .site-nav { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 0; }
+  .dn-site-shell .site-nav__link { grid-column:span 3; padding: 9px 8px; font-size: 13px; min-height: 44px; }
+  .dn-site-shell .site-nav__link:nth-child(n+5) { grid-column:span 4; }
   .dn-shell-brand small { display: none; }
   .dn-shell-top { min-height: 72px; }
   .dn-page-intro { padding-block: 20px; }
