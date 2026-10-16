@@ -2,6 +2,20 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {parseOioiSchedule,verifyReviewedEvent,reviewedVisualEvent,eventSourceText,eventHash,eventPeriod,mergeEventSnapshot,validEvent,eventDateLabel} from '../src/lib/events.mjs';
 import {renderEventsPage} from '../src/templates/events.mjs';
 import {eventDateWindow} from '../src/events.js';
+import {eventSearchText} from '../src/lib/events.mjs';
+
+test('search covers participation conditions; communication is explicit and separately validated',()=>{
+ const event={...base,fee:'小学生のみ無料',target:'きこえにくい方、事前申込',communication:[{method:'captions',detail:'第2部のみ日本語字幕。'}]};
+ for(const word of ['無料','きこえにくい','事前申込','字幕'])assert.ok(eventSearchText(event).includes(word));
+ assert.ok(validEvent(event));
+ for(const communication of [[null],[{method:'unknown',detail:'あり'}],[{method:'captions',detail:''}],[{method:'captions',detail:'あり'},{method:'captions',detail:'あり'}]])assert.equal(Boolean(validEvent({...base,communication})),false);
+ const unknown=renderEventsPage({events:[{...base,title:'手話通訳士と学ぶ字幕講座'}]},{files:{styles:'styles.css'}});
+ assert.ok(unknown.includes('data-communication=""'));
+ const html=renderEventsPage({events:[event]},{files:{styles:'styles.css'}});
+ assert.ok(html.includes('data-communication="captions"'));
+ assert.ok(html.includes('第2部のみ日本語字幕。'));
+ assert.equal(eventPeriod({...event,verifiedAt:new Date(now-48*3600000).toISOString()},now),'review');
+});
 const now=Date.parse('2026-10-16T01:00:00Z');
 const base={id:'reviewed-event',title:'手話交流会',startDate:'2026-11-14',endDate:'2026-11-14',prefecture:'岩手県',venue:'公式会場',kind:'exchange',sourceUrl:'https://example.org/event',sourceName:'主催者',verifiedAt:new Date(now).toISOString(),verification:'verified',evidenceHash:'a'.repeat(64),status:'announced'};
 const source={id:'test',url:'https://example.org/schedule',name:'出演団体'};

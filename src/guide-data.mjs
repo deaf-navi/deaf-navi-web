@@ -1,4 +1,4 @@
-export const GUIDE_LAST_REVIEWED = '2026-10-16';
+export const GUIDE_LAST_REVIEWED = '2026-10-17';
 
 export const GUIDE_SECTIONS = [
   {
@@ -50,8 +50,27 @@ export const GUIDE_SECTIONS = [
   {
     id: 'medical',
     label: '医療・補聴器',
-    summary: '補聴器購入前に確認したい制度と手続き',
+    summary: '病院探し・予約の連絡、補聴器購入前の確認',
     items: [
+      {
+        reviewedAt: '2026-10-17',
+        title: '筆談・手話で相談できる病院を探す',
+        summary: '厚生労働省の医療情報ネットで、聴覚障害への配慮を条件に病院・診療所を探せます。',
+        detail: '「障害児・者、医療的ケア児で探す」の対応項目を確認してください。希望する会話方法や呼び出し方法は、受診前に医療機関へ相談できます。',
+        steps: ['必要な対応と地域を選んで検索する。', '病院の詳細を開き、予約方法・対応できる日時を確認する。'],
+        url: 'https://www.iryou.teikyouseido.mhlw.go.jp/znk-web/juminkanja/S2343/initialize',
+        linkLabel: '医療情報ネットで探す',
+      },
+      {
+        reviewedAt: '2026-10-17',
+        title: '病院やお店へ、手話・文字で予約の連絡をする',
+        summary: '電話リレーサービスでは、通訳オペレータを介して病院への連絡や予約変更を伝えられます。',
+        detail: '利用には登録が必要です。利用条件・通話料金を確認してください。病院側のWeb予約やメール窓口がある場合は、そちらも利用方法を確認できます。',
+        steps: ['連絡先、希望日、伝えたいことを用意する。', '登録後、アプリで手話か文字を選び、相手先へ電話する。'],
+        url: 'https://lp.nftrs.or.jp/howtouse2.html',
+        linkLabel: '公式の利用方法を見る',
+        relatedLinks: [{ label: '登録方法を手話・文章で見る', url: 'https://www.nftrs.or.jp/learn-more/registrations' }],
+      },
       {
         reviewedAt: '2026-10-16',
         title: '補聴器購入の医療費控除',
@@ -97,6 +116,15 @@ export const GUIDE_SECTIONS = [
     summary: '働くときに利用できる制度と地域の相談先',
     items: [
       {
+        reviewedAt: '2026-10-17',
+        title: '職場の伝え方・会議での配慮を相談する',
+        summary: '働くうえで困ることや必要な配慮を相談したいとき、ハローワークの相談窓口を確認できます。',
+        detail: 'たとえば会議の内容を文字でも受け取りたいなど、困る場面と希望する方法を整理すると相談しやすくなります。窓口での手話・筆談対応や予約方法は事前に確認してください。',
+        steps: ['困っている場面と希望する伝え方を短くまとめる。', '厚生労働省の案内から地域の相談窓口を確認する。'],
+        url: 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000141747.html',
+        linkLabel: '公式の相談窓口を見る',
+      },
+      {
         reviewedAt: '2026-10-16',
         title: '障害者雇用促進法と法定雇用率',
         summary: '民間企業の法定雇用率は2.7%（2026年7月から）。対象事業主の範囲は37.5人以上です。',
@@ -119,11 +147,22 @@ export const GUIDE_SECTIONS = [
     summary: '電話を手話・文字でつなぐ公共サービス',
     items: [
       {
+        reviewedAt: '2026-10-17',
+        title: '手話通訳・要約筆記を依頼したいとき',
+        summary: '通院や生活の用事で通訳を依頼したい場合は、市区町村の障害福祉窓口や地域の聴覚障害者情報提供施設へ相談できます。',
+        detail: '要約筆記は、話の内容を文字で伝える支援です。対象、申込期限、費用、利用できる場面は地域で異なります。イベントの通訳・字幕は、まず主催者の案内も確認してください。',
+        steps: ['希望する方法、利用日時、場所、用事を整理する。', '地域の窓口で登録・申込方法を確認し、早めに相談する。'],
+        url: 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/sanka/index.html',
+        linkLabel: '制度・全国の施設一覧を見る',
+        relatedLinks: [{ label: '自治体の申込案内の例（岡山市）', url: 'https://www.city.okayama.jp/kurashi/0000058311.html' }],
+      },
+      {
         reviewedAt: '2026-10-16',
         title: '電話リレーサービス',
         summary: '手話・文字と音声を通訳オペレータがつなぐ公共サービスです。',
         detail: '電話の発着信に加え、110・118・119への緊急通報にも対応しています。',
         url: 'https://www.nftrs.or.jp/about/',
+        relatedLinks: [{ label: '登録方法を手話・文章で見る', url: 'https://www.nftrs.or.jp/learn-more/registrations' }],
         recommended: true,
       },
       {

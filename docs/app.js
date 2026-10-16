@@ -177,7 +177,7 @@
       .then(function (data) {
         allArticles = Array.isArray(data.articles) ? data.articles : [];
         searchIndex = allArticles.map(function (a) {
-          return normalize(a.title + ' ' + (a.summary || '') + ' ' + a.sourceName + ' ' + (a.prefecture || ''));
+          return normalize(a.title + ' ' + (a.summary || '') + ' ' + a.sourceName + ' ' + (a.prefecture || '') + ' ' + ({announcement:'開催案内',report:'開催報告'}[a.newsContext] || ''));
         });
         return allArticles;
       })
@@ -210,6 +210,13 @@
     var chip = node.querySelector('.chip');
     chip.className = 'chip chip--' + a.category;
     chip.textContent = CATEGORY_UI[a.category] || '一般';
+    var contextLabel = { announcement: '開催案内', report: '開催報告' }[a.newsContext];
+    if (contextLabel) {
+      var contextBadge = document.createElement('span');
+      contextBadge.className = 'news-context';
+      contextBadge.textContent = contextLabel;
+      chip.insertAdjacentElement('afterend', contextBadge);
+    }
 
     var isNew = Date.now() - new Date(a.publishedAt).getTime() < 86400000;
     if (isNew) {
@@ -328,7 +335,8 @@
         var hay = normalize(
           (titleEl ? titleEl.textContent : '') + ' '
           + (summaryEl ? summaryEl.textContent : '') + ' '
-          + (sourceEl ? sourceEl.textContent : ''),
+          + (sourceEl ? sourceEl.textContent : '') + ' '
+          + (card.querySelector('.news-context')?.textContent || ''),
         );
         for (var t = 0; t < tokens.length; t++) {
           if (hay.indexOf(tokens[t]) === -1) { ok = false; break; }

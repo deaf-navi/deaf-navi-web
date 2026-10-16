@@ -35,6 +35,7 @@ import {
   getSourceTier,
   jsonLdScript,
   renderArticleCard,
+  renderNewsContext,
   renderFooter,
   renderHead,
   renderSkipLink,
@@ -195,7 +196,7 @@ function renderFeatured(featured) {
           <a class="featured__link" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">
             ${renderThumbnail(a)}
             <div class="featured__body">
-            <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(CATEGORY_UI[a.category] ?? '一般')}</span>
+            <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(CATEGORY_UI[a.category] ?? '一般')}</span>${renderNewsContext(a)}
             <h3 class="featured__title">${escapeHtml(a.title)}</h3>
             <span class="featured__meta">${escapeHtml(a.sourceName)} ・ <time datetime="${escapeHtml(a.publishedAt)}" data-relative-time>${escapeHtml(formatDateJST(a.publishedAt).replace(' JST', ''))}</time></span>
             </div>

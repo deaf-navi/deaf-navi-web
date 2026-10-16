@@ -15,6 +15,12 @@ import { REGION_UI } from '../../config/regions.mjs';
 import SITE_NAVIGATION from '../../config/site-navigation.json' with { type: 'json' };
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST, relativeTime } from '../lib/dates.mjs';
+import { newsContextLabel } from '../lib/news-context.mjs';
+
+export function renderNewsContext(article) {
+  const label = newsContextLabel(article);
+  return label ? `<span class="news-context">${escapeHtml(label)}</span>` : '';
+}
 
 export const LEAF_SVG = `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M40 170 C 40 110, 70 60, 160 30 C 150 100, 110 150, 40 170 Z" />
@@ -273,7 +279,7 @@ export function renderArticleCard(a, { hidden = false, featured = false, now = D
   return `
       <article class="card${featured ? ' card--featured' : ''}" data-category="${escapeHtml(a.category)}" data-source-tier="${escapeHtml(sourceTier)}"${regionAttr} data-published="${escapeHtml(a.publishedAt)}"${hidden ? ' hidden' : ''}>
         <header class="card__head">
-          <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(catLabel)}</span>${newBadge}
+          <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(catLabel)}</span>${newBadge}${renderNewsContext(a)}
           <time class="card__time" datetime="${escapeHtml(a.publishedAt)}" data-relative-time>${escapeHtml(formatDateJST(a.publishedAt).replace(' JST', ''))}<span class="card__time-rel">（${escapeHtml(relativeTime(a.publishedAt, now))}）</span></time>
         </header>
         <div class="card__content">${renderThumbnail(a)}<div class="card__text">

@@ -7,6 +7,10 @@ $checks=0;function ok($v,string $m):void{global $checks;if(!$v)throw new Runtime
 function rejects(callable $fn):bool{try{$fn();return false;}catch(DomainException){return true;}}
 $p=cafe_model(['id'=>'x','name'=>'検証カフェ','kind'=>'cafe','country_code'=>'JP','prefecture'=>'奈良県','city'=>'奈良市','status'=>'open','type'=>'permanent','verification_level'=>'official','last_verified_at'=>'2026-09-07','created_at'=>'2024-01-01T00:00:00Z']);
 ok($p['shop_type']==='permanent'&&$p['has_deaf_staff']===null,'unknown attributes preserved');
+ok(domestic_matches(array_replace($p,['writing_support'=>true]),['q'=>'筆談']),'search includes confirmed writing support');
+ok(!domestic_matches(array_replace($p,['writing_support'=>null]),['q'=>'筆談']),'unknown support is not a keyword match');
+ok(domestic_matches(array_replace($p,['writing_support'=>true]),['writing_support'=>'1']),'confirmed writing support filter');
+ok(!domestic_matches(array_replace($p,['writing_support'=>null]),['writing_support'=>'1']),'unknown support is excluded from confirmed filter');
 ok($p['first_found_at']==='2024-01-01','first seen retains creation');
 ok(cafe_model(['kind'=>'store','signing_store'=>true])['shop_type']==='chain_signing_store','Signing Store mapping');
 ok(cafe_model(['type'=>'limited'])['shop_type']==='unknown','limited not guessed as permanent');
