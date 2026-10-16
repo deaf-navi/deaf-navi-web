@@ -20,7 +20,7 @@
   if(sync){const url=new URL(location.href);for(const[key,input]of Object.entries(controls)){input.value?url.searchParams.set(key,input.value):url.searchParams.delete(key)}period==='upcoming'?url.searchParams.delete('period'):url.searchParams.set('period',period);history.replaceState(null,'',url);}
  }
  function restore(){const params=new URLSearchParams(location.search);period=labels[params.get('period')]?params.get('period'):'upcoming';for(const[key,input]of Object.entries(controls))input.value=(params.get(key)||'').slice(0,200);if(controls.prefecture.value||controls.kind.value||controls.month.value)document.querySelector('.event-more-filters').open=true;apply(false)}
- form.hidden=false;document.querySelector('.event-periods').hidden=false;
+ form.hidden=false;document.querySelector('.event-periods').hidden=false;document.querySelector('[data-event-empty-reset]').hidden=false;
  form.addEventListener('submit',e=>{e.preventDefault();apply()});form.addEventListener('input',()=>apply());form.addEventListener('change',()=>apply());form.addEventListener('reset',()=>{setTimeout(()=>{period='upcoming';apply();controls.q.focus()},0)});
  buttons.forEach(button=>button.addEventListener('click',()=>{period=button.dataset.period;apply()}));window.addEventListener('popstate',restore);document.addEventListener('visibilitychange',()=>{if(!document.hidden)apply(false)});setInterval(()=>{if(!document.hidden)apply(false)},60000);restore();
 })();

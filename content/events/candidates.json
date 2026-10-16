@@ -84,8 +84,8 @@
       "sourceUrl": "https://www.city.komatsu.lg.jp/soshiki/1040/shougaishafukushi/2/19003.html",
       "sourceName": "小松市",
       "eventId": "komatsu-shuwa-stage-2026-11-08",
-      "state": "published_ready",
-      "reason": "一次情報の本文または告知画像で開催情報を確認。公開手順での反映はこれから。",
+      "state": "published",
+      "reason": "PR #41・#42の公開後、本番で掲載を確認済み。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T03:18:59.963Z",
@@ -95,8 +95,8 @@
       "sourceUrl": "https://www.mimisuppo-miyagi.org/event.html",
       "sourceName": "宮城県聴覚障害者情報センター（みみサポみやぎ）",
       "eventId": "mimisuppo-shiroishi-2026-10-27",
-      "state": "published_ready",
-      "reason": "一次情報の本文または告知画像で開催情報を確認。公開手順での反映はこれから。",
+      "state": "published",
+      "reason": "PR #41・#42の公開後、本番で掲載を確認済み。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T03:18:59.963Z",
@@ -106,23 +106,130 @@
       "sourceUrl": "https://www.sapporo-deaf.jp/information/%E6%9D%B1%E5%8C%BA%E6%94%AF%E9%83%A8%E4%B8%BB%E5%82%AC%E3%80%8C%E7%AC%AC14%E5%9B%9E%E6%9D%B1%E5%8C%BA%E6%89%8B%E8%A9%B1%E3%81%BE%E3%81%A4%E3%82%8A%E3%80%8D%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/",
       "sourceName": "公益社団法人札幌聴覚障害者協会",
       "eventId": "sapporo-higashi-shuwa-2026-11-15",
-      "state": "published_ready",
-      "reason": "一次情報の本文または告知画像で開催情報を確認。公開手順での反映はこれから。",
+      "state": "published",
+      "reason": "PR #41・#42の公開後、本番で掲載を確認済み。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T03:18:59.963Z",
       "recheckAfter": "2026-10-17T03:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://jinnancho.org/guide/reikai/",
+      "sourceName": "神奈川県中途失聴・難聴者協会",
+      "eventId": "jinnancho-beginner-2026-10-23",
+      "state": "published_ready",
+      "reason": "公式本文・PDFを確認。公開待ち。 PDFの実際の視覚確認から48時間で失効。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf"
+    },
+    {
+      "sourceUrl": "https://jinnancho.org/guide/reikai/",
+      "sourceName": "神奈川県中途失聴・難聴者協会",
+      "eventId": "jinnancho-beginner-2026-11-27",
+      "state": "published_ready",
+      "reason": "公式本文・PDFを確認。公開待ち。 PDFの実際の視覚確認から48時間で失効。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf"
+    },
+    {
+      "sourceUrl": "https://www.kanagawa-wad.jp/center_fes.html",
+      "sourceName": "神奈川県聴覚障害者福祉センター",
+      "eventId": "kanagawa-center-festival-2026-10-25",
+      "state": "published_ready",
+      "reason": "公式本文・PDFを確認。公開待ち。 PDFの実際の視覚確認から48時間で失効。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "visualEvidenceUrl": "https://www.kanagawa-wad.jp/asset/00032/info1/2026cf_c4.pdf"
+    },
+    {
+      "sourceUrl": "https://camp-fire.jp/projects/983782/view",
+      "sourceName": "中嶋元美（主催者のCAMPFIRE告知）",
+      "eventId": "dream-begin-2026-11-01",
+      "state": "published_ready",
+      "reason": "公式本文・PDFを確認。公開待ち。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.geigeki.jp/accessibility/support/t415-t415-12/",
+      "sourceName": "東京芸術劇場",
+      "eventId": "geigeki-recallings-2026-11-01",
+      "state": "published_ready",
+      "reason": "公式本文・PDFを確認。公開待ち。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.city.omura.nagasaki.jp/kouhou/event/202608/1121.html",
+      "sourceName": "大村市",
+      "eventId": "omura-sign-theater-2026-11-21",
+      "state": "published_ready",
+      "reason": "公式本文・PDFを確認。公開待ち。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.tsa-deaf.com/expr-deaf2026",
+      "sourceName": "日本ろう芸術協会 育成×手話×芸術",
+      "state": "deferred",
+      "reason": "公式本文を確認。直近の10月回は経過し、次は12月5日の身体表現。6週間の優先範囲外として次回の受付を再確認する。",
+      "missing": [
+        "次回の受付状況"
+      ],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-24T03:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.tsa-deaf.com/actor-deaf2026-2",
+      "sourceName": "デフアクターズ・コース2026 公開講座",
+      "state": "past",
+      "reason": "公式本文の開催日は2026年9月8日。現在の開催予定には掲載しない。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-11-01T03:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.totto.or.jp/jtdtop.html",
+      "sourceName": "日本ろう者劇団",
+      "state": "unavailable",
+      "reason": "公式サイトのTLS取得に失敗。証明書検証を迂回せず保留。新しい公演を過去回や検索結果から推測しない。",
+      "missing": [
+        "読める公式公演告知",
+        "開催日・会場・受付"
+      ],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T05:50:29.000Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z"
     }
   ],
   "lastResearch": {
-    "checkedAt": "2026-10-16T03:18:59.963Z",
+    "checkedAt": "2026-10-16T05:50:29.000Z",
     "newDetailedCandidates": 8,
     "windowEnd": "2026-11-27",
     "publishedReady": [
-      "komatsu-shuwa-stage-2026-11-08",
-      "mimisuppo-shiroishi-2026-10-27",
-      "sapporo-higashi-shuwa-2026-11-15"
+      "jinnancho-beginner-2026-10-23",
+      "jinnancho-beginner-2026-11-27",
+      "kanagawa-center-festival-2026-10-25",
+      "dream-begin-2026-11-01",
+      "geigeki-recallings-2026-11-01",
+      "omura-sign-theater-2026-11-21"
     ],
-    "scope": "全国検索と主催者・自治体・公共施設・公式SNSの確認。カフェDBは変更なし。"
+    "scope": "手話劇・演劇、東京・神奈川を重点調査し、長崎の公式手話劇告知も確認。継続講座2開催回を個別掲載。カフェDBは変更なし。"
   }
 }
