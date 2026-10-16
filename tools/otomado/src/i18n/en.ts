@@ -20,7 +20,7 @@ export const en: Record<MsgKey, string> = {
   'home.lead':
     'A free accessibility toolbox for Deaf and hard-of-hearing people. No install needed — it runs entirely in your browser.',
   'home.sound.desc':
-    'AI listens for doorbells, alarms, a crying baby and more, then alerts you with screen flashes and vibration.',
+    'Detects surrounding sounds and shows alerts, with vibration on supported devices. AI estimates the type of sound.',
   'home.captions.desc': 'Turn speech into large, easy-to-read live captions.',
   'home.board.desc': 'Show big text to the person in front of you. Flip it 180° with one tap.',
   'home.open': 'Open',
@@ -70,6 +70,11 @@ export const en: Record<MsgKey, string> = {
   'captions.listening': 'Listening. Ask the other person to speak.',
   'captions.placeholder': 'Captions will appear here',
   'captions.clear': 'Clear captions',
+  'captions.copyFailed': "Could not copy. Select the captions and use your device’s copy command.",
+  'captions.error.other': "Could not start speech recognition. Try again or use the Writing board.",
+  'captions.error.noMic': "The microphone is unavailable. Check its connection or use by other apps, or use the Writing board.",
+  'sound.limits': "Sounds may be missed or misidentified. Watching may stop when the screen closes. This is not a replacement for alarms or emergency services. Vibration requires a supported device.",
+  'sound.modelNetwork': "The sound-classification model is downloaded from external sites on first use. Your audio is not sent.",
   'captions.copy': 'Copy all text',
   'captions.copied': 'Copied',
   'captions.fontSize': 'Text size',

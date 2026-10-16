@@ -2192,3 +2192,21 @@ input, select {
   .news-page .search-field input { font-size: 1rem; }
   .news-filters .discovery-tools__row { display: grid; grid-template-columns: 1fr; }
 }
+
+/* Related pages: compact controls and useful in-page routes. */
+.world-search-row,.guide-search-row { display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
+.world-search-row input { min-width:0; flex:1; padding:10px 12px; font:inherit; color:var(--text-primary); background:var(--bg-elevated); border:1px solid var(--border-default); border-radius:6px; }
+.world-search-row label { font-size:.85rem; }
+.world-filter-details summary { padding:12px 0; cursor:pointer; font-weight:700; }
+.world-filter-details .world-filter-group { margin-bottom:12px; }
+.world-original summary { cursor:pointer; color:var(--text-secondary); font-size:.8rem; padding-block:8px; }
+.guide-search-row input { flex:1; min-width:160px; }
+.guide-topics,.about-toc { display:flex; flex-wrap:wrap; gap:4px 16px; margin:12px 0 24px; }
+.guide-topics a,.about-toc a { padding-block:10px; text-underline-offset:4px; }
+.guide-card__reviewed { color:var(--text-secondary); font-size:.75rem; margin:0 0 8px; }
+.guide-section h2,.about section[id],.about h2[id] { scroll-margin-top:24px; }
+.guide-search { padding:18px; }
+.guide-search__head p { margin-bottom:8px; }
+.about-details { border-top:1px solid var(--border-default); margin-top:24px; padding-top:10px; }
+.about-details > summary { cursor:pointer; padding:10px 0; font-weight:700; }
+@media(max-width:600px) { .world-search-row label { flex-basis:100%; } .world-search-row input { width:140px; } .world-note { margin-block:10px; padding:10px 12px; } .filters--world { padding-block:8px; } }

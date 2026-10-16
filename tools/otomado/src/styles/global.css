@@ -1179,3 +1179,16 @@ button.phrase-chip:hover {
   .tool-list { grid-template-columns: 1fr; gap: 12px; }
   .tool-card { flex-direction: row; gap: 14px; padding: 18px; }
 }
+
+
+/* Keep local language controls compact below the shared six-tab navigation. */
+.product-header { max-width:1120px; padding:8px 16px 0; }
+.product-header-actions { width:100%; justify-content:space-between; margin:0; gap:6px; }
+.product-header-language { box-shadow:none; }
+.product-header-language .lang-option { padding:8px; font-size:.85rem; min-height:44px; }
+.product-header-back { padding:8px 0; font-size:.78rem; background:transparent; border:0; text-decoration:underline; text-underline-offset:3px; }
+.product-header-language-code { display:none; }
+.hero { padding-block:12px; }
+.tool-card-desc { line-height:1.65; }
+.start-note { font-size:.85rem; color:var(--muted); margin:0 0 12px; }
+@media(max-width:650px) { .tool-card { padding:14px; } .hero-lead { margin-top:4px; } }

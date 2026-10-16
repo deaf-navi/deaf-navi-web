@@ -37,7 +37,7 @@ export function isSpeechSupported(): boolean {
   return getRecognitionCtor() !== null
 }
 
-export type CaptionError = 'not-allowed' | 'network' | 'other'
+export type CaptionError = 'not-allowed' | 'audio-capture' | 'network' | 'other'
 
 export interface CaptionEngineCallbacks {
   onFinal: (text: string) => void
@@ -89,13 +89,20 @@ export class CaptionEngine {
     }
 
     rec.onerror = (e) => {
-      if (e.error === 'not-allowed' || e.error === 'service-not-allowed' || e.error === 'audio-capture') {
+      if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
         this.userStopped = true
         this.cb.onError('not-allowed')
+      } else if (e.error === 'audio-capture') {
+        this.userStopped = true
+        this.cb.onError('audio-capture')
       } else if (e.error === 'network') {
         this.userStopped = true
         this.cb.onError('network')
+      } else if (e.error !== 'no-speech' && e.error !== 'aborted') {
+        this.userStopped = true
+        this.cb.onError('other')
       }
+      if (this.userStopped) this.cb.onListeningChange(false)
       // 'no-speech' / 'aborted' は onend の自動再開に任せる
     }
 
@@ -116,8 +123,9 @@ export class CaptionEngine {
       rec.start()
       this.cb.onListeningChange(true)
     } catch {
-      // 連続 start() の InvalidStateError 等
+      this.userStopped = true
       this.cb.onListeningChange(false)
+      this.cb.onError('other')
     }
   }
 

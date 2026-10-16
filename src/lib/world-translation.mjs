@@ -129,6 +129,7 @@ export function polishJapanese(text) {
     .replace(/ ）/g, '）')
     .replace(/オーストラリア手話/g, 'Auslan（オーストラリア手話）')
     .replace(/オースラン語/g, 'Auslan')
+    .replace(/人工ワウ/g, '人工内耳')
     .replace(/オースラン/g, 'Auslan')
     .replace(/デフコミュニティ/g, 'ろう者コミュニティ')
     .replace(/聴覚障害者コミュニティ/g, 'ろう者コミュニティ')

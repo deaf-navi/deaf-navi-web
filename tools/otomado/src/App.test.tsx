@@ -41,7 +41,7 @@ describe('App shell', () => {
 
   it('identifies itself as a Deaf Navi Web extension and links back', () => {
     render(<App />)
-    expect(screen.getByText('Deaf Navi Web の拡張ツール')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'おとまど' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Deaf Navi Web へ戻る' })).toHaveAttribute(
       'href',
       '../index.html',

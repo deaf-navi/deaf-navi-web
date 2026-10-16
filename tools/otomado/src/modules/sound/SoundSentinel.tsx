@@ -1,3 +1,4 @@
+import { routeToHash } from '../../router'
 import { useSettings } from '../../state/settings'
 import { ALL_CATEGORIES, type Sensitivity } from '../../types'
 import { CategoryIcon } from '../../components/icons'
@@ -29,6 +30,8 @@ export function SoundSentinel() {
       </header>
 
       <section className="card sound-main">
+        <p className="start-note">{t('sound.limits')}</p>
+        <p className="start-note">{t('sound.modelNetwork')}</p>
         {running || starting ? (
           <button
             type="button"
@@ -55,6 +58,7 @@ export function SoundSentinel() {
           </p>
         )}
 
+        {(status === 'mic-denied' || status === 'mic-unavailable') && <a href={routeToHash('board')}>{t('captions.goBoard')}</a>}
         {running && (
           <div className="sound-status">
             <span className="live-dot" aria-hidden="true" />

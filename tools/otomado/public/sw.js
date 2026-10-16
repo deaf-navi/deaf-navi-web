@@ -5,7 +5,7 @@
    デプロイごとに APP_CACHE のバージョンを上げて旧アセットを掃除しても、
    約4MBのモデルキャッシュ（オフライン動作の要）は巻き添えにしない。
 */
-const APP_CACHE = 'otomado-app-v3'
+const APP_CACHE = 'otomado-app-v4'
 const MODEL_CACHE = 'otomado-model-v1'
 const KEEP_CACHES = [APP_CACHE, MODEL_CACHE]
 const CACHE_PREFIX = 'otomado-'

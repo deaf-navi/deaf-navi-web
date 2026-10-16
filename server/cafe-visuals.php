@@ -52,8 +52,8 @@ function cafe_result_bar(int $total,bool $overseas,array $filters):string {
 }
 
 function cafe_listing_advice(bool $overseas=false):string {
-    $text=$overseas?'手話は国や地域によって異なります。訪問前に公式サイト・SNSで営業日と手話対応をご確認ください。営業状況が不明なお店は「確認中」「営業状況未確認」と表示しています。':'「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。訪問前に公式サイト・SNSをご確認ください。';
-    return '<details class="dn-listing-advice"><summary>'.cafe_icon('book').'<span>訪問前に公式情報を確認</span><span class="dn-advice-note">'.($overseas?'手話・営業時間について':'営業状態の見方').'</span></summary><p class="dn-muted dn-results-note">'.$text.'</p></details>';
+    $text=$overseas?'手話は国や地域によって異なります。訪問前に公式サイト・SNSで営業日と手話対応をご確認ください。営業状況が不明なお店は「確認中」「営業状況未確認」と表示しています。':'「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。情報確認日は次回の開催日を保証するものではありません。訪問前に公式サイト・SNSで営業日・次回日程をご確認ください。';
+    return '<details class="dn-listing-advice"><summary>'.cafe_icon('book').'<span>訪問前に公式情報を確認</span><span class="dn-advice-note">'.($overseas?'手話・営業時間について':'営業状態の見方').'</span></summary><p class="dn-muted dn-results-note">'.$text.'</p><p class="dn-muted dn-results-note">会話の補助に <a href="/otomado/#/board">おとまどの筆談を開く</a></p></details>';
 }
 
 function cafe_active_filters(array $filters,bool $overseas=false):string {

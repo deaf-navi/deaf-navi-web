@@ -21,3 +21,10 @@ test('World relevance: genuine Spanish Deaf news remains eligible', () => {
     false,
   );
 });
+
+test('World relevance distinguishes dialogue idioms and surnames from Deaf reporting', () => {
+  assert.equal(isHardNoiseWorldText('Los candidatos protagonizan un diálogo de sordos: inflación y política'), true);
+  assert.equal(isHardNoiseWorldText('Unai Sordo: la huelga y los salarios'), true);
+  assert.equal(isHardNoiseWorldText('Unai Sordo pide intérpretes de lengua de signos para trabajadores sordos'), false);
+  assert.equal(isHardNoiseWorldText('Sordos ganan el campeonato de fútbol'), false);
+});
