@@ -7,6 +7,25 @@ import { selectEditorialNotes } from '../src/lib/editorial.mjs';
 import { hasMistranslatedLibras, createTranslationCache } from '../src/lib/world-translation.mjs';
 import { isHardNoiseWorldText } from '../src/lib/world-relevance.mjs';
 
+test('explicit unrelated notices do not inherit a community feed exemption', () => {
+  const trusted={_passThrough:true,_feedUrl:'https://example.org/feed',_sourceTier:'official'};
+  assert.equal(publicationExclusionReason({...trusted,title:'【視覚部門】情報センターだより11月号',summary:'視覚部門のお知らせ'}),'unrelated-visual-section');
+  assert.equal(publicationExclusionReason({...trusted,title:'【視覚部門】盲ろう者の情報保障を学ぶ',summary:''}),null);
+  assert.equal(publicationExclusionReason({title:'妻が親族チャットにボーナス自慢、義母から「補聴器代出せ」と要求',summary:''}),'incidental-hearing-keyword');
+  for(const title of ['補聴器購入費助成制度の実現を','難聴の当事者が家族との暮らしを語る','【視覚部門】手話通訳付き交流会'])assert.equal(publicationExclusionReason({...trusted,title,summary:''}),null,title);
+});
+
+test('syndicated wrappers and typographic variants merge, but dates, areas and numbers remain distinct', () => {
+  const article=(id,title,extra={})=>({id,title,summary:'',publishedAt:'2026-10-16T00:00:00Z',...extra});
+  assert.equal(isNearDuplicate(article('a','聴覚障害者向け「NET119」不正アクセスで情報漏えいか 石川・能美市消防本部'),article('b','聴覚障害者向け「NET119」不正アクセスで情報漏えいか 石川・能美市の消防')),true);
+  assert.equal(isNearDuplicate(article('a','手話で接客「ありがとう」 ろう・難聴の３人が挑戦〈平塚市・大磯町・二宮町・中井町〉'),article('b','手話で接客｢ありがとう｣ ろう・難聴の３人が挑戦 平塚市・大磯町・二宮町・中井町')),true);
+  assert.equal(isNearDuplicate(article('a','障スポ会場に移動手話交番、青森県警が設置 警察官ら8人が勤務へ'),article('b','障スポ会場に移動手話交番、青森県警が設置 警察官ら8人が勤務へ（朝日新聞）')),true);
+  assert.equal(isNearDuplicate(article('a','手話講座（大阪会場）'),article('b','手話講座（京都会場）')),false);
+  assert.equal(isNearDuplicate(article('a','第３回 手話でつながる市民交流会の開催について'),article('b','第４回 手話でつながる市民交流会の開催について')),false);
+  assert.equal(isNearDuplicate(article('a','手話交流会'),article('b','手話交流会',{publishedAt:'2026-10-23T00:00:00Z'})),false);
+  assert.equal(isNearDuplicate(article('a','手話交流会',{prefecture:'東京都'}),article('b','手話交流会',{prefecture:'神奈川県'})),false);
+});
+
 test('regional matching prefers complete city names and leaves ambiguous locations unset', () => {
   assert.deepEqual(detectRegion('大津市の手話イベント', ''), { region: 'kinki', prefecture: '滋賀県' });
   assert.deepEqual(detectRegion('津市の手話教室', ''), { region: 'kinki', prefecture: '三重県' });

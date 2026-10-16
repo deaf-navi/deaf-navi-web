@@ -21,6 +21,14 @@ export const CURATION_LIMITS = {
   FUTURE_TOLERANCE_HOURS: 24,
 };
 
+/** Explicit off-topic titles are not rescued by a trusted feed or incidental keyword. */
+export const PUBLICATION_NOISE_RULES = [
+  { reason: 'unrelated-visual-section', pattern: /【視覚部門】/u,
+    unless: /聴覚|難聴|手話|ろう者|盲ろう|情報保障/u },
+  { reason: 'incidental-hearing-keyword', pattern: /(?:義母|義父|親族|嫁姑|夫婦げんか).*(?:要求|自慢|ボーナス)|(?:ボーナス|自慢).*(?:義母|義父|親族)/u,
+    unless: /聴覚障[害がい]|難聴者|ろう者|手話|人工内耳|補聴器(?:購入|購入費|助成|補助)制度/u },
+];
+
 /** タイトル・本文に含まれれば無条件で「関連あり」とみなす語 */
 export const RELEVANT_KEYWORDS = [
   '聴覚障害', '難聴', 'ろう者', 'ろうあ者', 'ろうあ', '聾者', '聾唖',
