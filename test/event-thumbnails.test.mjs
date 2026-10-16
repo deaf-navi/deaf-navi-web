@@ -22,6 +22,18 @@ test('uncertain, expired, cancelled and past events cannot retain a thumbnail',a
 test('missing or rejected preview leaves a publishable text-only occurrence',async()=>{
  for(const status of [200,403,429]){const events=[{...entry}];await enrichEventThumbnails(events,{now,fetchResource:async url=>response(url,'<meta property="og:image" content="http://127.0.0.1/secret">',status)});assert.equal(events[0].thumbnail,undefined);assert.equal(events[0].verification,'verified')}
 });
+
+test('reviewed unrelated preview stays omitted across cached and shared announcement URLs',async t=>{
+ const dir=await mkdtemp(join(tmpdir(),'dn-event-omitted-image-'));t.after(()=>rm(dir,{recursive:true,force:true}));const cacheFile=join(dir,'cache.json');
+ const fetchResource=async(url,options)=>options.method==='HEAD'?response(url,'',200,'image/jpeg'):response(url,`<meta property="og:image" content="${image}">`);
+ await enrichEventThumbnails([{...entry}],{now,cacheFile,fetchResource});
+ const omitted={...entry,thumbnailPolicy:'omit',thumbnail:{url:image}},other={...entry,id:'same-page-other-performance'};
+ const report=await enrichEventThumbnails([omitted,other],{now:now+1000,cacheFile,fetchResource:()=>{throw Error('cached image must not refetch')}});
+ assert.equal(report.eventsWithImage,1);assert.equal(omitted.thumbnail,undefined);assert.equal(other.thumbnail.url,image);
+ const html=renderEventsPage({events:[omitted]});assert.match(html,/手話交流会/);assert.doesNotMatch(html,/class="card__thumbnail"/);
+ await enrichEventThumbnails([omitted],{now,fetchResource:()=>{throw Error('omitted-only preview must not fetch')}});
+ assert.equal(omitted.verification,'verified');
+});
 test('event image cache is persisted and rechecked after one day',async t=>{
  const dir=await mkdtemp(join(tmpdir(),'dn-event-images-'));t.after(()=>rm(dir,{recursive:true,force:true}));const cacheFile=join(dir,'cache.json');let calls=0;
  const fetchResource=async(url,options)=>{calls++;return options.method==='HEAD'?response(url,'',200,'image/jpeg'):response(url,`<meta property="og:image" content="${image}">`)};
