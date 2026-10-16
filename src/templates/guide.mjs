@@ -34,7 +34,7 @@ function renderGuideItem(item, sectionLabel) {
         </article>`;
 }
 
-export function renderGuidePage({ isDev, files }) {
+export function renderGuidePage({ isDev, files, clientAssetVersion = '20261016info' }) {
   const guideTitle = `暮らしのガイド | ${SITE_NAME}`;
   const guideUrl = `${SITE_URL}${files.guide}`;
   const description = '聴覚障害・難聴・ろう者の暮らしに役立つ緊急通報、医療、教育、就労、電話サービス、デフスポーツの公的情報と実用ツールを検索できるガイド。';
@@ -85,8 +85,10 @@ ${renderHead({
     stylesFile: files.styles,
     jsonLd: jsonLdScript(guideJsonLd),
   })}
+  <link rel="stylesheet" href="./browse.css?v=${escapeHtml(clientAssetVersion)}">
+  <link rel="stylesheet" href="./info.css?v=${escapeHtml(clientAssetVersion)}">
 </head>
-<body>
+<body class="browse-page guide-page">
   ${renderSkipLink()}
 
 ${renderSiteHeader({

@@ -17,7 +17,7 @@ import {
   renderSiteHeader,
 } from './partials.mjs';
 
-export function renderAboutPage({ generatedAt, isDev, files }) {
+export function renderAboutPage({ generatedAt, isDev, files, clientAssetVersion = '20261016info' }) {
   const aboutTitle = `${isDev ? '[DEV] ' : ''}Deaf Naviについて | ${SITE_NAME}`;
   const aboutUrl = `${SITE_URL}${files.about}`;
   const indexHref = isDev ? './index-dev.html' : './';
@@ -56,8 +56,10 @@ ${renderHead({
     feedUrl: `${SITE_URL}${files.feed}`,
     jsonLd: jsonLdScript(aboutJsonLd),
   })}
+  <link rel="stylesheet" href="./browse.css?v=${escapeHtml(clientAssetVersion)}">
+  <link rel="stylesheet" href="./info.css?v=${escapeHtml(clientAssetVersion)}">
 </head>
-<body>
+<body class="browse-page about-page">
   ${renderSkipLink()}
 
 ${renderSiteHeader({
