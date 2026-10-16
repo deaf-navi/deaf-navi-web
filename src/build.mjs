@@ -27,6 +27,10 @@ import {
 import { renderAboutPage } from './templates/about.mjs';
 import { renderGuidePage } from './templates/guide.mjs';
 import { renderEventsPage } from './templates/events.mjs';
+import { validEvent } from './lib/events.mjs';
+import { renderEventDetail, renderRetiredEvent } from './templates/event-detail.mjs';
+import { renderGuideTopics } from './templates/guide-topics.mjs';
+import { ENTRY_REDIRECTS, renderEntryRedirect, renderEntryRedirectsCaddy } from './templates/entry-redirect.mjs';
 import { renderConnectPages, renderNotFoundPage } from './templates/connect.mjs';
 import {
   renderRobots,
@@ -158,6 +162,18 @@ async function main() {
   await writeDoc(FILES.guide, renderGuidePage(opts));
   const eventSnapshot = JSON.parse(await readFile(join(ROOT, '.state/events.json'), 'utf8'));
   await writeDoc('events.html', renderEventsPage(eventSnapshot, opts));
+  const currentEvents=(eventSnapshot.events||[]).filter(validEvent);
+  const detailIds=new Set(currentEvents.map(event=>event.id));
+  let previousDetailIds=[];
+  try { previousDetailIds=JSON.parse(await readFile(join(DOCS,'events','page-ids.json'),'utf8')); } catch(error) { if(error.code!=='ENOENT')throw error; }
+  for(const event of currentEvents)await writeDoc(`events/${event.id}/index.html`,renderEventDetail(event));
+  // Retain previously published URLs without retaining outdated upcoming claims.
+  for(const id of previousDetailIds){
+    if(typeof id!=='string'||!/^[a-z0-9][a-z0-9-]{1,120}$/.test(id))throw new Error('Invalid event page manifest');
+    if(!detailIds.has(id))await writeDoc(`events/${id}/index.html`,renderRetiredEvent(`/events/${id}/`));
+    detailIds.add(id);
+  }
+  await writeDoc('events/page-ids.json',JSON.stringify([...detailIds].sort(),null,2)+'\n');
   await writeDoc('events.json', JSON.stringify({ version: 1, checkedAt: eventSnapshot.checkedAt, events: eventSnapshot.events }, null, 2) + '\n');
   const [places, signCafes, starbucksEntries] = await Promise.all([
     readFile(join(ROOT, 'content', 'connect', 'places.json'), 'utf8').then(JSON.parse),
@@ -169,6 +185,10 @@ async function main() {
   for (const page of renderConnectPages({ places, signCafes, starbucksEntries })) {
     await writeDoc(page.file, page.html);
   }
+  for(const page of renderGuideTopics())await writeDoc(page.file,page.html);
+  for(const redirect of ENTRY_REDIRECTS)await writeDoc(redirect.from.slice(1)+'index.html',renderEntryRedirect(redirect));
+  await copyFile(join(ROOT,'config','entry-redirects.json'),join(ROOT,'server','entry-redirects.json'));
+  await writeFile(join(ROOT,'server','entry-redirects.caddy'),renderEntryRedirectsCaddy(),'utf8');
   await writeDoc('404.html', renderNotFoundPage());
   await writeDoc(FILES.sitemapHtml, renderSitemapHtmlPage({
     generatedAt: data.generatedAt,
@@ -178,6 +198,7 @@ async function main() {
   await writeDoc(FILES.sitemap, renderSitemapXml({
     generatedAt: data.generatedAt,
     archiveMonths: groups.map(([key]) => key),
+    events: currentEvents,
     ...opts,
   }));
   await writeDoc(FILES.robots, renderRobots(opts));
@@ -215,6 +236,8 @@ async function main() {
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
   await copyAsset(join(__dirname, 'events.js'), 'events.js');
   await copyAsset(join(ASSETS, 'events.css'), 'events.css');
+  await copyAsset(join(ASSETS, 'event-detail.js'), 'event-detail.js');
+  await copyAsset(join(ASSETS, 'reader.css'), 'reader.css');
   await copyAsset(join(__dirname, 'ui-controls.js'), 'ui-controls.js');
   await copyAsset(join(__dirname, 'og-image.svg'), FILES.og);
   await copyAsset(join(ROOT, 'content', 'connect', 'places.json'), join('data', 'connect', 'places.json'));

@@ -54,7 +54,7 @@ if (process.argv.includes('--changed-only')) {
   for (const path of ['/connect/sign-cafe/overseas/', '/connect/sign-cafe/events/']) {
     assert.ok(sitemapPage.internalLinks.some(href => new URL(href, new URL('/sitemap.html', base)).pathname === path), path + ' discoverable');
   }
-  assert.ok(htmlEvidence(guide).internalLinks.includes('/guide.html'), 'guide reaches existing content');
+  assert.ok(htmlEvidence(guide).canonical === new URL('/guide.html',base).href, 'guide reaches existing content');
   const candidates = tags(directory.body, 'a').filter(a => a.class?.split(/\s+/).includes('dn-cafe-name')).map(a => a.href);
   let detail;
   for (const path of [...new Set(candidates)]) {
@@ -113,7 +113,7 @@ if (verify) {
   for (const path of ['/connect/sign-cafe/overseas/', '/connect/sign-cafe/events/']) {
     assert.ok(htmlSitemap.internalLinks.some(href => new URL(href, new URL('/sitemap.html', base)).pathname === path), path + ' discoverable');
   }
-  assert.ok(pages.find(p => p.path === '/guide/').internalLinks.includes('/guide.html'), 'guide entry reaches existing content');
+  assert.ok(pages.find(p => p.path === '/guide/').canonical === new URL('/guide.html',base).href, 'guide entry reaches existing content');
   console.log('SEO_PUBLIC_RELEASE_OK');
 }
 }

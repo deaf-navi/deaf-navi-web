@@ -1,6 +1,7 @@
 import { SITE_URL } from '../../config/site.mjs';
 import { EVENT_KINDS, EVENT_RECHECK_MS, EVENT_COMMUNICATION } from '../../config/events.mjs';
 import { eventPeriod, validEvent, eventDateLabel, eventSearchText } from '../lib/events.mjs';
+import { eventDetailPath } from './event-detail.mjs';
 import { PREFECTURES } from '../../config/regions.mjs';
 import { escapeHtml as e } from '../lib/text.mjs';
 import { renderHead, renderSiteHeader, renderSkipLink, renderFooter } from './partials.mjs';
@@ -17,7 +18,7 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
     const communication=event.communication||[];
     return `<article class="event-row" id="${e(event.id)}" data-event data-start="${e(event.startDate)}" data-end="${e(event.endDate||event.startDate)}" data-verified="${e(event.verifiedAt)}" data-verification="${e(event.verification)}" data-status="${e(event.status)}" data-prefecture="${e(event.prefecture)}" data-kind="${e(event.kind)}" data-search="${e(search)}"${period==='upcoming'?'':' hidden'}>
       <div class="event-when"><div class="event-dates"><time datetime="${e(event.startDate)}">${e(date)}</time>${end}</div><span data-event-state>${e(event.status==='cancelled'?'中止の告知':event.status==='closed'&&period==='upcoming'?'受付終了の告知':labels[period])}</span></div>
-      <div class="event-content">${renderThumbnail(event)}<p class="event-meta">${e(event.prefecture)} · ${e(EVENT_KINDS[event.kind])}</p><h2><a href="${e(event.detailUrl||event.sourceUrl)}" target="_blank" rel="noopener noreferrer">${e(event.title)}</a></h2>
+      <div class="event-content">${renderThumbnail(event)}<p class="event-meta">${e(event.prefecture)} · ${e(EVENT_KINDS[event.kind])}</p><h2><a href="${e(eventDetailPath(event))}">${e(event.title)}</a></h2>
       <p class="event-venue">${e(event.venue)}${event.time?` · ${e(event.time)}`:' · 時間は告知をご確認ください'}</p>
       ${event.description?`<p>${e(event.description)}</p>`:''}
       <div class="event-communication" data-communication="${communication.map(item=>item.method).join(' ')}"><p class="event-communication-label">情報の受け取り方</p>${communication.length?`<ul>${communication.map(item=>`<li><strong>${e(EVENT_COMMUNICATION[item.method])}</strong>：${e(item.detail)}</li>`).join('')}</ul>`:'<p class="event-communication-unknown">告知で未確認。必要な方法は主催者へご確認ください。</p>'}</div>

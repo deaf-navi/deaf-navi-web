@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 const CAFE_DIRECTORY_NAME='全国の手話カフェ一覧';
+const CAFE_REGION_PAGES=['tokyo'=>'東京都','kanagawa'=>'神奈川県'];
 const CAFE_DIRECTORY_DESCRIPTION='全国の手話カフェを地域・営業日・手話対応から探せるDeaf Navi。常設店舗、間借りや公共施設での定期開催、サイニングストアを一覧と地図で紹介。営業時間、公式サイト・SNS、情報確認日を掲載し、初めての訪問にも役立つ情報をまとめています。';
 
 function cafe_record_seo(array $p):array {
@@ -30,7 +31,7 @@ function cafe_directory_seo(array $filters,array $rows,int $total,int $page,int 
     $title=$name.($filtered?'':'｜地域・営業日から探す').' | Deaf Navi';
     $items=[];
     foreach($rows as $i=>$p)$items[]=['@type'=>'ListItem','position'=>($page-1)*$size+$i+1,'name'=>$p['name'],'url'=>BASE.record_path($p)];
-    $schema=['@context'=>'https://schema.org','@type'=>'CollectionPage','@id'=>$canonical.'#webpage','url'=>$canonical,'name'=>$name,'description'=>CAFE_DIRECTORY_DESCRIPTION,'inLanguage'=>'ja','publisher'=>['@type'=>'Organization','name'=>'Deaf Navi','url'=>BASE.'/about/'],'mainEntity'=>['@type'=>'ItemList','name'=>cafe_listing_title($filters),'numberOfItems'=>$total,'itemListElement'=>$items]];
+    $schema=['@context'=>'https://schema.org','@type'=>'CollectionPage','@id'=>$canonical.'#webpage','url'=>$canonical,'name'=>$name,'description'=>CAFE_DIRECTORY_DESCRIPTION,'inLanguage'=>'ja','publisher'=>['@type'=>'Organization','name'=>'Deaf Navi','url'=>BASE.'/about.html'],'mainEntity'=>['@type'=>'ItemList','name'=>cafe_listing_title($filters),'numberOfItems'=>$total,'itemListElement'=>$items]];
     return ['title'=>$title,'canonical'=>$canonical,'robots'=>($variant||!$total?'noindex,follow':'index,follow').',max-image-preview:large','structured'=>[$schema]];
 }
 
@@ -45,7 +46,11 @@ function cafe_discovery_guide(array $all):string {
     foreach(['北海道','東北','関東','中部','近畿','中国','四国','九州','沖縄'] as $r){
         if(empty($regions[$r]))continue;
         $out.='<div><h3><a href="?'.e(http_build_query(['region'=>$r])).'">'.e($r).'の手話カフェ</a></h3><ul>';
-        foreach(explode(' ',JP_PREFECTURES) as $pref)if(isset($regions[$r][$pref]))$out.='<li><a href="?'.e(http_build_query(['prefecture'=>$pref])).'" aria-label="'.e($pref).'の手話カフェ '.$regions[$r][$pref].'件">'.e($pref).'（'.$regions[$r][$pref].'件）</a></li>';
+        foreach(explode(' ',JP_PREFECTURES) as $pref)if(isset($regions[$r][$pref])){
+            $slug=array_search($pref,CAFE_REGION_PAGES,true);
+            $href=$slug!==false?'/connect/sign-cafe/area/'.$slug.'/':'?'.http_build_query(['prefecture'=>$pref]);
+            $out.='<li><a href="'.e($href).'" aria-label="'.e($pref).'の手話カフェ '.$regions[$r][$pref].'件">'.e($pref).'（'.$regions[$r][$pref].'件）</a></li>';
+        }
         $out.='</ul></div>';
     }
     $out.='</div></section>';
@@ -56,6 +61,6 @@ function cafe_discovery_guide(array $all):string {
         ['スターバックスの手話カフェも探せますか？','国内のサイニングストアはこの一覧に掲載しています。各店舗の手話カフェ企画は、掲載されている公式サイト・SNSで最新の開催案内をご確認ください。'],
         ['海外の手話カフェはどこで探せますか？','<a href="/connect/sign-cafe/overseas/">海外の手話カフェ一覧</a>から、国・都市・手話との関わりで探せます。手話は国や地域によって異なり、営業時間は現地時間でご案内しています。']
     ] as [$question,$answer])$out.='<details><summary>'.e($question).'</summary><p>'.$answer.'</p></details>';
-    $out.='</section><section class="dn-cafe-guide" id="cafe-policy" aria-labelledby="cafe-policy-heading"><h2 id="cafe-policy-heading">'.cafe_icon('edit').'掲載情報と更新について</h2><p>Deaf Naviでは、お店・主催者の公式サイトやSNSなど、確認に使った情報源を添えてご紹介しています。店舗名から個別ページを開くと、手話対応や公式リンク、情報確認日をご覧いただけます。</p><p>「営業中」「定期開催中」は掲載情報の確認状態を表し、今この時刻に利用できることを示すものではありません。確認中の情報はその状態を明記し、閉店・活動終了の記録は営業状態の絞り込みから確認できます。すべてのお店を網羅した一覧ではありません。</p><p>新しいお店や日程の変更など、お気づきの情報は<a href="#request">手話カフェの情報提供フォーム</a>からお知らせください。管理者が内容を確認・承認したうえで掲載します。</p><p>運営：<a href="/about/">Deaf Naviについて</a></p></section>';
+    $out.='</section><section class="dn-cafe-guide" id="cafe-policy" aria-labelledby="cafe-policy-heading"><h2 id="cafe-policy-heading">'.cafe_icon('edit').'掲載情報と更新について</h2><p>Deaf Naviでは、お店・主催者の公式サイトやSNSなど、確認に使った情報源を添えてご紹介しています。店舗名から個別ページを開くと、手話対応や公式リンク、情報確認日をご覧いただけます。</p><p>「営業中」「定期開催中」は掲載情報の確認状態を表し、今この時刻に利用できることを示すものではありません。確認中の情報はその状態を明記し、閉店・活動終了の記録は営業状態の絞り込みから確認できます。すべてのお店を網羅した一覧ではありません。</p><p>新しいお店や日程の変更など、お気づきの情報は<a href="#request">手話カフェの情報提供フォーム</a>からお知らせください。管理者が内容を確認・承認したうえで掲載します。</p><p>運営：<a href="/about.html">Deaf Naviについて</a></p></section>';
     return $out;
 }
