@@ -12,7 +12,7 @@
     "build:app-api": "node src/app-api-build.mjs",
     "build:otomado": "npm --prefix tools/otomado run build",
     "verify": "node scripts/verify-site.mjs",
-    "test": "node --test --test-concurrency=1 test/text.test.mjs test/feed-parser.test.mjs test/news-thumbnails.test.mjs test/curation.test.mjs test/curation-notifications.test.mjs test/world-relevance.test.mjs test/world-translation.test.mjs test/world-pending.test.mjs test/templates.test.mjs test/analytics.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs test/webmcp.test.mjs test/github-pages-compat.test.mjs test/site-structure.test.mjs test/search-pages.test.mjs test/directory-safety.test.mjs test/publication-quality.test.mjs test/editorial.test.mjs test/events.test.mjs test/event-thumbnails.test.mjs test/event-source-fetch.test.mjs",
+    "test": "node --test --test-concurrency=1 test/text.test.mjs test/feed-parser.test.mjs test/news-thumbnails.test.mjs test/curation.test.mjs test/curation-notifications.test.mjs test/world-relevance.test.mjs test/world-translation.test.mjs test/world-pending.test.mjs test/templates.test.mjs test/analytics.test.mjs test/client-labels.test.mjs test/ios-api-compat.test.mjs test/webmcp.test.mjs test/github-pages-compat.test.mjs test/site-structure.test.mjs test/search-pages.test.mjs test/directory-safety.test.mjs test/publication-quality.test.mjs test/editorial.test.mjs test/events.test.mjs test/event-thumbnails.test.mjs test/event-source-fetch.test.mjs test/event-recovery.test.mjs test/event-recovery-workflow.test.mjs",
     "test:directory": "node test/directory.integration.mjs",
     "test:cafe-events": "node test/cafe-events.integration.mjs",
     "test:otomado": "npm --prefix tools/otomado test",
@@ -25,7 +25,8 @@
     "preview:otomado": "npm run build:otomado && npm run serve",
     "test:cafes": "php test/cafe-model.php && node test/cafe-migration.integration.mjs && node test/directory.integration.mjs && php test/world-cafes.php && php test/public-profile.test.php && node test/admin-dashboard.integration.mjs && node test/overseas-cafes.integration.mjs && node test/social-import.mjs && node test/research-import.mjs && node test/cafe-seo.integration.mjs",
     "editorial:update": "node src/editorial-update.mjs",
-    "events:update": "node src/events-curate.mjs"
+    "events:update": "node src/events-curate.mjs",
+    "events:recover": "node src/events-curate.mjs --recover"
   },
   "engines": {
     "node": ">=20"

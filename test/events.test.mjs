@@ -43,6 +43,18 @@ test('date/URL/category validation rejects invalid publication inputs',()=>{for(
 test('content changes require fresh review even if old date remains',()=>{const html='<main>手話交流会 2026年11月14日 公式会場</main>';const entry={...base,reviewedAt:base.verifiedAt,sourceHash:eventHash(eventSourceText(html)),evidence:['手話交流会','2026年11月14日','公式会場']};assert.equal(verifyReviewedEvent(entry,html,now).verification,'verified');assert.equal(verifyReviewedEvent(entry,html+'<p>開催中止</p>',now).verification,'needs_review')});
 test('visual review does not extend itself on an automatic update',()=>{const entry={...base,verificationMode:'visual',reviewedAt:base.verifiedAt,sourceHash:base.evidenceHash,evidence:['title','date','venue']};assert.equal(reviewedVisualEvent(entry,now).verification,'verified');assert.equal(reviewedVisualEvent(entry,now+48*3600000).verification,'needs_review');assert.equal(reviewedVisualEvent(entry,now+1000).verifiedAt,base.verifiedAt)});
 test('missing or failed source preserves prior event for review, never assumes cancellation',()=>{const events=mergeEventSnapshot([base],[],[],now);assert.equal(events.length,1);assert.equal(events[0].verification,'needs_review');assert.equal(events[0].status,'announced');assert.equal(mergeEventSnapshot([base],[base],[],now).length,1)});
+test('temporary transport failure retains only a fresh verified event without renewing its evidence',()=>{
+ const checks=[{sourceUrl:base.sourceUrl,result:'unavailable',retryable:true}];
+ const [retained]=mergeEventSnapshot([base],[],checks,now+3600000);
+ assert.equal(eventPeriod(retained,now+3600000),'upcoming');assert.equal(retained.sourceStatus,'retrying');
+ assert.equal(retained.verifiedAt,base.verifiedAt);assert.equal(retained.evidenceHash,base.evidenceHash);
+ const [again]=mergeEventSnapshot([retained],[],checks,now+47*3600000);assert.equal(again.verifiedAt,base.verifiedAt);
+ const [expired]=mergeEventSnapshot([again],[],checks,now+48*3600000);assert.equal(eventPeriod(expired,now+48*3600000),'review');
+ const [unconfirmed]=mergeEventSnapshot([{...base,verification:'needs_review'}],[],checks,now+1000);assert.equal(unconfirmed.verification,'needs_review');
+ const [visual]=mergeEventSnapshot([{...base,verificationMode:'visual'}],[],checks,now+1000);assert.equal(visual.verification,'needs_review');
+ const [changed]=mergeEventSnapshot([base],[{...base,verification:'needs_review'}],[{sourceUrl:base.sourceUrl,id:base.id,result:'needs_review'}],now+1000);assert.equal(changed.verification,'needs_review');
+ const [denied]=mergeEventSnapshot([base],[],[{sourceUrl:base.sourceUrl,result:'unavailable',retryable:false}],now+1000);assert.equal(denied.verification,'needs_review');
+});
 test('a failed reviewed detail cannot be replaced by the less specific schedule',()=>{
  const prior={...base,status:'closed',target:'受付終了',communication:[{method:'captions',detail:'字幕付き。'}]};
  const schedule={...base,sourceId:'schedule',sourceUrl:source.url,target:null};

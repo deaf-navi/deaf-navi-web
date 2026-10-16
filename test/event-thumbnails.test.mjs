@@ -19,6 +19,11 @@ test('uncertain, expired, cancelled and past events cannot retain a thumbnail',a
  const events=[{...entry,verification:'needs_review'},{...entry,verifiedAt:new Date(now-48*3600000).toISOString()},{...entry,status:'cancelled'},{...entry,startDate:'2026-10-15',endDate:'2026-10-15'}].map(e=>({...e,thumbnail:{url:image}}));
  await enrichEventThumbnails(events,{now,fetchResource:()=>{throw Error('must not fetch')}});assert.ok(events.every(e=>!e.thumbnail));
 });
+test('source retry keeps an already verified preview only within the event freshness limit without fetching',async()=>{
+ const events=[{...entry,sourceStatus:'retrying',thumbnail:{url:image}},{...entry,id:'expired',sourceStatus:'retrying',verifiedAt:new Date(now-48*3600000).toISOString(),thumbnail:{url:image}},{...entry,id:'omitted',sourceStatus:'retrying',thumbnailPolicy:'omit',thumbnail:{url:image}}];
+ await enrichEventThumbnails(events,{now,fetchResource:()=>{throw Error('retrying sources must not fetch previews')}});
+ assert.equal(events[0].thumbnail.url,image);assert.equal(events[1].thumbnail,undefined);assert.equal(events[2].thumbnail,undefined);
+});
 test('missing or rejected preview leaves a publishable text-only occurrence',async()=>{
  for(const status of [200,403,429]){const events=[{...entry}];await enrichEventThumbnails(events,{now,fetchResource:async url=>response(url,'<meta property="og:image" content="http://127.0.0.1/secret">',status)});assert.equal(events[0].thumbnail,undefined);assert.equal(events[0].verification,'verified')}
 });

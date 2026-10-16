@@ -102,8 +102,17 @@ export function reviewedVisualEvent(entry, now=Date.now()) {
 export function mergeEventSnapshot(previous, incoming, checkedSources, now = Date.now()) {
   const map=new Map();
   // Detail reviews own their occurrence: a schedule cannot clear a failed detail check.
-  const unavailableIds=new Set(checkedSources.filter(check=>check.id && check.result==='unavailable').map(check=>check.id));
-  for(const event of previous || []) if(validEvent(event)) map.set(event.id,{...event,verification:'needs_review'});
+  const unavailableIds=new Set(checkedSources.filter(check=>check.id && ['unavailable','not_checked'].includes(check.result)).map(check=>check.id));
+  for(const event of previous || []) if(validEvent(event)) {
+    const check=checkedSources.find(c=>c.id===event.id)||checkedSources.find(c=>!c.id&&c.sourceUrl===event.sourceUrl);
+    const fresh=eventPeriod(event,now)==='upcoming';
+    const temporary=check?.result==='unavailable'&&check.retryable===true&&check.allowRetain!==false&&event.verificationMode!=='visual';
+    const retained=fresh&&(temporary||check?.result==='not_checked');
+    const value={...event,verification:retained?'verified':'needs_review'};
+    if(temporary)value.sourceStatus='retrying';
+    else if(check?.result!=='not_checked')delete value.sourceStatus;
+    map.set(event.id,value);
+  }
   for(const event of incoming) if(validEvent(event) && !unavailableIds.has(event.id)) map.set(event.id,event);
   // A missing notice is not proof of cancellation. Retain it for review/history.
   const unique=new Map();
