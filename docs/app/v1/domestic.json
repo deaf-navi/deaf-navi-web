@@ -4,8 +4,8 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-16T07:03:53Z",
-  "sourceGeneratedAt": "2026-10-16T07:03:53Z",
+  "generatedAt": "2026-10-16T08:05:44Z",
+  "sourceGeneratedAt": "2026-10-16T08:05:44Z",
   "count": 472,
   "language": "ja-JP",
   "refresh": {
@@ -118,21 +118,22 @@
   },
   "quality": {
     "version": "publication-quality-v6",
-    "rawCount": 3422,
-    "scoredCount": 3422,
-    "filteredCount": 1612,
+    "rawCount": 3357,
+    "scoredCount": 3357,
+    "filteredCount": 1587,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 72,
     "extraVisibleCategoryCounts": {
       "relay": 72
     },
-    "overflowCount": 493,
+    "overflowCount": 483,
     "minScore": 5,
     "categoryCountsVisible": {
+      "medical": 25,
       "culture": 45,
       "policy": 28,
-      "local": 69,
+      "local": 68,
       "safety": 23,
       "accessibility": 37,
       "general": 85,
@@ -140,15 +141,15 @@
       "relay": 72,
       "sports": 37,
       "event": 23,
-      "education": 12,
-      "medical": 24
+      "education": 12
     }
   },
   "counts": {
     "byCategory": {
+      "medical": 25,
       "culture": 45,
       "policy": 28,
-      "local": 69,
+      "local": 68,
       "safety": 23,
       "accessibility": 37,
       "general": 85,
@@ -156,20 +157,37 @@
       "relay": 72,
       "sports": 37,
       "event": 23,
-      "education": 12,
-      "medical": 24
+      "education": 12
     },
     "byLegacyCategory": {
+      "medical": 25,
       "culture": 68,
       "policy": 160,
-      "local": 69,
+      "local": 68,
       "general": 102,
       "sports": 37,
-      "education": 12,
-      "medical": 24
+      "education": 12
     }
   },
   "articles": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE50UFJXQmE4WG9zUGxySjNkZlh2MVlWSXQ2NTBPSjlRZV9CSDFHUS1TQ3kzX2JKbHZydVNUMEJDQlZScGRLdzZjVWl2ckZ6emZfSDdLWjJ2Y1ljdW9uX3VweGZ2eUJEQQ?oc=5",
+      "stableId": "domestic_ddc6670b3a6620100cb7",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE50UFJXQmE4WG9zUGxySjNkZlh2MVlWSXQ2NTBPSjlRZV9CSDFHUS1TQ3kzX2JKbHZydVNUMEJDQlZScGRLdzZjVWl2ckZ6emZfSDdLWjJ2Y1ljdW9uX3VweGZ2eUJEQQ?oc=5",
+      "title": "髙嶋弘之さん92歳 補聴器をつけ、歩行器を駆使し、週5日、40分かけて事務所に通う｜100歳まで元気！ 先達100人の証言",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-16T08:00:00Z",
+      "sourceName": "日刊ゲンダイDIGITAL",
+      "sourceURL": "https://www.nikkan-gendai.com",
+      "sourceUrl": "https://www.nikkan-gendai.com",
+      "sourceType": "rss",
+      "category": "medical",
+      "categoryLabel": "医療",
+      "legacyCategory": "medical",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5RNmt1ejJHaXJUZFNEcHkxeGZVWUF3UTVBQXpIcXpNczVkRS1JcnJHZUE4ZFM2Vk5wTEkyS3haSUVTcjFjZXdMVFpqU3BOUTFpOUhIQks4eXBjYlhUWDdmRQ?oc=5",
       "stableId": "domestic_79b950ab93882320d135",
@@ -177,7 +195,7 @@
       "title": "松山聾学校で手話落語 立川志ら門さん（大洲出身）の熱演に随所で笑い",
       "summary": "",
       "language": "ja-JP",
-      "publishedAt": "2026-10-16T06:15:56Z",
+      "publishedAt": "2026-10-16T06:56:36Z",
       "sourceName": "愛媛新聞",
       "sourceURL": "https://www.ehime-np.co.jp",
       "sourceUrl": "https://www.ehime-np.co.jp",
@@ -7397,6 +7415,24 @@
       "discoveryMethod": "google-news"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5HY2JaZjlObTJjMldwellpYnhBYTF6SHNsa3JycklLVElNUUZlM25FWDdoRllSY1BLc2drRXlDUzg5dlhYUmx3SFV1ZURfemxxVEhR?oc=5",
+      "stableId": "domestic_9caab9f258069e1f0b22",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5HY2JaZjlObTJjMldwellpYnhBYTF6SHNsa3JycklLVElNUUZlM25FWDdoRllSY1BLc2drRXlDUzg5dlhYUmx3SFV1ZURfemxxVEhR?oc=5",
+      "title": "0歳から「手話」に親しむ 自然に覚える遊び場が創る、ろう・難聴児と家族の未来",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-09-22T07:00:00Z",
+      "sourceName": "東京新聞",
+      "sourceURL": "https://www.tokyo-np.co.jp",
+      "sourceUrl": "https://www.tokyo-np.co.jp",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE94eTd6NTdkMW13aWcyV0dKc2IyeWp1NFZNcTMteUotZ19yTXBPckg1RzZCSG5Sc1dUX2NPS0NrUko5N0VVS1NpZDBGa0VULWlIclE?oc=5",
       "stableId": "domestic_09a33e97e1a5f9cd226c",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE94eTd6NTdkMW13aWcyV0dKc2IyeWp1NFZNcTMteUotZ19yTXBPckg1RzZCSG5Sc1dUX2NPS0NrUko5N0VVS1NpZDBGa0VULWlIclE?oc=5",
@@ -7741,26 +7777,6 @@
       "discoveryMethod": "direct-feed"
     },
     {
-      "id": "https://shigajou.or.jp/info/9-23%e6%89%8b%e8%a9%b1%e3%81%ae%e6%97%a5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e5%8b%95%e7%94%bb%e9%85%8d%e4%bf%a1%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89.html",
-      "stableId": "domestic_a65fa8790b20fdd598db",
-      "url": "https://shigajou.or.jp/info/9-23%e6%89%8b%e8%a9%b1%e3%81%ae%e6%97%a5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e5%8b%95%e7%94%bb%e9%85%8d%e4%bf%a1%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89.html",
-      "title": "9/23手話の日イベントのお知らせ(動画配信のお知らせ)",
-      "summary": "９月23日の手話の日に合わせてイベントを行います。 動画でもお知らせしておりますので、ぜひご覧ください。 動画配信←クリック（YouTubeでご覧になれます。） 滋賀県庁本館正面 ブルーライトアップ 期間： … もっと読む→",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-18T08:09:13Z",
-      "sourceName": "滋賀県立聴覚障害者センター",
-      "sourceURL": "https://shigajou.or.jp/",
-      "sourceUrl": "https://shigajou.or.jp/",
-      "sourceType": "rss",
-      "category": "local",
-      "categoryLabel": "地域",
-      "legacyCategory": "local",
-      "sourceTier": "official",
-      "discoveryMethod": "direct-feed",
-      "region": "kinki",
-      "prefecture": "滋賀県"
-    },
-    {
       "id": "https://www.nftrs.or.jp/news/fy2026/md20260913",
       "stableId": "domestic_189ad55df7cebd154aab",
       "url": "https://www.nftrs.or.jp/news/fy2026/md20260913",
@@ -7779,26 +7795,6 @@
       "discoveryMethod": "direct-feed",
       "region": "kanto",
       "prefecture": "神奈川県"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBDQWJkSDlRLUlpZXcyeGJvanN6eVE5VGJzRzc3eDEzX19DTHc1Z2lyNmhDR09PSWhSQzZwSmhJS3c1OUpHZk1POTRqdlZ3OFZGbklHUHNXb2RTTEJyRkotN3Vqc2c?oc=5",
-      "stableId": "domestic_b56b97d8acd04fba3b36",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBDQWJkSDlRLUlpZXcyeGJvanN6eVE5VGJzRzc3eDEzX19DTHc1Z2lyNmhDR09PSWhSQzZwSmhJS3c1OUpHZk1POTRqdlZ3OFZGbklHUHNXb2RTTEJyRkotN3Vqc2c?oc=5",
-      "title": "9/23は「手話言語の国際デー」＆「手話の日」 水戸キャンパスで啓発のブルーライトアップを実施",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-18T07:00:00Z",
-      "sourceName": "茨城大学",
-      "sourceURL": "https://www.ibaraki.ac.jp",
-      "sourceUrl": "https://www.ibaraki.ac.jp",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "sourceTier": "official",
-      "discoveryMethod": "google-news",
-      "region": "kanto",
-      "prefecture": "茨城県"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE8xdkVoSEU2RlR4RnBDU3FfQ09LSk5lUzVBLVlodmFVMGpESmU3aVNLNWwyYWF3V3FSTFVzUVZLT25Ua0lTc2hzUTNBOEZ5SVc5R0R5UlVpaVZURWlIMVl1M24wMmwwZWVrODZyQy02MzZTMEg2LWdYT2lHbw?oc=5",
@@ -8593,10 +8589,10 @@
       "prefecture": "香川県"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9WWlMyREhMYnJFLThocjlNdTRyUFp2RENSeTdjQlNzNXdsNHBaZmhEeTdyaW9aX1ZqcFFlYi1wRklrWUgxRkdsYnExdmFpMG5MWkl0TmMwLXlJQ2oyTy1MQk9KMTlLUQ?oc=5",
-      "stableId": "domestic_1473740c3ffa9058d32e",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9WWlMyREhMYnJFLThocjlNdTRyUFp2RENSeTdjQlNzNXdsNHBaZmhEeTdyaW9aX1ZqcFFlYi1wRklrWUgxRkdsYnExdmFpMG5MWkl0TmMwLXlJQ2oyTy1MQk9KMTlLUQ?oc=5",
-      "title": "手話リンクについて",
+      "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBlZm0yOVpVZlRFMDBSMlBVblByYlU3Y1g5TWVjWU1iSXkybURXNGxBd3ZCMFFDeDdvTTJDYk16aGRPUG5xdW1HVGlqb19haEsxUUVoeDlkU2kxZzVtd2FV?oc=5",
+      "stableId": "domestic_9d1816112e6ab67cd6ae",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBlZm0yOVpVZlRFMDBSMlBVblByYlU3Y1g5TWVjWU1iSXkybURXNGxBd3ZCMFFDeDdvTTJDYk16aGRPUG5xdW1HVGlqb19haEsxUUVoeDlkU2kxZzVtd2FV?oc=5",
+      "title": "手話で県庁に問い合わせができるようになります！ ～「手話リンク」導入～",
       "summary": "",
       "language": "ja-JP",
       "publishedAt": "2026-05-25T07:00:00Z",
@@ -8611,10 +8607,10 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBlZm0yOVpVZlRFMDBSMlBVblByYlU3Y1g5TWVjWU1iSXkybURXNGxBd3ZCMFFDeDdvTTJDYk16aGRPUG5xdW1HVGlqb19haEsxUUVoeDlkU2kxZzVtd2FV?oc=5",
-      "stableId": "domestic_9d1816112e6ab67cd6ae",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBlZm0yOVpVZlRFMDBSMlBVblByYlU3Y1g5TWVjWU1iSXkybURXNGxBd3ZCMFFDeDdvTTJDYk16aGRPUG5xdW1HVGlqb19haEsxUUVoeDlkU2kxZzVtd2FV?oc=5",
-      "title": "手話で県庁に問い合わせができるようになります！ ～「手話リンク」導入～",
+      "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9WWlMyREhMYnJFLThocjlNdTRyUFp2RENSeTdjQlNzNXdsNHBaZmhEeTdyaW9aX1ZqcFFlYi1wRklrWUgxRkdsYnExdmFpMG5MWkl0TmMwLXlJQ2oyTy1MQk9KMTlLUQ?oc=5",
+      "stableId": "domestic_1473740c3ffa9058d32e",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9WWlMyREhMYnJFLThocjlNdTRyUFp2RENSeTdjQlNzNXdsNHBaZmhEeTdyaW9aX1ZqcFFlYi1wRklrWUgxRkdsYnExdmFpMG5MWkl0TmMwLXlJQ2oyTy1MQk9KMTlLUQ?oc=5",
+      "title": "手話リンクについて",
       "summary": "",
       "language": "ja-JP",
       "publishedAt": "2026-05-25T07:00:00Z",
