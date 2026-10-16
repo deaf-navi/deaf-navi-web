@@ -6,6 +6,14 @@ import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 
+test('no-op recovery gates cannot cancel an already running production deployment',async()=>{
+ for(const name of ['deploy-xserver.yml','deploy-github-pages-compat.yml']){
+  const workflow=await readFile(new URL('../.github/workflows/'+name,import.meta.url),'utf8');
+  assert.match(workflow,/concurrency:[\s\S]*?cancel-in-progress: false/);
+  assert.ok(workflow.includes("needs.recovery-publication.outputs.publish == 'true'"));
+ }
+});
+
 test('deployment gate distinguishes an actual recovery publication from a successful no-op run',async t=>{
  const dir=await mkdtemp(join(tmpdir(),'dn-event-publication-'));t.after(()=>rm(dir,{recursive:true,force:true}));
  const git=(...args)=>execFileSync('git',args,{cwd:dir,stdio:'pipe'});

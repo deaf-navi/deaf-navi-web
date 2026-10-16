@@ -19,7 +19,8 @@ permissions:
 
 concurrency:
   group: deaf-navi-github-pages
-  cancel-in-progress: true
+  # A no-op recovery run must not cancel a real deployment before its gate runs.
+  cancel-in-progress: false
 
 jobs:
   recovery-publication:
