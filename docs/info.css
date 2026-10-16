@@ -74,3 +74,5 @@
   .about-page .about-app__intro { grid-template-columns: 1fr; gap: 16px; }
   .about-page .about-app__icon { width: 88px; height: 88px; border-radius: 18px; }
 }
+
+.guide-card__steps{font-size:.875rem;line-height:1.9;padding-left:1.5em;margin:10px 0}.guide-card__related{display:block;width:fit-content;margin-top:8px;min-height:44px;padding-block:10px}

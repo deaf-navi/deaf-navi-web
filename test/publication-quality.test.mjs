@@ -6,6 +6,18 @@ import { cleanArticleTitle, cleanSummaryText, normalizeTitleKey } from '../src/l
 import { selectEditorialNotes } from '../src/lib/editorial.mjs';
 import { hasMistranslatedLibras, createTranslationCache } from '../src/lib/world-translation.mjs';
 import { isHardNoiseWorldText } from '../src/lib/world-relevance.mjs';
+import { newsContext } from '../src/lib/news-context.mjs';
+
+test('news context distinguishes reports without using old dates or report topics', () => {
+  for (const title of ['9月20日の学習会', '実態調査の報告に基づく学習会', '開催報告会', '参加者募集終了']) {
+    assert.equal(newsContext({ title }), null, title);
+  }
+  assert.equal(newsContext({title:'【開催報告】手話の集い'}),'report');
+  assert.equal(newsContext({title:'学習会',summary:'手話の学習会を開催しました。'}),'report');
+  assert.equal(newsContext({title:'手話の集い 開催のお知らせ'}),'announcement');
+  assert.equal(newsContext({title:'学習会',summary:'昨年は講座を開催しました。今年も講座を開催します。'}),null);
+  assert.equal(newsContext({id:'http://zentsuken.cocolog-nifty.com/blog/2026/10/post-f151b2.html',title:'9月20日の学習会'}),'report');
+});
 
 test('explicit unrelated notices do not inherit a community feed exemption', () => {
   const trusted={_passThrough:true,_feedUrl:'https://example.org/feed',_sourceTier:'official'};

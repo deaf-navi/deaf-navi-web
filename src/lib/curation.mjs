@@ -3,6 +3,7 @@
  * 語彙・しきい値は config/ 配下で管理する。
  */
 
+import { newsContext } from './news-context.mjs';
 import {
   CATEGORY_RULES,
   DEFAULT_CATEGORY,
@@ -405,6 +406,9 @@ export function stripInternal(article, { keepScores = false } = {}) {
     ? 'news'
     : (_sourceTier ?? clean.sourceTier ?? 'news');
   clean.summary = cleanSummaryText(clean.summary, clean.title, clean.sourceName);
+  const context = newsContext(clean);
+  if (context) clean.newsContext = context;
+  else delete clean.newsContext;
   clean.sourceTier = sourceTier;
   clean.discoveryMethod = _feedUrl || clean.discoveryMethod === 'direct-feed'
     ? 'direct-feed'

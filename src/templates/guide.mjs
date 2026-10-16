@@ -15,7 +15,7 @@ import {
 } from './partials.mjs';
 
 function renderGuideItem(item, sectionLabel) {
-  const searchText = [sectionLabel, item.title, item.summary, item.detail].join(' ');
+  const searchText = [sectionLabel, item.title, item.summary, item.detail, ...(item.steps||[]), ...(item.relatedLinks||[]).map(link=>link.label)].join(' ');
   const linkLabel = item.linkLabel ?? '公式情報を見る';
   const recommended = item.recommended
     ? '\n            <span class="guide-card__badge">まず確認</span>'
@@ -27,10 +27,12 @@ function renderGuideItem(item, sectionLabel) {
           </div>
           <p class="guide-card__summary">${escapeHtml(item.summary)}</p>
           <p class="guide-card__detail">${escapeHtml(item.detail)}</p>
+${item.steps?.length ? `          <ol class="guide-card__steps" aria-label="利用の手順">${item.steps.map(step=>`<li>${escapeHtml(step)}</li>`).join('')}</ol>` : ''}
           ${item.reviewedAt ? `<p class="guide-card__reviewed">掲載説明の確認: <time datetime="${escapeHtml(item.reviewedAt)}">${escapeHtml(item.reviewedAt)}</time></p>` : ''}
           <a class="guide-card__link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.title)}の${escapeHtml(linkLabel)}（新しいタブで開く）">
             ${escapeHtml(linkLabel)} <span aria-hidden="true">↗</span>
           </a>
+${(item.relatedLinks||[]).map(link=>`          <a class="guide-card__link guide-card__related" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(link.label)}（新しいタブで開く）">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('')}
         </article>`;
 }
 
@@ -107,7 +109,7 @@ ${renderSiteHeader({
       </div>
       <label class="guide-search__label" for="guide-search">キーワード</label>
       <div class="guide-search-row"><input class="guide-search__input" id="guide-search" name="q" type="search" inputmode="search" autocomplete="off" placeholder="例: 補聴器 医療費"><button type="button" class="filter" id="guide-clear" hidden>検索をクリア</button></div>
-      <p class="guide-search__reviewed">リンク先・掲載説明の確認: <time datetime="${GUIDE_LAST_REVIEWED}">${escapeHtml(reviewedLabel)}</time></p>
+      <p class="guide-search__reviewed">ガイドの最終更新: <time datetime="${GUIDE_LAST_REVIEWED}">${escapeHtml(reviewedLabel)}</time>（確認日は各項目に記載）</p>
     </section>
 
     <nav class="guide-topics" aria-label="場面から探す">${GUIDE_SECTIONS.map(section => `<a href="#guide-${escapeHtml(section.id)}">${escapeHtml(section.label)}</a>`).join('')}</nav>

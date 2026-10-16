@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { cleanHtml } from './text.mjs';
 import { tagAttributes, publicUrl } from './thumbnail-metadata.mjs';
-import { EVENT_RECHECK_MS, EVENT_KINDS } from '../../config/events.mjs';
+import { EVENT_RECHECK_MS, EVENT_KINDS, EVENT_COMMUNICATION } from '../../config/events.mjs';
 import { PREFECTURES } from '../../config/regions.mjs';
 
 export const eventDay = (now = Date.now()) => new Date(now + 9 * 3600000).toISOString().slice(0, 10);
@@ -29,7 +29,17 @@ export function validEvent(event) {
     && ['verified','needs_review'].includes(event.verification) && publicUrl(event.sourceUrl)?.startsWith('https:')
     && (!event.detailUrl || publicUrl(event.detailUrl)?.startsWith('https:'))
     && typeof event.sourceName === 'string' && event.sourceName.length > 0
-    && Number.isFinite(Date.parse(event.verifiedAt)) && /^[a-f0-9]{64}$/.test(event.evidenceHash || '');
+    && Number.isFinite(Date.parse(event.verifiedAt)) && /^[a-f0-9]{64}$/.test(event.evidenceHash || '')
+    && (event.communication == null || (Array.isArray(event.communication) && event.communication.length <= 5
+      && new Set(event.communication.map(item=>item?.method)).size === event.communication.length
+      && event.communication.every(item=>Object.hasOwn(EVENT_COMMUNICATION,item?.method)
+        && typeof item.detail === 'string' && item.detail.trim().length > 0 && item.detail.length <= 300)));
+}
+
+export function eventSearchText(event) {
+  return [event.title,event.prefecture,event.venue,event.organizer,event.description,
+    event.fee,event.target,event.time,EVENT_KINDS[event.kind],
+    ...(event.communication||[]).map(item=>EVENT_COMMUNICATION[item.method]+' '+item.detail)].filter(Boolean).join(' ');
 }
 export function eventPeriod(event, now = Date.now()) {
   if (!validEvent(event)) return 'invalid';
