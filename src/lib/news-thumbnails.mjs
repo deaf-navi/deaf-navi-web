@@ -66,6 +66,7 @@ async function resolveGoogle(article, request) {
 /** Adds optional thumbnail metadata without changing article identities, ordering or text. */
 export async function enrichNewsThumbnails(articles, {
   cacheFile, maxArticles = 60, budgetMs = 90_000, googleIntervalMs = 1100,
+  imageCacheMs = 30 * DAY, missingCacheMs = 7 * DAY,
   fetchResource = fetchThumbnailResource, now = Date.now(), userAgent,
 } = {}) {
   const report = { articles: articles.length, attempted: 0, cached: 0, acquired: 0, missing: 0,
@@ -102,7 +103,7 @@ export async function enrichNewsThumbnails(articles, {
     const cached = saved[article.id];
     const age = now - Date.parse(cached?.checkedAt);
     if (cached && (!cached.thumbnail || validThumbnail(cached.thumbnail))
-      && age >= 0 && age < (cached.thumbnail ? 30 : 7) * DAY
+      && age >= 0 && age < (cached.thumbnail ? imageCacheMs : missingCacheMs)
       && (!cached.retryAt || now < Date.parse(cached.retryAt))
       && !(validThumbnail(article._thumbnailCandidate) && !cached.thumbnail)) {
       if (validThumbnail(cached.thumbnail)) article.thumbnail = cached.thumbnail;
