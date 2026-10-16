@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-10-16T05:00:47.755Z",
+  "checkedAt": "2026-10-16T06:01:24.686Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -20,13 +20,35 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "e917fd409a61ca76bd7e711c5630753b561e9cfe0515d328cc72ef70bffbe4b1"
+    },
+    {
+      "id": "jinnancho-beginner-2026-10-23",
+      "title": "楽しく学ぶ はじめての手話勉強会 第2期",
+      "startDate": "2026-10-23",
+      "endDate": "2026-10-23",
+      "prefecture": "神奈川県",
+      "venue": "藤沢市地域福祉活動センター（藤沢市役所分庁舎2階 活動室3・4）",
+      "kind": "course",
+      "time": "18:00〜19:40（18:30からの参加も可）",
+      "organizer": "NPO法人 神奈川県中途失聴・難聴者協会 交流事業部",
+      "fee": "無料",
+      "target": "きこえにくい方、きこえに不安がある方、家族・支援者・友人など。案内のフォームから申込。初めて・途中からの参加も歓迎。",
+      "description": "手話の基礎や復習を交えた勉強会。要約筆記あり。17時以降は藤沢郵便局側の守衛口から入場します。",
+      "sourceName": "神奈川県中途失聴・難聴者協会",
+      "sourceUrl": "https://jinnancho.org/guide/reikai/",
+      "status": "announced",
+      "verificationMode": "visual",
+      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf",
+      "verifiedAt": "2026-10-16T05:50:29.000Z",
+      "evidenceHash": "ac48197e61b9ba3d79e1ed30661ea458f374bb9569fc805629fe198bff91a4f0",
       "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "e917fd409a61ca76bd7e711c5630753b561e9cfe0515d328cc72ef70bffbe4b1",
       "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/08/event_20261017.png",
+        "url": "https://jinnancho.org/wp-content/uploads/2017/08/mimimark01.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261017/"
+        "pageUrl": "https://jinnancho.org/guide/reikai/"
       }
     },
     {
@@ -47,14 +69,31 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "c779f99d37f22802b34a910d9f254a00536f62c51f3d13046c750d3ca1bd9718",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261024-1.png",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261024/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "c779f99d37f22802b34a910d9f254a00536f62c51f3d13046c750d3ca1bd9718"
+    },
+    {
+      "id": "kanagawa-center-festival-2026-10-25",
+      "title": "第19回 聴障センターまつり",
+      "startDate": "2026-10-25",
+      "endDate": "2026-10-25",
+      "prefecture": "神奈川県",
+      "venue": "神奈川県聴覚障害者福祉センター（藤沢市藤沢933番地の2）",
+      "kind": "exchange",
+      "time": "10:00〜15:00",
+      "organizer": "社会福祉法人 神奈川聴覚障害者総合福祉協会・神奈川県聴覚障害者福祉センター",
+      "fee": null,
+      "target": "きこえの有無を問わず参加可。特別講演は整理券が必要。事前Web申込は10月23日12時まで（定員に達し次第終了）、当日配布枠も予定。",
+      "description": "ミニ手話教室や要約筆記体験、手話ダンス・コーラスなど。特別講演の受付状況は公式ページで確認してください。",
+      "sourceName": "神奈川県聴覚障害者福祉センター",
+      "sourceUrl": "https://www.kanagawa-wad.jp/center_fes.html",
+      "status": "announced",
+      "verificationMode": "visual",
+      "visualEvidenceUrl": "https://www.kanagawa-wad.jp/asset/00032/info1/2026cf_c4.pdf",
+      "verifiedAt": "2026-10-16T05:50:29.000Z",
+      "evidenceHash": "fbe175e5ee8d2fe472d93e7640c6567eeda54de7b0664b5e5a5527008a2be55b",
+      "verification": "verified"
     },
     {
       "id": "oioi-db8da853227f80b5f898",
@@ -74,14 +113,9 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "7ecb9a77ee373a18af3274b371eb4c7e81c6da35049a626922dac3b2f23466ef",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/event_20261025.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261025/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "7ecb9a77ee373a18af3274b371eb4c7e81c6da35049a626922dac3b2f23466ef"
     },
     {
       "id": "mimisuppo-shiroishi-2026-10-27",
@@ -99,9 +133,9 @@
       "sourceName": "宮城県聴覚障害者情報センター（みみサポみやぎ）",
       "sourceUrl": "https://www.mimisuppo-miyagi.org/event.html",
       "status": "announced",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
+      "verifiedAt": "2026-10-16T04:51:06.553Z",
       "evidenceHash": "67495dc65a53b4d2c26a2ef9bffe93f8fd2e20fc538823720b46e18a0eda03d6",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "oioi-5797b8fc3831f0b5d15c",
@@ -121,14 +155,9 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "fb2506e68c0fcc70857a850bc27d1224f7f32b2ac1c37984166893eea17a89e1",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261031-2/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "fb2506e68c0fcc70857a850bc27d1224f7f32b2ac1c37984166893eea17a89e1"
     },
     {
       "id": "oioi-694b478c545e6e15b5c9",
@@ -148,13 +177,53 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "de41f5f37a19b943c74e26feaf892c90f3c3df7b4c226142791cc8e7ef995b88"
+    },
+    {
+      "id": "dream-begin-2026-11-01",
+      "title": "Dream Begin ― 手話・歌・芝居のミュージカルコンサート",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-01",
+      "prefecture": "東京都",
+      "venue": "RENTAL SPACE 88（豊島区目白5-31-6 アウルレジデンス目白2F）",
+      "kind": "theater",
+      "time": "13:00開演（12:15開場）",
+      "organizer": "中嶋元美",
+      "fee": "通常7,000円＋別途ドリンク代。最前列8,500円は完売の告知。",
+      "target": "チケット・最新の残席は主催者の案内で確認。日本語字幕、手話案内、車いす席などを予定。",
+      "description": "中嶋元美による自主公演。手話表現と歌、芝居を組み合わせるミュージカルコンサートです。",
+      "sourceName": "中嶋元美（主催者のCAMPFIRE告知）",
+      "sourceUrl": "https://camp-fire.jp/projects/983782/view",
+      "status": "announced",
+      "verifiedAt": "2026-10-16T05:50:29.000Z",
+      "evidenceHash": "4807ccf7925606971ec1742104cca386dd7ffd77829176c98696597e192729fc",
+      "verification": "needs_review"
+    },
+    {
+      "id": "geigeki-recallings-2026-11-01",
+      "title": "リコーリング(ス) ― シアトリカル・バージョン（第2部に舞台手話表現）",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-02",
+      "prefecture": "東京都",
+      "venue": "東京芸術劇場 プレイハウス",
+      "kind": "theater",
+      "time": "両日とも11:00／17:30開演",
+      "organizer": null,
+      "fee": "一般6,000円、障害者割引5,400円（対象・介助者の扱いは公式案内へ）",
+      "target": "チケットが必要。掲載の鑑賞サポート申込は10月25日17時まで、各回6名（先着・介助者等を含む）。最新の受付状況は公式案内へ。",
+      "description": "山城知佳子による映像作品。日本語・英語字幕があり、第2部は長谷川翔平による舞台上の手話表現で鑑賞できます。",
+      "sourceName": "東京芸術劇場",
+      "sourceUrl": "https://www.geigeki.jp/accessibility/support/t415-t415-12/",
+      "status": "announced",
+      "verifiedAt": "2026-10-16T06:01:24.686Z",
+      "evidenceHash": "981bb447c52a54d190746420306cf4f04190a2e3378cbb8ec1823a53f70ef89a",
       "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "de41f5f37a19b943c74e26feaf892c90f3c3df7b4c226142791cc8e7ef995b88",
       "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/08/event_20261031.png",
+        "url": "https://www.geigeki.jp/wp-content/uploads/2026/06/%E5%BA%83%E5%A0%B1%E4%BD%BF%E7%94%A8%E2%98%85%E3%83%A1%E3%82%A4%E3%83%B3_Photo-by-Hideaki-Higa-%C2%A9Chikako-Yamashiro-%E9%82%A3%E8%A6%87%E6%96%87%E5%8C%96%E8%8A%B8%E8%A1%93%E5%8A%87%E5%A0%B4%E3%81%AA%E3%81%AF%E3%83%BC%E3%81%A8%E5%85%AC%E6%BC%94%E8%A8%98%E9%8C%B2_0912-scaled.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261031/"
+        "pageUrl": "https://www.geigeki.jp/accessibility/support/t415-t415-12/"
       }
     },
     {
@@ -164,7 +233,7 @@
       "endDate": "2026-11-03",
       "prefecture": "大阪府",
       "venue": "新世界ZAZA HOUSE",
-      "kind": "culture",
+      "kind": "theater",
       "sourceId": "oioi",
       "sourceName": "手話エンターテイメント発信団 oioi",
       "sourceUrl": "https://www.oioi-sign.com/events_list/",
@@ -175,14 +244,9 @@
       "target": null,
       "status": "closed",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "6847dd85aabbc24a20775657a0fe407f58ae7549c87388b84728c6c5dbe59b1c",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/20261103_2.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261103/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "6847dd85aabbc24a20775657a0fe407f58ae7549c87388b84728c6c5dbe59b1c"
     },
     {
       "id": "oioi-05927e1c5575a781fb3a",
@@ -202,14 +266,9 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "9bc1269dce6eb28725d78aa0e3e8bdb201a2d860d78e912c48cff0176897defb",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/event_20261107.png",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261107/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "9bc1269dce6eb28725d78aa0e3e8bdb201a2d860d78e912c48cff0176897defb"
     },
     {
       "id": "komatsu-shuwa-stage-2026-11-08",
@@ -227,7 +286,7 @@
       "sourceName": "小松市",
       "sourceUrl": "https://www.city.komatsu.lg.jp/soshiki/1040/shougaishafukushi/2/19003.html",
       "status": "announced",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
+      "verifiedAt": "2026-10-16T06:01:24.686Z",
       "evidenceHash": "6f8f25b45d5992f6912c1500815955059000b92a3b51d0f8d326f2421cabb3c0",
       "verification": "verified",
       "thumbnail": {
@@ -254,14 +313,9 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "a062a32cdbd279d2c2c445a4cd91f661e33e7ee3c2668a92c05c4b2c8667713f",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/event_20261108.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261108/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "a062a32cdbd279d2c2c445a4cd91f661e33e7ee3c2668a92c05c4b2c8667713f"
     },
     {
       "id": "fureai-shuwa-2026-11-14",
@@ -279,9 +333,9 @@
       "sourceName": "ふれあいランド岩手",
       "sourceUrl": "https://fureailand.jp/events/8898",
       "status": "announced",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
       "evidenceHash": "bb0c07a63d167c0accce2611dcdd06087b4f21a3c474154c4c5c658652c63b56",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "oioi-c9d53214a67cbc193270",
@@ -301,14 +355,9 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "d86a5d21dd00f2f834ff935a73ffde87e43ee93dd12a2b0bc77edd640088821e",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261115.png",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261115/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "d86a5d21dd00f2f834ff935a73ffde87e43ee93dd12a2b0bc77edd640088821e"
     },
     {
       "id": "sapporo-higashi-shuwa-2026-11-15",
@@ -349,7 +398,7 @@
       "sourceName": "久留米シティプラザ",
       "sourceUrl": "https://kurumecityplaza.jp/events/8576/",
       "status": "announced",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
+      "verifiedAt": "2026-10-16T06:01:24.686Z",
       "evidenceHash": "ea01f7cb7f821ec2e029c7b8a4a1ad0b136abe517e16b8f14a6364a5389f3714",
       "verification": "verified",
       "thumbnail": {
@@ -357,6 +406,26 @@
         "source": "og:image",
         "pageUrl": "https://kurumecityplaza.jp/events/8576/"
       }
+    },
+    {
+      "id": "omura-sign-theater-2026-11-21",
+      "title": "つながるアート展表彰式・講演会（劇団ヒロシ軍の手話劇公演）",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-21",
+      "prefecture": "長崎県",
+      "venue": "プラザおおむら 2階ホール（大村市本町326番地1）",
+      "kind": "theater",
+      "time": null,
+      "organizer": "大村市",
+      "fee": "無料",
+      "target": null,
+      "description": "表彰式とピアノ演奏に加え、劇団ヒロシ軍が手話劇を上演する予定です。開演時刻・申込方法は市の案内で確認してください。",
+      "sourceName": "大村市",
+      "sourceUrl": "https://www.city.omura.nagasaki.jp/kouhou/event/202608/1121.html",
+      "status": "announced",
+      "verifiedAt": "2026-10-16T06:01:24.686Z",
+      "evidenceHash": "af2bdd9d327027fe76557706f87c39e31e6009692bb294bdb0e8a7f3fde0cf69",
+      "verification": "verified"
     },
     {
       "id": "oioi-3baf0a91c984c8343567",
@@ -376,13 +445,35 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "68e1d2ad7e5ee83b6c7d19a3282fd7bcfdd41ad6e77b5e7d8ecb2a91cd585722"
+    },
+    {
+      "id": "jinnancho-beginner-2026-11-27",
+      "title": "楽しく学ぶ はじめての手話勉強会 第2期",
+      "startDate": "2026-11-27",
+      "endDate": "2026-11-27",
+      "prefecture": "神奈川県",
+      "venue": "藤沢市地域福祉活動センター（藤沢市役所分庁舎2階 活動室2）",
+      "kind": "course",
+      "time": "18:00〜19:40（18:30からの参加も可）",
+      "organizer": "NPO法人 神奈川県中途失聴・難聴者協会 交流事業部",
+      "fee": "無料",
+      "target": "きこえにくい方、きこえに不安がある方、家族・支援者・友人など。案内のフォームから申込。初めて・途中からの参加も歓迎。",
+      "description": "手話の基礎や復習を交えた勉強会。要約筆記あり。17時以降は藤沢郵便局側の守衛口から入場します。",
+      "sourceName": "神奈川県中途失聴・難聴者協会",
+      "sourceUrl": "https://jinnancho.org/guide/reikai/",
+      "status": "announced",
+      "verificationMode": "visual",
+      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf",
+      "verifiedAt": "2026-10-16T05:50:29.000Z",
+      "evidenceHash": "ac48197e61b9ba3d79e1ed30661ea458f374bb9569fc805629fe198bff91a4f0",
       "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "68e1d2ad7e5ee83b6c7d19a3282fd7bcfdd41ad6e77b5e7d8ecb2a91cd585722",
       "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261112.png",
+        "url": "https://jinnancho.org/wp-content/uploads/2017/08/mimimark01.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20261124/"
+        "pageUrl": "https://jinnancho.org/guide/reikai/"
       }
     },
     {
@@ -403,14 +494,9 @@
       "target": null,
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
-      "verification": "verified",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
-      "evidenceHash": "6bef06840929821a291e77a24973de6f4e7cc03e4697c60b52c07571630db350",
-      "thumbnail": {
-        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/%E3%82%AA%E3%82%A4%E3%83%88%E3%83%BC%E3%83%BC%E3%82%AF%EF%BC%81%E5%AE%A3%E4%BC%9D%E3%83%93%E3%83%A9-22.png",
-        "source": "og:image",
-        "pageUrl": "https://www.oioi-sign.com/event_20270109/"
-      }
+      "verification": "needs_review",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
+      "evidenceHash": "6bef06840929821a291e77a24973de6f4e7cc03e4697c60b52c07571630db350"
     },
     {
       "id": "fureai-shuwa-2027-01-22",
@@ -428,9 +514,9 @@
       "sourceName": "ふれあいランド岩手",
       "sourceUrl": "https://fureailand.jp/events/8898",
       "status": "announced",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
       "evidenceHash": "bb0c07a63d167c0accce2611dcdd06087b4f21a3c474154c4c5c658652c63b56",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "fureai-shuwa-2027-02-06",
@@ -448,9 +534,9 @@
       "sourceName": "ふれあいランド岩手",
       "sourceUrl": "https://fureailand.jp/events/8898",
       "status": "announced",
-      "verifiedAt": "2026-10-16T05:00:47.755Z",
+      "verifiedAt": "2026-10-16T05:52:13.754Z",
       "evidenceHash": "bb0c07a63d167c0accce2611dcdd06087b4f21a3c474154c4c5c658652c63b56",
-      "verification": "verified"
+      "verification": "needs_review"
     }
   ]
 }

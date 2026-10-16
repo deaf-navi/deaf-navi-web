@@ -4,8 +4,8 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-16T05:00:42Z",
-  "sourceGeneratedAt": "2026-10-16T05:00:42Z",
+  "generatedAt": "2026-10-16T06:01:19Z",
+  "sourceGeneratedAt": "2026-10-16T06:01:19Z",
   "count": 473,
   "language": "ja-JP",
   "refresh": {
@@ -118,24 +118,24 @@
   },
   "quality": {
     "version": "publication-quality-v5",
-    "rawCount": 3338,
-    "scoredCount": 3338,
-    "filteredCount": 1549,
+    "rawCount": 3280,
+    "scoredCount": 3280,
+    "filteredCount": 1572,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 73,
     "extraVisibleCategoryCounts": {
       "relay": 73
     },
-    "overflowCount": 502,
+    "overflowCount": 466,
     "minScore": 5,
     "categoryCountsVisible": {
+      "general": 85,
       "culture": 46,
       "local": 70,
-      "safety": 25,
+      "safety": 24,
       "policy": 28,
       "accessibility": 36,
-      "general": 84,
       "technology": 17,
       "relay": 73,
       "sports": 36,
@@ -146,12 +146,12 @@
   },
   "counts": {
     "byCategory": {
+      "general": 85,
       "culture": 46,
       "local": 70,
-      "safety": 25,
+      "safety": 24,
       "policy": 28,
       "accessibility": 36,
-      "general": 84,
       "technology": 17,
       "relay": 73,
       "sports": 36,
@@ -160,16 +160,34 @@
       "education": 12
     },
     "byLegacyCategory": {
+      "general": 102,
       "culture": 68,
       "local": 70,
-      "policy": 162,
-      "general": 101,
+      "policy": 161,
       "sports": 36,
       "medical": 24,
       "education": 12
     }
   },
   "articles": [
+    {
+      "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/559",
+      "stableId": "domestic_36c3cd34837f5df07398",
+      "url": "https://shichocenter.kagoshima.kagoshima.jp/archives/559",
+      "title": "【視覚部門】情報センターだより11月号を掲載しました",
+      "summary": "視覚部門の情報センターだより11月号を掲載しました。下記リンクよりご覧ください。 【視覚部門】情報センターだより11月号",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-16T05:29:30Z",
+      "sourceName": "鹿児島県視聴覚障害者情報センター",
+      "sourceURL": "https://shichocenter.kagoshima.kagoshima.jp/",
+      "sourceUrl": "https://shichocenter.kagoshima.kagoshima.jp/",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "sourceTier": "official",
+      "discoveryMethod": "direct-feed"
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE14d0owV29wVHNhcE9kWlYtVjZIYm1vTGxtaFRXWl8yOUh4c2FnV3JlZ052TFVNUEtTMzBCck03dE51bGNfdFh6S0lWX01lX3NBRURQNmFkTFJTREJ3b1BhWWloR1ZLMVJja0Fkal95N2xSRGpRTWw4d1dHQTVOM2c?oc=5",
       "stableId": "domestic_c68740288b81b71ef2c8",
@@ -5245,24 +5263,6 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8tYmtzYUVGbzdBclZFSFprTjhBLU9kT01XOElXTlUzdURxSkdwckxsclRCVlV4ZklwelFpb1kwSXp4Q2x0Mk8wSzRYME5XQQ?oc=5",
-      "stableId": "domestic_b3d54a802e58b9cbabe1",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8tYmtzYUVGbzdBclZFSFprTjhBLU9kT01XOElXTlUzdURxSkdwckxsclRCVlV4ZklwelFpb1kwSXp4Q2x0Mk8wSzRYME5XQQ?oc=5",
-      "title": "佳子さま 手話パフォーマンス甲子園に出場する高校生と手話で交流「今までの練習の中で頑張ったことは何ですか？」",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-27T07:00:00Z",
-      "sourceName": "FNNプライムオンライン",
-      "sourceURL": "https://www.fnn.jp",
-      "sourceUrl": "https://www.fnn.jp",
-      "sourceType": "rss",
-      "category": "culture",
-      "categoryLabel": "文化・芸能",
-      "legacyCategory": "culture",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5yVloybFVZTUREdFRjOGFONk1sY1JDdFhPUzBqMFdEN0lCSC1CX0M3RlRmaTYzZUtvcE1FTmhfOEFzdXk3M21Ba2FIMlVvQQ?oc=5",
       "stableId": "domestic_9839758e93122522bb8b",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5yVloybFVZTUREdFRjOGFONk1sY1JDdFhPUzBqMFdEN0lCSC1CX0M3RlRmaTYzZUtvcE1FTmhfOEFzdXk3M21Ba2FIMlVvQQ?oc=5",
@@ -5281,6 +5281,24 @@
       "discoveryMethod": "google-news",
       "region": "chugoku_shikoku",
       "prefecture": "鳥取県"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8tYmtzYUVGbzdBclZFSFprTjhBLU9kT01XOElXTlUzdURxSkdwckxsclRCVlV4ZklwelFpb1kwSXp4Q2x0Mk8wSzRYME5XQQ?oc=5",
+      "stableId": "domestic_b3d54a802e58b9cbabe1",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8tYmtzYUVGbzdBclZFSFprTjhBLU9kT01XOElXTlUzdURxSkdwckxsclRCVlV4ZklwelFpb1kwSXp4Q2x0Mk8wSzRYME5XQQ?oc=5",
+      "title": "佳子さま 手話パフォーマンス甲子園に出場する高校生と手話で交流「今までの練習の中で頑張ったことは何ですか？」",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-09-27T07:00:00Z",
+      "sourceName": "FNNプライムオンライン",
+      "sourceURL": "https://www.fnn.jp",
+      "sourceUrl": "https://www.fnn.jp",
+      "sourceType": "rss",
+      "category": "culture",
+      "categoryLabel": "文化・芸能",
+      "legacyCategory": "culture",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE00MFM3eXVUZXc0M1RPYkpZYmk0QUM1U2JndWVPSXJpQkdSOEVUVlByaTdKbHNQWUF6dXJSSXhuME9aZEp0ZXF3cS1KUHBpM0F2UG5TeWk2V0pNWTcyckE?oc=5",
@@ -7747,24 +7765,6 @@
       "discoveryMethod": "google-news",
       "region": "kyushu_okinawa",
       "prefecture": "沖縄県"
-    },
-    {
-      "id": "https://www.com-sagano.com/post-9297/",
-      "stableId": "domestic_2f7d3289414f3bdf0ffd",
-      "url": "https://www.com-sagano.com/post-9297/",
-      "title": "第22回京都さがの手話まつり 開催について",
-      "summary": "第22回京都さがの手話まつり実行委員会よりお知らせです。明日、9月21日（月曜日・祝日）の手話まつりは、予定どおり開催いたします。 台風25号の進路予想によっては開催が危ぶまれておりましたが、現時点での気象情報を総合的に […]",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-20T03:06:33Z",
-      "sourceName": "全国手話研修センター",
-      "sourceURL": "https://www.com-sagano.com/",
-      "sourceUrl": "https://www.com-sagano.com/",
-      "sourceType": "rss",
-      "category": "safety",
-      "categoryLabel": "防災・安全",
-      "legacyCategory": "policy",
-      "sourceTier": "official",
-      "discoveryMethod": "direct-feed"
     },
     {
       "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/550",
