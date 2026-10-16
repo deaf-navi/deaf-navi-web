@@ -3,8 +3,8 @@
  *
  * 情報設計:
  *   1. ヘッダー（ナビ・表示設定）
- *   2. 出典・期限付きの短い編集メモ
- *   3. 注目: 公式・専門団体の新着
+ *   2. 注目: 公式・専門団体の新着
+ *   3. 出典・期限付きの編集メモ（本文は開いて読む）
  *   4. 検索・絞り込みツールバー
  *   5. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
  *
@@ -30,6 +30,7 @@ import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
 import { selectEditorialNotes } from '../lib/editorial.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
+import { renderThumbnail } from './thumbnail.mjs';
 import {
   EXTERNAL_ARROW_SVG,
   ICONS,
@@ -39,7 +40,7 @@ import {
   renderFooter,
   renderHead,
   renderSkipLink,
-  renderSiteHeader,
+  renderGlobalHeader,
 } from './partials.mjs';
 
 export const INITIAL_VISIBLE = 60;
@@ -197,8 +198,10 @@ function renderEditorial(notes, now) {
       <h2 id="editorial-heading">編集メモ</h2>
 ${active.map((note) => `      <div class="editorial-note__item" data-editorial-reviewed="${escapeHtml(note.reviewedAt)}" data-editorial-expires="${escapeHtml(note.expiresAt)}">
         <h3><a href="${escapeHtml(note.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(note.title)}</a></h3>
+        <details class="editorial-note__details"><summary>メモ・出典を読む</summary>
         <p>${note.mode === 'primary-excerpt' ? '「' : ''}${escapeHtml(note.text)}${note.mode === 'primary-excerpt' ? '」' : ''}</p>
         <p class="editorial-note__meta">${note.mode === 'primary-excerpt' ? '一次情報から抜粋・自動更新<br>' : ''}出典：${escapeHtml(note.sourceName)} · <time datetime="${escapeHtml(note.reviewedAt)}">${escapeHtml(formatDateJST(note.reviewedAt))}</time>確認</p>
+        </details>
       </div>`).join('\n')}
     </aside>`;
 }
@@ -207,9 +210,12 @@ function renderFeatured(featured) {
   if (!featured.length) return '';
   const items = featured.map((a) => `        <li class="featured__item">
           <a class="featured__link" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">
+            ${renderThumbnail(a)}
+            <div class="featured__body">
             <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(CATEGORY_UI[a.category] ?? '一般')}</span>
-            <span class="featured__title">${escapeHtml(a.title)}</span>
+            <h3 class="featured__title">${escapeHtml(a.title)}</h3>
             <span class="featured__meta">${escapeHtml(a.sourceName)} ・ <time datetime="${escapeHtml(a.publishedAt)}" data-relative-time>${escapeHtml(formatDateJST(a.publishedAt).replace(' JST', ''))}</time></span>
+            </div>
           </a>
         </li>`).join('\n');
   return `    <section class="featured" id="featured-news" aria-labelledby="featured-heading">
@@ -364,24 +370,29 @@ ${renderHead({
     jsonLd,
     extraHead: `  <meta name="keywords" content="${escapeHtml(opts.keywords)}">\n  <meta name="author" content="TAMA">\n  <meta property="og:updated_time" content="${escapeHtml(generatedAt)}">\n`,
   })}
+  <link rel="stylesheet" href="./home.css${assetVersion}">
 </head>
 <body class="news-page">
   ${renderSkipLink()}
 
-${renderSiteHeader({
-    subLabel: isDev ? 'Web DEV' : 'Web',
-    lead: `${leadPrefix}きこえない・きこえにくい人のためのニュース。`,
+${renderGlobalHeader({
     current: 'news',
     nav: {
       guideHref: `./${files.guide}`,
       aboutHref: `./${files.about}`,
     },
   })}
+  <div class="dn-page-intro"><div class="container">
+    <h1 class="dn-page-title"><span>知ることを、</span><span>つながるきっかけに。</span></h1>
+    <p class="site-lead">${leadPrefix}きこえない・きこえにくい人のためのニュース。</p>
+  </div></div>
 
   <main id="main" class="container" role="main">
     <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
-${renderEditorial(opts.editorialNotes ?? [], now)}
+    <div class="home-briefing">
 ${renderFeatured(featured)}
+${renderEditorial(opts.editorialNotes ?? [], now)}
+    </div>
 
 ${renderAgentActivity()}
 

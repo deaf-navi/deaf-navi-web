@@ -24,6 +24,7 @@ const PRECACHE_URLS = [
   './',
   './site-shell.css?v=20260917mark',
   `./styles.css?v=${ASSET_VERSION}`,
+  `./home.css?v=${ASSET_VERSION}`,
   `./ui-controls.js?v=${ASSET_VERSION}`,
   `./app.js?v=${ASSET_VERSION}`,
   `./webmcp.js?v=${ASSET_VERSION}`,
