@@ -43,6 +43,16 @@ test('date/URL/category validation rejects invalid publication inputs',()=>{for(
 test('content changes require fresh review even if old date remains',()=>{const html='<main>手話交流会 2026年11月14日 公式会場</main>';const entry={...base,reviewedAt:base.verifiedAt,sourceHash:eventHash(eventSourceText(html)),evidence:['手話交流会','2026年11月14日','公式会場']};assert.equal(verifyReviewedEvent(entry,html,now).verification,'verified');assert.equal(verifyReviewedEvent(entry,html+'<p>開催中止</p>',now).verification,'needs_review')});
 test('visual review does not extend itself on an automatic update',()=>{const entry={...base,verificationMode:'visual',reviewedAt:base.verifiedAt,sourceHash:base.evidenceHash,evidence:['title','date','venue']};assert.equal(reviewedVisualEvent(entry,now).verification,'verified');assert.equal(reviewedVisualEvent(entry,now+48*3600000).verification,'needs_review');assert.equal(reviewedVisualEvent(entry,now+1000).verifiedAt,base.verifiedAt)});
 test('missing or failed source preserves prior event for review, never assumes cancellation',()=>{const events=mergeEventSnapshot([base],[],[],now);assert.equal(events.length,1);assert.equal(events[0].verification,'needs_review');assert.equal(events[0].status,'announced');assert.equal(mergeEventSnapshot([base],[base],[],now).length,1)});
+test('a failed reviewed detail cannot be replaced by the less specific schedule',()=>{
+ const prior={...base,status:'closed',target:'受付終了',communication:[{method:'captions',detail:'字幕付き。'}]};
+ const schedule={...base,sourceId:'schedule',sourceUrl:source.url,target:null};
+ const checks=[{sourceUrl:source.url,result:'verified'},{sourceUrl:base.sourceUrl,id:base.id,result:'unavailable'}];
+ const [held]=mergeEventSnapshot([prior],[schedule],checks,now);
+ assert.equal(held.verification,'needs_review');assert.equal(held.status,'closed');assert.equal(held.target,'受付終了');assert.deepEqual(held.communication,prior.communication);
+ assert.equal(mergeEventSnapshot([], [schedule],checks,now).length,0);
+ const [restored]=mergeEventSnapshot([prior],[schedule,prior],[{id:base.id,sourceUrl:base.sourceUrl,result:'verified'}],now);
+ assert.equal(restored.verification,'verified');assert.equal(restored.status,'closed');
+});
 test('same occurrence from multiple sources is deduplicated without collapsing separate dates',()=>{assert.equal(mergeEventSnapshot([],[base,{...base,id:'second-source'}],[],now).length,1);assert.equal(mergeEventSnapshot([],[base,{...base,id:'next-date',startDate:'2026-11-15',endDate:'2026-11-15'}],[],now).length,2)});
 test('an unverified manual duplicate cannot replace a freshly checked occurrence',()=>{const events=mergeEventSnapshot([],[{...base,sourceId:'schedule'},{...base,id:'manual-copy',verification:'needs_review'}],[],now);assert.equal(events.length,1);assert.equal(events[0].verification,'verified')});
 test('event output escapes source text and provides source/dates without pretending unknown fees',()=>{const html=renderEventsPage({events:[{...base,title:'<script>bad</script>'}]},{files:{styles:'styles.css'}});assert.ok(html.includes('&lt;script&gt;bad'));assert.ok(!html.includes('<script>bad'));assert.ok(html.includes('主催・情報源'));assert.ok(html.includes('告知をご確認ください'));assert.ok(html.includes('events.html'));assert.ok(!html.includes('class="event-participation"'))});

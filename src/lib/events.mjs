@@ -101,8 +101,10 @@ export function reviewedVisualEvent(entry, now=Date.now()) {
 
 export function mergeEventSnapshot(previous, incoming, checkedSources, now = Date.now()) {
   const map=new Map();
+  // Detail reviews own their occurrence: a schedule cannot clear a failed detail check.
+  const unavailableIds=new Set(checkedSources.filter(check=>check.id && check.result==='unavailable').map(check=>check.id));
   for(const event of previous || []) if(validEvent(event)) map.set(event.id,{...event,verification:'needs_review'});
-  for(const event of incoming) if(validEvent(event)) map.set(event.id,event);
+  for(const event of incoming) if(validEvent(event) && !unavailableIds.has(event.id)) map.set(event.id,event);
   // A missing notice is not proof of cancellation. Retain it for review/history.
   const unique=new Map();
   const normalize=s=>String(s).normalize('NFKC').toLowerCase().replace(/[\s\p{P}]/gu,'');
