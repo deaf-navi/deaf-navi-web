@@ -1,5 +1,7 @@
 /* Shared public shell. Loaded after each product's own styles. */
-:root { --site-font: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', system-ui, sans-serif; }
+/* PHP cafe pages intentionally use local fonts. Keep header metrics identical
+   even when a news page has loaded its separate web font. */
+:root { --site-font: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', system-ui, sans-serif; }
 html { scrollbar-gutter: stable; }
 html[data-font="large"] { font-size: 112.5%; }
 html[data-font="xlarge"] { font-size: 125%; }
