@@ -95,7 +95,7 @@ async function copyAsset(src, destFile) {
 }
 
 async function getClientAssetVersion() {
-  const clientFiles = ['styles.css', 'assets/site-shell.css', 'assets/home.css', 'assets/browse.css', 'assets/info.css', 'ui-controls.js', 'app.js', 'webmcp.js'];
+  const clientFiles = ['styles.css', 'assets/site-shell.css', 'assets/home.css', 'assets/browse.css', 'assets/info.css', 'assets/support.css', 'ui-controls.js', 'app.js', 'webmcp.js'];
   const contents = await Promise.all(
     clientFiles.map((file) => readFile(join(__dirname, file))),
   );
@@ -194,6 +194,7 @@ async function main() {
   await copyAsset(join(ASSETS, 'home.css'), 'home.css');
   await copyAsset(join(ASSETS, 'browse.css'), 'browse.css');
   await copyAsset(join(ASSETS, 'info.css'), 'info.css');
+  await copyAsset(join(ASSETS, 'support.css'), 'support.css');
   await copyFile(join(ROOT, 'config', 'site-navigation.json'), join(ROOT, 'server', 'site-navigation.json'));
   await copyAsset(join(ASSETS, 'directory.css'), 'directory.css');
   await copyAsset(join(ASSETS, 'world-cafes.css'), 'world-cafes.css');

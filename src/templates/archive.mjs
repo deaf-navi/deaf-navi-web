@@ -83,7 +83,7 @@ ${renderHead({
     basePath: '../',
   })}
 </head>
-<body>
+<body class="support-page">
   ${renderSkipLink()}
 
 ${renderSubHeader({
@@ -135,7 +135,7 @@ ${renderHead({
     stylesFile: files.styles,
   })}
 </head>
-<body>
+<body class="support-page">
   ${renderSkipLink()}
 
 ${renderSubHeader({

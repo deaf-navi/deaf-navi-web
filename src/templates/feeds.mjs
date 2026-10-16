@@ -137,7 +137,7 @@ ${renderHead({
     stylesFile: files.styles,
   })}
 </head>
-<body>
+<body class="support-page">
   ${renderSkipLink()}
 
 ${renderSubHeader({
