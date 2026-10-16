@@ -2,22 +2,14 @@ import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { EVENT_SOURCES } from '../config/events.mjs';
 import { enrichEventThumbnails } from './lib/event-thumbnails.mjs';
-import { fetchThumbnailResource } from './lib/thumbnail-fetch.mjs';
+import { createEventSourceFetcher } from './lib/event-source-fetch.mjs';
 import { parseOioiSchedule, verifyReviewedEvent, reviewedVisualEvent, mergeEventSnapshot, validEvent, eventDay } from './lib/events.mjs';
 
 const root=new URL('../',import.meta.url), now=Date.now(), checks=[], incoming=[], held=[];
 const read=async(path,fallback)=>{try{return JSON.parse(await readFile(new URL(path,root),'utf8'))}catch(error){if(error.code==='ENOENT')return fallback;throw error}};
 const previous=await read('.state/events.json',{events:[]});
 const reviewed=await read('content/events/reviewed.json',[]);
-const cache=new Map();
-async function get(url){
-  if(cache.has(url))return cache.get(url);
-  const request=(async()=>{
-    const response=await fetchThumbnailResource(url,{timeoutMs:10000,maxBytes:1800000,userAgent:'DeafNaviWeb-Events/1.0 (+https://deafnavi.com/)',allowUrl:target=>target===url});
-    if(response.status!==200||!/^text\/html|^application\/xhtml\+xml/i.test(response.headers?.['content-type']||''))throw new Error('Source unavailable or not HTML');
-    return response.text;
-  })();cache.set(url,request);return request;
-}
+const get=createEventSourceFetcher();
 for(const source of EVENT_SOURCES){
   try{
     const result=parseOioiSchedule(await get(source.url),source,now);
