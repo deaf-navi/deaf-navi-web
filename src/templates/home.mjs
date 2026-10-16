@@ -4,9 +4,8 @@
  * 情報設計:
  *   1. ヘッダー（ナビ・表示設定）
  *   2. 注目: 公式・専門団体の新着
- *   3. 出典・期限付きの編集メモ（本文は開いて読む）
- *   4. 検索・絞り込みツールバー
- *   5. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
+ *   3. 検索・絞り込みツールバー
+ *   4. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
  *
  * パフォーマンス方針: v1 は全505件をHTMLに埋め込み966KBあった。
  * 2.0 は初期60件のみSSRし、全件データはクライアントが articles.json を
@@ -27,7 +26,6 @@ import {
   EXCLUDED_FROM_ALL,
 } from '../../config/categories.mjs';
 import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
-import { selectEditorialNotes } from '../lib/editorial.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import { renderThumbnail } from './thumbnail.mjs';
@@ -189,21 +187,6 @@ ${items.map((item) => `      <a class="quick-access__item${item.tone ? ` quick-a
         </span>
       </a>`).join('\n')}
     </nav>`;
-}
-
-function renderEditorial(notes, now) {
-  const active = selectEditorialNotes(notes, now);
-  if (!active.length) return '';
-  return `    <aside class="editorial-note" id="editorial-note" aria-labelledby="editorial-heading" hidden>
-      <h2 id="editorial-heading">編集メモ</h2>
-${active.map((note) => `      <div class="editorial-note__item" data-editorial-reviewed="${escapeHtml(note.reviewedAt)}" data-editorial-expires="${escapeHtml(note.expiresAt)}">
-        <h3><a href="${escapeHtml(note.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(note.title)}</a></h3>
-        <details class="editorial-note__details"><summary>メモ・出典を読む</summary>
-        <p>${note.mode === 'primary-excerpt' ? '「' : ''}${escapeHtml(note.text)}${note.mode === 'primary-excerpt' ? '」' : ''}</p>
-        <p class="editorial-note__meta">${note.mode === 'primary-excerpt' ? '一次情報から抜粋・自動更新<br>' : ''}出典：${escapeHtml(note.sourceName)} · <time datetime="${escapeHtml(note.reviewedAt)}">${escapeHtml(formatDateJST(note.reviewedAt))}</time>確認</p>
-        </details>
-      </div>`).join('\n')}
-    </aside>`;
 }
 
 function renderFeatured(featured) {
@@ -389,10 +372,7 @@ ${renderGlobalHeader({
 
   <main id="main" class="container" role="main">
     <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
-    <div class="home-briefing">
 ${renderFeatured(featured)}
-${renderEditorial(opts.editorialNotes ?? [], now)}
-    </div>
 
 ${renderAgentActivity()}
 

@@ -32,6 +32,7 @@ const OG_SRC = join(__dirname, 'og-image.svg');
 const OG_OUT = join(DOCS, 'og-image-world.svg');
 const CLIENT_VERSION = createHash('sha256')
   .update(await readFile(STYLES_SRC)).update(await readFile(APP_SRC))
+  .update(await readFile(join(__dirname, 'assets/browse.css')))
   .update(await readFile(join(__dirname, 'ui-controls.js'))).digest('hex').slice(0, 12);
 
 const JP_PAGE_FILE = 'deaf-navi-world-jp.html';
@@ -414,11 +415,12 @@ function renderPage(data, mode = 'jp') {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
   <link rel="stylesheet" href="./site-shell.css?v=20260917mark">
+  <link rel="stylesheet" href="./browse.css?v=${CLIENT_VERSION}">
 
   ${jsonLd}
   <noscript><style>.world-card[hidden]{display:block!important}.filters--world,.load-more-wrap{display:none}</style></noscript>
 </head>
-<body>
+<body class="browse-page world-page">
   <a class="skip-link" href="#main">${escapeHtml(skipLabel)}</a>
 
 ${renderSiteHeader({
@@ -607,6 +609,7 @@ async function main() {
   await writeFile(EN_LEGACY_FEED_OUT, originalFeed, 'utf8');
   await writeFile(SITEMAP_OUT, renderSitemap(data), 'utf8');
   await copyFile(STYLES_SRC, STYLES_OUT);
+  await copyFile(join(__dirname, 'assets/browse.css'), join(DOCS, 'browse.css'));
   await copyFile(APP_SRC, APP_OUT);
   await copyFile(join(__dirname, 'ui-controls.js'), join(DOCS, 'ui-controls.js'));
   await copyFile(OG_SRC, OG_OUT);

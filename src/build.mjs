@@ -95,7 +95,7 @@ async function copyAsset(src, destFile) {
 }
 
 async function getClientAssetVersion() {
-  const clientFiles = ['styles.css', 'assets/site-shell.css', 'assets/home.css', 'ui-controls.js', 'app.js', 'webmcp.js'];
+  const clientFiles = ['styles.css', 'assets/site-shell.css', 'assets/home.css', 'assets/browse.css', 'ui-controls.js', 'app.js', 'webmcp.js'];
   const contents = await Promise.all(
     clientFiles.map((file) => readFile(join(__dirname, file))),
   );
@@ -123,16 +123,7 @@ async function main() {
   // 同一世代のCSS/JSを必ず取得できるよう、内容hashを共有URLへ付ける。
   // 旧Service Workerが制御中でも未キャッシュURLとなり、新旧JSの混在を防ぐ。
   const clientAssetVersion = await getClientAssetVersion();
-  let editorialNotes = [];
-  try {
-    const snapshot = JSON.parse(await readFile(join(ROOT, '.state/editorial.json'), 'utf8'));
-    if (snapshot.version === 1 && Array.isArray(snapshot.notes)) {
-      editorialNotes = snapshot.notes.filter(note => note?.mode === 'primary-excerpt');
-    }
-  } catch {
-    console.warn('Editorial snapshot unavailable; hiding the note.');
-  }
-  const opts = { isDev: IS_DEV, files: FILES, keywords: SITE_KEYWORDS, clientAssetVersion, editorialNotes };
+  const opts = { isDev: IS_DEV, files: FILES, keywords: SITE_KEYWORDS, clientAssetVersion };
 
   // ---- ページ生成 ----
   await writeDoc(FILES.index, renderHomePage(data, opts));
@@ -201,6 +192,7 @@ async function main() {
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
   await copyAsset(join(ASSETS, 'site-shell.css'), 'site-shell.css');
   await copyAsset(join(ASSETS, 'home.css'), 'home.css');
+  await copyAsset(join(ASSETS, 'browse.css'), 'browse.css');
   await copyFile(join(ROOT, 'config', 'site-navigation.json'), join(ROOT, 'server', 'site-navigation.json'));
   await copyAsset(join(ASSETS, 'directory.css'), 'directory.css');
   await copyAsset(join(ASSETS, 'world-cafes.css'), 'world-cafes.css');

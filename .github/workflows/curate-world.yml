@@ -21,6 +21,7 @@ on:
       - 'src/lib/thumbnail-*.mjs'
       - 'src/templates/thumbnail.mjs'
       - 'src/styles.css'
+      - 'src/assets/browse.css'
       - 'src/ui-controls.js'
       - 'scripts/verify-world.mjs'
       - '.github/workflows/curate-world.yml'
