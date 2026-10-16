@@ -1,7 +1,128 @@
 {
   "version": 1,
   "candidates": [
-    { "sourceUrl": "https://www.instagram.com/oioisign/", "sourceName": "oioi 公式Instagram", "state": "needs_review", "reason": "公式サイトからアカウントへのリンクを確認。個別の告知本文・画像と開催情報の照合は未実施。公式予定表との重複を確認する。", "discoveredOn": "2026-10-16" },
-    { "sourceUrl": "https://shuwamap.com/event/", "sourceName": "手話マップ", "state": "discovery_only", "reason": "発見用。掲載前に各イベントの主催者・会場の告知を確認する。", "discoveredOn": "2026-10-16" }
-  ]
+    {
+      "sourceUrl": "https://www.instagram.com/oioisign/",
+      "sourceName": "oioi 公式Instagram",
+      "state": "unavailable",
+      "reason": "公開アカウントを開いたが本文・個別告知を取得できない。制限回避は行わず、公式予定表を一次情報として継続確認。",
+      "discoveredOn": "2026-10-16",
+      "missing": [
+        "個別告知URL",
+        "読める公開本文・画像"
+      ],
+      "checkedAt": "2026-10-16T03:18:59.963Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://shuwamap.com/event/",
+      "sourceName": "手話マップ",
+      "state": "discovery_only",
+      "reason": "発見用。掲載前に各イベントの主催者・会場の告知を確認する。",
+      "discoveredOn": "2026-10-16"
+    },
+    {
+      "sourceUrl": "https://ichibakukai.com/",
+      "sourceName": "手話サークル千代田一麦会",
+      "state": "needs_review",
+      "reason": "公式本文の開催日が「2026年810月28日」となっており月を確定できない。10月21日の申込期限から開催月を推測しない。",
+      "missing": [
+        "曖昧さのない開催日"
+      ],
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z"
+    },
+    {
+      "sourceUrl": "https://www.city.nagasaki.lg.jp/page/84530.html",
+      "sourceName": "長崎市「子ども手話交流会」",
+      "state": "deferred",
+      "reason": "公式本文の直近回10月12日は経過。次回は2026年12月13日で今回の6週間の優先範囲外。次回の会場・対象・申込を再照合してから掲載する。",
+      "missing": [],
+      "recheckAfter": "2026-11-01T03:10:00.000Z",
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z"
+    },
+    {
+      "sourceUrl": "https://www.tamasya.or.jp/cgi-bin/adm-bin/news/imgbbs.cgi?no=111",
+      "sourceName": "玉城町社会福祉協議会「手話っちカフェ」",
+      "state": "separate_cafe_workflow",
+      "reason": "公式本文で2026年10月31日10:00〜12:00、保健福祉会館 集団検診室を確認。手話カフェ別運用の対象として記録し、イベント一覧への二重登録やカフェDB変更は行わない。",
+      "missing": [
+        "既存カフェ掲載との照合"
+      ],
+      "recheckAfter": "2026-10-17T03:10:00.000Z",
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z"
+    },
+    {
+      "sourceUrl": "https://sapporo-community-plaza.jp/scarts_artculture_detail.php?n=10003391&o=del",
+      "sourceName": "札幌市民交流プラザ「座・れら×舞夢」情報",
+      "state": "needs_primary_review",
+      "reason": "公的施設の情報欄に11月6日〜8日の公演を発見。主催者または開催会場の最新告知との突合は未実施。",
+      "missing": [
+        "主催者・会場の直接告知",
+        "最新の受付状況"
+      ],
+      "recheckAfter": "2026-10-17T03:10:00.000Z",
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z"
+    },
+    {
+      "sourceUrl": "https://www.sapporo-deaf.jp/?p=8406",
+      "sourceName": "札幌聴覚障害者協会「厚別区手話フェスティバル2026」",
+      "state": "needs_review",
+      "reason": "本文で2026年10月17日・札幌学院大学新札幌キャンパス・申込締切10月15日を確認。締切は経過しており追加受付・当日参加の可否が確認できないため公開保留。中止・満席とは扱わない。",
+      "missing": [
+        "締切後の参加可否"
+      ],
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z"
+    },
+    {
+      "sourceUrl": "https://www.city.komatsu.lg.jp/soshiki/1040/shougaishafukushi/2/19003.html",
+      "sourceName": "小松市",
+      "eventId": "komatsu-shuwa-stage-2026-11-08",
+      "state": "published_ready",
+      "reason": "一次情報の本文または告知画像で開催情報を確認。公開手順での反映はこれから。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.mimisuppo-miyagi.org/event.html",
+      "sourceName": "宮城県聴覚障害者情報センター（みみサポみやぎ）",
+      "eventId": "mimisuppo-shiroishi-2026-10-27",
+      "state": "published_ready",
+      "reason": "一次情報の本文または告知画像で開催情報を確認。公開手順での反映はこれから。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z",
+      "recheckAfter": "2026-10-16T09:10:00.000Z"
+    },
+    {
+      "sourceUrl": "https://www.sapporo-deaf.jp/information/%E6%9D%B1%E5%8C%BA%E6%94%AF%E9%83%A8%E4%B8%BB%E5%82%AC%E3%80%8C%E7%AC%AC14%E5%9B%9E%E6%9D%B1%E5%8C%BA%E6%89%8B%E8%A9%B1%E3%81%BE%E3%81%A4%E3%82%8A%E3%80%8D%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/",
+      "sourceName": "公益社団法人札幌聴覚障害者協会",
+      "eventId": "sapporo-higashi-shuwa-2026-11-15",
+      "state": "published_ready",
+      "reason": "一次情報の本文または告知画像で開催情報を確認。公開手順での反映はこれから。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T03:18:59.963Z",
+      "recheckAfter": "2026-10-17T03:10:00.000Z"
+    }
+  ],
+  "lastResearch": {
+    "checkedAt": "2026-10-16T03:18:59.963Z",
+    "newDetailedCandidates": 8,
+    "windowEnd": "2026-11-27",
+    "publishedReady": [
+      "komatsu-shuwa-stage-2026-11-08",
+      "mimisuppo-shiroishi-2026-10-27",
+      "sapporo-higashi-shuwa-2026-11-15"
+    ],
+    "scope": "全国検索と主催者・自治体・公共施設・公式SNSの確認。カフェDBは変更なし。"
+  }
 }

@@ -1,5 +1,7 @@
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { EVENT_SOURCES } from '../config/events.mjs';
+import { enrichEventThumbnails } from './lib/event-thumbnails.mjs';
 import { fetchThumbnailResource } from './lib/thumbnail-fetch.mjs';
 import { parseOioiSchedule, verifyReviewedEvent, reviewedVisualEvent, mergeEventSnapshot, validEvent, eventDay } from './lib/events.mjs';
 
@@ -33,8 +35,9 @@ for(const entry of reviewed){
   }catch(error){checks.push({sourceUrl:entry.sourceUrl,id:entry.id,result:'unavailable',reason:error.message});}
 }
 const events=mergeEventSnapshot(previous.events,incoming,checks,now);
-const snapshot={version:1,checkedAt:new Date(now).toISOString(),events,checks,held};
+const thumbnails=await enrichEventThumbnails(events,{now,cacheFile:fileURLToPath(new URL('.state/thumbnails-events.json',root))});
+const snapshot={version:1,checkedAt:new Date(now).toISOString(),events,checks,held,thumbnails};
 await mkdir(new URL('.state/',root),{recursive:true});
 const temp=new URL('.state/events.json.tmp',root);await writeFile(temp,JSON.stringify(snapshot,null,2)+'\n');await rename(temp,new URL('.state/events.json',root));
-console.log(JSON.stringify({events:events.length,verified:events.filter(e=>e.verification==='verified').length,checks:checks.length,held:held.length}));
+console.log(JSON.stringify({events:events.length,verified:events.filter(e=>e.verification==='verified').length,checks:checks.length,held:held.length,thumbnails:thumbnails.eventsWithImage}));
 if(checks.some(c=>c.result==='unavailable'||c.result==='needs_review'))console.warn('::warning::Event sources need review; uncertain entries are excluded from upcoming results.');
