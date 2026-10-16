@@ -9,6 +9,7 @@
   if(['review','past','cancelled'].includes(state))for(const el of document.querySelectorAll('script[type="application/ld+json"]')){
    try{const data=JSON.parse(el.textContent);if(Array.isArray(data))el.textContent=JSON.stringify(data.filter(item=>item['@type']!=='Event'));}catch{}
   }
+  const retryNote=article.querySelector('[data-source-retry]');if(retryNote)retryNote.hidden=state==='past'||state==='cancelled';
   if(state==='review')document.querySelector('meta[name="robots"]')?.setAttribute('content','noindex,follow');
  }
  update();document.addEventListener('visibilitychange',()=>{if(!document.hidden)update()});setInterval(()=>{if(!document.hidden)update()},60000);

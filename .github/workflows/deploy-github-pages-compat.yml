@@ -2,7 +2,7 @@ name: Deploy GitHub Pages compatibility site
 
 on:
   workflow_run:
-    workflows: ['Curate & Build', 'Curate & Build World']
+    workflows: ['Curate & Build', 'Curate & Build World', 'Recover Event Sources']
     types: [completed]
   push:
     branches: [main]
@@ -22,8 +22,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  recovery-publication:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Recover Event Sources' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      publish: ${{ steps.check.outputs.publish }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 50
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check whether recovery published a snapshot
+        id: check
+        env:
+          RECOVERY_RUN_ID: ${{ github.event.workflow_run.id }}
+        run: node scripts/event-recovery-publication.mjs
+
   build:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    needs: recovery-publication
+    if: always() && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && (github.event.workflow_run.name != 'Recover Event Sources' || needs.recovery-publication.outputs.publish == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

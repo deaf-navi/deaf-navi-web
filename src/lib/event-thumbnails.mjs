@@ -28,6 +28,7 @@ export async function enrichEventThumbnails(events, options={}) {
     return settings.method==='HEAD'?result:{...result,text:eventPreviewMetadata(result.text,result.url)};
   };
   for(const event of events){
+    if(event.sourceStatus==='retrying'&&event.thumbnailPolicy!=='omit'&&eventPeriod(event,now)==='upcoming')continue;
     delete event.thumbnail;
     if(event.thumbnailPolicy==='omit'||eventPeriod(event,now)!=='upcoming')continue;
     const url=event.detailUrl||event.sourceUrl;
@@ -38,6 +39,7 @@ export async function enrichEventThumbnails(events, options={}) {
     userAgent:'DeafNaviWeb-Events/1.0 (+https://deafnavi.com/)',...options,fetchResource:eventFetch,now,
   });
   for(const event of events){
+    if(event.sourceStatus==='retrying')continue;
     if(event.thumbnailPolicy==='omit'||eventPeriod(event,now)!=='upcoming')continue;
     const thumbnail=pages.get(event.detailUrl||event.sourceUrl)?.thumbnail;
     if(thumbnail)event.thumbnail={...thumbnail};
