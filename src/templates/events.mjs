@@ -6,7 +6,7 @@ import { escapeHtml as e } from '../lib/text.mjs';
 import { renderHead, renderSiteHeader, renderSkipLink, renderFooter } from './partials.mjs';
 import { renderThumbnail } from './thumbnail.mjs';
 
-export function renderEventsPage(snapshot, { files, isDev=false } = {}) {
+export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVersion='20261016polish' } = {}) {
   const events=(snapshot.events||[]).filter(validEvent);
   const labels={upcoming:'開催予定',past:'過去の告知',review:'再確認中',cancelled:'中止の告知'};
   const count=events.filter(event=>eventPeriod(event)==='upcoming').length;
@@ -24,7 +24,7 @@ export function renderEventsPage(snapshot, { files, isDev=false } = {}) {
       <details><summary>主催・情報源</summary><dl><div><dt>主催</dt><dd>${e(event.organizer||'告知をご確認ください')}</dd></div></dl>
       <p><a href="${e(event.sourceUrl)}" target="_blank" rel="noopener noreferrer">${e(event.sourceName)}の告知</a> · 内容照合 <time datetime="${e(event.verifiedAt)}">${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST</time></p></details></div></article>`;
   }).join('\n');
-  return `<!doctype html><html lang="ja"><head>${renderHead({title:'国内の手話イベント | Deaf Navi',description:'国内の手話・ろう者コミュニティのイベントを開催日と地域から探せます。主催者・出演団体・会場の告知を確認して掲載します。',canonical:SITE_URL+'events.html',ogUrl:SITE_URL+'events.html',stylesFile:files?.styles||'styles.css',robots:isDev?'noindex,nofollow':'index,follow'})}<link rel="stylesheet" href="./events.css?v=20261016discover"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body>${renderSkipLink()}
+  return `<!doctype html><html lang="ja"><head>${renderHead({title:'国内の手話イベント | Deaf Navi',description:'国内の手話・ろう者コミュニティのイベントを開催日と地域から探せます。主催者・出演団体・会場の告知を確認して掲載します。',canonical:SITE_URL+'events.html',ogUrl:SITE_URL+'events.html',stylesFile:files?.styles||'styles.css',robots:isDev?'noindex,nofollow':'index,follow'})}<link rel="stylesheet" href="./events.css?v=20261016discover"><link rel="stylesheet" href="./browse.css?v=${e(clientAssetVersion)}"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body class="browse-page events-page">${renderSkipLink()}
   ${renderSiteHeader({current:'events',subLabel:'手話イベント',lead:'交流会、講座、公演。国内の催しを開催日と地域から探せます。'})}
   <main class="container event-page" id="main" data-recheck-ms="${EVENT_RECHECK_MS}">
     <form id="event-filters" class="event-filters" hidden role="search" aria-label="イベントを探す">

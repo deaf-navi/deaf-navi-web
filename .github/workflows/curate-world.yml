@@ -21,6 +21,7 @@ on:
       - 'src/lib/thumbnail-*.mjs'
       - 'src/templates/thumbnail.mjs'
       - 'src/styles.css'
+      - 'src/assets/browse.css'
       - 'src/ui-controls.js'
       - 'scripts/verify-world.mjs'
       - '.github/workflows/curate-world.yml'
@@ -79,7 +80,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .state/world-translation.json docs/app docs/articles-world.json docs/deaf-navi-world-jp.html docs/deaf-navi-world-original.html docs/deaf-navi-world-en.html docs/deaf-navi-world.html docs/styles-world.css docs/app-world.js docs/feed-world.xml docs/feed-world-original.xml docs/feed-world-en.xml docs/sitemap-world.xml docs/og-image-world.svg
-          git add .state/thumbnails-world.json docs/ui-controls.js
+          git add .state/thumbnails-world.json docs/ui-controls.js docs/browse.css
           if git diff --cached --quiet; then
             echo "No world changes to commit."
             exit 0
@@ -106,7 +107,7 @@ jobs:
             npm run verify:world
             npm run build:app-api
             git add .state/world-translation.json docs/app docs/articles-world.json docs/deaf-navi-world-jp.html docs/deaf-navi-world-original.html docs/deaf-navi-world-en.html docs/deaf-navi-world.html docs/styles-world.css docs/app-world.js docs/feed-world.xml docs/feed-world-original.xml docs/feed-world-en.xml docs/sitemap-world.xml docs/og-image-world.svg
-            git add .state/thumbnails-world.json docs/ui-controls.js
+            git add .state/thumbnails-world.json docs/ui-controls.js docs/browse.css
             if git diff --cached --quiet; then
               echo "No world changes after rebuild."
               exit 0

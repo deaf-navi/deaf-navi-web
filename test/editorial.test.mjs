@@ -108,14 +108,14 @@ test('JFD publication day and source body are required, not its header navigatio
   assert.equal(extractEditorialArticle(page.replace('post_123', 'post_124'), source, a).reason, 'article-body-missing');
 });
 
-test('auto notes are labeled as excerpts, escaped, initially hidden and omitted without a snapshot', async () => {
+test('retained editorial snapshots are never rendered after feature removal', async () => {
   const { notes } = await update(async () => response());
   const data = { generatedAt: '2026-10-16', articles: [] };
   const options = { now, files: {}, editorialNotes: notes };
   const rendered = renderHomePage(data, options);
-  assert.match(rendered, /aria-labelledby="editorial-heading" hidden/);
-  assert.match(rendered, /一次情報から抜粋・自動更新/);
-  assert.ok(rendered.includes('「' + excerpt + '」'));
+  assert.ok(!rendered.includes('id="editorial-note"'));
+  assert.ok(!rendered.includes('一次情報から抜粋・自動更新'));
+  assert.ok(!rendered.includes('「' + excerpt + '」'));
   assert.ok(!renderHomePage(data, { files: {}, now }).includes('id="editorial-note"'));
   assert.ok(!rendered.includes('Take it easy.'));
 });
