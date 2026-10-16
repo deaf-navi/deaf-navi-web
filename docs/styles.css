@@ -1675,7 +1675,7 @@ input, select {
   letter-spacing: -0.01em;
 }
 
-.guide-section__head p { color: var(--text-tertiary); font-size: 0.9rem; }
+.guide-section__summary { color: var(--text-tertiary); font-size: 0.9rem; margin-bottom: var(--s-3); }
 
 .guide-section__count {
   font-size: 0.85rem;
@@ -2134,7 +2134,7 @@ input, select {
 .card__read { border-radius: 5px; }
 .articles-head { padding-bottom: 12px; border-bottom: 2px solid var(--text-primary); margin-bottom: 18px; }
 .guide-search { padding: 22px; border-radius: 8px; border: 1px solid var(--border-default); box-shadow: none; }
-.guide-section__head { padding-bottom: 14px; border-bottom: 1px solid var(--border-default); }
+.guide-section__head { align-items: center; padding-block: 10px; border-bottom: 1px solid var(--border-default); background: var(--bg-base); }
 .guide-card { padding: 22px; }
 .guide-card__title { line-height: 1.6; }
 .guide-card__link { min-height: 44px; align-items: center; }
@@ -2205,6 +2205,23 @@ input, select {
 .guide-topics a,.about-toc a { padding-block:10px; text-underline-offset:4px; }
 .guide-card__reviewed { color:var(--text-secondary); font-size:.75rem; margin:0 0 8px; }
 .guide-section h2,.about section[id],.about h2[id] { scroll-margin-top:24px; }
+/* Keep the current topic visible without taking space in short/zoomed viewports.
+   During keyboard navigation, release it so it cannot cover a focused link. */
+@media (min-height: 40rem) and (prefers-reduced-motion: no-preference) {
+  .guide-section__head { position: sticky; top: 0; z-index: 2; }
+  .guide-section:focus-within .guide-section__head { position: static; }
+}
+
+/* A brief response only while a filter is being pressed; no entrance delays. */
+:is(.news-page, .event-page) button.filter:not(:disabled):active {
+  border-color: var(--accent-deep);
+}
+@media (prefers-reduced-motion: no-preference) {
+  :is(.news-page, .event-page) button.filter {
+    transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease, transform 120ms cubic-bezier(.16, 1, .3, 1);
+  }
+  :is(.news-page, .event-page) button.filter:not(:disabled):active { transform: translateY(1px); }
+}
 .guide-search { padding:18px; }
 .guide-search__head p { margin-bottom:8px; }
 .about-details { border-top:1px solid var(--border-default); margin-top:24px; padding-top:10px; }
