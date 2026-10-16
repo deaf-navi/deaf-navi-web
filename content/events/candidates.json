@@ -47,7 +47,7 @@
       "sourceUrl": "https://www.tamasya.or.jp/cgi-bin/adm-bin/news/imgbbs.cgi?no=111",
       "sourceName": "玉城町社会福祉協議会「手話っちカフェ」",
       "state": "separate_cafe_workflow",
-      "reason": "公式本文で2026年10月31日10:00〜12:00、保健福祉会館 集団検診室を確認。手話カフェ別運用の対象として記録し、イベント一覧への二重登録やカフェDB変更は行わない。",
+      "reason": "カフェ専用台帳への照合対象。2026-10-16から国内イベントと同じ日次実行に統合。実見済みの10月31日告知はカフェの最新台帳・現在の一次情報を再照合し、未登録の場合だけ専用マニフェストで追加する。国内イベント一覧へは二重登録しない。",
       "missing": [
         "既存カフェ掲載との照合"
       ],
@@ -58,15 +58,18 @@
     {
       "sourceUrl": "https://sapporo-community-plaza.jp/scarts_artculture_detail.php?n=10003391&o=del",
       "sourceName": "札幌市民交流プラザ「座・れら×舞夢」情報",
-      "state": "needs_primary_review",
-      "reason": "公的施設の情報欄に11月6日〜8日の公演を発見。主催者または開催会場の最新告知との突合は未実施。",
+      "state": "needs_review",
+      "reason": "主催者の次回公演ページとチラシを実見し2026年11月6〜8日・やまびこ座を確認。主催者チラシの7・8日午前枠10:30と市民交流プラザ本文の11:00が異なるため、会場等の最新案内で照合する。中止とは扱わない。",
       "missing": [
-        "主催者・会場の直接告知",
-        "最新の受付状況"
+        "午前公演の開演時刻の食い違い解消"
       ],
-      "recheckAfter": "2026-10-17T03:10:00.000Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-16T03:18:59.963Z"
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "evidenceUrls": [
+        "https://zarela2009.wixsite.com/za-rela/next-stage",
+        "https://static.wixstatic.com/media/db547f_3effd84b7c2e40dc8657bc639d0f0264~mv2.jpg/v1/fill/w_600,h_876,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/sapporo-sunagawa-poster(1)_page-0001.jpg"
+      ]
     },
     {
       "sourceUrl": "https://www.sapporo-deaf.jp/?p=8406",
@@ -240,6 +243,40 @@
         "GitHub公開後の最新照合結果"
       ],
       "discoveredOn": "2026-10-16"
+    },
+    {
+      "sourceUrl": "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html",
+      "sourceName": "岐阜市生涯学習センター",
+      "eventId": "gifu-ibuki-kurayami-2026-12-05",
+      "state": "published_ready",
+      "reason": "公式本文・主催者告知を確認し、掲載データへ登録。公開後は同じIDで確認する。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T06:28:36.044Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z"
+    },
+    {
+      "sourceUrl": "https://zarela2009.wixsite.com/za-rela/next-stage",
+      "sourceName": "座・れら（主催者）",
+      "eventId": "maimu-zarela-sunagawa-2026-10-25",
+      "state": "published_ready",
+      "reason": "公式本文・主催者告知を確認し、掲載データへ登録。公開後は同じIDで確認する。",
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z"
+    },
+    {
+      "sourceUrl": "https://ameblo.jp/jtd2009/entry-12948202794.html",
+      "sourceName": "日本ろう者劇団「手話狂言初春の会」",
+      "state": "needs_review",
+      "reason": "公式本文に2027年1月24日・25日とある一方、令和8年の記述、曜日（水・土）、44回/45回の表記が整合しない。開催年・日付を推測せず未掲載。",
+      "missing": [
+        "開催年・日付・回次の整合する最新公式告知"
+      ],
+      "discoveredOn": "2026-10-16",
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z"
     }
   ],
   "lastResearch": {

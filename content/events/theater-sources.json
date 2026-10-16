@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "performanceHorizonMonths": 6,
+  "coverage": "調査済みの追跡先。全国の劇団総数・網羅率は未確認。",
+  "sources": [
+    {
+      "id": "gifu-ibuki",
+      "name": "岐阜ろう劇団いぶき",
+      "prefecture": "岐阜県",
+      "officialUrls": [
+        "https://gifuibuki.amebaownd.com/",
+        "https://www.facebook.com/Gifu.deaf.ibuki/"
+      ],
+      "evidenceUrls": [
+        "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html",
+        "https://www.facebook.com/reel/1641591537637152/"
+      ],
+      "state": "upcoming_verified",
+      "notes": "12月5・6日の公演を公共施設本文と劇団の公開投稿で確認。公共施設の掲載写真は過去公演と明記されているため今回の告知画像として流用しない。",
+      "eventIds": [
+        "gifu-ibuki-kurayami-2026-12-05"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "queries": [
+        "岐阜ろう劇団いぶき 公演 2026",
+        "岐阜ろう劇団いぶき 公演 2027"
+      ]
+    },
+    {
+      "id": "sapporo-maimu",
+      "name": "札幌ろうあ劇団舞夢",
+      "prefecture": "北海道",
+      "officialUrls": [],
+      "evidenceUrls": [
+        "https://zarela2009.wixsite.com/za-rela/next-stage",
+        "https://sapporo-community-plaza.jp/scarts_artculture_detail.php?n=10003391&o=del"
+      ],
+      "state": "upcoming_with_pending_review",
+      "notes": "共演主催者の公式告知先を継続確認。砂川10/25を掲載。札幌11/6〜8は午前枠の時刻に食い違いがあり候補で再確認。",
+      "eventIds": [
+        "maimu-zarela-sunagawa-2026-10-25"
+      ],
+      "missing": [
+        "札幌公演の午前時刻照合",
+        "劇団単独の公式告知先"
+      ],
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "queries": [
+        "札幌ろうあ劇団舞夢 公演 2026",
+        "札幌ろうあ劇団舞夢 公演 2027"
+      ]
+    },
+    {
+      "id": "japanese-theatre-of-the-deaf",
+      "name": "日本ろう者劇団",
+      "prefecture": "東京都",
+      "officialUrls": [
+        "https://ameblo.jp/jtd2009/"
+      ],
+      "evidenceUrls": [
+        "https://ameblo.jp/jtd2009/entry-12948202794.html"
+      ],
+      "state": "needs_review",
+      "notes": "初春の会の本文は年・曜日・回次に不整合。訂正告知と国立能楽堂等の会場情報を再確認する。",
+      "eventIds": [],
+      "missing": [
+        "整合する次回公演日程"
+      ],
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "queries": [
+        "日本ろう者劇団 公演 2026",
+        "日本ろう者劇団 公演 2027"
+      ]
+    },
+    {
+      "id": "nara-daibutsu",
+      "name": "奈良ろう者劇団大仏も笑う会",
+      "prefecture": "奈良県",
+      "officialUrls": [],
+      "evidenceUrls": [
+        "https://www.jfd.or.jp/tokyo2025/mirai/content/katsudo/nara-daibutsu",
+        "https://www.aubade.or.jp/new_event/mid_hall/%E7%AC%AC36%E5%9B%9E%E5%85%A8%E5%9B%BD%E3%82%8D%E3%81%86%E3%81%82%E8%80%85%E6%BC%94%E5%8A%87%E7%A5%AD%E5%85%B8/",
+        "https://nara-arts.com/event/30094/"
+      ],
+      "state": "next_unconfirmed",
+      "notes": "連盟の団体紹介と会場の2026年6月出演情報を確認。みん芸の11/9公演は本文で2025年と確認。サイト共通の2026年表示を開催年に転用しない。",
+      "eventIds": [],
+      "missing": [
+        "次回告知",
+        "劇団の現在の公式告知先"
+      ],
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "queries": [
+        "奈良ろう者劇団大仏も笑う会 公演 2026",
+        "奈良ろう者劇団大仏も笑う会 公演 2027"
+      ]
+    },
+    {
+      "id": "kyoto-ashitanokai",
+      "name": "劇団あしたの会",
+      "prefecture": "京都府",
+      "officialUrls": [],
+      "evidenceUrls": [
+        "https://www.aubade.or.jp/new_event/mid_hall/%E7%AC%AC36%E5%9B%9E%E5%85%A8%E5%9B%BD%E3%82%8D%E3%81%86%E3%81%82%E8%80%85%E6%BC%94%E5%8A%87%E7%A5%AD%E5%85%B8/"
+      ],
+      "state": "next_unconfirmed",
+      "notes": "会場の2026年6月演劇祭典出演を確認。過去回から次回開催を推測しない。京都の協会・主催者・会場も探索する。",
+      "eventIds": [],
+      "missing": [
+        "次回告知",
+        "劇団の現在の公式告知先"
+      ],
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "queries": [
+        "劇団あしたの会 公演 2026",
+        "劇団あしたの会 公演 2027"
+      ]
+    },
+    {
+      "id": "deaf-puppet-hitomi",
+      "name": "デフ・パペットシアター・ひとみ",
+      "prefecture": "神奈川県",
+      "officialUrls": [
+        "http://www.deaf.puppet.or.jp/"
+      ],
+      "evidenceUrls": [
+        "https://www.kodomogeijutsu.go.jp/r7/dl/universal/program/shiryou/uni7_09.pdf"
+      ],
+      "state": "unavailable",
+      "notes": "公式サイト候補は文化芸術鑑賞事業資料から発見したが本日取得不可。学校向け実施可能日を一般向け公演と扱わない。公式サイト・現代人形劇センター・実際の会場告知を再確認。",
+      "eventIds": [],
+      "missing": [
+        "取得可能な現在の公式告知",
+        "半年以内の一般参加可能な公演"
+      ],
+      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "queries": [
+        "デフ・パペットシアター・ひとみ 公演 2026",
+        "デフ・パペットシアター・ひとみ 公演 2027"
+      ]
+    }
+  ]
+}
