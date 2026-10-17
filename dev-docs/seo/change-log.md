@@ -98,3 +98,5 @@ SEO-06: `server/cafe-seo.php` とviewsの詳細本文に、東京/神奈川の�
 隔離PHP HTTP回帰で実レコード2店の通常/識別付きURLと神奈川fixtureを確認し、地域ページのない県・海外・交流スポット・関連団体・単発企画・store・非公開の対象外を確認する。PHPはローカルになく、既存CIでの成功を公開前の条件とする。Node/build/verifyは隔離コピーで成功。375/1280pxの地域リンク部品表示は動的PHP実表示と区別して確認する。
 
 CI・公開commit・Deploy・実URLの確定結果は当該PRへ記録。実URLを確認できるまで反映確認済みにしない。復旧は当該2PHPファイルの小差分をrevertし、既存Deploy XServerを使う。DBやサーバー設定を変更していないため、DB全体の復元や共有サービス操作は不要。
+
+公開の確定結果: [PR68](https://github.com/deaf-navi/deaf-navi-web/pull/68)を通常squashマージ。検証head `725a10d768048ead8bfa27bc14394e833d79a283` の[CI38984967819](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38984967819)は全工程success（Node170、PHP SEO130、おとまど14 files/91 tests、国内471/World600/iOS）。実装/公開commit `85de4d847fe829baf0572a0d781c1d972137d818` の[XServer38985111329](https://github.com/deaf-navi/deaf-navi-web/actions/runs/38985111329)は10/17 09:11:03 JSTにsuccess。原子的release切替と既存の専用UA付き基本HTTP確認も成功。リモートmain・PR merged・PHP2ファイルの内容一致・差分10ファイルを再読確認。公開後の子Chromium/Web読取は接続段階で失敗し、新リンクと当日title/OGの本番実表示は親の正式Chrome読取待ち。子で旧titleを今日観測したとは扱わない。

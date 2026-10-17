@@ -55,3 +55,5 @@ SEO-12の技術結果: PR34のCI38825400067はNode108/PHP SEO59/おとまど86/�
 開始時main `257a3cffa2ec00152c0d91d89ceb77bf7f5a906e`、XServer38982751231とPages互換38982751215はsuccess。PR35から82コミットの既存変更を確認し、全554ファイルのGit blob一致で隔離検証する。これらは技術的な確認値で、訪問・検索表示・インデックス数ではない。
 
 10/17の子HTTP/Webは接続エラー。10/16の親によるカフェ旧title観測を10/17の実読と取り違えない。GSC/GA4・検索クリック/表示/CTR/順位・organic session・CWVフィールドは未取得のまま。SEO-06のテスト/公開/実URLの確定結果は当該PRと日次へ記録する。
+
+SEO-06の技術結果: PR68のCI38984967819はNode170/PHP SEO130/おとまど91/国内471/World600/iOSが成功。commit85de4d847fe829baf0572a0d781c1d972137d818のXServer38985111329は10/17 09:11:03 JSTにsuccess。子の公開後Chromium/Web読取は接続エラーで、リンク・当日title/OGの実表示は親の正式Chrome読取待ち。検索効果・実DB条件・稼働PHP版の値を推測で補わない。
