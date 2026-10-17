@@ -5,4 +5,4 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 40 6 * * * deafnavi-runtime (umask 077; /usr/bin/php /srv/deafnavi/current/_backend/check-cafe-event-sources.php --apply) >> /srv/deafnavi/shared/directory/cafe-event-source-check.log 2>&1
 # Recovery only checks due transient failures; discovery remains once per day.
-20,50 * * * * deafnavi-runtime (umask 077; /usr/bin/php /srv/deafnavi/current/_backend/check-cafe-event-sources.php --recover) >> /srv/deafnavi/shared/directory/cafe-event-source-check.log 2>&1
+40 8,14,20 * * * deafnavi-runtime (umask 077; /usr/bin/php /srv/deafnavi/current/_backend/check-cafe-event-sources.php --recover) >> /srv/deafnavi/shared/directory/cafe-event-source-check.log 2>&1
