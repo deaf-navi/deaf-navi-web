@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import { SITE_KEYWORDS } from '../config/site.mjs';
-import { prepareDomesticPublication } from './lib/publication-quality.mjs';
+import { prepareDomesticPublication, prepareDomesticArchivePublication } from './lib/publication-quality.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderHomePage } from './templates/home.mjs';
@@ -118,6 +118,11 @@ async function main() {
     oldData = JSON.parse(await readFile(join(DOCS, FILES.oldArticlesJson), 'utf8'));
   } catch {
     oldData = { generatedAt: data.generatedAt, count: 0, articles: [] };
+  }
+  const reviewedOldData = prepareDomesticArchivePublication(oldData);
+  if (reviewedOldData !== oldData) {
+    oldData = reviewedOldData;
+    await writeFile(join(DOCS, FILES.oldArticlesJson), JSON.stringify(oldData, null, 2) + '\n');
   }
 
   await mkdir(DOCS, { recursive: true });

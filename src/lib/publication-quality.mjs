@@ -1,6 +1,6 @@
 import { isDeepStrictEqual } from 'node:util';
 import { DIRECT_FEEDS, EXPANDED_DIRECT_FEEDS, SOCIAL_FEEDS } from '../../config/sources.domestic.mjs';
-import { dedupeNearArticles, hydratePreviousArticle, publicationExclusionReason, stripInternal, QUALITY_VERSION } from './curation.mjs';
+import { dedupeNearArticles, hydratePreviousArticle, publicationExclusionReason, explicitUnrelatedReason, stripInternal, QUALITY_VERSION } from './curation.mjs';
 import { normalizeTitleKey } from './text.mjs';
 import { isHardNoiseWorldText } from './world-relevance.mjs';
 import { hasMistranslatedLibras } from './world-translation.mjs';
@@ -31,6 +31,16 @@ export function prepareDomesticPublication(data) {
   removed.push(...duplicates.map((item) => ({ id: item.droppedId, title: item.dropped, reason: 'duplicate', keptId: item.keptId })));
   articles.sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
   return withReview(data, articles.map((article) => stripInternal(article)), removed);
+}
+
+export function prepareDomesticArchivePublication(data) {
+  const removed = [];
+  const articles = (data.articles ?? []).filter((article) => {
+    const reason = explicitUnrelatedReason(article);
+    if (reason) removed.push({ id: article.id, title: article.title, reason });
+    return !reason;
+  });
+  return withReview(data, articles, removed);
 }
 
 export function prepareWorldPublication(data) {

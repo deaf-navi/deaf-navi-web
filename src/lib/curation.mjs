@@ -41,7 +41,7 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'publication-quality-v6';
+export const QUALITY_VERSION = 'publication-quality-v7';
 
 /* ---------- 分類 ---------- */
 
@@ -259,15 +259,28 @@ export function isLowValueDiscoveryPage(article) {
   return /(?:\d+\s*枚目の)?(?:写真・画像|写真一覧|画像一覧)|フォトギャラリー/iu.test(article.title);
 }
 
+/** Explicit mismatches also apply to archives; missing keywords alone do not. */
+export function explicitUnrelatedReason(article) {
+  const title = cleanArticleTitle(article.title, article.sourceName).normalize('NFKC');
+  for (const rule of PUBLICATION_NOISE_RULES) {
+    if (rule.pattern.test(title) && !rule.unless.test(`${title} ${article.summary || ''}`)) return rule.reason;
+  }
+  // In this crowdfunding template the association is a poster recipient, not the subject.
+  const poster = title.match(/^.+?\s+様\s*ポスター報告\s+by\s+(.+)$/iu);
+  if (poster && !isRelevantArticle(poster[1], cleanSummaryText(article.summary, title, article.sourceName))) {
+    return 'incidental-organization-mention';
+  }
+  return null;
+}
+
 /** Relevance is a gate, not a score boost. Trusted community feeds retain routine notices. */
 export function publicationExclusionReason(article) {
   const title = cleanArticleTitle(article.title, article.sourceName).normalize('NFKC');
   if (!title || /^(?:工事中|準備中|作成中|テスト投稿|under construction|coming soon)[。.!！\s]*$/iu.test(title)) return 'placeholder';
   if (isLowValueDiscoveryPage(article)) return 'low-value-page';
   if (/市場規模|市場予測/u.test(title) && /レポート|成長率|予測|CAGR/iu.test(title)) return 'market-report';
-  for (const rule of PUBLICATION_NOISE_RULES) {
-    if (rule.pattern.test(title) && !rule.unless.test(`${title} ${article.summary || ''}`)) return rule.reason;
-  }
+  const explicit = explicitUnrelatedReason(article);
+  if (explicit) return explicit;
   const communityFeed = article._feedUrl && ['official', 'specialist'].includes(article._sourceTier);
   if (!article._passThrough && !communityFeed && !isRelevantArticle(title, article.summary)) return 'unrelated';
   return null;
@@ -441,7 +454,7 @@ export function hydratePreviousArticle(article, directFeedByName) {
 export function mergeOldArticles(currentOldArticles, previousOldArticles) {
   const byId = new Map();
   for (const article of [...currentOldArticles, ...previousOldArticles]) {
-    if (!article?.id) continue;
+    if (!article?.id || explicitUnrelatedReason(article)) continue;
     const existing = byId.get(article.id);
     if (!existing || preferredRank(article) > preferredRank(existing)) {
       byId.set(article.id, article);
