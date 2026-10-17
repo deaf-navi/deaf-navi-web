@@ -1,0 +1,63 @@
+import assert from 'node:assert/strict';
+import {spawn,spawnSync} from 'node:child_process';
+import {mkdtempSync,mkdirSync,writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {resolve,join} from 'node:path';
+import {randomBytes} from 'node:crypto';
+const root=resolve(import.meta.dirname,'..'),dir=mkdtempSync(join(tmpdir(),'deafnavi-cafe-recovery-'));
+const env={...process.env,DEAFNAVI_DATA_DIR:dir,DEAFNAVI_LOCAL_TEST:'1'};
+const run=(args,input)=>spawnSync('php',args,{cwd:root,env,input,encoding:'utf8'});
+const php=code=>{const r=run(['-r',`require '${root.replaceAll('\\','/')}/server/core.php';require '${root.replaceAll('\\','/')}/server/cafe-event-registry.php';${code}`]);assert.equal(r.status,0,r.stderr);return r.stdout;};
+let checks=0;const ok=(v,label)=>{assert.ok(v,label);checks++;};
+const hash=run(['test/directory-hash.php'],randomBytes(20).toString('hex'));
+assert.equal(run(['server/cli.php','init'],JSON.stringify({username:'recoveryfixture',password_hash:hash.stdout})).status,0);
+php('cafe_registry_schema();');
+const backup=join(dir,'backups');mkdirSync(backup);
+const tableDigest=()=>php(`$out=[];foreach(['records','users','settings','submissions','outbox'] as $t)$out[$t]=hash('sha256',json(query('SELECT * FROM '.$t.' ORDER BY 1')->fetchAll()));echo json($out);`);
+php('db()->exec("DROP TABLE cafe_event_source_reviews; DROP TABLE cafe_event_source_state; DROP TABLE cafe_event_recovery_runs");');
+const preMigration=tableDigest();
+const migration=run(['server/init-cafe-event-recovery.php','--apply',backup]);assert.equal(migration.status,0,migration.stderr);
+ok(tableDigest()===preMigration&&JSON.parse(migration.stdout).protected_tables_unchanged,'migration backs up and preserves protected tables');
+ok(JSON.parse(run(['server/init-cafe-event-recovery.php','--apply',backup]).stdout).result==='ALREADY_INITIALIZED','migration idempotent');
+const day=php('echo cafe_registry_today();'),url='https://www.instagram.com/cafe_fixture/';
+const record=JSON.parse(php("echo json(expanded(record('knot')));"));
+const fixture={...record,slug:'source-fixture',name:'手話カフェ通信確認',country_code:'JP',prefecture:'大阪府',city:'吹田市',publication:'public',status:'unknown',type:'limited',shop_type:'event',activity_date:'2099-10-18',confirmation_status:'confirmed',verification_level:'organizer',verification_sources:[url],last_verified_at:day,first_found_at:day,schedule_verified_at:day,last_researched_at:day,attribute_sources:[],is_deaf_owned:null,has_deaf_staff:null,official_url:url,venue_name:'確認会場',event_reported:false};
+const m={version:1,batch:'source-fixture-first',checked_on:day,series:[{id:'source-series',expected_revision:0,data:{title:'手話カフェ通信確認',country_code:'JP',prefecture:'大阪府',city:'吹田市',series_kind:'oneoff',source_urls:[url],next_check_on:day,annual_review_due_on:day}}],checks:[{series_id:'source-series',expected_revision:0,result:'updated',evidence_urls:[url],next_check_on:day}],upserts:[{id:'source-fixture',series_id:'source-series',expected_revision:0,data:fixture}]};
+const file=join(dir,'batch.json');
+function batch(manifest,apply=false){writeFileSync(file,JSON.stringify(manifest));const dry=run(['server/curate-cafe-events.php','--dry-run',file]);if(!apply||dry.status!==0)return dry;return run(['server/curate-cafe-events.php','--apply',file,backup,JSON.parse(dry.stdout).plan_sha256]);}
+let r=batch(m,true);assert.equal(r.status,0,r.stderr);
+// Verify both reviewed HTML bindings and visual renewal constraints using only
+// an isolated SQLite fixture. No production source or network fault is altered.
+const contentHash='a'.repeat(64);
+php(`cafe_event_source_save('${url}',cafe_event_source_transition(null,['result'=>'fetched','fingerprint'=>'${contentHash}','http_status'=>200,'review_mode'=>'html'],time()-60));`);
+const review={version:1,batch:'source-review',checked_on:day,checks:[{series_id:'source-series',expected_revision:1,result:'no_change',evidence_urls:[url],next_check_on:day}],source_reviews:[{record_id:'source-fixture',expected_revision:1,url,mode:'html',fingerprint:contentHash,reviewed_at:new Date(Date.now()-30000).toISOString()}]};
+let bad=structuredClone(review);bad.source_reviews[0].fingerprint='b'.repeat(64);const before=tableDigest();r=batch(bad);ok(r.status!==0&&tableDigest()===before,'mismatched content cannot be approved');
+bad=structuredClone(review);bad.source_reviews[0].expected_revision=4;r=batch(bad);ok(r.status!==0,'stale record revision cannot be approved');
+r=batch(review,true);assert.equal(r.status,0,r.stderr);ok(tableDigest()===before,'content binding never edits records or protected tables');
+r=batch(review,true);ok(r.status===0&&JSON.parse(r.stdout).result==='ALREADY_APPLIED','review batches idempotent');
+const server=spawn('php',['-S','127.0.0.1:0','-t',join(root,'docs'),join(root,'server/local-router.php')],{cwd:root,env,stdio:['ignore','pipe','pipe']});
+let logs='';server.stderr.on('data',d=>logs+=d);server.stdout.on('data',d=>logs+=d);
+const origin=await new Promise((res,rej)=>{const deadline=setTimeout(()=>rej(Error(logs)),6000);server.stderr.on('data',()=>{const m=logs.match(/http:\/\/127\.0\.0\.1:(\d+)/);if(m){clearTimeout(deadline);res(`http://127.0.0.1:${m[1]}`);}});});
+const get=async path=>{const r=await fetch(origin+path,{headers:{'User-Agent':'Codex-DeafNavi-Verification'}});assert.equal(r.status,200);return r.text();};
+const update=code=>php(`$old=query('SELECT * FROM cafe_event_source_state WHERE url=?',['${url}'])->fetch();${code}`);
+try{
+ let html=await get('/connect/sign-cafe/events/');ok(html.includes('data-event-id="source-fixture"'),'reviewed future event listed');
+ update(`cafe_event_source_save('${url}',cafe_event_source_transition($old,['result'=>'unavailable','fingerprint'=>null,'http_status'=>null,'retryable'=>true],time()));`);
+ html=await get('/connect/sign-cafe/events/');ok(html.includes('data-event-id="source-fixture"')&&html.includes('data-cafe-source-status="retrying"'),'temporary error keeps list and explains retry');
+ php(`query('UPDATE cafe_event_source_state SET last_success_at=?',[gmdate('c',time()-172801)]);query('UPDATE cafe_event_source_reviews SET reviewed_at=?',[gmdate('c',time()-172801)]);`);
+ html=await get('/connect/sign-cafe/events/');ok(!html.includes('data-event-id="source-fixture"'),'expiry removes event from upcoming');
+ html=await get('/connect/sign-cafe/events/?period=unconfirmed');ok(html.includes('data-event-id="source-fixture"')&&html.includes('開催中止を意味するものではありません'),'expired event retained separately');
+ html=await get('/connect/sign-cafe/source-fixture/');ok(html.includes('noindex,follow')&&html.includes('data-cafe-source-status="review"'),'detail warns and noindexes expired event');
+ update(`cafe_event_source_save('${url}',cafe_event_source_transition($old,['result'=>'fetched','fingerprint'=>'${contentHash}','http_status'=>200,'review_mode'=>'html'],time()));`);
+ html=await get('/connect/sign-cafe/events/');ok(html.includes('data-event-id="source-fixture"')&&!html.includes('data-cafe-source-status="retrying"'),'matching source recovers after expiry');
+ update(`cafe_event_source_save('${url}',cafe_event_source_transition($old,['result'=>'fetched','fingerprint'=>'${'b'.repeat(64)}','http_status'=>200,'review_mode'=>'html'],time()));`);
+ html=await get('/connect/sign-cafe/events/');ok(!html.includes('data-event-id="source-fixture"'),'content change immediately held');
+ // The real CLI handles a due, registered manual source without touching records.
+ php(`query('UPDATE cafe_event_source_state SET next_attempt_at=?,failures=1',[gmdate('c',time()-1)]);`);
+ const snapshot=tableDigest();r=run(['server/check-cafe-event-sources.php','--recover']);assert.equal(r.status,0,r.stderr);ok(JSON.parse(r.stdout).summary.sources===1,'real recovery CLI checks one due URL');
+ ok(tableDigest()===snapshot,'recovery leaves all record/private tables untouched');
+ r=run(['server/check-cafe-event-sources.php','--recover']);ok(r.status===0&&JSON.parse(r.stdout).result==='NO_SOURCES_DUE','no due URL causes no-op');
+ ok(run(['server/cli.php','check']).status===0,'database integrity after recovery');
+ ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no PHP runtime errors');
+ console.log(`Cafe recovery integration: ${checks} checks passed`);
+}finally{server.kill();}

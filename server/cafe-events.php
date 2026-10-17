@@ -10,6 +10,7 @@ function cafe_event_period(array $p,?DateTimeImmutable $today=null):string {
     $today??=new DateTimeImmutable('today',new DateTimeZone(($p['timezone']??'')?:'Asia/Tokyo'));
     $date=cafe_event_date($p);
     if(($p['observation_only']??'0')==='1'||in_array($p['status']??'',['ended','cancelled','closed','permanently_closed'],true)||($date!==''&&$date<$today->format('Y-m-d')))return 'past';
+    if($date!==''&&cafe_event_freshness($p)['status']==='review')return 'unconfirmed';
     if(($p['kind']??'')==='event')return $date!==''&&in_array($p['status'],['scheduled','ongoing'],true)?'upcoming':'unconfirmed';
     return in_array(cafe_activity_state($p,$today),['scheduled','today'],true)?'upcoming':'unconfirmed';
 }
@@ -18,6 +19,14 @@ function cafe_event_label(array $p):string {
     if($p['status']==='cancelled')return '中止の告知';
     if(in_array($p['status'],['closed','permanently_closed'],true))return '活動終了';
     return match(cafe_event_period($p)){'upcoming'=>'開催予定','past'=>!empty($p['event_reported'])?'開催報告あり':'過去の開催告知',default=>'開催情報を確認中'};
+}
+function cafe_event_source_notice(array $p):string {
+    if(cafe_event_period($p)==='past')return '';
+    $f=cafe_event_freshness($p);
+    if($f['status']==='verified')return '';
+    $message=$f['status']==='retrying'?'情報源へ一時的につながらないため、自動で再確認しています。':'最新の開催情報を再確認中です。参加前に主催者の案内をご確認ください。';
+    if($f['verified_at'])$message.=' 最終確認：'.(new DateTimeImmutable($f['verified_at']))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y.m.d H:i').'（日本時間）。';
+    return '<p class="dn-event-history-note" data-cafe-source-status="'.e($f['status']).'">'.e($message).'</p>';
 }
 function cafe_event_records():array {
     $all=visible_records();$stores=[];foreach($all as $p)if($p['kind']==='store')$stores[$p['id']]=$p;
@@ -46,7 +55,7 @@ function cafe_event_matches(array $p,array $f):bool {
 }
 function cafe_event_period_links(array $f,array $counts):string {
     $out='<nav class="dn-event-periods" aria-label="開催時期">';
-    foreach(['upcoming'=>'今後の開催','past'=>'過去の開催情報','unconfirmed'=>'日付未確認'] as $key=>$label){
+    foreach(['upcoming'=>'今後の開催','past'=>'過去の開催情報','unconfirmed'=>'再確認中'] as $key=>$label){
         $params=array_filter($f,fn($value)=>$value!=='');unset($params['page']);$params['period']=$key;
         $out.='<a href="?'.e(http_build_query($params)).'"'.($f['period']===$key?' aria-current="page"':'').'>'.e($label).'<span>'.$counts[$key].'</span></a>';
     }
@@ -74,7 +83,7 @@ function cafe_event_card(array $p):string {
     $out='<article class="dn-card dn-place-card dn-event-card" data-event-id="'.e($p['id']).'"><div class="dn-event-heading"><div class="dn-event-date">'.cafe_icon('calendar').($date!==''?'<time datetime="'.e($date).'">'.e(str_replace('-','.',$date)).'</time>':'<span>日付未確認</span>').'</div><span class="dn-badge">'.e(cafe_event_label($p)).'</span></div><p class="dn-location">'.e($location).'</p><h2><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h2><dl class="dn-facts"><dt>会場</dt><dd>'.e($venue).'</dd><dt>開催時間</dt><dd>'.e($time?:'未確認').'</dd></dl><p class="dn-card-intro">'.nl2br(e($p['description']??'')).'</p>';
     if(!empty($p['notes']))$out.='<p class="dn-visit-note">'.nl2br(e($p['notes'])).'</p>';
     if(cafe_event_period($p)==='past'&&empty($p['event_reported'])&&($p['observation_only']??'0')!=='1')$out.='<p class="dn-event-history-note">過去の日付の告知情報です。実施済み・次回開催を示すものではありません。</p>';
-    return $out.official_links($p,true).sources_html($p).'</article>';
+    return $out.cafe_event_source_notice($p).official_links($p,true).sources_html($p).'</article>';
 }
 function cafe_events_page():string {
     $all=cafe_event_records();$f=cafe_event_filters();$matched=array_values(array_filter($all,fn($p)=>cafe_event_matches($p,$f)));
@@ -86,6 +95,7 @@ function cafe_events_page():string {
     $body.='<p class="dn-event-intro">単発開催を日付ごとに掲載しています。<a href="/connect/sign-cafe/">常設店・定期開催はカフェ一覧へ</a>。</p>'.cafe_event_regions($f,$all);
     $researched=cafe_registry_public_update();if($researched!=='')$body.='<p class="dn-event-coverage">開催情報の調査：<time datetime="'.e($researched).'">'.e(str_replace('-','.',$researched)).'</time> · 各掲載の確認日は情報源の欄をご覧ください。</p>';
     if($f['period']==='past')$body.='<p class="dn-event-history-note">過去の告知・開催報告を掲載しています。日付の経過だけで、実際に開催されたと判断していません。</p>';
+    if($f['period']==='unconfirmed')$body.='<p class="dn-event-history-note">日付が未確認の情報や、確認から48時間が経過した情報、変更・取得できない情報を再確認しています。開催中止を意味するものではありません。</p>';
     $body.=$list?'<div class="dn-place-grid dn-event-grid">'.implode('',array_map('cafe_event_card',$list)).'</div>':'<section class="dn-empty"><h2>この条件のイベント情報はまだありません</h2><p>開催時期や検索条件を変えると、ほかの掲載情報を確認できます。掲載がないことは、その地域で開催がないことを意味しません。</p></section>';
     $params=array_filter($f,fn($value)=>$value!=='');unset($params['page']);$body.='<nav class="dn-pagination" aria-label="手話カフェイベントのページ">';
     if($page>1)$body.='<a href="?'.e(http_build_query($params+['page'=>$page-1])).'">← 前のページ</a>';

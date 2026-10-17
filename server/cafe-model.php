@@ -43,6 +43,7 @@ function cafe_activity_state(array $p,?DateTimeImmutable $today=null):?string {
     if(($p['confirmation_status']??'')!=='confirmed'||in_array($p['status']??'',['needs_review','temporarily_closed'],true)||empty($p['activity_date']))return 'date_unknown';
     $today??=new DateTimeImmutable('today',new DateTimeZone('Asia/Tokyo'));
     $date=$today->format('Y-m-d');
+    if($p['activity_date']>=$date&&isset($p['id'])&&function_exists('cafe_event_freshness')&&cafe_event_freshness($p)['status']==='review')return 'date_unknown';
     return $p['activity_date']<$date?'date_elapsed':($p['activity_date']===$date?'today':'scheduled');
 }
 function cafe_listing_group(array $p):string {

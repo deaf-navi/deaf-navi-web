@@ -15,6 +15,30 @@
 
 ## 台帳と履歴
 
+### 一時エラーと情報の鮮度
+
+- 毎時20・50分、同じcron・実行所有者で `--recover` を実行する。通信失敗だけを30分→1時間→2時間→4時間→6時間（上限）の間隔で再取得。新規発見・内容調査は従来どおり1日1回。1回40URL/約4分、日次処理との共通lockで重複を防ぎ、対象なしならDB更新なし。日次取得は確認済みの今後の開催URLを優先し、残りを古い順に巡回する。
+- 接続・DNS・タイムアウト・502/503/504は1秒後に1回再取得し、失敗時は復旧待ちへ。403/404/429、TLS・サイズ制限、非公開IPは繰り返し要求しない。アクセス制限を回避しない。
+- 開催予定は、内容確認または確認済みHTML本文との一致確認から48時間未満の情報だけ。通信エラーでも期限内は表示を保つが、失敗時刻では延長しない。48時間経過、本文変更、アクセス拒否は「再確認中」へ移し、詳細も再確認表示・noindexにする。中止や終了とは推測しない。過去の開催・URL・店舗・定期企画は保持する。
+- `cafe_event_source_state` は直近の取得状態・成功日時・失敗数・再取得期限・未確認の本文変更/拒否を保存。`cafe_event_recovery_runs` は復旧実行履歴。旧日次台帳は保持する。内容変更/拒否の保留は、後日の200だけでは解除しない。
+- `cafe_event_source_reviews` は掲載レコードのrevisionと、実際に確認した根拠URL・HTML hashまたは目視確認日時を結ぶ。本文が一致したHTMLだけ自動で鮮度を更新し、通信回復後は開催予定へ戻す。SNS・画像・PDFは `visual` とし、実際に再読/目視したときだけ日時を更新する。`no_change` の調査記録だけで掲載内容を確認済みへ戻さない。
+- 未対応の既存情報は、掲載レコードの確認日（時刻不明のため日本時間0時）から48時間で失効する。過去の取得hashを内容確認済みhashとして移植しない。現在の告知を再読して `source_reviews` を追加する。
+
+初回導入は非公開の専用バックアップディレクトリを用意し、`php .../init-cafe-event-recovery.php --apply BACKUP_DIR` を実行する。SQLite整合バックアップ後、追加の3テーブルだけ作成し、records/users/settings/submissions/outboxの不変性を照合する。再実行はno-op。cronを `operations/cafe-event-sources.cron` と一致させる。ロールバックは以前のreleaseとcronへ戻す。追加テーブルとバックアップは保持し、運用中のDBを古いバックアップで上書きしない。
+
+`--refresh` は運用者が現在の開催予定の登録済み根拠を取得し直すためのコマンド。未登録URLの取得・内容承認はせず、日次実行済みフラグにも触れない。定期実行には `--apply` / `--recover` を使う。
+
+マニフェストには次の任意配列を追加する。該当seriesの `updated` / `no_change` チェックと同じbatchに含め、内容が掲載と一致した場合だけ承認する。`url` は掲載・追跡先・調査根拠の3か所に必要。`html` は直近48時間の取得hashと完全一致し、実際に本文を読み開催年・月日・場所・対象・申込・変更/中止/満席を確かめたものだけ。画像にしか日程がないHTMLは `visual` とする。`visual` はfingerprintを省略し、実際の目視時刻を記録する。単なる次回未発表調査で追加しない。
+
+```json
+"source_reviews": [{"record_id":"stable-event-record-id", "expected_revision":1,
+  "url":"https://example.org/events/", "mode":"html",
+  "fingerprint":"取得して実際に確認した本文の64桁sha256",
+  "reviewed_at":"2026-10-17T09:00:00+09:00"}]
+```
+
+HTML本文hashは `--export` のsource_healthから取得できる。reviewed_atは調査日と一致する実時刻とし、取得より前にはしない。更新差分があればupsertと同じbatchに入れる。revision不一致・hash不一致・未確認の根拠・未来日時は反映されない。
+
 サーバー定時処理は `operations/cafe-event-sources.cron` を `/etc/cron.d/deafnavi-cafe-event-sources` に設置する。設置時は既存の `cron` 稼働とサーバータイムゾーン `Asia/Tokyo` を確認する。ログは非公開の `/srv/deafnavi/shared/directory/cafe-event-source-check.log`、実行結果の原本はDBの `cafe_event_source_runs`。DBの0700/0600と所有者を維持し、公開更新用接続へ読取権限を追加しない。設定ファイルだけで成功とせず、同じ実行ユーザーでの初回実行とDB記録を確認する。
 
 管理画面 `/admin/?view=cafe-events` に企画・主催者・都道府県・確認先・調査日・次回告知・再確認期限・年次期限・掲載履歴を表示する。取得日と内容調査日は別。未調査、次回未発表、取得不可も明示する。

@@ -64,7 +64,7 @@ function cafe_event_http(array $target,string $ip):array {
             fclose($pipes[1]);fclose($pipes[2]);$code=proc_close($process);
             $headers=file_get_contents($headerFile,false,null,0,150000);$location='';$type='';$status=0;
             foreach(explode("\n",$headers) as $header){if(preg_match('#^HTTP/\S+\s+(\d{3})#',$header,$match))$status=(int)$match[1];if(stripos($header,'Location:')===0)$location=trim(substr($header,9));if(stripos($header,'Content-Type:')===0)$type=strtolower(trim(substr($header,13)));}
-            return ['ok'=>$code===0&&$bounded,'status'=>$status,'body'=>$bounded?$body:'','location'=>$location,'type'=>$type];
+            return ['ok'=>$code===0&&$bounded,'status'=>$status,'body'=>$bounded?$body:'','location'=>$location,'type'=>$type,'error_code'=>$bounded?$code:63];
         }finally{if(is_file($headerFile))unlink($headerFile);}
     }
     $body='';$location='';$type='';$c=curl_init($target['url']);
@@ -72,21 +72,30 @@ function cafe_event_http(array $target,string $ip):array {
         CURLOPT_WRITEFUNCTION=>function($c,$chunk)use(&$body){if(strlen($body)+strlen($chunk)>2500000)return 0;$body.=$chunk;return strlen($chunk);},
         CURLOPT_HEADERFUNCTION=>function($c,$header)use(&$location,&$type){if(stripos($header,'Location:')===0)$location=trim(substr($header,9));if(stripos($header,'Content-Type:')===0)$type=strtolower(trim(substr($header,13)));return strlen($header);}
     ]);
-    $ok=curl_exec($c);$status=(int)curl_getinfo($c,CURLINFO_RESPONSE_CODE);curl_close($c);
-    return ['ok'=>$ok!==false,'status'=>$status,'body'=>$body,'location'=>$location,'type'=>$type];
+    $ok=curl_exec($c);$status=(int)curl_getinfo($c,CURLINFO_RESPONSE_CODE);$code=curl_errno($c);curl_close($c);
+    return ['ok'=>$ok!==false,'status'=>$status,'body'=>$body,'location'=>$location,'type'=>$type,'error_code'=>$code];
 }
-function cafe_event_fetch(string $url):array {
-    $out=['result'=>'unavailable','http_status'=>null,'fingerprint'=>null];
+function cafe_event_fetch_once(string $url,callable $resolve,callable $http):array {
+    $out=['result'=>'unavailable','http_status'=>null,'fingerprint'=>null,'retryable'=>false,'error_code'=>null];
     for($hop=0;$hop<5;$hop++){
         $target=cafe_event_fetch_target($url);if(!$target)return array_replace($out,['result'=>'manual_check']);
         if(preg_match('/(^|\.)(instagram\.com|facebook\.com|x\.com|twitter\.com)$/D',$target['host']))return array_replace($out,['result'=>'manual_check']);
-        $ips=gethostbynamel($target['host']);if(!cafe_event_public_ips($ips?:[]))return array_replace($out,['result'=>'blocked_target']);
-        $response=cafe_event_http($target,$ips[0]);$out['http_status']=$response['status']?:null;
-        if(!$response['ok'])return $out;
+        $ips=$resolve($target['host']);
+        if(!$ips)return array_replace($out,['retryable'=>true,'error_code'=>'DNS_UNAVAILABLE']);
+        if(!cafe_event_public_ips($ips))return array_replace($out,['result'=>'blocked_target','error_code'=>'BLOCKED_TARGET']);
+        $response=$http($target,$ips[0]);$out['http_status']=$response['status']?:null;
+        if(!$response['ok'])return array_replace($out,['retryable'=>in_array($response['error_code']??0,[5,6,7,18,28,52,55,56],true),'error_code'=>'CURL_'.($response['error_code']??'UNKNOWN')]);
         if($response['status']>=300&&$response['status']<400){$url=cafe_event_redirect($url,$response['location']);continue;}
-        if($response['status']!==200)return $out;
+        if($response['status']!==200)return array_replace($out,['retryable'=>in_array($response['status'],[502,503,504],true),'error_code'=>'HTTP_'.$response['status']]);
         $fingerprint=cafe_event_fingerprint($response['body'],$response['type']);
-        return array_replace($out,['result'=>$fingerprint?'fetched':'manual_check','fingerprint'=>$fingerprint]);
+        // PDF changes can be tracked, but its text/content needs visual review.
+        return array_replace($out,['result'=>$fingerprint?'fetched':'manual_check','fingerprint'=>$fingerprint,'review_mode'=>str_contains($response['type'],'pdf')?'visual':'html']);
     }
     return $out;
+}
+function cafe_event_fetch(string $url,?callable $resolve=null,?callable $http=null,?callable $pause=null):array {
+    $resolve??='gethostbynamel';$http??='cafe_event_http';$pause??=fn()=>usleep(1000000);
+    $result=cafe_event_fetch_once($url,$resolve,$http);
+    if(!empty($result['retryable'])){$pause();$result=cafe_event_fetch_once($url,$resolve,$http);}
+    return $result;
 }

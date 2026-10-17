@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/cafe-event-recovery.php';
 
 // Source/series tracking is independent of a dated public listing. Read-only pages
 // tolerate a release whose explicit CLI migration has not yet been applied.
@@ -40,6 +41,7 @@ function cafe_registry_schema():void {
         checked_on TEXT NOT NULL REFERENCES cafe_event_source_runs(checked_on), url TEXT NOT NULL,
         result TEXT NOT NULL, http_status INTEGER, fingerprint TEXT, PRIMARY KEY(checked_on,url)
     );");
+    cafe_event_recovery_schema();
 }
 function cafe_registry_today():string {return (new DateTimeImmutable('today',new DateTimeZone('Asia/Tokyo')))->format('Y-m-d');}
 function cafe_registry_id(mixed $id):string {
@@ -70,12 +72,19 @@ function cafe_registry_export():array {
     $series=query('SELECT * FROM cafe_event_series ORDER BY next_check_on,prefecture,title,id')->fetchAll();
     $health=[];
     foreach(query('SELECT c.* FROM cafe_event_source_checks c JOIN (SELECT url,max(checked_on) AS day FROM cafe_event_source_checks GROUP BY url) latest ON latest.url=c.url AND latest.day=c.checked_on')->fetchAll() as $check)$health[$check['url']]=$check;
+    if(cafe_event_recovery_ready())foreach(query('SELECT * FROM cafe_event_source_state')->fetchAll() as $state){
+        $health[$state['url']]=array_replace($state,['checked_on'=>substr($state['last_attempt_at'],0,10)]);
+    }
     $changes=array_column(query("SELECT c.url,max(r.finished_at) AS changed_at FROM cafe_event_source_checks c JOIN cafe_event_source_runs r ON r.checked_on=c.checked_on WHERE c.result='changed' GROUP BY c.url")->fetchAll(),'changed_at','url');
+    if(cafe_event_recovery_ready())foreach(query('SELECT url,changed_at FROM cafe_event_source_state WHERE changed_at IS NOT NULL')->fetchAll() as $c)if(strtotime($c['changed_at'])>strtotime($changes[$c['url']]??''))$changes[$c['url']]=$c['changed_at'];
     $verified=array_column(query("SELECT c.series_id,max(r.applied_at) AS verified_at FROM cafe_event_research_checks c JOIN cafe_event_curation_runs r ON r.batch=c.batch WHERE c.result IN ('updated','no_change') GROUP BY c.series_id")->fetchAll(),'verified_at','series_id');
     foreach($series as &$s){
         $s['source_urls']=json_decode($s['source_urls'],true,512,JSON_THROW_ON_ERROR);
-        $s['source_health']=array_values(array_map(fn($url)=>array_replace($health[$url]??['url'=>$url,'checked_on'=>null,'result'=>'not_checked'],['pending_change_at'=>$changes[$url]??null,'needs_review'=>isset($changes[$url])&&($changes[$url]>($verified[$s['id']]??''))]), $s['source_urls']));
+        $s['source_health']=array_values(array_map(fn($url)=>array_replace($health[$url]??['url'=>$url,'checked_on'=>null,'result'=>'not_checked'],['pending_change_at'=>$changes[$url]??null,'needs_review'=>isset($changes[$url])&&(strtotime($changes[$url])>strtotime($verified[$s['id']]??''))]), $s['source_urls']));
         $s['occurrences']=query("SELECT o.*,r.name,r.slug,r.kind,r.publication FROM cafe_event_occurrences o JOIN records r ON r.id=o.record_id WHERE series_id=? ORDER BY event_date DESC,record_id",[$s['id']])->fetchAll();
+        if(cafe_event_recovery_ready())foreach($s['occurrences'] as &$o){
+            $o['source_review']=query('SELECT * FROM cafe_event_source_reviews WHERE record_id=?',[$o['record_id']])->fetch()?:null;
+        }unset($o);
         $s['annual_review_due']=$s['annual_review_due_on']<=cafe_registry_today();
     }unset($s);
     $coverage=[];foreach(explode(' ',JP_PREFECTURES) as $pref)$coverage[$pref]=0;
