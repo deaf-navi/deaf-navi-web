@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { normalizeTitleKey } from '../src/lib/text.mjs';
+import { EXPANDED_DIRECT_FEEDS } from '../config/sources.domestic.mjs';
 import {
   buildArticle,
   classifyCategory,
@@ -18,6 +19,37 @@ import {
 } from '../src/lib/curation.mjs';
 
 /* ---------- カテゴリ分類（判定順が仕様） ---------- */
+
+test('recall: hearing access terms survive both relevance and score gates', () => {
+  const titles = [
+    'ミュージカル「ジャック・ザ・リッパー」鑑賞サポート実施決定！ 字幕用スマートグラス',
+    '演劇界、バリアフリーへ試行錯誤 字幕タブレット、車いす区画増も',
+    '筆談カフェで楽しむ音声を使わない会話',
+    '耳マークグッズ販売終了のお知らせ',
+    '聾者と音楽のつながり',
+    'ヒアリングループの体験と文字通訳の案内',
+  ];
+  for (const [i, title] of titles.entries()) {
+    const article = buildArticle({ id: `recall-${i}`, url: `https://example.org/${i}`, title, summary: '', sourceName: '主催者', sourceUrl: 'https://example.org/', publishedAt: '2026-10-18T00:00:00Z' });
+    assert.equal(curateArticles([article], {}, Date.parse('2026-10-18T03:00:00Z')).articles.length, 1, title);
+  }
+});
+
+test('recall: vetted hearing-only feeds retain useful neutral titles without opening generic official feeds', () => {
+  const feed = EXPANDED_DIRECT_FEEDS.find(f => f.sourceName === '電話リレーサービス');
+  const entry = { id: 'relay-maintenance', url: 'https://www.nftrs.or.jp/news/maintenance', title: '通信事業者の設備メンテナンスのお知らせ (2026年10月21日(水)22:00～24:00)', summary: '', sourceName: feed.sourceName, sourceUrl: feed.sourceUrl, publishedAt: '2026-10-18T00:00:00Z' };
+  const now = Date.parse('2026-10-18T03:00:00Z');
+  assert.equal(curateArticles([buildArticle(entry, feed)], {}, now).articles.length, 1);
+  const generic = buildArticle({ ...entry, sourceName: '一般公式サイト', sourceUrl: 'https://example.org/' });
+  assert.equal(curateArticles([generic], {}, now).articles.length, 0);
+});
+
+test('recall: generic subtitles, cafes and visual-only support remain excluded', () => {
+  for (const title of ['外国語字幕で英語を学ぶ', '駅前カフェの新メニュー', '音声ガイド付き演劇の鑑賞サポート', 'デフレ対策を発表']) {
+    const entry = buildArticle({ id: title, url: 'https://example.org/', title, summary: '', sourceName: '一般ニュース', sourceUrl: 'https://example.org/', publishedAt: '2026-10-18T00:00:00Z' });
+    assert.equal(curateArticles([entry], {}, Date.parse('2026-10-18T03:00:00Z')).articles.length, 0, title);
+  }
+});
 
 test('classifyCategory: relay が最優先', () => {
   assert.equal(classifyCategory('電話リレーサービスの防災訓練', ''), 'relay');

@@ -41,7 +41,7 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'publication-quality-v7';
+export const QUALITY_VERSION = 'publication-quality-v8';
 
 /* ---------- 分類 ---------- */
 
