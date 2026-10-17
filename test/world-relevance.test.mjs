@@ -34,3 +34,26 @@ test('Spanish consumer headsets do not become hearing-aid news',()=>{
  assert.equal(isHardNoiseWorldText('Audífonos Bluetooth para personas con pérdida de audición'),false);
  assert.equal(isHardNoiseWorldText('Razer desarrolla headsets accesibles para jugadores sordos'),false);
 });
+
+test('consumer audio and subtitle keyword collisions are excluded without losing access reporting', () => {
+  for (const title of [
+    'HONOR lanza en Perú nueva tablet, smartwatch y audífonos: características',
+    'Lo último de Soundcore en Chile son unos audífonos con récord Guinness que prometen la llamada “más clara del mundo”',
+    'Soundcore: qué ofrecen sus nuevos audífonos premium',
+    'Soundcore Sport X20: ¿Valen la pena estos audífonos deportivos?',
+    'Tiendas D1 suma a su catálogo unos audífonos que traducen idiomas en tiempo real por $49.900',
+    'Amazon está rematando la versión mejorada de los audífonos Soundcore ideales para el transporte público: Anker P31i',
+    'AP minister calls for mention of shooting locations in movie subtitles',
+    'Plagiarised videos reposted with false subtitles to stoke anti-Japan sentiment in China',
+    'Viral clip with fake subtitles falsely claims China’s Xi pledged 2.3 million jobs to SA amid US row',
+  ]) assert.equal(isHardNoiseWorldText(title), true, title);
+  for (const title of [
+    'Soundcore desarrolla audífonos para personas con pérdida auditiva',
+    'Audífonos con subtítulos en directo para personas sordas',
+    'Audífonos Bluetooth',
+    'False subtitles affect deaf viewers: accessibility groups seek improvements',
+    'Filming locations introduce closed captions and sign language tours',
+    'ASL and Libras interpretation makes theatre accessible',
+    'New subtitle technology helps everyone follow dialogue',
+  ]) assert.equal(isHardNoiseWorldText(title), false, title);
+});

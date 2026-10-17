@@ -2,7 +2,7 @@
   "generatedAt": "2026-10-17T12:57:07.221Z",
   "variant": "prod",
   "profile": "expanded",
-  "count": 5000,
+  "count": 4998,
   "source": {
     "currentOverflowCount": 511,
     "previousOldCount": 5000,
@@ -3041,18 +3041,6 @@
       },
       "sourceTier": "news",
       "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/548",
-      "title": "【視覚部門】サピエ図書館メンテナンスについて",
-      "summary": "2026年度は、サピエ図書館のメンテナンスが2回行われる予定です。ご不便をおかけいたしますが、ご理解のほどよろしくお願いします。なお、期間中も、国立国会図書館の障害者向けサービス「みなサーチ」は通常通り利用できます。 ・ […]",
-      "sourceName": "鹿児島県視聴覚障害者情報センター",
-      "sourceUrl": "https://shichocenter.kagoshima.kagoshima.jp/",
-      "publishedAt": "2026-09-14T05:49:01.000Z",
-      "sourceType": "rss",
-      "category": "general",
-      "sourceTier": "official",
-      "discoveryMethod": "direct-feed"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE8tVS1EQk5LWkR3VU9ybE9oRFU1QldFQmNiQkN3RkxnUXZoVk1CQnBsYVFVdnVOUHJCQjdxaTBEQmx5QUZmeFROYTZkT082WU0?oc=5",
@@ -21386,18 +21374,6 @@
       "category": "general",
       "sourceTier": "official",
       "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/412",
-      "title": "【視覚部門】音訳奉仕員養成講習会について",
-      "summary": "▼【視覚部門】音訳奉仕員の講座について",
-      "sourceName": "鹿児島県視聴覚障害者情報センター",
-      "sourceUrl": "https://shichocenter.kagoshima.kagoshima.jp/",
-      "publishedAt": "2026-06-24T05:14:49.000Z",
-      "sourceType": "rss",
-      "category": "event",
-      "sourceTier": "official",
-      "discoveryMethod": "direct-feed"
     },
     {
       "id": "https://hyogocenter.jp/gyouji/kennai/?p=8229.html",
@@ -63431,5 +63407,21 @@
       "category": "general",
       "sourceType": "rss"
     }
-  ]
+  ],
+  "publicationReview": {
+    "version": "publication-quality-v7",
+    "inputGeneratedAt": "2026-10-17T12:57:07.221Z",
+    "removed": [
+      {
+        "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/548",
+        "title": "【視覚部門】サピエ図書館メンテナンスについて",
+        "reason": "unrelated-visual-section"
+      },
+      {
+        "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/412",
+        "title": "【視覚部門】音訳奉仕員養成講習会について",
+        "reason": "unrelated-visual-section"
+      }
+    ]
+  }
 }

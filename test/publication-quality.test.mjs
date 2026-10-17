@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { prepareDomesticPublication, prepareWorldPublication } from '../src/lib/publication-quality.mjs';
-import { publicationExclusionReason, detectRegion, isNearDuplicate } from '../src/lib/curation.mjs';
+import { prepareDomesticPublication, prepareDomesticArchivePublication, prepareWorldPublication } from '../src/lib/publication-quality.mjs';
+import { publicationExclusionReason, detectRegion, isNearDuplicate, mergeOldArticles } from '../src/lib/curation.mjs';
 import { cleanArticleTitle, cleanSummaryText, normalizeTitleKey } from '../src/lib/text.mjs';
 import { selectEditorialNotes } from '../src/lib/editorial.mjs';
 import { hasMistranslatedLibras, createTranslationCache } from '../src/lib/world-translation.mjs';
@@ -21,7 +21,8 @@ test('news context distinguishes reports without using old dates or report topic
 
 test('explicit unrelated notices do not inherit a community feed exemption', () => {
   const trusted={_passThrough:true,_feedUrl:'https://example.org/feed',_sourceTier:'official'};
-  assert.equal(publicationExclusionReason({...trusted,title:'【視覚部門】情報センターだより11月号',summary:'視覚部門のお知らせ'}),'unrelated-visual-section');
+  assert.equal(publicationExclusionReason({...trusted,title:'【視覚部門】音訳奉仕員養成講習会について',summary:'音訳の講習会'}),'unrelated-visual-section');
+  assert.equal(publicationExclusionReason({...trusted,title:'【視覚部門】情報センターだより10月号',summary:'視覚部門のお知らせ'}),null);
   assert.equal(publicationExclusionReason({...trusted,title:'【視覚部門】盲ろう者の情報保障を学ぶ',summary:''}),null);
   assert.equal(publicationExclusionReason({title:'妻が親族チャットにボーナス自慢、義母から「補聴器代出せ」と要求',summary:''}),'incidental-hearing-keyword');
   for(const title of ['補聴器購入費助成制度の実現を','難聴の当事者が家族との暮らしを語る','【視覚部門】手話通訳付き交流会'])assert.equal(publicationExclusionReason({...trusted,title,summary:''}),null,title);
@@ -87,6 +88,41 @@ test('World distinguishes entertainment headphones from Bluetooth hearing aids',
   assert.equal(isHardNoiseWorldText('Audífonos para gaming con cancelación de ruido'), true);
   assert.equal(isHardNoiseWorldText('Audífonos Bluetooth para personas con pérdida auditiva'), false);
   assert.equal(isHardNoiseWorldText('Audífonos Bluetooth'), false);
+});
+
+test('poster acknowledgements do not inherit relevance from the thanked association', () => {
+  const title = '八千代市聴覚障害者協会 様 ポスター報告 by 総勢500人の出演者が集うハワイアンショーを大成功させたい';
+  assert.equal(publicationExclusionReason({ title, summary: title }), 'incidental-organization-mention');
+  assert.equal(publicationExclusionReason({ title, summary: '全公演に手話通訳と字幕を提供します。' }), null);
+  assert.equal(publicationExclusionReason({ title: '市民ホール 様 ポスター報告 by ろう者の手話劇公演を成功させたい' }), null);
+  const saved = { generatedAt: '2026-10-18T00:00:00Z', count: 1, articles: [{ id: 'poster', title, summary: '' }] };
+  assert.equal(prepareDomesticPublication(saved).count, 0);
+});
+
+test('archive removes explicit mismatches without treating missing keywords as proof or rewriting history', () => {
+  const articles = [
+    { id: 'visual', title: '【視覚部門】サピエ図書館メンテナンスについて', summary: '' },
+    { id: 'access', title: '【視覚部門】盲ろう者向け手話講座', summary: '' },
+    { id: 'neutral', title: '社会生活教室', summary: '', publishedAt: '2026-07-01' },
+  ];
+  const saved = { generatedAt: '2026-10-18T00:00:00Z', count: 3, articles };
+  const after = prepareDomesticArchivePublication(saved);
+  assert.equal(after.count, 2);
+  assert.deepEqual(after.articles, articles.slice(1));
+  assert.equal(after.generatedAt, saved.generatedAt);
+  assert.equal(prepareDomesticArchivePublication(after), after);
+  assert.deepEqual(new Set(mergeOldArticles([], articles).map(a => a.id)), new Set(['access', 'neutral']));
+});
+
+test('World cached unrelated articles cannot reappear on rebuild; original access reporting stays', () => {
+  const saved = { generatedAt: '2026-10-18T00:00:00Z', count: 2, articles: [
+    { id: 'audio', originalTitle: 'Soundcore: qué ofrecen sus nuevos audífonos premium', title: '新しい補聴器', summary: '' },
+    { id: 'aid', originalTitle: 'Audífonos para personas sordas', title: 'ろう者向け補聴器', summary: '' },
+  ] };
+  const after = prepareWorldPublication(saved);
+  assert.deepEqual(after.articles, saved.articles.slice(1));
+  assert.equal(after.generatedAt, saved.generatedAt);
+  assert.equal(prepareWorldPublication(after), after);
 });
 
 test('Libras mistranslations are not reused in translation caches or published snapshots', () => {

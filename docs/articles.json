@@ -2,7 +2,7 @@
   "generatedAt": "2026-10-17T12:57:07.221Z",
   "variant": "prod",
   "profile": "expanded",
-  "count": 469,
+  "count": 468,
   "quality": {
     "version": "publication-quality-v6",
     "rawCount": 3364,
@@ -7801,23 +7801,6 @@
       "prefecture": "宮崎県"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBkdF8yVG5USlVmb1M0NHltYTdsaTRnRVlkTGw0UmduN2JXSUE1TnhuVmRVNnFIZ1luT3d2dUN1SkZIVDFSdnZHT2ZWTkxSZGt2bGJnVmdKSUlSVzRLR2hWYkQxZDVoWnl0UWNN?oc=5",
-      "title": "八千代市聴覚障害者協会 様 ポスター報告 by 総勢500人の出演者が集うハワイアンショー『やちよフラフェスタ』を大成功させたい",
-      "summary": "",
-      "sourceName": "CAMPFIRE (キャンプファイヤー)",
-      "sourceUrl": "https://camp-fire.jp",
-      "publishedAt": "2026-09-24T07:00:00.000Z",
-      "sourceType": "rss",
-      "category": "local",
-      "thumbnail": {
-        "url": "https://static.camp-fire.jp/uploads/project_activity/image/895428/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2026-09-25_15.57.39.png?auto=format&fit=fill&ref=projects_activities_project_activity&w=1200&h=675&fill=blur",
-        "source": "og:image",
-        "pageUrl": "https://camp-fire.jp/projects/972709/view/activities/895428"
-      },
-      "sourceTier": "broad",
-      "discoveryMethod": "google-news"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5wSWE1Q1Fjb3JmM3pwTUxRdS02angtRGZSeVhydlZvZVdpRV96cXNNS0VOTlNDNVl1aF91dGtDUkltdi1IMk05UmhSS0NjblhTaTFMQUZNb0hBXzFfWnJhZ3VtZUFoNHQ1by1fcTcwUVN3QQ?oc=5",
       "title": "９月２３日は「手話の日」、体験ブースでろう者や手話通訳士らと交流…鹿児島市の商業施設でイベント",
       "summary": "",
@@ -9554,8 +9537,14 @@
     }
   ],
   "publicationReview": {
-    "version": "publication-quality-v6",
+    "version": "publication-quality-v7",
     "inputGeneratedAt": "2026-10-17T12:57:07.221Z",
-    "removed": []
+    "removed": [
+      {
+        "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBkdF8yVG5USlVmb1M0NHltYTdsaTRnRVlkTGw0UmduN2JXSUE1TnhuVmRVNnFIZ1luT3d2dUN1SkZIVDFSdnZHT2ZWTkxSZGt2bGJnVmdKSUlSVzRLR2hWYkQxZDVoWnl0UWNN?oc=5",
+        "title": "八千代市聴覚障害者協会 様 ポスター報告 by 総勢500人の出演者が集うハワイアンショー『やちよフラフェスタ』を大成功させたい",
+        "reason": "incidental-organization-mention"
+      }
+    ]
   }
 }
