@@ -85,3 +85,9 @@ php_fastcgi unix//run/php/deafnavi.sock {
 - rendeaf: 23:35:55 UTC。title/OGは `Rendeaf Coffee | Deaf Navi`。twitter:title/cardなし、self-canonical。H2は営業時間・ご利用案内、手話でのコミュニケーション、アクセス、掲載情報について。現住所は東京都文京区本郷4-3-11 ヴィサーレ本郷1階で旧住所は現会場としていない。確認日は2026-09-07。LDはCafeOrCoffeeShopとBreadcrumbList、文京区/東京都/JP。
 - 両店に「この店舗の開催履歴」H2はない。現行ソースのcountry/kind/groupガード、storeのH2、構造化データ分岐との照合ではSEO適用条件と整合する。ただし、このDOMから実DBのkind・掲載区分や実際に稼働するPHP版は確定できない。条件を緩めたり同じtitle修正を再公開したりする根拠にはしない。
 - 今日の子HTTPもCONNECT403。SSH設定・鍵・agent・deploy host/userは未提供。PR30スクリプトは実行せず、サーバー設定・診断用workflowの追加も行っていない。次の必要証拠は既存正規の読取手段による識別header、実行PHPファイルのパス/ハッシュ、実際のFastCGI設定、該当2件の公開分類条件。読取接続の有無と、本番障害の有無を混同しない。
+
+## 2026-10-17の最新main照合
+
+最新main257a3cffa2ec00152c0d91d89ceb77bf7f5a906eでは、他作業でviews/cafe-seo等に地域ページや共通表示の更新が入っている。detail→cafe_record_seo→page第7引数→documentTitle/OGという呼出と、国/kind/掲載区分の適用条件は残っている。以前の「PHP変更なし」という日付付き履歴を現在まで延長しない。
+
+今日の識別付きHTTPはCONNECT403、Webも取得不可。SSH設定・鍵・agent・host/userなし。今日の本番title/OG/headerは未取得であり、10/16の旧表示を今日観測したとは扱わない。実行PHP/DB条件を確定できないため、同じtitle修正を重ねず、PR30スクリプト/Caddy変更も実施しない。独立したSEO-06の地域リンクを正規公開後に確認するとき、既存2店舗のtitle/OGも親の正式Chromeで再読する。

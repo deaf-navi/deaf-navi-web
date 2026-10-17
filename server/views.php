@@ -139,7 +139,7 @@ function detail(string $slug,bool $event): string {
     $body=tabs($event,$overseas,false,$singleEvent).'<p><a href="'.($singleEvent?CAFE_EVENTS_PATH:($overseas?'/connect/sign-cafe/overseas/':'/connect/sign-cafe/')).'">← 一覧へ</a></p>';$schema=[];
     $store=$event?expanded(record($p['store_id'])):$p;
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
-    $body.=$event?event_card($p,$store).visitor_event_details($p):visitor_profile($p);
+    $body.=$event?event_card($p,$store).visitor_event_details($p):cafe_record_area_link($p).visitor_profile($p);
     if($event) $body.='<h2>開催店舗</h2><p>'.e($store['name'].' / '.$store['address']).'</p>'.disclaimer();
     if(!$event && $p['kind']==='store'&&$p['country_code']==='JP') {
         $body.='<h2>この店舗の開催履歴</h2>';
