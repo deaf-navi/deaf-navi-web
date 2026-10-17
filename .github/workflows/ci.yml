@@ -34,7 +34,10 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y php-cli php-sqlite3 php-mbstring
 
       - name: Cafe schema, migration and directory regression
-        run: npm run test:cafes
+        run: |
+          npm run test:cafes
+          php test/cafe-event-recovery.php
+          node test/cafe-event-recovery.integration.mjs
 
       - name: Install OtoMado dependencies
         run: npm ci --prefix tools/otomado

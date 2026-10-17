@@ -120,6 +120,7 @@ function cafe_table(array $list): string {
 function event_state(array $p): string {
     $status=$p['status'];
     if(in_array($status,['scheduled','ongoing'],true) && !empty($p['event_date']) && $p['event_date']<(new DateTimeImmutable('now',new DateTimeZone($p['timezone']?:'Asia/Tokyo')))->format('Y-m-d')) return 'ended';
+    if(in_array($status,['scheduled','ongoing'],true)&&cafe_event_freshness($p)['status']==='review')return 'date_unknown';
     return $status;
 }
 function event_card(array $p,array $store): string {
@@ -139,6 +140,7 @@ function detail(string $slug,bool $event): string {
     $body=tabs($event,$overseas,false,$singleEvent).'<p><a href="'.($singleEvent?CAFE_EVENTS_PATH:($overseas?'/connect/sign-cafe/overseas/':'/connect/sign-cafe/')).'">← 一覧へ</a></p>';$schema=[];
     $store=$event?expanded(record($p['store_id'])):$p;
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
+    if($singleEvent)$body.=cafe_event_source_notice($p);
     $body.=$event?event_card($p,$store).visitor_event_details($p):visitor_profile($p);
     if($event) $body.='<h2>開催店舗</h2><p>'.e($store['name'].' / '.$store['address']).'</p>'.disclaimer();
     if(!$event && $p['kind']==='store'&&$p['country_code']==='JP') {
@@ -152,6 +154,7 @@ function detail(string $slug,bool $event): string {
     }
     $body.='<p><a href="'.e(cafe_correction_url($p)).'">この情報の修正を知らせる</a></p>';
     $seo=cafe_record_seo($p);
+    if($singleEvent&&cafe_event_period($p)==='unconfirmed'){$schema=[];$seo=array_replace($seo?:[],['robots'=>'noindex,follow']);}
     // Public response provenance only; never expose record/admin fields.
     header('X-DeafNavi-Cafe-SEO: locality-20261012-2; mode='.($seo?'applied':'default'));
     return page($p['name'],$body,record_path($p),$p['description']??'',$schema,false,$seo);

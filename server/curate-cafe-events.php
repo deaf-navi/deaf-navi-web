@@ -14,7 +14,7 @@ try {
     if(($m['version']??0)!==1)fail('Unsupported curation manifest');
     $batch=cafe_registry_id($m['batch']??null);$day=date_value(input($m,'checked_on',10));
     if(!$day||$day>cafe_registry_today())fail('Invalid research date');
-    foreach(['series'=>200,'checks'=>200,'upserts'=>50,'links'=>200] as $key=>$max){$m[$key]??=[];if(!is_array($m[$key])||!array_is_list($m[$key])||count($m[$key])>$max)fail('Invalid batch list');}
+    foreach(['series'=>200,'checks'=>200,'upserts'=>50,'links'=>200,'source_reviews'=>100] as $key=>$max){$m[$key]??=[];if(!is_array($m[$key])||!array_is_list($m[$key])||count($m[$key])>$max)fail('Invalid batch list');}
     $discovery=[];foreach(['regions'=>10,'prefectures'=>47,'queries'=>60] as $key=>$max){$values=$m['discovery'][$key]??[];if(!is_array($values)||!array_is_list($values)||count($values)>$max)fail('Invalid discovery coverage');$discovery[$key]=[];foreach($values as $value)$discovery[$key][]=input(['value'=>$value],'value',600);}
     foreach($discovery['prefectures'] as $pref)if(!in_array($pref,explode(' ',JP_PREFECTURES),true))fail('Invalid discovery prefecture');
     $discovery['notes']=input($m['discovery']??[],'notes',2000);
@@ -89,9 +89,31 @@ try {
             foreach($oldLinks as $o)if($o['series_id']===$sid&&$o['occurrence_key']===$key&&$o['record_id']!==$rid)fail('Duplicate dated occurrence');
             $preparedLinks[$rid]=['series_id'=>$sid,'occurrence_key'=>$key,'event_date'=>$date?:null];
         }
-        $registrySnapshot=[];foreach(['cafe_event_research_checks','cafe_event_curation_runs','cafe_event_source_checks','cafe_event_source_runs'] as $t)$registrySnapshot[$t]=query('SELECT * FROM '.$t.' ORDER BY 1,2')->fetchAll();
-        $plan=hash('sha256',json([$hash,$before,$protected,$oldSeries,$oldLinks,$registrySnapshot,$preparedSeries,$checks,$upserts,$preparedLinks]));
-        $summary=['series_registered'=>count($preparedSeries),'researched'=>count($checks),'annual_reviews'=>count(array_filter($checks,fn($c)=>$c['annual_review'])),'added'=>count(array_filter($upserts,fn($u)=>!$u['revision'])),'updated'=>count(array_filter($upserts,fn($u)=>(bool)$u['revision'])),'occurrences_linked'=>count($preparedLinks),'records'=>$summaryRecords,'discovery'=>$discovery];
+        $sourceReviews=[];
+        foreach($m['source_reviews'] as $item){
+            $rid=cafe_registry_id($item['record_id']??null);
+            $r=$records[$rid]??null;$o=$preparedLinks[$rid]??$occurrences[$rid]??null;
+            if(!$r||!$o||isset($sourceReviews[$rid]))fail('Unknown or repeated source review');
+            $p=expanded($r);$sid=$o['series_id'];$c=$checks[$sid]??null;
+            if(!$c||!in_array($c['result'],['updated','no_change'],true))fail('Verified research is required for a source review');
+            $revision=(array_column($before,'revision','id')[$rid]??0);
+            if(($item['expected_revision']??null)!==$revision)fail('Source review revision conflict');
+            $url=safe_url(input($item,'url',2000));
+            $registered=$series[$sid]['source_urls'];if(is_string($registered))$registered=json_decode($registered,true);
+            if(!in_array($url,$p['verification_sources'],true)||!in_array($url,$c['evidence_urls'],true)||!in_array($url,$registered,true))fail('Source review must match event, research and registry URLs');
+            $reviewMode=choice(input($item,'mode',10),['html'=>1,'visual'=>1]);
+            $stamp=input($item,'reviewed_at',40);$at=strtotime($stamp);
+            if(!$at||$at>time()||time()-$at>=CAFE_EVENT_FRESH_SECONDS||(new DateTimeImmutable('@'.$at))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y-m-d')!==$day)fail('Source review must be recent and match the research day');
+            $fingerprint=input($item,'fingerprint',64)?:null;
+            if($reviewMode==='html'){
+                $state=query('SELECT * FROM cafe_event_source_state WHERE url=?',[$url])->fetch();
+                if(!$state||$state['content_mode']!=='html'||!in_array($state['result'],['baseline','unchanged','changed'],true)||!preg_match('/^[a-f0-9]{64}$/D',$fingerprint??'')||!hash_equals($state['fingerprint']??'',$fingerprint)||strtotime($state['last_attempt_at'])>$at||$at-strtotime($state['last_attempt_at'])>=CAFE_EVENT_FRESH_SECONDS)fail('HTML review requires the fetched fingerprint actually reviewed');
+            }elseif($fingerprint!==null)fail('Visual reviews cannot approve automatic content renewal');
+            $sourceReviews[$rid]=['record_revision'=>$revision+(isset($upserts[$rid])?1:0),'url'=>$url,'mode'=>$reviewMode,'fingerprint'=>$fingerprint,'reviewed_at'=>gmdate('c',$at)];
+        }
+        $registrySnapshot=[];foreach(['cafe_event_research_checks','cafe_event_curation_runs','cafe_event_source_checks','cafe_event_source_runs','cafe_event_source_state','cafe_event_source_reviews'] as $t)$registrySnapshot[$t]=query('SELECT * FROM '.$t.' ORDER BY 1,2')->fetchAll();
+        $plan=hash('sha256',json([$hash,$before,$protected,$oldSeries,$oldLinks,$registrySnapshot,$preparedSeries,$checks,$upserts,$preparedLinks,$sourceReviews]));
+        $summary=['source_reviews'=>count($sourceReviews),'series_registered'=>count($preparedSeries),'researched'=>count($checks),'annual_reviews'=>count(array_filter($checks,fn($c)=>$c['annual_review'])),'added'=>count(array_filter($upserts,fn($u)=>!$u['revision'])),'updated'=>count(array_filter($upserts,fn($u)=>(bool)$u['revision'])),'occurrences_linked'=>count($preparedLinks),'records'=>$summaryRecords,'discovery'=>$discovery];
         $out=['result'=>'CAFE_CURATION_DRY_RUN_OK','batch'=>$batch,'checked_on'=>$day,'plan_sha256'=>$plan,'changed'=>false,'summary'=>$summary];
         if($mode==='--dry-run'){db()->exec('ROLLBACK');echo json($out)."\n";exit;}
         if(!hash_equals($plan,$approved)||!is_dir($backupDir)||is_link($backupDir))fail('Plan changed or backup directory invalid');
@@ -111,6 +133,7 @@ try {
         }
         foreach(array_unique([...array_keys($preparedSeries),...array_keys($checks)]) as $sid)if(isset(array_column($oldSeries,null,'id')[$sid]))query('UPDATE cafe_event_series SET revision=revision+1 WHERE id=?',[$sid]);
         foreach($preparedLinks as $rid=>$o)query('INSERT INTO cafe_event_occurrences VALUES(?,?,?,?) ON CONFLICT(record_id) DO UPDATE SET occurrence_key=excluded.occurrence_key,event_date=excluded.event_date',[$rid,$o['series_id'],$o['occurrence_key'],$o['event_date']]);
+        foreach($sourceReviews as $rid=>$v)query('INSERT INTO cafe_event_source_reviews VALUES(?,?,?,?,?,?) ON CONFLICT(record_id) DO UPDATE SET record_revision=excluded.record_revision,url=excluded.url,mode=excluded.mode,fingerprint=excluded.fingerprint,reviewed_at=excluded.reviewed_at',[$rid,...array_values($v)]);
         foreach($before as $r)if(!isset($upserts[$r['id']])&&json(record($r['id']))!==json($r))fail('Unrelated listing changed');
         foreach($protected as $table=>$digest)if(!hash_equals($digest,hash('sha256',json(query('SELECT * FROM '.$table.' ORDER BY 1')->fetchAll()))))fail('Protected table changed');
         if((int)query('SELECT count(*) FROM records')->fetchColumn()!==count($before)+$summary['added'])fail('Unexpected record count');

@@ -9,6 +9,7 @@
 - 他アプリの停止済みプロセスは復元しない。PM2 dump全体の復元は禁止。詳細は `CURATION_OPERATIONS.md`。
 
 - 本番の通常集計にCodexの確認アクセスを混ぜない。HTTPクライアントは `User-Agent: Codex-DeafNavi-Verification` または `X-DeafNavi-Client: codex` を必ず付ける。
+- カフェの `deafnavi-cafe-event-sources` cron内の `--recover` も保護対象。通信失敗で確認日時を延長せず、48時間で開催予定から外す。明示的に確認した本文hash・レコードrevisionが一致する場合だけ自動復旧する。SNS・画像・PDFの目視確認は自動更新しない。
 - ブラウザーの本番確認は、最初に開くURLへ `dn_client=codex` を付ける。別URLを直接開くときも付ける。サイト内リンクでは識別を引き継ぐ。
 - UU・集計の合成テストはローカルで実行する。本番へ無印の一般ブラウザーを装ったテスト通信を送らない。
 - 通常表示は一般ブラウザーを対象にし、Codex・AI・bot・自動操作・管理画面・分類不明を除外する。分類不明の過去記録を、証拠なく一般ユーザーへ付け替えたり削除したりしない。
