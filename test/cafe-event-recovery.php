@@ -34,6 +34,8 @@ check(strtotime($long['next_attempt_at'])===$at+21600,'backoff capped at six hou
 $visual=array_replace($review,['mode'=>'visual','fingerprint'=>null]);
 check(cafe_event_source_freshness($p,$visual,$state,$at)['verified_at']===$visual['reviewed_at'],'image fetch does not renew visual review');
 check(cafe_event_source_freshness($p,$visual,$recovered,$at+172800)['status']==='review','visual expiry remains after fetch success');
+check(cafe_event_source_freshness($p,$visual,$denied,$at)['status']==='review','visual source denial fails closed too');
+check(cafe_event_source_freshness($p,$visual,$bad,$at)['status']==='retrying','visual transport failure retains only original visual deadline');
 check(cafe_event_source_freshness(array_replace($p,['revision'=>3]),$review,$state,$at)['reason']==='record_changed','record revisions invalidate source approval');
 check(cafe_event_source_freshness(array_replace($p,['verification_sources'=>['https://example.org/new']]),$review,$state,$at)['status']==='review','source replacement invalidates approval');
 check(cafe_event_source_freshness($p,null,null,strtotime('2026-10-18T00:00:00+09:00'))['status']==='review','legacy dates conservatively expire at midnight plus 48 hours');

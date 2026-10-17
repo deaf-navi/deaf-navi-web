@@ -46,8 +46,9 @@ function cafe_event_source_freshness(array $p,?array $review,?array $state,int $
         $verified=strtotime($review['reviewed_at'])?:0;
         if($state && (strtotime($state['last_attempt_at'])?:0)>=$verified){
             if(!empty($state['changed_at'])&&(strtotime($state['changed_at'])?:0)>$verified)return ['status'=>'review','verified_at'=>gmdate('c',$verified),'reason'=>'content_changed'];
+            if(!empty($state['blocked_at'])&&strtotime($state['blocked_at'])>$verified)return ['status'=>'review','verified_at'=>gmdate('c',$verified),'reason'=>'source_unavailable'];
+            $retrying=!empty($state['next_attempt_at']);
             if($review['mode']==='html'){
-                if(!empty($state['blocked_at'])&&strtotime($state['blocked_at'])>$verified)return ['status'=>'review','verified_at'=>gmdate('c',$verified),'reason'=>'source_unavailable'];
                 if(!empty($state['fingerprint'])&&!hash_equals($review['fingerprint']??'',$state['fingerprint']))return ['status'=>'review','verified_at'=>gmdate('c',$verified),'reason'=>'content_changed'];
                 if(in_array($state['result'],['baseline','unchanged','changed'],true)&&!empty($state['fingerprint'])&&hash_equals($review['fingerprint']??'',$state['fingerprint']))$verified=max($verified,strtotime($state['last_success_at'])?:0);
                 elseif(!empty($state['next_attempt_at'])){
