@@ -2,7 +2,8 @@ name: Recover Event Sources
 
 on:
   schedule:
-    - cron: '25,55 * * * *'
+    # JST 08:40 / 14:40 / 20:40. Normal publication also checks sources 3x/day.
+    - cron: '40 5,11,23 * * *'
   workflow_dispatch:
     inputs:
       recheck:
