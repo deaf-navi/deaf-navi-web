@@ -21,8 +21,8 @@
         "gifu-ibuki-kurayami-2026-12-05"
       ],
       "missing": [],
-      "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
       "queries": [
         "岐阜ろう劇団いぶき 公演 2026",
         "岐阜ろう劇団いぶき 公演 2027"
@@ -35,19 +35,20 @@
       "officialUrls": [],
       "evidenceUrls": [
         "https://zarela2009.wixsite.com/za-rela/next-stage",
-        "https://sapporo-community-plaza.jp/scarts_artculture_detail.php?n=10003391&o=del"
+        "https://sapporo-community-plaza.jp/scarts_artculture_detail.php?n=10003391&o=del",
+        "https://koguyama.jp/yamabiko/yamabiko_event/41933/"
       ],
-      "state": "upcoming_with_pending_review",
-      "notes": "共演主催者の公式告知先を継続確認。砂川10/25を掲載。札幌11/6〜8は午前枠の時刻に食い違いがあり候補で再確認。",
+      "state": "upcoming_verified",
+      "notes": "砂川公演は既存掲載を維持。札幌11月6〜8日は会場公式本文と2026年チラシを実読。7・8日の午前開演は10:30と会場側でも確認できたため掲載対象へ。",
       "eventIds": [
-        "maimu-zarela-sunagawa-2026-10-25"
+        "maimu-zarela-sunagawa-2026-10-25",
+        "maimu-zarela-sapporo-2026-11-06"
       ],
       "missing": [
-        "札幌公演の午前時刻照合",
         "劇団単独の公式告知先"
       ],
-      "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
       "queries": [
         "札幌ろうあ劇団舞夢 公演 2026",
         "札幌ろうあ劇団舞夢 公演 2027"
@@ -69,8 +70,8 @@
       "missing": [
         "整合する次回公演日程"
       ],
-      "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
       "queries": [
         "日本ろう者劇団 公演 2026",
         "日本ろう者劇団 公演 2027"
@@ -87,14 +88,14 @@
         "https://nara-arts.com/event/30094/"
       ],
       "state": "next_unconfirmed",
-      "notes": "連盟の団体紹介と会場の2026年6月出演情報を確認。みん芸の11/9公演は本文で2025年と確認。サイト共通の2026年表示を開催年に転用しない。",
+      "notes": "10月17日に公式みん芸本文を再読し11/9公演は2025年と確認。ページ共通の2026年表示を開催年に転用しない。今後半年の新しい告知は未確認。",
       "eventIds": [],
       "missing": [
         "次回告知",
         "劇団の現在の公式告知先"
       ],
-      "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
       "queries": [
         "奈良ろう者劇団大仏も笑う会 公演 2026",
         "奈良ろう者劇団大仏も笑う会 公演 2027"
@@ -109,14 +110,14 @@
         "https://www.aubade.or.jp/new_event/mid_hall/%E7%AC%AC36%E5%9B%9E%E5%85%A8%E5%9B%BD%E3%82%8D%E3%81%86%E3%81%82%E8%80%85%E6%BC%94%E5%8A%87%E7%A5%AD%E5%85%B8/"
       ],
       "state": "next_unconfirmed",
-      "notes": "会場の2026年6月演劇祭典出演を確認。過去回から次回開催を推測しない。京都の協会・主催者・会場も探索する。",
+      "notes": "10月17日に新しい告知を探索し、会場公式の6月6日演劇祭典の本文を再確認。次回公演は未確認、過去回から会場・時刻を流用しない。",
       "eventIds": [],
       "missing": [
         "次回告知",
         "劇団の現在の公式告知先"
       ],
-      "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
       "queries": [
         "劇団あしたの会 公演 2026",
         "劇団あしたの会 公演 2027"
@@ -133,18 +134,59 @@
         "https://www.kodomogeijutsu.go.jp/r7/dl/universal/program/shiryou/uni7_09.pdf"
       ],
       "state": "unavailable",
-      "notes": "公式サイト候補は文化芸術鑑賞事業資料から発見したが本日取得不可。学校向け実施可能日を一般向け公演と扱わない。公式サイト・現代人形劇センター・実際の会場告知を再確認。",
+      "notes": "10月17日も公式サイトの取得がタイムアウト。新しい公演を検索したが、確認できた会場告知は過去回。次回未発表・取得不可を活動終了と判断せず継続確認。",
       "eventIds": [],
       "missing": [
         "取得可能な現在の公式告知",
         "半年以内の一般参加可能な公演"
       ],
-      "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-19T00:00:00Z",
       "queries": [
         "デフ・パペットシアター・ひとみ 公演 2026",
         "デフ・パペットシアター・ひとみ 公演 2027"
       ]
+    },
+    {
+      "id": "spac",
+      "name": "SPAC-静岡県舞台芸術センター",
+      "prefecture": "静岡県",
+      "officialUrls": [
+        "https://spac.or.jp/26_autumn/nihonjin2026"
+      ],
+      "evidenceUrls": [
+        "https://spac.or.jp/26_autumn/nihonjin2026"
+      ],
+      "state": "upcoming_verified",
+      "notes": "手話劇団ではなく関連公演団体として追跡。日本語上演の鑑賞サポート回を区別し、手話通訳対象席・日本語字幕機は事前予約と明記。",
+      "eventIds": [
+        "spac-nihonjin-sign-2026-12-05"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
+      "queries": []
+    },
+    {
+      "id": "yamabiko-sign-puppet",
+      "name": "やまびこ座・舞夢サポーターズの舞台手話通訳付き人形劇",
+      "prefecture": "北海道",
+      "officialUrls": [
+        "https://koguyama.jp/yamabiko/yamabiko_event/41929/"
+      ],
+      "evidenceUrls": [
+        "https://koguyama.jp/yamabiko/yamabiko_event/41929/"
+      ],
+      "state": "upcoming_verified",
+      "notes": "人形劇団ぐらんぱ・オセロによる人形劇と舞夢サポーターズの舞台手話通訳。手話劇団自体の数には含めず、関連公演の告知先として追跡。",
+      "eventIds": [
+        "yamabiko-sign-puppet-2026-11-01",
+        "yamabiko-sign-puppet-2026-11-03"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
+      "queries": []
     }
   ]
 }

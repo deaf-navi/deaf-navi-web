@@ -25,13 +25,13 @@
       "sourceUrl": "https://ichibakukai.com/",
       "sourceName": "手話サークル千代田一麦会",
       "state": "needs_review",
-      "reason": "公式本文の開催日が「2026年810月28日」となっており月を確定できない。10月21日の申込期限から開催月を推測しない。",
+      "reason": "公式本文の開催日が「2026年810月28日」となっており月を確定できない。10月21日の申込期限から開催月を推測しない。 10月17日も公式本文で同じ不整合を確認。",
       "missing": [
         "曖昧さのない開催日"
       ],
-      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-16T03:18:59.963Z"
+      "checkedAt": "2026-10-17T00:42:48.623Z"
     },
     {
       "sourceUrl": "https://www.city.nagasaki.lg.jp/page/84530.html",
@@ -47,29 +47,27 @@
       "sourceUrl": "https://www.tamasya.or.jp/cgi-bin/adm-bin/news/imgbbs.cgi?no=111",
       "sourceName": "玉城町社会福祉協議会「手話っちカフェ」",
       "state": "separate_cafe_workflow",
-      "reason": "カフェ専用台帳への照合対象。2026-10-16から国内イベントと同じ日次実行に統合。実見済みの10月31日告知はカフェの最新台帳・現在の一次情報を再照合し、未登録の場合だけ専用マニフェストで追加する。国内イベント一覧へは二重登録しない。",
-      "missing": [
-        "既存カフェ掲載との照合"
-      ],
-      "recheckAfter": "2026-10-17T03:10:00.000Z",
+      "reason": "10月17日に公式本文とカフェ本番台帳の既存定期企画を照合。10月31日回は重複登録せず、カフェの同日調査batchに記録。",
+      "missing": [],
+      "recheckAfter": "2026-10-24T00:00:00Z",
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-16T03:18:59.963Z"
+      "checkedAt": "2026-10-17T00:42:48.623Z"
     },
     {
       "sourceUrl": "https://sapporo-community-plaza.jp/scarts_artculture_detail.php?n=10003391&o=del",
       "sourceName": "札幌市民交流プラザ「座・れら×舞夢」情報",
-      "state": "needs_review",
-      "reason": "主催者の次回公演ページとチラシを実見し2026年11月6〜8日・やまびこ座を確認。主催者チラシの7・8日午前枠10:30と市民交流プラザ本文の11:00が異なるため、会場等の最新案内で照合する。中止とは扱わない。",
-      "missing": [
-        "午前公演の開演時刻の食い違い解消"
-      ],
-      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "state": "resolved",
+      "reason": "会場公式の公演本文で11月7・8日午前10:30を確認。会場掲載チラシの2026年11月6〜8日と主催者の既確認告知も一致し、会場公式を根拠に公開対象へ。",
+      "missing": [],
+      "recheckAfter": "2026-10-18T00:00:00Z",
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-16T06:30:15.268Z",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
       "evidenceUrls": [
         "https://zarela2009.wixsite.com/za-rela/next-stage",
-        "https://static.wixstatic.com/media/db547f_3effd84b7c2e40dc8657bc639d0f0264~mv2.jpg/v1/fill/w_600,h_876,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/sapporo-sunagawa-poster(1)_page-0001.jpg"
-      ]
+        "https://static.wixstatic.com/media/db547f_3effd84b7c2e40dc8657bc639d0f0264~mv2.jpg/v1/fill/w_600,h_876,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/sapporo-sunagawa-poster(1)_page-0001.jpg",
+        "https://koguyama.jp/yamabiko/yamabiko_event/41933/"
+      ],
+      "eventId": "maimu-zarela-sapporo-2026-11-06"
     },
     {
       "sourceUrl": "https://www.sapporo-deaf.jp/?p=8406",
@@ -120,70 +118,76 @@
       "sourceUrl": "https://jinnancho.org/guide/reikai/",
       "sourceName": "神奈川県中途失聴・難聴者協会",
       "eventId": "jinnancho-beginner-2026-10-23",
-      "state": "published_ready",
-      "reason": "公式本文・PDFを確認。公開待ち。 PDFの実際の視覚確認から48時間で失効。",
+      "state": "published",
+      "reason": "公式本文・PDFを確認。 PDFの実際の視覚確認から48時間で失効。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T05:50:29.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z",
-      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf"
+      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf",
+      "publicationCheckedAt": "2026-10-17T00:43:36.829Z"
     },
     {
       "sourceUrl": "https://jinnancho.org/guide/reikai/",
       "sourceName": "神奈川県中途失聴・難聴者協会",
       "eventId": "jinnancho-beginner-2026-11-27",
-      "state": "published_ready",
-      "reason": "公式本文・PDFを確認。公開待ち。 PDFの実際の視覚確認から48時間で失効。",
+      "state": "published",
+      "reason": "公式本文・PDFを確認。 PDFの実際の視覚確認から48時間で失効。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T05:50:29.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z",
-      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf"
+      "visualEvidenceUrl": "https://jinnancho.org/wp-content/uploads/2026/09/5fbe604fcfee1a5afd5c8569315deb32.pdf",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://www.kanagawa-wad.jp/center_fes.html",
       "sourceName": "神奈川県聴覚障害者福祉センター",
       "eventId": "kanagawa-center-festival-2026-10-25",
-      "state": "published_ready",
-      "reason": "公式本文・PDFを確認。公開待ち。 PDFの実際の視覚確認から48時間で失効。",
+      "state": "published",
+      "reason": "公式本文・PDFを確認。 PDFの実際の視覚確認から48時間で失効。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T05:50:29.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z",
-      "visualEvidenceUrl": "https://www.kanagawa-wad.jp/asset/00032/info1/2026cf_c4.pdf"
+      "visualEvidenceUrl": "https://www.kanagawa-wad.jp/asset/00032/info1/2026cf_c4.pdf",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://camp-fire.jp/projects/983782/view",
       "sourceName": "中嶋元美（主催者のCAMPFIRE告知）",
       "eventId": "dream-begin-2026-11-01",
-      "state": "published_ready",
-      "reason": "GitHubで本文ハッシュ不一致。公開ブラウザで開催日・会場・料金・一部完売を実際に再確認したためvisualへ。48時間で失効し、次回も実画面を読む。",
+      "state": "published",
+      "reason": "GitHubで本文ハッシュ不一致。公開ブラウザで開催日・会場・料金・一部完売を実際に再確認したためvisualへ。48時間で失効し、次回も実画面を読む。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T06:06:31.000Z",
-      "recheckAfter": "2026-10-16T09:10:00.000Z"
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://www.geigeki.jp/accessibility/support/t415-t415-12/",
       "sourceName": "東京芸術劇場",
       "eventId": "geigeki-recallings-2026-11-01",
-      "state": "published_ready",
-      "reason": "公式本文・PDFを確認。公開待ち。",
+      "state": "published",
+      "reason": "公式本文・PDFを確認。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T05:50:29.000Z",
-      "recheckAfter": "2026-10-16T09:10:00.000Z"
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://www.city.omura.nagasaki.jp/kouhou/event/202608/1121.html",
       "sourceName": "大村市",
       "eventId": "omura-sign-theater-2026-11-21",
-      "state": "published_ready",
-      "reason": "公式本文・PDFを確認。公開待ち。",
+      "state": "published",
+      "reason": "公式本文・PDFを確認。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T05:50:29.000Z",
-      "recheckAfter": "2026-10-16T09:10:00.000Z"
+      "recheckAfter": "2026-10-16T09:10:00.000Z",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://www.tsa-deaf.com/expr-deaf2026",
@@ -223,74 +227,169 @@
     {
       "sourceUrl": "https://www.oioi-sign.com/events_list/",
       "sourceName": "oioi 公式予定表",
-      "state": "transport_recheck",
-      "reason": "GitHub Actionsでは30秒×2回の取得がタイムアウト。手元の通常HTTPSでは本文を再取得できた。承認を迂回せず、次の公開後に状態を確認する。",
+      "state": "recovered",
+      "reason": "2026-10-17の本番スナップショットで該当情報源の照合済み・掲載復旧を確認。再取得の成功だけでは承認せず既存の本文hash照合を維持。",
       "checkedAt": "2026-10-16T06:06:31.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z",
-      "missing": [
-        "GitHub公開後の最新照合結果"
-      ],
-      "discoveredOn": "2026-10-16"
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://fureailand.jp/events/8898",
       "sourceName": "ふれあいランド岩手",
-      "state": "transport_recheck",
-      "reason": "GitHub Actionsでは30秒×2回の取得がタイムアウト。手元の通常HTTPSでは本文を再取得できた。承認を迂回せず、次の公開後に状態を確認する。",
+      "state": "recovered",
+      "reason": "2026-10-17の本番スナップショットで該当情報源の照合済み・掲載復旧を確認。再取得の成功だけでは承認せず既存の本文hash照合を維持。",
       "checkedAt": "2026-10-16T06:06:31.000Z",
       "recheckAfter": "2026-10-16T09:10:00.000Z",
-      "missing": [
-        "GitHub公開後の最新照合結果"
-      ],
-      "discoveredOn": "2026-10-16"
+      "missing": [],
+      "discoveredOn": "2026-10-16",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html",
       "sourceName": "岐阜市生涯学習センター",
       "eventId": "gifu-ibuki-kurayami-2026-12-05",
-      "state": "published_ready",
-      "reason": "公式本文・主催者告知を確認し、掲載データへ登録。公開後は同じIDで確認する。",
+      "state": "published",
+      "reason": "公式本文・主催者告知を確認し、掲載データへ登録。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T06:28:36.044Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z"
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://zarela2009.wixsite.com/za-rela/next-stage",
       "sourceName": "座・れら（主催者）",
       "eventId": "maimu-zarela-sunagawa-2026-10-25",
-      "state": "published_ready",
-      "reason": "公式本文・主催者告知を確認し、掲載データへ登録。公開後は同じIDで確認する。",
+      "state": "published",
+      "reason": "公式本文・主催者告知を確認し、掲載データへ登録。 2026-10-17に本番events.jsonの同じID・照合済み状態を確認。",
       "missing": [],
       "discoveredOn": "2026-10-16",
       "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z"
+      "recheckAfter": "2026-10-17T00:00:00.000Z",
+      "publicationCheckedAt": "2026-10-17T00:43:36.830Z"
     },
     {
       "sourceUrl": "https://ameblo.jp/jtd2009/entry-12948202794.html",
       "sourceName": "日本ろう者劇団「手話狂言初春の会」",
       "state": "needs_review",
-      "reason": "公式本文に2027年1月24日・25日とある一方、令和8年の記述、曜日（水・土）、44回/45回の表記が整合しない。開催年・日付を推測せず未掲載。",
+      "reason": "公式本文に2027年1月24日・25日とある一方、令和8年の記述、曜日（水・土）、44回/45回の表記が整合しない。開催年・日付を推測せず未掲載。 10月17日も公式本文で同じ不整合を確認。",
       "missing": [
         "開催年・日付・回次の整合する最新公式告知"
       ],
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-16T06:30:15.268Z",
-      "recheckAfter": "2026-10-17T00:00:00.000Z"
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z"
+    },
+    {
+      "sourceUrl": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100503",
+      "sourceName": "東京都",
+      "eventId": "tokyo-mimi-college-2026-11-03",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:34:05.051Z",
+      "recheckAfter": "2026-10-18T00:00:00Z"
+    },
+    {
+      "sourceUrl": "https://www.pref.kanagawa.jp/docs/n7j/cnt/f537527/event.html",
+      "sourceName": "神奈川県",
+      "eventId": "kanagawa-shuwa-go-2026-11-03",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
+      "visualEvidenceUrl": "https://www.pref.kanagawa.jp/documents/93455/syuwa-go_260903_ol.pdf"
+    },
+    {
+      "sourceUrl": "https://www.shizudeaf.com/",
+      "sourceName": "公益社団法人 静岡県聴覚障害者協会",
+      "eventId": "shizuoka-deaf-women-2026-11-15",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:34:04.979Z",
+      "recheckAfter": "2026-10-18T00:00:00Z"
+    },
+    {
+      "sourceUrl": "https://www.shizudeaf.com/",
+      "sourceName": "公益社団法人 静岡県聴覚障害者協会",
+      "eventId": "shizuoka-deaf-tennis-2026-10-24",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:34:04.979Z",
+      "recheckAfter": "2026-10-18T00:00:00Z"
+    },
+    {
+      "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
+      "sourceName": "SPAC-静岡県舞台芸術センター",
+      "eventId": "spac-nihonjin-sign-2026-12-05",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:34:04.383Z",
+      "recheckAfter": "2026-10-18T00:00:00Z"
+    },
+    {
+      "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
+      "sourceName": "札幌市こどもの劇場やまびこ座",
+      "eventId": "maimu-zarela-sapporo-2026-11-06",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
+      "visualEvidenceUrl": "https://koguyama.jp/wp/wp-content/uploads/2026/09/SKM_C450i26091913151_page-0001-724x1024.jpg"
+    },
+    {
+      "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41929/",
+      "sourceName": "札幌市こどもの劇場やまびこ座",
+      "eventId": "yamabiko-sign-puppet-2026-11-01",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
+      "visualEvidenceUrl": "https://koguyama.jp/wp/wp-content/uploads/2026/09/SKM_C450i26091913153_page-0001-724x1024.jpg"
+    },
+    {
+      "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41929/",
+      "sourceName": "札幌市こどもの劇場やまびこ座",
+      "eventId": "yamabiko-sign-puppet-2026-11-03",
+      "state": "published_ready",
+      "reason": "2026-10-17に公式本文と必要な画像・PDFを実読して確認。既定の公開処理後に同じIDで照合する。",
+      "missing": [],
+      "discoveredOn": "2026-10-17",
+      "checkedAt": "2026-10-17T00:42:48.623Z",
+      "recheckAfter": "2026-10-18T00:00:00Z",
+      "visualEvidenceUrl": "https://koguyama.jp/wp/wp-content/uploads/2026/09/SKM_C450i26091913153_page-0001-724x1024.jpg"
     }
   ],
   "lastResearch": {
-    "checkedAt": "2026-10-16T05:50:29.000Z",
-    "newDetailedCandidates": 8,
-    "windowEnd": "2026-11-27",
+    "checkedAt": "2026-10-17T00:42:48.623Z",
+    "newDetailedCandidates": 6,
+    "windowEnd": "2026-11-28",
+    "performanceWindowEnd": "2027-04-17",
     "publishedReady": [
-      "jinnancho-beginner-2026-10-23",
-      "jinnancho-beginner-2026-11-27",
-      "kanagawa-center-festival-2026-10-25",
-      "dream-begin-2026-11-01",
-      "geigeki-recallings-2026-11-01",
-      "omura-sign-theater-2026-11-21"
+      "tokyo-mimi-college-2026-11-03",
+      "kanagawa-shuwa-go-2026-11-03",
+      "shizuoka-deaf-women-2026-11-15",
+      "shizuoka-deaf-tennis-2026-10-24",
+      "spac-nihonjin-sign-2026-12-05",
+      "maimu-zarela-sapporo-2026-11-06",
+      "yamabiko-sign-puppet-2026-11-01",
+      "yamabiko-sign-puppet-2026-11-03"
     ],
-    "scope": "手話劇・演劇、東京・神奈川を重点調査し、長崎の公式手話劇告知も確認。継続講座2開催回を個別掲載。カフェDBは変更なし。"
+    "scope": "統合日次。東京・神奈川、全国の主催者・協会・公共施設・公開SNSを探索。新規告知6件を詳査し、日付別の7開催回と既存保留の札幌公演1件を掲載対象へ。札幌の開演時刻を会場公式で解決。日本ろう者劇団と千代田一麦会の日付不整合は保留継続。カフェは別台帳のcafe-daily-20261017-review-01で18企画を調査、7件の内容確認と2件の掲載条件更新。"
   }
 }
