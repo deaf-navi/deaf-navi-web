@@ -9,6 +9,17 @@ function run(args,input){const r=spawnSync('php',args,{cwd:root,env,input,encodi
 const hash=run(['test/directory-hash.php'],randomBytes(20).toString('hex'));run(['server/cli.php','init'],JSON.stringify({username:'seofixture',password_hash:hash}));
 const core=resolve(root,'server/core.php').replaceAll('\\','/');
 run(['-r',`require '${core}';$p=expanded(query("SELECT * FROM records WHERE slug='knot'")->fetch());for($i=0;$i<30;$i++){$p['slug']='seo-fixture-'.$i;$p['name']='SEO fixture '.$i;$p['publication']=$i===29?'private':'public';$p['internal_note']='PRIVATE_SEO_SENTINEL';save_record($p,'cafe');}`]);
+const areaCases=[
+ ['kanagawa','cafe','JP','神奈川県','permanent','public','kanagawa'],
+ ['no-page','cafe','JP','大阪府','permanent','public',null],
+ ['foreign','cafe','US','東京都','permanent','public',null],
+ ['community','cafe','JP','東京都','community_space','public',null],
+ ['organization','cafe','JP','東京都','related_organization','public',null],
+ ['one-off','cafe','JP','東京都','event','public',null],
+ ['store','store','JP','東京都','permanent','public',null],
+ ['private','cafe','JP','東京都','permanent','private',null],
+];
+run(['-r',`require '${core}';$base=expanded(query("SELECT * FROM records WHERE slug='knot'")->fetch());foreach(json_decode(stream_get_contents(STDIN),true) as [$slug,$kind,$country,$pref,$type,$publication]){$p=$base;$p['slug']='seo-area-'.$slug;$p['name']='Area fixture '.$slug;$p['country_code']=$country;$p['prefecture']=$pref;$p['shop_type']=$type;$p['publication']=$publication;save_record($p,$kind);}`],JSON.stringify(areaCases));
 const server=spawn('php',['-S','127.0.0.1:5221','-t','docs','server/local-router.php'],{cwd:root,env,stdio:['ignore','ignore','pipe']});let logs='';server.stderr.on('data',b=>logs+=b);
 const base='http://127.0.0.1:5221',route='/connect/sign-cafe/';let checks=0;const ok=(v,m)=>{assert.ok(v,m);checks++;};
 const request=async p=>{const r=await fetch(base+p,{redirect:'manual'});return {response:r,html:await r.text()};};
@@ -42,7 +53,14 @@ try{
    ok(html.includes('<h1>'+name+'</h1>'),'real cafe visible name retained '+slug+suffix);
    ok(canonical(html)==='https://deafnavi.com'+route+slug+'/','real cafe canonical retained '+slug+suffix);
    ok(result.response.headers.get('x-deafnavi-cafe-seo')==='locality-20261012-2; mode=applied','current code path proven '+slug+suffix);
+   ok(html.includes('href="'+route+'area/tokyo/"')&&html.includes('東京都の手話カフェ・定期交流の場所を見る'),'real cafe links to its existing region '+slug+suffix);
   }
+ }
+ for(const [slug,,,,,publication,area] of areaCases){
+  const result=await request(route+'seo-area-'+slug+'/');
+  ok(result.response.status===(publication==='private'?404:200),'area-link fixture visibility '+slug);
+  if(area)ok(result.html.includes('href="'+route+'area/'+area+'/"')&&result.html.includes('神奈川県の手話カフェ・定期交流の場所を見る'),'same-region link for '+slug);
+  else ok(!result.html.includes('の手話カフェ・定期交流の場所を見る</a>'),'no unrelated region link for '+slug);
  }
  const location=JSON.parse(run(['-r',`require '${core}';$p=expanded(query("SELECT * FROM records WHERE slug='seo-fixture-0'")->fetch());echo json(['prefecture'=>$p['prefecture'],'city'=>$p['city']]);`]));
  ({html}=await request(route+'seo-fixture-0/'));

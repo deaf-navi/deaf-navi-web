@@ -11,6 +11,13 @@ function cafe_record_seo(array $p):array {
     return ['title'=>$p['name'].($location!==''?'（'.$location.'）':'').'｜手話カフェ | Deaf Navi'];
 }
 
+function cafe_record_area_link(array $p):string {
+    if(($p['country_code']??'')!=='JP'||($p['kind']??'')!=='cafe'||cafe_listing_group($p)!=='cafes')return '';
+    $slug=array_search($p['prefecture']??'',CAFE_REGION_PAGES,true);
+    if($slug===false)return '';
+    return '<p><a href="/connect/sign-cafe/area/'.$slug.'/">'.e($p['prefecture']).'の手話カフェ・定期交流の場所を見る</a></p>';
+}
+
 function cafe_listing_title(array $f):string {
     return match($f['listing']??''){'spots'=>'手話交流スポット','organizations'=>'手話の関連団体・講座','all'=>'手話カフェ・交流スポット・関連団体',default=>match($f['shop_type']??''){'community_space'=>'手話交流スポット','related_organization'=>'手話の関連団体・講座',default=>CAFE_DIRECTORY_NAME}};
 }

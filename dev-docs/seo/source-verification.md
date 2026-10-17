@@ -31,3 +31,11 @@
 - [W3C WCAG 2.2・Language of Parts](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html)を10/16 JSTに実読。ページの既定言語と異なる表現を支援技術が判別できることが目的。今回、既存英語UIに対応する操作文言を英語へ揃える範囲を選ぶ。WCAG全項目適合や実機読み上げ音声の検証済みとは主張しない。
 - main `f5bcded2aac6adc05d4ba9c6fb4d6590a06c5152` の `src/world-build.mjs`（blob `67e08906cc1ec37dfcd02be018cb907e7706d873`）とローカル原本が一致。World-Originalはhtml lang=enでRegion/Topicを表示するが、skip-linkと各2個のaria-labelが日本語。`Skip to main content` / `Filter by region` / `Filter by topic`へmodeに応じて切替。World-JPの日本語、記事本文・言語判定、収集・翻訳・PWA・URL・JSは変更しない。
 - 生成物は最新main上の既存Curate & Build Worldが生成し、既存Deploy XServerへ渡す。古いローカル600記事のHTMLやアプリJSONをリモートへ上書きしない。未取得の公開HTML全文を取得済みとは報告しない。
+
+## 2026-10-17 店舗から既存地域ページへの導線
+
+- 正本Libraryを全文512行再読、19840bytes・更新日時2026-10-11T23:01:55.298096Zに変更なし。既存の消費側materializeは許された初回/再試行が失敗済みのため繰り返さず、native read成功とローカル原本未確認を区別。
+- main `257a3cffa2ec00152c0d91d89ceb77bf7f5a906e` の554ファイルをGit blob hashで一致確認して隔離取得。元workspaceと他作業を変更しない。`server/cafe-seo.php` のCAFE_REGION_PAGES、`server/cafe-regions.php` の公開DB分類、`server/index.php` の地域route、`server/views.php` の詳細本文を実読。東京/神奈川の地域ページは既存で、個別詳細には同地域へのリンクがなかった。`SEARCH_PAGES.md`も確認。
+- [Google Search Centralのリンク一次資料](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)を10/17 JSTに実読。href付きa要素と、リンク先が分かる自然な文言を使う根拠。検索順位・流入増加を保証する根拠にはしない。
+- 追加するのは、公開詳細を通った国内kind=cafe/カフェ分類で、prefectureが既存地域mapに一致する場合の1リンク。表示名は「東京都/神奈川県の手話カフェ・定期交流の場所を見る」。名称・所在地・営業時間・確認日・支援条件は変更せず、県名の新しい推測もしない。既存地域ページは全国一覧と同じ公開DBを使う。
+- 子の識別付き本番HTTP/Web/Gitは接続段階で取得失敗。既存SSH設定/鍵/agent/host/userなし。本番の当日title・header・PHP実行版/DB条件は未取得。PR30スクリプト実行、Caddy変更、鍵の抽出、新しい認証は行わない。
