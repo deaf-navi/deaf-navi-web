@@ -35,6 +35,8 @@ export const KEYWORD_GROUPS = [
 
 export const EXPANDED_KEYWORD_GROUPS = [
   ...KEYWORD_GROUPS,
+  { query: '字幕用スマートグラス OR 字幕タブレット OR ヒアリングループ OR 磁気ループ OR 文字通訳', defaultCategory: 'accessibility' },
+  { query: '筆談カフェ OR 耳マーク OR 聾者', defaultCategory: 'general' },
   { query: '盲ろう OR 盲ろう者 OR 盲ろう児', defaultCategory: 'policy' },
   { query: '手話通訳 OR 要約筆記 OR 情報保障', defaultCategory: 'accessibility' },
   { query: '電話リレー OR 遠隔手話 OR 手話リンク', defaultCategory: 'policy' },
@@ -132,7 +134,8 @@ export const EXPANDED_DIRECT_FEEDS = [
     sourceUrl: 'https://www.zennancho.or.jp/',
     defaultCategory: 'policy',
     sourceTier: 'official',
-    minScore: 6,
+    // Hearing-only official feed: neutral service notices are relevant too.
+    minScore: 5,
   },
   {
     url: 'https://www.com-sagano.com/feed/',
@@ -140,7 +143,8 @@ export const EXPANDED_DIRECT_FEEDS = [
     sourceUrl: 'https://www.com-sagano.com/',
     defaultCategory: 'education',
     sourceTier: 'official',
-    minScore: 7,
+    // Hearing-only official feed: neutral service notices are relevant too.
+    minScore: 5,
   },
   {
     url: 'https://www.jyoubun-center.or.jp/feed/',
@@ -148,7 +152,8 @@ export const EXPANDED_DIRECT_FEEDS = [
     sourceUrl: 'https://www.jyoubun-center.or.jp/',
     defaultCategory: 'culture',
     sourceTier: 'official',
-    minScore: 7,
+    // Hearing-only official feed: neutral service notices are relevant too.
+    minScore: 5,
   },
   {
     url: 'https://shigajou.or.jp/feed/',
@@ -156,7 +161,8 @@ export const EXPANDED_DIRECT_FEEDS = [
     sourceUrl: 'https://shigajou.or.jp/',
     defaultCategory: 'local',
     sourceTier: 'official',
-    minScore: 7,
+    // Hearing-only official feed: neutral service notices are relevant too.
+    minScore: 5,
   },
   {
     url: 'https://www.tokyo-shuwacenter.or.jp/feed/',
@@ -164,7 +170,8 @@ export const EXPANDED_DIRECT_FEEDS = [
     sourceUrl: 'https://www.tokyo-shuwacenter.or.jp/',
     defaultCategory: 'local',
     sourceTier: 'official',
-    minScore: 7,
+    // Hearing-only official feed: neutral service notices are relevant too.
+    minScore: 5,
   },
   {
     url: 'https://www.nftrs.or.jp/rss.xml',
@@ -172,7 +179,8 @@ export const EXPANDED_DIRECT_FEEDS = [
     sourceUrl: 'https://www.nftrs.or.jp/',
     defaultCategory: 'policy',
     sourceTier: 'official',
-    minScore: 7,
+    // Hearing-only official feed: neutral service notices are relevant too.
+    minScore: 5,
   },
   {
     url: 'https://www.nf-denwa-relay.jp/rss.xml',
@@ -180,7 +188,8 @@ export const EXPANDED_DIRECT_FEEDS = [
     sourceUrl: 'https://www.nf-denwa-relay.jp/',
     defaultCategory: 'policy',
     sourceTier: 'official',
-    minScore: 7,
+    // Hearing-only official feed: neutral service notices are relevant too.
+    minScore: 5,
   },
   {
     url: 'https://zentsuken.cocolog-nifty.com/blog/rss.xml',
