@@ -55,3 +55,13 @@ SEO-12の技術結果: PR34のCI38825400067はNode108/PHP SEO59/おとまど86/�
 開始時main `257a3cffa2ec00152c0d91d89ceb77bf7f5a906e`、XServer38982751231とPages互換38982751215はsuccess。PR35から82コミットの既存変更を確認し、全554ファイルのGit blob一致で隔離検証する。これらは技術的な確認値で、訪問・検索表示・インデックス数ではない。
 
 10/17の子HTTP/Webは接続エラー。10/16の親によるカフェ旧title観測を10/17の実読と取り違えない。GSC/GA4・検索クリック/表示/CTR/順位・organic session・CWVフィールドは未取得のまま。SEO-06のテスト/公開/実URLの確定結果は当該PRと日次へ記録する。
+
+SEO-06の技術結果: PR68のCI38984967819はNode170/PHP SEO130/おとまど91/国内471/World600/iOSが成功。commit85de4d847fe829baf0572a0d781c1d972137d818のXServer38985111329は10/17 09:11:03 JSTにsuccess。子の公開後Chromium/Web読取は接続エラーで、リンク・当日title/OGの実表示は親の正式Chrome読取待ち。検索効果・実DB条件・稼働PHP版の値を推測で補わない。
+
+## 2026-10-18の観測限界
+
+親から受領した10/17 09:15〜09:16 JSTの独立本番観測では、very-you・rendeaf・tetoteの3件とも地域リンクは確認できなかった。PR68のCI/正規Deploy成功とは分け、SEO-06は未完のまま。title/OG/canonicalと所在地も読取済みとの連絡があるが、その具体文字列はこの子へ未提供であり、所在地付きtitleの反映完了とは断定しない。
+
+今日の子HTTPは3URLともCONNECT403、Personal Contextの過去値取得も利用不可。既存SSH config/identity/agent/host/userはなく、稼働PHP・実DB条件・有効FastCGIを確認できていない。PR30スクリプト/Caddy変更、新しい認証、診断だけの再公開は行わない。
+
+現在の表示用12 CSS/JSと詳細に相当する合成構造で、375/1180/1280pxの地域リンクDOM1件・可視・フォーカス・横はみ出し/JS例外なしを確認。本番HTML/PHP応答・実機読み上げ・検索効果の確認ではない。GSC/GA4・クリック/表示/CTR/順位・organic session・CWVフィールドは未取得のまま。
