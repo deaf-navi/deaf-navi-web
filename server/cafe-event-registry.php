@@ -93,6 +93,26 @@ function cafe_registry_export():array {
     foreach($runs as &$run){$run['discovery']=json_decode($run['discovery'],true);$run['summary']=json_decode($run['summary'],true);}unset($run);
     return ['ready'=>true,'today'=>cafe_registry_today(),'series'=>$series,'runs'=>$runs,'source_runs'=>query('SELECT * FROM cafe_event_source_runs ORDER BY checked_on DESC LIMIT 7')->fetchAll(),'coverage'=>$coverage];
 }
+// Read-only, explicit projection for local comparisons. Never export submissions,
+// private records, contact details or administrative notes to the API runner.
+function cafe_registry_review_export():array {
+    if(!cafe_registry_ready())return ['ready'=>false,'records'=>[]];
+    $records=[];
+    foreach(query("SELECT r.* FROM records r JOIN cafe_event_occurrences o ON o.record_id=r.id WHERE r.publication='public' ORDER BY o.event_date,r.id")->fetchAll() as $row){
+        $p=expanded($row);
+        if(($p['country_code']??'')!=='JP'||cafe_listing_group($p)!=='events')continue;
+        $review=cafe_event_recovery_ready()?query('SELECT * FROM cafe_event_source_reviews WHERE record_id=?',[$p['id']])->fetch():null;
+        $fresh=cafe_event_freshness($p);
+        $records[]=['kind'=>'cafe','recordId'=>$p['id'],'revision'=>(int)$row['revision'],'publication'=>'public',
+            'title'=>$p['name'],'sourceUrl'=>$review['url']??null,'sourceMode'=>$review['mode']??null,
+            'sourceRecordRevision'=>isset($review['record_revision'])?(int)$review['record_revision']:null,
+            'verification'=>$fresh['status'],'verifiedAt'=>$fresh['verified_at']??null,
+            'baseline'=>['startDate'=>$p['activity_date']??$p['event_date']??null,'venue'=>$p['venue_name']??null,
+                'application'=>$p['application']??null,'communication'=>array_values(array_filter([
+                    ($p['sign_language_support']??null)===true?'sign':null,($p['writing_support']??null)===true?'writing':null]))]];
+    }
+    return ['ready'=>true,'generatedAt'=>gmdate('c'),'records'=>$records];
+}
 function cafe_registry_public_update():string {
     if(!cafe_registry_ready())return '';
     return (string)(query('SELECT max(checked_on) FROM cafe_event_research_checks')->fetchColumn()?:'');

@@ -35,6 +35,15 @@ let bad=structuredClone(review);bad.source_reviews[0].fingerprint='b'.repeat(64)
 bad=structuredClone(review);bad.source_reviews[0].expected_revision=4;r=batch(bad);ok(r.status!==0,'stale record revision cannot be approved');
 r=batch(review,true);assert.equal(r.status,0,r.stderr);ok(tableDigest()===before,'content binding never edits records or protected tables');
 r=batch(review,true);ok(r.status===0&&JSON.parse(r.stdout).result==='ALREADY_APPLIED','review batches idempotent');
+const beforeExport=tableDigest();
+const reviewExport=run(['server/curate-cafe-events.php','--review-export']);assert.equal(reviewExport.status,0,reviewExport.stderr);
+const exported=JSON.parse(reviewExport.stdout).records.find(x=>x.recordId==='source-fixture');
+ok(exported?.revision===1&&exported.sourceRecordRevision===1&&exported.baseline.venue==='確認会場','review export binds current public facts and revisions');
+ok(!/internal_note|review_notes|password_hash|verification_sources|address|email/.test(reviewExport.stdout),'review export excludes private and unnecessary fields');
+ok(tableDigest()===beforeExport,'review export changes no records or protected tables');
+php("query(\"UPDATE records SET publication='private' WHERE id='source-fixture'\");");
+ok(!JSON.parse(run(['server/curate-cafe-events.php','--review-export']).stdout).records.some(x=>x.recordId==='source-fixture'),'private records never enter the review export');
+php("query(\"UPDATE records SET publication='public' WHERE id='source-fixture'\");");
 const server=spawn('php',['-S','127.0.0.1:0','-t',join(root,'docs'),join(root,'server/local-router.php')],{cwd:root,env,stdio:['ignore','pipe','pipe']});
 let logs='';server.stderr.on('data',d=>logs+=d);server.stdout.on('data',d=>logs+=d);
 const origin=await new Promise((res,rej)=>{const deadline=setTimeout(()=>rej(Error(logs)),6000);server.stderr.on('data',()=>{const m=logs.match(/http:\/\/127\.0\.0\.1:(\d+)/);if(m){clearTimeout(deadline);res(`http://127.0.0.1:${m[1]}`);}});});

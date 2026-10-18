@@ -31,3 +31,10 @@ test('unchanged reviewed text is cached; every reuse rechecks baseline and fresh
  assert.equal(reused.cached,1);assert.equal(reused.exceptions,1);assert.equal(calls,1);
  assert.equal((await reviewCurationTasks([task],{generate,stateDir,now:now+49*3600000})).exceptions,1);
 });
+test('Japanese venue layout spaces do not create false changes, but room numbers and Latin words remain distinct',()=>{
+ const venueDecision={...decision,facts:[decision.facts[0],{field:'venue',value:'市民会館2階 音楽室',evidence:'会場 市民会館2階 音楽室。'}]};
+ assert.equal(compareReview({...task,baseline:{...task.baseline,venue:'市民会館 2階　音楽室'}},venueDecision,{now}).status,'corroborated');
+ for(const venue of ['市民会館3階 音楽室','市民会館2階 会議室'])assert.equal(compareReview({...task,baseline:{...task.baseline,venue}},venueDecision,{now}).status,'exception');
+ const latin={...decision,facts:[decision.facts[0],{field:'venue',value:'Cafe AB',evidence:'会場 Cafe AB。'}]};
+ assert.equal(compareReview({...task,baseline:{...task.baseline,venue:'Cafe A B'}},latin,{now}).status,'exception');
+});

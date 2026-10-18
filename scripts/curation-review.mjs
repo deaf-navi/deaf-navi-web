@@ -6,7 +6,7 @@ import {createComplimentaryClient,COMPLIMENTARY_MODEL} from './complimentary-tex
 import {prepareReviewItem,validateReviewResult,compareReview,REVIEW_VERSION} from './curation-review-contract.mjs';
 
 // Private comparison results only. No Git publication, database writes, or reviewedAt renewal.
-export async function reviewCurationTasks(tasks,{generate,stateDir,now=Date.now(),modelOverride,runMode='routine'}={}) {
+export async function reviewCurationTasks(tasks,{generate,stateDir,now=Date.now(),modelOverride,runMode='routine',canSubmit=()=>true}={}) {
   if(!Array.isArray(tasks)||!tasks.length||tasks.length>20)throw new Error('One bounded review batch is required');
   const items=tasks.map(prepareReviewItem);
   if(new Set(items.map(x=>x.id)).size!==items.length)throw new Error('Duplicate review tasks');
@@ -18,7 +18,7 @@ export async function reviewCurationTasks(tasks,{generate,stateDir,now=Date.now(
     catch(error){if(error.code!=='ENOENT')throw error;cache={version:REVIEW_VERSION,entries:{}};}
     const desired=modelOverride??COMPLIMENTARY_MODEL;
     const keys=items.map(item=>desired+':'+item.id);
-    const missing=items.filter((item,i)=>!cache.entries[keys[i]]);
+    const missing=items.filter((item,i)=>!cache.entries[keys[i]]&&canSubmit(item));
     if(missing.length){
       const result=await generate(missing,{purpose:'curation_review',runMode,modelOverride});
       validateReviewResult(missing,result);
@@ -27,11 +27,13 @@ export async function reviewCurationTasks(tasks,{generate,stateDir,now=Date.now(
     }
     const entries=tasks.map((task,i)=>{
       const stored=cache.entries[keys[i]];
+      if(!stored)return {id:items[i].id,recordId:task.recordId??null,kind:task.kind,sourceUrl:task.sourceUrl,
+        status:'exception',reasons:['sharing-approval-required'],differences:[],publicationApproved:false,reviewedAt:null};
       validateReviewResult([items[i]],{items:[stored.decision]});
       return {id:items[i].id,recordId:task.recordId??null,kind:task.kind,sourceUrl:task.sourceUrl,
         model:stored.model,decision:stored.decision,...compareReview(task,stored.decision,{now})};
     });
-    return {version:REVIEW_VERSION,generatedAt:new Date(now).toISOString(),submitted:missing.length,cached:items.length-missing.length,
+    return {version:REVIEW_VERSION,generatedAt:new Date(now).toISOString(),submitted:missing.length,cached:entries.filter(x=>x.model).length-missing.length,
       corroborated:entries.filter(x=>x.status==='corroborated').length,exceptions:entries.filter(x=>x.status==='exception').length,entries};
   } finally {await lock.close();await unlink(lockPath);}
 }
