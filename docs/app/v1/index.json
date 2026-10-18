@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-18T23:03:56Z",
+  "generatedAt": "2026-10-18T23:08:13Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-18T15:47:21Z",
+      "sourceGeneratedAt": "2026-10-18T23:08:13Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -193,10 +193,10 @@
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "checked": 48,
+          "checked": 50,
           "updated": 0,
-          "cached": 514,
-          "skipped": 8,
+          "cached": 508,
+          "skipped": 18,
           "failed": 40,
           "enabled": true,
           "attemptsPerBatch": 2,
@@ -209,8 +209,8 @@
             "failures": 1,
             "circuitOpen": true
           },
-          "pending": 48,
-          "retainedPrevious": 28
+          "pending": 58,
+          "retainedPrevious": 32
         }
       }
     },
@@ -221,7 +221,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-18T15:47:21Z",
+      "sourceGeneratedAt": "2026-10-18T23:08:13Z",
       "language": "und",
       "regions": [
         {
@@ -303,7 +303,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-18T15:47:21Z",
+      "sourceGeneratedAt": "2026-10-18T23:08:13Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
