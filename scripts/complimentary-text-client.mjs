@@ -3,7 +3,11 @@ import {join} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
 
 // No general agent tools, arbitrary endpoint, paid fallback, or automatic lease renewal.
-const MODEL='gpt-5.6-sol';
+// One reviewed model policy for the client, allowance recorder, and health endpoint.
+// A change requires fresh model-specific eligibility; old allowances fail closed.
+export const COMPLIMENTARY_MODEL='gpt-6.1-sol';
+export const COMPLIMENTARY_REASONING_EFFORT='low';
+const MODEL=COMPLIMENTARY_MODEL;
 const PROJECT_NAME='shared-free-tier';
 const MAX_DAILY_RESERVATION=100_000;
 const MAX_OUTPUT=8000;
@@ -67,7 +71,7 @@ export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,
       if(skipUnreviewed)input=input.filter(item=>approved.has(publicTextFingerprint(item)));
       else if(input.some(item=>!approved.has(publicTextFingerprint(item))))throw deny('Exact public text has not been approved for sharing today');
       if(!input.length)return {success:true,provider:'codex_app_server',engine:'openai_complimentary',model:MODEL,items:[]};
-      const payload={model:MODEL,store:false,service_tier:'default',instructions,input:JSON.stringify(input),max_output_tokens:MAX_OUTPUT,text:{format:{type:'json_schema',name:'public_news_items',strict:true,schema}}};
+      const payload={model:MODEL,reasoning:{effort:COMPLIMENTARY_REASONING_EFFORT},store:false,service_tier:'default',instructions,input:JSON.stringify(input),max_output_tokens:MAX_OUTPUT,text:{format:{type:'json_schema',name:'public_news_items',strict:true,schema}}};
       // UTF-8 byte count + output ceiling intentionally overestimates tokenizer usage.
       const reserve=Buffer.byteLength(JSON.stringify(payload),'utf8')+MAX_OUTPUT+2048;
       if(reserve>55_000)throw deny('Batch too large for complimentary reservation');
