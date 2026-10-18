@@ -27,10 +27,13 @@ export function sameNewsTopic(a, b) {
   if (a.id === b.id) return true;
   if (incompatible(a, b)) return false;
   const ak = titleKey(a), bk = titleKey(b);
-  if (Math.min(ak.length, bk.length) < 12) return false;
-  if (ak === bk) return true;
-  if (Math.min(ak.length, bk.length) >= 20 && (ak.includes(bk) || bk.includes(ak))) return true;
-  if (diceSimilarity(ak, bk) >= .82) return true;
+  // Short headlines need the specific subject/event evidence below; generic
+  // short labels must not qualify through string similarity alone.
+  if (Math.min(ak.length, bk.length) >= 12) {
+    if (ak === bk) return true;
+    if (Math.min(ak.length, bk.length) >= 20 && (ak.includes(bk) || bk.includes(ak))) return true;
+    if (diceSimilarity(ak, bk) >= .82) return true;
+  }
   // Coverage of the same named visitor at the hearing-loss convention, not
   // unrelated products/lectures that merely mention that convention.
   const visit = key => {
