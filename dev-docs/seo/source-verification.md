@@ -63,3 +63,27 @@ site-shell/pageが読む表示用12 CSS/JSを同mainから実読し、合成詳�
 これは親から受領した本番証拠であり、子の直接取得成功や375/1180/1280pxの合成検証とは区別する。今回の本番viewportとスクリーンリーダー音声は未取得/未検証。欠落原因・反映時点・稼働PHP版は未特定で、OPcacheや県名の問題と確定しない。本日追加のプロダクト実装・再公開・Caddy/PR30操作は行わず、SEO-01と今回の東京/神奈川に限るSEO-06を完了とする。
 
 既存3店舗・既存2地域URLの公開情報だけを照合し、DB/営業時間/出典確認日を更新していない。ブラウザー操作は読取専用でサイト変更なし。公開照合の原因説明に、未読のサーバーキャッシュや設定を付け足さない。
+
+## 2026-10-19 既存FAQと操作項目の照合
+
+- 正本Library全文512行・19840bytes、更新2026-10-11T23:01:55.298096Zをnative readで再確認。既存materializeの2失敗は失敗のまま保持。現在のAGENTSを読み、workspace/checkoutの .agents/skills に該当するSKILL.mdは見つからなかった。
+- main `311fcc52afd0a83f57c4577372cc0dd1bb6e6587` の server/cafe-seo.php のFAQ2回答と server/cafe-ui.php の domestic_filters/domestic_matches を実読。「初心者歓迎」「筆談対応」はlegend「会話の方法・初めての方へ」内、shop_typeは「詳しい条件を追加」内のselect「店舗タイプ」。CAFE_FEATURESの選択条件は1件でも不一致なら除外する実装で、複数選択は全条件一致である。
+- UIの操作先を根拠に文言だけ合わせる。新しい店舗の対応可否や予約・営業時間の情報源にはしない。未確認の対応を「なし」と扱わず、公式サイト/SNSを確認する既存案内を維持する。店舗DB/検証日時の更新はない。
+- PR87〜90のmerged状態、CI39126391393/dea39fbと既存Deploy39129045309/bab7042のsuccessを読取確認。API_CURATIONの3資料試験の説明は読めたが、私有の日次比較結果・実使用量・無料枠判定は未取得。比較CLIやモデルAPIによる追加確認は行わない。
+- ローカル375/1180/1280pxは現行3 CSSを使った合成FAQ部品の表示/キーボード確認。本番PHP・公開HTML・実機音声の証拠とは区別し、公開結果を別に記録する。
+
+### FAQ修正の配布証跡
+
+[PR97](https://github.com/deaf-navi/deaf-navi-web/pull/97)の最終head `9fe7a7d1ce447b2036376bab32277879cb181416` /CI39176242415がsuccess。通常squash `54a81c6aad5435f85c1a75341d7088be3eec6a98` の実parent/6ファイル差分と、mainのPHPが候補と一致することをGitHubで再読。XServer39176365311のPHP lint/隔離SEO130/原子的切替/基本HTTPは10/19 08:25:01 JSTにsuccess。
+
+08:25:26 JSTの子HTTPは専用UA/headerとdn_client=codex付きでもCONNECT403、Web読取もnot accessible。本番FAQのHTMLやモバイル・音声を取得できた証拠ではなく、親の正式ブラウザー再読待ち。原因をPHPキャッシュやサイト障害と確定せず、診断だけの再公開・Caddy/PR30操作・認証変更は行わない。
+
+## 2026-10-19 08:30:47 JST 公開QAの不一致と配布診断
+
+親の正式ChromeでFAQ2回答を展開したAXと実画面が一致し、通常再読1回後も「詳しい条件」「営業形態」の旧案内だった。UIの現行legend/summary/selectと既存全条件一致のtipは表示済み。403表示はなく、実HTTPステータスは未計測。全文は当日日次に保存し、子の取得成功とは区別する。
+
+最新main e75ad895と配布54a81c6のソースを再読。FAQは固定PHP文字列でDB条件による旧文言分岐がない。static入口にFAQなし。配布ログは54a81c6 checkoutとstaging PHP lintを示すが、実体のhashや稼働PHP版は未取得。対象6 PHPで正規tarを隔離再現し、_backend/cafe-seo.phpが単一収録/byte一致。Git blob6b2fb67、8062bytes、期待SHA-256 `066a8269b7e11a847b5b19c1d9fbe2752156177e0b01a8a3f4a5fdd0032338e0`。実配布archive/実サーバーのhash確認ではない。
+
+10/19に[Caddyのphp_fastcgi一次資料](https://caddyserver.com/docs/caddyfile/directives/php_fastcgi)と[PHPのOPcache設定一次資料](https://www.php.net/manual/en/opcache.configuration.php)を再読。symlinkの実体root解決と、timestamp検証を無効にした場合の更新反映条件は確認できるが、本番でその条件が成立する証拠はない。原因候補として保持し、設定変更や失効処理を実行する根拠へ置き換えない。
+
+現ユーザーに既存SSH設定/標準identity/known_hosts/agent/対象host-user変数はなく、SSHツールもない。稼働current/hash/有効FastCGI・FPM設定の読取が停止点。PR30スクリプト実行・Caddy/キャッシュ/サービス操作・診断用公開・新規認証は行わない。所在地title/地域導線の既完了を再開しない。

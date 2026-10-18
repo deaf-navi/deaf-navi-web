@@ -1,6 +1,6 @@
 # 変更履歴
 
-最新状態（10/18 09:07 JST）：所在地titleと今回の東京/神奈川への地域リンクを親の独立本番AX/DOMで照合し、SEO-01/当該SEO-06は完了。原因と反映時点は未特定。以下は日付ごとの経過履歴。
+最新状態（10/19 08:30:47 JSTの親QA）：通常再読後もFAQ2回答は旧文言で反映未完。PR97/CI/Deployの成功と配布側の一致は保持し、本番実行版の読取が必要。所在地title/東京・神奈川導線の完了は維持。以下は日付ごとの経過履歴。
 
 ## 2026-10-12 初回改善
 
@@ -116,3 +116,23 @@ CI・公開commit・Deploy・実URLの確定結果は当該PRへ記録。実URL�
 東京の参照先は `https://deafnavi.com/connect/sign-cafe/area/tokyo/?dn_client=codex`。H1「東京の手話カフェ・定期交流の場所」、11件でvery-you/Rendeafの見出しと詳細リンクを確認。神奈川は `https://deafnavi.com/connect/sign-cafe/area/kanagawa/?dn_client=codex`。H1「神奈川の手話カフェ・定期交流の場所」、2件でtetoteを確認。両地域とも404案内は表示されなかったが、実HTTPステータスは未取得。
 
 これは親から受領した本番証拠であり、子の直接取得成功や375/1180/1280pxの合成検証とは区別する。今回の本番viewportとスクリーンリーダー音声は未取得/未検証。欠落原因・反映時点・稼働PHP版は未特定で、OPcacheや県名の問題と確定しない。本日追加のプロダクト実装・再公開・Caddy/PR30操作は行わず、SEO-01と今回の東京/神奈川に限るSEO-06を完了とする。
+
+## 2026-10-19 カフェFAQの操作案内
+
+server/cafe-seo.php の既存2回答だけを変更。「初心者歓迎」「筆談対応」を探す場所を「会話の方法・初めての方へ」に合わせ、複数選択はすべての条件に一致する掲載情報という説明を追加する。2問目は「詳しい条件を追加」の「店舗タイプ」と、各掲載情報の営業日・営業時間へ案内する。対象URLは `/connect/sign-cafe/#cafe-guide`。
+
+出典は同じmainの domestic_filters/domestic_matches。営業条件・支援条件・出典確認日や収集/承認を変更しない。codeの2行以外のプロダクト差分はなく、所在地title/地域導線を再実装しない。ローカル合成部品の375/1180/1280pxで折り返し・キーボード開閉を確認。PHPは既存CIで確認後、現行Deploy XServerを使う。CI/公開commit/Deploy/実URL結果は確定後に追記。
+
+復旧はこのPHP2回答の差分だけをrevertして同じ既存Deploy経路へ渡す。DB復元・Caddy変更・共有サービス再起動・API比較の実行は不要。運営記録はdev-docs/seoへ保存し、公開rootへ複製しない。
+
+### FAQのCI・正規公開確定
+
+PR97の最終head `9fe7a7d1ce447b2036376bab32277879cb181416` はCI39176242415全工程success（Node230/PHP SEO130/おとまど91、国内473/World600/iOS）。通常squash commit `54a81c6aad5435f85c1a75341d7088be3eec6a98` のXServer39176365311は10/19 08:25:01 JSTにsuccess。実commitは基準311fcc52をparentとする6ファイルで、PHP2行と運用5文書以外は変更なし。mainのPHP全文も候補と一致。
+
+配布とサーバーstagingでPHP lint、隔離SEO回帰130項目、原子的切替とトップ/アプリmanifestの基本HTTP確認が成功。本番FAQ本文は08:25:26 JSTの子HTTPがCONNECT403、Webもnot accessibleのため未取得。公開workflow成功をFAQ反映完了に置き換えず、親の正式ブラウザーによる識別付き再読待ちとして保持する。詳細はdaily/2026-10-19.md。追加再デプロイやサーバー設定変更は行わない。
+
+### 公開FAQの旧文言残存：未完へ更新
+
+親の正式Chromeで08:30 JSTにFAQ2回答が旧文言、08:30:47 JSTの通常再読1回後も再現。現行の絞込項目/説明は表示済み。AXと実画面が一致、HTTPステータスは未計測。今回のFAQ反映は未完とし、CI/正規Deployのsuccessと分ける。
+
+最新main/配布元PHP/checkout・staging lint/require経路を照合。6 PHPの隔離tarは単一収録・元bytes一致、static入口にFAQなし、DB条件による旧文言分岐なし。実サーバーのcurrent/hash・有効FastCGI/FPM設定は既存読取接続がなく未取得。原因をOPcacheと確定せず、再編集・追加Deploy・Caddy/PR30・失効/再起動・新規権限を行わない。期待hashと次に必要な非秘密情報はdaily/2026-10-19.mdへ保存する。
