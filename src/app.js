@@ -113,6 +113,14 @@
 
   var allArticles = null;   // articles.json 取得後にセット
   var searchIndex = null;   // 正規化済み検索テキスト
+  var topicLookup = Object.create(null);
+  var topicOrder = Object.create(null);
+  try {
+    var topicMap = JSON.parse(document.getElementById('news-topic-map')?.textContent || '[]');
+    topicMap.forEach(function (ids, index) {
+      ids.forEach(function (id, rank) { topicLookup[id] = index; topicOrder[id] = rank; });
+    });
+  } catch (e) { /* Older/offline HTML remains a readable, ungrouped list. */ }
 
   function normalize(text) {
     return String(text || '').normalize('NFKC').toLowerCase();
@@ -238,8 +246,16 @@
     var titleLink = node.querySelector('.card__title a');
     titleLink.href = a.id;
     titleLink.textContent = a.title;
+    var media = document.createElement('span');
+    media.className = 'news-media';
+    media.setAttribute('aria-hidden', 'true');
+    var fallback = document.createElement('span');
+    fallback.className = 'news-media__fallback';
+    fallback.textContent = (CATEGORY_UI[a.category] || 'ニュース').split('・')[0];
+    media.appendChild(fallback);
+    node.querySelector('.card__content').prepend(media);
     if (a.thumbnail && window.DeafNaviThumbnails) {
-      window.DeafNaviThumbnails.append(node.querySelector('.card__content'), a.thumbnail.url);
+      window.DeafNaviThumbnails.append(media, a.thumbnail.url);
     }
 
     var summary = node.querySelector('.card__summary');
@@ -284,6 +300,43 @@
 
   /* ---- 描画 ---- */
 
+  function groupMatchedArticles(matched) {
+    if (hasActiveFilters()) return matched.map(function (a) { return [a]; });
+    var groups = [], positions = Object.create(null);
+    matched.forEach(function (a) {
+      var key = Object.prototype.hasOwnProperty.call(topicLookup, a.id) ? 'topic:' + topicLookup[a.id] : 'article:' + a.id;
+      if (positions[key] === undefined) { positions[key] = groups.length; groups.push([]); }
+      groups[positions[key]].push(a);
+    });
+    groups.forEach(function (group) { group.sort(function (a, b) { return (topicOrder[a.id] || 0) - (topicOrder[b.id] || 0); }); });
+    return groups;
+  }
+
+  function buildTopic(group) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'news-topic';
+    wrapper.appendChild(buildCard(group[0]));
+    if (group.length > 1) {
+      var details = document.createElement('details');
+      details.className = 'topic-related';
+      var summary = document.createElement('summary');
+      summary.textContent = '同じ話題の報道 ';
+      var count = document.createElement('span');
+      count.textContent = (group.length - 1) + '件';
+      summary.appendChild(count);
+      details.appendChild(summary);
+      var list = document.createElement('ul');
+      group.slice(1).forEach(function (a) {
+        var item = document.createElement('li');
+        item.appendChild(buildCard(a));
+        list.appendChild(item);
+      });
+      details.appendChild(list);
+      wrapper.appendChild(details);
+    }
+    return wrapper;
+  }
+
   function applyFromData() {
     var tokens = normalize(state.q).split(/\s+/).filter(Boolean);
     var matched = [];
@@ -305,17 +358,29 @@
       matched.push(a);
     }
 
-    var shown = Math.min(matched.length, state.limit);
+    var groups = groupMatchedArticles(matched);
+    var shown = Math.min(groups.length, state.limit);
     var fragment = document.createDocumentFragment();
-    for (var j = 0; j < shown; j++) fragment.appendChild(buildCard(matched[j]));
+    for (var j = 0; j < shown; j++) fragment.appendChild(buildTopic(groups[j]));
     articlesEl.textContent = '';
     articlesEl.appendChild(fragment);
 
-    updateMeta(shown, matched.length);
+    updateMeta(shown, groups.length);
   }
 
   function applyFromDom() {
     // articles.json 取得前・取得失敗時: SSR済みカードの表示切替のみ
+    var wrappers = Array.prototype.slice.call(articlesEl.querySelectorAll('.news-topic'));
+    if (wrappers.length && !hasActiveFilters()) {
+      wrappers.forEach(function (wrapper, index) {
+        wrapper.hidden = index >= state.limit;
+        wrapper.querySelectorAll('.card').forEach(function (card) { card.hidden = false; });
+        var details = wrapper.querySelector('.topic-related');
+        if (details) { details.open = false; details.hidden = false; }
+      });
+      updateMeta(Math.min(wrappers.length, state.limit), wrappers.length);
+      return;
+    }
     var cards = Array.prototype.slice.call(articlesEl.querySelectorAll('.card'));
     var tokens = normalize(state.q).split(/\s+/).filter(Boolean);
     var matched = 0;
@@ -352,10 +417,22 @@
       }
     });
 
+    wrappers.forEach(function (wrapper) {
+      wrapper.hidden = !wrapper.querySelector('.card:not([hidden])');
+      var details = wrapper.querySelector('.topic-related');
+      if (details) {
+        details.hidden = !details.querySelector('.card:not([hidden])');
+        details.open = !details.hidden;
+      }
+    });
     updateMeta(shown, matched);
   }
 
   function updateMeta(shown, matched) {
+    var unit = document.getElementById('news-count-unit');
+    if (unit) unit.textContent = hasActiveFilters() ? '件' : '話題';
+    var groupNote = document.getElementById('news-group-note');
+    if (groupNote) groupNote.hidden = hasActiveFilters();
     var featured = document.getElementById('featured-news');
     if (featured) featured.hidden = hasActiveFilters();
     var filterCount = document.getElementById('filter-active-count');
@@ -371,7 +448,7 @@
     if (loadMoreBtn) {
       var remaining = matched - shown;
       loadMoreBtn.hidden = remaining <= 0;
-      if (loadMoreRemainEl) loadMoreRemainEl.textContent = '（あと ' + remaining + ' 件）';
+      if (loadMoreRemainEl) loadMoreRemainEl.textContent = '（あと ' + remaining + (hasActiveFilters() ? ' 件）' : ' 話題）');
     }
   }
 
@@ -379,7 +456,7 @@
     var requested = Number(max);
     var limit = isFinite(requested) ? Math.max(1, Math.min(20, Math.floor(requested))) : 10;
     return Array.prototype.slice.call(articlesEl.querySelectorAll('.card'))
-      .filter(function (card) { return !card.hidden; })
+      .filter(function (card) { return !card.hidden && !card.closest('[hidden]') && !card.closest('details:not([open])'); })
       .slice(0, limit)
       .map(function (card) {
         var titleLink = card.querySelector('.card__title a');

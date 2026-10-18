@@ -10,7 +10,7 @@ import {
   UPDATE_SCHEDULE_LABEL,
 } from '../../config/site.mjs';
 import { CATEGORY_UI, SOURCE_TIER_UI } from '../../config/categories.mjs';
-import { renderThumbnail } from './thumbnail.mjs';
+import { renderThumbnail, renderNewsThumbnail } from './thumbnail.mjs';
 import { REGION_UI } from '../../config/regions.mjs';
 import SITE_NAVIGATION from '../../config/site-navigation.json' with { type: 'json' };
 import { escapeHtml } from '../lib/text.mjs';
@@ -265,7 +265,7 @@ export function isNewArticle(article, now = Date.now()) {
  * クラス名は World 版と共通の .card 系 API を維持する。
  * data-* 属性はクライアント側フィルタリング（app.js）が参照する。
  */
-export function renderArticleCard(a, { hidden = false, featured = false, now = Date.now() } = {}) {
+export function renderArticleCard(a, { hidden = false, featured = false, newsMedia = false, now = Date.now() } = {}) {
   const catLabel = CATEGORY_UI[a.category] ?? '一般';
   const sourceTier = getSourceTier(a);
   const sourceMeta = SOURCE_TIER_UI[sourceTier];
@@ -282,7 +282,7 @@ export function renderArticleCard(a, { hidden = false, featured = false, now = D
           <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(catLabel)}</span>${newBadge}${renderNewsContext(a)}
           <time class="card__time" datetime="${escapeHtml(a.publishedAt)}" data-relative-time>${escapeHtml(formatDateJST(a.publishedAt).replace(' JST', ''))}<span class="card__time-rel">（${escapeHtml(relativeTime(a.publishedAt, now))}）</span></time>
         </header>
-        <div class="card__content">${renderThumbnail(a)}<div class="card__text">
+        <div class="card__content">${newsMedia ? renderNewsThumbnail(a) : renderThumbnail(a)}<div class="card__text">
         <h3 class="card__title">
           <a href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.title)}</a>
         </h3>${a.summary ? `
