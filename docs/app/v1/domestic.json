@@ -4,8 +4,8 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-18T00:11:19Z",
-  "sourceGeneratedAt": "2026-10-18T00:11:19Z",
+  "generatedAt": "2026-10-18T00:40:25Z",
+  "sourceGeneratedAt": "2026-10-18T00:40:25Z",
   "count": 470,
   "language": "ja-JP",
   "refresh": {
@@ -118,23 +118,23 @@
   },
   "quality": {
     "version": "publication-quality-v8",
-    "rawCount": 3547,
-    "scoredCount": 3547,
-    "filteredCount": 1663,
+    "rawCount": 3521,
+    "scoredCount": 3521,
+    "filteredCount": 1654,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 70,
     "extraVisibleCategoryCounts": {
       "relay": 70
     },
-    "overflowCount": 548,
+    "overflowCount": 541,
     "minScore": 5,
     "categoryCountsVisible": {
+      "general": 89,
       "technology": 18,
       "culture": 45,
       "sports": 37,
       "accessibility": 35,
-      "general": 89,
       "education": 12,
       "event": 23,
       "medical": 20,
@@ -146,11 +146,11 @@
   },
   "counts": {
     "byCategory": {
+      "general": 89,
       "technology": 18,
       "culture": 45,
       "sports": 37,
       "accessibility": 35,
-      "general": 89,
       "education": 12,
       "event": 23,
       "medical": 20,
@@ -170,6 +170,24 @@
     }
   },
   "articles": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1ZdGNob0tDTGxiVVpXTWh4bExQcUFwb3dLa0Qzd19fQnVlZVcwMlVXRm1EdUlRbFJnVGYyTjB2Q25lcklMRENMelFwS0F2Sl9WWWRQT1dpbHNCMDNJT01obDZfNW9KZG1OQlNpVGI3NFgyb3RLeHVNb3Q2WlVXNk0?oc=5",
+      "stableId": "domestic_796ea72007059e96e74e",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1ZdGNob0tDTGxiVVpXTWh4bExQcUFwb3dLa0Qzd19fQnVlZVcwMlVXRm1EdUlRbFJnVGYyTjB2Q25lcklMRENMelFwS0F2Sl9WWWRQT1dpbHNCMDNJT01obDZfNW9KZG1OQlNpVGI3NFgyb3RLeHVNb3Q2WlVXNk0?oc=5",
+      "title": "ARグラスは、聴覚障害者が音声を「見る」ことを可能にする。",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-18T00:18:17Z",
+      "sourceName": "Vietnam.vn",
+      "sourceURL": "https://www.vietnam.vn",
+      "sourceUrl": "https://www.vietnam.vn",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE96Qk1qWDFoMWdCYmQwZzVYV0phRGxBVllyd3h5TVloSVJPUWxKcDNOM2U4QkxVTTNLSkZmcURscTNfVXZGbFR4R0pWVjZZdVhaQWNnck8yUy1kbkp2MjlEdDF6RkhRME1vMmc?oc=5",
       "stableId": "domestic_951e2503e92b165f6cc8",
@@ -7739,24 +7757,6 @@
       "discoveryMethod": "google-news",
       "region": "hokkaido_tohoku",
       "prefecture": "北海道"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBfbVhXOFlaaDk5b2RlZTlGTXY3TGxCWlItTFpNMnBsZUNSb0owTjN3bkRsczdORjdab2VwSlJFU1cxRWxBbXgydWlRWk1DSEROSXJ1MXpOVWdfX3VYb0JnSHl2OFZPdDNhczR2THlfcw?oc=5",
-      "stableId": "domestic_5909dab9ff7ce4787381",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBfbVhXOFlaaDk5b2RlZTlGTXY3TGxCWlItTFpNMnBsZUNSb0owTjN3bkRsczdORjdab2VwSlJFU1cxRWxBbXgydWlRWk1DSEROSXJ1MXpOVWdfX3VYb0JnSHl2OFZPdDNhczR2THlfcw?oc=5",
-      "title": "2026年度 手話言語の国際デー／手話の日 ライトアップ・イベント予定一覧",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-23T07:00:00Z",
-      "sourceName": "全日本ろうあ連盟",
-      "sourceURL": "https://www.jfd.or.jp",
-      "sourceUrl": "https://www.jfd.or.jp",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "sourceTier": "official",
-      "discoveryMethod": "direct-feed"
     },
     {
       "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/550",
