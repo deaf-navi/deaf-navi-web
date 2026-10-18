@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-18T03:09:57Z",
+  "generatedAt": "2026-10-18T03:10:54Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-17T23:07:34Z",
+      "sourceGeneratedAt": "2026-10-18T03:10:54Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -190,14 +190,14 @@
         }
       ],
       "translation": {
-        "provider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
+        "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "checked": 9,
-          "updated": 9,
-          "cached": 519,
+          "checked": 14,
+          "updated": 0,
+          "cached": 516,
           "skipped": 0,
-          "failed": 0,
+          "failed": 14,
           "enabled": true,
           "attemptsPerBatch": 2,
           "splitBatchSize": 10,
@@ -209,8 +209,8 @@
             "failures": 1,
             "circuitOpen": true
           },
-          "pending": 0,
-          "retainedPrevious": 1
+          "pending": 14,
+          "retainedPrevious": 15
         }
       }
     },
@@ -221,7 +221,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-17T23:07:34Z",
+      "sourceGeneratedAt": "2026-10-18T03:10:54Z",
       "language": "und",
       "regions": [
         {
@@ -303,7 +303,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-17T23:07:34Z",
+      "sourceGeneratedAt": "2026-10-18T03:10:54Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
