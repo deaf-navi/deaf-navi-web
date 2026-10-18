@@ -45,3 +45,18 @@ test('budget is reserved before transmission and concurrent requests cannot spen
  const results=await Promise.allSettled([run(items),run(items)]);assert.equal(results.filter(x=>x.status==='fulfilled').length,1);assert.equal(calls,1);
  await run(items);await assert.rejects(()=>run(items));assert.equal(calls,2);
 });
+
+test('World can return reviewed items only without sending unreviewed text',async t=>{
+ const dir=await fixture(t);let sent;
+ const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async(_url,options)=>{sent=JSON.parse(JSON.parse(options.body).input);return result();}});
+ const answer=await run([...items,{id:'1',title:'Unreviewed story',summary:'Not approved for sharing.'}],{skipUnreviewed:true});
+ assert.equal(answer.items.length,1);assert.equal(sent.length,1);assert.equal(sent[0].id,'0');
+});
+
+test('unknown request remains blocked after the UTC day and allowance change',async t=>{
+ const dir=await fixture(t);let calls=0,time=now;
+ const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>time,fetchImpl:async()=>{calls++;throw new Error('timeout');}});
+ await assert.rejects(()=>run(items));time+=86400000;
+ await writeFile(join(dir,'allowance.json'),JSON.stringify({...lease,utcDay:'2026-10-19',checkedAt:'2026-10-19T02:00:00Z',expiresAt:'2026-10-20T00:00:00Z',approvedTextHashes:items.map(publicTextFingerprint)}));
+ await assert.rejects(()=>run(items),/Previous request requires reconciliation/);assert.equal(calls,1);
+});
