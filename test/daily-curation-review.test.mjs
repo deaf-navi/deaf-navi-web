@@ -1,8 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,rm,readFile} from 'node:fs/promises';
+import {mkdtemp,rm,readFile,symlink} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawnSync} from 'node:child_process';
 import {planDailyReview,runDailyReview,reviewRecords} from '../scripts/daily-curation-review.mjs';
 import {prepareReviewItem,evidenceHash} from '../scripts/curation-review-contract.mjs';
 const now=Date.parse('2026-10-18T12:00:00Z');
@@ -10,6 +12,14 @@ const text='手話交流会を開催します。開催日 2026年11月14日。�
 const target={kind:'event',recordId:'fixture-event',title:'手話交流会',sourceUrl:'https://example.org/event',sourceMode:'html',officialVerified:true,sharingReviewedAt:new Date(now-60000).toISOString(),approvedDocumentHash:'a'.repeat(64),fragments:[text]};
 const record={kind:'event',recordId:'fixture-event',title:target.title,sourceUrl:target.sourceUrl,sourceMode:'html',publication:'public',verification:'verified',verifiedAt:new Date(now-60000).toISOString(),baseline:{startDate:'2026-11-14',venue:'市民会館'}};
 const catalog={version:1,targets:[target]};
+test('CLI enters its guarded configuration check through the deployed directory link',async t=>{
+ const folder=await mkdtemp(join(tmpdir(),'dn-daily-entry-'));t.after(()=>rm(folder,{recursive:true,force:true}));
+ const link=join(folder,'curation-batch');
+ await symlink(dirname(dirname(fileURLToPath(import.meta.url))),link,process.platform==='win32'?'junction':'dir');
+ const env={...process.env};delete env.DEAFNAVI_AI_STATE_DIR;
+ const result=spawnSync(process.execPath,[join(link,'scripts','daily-curation-review.mjs')],{env,encoding:'utf8'});
+ assert.equal(result.status,1);assert.match(result.stderr,/DAILY_CURATION_REVIEW_UNAVAILABLE/);assert.equal(result.stdout,'');
+});
 const prepare=async targets=>({tasks:targets.map(t=>({...t,text:t.fragments.join(' '),sourceTextHash:evidenceHash(t.fragments.join(' ')),retrievedAt:new Date(now).toISOString()})),exceptions:[]});
 const generate=async items=>({model:'gpt-6.1-sol',items:items.map(item=>({id:item.id,relevance:'yes',contentType:'announcement',evidence:'手話交流会を開催します。',facts:[{field:'startDate',value:'2026-11-14',evidence:'開催日 2026年11月14日。'},{field:'venue',value:'市民会館',evidence:'会場 市民会館。'}]}))});
 test('planner holds visual, stale, revision-changed and unregistered evidence without sending it',()=>{

@@ -1,4 +1,5 @@
 import {readFile,writeFile,rename,open,unlink} from 'node:fs/promises';
+import {realpathSync} from 'node:fs';
 import {join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {randomUUID} from 'node:crypto';
@@ -93,7 +94,7 @@ export async function runDailyReview({records,catalog,stateDir,generate,canSubmi
   }finally{await lock.close();await unlink(lockPath);}
 }
 
-if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
+if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process.argv[1]))).href){
   try{
     const stateDir=process.env.DEAFNAVI_AI_STATE_DIR;
     if(!stateDir)throw new Error('Private state directory required');
