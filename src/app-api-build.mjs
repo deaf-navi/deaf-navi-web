@@ -353,7 +353,7 @@ function worldTranslation(article) {
     provider: article.translationProvider,
     postEditProvider: article.japanesePostEditProvider,
     postEdited: Boolean(article.japanesePostEditProvider),
-    policy: 'base machine translation via translate.googleapis.com with Deaf Navi glossary; Codex App Server post-edit is used when available and required in the production World workflow.',
+    policy: 'Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred.',
   };
 }
 
@@ -459,7 +459,7 @@ function buildWorldPayload(data, mode) {
       provider: data.quality?.translationProvider,
       japanesePostEditProvider: data.quality?.japanesePostEditProvider,
       japanesePostEdit: data.quality?.japanesePostEdit,
-      basePolicy: 'World-JP uses free/base Google translation first, then Deaf Navi glossary normalization and Codex App Server post-edit when available.',
+      basePolicy: 'World-JP uses Google translation and its cache first, then Deaf Navi glossary normalization and optional dedicated text-service assistance for missing translations.',
     },
     display: {
       defaultRegion: 'all',
@@ -590,7 +590,7 @@ function buildManifest({ domestic, world }) {
     sourcePolicy: {
       domestic: 'The app sync data is built from the same curated domestic JSON used by Deaf Navi Web.',
       world: 'The app sync data is built from the same world JSON used by Deaf Navi World-JP and Deaf Navi World-Original.',
-      worldJpTranslation: 'Japanese text is Google-translation based with Deaf Navi glossary normalization; Codex App Server post-edit is reflected when present in articles-world.json.',
+      worldJpTranslation: 'Japanese text uses Google translation and Deaf Navi glossary normalization; verified dedicated text-service output is reflected when present in articles-world.json.',
     },
   };
 }
