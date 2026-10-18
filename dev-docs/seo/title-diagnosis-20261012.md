@@ -91,3 +91,13 @@ php_fastcgi unix//run/php/deafnavi.sock {
 最新main257a3cffa2ec00152c0d91d89ceb77bf7f5a906eでは、他作業でviews/cafe-seo等に地域ページや共通表示の更新が入っている。detail→cafe_record_seo→page第7引数→documentTitle/OGという呼出と、国/kind/掲載区分の適用条件は残っている。以前の「PHP変更なし」という日付付き履歴を現在まで延長しない。
 
 今日の識別付きHTTPはCONNECT403、Webも取得不可。SSH設定・鍵・agent・host/userなし。今日の本番title/OG/headerは未取得であり、10/16の旧表示を今日観測したとは扱わない。実行PHP/DB条件を確定できないため、同じtitle修正を重ねず、PR30スクリプト/Caddy変更も実施しない。独立したSEO-06の地域リンクを正規公開後に確認するとき、既存2店舗のtitle/OGも親の正式Chromeで再読する。
+
+## 2026-10-18 地域リンク未反映との照合
+
+親から受領した10/17 09:15〜09:16 JSTの独立本番観測では、very-you・rendeaf・tetoteの3件とも地域リンクは確認できなかった。PR68のCI/正規Deploy成功とは分け、SEO-06は未完のまま。title/OG/canonicalと所在地も読取済みとの連絡があるが、その具体文字列はこの子へ未提供であり、所在地付きtitleの反映完了とは断定しない。
+
+`cafe_record_seo()` と `cafe_record_area_link()` はcountry_code=JP/kind=cafe/listing_group=cafesを共有する。後者はさらにprefectureがCAFE_REGION_PAGESに完全一致する必要がある。所在地付きOG titleが実際に出ており、addressRegionが空白を含め東京都/神奈川県に完全一致するなら、掲載分類を推測で緩める根拠にはならない。旧実行版/別handler/ブラウザーの旧応答等の候補を、header/実行pathや新しい独立応答で区別する必要がある。OPcacheを確定原因とは扱わない。
+
+今日の子HTTPは3URLともCONNECT403、Personal Contextの過去値取得も利用不可。既存SSH config/identity/agent/host/userはなく、稼働PHP・実DB条件・有効FastCGIを確認できていない。PR30スクリプト/Caddy変更、新しい認証、診断だけの再公開は行わない。
+
+親への最小確認: (1) very-you/rendeaf/tetoteのtitleとog:titleの原文、canonical、(2)JSON-LD addressRegion/addressCountryを空白ごと、(3)地域リンクDOMと対象文字列の有無、(4)既存 `/connect/sign-cafe/area/tokyo/` と `/connect/sign-cafe/area/kanagawa/` の見出し/404。全URLにdn_client=codexを保持する。公開地図JSONは県/市/分類ラベルを返すが内部kindの直接証拠ではないため、kindの代用としない。

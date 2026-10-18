@@ -39,3 +39,11 @@
 - [Google Search Centralのリンク一次資料](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)を10/17 JSTに実読。href付きa要素と、リンク先が分かる自然な文言を使う根拠。検索順位・流入増加を保証する根拠にはしない。
 - 追加するのは、公開詳細を通った国内kind=cafe/カフェ分類で、prefectureが既存地域mapに一致する場合の1リンク。表示名は「東京都/神奈川県の手話カフェ・定期交流の場所を見る」。名称・所在地・営業時間・確認日・支援条件は変更せず、県名の新しい推測もしない。既存地域ページは全国一覧と同じ公開DBを使う。
 - 子の識別付き本番HTTP/Web/Gitは接続段階で取得失敗。既存SSH設定/鍵/agent/host/userなし。本番の当日title・header・PHP実行版/DB条件は未取得。PR30スクリプト実行、Caddy変更、鍵の抽出、新しい認証は行わない。
+
+## 2026-10-18 既存実装と表示経路の照合
+
+正本Libraryを全文512行・19840bytesで再読、更新日時は2026-10-11T23:01:55.298096Z。追加materializeは行わない。開始時main f6705d72a8da56d720c6d110a329c40eeb4bf83f、PR68後16コミットでもarea helperと呼出は存在し、CAFE_REGION_PAGESは東京/神奈川。現在のAGENTSとcheckout/workspaceの `.agents/skills` を確認し、同ディレクトリはなかった。カフェcronの--recoverと既存各更新を保護。
+
+site-shell/pageが読む表示用12 CSS/JSを同mainから実読し、合成詳細構造へ適用して375/1180/1280pxでリンクのDOM/可視/フォーカスを確認。PHP応答や本番の再現ではなく、単純な表示処理での消失を検証した範囲に限る。`server/map.php` の公開allowlistはprefecture/city/type等でkindを返さないため、地図の存在だけで内部kindを推定しない。
+
+親から受領した10/17 09:15〜09:16 JSTの独立本番観測では、very-you・rendeaf・tetoteの3件とも地域リンクは確認できなかった。PR68のCI/正規Deploy成功とは分け、SEO-06は未完のまま。title/OG/canonicalと所在地も読取済みとの連絡があるが、その具体文字列はこの子へ未提供であり、所在地付きtitleの反映完了とは断定しない。
