@@ -43,6 +43,16 @@ test('unknown region cannot bridge two different confirmed regions', () => {
   assert.equal(groups.length, 2);
 });
 
+test('short visitor headlines use specific event evidence, not generic short-title similarity', () => {
+  const visit = a('a', '佳子さま 京都で中途失聴者・難聴者福祉大会に出席', { prefecture: '京都府' });
+  const short = a('b', '佳子さま、難聴者大会出席');
+  assert.equal(sameNewsTopic(visit, short), true);
+  assert.equal(sameNewsTopic(visit, { ...short, prefecture: '東京都' }), false);
+  assert.equal(sameNewsTopic(visit, { ...short, publishedAt: '2026-10-19T10:00:00Z' }), false);
+  assert.equal(sameNewsTopic(visit, { ...short, title: '佳子さま、難聴者大会出席中止' }), false);
+  assert.equal(sameNewsTopic(a('c', 'イベントのお知らせ'), a('d', 'イベントのお知らせ')), false);
+});
+
 test('photo pages group without treating page number as an event date', () => {
   const prefix = '佳子さま 全国中途失聴者・難聴者福祉大会ご出席 功労者と懇談';
   assert.equal(sameNewsTopic(a('1', prefix + ' [写真特集1/8]'), a('2', prefix + ' [写真特集6/8]')), true);
