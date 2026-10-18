@@ -32,9 +32,22 @@ test('planner holds visual, stale, revision-changed and unregistered evidence wi
 test('planner respects public-only, 6 weeks/6 months and shares the bound between services',()=>{
  const records=Array.from({length:10},(_,i)=>({...record,kind:i===9?'cafe':'event',recordId:'fixture-'+i,...(i===9?{revision:1,sourceRecordRevision:1}:{})}));
  const c={version:1,targets:records.map(r=>({...target,kind:r.kind,recordId:r.recordId}))};
- const p=planDailyReview(records,c,{now});assert.equal(p.targets.length,8);assert.equal(p.targets[1].kind,'cafe');assert.equal(p.deferred.length,2);
+ const p=planDailyReview(records,c,{now,limit:8});assert.equal(p.targets.length,8);assert.equal(p.targets[1].kind,'cafe');assert.equal(p.deferred.length,2);
  assert.equal(planDailyReview([{...record,publication:'draft'}],catalog,{now}).targets.length,0);
  for(const [eventKind,count] of [['exchange',0],['theater',1]])assert.equal(planDailyReview([{...record,eventKind,baseline:{...record.baseline,startDate:'2027-03-01'}}],catalog,{now}).targets.length,count);
+});
+test('registered sources beyond eight use bounded batches and stop after uncertain API results',async t=>{
+ const records=Array.from({length:12},(_,i)=>({...record,recordId:'fixture-'+i,sourceUrl:record.sourceUrl+'/'+i}));
+ const catalog={version:1,targets:records.map(r=>({...target,recordId:r.recordId,sourceUrl:r.sourceUrl}))};
+ const stateDir=await mkdtemp(join(tmpdir(),'dn-daily-batches-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));
+ const batches=[];let sharedCache;
+ const options={records,catalog,stateDir,now,canSubmit:()=>true,prepare:async(targets,opts)=>{assert.ok(targets.length<=4);if(sharedCache)assert.equal(sharedCache,opts.sourceCache);sharedCache=opts.sourceCache;return prepare(targets);},generate:async items=>{batches.push(items.length);return generate(items);}};
+ const first=await runDailyReview(options);assert.equal(first.selected,12);assert.equal(first.corroborated,12);assert.deepEqual(batches,[4,4,4]);
+ assert.equal((await runDailyReview(options)).reusedRun,true);assert.equal(batches.length,3);
+ const failedDir=await mkdtemp(join(tmpdir(),'dn-daily-failure-'));t.after(()=>rm(failedDir,{recursive:true,force:true}));let calls=0;sharedCache=null;
+ const stopped=await runDailyReview({...options,stateDir:failedDir,generate:async()=>{calls++;throw new Error('unknown');}});
+ assert.equal(calls,1);assert.equal(stopped.submittedThisRun,null);assert.equal(stopped.exceptions,12);
+ assert.equal(stopped.entries.filter(x=>x.reasons.includes('batch-stopped-after-api-error')).length,8);
 });
 test('daily repetition does not refetch or submit, but changed baselines are compared against cached extraction',async t=>{
  const stateDir=await mkdtemp(join(tmpdir(),'dn-daily-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));let fetches=0,calls=0;

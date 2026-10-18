@@ -5,11 +5,20 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawn} from 'node:child_process';
 import {createComplimentaryClient,keyFingerprint,validateAllowance,publicTextFingerprint,summarizeComplimentaryUsage} from '../scripts/complimentary-text-client.mjs';
+import {prepareReviewItem} from '../scripts/curation-review-contract.mjs';
 const now=Date.parse('2026-10-18T03:00:00Z'),key='sk-proj-fixture-not-a-secret',project='proj_fixture';
 const lease={version:1,projectName:'shared-free-tier',projectId:project,keySha256:keyFingerprint(key),model:'gpt-6.1-sol',utcDay:'2026-10-18',checkedAt:'2026-10-18T02:00:00Z',expiresAt:'2026-10-19T00:00:00Z',enrolled:true,sharingEnabled:true,balancePositive:true,publicDataOnly:true,groupDailyLimit:1_000_000,observedGroupTokens:0,dailyBudget:100_000};
 const items=[{id:'0',topic:'文化',original_title:'Captioned theatre on 2026-10-25',original_summary:'The city theatre offers Japanese captions.'}];
 async function fixture(t,overrides={}){const dir=await mkdtemp(join(tmpdir(),'dn-free-'));t.after(()=>rm(dir,{recursive:true,force:true}));await writeFile(join(dir,'allowance.json'),JSON.stringify({...lease,approvedTextHashes:items.map(publicTextFingerprint),...overrides}));return dir;}
 const result=()=>new Response(JSON.stringify({status:'completed',usage:{input_tokens:100,output_tokens:50},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({items:[{id:'0',title:'字幕付き演劇',summary:'市立劇場で日本語字幕を提供します。'}]})}]}]}),{status:200});
+test('completed review keeps valid evidence and isolates invalid evidence after recording all usage',async t=>{
+ const reviewItems=['one','two'].map(id=>prepareReviewItem({kind:'event',sourceUrl:'https://example.org/'+id,title:'手話交流会',text:'手話交流会を開催します。開催日2026年11月14日。会場は市民会館。'}));
+ const dir=await fixture(t,{approvedTextHashes:reviewItems.map(publicTextFingerprint)});
+ const decisions=reviewItems.map((item,i)=>({id:item.id,relevance:'yes',contentType:'announcement',evidence:i?'偽の根拠文です':'手話交流会を開催します。',facts:[]}));
+ const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>new Response(JSON.stringify({status:'completed',model:'gpt-6.1-sol',usage:{input_tokens:100,output_tokens:50},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({items:decisions})}]}]}))});
+ const answer=await run(reviewItems,{purpose:'curation_review'});assert.equal(answer.items.length,1);assert.deepEqual(answer.rejectedItems,[{id:reviewItems[1].id,reason:'api-evidence-invalid'}]);
+ const ledger=JSON.parse(await readFile(join(dir,'usage-2026-10-18.json'),'utf8'));assert.equal(ledger.records[0].status,'completed');assert.equal(ledger.records[0].outputTokens,50);
+});
 test('no request without current-day project-bound complimentary eligibility',async t=>{
  for(const override of [{projectId:'other'},{keySha256:'bad'},{model:'other'},{model:'gpt-5.6-sol'},{enrolled:false},{sharingEnabled:false},{balancePositive:false},{utcDay:'2026-10-17'},{expiresAt:'invalid'},{expiresAt:'2026-10-18T03:01:00Z'},{dailyBudget:100001},{observedGroupTokens:999999}]){
   const dir=await fixture(t,override);let calls=0;const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return result();}});

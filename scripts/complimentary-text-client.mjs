@@ -1,7 +1,7 @@
 import {readFile,writeFile,open,rename,unlink} from 'node:fs/promises';
 import {join} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
-import {reviewSchema,reviewInstructions,parseReviewInput,validateReviewResult} from './curation-review-contract.mjs';
+import {reviewSchema,reviewInstructions,parseReviewInput,partitionReviewResult} from './curation-review-contract.mjs';
 
 // No general agent tools, arbitrary endpoint, paid fallback, or automatic lease renewal.
 // One reviewed model policy for the client, allowance recorder, and health endpoint.
@@ -171,9 +171,9 @@ export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,
       try{const text=(result.output||[]).filter(x=>x.type==='message').flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('');parsed=JSON.parse(text);}catch{throw deny('Invalid structured response');}
       if(reviewing){
         if(result.status!=='completed')throw deny('Incomplete structured response');
-        try{validateReviewResult(input,parsed);}catch{throw deny('Curation review evidence requires inspection');}
+        try{parsed=partitionReviewResult(input,parsed);}catch{throw deny('Curation review evidence requires inspection');}
       }else if(result.status!=='completed'||!Array.isArray(parsed.items)||parsed.items.length!==input.length||new Set(parsed.items.map(x=>x.id)).size!==input.length||parsed.items.some(x=>!input.some(y=>y.id===x.id)||typeof x.title!=='string'||typeof x.summary!=='string'||!x.title.trim()||x.title.length>600||x.summary.length>1600))throw deny('Incomplete structured response');
-      return {success:true,provider:'codex_app_server',engine:'openai_complimentary',model:selectedModel,items:parsed.items};
+      return {success:true,provider:'codex_app_server',engine:'openai_complimentary',model:selectedModel,items:parsed.items,...(reviewing?{rejectedItems:parsed.rejectedItems}:{})};
     } finally {await lock.close();await unlink(join(stateDir,'request.lock'));}
   };
 }
