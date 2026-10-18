@@ -62,7 +62,7 @@ test('successful Google translation does not call even an enabled Codex endpoint
   assert.equal(result.retained, 0);
 });
 
-test('Google quota exhaustion invokes Codex only for missing translations', async (t) => {
+test('Google quota exhaustion uses the text service and retains actual API provenance in cache', async (t) => {
   const apply = await configuredTranslator(t, '1');
   const requests = [];
   t.mock.method(globalThis, 'fetch', async (url) => {
@@ -70,7 +70,7 @@ test('Google quota exhaustion invokes Codex only for missing translations', asyn
     if (String(url).startsWith('https://translate.googleapis.com/')) return new Response('', { status: 429, headers: { 'Retry-After': '120' } });
     if (String(url).endsWith('/health')) return new Response(JSON.stringify({ ok: true, provider: 'codex_app_server' }));
     assert.equal(String(url), 'https://codex.invalid/generate');
-    return new Response(JSON.stringify({ success: true, items: [{ id: '0', title: '新しい手話教育', summary: 'ろう学生の手話教育を支援します' }] }));
+    return new Response(JSON.stringify({ success: true, engine:'openai_complimentary', model:'gpt-5.6-sol', items: [{ id: '0', title: '新しい手話教育', summary: 'ろう学生の手話教育を支援します' }] }));
   });
   const articles = [source('old'), source('new')];
   const report = await apply(articles, { cache: createTranslationCache([translated('old')], 'test'), pause: async () => {}, allowPartial: true });
@@ -81,7 +81,15 @@ test('Google quota exhaustion invokes Codex only for missing translations', asyn
   assert.equal(report.fallback.failures, 1);
   assert.equal(articles[0].title, '記事old');
   assert.equal(articles[1].title, '新しい手話教育');
+  assert.equal(articles[1].japanesePostEditEngine,'openai_complimentary');
+  assert.equal(articles[1].japanesePostEditModel,'gpt-5.6-sol');
   assert.doesNotThrow(() => assertJapaneseTranslations(articles));
+  const cached=createTranslationCache(articles,articles[1].japanesePostEditProvider);
+  const again=articles.map(item=>({...item}));
+  await apply(again,{cache:cached,pause:async()=>{},allowPartial:true});
+  assert.equal(requests.length,3);
+  assert.equal(again[1].japanesePostEditEngine,'openai_complimentary');
+  assert.equal(again[1].japanesePostEditModel,'gpt-5.6-sol');
 });
 
 test('actual Google and optional Codex outage retains prior publication and queues new articles', async (t) => {

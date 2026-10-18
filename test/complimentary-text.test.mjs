@@ -4,7 +4,7 @@ import {mkdtemp,writeFile,readFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawn} from 'node:child_process';
-import {createComplimentaryClient,keyFingerprint,validateAllowance,publicTextFingerprint} from '../scripts/complimentary-text-client.mjs';
+import {createComplimentaryClient,keyFingerprint,validateAllowance,publicTextFingerprint,summarizeComplimentaryUsage} from '../scripts/complimentary-text-client.mjs';
 const now=Date.parse('2026-10-18T03:00:00Z'),key='sk-proj-fixture-not-a-secret',project='proj_fixture';
 const lease={version:1,projectName:'shared-free-tier',projectId:project,keySha256:keyFingerprint(key),model:'gpt-5.6-sol',utcDay:'2026-10-18',checkedAt:'2026-10-18T02:00:00Z',expiresAt:'2026-10-19T00:00:00Z',enrolled:true,sharingEnabled:true,balancePositive:true,publicDataOnly:true,groupDailyLimit:1_000_000,observedGroupTokens:0,dailyBudget:100_000};
 const items=[{id:'0',topic:'文化',original_title:'Captioned theatre on 2026-10-25',original_summary:'The city theatre offers Japanese captions.'}];
@@ -45,7 +45,48 @@ test('budget is reserved before transmission and concurrent requests cannot spen
  const dir=await fixture(t,{dailyBudget:30000});let calls=0;
  const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;await new Promise(r=>setTimeout(r,20));return result();}});
  const results=await Promise.allSettled([run(items),run(items)]);assert.equal(results.filter(x=>x.status==='fulfilled').length,1);assert.equal(calls,1);
- await run(items);await assert.rejects(()=>run(items));assert.equal(calls,2);
+ for(let i=1;i<12;i++)await run(items);
+ await assert.rejects(()=>run(items),/Daily complimentary budget reached/);assert.equal(calls,12);
+ const ledger=JSON.parse(await readFile(join(dir,'usage-2026-10-18.json'),'utf8'));
+ assert.ok(ledger.reserved>30000);assert.equal(summarizeComplimentaryUsage(ledger,{day:lease.utcDay,project}).accountedTokens,1800);
+});
+
+test('existing v1 successful reservations settle to measured usage without rewriting history',async t=>{
+ const dir=await fixture(t,{dailyBudget:30000});
+ const old={version:1,day:lease.utcDay,projectId:project,reserved:29000,records:[
+  {status:'completed',reservedTokens:18000,inputTokens:300,outputTokens:100},
+  {status:'rejected',httpStatus:403,reservedTokens:11000,inputTokens:null,outputTokens:null},
+ ]};
+ await writeFile(join(dir,'usage-2026-10-18.json'),JSON.stringify(old));
+ let calls=0;
+ const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return result();}});
+ await run(items);assert.equal(calls,1);
+ const ledger=JSON.parse(await readFile(join(dir,'usage-2026-10-18.json'),'utf8'));
+ assert.deepEqual(ledger.records.slice(0,2),old.records);
+ const summary=summarizeComplimentaryUsage(ledger,{day:lease.utcDay,project});
+ assert.equal(summary.actualTokens,550);assert.equal(summary.heldTokens,11000);assert.equal(summary.accountedTokens,11550);
+ assert.ok(summary.historicalReservedTokens>30000);
+});
+
+test('rejects corrupted successful usage, exhausted actual budget and unresolved records',async t=>{
+ for(const record of [
+  {status:'completed',reservedTokens:25000,inputTokens:null,outputTokens:10},
+  {status:'completed',reservedTokens:25000,inputTokens:24999,outputTokens:2},
+  {status:'completed',reservedTokens:25000,inputTokens:20000,outputTokens:5000},
+  {status:'uncertain',reservedTokens:25000,inputTokens:null,outputTokens:null},
+ ]){
+  const dir=await fixture(t,{dailyBudget:30000});
+  await writeFile(join(dir,'usage-2026-10-18.json'),JSON.stringify({version:1,day:lease.utcDay,projectId:project,reserved:25000,records:[record]}));
+  let calls=0;const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return result();}});
+  await assert.rejects(()=>run(items));assert.equal(calls,0);
+ }
+});
+
+test('inconsistent provider totals keep the reservation and block retry',async t=>{
+ const dir=await fixture(t);let calls=0;
+ const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return new Response(JSON.stringify({usage:{input_tokens:100,output_tokens:50,total_tokens:151}}));}});
+ await assert.rejects(()=>run(items),/Token usage unavailable/);
+ await assert.rejects(()=>run(items),/Previous request requires reconciliation/);assert.equal(calls,1);
 });
 
 test('World can return reviewed items only without sending unreviewed text',async t=>{
