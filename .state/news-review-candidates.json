@@ -1,245 +1,431 @@
 {
-  "generatedAt": "2026-10-18T10:49:53.891Z",
+  "version": 2,
+  "generatedAt": "2026-10-18T11:59:58.331Z",
+  "counts": {
+    "uniqueInputs": 3316,
+    "alreadyPublished": 1074,
+    "outsideWindow": 1777,
+    "hardExcluded": 18,
+    "duplicateOfPublished": 168,
+    "candidateDuplicates": 10,
+    "eligible": 269,
+    "queued": 40,
+    "deferred": 229
+  },
+  "hardExclusionReasons": {
+    "unrelated-visual-section": 1,
+    "low-value-page": 11,
+    "market-report": 5,
+    "incidental-organization-mention": 1
+  },
+  "comparison": {
+    "previousGeneratedAt": "2026-10-18T10:49:53.891Z",
+    "previousQueued": 40,
+    "retained": 1,
+    "new": 39,
+    "changed": 0,
+    "unchanged": 1
+  },
   "candidates": [
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE56bkY1eGdQUDMyY1VURVJCa012RlZXWlpIWEdxbTV6RlJHbEFTQWZCTHlSdEFxWkk1T1R3NmRGSkdZLTZUWDh0d291LUdBZEpZNFo3U2dvLWM?oc=5",
-      "articleHash": "e5cb566cdccc352367d81bff685bc7de3e7eb0aa893ebcf9ab1813946e28d5d4",
-      "publishedAt": "2026-10-18T10:13:31.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/15/173417",
+      "articleHash": "d977593bfab628d42ef4695d2a2f3ad0c56a5b25b722f2be69b47702b1fd2201",
+      "publishedAt": "2026-10-15T08:34:17.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTFBQbzQtZTFrNFN3REpmVnZ5N0ttdE5OS3V6UWhkbE9UdmRBVDEzQ19oQzJOZmJJb0xOVDRuZkJaVzZvZUVYNE5MVU1MMXdTRC1ta0VNZDluc1BPRzhRWGpuc1RUOEctdEVXa25rY29COEIyZw?oc=5",
-      "articleHash": "4a70fe64d0a8c7f3b0ef2ec09421f838ed0baa9edc2355022e97d313ce727f0c",
-      "publishedAt": "2026-10-18T10:13:31.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/14/144330",
+      "articleHash": "855e3549ce183eab397d0fbcd59fd5c3a22c1f8a3f50f5a54120d9a0c5fdc875",
+      "publishedAt": "2026-10-14T05:43:30.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5QczM1YkJ5OVZwclktSVBPc3o4ZFoyNFNfNGVLaU9UUFZBU2VkaENDSDltMU13R0xYSkxfbFIxMGxNRnhSb0Jfd054TXNFRGlHTXpzTXp3?oc=5",
-      "articleHash": "3729d4ca7277fdbf2fab22c5ff2a186a80eda19c73e10a5acf06617c4312f7d7",
-      "publishedAt": "2026-10-18T10:13:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/10/123919",
+      "articleHash": "3a5951d4c3848229234cd0877443244d2a0ecedf64d1c4990a6eb6b44a894e62",
+      "publishedAt": "2026-10-10T03:39:19.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFAtWHZGZUNWdzlocWZmSERjMlpGRW81dUFMN2hYN1ZrOERVV2JGV1VjWk5sVy1HV0Z3aFJLbjBDXzBnMWE1aUpaa0hyNTYxTEZlLTdQcDh5Yw?oc=5",
-      "articleHash": "84e09e4976384285f194853cff7c4a617b08971c45d75e8eae98183c812596a1",
-      "publishedAt": "2026-10-18T09:16:34.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/07/132125",
+      "articleHash": "7ecdb5e7aa48a84f7976333a9e221c6351e0fd58349887818a93ffa8aab9c3c1",
+      "publishedAt": "2026-10-07T04:21:25.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPYmR2Z2FHdHFjRHN0Rzgwb20zUXZ6NF9RcUJveUNtQVAtRGc4WTlIS0Z3TzNFZlhnTkd6dk15LXBfN2NfOERIVko4a0liT29SLVdJVC1HTE14ejZKRko0ME1ER1dFRlo1bzJsdGpjRFZnY2t0a2xid3pQT0Zyb1VqMGpQTEpkTUUxWEHSAYoBQVVfeXFMT2JkdmdhR3RxY0RzdEc4MG9tM1F2ejRfUXFCb3lDbUFQLURnOFk5SEtGd08zRWZYZ05HenZNeS1wXzdjXzhESFZKOGtJYk9vUi1XSVQtR0xNeHo2SkZKNDBNREdXRUZaNW8ybHRqY0RWZ2NrdGtsYnd6UE9Gcm9VajBqUExKZE1FMVhB?oc=5",
-      "articleHash": "9b99cf0c30652cd69ae1cccb3ebdab16bed3a44ddfa7dc6e10752f152ecc980e",
-      "publishedAt": "2026-10-18T08:36:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/06/154305",
+      "articleHash": "ed7979af9bb1bfb43ea852678c7b8e032814894f6267164a350a2ccd433043b2",
+      "publishedAt": "2026-10-06T06:43:05.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE40SlUzOV9nNHlYb19KMkhxWWx1MlY4Sl9fN1Z0TDBKTG9QbVc4eXF4LXl6R2RkQmRXVF9xQWRSZ2FEX1k5YmtLSFBLbw?oc=5",
-      "articleHash": "93a4cf6b8a944bcada2831ad89dd5b1e9a4531587b7dbdc5aba322268b2af8bf",
-      "publishedAt": "2026-10-18T08:09:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/30/135252",
+      "articleHash": "843d5db2cdf12b0b844e368b4f91973c1a2a5b2d20e509e8f24397c31d6bb15f",
+      "publishedAt": "2026-09-30T04:52:52.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5yMXNOTDRRWjF4MEZFbWUtVEYxa256U043R3h6RkplSnlqWjRjUDVzdHZ2dkpGVFdWdmRKcGVVS0c0bnRUNzVrcVRpWENSWVk1N3p0M3RLbDlfZ0JweHZzZ1JnMA?oc=5",
-      "articleHash": "8451b6c5fd3e16b93b7ff84d673aeca2d468d1250780eaaa195633d7fce13f7a",
-      "publishedAt": "2026-10-18T07:39:37.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/29/155539",
+      "articleHash": "a29b916b410a015fc423d13e1c0c2cb13cd13f6890cfa5f723de583a73d0de28",
+      "publishedAt": "2026-09-29T06:55:39.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1NSi1fWHkyaFpjcjFzTjNzTXhGaWxTdVI4Nm1lcnJ5S1FWXy1FcDB4QnNCSHZiTF9DX1M2ZGhrdUJ4VXB3NnMwV0wwM1ZQT0ltUTdINXpJaTduaWt1?oc=5",
-      "articleHash": "f7c28ec64daaf004bd661a3decccff4a903e1711584363b1e75ddce85b50b69b",
-      "publishedAt": "2026-10-18T07:39:03.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/26/101947",
+      "articleHash": "c8afc9cf6ca68006dacfd68fe80f1e78d81c757e69df432ef5f6f984666f86de",
+      "publishedAt": "2026-09-26T01:19:47.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTE1tMFZuT0o1aTNZOU8wNl9ad1dRS0RTa3hqUGlYLWRIbTcyQXVSQ1dDTTlyS0dIdFlRdnBreVVkUnJTczBqNVJkQXpPNGZsZ3JucXVTQm15cHByTVFnQmpyUDM1S3hvZ2tnQTFFUlRZQnJ3QQ?oc=5",
-      "articleHash": "eef31b19ecc8baedb7c0041de51e61199cf65afe0409699e418f364a2810eea5",
-      "publishedAt": "2026-10-18T07:16:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/25/145642",
+      "articleHash": "d670e89e8f2c3afbdbbaa0716b027c412767013d9e31610f3c08b4aba45b7873",
+      "publishedAt": "2026-09-25T05:56:42.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBDZkFyRUxaM2VGNWs0MWpjVkpsTlRCQUZrU0dqVVZSNUFUZGpPcU5iaXhqR04xUUFYYWFTamc0N2wyblcxMHJNQVNzRV91UVhHbDdzVEFHVG9mMmlTbTVYZnJaZk5xRVJYQmdTeW9rVGliVHc4QVhDdWd5Rm9kT3M?oc=5",
-      "articleHash": "01e4e04fa72c7a686c9c96d0e48f47f393f21781028a95b13b6e93f0bb03ab60",
-      "publishedAt": "2026-10-18T07:11:52.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/17/082620",
+      "articleHash": "3e877150618942b5c3c9576efabed9f48c04cea0e719be4fa3c314cb0d64a0b8",
+      "publishedAt": "2026-09-16T23:26:20.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0zNnRkNUU5d0JSb00wd1RBYW84bmtrUUxHaEJaNEdkUWNWSHFlVV9wbjJjZmk5aG1fNXRSUVQ3OWRneXVSNVdBRnR6ZWl1QmZvMTM0WnlzSklLelVEcXhNdVRRMEprOVR5ZnctZG9JT2JkY1J3d0hMam5LOTBMSFXSAX9BVV95cUxNMzZ0ZDVFOXdCUm9NMHdUQWFvOG5ra1FMR2hCWjRHZFFjVkhxZVVfcG4yY2ZpOWhtXzV0UlFUNzlkZ3l1UjVXQUZ0emVpdUJmbzEzNFp5c0pJS3pVRHF4TXVUUTBKazlUeWZ3LWRvSU9iZGNSd3dITGpuSzkwTEhV?oc=5",
-      "articleHash": "a6752868e16b1dc61a5313cf376e4984cc0d884eaea9c5b7e7bcfafc34f30b90",
-      "publishedAt": "2026-10-18T07:11:37.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/16/143601",
+      "articleHash": "da2b2b86c76680f5630f2282a55b4443d75df0126fa3e3f735d6b9e00f48dcd4",
+      "publishedAt": "2026-09-16T05:36:01.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMibkFVX3lxTE8xdEtWRndUNFhBczZ2dzhOZGRlSW0tVU51elFuQzA1bUdFUmwyYjNRQWZxSWZjZjVuQWsyNnE1aklrRHh4RGVMdHpJNElfbFA4a3lySWJHRTRGNHJTUmJTU0VzZDltZjdiSmhlcVpn?oc=5",
-      "articleHash": "12bc243fbcfe14fdc67380156d5c9d280b1cf98cd5bc778ce620bfe12db9799d",
-      "publishedAt": "2026-10-18T07:11:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/12/164504",
+      "articleHash": "27520e2abdb6e47802299510baaab7f5a624993fc253bf0d7782afdf6660f35f",
+      "publishedAt": "2026-09-12T07:45:04.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTE0tNzV4MWw2RHFfLVhWV3BsMTRqcHRKWjdvdFA3Vld5bHpycWpyOXIyX1cyVTU3OTlheVlzVFpBeUdwUVhsekdINXJYcS1KTDdUZm1TWFZrNkNXUDhkTl9MTm9UdXdvR0pub2lsVzFoQk1aZw?oc=5",
-      "articleHash": "d929829269e0000829637357666630f4943c27957407dd63bf54d7a75fedb313",
-      "publishedAt": "2026-10-18T05:54:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/11/171319",
+      "articleHash": "5f5f2eb8377eacbc0b0c49c6c511b2b42dba7397f273e971d9d9da7c2998be1a",
+      "publishedAt": "2026-09-11T08:13:19.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB4OUhaYlJhdlN4UkNicmUybldUZjBGZWZpNGFYRXB3eFdJQ3BDUkRLakxLT19DdHhIb2ttakpzN0o4ZEhrdkdJY2F1RG1POWp5WDZGTXZ4SQ?oc=5",
-      "articleHash": "0e3ca5486ecaa192a7903b0ddea31e89f4f54471de8ac3e02e262b63e7efcac0",
-      "publishedAt": "2026-10-18T02:48:47.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5qMkdLNFpfb1RfR1FWNjJub01RX3UyWDJBeU9yRms2T1pLUkZoR2RCc2pTdDFYUXpzRmlDZnhYUG10Sk1wc3FyS3BmRkpDSmM4amEzckJqVWRaOWp5MDBKMERqdjlNWHktVG9mSDEwOGM?oc=5",
-      "articleHash": "ce7e1cde1514684529d8d1398f7f86923ab7530f67b6c3c6aafdf11ed21f7e75",
-      "publishedAt": "2026-10-18T02:00:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMibkFVX3lxTE4wY1BqVmMwRXFUUE1UTzQtay1WcmU4cHYtTk1DRm1fdy1fM1V4NHlIX2hyMnhXQWhsNzluSkZEVUYtT0VKY01nUTRPS0ZzSVU1c1ZOa0ZJUTdQZi0zZWVOaWhMWGVoTVJhb2NNOTNB?oc=5",
-      "articleHash": "4c1c61c4fc260e158812da3de642ea00216fb915b3233d6938ae7872b09e9b42",
-      "publishedAt": "2026-10-17T22:29:33.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1TaGQwazB6NG1pWWxTVkQ2bHFZT1lPUEtJb3lQeXo4N21rcGxxR2hVbHRqbWlSNVJBTVhMWXpYX3RkYW5ZWjBNc1Qtbw?oc=5",
-      "articleHash": "99d3927932f47bf03583c42f914c6c64b31c6ab0518e88fc1ad7c543394dea03",
-      "publishedAt": "2026-10-17T21:17:31.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBVSzViX1RvV1hEa0ZCd2g4SUltMi0tZEROUGxEcUNBQ21Qd1pHeldsV05FRFFkbjN3MndoYkhZcl92bWF1VUVKSEVhRDFJa0ZNd0lKMzdBdkk?oc=5",
-      "articleHash": "7caeaa7eec90c425cf5a4f0bdd8b786d476db25c5bd67cbf85134874d31f71b9",
-      "publishedAt": "2026-10-17T20:00:02.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1GT2dxS1c2aURvMjJUWXhyWFI5M0R5bi13cHZrMEwtYmtLcGdHNW5adWQ3cnQwV2FtOVBtV3Q2RUNuOGZzY2QwaUF4amU1TmQ5YVlnQl9nV1R6dTV5?oc=5",
-      "articleHash": "7acc66d7232305875255b19b54d11a8f69f57ed95aeb9bfc75ebf68c7daaa075",
-      "publishedAt": "2026-10-17T20:00:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiekFVX3lxTE8td1NNMzc1dlBWVHhjY21zbTlGdlhzVVpqWGtOS1k4SWwtX2JwSnlVX2ZQQjJ4Vk0wZk9vU3hGQlNWNVpfZHViNjhOQmpYMExpZmo0dmVxRklnU0IzeWV6eTYwNl83TFMxOWZjdmZpUk1GR2EyZTlEX2VB?oc=5",
-      "articleHash": "c3b04dfc9b8631a33a0de9def6f4597ed045e5068f5ce5148a02d0ebd3f7919d",
-      "publishedAt": "2026-10-17T20:00:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5zSUFfSnVJdmhsZFhwdnEwR1ZMdU82VFdiQkZrUkp2cXQzdWxvLWpJeHpVNDJHWV9hYlpBQlN4RXY5cG9Ob2FFUGtKc1dfWHRVY3B2X29VbkhfZTlpUFEtT3NZTEF4SDQ1ZzJ5YmhR?oc=5",
-      "articleHash": "f09dd75ada3c45f9953d8e5297363fbec12026b5a83ae534fa672161efb4143c",
-      "publishedAt": "2026-10-17T20:00:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9id1BfOVdzNGRlSHJ1UXVwdVNFakNVdEdaODlFNEFWVFJwMXJWRUlONVVCaTFMb1BhWVRnTFFPaHJDdGpOY3diOVE0TURDb0N2MkRGZGRHU3FmREtBeWx6YnVuelFqcjJtWk44Q0p3?oc=5",
-      "articleHash": "588ea1f70209505ebd0c68e71128b8d3d5815fdb96f28f2974955cbcdfe30049",
-      "publishedAt": "2026-10-17T17:53:09.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5WdW5PZHppZU1mWGZxY0E5R1BRZGotYTNnb1k5MXlWLUc4MnlUbHEwTXNTVzM0Z3djYkl3Y1BpU1d5X1dVV2ZmOEtWdG1KV1g3V25LUjNxeDZFZmpCR2xKZVVuSVZQS180dzE4X1Vn?oc=5",
-      "articleHash": "f9823d17a8b67d5c09ab7d83308d9c54c0d935d5fc103409a24950ec7afeb930",
-      "publishedAt": "2026-10-17T17:04:30.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiakFVX3lxTE96Qk1qWDFoMWdCYmQwZzVYV0phRGxBVllyd3h5TVloSVJPUWxKcDNOM2U4QkxVTTNLSkZmcURscTNfVXZGbFR4R0pWVjZZdVhaQWNnck8yUy1kbkp2MjlEdDF6RkhRME1vMmc?oc=5",
-      "articleHash": "4e90b3850db92f8def94534057847289150ef2aa49d6dad88bd8b8b81664bff1",
-      "publishedAt": "2026-10-17T16:03:22.000Z",
-      "sourceTier": "broad"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9oR3RJN3JNXzd5ZHJBN1hlRUl2ZmNsREZoZW9JblJpVGxPSUpTblpEMkRXWHpMMjEtVllGSjRhclRVWDcxSmFuSjl1aWs3RHY5Zy1xX2F1bzJQNENXYWllSzlIUUJFTHM?oc=5",
-      "articleHash": "bcba773c5f8cd7455d055d536e4f2a436053e5a7f82ea733b850cbf43129ed5f",
-      "publishedAt": "2026-10-17T12:04:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBsVWt5WWhUZi1iQUl0dWYzc0RjaDNlcHlaSF9ScEREVUhPSjB4ZnZuTGd2cWhtZDdtRkNZSFBiOWwzRHJodkxfajFielhOMWYwOWlsODVfQzlMODBBQUxGaGFQQjFqOGo1bWM5T2F3?oc=5",
-      "articleHash": "0ed8566c416459e6fe27bcb996639ce2e97ea5ff3d0634ce950a2696b86f2cc9",
-      "publishedAt": "2026-10-17T07:46:30.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTE1hS1lHX0lmd2V4MFMyQWVpYmdVd0huNDA3RV9KMzc5c1JQMTNhWWdXYjFjSWk2dG9JSTBKdGZTb25aSnhpTjBXQVc4blFiSWI3b1RGLXJta0ZoLWNkRXg3c2ZaSi1hTlJsX1NBSWR1dGNXZw?oc=5",
-      "articleHash": "dca3a975d58a53a00733c3307c9754cd4d25acf82eed1491d79b864ea9bc1abe",
-      "publishedAt": "2026-10-17T03:46:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTE9HUTJLRldvR3pzT0pLdEUtUkFkSUdRNFNrbi1pUnljYjB4V0dtQllJdEpsbmFQTWJCRm5ZMnpvakVreG51U0w3Ym1Sd051YW5GZ3JUY3U5VzIxd1ZKNWowZTFhNTI5ajZLa29MYU1CMkxsZw?oc=5",
-      "articleHash": "3db57f4a8b089ad43b6a13e03d0e782f7c22b8e66f22e3a546c1dfc9d9ebb87a",
-      "publishedAt": "2026-10-17T03:46:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5WTVpNRGJoUFVCTkR0VjBRZVZ3dC1uMUdrUW5CcGNIVnA4ZjZseVZ6bFdrQ042ZnJwbzZpeG1lMThEdGgzWmtvc3Mta3BHY0dERWJjTHVPSGhEcjhFZV90NWtnVk1Bbnh0Tkt3NU5wUFQ?oc=5",
-      "articleHash": "9785abe262daebe8770889aabc449a388c596661da158e8319a45e0c4f927931",
-      "publishedAt": "2026-10-16T20:00:00.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5WYTNwM1VJeS1WcFl3SDhOdmdaY0k0ZHhXMDBlUnQ4ckp2d3J2MDVMSUE3NVUzS1FzbmI2Y255MmM0SUJndUd5OFRCVEFYUTd0cXR4NklwNkVJdVhVaEVjTkJHNk95eEl0VXZwS0w4SzNmWTM5bnZDRUJjODFBQVE?oc=5",
-      "articleHash": "86ff5bd63d777e1a5cfc859044b7c74a3e3dd31c6b04cc8916c0ead76a6f0d6d",
-      "publishedAt": "2026-10-16T09:54:01.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOZFp0bGswRjJNdXk2YklKcjlaYVdLX1ZlS0d5bE41cmJaUDZmV3BXbFFzUWdacHFnRWxTanYxUnJ3aE9QUVZJc2lmVUhFOUVPTVVIRkQyQ2N4LUF6MThpb0p0UWF2VTRSbUYzVkpiR1hCdmVad0xiUElBQTdHa0xpVXktRy1uUmc?oc=5",
-      "articleHash": "dfc1849c1a45220f767deb042e212815ae764ededbee87daf8b04e46a792dab9",
-      "publishedAt": "2026-10-16T09:35:01.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBfYkVMcHl5dHRHVHJybVlZMUxoUFNnVDBXQmhhNHkxZHlMSWd0ZktNbVp3ZWFUT2xNdjNnaFczQVUyYnJIT2pMNDN3cXF0WDdzdWJxSEJHV0dpN0RVSDdXTmhhSUVtWEZGLVE?oc=5",
-      "articleHash": "638274ec8923b5b8e7100c22c77fa5073c32d002e3884a3b0f83b403ea37a6c4",
-      "publishedAt": "2026-10-16T08:35:11.000Z",
-      "sourceTier": "broad"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/uruwashi/",
-      "articleHash": "8b3840f2a0beed49f28250ea80c3dac0f9de13f38bc5d637aede674a4a7406d2",
-      "publishedAt": "2026-10-16T06:55:06.000Z",
-      "sourceTier": "broad"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBpN1RIdVlKRjlXeVlMS2Y3elZROWlZbFRMeEx4bERiZjVuSWpZcFVlVi16RmNCMUlkZVZGekFPRmlpTDlPZ1ZtdEp1cklrT2w4cEFkdW9aQzFHc1RlUnpqa1o5dnFsN0xkQXc?oc=5",
-      "articleHash": "430e9c312bc539ae15392cdfda3782c8d293df871aead5470cd2cff274f0141b",
-      "publishedAt": "2026-10-16T04:20:02.000Z",
-      "sourceTier": "broad"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5WTnJzQ2lFY20tOWdFSmszWU9RbVdSNkJUSWx0b1hBWHQxSnhMWjgwdGVkZDdUNC01dmUzdE13MVlnSkUtZzNmZ3NqVkx2aV9uVURmSg?oc=5",
-      "articleHash": "0583a5bc080a15095ecf086a440293d4b14c6310672032eac6cbe726a433e540",
-      "publishedAt": "2026-10-16T04:03:01.000Z",
-      "sourceTier": "google"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5rWUJvamRhUi1IVUtnUjdxWE5Xakd3UzR4aHplcWJtVmd6NlZmZm1ZUGJJeVY5bkFVVlphTVh4RzRkeTZoa3pXUlU0X0pEaWloYlVrMmsxZkQ3WHMyQy1OVk9YYzZTWXo2VEE?oc=5",
-      "articleHash": "1686f9d7bfcba0eff1e0f46457e55c1556723a05ed4017e1fcb968e74b8d56ec",
-      "publishedAt": "2026-10-16T03:00:02.000Z",
-      "sourceTier": "broad"
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/10/160239",
+      "articleHash": "479521c47f3e28426c8476065e0e946fedb802a4406449d04301006cf14528d6",
+      "publishedAt": "2026-09-10T07:02:39.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/ryuji/",
       "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
       "publishedAt": "2026-10-16T03:00:01.000Z",
-      "sourceTier": "broad"
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTE9iTUZxTHpvU2lHb3ZfaVQybVdJakwzVmdJRGxSbU9jSnE1UE9vcVJNZjFIT3Q5UHp6QlpNTE5scmtKNXJmMUlYV1pUMVJlR1F2dlhJS1N0OUlGSkxkOHVoS0ZWbDd1WTdsYWRlUXNuWGFlZw?oc=5",
-      "articleHash": "502f42d1c96b3b15098610c94c31908260123f4fd02f4d04518a23d211a180b0",
-      "publishedAt": "2026-10-16T02:25:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://co-coco.jp/news/nolookpark/",
+      "articleHash": "cf2215aadbe00c99596ecfc2ef116704d9b8dc1626077708aee32e950faf5f9d",
+      "publishedAt": "2026-10-15T07:30:34.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTE4tMnV5dFF5Y3Z2Mk9iWDNOeEF2N1o4SVZwODFTUUYxXzB4NklrckJjMGQ0b1Nkc05IbDNEY1BxYkNMdFJBOGtiUXkzQVpZem9xUXFRNEpKT0g0elp6WlZTMXlMVnNPUlJRQ0VFUjl3UU1yZw?oc=5",
-      "articleHash": "bf423b974b5c18f00a77fa80ac3c9ada6aff6bd9e3218bef3e15559c01060622",
-      "publishedAt": "2026-10-16T02:25:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://palabra-i.co.jp/2026/10/post-5614/",
+      "articleHash": "e7c8f6d5204d8844e4ed0143764f9a7a5b2f711f2f5206c0b871bc1edcabacd7",
+      "publishedAt": "2026-10-06T01:41:59.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "palabra-i.co.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     },
     {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTE14WjlFUkw1eVhZMTdnc204dUJld0lvTWNfLVR3VmdYajJTT29GdTdsNExaX0xqSGVfLThCTmN4a3pWZ082dDhPcXRpbUJyRUZNcWRVTXhUUmZXa0xfbEJ3SXB3cnFKS2treHpqZi15WEd4UQ?oc=5",
-      "articleHash": "7fee8b8fd519badb13f7fd62ea840e720c815bf308e9317dc740f60e860c78cf",
-      "publishedAt": "2026-10-16T02:24:00.000Z",
-      "sourceTier": "google"
+      "sourceUrl": "https://note.com/psy_article/n/n008022d39951",
+      "articleHash": "c07f4d1481defa2b8994a02b4f6f968736d0f818fef6e1d11e775cfa20bb4293",
+      "publishedAt": "2026-05-31T14:40:03.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "note.com",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/hutashika/",
+      "articleHash": "174bc6c1c7145d56a0736f2e5b7f1626d043972ce2c8a0b778ea02ad939d83a8",
+      "publishedAt": "2026-10-15T09:19:28.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/kidsmeetstudiooowa/",
+      "articleHash": "c3374bf1c329c7cc19ba0c1e41db08bd8e1a851d429b5f6d52d3d215aefb0bff",
+      "publishedAt": "2026-10-11T03:00:59.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://palabra-i.co.jp/2026/10/a11y-chiba/",
+      "articleHash": "b9efb938bae149c1913f8844b6fc70084c2c978493fa28e73ce6a195f1646414",
+      "publishedAt": "2026-10-06T01:37:10.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "palabra-i.co.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/odorunew/",
+      "articleHash": "1647a6ce647c9f0923101b936720a617baff1c6f3ca38a80e5dc08f6b971304c",
+      "publishedAt": "2026-10-15T04:10:57.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/tayoriino/",
+      "articleHash": "be7df7c2508c575e0cd9594ad471d2a1bd8d8764fa103b955c19ac683642f32e",
+      "publishedAt": "2026-10-09T02:30:30.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
+      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
+      "publishedAt": "2026-10-14T08:54:18.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/book_syugei/",
+      "articleHash": "081596df7f8fecdee4a8802b5c39f28dcbc0a58195d05bfbd12bcf9677eaae53",
+      "publishedAt": "2026-10-08T22:30:43.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/komae-dousureba/",
+      "articleHash": "8585bb0046db5cb9782d4ea044b70cc27d20c70ee127c0e4fdc0601c4e5c3078",
+      "publishedAt": "2026-10-13T01:00:10.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/nazeewoegaku/",
+      "articleHash": "78b6635c2b9c283562540544dada0d46b7bc4ca50452c6c68076c80aaa45b456",
+      "publishedAt": "2026-10-02T07:30:27.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/mienaimusume_joeikai/",
+      "articleHash": "8e97f794f7d3636a1da1f22ea9ca78341dd8abd7f2b4831dc52200f332d473b4",
+      "publishedAt": "2026-10-08T06:40:08.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/series/study/ookinashugo/",
+      "articleHash": "883157f85419e6f9d1b4d3b60d6b712af8079e81ac40d363d67a4c326d2a0c9f",
+      "publishedAt": "2026-10-02T02:45:12.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/cozytown45/",
+      "articleHash": "9e5fdcc3155edd85375cf55dca341f915b7746de94138ec4ab27a281f005afd1",
+      "publishedAt": "2026-10-06T02:02:12.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/modoki_event/",
+      "articleHash": "ff8cb52f05d76016d982a6a7ff4356891899943867635cfc4905aaf445402dca",
+      "publishedAt": "2026-09-28T07:30:47.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/cozytown44/",
+      "articleHash": "b1e0fdd5f98c85809d0a96cecf973f762137a011922f2ea3f314d5bb72040a53",
+      "publishedAt": "2026-10-06T02:01:23.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/sakerubashoni_oitekure/",
+      "articleHash": "764891deac3df4e76a0175205b7a1ec8396417a8e1d5d68ab713680580782e6e",
+      "publishedAt": "2026-09-24T02:30:00.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/threecode/",
+      "articleHash": "3832da623e888d360bbdcf5efb9091cbe86cafba4b4ecdb84f681290cb933bde",
+      "publishedAt": "2026-10-05T02:45:33.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/series/work/makotomizutani/",
+      "articleHash": "a85c3b8f83f1259d55f82cdec31ed87837edd248c52c616eeefdfd042a3c019e",
+      "publishedAt": "2026-09-17T21:45:03.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/wakenaiart/",
+      "articleHash": "ace77581af8fd775ed71d044048111bf94a3444bc503ee3ded606485d8c95068",
+      "publishedAt": "2026-09-17T02:30:48.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/kokobo/",
+      "articleHash": "98cab63910f42d5f8f34df50415f68ef2eeb33836aedde971cab5bd35547f207",
+      "publishedAt": "2026-09-14T07:30:02.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/rojo/",
+      "articleHash": "fc6e4fde98f67078a0baa1a763daa35b9370a14d9b1fd37384af72a36aaeb1bd",
+      "publishedAt": "2026-09-08T22:30:20.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/bridge_sumida/",
+      "articleHash": "090b88797c4db9b7616ced9a89dcc5c78c7b306a1f27d87c88edaf77f2ca7197",
+      "publishedAt": "2026-09-07T22:30:15.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/products/orihime/",
+      "articleHash": "0963451c7c44a5fea4641ad4310d064b8a006bcc98b4667db1e01029e210c3a3",
+      "publishedAt": "2026-09-02T04:30:35.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
