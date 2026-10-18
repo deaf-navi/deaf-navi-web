@@ -59,6 +59,18 @@ test('publication gate rejects placeholders even from trusted feeds, but retains
   assert.equal(publicationExclusionReason({ title: '補聴器の世界市場規模・予測レポート' }), 'market-report');
 });
 
+test('expanded search excludes numbered gallery pages while retaining the actual hearing-related story', () => {
+  const title='聴力検査で異常が発見されない「聞き取り困難症」とは？';
+  const story={id:'https://example.org/story',title,summary:'難聴や聞き取りについて解説します。',publishedAt:'2026-10-17T00:00:00Z'};
+  const galleries=['画像20 / 32＞','画像7 / 32＞','画像３１／３２＞'].map((prefix,i)=>({...story,id:story.id+'/image/'+i,title:prefix+title}));
+  for(const gallery of galleries)assert.equal(publicationExclusionReason(gallery),'low-value-page');
+  assert.equal(publicationExclusionReason(story),null);
+  assert.equal(publicationExclusionReason({...story,title:'画像で伝える難聴者への情報保障'}),null);
+  const published=prepareDomesticPublication({generatedAt:'2026-10-18T00:00:00Z',count:4,articles:[story,...galleries]});
+  assert.deepEqual(published.articles.map(x=>x.id),[story.id]);
+  assert.equal(published.publicationReview.removed.length,3);
+});
+
 test('syndicated titles are cleaned without deleting meaningful parenthetical text; distinct events remain', () => {
   assert.equal(cleanSummaryText('NPRの番組が聴力の課題を扱う', 'NPRの番組が聴力の課題を扱う', 'NPR'), '');
   assert.equal(cleanArticleTitle('手話の集い（共同通信） - Yahoo!ニュース', 'Yahoo!ニュース'), '手話の集い');
