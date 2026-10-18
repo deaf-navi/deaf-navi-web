@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-10-18T15:06:38.368Z",
+  "checkedAt": "2026-10-18T15:45:51.303Z",
   "pending": [
     {
       "article": {
@@ -28,8 +28,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T13:14:12.724Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 2
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 3
     },
     {
       "article": {
@@ -57,35 +57,123 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
-        "id": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE93RjNZMEtMVjRYcm0zN2ctMExiZDN6Ym1lLUhnYmZrYml3Wk5BY1JHN05zX05FMGtCYVRfVjkyQkdob1NRX0xTWmtqbEpGMWY0?oc=5",
+        "id": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQRzBYT1ZEbngyeFpoMnRTaGZLaENldGkyZHhYeUsxZnVZcU5FMTZzVUd6by05dThjM0Etci00T2xpVlpfbk13eHVWVzYwT1FxX19MLVppemFCLVliVHBvOXdjYUh6ZFJidHZROG80UWg0SWRtaEhybnRFcFRpZ0VMQXdJOW5DVmVJWlNWaTN2LVVxN1pYYzNvZDAyM3ByREVXOXlIYWlNZ1FuT1RYNHFqYi1ZTXNHVm9pTnVpQUJKVWdoSXI3c3YxZDdDVTZFb1gybE1CR1EySDVBUWsyT3BOTjJlazBBUnB0N01DaF9GME1mdjlPMUs4TVJoSmlBLTVKZzdmdFA3ZjktZ0NHVExuei1qNWdYMGlWTHVwYXpnZTlTTHl0?oc=5",
         "title": "",
         "summary": "",
-        "originalTitle": "The History Hour | The chimpanzee who learned American sign language and monkeys in space",
-        "originalSummary": "The History Hour | The chimpanzee who learned American sign language and monkeys in space",
-        "sourceName": "BBC",
-        "sourceUrl": "https://www.bbc.com",
-        "publishedAt": "2026-10-17T07:20:29.000Z",
+        "originalTitle": "Sourds et entendants s’initient au théâtre en Langue des signes française, pendant un festival de contes",
+        "originalSummary": "Sourds et entendants s’initient au théâtre en Langue des signes française, pendant un festival de contes",
+        "sourceName": "Ouest-France",
+        "sourceUrl": "https://www.ouest-france.fr",
+        "publishedAt": "2026-10-17T17:49:10.000Z",
         "region": "europe_cis",
         "regionLabel": "ヨーロッパ・CIS",
         "topic": "accessibility",
         "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 21,
+        "curationScore": 31,
         "curationSignals": [
-          "sign language",
-          "major-media"
+          "sourd",
+          "sourds",
+          "langue des signes",
+          "multilingual"
         ],
-        "sourceDomain": "bbc.com",
-        "sourcePriority": 96,
-        "sourceMode": "major-media-fresh",
+        "sourceDomain": "ouest-france.fr",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
-      "firstSeenAt": "2026-10-18T15:06:38.363Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE1GUE50bzhjcENXZmpHSF9WTVVoZE1FeWlsdDFUSEthQTRwZXR6bnUtMEFvRERydTl1UUVPRFZCVzBVdw?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "韓流idol都在學的「韓國手語打招呼」：當粉絲在演唱會現場用手語應援，這股無聲革命如何在台灣聽障社群掀起漣漪",
+        "originalSummary": "韓流idol都在學的「韓國手語打招呼」：當粉絲在演唱會現場用手語應援，這股無聲革命如何在台灣聽障社群掀起漣漪",
+        "sourceName": "墨新聞-MORE News",
+        "sourceUrl": "https://more-news.tw",
+        "publishedAt": "2026-10-15T03:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "聽障",
+          "手語",
+          "multilingual"
+        ],
+        "sourceDomain": "more-news.tw",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOOV9KdUpQYURINTNiclBuQm41OS0xSHhVYklQekVEYUJ4NHFTMENyR3lkYUpjVVRrUTgtTjMtanhRbUYxVGltNGFkbzQydmZWZlFSaVFkM3hZTDZRVklETFVJb3Uydm9NR1hXXzBNOEtobkRuMTNUZ3pCM1NVd3ZaNHN6OERJa3pMWFcta3kwUENWOU9lMmI0SWxCYmpsbXFGZDQtdDlObWJhV1Q1ZTNRWnlCS204SnVXUENWSjIwUEE0UnQ5LUFCd1F6d1ZJTWJCZXR1cnhUM3FsbU9i0gHiAUFVX3lxTE9rS3pSd0Ezc1NkQ05OMHNfeTJlTlpzZFJjZ2FNN25faktTYU1ESnlvcHZ3R1I2YVRibkdVa0pSZ3czTklMX3hBQVF5TTJYM1J0QktHUFUxVkVOd29xLVZNQjJBdHV4eEZLamlkX1ZlSUZfc0JqRkU3S21fT1dYSkZUb2ItLV9VNFVRVkZ0eXlPeS1NSU5ZMlJaTXNMSVZFNDlYbVBuMWpUZVlxM1czcW1wdGhERlQta1Q1RTRBSG5zeDRjcnhpbEdaazdoejRSLXJMcDR6QWJXN0piWDdmdWJLcEE?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Instituto para Niños Ciegos y Sordos inicia proceso de restauración tras daños por el terremoto en Cali",
+        "originalSummary": "Instituto para Niños Ciegos y Sordos inicia proceso de restauración tras daños por el terremoto en Cali",
+        "sourceName": "El País",
+        "sourceUrl": "https://www.elpais.com.co",
+        "publishedAt": "2026-10-06T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "general",
+        "topicLabel": "一般",
+        "curationScore": 20,
+        "curationSignals": [
+          "sordo",
+          "sordos",
+          "multilingual"
+        ],
+        "sourceDomain": "elpais.com.co",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNZWVLLU95SDRLdFMxRlZoVi1YempQUXhZREM1VWJrZzhqYTlQRVJqSEpaZ2FIUV9HMEZuZ3dGUHREY2psN3h2UlpfZ2tDWVdVTmI2eWZuRENvNlNQZERnVjRYdXRyTjBlM2Vqd082WGc2OGp0c3M0Y1BJdkwxVjR0VTk0ZU9nZG4ybkRwQ0kxaDFhOGNSQm5ZZFpzMzdSS1F3OTZvZzN4Vm5WU1dha1MzNjNxaFROZHhZcWxaUFhCbl81d3FkdVNxTG5kbEw3S3N3YjdUVVNTZkxYTWdiV1lfa0wzZw?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "La provincia impulsa la Lengua de Señas Argentina para asegurar la plena inclusión de la comunidad sorda",
+        "originalSummary": "La provincia impulsa la Lengua de Señas Argentina para asegurar la plena inclusión de la comunidad sorda",
+        "sourceName": "Info Arenales",
+        "sourceUrl": "https://infoarenales.com",
+        "publishedAt": "2026-10-02T19:04:18.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 17,
+        "curationSignals": [
+          "lengua de señas",
+          "multilingual"
+        ],
+        "sourceDomain": "infoarenales.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
       "attempts": 1
     },
     {
@@ -114,8 +202,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -143,602 +231,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T03:09:24.917Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 9
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRFRqZTJTOHNOYVNtQ01QSkFkOENqZlpudGltV1BBNmlTVEdCTDRmS2VoVFdtNEpLQUZWWVg3ODdxNl91RnVNU1RCdDZuY0Q0N1BXVU9uRjY4dnlCZ1E4WWlPTU1CY182SWhNMmN5ejZkNWk0N2dvTlV3QjVGdkxqV1dmZm11aE5oNVVNYTNGU285UWxOTGNaR2NESXFsbWczdkpMbzhnaFhhaWFJUEMzUzl6eDNoSzhBZjNUckJqZTc?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
-        "originalSummary": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
-        "sourceName": "Adnkronos",
-        "sourceUrl": "https://www.adnkronos.com",
-        "publishedAt": "2026-09-26T07:00:00.000Z",
-        "region": "europe_cis",
-        "regionLabel": "ヨーロッパ・CIS",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 21,
-        "curationSignals": [
-          "sordi",
-          "impianto cocleare",
-          "multilingual"
-        ],
-        "sourceDomain": "adnkronos.com",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T03:09:24.917Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 9
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiowJBVV95cUxQYko2Rk5GQjBLM0VVczJxOW85R3U5ck02OEhPdlYwcThLc19hU2xDX2RkbGowU2lBSUhiQlMtbjVMN0psclFHaU5sa3F2WVpmajF6RmJLNHQ1cldpTy1JNHFabVFZekVIbV9oRU9HUlhzT1NxRVpxQk5MaHV4cnFEQVpQSFdrT0FlYmlEUmxDZjVrZ2VJN0NfY29sbHdYMXY4SER2bWxkV0V3UDJoNlFZcXRydUZXOGZyRDJvLTFSRVFIejNQY0Y2cmk5UFdteFhUX0syblFLVFJaZ1Fmd0NrRzlHcEFhMXpET19sRTVnTVN2dlBXVzl3N3RadktoSW12dFhZd2pmWnZ2VXJ4ZFdjcUhsS1VtTEx0WEJfSHU0NmtpclE?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "수어로 다시 쓰는 시…농·청각장애인 창작자의 ‘움직이는 시’",
-        "originalSummary": "수어로 다시 쓰는 시…농·청각장애인 창작자의 ‘움직이는 시’",
-        "sourceName": "데일리안",
-        "sourceUrl": "https://www.dailian.co.kr",
-        "publishedAt": "2026-09-22T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "accessibility",
-        "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 21,
-        "curationSignals": [
-          "청각장애",
-          "수어",
-          "multilingual"
-        ],
-        "sourceDomain": "dailian.co.kr",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T15:06:38.363Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 1
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPRmtXNHY3OEwyTjEwa2MwaTVaclRoenhHdG9raEJvLXBpb2xLX1Z6MWlMeDNrZVlOWHpTbzdtcjRXdFY4ak5aQm1uSmZWNFdIaFdnd0tianB1dmwzQzJkRDRmT2NaN0pVbXdteG94ZTZZQUp6Yi1GZHVMNHNuaWdzNTJpdzY?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "No Single Over-the-Counter Hearing Aid Is Perfect for Everyone, So We Have Multiple Recommendations",
-        "originalSummary": "No Single Over-the-Counter Hearing Aid Is Perfect for Everyone, So We Have Multiple Recommendations",
-        "sourceName": "The New York Times",
-        "sourceUrl": "https://www.nytimes.com",
-        "publishedAt": "2026-09-21T07:00:00.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 22,
-        "curationSignals": [
-          "hearing aid",
-          "major-media",
-          "multilingual"
-        ],
-        "sourceDomain": "nytimes.com",
-        "sourcePriority": 92,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T12:15:51.389Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 3
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5tbl9xVWVUZW9sejl2OXBMZDhVSjRhdkliMUtZc29Udzk1T1ZUNWhnVzEzbXREVkJ5LW1jU3lBRjRKcDR5ZXNPeEkyN0JtQU1MalhYVzdkUmpqMm1oLTVhLWZXc2VFS2s?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "機器臂手語師 助聽障生求學",
-        "originalSummary": "機器臂手語師 助聽障生求學",
-        "sourceName": "人間福報電子報",
-        "sourceUrl": "https://www.merit-times.com.tw",
-        "publishedAt": "2026-09-14T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "accessibility",
-        "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 21,
-        "curationSignals": [
-          "聽障",
-          "手語",
-          "multilingual"
-        ],
-        "sourceDomain": "merit-times.com.tw",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T13:14:12.724Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 2
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1qTGliNEotX3IxY2pxTWpNQURGQ0ZYT0JoTzA5R05TNUk2VExaTHJMcW1LcWRWQ3hNSURVTnZMLUVwYU9SMjhHc1NzY0tPSUNOTmhvZzhWdHNGU0tCRVlsRmR3MDR4Zi1KRnVwdEEwcmExUWZM0gF4QVVfeXFMT3MzZDJXM1ZRdDE3cUJ2dFVGSGJxb243blM2YjJNcTB1MUgyUWhRREFRcl95WWk2QnlMX1JwNk40RTFSaW90UEZSZTE1dEFoOWdwLW9qQWdzWG1UMUF3cDFqeHNqLXZDdE95eVRXRzh1Ym1iZGpFSUt2?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "삼성소리샘복지관, 청각장애인 인공와우 수술·재활치료비 지원",
-        "originalSummary": "삼성소리샘복지관, 청각장애인 인공와우 수술·재활치료비 지원",
-        "sourceName": "한국장애인신문",
-        "sourceUrl": "http://www.koreadisablednews.com",
-        "publishedAt": "2026-09-07T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 24,
-        "curationSignals": [
-          "청각장애",
-          "인공와우",
-          "multilingual"
-        ],
-        "sourceDomain": "koreadisablednews.com",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T03:09:24.917Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 9
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNZ2ZVLWFuNHB1bkR3MkltUGhjMEs3bDNwYldaTnFpdDBYQzA5UldCeUtPbG5SdXdETHphVWtfLW1GekRjSHVqak5SdW5nMXZFSElpSkV4UFJKV2REYkZoQWZnYUI1M1h2TW41b0JUNjZjcVRHMHlTZU9nc3hJdC1FaTBkX2k5V081VjVKQ2hMYjJzaDVCRENRUnJUb1UwRENWN21ZT2NqbmZBRXlwdmZRelhXNk9Iem9hMlFTMkd5b29rMkVfNWtGQjFFRExVNm5uNmfSAdcBQVVfeXFMUHNGSjFSZ2x0ZWFwaHB0MVg4dVljRGkwN3l3Z2ROVXU0al9BOWJaT21xQmY2OTRfTzg1QU93LXVHaGFsSXJxXy1mU0pkWXlDdjRLR3VUUFlUdUF0U1F6TmJKeGFFRWExN2M2YmFiOE04MWZEd2RGZmtxMHN1alk0MWlmejBtTnFCNV91YllVTnZ4OFFTU1dWRnNZQUw4WG1LQy1DSnhqemhSSU13czdkaXYyRWZfRERNQ2g4dXVNWG5WdEh6cUt3XzhkMnQ3cl9CLTRET29TZDQ?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "FDA clears hearing aid feature on Samsung Galaxy Buds",
-        "originalSummary": "FDA clears hearing aid feature on Samsung Galaxy Buds",
-        "sourceName": "The Times of India",
-        "sourceUrl": "https://timesofindia.indiatimes.com",
-        "publishedAt": "2026-08-12T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 23,
-        "curationSignals": [
-          "hearing aid",
-          "major-media"
-        ],
-        "sourceDomain": "timesofindia.indiatimes.com",
-        "sourcePriority": 76,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T03:09:24.917Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 9
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQaXpIamhvblpoZG1QVW1ORWtCNERPVlJxSVhrdDE1N1E0bTBlVEpGTzR2ZnhTSkxsSmFhcFJtV2h1eWhvN3NSaDl0MDVQR0U5M1RlYl82cEV6TTRhZEJwV3BLQXpKaHhhQ3dNOWk1MWc5SUVmTGx5SVI3WVpqVE5YRm5SR2xBTXhMUlY5cFMxWFNPNF90TmlEVUl0OWlySWp6Y3RoUm9mOFlCdTlnUVlXMV84SWtKeDdBZFU2ZXV1Y3dvZU5qeHVUS19WcTF4eUVMdGdFSGRUbnMzdU03ZFHSAeMBQVVfeXFMUHFhVDBVak8tNkpxaWRCUmtzNnlfd1EzRkt4Z3BsU2RrMjNNQTFncENDZXJWUE1keTRHSUdPV0xCUkVPYVpidkZBZzhDNUljOHA4SVJVRDB4MWpsTDRNZENVdmpyaGw3T3V6LVV3SVFrWXNIZ0R0NnMzd052X2RoZ1hRUGtQYk9MbnVrejRyN3I1eEo2M1ZhM2xQTVJLeVdfQW15TnVKS092YUNGLUgxU0cwbHpwajZKeTdRRVdOTVNqNFJQS1NqYlVjTVpGWlhmYVRFcVh4RW1XZjJnWFRuSG9IbXM?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "AIIMS Deoghar opens advanced audiology and speech lab to boost ENT care",
-        "originalSummary": "AIIMS Deoghar opens advanced audiology and speech lab to boost ENT care",
-        "sourceName": "The Times of India",
-        "sourceUrl": "https://timesofindia.indiatimes.com",
-        "publishedAt": "2026-07-24T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 21,
-        "curationSignals": [
-          "audiology",
-          "major-media"
-        ],
-        "sourceDomain": "timesofindia.indiatimes.com",
-        "sourcePriority": 76,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOOFZrUmxLbjEyUDg0LURoQ2toNDdab1N1OXdFMGctQmhLbGtDdWtQLUdoY3d3YzFnRmpjZDB3Zi1CNHd6QlpGanZjZ1hQSTRlSWNVN0pxdzJyZjR4Wi01Ulh5aWNlVVZPS3NXWlJ4UUM0TmtZaHlrdXplbGFyT3ZLaW5fRnNjUXdhbEtkYlAyWXQ4Q2dPTV9rby1nMHZublpaX0lzZHlrRTRDbEduX2pvTldkUy1ieWlYMXFsQWFGbl9DTVlJR3ZOY2M3MXB1c3U0UlpRMGthelVQTUpjcnhJcFF2d3dyaXBFaFNkUGE3em9JOGNKR05VTnF4UdIBgAJBVV95cUxORVo5NElkUTYydW0zQlFzdHpQaW1iY2RJSkllNU9DUVgtYTFvRENvcTBaYXRRb1pZSllHOEVTTXJwb3J5d2NMTkNjbmx4NGZpMEpJOFJpT1dFWEJNcUVPMW50QVRtUW83M2pqTWVtVFJsUExzQ1RUODBWUk9TSVRLVWNFS2JmS3ByclZHaWt3SDBraWxTM09ROGtLZlFaTlJVMVpvSGlCTmJpUnlSWGNnZndrZk0wRTdBZDZRUDdOT3RHS01vV0ItaFJ3ZnhLYVZZdHNFcHpfR3gxenB5R1ZYcTY2SzNZQ2hoMFFwN2szS0YzYjhseEdoTzhRWDhoWF90?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "1 in 4 adults with diabetes may have hearing loss: Doctor shares tips to protect your ears",
-        "originalSummary": "1 in 4 adults with diabetes may have hearing loss: Doctor shares tips to protect your ears",
-        "sourceName": "The Times of India",
-        "sourceUrl": "https://timesofindia.indiatimes.com",
-        "publishedAt": "2026-07-11T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 20,
-        "curationSignals": [
-          "hearing loss",
-          "major-media"
-        ],
-        "sourceDomain": "timesofindia.indiatimes.com",
-        "sourcePriority": 76,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPRTJNWUNCZDNVYmlqaWQ1ZHNuTFJoeG50WVc3c0VvbE5oeERHWkVyUGdYTkRyV2hKZ0VvRjAxQm1Ud0N2a3V2dVBZNHZnNXNDRDZfRlVHQXNVVXF2RHFYMGdFRjY0UHBPMkhZRVB1TXA0WTBtTGVFQlNtWGJJZmZUVVNpUWFHdFVkVXM1clZGbnJmUTlzZkNicg?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Volunteering in sign language at Sovereign Hill is really rewarding",
-        "originalSummary": "Volunteering in sign language at Sovereign Hill is really rewarding",
-        "sourceName": "ABC News & Headlines – Australian Broadcasting Corporation",
-        "sourceUrl": "https://www.abc.net.au",
-        "publishedAt": "2026-05-18T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "accessibility",
-        "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 21,
-        "curationSignals": [
-          "sign language",
-          "major-media"
-        ],
-        "sourceDomain": "abc.net.au",
-        "sourcePriority": 95,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T13:14:12.724Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 2
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPaEM1alRvS0VPLUtQMl9aSV9IaEs3QUFUbWs3RWwwUFJMVVROeUNUN184ZHVYcjRwQnYxUF9NY3pZRURBQnpXY1hQUjEwaF9vNm41NnpuSXRLUzFWSGFpb1Q2RFBYX1ZZUVJOX09jd3p3alZVbVJHdFRiSlk4ZGE4TW8zZ0NhbFZFU0RZ0gGMAUFVX3lxTE9UTS1kcUw1MGk4Q0NRRnZmeE5tc0FMYnRpcTFXWC14OXRXMmJsTk41bDI2bkcwWUdJUmRQWmdkYl9uU3dvTGZHMGpJTkZvN3I3b19ONGpGN2xZSEVxQ251S0FxOF81NUtIZHBDeGNBcEJLeV9Wbjc1aHRpRWhvOE5xVW1rVURRQlVfTTlh?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Waitress gets big tip to help pay for hearing aids",
-        "originalSummary": "Waitress gets big tip to help pay for hearing aids",
-        "sourceName": "ABC News - Breaking News, Latest News and Videos",
-        "sourceUrl": "https://abcnews.go.com",
-        "publishedAt": "2026-02-16T21:21:15.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 23,
-        "curationSignals": [
-          "hearing aid",
-          "major-media"
-        ],
-        "sourceDomain": "abcnews.go.com",
-        "sourcePriority": 84,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T03:09:24.917Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 9
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE14UFFnMG5IdXZmazZFYWdpZjF3eHQxQzdLNE5jUnZPaVdUakJaaHdXRDZjdm5QZW00TGRtNzMxaVg5QWJHTjN1ZktnbzIzUzAzcHprbi1RV3Ztdw?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Widdrington man's three-hour bus trip to get hearing aid parts",
-        "originalSummary": "Widdrington man's three-hour bus trip to get hearing aid parts",
-        "sourceName": "BBC",
-        "sourceUrl": "https://www.bbc.com",
-        "publishedAt": "2025-10-24T07:00:00.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 23,
-        "curationSignals": [
-          "hearing aid",
-          "major-media"
-        ],
-        "sourceDomain": "bbc.com",
-        "sourcePriority": 96,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T03:09:24.917Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 9
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFAtUXNsTThOdmIyd1Y4UlB1M1dpWkN4XzNNeVpMXzlRaEJ6UWlUd2NoMmUzVVltV1FGZjNvUHlrUjlyZmFZTWszeHdxSEQ3T1FRVThRTzRQMjc5bE9tT2c?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "deaf students Archives",
-        "originalSummary": "deaf students Archives",
-        "sourceName": "Punch Newspapers",
-        "sourceUrl": "https://healthwise.punchng.com",
-        "publishedAt": "2025-06-01T12:51:06.000Z",
-        "region": "middle_east_africa",
-        "regionLabel": "中東・アフリカ",
-        "topic": "education",
-        "topicLabel": "教育",
-        "curationScore": 21,
-        "curationSignals": [
-          "deaf student",
-          "major-media"
-        ],
-        "sourceDomain": "punchng.com",
-        "sourcePriority": 72,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T03:09:24.917Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 9
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQWDZkTzF4S3BJMmZ5NlloNVF6ejdaU1V1WUE4X2xTclM5YjN5dXVZZWg5UnF4ei12dUNBbWVOS3VyenBzNXUwN3VsY2ZVaTY3TnBnSUlXZi1aTlBRaXNsX2VoTUk5QWl5ZjVVLVR5aGdKWm00b1J2UEJRT2NhNnVCMUZJWTZaOVNTM1NLVFV2bHU2SVEyMnZ5RWtReUJVSDRaTTl6VzNJMUdSSEtZZFMxR1ZOXzRhZjNqUFU5OENKNm9fNVN2cmxQMEJ3?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "NHS to get drug which helps prevent hearing loss in children having chemotherapy",
-        "originalSummary": "NHS to get drug which helps prevent hearing loss in children having chemotherapy",
-        "sourceName": "The Independent",
-        "sourceUrl": "https://www.independent.co.uk",
-        "publishedAt": "2024-12-20T08:00:00.000Z",
-        "region": "europe_cis",
-        "regionLabel": "ヨーロッパ・CIS",
-        "topic": "education",
-        "topicLabel": "教育",
-        "curationScore": 20,
-        "curationSignals": [
-          "hearing loss",
-          "major-media"
-        ],
-        "sourceDomain": "independent.co.uk",
-        "sourcePriority": 78,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPZGMxcUMzQ3Q4eXVYelpZQXhZVU5WQ2dIQWxYYk1wbmIxVUh5UGpabmNLU003RnA5SnNDTmE5YXVLMkc2RWFfdnA5bzJWZmRzNGZRZVF5MGd2dTRVcDdLc240d0NUY0FxVk9Zdk5DLWhlNHFKc0tnZEdNbkxqM0JrbFVoSGZlSXEyel8teUlJRzFVcmYxVFBHVlBsSlg2LWdvRTFHZlFwY0FpcUNnSGR5MHYxR3FQdFVHOVVmUURJSzR5WHBVNTN3RFExd0VnNnFDMUtv?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Celtic stars support the Deaf Sports Personality of the Year Awards through sign language",
-        "originalSummary": "Celtic stars support the Deaf Sports Personality of the Year Awards through sign language",
-        "sourceName": "Celtic FC",
-        "sourceUrl": "https://www.celticfc.com",
-        "publishedAt": "2024-12-10T08:00:00.000Z",
-        "region": "europe_cis",
-        "regionLabel": "ヨーロッパ・CIS",
-        "topic": "sports",
-        "topicLabel": "デフスポーツ",
-        "curationScore": 24,
-        "curationSignals": [
-          "sign language",
-          "deaf sports",
-          "multilingual"
-        ],
-        "sourceDomain": "celticfc.com",
-        "sourcePriority": 50,
-        "sourceMode": "regional-multilingual",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T08:59:07.386Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 4
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONEJnMHhhdmFDMjJDSUMxS1RoV2dQVU9WeXhGcUc5NHVNTjNIcHlRVjZhZnlJSGE5YTFtYWloSGhackZkZVRQbnlaT0c1WHBjRGxuWThsaEE2b3h6ZjdNY094V3FWLWdDYlV2cUF0S1U0cmVuang0Z0JneS1ybWJMdWhsSlJ6b05yNUNrZTNOWkhqcE96VTI5QW5aTDRFVlVJcTU5UDk0aElVVFFUeGp1dDJMR0xUOE43OE5STGczbnFCY2JLQzl1dVBmZnNlbW9Y?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "‘What’s the next Cochlear implant?’ Melbourne Uni’s bold plan for renewed optimism",
-        "originalSummary": "‘What’s the next Cochlear implant?’ Melbourne Uni’s bold plan for renewed optimism",
-        "sourceName": "The Age",
-        "sourceUrl": "https://www.theage.com.au",
-        "publishedAt": "2026-10-18T08:45:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 21,
-        "curationSignals": [
-          "cochlear implant",
-          "major-media"
-        ],
-        "sourceDomain": "theage.com.au",
-        "sourcePriority": 78,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T13:14:12.724Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 2
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQSnY5QzZWZTliVElwNjJNRlFVbXNoRm9Hc1ZaaHphZ1EyVXFJYm00Ui1UWWI2UTAyWFdEZlFMeXh5QUtSTEJ2Mm5VZ0dLVE8wMjJlbEJUWmVIYjNGd3ROMW5pOWtPMDNRaVExQjlKQVJ6RkRYRUJOT2diYkpnX2I3MDVkRllRa3pmRW9tdmhPQ3VGaFJrWWw5UGhvZWFKRlpDMXRNeFJMaFpFNVFsMG5iVWxrZWZBQk9CZndScm14dEpBRldFTEtaLS02b3psRDhDdm1SNnRZNVI0a2ZoUGRzblo2b3DSAeoBQVVfeXFMTlRDRC1KNk94Mk1hUU5LR1ZSTl9FaEk4aE9jNXZmdUl6ZURMdEdYU0t5RjdYT0NqMmE3RVJlME82MUJMR1RTdnBHeHFSXzU1OW1tdThEQkNIQW1kNWpnNlBTcllsRUJEaUU3elNzVG52cFdCbmxidXdkdWJBZ1pHMF9keVFpMzY4c1c3YmRTZV9FWjhBb2l1XzFRNmVwOXIyc08zaU94bF81SUR1MnpRcmI0T3Nrajlad2ozZ0Nma0t3M2lETGQzUGZnWk41ajVCZlUyb1pMcjlEX0JrOVRaWVNPcng0NGZIZUJ3?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "NCERT must convert class 1-12 textbooks into Indian Sign Language in 3 months: CCPD",
-        "originalSummary": "NCERT must convert class 1-12 textbooks into Indian Sign Language in 3 months: CCPD",
-        "sourceName": "The Times of India",
-        "sourceUrl": "https://timesofindia.indiatimes.com",
-        "publishedAt": "2025-11-17T08:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "accessibility",
-        "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 21,
-        "curationSignals": [
-          "sign language",
-          "major-media"
-        ],
-        "sourceDomain": "timesofindia.indiatimes.com",
-        "sourcePriority": 76,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T12:15:51.389Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 3
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQVhVQUdJODY3UXRHaGl5WURoaHJtVkItVjVwVkhhRHpOZlY1Mlp3MHd0eVJwR0o4SDVPZjBtSmx0Yi1hUkd2bXJhWGFoWjBqNXNVd0Y5b3hBRmY1Wm5saE1JQ0Uybjl3cU9RSlY1SUwwNWwybHZ2Rkl5UEs5X3J2cUdCTFdtU3liWDY3T3VMX2NyWDhBeHBxOGtFcFNRXzVsQjBrWHU0a0xKRlBoTC1uT1JVMGdLQzBvRVI4eTFUYmtGRUNu?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "How deaf educators put tricky climate change terms into sign language",
-        "originalSummary": "How deaf educators put tricky climate change terms into sign language",
-        "sourceName": "Euronews.com",
-        "sourceUrl": "https://www.euronews.com",
-        "publishedAt": "2025-06-01T07:00:00.000Z",
-        "region": "europe_cis",
-        "regionLabel": "ヨーロッパ・CIS",
-        "topic": "accessibility",
-        "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 21,
-        "curationSignals": [
-          "sign language",
-          "major-media"
-        ],
-        "sourceDomain": "euronews.com",
-        "sourcePriority": 86,
-        "sourceMode": "major-media-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T12:15:51.389Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 3
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOc3NNTC1JRVRTSFRFNUNfcDItdnZBRXRoUENxaXNUMWZnVzNMdjBvWk9uQU1QNmlzRE9UQW5FUVFqU1FtdkRmNWNjUXRxTmc0blpOejY5RldpVVF5YVN4cmdDVENYVlBJZmxIMldSSFZPU25PWG0zbzkwX3pkZExJYV9CLUhwTEhkeDdzNGFIZWxPcmtYUFZVdVFhcjAtMUlhWmE0ODRGZ3pybG1IcFl4TjhQck1JcW5UTGNV?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "CBS13’s Marlee Ginter shares personal battle with hearing loss to break stigma",
-        "originalSummary": "CBS13’s Marlee Ginter shares personal battle with hearing loss to break stigma",
-        "sourceName": "CBS News",
-        "sourceUrl": "https://www.cbsnews.com",
-        "publishedAt": "2025-11-25T08:00:00.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 20,
-        "curationSignals": [
-          "hearing loss",
-          "major-media"
-        ],
-        "sourceDomain": "cbsnews.com",
-        "sourcePriority": 84,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T03:18:30.463Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 6
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbmhzNG4tUE8tNFhnamZCLWQtMUNNNFdteVdNS1lLbmxqYXVDRUQ2dWNKTVJkZ1JyZVJuWmROYVB0U2FJNkxRQl9ONVZqMllzSnppX1Nvb2g4cm5CdnBCanV6WUw2ZlRqdmhmU25ZaEZ1VlYxOTBQQ0RIai1yUVREU1NmZTR3QmNfN0xpVkFmcnM1MXFRSTVBekhlQXktRHZDWTJBbnlGQm96TkhlbXhmQXIzY29WeGxHYnM0SXlpejY?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
-        "originalSummary": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
-        "sourceName": "The Clarion-Ledger",
-        "sourceUrl": "https://ftw.usatoday.com",
-        "publishedAt": "2025-07-01T07:00:00.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
-        "topic": "accessibility",
-        "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 20,
-        "curationSignals": [
-          "accessibility",
-          "major-media"
-        ],
-        "sourceDomain": "usatoday.com",
-        "sourcePriority": 78,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T12:15:51.389Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 3
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOZFVBVDlBZUo3d0hySlo3dFBWLXlMQ0dfUXAyUFVvOEZ1X054NExCWGNXZGVBbGZXWWpGTmwxVDdWdnJsaEtNenFGTjk1RVZ4aG9meFBiUVQ0UzE0WGJXTEtuYW5IOWozMEo0MHN0eVd0ODlsUWpTZTFKRjZxSUQzVXBDQzZ4ZGh4OUdRenVzTmVrcC1zX1dINE0xMG16cDBfWVpVcWF2ZXMtM3hPX0dKVDNjYThTemFtaGV1eWNiZVN6NlI3Ujc0dzVyX3ZaZ9IB0wFBVV95cUxOR0dlUEtzUlJCbXY3ZUVMMDJ6N01yelNGd1ZIcnpFcl9TU2VtOC11Y2N0T1gxcXNsakZOTFExOE5zenh4Um9HOWR5WDlmYmZyRWtvZmFjeUhCZ3JNVXYtRHFOdTNBeUY1WTN5c2tTLVoxcWhiOEp4cVZuQzJrOUF6WnhyMEJ6SlpRSUpLOHIwbWFSaEdiZG9NRlVaeWNtTVJwbVhSa2hBZTFLQ1NBbFZ3amIwdUdfZEl3QzU4eFJQTjNPZGtuWE1uRE1MVFVCSmZ2bTRV?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Ludhiana: City girl secures gold at Nat’l Deaf Sports c’ship | Hindustan Times",
-        "originalSummary": "Ludhiana: City girl secures gold at Nat’l Deaf Sports c’ship | Hindustan Times",
-        "sourceName": "Hindustan Times",
-        "sourceUrl": "https://www.hindustantimes.com",
-        "publishedAt": "2025-03-25T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "sports",
-        "topicLabel": "デフスポーツ",
-        "curationScore": 23,
-        "curationSignals": [
-          "deaf sports",
-          "major-media"
-        ],
-        "sourceDomain": "hindustantimes.com",
-        "sourcePriority": 76,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T12:15:51.389Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 3
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPU1c2NmE0dk1mcldGbHMyMVVrc2dLVlJ1VWJ4WnFZZ2QySnBSVnRUeDdsYjlkdE9jeGVTaGtPQk9HZ29IdUlteUpQS3lyMThxVUp3R1M0cFppeDBvQmhSTEIwajlRUzNEU2xNUFhSUHpYLVBxUi1SZEJtZkptcl9NYUZ1dW1qTmstcTlZRTExX3Rfb1EwT0dia3cwMGFObzJQSzhiVzhVZTZLbXcwaWk3eHhEVU11ckhQb3FxTWFTVEpwak11QXRYV2lYcw?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Experts decry low university enrollment of students with hearing impairments",
-        "originalSummary": "Experts decry low university enrollment of students with hearing impairments",
-        "sourceName": "Daily Monitor",
-        "sourceUrl": "https://www.monitor.co.ug",
-        "publishedAt": "2025-04-27T07:00:00.000Z",
-        "region": "middle_east_africa",
-        "regionLabel": "中東・アフリカ",
-        "topic": "education",
-        "topicLabel": "教育",
-        "curationScore": 25,
-        "curationSignals": [
-          "hearing impairment",
-          "major-media"
-        ],
-        "sourceDomain": "monitor.co.ug",
-        "sourcePriority": 74,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-18T12:15:51.389Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 3
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 10
     },
     {
       "article": {
@@ -767,8 +261,743 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiowJBVV95cUxQYko2Rk5GQjBLM0VVczJxOW85R3U5ck02OEhPdlYwcThLc19hU2xDX2RkbGowU2lBSUhiQlMtbjVMN0psclFHaU5sa3F2WVpmajF6RmJLNHQ1cldpTy1JNHFabVFZekVIbV9oRU9HUlhzT1NxRVpxQk5MaHV4cnFEQVpQSFdrT0FlYmlEUmxDZjVrZ2VJN0NfY29sbHdYMXY4SER2bWxkV0V3UDJoNlFZcXRydUZXOGZyRDJvLTFSRVFIejNQY0Y2cmk5UFdteFhUX0syblFLVFJaZ1Fmd0NrRzlHcEFhMXpET19sRTVnTVN2dlBXVzl3N3RadktoSW12dFhZd2pmWnZ2VXJ4ZFdjcUhsS1VtTEx0WEJfSHU0NmtpclE?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "수어로 다시 쓰는 시…농·청각장애인 창작자의 ‘움직이는 시’",
+        "originalSummary": "수어로 다시 쓰는 시…농·청각장애인 창작자의 ‘움직이는 시’",
+        "sourceName": "데일리안",
+        "sourceUrl": "https://www.dailian.co.kr",
+        "publishedAt": "2026-09-22T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "청각장애",
+          "수어",
+          "multilingual"
+        ],
+        "sourceDomain": "dailian.co.kr",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:06:38.363Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRFRqZTJTOHNOYVNtQ01QSkFkOENqZlpudGltV1BBNmlTVEdCTDRmS2VoVFdtNEpLQUZWWVg3ODdxNl91RnVNU1RCdDZuY0Q0N1BXVU9uRjY4dnlCZ1E4WWlPTU1CY182SWhNMmN5ejZkNWk0N2dvTlV3QjVGdkxqV1dmZm11aE5oNVVNYTNGU285UWxOTGNaR2NESXFsbWczdkpMbzhnaFhhaWFJUEMzUzl6eDNoSzhBZjNUckJqZTc?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
+        "originalSummary": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
+        "sourceName": "Adnkronos",
+        "sourceUrl": "https://www.adnkronos.com",
+        "publishedAt": "2026-09-26T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 21,
+        "curationSignals": [
+          "sordi",
+          "impianto cocleare",
+          "multilingual"
+        ],
+        "sourceDomain": "adnkronos.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T03:09:24.917Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 10
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPRmtXNHY3OEwyTjEwa2MwaTVaclRoenhHdG9raEJvLXBpb2xLX1Z6MWlMeDNrZVlOWHpTbzdtcjRXdFY4ak5aQm1uSmZWNFdIaFdnd0tianB1dmwzQzJkRDRmT2NaN0pVbXdteG94ZTZZQUp6Yi1GZHVMNHNuaWdzNTJpdzY?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "No Single Over-the-Counter Hearing Aid Is Perfect for Everyone, So We Have Multiple Recommendations",
+        "originalSummary": "No Single Over-the-Counter Hearing Aid Is Perfect for Everyone, So We Have Multiple Recommendations",
+        "sourceName": "The New York Times",
+        "sourceUrl": "https://www.nytimes.com",
+        "publishedAt": "2026-09-21T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 22,
+        "curationSignals": [
+          "hearing aid",
+          "major-media",
+          "multilingual"
+        ],
+        "sourceDomain": "nytimes.com",
+        "sourcePriority": 92,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T12:15:51.389Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 4
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxQbUkwQlFQLTVpcHc2aWozSm1lejkxbXRGWmlaR1FQYkR2WGJfMlVqMEVnaTdMR2t2MmljbnBtdWdwcURTQ2FGTUgwVXJ2T1QyMTdsWDVGN3N3djlpM3NQTzdsVUFsSkpTeENyUmlCSTJvd0JHY19jeE16Umt1NVNDRlRYS2VFb29hYUtrUWwyQ0JhZ0UzaTNoa01IcTdTQQ?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Sony lanza nuevos audífonos WH-1000XM4C y actualiza modelos de gama media",
+        "originalSummary": "Sony lanza nuevos audífonos WH-1000XM4C y actualiza modelos de gama media",
+        "sourceName": "geekzilla.tech",
+        "sourceUrl": "https://geekzilla.tech",
+        "publishedAt": "2026-09-08T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 20,
+        "curationSignals": [
+          "audífono",
+          "audífonos",
+          "multilingual"
+        ],
+        "sourceDomain": "geekzilla.tech",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1qTGliNEotX3IxY2pxTWpNQURGQ0ZYT0JoTzA5R05TNUk2VExaTHJMcW1LcWRWQ3hNSURVTnZMLUVwYU9SMjhHc1NzY0tPSUNOTmhvZzhWdHNGU0tCRVlsRmR3MDR4Zi1KRnVwdEEwcmExUWZM0gF4QVVfeXFMT3MzZDJXM1ZRdDE3cUJ2dFVGSGJxb243blM2YjJNcTB1MUgyUWhRREFRcl95WWk2QnlMX1JwNk40RTFSaW90UEZSZTE1dEFoOWdwLW9qQWdzWG1UMUF3cDFqeHNqLXZDdE95eVRXRzh1Ym1iZGpFSUt2?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "삼성소리샘복지관, 청각장애인 인공와우 수술·재활치료비 지원",
+        "originalSummary": "삼성소리샘복지관, 청각장애인 인공와우 수술·재활치료비 지원",
+        "sourceName": "한국장애인신문",
+        "sourceUrl": "http://www.koreadisablednews.com",
+        "publishedAt": "2026-09-07T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 24,
+        "curationSignals": [
+          "청각장애",
+          "인공와우",
+          "multilingual"
+        ],
+        "sourceDomain": "koreadisablednews.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T03:09:24.917Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 10
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNZ2ZVLWFuNHB1bkR3MkltUGhjMEs3bDNwYldaTnFpdDBYQzA5UldCeUtPbG5SdXdETHphVWtfLW1GekRjSHVqak5SdW5nMXZFSElpSkV4UFJKV2REYkZoQWZnYUI1M1h2TW41b0JUNjZjcVRHMHlTZU9nc3hJdC1FaTBkX2k5V081VjVKQ2hMYjJzaDVCRENRUnJUb1UwRENWN21ZT2NqbmZBRXlwdmZRelhXNk9Iem9hMlFTMkd5b29rMkVfNWtGQjFFRExVNm5uNmfSAdcBQVVfeXFMUHNGSjFSZ2x0ZWFwaHB0MVg4dVljRGkwN3l3Z2ROVXU0al9BOWJaT21xQmY2OTRfTzg1QU93LXVHaGFsSXJxXy1mU0pkWXlDdjRLR3VUUFlUdUF0U1F6TmJKeGFFRWExN2M2YmFiOE04MWZEd2RGZmtxMHN1alk0MWlmejBtTnFCNV91YllVTnZ4OFFTU1dWRnNZQUw4WG1LQy1DSnhqemhSSU13czdkaXYyRWZfRERNQ2g4dXVNWG5WdEh6cUt3XzhkMnQ3cl9CLTRET29TZDQ?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "FDA clears hearing aid feature on Samsung Galaxy Buds",
+        "originalSummary": "FDA clears hearing aid feature on Samsung Galaxy Buds",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2026-08-12T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 23,
+        "curationSignals": [
+          "hearing aid",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T03:09:24.917Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 10
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQaXpIamhvblpoZG1QVW1ORWtCNERPVlJxSVhrdDE1N1E0bTBlVEpGTzR2ZnhTSkxsSmFhcFJtV2h1eWhvN3NSaDl0MDVQR0U5M1RlYl82cEV6TTRhZEJwV3BLQXpKaHhhQ3dNOWk1MWc5SUVmTGx5SVI3WVpqVE5YRm5SR2xBTXhMUlY5cFMxWFNPNF90TmlEVUl0OWlySWp6Y3RoUm9mOFlCdTlnUVlXMV84SWtKeDdBZFU2ZXV1Y3dvZU5qeHVUS19WcTF4eUVMdGdFSGRUbnMzdU03ZFHSAeMBQVVfeXFMUHFhVDBVak8tNkpxaWRCUmtzNnlfd1EzRkt4Z3BsU2RrMjNNQTFncENDZXJWUE1keTRHSUdPV0xCUkVPYVpidkZBZzhDNUljOHA4SVJVRDB4MWpsTDRNZENVdmpyaGw3T3V6LVV3SVFrWXNIZ0R0NnMzd052X2RoZ1hRUGtQYk9MbnVrejRyN3I1eEo2M1ZhM2xQTVJLeVdfQW15TnVKS092YUNGLUgxU0cwbHpwajZKeTdRRVdOTVNqNFJQS1NqYlVjTVpGWlhmYVRFcVh4RW1XZjJnWFRuSG9IbXM?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "AIIMS Deoghar opens advanced audiology and speech lab to boost ENT care",
+        "originalSummary": "AIIMS Deoghar opens advanced audiology and speech lab to boost ENT care",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2026-07-24T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 21,
+        "curationSignals": [
+          "audiology",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T07:58:06.741Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOOFZrUmxLbjEyUDg0LURoQ2toNDdab1N1OXdFMGctQmhLbGtDdWtQLUdoY3d3YzFnRmpjZDB3Zi1CNHd6QlpGanZjZ1hQSTRlSWNVN0pxdzJyZjR4Wi01Ulh5aWNlVVZPS3NXWlJ4UUM0TmtZaHlrdXplbGFyT3ZLaW5fRnNjUXdhbEtkYlAyWXQ4Q2dPTV9rby1nMHZublpaX0lzZHlrRTRDbEduX2pvTldkUy1ieWlYMXFsQWFGbl9DTVlJR3ZOY2M3MXB1c3U0UlpRMGthelVQTUpjcnhJcFF2d3dyaXBFaFNkUGE3em9JOGNKR05VTnF4UdIBgAJBVV95cUxORVo5NElkUTYydW0zQlFzdHpQaW1iY2RJSkllNU9DUVgtYTFvRENvcTBaYXRRb1pZSllHOEVTTXJwb3J5d2NMTkNjbmx4NGZpMEpJOFJpT1dFWEJNcUVPMW50QVRtUW83M2pqTWVtVFJsUExzQ1RUODBWUk9TSVRLVWNFS2JmS3ByclZHaWt3SDBraWxTM09ROGtLZlFaTlJVMVpvSGlCTmJpUnlSWGNnZndrZk0wRTdBZDZRUDdOT3RHS01vV0ItaFJ3ZnhLYVZZdHNFcHpfR3gxenB5R1ZYcTY2SzNZQ2hoMFFwN2szS0YzYjhseEdoTzhRWDhoWF90?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "1 in 4 adults with diabetes may have hearing loss: Doctor shares tips to protect your ears",
+        "originalSummary": "1 in 4 adults with diabetes may have hearing loss: Doctor shares tips to protect your ears",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2026-07-11T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 20,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T07:58:06.741Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPRTJNWUNCZDNVYmlqaWQ1ZHNuTFJoeG50WVc3c0VvbE5oeERHWkVyUGdYTkRyV2hKZ0VvRjAxQm1Ud0N2a3V2dVBZNHZnNXNDRDZfRlVHQXNVVXF2RHFYMGdFRjY0UHBPMkhZRVB1TXA0WTBtTGVFQlNtWGJJZmZUVVNpUWFHdFVkVXM1clZGbnJmUTlzZkNicg?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Volunteering in sign language at Sovereign Hill is really rewarding",
+        "originalSummary": "Volunteering in sign language at Sovereign Hill is really rewarding",
+        "sourceName": "ABC News & Headlines – Australian Broadcasting Corporation",
+        "sourceUrl": "https://www.abc.net.au",
+        "publishedAt": "2026-05-18T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "major-media"
+        ],
+        "sourceDomain": "abc.net.au",
+        "sourcePriority": 95,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T13:14:12.724Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 3
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPaEM1alRvS0VPLUtQMl9aSV9IaEs3QUFUbWs3RWwwUFJMVVROeUNUN184ZHVYcjRwQnYxUF9NY3pZRURBQnpXY1hQUjEwaF9vNm41NnpuSXRLUzFWSGFpb1Q2RFBYX1ZZUVJOX09jd3p3alZVbVJHdFRiSlk4ZGE4TW8zZ0NhbFZFU0RZ0gGMAUFVX3lxTE9UTS1kcUw1MGk4Q0NRRnZmeE5tc0FMYnRpcTFXWC14OXRXMmJsTk41bDI2bkcwWUdJUmRQWmdkYl9uU3dvTGZHMGpJTkZvN3I3b19ONGpGN2xZSEVxQ251S0FxOF81NUtIZHBDeGNBcEJLeV9Wbjc1aHRpRWhvOE5xVW1rVURRQlVfTTlh?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Waitress gets big tip to help pay for hearing aids",
+        "originalSummary": "Waitress gets big tip to help pay for hearing aids",
+        "sourceName": "ABC News - Breaking News, Latest News and Videos",
+        "sourceUrl": "https://abcnews.go.com",
+        "publishedAt": "2026-02-16T21:21:15.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 23,
+        "curationSignals": [
+          "hearing aid",
+          "major-media"
+        ],
+        "sourceDomain": "abcnews.go.com",
+        "sourcePriority": 84,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T03:09:24.917Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 10
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQSnY5QzZWZTliVElwNjJNRlFVbXNoRm9Hc1ZaaHphZ1EyVXFJYm00Ui1UWWI2UTAyWFdEZlFMeXh5QUtSTEJ2Mm5VZ0dLVE8wMjJlbEJUWmVIYjNGd3ROMW5pOWtPMDNRaVExQjlKQVJ6RkRYRUJOT2diYkpnX2I3MDVkRllRa3pmRW9tdmhPQ3VGaFJrWWw5UGhvZWFKRlpDMXRNeFJMaFpFNVFsMG5iVWxrZWZBQk9CZndScm14dEpBRldFTEtaLS02b3psRDhDdm1SNnRZNVI0a2ZoUGRzblo2b3DSAeoBQVVfeXFMTlRDRC1KNk94Mk1hUU5LR1ZSTl9FaEk4aE9jNXZmdUl6ZURMdEdYU0t5RjdYT0NqMmE3RVJlME82MUJMR1RTdnBHeHFSXzU1OW1tdThEQkNIQW1kNWpnNlBTcllsRUJEaUU3elNzVG52cFdCbmxidXdkdWJBZ1pHMF9keVFpMzY4c1c3YmRTZV9FWjhBb2l1XzFRNmVwOXIyc08zaU94bF81SUR1MnpRcmI0T3Nrajlad2ozZ0Nma0t3M2lETGQzUGZnWk41ajVCZlUyb1pMcjlEX0JrOVRaWVNPcng0NGZIZUJ3?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "NCERT must convert class 1-12 textbooks into Indian Sign Language in 3 months: CCPD",
+        "originalSummary": "NCERT must convert class 1-12 textbooks into Indian Sign Language in 3 months: CCPD",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2025-11-17T08:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T12:15:51.389Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 4
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE14UFFnMG5IdXZmazZFYWdpZjF3eHQxQzdLNE5jUnZPaVdUakJaaHdXRDZjdm5QZW00TGRtNzMxaVg5QWJHTjN1ZktnbzIzUzAzcHprbi1RV3Ztdw?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Widdrington man's three-hour bus trip to get hearing aid parts",
+        "originalSummary": "Widdrington man's three-hour bus trip to get hearing aid parts",
+        "sourceName": "BBC",
+        "sourceUrl": "https://www.bbc.com",
+        "publishedAt": "2025-10-24T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 23,
+        "curationSignals": [
+          "hearing aid",
+          "major-media"
+        ],
+        "sourceDomain": "bbc.com",
+        "sourcePriority": 96,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T03:09:24.917Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 10
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQZ3V3dDRVcndtNmtDNHNubEFud1p1Nnlzd0FxSjBjQ0hhWjRsckNUNWpUZndCM3RwM1pCUnJVR2gyUnRSa3F2WldMaHd1Z1pvTl9EbGZ2dnI4TzA0Tkl1dmU1U0ktd1lOTEZ4Vll1eFdicFFxVF93a1g3a08zSXppazRSaXBEME5mQ2RHVkllS05yYldYN0oxWEVhNHlCaGFtNzBhdks1VHYwZ1RGZTdpREN3cTlCRzBqb3NiYS0xZjVWMzFJMGhydkl0NUx6SDVrWG9XSEhQUEbSAd4BQVVfeXFMUGxjNmJNTWNseWtZdFZMQXkyc19tSjV6ZWdsbXM5eG9Mbjl0MzNiVExMX05Id0lJVnpPUG9yMHF1bmNrZThmUE9MQVllOW5EMWlkMWdxSmsyV1BPOWgtaGpoYU5tSlhscWNTa1pNUEVxVjVwdGZ3NmpqdUI2cHpjVU5DMGlYQ1N6VkYzUlRCUzBZNHhIcUN6YjRYYkFhUHNHak1LRThIYkx2X21vdUpfeXVDRHcxd3lEOHhHcUs0a29mNThVcnlMZlNiNEZzZ3J5V1ZhQlBhVXFXVktXaXdR?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "At a Punjab varsity, ‘sign lingua franca’ for the hearing impaired",
+        "originalSummary": "At a Punjab varsity, ‘sign lingua franca’ for the hearing impaired",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2025-08-17T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "rights",
+        "topicLabel": "権利・制度",
+        "curationScore": 23,
+        "curationSignals": [
+          "hearing impaired",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFAtUXNsTThOdmIyd1Y4UlB1M1dpWkN4XzNNeVpMXzlRaEJ6UWlUd2NoMmUzVVltV1FGZjNvUHlrUjlyZmFZTWszeHdxSEQ3T1FRVThRTzRQMjc5bE9tT2c?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "deaf students Archives",
+        "originalSummary": "deaf students Archives",
+        "sourceName": "Punch Newspapers",
+        "sourceUrl": "https://healthwise.punchng.com",
+        "publishedAt": "2025-06-01T12:51:06.000Z",
+        "region": "middle_east_africa",
+        "regionLabel": "中東・アフリカ",
+        "topic": "education",
+        "topicLabel": "教育",
+        "curationScore": 21,
+        "curationSignals": [
+          "deaf student",
+          "major-media"
+        ],
+        "sourceDomain": "punchng.com",
+        "sourcePriority": 72,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T03:09:24.917Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 10
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQWDZkTzF4S3BJMmZ5NlloNVF6ejdaU1V1WUE4X2xTclM5YjN5dXVZZWg5UnF4ei12dUNBbWVOS3VyenBzNXUwN3VsY2ZVaTY3TnBnSUlXZi1aTlBRaXNsX2VoTUk5QWl5ZjVVLVR5aGdKWm00b1J2UEJRT2NhNnVCMUZJWTZaOVNTM1NLVFV2bHU2SVEyMnZ5RWtReUJVSDRaTTl6VzNJMUdSSEtZZFMxR1ZOXzRhZjNqUFU5OENKNm9fNVN2cmxQMEJ3?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "NHS to get drug which helps prevent hearing loss in children having chemotherapy",
+        "originalSummary": "NHS to get drug which helps prevent hearing loss in children having chemotherapy",
+        "sourceName": "The Independent",
+        "sourceUrl": "https://www.independent.co.uk",
+        "publishedAt": "2024-12-20T08:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "education",
+        "topicLabel": "教育",
+        "curationScore": 20,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "independent.co.uk",
+        "sourcePriority": 78,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T07:58:06.741Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPZGMxcUMzQ3Q4eXVYelpZQXhZVU5WQ2dIQWxYYk1wbmIxVUh5UGpabmNLU003RnA5SnNDTmE5YXVLMkc2RWFfdnA5bzJWZmRzNGZRZVF5MGd2dTRVcDdLc240d0NUY0FxVk9Zdk5DLWhlNHFKc0tnZEdNbkxqM0JrbFVoSGZlSXEyel8teUlJRzFVcmYxVFBHVlBsSlg2LWdvRTFHZlFwY0FpcUNnSGR5MHYxR3FQdFVHOVVmUURJSzR5WHBVNTN3RFExd0VnNnFDMUtv?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Celtic stars support the Deaf Sports Personality of the Year Awards through sign language",
+        "originalSummary": "Celtic stars support the Deaf Sports Personality of the Year Awards through sign language",
+        "sourceName": "Celtic FC",
+        "sourceUrl": "https://www.celticfc.com",
+        "publishedAt": "2024-12-10T08:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "sports",
+        "topicLabel": "デフスポーツ",
+        "curationScore": 24,
+        "curationSignals": [
+          "sign language",
+          "deaf sports",
+          "multilingual"
+        ],
+        "sourceDomain": "celticfc.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-multilingual",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T08:59:07.386Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
       "attempts": 5
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNazFBeVBIcEFlWm91WlZkVUtWQW5Pa2pMWjhaYVhndDBqZE9uY2ptWmcwV3A0cDROdnJFbkpneGhYeTB4QS1Ia1pzb1VzTDNQVk1STXpwRThkME92R0duU18zbHdpalZXaDVvS2RlSEFfY3VremVMSDBQZnAzX2h3SW11bGVoaFNRbW1mcWUzd19iX0J5eElHVDRiS2xkbEo5NzV5c1h0RUxBcy1nakhLVXFpTnFiVjVsM29ER2hsSFJfUkp4MTlzcA?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Actress Rose Ayling-Ellis to receive royal honour for services to deaf community",
+        "originalSummary": "Actress Rose Ayling-Ellis to receive royal honour for services to deaf community",
+        "sourceName": "The Independent",
+        "sourceUrl": "https://www.independent.co.uk",
+        "publishedAt": "2024-12-04T08:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "culture",
+        "topicLabel": "文化・社会",
+        "curationScore": 21,
+        "curationSignals": [
+          "deaf community",
+          "major-media"
+        ],
+        "sourceDomain": "independent.co.uk",
+        "sourcePriority": 78,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMilgFBVV95cUxObElfekZNWEllMjFqaHNJUmdQR0hoQjhTbnJmR0xpLTBXcURIZDYzVFJON0k2WjhpbjJ1TUlIMFhoN0hpQ0hXWXlmUjFJZlZDb1lWTkgxa0V1RTNwSkpxNU52eTRCWW9aYXlibExEcERNdjg2NHlPWVFQdmJNSUlnbXpzOHlTOFhLRVJpek5sWDZyaGNTQXc?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Tasha Ghouri powers through dance after cochlear implant falls out live on Strictly",
+        "originalSummary": "Tasha Ghouri powers through dance after cochlear implant falls out live on Strictly",
+        "sourceName": "The Independent",
+        "sourceUrl": "https://www.independent.co.uk",
+        "publishedAt": "2024-12-01T08:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 21,
+        "curationSignals": [
+          "cochlear implant",
+          "major-media"
+        ],
+        "sourceDomain": "independent.co.uk",
+        "sourcePriority": 78,
+        "sourceMode": "major-media-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:45:51.297Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE93RjNZMEtMVjRYcm0zN2ctMExiZDN6Ym1lLUhnYmZrYml3Wk5BY1JHN05zX05FMGtCYVRfVjkyQkdob1NRX0xTWmtqbEpGMWY0?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "The History Hour | The chimpanzee who learned American sign language and monkeys in space",
+        "originalSummary": "The History Hour | The chimpanzee who learned American sign language and monkeys in space",
+        "sourceName": "BBC",
+        "sourceUrl": "https://www.bbc.com",
+        "publishedAt": "2026-10-17T07:20:29.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "major-media"
+        ],
+        "sourceDomain": "bbc.com",
+        "sourcePriority": 96,
+        "sourceMode": "major-media-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T15:06:38.363Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5tbl9xVWVUZW9sejl2OXBMZDhVSjRhdkliMUtZc29Udzk1T1ZUNWhnVzEzbXREVkJ5LW1jU3lBRjRKcDR5ZXNPeEkyN0JtQU1MalhYVzdkUmpqMm1oLTVhLWZXc2VFS2s?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "機器臂手語師 助聽障生求學",
+        "originalSummary": "機器臂手語師 助聽障生求學",
+        "sourceName": "人間福報電子報",
+        "sourceUrl": "https://www.merit-times.com.tw",
+        "publishedAt": "2026-09-14T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "聽障",
+          "手語",
+          "multilingual"
+        ],
+        "sourceDomain": "merit-times.com.tw",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T13:14:12.724Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 3
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONEJnMHhhdmFDMjJDSUMxS1RoV2dQVU9WeXhGcUc5NHVNTjNIcHlRVjZhZnlJSGE5YTFtYWloSGhackZkZVRQbnlaT0c1WHBjRGxuWThsaEE2b3h6ZjdNY094V3FWLWdDYlV2cUF0S1U0cmVuang0Z0JneS1ybWJMdWhsSlJ6b05yNUNrZTNOWkhqcE96VTI5QW5aTDRFVlVJcTU5UDk0aElVVFFUeGp1dDJMR0xUOE43OE5STGczbnFCY2JLQzl1dVBmZnNlbW9Y?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "‘What’s the next Cochlear implant?’ Melbourne Uni’s bold plan for renewed optimism",
+        "originalSummary": "‘What’s the next Cochlear implant?’ Melbourne Uni’s bold plan for renewed optimism",
+        "sourceName": "The Age",
+        "sourceUrl": "https://www.theage.com.au",
+        "publishedAt": "2026-10-18T08:45:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 21,
+        "curationSignals": [
+          "cochlear implant",
+          "major-media"
+        ],
+        "sourceDomain": "theage.com.au",
+        "sourcePriority": 78,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T13:14:12.724Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 3
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQVhVQUdJODY3UXRHaGl5WURoaHJtVkItVjVwVkhhRHpOZlY1Mlp3MHd0eVJwR0o4SDVPZjBtSmx0Yi1hUkd2bXJhWGFoWjBqNXNVd0Y5b3hBRmY1Wm5saE1JQ0Uybjl3cU9RSlY1SUwwNWwybHZ2Rkl5UEs5X3J2cUdCTFdtU3liWDY3T3VMX2NyWDhBeHBxOGtFcFNRXzVsQjBrWHU0a0xKRlBoTC1uT1JVMGdLQzBvRVI4eTFUYmtGRUNu?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "How deaf educators put tricky climate change terms into sign language",
+        "originalSummary": "How deaf educators put tricky climate change terms into sign language",
+        "sourceName": "Euronews.com",
+        "sourceUrl": "https://www.euronews.com",
+        "publishedAt": "2025-06-01T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "major-media"
+        ],
+        "sourceDomain": "euronews.com",
+        "sourcePriority": 86,
+        "sourceMode": "major-media-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T12:15:51.389Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 4
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOc3NNTC1JRVRTSFRFNUNfcDItdnZBRXRoUENxaXNUMWZnVzNMdjBvWk9uQU1QNmlzRE9UQW5FUVFqU1FtdkRmNWNjUXRxTmc0blpOejY5RldpVVF5YVN4cmdDVENYVlBJZmxIMldSSFZPU25PWG0zbzkwX3pkZExJYV9CLUhwTEhkeDdzNGFIZWxPcmtYUFZVdVFhcjAtMUlhWmE0ODRGZ3pybG1IcFl4TjhQck1JcW5UTGNV?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "CBS13’s Marlee Ginter shares personal battle with hearing loss to break stigma",
+        "originalSummary": "CBS13’s Marlee Ginter shares personal battle with hearing loss to break stigma",
+        "sourceName": "CBS News",
+        "sourceUrl": "https://www.cbsnews.com",
+        "publishedAt": "2025-11-25T08:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 20,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "cbsnews.com",
+        "sourcePriority": 84,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T03:18:30.463Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 7
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbmhzNG4tUE8tNFhnamZCLWQtMUNNNFdteVdNS1lLbmxqYXVDRUQ2dWNKTVJkZ1JyZVJuWmROYVB0U2FJNkxRQl9ONVZqMllzSnppX1Nvb2g4cm5CdnBCanV6WUw2ZlRqdmhmU25ZaEZ1VlYxOTBQQ0RIai1yUVREU1NmZTR3QmNfN0xpVkFmcnM1MXFRSTVBekhlQXktRHZDWTJBbnlGQm96TkhlbXhmQXIzY29WeGxHYnM0SXlpejY?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
+        "originalSummary": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
+        "sourceName": "The Clarion-Ledger",
+        "sourceUrl": "https://ftw.usatoday.com",
+        "publishedAt": "2025-07-01T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 20,
+        "curationSignals": [
+          "accessibility",
+          "major-media"
+        ],
+        "sourceDomain": "usatoday.com",
+        "sourcePriority": 78,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T12:15:51.389Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 4
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOZFVBVDlBZUo3d0hySlo3dFBWLXlMQ0dfUXAyUFVvOEZ1X054NExCWGNXZGVBbGZXWWpGTmwxVDdWdnJsaEtNenFGTjk1RVZ4aG9meFBiUVQ0UzE0WGJXTEtuYW5IOWozMEo0MHN0eVd0ODlsUWpTZTFKRjZxSUQzVXBDQzZ4ZGh4OUdRenVzTmVrcC1zX1dINE0xMG16cDBfWVpVcWF2ZXMtM3hPX0dKVDNjYThTemFtaGV1eWNiZVN6NlI3Ujc0dzVyX3ZaZ9IB0wFBVV95cUxOR0dlUEtzUlJCbXY3ZUVMMDJ6N01yelNGd1ZIcnpFcl9TU2VtOC11Y2N0T1gxcXNsakZOTFExOE5zenh4Um9HOWR5WDlmYmZyRWtvZmFjeUhCZ3JNVXYtRHFOdTNBeUY1WTN5c2tTLVoxcWhiOEp4cVZuQzJrOUF6WnhyMEJ6SlpRSUpLOHIwbWFSaEdiZG9NRlVaeWNtTVJwbVhSa2hBZTFLQ1NBbFZ3amIwdUdfZEl3QzU4eFJQTjNPZGtuWE1uRE1MVFVCSmZ2bTRV?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Ludhiana: City girl secures gold at Nat’l Deaf Sports c’ship | Hindustan Times",
+        "originalSummary": "Ludhiana: City girl secures gold at Nat’l Deaf Sports c’ship | Hindustan Times",
+        "sourceName": "Hindustan Times",
+        "sourceUrl": "https://www.hindustantimes.com",
+        "publishedAt": "2025-03-25T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "sports",
+        "topicLabel": "デフスポーツ",
+        "curationScore": 23,
+        "curationSignals": [
+          "deaf sports",
+          "major-media"
+        ],
+        "sourceDomain": "hindustantimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T12:15:51.389Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 4
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPU1c2NmE0dk1mcldGbHMyMVVrc2dLVlJ1VWJ4WnFZZ2QySnBSVnRUeDdsYjlkdE9jeGVTaGtPQk9HZ29IdUlteUpQS3lyMThxVUp3R1M0cFppeDBvQmhSTEIwajlRUzNEU2xNUFhSUHpYLVBxUi1SZEJtZkptcl9NYUZ1dW1qTmstcTlZRTExX3Rfb1EwT0dia3cwMGFObzJQSzhiVzhVZTZLbXcwaWk3eHhEVU11ckhQb3FxTWFTVEpwak11QXRYV2lYcw?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Experts decry low university enrollment of students with hearing impairments",
+        "originalSummary": "Experts decry low university enrollment of students with hearing impairments",
+        "sourceName": "Daily Monitor",
+        "sourceUrl": "https://www.monitor.co.ug",
+        "publishedAt": "2025-04-27T07:00:00.000Z",
+        "region": "middle_east_africa",
+        "regionLabel": "中東・アフリカ",
+        "topic": "education",
+        "topicLabel": "教育",
+        "curationScore": 25,
+        "curationSignals": [
+          "hearing impairment",
+          "major-media"
+        ],
+        "sourceDomain": "monitor.co.ug",
+        "sourcePriority": 74,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-18T12:15:51.389Z",
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 4
     },
     {
       "article": {
@@ -796,8 +1025,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T08:59:07.386Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 4
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 5
     },
     {
       "article": {
@@ -824,8 +1053,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -852,8 +1081,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -880,8 +1109,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -908,8 +1137,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -936,8 +1165,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -964,8 +1193,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -992,8 +1221,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1021,8 +1250,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T07:58:06.741Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1049,8 +1278,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T03:18:30.463Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1077,8 +1306,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T03:18:30.463Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1105,8 +1334,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T03:12:04.306Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 9
     },
     {
       "article": {
@@ -1133,8 +1362,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-18T03:12:04.306Z",
-      "lastAttemptAt": "2026-10-18T15:06:38.363Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-18T15:45:51.297Z",
+      "attempts": 9
     }
   ]
 }
