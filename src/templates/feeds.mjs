@@ -8,6 +8,7 @@ import {
   SITE_URL,
 } from '../../config/site.mjs';
 import { CATEGORY_UI } from '../../config/categories.mjs';
+import { NEWS_SECTIONS } from '../../config/news-sections.mjs';
 import { GUIDE_LAST_REVIEWED } from '../guide-data.mjs';
 import { GUIDE_TOPICS, GUIDE_TOPIC_REVIEWED } from '../guide-topics.mjs';
 import { validEvent, eventPeriod } from '../lib/events.mjs';
@@ -27,6 +28,7 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
   // ニュースの生成日時を、更新日を追跡していない別ページへ転用しない。
   const urls = [
     { loc: pageUrl, lastmod, changefreq: 'daily', priority: '1.0' },
+    ...(!isDev ? NEWS_SECTIONS.map(section => ({loc:`${SITE_URL}news/${section.slug}/`,changefreq:'daily',priority:'0.7'})) : []),
     { loc: `${SITE_URL}${files.oldIndex}`, changefreq: 'daily', priority: '0.6' },
     ...archiveMonths.map((key) => ({
       loc: `${SITE_URL}archive/${key}${isDev ? '-dev' : ''}.html`,
@@ -164,6 +166,7 @@ ${renderSubHeader({
         <h2 id="sitemap-domestic">国内ニュース</h2>
         <ul>
           <li><a href="./${indexFile}">Deaf Navi Web トップ</a><span>聴覚障害・難聴・ろう者コミュニティ向け国内ニュース</span></li>
+          ${NEWS_SECTIONS.map(section=>`<li><a href="/news/${section.slug}/">${escapeHtml(section.title)}</a></li>`).join('')}
           <li><a href="./${files.oldIndex}">過去アーカイブ</a><span>掲載期間を過ぎた記事の月別アーカイブ</span></li>
           <li><a href="./${files.guide}">暮らしのガイド</a><span>緊急通報・医療・教育・就労などの公式情報</span></li>
           ${GUIDE_TOPICS.map(topic=>`<li><a href="/guide/${topic.slug}/">${escapeHtml(topic.label)}</a></li>`).join('')}
