@@ -8,7 +8,10 @@ import { hasMistranslatedLibras } from './world-translation.mjs';
 const directFeeds = new Map([...DIRECT_FEEDS, ...EXPANDED_DIRECT_FEEDS, ...SOCIAL_FEEDS].map((feed) => [feed.sourceName, feed]));
 
 function withReview(data, articles, removed) {
-  if (isDeepStrictEqual(articles, data.articles)) return data;
+  const currentReview = data.quality?.version === QUALITY_VERSION
+    || (data.publicationReview?.version === QUALITY_VERSION
+      && data.publicationReview?.inputGeneratedAt === data.generatedAt);
+  if (currentReview && isDeepStrictEqual(articles, data.articles)) return data;
   return {
     ...data,
     count: articles.length,
