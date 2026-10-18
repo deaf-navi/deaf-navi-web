@@ -26,7 +26,11 @@
 
 私有 `curation-review-catalog.json`（version 1、targets）は、kind/recordId/title/sourceUrl/sourceMode=html/officialVerified=true/fragments/approvedDocumentHash/sharingReviewedAtを持つ。公式本文と共有する短文を実際に読んで登録する。全文hashは `prepare-curation-review.mjs` が実取得した `sourceDocumentHash` を使う。カタログ登録だけでは当日のAPI送信を許可しない。初期対象は確認したHTML資料から増やし、未登録・変更された文面は例外に残す。
 
-通常6週間・公演6か月の範囲でイベントとカフェを交互に最大8件選び、公式HTMLの全文hashと抜粋の存在を再照合する。API結果・既存キャッシュと最新台帳を比較し、一致は `corroborated`、差異・不足・未登録・目視対象は `exception`。対象上限超過は `deferred` として保持する。48時間の期限切れやカフェのrevision不一致を、この処理で復旧・承認しない。常設店舗の年次棚卸は別途維持する。
+通常6週間・公演6か月の範囲で、登録済み情報をイベントとカフェ交互に最大40件選び、4件ずつ順番に比較する。同じURLのHTMLは実行内で一度だけ取得し、全文hashと抜粋の存在を再照合する（取得失敗も実行内で再送しない）。新規情報源の詳査は従来どおり1回最大8件。APIの1回・当日トークン予算、通常16回の回数上限は拡大しない。API/キャッシュ異常時は後続バッチも止め、UNKNOWNと例外を残す。
+
+API結果・既存キャッシュと最新台帳を比較し、一致は `corroborated`、差異・不足・未登録・目視対象は `exception`。対象上限超過は `deferred` として保持する。48時間の期限切れやカフェのrevision不一致を、この処理で復旧・承認しない。常設店舗の年次棚卸は別途維持する。
+
+表記の違い等を公式本文と掲載内容で実際に照合済みの場合だけ、私有カタログの `comparisonReview` に `baselineHash/documentHash/decisionHash/checkedAt/note` を保存できる。根拠本文、最新掲載内容・カフェrevision、抽出結果が全て同一で、理由が `differs-from-current` のみの場合は `reviewed-unchanged` に分ける。差分と確認日時を結果に残し、毎日の同じ確認を避ける。日付不足、関連性不明、別の出力、48時間切れ、本文や掲載内容の変更には使えない。掲載承認や鮮度延長を意味せず、`reviewedAt=null/publicationApproved=false` を維持する。
 
 同日・同じ台帳/カタログ/当日共有許可の再実行は保存済み結果を返す。強制再調査は `--research --force` の明示実行のみで、無料枠や結果不明の停止条件は共通。新規API送信は当日許可に正確な文面hashがあるものだけ。未承認の1件で他のキャッシュ照合を止めない。API/キャッシュ異常時の送信件数はUNKNOWN(null)とし、自動再送しない。
 
@@ -39,6 +43,8 @@
 日次の `deaf-navi-2` に統合し、新しいcron・定時API連打は追加しない。登録済み情報源の復旧は引き続き非AI。毎日の共有適性・無料枠確認は必要なため、Codexが完全に不要になるわけではない。新規発見・画像・PDF・SNSの実確認も残る。
 
 調査・再試験に限りCLIへ `--research` を付け、回数を通常の16回と分ける。トークン予算、当日残量、秘密保護、結果不明時の停止は共通。モデル比較時の `modelOverride` も調査CLIのみ。定時HTTPの入力から上限を回避する経路はない。
+
+API応答の件数・固定ID・重複はバッチ全体で厳密に検証する。その上で、引用や日付が根拠と合わない項目だけを `api-evidence-invalid` として私有キャッシュへ保存し、正常な項目の照合は継続する。無効な原文や出力は保存せず、同じ文面の無効結果を自動再送しない。別IDや結果不明の応答をこの仕組みで正常扱いしない。
 
 ## 比較と公開
 

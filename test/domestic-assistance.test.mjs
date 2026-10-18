@@ -54,6 +54,17 @@ test('recall queue skips hard exclusions and published duplicates, retaining unc
  assert.equal(result.candidates[0].approved,undefined);assert.equal(result.candidates[0].reviewedAt,undefined);
 });
 
+test('official pages are fetched once across preparation batches, including failed fetches',async()=>{
+ const sourceCache=new Map();let calls=0;
+ const target={kind:'event',recordId:'fixture',title:'手話交流会',sourceUrl:'https://example.org/notice',sourceMode:'html',officialVerified:true,fragments:['手話交流会']};
+ const fetchResource=async()=>{calls++;return {status:200,headers:{'content-type':'text/html'},text:'<p>手話交流会</p>'};};
+ for(let i=0;i<2;i++)assert.equal((await prepareCurationReview([{...target,recordId:'fixture-'+i}],{now,fetchResource,sourceCache})).tasks.length,1);
+ assert.equal(calls,1);
+ const failedCache=new Map(),failed=async()=>{calls++;throw new Error('temporary');};
+ for(let i=0;i<2;i++)assert.equal((await prepareCurationReview([target],{now,fetchResource:failed,sourceCache:failedCache})).exceptions.length,1);
+ assert.equal(calls,2);
+});
+
 test('bounded queue prioritizes direct sources and rotates publishers without merging distinct dates',()=>{
  const base={summary:'詳細は公式案内へ。',publishedAt:'2026-10-17T00:00:00Z',_sourceTier:'google'};
  const noisy=Array.from({length:45},(_,i)=>({...base,id:'https://busy.org/'+i,sourceUrl:'https://busy.org',title:`地域からのお知らせ 第${i+1}回`}));

@@ -10,11 +10,13 @@ import {evidenceHash,prepareReviewItem,validIsoDay} from './curation-review-cont
 import {createComplimentaryClient,publicTextFingerprint,validateAllowance} from './complimentary-text-client.mjs';
 
 const jstDay=now=>new Date(now+9*3600000).toISOString().slice(0,10);
+const DAILY_LIMIT=40,BATCH_SIZE=4;
 const issue=(record,reason)=>({kind:record.kind,recordId:record.recordId,sourceUrl:record.sourceUrl??null,status:'exception',reasons:[reason],publicationApproved:false,reviewedAt:null});
 export function reviewRecords(events,cafes){
   if(!Array.isArray(events?.events)||cafes?.ready!==true||!Array.isArray(cafes.records))throw new Error('Current publication snapshots required');
   return [...events.events.map(event=>({kind:'event',recordId:event.id,title:event.title,eventKind:event.kind,
     publication:'public',sourceUrl:event.sourceUrl,sourceMode:event.verificationMode??'html',
+    publicationContentHash:evidenceHash(JSON.stringify(Object.fromEntries(['title','startDate','endDate','prefecture','venue','kind','sourceName','sourceUrl','organizer','time','fee','target','status','description','communication','participation'].map(key=>[key,event[key]??null])))),
     verification:event.verification,verifiedAt:event.verifiedAt,
     baseline:{startDate:event.startDate,...(event.endDate!==event.startDate?{endDate:event.endDate}:{}),
       venue:event.venue,communication:(event.communication??[]).map(x=>x.method),
@@ -23,8 +25,8 @@ export function reviewRecords(events,cafes){
 
 // The catalog contains deliberately selected, previously read public fragments.
 // It never grants today's sharing allowance or approves a publication change.
-export function planDailyReview(records,catalog,{now=Date.now(),limit=8}={}){
-  if(catalog?.version!==1||!Array.isArray(catalog.targets)||catalog.targets.length>200||limit<1||limit>8)throw new Error('Invalid bounded review catalog');
+export function planDailyReview(records,catalog,{now=Date.now(),limit=DAILY_LIMIT}={}){
+  if(catalog?.version!==1||!Array.isArray(catalog.targets)||catalog.targets.length>200||!Number.isInteger(limit)||limit<1||limit>DAILY_LIMIT)throw new Error('Invalid bounded review catalog');
   const targets=new Map();
   for(const target of catalog.targets){
     const key=target.kind+':'+target.recordId;
@@ -52,7 +54,7 @@ export function planDailyReview(records,catalog,{now=Date.now(),limit=8}={}){
       exceptions.push(issue(record,'review-catalog-required'));continue;
     }
     prepareReviewItem({...target,text:target.fragments?.join(' ')});
-    selected.push({...target,baseline:record.baseline,publicationSnapshotHash:evidenceHash(JSON.stringify(record))});
+    selected.push({...target,baseline:record.baseline,comparisonBaselineHash:evidenceHash(JSON.stringify({kind:record.kind,recordId:record.recordId,title:record.title,sourceUrl:record.sourceUrl,baseline:record.baseline,revision:record.revision??null,publicationContentHash:record.publicationContentHash??null})),publicationSnapshotHash:evidenceHash(JSON.stringify(record))});
   }
   selected.sort((a,b)=>a.baseline.startDate.localeCompare(b.baseline.startDate)||a.recordId.localeCompare(b.recordId));
   // Alternate both services so a busy event source cannot starve cafe comparisons.
@@ -69,26 +71,31 @@ export async function runDailyReview({records,catalog,stateDir,generate,canSubmi
     const plan=planDailyReview(records,catalog,{now});
     // Time alone can expire a source within the same JST day. Reuse is valid
     // only while today's eligibility plan still agrees with the saved result.
-    const signature=evidenceHash(JSON.stringify({catalog,records,approvalSignature,plan}));
+    const signature=evidenceHash(JSON.stringify({runnerVersion:2,catalog,records,approvalSignature,plan}));
     const reportPath=join(stateDir,'daily-curation-review.json');
     let previous;try{previous=JSON.parse(await readFile(reportPath,'utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}
     if(!force&&previous?.day===jstDay(now)&&previous.signature===signature&&Date.parse(previous.generatedAt)<=now)
       return {...previous,reusedRun:true,submittedThisRun:0};
-    const prepared=plan.targets.length?await prepare(plan.targets,{now}):{tasks:[],exceptions:[]};
-    const entries=[...plan.exceptions,...prepared.exceptions.map(x=>({...x,status:'exception',reasons:[x.reason],publicationApproved:false,reviewedAt:null}))];
+    const entries=[...plan.exceptions],sourceCache=new Map();
     let submitted=0,cached=0;
-    if(prepared.tasks.length){
+    for(let offset=0;offset<plan.targets.length;offset+=BATCH_SIZE){
+      const prepared=await prepare(plan.targets.slice(offset,offset+BATCH_SIZE),{now,sourceCache});
+      entries.push(...prepared.exceptions.map(x=>({...x,status:'exception',reasons:[x.reason],publicationApproved:false,reviewedAt:null})));
+      if(!prepared.tasks.length)continue;
       try{
         const result=await reviewCurationTasks(prepared.tasks,{generate,canSubmit,stateDir,now,runMode});
-        submitted=result.submitted;cached=result.cached;entries.push(...result.entries);
+        submitted+=result.submitted;cached+=result.cached;entries.push(...result.entries);
       }catch{
         // Do not retry or switch providers on uncertain requests. The shared API
         // ledger retains reservations/inflight state for operator reconciliation.
         submitted=null;entries.push(...prepared.tasks.map(x=>issue(x,'api-or-cache-unavailable')));
+        entries.push(...plan.targets.slice(offset+BATCH_SIZE).map(x=>issue(x,'batch-stopped-after-api-error')));
+        break;
       }
     }
     const report={version:1,day:jstDay(now),generatedAt:new Date(now).toISOString(),signature,reusedRun:false,
       submittedThisRun:submitted,cached,selected:plan.targets.length,corroborated:entries.filter(x=>x.status==='corroborated').length,
+      reviewedUnchanged:entries.filter(x=>x.status==='reviewed-unchanged').length,
       exceptions:entries.filter(x=>x.status==='exception').length,deferred:plan.deferred,skipped:plan.skipped,entries,
       publicationApproved:false,reviewedAt:null};
     const temp=reportPath+'.tmp-'+randomUUID();await writeFile(temp,JSON.stringify(report,null,2)+'\n',{mode:0o600});await rename(temp,reportPath);
@@ -113,7 +120,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process
     const report=await runDailyReview({records,catalog,stateDir,generate,canSubmit:item=>allowed.has(publicTextFingerprint(item)),
       approvalSignature:evidenceHash(JSON.stringify([...allowed].sort())),runMode:research?'research':'routine',force:process.argv.includes('--force')});
     console.log(JSON.stringify({day:report.day,generatedAt:report.generatedAt,reusedRun:report.reusedRun,submittedThisRun:report.submittedThisRun,
-      cached:report.cached,selected:report.selected,corroborated:report.corroborated,exceptions:report.exceptions,deferred:report.deferred.length,
+      cached:report.cached,selected:report.selected,corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,deferred:report.deferred.length,
       exceptionRecords:report.entries.filter(x=>x.status==='exception').map(({kind,recordId,reasons,sourceUrl,differences})=>({kind,recordId,reasons,sourceUrl,differences})),
       reportPath:join(stateDir,'daily-curation-review.json'),publicationApproved:false,reviewedAt:null}));
   }catch{console.error('DAILY_CURATION_REVIEW_UNAVAILABLE: private configuration or publication snapshot requires inspection');process.exitCode=1;}

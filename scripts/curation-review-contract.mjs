@@ -48,8 +48,21 @@ export function validIsoDay(value) {
 export function explicitDates(text) {
   const value=normalize(text).replace(/令和(元|\d+)年/g,(_,n)=>String(2018+(n==='元'?1:Number(n)))+'年')
     .replace(/(20\d{2})年\(\1年\)/g,'$1年');
-  return [...value.matchAll(/(?<!\d)(20\d{2})\s*[年/.-]\s*(\d{1,2})\s*[月/.-]\s*(\d{1,2})(?:日|\b)/g)]
-    .map(m=>`${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`).filter(validIsoDay);
+  const dates=[];
+  for(const m of value.matchAll(/(?<!\d)(20\d{2})(?:\s*[年/.-]\s*|\s+)(\d{1,2})\s*[月/.-]\s*(\d{1,2})(?:日|\b)/g)){
+    dates.push(`${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`);
+    // Only an adjacent date-list/range may inherit an explicitly written year.
+    // Prose, publication dates, deadlines and another year break this context.
+    let tail=value.slice(m.index+m[0].length),month=m[2];
+    for(let i=0;i<6;i++){
+      const next=tail.match(/^\s*(?:\([月火水木金土日祝・]+\))?\s*[・〜～]\s*(?:(\d{1,2})\s*[月/]\s*)?(\d{1,2})日/);
+      if(!next)break;
+      if(next[1]&&Number(next[1])<Number(month))break;
+      month=next[1]??month;
+      dates.push(`${m[1]}-${month.padStart(2,'0')}-${next[2].padStart(2,'0')}`);tail=tail.slice(next[0].length);
+    }
+  }
+  return [...new Set(dates.filter(validIsoDay))];
 }
 
 // Structured output is not factual verification: every accepted fact needs a literal witness.
@@ -105,8 +118,32 @@ export function compareReview(task,decision,{now=Date.now()}={}) {
     if(facts.endDate&&facts.startDate>facts.endDate)reasons.push('invalid-date-order');
   }
   if(differences.length)reasons.push('differs-from-current');
-  return {status:reasons.length?'exception':'corroborated',reasons:[...new Set(reasons)],differences,
+  // A prior inspected comparison may acknowledge only the exact unchanged difference.
+  // It cannot waive missing facts, relevance, freshness, source changes or new output.
+  const review=task.comparisonReview,checked=Date.parse(review?.checkedAt);
+  const reviewedUnchanged=reasons.length===1&&reasons[0]==='differs-from-current'
+    &&differences.every(field=>!['startDate','endDate'].includes(field))
+    &&(!differences.includes('status')||facts.status==='scheduled'&&baseline.status==null)
+    &&typeof review?.note==='string'&&review.note.trim().length>0&&review.note.length<=500
+    &&Number.isFinite(checked)&&checked<=now
+    &&/^[a-f0-9]{64}$/.test(task.comparisonBaselineHash??'')&&review.baselineHash===task.comparisonBaselineHash
+    &&/^[a-f0-9]{64}$/.test(task.sourceDocumentHash??'')&&review.documentHash===task.sourceDocumentHash
+    &&review.decisionHash===evidenceHash(JSON.stringify(decision));
+  return {status:reviewedUnchanged?'reviewed-unchanged':reasons.length?'exception':'corroborated',reasons:[...new Set(reasons)],differences,
+    comparisonReviewedAt:reviewedUnchanged?review.checkedAt:null,
     machineCheckedAt:new Date(now).toISOString(),sourceTextHash:task.sourceTextHash,
     // Never impersonate visual/source approval or advance 48-hour publication freshness.
     publicationApproved:false,reviewedAt:null,facts};
+}
+
+// Isolate a factual-validation failure, but never accept an ambiguous batch identity.
+export function partitionReviewResult(items,result){
+  const expected=new Map(items.map(item=>[item.id,item]));
+  if(!Array.isArray(result?.items)||result.items.length!==items.length||new Set(result.items.map(x=>x?.id)).size!==items.length||result.items.some(x=>!expected.has(x?.id)))throw new Error('Review result ID mismatch');
+  const accepted=[],rejectedItems=[];
+  for(const decision of result.items){
+    try{validateReviewResult([expected.get(decision.id)],{items:[decision]});accepted.push(decision);}
+    catch{rejectedItems.push({id:decision.id,reason:'api-evidence-invalid'});}
+  }
+  return {items:accepted,rejectedItems};
 }
