@@ -6,9 +6,10 @@
 
 - 公式条件: https://help.openai.com/en/articles/10306912-sharing-feedback-evaluation-and-fine-tuning-data-and-api-inputs-and-outputs-with-openai
 - 2026-10-18にアカウントの登録済み表示、Launch tier、shared-free-tierだけの入出力共有、正の残高を確認。このモデル群の無料枠は組織全体で入力・出力合計100万トークン/UTC日。将来も同じとは扱わない。
-- 現行モデルは `gpt-6.1-sol`、`reasoning.effort=low`、Responses APIのStandard処理。Worldの不足翻訳と確認済みイベント・カフェの短文整理に使用する。旧 `gpt-5.6-sol` の暗黙の推論設定を置き換え、短い文章に過剰な推論を使わない。軽量Lunaも対象だが、現在の少量処理では翻訳の固有名詞・条件保持を優先してSolに統一する。Astra・Fast・Ultrafastや自動モデル振分けは使用しない。
+- 現行モデルは実行確認済みの `gpt-5.6-sol`、`reasoning.effort=low`、Responses APIのStandard処理。Worldの不足翻訳と確認済みイベント・カフェの短文整理に使用する。従来の暗黙のmedium設定をlowに明示し、短い文章に過剰な推論を使わない。現在の少量処理では翻訳の固有名詞・条件保持を優先してSolに統一する。Astra・Fast・Ultrafastや自動モデル振分けは使用しない。
 - モデル・推論設定の定義元は `scripts/complimentary-text-client.mjs` の `COMPLIMENTARY_MODEL` / `COMPLIMENTARY_REASONING_EFFORT`。日次記録とhealth表示も同じ定義を参照する。モデル変更前のallowanceは一致検査で拒否し、新モデルの対象可否・残量を実確認してから記録し直す。モデルを変えても当日の使用台帳・予約量は保持する。
-- モデル仕様: https://developers.openai.com/api/docs/models/gpt-6.1-sol 。最新モデルという理由だけで無料対象とは扱わず、上記の無料枠条件とアカウント表示を照合する。
+- モデル仕様: https://developers.openai.com/api/docs/models/gpt-5.6-sol 。最新モデルという理由だけで無料対象・利用可能とは扱わず、上記の無料枠条件とアカウント表示、実APIを照合する。
+- 2026-10-18に `gpt-6.1-sol` の無料対象を確認し、shared-free-tierのモデル許可リストへ同モデルのみ追加した（既存5.6系3モデル・支出上限は保持）。保存後も実APIが403 `model_not_found` / project does not have accessを返したため、本番移行は保留して5.6 Solへ明示的に戻した。APIキーの権限は変更していない。設定伝播以外の原因はUNKNOWN。6.1へ再移行する場合も実応答と無料枠区分を確認してから定義・日次記録を揃える。失敗したリクエストの予約量は払い戻さない。
 - 日付の境界は00:00 UTC（09:00 JST）。毎日、当日の対象・残量・他の利用を確認した記録が必要。前日や過去7日間だけの確認では当日の許可を更新しない。
 - 初期のDeaf Navi上限は保守的な予約量で10万トークン/日、12リクエスト/日、残量の10%以下。送信前に入力UTF-8バイト数＋出力上限＋余裕を確保する。実使用が少なくても予約を払い戻さない。
 - 無料枠をまたぐリクエストは全体が通常課金になり得る。ローカル上限はOpenAI側の強制無料設定ではない。他クライアントの消費も調べ、不明なら使用しない。料金画面の反映待ちは0円確定と書かない。
