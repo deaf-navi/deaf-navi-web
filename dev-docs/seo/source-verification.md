@@ -71,3 +71,9 @@ site-shell/pageが読む表示用12 CSS/JSを同mainから実読し、合成詳�
 - UIの操作先を根拠に文言だけ合わせる。新しい店舗の対応可否や予約・営業時間の情報源にはしない。未確認の対応を「なし」と扱わず、公式サイト/SNSを確認する既存案内を維持する。店舗DB/検証日時の更新はない。
 - PR87〜90のmerged状態、CI39126391393/dea39fbと既存Deploy39129045309/bab7042のsuccessを読取確認。API_CURATIONの3資料試験の説明は読めたが、私有の日次比較結果・実使用量・無料枠判定は未取得。比較CLIやモデルAPIによる追加確認は行わない。
 - ローカル375/1180/1280pxは現行3 CSSを使った合成FAQ部品の表示/キーボード確認。本番PHP・公開HTML・実機音声の証拠とは区別し、公開結果を別に記録する。
+
+### FAQ修正の配布証跡
+
+[PR97](https://github.com/deaf-navi/deaf-navi-web/pull/97)の最終head `9fe7a7d1ce447b2036376bab32277879cb181416` /CI39176242415がsuccess。通常squash `54a81c6aad5435f85c1a75341d7088be3eec6a98` の実parent/6ファイル差分と、mainのPHPが候補と一致することをGitHubで再読。XServer39176365311のPHP lint/隔離SEO130/原子的切替/基本HTTPは10/19 08:25:01 JSTにsuccess。
+
+08:25:26 JSTの子HTTPは専用UA/headerとdn_client=codex付きでもCONNECT403、Web読取もnot accessible。本番FAQのHTMLやモバイル・音声を取得できた証拠ではなく、親の正式ブラウザー再読待ち。原因をPHPキャッシュやサイト障害と確定せず、診断だけの再公開・Caddy/PR30操作・認証変更は行わない。

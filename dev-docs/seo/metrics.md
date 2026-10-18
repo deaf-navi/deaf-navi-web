@@ -85,3 +85,9 @@ SEO-06の技術結果: PR68のCI38984967819はNode170/PHP SEO130/おとまど91/
 PR87の修正後CI39126391393と既存Deploy39129045309のsuccessを読取確認。API_CURATIONに過去の3資料比較の記述はあるが、今回の日次 submitted/cached/corroborated/exceptions、実使用量・無料枠区分は未取得。追加の比較CLI/API呼出しは行わず、未取得を0や成功へ補完しない。
 
 GSC/GA4、自然検索クリック・表示回数・CTR・平均掲載順位、organic session、CWVフィールドは引き続き未取得。初週の前後比較・SEO効果は算出できない。親の計測接続調査と役割を重ねず、取得可能になった時点で既存URLの優先度を見直す。
+
+### 08:25 JST 技術検証の確定
+
+PR97/CI39176242415はhead `9fe7a7d1ce447b2036376bab32277879cb181416` で全工程success。Node230・PHP SEO130・おとまど91・国内473/World600記事の検証数はCIの技術値。訪問者数/インデックス数・検索効果には転用しない。
+
+公開commit `54a81c6aad5435f85c1a75341d7088be3eec6a98` のXServer39176365311は10/19 08:25:01 JSTにsuccess。既存のトップ/アプリmanifest HTTP確認は成功。FAQ本文は08:25:26 JSTの子HTTPがCONNECT段階403、Webも取得不可のため未取得。公開内容の反映確認値は未確定のままで、GSC/GA4・API日次実測も未取得を維持する。
