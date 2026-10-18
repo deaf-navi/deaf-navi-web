@@ -1,5 +1,10 @@
 // Progressive enhancement only: server-rendered links and individual pages work without JS.
 (() => {
+  document.querySelectorAll('.dn-cafe-media img').forEach(image => {
+    const fallback = () => image.remove();
+    image.addEventListener('error', fallback, {once: true});
+    if (image.complete && image.naturalWidth === 0) fallback();
+  });
   // Keep filters available without JS; on phones, start with the results in view.
   const filterPanel = document.querySelector('.dn-filter-panel');
   if (filterPanel) {

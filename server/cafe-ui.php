@@ -39,7 +39,7 @@ function cafe_table_schedule(array $p):string {
     return '<div class="dn-table-schedule">'.($days!==''?'<span>'.nl2br(e($days)).'</span>':'').($hours!==''?'<span>'.nl2br(e($hours)).'</span>':'<span class="dn-schedule-muted">時間未確認</span>').'</div>';
 }
 function domestic_card(array $p):string {
-    $out='<article class="dn-card dn-place-card" data-cafe-id="'.e($p['id']).'"><p class="dn-location">'.e($p['prefecture'].' '.$p['city']).'</p><h2><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h2>'.cafe_badges($p).cafe_schedule_html($p).(!empty($p['description'])?'<p class="dn-card-intro">'.e($p['description']).'</p>':'');
+    $out='<article class="dn-card dn-place-card" data-cafe-id="'.e($p['id']).'">'.cafe_card_intro($p,$p['prefecture'].' '.$p['city']).cafe_badges($p).cafe_schedule_html($p).(!empty($p['description'])?'<p class="dn-card-intro">'.e($p['description']).'</p>':'');
     if(!empty($p['notes']))$out.='<p class="dn-visit-note">'.nl2br(e($p['notes'])).'</p>';
     $out.=official_links($p,true).'<div class="dn-links">';
     $map=($p['map_url']??'')?:(!empty($p['address'])?'https://www.google.com/maps/search/?api=1&query='.rawurlencode($p['address'].' '.$p['name']):'');

@@ -27,4 +27,11 @@ $html=visitor_profile(array_replace($activity,['confirmation_status'=>'needs_rev
 expect(!str_contains($html,'2099-09-13')&&!str_contains($html,'10:00〜12:00'),'Unconfirmed activity date is suppressed throughout profile');
 $html=visitor_profile(array_replace($p,['shop_type'=>'related_organization']));
 expect(str_contains($html,'店舗型のカフェではありません')&&str_contains($html,'活動・利用の案内'),'Related organization clearly separated from cafe');
+$media=array_replace($p,['slug'=>'torinkan-writing-cafe-mie','official_url'=>'https://www.torinkan.com/']);
+expect(str_contains(cafe_list_media($media),'<img '),'Reviewed official image displayed');
+expect(!str_contains(cafe_list_media(array_replace($media,['official_url'=>'https://example.org/changed'])),'<img '),'Changed source drops old imagery');
+expect(!str_contains(cafe_list_media(array_replace($media,['slug'=>'unknown-cafe','thumbnail'=>'https://example.org/unreviewed.jpg'])),'<img '),'Unreviewed record image is not published');
+$eventMedia=array_replace($activity,['slug'=>'acoustic-cafe-sapporo-sign-20261027','official_url'=>'https://acousticcafe-sapporo.com/?p=1160','status'=>'cancelled']);
+expect(!str_contains(cafe_list_media($eventMedia),'<img '),'Cancelled event does not keep announcement imagery');
+expect(!str_contains(cafe_list_media(array_replace($eventMedia,['status'=>'unknown','activity_date'=>'2001-01-01'])),'<img '),'Past event does not keep announcement imagery');
 echo "PUBLIC_PROFILE_TESTS_OK\n";
