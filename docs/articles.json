@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-10-18T01:06:41.905Z",
+  "generatedAt": "2026-10-18T01:17:33.243Z",
   "variant": "prod",
   "profile": "expanded",
   "count": 471,
   "quality": {
     "version": "publication-quality-v8",
-    "rawCount": 3529,
-    "scoredCount": 3529,
+    "rawCount": 3545,
+    "scoredCount": 3545,
     "missingDateRemoved": 0,
     "freshCount": 1899,
-    "staleOrInvalidRemoved": 1630,
+    "staleOrInvalidRemoved": 1646,
     "lowValuePageRemoved": 6,
     "publicationRemoved": 177,
     "publicationExclusions": [
@@ -304,11 +304,6 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9Ca0xGYk00VTZnQU9BU2pCUzlralRRazcyWHlDWS1Ib0FvOWVxTEVVR1g1X1p6cjAyajRRRWh6YUI1ZVNPc1hoemtzem1HSkdMRkZoMXp6UFFKeGRlb2ZzcVpXZGNKUklqVGQxUE9RbHc2UQ?oc=5",
-        "title": "福岡県：久留米市議会「災害対応の在り方調査特別委員会」が情報発信や被災者支援などで市長に提言",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1iQlNWMHdSRVg1MWxQbTY4aFY3Y3dPb0YwTDBzY2hxODUwUXBnZU5WM2NzSmZ5LU9tNVRXdHdqWDRKWGpYNDZJbUlLQzVBdmQ2YzUxSGtWUjNmcUJqZGQ4Z3NGU3BXRXdKdlRmSUptc29Xdw?oc=5",
         "title": "北九州市６人死亡アパート火災、複数の防犯カメラ映像で被告の着衣や原付きバイクと特徴が一致…公判で専門家が説明",
         "reason": "unrelated"
@@ -316,6 +311,11 @@
       {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBTTG5fX0FoM0VhMGJkOVgzbDltXzluNTZseWJ3bTdmd09ZaGQxT1g4YmdBeFdwWWVIbWZTQmRsYjhPaUZvRU82WmUtQW5DQnFDMERoLUQtR2JtTmQ0ZVNYeHJKNk5IUDlpc2dFelo1X3VQUQ?oc=5",
         "title": "北九州市の防災情報配信サービス、登録した市民らのメールアドレス９９９６件分など流出か…不正アクセスで",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9Ca0xGYk00VTZnQU9BU2pCUzlralRRazcyWHlDWS1Ib0FvOWVxTEVVR1g1X1p6cjAyajRRRWh6YUI1ZVNPc1hoemtzem1HSkdMRkZoMXp6UFFKeGRlb2ZzcVpXZGNKUklqVGQxUE9RbHc2UQ?oc=5",
+        "title": "福岡県：久留米市議会「災害対応の在り方調査特別委員会」が情報発信や被災者支援などで市長に提言",
         "reason": "unrelated"
       },
       {
@@ -899,17 +899,17 @@
         "reason": "unrelated"
       }
     ],
-    "filteredCount": 1666,
-    "lowScoreRemoved": 56,
-    "nearDuplicateRemoved": 648,
-    "finalCountBeforeLimit": 1018,
+    "filteredCount": 1665,
+    "lowScoreRemoved": 57,
+    "nearDuplicateRemoved": 649,
+    "finalCountBeforeLimit": 1016,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 71,
     "extraVisibleCategoryCounts": {
       "relay": 71
     },
-    "overflowCount": 547,
+    "overflowCount": 545,
     "minScore": 5,
     "maxCurrentAgeDays": 180,
     "fallbackRetentionDays": 45,
@@ -917,15 +917,11 @@
     "sourceHealth": {
       "direct": {
         "requested": 31,
-        "succeeded": 29,
+        "succeeded": 30,
         "failed": [
           {
-            "sourceName": "全日本ろうあ連盟 YouTube",
-            "status": 404
-          },
-          {
-            "sourceName": "全国手話研修センター YouTube",
-            "status": 404
+            "sourceName": "全通研NOW!!",
+            "status": 403
           }
         ]
       },
@@ -951,13 +947,14 @@
       "東京手話通訳等派遣センター": 1,
       "電話リレーサービス": 22,
       "日本財団電話リレーサービス": 15,
-      "全通研NOW!!": 13,
       "日本聴覚医学会": 10,
       "北海道聴覚障がい者情報センター": 7,
       "札幌聴覚障害者協会": 12,
       "兵庫県立聴覚障害者情報センター": 104,
       "鹿児島県視聴覚障害者情報センター": 12,
       "沖縄聴覚障害者情報センター": 11,
+      "全日本ろうあ連盟 YouTube": 15,
+      "全国手話研修センター YouTube": 10,
       "ONTELOPE note": 25,
       "うりぼー note": 25,
       "UDCast": 11,
@@ -965,7 +962,7 @@
       "Palabra": 11,
       "Silent Voice": 10,
       "Vietnam.vn": 13,
-      "PR TIMES": 251,
+      "PR TIMES": 249,
       "Yahoo!ニュース": 116,
       "TBS NEWS DIG": 69,
       "読売新聞": 156,
@@ -985,7 +982,7 @@
       "仙台市公式ホームページ": 2,
       "宮城県": 1,
       "東浦町": 1,
-      "朝日新聞": 214,
+      "朝日新聞": 213,
       "スポニチ Sponichi Annex": 2,
       "両丹日日新聞": 3,
       "毎日新聞": 47,
@@ -999,8 +996,8 @@
       "大津市": 2,
       "福井新聞社": 9,
       "政府広報オンライン": 5,
-      "東京新聞": 43,
-      "公明党": 31,
+      "東京新聞": 44,
+      "公明党": 30,
       "Tohoku University": 1,
       "タウンニュース": 15,
       "4チャンネル": 1,
@@ -1018,7 +1015,7 @@
       "秋田魁新報電子版": 5,
       "奈良新聞": 3,
       "上毛新聞電子版": 9,
-      "沖縄タイムス社": 15,
+      "沖縄タイムス社": 16,
       "静岡新聞DIGITAL": 18,
       "神奈川県": 4,
       "47NEWS": 40,
@@ -1037,7 +1034,7 @@
       "佐倉市": 1,
       "UMKテレビ宮崎": 3,
       "熊本日日新聞社": 14,
-      "nnn.co.jp": 12,
+      "nnn.co.jp": 11,
       "北日本新聞webunプラス": 1,
       "SPAIA": 1,
       "MGプレス": 2,
@@ -1058,8 +1055,8 @@
       "熊本市公式サイト": 4,
       "藤枝市ホームページ": 7,
       "都庁総合ホームページ": 10,
-      "大田区": 4,
       "郡山市": 3,
+      "大田区": 4,
       "大分県ホームページ": 1,
       "舞台『ハリー・ポッターと呪いの子』": 9,
       "福岡県庁ホームページ": 1,
@@ -1081,7 +1078,7 @@
       "亀岡市": 2,
       "八戸市": 2,
       "アーツカウンシル東京": 6,
-      "埼玉県": 6,
+      "埼玉県": 7,
       "和泉市": 2,
       "富谷市ホームページ": 2,
       "所沢市": 6,
@@ -1100,9 +1097,9 @@
       "渋川市": 1,
       "岐阜県公式ホームページ": 3,
       "TOTTEI | GLION ARENA KOBE": 1,
-      "ニコニコニュース": 8,
+      "ニコニコニュース": 9,
       "ASCII.jp": 5,
-      "YouTube": 12,
+      "YouTube": 13,
       "Science Tokyo": 3,
       "クラウドファンディング - READYFOR": 24,
       "電通デジタル": 1,
@@ -1119,7 +1116,7 @@
       "帝京平成大学": 1,
       "美術手帖": 1,
       "Real Sound｜リアルサウンド": 1,
-      "NICT": 5,
+      "NICT": 4,
       "Impress Watch": 6,
       "WIRED.jp": 2,
       "桐生タイムス": 3,
@@ -1200,7 +1197,7 @@
       "山形新聞": 3,
       "FNNプライムオンライン": 22,
       "日本海新聞": 10,
-      "www.nnn.co.jp": 3,
+      "www.nnn.co.jp": 4,
       "埼玉新聞": 3,
       "週刊女性PRIME": 3,
       "北國新聞": 2,
@@ -1409,16 +1406,17 @@
       "慶応塾生新聞": 1,
       "advanced by massmedian": 1,
       "www.webdice.jp": 1,
-      "介護ニュースJoint": 1,
-      "近江八幡市": 4,
-      "文化放送": 5,
       "致知出版社": 1,
+      "近江八幡市": 4,
+      "文化放送": 6,
+      "介護ニュースJoint": 1,
       "RUNNET": 1,
+      "毎日キレイ": 3,
       "HTB北海道テレビ": 1,
+      "www.tochigi-tv.jp": 1,
       "nippon.com": 1,
       "Yahoo!ネット募金": 1,
       "東京すくすく": 1,
-      "www.tochigi-tv.jp": 1,
       "SBIホールディングス": 3,
       "Digital PR Platform": 1,
       "インナビネット": 2,
@@ -1426,7 +1424,6 @@
       "SmartNews": 1,
       "東京都渋谷公園通りギャラリー": 2,
       "日刊スポーツ": 2,
-      "毎日キレイ": 2,
       "The Medical AI Times": 2,
       "まいどなニュース": 2,
       "東海村": 2,
@@ -1517,8 +1514,8 @@
       "向日市": 1,
       "明石市": 1,
       "東京財団": 1,
-      "BS朝日": 1,
       "Excite エキサイト": 3,
+      "全通研NOW!!": 3,
       "Sortir à Paris": 1,
       "LIMO | くらしとお金の経済メディア": 2,
       "IndexBox": 1,
@@ -1556,18 +1553,18 @@
     },
     "sourceCountsAfter": {
       "Vietnam.vn": 7,
-      "PR TIMES": 39,
+      "PR TIMES": 37,
       "TBS NEWS DIG": 35,
       "CAMPFIRE (キャンプファイヤー)": 2,
       "Palabra": 3,
       "Excite エキサイト": 3,
       "FNNプライムオンライン": 13,
       "滋賀県立聴覚障害者センター": 12,
-      "全通研NOW!!": 10,
+      "全通研NOW!!": 3,
       "全日本難聴者・中途失聴者団体連合会": 15,
       "日刊ゲンダイDIGITAL": 1,
       "愛媛新聞": 4,
-      "ニコニコニュース": 3,
+      "ニコニコニュース": 4,
       "鹿児島県視聴覚障害者情報センター": 9,
       "Yahoo!ニュース": 29,
       "東京都聴覚障害者連盟": 5,
@@ -1727,6 +1724,7 @@
       "レッツエンジョイ東京": 1,
       "政府広報オンライン": 1,
       "radiko news": 1,
+      "全日本ろうあ連盟 YouTube": 5,
       "相馬市ホームページ": 1,
       "映画.com": 5,
       "茨城大学": 2,
@@ -1763,6 +1761,7 @@
       "PRESIDENT Online（プレジデントオンライン）": 1,
       "ONTELOPE note": 2,
       "SPAIA": 1,
+      "毎日キレイ": 1,
       "総務省": 2,
       "ASCII.jp": 1,
       "加東市": 1,
@@ -1898,27 +1897,28 @@
       "hokkaido_tohoku": 17
     },
     "sourceTypeCountsAfter": {
-      "rss": 1010,
-      "social": 8
+      "rss": 1003,
+      "social": 8,
+      "video": 5
     },
     "sourceTierCountsAfter": {
-      "google": 668,
-      "broad": 60,
-      "official": 240,
-      "specialist": 50
+      "google": 670,
+      "broad": 58,
+      "official": 245,
+      "specialist": 43
     },
     "categoryCountsAfter": {
-      "general": 221,
+      "general": 224,
       "technology": 35,
       "culture": 57,
       "sports": 106,
-      "accessibility": 144,
-      "education": 27,
-      "event": 72,
+      "accessibility": 140,
+      "education": 26,
+      "event": 70,
       "medical": 60,
       "policy": 67,
       "local": 112,
-      "safety": 46,
+      "safety": 48,
       "relay": 71
     },
     "duplicateSamples": [
@@ -2221,11 +2221,11 @@
     ],
     "thumbnails": {
       "articles": 471,
-      "attempted": 14,
-      "cached": 457,
-      "acquired": 1,
+      "attempted": 0,
+      "cached": 471,
+      "acquired": 0,
       "missing": 0,
-      "failed": 13,
+      "failed": 0,
       "deferred": 0,
       "withImage": 287,
       "googleStopped": false
@@ -9619,7 +9619,7 @@
   ],
   "publicationReview": {
     "version": "publication-quality-v8",
-    "inputGeneratedAt": "2026-10-18T01:06:41.905Z",
+    "inputGeneratedAt": "2026-10-18T01:17:33.243Z",
     "removed": []
   }
 }
