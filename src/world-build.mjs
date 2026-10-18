@@ -9,7 +9,7 @@ import { cleanSummaryText } from './lib/text.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
-import { renderThumbnail } from './templates/thumbnail.mjs';
+import { renderNewsThumbnail } from './templates/thumbnail.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -227,15 +227,16 @@ function renderArticle(article, index, mode = 'jp') {
         <header class="card__head world-card__head">
           <span class="chip chip--world-region chip--region-${escapeHtml(article.region)}">${escapeHtml(regionLabel)}</span>
           <span class="chip chip--world-topic chip--topic-${escapeHtml(article.topic)}">${escapeHtml(topicLabel)}</span>
-        </header>
         <time class="card__time" datetime="${escapeHtml(article.publishedAt)}" title="${escapeHtml(formatDateJST(article.publishedAt))}">${escapeHtml(relativeTime(article.publishedAt, isOriginal ? 'en' : 'ja'))}</time>
-        <div class="card__content">${renderThumbnail(article)}<div class="card__text">
+        </header>
+        <div class="card__content">${renderNewsThumbnail(article, isOriginal ? 'World' : topicLabel.split('・').at(-1))}<div class="card__text">
         <h3 class="card__title" lang="${text.lang}" dir="auto">
           <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text.title)}</a>
         </h3>${summary ? `\n        <p class="card__summary" lang="${text.lang}" dir="auto">${escapeHtml(summary)}</p>` : ''}${originalHtml}
         </div></div>
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
+          <a class="card__read" href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${isOriginal ? 'Read article' : '記事を読む'} <span aria-hidden="true">↗</span></a>
         </footer>
       </article>`;
 }

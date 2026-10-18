@@ -2,8 +2,8 @@ import { imageUrl } from '../lib/thumbnail-metadata.mjs';
 import { CATEGORY_UI } from '../../config/categories.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 
-export function renderNewsThumbnail(article) {
-  return `<span class="news-media" aria-hidden="true"><span class="news-media__fallback">${escapeHtml((CATEGORY_UI[article.category] || 'ニュース').split('・')[0])}</span>${renderThumbnail(article)}</span>`;
+export function renderNewsThumbnail(article, label = (CATEGORY_UI[article.category] || 'ニュース').split('・')[0]) {
+  return `<span class="news-media" aria-hidden="true"><span class="news-media__fallback">${escapeHtml(label)}</span>${renderThumbnail(article)}</span>`;
 }
 
 export function renderThumbnail(article) {
