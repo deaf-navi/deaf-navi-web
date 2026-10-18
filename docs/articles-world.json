@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T03:10:54.949Z",
+  "generatedAt": "2026-10-18T03:13:34.323Z",
   "variant": "world",
   "count": 600,
   "regions": {
@@ -21,8 +21,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3787,
-    "dedupedCount": 2313,
+    "rawCount": 3800,
+    "dedupedCount": 2323,
     "selectedCount": 600,
     "maxArticles": 600,
     "minScore": 8,
@@ -34,11 +34,11 @@
     "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 14,
-      "updated": 0,
-      "cached": 516,
-      "skipped": 0,
-      "failed": 14,
+      "checked": 50,
+      "updated": 3,
+      "cached": 510,
+      "skipped": 42,
+      "failed": 47,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
@@ -50,13 +50,13 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 14,
-      "retainedPrevious": 15
+      "pending": 23,
+      "retainedPrevious": 21
     },
     "japanesePostEditRequired": false,
     "japanesePostEditMinCoverage": 0.85,
     "japanesePostEditFailOnLowCoverage": false,
-    "japanesePostEditCoverage": 0.88,
+    "japanesePostEditCoverage": 0.885,
     "freshnessCounts": {
       "last7d": 33,
       "last30d": 179,
@@ -124,10 +124,10 @@
       "بوابة أخبار اليوم الإلكترونية": 1,
       "Padel Magazine": 2,
       "News.com.au": 2,
-      "The Globe and Mail": 3,
+      "Pulzo": 1,
       "Arab News": 3,
       "你的公共電視": 3,
-      "Pulzo": 1,
+      "The Globe and Mail": 3,
       "RelationclientMag.fr": 1,
       "Daily Monitor": 8,
       "Newtalk新聞": 1,
@@ -161,8 +161,8 @@
       "guadeloupe.franceantilles.fr": 1,
       "The Jerusalem Post": 8,
       "BuoneNotizie.it": 1,
-      "Arquidiocese de BH": 1,
       "Manila Bulletin": 1,
+      "Arquidiocese de BH": 1,
       "YouTube": 1,
       "The Indian Express": 5,
       "Ente Nazionale Sordi ETS-APS": 1,
@@ -288,19 +288,19 @@
     },
     "sourceModeCounts": {
       "regional-fresh": 162,
-      "major-media": 332,
-      "major-media-fresh": 94,
+      "major-media": 329,
+      "major-media-fresh": 97,
       "regional-multilingual": 12
     },
     "thumbnails": {
       "articles": 600,
-      "attempted": 11,
-      "cached": 416,
-      "acquired": 2,
+      "attempted": 27,
+      "cached": 426,
+      "acquired": 6,
       "missing": 2,
-      "failed": 7,
-      "deferred": 173,
-      "withImage": 336,
+      "failed": 19,
+      "deferred": 147,
+      "withImage": 337,
       "googleStopped": false
     }
   },
@@ -367,8 +367,8 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM0V4ZS1ZZjI4b3NUOC10UGpNMlB3NV9iNktpZFNuOE56anlxWFptYzZVeDV1NEtNRkpiQXRHTFRNVEVxdmFoalZKT242d0Zobk1LQnEzdlJfSzJQM1RQcmRza19NUVdMM19jbXNJRjl2dXJyZXZDZ1FIN0pDdkE3bmZkcFg0bWRieHV4QjlfakNZcHQwQmFOejlqR18xWmtmYWxHaGVVWHhMbGwtY1RScElTbzExdjIzMkE?oc=5",
-      "title": "Airtel Money Kenya と ChildFund が聾学校のアップグレードに 1,300 万 KES を提供",
-      "summary": "Airtel Money Kenya と ChildFund が聾学校のアップグレードに 1,300 万 KES を提供",
+      "title": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
+      "summary": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
       "originalTitle": "Airtel Money Kenya and ChildFund provide KES 13 mln for deaf school upgrade",
       "originalSummary": "Airtel Money Kenya and ChildFund provide KES 13 mln for deaf school upgrade",
       "sourceName": "Telecompaper",
@@ -386,7 +386,10 @@
       "sourceDomain": "telecompaper.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-5.6-sol"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5EUTBGM2tMRlEyZTI3VlZWRXkxYl9wdHk3S19RQVV1OWRNa0Z3M1ctX3QwSEdhSUdXV2hBeU0tdExraGgyY1pQejJSdGxRdmo4LU1LelZlUUEwVkh3MVptSlNfRTk1ZnFubWJwdg?oc=5",
@@ -446,8 +449,8 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOSEt0WXJfaHB2cm55VnVkQnZlSnBNS29QVjZJVC1vVmh0QnVGck5TV3F4SDJUVWdTRGNFbThkZi03UXRpR1hvUFRKRjFxUE01VVN4THlOUHhwRmRsTk93TGRTVVhSVmVLUTB2QWFjN2l2U2tERUpsM25DT3hub1VLNUVxR2NsME1aQXhXR1kzSFBjc1cxbi1CV2xiTlZBWFB2Q2RmOTBHc21UbEZ4bVBLX0pDRVF4b3UxbVdEWlVReHM?oc=5",
-      "title": "学校では聴覚障害に対する意識を高めるためにブラジル手話の経験があります",
-      "summary": "学校では聴覚障害に対する意識を高めるためにブラジル手話の経験があります",
+      "title": "学校で、聴覚障害への意識を高めるためのLibras体験が行われます。",
+      "summary": "学校で、聴覚障害への意識を高めるためのLibras体験が行われます。",
       "originalTitle": "Escola tem experiência em Libras para conscientização sobre deficiência auditiva",
       "originalSummary": "Escola tem experiência em Libras para conscientização sobre deficiência auditiva",
       "sourceName": "Fundação do ABC",
@@ -467,6 +470,9 @@
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-5.6-sol",
       "thumbnail": {
         "url": "https://fuabc.org.br/wp-content/uploads/2026/10/Escola-de-Santo-Andre-tem-vivencia-coletiva-de-Libras-para-conscientizacao-sobre-deficiencia-auditiva.jpg",
         "source": "og:image",
@@ -557,8 +563,8 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPVDhOM2JabHJGQURLX0NybFM4RE53WWl4VjdHTDQtU3NFdUpHaUJjZzFiMnlXSlVEMlVVd1dwUFBYLXJRTDdfdmR0cktkbEVLYmV6bmItby1IaHhrZm5Tc1RwWVhtUzNfbUpUd1pkV2JLYVNhSjFGSktITEFGUnlxZTFKNzJfMFZvNlFPUGNiRGxPV3dDOWJkbzZ5VjJkaF9KM1JaRmFqZ2JUd2pVNkx1YdIBsAFBVV95cUxPVDhOM2JabHJGQURLX0NybFM4RE53WWl4VjdHTDQtU3NFdUpHaUJjZzFiMnlXSlVEMlVVd1dwUFBYLXJRTDdfdmR0cktkbEVLYmV6bmItby1IaHhrZm5Tc1RwWVhtUzNfbUpUd1pkV2JLYVNhSjFGSktITEFGUnlxZTFKNzJfMFZvNlFPUGNiRGxPV3dDOWJkbzZ5VjJkaF9KM1JaRmFqZ2JUd2pVNkx1YQ?oc=5",
-      "title": "アルタ グラシアが 2026 年第 7 回ろう青少年世界キャンプを主催",
-      "summary": "アルタ グラシアが 2026 年第 7 回ろう青少年世界キャンプを主催",
+      "title": "Alta Graciaは、第7回世界ろう青少年キャンプ2026の開催地です。",
+      "summary": "Alta Graciaは、第7回世界ろう青少年キャンプ2026の開催地です。",
       "originalTitle": "Alta Gracia es sede del 7° Campamento Mundial de Adolescentes Sordos 2026",
       "originalSummary": "Alta Gracia es sede del 7° Campamento Mundial de Adolescentes Sordos 2026",
       "sourceName": "Resumen de la Región",
@@ -578,6 +584,9 @@
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-5.6-sol",
       "thumbnail": {
         "url": "https://media.resumendelaregion.com/2026/10/WhatsApp-Image-2026-10-16-at-9.50.20-AM.jpeg",
         "source": "og:image",
@@ -1409,8 +1418,10 @@
       "sourceDomain": "gate.ahram.org.eg",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5LUEZoZXM0VktCVFU2bWFTaEI1MXZicW5mOXJHZnFvaTIyb1BDOW81UW8weVZlVWtFa3ZFUGY4VmJvS1FiM054ZFpyWmFpSTFPLV9xMUQycG85UjlfMjQ4cXBBWWc?oc=5",
@@ -1589,36 +1600,35 @@
       "japanesePostEditModel": null
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
-      "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
-      "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
-      "originalTitle": "As hearing aid technology improves, issues of accessibility and stigma persist",
-      "originalSummary": "As hearing aid technology improves, issues of accessibility and stigma persist",
-      "sourceName": "The Globe and Mail",
-      "sourceUrl": "https://www.theglobeandmail.com",
-      "publishedAt": "2026-10-06T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
+      "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+      "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+      "originalTitle": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
+      "originalSummary": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
+      "sourceName": "Pulzo",
+      "sourceUrl": "https://www.pulzo.com",
+      "publishedAt": "2026-10-06T16:31:31.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "technology",
-      "topicLabel": "技術・AI",
-      "curationScore": 32,
+      "topic": "general",
+      "topicLabel": "一般",
+      "curationScore": 20,
       "curationSignals": [
-        "accessibility",
-        "hearing aid",
-        "major-media",
+        "sordo",
+        "sordos",
         "multilingual"
       ],
-      "sourceDomain": "theglobeandmail.com",
-      "sourcePriority": 84,
+      "sourceDomain": "pulzo.com",
+      "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://www.theglobeandmail.com/resizer/v2/ERHLW24RRFBU7MPNIEKA2X6E2Y.jpg?auth=c48f04b4a05ac02d2907d323bbca1829c9f186d9318a0f12b1c05b6fee684398&width=1200&height=800&quality=80&smart=true",
+        "url": "https://d2yoo3qu6vrk5d.cloudfront.net/pulzo-lite/images-resized/PP5322891A-h-o.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.theglobeandmail.com/life/article-as-hearing-aid-technology-improves-issues-of-accessibility-and-stigma/"
+        "pageUrl": "https://www.pulzo.com/nacion/restauracion-del-instituto-para-ninos-ciegos-y-sordos-tras-terremoto-en-colombia-claves-y-apoyos-PP5322891A"
       }
     },
     {
@@ -1673,7 +1683,7 @@
       ],
       "sourceDomain": "arabnews.com",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -1709,35 +1719,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
-      "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
-      "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
-      "originalTitle": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
-      "originalSummary": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
-      "sourceName": "Pulzo",
-      "sourceUrl": "https://www.pulzo.com",
+      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
+      "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+      "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+      "originalTitle": "As hearing aid technology improves, issues of accessibility and stigma persist",
+      "originalSummary": "As hearing aid technology improves, issues of accessibility and stigma persist",
+      "sourceName": "The Globe and Mail",
+      "sourceUrl": "https://www.theglobeandmail.com",
       "publishedAt": "2026-10-06T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "general",
-      "topicLabel": "一般",
-      "curationScore": 20,
+      "topic": "technology",
+      "topicLabel": "技術・AI",
+      "curationScore": 32,
       "curationSignals": [
-        "sordo",
-        "sordos",
+        "accessibility",
+        "hearing aid",
+        "major-media",
         "multilingual"
       ],
-      "sourceDomain": "pulzo.com",
-      "sourcePriority": 50,
+      "sourceDomain": "theglobeandmail.com",
+      "sourcePriority": 84,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://d2yoo3qu6vrk5d.cloudfront.net/pulzo-lite/images-resized/PP5322891A-h-o.jpg",
+        "url": "https://www.theglobeandmail.com/resizer/v2/ERHLW24RRFBU7MPNIEKA2X6E2Y.jpg?auth=c48f04b4a05ac02d2907d323bbca1829c9f186d9318a0f12b1c05b6fee684398&width=1200&height=800&quality=80&smart=true",
         "source": "og:image",
-        "pageUrl": "https://www.pulzo.com/nacion/restauracion-del-instituto-para-ninos-ciegos-y-sordos-tras-terremoto-en-colombia-claves-y-apoyos-PP5322891A"
+        "pageUrl": "https://www.theglobeandmail.com/life/article-as-hearing-aid-technology-improves-issues-of-accessibility-and-stigma/"
       }
     },
     {
@@ -1923,13 +1934,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5jaXVDZ1l4UzcwR0hLdGM1cmpadk01NTdOVXJUdVRvck9JSzJUYXJ2aVNjdU5ZRVlQNWRrYXgyd05IbVFyNmhuVW9HMW5pU3FYRDRuOEdOelFvdll1eldZYTU3X3pDUUZR?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBpRUhDbGJLOVMwOTEtdGlIcGZuZlMtY1F5ZGtqMVVzYzUxQmlRdTlNTzQzTW91ckFZd19hWnYxUE1LcnJQUFRzellYamM1OGoxTUlWUml1bld2d0Z0NXlsTzdPM0o2d2h5bVVqZWRB?oc=5",
       "title": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
       "summary": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
       "originalTitle": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
       "originalSummary": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
       "sourceName": "視傳媒",
-      "sourceUrl": "https://nvns.net",
+      "sourceUrl": "https://www.nvns.net",
       "publishedAt": "2026-10-07T09:13:18.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -1951,7 +1962,7 @@
       "thumbnail": {
         "url": "https://uploads.posu.tw/73/738/b2026100717082620.jpg",
         "source": "og:image",
-        "pageUrl": "https://nvns.net/news_view.php?new_sn=145405&new_csn=1467"
+        "pageUrl": "https://www.nvns.net/news_view.php?new_sn=145405&new_csn=1467"
       }
     },
     {
@@ -2936,13 +2947,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
-      "title": "ろう者司牧が無料のブラジル手話ワークショップを開催",
-      "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
-      "originalTitle": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
-      "originalSummary": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
-      "sourceName": "Arquidiocese de BH",
-      "sourceUrl": "https://arquidiocesebh.org.br",
+      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "originalTitle": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+      "originalSummary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+      "sourceName": "G1",
+      "sourceUrl": "https://g1.globo.com",
       "publishedAt": "2026-09-30T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -2954,11 +2965,18 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "arquidiocesebh.org.br",
+      "sourceDomain": "g1.globo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://s2-g1.glbimg.com/YAvGZ_1caou1o1LeXaRoZ2ICAU4=/1600x0/filters:format(jpeg)/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/w/J/A57kDyRfiLPWvwUdl2zw/midia-de-distribuicao-g1-2026-09-28t122410.527.png",
+        "source": "og:image",
+        "pageUrl": "https://g1.globo.com/ac/acre/eleicoes/2026/noticia/2026/09/30/trabalho-de-interpretes-de-libras-ampliam-acesso-de-eleitores-surdos-as-informacoes-no-acre-proposito.ghtml"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMirgRBVV95cUxPWUEyaE92R28wQkgxNFlBcXF1STFJMjNhanpERUpoWHZzRmJZdUh1d3J6QTNBcktuU2pHQ1A2QjJLRlNvZE5pRUROMFVrRENjUEpNUGxJVERscWJGcGctblMxMUU5TTZXTjNweEMwaGdxcnF3UXd2X2hkc1NDZFNvc2MtMk16bDBXXzBrdDBBeklESlBjbWtZMmxnTmNuR2RYV05rd2s1bnZJVVZrQ094YjljWmItZUxXQUFjekN0aTR4R3IyakF6VWt3SHN6X2FoWloxRzduRGtnLWtLZ0tYTmM3YUVhSk9SQU5MUzBXYTQ4d2hyV0xsbWhXalJMSWx2bWxtaHd5cEFXM1BJQU9PNDZRSW9VejBicGs0LXk1MW1hNWhObV9rTDd3cDFQRWFLMVZtZnNNcVRwY2wtYUo1SnNSd0pkbHlBX1ZMU1l6d25DUHhNZGtYc3F2MV9wckRqNE1QajZDNG51dHNmdTQ0RlFRazRFZ25wV043YWZpb1pEbzBPSUgyaUhOOWpSYTlOUW9kdlZrcXkwMjR4THlkYTJfMzJhU1U0QWpDcWZERUFYZy1BdHBGWi0tVFo5LU9RMV8yMVRYYlRzdm9mMkcwdkRqeTNUWHhUR0pYN3RLamw0c0hoQnkyc0FOZVJqdXZiS2NrM0o2MmcweW5vWlV5cXJCdFV4M3EwbE42YWZxYkpmbFZjelVjM1V6ZE83bnVhQ3JGaXRjWkx3VmVVSUHSAagEQVVfeXFMTlFpZERldmFhOWllOFJHUDFuYkJITXZZcmk0MTBHTE01QW95N1JqaTM0NEt4Tkg3cW12S0Y1YWlZMk5wVHFNT0hyV1VZSS1Jb25GdFZVdldTczNKNlJ5RHpySlpyb3VXa2V3V0dJQV9rV3ZSWnBjMmx3TWxpSE52ZDZ4Z1JmU2lIbGZpSFdCSVVWaGhBMndFWnNjU21VaTM1cnk5ZXJhRVhZSWNwbkZqQXlJMGIxWTNiSlZValFXbFU3WFJzTWc0WUlOeUcxMlNybGpWcms5V0lQRl84RUV2TkEyV3o1ODFCc3kxbHpNeVg2TDhzb1V4MkN6S0FiT2VZdWV3NmZicllfcnp3cjV1VEFvZ2tHU042SEJncldCQndBRmpHTzlhbmM0STFhRXpSZU45Y3JHanhmXzEzN2FyVVJYSlhZdGNfN0htZWluSlhTbkZEc1dWSzZVN2NWNU9yMUtuQkxiUkg5bnNTc2tOTENob0M4eG9pMkp4S05YMllMQmw2aFRQRnowV1ZfM3JKZWE3eTc0TFRDWG02Tm9LSXZ6WHV2bUxrYkowSFVHTHlKTFdjMFo2TzJpdTlyUHBiVTdzTEJVUDFwNEM5aWtqVTNaeHF0aEgzMThxSi1iTnV1WXJRZ1JOdmJXUGtjNWJtek8yNlQ0MGE0WW5XY1ZEdWNCVjdNT09BRFZiQXN2Z1dYQVRueEtsWVVLMmF4TEd0REROZGRDckxk?oc=5",
@@ -3048,13 +3066,13 @@
       "japanesePostEditModel": null
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
-      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-      "originalTitle": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-      "originalSummary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-      "sourceName": "G1",
-      "sourceUrl": "https://g1.globo.com",
+      "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
+      "title": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+      "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+      "originalTitle": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
+      "originalSummary": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
+      "sourceName": "Arquidiocese de BH",
+      "sourceUrl": "https://arquidiocesebh.org.br",
       "publishedAt": "2026-09-30T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -3066,18 +3084,13 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "g1.globo.com",
+      "sourceDomain": "arquidiocesebh.org.br",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://s2-g1.glbimg.com/YAvGZ_1caou1o1LeXaRoZ2ICAU4=/1600x0/filters:format(jpeg)/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/w/J/A57kDyRfiLPWvwUdl2zw/midia-de-distribuicao-g1-2026-09-28t122410.527.png",
-        "source": "og:image",
-        "pageUrl": "https://g1.globo.com/ac/acre/eleicoes/2026/noticia/2026/09/30/trabalho-de-interpretes-de-libras-ampliam-acesso-de-eleitores-surdos-as-informacoes-no-acre-proposito.ghtml"
-      }
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFA4TzFkYmhhT19LMFlsOUxoOVNnQmpEb25SQlFZaThuM2xxYUlBV245TV84ci1kZU1OZ3RDNjAtQXNTVGdCbWpDVzVpanpoNjZPQlJrbG1EaVdOeTFO?oc=5",
@@ -3123,7 +3136,7 @@
       ],
       "sourceDomain": "indianexpress.com",
       "sourcePriority": 76,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -4429,7 +4442,12 @@
       "sourceDomain": "starnewskorea.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "thumbnail": {
+        "url": "https://image.starnewskorea.com/cdn-cgi/image/f=auto,w=1200,h=3280,fit=cover,q=high,sharpen=2/21/2026/09/2026091907011152564_1.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.starnewskorea.com/music/2026/09/19/2026091907011152564"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPZVBwOFZHUS1wcmJESkwwUnVlNXNJbHlKMl9CZHFZT29CUmZSRjY3UlhlTkVsNDA2UHhhYzI5cUdMNDVoSHR3OWZjU1FMRl81bjJlTUsxY2tCZGkxcDNrdkwxalhQVkNvSV9NelRra1pzd2NtRUpndFdrMFc4bVAzbEM0a3lPS3ktM3pvdFpyeDJQbHRCMXlROEQ0Ym9OMDNIb2hGYVh4ME1XaW1YR1puMkJR?oc=5",
@@ -5533,7 +5551,12 @@
       "sourceDomain": "la1ere.franceinfo.fr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "thumbnail": {
+        "url": "https://la1ere.franceinfo.fr/image/mj0wGOjvGKyz7oONssq2bUfZ7Lg/0x150:1600x1050/1200x675/filters:format(webp):quality(80)/outremer%2F2026%2F09%2F19%2F6aae50d42a6bd762637253.jpg",
+        "source": "og:image",
+        "pageUrl": "https://la1ere.franceinfo.fr/reunion/journee-internationale-des-sourds-plus-d-accessibilite-pour-plus-d-egalite-300-personnes-defilent-a-saint-denis-1739960.html"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE02OThUdzBqc3hzRWlIb3dUbjVlMWoxVnhHMjd5cmcyVzNDTlBzbFNFM0pINkQ4dWM0Zk1zTFlZcUJvZjNSbzR4dEE1SEI5M0FwZTl4b2Q1WWg4RWxlYWg3akpSTExWcjg?oc=5",
@@ -5638,12 +5661,7 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://ichef.bbci.co.uk/news/1024/branded_news/eae1/live/c236c860-b21a-11f1-ac3d-118bb6cebb9d.png",
-        "source": "og:image",
-        "pageUrl": "https://www.bbc.com/news/articles/ckpq0yp1v52vo"
-      }
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQVGJFdnpzY3Q4QjRxaDlMWUFlRVpDQXViWms5LXJiU2pDak9nN3Q2clNadnY3T1l6M1JGX2RwUnFnc2tmVXpGZGx1YlVpQjNsZG1LYXdwM0ZxWE1VNExTLWJQM0ZZRy1PNUVoczZnUW5saHpTbHBKWGV6bGowalpHUThFR1dvN044LVF6OFZxNWlvdFN1UUdPSDZJQXZWNkM3S3I1bGdB?oc=5",
@@ -7299,7 +7317,7 @@
       ],
       "sourceDomain": "koreaherald.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8012,7 +8030,7 @@
       ],
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8092,7 +8110,7 @@
       ],
       "sourceDomain": "koreaherald.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8123,7 +8141,7 @@
       ],
       "sourceDomain": "npr.org",
       "sourcePriority": 92,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8351,7 +8369,7 @@
       ],
       "sourceDomain": "npr.org",
       "sourcePriority": 92,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -9565,7 +9583,7 @@
       ],
       "sourceDomain": "apnews.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10417,7 +10435,7 @@
       ],
       "sourceDomain": "koreatimes.co.kr",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10536,7 +10554,7 @@
       ],
       "sourceDomain": "abc.net.au",
       "sourcePriority": 95,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -11182,7 +11200,7 @@
       ],
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -13911,7 +13929,7 @@
       ],
       "sourceDomain": "swissinfo.ch",
       "sourcePriority": 76,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -14866,7 +14884,7 @@
       ],
       "sourceDomain": "cbc.ca",
       "sourcePriority": 90,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15183,7 +15201,7 @@
       ],
       "sourceDomain": "thenationalnews.com",
       "sourcePriority": 82,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15356,7 +15374,7 @@
       ],
       "sourceDomain": "sbs.com.au",
       "sourcePriority": 85,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15917,7 +15935,7 @@
       ],
       "sourceDomain": "rnz.co.nz",
       "sourcePriority": 86,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -16672,7 +16690,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -16933,7 +16951,7 @@
       ],
       "sourceDomain": "indianexpress.com",
       "sourcePriority": 76,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -16990,7 +17008,7 @@
       ],
       "sourceDomain": "theglobeandmail.com",
       "sourcePriority": 84,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "thumbnail": {
         "url": "https://www.theglobeandmail.com/resizer/v2/NTDQAAQAXVGJHFRK4I2XB76VUY.JPG?auth=5f4e7abf64011c8859b3fd154f56c4e217bee6b04dc3579cb2ca239f0bf30c08&width=1200&height=800&quality=80&smart=true",
@@ -17117,7 +17135,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -17148,7 +17166,7 @@
       ],
       "sourceDomain": "nzherald.co.nz",
       "sourcePriority": 80,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",

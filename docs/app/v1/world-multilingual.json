@@ -4,8 +4,8 @@
   "title": "Deaf Navi World Multilingual",
   "variant": "world",
   "mode": "multilingual",
-  "generatedAt": "2026-10-18T03:10:54Z",
-  "sourceGeneratedAt": "2026-10-18T03:10:54Z",
+  "generatedAt": "2026-10-18T03:13:34Z",
+  "sourceGeneratedAt": "2026-10-18T03:13:34Z",
   "count": 600,
   "language": "ja-JP",
   "refresh": {
@@ -27,11 +27,11 @@
     "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 14,
-      "updated": 0,
-      "cached": 516,
-      "skipped": 0,
-      "failed": 14,
+      "checked": 50,
+      "updated": 3,
+      "cached": 510,
+      "skipped": 42,
+      "failed": 47,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
@@ -43,8 +43,8 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 14,
-      "retainedPrevious": 15
+      "pending": 23,
+      "retainedPrevious": 21
     },
     "basePolicy": "World-JP uses free/base Google translation first, then Deaf Navi glossary normalization and Codex App Server post-edit when available."
   },
@@ -135,8 +135,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3787,
-    "dedupedCount": 2313,
+    "rawCount": 3800,
+    "dedupedCount": 2323,
     "selectedCount": 600,
     "minScore": 8,
     "maxArticles": 600,
@@ -160,11 +160,11 @@
     "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 14,
-      "updated": 0,
-      "cached": 516,
-      "skipped": 0,
-      "failed": 14,
+      "checked": 50,
+      "updated": 3,
+      "cached": 510,
+      "skipped": 42,
+      "failed": 47,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
@@ -176,8 +176,8 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 14,
-      "retainedPrevious": 15
+      "pending": 23,
+      "retainedPrevious": 21
     }
   },
   "counts": {
@@ -330,18 +330,19 @@
         "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "Airtel Money Kenya と ChildFund が聾学校のアップグレードに 1,300 万 KES を提供",
-      "summary": "Airtel Money Kenya と ChildFund が聾学校のアップグレードに 1,300 万 KES を提供",
+      "title": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
+      "summary": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "Airtel Money Kenya と ChildFund が聾学校のアップグレードに 1,300 万 KES を提供",
-          "summary": "Airtel Money Kenya と ChildFund が聾学校のアップグレードに 1,300 万 KES を提供",
+          "title": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
+          "summary": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "base machine translation via translate.googleapis.com with Deaf Navi glossary; Codex App Server post-edit is used when available and required in the production World workflow."
           }
         },
@@ -466,18 +467,19 @@
         "multilingual"
       ],
       "originalLanguage": "tr",
-      "title": "学校では聴覚障害に対する意識を高めるためにブラジル手話の経験があります",
-      "summary": "学校では聴覚障害に対する意識を高めるためにブラジル手話の経験があります",
+      "title": "学校で、聴覚障害への意識を高めるためのLibras体験が行われます。",
+      "summary": "学校で、聴覚障害への意識を高めるためのLibras体験が行われます。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "学校では聴覚障害に対する意識を高めるためにブラジル手話の経験があります",
-          "summary": "学校では聴覚障害に対する意識を高めるためにブラジル手話の経験があります",
+          "title": "学校で、聴覚障害への意識を高めるためのLibras体験が行われます。",
+          "summary": "学校で、聴覚障害への意識を高めるためのLibras体験が行われます。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "base machine translation via translate.googleapis.com with Deaf Navi glossary; Codex App Server post-edit is used when available and required in the production World workflow."
           }
         },
@@ -647,18 +649,19 @@
         "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "アルタ グラシアが 2026 年第 7 回ろう青少年世界キャンプを主催",
-      "summary": "アルタ グラシアが 2026 年第 7 回ろう青少年世界キャンプを主催",
+      "title": "Alta Graciaは、第7回世界ろう青少年キャンプ2026の開催地です。",
+      "summary": "Alta Graciaは、第7回世界ろう青少年キャンプ2026の開催地です。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "アルタ グラシアが 2026 年第 7 回ろう青少年世界キャンプを主催",
-          "summary": "アルタ グラシアが 2026 年第 7 回ろう青少年世界キャンプを主催",
+          "title": "Alta Graciaは、第7回世界ろう青少年キャンプ2026の開催地です。",
+          "summary": "Alta Graciaは、第7回世界ろう青少年キャンプ2026の開催地です。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "base machine translation via translate.googleapis.com with Deaf Navi glossary; Codex App Server post-edit is used when available and required in the production World workflow."
           }
         },
@@ -1935,7 +1938,7 @@
           "summary": "イスラム研究アカデミーが、アズハル・モスクでろう者や難聴者を対象とする手話付き宗教講座を続けています。",
           "language": "ja-JP",
           "translation": {
-            "provider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
             "postEditProvider": "Codex App Server Japanese news editor v1",
             "postEdited": true,
             "policy": "base machine translation via translate.googleapis.com with Deaf Navi glossary; Codex App Server post-edit is used when available and required in the production World workflow."
@@ -2224,37 +2227,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
-      "stableId": "world_254ccb41eab6f301d3fe",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
-      "publishedAt": "2026-10-06T07:00:00Z",
-      "sourceName": "The Globe and Mail",
-      "sourceURL": "https://www.theglobeandmail.com",
-      "sourceUrl": "https://www.theglobeandmail.com",
-      "sourceDomain": "theglobeandmail.com",
+      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
+      "stableId": "world_0103380c09a1ffdde7b6",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
+      "publishedAt": "2026-10-06T16:31:31Z",
+      "sourceName": "Pulzo",
+      "sourceURL": "https://www.pulzo.com",
+      "sourceUrl": "https://www.pulzo.com",
+      "sourceDomain": "pulzo.com",
       "sourceMode": "regional-fresh",
-      "sourcePriority": 84,
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "technology",
-      "topicLabel": "技術・AI",
+      "topic": "general",
+      "topicLabel": "一般",
       "legacyCategory": "general",
-      "curationScore": 32,
+      "curationScore": 20,
       "curationSignals": [
-        "accessibility",
-        "hearing aid",
-        "major-media",
+        "sordo",
+        "sordos",
         "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
-      "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+      "originalLanguage": "pt",
+      "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+      "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
-          "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+          "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+          "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -2264,9 +2266,9 @@
           }
         },
         "original": {
-          "title": "As hearing aid technology improves, issues of accessibility and stigma persist",
-          "summary": "As hearing aid technology improves, issues of accessibility and stigma persist",
-          "language": "en"
+          "title": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
+          "summary": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
+          "language": "pt"
         }
       }
     },
@@ -2325,7 +2327,7 @@
       "sourceURL": "https://www.arabnews.com",
       "sourceUrl": "https://www.arabnews.com",
       "sourceDomain": "arabnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -2407,36 +2409,37 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
-      "stableId": "world_0103380c09a1ffdde7b6",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
+      "stableId": "world_254ccb41eab6f301d3fe",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
       "publishedAt": "2026-10-06T07:00:00Z",
-      "sourceName": "Pulzo",
-      "sourceURL": "https://www.pulzo.com",
-      "sourceUrl": "https://www.pulzo.com",
-      "sourceDomain": "pulzo.com",
+      "sourceName": "The Globe and Mail",
+      "sourceURL": "https://www.theglobeandmail.com",
+      "sourceUrl": "https://www.theglobeandmail.com",
+      "sourceDomain": "theglobeandmail.com",
       "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "general",
-      "topicLabel": "一般",
+      "topic": "technology",
+      "topicLabel": "技術・AI",
       "legacyCategory": "general",
-      "curationScore": 20,
+      "curationScore": 32,
       "curationSignals": [
-        "sordo",
-        "sordos",
+        "accessibility",
+        "hearing aid",
+        "major-media",
         "multilingual"
       ],
-      "originalLanguage": "pt",
-      "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
-      "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+      "originalLanguage": "en",
+      "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+      "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
-          "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+          "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+          "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -2446,9 +2449,9 @@
           }
         },
         "original": {
-          "title": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
-          "summary": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
-          "language": "pt"
+          "title": "As hearing aid technology improves, issues of accessibility and stigma persist",
+          "summary": "As hearing aid technology improves, issues of accessibility and stigma persist",
+          "language": "en"
         }
       }
     },
@@ -2726,13 +2729,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5jaXVDZ1l4UzcwR0hLdGM1cmpadk01NTdOVXJUdVRvck9JSzJUYXJ2aVNjdU5ZRVlQNWRrYXgyd05IbVFyNmhuVW9HMW5pU3FYRDRuOEdOelFvdll1eldZYTU3X3pDUUZR?oc=5",
-      "stableId": "world_d862c2b9e7092054d490",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5jaXVDZ1l4UzcwR0hLdGM1cmpadk01NTdOVXJUdVRvck9JSzJUYXJ2aVNjdU5ZRVlQNWRrYXgyd05IbVFyNmhuVW9HMW5pU3FYRDRuOEdOelFvdll1eldZYTU3X3pDUUZR?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBpRUhDbGJLOVMwOTEtdGlIcGZuZlMtY1F5ZGtqMVVzYzUxQmlRdTlNTzQzTW91ckFZd19hWnYxUE1LcnJQUFRzellYamM1OGoxTUlWUml1bld2d0Z0NXlsTzdPM0o2d2h5bVVqZWRB?oc=5",
+      "stableId": "world_774c4b071cd72154b132",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBpRUhDbGJLOVMwOTEtdGlIcGZuZlMtY1F5ZGtqMVVzYzUxQmlRdTlNTzQzTW91ckFZd19hWnYxUE1LcnJQUFRzellYamM1OGoxTUlWUml1bld2d0Z0NXlsTzdPM0o2d2h5bVVqZWRB?oc=5",
       "publishedAt": "2026-10-07T09:13:18Z",
       "sourceName": "視傳媒",
-      "sourceURL": "https://nvns.net",
-      "sourceUrl": "https://nvns.net",
+      "sourceURL": "https://www.nvns.net",
+      "sourceUrl": "https://www.nvns.net",
       "sourceDomain": "nvns.net",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
@@ -4318,14 +4321,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
-      "stableId": "world_b6788e0010357a1bb521",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "stableId": "world_414cf413ddc2e554dc84",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "Arquidiocese de BH",
-      "sourceURL": "https://arquidiocesebh.org.br",
-      "sourceUrl": "https://arquidiocesebh.org.br",
-      "sourceDomain": "arquidiocesebh.org.br",
+      "sourceName": "G1",
+      "sourceURL": "https://g1.globo.com",
+      "sourceUrl": "https://g1.globo.com",
+      "sourceDomain": "g1.globo.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -4339,27 +4342,27 @@
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "ろう者司牧が無料のブラジル手話ワークショップを開催",
-      "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+      "originalLanguage": "tr",
+      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ろう者司牧が無料のブラジル手話ワークショップを開催",
-          "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+          "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+          "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
           "language": "ja-JP",
           "translation": {
-            "provider": "Codex App Server + Google fallback + Deaf Navi glossary v2",
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
             "postEditProvider": "Codex App Server Japanese news editor v1",
             "postEdited": true,
             "policy": "base machine translation via translate.googleapis.com with Deaf Navi glossary; Codex App Server post-edit is used when available and required in the production World workflow."
           }
         },
         "original": {
-          "title": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
-          "summary": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
-          "language": "en"
+          "title": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+          "summary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+          "language": "tr"
         }
       }
     },
@@ -4503,14 +4506,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
-      "stableId": "world_414cf413ddc2e554dc84",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
+      "stableId": "world_b6788e0010357a1bb521",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "G1",
-      "sourceURL": "https://g1.globo.com",
-      "sourceUrl": "https://g1.globo.com",
-      "sourceDomain": "g1.globo.com",
+      "sourceName": "Arquidiocese de BH",
+      "sourceURL": "https://arquidiocesebh.org.br",
+      "sourceUrl": "https://arquidiocesebh.org.br",
+      "sourceDomain": "arquidiocesebh.org.br",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -4524,15 +4527,15 @@
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "tr",
-      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "originalLanguage": "en",
+      "title": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+      "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-          "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+          "title": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+          "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -4542,9 +4545,9 @@
           }
         },
         "original": {
-          "title": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-          "summary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-          "language": "tr"
+          "title": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
+          "summary": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
+          "language": "en"
         }
       }
     },
@@ -4602,7 +4605,7 @@
       "sourceURL": "https://indianexpress.com",
       "sourceUrl": "https://indianexpress.com",
       "sourceDomain": "indianexpress.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 76,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -11013,7 +11016,7 @@
       "sourceURL": "https://www.koreaherald.com",
       "sourceUrl": "https://www.koreaherald.com",
       "sourceDomain": "koreaherald.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 74,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -12141,7 +12144,7 @@
       "sourceURL": "https://www.taipeitimes.com",
       "sourceUrl": "https://www.taipeitimes.com",
       "sourceDomain": "taipeitimes.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -12275,7 +12278,7 @@
       "sourceURL": "https://www.koreaherald.com",
       "sourceUrl": "https://www.koreaherald.com",
       "sourceDomain": "koreaherald.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 74,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -12320,7 +12323,7 @@
       "sourceURL": "https://www.npr.org",
       "sourceUrl": "https://www.npr.org",
       "sourceDomain": "npr.org",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -12680,7 +12683,7 @@
       "sourceURL": "https://www.npr.org",
       "sourceUrl": "https://www.npr.org",
       "sourceDomain": "npr.org",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -14574,7 +14577,7 @@
       "sourceURL": "https://apnews.com",
       "sourceUrl": "https://apnews.com",
       "sourceDomain": "apnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -15924,7 +15927,7 @@
       "sourceURL": "https://www.koreatimes.co.kr",
       "sourceUrl": "https://www.koreatimes.co.kr",
       "sourceDomain": "koreatimes.co.kr",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -16104,7 +16107,7 @@
       "sourceURL": "https://www.abc.net.au",
       "sourceUrl": "https://www.abc.net.au",
       "sourceDomain": "abc.net.au",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 95,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -17144,7 +17147,7 @@
       "sourceURL": "https://www.taipeitimes.com",
       "sourceUrl": "https://www.taipeitimes.com",
       "sourceDomain": "taipeitimes.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -21468,7 +21471,7 @@
       "sourceURL": "https://www.swissinfo.ch",
       "sourceUrl": "https://www.swissinfo.ch",
       "sourceDomain": "swissinfo.ch",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 76,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -23002,7 +23005,7 @@
       "sourceURL": "https://www.cbc.ca",
       "sourceUrl": "https://www.cbc.ca",
       "sourceDomain": "cbc.ca",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 90,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -23499,7 +23502,7 @@
       "sourceURL": "https://www.thenationalnews.com",
       "sourceUrl": "https://www.thenationalnews.com",
       "sourceDomain": "thenationalnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 82,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -23770,7 +23773,7 @@
       "sourceURL": "https://www.sbs.com.au",
       "sourceUrl": "https://www.sbs.com.au",
       "sourceDomain": "sbs.com.au",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 85,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -24670,7 +24673,7 @@
       "sourceURL": "https://www.rnz.co.nz",
       "sourceUrl": "https://www.rnz.co.nz",
       "sourceDomain": "rnz.co.nz",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 86,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -25889,7 +25892,7 @@
       "sourceURL": "https://punchng.com",
       "sourceUrl": "https://punchng.com",
       "sourceDomain": "punchng.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -26293,7 +26296,7 @@
       "sourceURL": "https://indianexpress.com",
       "sourceUrl": "https://indianexpress.com",
       "sourceDomain": "indianexpress.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 76,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -26383,7 +26386,7 @@
       "sourceURL": "https://www.theglobeandmail.com",
       "sourceUrl": "https://www.theglobeandmail.com",
       "sourceDomain": "theglobeandmail.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -26605,7 +26608,7 @@
       "sourceURL": "https://healthwise.punchng.com",
       "sourceUrl": "https://healthwise.punchng.com",
       "sourceDomain": "punchng.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -26651,7 +26654,7 @@
       "sourceURL": "https://www.nzherald.co.nz",
       "sourceUrl": "https://www.nzherald.co.nz",
       "sourceDomain": "nzherald.co.nz",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 80,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
