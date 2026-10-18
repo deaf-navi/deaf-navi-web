@@ -54,6 +54,8 @@ WorldでCodex補完が実行された場合は利用枠を消費する。完全�
 
 ## 失敗通知
 
+2026-10-18の無料APIへの移行手順・境界は `COMPLIMENTARY_TOKENS.md` を参照。専用サービスは同じHTTP契約を保ち、明示設定で `codex` / `complimentary` を選ぶ。設定・当日確認・使用記録で実行先を判別し、サービス名だけからCodex利用枠の消費を判断しない。
+
 両Workflowの `notify-on-failure` は `issues: write` で `scripts/notify-curation.cjs` を実行する。同名の未解決Issueにはコメントを追記し、重複作成を防ぐ。Worldの翻訳保留通知も維持する。
 
 `gh workflow run test-curation-notifications.yml --repo deaf-navi/deaf-navi-web --ref main` で同じ通知コードを実際のGITHUB_TOKEN権限でテストできる。国内・Worldの `[通知テスト]` Issueを確認後にcloseする。この専用Workflowは取得・生成・公開やデプロイを起動しない。

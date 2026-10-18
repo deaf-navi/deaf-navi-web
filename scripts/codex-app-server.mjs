@@ -1,5 +1,15 @@
 import { spawn } from 'node:child_process';
 import http from 'node:http';
+import {readFile} from 'node:fs/promises';
+import {createComplimentaryClient,publicItems} from './complimentary-text-client.mjs';
+
+const textBackend=process.env.DEAFNAVI_TEXT_BACKEND||'codex';
+if(!['codex','complimentary'].includes(textBackend))throw new Error('Unsupported Deaf Navi text backend');
+const complimentary=textBackend==='complimentary'?createComplimentaryClient({
+  key:(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim(),
+  project:process.env.DEAFNAVI_OPENAI_PROJECT_ID,
+  stateDir:process.env.DEAFNAVI_AI_STATE_DIR,
+}):null;
 
 function argValue(name) {
   const index = process.argv.indexOf(name);
@@ -263,6 +273,16 @@ function safeCodexEnv() {
 
 async function generate(body) {
   validateRequestBody(body);
+  if(complimentary){
+    let input;
+    try{input=JSON.parse(body.source_text).items;}catch{throw httpError(400,'Invalid public text batch');}
+    if(!Array.isArray(input)||input.length!==Number(body.count))throw httpError(400,'Invalid public text batch');
+    const permitted=input.filter(item=>{try{publicItems([item]);return true;}catch{return false;}});
+    if(!permitted.length)return {success:true,provider:'codex_app_server',engine:'openai_complimentary',items:[],skipped:input.length};
+    // No fallback to Codex or another billed API when allowance or eligibility fails.
+    const result=await complimentary(permitted,{skipUnreviewed:true});
+    return {...result,skipped:input.length-result.items.length};
+  }
   const prompt = buildPrompt(body);
   const { stdout, model } = await runCodex(prompt);
   const parsed = JSON.parse(extractJson(stdout));
@@ -288,7 +308,7 @@ function selfTestBody() {
     id: '0',
     source: 'Codex App Server self test',
     region: 'self-test',
-    topic: 'health',
+    topic: 'accessibility',
     original_title: 'Deaf access service test',
     original_summary: 'A short service readiness check for Deaf Navi.',
     current_title_ja: 'ろう者向けサービス確認',
@@ -344,8 +364,8 @@ const server = http.createServer(async (req, res) => {
       sendJson(res, 200, {
         ok: true,
         provider: 'codex_app_server',
-        codex_bin: codexBin,
-        models: modelCandidates,
+        engine: textBackend==='complimentary'?'openai_complimentary':'codex',
+        ...(complimentary?{models:['gpt-5.6-sol']}:{codex_bin:codexBin,models:modelCandidates}),
       });
       return;
     }
@@ -356,7 +376,8 @@ const server = http.createServer(async (req, res) => {
         return;
       }
       const result = await generate(selfTestBody());
-      sendJson(res, 200, { ok: true, provider: 'codex_app_server', model: result.model });
+      if(!result.items?.length)throw httpError(503,'Readiness text has not been approved');
+      sendJson(res, 200, { ok: true, provider: 'codex_app_server', engine: result.engine ?? 'codex', model: result.model });
       return;
     }
 
@@ -375,12 +396,13 @@ const server = http.createServer(async (req, res) => {
     sendJson(res, 200, result);
   } catch (err) {
     const errorId = `codex-app-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-    console.error(`[codex-app-server] request failed id=${errorId}`, err);
+    // JSON parser errors can include source text; log identifiers only.
+    console.error(`[codex-app-server] request failed id=${errorId} code=${err?.code ?? 'request_error'}`);
     const { statusCode, body } = publicError(err, errorId);
     sendJson(res, statusCode, body);
   }
 });
 
 server.listen(port, host, () => {
-  console.log(`codex_app_server listening on http://${host}:${port}`);
+  console.log(`codex_app_server listening on http://${host}:${server.address().port}`);
 });
