@@ -1,6 +1,6 @@
 # 変更履歴
 
-最新状態（10/19 08:25 JST）：FAQ2回答はPR97/CI39176242415・XServer39176365311までsuccess。本番FAQ本文は子の取得制限で未取得、親の再読待ち。所在地title/東京・神奈川導線の完了は維持。以下は日付ごとの経過履歴。
+最新状態（10/19 08:30:47 JSTの親QA）：通常再読後もFAQ2回答は旧文言で反映未完。PR97/CI/Deployの成功と配布側の一致は保持し、本番実行版の読取が必要。所在地title/東京・神奈川導線の完了は維持。以下は日付ごとの経過履歴。
 
 ## 2026-10-12 初回改善
 
@@ -130,3 +130,9 @@ server/cafe-seo.php の既存2回答だけを変更。「初心者歓迎」「�
 PR97の最終head `9fe7a7d1ce447b2036376bab32277879cb181416` はCI39176242415全工程success（Node230/PHP SEO130/おとまど91、国内473/World600/iOS）。通常squash commit `54a81c6aad5435f85c1a75341d7088be3eec6a98` のXServer39176365311は10/19 08:25:01 JSTにsuccess。実commitは基準311fcc52をparentとする6ファイルで、PHP2行と運用5文書以外は変更なし。mainのPHP全文も候補と一致。
 
 配布とサーバーstagingでPHP lint、隔離SEO回帰130項目、原子的切替とトップ/アプリmanifestの基本HTTP確認が成功。本番FAQ本文は08:25:26 JSTの子HTTPがCONNECT403、Webもnot accessibleのため未取得。公開workflow成功をFAQ反映完了に置き換えず、親の正式ブラウザーによる識別付き再読待ちとして保持する。詳細はdaily/2026-10-19.md。追加再デプロイやサーバー設定変更は行わない。
+
+### 公開FAQの旧文言残存：未完へ更新
+
+親の正式Chromeで08:30 JSTにFAQ2回答が旧文言、08:30:47 JSTの通常再読1回後も再現。現行の絞込項目/説明は表示済み。AXと実画面が一致、HTTPステータスは未計測。今回のFAQ反映は未完とし、CI/正規Deployのsuccessと分ける。
+
+最新main/配布元PHP/checkout・staging lint/require経路を照合。6 PHPの隔離tarは単一収録・元bytes一致、static入口にFAQなし、DB条件による旧文言分岐なし。実サーバーのcurrent/hash・有効FastCGI/FPM設定は既存読取接続がなく未取得。原因をOPcacheと確定せず、再編集・追加Deploy・Caddy/PR30・失効/再起動・新規権限を行わない。期待hashと次に必要な非秘密情報はdaily/2026-10-19.mdへ保存する。
