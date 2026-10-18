@@ -67,7 +67,9 @@ export async function runDailyReview({records,catalog,stateDir,generate,canSubmi
   const lockPath=join(stateDir,'daily-curation-review.lock'),lock=await open(lockPath,'wx',0o600);
   try{
     const plan=planDailyReview(records,catalog,{now});
-    const signature=evidenceHash(JSON.stringify({catalog,records,approvalSignature}));
+    // Time alone can expire a source within the same JST day. Reuse is valid
+    // only while today's eligibility plan still agrees with the saved result.
+    const signature=evidenceHash(JSON.stringify({catalog,records,approvalSignature,plan}));
     const reportPath=join(stateDir,'daily-curation-review.json');
     let previous;try{previous=JSON.parse(await readFile(reportPath,'utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}
     if(!force&&previous?.day===jstDay(now)&&previous.signature===signature&&Date.parse(previous.generatedAt)<=now)

@@ -53,6 +53,17 @@ test('unapproved text and unavailable API become exceptions without fictional us
  assert.equal(JSON.parse(await readFile(join(stateDir,'daily-curation-review.json'))).publicationApproved,false);
  await assert.rejects(runDailyReview({...options,force:true}),/research/);
 });
+test('same-day reuse cannot retain a match after the source reaches its 48-hour expiry',async t=>{
+ const stateDir=await mkdtemp(join(tmpdir(),'dn-daily-expiry-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));
+ let calls=0,fetches=0;
+ const options={records:[{...record,verifiedAt:new Date(now-47*3600000).toISOString()}],catalog,stateDir,now,canSubmit:()=>true,
+   prepare:async t=>{fetches++;return prepare(t);},generate:async items=>{calls++;return generate(items);}};
+ assert.equal((await runDailyReview(options)).corroborated,1);
+ const expired=await runDailyReview({...options,now:now+2*3600000});
+ assert.equal(expired.reusedRun,false);assert.equal(expired.corroborated,0);assert.equal(expired.submittedThisRun,0);
+ assert.deepEqual(expired.entries[0].reasons,['publication-review-required']);assert.equal(expired.reviewedAt,null);
+ assert.equal(calls,1);assert.equal(fetches,1);
+});
 test('preparation changes become exceptions before the API and do not write published inputs',async t=>{
  const stateDir=await mkdtemp(join(tmpdir(),'dn-daily-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));const before=JSON.stringify(record);
  const result=await runDailyReview({records:[record],catalog,stateDir,now,prepare:async()=>({tasks:[],exceptions:[{kind:'event',recordId:record.recordId,reason:'source-document-changed'}]}),generate:()=>{throw new Error('must not call');}});
