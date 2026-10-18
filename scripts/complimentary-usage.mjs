@@ -1,6 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {join} from 'node:path';
-import {summarizeComplimentaryUsage,validateAllowance,COMPLIMENTARY_MODEL} from './complimentary-text-client.mjs';
+import {summarizeComplimentaryUsage,validateAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_REQUEST_LIMIT} from './complimentary-text-client.mjs';
 
 // Read-only operational report. Never calls the API, changes the allowance, or
 // treats the local budget as the organization's current remaining free quota.
@@ -17,6 +17,6 @@ try {
   let inflight=false;
   try{await readFile(join(stateDir,'inflight.json'));inflight=true;}catch(error){if(error.code!=='ENOENT')throw error;}
   process.stdout.write(JSON.stringify({day,model:COMPLIMENTARY_MODEL,accounting:'actual_usage_with_unsettled_reservations',dailyBudget:budget,...usage,
-    remainingLocalBudget:Math.max(0,budget-usage.accountedTokens),requestLimit:12,remainingRequests:Math.max(0,12-usage.requests),
+    remainingLocalBudget:Math.max(0,budget-usage.accountedTokens),requestLimit:COMPLIMENTARY_REQUEST_LIMIT,remainingRequests:Math.max(0,COMPLIMENTARY_REQUEST_LIMIT-usage.requests),
     reconciliationRequired:inflight||usage.unresolved>0,checkedAt:lease.checkedAt,expiresAt:lease.expiresAt})+'\n');
 }catch(error){process.stderr.write('USAGE_UNAVAILABLE: '+(error.code==='complimentary_unavailable'?error.message:'Private usage record requires inspection')+'\n');process.exitCode=1;}

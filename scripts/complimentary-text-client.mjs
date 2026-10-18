@@ -5,10 +5,11 @@ import {createHash,randomUUID} from 'node:crypto';
 // No general agent tools, arbitrary endpoint, paid fallback, or automatic lease renewal.
 // One reviewed model policy for the client, allowance recorder, and health endpoint.
 // A change requires fresh model-specific eligibility; old allowances fail closed.
-// GPT-6.1 Sol is eligible but the project's API still returned 403 after its
-// allowlist update on 2026-10-18. Use the verified model; never auto-fallback.
-export const COMPLIMENTARY_MODEL='gpt-5.6-sol';
+// GPT-6.1 Sol returned a verified response on the scoped 2026-10-18 retest.
+// Earlier access denials remain in the usage history; never auto-fallback.
+export const COMPLIMENTARY_MODEL='gpt-6.1-sol';
 export const COMPLIMENTARY_REASONING_EFFORT='low';
+export const COMPLIMENTARY_REQUEST_LIMIT=16;
 const MODEL=COMPLIMENTARY_MODEL;
 const PROJECT_NAME='shared-free-tier';
 const MAX_DAILY_RESERVATION=100_000;
@@ -104,19 +105,29 @@ export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,
       try{ledger=JSON.parse(await readFile(ledgerFile,'utf8'));}catch(e){if(e.code!=='ENOENT')throw deny('Allowance ledger is unreadable');ledger={version:1,day,projectId:project,reserved:0,records:[]};}
       const usageSummary=summarizeComplimentaryUsage(ledger,{day,project});
       if(usageSummary.unresolved)throw deny('Allowance ledger needs reconciliation');
-      if(usageSummary.accountedTokens+reserve>budget||usageSummary.requests>=12)throw deny('Daily complimentary budget reached');
+      if(usageSummary.accountedTokens+reserve>budget||usageSummary.requests>=COMPLIMENTARY_REQUEST_LIMIT)throw deny('Daily complimentary budget reached');
       record={id:randomUUID(),timestamp:new Date(now).toISOString(),project:PROJECT_NAME,model:MODEL,purpose,requests:1,reservedTokens:reserve,inputTokens:null,outputTokens:null,complimentaryEligible:true,estimatedCostUsd:0,billedCostUsd:null,status:'reserved'};
       ledger.reserved+=reserve;ledger.records.push(record);await save();
       // Survives UTC rollover: an unknown request is not silently retried tomorrow.
       await writeFile(inflight,JSON.stringify({id:record.id,day})+'\n',{flag:'wx',mode:0o600});
       let response;
       try{response=await fetchImpl('https://api.openai.com/v1/responses',{method:'POST',redirect:'error',signal:AbortSignal.timeout(90000),headers:{Authorization:'Bearer '+key,'OpenAI-Project':project,'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch{record.status='uncertain';await save();throw deny('Request outcome unknown; automatic retry stopped');}
-      if(!response.ok){record.status=response.status>=500||response.status===408?'uncertain':'rejected';record.httpStatus=response.status;await save();if(record.status==='rejected')await unlink(inflight);throw deny('OpenAI request unavailable');}
+      const requestId=response.headers?.get('x-request-id');
+      record.requestId=typeof requestId==='string'&&/^(?:req_[a-zA-Z0-9_-]{1,100}|[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12})$/.test(requestId)?requestId:null;
+      if(!response.ok){
+        // Retain only diagnostic identifiers, never the provider's message/body,
+        // which might echo submitted text or account details.
+        let error;try{error=(await response.json())?.error;}catch{}
+        const identifier=value=>typeof value==='string'&&/^[a-zA-Z][a-zA-Z0-9_]{0,63}$/.test(value)?value:null;
+        record.apiErrorCode=identifier(error?.code);record.apiErrorType=identifier(error?.type);
+        record.status=response.status>=500||response.status===408?'uncertain':'rejected';record.httpStatus=response.status;
+        await save();if(record.status==='rejected')await unlink(inflight);throw deny('OpenAI request unavailable');
+      }
       let result;
       try{result=await response.json();}catch{record.status='uncertain';await save();throw deny('OpenAI result unavailable');}
       const usage=result.usage;
       if(!Number.isSafeInteger(usage?.input_tokens)||!Number.isSafeInteger(usage?.output_tokens)||usage.input_tokens<0||usage.output_tokens<0||(usage.total_tokens!==undefined&&usage.total_tokens!==usage.input_tokens+usage.output_tokens)){record.status='uncertain';await save();throw deny('Token usage unavailable');}
-      record.inputTokens=usage.input_tokens;record.outputTokens=usage.output_tokens;record.requestId=response.headers?.get('x-request-id')??null;
+      record.inputTokens=usage.input_tokens;record.outputTokens=usage.output_tokens;
       record.status=usage.input_tokens+usage.output_tokens<=reserve?'completed':'uncertain';await save();
       if(record.status!=='completed')throw deny('Usage exceeded conservative reservation');
       await unlink(inflight);

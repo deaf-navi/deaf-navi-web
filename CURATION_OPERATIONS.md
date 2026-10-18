@@ -32,7 +32,7 @@
 
 国内はRSS/記事取得、分類、静的ビルド、app APIをGitHub Actions内で生成する。Codex・ChatGPT Work・有料AI APIは不要。
 
-Worldは既存の `translate.googleapis.com/translate_a/single?client=gtx` による翻訳とDeaf Navi用語補正、翻訳キャッシュを先に使う。訳せない記事だけ、shared-free-tierの専用API（現在GPT-5.6 Sol・low）で補う。2026-09-27時点のCodex補完から移行済み。日本語になっているキャッシュ・Google翻訳済み記事は通常実行で再校正せず、Googleが成功した回は無料APIも呼ばない。
+Worldは既存の `translate.googleapis.com/translate_a/single?client=gtx` による翻訳とDeaf Navi用語補正、翻訳キャッシュを先に使う。訳せない記事だけ、shared-free-tierの専用API（現在GPT-6.1 Sol・low）で補う。2026-09-27時点のCodex補完から移行済み。日本語になっているキャッシュ・Google翻訳済み記事は通常実行で再校正せず、Googleが成功した回は無料APIも呼ばない。
 
 無料APIは当日の適格性・組織全体の残量・共有する実文面の確認を満たしたものだけ送る。上限判定は実使用と未精算予約を区別し、成功した要求の未使用分は解放する。結果不明なら止め、有料APIやCodexへ自動切替しない。未翻訳記事は `.state/world-translation.json` に保留し、前回の検証済み記事を維持して公開を続ける。詳しくは `COMPLIMENTARY_TOKENS.md`。
 
