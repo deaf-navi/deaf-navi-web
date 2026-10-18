@@ -53,11 +53,13 @@ export function explicitDates(text) {
     dates.push(`${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`);
     // Only an adjacent date-list/range may inherit an explicitly written year.
     // Prose, publication dates, deadlines and another year break this context.
-    let tail=value.slice(m.index+m[0].length);
+    let tail=value.slice(m.index+m[0].length),month=m[2];
     for(let i=0;i<6;i++){
       const next=tail.match(/^\s*(?:\([月火水木金土日祝・]+\))?\s*[・〜～]\s*(?:(\d{1,2})\s*[月/]\s*)?(\d{1,2})日/);
       if(!next)break;
-      dates.push(`${m[1]}-${(next[1]??m[2]).padStart(2,'0')}-${next[2].padStart(2,'0')}`);tail=tail.slice(next[0].length);
+      if(next[1]&&Number(next[1])<Number(month))break;
+      month=next[1]??month;
+      dates.push(`${m[1]}-${month.padStart(2,'0')}-${next[2].padStart(2,'0')}`);tail=tail.slice(next[0].length);
     }
   }
   return [...new Set(dates.filter(validIsoDay))];
@@ -116,7 +118,7 @@ export function compareReview(task,decision,{now=Date.now()}={}) {
     if(facts.endDate&&facts.startDate>facts.endDate)reasons.push('invalid-date-order');
   }
   if(differences.length)reasons.push('differs-from-current');
-  // A prior human comparison may acknowledge only the exact unchanged difference.
+  // A prior inspected comparison may acknowledge only the exact unchanged difference.
   // It cannot waive missing facts, relevance, freshness, source changes or new output.
   const review=task.comparisonReview,checked=Date.parse(review?.checkedAt);
   const reviewedUnchanged=reasons.length===1&&reasons[0]==='differs-from-current'

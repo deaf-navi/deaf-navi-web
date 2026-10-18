@@ -25,6 +25,7 @@ test('invalid evidence is isolated and cached as an exception without retrying g
 test('quotes, source years, duplicate fields and item IDs are verified independently of model schema',()=>{
  assert.deepEqual(explicitDates('2026 11/03、2026 12月5日、11/03、2026 999 11/03'),['2026-11-03','2026-12-05']);
  assert.deepEqual(explicitDates('2026年10月24日(土)・10月25日(日) 開催。公開2026年9月1日。次回11月3日'),['2026-10-24','2026-10-25','2026-09-01']);
+ assert.deepEqual(explicitDates('2026年10月31日・11月1日・2日。2026年12月31日〜1月1日'),['2026-10-31','2026-11-01','2026-11-02','2026-12-31']);
  assert.deepEqual(explicitDates('令和８年11月14日、令和8年(2026年)10月18日、11月9日、2026年2月30日'),['2026-11-14','2026-10-18']);
  assert.equal(validateReviewResult([input],{items:[decision]}).length,1);
  for(const facts of [[{field:'startDate',value:'2027-11-14',evidence:'開催日 2026年11月14日。'}],[...decision.facts,decision.facts[0]],[{field:'venue',value:'別会場',evidence:'会場 市民会館。'}]])assert.throws(()=>validateReviewResult([input],{items:[{...decision,facts}]}));
