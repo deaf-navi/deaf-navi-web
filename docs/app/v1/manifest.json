@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-18T03:16:19Z",
+  "generatedAt": "2026-10-18T03:19:06Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -20,8 +20,8 @@
       "rawJsonUrl": "https://deafnavi.com/articles.json",
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v1.json",
-      "count": 468,
-      "sourceGeneratedAt": "2026-10-18T03:09:57Z",
+      "count": 469,
+      "sourceGeneratedAt": "2026-10-18T03:19:06Z",
       "categories": [
         {
           "id": "all",
@@ -445,6 +445,6 @@
   "sourcePolicy": {
     "domestic": "The app sync data is built from the same curated domestic JSON used by Deaf Navi Web.",
     "world": "The app sync data is built from the same world JSON used by Deaf Navi World-JP and Deaf Navi World-Original.",
-    "worldJpTranslation": "Japanese text is Google-translation based with Deaf Navi glossary normalization; Codex App Server post-edit is reflected when present in articles-world.json."
+    "worldJpTranslation": "Japanese text uses Google translation and Deaf Navi glossary normalization; verified dedicated text-service output is reflected when present in articles-world.json."
   }
 }
