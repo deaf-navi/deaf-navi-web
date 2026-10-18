@@ -11,6 +11,7 @@ on:
       - 'src/**'
       - 'config/**'
       - 'content/events/**'
+      - 'content/news/**'
       - 'scripts/**'
       - 'package.json'
       - '.github/workflows/**'
@@ -47,7 +48,7 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs .state/thumbnails-domestic.json .state/events.json .state/thumbnails-events.json
+          git add docs .state/thumbnails-domestic.json .state/events.json .state/thumbnails-events.json .state/news-review-candidates.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
@@ -65,17 +66,17 @@ jobs:
             git merge --abort 2>/dev/null || true
             cp docs/articles.json docs/articles-old.json "$RUNNER_TEMP"/
             cp .state/thumbnails-domestic.json "$RUNNER_TEMP"/
-            cp .state/events.json .state/thumbnails-events.json "$RUNNER_TEMP"/
+            cp .state/events.json .state/thumbnails-events.json .state/news-review-candidates.json "$RUNNER_TEMP"/
             git fetch origin main
             git reset --hard origin/main
             cp "$RUNNER_TEMP"/articles.json "$RUNNER_TEMP"/articles-old.json docs/
             mkdir -p .state
             cp "$RUNNER_TEMP"/thumbnails-domestic.json .state/
-            cp "$RUNNER_TEMP"/events.json "$RUNNER_TEMP"/thumbnails-events.json .state/
+            cp "$RUNNER_TEMP"/events.json "$RUNNER_TEMP"/thumbnails-events.json "$RUNNER_TEMP"/news-review-candidates.json .state/
             npm run build
             npm run verify
             npm run build:app-api
-            git add docs .state/thumbnails-domestic.json .state/events.json .state/thumbnails-events.json
+            git add docs .state/thumbnails-domestic.json .state/events.json .state/thumbnails-events.json .state/news-review-candidates.json
             if git diff --cached --quiet; then
               echo "No changes after rebuild."
               exit 0

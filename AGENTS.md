@@ -5,8 +5,9 @@
 - `DEAF_NAVI_PROTECTED_SERVICE`: 国内・WorldのActionsと公開経路は「不要なCodex関連処理の一括停止」から除外する。停止にはDeaf Naviの対象Workflowを名指しした明示指示が必要。
 - 国内イベントの通信障害復旧 `Recover Event Sources`（events-recover.yml）も保護対象。確認日時を延長せず48時間で掲載を失効させる規則と、情報源の拒否・内容変更を自動承認しない規則を維持する。
 - 手話カフェのサーバー定時処理 `deafnavi-cafe-event-sources` と、国内イベント・カフェの統合日次キュレーション `deaf-navi-2` もDeaf Naviの継続運用に含む。旧カフェチャットの `deaf-navi` はユーザー指示で停止済み。詳しくは `EVENT_CURATION.md` と `CAFE_EVENT_CURATION.md`。他アプリの停止や復元と連動させない。
-- 国内はCodex不要。WorldはGoogle翻訳失敗分のみ専用テキストサービスで補完する（2026-09-27はCodex、2026-10-18から下記の無料API）。全記事への定期校正や有料APIへの切替は行わない。専用PM2/healthcheckの状態とActionsの有効・無効は別管理。
-- 2026-10-18のユーザー許可により、上記の不足翻訳と確認済みイベント・カフェの短文補助には `shared-free-tier` の無料APIを使用可。`COMPLIMENTARY_TOKENS.md` の当日適格性・残量・キー所属・共有する実文面の確認を満たす場合だけ。未確認時の有料API/Codexへの自動切替や、共有不適切な個人情報の送信は禁止。専用キー以外を代用しない。
+- 国内の収集・基礎選別は非AI。2026-10-18のユーザー許可で国内ニュースの補助選別、イベント・カフェの抽出と比較にも無料APIを使う。WorldはGoogle翻訳失敗分のみ専用テキストサービスで補完する。全記事への定期校正や有料APIへの切替は行わない。
+- `shared-free-tier` は `COMPLIMENTARY_TOKENS.md` の当日適格性・残量・キー所属・共有する実文面の確認を満たす場合だけ使用可。ユーザー許可により、通常のGPT-6.1 Solの無料残量で処理を収められない場合だけ、確認済みの別無料枠GPT-5.6 Terraへ切替可。通信・権限エラーで切り替えず、有料API/Codexへの自動切替は禁止。専用キー以外を代用しない。
+- 定時処理の回数上限は16回/日。ユーザー指定により明示的な調査・再試験は回数上限の対象外。ただし同じトークン予算・利用台帳・未精算予約・当日確認・文面共有条件を保持する。調査モードをHTTPや定時処理から有効化しない。詳細は `API_CURATION.md`。
 - 他アプリの停止済みプロセスは復元しない。PM2 dump全体の復元は禁止。詳細は `CURATION_OPERATIONS.md`。
 
 - 本番の通常集計にCodexの確認アクセスを混ぜない。HTTPクライアントは `User-Agent: Codex-DeafNavi-Verification` または `X-DeafNavi-Client: codex` を必ず付ける。

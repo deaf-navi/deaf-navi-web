@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import http from 'node:http';
 import {readFile} from 'node:fs/promises';
-import {createComplimentaryClient,publicItems,COMPLIMENTARY_MODEL,COMPLIMENTARY_REASONING_EFFORT} from './complimentary-text-client.mjs';
+import {createComplimentaryClient,publicItems,COMPLIMENTARY_MODEL,COMPLIMENTARY_FALLBACK_MODEL,COMPLIMENTARY_REASONING_EFFORT} from './complimentary-text-client.mjs';
 
 const textBackend=process.env.DEAFNAVI_TEXT_BACKEND||'codex';
 if(!['codex','complimentary'].includes(textBackend))throw new Error('Unsupported Deaf Navi text backend');
@@ -365,7 +365,7 @@ const server = http.createServer(async (req, res) => {
         ok: true,
         provider: 'codex_app_server',
         engine: textBackend==='complimentary'?'openai_complimentary':'codex',
-        ...(complimentary?{models:[COMPLIMENTARY_MODEL],reasoning_effort:COMPLIMENTARY_REASONING_EFFORT}:{codex_bin:codexBin,models:modelCandidates}),
+        ...(complimentary?{models:[COMPLIMENTARY_MODEL],fallback_model:COMPLIMENTARY_FALLBACK_MODEL,fallback_policy:'verified-free-group-headroom',reasoning_effort:COMPLIMENTARY_REASONING_EFFORT}:{codex_bin:codexBin,models:modelCandidates}),
       });
       return;
     }
