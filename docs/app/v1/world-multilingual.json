@@ -4,8 +4,8 @@
   "title": "Deaf Navi World Multilingual",
   "variant": "world",
   "mode": "multilingual",
-  "generatedAt": "2026-10-18T09:00:37Z",
-  "sourceGeneratedAt": "2026-10-18T09:00:37Z",
+  "generatedAt": "2026-10-18T12:17:21Z",
+  "sourceGeneratedAt": "2026-10-18T12:17:21Z",
   "count": 600,
   "language": "ja-JP",
   "refresh": {
@@ -27,11 +27,11 @@
     "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 30,
-      "updated": 2,
-      "cached": 513,
+      "checked": 34,
+      "updated": 0,
+      "cached": 519,
       "skipped": 0,
-      "failed": 28,
+      "failed": 34,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
@@ -43,8 +43,8 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 28,
-      "retainedPrevious": 21
+      "pending": 34,
+      "retainedPrevious": 18
     },
     "basePolicy": "World-JP uses Google translation and its cache first, then Deaf Navi glossary normalization and optional dedicated text-service assistance for missing translations."
   },
@@ -135,8 +135,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3813,
-    "dedupedCount": 2332,
+    "rawCount": 3809,
+    "dedupedCount": 2324,
     "selectedCount": 600,
     "minScore": 8,
     "maxArticles": 600,
@@ -160,11 +160,11 @@
     "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 30,
-      "updated": 2,
-      "cached": 513,
+      "checked": 34,
+      "updated": 0,
+      "cached": 519,
       "skipped": 0,
-      "failed": 28,
+      "failed": 34,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
@@ -176,8 +176,8 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 28,
-      "retainedPrevious": 21
+      "pending": 34,
+      "retainedPrevious": 18
     }
   },
   "counts": {
@@ -545,7 +545,7 @@
       "sourceURL": "https://www.moroccoworldnews.com",
       "sourceUrl": "https://www.moroccoworldnews.com",
       "sourceDomain": "moroccoworldnews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 70,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -2282,7 +2282,7 @@
       "sourceURL": "https://www.arabnews.com",
       "sourceUrl": "https://www.arabnews.com",
       "sourceDomain": "arabnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -2638,52 +2638,6 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9pSXNrT2p3VTZGOEUyVmtDMG9iZEtGdjF5bVc5OHFxOVloOXdjcnVwLWM2SF81NThYMk1CYXFValNUSmNGdWc?oc=5",
-      "stableId": "world_0459380655e223849275",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9pSXNrT2p3VTZGOEUyVmtDMG9iZEtGdjF5bVc5OHFxOVloOXdjcnVwLWM2SF81NThYMk1CYXFValNUSmNGdWc?oc=5",
-      "publishedAt": "2026-10-07T14:05:50Z",
-      "sourceName": "وكالة الأنباء السعودية",
-      "sourceURL": "https://www.spa.gov.sa",
-      "sourceUrl": "https://www.spa.gov.sa",
-      "sourceDomain": "spa.gov.sa",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 22,
-      "curationSignals": [
-        "الصم",
-        "لغة الإشارة",
-        "multilingual"
-      ],
-      "originalLanguage": "ar",
-      "title": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
-      "summary": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
-          "summary": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
-          "summary": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
-          "language": "ar"
-        }
-      }
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBpRUhDbGJLOVMwOTEtdGlIcGZuZlMtY1F5ZGtqMVVzYzUxQmlRdTlNTzQzTW91ckFZd19hWnYxUE1LcnJQUFRzellYamM1OGoxTUlWUml1bld2d0Z0NXlsTzdPM0o2d2h5bVVqZWRB?oc=5",
       "stableId": "world_774c4b071cd72154b132",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBpRUhDbGJLOVMwOTEtdGlIcGZuZlMtY1F5ZGtqMVVzYzUxQmlRdTlNTzQzTW91ckFZd19hWnYxUE1LcnJQUFRzellYamM1OGoxTUlWUml1bld2d0Z0NXlsTzdPM0o2d2h5bVVqZWRB?oc=5",
@@ -2726,6 +2680,52 @@
           "title": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
           "summary": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
           "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9pSXNrT2p3VTZGOEUyVmtDMG9iZEtGdjF5bVc5OHFxOVloOXdjcnVwLWM2SF81NThYMk1CYXFValNUSmNGdWc?oc=5",
+      "stableId": "world_0459380655e223849275",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9pSXNrT2p3VTZGOEUyVmtDMG9iZEtGdjF5bVc5OHFxOVloOXdjcnVwLWM2SF81NThYMk1CYXFValNUSmNGdWc?oc=5",
+      "publishedAt": "2026-10-07T07:00:00Z",
+      "sourceName": "وكالة الأنباء السعودية",
+      "sourceURL": "https://www.spa.gov.sa",
+      "sourceUrl": "https://www.spa.gov.sa",
+      "sourceDomain": "spa.gov.sa",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 22,
+      "curationSignals": [
+        "الصم",
+        "لغة الإشارة",
+        "multilingual"
+      ],
+      "originalLanguage": "ar",
+      "title": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
+      "summary": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
+          "summary": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
+          "summary": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
+          "language": "ar"
         }
       }
     },
@@ -2867,36 +2867,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAyeW9lSGFFanBUVTA4X2piY1FQTjZhMlBWcHVOS20yU3IzZjhpcWN4MjlMREtJVXh5SDR5bW5KMWNLclB2T19wMTgxQnBjREgzWHczMS1B?oc=5",
-      "stableId": "world_f143717f73d6d3fa6770",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAyeW9lSGFFanBUVTA4X2piY1FQTjZhMlBWcHVOS20yU3IzZjhpcWN4MjlMREtJVXh5SDR5bW5KMWNLclB2T19wMTgxQnBjREgzWHczMS1B?oc=5",
-      "publishedAt": "2026-10-04T08:18:00Z",
-      "sourceName": "بوابة الأهرام",
-      "sourceURL": "https://gate.ahram.org.eg",
-      "sourceUrl": "https://gate.ahram.org.eg",
-      "sourceDomain": "gate.ahram.org.eg",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
+      "stableId": "world_260bd0f1a35cfd7728bc",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
+      "publishedAt": "2026-10-04T07:00:00Z",
+      "sourceName": "Daily Monitor",
+      "sourceURL": "https://www.monitor.co.ug",
+      "sourceUrl": "https://www.monitor.co.ug",
+      "sourceDomain": "monitor.co.ug",
+      "sourceMode": "major-media",
+      "sourcePriority": 74,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 20,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 23,
       "curationSignals": [
-        "ضعف السمع",
-        "سماعة طبية",
-        "multilingual"
+        "sign language",
+        "major-media"
       ],
-      "originalLanguage": "ar",
-      "title": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
-      "summary": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
+      "originalLanguage": "en",
+      "title": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
+      "summary": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
-          "summary": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
+          "title": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
+          "summary": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -2906,9 +2905,9 @@
           }
         },
         "original": {
-          "title": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
-          "summary": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
-          "language": "ar"
+          "title": "Why learning sign language could change deaf inclusion",
+          "summary": "Why learning sign language could change deaf inclusion",
+          "language": "en"
         }
       }
     },
@@ -3051,35 +3050,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
-      "stableId": "world_260bd0f1a35cfd7728bc",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAyeW9lSGFFanBUVTA4X2piY1FQTjZhMlBWcHVOS20yU3IzZjhpcWN4MjlMREtJVXh5SDR5bW5KMWNLclB2T19wMTgxQnBjREgzWHczMS1B?oc=5",
+      "stableId": "world_f143717f73d6d3fa6770",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAyeW9lSGFFanBUVTA4X2piY1FQTjZhMlBWcHVOS20yU3IzZjhpcWN4MjlMREtJVXh5SDR5bW5KMWNLclB2T19wMTgxQnBjREgzWHczMS1B?oc=5",
       "publishedAt": "2026-10-04T07:00:00Z",
-      "sourceName": "Daily Monitor",
-      "sourceURL": "https://www.monitor.co.ug",
-      "sourceUrl": "https://www.monitor.co.ug",
-      "sourceDomain": "monitor.co.ug",
-      "sourceMode": "major-media-fresh",
-      "sourcePriority": 74,
+      "sourceName": "بوابة الأهرام",
+      "sourceURL": "https://gate.ahram.org.eg",
+      "sourceUrl": "https://gate.ahram.org.eg",
+      "sourceDomain": "gate.ahram.org.eg",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 23,
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 20,
       "curationSignals": [
-        "sign language",
-        "major-media"
+        "ضعف السمع",
+        "سماعة طبية",
+        "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
-      "summary": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
+      "originalLanguage": "ar",
+      "title": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
+      "summary": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
-          "summary": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
+          "title": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
+          "summary": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3089,9 +3089,9 @@
           }
         },
         "original": {
-          "title": "Why learning sign language could change deaf inclusion",
-          "summary": "Why learning sign language could change deaf inclusion",
-          "language": "en"
+          "title": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
+          "summary": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
+          "language": "ar"
         }
       }
     },
@@ -3529,13 +3529,13 @@
         "multilingual"
       ],
       "originalLanguage": "tr",
-      "title": "モスクを訪れる聴覚障害者に手話支援",
+      "title": "モスクを訪れる聴覚障害者に手話による支援が提供されます。",
       "summary": "モスクを訪れる聴覚障害者に手話による支援が提供されます。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "モスクを訪れる聴覚障害者に手話支援",
+          "title": "モスクを訪れる聴覚障害者に手話による支援が提供されます。",
           "summary": "モスクを訪れる聴覚障害者に手話による支援が提供されます。",
           "language": "ja-JP",
           "translation": {
@@ -4781,14 +4781,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
-      "stableId": "world_414cf413ddc2e554dc84",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
+      "stableId": "world_b6788e0010357a1bb521",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "G1",
-      "sourceURL": "https://g1.globo.com",
-      "sourceUrl": "https://g1.globo.com",
-      "sourceDomain": "g1.globo.com",
+      "sourceName": "Arquidiocese de BH",
+      "sourceURL": "https://arquidiocesebh.org.br",
+      "sourceUrl": "https://arquidiocesebh.org.br",
+      "sourceDomain": "arquidiocesebh.org.br",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -4802,15 +4802,15 @@
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "tr",
-      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "originalLanguage": "en",
+      "title": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+      "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-          "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+          "title": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+          "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -4820,9 +4820,9 @@
           }
         },
         "original": {
-          "title": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-          "summary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-          "language": "tr"
+          "title": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
+          "summary": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
+          "language": "en"
         }
       }
     },
@@ -4964,14 +4964,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
-      "stableId": "world_b6788e0010357a1bb521",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "stableId": "world_414cf413ddc2e554dc84",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "Arquidiocese de BH",
-      "sourceURL": "https://arquidiocesebh.org.br",
-      "sourceUrl": "https://arquidiocesebh.org.br",
-      "sourceDomain": "arquidiocesebh.org.br",
+      "sourceName": "G1",
+      "sourceURL": "https://g1.globo.com",
+      "sourceUrl": "https://g1.globo.com",
+      "sourceDomain": "g1.globo.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -4985,15 +4985,15 @@
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
-      "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+      "originalLanguage": "tr",
+      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
-          "summary": "ろう者司牧が、ブラジル手話（Libras）を学べる無料ワークショップへの参加を呼びかけています。",
+          "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+          "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5003,9 +5003,9 @@
           }
         },
         "original": {
-          "title": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
-          "summary": "Participe da oficina gratuita de Libras promovida pela Pastoral do Surdo",
-          "language": "en"
+          "title": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+          "summary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+          "language": "tr"
         }
       }
     },
@@ -6113,7 +6113,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -8944,7 +8944,7 @@
       "sourceURL": "https://www.moroccoworldnews.com",
       "sourceUrl": "https://www.moroccoworldnews.com",
       "sourceDomain": "moroccoworldnews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 70,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -11835,7 +11835,7 @@
       "sourceURL": "http://jewishnews.timesofisrael.com",
       "sourceUrl": "http://jewishnews.timesofisrael.com",
       "sourceDomain": "timesofisrael.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -12782,7 +12782,7 @@
       "sourceURL": "https://www.npr.org",
       "sourceUrl": "https://www.npr.org",
       "sourceDomain": "npr.org",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -13142,7 +13142,7 @@
       "sourceURL": "https://www.npr.org",
       "sourceUrl": "https://www.npr.org",
       "sourceDomain": "npr.org",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -13773,7 +13773,7 @@
       "sourceURL": "https://www.thenationalnews.com",
       "sourceUrl": "https://www.thenationalnews.com",
       "sourceDomain": "thenationalnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 82,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -15004,13 +15004,13 @@
         "major-media"
       ],
       "originalLanguage": "en",
-      "title": "ナイジェリア、アフリカ初の手話聖書を制作",
+      "title": "ナイジェリアがアフリカ初の手話聖書を制作しました。",
       "summary": "ナイジェリアがアフリカ初の手話聖書を制作しました。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ナイジェリア、アフリカ初の手話聖書を制作",
+          "title": "ナイジェリアがアフリカ初の手話聖書を制作しました。",
           "summary": "ナイジェリアがアフリカ初の手話聖書を制作しました。",
           "language": "ja-JP",
           "translation": {
@@ -15036,7 +15036,7 @@
       "sourceURL": "https://apnews.com",
       "sourceUrl": "https://apnews.com",
       "sourceDomain": "apnews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -15126,7 +15126,7 @@
       "sourceURL": "https://www.theguardian.com",
       "sourceUrl": "https://www.theguardian.com",
       "sourceDomain": "theguardian.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 92,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -15307,7 +15307,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -15487,7 +15487,7 @@
       "sourceURL": "https://www.euronews.com",
       "sourceUrl": "https://www.euronews.com",
       "sourceDomain": "euronews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 86,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -17831,7 +17831,7 @@
       "sourceURL": "https://punchng.com",
       "sourceUrl": "https://punchng.com",
       "sourceDomain": "punchng.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -18235,7 +18235,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -21885,7 +21885,7 @@
       "sourceURL": "https://www.swissinfo.ch",
       "sourceUrl": "https://www.swissinfo.ch",
       "sourceDomain": "swissinfo.ch",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 76,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -23419,7 +23419,7 @@
       "sourceURL": "https://www.cbc.ca",
       "sourceUrl": "https://www.cbc.ca",
       "sourceDomain": "cbc.ca",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 90,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -23646,7 +23646,7 @@
       "sourceURL": "https://www.koreatimes.co.kr",
       "sourceUrl": "https://www.koreatimes.co.kr",
       "sourceDomain": "koreatimes.co.kr",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -23916,7 +23916,7 @@
       "sourceURL": "https://www.thenationalnews.com",
       "sourceUrl": "https://www.thenationalnews.com",
       "sourceDomain": "thenationalnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 82,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -24277,7 +24277,7 @@
       "sourceURL": "https://punchng.com",
       "sourceUrl": "https://punchng.com",
       "sourceDomain": "punchng.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -24457,7 +24457,7 @@
       "sourceURL": "https://guardian.ng",
       "sourceUrl": "https://guardian.ng",
       "sourceDomain": "guardian.ng",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -25089,7 +25089,7 @@
       "sourceURL": "https://www.rnz.co.nz",
       "sourceUrl": "https://www.rnz.co.nz",
       "sourceDomain": "rnz.co.nz",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 86,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -25358,7 +25358,7 @@
       "sourceURL": "https://guardian.ng",
       "sourceUrl": "https://guardian.ng",
       "sourceDomain": "guardian.ng",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -26396,7 +26396,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -27292,7 +27292,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
