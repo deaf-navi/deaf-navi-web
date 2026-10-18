@@ -25,7 +25,8 @@ import {
 } from '../config/sources.domestic.mjs';
 import { fetchWithTimeout } from './lib/fetch-retry.mjs';
 import { collectDomesticPages } from './lib/domestic-pages.mjs';
-import {applyNewsAssistance,newsArticleHash} from './lib/news-assistance.mjs';
+import {applyNewsAssistance} from './lib/news-assistance.mjs';
+import {buildNewsReviewQueue} from './lib/news-review-queue.mjs';
 import { parseFeedEntries } from './lib/feed-parser.mjs';
 import { enrichNewsThumbnails } from './lib/news-thumbnails.mjs';
 import {
@@ -158,12 +159,12 @@ async function loadNews() {
     });
     result.report.assistance={applied:assisted.applied,mode:'reviewed-content-only'};
     // No source bodies, contact details, or API prompts enter this recall queue.
-    const selected=new Set([...result.articles,...result.oldArticles].map(x=>x.id));
-    const candidates=[...new Map(allArticles.filter(x=>!selected.has(x.id)&&isWithinFallbackWindow(x)).map(x=>[x.id,x])).values()]
-      .sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt)).slice(0,40)
-      .map(article=>({sourceUrl:article.id,articleHash:newsArticleHash(article),publishedAt:article.publishedAt,sourceTier:article._sourceTier}));
+    const queuePath=join(ROOT,'.state/news-review-candidates.json');
+    let previousQueue={};
+    try{previousQueue=JSON.parse(await readFile(queuePath,'utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}
+    const queue=buildNewsReviewQueue(allArticles,[...result.articles,...result.oldArticles],{previous:previousQueue});
     await mkdir(join(ROOT,'.state'),{recursive:true});
-    await writeFile(join(ROOT,'.state/news-review-candidates.json'),JSON.stringify({generatedAt:new Date().toISOString(),candidates},null,2)+'\n');
+    await writeFile(queuePath,JSON.stringify(queue,null,2)+'\n');
     return result;
   }
 
