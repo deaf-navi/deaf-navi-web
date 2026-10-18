@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { prepareDomesticPublication, prepareDomesticArchivePublication, prepareWorldPublication } from '../src/lib/publication-quality.mjs';
-import { publicationExclusionReason, detectRegion, isNearDuplicate, mergeOldArticles } from '../src/lib/curation.mjs';
+import { publicationExclusionReason, detectRegion, isNearDuplicate, mergeOldArticles, QUALITY_VERSION } from '../src/lib/curation.mjs';
 import { cleanArticleTitle, cleanSummaryText, normalizeTitleKey } from '../src/lib/text.mjs';
 import { selectEditorialNotes } from '../src/lib/editorial.mjs';
 import { hasMistranslatedLibras, createTranslationCache } from '../src/lib/world-translation.mjs';
@@ -93,6 +93,17 @@ test('saved domestic snapshots are rechecked idempotently with retained IDs and 
   assert.equal(after.articles[0].id, articles[1].id);
   assert.equal(after.articles[0].prefecture, '滋賀県');
   assert.equal(after.publicationReview.removed[0].reason, 'placeholder');
+  assert.equal(prepareDomesticPublication(after), after);
+});
+
+test('unchanged snapshots receive the current quality review without refreshing source dates', () => {
+  const input = { generatedAt: '2026-10-18T00:00:00Z', count: 0, articles: [], quality: { version: 'publication-quality-v9' } };
+  const after = prepareDomesticPublication(input);
+  assert.deepEqual(after.articles, input.articles);
+  assert.equal(after.generatedAt, input.generatedAt);
+  assert.equal(after.quality.version, input.quality.version);
+  assert.equal(after.publicationReview.version, QUALITY_VERSION);
+  assert.equal(after.publicationReview.inputGeneratedAt, input.generatedAt);
   assert.equal(prepareDomesticPublication(after), after);
 });
 
