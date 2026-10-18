@@ -4,9 +4,9 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-18T00:40:25Z",
-  "sourceGeneratedAt": "2026-10-18T00:40:25Z",
-  "count": 470,
+  "generatedAt": "2026-10-18T01:06:41Z",
+  "sourceGeneratedAt": "2026-10-18T01:06:41Z",
+  "count": 471,
   "language": "ja-JP",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
@@ -118,16 +118,16 @@
   },
   "quality": {
     "version": "publication-quality-v8",
-    "rawCount": 3521,
-    "scoredCount": 3521,
-    "filteredCount": 1654,
+    "rawCount": 3529,
+    "scoredCount": 3529,
+    "filteredCount": 1666,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
-    "extraVisibleCount": 70,
+    "extraVisibleCount": 71,
     "extraVisibleCategoryCounts": {
-      "relay": 70
+      "relay": 71
     },
-    "overflowCount": 541,
+    "overflowCount": 547,
     "minScore": 5,
     "categoryCountsVisible": {
       "general": 89,
@@ -141,7 +141,7 @@
       "policy": 28,
       "local": 69,
       "safety": 24,
-      "relay": 70
+      "relay": 71
     }
   },
   "counts": {
@@ -157,13 +157,13 @@
       "policy": 28,
       "local": 69,
       "safety": 24,
-      "relay": 70
+      "relay": 71
     },
     "byLegacyCategory": {
       "general": 107,
       "culture": 68,
       "sports": 37,
-      "policy": 157,
+      "policy": 158,
       "education": 12,
       "medical": 20,
       "local": 69
@@ -535,6 +535,24 @@
       "category": "accessibility",
       "categoryLabel": "情報保障・アクセシビリティ",
       "legacyCategory": "policy",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5qVW9nSFlOcnpNRGRyS1o5cTF3N3NzX3cxQVJwYzY0OU5TQlZpTGhhVjNVa3RKTlhpelN5TVlSUHUzOFlvR0dfZ28xZ29kLWo2M3ItcFNsMjZSYWZWNEE?oc=5",
+      "stableId": "domestic_004bb8c5018967270329",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5qVW9nSFlOcnpNRGRyS1o5cTF3N3NzX3cxQVJwYzY0OU5TQlZpTGhhVjNVa3RKTlhpelN5TVlSUHUzOFlvR0dfZ28xZ29kLWo2M3ItcFNsMjZSYWZWNEE?oc=5",
+      "title": "【2026/10/18】手話落語とライブドローイングが競演「秋の優しさマルシェ」",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-16T00:58:06Z",
+      "sourceName": "函館イベント情報局",
+      "sourceURL": "https://hakodate-event.com",
+      "sourceUrl": "https://hakodate-event.com",
+      "sourceType": "rss",
+      "category": "culture",
+      "categoryLabel": "文化・芸能",
+      "legacyCategory": "culture",
       "sourceTier": "news",
       "discoveryMethod": "google-news"
     },
@@ -929,24 +947,6 @@
       "category": "technology",
       "categoryLabel": "技術・AI",
       "legacyCategory": "general",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5qVW9nSFlOcnpNRGRyS1o5cTF3N3NzX3cxQVJwYzY0OU5TQlZpTGhhVjNVa3RKTlhpelN5TVlSUHUzOFlvR0dfZ28xZ29kLWo2M3ItcFNsMjZSYWZWNEE?oc=5",
-      "stableId": "domestic_004bb8c5018967270329",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5qVW9nSFlOcnpNRGRyS1o5cTF3N3NzX3cxQVJwYzY0OU5TQlZpTGhhVjNVa3RKTlhpelN5TVlSUHUzOFlvR0dfZ28xZ29kLWo2M3ItcFNsMjZSYWZWNEE?oc=5",
-      "title": "【2026/10/18】手話落語とライブドローイングが競演「秋の優しさマルシェ」",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-15T01:57:18Z",
-      "sourceName": "函館イベント情報局",
-      "sourceURL": "https://hakodate-event.com",
-      "sourceUrl": "https://hakodate-event.com",
-      "sourceType": "rss",
-      "category": "culture",
-      "categoryLabel": "文化・芸能",
-      "legacyCategory": "culture",
       "sourceTier": "news",
       "discoveryMethod": "google-news"
     },
@@ -4300,7 +4300,7 @@
       "summary": "",
       "language": "ja-JP",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "nnn.co.jp",
+      "sourceName": "www.nnn.co.jp",
       "sourceURL": "https://www.nnn.co.jp",
       "sourceUrl": "https://www.nnn.co.jp",
       "sourceType": "rss",
@@ -8415,6 +8415,24 @@
       "discoveryMethod": "google-news",
       "region": "kanto",
       "prefecture": "群馬県"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQc0xNLURvUU1ZNmVVbURGdm1OY0Rpc0FBM19aTkhzZXZrdjdTM0tsVDN6ZUo4WWhrMzN1aDJVLXZUYkdyV1dURDdFVVNubkxKRnZHcjFhZFpVM2xWLTN0VWpnaksyTW55MFdZenAxa2Q0ODZTclJhUUFicWdLSUJfdDdtYlhucEZBbVNHbW5NNlc3dmtrd3VSVUczMkcxR2VOYUpqRU1UYkdVMU9PMVoyeDJfMmloVG8ybTVKa0Z4M3FpREdWaEdXRF9DNHRaSHRhakJfa0JxU2RYNEs3MTVLeg?oc=5",
+      "stableId": "domestic_71ea0978f1e8e4d4ac4d",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQc0xNLURvUU1ZNmVVbURGdm1OY0Rpc0FBM19aTkhzZXZrdjdTM0tsVDN6ZUo4WWhrMzN1aDJVLXZUYkdyV1dURDdFVVNubkxKRnZHcjFhZFpVM2xWLTN0VWpnaksyTW55MFdZenAxa2Q0ODZTclJhUUFicWdLSUJfdDdtYlhucEZBbVNHbW5NNlc3dmtrd3VSVUczMkcxR2VOYUpqRU1UYkdVMU9PMVoyeDJfMmloVG8ybTVKa0Z4M3FpREdWaEdXRF9DNHRaSHRhakJfa0JxU2RYNEs3MTVLeg?oc=5",
+      "title": "羽生市 ’手話リンク\" 導入",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-06-22T07:00:00Z",
+      "sourceName": "公明党",
+      "sourceURL": "https://www.komei.or.jp",
+      "sourceUrl": "https://www.komei.or.jp",
+      "sourceType": "rss",
+      "category": "relay",
+      "categoryLabel": "電話リレー・ヨメテル",
+      "legacyCategory": "policy",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1OSXlYdnlkQlJrS2ZfbGl1bFljRnpPNFdFOFducGNBUXc2WHJNc2dWNklvQ0NpbVNMQWRIOWVFcHlrQ3RObTRHQkpiMzlqcGphYWY5Njg4TkdqcjJVZDhzVHZJYU91TTNQRm5fV01pdEw4Zw?oc=5",
