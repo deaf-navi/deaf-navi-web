@@ -163,12 +163,12 @@ export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,
       const usage=result.usage;
       if(!Number.isSafeInteger(usage?.input_tokens)||!Number.isSafeInteger(usage?.output_tokens)||usage.input_tokens<0||usage.output_tokens<0||(usage.total_tokens!==undefined&&usage.total_tokens!==usage.input_tokens+usage.output_tokens)){record.status='uncertain';await save();throw deny('Token usage unavailable');}
       record.inputTokens=usage.input_tokens;record.outputTokens=usage.output_tokens;
+      if(result.model!==undefined&&result.model!==selectedModel){record.status='uncertain';await save();throw deny('Unexpected response model; reconciliation required');}
       record.status=usage.input_tokens+usage.output_tokens<=reserve?'completed':'uncertain';await save();
       if(record.status!=='completed')throw deny('Usage exceeded conservative reservation');
       await unlink(inflight);
       let parsed;
       try{const text=(result.output||[]).filter(x=>x.type==='message').flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('');parsed=JSON.parse(text);}catch{throw deny('Invalid structured response');}
-      if(result.model!==undefined&&result.model!==selectedModel)throw deny('Unexpected response model');
       if(reviewing){
         if(result.status!=='completed')throw deny('Incomplete structured response');
         try{validateReviewResult(input,parsed);}catch{throw deny('Curation review evidence requires inspection');}

@@ -37,6 +37,12 @@ test('HTTP rejection does not cause model switching or a second request',async t
  const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return new Response('{}',{status:429});}});
  await assert.rejects(()=>run(items));assert.equal(calls,1);
 });
+test('unexpected response model keeps the cross-model reconciliation lock',async t=>{
+ const dir=await fixture(t);let calls=0;
+ const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return response('unverified-model');}});
+ await assert.rejects(()=>run(items),/Unexpected response model/);
+ await assert.rejects(()=>run(items),/Previous request requires reconciliation/);assert.equal(calls,1);
+});
 test('local usage after account inspection reduces each group and probe never authorizes routine fallback',()=>{
  const used={records:[{timestamp:new Date(now).toISOString(),model:'gpt-5.6-terra',status:'rejected',reservedTokens:999000}]};
  assert.throws(()=>selectComplimentaryModel(lease,used,12000));
