@@ -15,7 +15,7 @@
 | サーバーアクセス・推定UU | 仕組みあり、管理画面実データは未取得 | Caddy→既存アクセスログ/日別HMACのSQLite。管理者認証を変更しない |
 | Core Web Vitals（LCP/INP/CLSのフィールド値） | 未取得 | ローカルviewport確認やHTML容量を実ユーザーのCWVと置き換えない |
 | 確認済み掲載比率・鮮度 | 分母を未取得 | 公開DBの確認状態・対象範囲・確認日の基準を揃えてから算出。サイト全体の網羅率は不明 |
-| 公開HTTP/DNS/SEO項目 | 正規Deployと既存基本HTTP確認は成功。静的3修正は親の独立本番読取で確認。カフェtitleはPR29後も旧表示。DNS直接読取は未取得 | PR29: CI 38190566024、Deploy 38191032136。10:22〜10:23 JSTの2店title/OG未反映、canonical正常。識別headerと本番PHP実行パスは未確認。`title-diagnosis-20261012.md` を参照 |
+| 公開HTTP/DNS/SEO項目 | 所在地title/OGと東京/神奈川への地域導線は10/18の親の独立本番AX/DOMで照合完了。DNS/実HTTPステータスは未取得 | PR27/29/68と正規公開の履歴を保持。10/17のリンク不在は10/18再読で再現せず。稼働PHP版・header・欠落原因は未特定。詳細は `title-diagnosis-20261012.md` |
 
 ## 2026-10-16の観測
 
@@ -65,3 +65,13 @@ SEO-06の技術結果: PR68のCI38984967819はNode170/PHP SEO130/おとまど91/
 今日の子HTTPは3URLともCONNECT403、Personal Contextの過去値取得も利用不可。既存SSH config/identity/agent/host/userはなく、稼働PHP・実DB条件・有効FastCGIを確認できていない。PR30スクリプト/Caddy変更、新しい認証、診断だけの再公開は行わない。
 
 現在の表示用12 CSS/JSと詳細に相当する合成構造で、375/1180/1280pxの地域リンクDOM1件・可視・フォーカス・横はみ出し/JS例外なしを確認。本番HTML/PHP応答・実機読み上げ・検索効果の確認ではない。GSC/GA4・クリック/表示/CTR/順位・organic session・CWVフィールドは未取得のまま。
+
+## 2026-10-18の独立本番照合完了
+
+親の正式クラウドブラウザーが2026-10-18 00:06:13〜00:07:09 UTC（09:06:13〜09:07:09 JST）に公開URLをAXと読取専用DOMで照合。very-you/rendeafは「東京都の手話カフェ・定期交流の場所を見る」から既存東京ページ、tetoteは「神奈川県の手話カフェ・定期交流の場所を見る」から既存神奈川ページを参照していた。全リンク先はdn_client=codexを保持。10/17のリンク不在はこの再読で再現しない。所在地titleとog:titleも3件で一致し、JSON-LD addressRegionは東京都/東京都/神奈川県、addressCountryは全件JPで前後空白なし。
+
+東京の参照先は `https://deafnavi.com/connect/sign-cafe/area/tokyo/?dn_client=codex`。H1「東京の手話カフェ・定期交流の場所」、11件でvery-you/Rendeafの見出しと詳細リンクを確認。神奈川は `https://deafnavi.com/connect/sign-cafe/area/kanagawa/?dn_client=codex`。H1「神奈川の手話カフェ・定期交流の場所」、2件でtetoteを確認。両地域とも404案内は表示されなかったが、実HTTPステータスは未取得。
+
+これは親から受領した本番証拠であり、子の直接取得成功や375/1180/1280pxの合成検証とは区別する。今回の本番viewportとスクリーンリーダー音声は未取得/未検証。欠落原因・反映時点・稼働PHP版は未特定で、OPcacheや県名の問題と確定しない。本日追加のプロダクト実装・再公開・Caddy/PR30操作は行わず、SEO-01と今回の東京/神奈川に限るSEO-06を完了とする。
+
+11件/2件は地域ページの掲載件数という表示確認値。3件の成功を全国の全掲載の検証率へ拡張しない。GSC/GA4・自然検索クリック/表示/CTR/順位・organic session・CWVフィールドは引き続き未取得で、0や推定値で補わない。

@@ -1,4 +1,7 @@
-# 国内カフェの実タイトル未反映
+# 国内カフェの所在地タイトル・地域リンク：公開照合完了
+
+現在の状態（2026-10-18 09:07 JST）：親の独立本番AX/DOMで3店舗の所在地title/OGと既存地域リンクを照合し、SEO-01と今回の東京/神奈川のSEO-06は完了。欠落原因・反映時点・実行PHP版は未特定。以下の旧表示・リンク不在・サーバー設定候補は経過/未適用案であり、現在の実行指示ではない。Caddy/PR30は未実施・未承認のまま。
+
 
 親の独立本番ブラウザー観測（2026-10-12 09:44〜09:45 JST）:
 
@@ -101,3 +104,17 @@ php_fastcgi unix//run/php/deafnavi.sock {
 今日の子HTTPは3URLともCONNECT403、Personal Contextの過去値取得も利用不可。既存SSH config/identity/agent/host/userはなく、稼働PHP・実DB条件・有効FastCGIを確認できていない。PR30スクリプト/Caddy変更、新しい認証、診断だけの再公開は行わない。
 
 親への最小確認: (1) very-you/rendeaf/tetoteのtitleとog:titleの原文、canonical、(2)JSON-LD addressRegion/addressCountryを空白ごと、(3)地域リンクDOMと対象文字列の有無、(4)既存 `/connect/sign-cafe/area/tokyo/` と `/connect/sign-cafe/area/kanagawa/` の見出し/404。全URLにdn_client=codexを保持する。公開地図JSONは県/市/分類ラベルを返すが内部kindの直接証拠ではないため、kindの代用としない。
+
+## 2026-10-18 独立した本番照合で完了
+
+親の正式クラウドブラウザーが2026-10-18 00:06:13〜00:07:09 UTC（09:06:13〜09:07:09 JST）に公開URLをAXと読取専用DOMで照合。very-you/rendeafは「東京都の手話カフェ・定期交流の場所を見る」から既存東京ページ、tetoteは「神奈川県の手話カフェ・定期交流の場所を見る」から既存神奈川ページを参照していた。全リンク先はdn_client=codexを保持。10/17のリンク不在はこの再読で再現しない。所在地titleとog:titleも3件で一致し、JSON-LD addressRegionは東京都/東京都/神奈川県、addressCountryは全件JPで前後空白なし。
+
+- very-you: `サインカフェ ベリーユー（東京都 小平市）｜手話カフェ | Deaf Navi`
+- rendeaf: `Rendeaf Coffee（東京都 文京区）｜手話カフェ | Deaf Navi`
+- tetote: `UD Cafe &amp; Bar -tetote-（神奈川県 平塚市）｜手話カフェ | Deaf Navi`
+
+東京の参照先は `https://deafnavi.com/connect/sign-cafe/area/tokyo/?dn_client=codex`。H1「東京の手話カフェ・定期交流の場所」、11件でvery-you/Rendeafの見出しと詳細リンクを確認。神奈川は `https://deafnavi.com/connect/sign-cafe/area/kanagawa/?dn_client=codex`。H1「神奈川の手話カフェ・定期交流の場所」、2件でtetoteを確認。両地域とも404案内は表示されなかったが、実HTTPステータスは未取得。
+
+これは親から受領した本番証拠であり、子の直接取得成功や375/1180/1280pxの合成検証とは区別する。今回の本番viewportとスクリーンリーダー音声は未取得/未検証。欠落原因・反映時点・稼働PHP版は未特定で、OPcacheや県名の問題と確定しない。本日追加のプロダクト実装・再公開・Caddy/PR30操作は行わず、SEO-01と今回の東京/神奈川に限るSEO-06を完了とする。
+
+県名不一致やOPcacheを原因として確定する観測は得ていない。所在地入りtitleの実装を今回の記録変更やPR68の地域リンク追加の効果と取り違えず、PR27/29/68の既存実装が公開で一致した事実だけを完了根拠にする。再発しない限り、同じ変更の再実装・診断だけのDeploy・未承認サーバー操作は不要。
