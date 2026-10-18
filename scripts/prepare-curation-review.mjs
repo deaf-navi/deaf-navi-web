@@ -24,7 +24,7 @@ export async function prepareCurationReview(targets,{fetchResource=fetchThumbnai
    tasks.push({kind:target.kind,title:item.title,sourceUrl:target.sourceUrl,recordId:target.recordId??null,
     baseline:target.baseline??{},text:excerpt,sourceTextHash:evidenceHash(excerpt),sourceDocumentHash,
     sourceMode:'html',officialVerified:true,retrievedAt:new Date(now).toISOString()});
-  }catch(error){exceptions.push({recordId:target.recordId??null,sourceUrl:target.sourceUrl,reason:/^(official-|source-)/.test(error.message)?error.message:'invalid-or-unavailable-source',reviewedAt:null});}
+  }catch(error){exceptions.push({kind:target.kind,recordId:target.recordId??null,sourceUrl:target.sourceUrl,reason:/^(official-|source-)/.test(error.message)?error.message:'invalid-or-unavailable-source',reviewedAt:null});}
  }
  return {generatedAt:new Date(now).toISOString(),publicDataReviewed:false,tasks,exceptions,items:tasks.map(prepareReviewItem)};
 }

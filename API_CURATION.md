@@ -20,6 +20,20 @@
 
 ## 実行場所と頻度
 
+### 日次のイベント・カフェ比較
+
+`/srv/deaf-navi-codex-app-server/curation-batch/scripts/daily-curation-review.mjs` を09:00 JSTの既存heartbeatから1回実行する。別cronは追加しない。現在の `events.json` と `curate-cafe-events.php --review-export` の読み取り専用出力から比較基準を作る。カフェの固定ID・掲載revision・根拠revisionも照合し、非公開レコードや管理メモは出力しない。
+
+私有 `curation-review-catalog.json`（version 1、targets）は、kind/recordId/title/sourceUrl/sourceMode=html/officialVerified=true/fragments/approvedDocumentHash/sharingReviewedAtを持つ。公式本文と共有する短文を実際に読んで登録する。全文hashは `prepare-curation-review.mjs` が実取得した `sourceDocumentHash` を使う。カタログ登録だけでは当日のAPI送信を許可しない。初期対象は確認したHTML資料から増やし、未登録・変更された文面は例外に残す。
+
+通常6週間・公演6か月の範囲でイベントとカフェを交互に最大8件選び、公式HTMLの全文hashと抜粋の存在を再照合する。API結果・既存キャッシュと最新台帳を比較し、一致は `corroborated`、差異・不足・未登録・目視対象は `exception`。対象上限超過は `deferred` として保持する。48時間の期限切れやカフェのrevision不一致を、この処理で復旧・承認しない。常設店舗の年次棚卸は別途維持する。
+
+同日・同じ台帳/カタログ/当日共有許可の再実行は保存済み結果を返す。強制再調査は `--research --force` の明示実行のみで、無料枠や結果不明の停止条件は共通。新規API送信は当日許可に正確な文面hashがあるものだけ。未承認の1件で他のキャッシュ照合を止めない。API/キャッシュ異常時の送信件数はUNKNOWN(null)とし、自動再送しない。
+
+`daily-curation-review.json` は公開root外に0600で保存する。Codexは主に `exceptionRecords` と未探索の情報源を確認し、一致した抽出を毎回手で作り直さない。新規発見、画像/PDF/SNS、共有適性・当日無料枠の確認、掲載差分の承認は残る。公開DB、承認台帳、reviewedAt、年次期限をこのCLIから更新しない。
+
+本体はGitHubのCI・PR・既定公開後、同じcommitのscripts（daily/prepare/curation-review/contract/complimentary-text-client）と参照するsrc/lib（thumbnail-fetch/thumbnail-metadata/text）を専用サービス内の版別フォルダへ設置し、`curation-batch` のリンクを原子的に切り替える。既存HTTPサービスやキー設定の再起動・変更は不要。モデル定義更新時も同じ版のbundleへ揃える。切替前のフォルダと私有カタログ・結果を保持し、旧リンクへ戻せるよう記録する。
+
 比較CLIは `/srv/deaf-navi-codex-app-server/curation-review.mjs`、私有キャッシュは `/srv/deafnavi/shared/ai/curation-review-cache.json`。当日の承認済み文面だけ処理する。ロックにより二重実行を防ぐ。同じ結果は再取得せず、再利用時に既存台帳・取得時刻との比較をやり直す。結果不明の送信を自動再試行しない。
 
 日次の `deaf-navi-2` に統合し、新しいcron・定時API連打は追加しない。登録済み情報源の復旧は引き続き非AI。毎日の共有適性・無料枠確認は必要なため、Codexが完全に不要になるわけではない。新規発見・画像・PDF・SNSの実確認も残る。

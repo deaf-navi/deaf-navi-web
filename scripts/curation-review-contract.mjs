@@ -4,6 +4,9 @@ export const REVIEW_VERSION='curation-review-v1';
 export const reviewKinds=['news','event','cafe'];
 const fields=['startDate','endDate','venue','application','communication','status'];
 const normalize=value=>String(value??'').normalize('NFKC').replace(/\s+/g,' ').trim();
+// Japanese venue labels often insert layout spaces between a facility/floor/room.
+// Preserve Latin word boundaries and all actual characters and numbers.
+const venueKey=value=>normalize(value).replace(/([\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]) +(?=[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\d])/gu,'$1');
 export const evidenceHash=text=>createHash('sha256').update(normalize(text)).digest('hex');
 const object=properties=>({type:'object',additionalProperties:false,required:Object.keys(properties),properties});
 export const reviewSchema=object({items:{type:'array',items:object({
@@ -93,7 +96,8 @@ export function compareReview(task,decision,{now=Date.now()}={}) {
     if(decision.contentType!=='announcement')reasons.push('not-confirmed-announcement');
     for(const field of ['startDate','venue']){
       if(!facts[field])reasons.push('missing-'+field);
-      if(!baseline[field]||normalize(baseline[field])!==normalize(facts[field]))differences.push(field);
+      const key=field==='venue'?venueKey:normalize;
+      if(!baseline[field]||key(baseline[field])!==key(facts[field]))differences.push(field);
     }
     for(const field of ['endDate','application','status'])if(facts[field]&&normalize(baseline[field])!==normalize(facts[field]))differences.push(field);
     const methods=decision.facts.filter(f=>f.field==='communication').map(f=>f.value).sort();

@@ -8,6 +8,7 @@ umask(0077);
 try {
     $mode=$argv[1]??'';
     if($mode==='--export'){echo json(cafe_registry_export())."\n";exit;}
+    if($mode==='--review-export'){echo json(cafe_registry_review_export())."\n";exit;}
     $file=$argv[2]??'';$backupDir=$argv[3]??'';$approved=$argv[4]??'';
     if(!in_array($mode,['--dry-run','--apply'],true)||!is_file($file)||is_link($file)||filesize($file)>1000000)fail('Usage: curate-cafe-events.php --export | --dry-run MANIFEST | --apply MANIFEST BACKUP_DIR PLAN_SHA256');
     $m=json_decode(file_get_contents($file),true,512,JSON_THROW_ON_ERROR);$hash=hash_file('sha256',$file);
