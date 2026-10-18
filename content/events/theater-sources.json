@@ -21,8 +21,8 @@
         "gifu-ibuki-kurayami-2026-12-05"
       ],
       "missing": [],
-      "checkedAt": "2026-10-17T00:42:48.623Z",
-      "recheckAfter": "2026-10-18T00:00:00Z",
+      "checkedAt": "2026-10-18T00:33:05.961Z",
+      "recheckAfter": "2026-10-19T00:00:00Z",
       "queries": [
         "岐阜ろう劇団いぶき 公演 2026",
         "岐阜ろう劇団いぶき 公演 2027"
@@ -47,8 +47,8 @@
       "missing": [
         "劇団単独の公式告知先"
       ],
-      "checkedAt": "2026-10-17T00:42:48.623Z",
-      "recheckAfter": "2026-10-18T00:00:00Z",
+      "checkedAt": "2026-10-18T00:33:05.961Z",
+      "recheckAfter": "2026-10-19T00:00:00Z",
       "queries": [
         "札幌ろうあ劇団舞夢 公演 2026",
         "札幌ろうあ劇団舞夢 公演 2027"
@@ -70,8 +70,8 @@
       "missing": [
         "整合する次回公演日程"
       ],
-      "checkedAt": "2026-10-17T00:42:48.623Z",
-      "recheckAfter": "2026-10-18T00:00:00Z",
+      "checkedAt": "2026-10-18T00:33:05.961Z",
+      "recheckAfter": "2026-10-21T00:00:00Z",
       "queries": [
         "日本ろう者劇団 公演 2026",
         "日本ろう者劇団 公演 2027"
@@ -213,6 +213,33 @@
       "queries": [
         "字幕用スマートグラス 公演",
         "ホリプロ 聴覚 鑑賞サポート"
+      ]
+    },
+    {
+      "id": "kaat-hearing-support",
+      "name": "KAAT神奈川芸術劇場（聴覚の鑑賞サポート）",
+      "prefecture": "神奈川県",
+      "officialUrls": [
+        "https://www.kaat.jp/"
+      ],
+      "evidenceUrls": [
+        "https://www.kaat.jp/d/jungle2026",
+        "https://www.kaat.jp/d/kaeru2026"
+      ],
+      "state": "upcoming_verified",
+      "notes": "10月18日に会場公式本文で字幕機器・タブレット席の対象回を確認。劇団総数の根拠とはせず、字幕による鑑賞サポートの追跡先。ジャングルの手話通訳は受付と終演後ツアーのみ。",
+      "eventIds": [
+        "kaat-jungle-captions-2026-10-24",
+        "kaat-jungle-captions-2026-10-25",
+        "kaat-kaeru-captions-2026-11-06",
+        "kaat-kaeru-captions-2026-11-07"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-18T00:33:05.961Z",
+      "recheckAfter": "2026-10-19T00:00:00Z",
+      "queries": [
+        "手話演劇 2026年11月 東京 神奈川",
+        "KAAT 蛙昇天 字幕"
       ]
     }
   ]
