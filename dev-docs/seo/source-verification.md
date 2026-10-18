@@ -77,3 +77,13 @@ site-shell/pageが読む表示用12 CSS/JSを同mainから実読し、合成詳�
 [PR97](https://github.com/deaf-navi/deaf-navi-web/pull/97)の最終head `9fe7a7d1ce447b2036376bab32277879cb181416` /CI39176242415がsuccess。通常squash `54a81c6aad5435f85c1a75341d7088be3eec6a98` の実parent/6ファイル差分と、mainのPHPが候補と一致することをGitHubで再読。XServer39176365311のPHP lint/隔離SEO130/原子的切替/基本HTTPは10/19 08:25:01 JSTにsuccess。
 
 08:25:26 JSTの子HTTPは専用UA/headerとdn_client=codex付きでもCONNECT403、Web読取もnot accessible。本番FAQのHTMLやモバイル・音声を取得できた証拠ではなく、親の正式ブラウザー再読待ち。原因をPHPキャッシュやサイト障害と確定せず、診断だけの再公開・Caddy/PR30操作・認証変更は行わない。
+
+## 2026-10-19 08:30:47 JST 公開QAの不一致と配布診断
+
+親の正式ChromeでFAQ2回答を展開したAXと実画面が一致し、通常再読1回後も「詳しい条件」「営業形態」の旧案内だった。UIの現行legend/summary/selectと既存全条件一致のtipは表示済み。403表示はなく、実HTTPステータスは未計測。全文は当日日次に保存し、子の取得成功とは区別する。
+
+最新main e75ad895と配布54a81c6のソースを再読。FAQは固定PHP文字列でDB条件による旧文言分岐がない。static入口にFAQなし。配布ログは54a81c6 checkoutとstaging PHP lintを示すが、実体のhashや稼働PHP版は未取得。対象6 PHPで正規tarを隔離再現し、_backend/cafe-seo.phpが単一収録/byte一致。Git blob6b2fb67、8062bytes、期待SHA-256 `066a8269b7e11a847b5b19c1d9fbe2752156177e0b01a8a3f4a5fdd0032338e0`。実配布archive/実サーバーのhash確認ではない。
+
+10/19に[Caddyのphp_fastcgi一次資料](https://caddyserver.com/docs/caddyfile/directives/php_fastcgi)と[PHPのOPcache設定一次資料](https://www.php.net/manual/en/opcache.configuration.php)を再読。symlinkの実体root解決と、timestamp検証を無効にした場合の更新反映条件は確認できるが、本番でその条件が成立する証拠はない。原因候補として保持し、設定変更や失効処理を実行する根拠へ置き換えない。
+
+現ユーザーに既存SSH設定/標準identity/known_hosts/agent/対象host-user変数はなく、SSHツールもない。稼働current/hash/有効FastCGI・FPM設定の読取が停止点。PR30スクリプト実行・Caddy/キャッシュ/サービス操作・診断用公開・新規認証は行わない。所在地title/地域導線の既完了を再開しない。
