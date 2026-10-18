@@ -12,6 +12,11 @@ const text='手話交流会を開催します。開催日 2026年11月14日。�
 const target={kind:'event',recordId:'fixture-event',title:'手話交流会',sourceUrl:'https://example.org/event',sourceMode:'html',officialVerified:true,sharingReviewedAt:new Date(now-60000).toISOString(),approvedDocumentHash:'a'.repeat(64),fragments:[text]};
 const record={kind:'event',recordId:'fixture-event',title:target.title,sourceUrl:target.sourceUrl,sourceMode:'html',publication:'public',verification:'verified',verifiedAt:new Date(now-60000).toISOString(),baseline:{startDate:'2026-11-14',venue:'市民会館'}};
 const catalog={version:1,targets:[target]};
+test('publication comparison retains an explicitly published same-day end date without inventing missing dates',()=>{
+ const event={id:'fixture-event',title:'手話交流会',startDate:'2026-11-14',endDate:'2026-11-14',venue:'市民会館'};
+ const [record]=reviewRecords({events:[event]},{ready:true,records:[]});assert.equal(record.baseline.endDate,'2026-11-14');
+ const [missing]=reviewRecords({events:[{...event,endDate:null}]},{ready:true,records:[]});assert.equal(missing.baseline.endDate,undefined);
+});
 test('CLI enters its guarded configuration check through the deployed directory link',async t=>{
  const folder=await mkdtemp(join(tmpdir(),'dn-daily-entry-'));t.after(()=>rm(folder,{recursive:true,force:true}));
  const link=join(folder,'curation-batch');
