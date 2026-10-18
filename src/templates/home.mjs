@@ -28,7 +28,8 @@ import {
 import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
-import { renderThumbnail } from './thumbnail.mjs';
+import { renderNewsThumbnail } from './thumbnail.mjs';
+import { groupNewsTopics } from '../lib/news-topics.mjs';
 import {
   EXTERNAL_ARROW_SVG,
   ICONS,
@@ -48,7 +49,7 @@ export const FEATURED_MAX_AGE_DAYS = 14;
 
 /** 「注目」= 公式・専門情報源の新着（透明なルール。スコア等の権威付けはしない） */
 export function selectFeatured(articles, now = Date.now()) {
-  return articles
+  return groupNewsTopics(articles).map(group => group.lead)
     .filter((a) => !EXCLUDED_FROM_ALL.has(a.category))
     .filter((a) => ['official', 'specialist'].includes(getSourceTier(a)))
     .filter((a) => {
@@ -194,11 +195,12 @@ function renderFeatured(featured) {
   if (!featured.length) return '';
   const items = featured.map((a) => `        <li class="featured__item">
           <a class="featured__link" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">
-            ${renderThumbnail(a)}
+            ${renderNewsThumbnail(a)}
             <div class="featured__body">
             <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(CATEGORY_UI[a.category] ?? '一般')}</span>${renderNewsContext(a)}
             <h3 class="featured__title">${escapeHtml(a.title)}</h3>
-            <span class="featured__meta">${escapeHtml(a.sourceName)} ・ <time datetime="${escapeHtml(a.publishedAt)}" data-relative-time>${escapeHtml(formatDateJST(a.publishedAt).replace(' JST', ''))}</time></span>
+            ${a.summary && !/^聴覚・手話に関わる取り組みについてのお知らせです。/u.test(a.summary) ? `<p class="featured__summary">${escapeHtml(a.summary)}</p>` : ''}
+            <span class="featured__meta">${escapeHtml(a.sourceName)} ・ <time datetime="${escapeHtml(a.publishedAt)}">${escapeHtml(formatDateJST(a.publishedAt).slice(0, 10))}</time></span>
             </div>
           </a>
         </li>`).join('\n');
@@ -210,6 +212,14 @@ function renderFeatured(featured) {
 ${items}
       </ul>
     </section>`;
+}
+
+function renderTopic(group, now) {
+  const related = group.articles.slice(1);
+  return `<div class="news-topic">${renderArticleCard(group.lead, { now, newsMedia: true })}${related.length ? `
+        <details class="topic-related"><summary>同じ話題の報道 <span>${related.length}件</span></summary>
+          <ul>${related.map(a => `<li>${renderArticleCard(a, { now })}</li>`).join('')}</ul>
+        </details>` : ''}</div>`;
 }
 
 function renderToolbar() {
@@ -329,12 +339,14 @@ export function renderHomePage(data, opts) {
 
   const defaultVisible = articles.filter((a) => !EXCLUDED_FROM_ALL.has(a.category));
   const featured = selectFeatured(articles, now);
-  const initialCards = defaultVisible.slice(0, INITIAL_VISIBLE);
+  const topics = groupNewsTopics(defaultVisible);
+  const topicMap = topics.filter(g => g.articles.length > 1).map(g => g.articles.map(a => a.id));
+  const initialCards = topics.slice(0, INITIAL_VISIBLE);
   const initialVisibleCount = initialCards.length;
-  const totalDefaultCount = defaultVisible.length;
+  const totalDefaultCount = topics.length;
 
   const articlesHtml = initialCards
-    .map((a) => renderArticleCard(a, { now }))
+    .map((group) => renderTopic(group, now))
     .join('\n');
 
   const jsonLd = renderJsonLd({ generatedAt, articles, pageUrl, isDev });
@@ -381,10 +393,11 @@ ${renderAgentActivity()}
       <div class="articles-head">
         <h2 id="articles-heading">最新ニュース</h2>
         <p class="meta" aria-live="polite">
-          表示中: <strong id="visible-count">${initialVisibleCount}</strong> / 全 <strong id="total-count">${totalDefaultCount}</strong> 件
+          表示中: <strong id="visible-count">${initialVisibleCount}</strong> / 全 <strong id="total-count">${totalDefaultCount}</strong> <span id="news-count-unit">話題</span>
         </p>
       </div>
 ${renderToolbar()}
+      <p class="news-group-note" id="news-group-note">同じ話題はまとめて表示。各媒体の記事は開いて読めます。</p>
       <p class="news-update">更新 <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time> · <a href="./${files.about}#about-policy">選定方針</a></p>
       <p class="offline-note" id="offline-note" role="status" hidden>オフライン表示中です。保存済みの内容を表示しています（最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>）。</p>
       <div id="articles" class="articles" data-total="${totalDefaultCount}" data-initial="${initialVisibleCount}" data-src="./${files.articlesJson}">
@@ -392,11 +405,11 @@ ${articlesHtml}
       </div>
       <p id="empty-msg" class="empty" role="status" hidden>該当する記事がありません。検索条件を変えるか、「条件をクリア」を押してください。</p>
       <noscript>
-        <p class="empty">検索・絞り込み・61件目以降の表示にはJavaScriptが必要です。最新${initialVisibleCount}件を表示しています。すべての記事は <a href="./${files.feed}">RSSフィード</a> や <a href="./${files.oldIndex}">過去アーカイブ</a> からも確認できます。</p>
+        <p class="empty">検索・絞り込み・続きの読み込みにはJavaScriptが必要です。最新${initialVisibleCount}話題を表示しています。同じ話題の報道は開いて読めます。すべての記事は <a href="./${files.feed}">RSSフィード</a> や <a href="./${files.oldIndex}">過去アーカイブ</a> からも確認できます。</p>
       </noscript>
       <div class="load-more-wrap">
         <button type="button" id="load-more-btn" class="load-more-btn"${totalDefaultCount <= INITIAL_VISIBLE ? ' hidden' : ''}>
-          もっと読む<span class="load-more-btn__remain" id="load-more-remain">（あと ${totalDefaultCount - initialVisibleCount} 件）</span>
+          もっと読む<span class="load-more-btn__remain" id="load-more-remain">（あと ${totalDefaultCount - initialVisibleCount} 話題）</span>
         </button>
       </div>
       <p class="archive-link"><a href="./${files.oldIndex}">過去アーカイブを見る</a></p>
@@ -430,6 +443,7 @@ ${renderFooter({
   })}
 
 ${renderCardTemplate()}
+  <script type="application/json" id="news-topic-map">${JSON.stringify(topicMap).replace(/</g, '\\u003c')}</script>
 
   <script src="./ui-controls.js${assetVersion}" defer></script>
   <script src="./${files.app}${assetVersion}" defer></script>
