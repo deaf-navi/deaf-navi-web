@@ -17,6 +17,7 @@ try {
   let inflight=false;
   try{await readFile(join(stateDir,'inflight.json'));inflight=true;}catch(error){if(error.code!=='ENOENT')throw error;}
   process.stdout.write(JSON.stringify({day,model:COMPLIMENTARY_MODEL,accounting:'actual_usage_with_unsettled_reservations',dailyBudget:budget,...usage,
-    remainingLocalBudget:Math.max(0,budget-usage.accountedTokens),requestLimit:COMPLIMENTARY_REQUEST_LIMIT,remainingRequests:Math.max(0,COMPLIMENTARY_REQUEST_LIMIT-usage.requests),
+    remainingLocalBudget:Math.max(0,budget-usage.accountedTokens),requestLimit:COMPLIMENTARY_REQUEST_LIMIT,remainingRequests:Math.max(0,COMPLIMENTARY_REQUEST_LIMIT-usage.routineRequests),researchRequestLimit:null,
+    fallback:lease.groups?.light?{model:lease.groups.light.model,eligible:lease.groups.light.eligible,accessVerified:lease.groups.light.modelAccessVerified}:null,
     reconciliationRequired:inflight||usage.unresolved>0,checkedAt:lease.checkedAt,expiresAt:lease.expiresAt})+'\n');
 }catch(error){process.stderr.write('USAGE_UNAVAILABLE: '+(error.code==='complimentary_unavailable'?error.message:'Private usage record requires inspection')+'\n');process.exitCode=1;}

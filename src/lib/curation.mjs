@@ -4,6 +4,7 @@
  */
 
 import { newsContext } from './news-context.mjs';
+import {newsArticleHash} from './news-assistance.mjs';
 import {
   CATEGORY_RULES,
   DEFAULT_CATEGORY,
@@ -112,6 +113,10 @@ export function buildArticle(entry, feedDef = null) {
   const location = detectRegion(entry.title, entry.summary);
   return {
     ...entry,
+    _sourceContentHash:newsArticleHash(entry),
+    ...(feedDef?.linkOnlySummary?{summary:'聴覚・手話に関わる取り組みについてのお知らせです。内容は公式記事をご確認ください。'}:{}),
+    _requiresTopicMatch:Boolean(feedDef?.requireTopicMatch),
+    _topicMatched:isRelevantArticle(entry.title,entry.summary),
     category,
     ...(location ? { region: location.region, prefecture: location.prefecture } : {}),
     _sourceTier: feedDef?.sourceTier ?? inferDiscoverySourceTier(entry.sourceName, entry.sourceUrl),
@@ -281,8 +286,9 @@ export function publicationExclusionReason(article) {
   if (/市場規模|市場予測/u.test(title) && /レポート|成長率|予測|CAGR/iu.test(title)) return 'market-report';
   const explicit = explicitUnrelatedReason(article);
   if (explicit) return explicit;
+  if(article._requiresTopicMatch&&!article._topicMatched&&!article._assistedRelevance)return 'source-topic-unconfirmed';
   const communityFeed = article._feedUrl && ['official', 'specialist'].includes(article._sourceTier);
-  if (!article._passThrough && !communityFeed && !isRelevantArticle(title, article.summary)) return 'unrelated';
+  if (!article._passThrough && !communityFeed && !article._assistedRelevance && !isRelevantArticle(title, article.summary)) return 'unrelated';
   return null;
 }
 
@@ -319,7 +325,7 @@ export function curateArticles(allArticles, context = {}, now = Date.now()) {
     const { score, signals } = scoreArticle(article);
     return {
       ...article,
-      curationScore: score,
+      curationScore: article._assistedRelevance?Math.max(score,article._minScore??DEFAULT_MIN_SCORE):score,
       curationSignals: signals,
       _dedupeKey: normalizeTitleKey(article.title),
     };
@@ -413,13 +419,19 @@ export function stripInternal(article, { keepScores = false } = {}) {
     _dedupeKey,
     _feedUrl,
     _thumbnailCandidate,
+    _reviewExcerpt,
+    _sourceContentHash,
+    _requiresTopicMatch,
+    _topicMatched,
+    _assistedRelevance,
+    _assistedContext,
     ...clean
   } = article;
   const sourceTier = (_sourceTier ?? clean.sourceTier) === 'google'
     ? 'news'
     : (_sourceTier ?? clean.sourceTier ?? 'news');
   clean.summary = cleanSummaryText(clean.summary, clean.title, clean.sourceName);
-  const context = newsContext(clean);
+  const context = _assistedContext??newsContext(clean);
   if (context) clean.newsContext = context;
   else delete clean.newsContext;
   clean.sourceTier = sourceTier;

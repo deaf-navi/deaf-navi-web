@@ -1,19 +1,19 @@
 # Deaf Navi 公開テキストの無料API運用
 
-ユーザーが2026-10-18に shared-free-tier の利用とDeaf Navi専用キーの発行を許可。既存のデータ共有設定・請求設定・他アプリのキーは変更しない。国内ニュースのRSS収集、登録済み情報源の照合・復旧にAIは不要。APIはWorldの不足翻訳と、確認済みイベント・カフェの短い説明文の補助に限定する。ブラウザー調査・証拠確認・掲載判断は引き続きこのチャットで行う。
+ユーザーが2026-10-18に shared-free-tier の利用とDeaf Navi専用キーの発行を許可。同日の追加許可で、国内ニュースの補助選別、イベント・カフェの事実抽出と既存情報の比較にも対応する。既存のデータ共有設定・請求設定・他アプリのキーは変更しない。RSS収集・情報源照合・復旧は非AIのまま。APIは証拠付き下書きを作り、差異・不足・画像/PDF等の例外をこのチャットで確認する。具体的手順は `API_CURATION.md`。
 
 ## 適格性と上限
 
 - 公式条件: https://help.openai.com/en/articles/10306912-sharing-feedback-evaluation-and-fine-tuning-data-and-api-inputs-and-outputs-with-openai
 - 2026-10-18にアカウントの登録済み表示、Launch tier、shared-free-tierだけの入出力共有、正の残高を確認。このモデル群の無料枠は組織全体で入力・出力合計100万トークン/UTC日。将来も同じとは扱わない。
-- 現行モデルは実行確認済みの `gpt-6.1-sol`、`reasoning.effort=low`、Responses APIのStandard処理。Worldの不足翻訳と確認済みイベント・カフェの短文整理に使用する。短い文章に過剰な推論を使わず、翻訳の固有名詞・条件保持を優先してSolに統一する。Astra・Fast・Ultrafastや自動モデル振分けは使用しない。
+- 通常モデルは `gpt-6.1-sol`、`reasoning.effort=low`、Responses APIのStandard処理。高性能群100万tokens/日の無料残量で次の予約量を安全に収められない場合だけ、別の軽量群1,000万tokens/日の `gpt-5.6-terra` / lowへ切り替える。両群の当日適格性・組織全体の消費・実利用可否を確認した `groups` が必要。Astra・Fast・Ultrafast・有料検索ツールは使わない。HTTPエラーは切替条件にしない。
 - モデル・推論設定の定義元は `scripts/complimentary-text-client.mjs` の `COMPLIMENTARY_MODEL` / `COMPLIMENTARY_REASONING_EFFORT`。日次記録とhealth表示も同じ定義を参照する。モデル変更前のallowanceは一致検査で拒否し、新モデルの対象可否・残量を実確認してから記録し直す。モデルを変えても当日の使用台帳・予約量は保持する。
 - モデル仕様: https://developers.openai.com/api/docs/models/gpt-6.1-sol 。最新モデルという理由だけで無料対象・利用可能とは扱わず、上記の無料枠条件とアカウント表示、実APIを照合する。
 - 2026-10-18に `gpt-6.1-sol` の無料対象を確認し、shared-free-tierのモデル許可リストへ同モデルのみ追加した（既存5.6系3モデル・支出上限は保持）。保存後も実APIが403 `model_not_found` / project does not have accessを返したため、本番移行は保留して5.6 Solへ明示的に戻した。APIキーの権限は変更していない。設定伝播以外の原因はUNKNOWN。6.1へ再移行する場合も実応答と無料枠区分を確認してから定義・日次記録を揃える。失敗したリクエストの予約量は払い戻さない。
 - 同日08:49 UTC、ユーザー許可で要求回数を見直して同じキー・プロジェクトで再試験し、`gpt-6.1-sol` のHTTP 200・completed・日本語の構造化応答を確認した（入力210＋出力73＝283トークン）。追加のキー権限・共有設定変更は行っていない。以前の403が解消した内部原因はUNKNOWN。本番反映はこの要求の無料枠区分をUsage画面で照合してから行う。
 - 日付の境界は00:00 UTC（09:00 JST）。毎日、当日の対象・残量・他の利用を確認した記録が必要。前日や過去7日間だけの確認では当日の許可を更新しない。
 - Deaf Naviの上限は「確定実使用＋未精算の予約」で10万トークン/日、16リクエスト/日、確認済み残量の10%以下。要求回数は `COMPLIMENTARY_REQUEST_LIMIT` を実行・状態表示で共有する。2026-10-18に組織全体の当日実使用3,952トークン、対象枠100万、他プロジェクトの同日使用なしを確認し、ユーザー許可で12回から16回へ変更した。当日のトークン予算99,000、既存要求回数・保留予約は維持する。送信前に入力UTF-8バイト数＋出力上限＋余裕を確保し、APIが返した入力・出力tokensが妥当で予約内と確認できた場合だけ実使用へ精算する。推論tokensはoutput_tokensに含まれるため二重加算しない。元の予約量・履歴は削除せず、既存version 1台帳も同じ計算で読む。
-- 拒否された要求の使用量が不明な場合は予約を保持し、通信断・5xx・使用量不明は再送を停止する。成功した要求の余剰分だけを解放し、失敗分をゼロと推測しない。16回の要求上限には失敗も含む。自動で上限を引き上げたり、台帳をリセットしたりしない。
+- 拒否された要求の使用量が不明な場合は予約を保持し、通信断・5xx・使用量不明は再送を停止する。成功した要求の余剰分だけを解放し、失敗分をゼロと推測しない。通常処理の16回上限には失敗も含む。ユーザーの同日追加指定により、明示的な調査・再試験は `--research` で別集計し、回数上限を設けない。10万tokens以下の当日ローカル予算・確認済み無料枠・同じ台帳を共有し、回数以外の制限は外さない。HTTPサービスや定時処理は通常モード固定。
 - 無料枠をまたぐリクエストは全体が通常課金になり得る。ローカル上限はOpenAI側の強制無料設定ではない。他クライアントの消費も調べ、不明なら使用しない。料金画面の反映待ちは0円確定と書かない。
 - 残量・対象・キー所属・当日の確認が不明、期限切れ、上限超過、結果不明なら送信しない。自動で有料APIやCodexへ切り替えない。Google翻訳・キャッシュ・翻訳保留の仕組みは継続する。
 
@@ -40,8 +40,9 @@ DEAFNAVI_AI_STATE_DIR=/srv/deafnavi/shared/ai
 
 - `mode=daily-account-check`: `model`（現行定義と一致し、無料対象を実確認したもの）、`checkedAt`（30分以内・当日）、`keyProjectVerified=true`、`otherUsageReviewed=true`、`enrolled=true`、`sharingEnabled=true`、`balancePositive=true`、`groupDailyLimit`、`observedGroupTokens`、`dailyBudget`、`publicDataReviewed=true`、`reviewedPublicItems` を実確認後に渡す。
 - `mode=approve-text`: 同じ日の有効な許可に、`publicDataReviewed=true` と `reviewedPublicItems` のhashだけを追加する。期限・残量・利用記録は更新しない。
+- 二群対応の `daily-account-check` は `groups.high/light` に `model/eligible/modelAccessVerified/groupDailyLimit/observedGroupTokens` を実測で渡す。highはトップレベルの枠・使用量と一致させる。初回の軽量モデル試験だけ `modelAccessVerified=false` のまま `--research` と `modelOverride=gpt-5.6-terra` を指定できる。本番自動切替は実応答と無料区分確認後のtrueのみ。群の残量は確認値の10%から確認後の自アプリ利用・保留予約を引いて評価し、総予算・回数・結果不明ロックはモデル変更でも共通。
 - `reviewedPublicItems` の各項目は `id/title/summary` または `id/original_title/original_summary`。共有する文面を変更したら再確認する。
-- `scripts/review-public-text.mjs` は `publicDataReviewed=true`、`items`、`purpose=world_translation|public_event_summary|public_cafe_summary` を標準入力から受ける。返答は下書きであり、情報源確認・掲載承認・日時更新を実行しない。
+- `scripts/review-public-text.mjs` は `publicDataReviewed=true`、`items`、`purpose=world_translation|public_event_summary|public_cafe_summary|curation_review` を標準入力から受ける。比較には `scripts/curation-review.mjs` を使う。返答は下書きであり、掲載承認・確認期限更新を実行しない。
 
 APIに検索ツールやファイルは渡さない。公式本文・画像・PDFの閲覧は既存の調査方法を使う。画像や長文の転載、日程・会場の推測、48時間期限の見せかけの延長は禁止のまま。
 

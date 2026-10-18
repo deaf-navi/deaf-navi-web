@@ -11,8 +11,8 @@
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { fileURLToPath,pathToFileURL } from 'node:url';
+import { dirname, join,resolve } from 'node:path';
 
 import { CURATE_USER_AGENT } from '../config/site.mjs';
 import { CURATION_LIMITS } from '../config/scoring.mjs';
@@ -24,6 +24,8 @@ import {
   SOCIAL_FEEDS,
 } from '../config/sources.domestic.mjs';
 import { fetchWithTimeout } from './lib/fetch-retry.mjs';
+import { collectDomesticPages } from './lib/domestic-pages.mjs';
+import {applyNewsAssistance,newsArticleHash} from './lib/news-assistance.mjs';
 import { parseFeedEntries } from './lib/feed-parser.mjs';
 import { enrichNewsThumbnails } from './lib/news-thumbnails.mjs';
 import {
@@ -74,7 +76,7 @@ async function loadJsonArticles(file) {
   }
 }
 
-async function collectArticles() {
+export async function collectArticles() {
   const allArticles = [];
   const directFeeds = USE_EXPANDED_PROFILE
     ? [...DIRECT_FEEDS, ...EXPANDED_DIRECT_FEEDS, ...SOCIAL_FEEDS]
@@ -124,6 +126,11 @@ async function collectArticles() {
     }
   }
 
+  if(USE_EXPANDED_PROFILE){
+    const pages=await collectDomesticPages();
+    allArticles.push(...pages.articles.map(article=>({...article,category:buildArticle(article).category})));
+    sourceHealth.pages=pages.health;
+  }
   return { allArticles, directFeeds, sourceHealth };
 }
 
@@ -142,10 +149,22 @@ async function loadNews() {
   }
 
   if (USE_EXPANDED_PROFILE) {
-    return curateArticles(allArticles, {
+    let reviews=[];
+    try{reviews=JSON.parse(await readFile(join(ROOT,'content/news/assisted.json'),'utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}
+    const assisted=applyNewsAssistance(allArticles,reviews);
+    const result=curateArticles(assisted.articles, {
       fallbackCandidateCount: fallbackArticles.length,
       sourceHealth,
     });
+    result.report.assistance={applied:assisted.applied,mode:'reviewed-content-only'};
+    // No source bodies, contact details, or API prompts enter this recall queue.
+    const selected=new Set([...result.articles,...result.oldArticles].map(x=>x.id));
+    const candidates=[...new Map(allArticles.filter(x=>!selected.has(x.id)&&isWithinFallbackWindow(x)).map(x=>[x.id,x])).values()]
+      .sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt)).slice(0,40)
+      .map(article=>({sourceUrl:article.id,articleHash:newsArticleHash(article),publishedAt:article.publishedAt,sourceTier:article._sourceTier}));
+    await mkdir(join(ROOT,'.state'),{recursive:true});
+    await writeFile(join(ROOT,'.state/news-review-candidates.json'),JSON.stringify({generatedAt:new Date().toISOString(),candidates},null,2)+'\n');
+    return result;
   }
 
   // 旧・縮小プロファイル: 関連キーワード一致とURL単位の重複除去のみ
@@ -226,7 +245,7 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href)main().catch((err) => {
   console.error('キュレーション失敗:', err);
   process.exit(1);
 });

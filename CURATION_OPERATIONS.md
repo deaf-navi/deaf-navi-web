@@ -30,7 +30,7 @@
 
 両WorkflowのcronはUTCの `10 3,9,21 * * *`、JST **06:10 / 12:10 / 18:10**。`timezone:` は使用しない。GitHubのscheduleは混雑時に遅延・欠落することがあり、開始時刻の保証はない。未起動と実行後の失敗はActions履歴で区別する。
 
-国内はRSS/記事取得、分類、静的ビルド、app APIをGitHub Actions内で生成する。Codex・ChatGPT Work・有料AI APIは不要。
+国内はRSS/公式ページ取得、基礎分類、静的ビルド、app APIをGitHub Actions内で生成する。未採用候補はURLとhashで日次確認へ回し、無料APIで比較済みの承認差分だけを本文hash・期限付きで採用する。APIなしでも基礎更新を継続する。詳細は `API_CURATION.md`。有料AI APIは使わない。
 
 Worldは既存の `translate.googleapis.com/translate_a/single?client=gtx` による翻訳とDeaf Navi用語補正、翻訳キャッシュを先に使う。訳せない記事だけ、shared-free-tierの専用API（現在GPT-6.1 Sol・low）で補う。2026-09-27時点のCodex補完から移行済み。日本語になっているキャッシュ・Google翻訳済み記事は通常実行で再校正せず、Googleが成功した回は無料APIも呼ばない。
 

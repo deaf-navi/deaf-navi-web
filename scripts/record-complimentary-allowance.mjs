@@ -28,9 +28,16 @@ try {
       checkedAt:input.checkedAt,expiresAt:new Date(Date.parse(day+'T00:00:00Z')+86400000).toISOString(),
       enrolled:input.enrolled,sharingEnabled:input.sharingEnabled,balancePositive:input.balancePositive,publicDataOnly:true,
       groupDailyLimit:input.groupDailyLimit,observedGroupTokens:input.observedGroupTokens,dailyBudget:input.dailyBudget,
+      ...(input.groups?{groups:input.groups}:{}),
       approvedTextHashes:[...new Set(hashes)]};
     if(now-Date.parse(input.checkedAt)>30*60_000)throw new Error('Account inspection must be recent');
     validateAllowance(lease,{key,project,now});
+    // A same-day account refresh must not discard already reviewed exact text.
+    try{
+      const previous=JSON.parse(await readFile(target,'utf8'));
+      validateAllowance(previous,{key,project,now});
+      lease.approvedTextHashes=[...new Set([...previous.approvedTextHashes??[],...hashes])];
+    }catch(error){if(error.code!=='ENOENT'&&error.code!=='complimentary_unavailable')throw error;}
   }else throw new Error('Unsupported inspection mode');
   const temp=target+'.tmp-'+randomUUID();
   await writeFile(temp,JSON.stringify(lease)+'\n',{mode:0o600});await rename(temp,target);

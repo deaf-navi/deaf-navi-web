@@ -35,6 +35,10 @@ export const KEYWORD_GROUPS = [
 
 export const EXPANDED_KEYWORD_GROUPS = [
   ...KEYWORD_GROUPS,
+  { query: '失聴 OR 軽度難聴 OR 聴覚情報処理障害 OR 聞き取り困難', defaultCategory: 'general' },
+  { query: '手話言語条例 OR 手話施策推進 OR 情報アクセシビリティ', defaultCategory: 'policy' },
+  { query: '筆談対応 OR 文字による通報 OR 電話リレーサービス', defaultCategory: 'accessibility' },
+  { query: '舞台手話通訳 OR オープン字幕 OR 日本語字幕上映 OR 鑑賞サポート 字幕', defaultCategory: 'culture' },
   { query: '字幕用スマートグラス OR 字幕タブレット OR ヒアリングループ OR 磁気ループ OR 文字通訳', defaultCategory: 'accessibility' },
   { query: '筆談カフェ OR 耳マーク OR 聾者', defaultCategory: 'general' },
   { query: '盲ろう OR 盲ろう者 OR 盲ろう児', defaultCategory: 'policy' },
@@ -128,6 +132,14 @@ export const DIRECT_FEEDS = [
 ];
 
 export const EXPANDED_DIRECT_FEEDS = [
+  {
+    // Official centre homepage links this blog; RSS discovered in its alternate link.
+    url:'https://mimisuppomiyagi.hatenablog.com/rss',
+    sourceName:'みみサポみやぎ公式ブログ',
+    requireTopicMatch:true,linkOnlySummary:true,
+    sourceUrl:'https://www.mimisuppo-miyagi.org/',
+    defaultCategory:'local',sourceTier:'official',minScore:5,
+  },
   {
     url: 'https://www.zennancho.or.jp/feed/',
     sourceName: '全日本難聴者・中途失聴者団体連合会',
