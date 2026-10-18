@@ -5,7 +5,9 @@ import {createHash,randomUUID} from 'node:crypto';
 // No general agent tools, arbitrary endpoint, paid fallback, or automatic lease renewal.
 // One reviewed model policy for the client, allowance recorder, and health endpoint.
 // A change requires fresh model-specific eligibility; old allowances fail closed.
-export const COMPLIMENTARY_MODEL='gpt-6.1-sol';
+// GPT-6.1 Sol is eligible but the project's API still returned 403 after its
+// allowlist update on 2026-10-18. Use the verified model; never auto-fallback.
+export const COMPLIMENTARY_MODEL='gpt-5.6-sol';
 export const COMPLIMENTARY_REASONING_EFFORT='low';
 const MODEL=COMPLIMENTARY_MODEL;
 const PROJECT_NAME='shared-free-tier';
