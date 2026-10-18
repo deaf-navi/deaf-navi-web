@@ -1,6 +1,6 @@
 # 変更履歴
 
-最新状態（10/19 JST）：所在地title/東京・神奈川導線は完了を維持。今日は既存FAQ2回答の操作案内だけを現行UIに合わせる。CI・正規公開・本番再読は結果待ち。以下は日付ごとの経過履歴。
+最新状態（10/19 08:25 JST）：FAQ2回答はPR97/CI39176242415・XServer39176365311までsuccess。本番FAQ本文は子の取得制限で未取得、親の再読待ち。所在地title/東京・神奈川導線の完了は維持。以下は日付ごとの経過履歴。
 
 ## 2026-10-12 初回改善
 
@@ -124,3 +124,9 @@ server/cafe-seo.php の既存2回答だけを変更。「初心者歓迎」「�
 出典は同じmainの domestic_filters/domestic_matches。営業条件・支援条件・出典確認日や収集/承認を変更しない。codeの2行以外のプロダクト差分はなく、所在地title/地域導線を再実装しない。ローカル合成部品の375/1180/1280pxで折り返し・キーボード開閉を確認。PHPは既存CIで確認後、現行Deploy XServerを使う。CI/公開commit/Deploy/実URL結果は確定後に追記。
 
 復旧はこのPHP2回答の差分だけをrevertして同じ既存Deploy経路へ渡す。DB復元・Caddy変更・共有サービス再起動・API比較の実行は不要。運営記録はdev-docs/seoへ保存し、公開rootへ複製しない。
+
+### FAQのCI・正規公開確定
+
+PR97の最終head `9fe7a7d1ce447b2036376bab32277879cb181416` はCI39176242415全工程success（Node230/PHP SEO130/おとまど91、国内473/World600/iOS）。通常squash commit `54a81c6aad5435f85c1a75341d7088be3eec6a98` のXServer39176365311は10/19 08:25:01 JSTにsuccess。実commitは基準311fcc52をparentとする6ファイルで、PHP2行と運用5文書以外は変更なし。mainのPHP全文も候補と一致。
+
+配布とサーバーstagingでPHP lint、隔離SEO回帰130項目、原子的切替とトップ/アプリmanifestの基本HTTP確認が成功。本番FAQ本文は08:25:26 JSTの子HTTPがCONNECT403、Webもnot accessibleのため未取得。公開workflow成功をFAQ反映完了に置き換えず、親の正式ブラウザーによる識別付き再読待ちとして保持する。詳細はdaily/2026-10-19.md。追加再デプロイやサーバー設定変更は行わない。
