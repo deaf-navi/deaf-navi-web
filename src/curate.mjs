@@ -25,7 +25,7 @@ import {
 } from '../config/sources.domestic.mjs';
 import { fetchWithTimeout } from './lib/fetch-retry.mjs';
 import { collectDomesticPages } from './lib/domestic-pages.mjs';
-import {applyNewsAssistance} from './lib/news-assistance.mjs';
+import {applyNewsAssistance,missingNewsFallbacks} from './lib/news-assistance.mjs';
 import {buildNewsReviewQueue} from './lib/news-review-queue.mjs';
 import { parseFeedEntries } from './lib/feed-parser.mjs';
 import { enrichNewsThumbnails } from './lib/news-thumbnails.mjs';
@@ -140,7 +140,7 @@ async function loadNews() {
 
   const directFeedByName = new Map(directFeeds.map((feed) => [feed.sourceName, feed]));
   const previousArticles = await loadJsonArticles(DATA_FILE);
-  const fallbackArticles = previousArticles
+  const fallbackArticles = missingNewsFallbacks(allArticles,previousArticles)
     .filter((article) => isWithinFallbackWindow(article))
     .map((article) => hydratePreviousArticle(article, directFeedByName));
   allArticles.push(...fallbackArticles);

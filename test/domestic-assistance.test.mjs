@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parseDomesticPage,collectDomesticPages} from '../src/lib/domestic-pages.mjs';
 import {buildArticle,curateArticles,stripInternal,publicationExclusionReason} from '../src/lib/curation.mjs';
-import {applyNewsAssistance,newsArticleHash} from '../src/lib/news-assistance.mjs';
+import {applyNewsAssistance,newsArticleHash,missingNewsFallbacks} from '../src/lib/news-assistance.mjs';
+import {prepareDomesticPublication} from '../src/lib/publication-quality.mjs';
 import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
 import {buildNewsReviewQueue} from '../src/lib/news-review-queue.mjs';
 const now=Date.parse('2026-10-18T04:00:00Z');
@@ -74,4 +75,26 @@ test('queue comparisons retain fresh hashes and never interpret unchanged feeds 
  const changed=buildNewsReviewQueue([{...fresh,summary:'新しい告知'}],[],{now,previous});assert.equal(changed.comparison.changed,1);
  const stale=buildNewsReviewQueue([{...fresh,publishedAt:'2025-01-01T00:00:00Z'}],[],{now});assert.equal(stale.counts.outsideWindow,1);
  assert.equal(again.candidates[0].publicationApproved,undefined);
+});
+
+test('reviewed classification and summary survive rebuilds only while the exact saved content is current',()=>{
+ const article={id:'https://example.org/film',title:'作品名だけの案内',summary:'',publishedAt:'2026-10-17T00:00:00Z',_sourceTier:'broad'};
+ const review={id:article.id,articleHash:newsArticleHash(article),reviewedAt:new Date(now).toISOString(),sourceUrl:article.id,approved:true,relevance:'yes',contentType:'announcement',evidence:'字幕対応のお知らせです。',model:'gpt-6.1-sol',publicSummary:'日本語字幕の鑑賞サポートを開始します。'};
+ const saved=stripInternal(applyNewsAssistance([article],[review],{now}).articles[0]);
+ const data={generatedAt:new Date(now).toISOString(),count:1,articles:[saved]};
+ const rebuilt=prepareDomesticPublication(data,{now});
+ assert.equal(rebuilt.articles.length,1);assert.equal(rebuilt.articles[0].newsContext,'announcement');
+ assert.equal(rebuilt.articles[0].summary,review.publicSummary);
+ assert.equal(rebuilt.articles[0].newsAssistance.reviewedAt,review.reviewedAt);
+ assert.deepEqual(prepareDomesticPublication(rebuilt,{now}),rebuilt);
+ assert.equal(prepareDomesticPublication(data,{now:now+7*86400000}).articles.length,0);
+ assert.equal(prepareDomesticPublication({...data,articles:[{...saved,summary:'字幕という単語を含むが改変された説明'}]},{now}).articles.length,0);
+ assert.equal(applyNewsAssistance([saved],[],{now}).articles[0]._assistanceInvalid,true);
+ const fallback=applyNewsAssistance([saved],[review],{now});assert.equal(fallback.applied,1);assert.equal(fallback.articles[0]._assistedReview.reviewedAt,review.reviewedAt);
+ const changed={...article,summary:'別のお知らせへ変更'};
+ assert.deepEqual(missingNewsFallbacks([changed],[saved]),[]);
+ assert.equal(applyNewsAssistance([changed],[review],{now}).applied,0);
+ assert.deepEqual(missingNewsFallbacks([],[saved]),[saved]);
+ const legacy={...saved};delete legacy.newsAssistance;
+ assert.equal(applyNewsAssistance([legacy],[review],{now}).articles[0]._assistanceInvalid,true);
 });

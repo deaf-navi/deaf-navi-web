@@ -4,7 +4,7 @@
  */
 
 import { newsContext } from './news-context.mjs';
-import {newsArticleHash} from './news-assistance.mjs';
+import {newsArticleHash,savedNewsAssistanceIsCurrent,stampNewsAssistance} from './news-assistance.mjs';
 import {
   CATEGORY_RULES,
   DEFAULT_CATEGORY,
@@ -42,7 +42,7 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'publication-quality-v9';
+export const QUALITY_VERSION = 'publication-quality-v10';
 
 /* ---------- 分類 ---------- */
 
@@ -282,6 +282,7 @@ export function explicitUnrelatedReason(article) {
 
 /** Relevance is a gate, not a score boost. Trusted community feeds retain routine notices. */
 export function publicationExclusionReason(article) {
+  if(article._assistanceInvalid)return 'review-expired-or-changed';
   const title = cleanArticleTitle(article.title, article.sourceName).normalize('NFKC');
   if (!title || /^(?:工事中|準備中|作成中|テスト投稿|under construction|coming soon)[。.!！\s]*$/iu.test(title)) return 'placeholder';
   if (isLowValueDiscoveryPage(article)) return 'low-value-page';
@@ -427,6 +428,8 @@ export function stripInternal(article, { keepScores = false } = {}) {
     _topicMatched,
     _assistedRelevance,
     _assistedContext,
+    _assistedReview,
+    _assistanceInvalid,
     ...clean
   } = article;
   const sourceTier = (_sourceTier ?? clean.sourceTier) === 'google'
@@ -436,6 +439,7 @@ export function stripInternal(article, { keepScores = false } = {}) {
   const context = _assistedContext??newsContext(clean);
   if (context) clean.newsContext = context;
   else delete clean.newsContext;
+  if(_assistedReview)clean.newsAssistance=stampNewsAssistance(clean,_assistedReview);
   clean.sourceTier = sourceTier;
   clean.discoveryMethod = _feedUrl || clean.discoveryMethod === 'direct-feed'
     ? 'direct-feed'
@@ -448,7 +452,7 @@ export function stripInternal(article, { keepScores = false } = {}) {
 }
 
 /** 前回実行時の公開記事を内部表現へ戻す（フォールバック補完用） */
-export function hydratePreviousArticle(article, directFeedByName) {
+export function hydratePreviousArticle(article, directFeedByName, {now=Date.now()}={}) {
   const directFeed = directFeedByName.get(article.sourceName);
   const savedTier = article.sourceTier === 'news' ? 'google' : article.sourceTier;
   const title = cleanArticleTitle(article.title, article.sourceName);
@@ -456,6 +460,9 @@ export function hydratePreviousArticle(article, directFeedByName) {
   const { region, prefecture, ...rest } = article;
   return {
     ...rest,
+    ...(article.newsAssistance?(savedNewsAssistanceIsCurrent(article,now)
+      ? {_assistedRelevance:true,_assistedContext:article.newsContext,_assistedReview:{articleHash:article.newsAssistance.articleHash,reviewedAt:article.newsAssistance.reviewedAt}}
+      : {_assistanceInvalid:true}):{}),
     title,
     ...(location ?? {}),
     _sourceTier: directFeed?.sourceTier ?? savedTier ?? 'google',
