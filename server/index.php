@@ -22,6 +22,14 @@ header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-s
 ini_set('display_errors','0');
 $path=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
 if(in_array($path,['/connect/sign-cafe/map/','/connect/sign-cafe/overseas/'],true))header("Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
+// Only the three public lists may load these exact reviewed image URLs.
+// Admin, forms, detail pages and network/script permissions stay unchanged.
+if(in_array($path,['/connect/sign-cafe/','/connect/sign-cafe/overseas/','/connect/sign-cafe/events/'],true)){
+    // A literal comma separates CSP policies; URL-encode it in image paths.
+    $imageSources=str_replace(',','%2C',implode(' ',array_unique(array_column(cafe_thumbnail_entries(),'url'))));
+    $mapImages=$path==='/connect/sign-cafe/overseas/'?' data: https://tile.openstreetmap.org':'';
+    header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' ".$imageSources.$mapImages."; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
+}
 try {
     if(in_array($path,['/connect/sign-cafe/starbucks','/connect/sign-cafe/starbucks/','/connect/sign-cafe/starbucks/index.html'],true)){
         http_response_code(410);header('X-Robots-Tag: noindex, follow');

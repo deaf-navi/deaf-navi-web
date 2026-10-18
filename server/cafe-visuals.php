@@ -1,6 +1,28 @@
 <?php
 declare(strict_types=1);
 
+// Presentation-only, reviewed official images. No request-time fetching or DB writes.
+function cafe_thumbnail_entries():array {
+    static $images=null;
+    if($images===null)$images=json_decode(file_get_contents(__DIR__.'/cafe-thumbnails.json'),true,512,JSON_THROW_ON_ERROR);
+    return $images;
+}
+function cafe_list_media(array $p):string {
+    $images=cafe_thumbnail_entries();
+    $event=($p['kind']??'')==='event'||($p['shop_type']??'')==='event';
+    $label=$event?'イベント':(in_array(cafe_listing_group($p),['spots','organizations'],true)?'交流':'カフェ');
+    $entry=$images[$p['slug']??'']??null;
+    // An edited source or an expired/held event must not keep old announcement imagery.
+    $url=$entry&&($p['official_url']??'')===$entry['pageUrl']&&(!$event||cafe_event_period($p)==='upcoming')?$entry['url']:'';
+    $out='<span class="dn-cafe-media" aria-hidden="true"><span class="dn-cafe-media-fallback">'.e($label).'</span>';
+    if($url!==''&&str_starts_with($url,'https://'))$out.='<img src="'.e($url).'" alt="" width="128" height="96" loading="lazy" decoding="async" referrerpolicy="no-referrer">';
+    return $out.'</span>';
+}
+
+function cafe_card_intro(array $p,string $location):string {
+    return '<div class="dn-cafe-intro">'.cafe_list_media($p).'<div class="dn-cafe-title"><p class="dn-location">'.e($location).'</p><h2><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h2></div></div>';
+}
+
 function cafe_icon(string $name):string {
     $paths=[
         'cup'=>'<path d="M4 8h12v7a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z M16 9h2a3 3 0 0 1 0 6h-2M3 22h15M8 2v3M12 2v3"/>',
