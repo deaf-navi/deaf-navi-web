@@ -40,6 +40,8 @@ export function createTranslationCache(articles, postEditProvider) {
       cachedArticles.set(articleCacheKey(article), {
         title: article.title, summary: article.summary,
         postEdited: article.japanesePostEditProvider === postEditProvider,
+        engine: article.japanesePostEditEngine??'unknown',
+        model: article.japanesePostEditModel??null,
       });
     }
   }

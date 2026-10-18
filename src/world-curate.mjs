@@ -36,13 +36,14 @@ const CODEX_POST_EDIT_FAIL_ON_LOW_COVERAGE = process.env.WORLD_JP_CODEX_FAIL_ON_
 const CODEX_APP_SERVER_URL = process.env.CODEX_APP_SERVER_URL?.trim() || (process.env.GITHUB_ACTIONS ? '' : 'http://127.0.0.1:8787');
 const CODEX_APP_SERVER_TOKEN = process.env.CODEX_APP_SERVER_TOKEN?.trim() ?? '';
 const CODEX_APP_SERVER_READINESS_PATH = process.env.CODEX_APP_SERVER_READINESS_PATH?.trim() || '/health';
-// Generation consumes Codex usage: opt in explicitly, including outside Actions.
+// The dedicated service selects the backend. Legacy env names remain compatible.
 const CODEX_POST_EDIT_ENABLED = process.env.WORLD_JP_CODEX_POST_EDIT === '1';
 const CODEX_POST_EDIT_FALLBACK_ONLY = process.env.WORLD_JP_CODEX_FALLBACK_ONLY !== '0';
 const CODEX_POST_EDIT_REQUIRED = process.env.WORLD_JP_REQUIRE_CODEX_POST_EDIT === '1';
+// Preserve this cache identity; record the actual engine/model separately.
 const CODEX_POST_EDIT_PROVIDER = 'Codex App Server Japanese news editor v1';
 const TRANSLATION_PROVIDER = CODEX_POST_EDIT_ENABLED
-  ? 'Codex App Server + Google fallback + Deaf Navi glossary v2'
+  ? 'Google Translate + Deaf Navi glossary v2 + dedicated text fallback'
   : 'Google Translate + Deaf Navi glossary v2';
 const REGION_MIN_ARTICLES = envInt('WORLD_REGION_MIN_ARTICLES', 50, 0, 100);
 
@@ -1230,11 +1231,15 @@ async function requestCodexPostEdit(batch, idOffset = 0) {
     body: JSON.stringify(body),
   }, CODEX_POST_EDIT_TIMEOUT_MS);
   const text = await res.text();
-  if (!res.ok) throw Object.assign(new Error(`Codex App Server HTTP ${res.status}`), { serviceUnavailable: true });
+  if (!res.ok) throw Object.assign(new Error(`Deaf Navi text service HTTP ${res.status}`), { serviceUnavailable: true });
 
   const json = JSON.parse(text);
   if (json.success === false) throw new Error(String(json.error ?? 'Codex App Server returned success=false'));
-  return normalizeCodexPostEditItems(json);
+  const edited=normalizeCodexPostEditItems(json);
+  const engine=['openai_complimentary','codex'].includes(json.engine)?json.engine:'unknown';
+  const model=typeof json.model==='string'&&/^[a-z0-9._-]{1,100}$/i.test(json.model)?json.model:null;
+  console.log(`[text-service] engine=${engine} model=${model??'unknown'} returned=${edited.length} requested=${batch.length}`);
+  return edited.map(item=>({...item,engine,model}));
 }
 
 async function requestCodexPostEditWithRetry(batch, batchLabel, totalBatches, idOffset = 0) {
@@ -1360,6 +1365,8 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
         article.title = polishJapanese(item.title);
         article.summary = polishJapanese(item.summary || item.title);
         article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
+        article.japanesePostEditEngine = item.engine;
+        article.japanesePostEditModel = item.model;
         updated += 1;
       });
       batchFailed = Math.max(result.failed, batch.length - (updated - updatedBeforeBatch));
@@ -1411,8 +1418,16 @@ export async function applyTranslations(articles, options = {}) {
   for (const article of articles) {
     article.title = textCache.get(article.originalTitle) ?? '';
     article.summary = textCache.get(article.originalSummary) ?? '';
-    if (cache.articles.get(articleCacheKey(article))?.postEdited) article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
-    else delete article.japanesePostEditProvider;
+    const cachedArticle=cache.articles.get(articleCacheKey(article));
+    if (cachedArticle?.postEdited) {
+      article.japanesePostEditProvider = CODEX_POST_EDIT_PROVIDER;
+      article.japanesePostEditEngine = cachedArticle.engine??'unknown';
+      article.japanesePostEditModel = cachedArticle.model??null;
+    }else{
+      delete article.japanesePostEditProvider;
+      delete article.japanesePostEditEngine;
+      delete article.japanesePostEditModel;
+    }
   }
 
   const cached = articles.filter((article) => cache.articles.get(articleCacheKey(article))?.postEdited).length;
@@ -1456,7 +1471,7 @@ export async function applyTranslations(articles, options = {}) {
       if (!circuitOpen) await pause(TRANSLATE_DELAY_MS);
     }
   }
-  // Spend Codex usage only on still-untranslated articles, never on valid Google/cache results.
+  // Generate only missing translations, never repeat valid Google/cache results.
   if (fallbackOnly) await edit(articles.filter((article) => !isTranslatedArticle(article)));
   console.log(`[codex-postedit] fallbackOnly=${fallbackOnly}, enabled=${report.enabled}, checked=${report.checked ?? 0}, updated=${report.updated ?? 0}, cached=${report.cached ?? 0}`);
   console.log(`[translate] fallback fields=${requested}, failures=${failures}, circuitOpen=${circuitOpen}`);

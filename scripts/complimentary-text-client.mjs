@@ -51,6 +51,29 @@ export function publicItems(items) {
   });
 }
 
+// Keep the original reservation history intact (including pre-settlement v1 logs).
+// Only provider-confirmed usage can release a successful request's unused reserve.
+// Rejections without usage and uncertain requests continue to hold their full reserve.
+export function summarizeComplimentaryUsage(ledger,{day,project}) {
+  const validCount=value=>Number.isSafeInteger(value)&&value>=0;
+  if(ledger?.version!==1||ledger.day!==day||ledger.projectId!==project||!validCount(ledger.reserved)||!Array.isArray(ledger.records))throw deny('Allowance ledger needs reconciliation');
+  let historicalReservedTokens=0,actualTokens=0,heldTokens=0,completed=0,rejected=0,unresolved=0;
+  for(const record of ledger.records){
+    if(!['completed','rejected','reserved','uncertain'].includes(record.status)||!validCount(record.reservedTokens)||record.reservedTokens===0)throw deny('Allowance ledger needs reconciliation');
+    historicalReservedTokens+=record.reservedTokens;
+    if(record.status==='completed'){
+      const actual=record.inputTokens+record.outputTokens;
+      if(!validCount(record.inputTokens)||!validCount(record.outputTokens)||!validCount(actual)||actual>record.reservedTokens)throw deny('Allowance ledger needs reconciliation');
+      actualTokens+=actual;completed++;
+    }else{
+      heldTokens+=record.reservedTokens;
+      if(record.status==='rejected')rejected++;else unresolved++;
+    }
+  }
+  if(!validCount(historicalReservedTokens)||historicalReservedTokens!==ledger.reserved)throw deny('Allowance ledger needs reconciliation');
+  return {historicalReservedTokens,actualTokens,heldTokens,accountedTokens:actualTokens+heldTokens,requests:ledger.records.length,completed,rejected,unresolved};
+}
+
 export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,clock=Date.now}) {
   return async function generate(items,{purpose='world_translation',skipUnreviewed=false}={}) {
     if(!['world_translation','public_event_summary','public_cafe_summary'].includes(purpose))throw deny('Unsupported public-text purpose');
@@ -79,8 +102,9 @@ export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,
       if(reserve>55_000)throw deny('Batch too large for complimentary reservation');
       ledgerFile=join(stateDir,'usage-'+day+'.json');
       try{ledger=JSON.parse(await readFile(ledgerFile,'utf8'));}catch(e){if(e.code!=='ENOENT')throw deny('Allowance ledger is unreadable');ledger={version:1,day,projectId:project,reserved:0,records:[]};}
-      if(ledger.version!==1||ledger.day!==day||ledger.projectId!==project||!Number.isSafeInteger(ledger.reserved)||ledger.reserved<0||!Array.isArray(ledger.records)||ledger.records.some(r=>!['completed','rejected'].includes(r.status)||!Number.isSafeInteger(r.reservedTokens)||r.reservedTokens<=0)||ledger.reserved!==ledger.records.reduce((sum,r)=>sum+r.reservedTokens,0))throw deny('Allowance ledger needs reconciliation');
-      if(ledger.reserved+reserve>budget||ledger.records.length>=12)throw deny('Daily complimentary budget reached');
+      const usageSummary=summarizeComplimentaryUsage(ledger,{day,project});
+      if(usageSummary.unresolved)throw deny('Allowance ledger needs reconciliation');
+      if(usageSummary.accountedTokens+reserve>budget||usageSummary.requests>=12)throw deny('Daily complimentary budget reached');
       record={id:randomUUID(),timestamp:new Date(now).toISOString(),project:PROJECT_NAME,model:MODEL,purpose,requests:1,reservedTokens:reserve,inputTokens:null,outputTokens:null,complimentaryEligible:true,estimatedCostUsd:0,billedCostUsd:null,status:'reserved'};
       ledger.reserved+=reserve;ledger.records.push(record);await save();
       // Survives UTC rollover: an unknown request is not silently retried tomorrow.
@@ -91,7 +115,7 @@ export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,
       let result;
       try{result=await response.json();}catch{record.status='uncertain';await save();throw deny('OpenAI result unavailable');}
       const usage=result.usage;
-      if(!Number.isSafeInteger(usage?.input_tokens)||!Number.isSafeInteger(usage?.output_tokens)||usage.input_tokens<0||usage.output_tokens<0){record.status='uncertain';await save();throw deny('Token usage unavailable');}
+      if(!Number.isSafeInteger(usage?.input_tokens)||!Number.isSafeInteger(usage?.output_tokens)||usage.input_tokens<0||usage.output_tokens<0||(usage.total_tokens!==undefined&&usage.total_tokens!==usage.input_tokens+usage.output_tokens)){record.status='uncertain';await save();throw deny('Token usage unavailable');}
       record.inputTokens=usage.input_tokens;record.outputTokens=usage.output_tokens;record.requestId=response.headers?.get('x-request-id')??null;
       record.status=usage.input_tokens+usage.output_tokens<=reserve?'completed':'uncertain';await save();
       if(record.status!=='completed')throw deny('Usage exceeded conservative reservation');

@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       use_codex_post_edit:
-        description: '追加の日本語校正でCodex利用枠を消費する（障害時はfallback）'
+        description: '確認済み文面の追加校正（専用無料API・当日上限内のみ）'
         type: boolean
         default: false
   push:
@@ -50,7 +50,8 @@ jobs:
       - name: Curate and build Deaf Navi World
         env:
           # Google first; enable the dedicated editor only for missing translations.
-          # Set WORLD_JP_CODEX_FALLBACK=0 to stop all scheduled Codex consumption.
+          # Legacy variable names route to the dedicated complimentary API service.
+          # Set WORLD_JP_CODEX_FALLBACK=0 to disable this text-generation supplement.
           WORLD_JP_CODEX_POST_EDIT: ${{ inputs.use_codex_post_edit && '1' || vars.WORLD_JP_CODEX_FALLBACK || '1' }}
           WORLD_JP_CODEX_FALLBACK_ONLY: ${{ inputs.use_codex_post_edit && '0' || '1' }}
           CODEX_APP_SERVER_URL: ${{ secrets.CODEX_APP_SERVER_URL }}
