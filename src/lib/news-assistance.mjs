@@ -8,7 +8,8 @@ export function applyNewsAssistance(articles,records,{now=Date.now()}={}) {
   const review=byId.get(article.id),checked=Date.parse(review?.reviewedAt);
   if(!review||review.approved!==true||review.relevance!=='yes'||review.articleHash!==newsArticleHash(article)||!Number.isFinite(checked)||checked>now||now-checked>=7*86400000||!/^https:\/\//.test(review.sourceUrl??'')||!review.evidence||!['gpt-6.1-sol','gpt-5.6-terra'].includes(review.model))return article;
   applied++;
-  return {...article,_assistedRelevance:true,...(['announcement','report'].includes(review.contentType)?{_assistedContext:review.contentType}:{})};
+  const summary=typeof review.publicSummary==='string'?review.publicSummary.trim():'';
+  return {...article,...(summary&&summary.length<=180?{summary}:{}),_assistedRelevance:true,...(['announcement','report'].includes(review.contentType)?{_assistedContext:review.contentType}:{})};
  });
  return {articles:result,applied};
 }

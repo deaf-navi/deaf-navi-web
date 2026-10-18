@@ -4,6 +4,7 @@ import {parseDomesticPage,collectDomesticPages} from '../src/lib/domestic-pages.
 import {buildArticle,curateArticles,stripInternal,publicationExclusionReason} from '../src/lib/curation.mjs';
 import {applyNewsAssistance,newsArticleHash} from '../src/lib/news-assistance.mjs';
 import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
+import {buildNewsReviewQueue} from '../src/lib/news-review-queue.mjs';
 const now=Date.parse('2026-10-18T04:00:00Z');
 test('official HTML discovery requires the publication date and a real permalink',async()=>{
  const source={parser:'jdba-blog',id:'jdba',url:'https://www.jdba.or.jp/db/blog/',sourceName:'全国盲ろう者協会',sourceUrl:'https://www.jdba.or.jp/'};
@@ -29,10 +30,48 @@ test('reviewed API assistance is content-bound, expires and cannot bypass hard e
  assert.equal(applyNewsAssistance([article],[review],{now:now+7*86400000}).applied,0);
  assert.equal(publicationExclusionReason({...assisted.articles[0],title:'テスト投稿'}),'placeholder');
  assert.equal(applyNewsAssistance([article],[{...review,relevance:'no'}],{now}).applied,0);
+ assert.equal(applyNewsAssistance([article],[{...review,publicSummary:'字幕対応の開始案内です。'}],{now}).articles[0].summary,'字幕対応の開始案内です。');
+ assert.equal(applyNewsAssistance([article],[{...review,articleHash:'changed',publicSummary:'古い確認からの要約'}],{now}).articles[0].summary,article.summary);
+ assert.equal(applyNewsAssistance([article],[{...review,publicSummary:'長'.repeat(181)}],{now}).articles[0].summary,article.summary);
 });
 test('source preparation verifies literal fragments and does not approve sharing or visual checks',async()=>{
  const target={kind:'event',title:'手話交流',sourceUrl:'https://example.org/event',officialVerified:true,sourceMode:'html',fragments:['開催日 2026年11月14日','会場 市民会館']};
  const fetchResource=async()=>({status:200,headers:{'content-type':'text/html'},text:'<p>開催日 <b>2026年11月14日</b></p><p>会場 市民会館</p>'});
  const result=await prepareCurationReview([target],{fetchResource,now});assert.equal(result.tasks.length,1);assert.equal(result.publicDataReviewed,false);assert.equal(result.tasks[0].reviewedAt,undefined);
  for(const change of [{sourceMode:'visual'},{fragments:['存在しない文面']},{approvedDocumentHash:'changed'}])assert.equal((await prepareCurationReview([{...target,...change}],{fetchResource,now})).exceptions.length,1);
+});
+
+test('recall queue skips hard exclusions and published duplicates, retaining uncertain relevance',()=>{
+ const base={id:'https://example.org/story',title:'手話交流会の開催について',summary:'手話で交流します。',publishedAt:'2026-10-17T00:00:00Z',_sourceTier:'google'};
+ const soft={...base,id:'https://example.org/uncertain',title:'地域の市民セミナー',summary:'対象は公式案内へ。'};
+ const hard=['画像20 / 32＞手話の紹介','テスト投稿','補聴器の市場規模・予測レポート'].map((title,i)=>({...base,id:'https://example.org/excluded/'+i,title}));
+ const duplicate={...base,id:'https://other.org/story'};
+ const result=buildNewsReviewQueue([base,duplicate,soft,...hard],[base],{now});
+ assert.equal(result.counts.hardExcluded,3);assert.equal(result.counts.duplicateOfPublished,1);
+ assert.deepEqual(result.candidates.map(x=>x.sourceUrl),[soft.id]);assert.equal(result.candidates[0].reason,'unrelated');
+ const serialized=JSON.stringify(result);assert.ok(!serialized.includes(soft.title));assert.ok(!serialized.includes(soft.summary));
+ assert.equal(result.candidates[0].approved,undefined);assert.equal(result.candidates[0].reviewedAt,undefined);
+});
+
+test('bounded queue prioritizes direct sources and rotates publishers without merging distinct dates',()=>{
+ const base={summary:'詳細は公式案内へ。',publishedAt:'2026-10-17T00:00:00Z',_sourceTier:'google'};
+ const noisy=Array.from({length:45},(_,i)=>({...base,id:'https://busy.org/'+i,sourceUrl:'https://busy.org',title:`地域からのお知らせ 第${i+1}回`}));
+ const other={...base,id:'https://other.org/notice',sourceUrl:'https://other.org',title:'市民センターのお知らせ'};
+ const official={...base,id:'https://official.org/notice',sourceUrl:'https://official.org',title:'参加者募集のお知らせ',_sourceTier:'official',_feedUrl:'https://official.org/feed'};
+ const mixed={...base,id:'https://culture.org/notice',sourceUrl:'https://culture.org',title:'作品情報',_sourceTier:'broad',_feedUrl:'https://culture.org/feed'};
+ const result=buildNewsReviewQueue([...noisy,other,official,mixed],[],{now});
+ assert.equal(result.candidates.length,40);assert.equal(result.counts.deferred,8);
+ assert.deepEqual(result.candidates.slice(0,2).map(x=>x.sourceUrl),[official.id,mixed.id]);
+ assert.ok(result.candidates.slice(0,4).some(x=>x.sourceUrl===other.id));
+ assert.throws(()=>buildNewsReviewQueue([],[],{limit:41}));
+});
+
+test('queue comparisons retain fresh hashes and never interpret unchanged feeds as source approval',()=>{
+ const fresh={id:'https://example.org/notice',title:'地域の活動',summary:'公開のお知らせ',publishedAt:'2026-10-17T00:00:00Z',_sourceTier:'broad'};
+ const previous=buildNewsReviewQueue([fresh],[],{now});
+ const again=buildNewsReviewQueue([fresh,{...fresh,summary:'古い保存本文'}],[],{now,previous});
+ assert.equal(again.comparison.unchanged,1);assert.equal(again.candidates[0].articleHash,newsArticleHash(fresh));
+ const changed=buildNewsReviewQueue([{...fresh,summary:'新しい告知'}],[],{now,previous});assert.equal(changed.comparison.changed,1);
+ const stale=buildNewsReviewQueue([{...fresh,publishedAt:'2025-01-01T00:00:00Z'}],[],{now});assert.equal(stale.counts.outsideWindow,1);
+ assert.equal(again.candidates[0].publicationApproved,undefined);
 });
