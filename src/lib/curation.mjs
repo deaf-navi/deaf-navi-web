@@ -42,7 +42,7 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'publication-quality-v8';
+export const QUALITY_VERSION = 'publication-quality-v9';
 
 /* ---------- 分類 ---------- */
 
@@ -261,7 +261,9 @@ export function dedupeNearArticles(articles) {
 
 export function isLowValueDiscoveryPage(article) {
   if (article._feedUrl) return false;
-  return /(?:\d+\s*枚目の)?(?:写真・画像|写真一覧|画像一覧)|フォトギャラリー/iu.test(article.title);
+  const title=String(article.title??'').normalize('NFKC');
+  return /(?:\d+\s*枚目の)?(?:写真・画像|写真一覧|画像一覧)|フォトギャラリー/iu.test(title)
+    || /^画像\s*\d+\s*\/\s*\d+\s*>/u.test(title);
 }
 
 /** Explicit mismatches also apply to archives; missing keywords alone do not. */
