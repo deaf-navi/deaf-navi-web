@@ -32,14 +32,15 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
   ${renderSiteHeader({current:'events',subLabel:'手話イベント',lead:'交流会、講座、公演。国内の催しを開催日と地域から探せます。'})}
   <main class="container event-page" id="main" data-recheck-ms="${EVENT_RECHECK_MS}">
     <form id="event-filters" class="event-filters" hidden role="search" aria-label="イベントを探す">
-      <label class="event-search">キーワード<input type="search" id="event-query" name="q" placeholder="例：手話 交流会" autocomplete="off"></label>
+      <label class="event-search">イベントを検索<input type="search" id="event-query" name="q" placeholder="例：手話劇、交流会" autocomplete="off"></label>
       <button type="reset" class="filter">条件を解除</button>
-      <label class="event-communication-filter">情報の受け取り方<select id="event-communication" name="communication" aria-describedby="event-communication-help"><option value="">指定しない</option>${Object.entries(EVENT_COMMUNICATION).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select></label>
-      <p id="event-communication-help" class="event-filter-help">告知で確認できた方法から探せます。「手話の催し」でも、通訳・字幕が付くとは限りません。未確認は「対応なし」を意味しません。</p>
-      <details class="event-more-filters"><summary>地域・種類・開催月で絞り込む</summary><div class="event-filter-options">
-      <label>地域<select id="event-prefecture" name="prefecture"><option value="">すべての地域</option>${prefectures.map(p=>`<option>${e(p)}</option>`).join('')}</select></label>
+      <label class="event-region-filter">地域<select id="event-prefecture" name="prefecture"><option value="">すべての地域</option>${prefectures.map(p=>`<option>${e(p)}</option>`).join('')}</select></label>
+      <details class="event-more-filters"><summary id="event-filter-summary">種類・開催月・情報の受け取り方で絞り込む</summary><div class="event-filter-options">
+
       <label>種類<select id="event-kind" name="kind"><option value="">すべての種類</option>${Object.entries(EVENT_KINDS).map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select></label>
       <label>開催月<input type="month" id="event-month" name="month"></label>
+      <label class="event-communication-filter">情報の受け取り方<select id="event-communication" name="communication" aria-describedby="event-communication-help"><option value="">指定しない</option>${Object.entries(EVENT_COMMUNICATION).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select></label>
+      <p id="event-communication-help" class="event-filter-help">告知で確認できた方法から探せます。「手話の催し」でも、通訳・字幕が付くとは限りません。未確認は「対応なし」を意味しません。</p>
       </div><label class="event-remember"><input type="checkbox" id="event-remember-region">この端末に地域を記憶する</label></details>
     </form>
     <div class="event-browse" hidden><div class="event-quick" role="group" aria-label="近日のイベント">${[['','開催予定'],['weekend','今週末'],['month','今月']].map(([id,name])=>`<button type="button" class="filter" data-range="${id}" aria-pressed="${id===''}">${name}</button>`).join('')}</div>
@@ -51,5 +52,5 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
     <div id="event-empty" class="empty"${count?' hidden':''}><p>この条件の掲載情報はまだありません。イベントが開催されていないという意味ではありません。</p><button type="reset" form="event-filters" class="filter" hidden data-event-empty-reset>条件を解除して探す</button></div>
     <details class="event-policy"><summary>掲載・更新について</summary><p>ニュースと同じ1日3回、6:10・12:10・18:10ごろに公開情報を照合します。処理状況により遅れる場合があります。主催者、出演団体、会場の告知に明記された開催日と場所を掲載し、投稿日時を開催日として扱いません。</p><p>SNSの告知は公開本文・画像の内容を確認できたものを掲載します。一時的な通信エラーだけの場合は、最後の確認から48時間以内の情報を確認日時付きで表示し、自動で再取得します。確認日時は延長しません。内容変更・アクセス拒否・48時間以上未確認の情報は「再確認中」とし、開催予定から外します。再取得は約30分後から始め、失敗が続くと最長6時間間隔に広げます。実行時刻は前後する場合があります。過去の告知は実施済みを意味しません。</p><p>時刻・料金・主催者などが読み取れない場合は推測で補いません。告知ページが公開しているプレビュー画像を表示する場合があります。画像を取得できない場合も本文と情報源を掲載します。SNSの自動埋め込みは行いません。</p><p><a href="mailto:info@flamenut.com?subject=Deaf%20Navi%20イベント情報">イベントの情報提供・訂正</a> ／ <a href="./about.html#about-policy">サイトの選定方針</a></p></details>
   </main>${renderFooter({year:new Date().getFullYear(),links:[{href:'./',label:'ニュース'},{href:'./connect/sign-cafe/',label:'手話カフェ'},{href:'./about.html',label:'サイトについて'}]})}
-  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261017recovery"></script></body></html>`;
+  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261019reading"></script></body></html>`;
 }

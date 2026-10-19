@@ -35,6 +35,8 @@ export function eventDateWindow(range, now = Date.now()) {
   // Moving a row while an input blurs can cancel its native summary click.
   if(sortedPeriod!==period){rows.sort((a,b)=>(period==='past'?-1:1)*a.dataset.start.localeCompare(b.dataset.start)).forEach(row=>row.parentElement.appendChild(row));sortedPeriod=period;}
   document.querySelector('#event-count').textContent=`${range==='weekend'?'今週末':range==='month'?'今月':labels[period]}${controls.prefecture.value?' · '+controls.prefecture.value:''} ${count}件`;document.querySelector('#event-empty').hidden=count>0;
+  const selected=[controls.kind,controls.month,controls.communication].filter(input=>input.value).length;
+  document.querySelector('#event-filter-summary').textContent='種類・開催月・情報の受け取り方で絞り込む'+(selected?'（'+selected+'件選択中）':'');
   for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.period===period));
   for(const button of quick)button.setAttribute('aria-pressed',String(period==='upcoming'&&range===button.dataset.range));
   if(sync){const url=new URL(location.href);for(const[key,input]of Object.entries(controls)){input.value?url.searchParams.set(key,input.value):url.searchParams.delete(key)}period==='upcoming'?url.searchParams.delete('period'):url.searchParams.set('period',period);range?url.searchParams.set('range',range):url.searchParams.delete('range');history.replaceState(null,'',url);}
@@ -42,7 +44,7 @@ export function eventDateWindow(range, now = Date.now()) {
  function restore(useSaved=false){const params=new URLSearchParams(location.search);period=labels[params.get('period')]?params.get('period'):'upcoming';for(const[key,input]of Object.entries(controls))input.value=(params.get(key)||'').slice(0,200);range=period==='upcoming'&&!controls.month.value&&['weekend','month'].includes(params.get('range'))?params.get('range'):'';
   const saved=savedRegion();remember.checked=Boolean(saved);
   if(useSaved&&!['q','prefecture','kind','month','communication','period','range'].some(key=>params.has(key)))controls.prefecture.value=saved;
-  document.querySelector('.event-more-filters').open=Boolean(controls.prefecture.value||controls.kind.value||controls.month.value);
+  document.querySelector('.event-more-filters').open=Boolean(controls.kind.value||controls.month.value||controls.communication.value);
   document.querySelector('.event-history').open=period!=='upcoming';apply(useSaved&&Boolean(controls.prefecture.value))}
  form.hidden=false;document.querySelector('.event-browse').hidden=false;document.querySelector('.event-periods').hidden=false;document.querySelector('[data-event-empty-reset]').hidden=false;
  form.addEventListener('submit',e=>{e.preventDefault();apply()});form.addEventListener('input',e=>{if(e.target===controls.month)range='';apply()});form.addEventListener('change',e=>{if(e.target===remember||e.target===controls.prefecture)saveRegion();apply()});form.addEventListener('reset',()=>{setTimeout(()=>{period='upcoming';range='';remember.checked=false;saveRegion();document.querySelector('.event-history').open=false;apply();controls.q.focus()},0)});
