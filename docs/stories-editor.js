@@ -1,6 +1,11 @@
 (() => {
   const form=document.querySelector('[data-story-editor]');if(!form)return;
   const body=form.elements.body,status=form.querySelector('[data-save-status]');let dirty=false,saving=false,previewTimer,previewSequence=0;
+  const limited=[...form.querySelectorAll('[name][maxlength]')].map(el=>{const limit=el.maxLength;el.removeAttribute('maxlength');return {el,limit};});
+  const counts=()=>limited.forEach(({el,limit})=>{const length=Array.from(el.value).length;el.setCustomValidity(length>limit?`${limit}文字以内で入力してください。`:'');const output=form.querySelector(`[data-count="${el.name}"]`);if(output)output.textContent=`残り ${limit-length}文字（${length} / ${limit}）`;});
+  form.addEventListener('input',counts);counts();
+  let slugTimer,slugSequence=0;
+  form.elements.slug.addEventListener('input',()=>{clearTimeout(slugTimer);const sequence=++slugSequence;const output=form.querySelector('[data-slug-status]');output.textContent='確認中…';slugTimer=setTimeout(async()=>{const data=new FormData();data.set('csrf',form.elements.csrf.value);data.set('action','slug');data.set('slug',form.elements.slug.value);data.set('id',form.elements.id.value);try{const result=await(await request(data)).json();if(sequence===slugSequence)output.textContent=result.used?'このURLは使用済みです（別記事・旧URL）。':'このURLは使用されていません。保存時に再確認します。';}catch{if(sequence===slugSequence)output.textContent='使用状況を確認できません。保存時に確認します。';}},500);});
   const changed=()=>{dirty=true;status.textContent='未保存の変更があります';};form.addEventListener('input',changed);form.addEventListener('change',changed);
   window.addEventListener('beforeunload',e=>{if(dirty&&!saving){e.preventDefault();e.returnValue='';}});
   const insert=text=>{body.setRangeText(text,body.selectionStart,body.selectionEnd,'end');body.focus();changed();queuePreview();};

@@ -15,3 +15,5 @@
 .dn-dashboard .story-toolbar button{color:#263448!important;background:#fff;border-color:#9baead}.dn-dashboard .story-toolbar button:hover{background:#edf5f3;border-color:#006b64}[data-story-editor] label:has(input[type=checkbox]){display:flex;align-items:center;gap:.65rem}.dn-dashboard [data-story-editor] input[type=checkbox]{width:18px;height:18px;margin:0}
 
 @media(min-width:760px){.story-card:only-child:has(img){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:2rem}.story-card:only-child:has(img)>a{grid-row:1/4}.story-card:only-child:has(img)>p,.story-card:only-child:has(img)>h3{grid-column:2}.story-card:only-child:not(:has(img)){max-width:44rem}}
+
+.story-admin-list table{min-width:1120px;font-variant-numeric:tabular-nums}.story-admin-list td:first-child{min-width:16rem;max-width:28rem;white-space:normal;overflow-wrap:anywhere}.story-admin-list td:last-child{min-width:10rem}.story-admin-list td:last-child button{white-space:nowrap}[data-count]{font-size:.9rem;font-variant-numeric:tabular-nums}
