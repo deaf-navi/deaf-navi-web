@@ -4,8 +4,8 @@
   "title": "Deaf Navi World Multilingual",
   "variant": "world",
   "mode": "multilingual",
-  "generatedAt": "2026-10-19T04:16:15Z",
-  "sourceGeneratedAt": "2026-10-19T04:16:15Z",
+  "generatedAt": "2026-10-19T04:20:42Z",
+  "sourceGeneratedAt": "2026-10-19T04:20:42Z",
   "count": 600,
   "language": "ja-JP",
   "refresh": {
@@ -28,23 +28,23 @@
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
       "checked": 50,
-      "updated": 14,
-      "cached": 503,
-      "skipped": 15,
-      "failed": 36,
+      "updated": 0,
+      "cached": 510,
+      "skipped": 18,
+      "failed": 40,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
       "maxConsecutiveFailedBatches": 2,
-      "stoppedAfterConsecutiveFailures": false,
+      "stoppedAfterConsecutiveFailures": true,
       "minCoverage": 0.85,
       "fallback": {
         "requested": 1,
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 51,
-      "retainedPrevious": 25
+      "pending": 58,
+      "retainedPrevious": 32
     },
     "basePolicy": "World-JP uses Google translation and its cache first, then Deaf Navi glossary normalization and optional dedicated text-service assistance for missing translations."
   },
@@ -135,8 +135,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3830,
-    "dedupedCount": 2336,
+    "rawCount": 3806,
+    "dedupedCount": 2318,
     "selectedCount": 600,
     "minScore": 8,
     "maxArticles": 600,
@@ -161,23 +161,23 @@
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
       "checked": 50,
-      "updated": 14,
-      "cached": 503,
-      "skipped": 15,
-      "failed": 36,
+      "updated": 0,
+      "cached": 510,
+      "skipped": 18,
+      "failed": 40,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
       "maxConsecutiveFailedBatches": 2,
-      "stoppedAfterConsecutiveFailures": false,
+      "stoppedAfterConsecutiveFailures": true,
       "minCoverage": 0.85,
       "fallback": {
         "requested": 1,
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 51,
-      "retainedPrevious": 25
+      "pending": 58,
+      "retainedPrevious": 32
     }
   },
   "counts": {
@@ -242,13 +242,13 @@
         "multilingual"
       ],
       "originalLanguage": "tr",
-      "title": "ろう者と聴者がフランス手話の演劇を体験",
+      "title": "物語のフェスティバルで、ろう者と聴者がフランス手話による演劇を体験する。",
       "summary": "物語のフェスティバルで、ろう者と聴者がフランス手話による演劇を体験する。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ろう者と聴者がフランス手話の演劇を体験",
+          "title": "物語のフェスティバルで、ろう者と聴者がフランス手話による演劇を体験する。",
           "summary": "物語のフェスティバルで、ろう者と聴者がフランス手話による演劇を体験する。",
           "language": "ja-JP",
           "translation": {
@@ -2559,7 +2559,7 @@
       "sourceURL": "https://www.arabnews.com",
       "sourceUrl": "https://www.arabnews.com",
       "sourceDomain": "arabnews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -2596,47 +2596,48 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9KdEk4SzRQWHEzdFBzUUd1R1lwRkhSYktZdGhJS1EzaXY0MFpQNUNoNXEyandsSXVOVndpb0lyWnNwZEVWQ0VBNHpkY0h5TjJ3eGZvUzVnRlh5dE4xUEhZZDh3?oc=5",
-      "stableId": "world_7e40d80ffcf5ae1c61ab",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9KdEk4SzRQWHEzdFBzUUd1R1lwRkhSYktZdGhJS1EzaXY0MFpQNUNoNXEyandsSXVOVndpb0lyWnNwZEVWQ0VBNHpkY0h5TjJ3eGZvUzVnRlh5dE4xUEhZZDh3?oc=5",
-      "publishedAt": "2026-10-07T07:37:25Z",
-      "sourceName": "매일신문",
-      "sourceURL": "https://www.imaeil.com",
-      "sourceUrl": "https://www.imaeil.com",
-      "sourceDomain": "imaeil.com",
+      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12STMzc3pnN3c3TVdaN2ViQk52U19OX1JSOWNHVkcxcDhvTV9OeFpkaXBUNE1CS0JWZkxYRE43MGlmQnlxUjZLcDFaSHNxdEhsZkdVVTd2QmFjcG8?oc=5",
+      "stableId": "world_f8b82e33f18a5afde441",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12STMzc3pnN3c3TVdaN2ViQk52U19OX1JSOWNHVkcxcDhvTV9OeFpkaXBUNE1CS0JWZkxYRE43MGlmQnlxUjZLcDFaSHNxdEhsZkdVVTd2QmFjcG8?oc=5",
+      "publishedAt": "2026-10-07T10:01:26Z",
+      "sourceName": "Newtalk新聞",
+      "sourceURL": "https://newtalk.tw",
+      "sourceUrl": "https://newtalk.tw",
+      "sourceDomain": "newtalk.tw",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
       "curationScore": 21,
       "curationSignals": [
-        "청각장애",
-        "보청기",
+        "聽障",
+        "手語",
         "multilingual"
       ],
-      "originalLanguage": "ko",
-      "title": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
-      "summary": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
+      "originalLanguage": "zh",
+      "title": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
+      "summary": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
-          "summary": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
+          "title": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
+          "summary": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "대구포낙보청기와 ㈜에스피코리아, 청각장애인야구단 후원금 전달",
-          "summary": "대구포낙보청기와 ㈜에스피코리아, 청각장애인야구단 후원금 전달",
-          "language": "ko"
+          "title": "《靜靜說府城2－廟語四時》用手語記錄府城信仰文化讓聽障者平等閱讀臺南| 生活",
+          "summary": "《靜靜說府城2－廟語四時》用手語記錄府城信仰文化讓聽障者平等閱讀臺南| 生活",
+          "language": "zh"
         }
       }
     },
@@ -2777,47 +2778,46 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5BaDJoQzVuck5KQmVHU0FzdGI3TG5XaTM3RlhieTRCcTkybVhBb2ttWWdSN1FGbkJhSlJvajUxcDNiZkM1VkZkSThoa2FvMUN6ZDQxOXVpZVlJc0xOSjQ3a9IBeEFVX3lxTE5Ed05sOGxlVVZyZ3R5RE5DckotSVRqX2JqemlsTHVNWHRsX3ZFOFYwRHFLak0zSEV1TC1ocEx2R0h5S21NUk5uZDNNT29mTU5EUE4zRk5XMnNGWkp3cGJtaHE1SHZsZWNmMUNBNEJWNW01TExraXdITA?oc=5",
-      "stableId": "world_f55cfc420a61237052e8",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5BaDJoQzVuck5KQmVHU0FzdGI3TG5XaTM3RlhieTRCcTkybVhBb2ttWWdSN1FGbkJhSlJvajUxcDNiZkM1VkZkSThoa2FvMUN6ZDQxOXVpZVlJc0xOSjQ3a9IBeEFVX3lxTE5Ed05sOGxlVVZyZ3R5RE5DckotSVRqX2JqemlsTHVNWHRsX3ZFOFYwRHFLak0zSEV1TC1ocEx2R0h5S21NUk5uZDNNT29mTU5EUE4zRk5XMnNGWkp3cGJtaHE1SHZsZWNmMUNBNEJWNW01TExraXdITA?oc=5",
-      "publishedAt": "2026-10-07T07:00:00Z",
-      "sourceName": "뉴시스",
-      "sourceURL": "https://www.newsis.com",
-      "sourceUrl": "https://www.newsis.com",
-      "sourceDomain": "newsis.com",
+      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9KdEk4SzRQWHEzdFBzUUd1R1lwRkhSYktZdGhJS1EzaXY0MFpQNUNoNXEyandsSXVOVndpb0lyWnNwZEVWQ0VBNHpkY0h5TjJ3eGZvUzVnRlh5dE4xUEhZZDh3?oc=5",
+      "stableId": "world_7e40d80ffcf5ae1c61ab",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9KdEk4SzRQWHEzdFBzUUd1R1lwRkhSYktZdGhJS1EzaXY0MFpQNUNoNXEyandsSXVOVndpb0lyWnNwZEVWQ0VBNHpkY0h5TjJ3eGZvUzVnRlh5dE4xUEhZZDh3?oc=5",
+      "publishedAt": "2026-10-07T07:37:25Z",
+      "sourceName": "매일신문",
+      "sourceURL": "https://www.imaeil.com",
+      "sourceUrl": "https://www.imaeil.com",
+      "sourceDomain": "imaeil.com",
       "sourceMode": "regional-fresh",
-      "sourcePriority": 76,
+      "sourcePriority": 50,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
-      "topic": "education",
-      "topicLabel": "教育",
-      "legacyCategory": "education",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
       "curationScore": 21,
       "curationSignals": [
-        "수어",
-        "major-media",
+        "청각장애",
+        "보청기",
         "multilingual"
       ],
       "originalLanguage": "ko",
-      "title": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
-      "summary": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
+      "title": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
+      "summary": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
-          "summary": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
+          "title": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
+          "summary": "大邱浦落報聴器と(株)エスピコリア、聴覚障害者野球団後援金伝達",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
+            "postEdited": false,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
-          "summary": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
+          "title": "대구포낙보청기와 ㈜에스피코리아, 청각장애인야구단 후원금 전달",
+          "summary": "대구포낙보청기와 ㈜에스피코리아, 청각장애인야구단 후원금 전달",
           "language": "ko"
         }
       }
@@ -2914,36 +2914,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5jaXVDZ1l4UzcwR0hLdGM1cmpadk01NTdOVXJUdVRvck9JSzJUYXJ2aVNjdU5ZRVlQNWRrYXgyd05IbVFyNmhuVW9HMW5pU3FYRDRuOEdOelFvdll1eldZYTU3X3pDUUZR?oc=5",
-      "stableId": "world_d862c2b9e7092054d490",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5jaXVDZ1l4UzcwR0hLdGM1cmpadk01NTdOVXJUdVRvck9JSzJUYXJ2aVNjdU5ZRVlQNWRrYXgyd05IbVFyNmhuVW9HMW5pU3FYRDRuOEdOelFvdll1eldZYTU3X3pDUUZR?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5BaDJoQzVuck5KQmVHU0FzdGI3TG5XaTM3RlhieTRCcTkybVhBb2ttWWdSN1FGbkJhSlJvajUxcDNiZkM1VkZkSThoa2FvMUN6ZDQxOXVpZVlJc0xOSjQ3a9IBeEFVX3lxTE5Ed05sOGxlVVZyZ3R5RE5DckotSVRqX2JqemlsTHVNWHRsX3ZFOFYwRHFLak0zSEV1TC1ocEx2R0h5S21NUk5uZDNNT29mTU5EUE4zRk5XMnNGWkp3cGJtaHE1SHZsZWNmMUNBNEJWNW01TExraXdITA?oc=5",
+      "stableId": "world_f55cfc420a61237052e8",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5BaDJoQzVuck5KQmVHU0FzdGI3TG5XaTM3RlhieTRCcTkybVhBb2ttWWdSN1FGbkJhSlJvajUxcDNiZkM1VkZkSThoa2FvMUN6ZDQxOXVpZVlJc0xOSjQ3a9IBeEFVX3lxTE5Ed05sOGxlVVZyZ3R5RE5DckotSVRqX2JqemlsTHVNWHRsX3ZFOFYwRHFLak0zSEV1TC1ocEx2R0h5S21NUk5uZDNNT29mTU5EUE4zRk5XMnNGWkp3cGJtaHE1SHZsZWNmMUNBNEJWNW01TExraXdITA?oc=5",
       "publishedAt": "2026-10-07T07:00:00Z",
-      "sourceName": "視傳媒",
-      "sourceURL": "https://nvns.net",
-      "sourceUrl": "https://nvns.net",
-      "sourceDomain": "nvns.net",
+      "sourceName": "뉴시스",
+      "sourceURL": "https://www.newsis.com",
+      "sourceUrl": "https://www.newsis.com",
+      "sourceDomain": "newsis.com",
       "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "sourcePriority": 76,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
+      "topic": "education",
+      "topicLabel": "教育",
+      "legacyCategory": "education",
       "curationScore": 21,
       "curationSignals": [
-        "聾人",
-        "手語",
+        "수어",
+        "major-media",
         "multilingual"
       ],
-      "originalLanguage": "zh",
-      "title": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
-      "summary": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
+      "originalLanguage": "ko",
+      "title": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
+      "summary": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
-          "summary": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
+          "title": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
+          "summary": "大邱東部警察が、聴覚・言語障害者への対応に向けた手話教育などを実施します。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -2953,9 +2953,9 @@
           }
         },
         "original": {
-          "title": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
-          "summary": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
-          "language": "zh"
+          "title": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
+          "summary": "[대구소식]동부경찰, 청각·언어장애인 대응 수어교육 등",
+          "language": "ko"
         }
       }
     },
@@ -3052,14 +3052,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12STMzc3pnN3c3TVdaN2ViQk52U19OX1JSOWNHVkcxcDhvTV9OeFpkaXBUNE1CS0JWZkxYRE43MGlmQnlxUjZLcDFaSHNxdEhsZkdVVTd2QmFjcG8?oc=5",
-      "stableId": "world_f8b82e33f18a5afde441",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12STMzc3pnN3c3TVdaN2ViQk52U19OX1JSOWNHVkcxcDhvTV9OeFpkaXBUNE1CS0JWZkxYRE43MGlmQnlxUjZLcDFaSHNxdEhsZkdVVTd2QmFjcG8?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5jaXVDZ1l4UzcwR0hLdGM1cmpadk01NTdOVXJUdVRvck9JSzJUYXJ2aVNjdU5ZRVlQNWRrYXgyd05IbVFyNmhuVW9HMW5pU3FYRDRuOEdOelFvdll1eldZYTU3X3pDUUZR?oc=5",
+      "stableId": "world_d862c2b9e7092054d490",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5jaXVDZ1l4UzcwR0hLdGM1cmpadk01NTdOVXJUdVRvck9JSzJUYXJ2aVNjdU5ZRVlQNWRrYXgyd05IbVFyNmhuVW9HMW5pU3FYRDRuOEdOelFvdll1eldZYTU3X3pDUUZR?oc=5",
       "publishedAt": "2026-10-07T07:00:00Z",
-      "sourceName": "Newtalk新聞",
-      "sourceURL": "https://newtalk.tw",
-      "sourceUrl": "https://newtalk.tw",
-      "sourceDomain": "newtalk.tw",
+      "sourceName": "視傳媒",
+      "sourceURL": "https://nvns.net",
+      "sourceUrl": "https://nvns.net",
+      "sourceDomain": "nvns.net",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "asia_oceania",
@@ -3069,19 +3069,19 @@
       "legacyCategory": "policy",
       "curationScore": 21,
       "curationSignals": [
-        "聽障",
+        "聾人",
         "手語",
         "multilingual"
       ],
       "originalLanguage": "zh",
-      "title": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
-      "summary": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
+      "title": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
+      "summary": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
-          "summary": "台南の信仰文化を台湾手話で伝え、聴覚障害者にも平等な情報アクセスを提供する書籍が刊行された。",
+          "title": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
+          "summary": "台湾手話で台南の信仰文化を記録し、ろう者も地域文化に平等に触れられる新書が発表されました。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3091,8 +3091,8 @@
           }
         },
         "original": {
-          "title": "《靜靜說府城2－廟語四時》用手語記錄府城信仰文化讓聽障者平等閱讀臺南| 生活",
-          "summary": "《靜靜說府城2－廟語四時》用手語記錄府城信仰文化讓聽障者平等閱讀臺南| 生活",
+          "title": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
+          "summary": "《靜靜說府城2－廟語四時》新書發表 用臺灣手語記錄府城信仰文化 讓聾人也能平等閱讀臺南",
           "language": "zh"
         }
       }
@@ -3152,7 +3152,7 @@
       "sourceURL": "https://www.monitor.co.ug",
       "sourceUrl": "https://www.monitor.co.ug",
       "sourceDomain": "monitor.co.ug",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -4746,7 +4746,7 @@
       "sourceURL": "https://www.theglobeandmail.com",
       "sourceUrl": "https://www.theglobeandmail.com",
       "sourceDomain": "theglobeandmail.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -4805,13 +4805,13 @@
         "multilingual"
       ],
       "originalLanguage": "ko",
-      "title": "安養市青少年財団、役職員に手話教育を実施",
+      "title": "［ともに進もう、私たちのESG］安養市青少年財団が役職員向けの手話教育を実施し、聴覚障害者とのコミュニケーション能力を強化する。",
       "summary": "［ともに進もう、私たちのESG］安養市青少年財団が役職員向けの手話教育を実施し、聴覚障害者とのコミュニケーション能力を強化する。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "安養市青少年財団、役職員に手話教育を実施",
+          "title": "［ともに進もう、私たちのESG］安養市青少年財団が役職員向けの手話教育を実施し、聴覚障害者とのコミュニケーション能力を強化する。",
           "summary": "［ともに進もう、私たちのESG］安養市青少年財団が役職員向けの手話教育を実施し、聴覚障害者とのコミュニケーション能力を強化する。",
           "language": "ja-JP",
           "translation": {
@@ -6298,7 +6298,7 @@
       "sourceURL": "https://www.monitor.co.ug",
       "sourceUrl": "https://www.monitor.co.ug",
       "sourceDomain": "monitor.co.ug",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -6448,13 +6448,13 @@
         "multilingual"
       ],
       "originalLanguage": "ko",
-      "title": "手話で書き直す詩、ろう・聴覚障害のある創作者の「動く詩」",
+      "title": "ろう・聴覚障害のある創作者が、手話で詩を書き直し「動く詩」を生み出す。",
       "summary": "ろう・聴覚障害のある創作者が、手話で詩を書き直し「動く詩」を生み出す。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "手話で書き直す詩、ろう・聴覚障害のある創作者の「動く詩」",
+          "title": "ろう・聴覚障害のある創作者が、手話で詩を書き直し「動く詩」を生み出す。",
           "summary": "ろう・聴覚障害のある創作者が、手話で詩を書き直し「動く詩」を生み出す。",
           "language": "ja-JP",
           "translation": {
@@ -6882,14 +6882,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeTRzYW9pQ2d4ZWplWGctcDNDSmtVbG82cnItaWtGOUh2dmtIak1ZWWhzamFpVFBkWmVRRE1tYXF5eUdWbmpXU0tMYkhPZG5OTFA1OGhTQmE5SHYzbVFFQi1xTWtXWHJ0Y0wxZ1NCcWxjY1ZOeGRsZkRybnZPeUVPUEdyZGdYSkdaU2NmSURKa2g2TzVDZzVaMEZOWVhxemFYbEFpTXNNVW9ObWhwcEI3YlVxaFYzNE1FNm9zOGJyZ2RiQW8?oc=5",
-      "stableId": "world_b9778798a1257849a45b",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeTRzYW9pQ2d4ZWplWGctcDNDSmtVbG82cnItaWtGOUh2dmtIak1ZWWhzamFpVFBkWmVRRE1tYXF5eUdWbmpXU0tMYkhPZG5OTFA1OGhTQmE5SHYzbVFFQi1xTWtXWHJ0Y0wxZ1NCcWxjY1ZOeGRsZkRybnZPeUVPUEdyZGdYSkdaU2NmSURKa2g2TzVDZzVaMEZOWVhxemFYbEFpTXNNVW9ObWhwcEI3YlVxaFYzNE1FNm9zOGJyZ2RiQW8?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
+      "stableId": "world_fdefce4b861969c89d26",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
       "publishedAt": "2026-09-26T07:00:00Z",
-      "sourceName": "Prefeitura de Belo Horizonte",
-      "sourceURL": "https://prefeitura.pbh.gov.br",
-      "sourceUrl": "https://prefeitura.pbh.gov.br",
-      "sourceDomain": "prefeitura.pbh.gov.br",
+      "sourceName": "G1",
+      "sourceURL": "https://g1.globo.com",
+      "sourceUrl": "https://g1.globo.com",
+      "sourceDomain": "g1.globo.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -6903,26 +6903,27 @@
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
-      "summary": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
+      "originalLanguage": "fr",
+      "title": "全国ろう者の日にブラジル手話通訳付きの歴史散策",
+      "summary": "全国ろう者の日に、ブラジル手話（Libras）の通訳付きで歴史を巡る散策が行われる。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
-          "summary": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
+          "title": "全国ろう者の日にブラジル手話通訳付きの歴史散策",
+          "summary": "全国ろう者の日に、ブラジル手話（Libras）の通訳付きで歴史を巡る散策が行われる。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
-          "summary": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
-          "language": "en"
+          "title": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
+          "summary": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
+          "language": "fr"
         }
       }
     },
@@ -7018,14 +7019,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
-      "stableId": "world_fdefce4b861969c89d26",
-      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeTRzYW9pQ2d4ZWplWGctcDNDSmtVbG82cnItaWtGOUh2dmtIak1ZWWhzamFpVFBkWmVRRE1tYXF5eUdWbmpXU0tMYkhPZG5OTFA1OGhTQmE5SHYzbVFFQi1xTWtXWHJ0Y0wxZ1NCcWxjY1ZOeGRsZkRybnZPeUVPUEdyZGdYSkdaU2NmSURKa2g2TzVDZzVaMEZOWVhxemFYbEFpTXNNVW9ObWhwcEI3YlVxaFYzNE1FNm9zOGJyZ2RiQW8?oc=5",
+      "stableId": "world_b9778798a1257849a45b",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeTRzYW9pQ2d4ZWplWGctcDNDSmtVbG82cnItaWtGOUh2dmtIak1ZWWhzamFpVFBkWmVRRE1tYXF5eUdWbmpXU0tMYkhPZG5OTFA1OGhTQmE5SHYzbVFFQi1xTWtXWHJ0Y0wxZ1NCcWxjY1ZOeGRsZkRybnZPeUVPUEdyZGdYSkdaU2NmSURKa2g2TzVDZzVaMEZOWVhxemFYbEFpTXNNVW9ObWhwcEI3YlVxaFYzNE1FNm9zOGJyZ2RiQW8?oc=5",
       "publishedAt": "2026-09-26T07:00:00Z",
-      "sourceName": "G1",
-      "sourceURL": "https://g1.globo.com",
-      "sourceUrl": "https://g1.globo.com",
-      "sourceDomain": "g1.globo.com",
+      "sourceName": "Prefeitura de Belo Horizonte",
+      "sourceURL": "https://prefeitura.pbh.gov.br",
+      "sourceUrl": "https://prefeitura.pbh.gov.br",
+      "sourceDomain": "prefeitura.pbh.gov.br",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -7039,27 +7040,26 @@
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "fr",
-      "title": "全国ろう者の日にブラジル手話通訳付きの歴史散策",
-      "summary": "全国ろう者の日に、ブラジル手話（Libras）の通訳付きで歴史を巡る散策が行われる。",
+      "originalLanguage": "en",
+      "title": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
+      "summary": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "全国ろう者の日にブラジル手話通訳付きの歴史散策",
-          "summary": "全国ろう者の日に、ブラジル手話（Libras）の通訳付きで歴史を巡る散策が行われる。",
+          "title": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
+          "summary": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
+            "postEdited": false,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
-          "summary": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
-          "language": "fr"
+          "title": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
+          "summary": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
+          "language": "en"
         }
       }
     },
@@ -9758,14 +9758,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9VTkFGOW5MaERBWXFHdmRmYzdxZ3dQT1RNd3ZPbWlOUlFIV1pDaUhLdjRkeFJ2cEV0elRHM2NZRmZzeEJQeEFJN3JHRzJsa2w1YS1mSlRNWDRyeER3aDFoQVp2ZVRRWS1wMThoMEFPZw?oc=5",
-      "stableId": "world_933764852a55b7b8c6bf",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9VTkFGOW5MaERBWXFHdmRmYzdxZ3dQT1RNd3ZPbWlOUlFIV1pDaUhLdjRkeFJ2cEV0elRHM2NZRmZzeEJQeEFJN3JHRzJsa2w1YS1mSlRNWDRyeER3aDFoQVp2ZVRRWS1wMThoMEFPZw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9QWDA2VGtNQmp6ZFRwTFBpOXBmbGJrM0tiRnhlcmxCdEtFb25zbzlud3l3R3J6TTBzX3pWTW94YXc1WDZxeWlUYXJkYjNMRWpXTXpfakllRHVnbDJQdEE?oc=5",
+      "stableId": "world_37b3e366e20fc32a42ba",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9QWDA2VGtNQmp6ZFRwTFBpOXBmbGJrM0tiRnhlcmxCdEtFb25zbzlud3l3R3J6TTBzX3pWTW94YXc1WDZxeWlUYXJkYjNMRWpXTXpfakllRHVnbDJQdEE?oc=5",
       "publishedAt": "2026-09-15T07:00:00Z",
-      "sourceName": "理財周刊",
-      "sourceURL": "https://www.moneyweekly.com.tw",
-      "sourceUrl": "https://www.moneyweekly.com.tw",
-      "sourceDomain": "moneyweekly.com.tw",
+      "sourceName": "樂屋網",
+      "sourceURL": "https://extra.rakuya.com.tw",
+      "sourceUrl": "https://extra.rakuya.com.tw",
+      "sourceDomain": "extra.rakuya.com.tw",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "asia_oceania",
@@ -10129,7 +10129,7 @@
       "sourceURL": "https://www.usatoday.com",
       "sourceUrl": "https://www.usatoday.com",
       "sourceDomain": "usatoday.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -10218,7 +10218,7 @@
       "sourceURL": "https://www.dailymaverick.co.za",
       "sourceUrl": "https://www.dailymaverick.co.za",
       "sourceDomain": "dailymaverick.co.za",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -13150,7 +13150,7 @@
       "sourceURL": "https://www.npr.org",
       "sourceUrl": "https://www.npr.org",
       "sourceDomain": "npr.org",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -13510,7 +13510,7 @@
       "sourceURL": "https://www.npr.org",
       "sourceUrl": "https://www.npr.org",
       "sourceDomain": "npr.org",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -14726,7 +14726,7 @@
       "sourceURL": "https://nation.africa",
       "sourceUrl": "https://nation.africa",
       "sourceDomain": "nation.africa",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -14954,7 +14954,7 @@
       "sourceURL": "https://nation.africa",
       "sourceUrl": "https://nation.africa",
       "sourceDomain": "nation.africa",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -14999,7 +14999,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -15404,7 +15404,7 @@
       "sourceURL": "https://apnews.com",
       "sourceUrl": "https://apnews.com",
       "sourceDomain": "apnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -17613,7 +17613,7 @@
       "sourceURL": "https://www.independent.co.uk",
       "sourceUrl": "https://www.independent.co.uk",
       "sourceDomain": "independent.co.uk",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -18334,7 +18334,7 @@
       "sourceURL": "https://www.taipeitimes.com",
       "sourceUrl": "https://www.taipeitimes.com",
       "sourceDomain": "taipeitimes.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -18841,13 +18841,13 @@
         "major-media"
       ],
       "originalLanguage": "en",
-      "title": "Starbucks、全従業員がアメリカ手話を使える店舗を開店",
+      "title": "Starbucksが、従業員全員がアメリカ手話を使える店舗を開店。",
       "summary": "Starbucksが、従業員全員がアメリカ手話を使える店舗を開店。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "Starbucks、全従業員がアメリカ手話を使える店舗を開店",
+          "title": "Starbucksが、従業員全員がアメリカ手話を使える店舗を開店。",
           "summary": "Starbucksが、従業員全員がアメリカ手話を使える店舗を開店。",
           "language": "ja-JP",
           "translation": {
@@ -19605,13 +19605,13 @@
         "major-media"
       ],
       "originalLanguage": "en",
-      "title": "CCPD、NCERTに1～12年生の教科書のインド手話化を要求",
+      "title": "CCPDは、NCERTに対し、1～12年生の教科書を3か月以内にインド手話に変換するよう求めた。",
       "summary": "CCPDは、NCERTに対し、1～12年生の教科書を3か月以内にインド手話に変換するよう求めた。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "CCPD、NCERTに1～12年生の教科書のインド手話化を要求",
+          "title": "CCPDは、NCERTに対し、1～12年生の教科書を3か月以内にインド手話に変換するよう求めた。",
           "summary": "CCPDは、NCERTに対し、1～12年生の教科書を3か月以内にインド手話に変換するよう求めた。",
           "language": "ja-JP",
           "translation": {
@@ -19876,13 +19876,13 @@
         "major-media"
       ],
       "originalLanguage": "en",
-      "title": "ろうコミュニティで黒人アメリカ手話を継承",
+      "title": "ろうコミュニティにおける黒人アメリカ手話の保存・継承を取り上げる。",
       "summary": "ろうコミュニティにおける黒人アメリカ手話の保存・継承を取り上げる。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ろうコミュニティで黒人アメリカ手話を継承",
+          "title": "ろうコミュニティにおける黒人アメリカ手話の保存・継承を取り上げる。",
           "summary": "ろうコミュニティにおける黒人アメリカ手話の保存・継承を取り上げる。",
           "language": "ja-JP",
           "translation": {
@@ -20315,7 +20315,7 @@
       "sourceURL": "https://www.koreaherald.com",
       "sourceUrl": "https://www.koreaherald.com",
       "sourceDomain": "koreaherald.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -23744,7 +23744,7 @@
       "sourceURL": "https://www.cbc.ca",
       "sourceUrl": "https://www.cbc.ca",
       "sourceDomain": "cbc.ca",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 90,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -23835,7 +23835,7 @@
       "sourceURL": "https://www.independent.co.uk",
       "sourceUrl": "https://www.independent.co.uk",
       "sourceDomain": "independent.co.uk",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -24061,7 +24061,7 @@
       "sourceURL": "https://www.monitor.co.ug",
       "sourceUrl": "https://www.monitor.co.ug",
       "sourceDomain": "monitor.co.ug",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -24241,7 +24241,7 @@
       "sourceURL": "https://www.thenationalnews.com",
       "sourceUrl": "https://www.thenationalnews.com",
       "sourceDomain": "thenationalnews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 82,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -24558,7 +24558,7 @@
       "sourceURL": "https://www.independent.co.uk",
       "sourceUrl": "https://www.independent.co.uk",
       "sourceDomain": "independent.co.uk",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -24751,13 +24751,13 @@
         "major-media"
       ],
       "originalLanguage": "en",
-      "title": "ろうの教育者は難しい気候変動用語をどう手話にするか",
+      "title": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
       "summary": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ろうの教育者は難しい気候変動用語をどう手話にするか",
+          "title": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
           "summary": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
           "language": "ja-JP",
           "translation": {
@@ -24874,7 +24874,7 @@
       "sourceURL": "https://www.nytimes.com",
       "sourceUrl": "https://www.nytimes.com",
       "sourceDomain": "nytimes.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -25415,7 +25415,7 @@
       "sourceURL": "https://www.rnz.co.nz",
       "sourceUrl": "https://www.rnz.co.nz",
       "sourceDomain": "rnz.co.nz",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 86,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -25956,7 +25956,7 @@
       "sourceURL": "https://www.koreatimes.co.kr",
       "sourceUrl": "https://www.koreatimes.co.kr",
       "sourceDomain": "koreatimes.co.kr",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -26362,7 +26362,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -26947,7 +26947,7 @@
       "sourceURL": "https://www.theglobeandmail.com",
       "sourceUrl": "https://www.theglobeandmail.com",
       "sourceDomain": "theglobeandmail.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -27274,13 +27274,13 @@
         "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "セルティックのスター選手が手話でろう者スポーツ賞を支援",
+      "title": "セルティックのスター選手たちが、手話を通じて「Deaf Sports Personality of the Year Awards」を支援する。",
       "summary": "セルティックのスター選手たちが、手話を通じて「Deaf Sports Personality of the Year Awards」を支援する。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "セルティックのスター選手が手話でろう者スポーツ賞を支援",
+          "title": "セルティックのスター選手たちが、手話を通じて「Deaf Sports Personality of the Year Awards」を支援する。",
           "summary": "セルティックのスター選手たちが、手話を通じて「Deaf Sports Personality of the Year Awards」を支援する。",
           "language": "ja-JP",
           "translation": {
@@ -27350,7 +27350,7 @@
       "sourceURL": "https://www.nzherald.co.nz",
       "sourceUrl": "https://www.nzherald.co.nz",
       "sourceDomain": "nzherald.co.nz",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 80,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
