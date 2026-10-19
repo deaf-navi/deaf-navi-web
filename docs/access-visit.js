@@ -27,10 +27,12 @@
     document.addEventListener('submit', (event) => {
       const form = event.target;
       if (form.tagName !== 'FORM') return;
-      if (new URL(form.action || location.href, location.href).origin !== location.origin) return;
-      form.action = mark(form.action);
+      // Named controls (for example action=save_record) shadow form properties.
+      const action = form.getAttribute('action');
+      if (new URL(action || location.href, location.href).origin !== location.origin) return;
+      form.setAttribute('action', mark(action));
       // GET form submission replaces the action query, so retain only the known flag.
-      if ((form.method || 'get').toLowerCase() === 'get') {
+      if ((form.getAttribute('method') || 'get').toLowerCase() === 'get') {
         let field = form.querySelector('input[name="dn_client"]');
         if (!field) { field = document.createElement('input'); field.type = 'hidden'; field.name = 'dn_client'; form.append(field); }
         field.value = marker;

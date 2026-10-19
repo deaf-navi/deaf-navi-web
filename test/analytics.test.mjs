@@ -42,3 +42,29 @@ test('Cloudflare Analytics: 無効時と不正HTMLは入力を変更しない', 
   assert.equal(injectCloudflareAnalytics(html, { ...enabled, enabled: false }), html);
   assert.equal(injectCloudflareAnalytics('<html>bodyなし</html>', enabled), '<html>bodyなし</html>');
 });
+
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
+
+test('verification marker preserves POST destinations with named action controls and GET filters', () => {
+  const handlers = {};
+  const location = new URL('https://deafnavi.com/admin/?view=edit&dn_client=codex');
+  runInNewContext(readFileSync(new URL('../src/access-visit.js', import.meta.url), 'utf8'), {
+    window: {}, location, URL, URLSearchParams, navigator: {},
+    document: { referrer: '', querySelectorAll: () => [], addEventListener: (name, fn) => {handlers[name]=fn;}, createElement: () => ({}) },
+  });
+  function form(action, method) {
+    const attrs = {action, method}; const fields=[];
+    return {tagName:'FORM', action:{toString:()=> '[object HTMLInputElement]'}, method:{}, attrs, fields,
+      getAttribute:key=>attrs[key],setAttribute:(key,value)=>{attrs[key]=value;},querySelector:()=>fields[0],append:field=>fields.push(field)};
+  }
+  for (const action of [null, '', '/admin/']) {
+    const f=form(action,'post'); handlers.submit({target:f});
+    const target=new URL(f.attrs.action);
+    assert.equal(target.pathname,'/admin/');assert.equal(target.searchParams.get('dn_client'),'codex');assert.equal(f.fields.length,0);
+  }
+  const get=form('/connect/sign-cafe/','get');handlers.submit({target:get});handlers.submit({target:get});
+  assert.equal(get.fields.length,1);assert.equal(get.fields[0].value,'codex');
+  const external=form('https://example.org/submit','post');handlers.submit({target:external});
+  assert.equal(external.attrs.action,'https://example.org/submit');
+});
