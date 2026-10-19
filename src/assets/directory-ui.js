@@ -14,7 +14,7 @@
     filterPanel.querySelectorAll('.dn-primary-features input:checked').forEach(control => chosen.push(control.closest('label').textContent.trim()));
     if (filterPanel.querySelector('.dn-filter-more[open]')) chosen.push('詳しい条件あり');
     if (chosen.length) filterPanel.querySelector('.dn-filter-panel-note').textContent = chosen.join(' / ');
-    if (window.matchMedia('(max-width: 900px)').matches) filterPanel.open = false;
+    if (window.matchMedia('(max-width: 900px)').matches && !filterPanel.querySelector('.dn-domestic-filter')) filterPanel.open = false;
   }
   if (document.body.classList.contains('dn-cafe-hub')) {
     const search = filterPanel?.querySelector('input[type="search"]');
