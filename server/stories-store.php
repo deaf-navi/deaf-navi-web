@@ -65,7 +65,7 @@ function story_links(string $text,bool $internal=false):array {
         if($internal&&str_starts_with($url,BASE.'/'))$url=substr($url,strlen(BASE));$out[]=['label'=>$label,'url'=>$url];if(count($out)>20)fail('リンクは20件までです。');
     }return $out;
 }
-function story_save(array $in,string $actor):string {
+function story_prepare(array $in):array {
     $id=input($in,'id',64)?:bin2hex(random_bytes(16));$old=isset($in['id'])&&$in['id']!==''?story_get($id):null;
     $p=[];foreach(['slug'=>100,'title'=>300,'summary'=>1500,'body'=>50000,'category'=>64,'tags'=>1000,'cover'=>64,'alt'=>600,'author'=>200,'sources'=>8000,'related'=>8000,'checked_at'=>10] as $k=>$n)$p[$k]=story_input($in,$k,$n);
     if(!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$p['slug'])||in_array($p['slug'],['media','feed','sitemap','preview','api'],true))fail('URLは半角英数字とハイフンで指定してください。');
@@ -82,8 +82,13 @@ function story_save(array $in,string $actor):string {
     $p['tags']=json(array_values(array_unique(array_filter(array_map('trim',preg_split('/[,、\n]/u',$p['tags']))))));
     $p['published_at']=$old['published_at']??null;
     if($p['status']==='published'&&!$p['published_at'])$p['published_at']=now();
-    $date=input($in,'published_at',30);if($date!==''){$dt=DateTimeImmutable::createFromFormat('!Y-m-d\TH:i',$date,new DateTimeZone('Asia/Tokyo'));if(!$dt||$dt->format('Y-m-d\TH:i')!==$date||$dt->getTimestamp()>time())fail('公開日時は現在以前を指定してください。予約投稿は未対応です。');$p['published_at']=$dt->format(DATE_ATOM);}
-    $p['updated_at']=now();$db=stories_db();stories_backup($db);$db->exec('BEGIN IMMEDIATE');
+    $date=input($in,'published_at',30);if($date!==''){$dt=DateTimeImmutable::createFromFormat('!Y-m-d\TH:i',$date,new DateTimeZone('Asia/Tokyo'));if(!$dt||$dt->format('Y-m-d\TH:i')!==$date)fail('公開日時を確認してください。');$p['published_at']=$dt->format(DATE_ATOM);}
+    if(story_slug_used($p['slug'],$id))fail('このURLは使用済みです。別のスラッグを指定してください。',409);
+    $p['updated_at']=now();return [$id,$old,$p];
+}
+function story_save(array $in,string $actor,?PDO $transaction=null):string {
+    [$id,$old,$p]=story_prepare($in);$db=$transaction??stories_db();
+    if(!$transaction){stories_backup($db);$db->exec('BEGIN IMMEDIATE');}
     try {
         if($old){$s=$db->prepare('SELECT revision FROM stories WHERE id=?');$s->execute([$id]);if((int)$s->fetchColumn()!==(int)($in['revision']??0))fail('別の保存が先に行われました。入力をコピーしてから再読み込みしてください。',409);}
         $s=$db->prepare('SELECT story_id FROM aliases WHERE slug=?');$s->execute([$p['slug']]);$owner=$s->fetchColumn();
@@ -92,6 +97,6 @@ function story_save(array $in,string $actor):string {
         if($old&&$old['slug']!==$p['slug']){$db->prepare('INSERT OR IGNORE INTO aliases VALUES(?,?)')->execute([$old['slug'],$id]);}
         if($old){$sql='UPDATE stories SET '.implode(',',array_map(fn($k)=>$k.'=?',array_keys($p))).',revision=revision+1 WHERE id=?';$values=[...array_values($p),$id];}
         else{$sql='INSERT INTO stories(id,'.implode(',',array_keys($p)).') VALUES('.implode(',',array_fill(0,count($p)+1,'?')).')';$values=[$id,...array_values($p)];}
-        $db->prepare($sql)->execute($values);$db->prepare('INSERT INTO history(story_id,actor,action,created_at) VALUES(?,?,?,?)')->execute([$id,$actor,'save:'.$p['status'],now()]);$db->exec('COMMIT');
-    }catch(Throwable $e){$db->exec('ROLLBACK');throw $e;}return $id;
+        $db->prepare($sql)->execute($values);$db->prepare('INSERT INTO history(story_id,actor,action,created_at) VALUES(?,?,?,?)')->execute([$id,$actor,'save:'.$p['status'],now()]);if(!$transaction)$db->exec('COMMIT');
+    }catch(Throwable $e){if(!$transaction)$db->exec('ROLLBACK');throw $e;}return $id;
 }

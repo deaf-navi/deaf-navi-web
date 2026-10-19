@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {spawn,spawnSync} from 'node:child_process';
-import {mkdtempSync,readdirSync,readFileSync} from 'node:fs';
+import {mkdtempSync,readdirSync,readFileSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {randomBytes,createHash} from 'node:crypto';
@@ -50,7 +50,7 @@ try{
  const unsafe=await req('/admin/stories/',{action:'preview',csrf,body:'[危険](javascript:alert)\n<img src=x onerror=alert(1)>'});
  ok(!JSON.parse(unsafe.text).html.includes('href="javascript:')&&!JSON.parse(unsafe.text).html.includes('<img'),'unsafe markup blocked');
  ok((await req('/admin/stories/',{...data,related:'管理 | /admin/'})).status===400,'private link rejected');
- ok((await req('/admin/stories/',{...data,published_at:'2099-01-01T00:00'})).status===400,'future publication rejected');
+ ok((await req('/admin/stories/',{...data,published_at:'2099-02-31T00:00'})).status===400,'invalid publication calendar date rejected');
  const invalid=new FormData();invalid.set('csrf',csrf);invalid.set('action','upload');invalid.set('image',new Blob(['<svg onload="alert(1)"></svg>'],{type:'image/png'}),'fake.png');
  ok((await req('/admin/stories/',invalid)).status===400,'forged image blocked');
  const media=new FormData();media.set('csrf',csrf);media.set('action','upload');media.set('image',new Blob([Buffer.from(run("$im=imagecreatetruecolor(20,20);ob_start();imagepng($im);echo base64_encode(ob_get_clean());"),'base64')],{type:'image/png'}),'test.png');
@@ -83,6 +83,51 @@ try{
  const jsonSave=await fetch(base+'/admin/stories/',{method:'POST',headers:{cookie,Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({...data,revision:'4'})});
  ok(jsonSave.status===200&&(await jsonSave.json()).redirect.startsWith('/admin/?view=stories&'),'AJAX save supplies verified redirect');
  ok((await req('/admin/?view=stories&mode=edit&id='+id)).text.includes('保存しました。'),'save feedback survives JSON request');
+ // Scheduling gates all public surfaces, including media, then becomes visible without a job.
+ const scheduleMedia=new FormData();scheduleMedia.set('csrf',csrf);scheduleMedia.set('action','upload');scheduleMedia.set('image',new Blob([Buffer.from(run("$im=imagecreatetruecolor(2,2);ob_start();imagepng($im);echo base64_encode(ob_get_clean());"),'base64')],{type:'image/png'}),'scheduled.png');
+ const scheduledImage=JSON.parse((await req('/admin/stories/',scheduleMedia)).text);
+ const scheduled=await req('/admin/stories/',{action:'save',csrf,title:'予約の検証',slug:'scheduled-fixture',summary:'予約の概要',body:'## 予約本文',category:'culture',status:'published',published_at:'2099-01-01T00:00',cover:scheduledImage.id,alt:'予約画像'});
+ ok(scheduled.status===303,'future date accepted');const scheduledId=new URL(scheduled.headers.get('location'),base).searchParams.get('id');
+ for(const path of ['/stories/','/stories/sitemap.xml','/stories/feed.json'])ok(!(await req(path,null,false)).text.includes('scheduled-fixture'),'scheduled excluded from '+path);
+ ok((await req('/stories/scheduled-fixture/',null,false)).status===404&&(await req(scheduledImage.url,null,false)).status===401,'scheduled URL and image private');
+ ok((await req('/admin/?view=stories')).text.includes('予約'),'scheduled admin label');
+ run(`require 'server/core.php';require 'server/stories-store.php';stories_query("UPDATE stories SET published_at='2000-01-01T00:00:00Z' WHERE id=?",['${scheduledId}']);`);
+ ok((await req('/stories/scheduled-fixture/',null,false)).status===200&&(await req(scheduledImage.url,null,false)).status===200,'time arrival releases article and image');
+ // Import uses shared save validation, forces drafts, backs up, and never overwrites.
+ const originals=run("require 'server/core.php';require 'server/stories-store.php';echo json(stories_query('SELECT * FROM stories ORDER BY id')->fetchAll());");const backupCount=readdirSync(join(dir,'stories/backups')).length;
+ const files=Array.from({length:10},(_,i)=>{const file=join(dir,`import-${i}.md`);writeFileSync(file,`---\ntitle: 取り込み${i}\nslug: import-fixture-${i}\ncategory: culture\nfeatured: ${i%2?'no':'yes'}\nsummary: 日本語の概要\ntags: 手話,交流\nauthor: 編集部\nchecked_at: 2026-10-20\nsources:\n- 出典 | https://example.com/\nrelated:\n- 関連 | /stories/limit-good/\n---\n## 取り込み本文\n日本語\n本文`);return file;});
+ const cli=(args)=>spawnSync('php',['server/cli.php','stories:import',...args],{cwd:root,env,encoding:'utf8'});
+ const dry=cli(['--dry-run',...files]);ok(dry.status===0&&JSON.parse(dry.stdout).count===10,'CLI dry-run ten manuscripts');
+ ok(originals===run("require 'server/core.php';require 'server/stories-store.php';echo json(stories_query('SELECT * FROM stories ORDER BY id')->fetchAll());")&&backupCount===readdirSync(join(dir,'stories/backups')).length,'dry-run makes no database or backup changes');
+ const imported=cli(files);ok(imported.status===0&&JSON.parse(imported.stdout).status==='draft','CLI imports drafts');
+ ok(run("require 'server/core.php';require 'server/stories-store.php';echo stories_query(\"SELECT count(*) FROM stories WHERE slug LIKE 'import-fixture-%' AND status='draft'\")->fetchColumn();")==='10','all ten stored as draft');
+ ok(cli([files[0]]).status===1,'existing slug import rejected');
+ ok(readdirSync(join(dir,'stories/backups')).length>backupCount,'import backups');
+ const malformed=join(dir,'malformed.md');writeFileSync(malformed,'---\ntitle: 一\ntitle: 二\n---\n本文');ok(cli(['--dry-run',malformed]).status===1,'duplicate front matter rejected');
+ // Staleness includes the exact 180-day boundary and excludes unset dates.
+ run(`require 'server/core.php';require 'server/stories-store.php';$today=new DateTimeImmutable('today',new DateTimeZone('Asia/Tokyo'));foreach([0=>'-180 days',1=>'-179 days'] as $i=>$age)stories_query('UPDATE stories SET checked_at=? WHERE slug=?',[$today->modify($age)->format('Y-m-d'),'import-fixture-'.$i]);`);
+ const stale=(await req('/admin/?view=stories&freshness=stale')).text;ok(stale.includes('import-fixture-0')&&!stale.includes('import-fixture-1')&&!stale.includes('scheduled-fixture')&&stale.includes('180日以上・要確認'),'stale filter and warning');
+ const selected=JSON.parse(run("require 'server/core.php';require 'server/stories-store.php';echo json(stories_query(\"SELECT id,revision FROM stories WHERE slug IN ('import-fixture-0','import-fixture-1') ORDER BY slug\")->fetchAll());"));
+ const selection=Object.fromEntries(selected.map(r=>[`selected[${r.id}]`,String(r.revision)]));
+ ok((await req('/admin/stories/',{action:'bulk_review',csrf:'bad',target:'published',...selection})).status===403,'bulk CSRF enforced');
+ ok((await req('/admin/stories/',{action:'bulk_apply',csrf,confirmation:'forged'})).status===409,'bulk requires confirmation');
+ let review=await req('/admin/stories/',{action:'bulk_review',csrf,target:'published',...selection});ok(review.status===200&&review.text.includes('取り込み0')&&review.text.includes('取り込み1'),'bulk confirmation titles');
+ const confirmation=t=>t.match(/name="confirmation" value="([a-f0-9]+)"/)[1];
+ ok((await req('/stories/import-fixture-0/',null,false)).status===404,'review does not publish');
+ run(`require 'server/core.php';require 'server/stories-store.php';stories_query('UPDATE stories SET revision=revision+1 WHERE id=?',['${selected[1].id}']);`);
+ ok((await req('/admin/stories/',{action:'bulk_apply',csrf,confirmation:confirmation(review.text)})).status===409,'bulk stale revision rejected');
+ ok((await req('/stories/import-fixture-0/',null,false)).status===404,'bulk stale rejection changes no articles');
+ selection[`selected[${selected[1].id}]`]='2';review=await req('/admin/stories/',{action:'bulk_review',csrf,target:'published',...selection});
+ ok((await req('/admin/stories/',{action:'bulk_apply',csrf,confirmation:confirmation(review.text)})).status===303,'bulk publish confirmed');
+ ok((await req('/stories/import-fixture-0/',null,false)).status===200&&(await req('/stories/import-fixture-1/',null,false)).status===200,'both bulk articles public');
+ ok((await req('/admin/stories/',{action:'bulk_apply',csrf,confirmation:confirmation(review.text)})).status===409,'bulk confirmation cannot replay');
+ selection[`selected[${selected[0].id}]`]='2';selection[`selected[${selected[1].id}]`]='3';review=await req('/admin/stories/',{action:'bulk_review',csrf,target:'draft',...selection});
+ ok((await req('/admin/stories/',{action:'bulk_apply',csrf,confirmation:confirmation(review.text)})).status===303&&(await req('/stories/import-fixture-0/',null,false)).status===404,'bulk return to draft');
+ // A later invalid row rolls back earlier successful saves in the same transaction.
+ run("require 'server/core.php';require 'server/stories-store.php';stories_query(\"UPDATE stories SET body='' WHERE slug='import-fixture-1'\");");
+ selection[`selected[${selected[0].id}]`]='3';selection[`selected[${selected[1].id}]`]='4';review=await req('/admin/stories/',{action:'bulk_review',csrf,target:'published',...selection});
+ ok((await req('/admin/stories/',{action:'bulk_apply',csrf,confirmation:confirmation(review.text)})).status===400&&(await req('/stories/import-fixture-0/',null,false)).status===404,'bulk validation rollback is atomic');
+ const finalEditor=(await req('/admin/?view=stories&mode=edit&id='+id)).text;ok(finalEditor.includes('data-storage-key=')&&finalEditor.includes('data-restore')&&finalEditor.includes('data-check-list'),'recovery and pre-save check controls');
  ok(directoryBaseline===run("require 'server/core.php';echo json(query('SELECT * FROM records ORDER BY id')->fetchAll());"),'cafe records unchanged');
  ok(readdirSync(join(dir,'stories/backups')).length>=4,'consistent pre-write backups');
  ok(run("require 'server/core.php';require 'server/stories-store.php';echo stories_db()->query('PRAGMA integrity_check')->fetchColumn();")==='ok','database integrity');
@@ -91,5 +136,6 @@ try{
  run("require 'server/core.php';query(\"UPDATE users SET role='editor' WHERE username='storyadmin'\");");
  ok((await req('/admin/?view=stories')).status===403,'editor role cannot manage stories');
  ok((await req('/admin/stories/?preview='+id)).status===403,'editor role cannot preview draft');
+ ok((await req('/admin/stories/',{action:'bulk_review',csrf,target:'published',...selection})).status===403,'editor cannot bulk change');
  console.log(`Stories: ${checks} integration checks passed; fixtures remain isolated at ${dir}`);
 }finally{proc.kill();}
