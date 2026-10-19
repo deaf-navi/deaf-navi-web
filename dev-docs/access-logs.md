@@ -16,9 +16,9 @@
 
 ## 記録と保存
 
-- 保存先：公開root外の `/srv/deafnavi/shared/access-logs/access-v2.log`。既存の `access.log` も180日の表示と圧縮の対象。
-- 記録：日時、ホスト、クエリを除くURLパス、HTTPメソッド・プロトコル、HTTP応答、送信量、処理時間、アクセス元分類。
-- 除外：IP、ポート、全リクエスト/レスポンスヘッダー（Cookie・認証・参照元・User-Agentを含む）、TLS情報、認証ID、エラー詳細。リクエスト本文は収集しない。クエリはCaddyの書込時点で除去する。
+- 保存先：公開root外の `/srv/deafnavi/shared/access-logs/access-v3.log`。既存の `access.log` も180日の表示と圧縮の対象。
+- 記録：日時、ホスト、クエリを除くURLパス、HTTPメソッド・プロトコル、HTTP応答、送信量、処理時間、アクセス元分類、接続IP、User-Agent（512文字まで）、参照元ドメイン、Sec-Fetch種別と先読みの有無。2026-10-20にユーザーの明示指示で既存ログを詳細化。
+- 除外：ポート、全リクエスト/レスポンスヘッダー、TLS情報、認証ID、エラー詳細。許可したIP・UA・参照元ドメイン・通信種別だけを専用フィールドへ抽出。Cookie・認証情報・本文・検索語は収集しない。クエリはCaddyの書込時点で除去する。公開X-Forwarded-Forは信用せず実接続IPを記録。
 - Caddy標準のJSONフィルタとmapを使用。外部サービスへの追加送信・API課金はない。
 - 10 MiBまたは24時間でローテーション。Caddy側の世代数・日数削除を無効にし、検証済みバックアップ処理のみが元ログを移す。新しいファイル名で出力設定を切り替える（同じ出力名の設定変更はreloadだけでは反映しない）。
 - ディレクトリは `caddy:caddy 0750`、ログは `0640`。既存PHPプールのcaddyグループとopen_basedir内で読み取る。
@@ -57,3 +57,16 @@ UA等から `human / bot / ai / automation / internal / unknown` に分類。既
 検証：アクセスログ・簡易表示・グラフ73項目、CookieなしUU37項目、先読み・背景更新10項目、保存処理8ケース、Caddy分類18ケース、既存管理画面58項目、375px/1280px表示。テストで使うIP・UAは合成値。実利用者の値を出力しない。
 
 公式仕様：[Caddy access logging](https://caddyserver.com/docs/caddyfile/directives/log)、[map](https://caddyserver.com/docs/caddyfile/directives/map)、[log_append](https://caddyserver.com/docs/caddyfile/directives/log_append)。
+
+
+## 詳細ログによる人数再判定（2026-10-20）
+
+`access-v3.log` は同じ非公開保存先・180日閲覧・検証付き圧縮方式を使う。旧ログを上書き・削除しない。Caddy 2.11.4では世代数制限を無効にする値は `roll_keep -1`。設定正本は `deploy/deafnavi-access-v3.caddy`。生IP・UAはサーバー外の分析サービスへ送信しない。
+
+`deafnavi-access-classify.timer` が5分ごとに `access-classify.php --write` を実行する。直近3日を再判定し、過去の判定は約180日保持。128MiB・40万行・25秒のいずれかの上限、形式異常、読取不能では前回の完全なsnapshotを保持して失敗する。管理画面は20分以上の更新遅延を表示する。
+
+非公開 `access-visitors/quality.json` は日別HMAC、分類、判定根拠のみを保持する。生IP・UA・秘密鍵は含めない。既存の訪問行を削除せず、PVとUUの読取時に適用する。確認済みbot/AI/自動操作と「自動アクセス疑い」を分ける。疑いは同一日・IP・UAで8回以上、30分以上、3ページ以下、主要間隔60〜3600秒、間隔の80%以上が規則的、直接一致5回以上が条件。人の自動更新も該当し得るため確定botとはしない。通信主体がIP/UAを変え続ける場合は判定できない。Service Workerやprefetchだけを理由にその利用者全体を除外しない。
+
+管理者の個別履歴ではIP・UA・参照元ドメインと判定理由を展開して読める。人数には判定前・除外後・疑いによる除外数を表示する。編集者・未ログイン利用者には公開しない。詳細記録の開始前は遡って完全に判定できず、開始時刻を明記する。
+
+検証: `php test/access-quality.test.php`, `node test/access-visitors.integration.mjs`, `node test/access-logs.integration.mjs`, `python3 test/access-maintenance.test.py`。

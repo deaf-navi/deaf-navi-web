@@ -93,11 +93,25 @@ function access_entry(string $line): ?array {
     $duration = is_numeric($r['duration'] ?? null) ? (float)$r['duration'] : null;
     if ($duration !== null && (!is_finite($duration) || $duration < 0)) $duration = null;
     $client = is_string($r['client_kind']??null) && isset(ACCESS_CLIENTS[$r['client_kind']]) && $r['client_kind']!=='all' ? $r['client_kind'] : 'unknown';
+    $ip=is_string($req['remote_ip']??null)&&filter_var($req['remote_ip'],FILTER_VALIDATE_IP)?$req['remote_ip']:null;
+    $ua=is_string($r['user_agent']??null)?substr($r['user_agent'],0,2048):null;
+    $ref=is_string($r['referrer_host']??null)&&preg_match('/^[a-zA-Z0-9.-]{1,253}$/D',$r['referrer_host'])?$r['referrer_host']:null;
+    $originalClient=$client;$classification='記録時の分類';
+    if($ua!==null&&in_array($client,['human','unknown'],true)){
+        $new=access_client($ua);
+        if($new!=='human'&&$new!=='unknown'){$client=$new;$classification='User-Agentによる再判定';}
+    }
+    if(($r['purpose']??null)==='prefetch'&&$client==='human'){$client='automation';$classification='ブラウザーの先読み';}
+    if($client==='human'&&$ip!==null&&$ua!==null){
+        $identity=access_quality_identity($ip,$ua,$ts);
+        $quality=$identity?access_quality_class(...$identity):null;
+        if($quality!==null){$client=$quality;$classification=$quality==='suspected'?'同じ接続・ブラウザーの規則的な巡回':'詳細ログ照合による除外';}
+    }
     if (preg_match('#^/admin(?:/|$)#',$path) && in_array($client,['human','unknown'],true)) $client='internal';
     if (in_array($path,['/sw.js','/otomado/sw.js'],true) && in_array($client,['human','unknown'],true)) $client='automation';
     return ['ts'=>$ts, 'host'=>$host, 'path'=>$path, 'method'=>$method, 'status'=>$status,
         'duration'=>$duration, 'size'=>is_int($r['size'] ?? null) && $r['size'] >= 0 ? $r['size'] : null,
-        'client'=>$client,
+        'client'=>$client,'original_client'=>$originalClient,'classification'=>$classification,'ip'=>$ip,'user_agent'=>$ua,'referrer_host'=>$ref,
         'group'=>access_group($path)];
 }
 
@@ -239,7 +253,7 @@ function admin_access_logs(): string {
     require_user(true);
     $o = access_options(); $r = access_report($o); $uu = access_unique_report($o);
     $base = ['view'=>'access','from'=>$o['from'],'to'=>$o['to'],'mode'=>$o['mode'],'content'=>$o['content'],'group'=>$o['group'],'client'=>$o['client'],'status'=>$o['status'],'q'=>$o['q'],'tab'=>$o['tab'],'limit'=>$o['limit']];
-    $out = '<p class="admin-lead">正常な公開ページ閲覧をコンテンツ別に集計します。日時は日本時間です。</p>';
+    $out = '<p class="admin-lead">正常な公開ページ閲覧をコンテンツ別に集計します。日時は日本時間です。</p>'.access_quality_notice();
     $out .= '<p>'.($o['mode']==='views'?'閲覧数からbot・AI・不審なURL探索・404・管理操作・画像やAPIの取得を除外します。':'調査用の生リクエスト表示です。閲覧数として扱わないでください。').'</p>';
     $out .= '<p class="dn-notice">'.($o['client']==='human'?'一般ブラウザーのみ集計しています。Codex・AI・bot・自動操作・管理画面・分類不明は除外しています。':'調査用の分類を表示しています。このリクエスト数を一般ユーザーの利用数として扱わないでください。').'</p>';
     $out .= '<form method="get" class="admin-filters"><input type="hidden" name="view" value="access"><input type="hidden" name="tab" value="'.e($o['tab']).'">'
@@ -256,7 +270,9 @@ function admin_access_logs(): string {
     foreach ($metrics as [$label,$count])
         $out .= '<a href="'.admin_query($base,['tab'=>'requests']).'"><span>'.e($label).'</span><strong>'.number_format($count).'<small>件</small></strong></a>';
     $out .= '<a href="'.admin_query($base,['tab'=>'unique']).'"><span>日別推定ユニークの合計</span><strong>'.($uu['available']?number_format($uu['total']).'<small>人日</small>':'未取得').'</strong><small>期間・コンテンツ・URL条件・一般ブラウザーのみ</small></a>';
-    $out .= '</div>'.access_content_html($o,$r,$uu,$base).access_charts_html($o,$r,$uu,$base).'<nav class="dn-admin-nav" aria-label="アクセスログの表示切替">';
+    $out .= '</div>';
+    if($uu['available']&&isset($uu['raw_total']))$out.='<p>詳細判定前 '.number_format($uu['raw_total']).' 人日 → 除外後 '.number_format($uu['total']).' 人日。規則的巡回の疑い：'.number_format($uu['quality_counts']['suspected']??0).' 人日。その他の詳細判定による除外：'.number_format($uu['raw_total']-$uu['total']-($uu['quality_counts']['suspected']??0)).' 人日。</p>';
+    $out .= access_content_html($o,$r,$uu,$base).access_charts_html($o,$r,$uu,$base).'<nav class="dn-admin-nav" aria-label="アクセスログの表示切替">';
     foreach (['paths'=>'URL別件数','days'=>'日別件数','requests'=>'個別のアクセス履歴','unique'=>'推定ユニーク数'] as $tab=>$label)
         $out .= '<a href="'.admin_query($base,['tab'=>$tab,'page'=>1]).'"'.($tab===$o['tab']?' aria-current="page"':'').'>'.e($label).'</a> ';
     $out .= '</nav>';
@@ -279,13 +295,13 @@ function admin_access_logs(): string {
         if (!$r['days']) $out .= '<tr><td colspan="2" class="admin-empty">この条件に一致するアクセスはありません。</td></tr>';
     } else {
         $out .= '<h2>個別のアクセス履歴（新しい順）</h2>'.admin_pager($o['page'],$r['total'],$o['limit'],$base)
-            .admin_table_open('個別のアクセス履歴').'<thead><tr><th scope="col">日時（日本時間）</th><th scope="col">URLパス</th><th scope="col">分類</th><th scope="col">メソッド</th><th scope="col">応答</th><th scope="col">処理時間</th><th scope="col">送信量</th></tr></thead><tbody>';
-        foreach ($r['rows'] as $p) $out .= '<tr><td>'.e(access_time($p['ts'])).'</td><th scope="row">'.e($p['path']).'<small>'.e($p['host']).'</small></th><td>'.e(ACCESS_CLIENTS[$p['client']]).'</td><td>'.e($p['method']).'</td><td>'.$p['status'].'</td><td>'.($p['duration']===null?'不明':number_format($p['duration']*1000,1).' ms').'</td><td>'.($p['size']===null?'不明':number_format($p['size']).' B').'</td></tr>';
+            .admin_table_open('個別のアクセス履歴').'<thead><tr><th scope="col">日時（日本時間）</th><th scope="col">URLパス</th><th scope="col">分類・接続情報</th><th scope="col">メソッド</th><th scope="col">応答</th><th scope="col">処理時間</th><th scope="col">送信量</th></tr></thead><tbody>';
+        foreach ($r['rows'] as $p) $out .= '<tr><td>'.e(access_time($p['ts'])).'</td><th scope="row">'.e($p['path']).'<small>'.e($p['host']).'</small></th><td>'.e(ACCESS_CLIENTS[$p['client']]).'<details><summary>判定理由・IP・ブラウザー</summary><p>'.e($p['classification']).'</p><dl><dt>接続IP</dt><dd>'.e($p['ip']??'未取得（旧ログ）').'</dd><dt>User-Agent</dt><dd>'.e($p['user_agent']??'未取得（旧ログ）').'</dd><dt>参照元ドメイン</dt><dd>'.e($p['referrer_host']??'未取得').'</dd></dl></details></td><td>'.e($p['method']).'</td><td>'.$p['status'].'</td><td>'.($p['duration']===null?'不明':number_format($p['duration']*1000,1).' ms').'</td><td>'.($p['size']===null?'不明':number_format($p['size']).' B').'</td></tr>';
         if (!$r['rows']) $out .= '<tr><td colspan="7" class="admin-empty">このページに表示するアクセスはありません。</td></tr>';
     }
     $out .= '</tbody></table></div>';
     if ($o['tab'] === 'requests') $out .= admin_pager($o['page'],$r['total'],$o['limit'],$base);
-    return $out.engagement_report_html($o).access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。通常集計は一般ブラウザーのみで、Codex・AI・bot・自動操作・管理画面・分類不明を除外します。除外した分類は調査用に切り替えて確認できます。判別情報のない通常ブラウザーの自動操作は見分けられません。過去に一般ブラウザーとして保存された記録を、後から完全に分類し直すことはできません。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。同じ日の接続が後からCodex等と判定された場合は、その日の推定UUから除外します。</p><p>生のIP・User-Agent・Cookie・認証情報・参照元・入力本文・URLの検索条件は保存しません。公開領域外で管理者のみ参照できます。180日超を月初にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。210日超は日次でも確認します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
+    return $out.engagement_report_html($o).access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。通常集計は一般ブラウザーのみで、Codex・AI・bot・自動操作・管理画面・分類不明を除外します。除外した分類は調査用に切り替えて確認できます。詳細ログのある期間では、同じ接続とブラウザーの長時間の規則的な巡回を自動アクセス疑いとして通常集計から除外します。人間の自動更新等も含まれ得るため、確定botとは区別します。過去に一般ブラウザーとして保存された記録を、後から完全に分類し直すことはできません。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。同じ日の接続が後からCodex等と判定された場合は、その日の推定UUから除外します。</p><p>詳細ログでは接続IP・User-Agent・参照元ドメイン・ブラウザーの通信種別を記録します。Cookie・認証情報・入力本文・URLの検索条件・参照元の検索語は保存しません。公開領域外で管理者のみ参照できます。180日超を月初にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。210日超は日次でも確認します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
 }
 
 function access_content_html(array $options, array $report, array $unique, array $base): string {
