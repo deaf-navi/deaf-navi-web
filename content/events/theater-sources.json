@@ -16,13 +16,13 @@
         "https://www.facebook.com/reel/1641591537637152/"
       ],
       "state": "upcoming_verified",
-      "notes": "12月5・6日の公演を公共施設本文と劇団の公開投稿で確認。公共施設の掲載写真は過去公演と明記されているため今回の告知画像として流用しない。",
+      "notes": "12月5・6日の公演を公共施設本文と劇団の公開投稿で確認。公共施設の掲載写真は過去公演と明記されているため今回の告知画像として流用しない。 10月19日は公共施設公式本文を再読し、掲載日時・会場・料金が不変であることを確認。目視確認日時は今回の本文再読だけでは延長しない。",
       "eventIds": [
         "gifu-ibuki-kurayami-2026-12-05"
       ],
       "missing": [],
-      "checkedAt": "2026-10-18T00:33:05.961Z",
-      "recheckAfter": "2026-10-19T00:00:00Z",
+      "checkedAt": "2026-10-19T00:14:53.814Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
       "queries": [
         "岐阜ろう劇団いぶき 公演 2026",
         "岐阜ろう劇団いぶき 公演 2027"
@@ -39,7 +39,7 @@
         "https://koguyama.jp/yamabiko/yamabiko_event/41933/"
       ],
       "state": "upcoming_verified",
-      "notes": "砂川公演は既存掲載を維持。札幌11月6〜8日は会場公式本文と2026年チラシを実読。7・8日の午前開演は10:30と会場側でも確認できたため掲載対象へ。",
+      "notes": "砂川公演は既存掲載を維持。札幌11月6〜8日は会場公式本文と2026年チラシを実読。7・8日の午前開演は10:30と会場側でも確認できたため掲載対象へ。 10月19日は公共施設公式本文を再読し、掲載日時・会場・料金が不変であることを確認。目視確認日時は今回の本文再読だけでは延長しない。",
       "eventIds": [
         "maimu-zarela-sunagawa-2026-10-25",
         "maimu-zarela-sapporo-2026-11-06"
@@ -47,8 +47,8 @@
       "missing": [
         "劇団単独の公式告知先"
       ],
-      "checkedAt": "2026-10-18T00:33:05.961Z",
-      "recheckAfter": "2026-10-19T00:00:00Z",
+      "checkedAt": "2026-10-19T00:14:53.815Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
       "queries": [
         "札幌ろうあ劇団舞夢 公演 2026",
         "札幌ろうあ劇団舞夢 公演 2027"
@@ -241,6 +241,40 @@
         "手話演劇 2026年11月 東京 神奈川",
         "KAAT 蛙昇天 字幕"
       ]
+    },
+    {
+      "id": "gifu-lucky-cats",
+      "name": "劇団ラッキー・キャッツ",
+      "prefecture": "岐阜県",
+      "officialUrls": [],
+      "evidenceUrls": [
+        "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html"
+      ],
+      "state": "needs_review",
+      "notes": "11月7・8日の字幕鑑賞席と会場を公共施設本文で確認。発売日の曜日表記に不整合があるため、主催者の申込先・最新受付状況を再確認する。 作品自体を手話劇とは推測せず、字幕鑑賞支援のある演劇として追跡。",
+      "eventIds": [],
+      "missing": [
+        "主催者の申込先・最新受付状況"
+      ],
+      "checkedAt": "2026-10-19T00:14:53.816Z",
+      "recheckAfter": "2026-10-20T00:00:00Z"
+    },
+    {
+      "id": "gifu-atonomatsuri",
+      "name": "劇団あとの祭り",
+      "prefecture": "岐阜県",
+      "officialUrls": [],
+      "evidenceUrls": [
+        "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html"
+      ],
+      "state": "needs_review",
+      "notes": "11月14日の14時・18時にタブレット字幕各2席と公共施設本文に明記。劇団の申込先・受付状況を再確認する。 作品自体を手話劇とは推測せず、字幕鑑賞支援のある演劇として追跡。",
+      "eventIds": [],
+      "missing": [
+        "主催者の申込先・最新受付状況"
+      ],
+      "checkedAt": "2026-10-19T00:14:53.816Z",
+      "recheckAfter": "2026-10-20T00:00:00Z"
     }
   ]
 }

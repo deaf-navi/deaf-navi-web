@@ -490,10 +490,10 @@
       "sourceName": "KAAT神奈川芸術劇場",
       "eventId": "kaat-kaeru-captions-2026-11-06",
       "state": "published_ready",
-      "reason": "会場公式本文を実読。聴覚の鑑賞サポートが明記された開催回のみ追加。字幕対応と舞台手話表現、受付・ツアー通訳を区別。",
+      "reason": "公式本文を再読して字幕対象2回の開催日時・申込条件が不変と確認。本文hash変更による保留から復旧。",
       "discoveredOn": "2026-10-18",
-      "checkedAt": "2026-10-18T00:25:35.165Z",
-      "recheckAfter": "2026-10-19T00:00:00Z",
+      "checkedAt": "2026-10-19T00:03:30Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
       "missing": []
     },
     {
@@ -501,26 +501,114 @@
       "sourceName": "KAAT神奈川芸術劇場",
       "eventId": "kaat-kaeru-captions-2026-11-07",
       "state": "published_ready",
-      "reason": "会場公式本文を実読。聴覚の鑑賞サポートが明記された開催回のみ追加。字幕対応と舞台手話表現、受付・ツアー通訳を区別。",
+      "reason": "公式本文を再読して字幕対象2回の開催日時・申込条件が不変と確認。本文hash変更による保留から復旧。",
       "discoveredOn": "2026-10-18",
-      "checkedAt": "2026-10-18T00:25:35.165Z",
-      "recheckAfter": "2026-10-19T00:00:00Z",
+      "checkedAt": "2026-10-19T00:03:30Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
       "missing": []
+    },
+    {
+      "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261101-417.html",
+      "sourceName": "東京都渋谷公園通りギャラリー",
+      "eventId": "shibuya-engeki-school-2026-11-01",
+      "state": "published_ready",
+      "reason": "会場公式本文の開催年・日時・場所・無料・事前申込期限・手話通訳付き公演を確認。一般講演と区別し、作品自体の手話表現は推測しない。",
+      "discoveredOn": "2026-10-19",
+      "checkedAt": "2026-10-19T00:05:47.851Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
+      "missing": []
+    },
+    {
+      "sourceUrl": "https://creativewell.rekibun.or.jp/creativewell-conference/2026.html",
+      "sourceName": "東京都・アーツカウンシル東京",
+      "state": "needs_review",
+      "reason": "公式概要の10月28日〜11月1日、東京国際フォーラム、日本手話・字幕・B5のみ国際手話を確認。各プログラムで対象日・受付状態が異なるため開催回の詳細を追跡。",
+      "discoveredOn": "2026-10-19",
+      "checkedAt": "2026-10-19T00:05:47.851Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
+      "missing": [
+        "ろう者関連プログラムごとの日時・会場・受付状態"
+      ]
+    },
+    {
+      "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261103-421.html",
+      "sourceName": "東京都渋谷公園通りギャラリー",
+      "state": "needs_review",
+      "reason": "手話通訳付き一般講演。手話劇・聴覚支援公演とは異なるため、聴覚との具体的関連を確認できるまでは掲載しない。",
+      "discoveredOn": "2026-10-19",
+      "checkedAt": "2026-10-19T00:05:47.851Z",
+      "recheckAfter": "2026-10-26T00:00:00Z",
+      "missing": [
+        "聴覚・ろう文化等との具体的な内容上の関連"
+      ]
+    },
+    {
+      "candidateId": "gifu-lucky-cats",
+      "sourceUrl": "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html",
+      "sourceName": "岐阜市生涯学習センター",
+      "title": "劇団ラッキー・キャッツ「壊れた時計」",
+      "state": "needs_review",
+      "reason": "11月7・8日の字幕鑑賞席と会場を公共施設本文で確認。発売日の曜日表記に不整合があるため、主催者の申込先・最新受付状況を再確認する。",
+      "discoveredOn": "2026-10-19",
+      "checkedAt": "2026-10-19T00:14:53.816Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
+      "missing": [
+        "主催者の申込先・最新受付状況"
+      ]
+    },
+    {
+      "candidateId": "gifu-atonomatsuri",
+      "sourceUrl": "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html",
+      "sourceName": "岐阜市生涯学習センター",
+      "title": "劇団あとの祭り「ネコ王様のおっしゃることには」",
+      "state": "needs_review",
+      "reason": "11月14日の14時・18時にタブレット字幕各2席と公共施設本文に明記。劇団の申込先・受付状況を再確認する。",
+      "discoveredOn": "2026-10-19",
+      "checkedAt": "2026-10-19T00:14:53.816Z",
+      "recheckAfter": "2026-10-20T00:00:00Z",
+      "missing": [
+        "主催者の申込先・最新受付状況"
+      ]
     }
   ],
   "lastResearch": {
-    "checkedAt": "2026-10-17T22:59:16.379Z",
-    "newDetailedCandidates": 3,
-    "windowEnd": "2026-11-29",
-    "performanceWindowEnd": "2027-04-18",
+    "checkedAt": "2026-10-19T00:05:47.851Z",
+    "newDetailedCandidates": 5,
+    "windowEnd": "2026-11-30",
+    "performanceWindowEnd": "2027-04-19",
     "publishedReady": [
-      "tonancyo-community-2026-11-03",
-      "horipro-jack-captions-2027-01-30",
-      "horipro-jack-captions-2027-02-02",
-      "horipro-jack-captions-2027-02-03",
-      "horipro-jack-captions-2027-02-06",
-      "horipro-jack-captions-2027-02-07"
+      "shibuya-engeki-school-2026-11-01"
     ],
-    "scope": "取りこぼし監査。公式告知3件を詳査。要約筆記講座1件と字幕対応ミュージカル6公演を5日付にまとめ、計6件の掲載を追加。申込期限経過の説明会1件は受付可否を推測せず候補へ。"
+    "restored": [
+      "kaat-kaeru-captions-2026-11-06",
+      "kaat-kaeru-captions-2026-11-07"
+    ],
+    "scope": "東京・神奈川と全国の新規告知を探索。新規公式3ページ詳査、掲載1・保留2。神奈川県GOの公式PDF両面を目視更新。北海道・東北のカフェ探索はDB調査台帳に記録。既存登録表だけで新規探索を終えない。 岐阜の公式施設の既存公演ページから字幕鑑賞支援のある2劇団を追跡台帳へ追加。受付状況は未確認のため未掲載。新規詳細候補は合計5件（公式ページ4件、上限8件内）。",
+    "newsReview": {
+      "generatedAt": "2026-10-19T00:03:14.997Z",
+      "counts": {
+        "uniqueInputs": 3214,
+        "alreadyPublished": 1051,
+        "outsideWindow": 1706,
+        "hardExcluded": 19,
+        "duplicateOfPublished": 168,
+        "candidateDuplicates": 11,
+        "eligible": 259,
+        "queued": 40,
+        "deferred": 219
+      },
+      "comparison": {
+        "previousGeneratedAt": "2026-10-18T23:02:25.160Z",
+        "previousQueued": 40,
+        "retained": 40,
+        "new": 0,
+        "changed": 0,
+        "unchanged": 40
+      },
+      "apiSubmitted": 0,
+      "published": 0,
+      "note": "未変更候補の再選別は行わず、明示除外と掲載済み近似重複を保持。"
+    },
+    "newDetailedPages": 4
   }
 }
