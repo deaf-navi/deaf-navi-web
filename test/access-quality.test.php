@@ -1,0 +1,39 @@
+<?php
+declare(strict_types=1);
+$tmp=sys_get_temp_dir().'/dn-quality-'.bin2hex(random_bytes(6));mkdir($tmp,0700);mkdir($tmp.'/logs',0700);mkdir($tmp.'/visitors',0700);
+putenv('DEAFNAVI_LOCAL_TEST=1');putenv('DEAFNAVI_ACCESS_LOG_DIR='.$tmp.'/logs');putenv('DEAFNAVI_VISITOR_DIR='.$tmp.'/visitors');
+require __DIR__.'/../server/access-classify.php';
+access_visitor_init();$checks=0;
+function check(bool $v,string $label):void {global $checks;if(!$v)throw new RuntimeException($label);$checks++;}
+$day=(new DateTimeImmutable('today',new DateTimeZone('Asia/Tokyo')))->format('Y-m-d');
+$base=strtotime($day.'T01:00:00+09:00');$regular=array_map(fn($i)=>$base+$i*370,range(0,11));
+check(access_periodic_signal($regular,1)!==null,'6-minute regular browser detected');
+check(access_periodic_signal(array_slice($regular,0,7),1)===null,'insufficient history remains unconfirmed');
+check(access_periodic_signal($regular,6)===null,'real browsing across many pages not automatically excluded');
+check(access_periodic_signal([$base,$base+31,$base+98,$base+350,$base+1031,$base+2344,$base+2400,$base+3300],1)===null,'irregular reader retained');
+$ua='Mozilla/5.0 Synthetic-Regular';$rows=[];
+foreach($regular as $t)$rows[]=['ts'=>$t,'request'=>['host'=>'deafnavi.com','method'=>'GET','uri'=>'/','remote_ip'=>'192.0.2.10'],'status'=>200,'client_kind'=>'human','user_agent'=>$ua,'purpose'=>'none'];
+$rows[]=['ts'=>$base,'request'=>['host'=>'deafnavi.com','method'=>'GET','uri'=>'/','remote_ip'=>'192.0.2.20'],'status'=>200,'client_kind'=>'human','user_agent'=>'Google-InspectionTool/1.0'];
+$rows[]=['ts'=>$base,'request'=>['host'=>'deafnavi.com','method'=>'GET','uri'=>'/','remote_ip'=>'192.0.2.30'],'status'=>200,'client_kind'=>'automation','user_agent'=>'Mozilla/5.0 RealReader','purpose'=>'prefetch'];
+$rows[]=['ts'=>$base+3,'request'=>['host'=>'deafnavi.com','method'=>'GET','uri'=>'/','remote_ip'=>'192.0.2.30'],'status'=>200,'client_kind'=>'human','user_agent'=>'Mozilla/5.0 RealReader'];
+$rows[]=['ts'=>$base+6,'request'=>['host'=>'deafnavi.com','method'=>'GET','uri'=>'/'],'status'=>200,'client_kind'=>'human'];
+file_put_contents($tmp.'/logs/access-v3.log',implode("\n",array_map(fn($r)=>json_encode($r,JSON_THROW_ON_ERROR),$rows))."\n");
+$report=access_classify_build();
+$regularId=access_quality_identity('192.0.2.10',$ua,$base);$readerId=access_quality_identity('192.0.2.30','Mozilla/5.0 RealReader',$base);
+check(($report['days'][$regularId[0]][$regularId[1]]['class']??null)==='suspected','regular visitor placed in suspect bucket');
+check(!isset($report['days'][$readerId[0]][$readerId[1]]),'service-worker prefetch does not exclude human UU');
+check($report['stats']['confirmed_visitors']===1,'known crawler confirmed');
+check(!str_contains(json_encode($report),'192.0.2.')&&!str_contains(json_encode($report),'Mozilla'),'aggregate contains no raw IP or UA');
+access_record_visit('/','192.0.2.10',$ua,new DateTimeImmutable('@'.$base));
+access_record_visit('/','192.0.2.20','Google-InspectionTool/1.0',new DateTimeImmutable('@'.$base));
+access_record_visit('/','192.0.2.30','Mozilla/5.0 RealReader',new DateTimeImmutable('@'.$base));
+file_put_contents($tmp.'/visitors/quality.json',json_encode($report));
+// New request/process, matching production snapshot semantics.
+$code='require '.var_export(__DIR__.'/../server/access-visitors.php',true).';echo json_encode(access_unique_report(["from"=>"2026-10-20","to"=>"2026-10-20","q"=>"","content"=>"all"]));';
+$code=str_replace('2026-10-20',$day,$code);
+$process=proc_open([PHP_BINARY,'-r',$code],[1=>['pipe','w'],2=>['pipe','w']],$pipes);$raw=stream_get_contents($pipes[1]);$err=stream_get_contents($pipes[2]);fclose($pipes[1]);fclose($pipes[2]);check(proc_close($process)===0,$err);
+$uu=json_decode($raw,true);check($uu['raw_total']===3&&$uu['total']===1,'same-day raw UU 3 becomes retained UU 1');
+check($uu['quality_counts']['suspected']===1&&$uu['quality_counts']['bot']===1,'suspected and confirmed counts separate');
+check((int)access_visitor_db()->query('SELECT COUNT(*) FROM visits')->fetchColumn()===3,'original visits preserved');
+$legacy=access_entry(json_encode(end($rows)));check($legacy['ip']===null&&$legacy['client']==='human','legacy unknown details preserved');
+echo json_encode(['result'=>'ACCESS_QUALITY_TESTS_OK','checks'=>$checks,'fixture_dir'=>$tmp])."\n";

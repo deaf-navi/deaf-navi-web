@@ -1,0 +1,14 @@
+[Unit]
+Description=Deaf Navi detailed access classification
+[Service]
+Type=oneshot
+User=deafnavi-runtime
+Group=caddy
+UMask=0027
+ExecStart=/usr/bin/php /srv/deafnavi/current/_backend/access-classify.php --write
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/deafnavi/shared/access-visitors
+TimeoutStartSec=45s

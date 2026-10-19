@@ -1,0 +1,9 @@
+[Unit]
+Description=Refresh Deaf Navi traffic classifications every five minutes
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+AccuracySec=15s
+Unit=deafnavi-access-classify.service
+[Install]
+WantedBy=timers.target

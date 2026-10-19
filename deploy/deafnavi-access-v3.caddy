@@ -1,0 +1,144 @@
+(deafnavi_access_class) {
+    map {http.request.header.User-Agent} {access_ua_class} {
+        ~(?i)GPTBot|OAI-SearchBot|ChatGPT|OpenAI|Codex|Claude|Anthropic|Perplexity|Bytespider|cohere-ai ai
+        ~(?i)bot|crawler|spider|slurp|facebookexternalhit|WhatsApp|TelegramBot|GoogleOther|Google-InspectionTool|Mediapartners-Google|AdsBot|bingpreview|Yandex|Applebot|Amazonbot bot
+        ~(?i)curl|wget|python|httpx|headless|playwright|puppeteer|selenium|deafnavi-release|uptime|monitor|Go-http-client|node|undici automation
+        ~(?i)Mozilla/|Opera/ human
+        default unknown
+    }
+    map {http.request.header.Referer} {access_referrer_class} {
+        ~(?i)^https?://(?:www[.])?deafnavi[.]com(?::(?:80|443))?/[^\s]*[?&]dn_client=(?:codex|openai)(?:&|$) ai
+        ~(?i)^https?://(?:www[.])?deafnavi[.]com(?::(?:80|443))?/[^\s]*[?&]dn_client=automation(?:&|$) automation
+        default {access_ua_class}
+    }
+    map "{access_referrer_class}:{http.request.uri.path}" {access_path_class} {
+        ~^(?:human|unknown):/admin(?:/|$) internal
+        ~^(?:human|unknown):/(?:otomado/)?sw[.]js$ automation
+        default {access_referrer_class}
+    }
+    map "{http.request.header.X-DeafNavi-Client}:{query.dn_client}" {access_client_class} {
+        ~(?i)codex|openai ai
+        ~(?i)automation automation
+        default {access_path_class}
+    }
+    map {http.request.header.User-Agent} {access_detail_ua} {
+        "~^([^\r\n]{0,512})[^\r\n]*$" "${1}"
+        default "invalid-or-missing"
+    }
+    map {http.request.header.Referer} {access_detail_refhost} {
+        "~^https?://([A-Za-z0-9.-]+)(?::[0-9]+)?(?:[/?#].*)?$" "${1}"
+        default "none-or-invalid"
+    }
+    map {http.request.header.Sec-Fetch-Dest} {access_detail_dest} {
+        document document
+        empty empty
+        iframe iframe
+        default unknown
+    }
+    map {http.request.header.Sec-Fetch-Mode} {access_detail_mode} {
+        navigate navigate
+        cors cors
+        no-cors no-cors
+        same-origin same-origin
+        default unknown
+    }
+    map {http.request.header.Sec-Fetch-Site} {access_detail_site} {
+        none none
+        same-origin same-origin
+        same-site same-site
+        cross-site cross-site
+        default unknown
+    }
+    map {http.request.header.Sec-Fetch-User} {access_detail_user} {
+        ?1 activated
+        default absent
+    }
+    map "{http.request.header.Purpose}:{http.request.header.Sec-Purpose}" {access_detail_purpose} {
+        ~(?i)prefetch|prerender prefetch
+        default none
+    }
+    log_append <user_agent {access_detail_ua}
+    log_append <referrer_host {access_detail_refhost}
+    log_append <fetch_dest {access_detail_dest}
+    log_append <fetch_mode {access_detail_mode}
+    log_append <fetch_site {access_detail_site}
+    log_append <fetch_user {access_detail_user}
+    log_append <purpose {access_detail_purpose}
+    log_append <client_kind {access_client_class}
+}
+deafnavi.com {
+    import deafnavi_access_class
+    log deafnavi_access {
+        hostnames deafnavi.com www.deafnavi.com
+        output file /srv/deafnavi/shared/access-logs/access-v3.log {
+            mode 0640
+            roll_size 10MiB
+            roll_interval 24h
+            # Verified monthly compression owns retention; Caddy must not delete records.
+            roll_keep -1
+            roll_keep_for 0
+            roll_uncompressed
+        }
+        format filter {
+            wrap json
+            fields {
+                request>remote_port delete
+                request>client_ip delete
+                request>headers delete
+                request>tls delete
+                request>uri regexp "[?].*$" ""
+                resp_headers delete
+                user_id delete
+                err_id delete
+                err_trace delete
+                error delete
+            }
+        }
+    }
+    root * /srv/deafnavi/current
+    encode zstd gzip
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+        X-Frame-Options SAMEORIGIN
+        Cache-Control "public, max-age=300, must-revalidate"
+    }
+    @mutable path / *.html *.json *.xml /manifest.webmanifest /sw.js
+    header @mutable Cache-Control "public, max-age=0, must-revalidate"
+    route {
+        @private path /_backend /_backend/* *.php *.sqlite *.sqlite3 *.sql /connect/places /connect/places/* /connect/communities /connect/communities/*
+        respond @private "Not Found" 404
+        import /etc/caddy/deafnavi-entry-redirects.caddy
+        # Place inside deafnavi.com, BEFORE the existing @directory handler.
+        # Keep the existing directory handler and its 64KB limit unchanged.
+        @stories path /stories /stories/* /admin/stories/
+        handle @stories {
+            request_body {
+                max_size 8MB
+            }
+            header Cache-Control "private, no-store, max-age=0"
+            header X-Frame-Options DENY
+            rewrite * /_backend/index.php
+            php_fastcgi unix//run/php/deafnavi.sock
+        }
+        @directory path /admin /admin/* /submit /submit/* /connect/sign-cafe /connect/sign-cafe/* /directory-sitemap.xml /_access/visit
+        handle @directory {
+            request_body {
+                max_size 64KB
+            }
+            header Cache-Control "private, no-store, max-age=0"
+            header X-Frame-Options DENY
+            rewrite * /_backend/index.php
+            php_fastcgi unix//run/php/deafnavi.sock
+        }
+        file_server
+    }
+    handle_errors {
+        rewrite * /404.html
+        file_server
+    }
+}
+www.deafnavi.com {
+    import deafnavi_access_class
+    redir https://deafnavi.com{uri} permanent
+}

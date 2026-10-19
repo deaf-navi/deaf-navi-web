@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 const ACCESS_CONTENTS = ['web'=>'Deaf Navi Web','world_jp'=>'World-JP','world_original'=>'World-Original','events'=>'イベント','cafe'=>'手話カフェ','cafe_overseas'=>'手話カフェ 海外','guide'=>'暮らしのガイド','otomado'=>'おとまど','about'=>'サイトについて','stories'=>'読みもの'];
-const ACCESS_EXCLUSIONS = ['bot'=>'bot・検索エンジン','ai'=>'AI・Codex','automation'=>'自動取得・監視','internal'=>'管理・情報提供','unknown'=>'分類不明','probe'=>'不審なURL探索','not_found'=>'その他の404','unsuccessful'=>'転送・エラー・GET以外','resource'=>'API・画像・システム取得','unlisted'=>'対象外のページ'];
+const ACCESS_EXCLUSIONS = ['bot'=>'bot・検索エンジン','ai'=>'AI・Codex','automation'=>'自動取得・監視','suspected'=>'自動アクセス疑い（規則的巡回）','internal'=>'管理・情報提供','unknown'=>'分類不明','probe'=>'不審なURL探索','not_found'=>'その他の404','unsuccessful'=>'転送・エラー・GET以外','resource'=>'API・画像・システム取得','unlisted'=>'対象外のページ'];
 
 function access_content(string $path): ?string {
     $path = rawurldecode(explode('?', $path, 2)[0]);

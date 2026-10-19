@@ -32,7 +32,7 @@ class Retention(unittest.TestCase):
         old = self.log(181, 'access-v2-2026-03-01T00-00-00-time.log')
         raw = old.read_bytes()
         fresh = self.log(179, 'access-v2-2026-03-04T00-00-00-time.log')
-        active = self.log(211, 'access-v2.log')
+        active = self.log(211, 'access-v3.log')
         result = m.maintain(self.logs, self.visitors, self.now)
         self.assertEqual(len(result['logs']), 1)
         self.assertFalse(old.exists())

@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__.'/access-pages.php';
+require_once __DIR__.'/access-quality.php';
 
 // Separate from sessions and the directory database. No network identifiers are stored.
-const ACCESS_CLIENTS = ['human'=>'一般ブラウザー（推定）','all'=>'すべての分類（調査用）','bot'=>'bot・検索クローラー','ai'=>'AI・Codex','automation'=>'自動操作・監視','internal'=>'管理画面','unknown'=>'不明・分類開始前'];
+const ACCESS_CLIENTS = ['human'=>'一般ブラウザー（推定）','all'=>'すべての分類（調査用）','bot'=>'bot・検索クローラー','ai'=>'AI・Codex','automation'=>'自動操作・監視','suspected'=>'自動アクセス疑い（規則的巡回）','internal'=>'管理画面','unknown'=>'不明・分類開始前'];
 
 function access_client(string $ua, string $marker=''): string {
     if (preg_match('/codex|openai/i', $marker)) return 'ai';
     if ($marker === 'automation') return 'automation';
     if (preg_match('/GPTBot|OAI-SearchBot|ChatGPT|OpenAI|Codex|Claude|Anthropic|Perplexity|Bytespider|cohere-ai/i', $ua)) return 'ai';
-    if (preg_match('/bot|crawler|spider|slurp|facebookexternalhit|WhatsApp|TelegramBot/i', $ua)) return 'bot';
+    if (preg_match('/bot|crawler|spider|slurp|facebookexternalhit|WhatsApp|TelegramBot|GoogleOther|Google-InspectionTool|Mediapartners-Google|bingpreview|Yandex/i', $ua)) return 'bot';
     if (preg_match('/curl|wget|python|httpx|headless|playwright|puppeteer|selenium|deafnavi-release|uptime|monitor|Go-http-client|node|undici/i', $ua)) return 'automation';
     return preg_match('/Mozilla\/|Opera\//i', $ua) ? 'human' : 'unknown';
 }
@@ -132,6 +133,8 @@ function access_unique_report(array $options): array {
         $db = access_visitor_db();
         $result['started_at'] = $db->query("SELECT value FROM metadata WHERE key='started_at'")->fetchColumn() ?: null;
         $where = 'day>=? AND day<=? AND NOT EXISTS (SELECT 1 FROM excluded_visitors x WHERE x.day=visits.day AND x.visitor=visits.visitor)'; $args = [$options['from'],$options['to']];
+        $db->sqliteCreateFunction('quality_excluded',fn($day,$visitor)=>access_quality_class($day,$visitor)!==null?1:0,2);
+        $where .= ' AND quality_excluded(day,visitor)=0';
         if ($options['q']!=='') { $where .= ' AND instr(lower(path),lower(?))>0'; $args[]=$options['q']; }
         $db->sqliteCreateFunction('content_key', fn($path)=>access_content($path), 1);
         $where .= ' AND content_key(path) IS NOT NULL';
@@ -139,6 +142,11 @@ function access_unique_report(array $options): array {
         $s->execute($args);
         foreach ($s as $row) $result['contents'][$row['content']] = (int)$row['count'];
         if (($options['content']??'all')!=='all') { $where .= ' AND content_key(path)=?'; $args[]=$options['content']; }
+        $db->sqliteCreateFunction('quality_class',fn($day,$visitor)=>access_quality_class($day,$visitor)??'retained',2);
+        $rawWhere=str_replace(' AND quality_excluded(day,visitor)=0','',$where);
+        $quality=$db->prepare('SELECT quality_class(day,visitor) AS kind,COUNT(DISTINCT day || ":" || visitor) AS count FROM visits WHERE '.$rawWhere.' GROUP BY quality_class(day,visitor)');
+        $quality->execute($args);$result['quality_counts']=[];$result['raw_total']=0;
+        foreach($quality as $row){$result['quality_counts'][$row['kind']]=(int)$row['count'];$result['raw_total']+=(int)$row['count'];}
         $s = $db->prepare('SELECT day,COUNT(DISTINCT visitor) AS count FROM visits WHERE '.$where.' GROUP BY day ORDER BY day DESC');
         $s->execute($args);
         foreach ($s as $r) { $result['days'][$r['day']]=(int)$r['count']; $result['total']+=(int)$r['count']; }

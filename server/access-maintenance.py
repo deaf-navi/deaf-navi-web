@@ -85,7 +85,7 @@ def verified_gzip(source, target):
         temporary.unlink(missing_ok=True)
 
 
-def archive_logs(root, cutoff, active="access-v2.log", index=None):
+def archive_logs(root, cutoff, active="access-v3.log", index=None):
     archived = []
     for source in sorted(root.glob("access*.log")):
         if source.name == active:
