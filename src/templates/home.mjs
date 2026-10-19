@@ -30,6 +30,7 @@ import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import { renderNewsThumbnail } from './thumbnail.mjs';
 import { groupNewsTopics } from '../lib/news-topics.mjs';
+import { NEWS_SECTIONS } from '../../config/news-sections.mjs';
 import {
   EXTERNAL_ARROW_SVG,
   ICONS,
@@ -59,29 +60,13 @@ export function selectFeatured(articles, now = Date.now()) {
     .slice(0, FEATURED_COUNT);
 }
 
-function renderJsonLd({ generatedAt, articles, pageUrl, isDev }) {
+function renderJsonLd({ generatedAt, articles, pageUrl, pageTitle, isDev }) {
   const topArticles = articles.slice(0, 30);
   const itemList = topArticles.map((a, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     url: a.id,
-    item: {
-      '@type': 'NewsArticle',
-      '@id': a.id,
-      headline: a.title,
-      url: a.id,
-      datePublished: a.publishedAt,
-      dateModified: a.publishedAt,
-      inLanguage: 'ja-JP',
-      description: a.summary,
-      isAccessibleForFree: true,
-      publisher: {
-        '@type': 'Organization',
-        name: a.sourceName,
-        url: a.sourceUrl,
-      },
-      articleSection: CATEGORY_UI[a.category] ?? '一般',
-    },
+    name: a.title,
   }));
 
   const data = {
@@ -116,7 +101,7 @@ function renderJsonLd({ generatedAt, articles, pageUrl, isDev }) {
         '@type': 'CollectionPage',
         '@id': `${pageUrl}#webpage`,
         url: pageUrl,
-        name: `${isDev ? '[DEV] ' : ''}${SITE_NAME} | ${SITE_TAGLINE}`,
+        name: pageTitle,
         description: SITE_DESC,
         inLanguage: 'ja-JP',
         isPartOf: { '@id': `${SITE_URL}#website` },
@@ -160,11 +145,10 @@ function renderQuickAccess({ guideFile }) {
       filter: 'safety',
     },
     {
-      href: './?category=policy',
+      href: '/news/support/',
       icon: ICONS.landmark,
       title: '制度・政策',
       desc: '法律・条例・給付・雇用・助成のニュース',
-      filter: 'policy',
     },
     {
       href: `./${guideFile}`,
@@ -333,7 +317,7 @@ export function renderHomePage(data, opts) {
   const now = opts.now ?? Date.now();
 
   const pageUrl = isDev ? `${SITE_URL}index-dev.html` : SITE_URL;
-  const pageTitle = `${isDev ? '[DEV] ' : ''}${SITE_NAME} | 聴覚障害・難聴・手話のニュース`;
+  const pageTitle = `${isDev ? '[DEV] ' : ''}聴覚障害のニュース｜難聴・手話・暮らしの情報 | ${SITE_NAME}`;
   const robots = isDev ? 'noindex,nofollow,noarchive' : 'index,follow,max-image-preview:large,max-snippet:-1';
   const generatedLocal = formatDateJST(generatedAt);
 
@@ -349,7 +333,7 @@ export function renderHomePage(data, opts) {
     .map((group) => renderTopic(group, now))
     .join('\n');
 
-  const jsonLd = renderJsonLd({ generatedAt, articles, pageUrl, isDev });
+  const jsonLd = renderJsonLd({ generatedAt, articles, pageUrl, pageTitle, isDev });
   const leadPrefix = isDev ? 'テスト版。dev品質フィルタで生成中。 ' : '';
 
   return `<!DOCTYPE html>
@@ -378,20 +362,25 @@ ${renderGlobalHeader({
       aboutHref: `./${files.about}`,
     },
   })}
-  <div class="dn-page-intro"><div class="container">
-    <h1 class="dn-page-title"><span>知ることを、</span><span>つながるきっかけに。</span></h1>
-    <p class="site-lead">${leadPrefix}きこえない・きこえにくい人のためのニュース。</p>
+  <div class="dn-page-intro"><div class="container news-opening">
+    <div class="news-opening__text">
+      <h1 class="dn-page-title"><span>聴覚障害・難聴・</span><span>手話のニュース</span></h1>
+      <p class="news-concept">知ることを、つながるきっかけに。</p>
+    </div>
+    <p class="site-lead">${leadPrefix}ろう者・難聴者・中途失聴者、その家族や支援者に。<br>制度や情報保障の新着から、手話イベント・カフェまで。</p>
+    <figure class="news-opening__photo"><img src="/editorial/notebook.jpg" width="960" height="640" alt="自然光の入る机で、ノートにペンを走らせる手元" decoding="async"><figcaption>イメージ写真 · <a href="https://unsplash.com/photos/PSNSnsL5qXM" target="_blank" rel="noopener noreferrer" aria-label="写真の出典：Fiona Murray-deGraaff / Unsplash（新しいタブ）"><span class="photo-credit-name">Fiona Murray-deGraaff / </span>Unsplash</a></figcaption></figure>
   </div></div>
 
   <main id="main" class="container" role="main">
     <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
 ${renderFeatured(featured)}
+    <nav class="news-section-links" aria-label="分野別のニュース"><span>関心のある情報から</span>${NEWS_SECTIONS.map(section=>`<a href="/news/${section.slug}/">${escapeHtml(section.label)} <span aria-hidden="true">→</span></a>`).join('')}<a href="/connect/sign-cafe/">全国の手話カフェ一覧 <span aria-hidden="true">→</span></a></nav>
 
 ${renderAgentActivity()}
 
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
-        <h2 id="articles-heading">最新ニュース</h2>
+        <h2 id="articles-heading">聴覚障害に関する最新ニュース</h2>
         <p class="meta" aria-live="polite">
           表示中: <strong id="visible-count">${initialVisibleCount}</strong> / 全 <strong id="total-count">${totalDefaultCount}</strong> <span id="news-count-unit">話題</span>
         </p>
@@ -415,6 +404,11 @@ ${articlesHtml}
       <p class="archive-link"><a href="./${files.oldIndex}">過去アーカイブを見る</a></p>
 
 ${renderQuickAccess({ guideFile: files.guide })}
+
+      <section class="news-next" aria-labelledby="news-next-heading">
+        <figure><img src="/editorial/cafe-table.jpg" alt="木のテーブルに並ぶ2杯のコーヒー" width="960" height="640" loading="lazy" decoding="async"><figcaption>イメージ写真（掲載店ではありません） · <a href="https://unsplash.com/photos/Z5Xq4egaTGo" target="_blank" rel="noopener noreferrer">shche_ team / Unsplash（新しいタブ）</a></figcaption></figure>
+        <div><h2 id="news-next-heading">知ったことを、出かけるきっかけに。</h2><p>手話や筆談で交流できる場所、参加できる催しを探せます。自分に合う会話の方法や参加条件も、出かける前に確認しましょう。</p><nav aria-label="出かけるための情報"><a href="/connect/sign-cafe/">全国の手話カフェ一覧</a><a href="/events.html">国内の手話イベント</a><a href="/guide/accessibility/">通訳・字幕・筆談の確認ポイント</a></nav></div>
+      </section>
 
       <aside class="app-cta" aria-label="Deaf Navi アプリのご案内">
         <div class="app-cta__text">
