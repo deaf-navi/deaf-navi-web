@@ -98,3 +98,14 @@
   .dn-search-options>summary,.dn-sort-options>summary { font-size:calc(14px * var(--cafe-scale)); }
   .dn-domestic-filter .dn-check { min-height:44px; }
 }
+
+/* Related reading follows the completed search results, never the filters. */
+.dn-related-news{margin:2rem 0;padding:1.25rem 0;border-top:1px solid var(--cafe-line,#cad8d8);max-width:56rem}
+.dn-related-news h2{font-size:1.15rem;margin:0 0 .5rem}
+.dn-related-news p{margin:0 0 .75rem}
+.dn-related-news ul{list-style:none;padding:0;margin:0 0 .5rem}
+.dn-related-news li{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:.5rem;padding:.6rem 0;align-items:baseline}
+.dn-related-news a{text-underline-offset:.2em;overflow-wrap:anywhere}
+.dn-related-news time{font-size:.9rem;font-variant-numeric:tabular-nums}
+.dn-related-more{display:inline-block;padding:.5rem 0}
+@media(max-width:540px){.dn-related-news li{grid-template-columns:1fr;gap:.2rem}.dn-related-news li a{padding:.25rem 0;line-height:1.7}}

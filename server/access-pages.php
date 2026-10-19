@@ -12,6 +12,14 @@ function access_content(string $path): ?string {
         '/events.html'=>'events','/connect/'=>'cafe','/connect/sign-cafe/'=>'cafe','/connect/sign-cafe/map/'=>'cafe','/connect/sign-cafe/events/'=>'cafe',
         '/connect/sign-cafe/overseas/'=>'cafe_overseas','/guide.html'=>'guide','/otomado/'=>'otomado','/about.html'=>'about'];
     if (isset($fixed[$path])) return $fixed[$path];
+    if (in_array($path,['/news/support/','/news/accessibility/'],true)) return 'web';
+    if (in_array($path,['/guide/accessibility/','/guide/systems/','/guide/life/'],true)) return 'guide';
+    if (in_array($path,['/connect/sign-cafe/area/tokyo/','/connect/sign-cafe/area/kanagawa/'],true)) return 'cafe';
+    // Generated event details, including retained past-event pages. Never count arbitrary paths.
+    if (preg_match('#^/events/[a-z0-9-]+/$#D',$path)) {
+        $root=getenv('DEAFNAVI_LOCAL_TEST')==='1'?__DIR__.'/../docs':'/srv/deafnavi/current';
+        return is_file($root.$path.'index.html')?'events':null;
+    }
     if (preg_match('#^/archive/(?:[0-9]{4}-[0-9]{2}|legacy)\.html$#D', $path)) return 'web';
     if (!preg_match('#^/connect/sign-cafe/(?:starbucks/)?[a-z0-9-]+/$#D', $path)) return null;
     static $cafes;

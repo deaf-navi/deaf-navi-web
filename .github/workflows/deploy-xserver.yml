@@ -83,6 +83,7 @@ jobs:
           node test/admin-dashboard.integration.mjs
           node test/access-logs.integration.mjs
           node test/access-visitors.integration.mjs
+          node test/engagement.integration.mjs
           node test/access-sw.test.mjs
           node --test test/directory-safety.test.mjs
           python3 test/access-maintenance.test.py

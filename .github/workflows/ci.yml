@@ -36,6 +36,7 @@ jobs:
       - name: Cafe schema, migration and directory regression
         run: |
           npm run test:cafes
+          node test/engagement.integration.mjs
           php test/cafe-event-recovery.php
           node test/cafe-event-recovery.integration.mjs
 

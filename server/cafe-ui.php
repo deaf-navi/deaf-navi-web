@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__.'/cafe-seo.php';
+require_once __DIR__.'/cafe-related.php';
 function cafe_status_label(array $p):string {
     if(in_array(cafe_listing_group($p),['spots','organizations'],true)&&in_array($p['status'],['unknown','needs_review'],true))return '活動日確認中';
     return match(cafe_activity_state($p)){'scheduled'=>'開催予定','today'=>'本日開催予定','date_elapsed'=>'開催予定日経過','ended'=>'活動終了','date_unknown'=>'開催日未確認',default=>STATUSES[$p['status']]??'営業状況未確認'};
@@ -116,7 +117,7 @@ function domestic_cafe_page():string {
     if($page>1)$body.='<a href="?'.e(http_build_query($params+['page'=>$page-1])).'">← 前のページ</a>';
     $body.='<span>全'.$total.'件中 '.($total?($page-1)*$size+1:0).'〜'.min($page*$size,$total).'件</span>';
     if($page*$size<$total)$body.='<a href="?'.e(http_build_query($params+['page'=>$page+1])).'">次のページ →</a>';
-    $body.='</nav></section></div>'.cafe_notice_link().cafe_discovery_guide($all).cafe_listing_notice();
+    $body.='</nav></section></div>'.cafe_related_news().cafe_notice_link().cafe_discovery_guide($all).cafe_listing_notice();
     return page(cafe_listing_title($f),$body.cafe_contact_form().submission_form(),'/connect/sign-cafe/',CAFE_DIRECTORY_DESCRIPTION,$seo['structured'],false,$seo);
 }
 function cafe_admin_fields(array $p):string {

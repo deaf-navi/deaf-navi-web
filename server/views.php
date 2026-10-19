@@ -13,11 +13,11 @@ function page(string $title,string $body,string $path='',string $description='',
     $documentTitle=$meta['title']??($title==='Deaf Navi｜手話カフェ'?$title:$title.' | Deaf Navi');
     $robots=$private?'noindex,nofollow':($meta['robots']??'index,follow');
     $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.ico?v=20260917c" sizes="16x16 32x32 48x48"><link rel="icon" href="/icons/favicon-48.png?v=20260917c" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=20260917c" sizes="180x180"><script src="/directory-safety.js?v=20260908loading" defer></script><script src="/directory-ui.js?v=20261019cafereading" defer></script>';
-    $cafeStyle=str_starts_with($path,'/connect/sign-cafe/')?'<link rel="stylesheet" href="/cafe-guide.css?v=20261017cafeheader"><link rel="stylesheet" href="/cafe-polish.css?v=20261019cafereading"><script src="/cafe-search.js?v=20261016a" defer></script>':'';
+    $cafeStyle=str_starts_with($path,'/connect/sign-cafe/')?'<link rel="stylesheet" href="/cafe-guide.css?v=20261017cafeheader"><link rel="stylesheet" href="/cafe-polish.css?v=20261019related"><script src="/cafe-search.js?v=20261016a" defer></script>':'';
     if($scope==='overseas')$ld.='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui">';
     if(str_starts_with($path,'/connect/sign-cafe/area/'))$ld.='<link rel="stylesheet" href="/reader.css?v=20261017seo">';
     if(!$private) {
-        $ld.='<script src="/access-visit.js" defer></script>';
+        $ld.='<script src="/access-visit.js" defer></script><script src="/access-engagement.js?v=20261019a" defer></script>';
         if($meta)$ld.='<meta property="og:site_name" content="Deaf Navi"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'.e($documentTitle).'"><meta name="twitter:description" content="'.e($description).'"><meta name="twitter:image" content="'.BASE.'/og-image.png">';
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
         if($path!=='/connect/sign-cafe/') $crumbs[]=['@type'=>'ListItem','position'=>3,'name'=>$title,'item'=>$canonical];

@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/access-visitors.php';
+require_once __DIR__.'/access-engagement.php';
+if (parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)==='/_access/visit' && ($_GET['kind']??'')==='engagement') engagement_endpoint();
 if (parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)==='/_access/visit') access_visit_endpoint();
 require __DIR__.'/core.php';
 require __DIR__.'/views.php';
