@@ -87,3 +87,11 @@ site-shell/pageが読む表示用12 CSS/JSを同mainから実読し、合成詳�
 10/19に[Caddyのphp_fastcgi一次資料](https://caddyserver.com/docs/caddyfile/directives/php_fastcgi)と[PHPのOPcache設定一次資料](https://www.php.net/manual/en/opcache.configuration.php)を再読。symlinkの実体root解決と、timestamp検証を無効にした場合の更新反映条件は確認できるが、本番でその条件が成立する証拠はない。原因候補として保持し、設定変更や失効処理を実行する根拠へ置き換えない。
 
 現ユーザーに既存SSH設定/標準identity/known_hosts/agent/対象host-user変数はなく、SSHツールもない。稼働current/hash/有効FastCGI・FPM設定の読取が停止点。PR30スクリプト実行・Caddy/キャッシュ/サービス操作・診断用公開・新規認証は行わない。所在地title/地域導線の既完了を再開しない。
+
+## 2026-10-20 現行のカフェ折りたたみ入口
+
+- 承認Library全文512行/19840bytes、更新2026-10-11T23:01:55.298096Zをnative readで再確認。現行AGENTSとremote/localの関連指示を確認。以前のmaterialize失敗は成功へ置換しない。
+- main `917237c0ca0ce575ea83f7e3f085d3d03b8a5ae7` のserver/cafe-ui.php domestic_filtersとserver/cafe-seo.phpの2回答を実読。PR110（merge4fec6945）で未選択時に閉じるdetails「会話の方法・詳しい条件」が追加され、primaryFeaturesと「詳しい条件を追加」を内包している。既存のlegend/店舗タイプ/全条件一致の機能は保持されている。
+- この実装を根拠に、FAQで外側を先に開くこと、店舗タイプは続いて内側を開く順序を案内する。店舗の営業・支援・予約条件の出典としては使わない。更新は2回答のみで、公式確認・未確認時の注意を保持する。
+- PR108〜113/117/119/120のmerged状態とscopeを読取確認。読みもの11下書き/公開0と隔離dry-run10原稿は親受領の報告で、本番集計や公開/import承認ではない。既存機能・データを変更しない。
+- 10/19親QAの旧FAQを当日の証拠として保持し、10/20の本番観測に延長しない。最新配布39297051640のcheckout/PHP lint/SEO130成功は読めたが、FAQの今日の実URL内容は未取得。親の正式QAで確定する。
