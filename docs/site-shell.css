@@ -156,3 +156,11 @@ html[data-font="xlarge"] { font-size: 125%; }
   .dn-site-shell .site-nav__link { padding-inline: 3px; }
 }
 @media print { .dn-site-shell { border-top: 0; } .dn-site-shell .display-controls { display: none; } }
+
+/* Shared navigation for the domestic news collections. */
+.news-navigation{display:flex;flex-wrap:wrap;gap:4px;margin:20px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border-default)}
+.news-navigation a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border-bottom:3px solid transparent;color:var(--text-secondary);font-size:.875rem;line-height:1.5;text-decoration:none;border-radius:4px 4px 0 0;touch-action:manipulation}
+.news-navigation a:hover{color:var(--accent-deep);background:var(--accent-soft)}
+.news-navigation a[aria-current="page"]{color:var(--accent-deep);background:var(--accent-soft);border-bottom-color:var(--accent-deep);font-weight:700}
+.news-navigation a:focus-visible{outline:3px solid var(--accent-deep);outline-offset:2px}
+@media(max-width:360px){.news-navigation a{padding-inline:8px}}

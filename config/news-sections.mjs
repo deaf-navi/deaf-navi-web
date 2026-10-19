@@ -1,7 +1,7 @@
 // Two useful editorial collections, not one generated page per query.
 export const NEWS_SECTIONS = [
   {
-    slug: 'support', label: '制度・支援のニュース',
+    slug: 'support', label: '制度・支援',
     title: '聴覚障害の制度・支援ニュース', categories: ['policy', 'education'],
     description: '聴覚障害・難聴に関する制度、助成、雇用、教育の新着をまとめています。対象地域や利用条件は、各記事の出典から確認できます。',
     heading: '制度のニュースを、自分の暮らしにつなげる',
@@ -11,7 +11,7 @@ export const NEWS_SECTIONS = [
     related: '/guide/life/', relatedLabel: '病院・窓口での伝え方',
   },
   {
-    slug: 'accessibility', label: '字幕・手話通訳のニュース',
+    slug: 'accessibility', label: '字幕・手話通訳',
     title: '字幕・手話通訳・情報保障のニュース', categories: ['accessibility', 'relay', 'technology'],
     description: '聴覚障害・難聴のある人の情報の受け取り方に関わる新着。字幕、手話通訳、要約筆記、電話リレー、音声文字変換などの情報を出典付きで紹介します。',
     heading: '自分に合う方法が、使いたい場面にあるか',

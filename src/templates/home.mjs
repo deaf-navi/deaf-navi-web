@@ -30,7 +30,7 @@ import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import { renderNewsThumbnail } from './thumbnail.mjs';
 import { groupNewsTopics } from '../lib/news-topics.mjs';
-import { NEWS_SECTIONS } from '../../config/news-sections.mjs';
+import { renderNewsNavigation } from './news-navigation.mjs';
 import {
   EXTERNAL_ARROW_SVG,
   ICONS,
@@ -147,7 +147,7 @@ function renderQuickAccess({ guideFile }) {
     {
       href: '/news/support/',
       icon: ICONS.landmark,
-      title: '制度・政策',
+      title: '制度・支援',
       desc: '法律・条例・給付・雇用・助成のニュース',
     },
     {
@@ -373,10 +373,10 @@ ${renderGlobalHeader({
   <main id="main" class="container" role="main">
     <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
 ${renderFeatured(featured)}
-    <nav class="news-section-links" aria-label="分野別のニュース"><span>関心のある情報から</span>${NEWS_SECTIONS.map(section=>`<a href="/news/${section.slug}/">${escapeHtml(section.label)} <span aria-hidden="true">→</span></a>`).join('')}<a href="/connect/sign-cafe/">全国の手話カフェ一覧 <span aria-hidden="true">→</span></a></nav>
 
 ${renderAgentActivity()}
 
+    ${renderNewsNavigation()}
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
         <h2 id="articles-heading">聴覚障害に関する最新ニュース</h2>
