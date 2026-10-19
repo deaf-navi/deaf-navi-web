@@ -3,7 +3,11 @@ declare(strict_types=1);
 if(PHP_SAPI!=='cli')exit(1);
 require __DIR__.'/core.php';
 $command=$argv[1]??'';
-if($command==='init') {
+if($command==='stories:import') {
+    require __DIR__.'/views.php';require __DIR__.'/stories-store.php';require __DIR__.'/stories-import.php';
+    $args=array_slice($argv,2);$dryRun=in_array('--dry-run',$args,true);$files=array_values(array_filter($args,fn($a)=>$a!=='--dry-run'));
+    try{echo json(stories_import($files,$dryRun))."\n";}catch(Throwable $e){fwrite(STDERR,$e->getMessage()."\n");exit(1);}
+} elseif($command==='init') {
     umask(0077);$dir=data_dir();if(!is_dir($dir))mkdir($dir,0700,true);
     if(!is_dir($dir.'/sessions'))mkdir($dir.'/sessions',0700);
     $first=!is_file($dir.'/directory.sqlite');
@@ -42,4 +46,4 @@ if($command==='init') {
     chmod($file,0600);echo "DIRECTORY_BACKUP_OK\n";
 } elseif($command==='mail') {
     require __DIR__.'/mail.php';send_outbox();
-} else {fwrite(STDERR,"Commands: init, check, backup DIRECTORY, mail\n");exit(1);}
+} else {fwrite(STDERR,"Commands: init, check, backup DIRECTORY, mail, stories:import [--dry-run] FILE.md...\n");exit(1);}
