@@ -74,11 +74,15 @@ jobs:
             exit 1
           fi
 
+      - name: Install PHP image test runtime
+        run: sudo apt-get update && sudo apt-get install -y php-cli php-sqlite3 php-mbstring php-gd
+
       - name: Build release archive
         run: |
           set -euo pipefail
           while IFS= read -r -d '' file; do php -l "$file"; done < <(find server -name '*.php' -print0)
           php -r 'json_decode(file_get_contents("server/seed.json"),true,512,JSON_THROW_ON_ERROR);'
+          node test/stories.integration.mjs
           node test/directory.integration.mjs
           node test/admin-dashboard.integration.mjs
           node test/access-logs.integration.mjs

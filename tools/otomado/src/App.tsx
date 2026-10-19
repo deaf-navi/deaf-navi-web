@@ -6,6 +6,7 @@ import { SoundSentinel } from './modules/sound/SoundSentinel'
 import { Captions } from './modules/captions/Captions'
 import { Board } from './modules/board/Board'
 import { SettingsScreen } from './modules/settings/SettingsScreen'
+import { RelatedStories } from './components/RelatedStories'
 import {
   IconCaptions,
   IconHome,
@@ -119,6 +120,7 @@ function Shell() {
         {route === 'captions' && <Captions />}
         {route === 'board' && <Board draft={boardDraft} onDraftChange={setBoardDraft} />}
         {route === 'settings' && <SettingsScreen />}
+        {route === 'home' && <RelatedStories />}
       </main>
       <BottomNav route={route} />
     </>

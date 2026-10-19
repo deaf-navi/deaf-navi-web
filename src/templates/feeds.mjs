@@ -83,6 +83,7 @@ Disallow: /articles-old.json$
 Sitemap: ${SITE_URL}${files.sitemap}
 Sitemap: ${SITE_URL}sitemap-world.xml
 Sitemap: ${SITE_URL}directory-sitemap.xml
+Sitemap: ${SITE_URL}stories/sitemap.xml
 `;
 }
 

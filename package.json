@@ -26,7 +26,8 @@
     "test:cafes": "php test/cafe-model.php && node test/cafe-migration.integration.mjs && node test/directory.integration.mjs && php test/world-cafes.php && php test/public-profile.test.php && node test/admin-dashboard.integration.mjs && node test/overseas-cafes.integration.mjs && node test/social-import.mjs && node test/research-import.mjs && node test/cafe-seo.integration.mjs",
     "editorial:update": "node src/editorial-update.mjs",
     "events:update": "node src/events-curate.mjs",
-    "events:recover": "node src/events-curate.mjs --recover"
+    "events:recover": "node src/events-curate.mjs --recover",
+    "test:stories": "node test/stories.integration.mjs"
   },
   "engines": {
     "node": ">=20"

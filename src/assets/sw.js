@@ -99,7 +99,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // フォント等の外部リソースはブラウザ任せ
   // 管理画面・投稿・DB連動ページをオフラインキャッシュに保存しない。
-  if (/^\/(?:admin(?:\/|$)|submit(?:\/|$)|connect\/sign-cafe(?:\/|$)|directory-sitemap\.xml$)/.test(url.pathname)) return;
+  if (/^\/(?:stories(?:\/|$)|admin(?:\/|$)|submit(?:\/|$)|connect\/sign-cafe(?:\/|$)|directory-sitemap\.xml$)/.test(url.pathname)) return;
 
   if (request.mode === 'navigate') {
     event.respondWith(networkFirst(request, './offline.html'));

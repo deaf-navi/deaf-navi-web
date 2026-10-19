@@ -295,6 +295,10 @@ for(const asset of ['events.js','events.css'])assert(await fileExists(asset),`�
 for(const [name,html] of [['news',indexHtml],['world',worldJpHtml],['guide',guideHtml],['about',aboutHtml]])assert(html.includes('events.html'),'共通ナビにイベントがありません: '+name);
 
 /* ---------- 結果 ---------- */
+for(const [name,html] of [['news',indexHtml],['world',worldJpHtml],['guide',guideHtml],['about',aboutHtml]]){
+  assert(!html.includes('href="undefined"'),'未定義のリンクがあります: '+name);
+  assert(html.includes('stories/'),'共通ナビに読みものがありません: '+name);
+}
 
 if (failures > 0) {
   console.error(`Site verification failed: ${failures} problem(s).`);

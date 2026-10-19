@@ -1,0 +1,12 @@
+# Place inside deafnavi.com, BEFORE the existing @directory handler.
+# Keep the existing directory handler and its 64KB limit unchanged.
+@stories path /stories /stories/* /admin/stories/
+handle @stories {
+    request_body {
+        max_size 8MB
+    }
+    header Cache-Control "private, no-store, max-age=0"
+    header X-Frame-Options DENY
+    rewrite * /_backend/index.php
+    php_fastcgi unix//run/php/deafnavi.sock
+}

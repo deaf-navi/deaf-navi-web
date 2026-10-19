@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const ACCESS_CONTENTS = ['web'=>'Deaf Navi Web','world_jp'=>'World-JP','world_original'=>'World-Original','events'=>'イベント','cafe'=>'手話カフェ','cafe_overseas'=>'手話カフェ 海外','guide'=>'暮らしのガイド','otomado'=>'おとまど','about'=>'サイトについて'];
+const ACCESS_CONTENTS = ['web'=>'Deaf Navi Web','world_jp'=>'World-JP','world_original'=>'World-Original','events'=>'イベント','cafe'=>'手話カフェ','cafe_overseas'=>'手話カフェ 海外','guide'=>'暮らしのガイド','otomado'=>'おとまど','about'=>'サイトについて','stories'=>'読みもの'];
 const ACCESS_EXCLUSIONS = ['bot'=>'bot・検索エンジン','ai'=>'AI・Codex','automation'=>'自動取得・監視','internal'=>'管理・情報提供','unknown'=>'分類不明','probe'=>'不審なURL探索','not_found'=>'その他の404','unsuccessful'=>'転送・エラー・GET以外','resource'=>'API・画像・システム取得','unlisted'=>'対象外のページ'];
 
 function access_content(string $path): ?string {
@@ -12,6 +12,7 @@ function access_content(string $path): ?string {
         '/events.html'=>'events','/connect/'=>'cafe','/connect/sign-cafe/'=>'cafe','/connect/sign-cafe/map/'=>'cafe','/connect/sign-cafe/events/'=>'cafe',
         '/connect/sign-cafe/overseas/'=>'cafe_overseas','/guide.html'=>'guide','/otomado/'=>'otomado','/about.html'=>'about'];
     if (isset($fixed[$path])) return $fixed[$path];
+    if($path==='/stories/'||preg_match('#^/stories/[a-z0-9-]+/$#D',$path))return 'stories';
     if (in_array($path,['/news/support/','/news/accessibility/'],true)) return 'web';
     if (in_array($path,['/guide/accessibility/','/guide/systems/','/guide/life/'],true)) return 'guide';
     if (in_array($path,['/connect/sign-cafe/area/tokyo/','/connect/sign-cafe/area/kanagawa/'],true)) return 'cafe';

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { jsonLdScript, renderArticleCard } from '../src/templates/partials.mjs';
+import { jsonLdScript, renderArticleCard, renderSiteNav } from '../src/templates/partials.mjs';
 import { renderHomePage } from '../src/templates/home.mjs';
 import { renderGuidePage } from '../src/templates/guide.mjs';
 import { renderAboutPage } from '../src/templates/about.mjs';
@@ -20,6 +20,14 @@ const FILES = {
   robots: 'robots.txt',
   og: 'og-image.svg',
 };
+
+test('stories navigation resolves at root and nested pages', () => {
+  for (const root of ['./', '../', '../../']) {
+    const html=renderSiteNav({newsHref:root});
+    assert.ok(html.includes(`href="${root}stories/"`));
+    assert.ok(!html.includes('href="undefined"'));
+  }
+});
 
 test('home omits removed editorial notes even when old snapshots are supplied; filters remain native', () => {
   const note = { id: 'test', title: '<script>bad</script>', text: '短い編集文', sourceName: '公式', sourceUrl: 'https://example.org/news', reviewedAt: '2026-10-16', expiresAt: '2026-10-23' };
