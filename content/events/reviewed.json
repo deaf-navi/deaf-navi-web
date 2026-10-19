@@ -556,7 +556,7 @@
     ],
     "sourceUrl": "https://www.pref.kanagawa.jp/docs/n7j/cnt/f537527/event.html",
     "status": "announced",
-    "reviewedAt": "2026-10-17T00:42:48.623Z",
+    "reviewedAt": "2026-10-19T00:02:00Z",
     "verificationMode": "visual",
     "visualEvidenceUrl": "https://www.pref.kanagawa.jp/documents/93455/syuwa-go_260903_ol.pdf",
     "htmlEvidenceHash": "14e0483f0091033789cfb3fee3918c0a877ba326d1b582ab256e4e5c9e42d2b6",
@@ -568,7 +568,8 @@
       "入場無料",
       "予約不要",
       "手話通訳・要約筆記・ヒアリングループつき"
-    ]
+    ],
+    "reviewNote": "県公式本文と公式PDF両面を実読・目視。2026年11月3日12:30〜16:00、会場、無料・予約不要、手話通訳・要約筆記・ヒアリングループ付きが不変。"
   },
   {
     "id": "shizuoka-deaf-women-2026-11-15",
@@ -1116,15 +1117,16 @@
     "sourceName": "KAAT神奈川芸術劇場",
     "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
     "status": "announced",
-    "reviewedAt": "2026-10-18T00:25:35.165Z",
-    "sourceHash": "e098c301949753ae412825c6aba70d4fb72b652f35a66f86e1f505603ad62251",
+    "reviewedAt": "2026-10-19T00:03:30Z",
+    "sourceHash": "4b15250e1d67c9ea1004b665cf5ade06c1dbb8594b74ea7c405f3db064886252",
     "evidence": [
       "2026/10/24",
       "会場 ホール",
       "字幕タブレット席(11月6日(金)18:00/11月7日(土)12:30)",
       "きこえない・きこえにくい",
       "チケットも本フォームから"
-    ]
+    ],
+    "reviewNote": "公式本文の鑑賞サポート・開催表・料金・申込条件を再読。11月6日18時／7日12時30分の字幕タブレット席、事前申込・数量限定・先着順、同フォームでのチケット申込を再確認。中止・満席の告知なし。"
   },
   {
     "id": "kaat-kaeru-captions-2026-11-07",
@@ -1152,14 +1154,50 @@
     "sourceName": "KAAT神奈川芸術劇場",
     "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
     "status": "announced",
-    "reviewedAt": "2026-10-18T00:25:35.165Z",
-    "sourceHash": "e098c301949753ae412825c6aba70d4fb72b652f35a66f86e1f505603ad62251",
+    "reviewedAt": "2026-10-19T00:03:30Z",
+    "sourceHash": "4b15250e1d67c9ea1004b665cf5ade06c1dbb8594b74ea7c405f3db064886252",
     "evidence": [
       "2026/10/24",
       "会場 ホール",
       "字幕タブレット席(11月6日(金)18:00/11月7日(土)12:30)",
       "きこえない・きこえにくい",
       "チケットも本フォームから"
-    ]
+    ],
+    "reviewNote": "公式本文の鑑賞サポート・開催表・料金・申込条件を再読。11月6日18時／7日12時30分の字幕タブレット席、事前申込・数量限定・先着順、同フォームでのチケット申込を再確認。中止・満席の告知なし。"
+  },
+  {
+    "id": "shibuya-engeki-school-2026-11-01",
+    "title": "え〜んげきのがっこう＠しぶや（手話通訳付き）",
+    "startDate": "2026-11-01",
+    "endDate": "2026-11-01",
+    "prefecture": "東京都",
+    "venue": "東京都渋谷公園通りギャラリー 交流スペース",
+    "kind": "theater",
+    "time": "10:00〜13:00頃（入退場自由）",
+    "organizer": "東京都渋谷公園通りギャラリー",
+    "fee": "無料",
+    "target": "どなたでも参加可。人数把握のため事前申込制。公式フォームで10月29日23:59まで受付。",
+    "description": "子どもたちの遊びから生まれる即興的な公演。手話通訳付きの鑑賞・参加企画で、作品自体を手話劇とする案内ではありません。天候等により内容・時間変更の可能性があります。配慮が必要な場合は申込時に記載できます。",
+    "sourceName": "東京都渋谷公園通りギャラリー",
+    "communication": [
+      {
+        "method": "interpretation",
+        "detail": "公式案内の情報保障欄に手話通訳付きと明記。"
+      }
+    ],
+    "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261101-417.html",
+    "status": "announced",
+    "reviewedAt": "2026-10-19T00:05:47.847Z",
+    "sourceHash": "41c43a90c5a2aa51b9d6039b8c9375d78c0a356644ed8f59ee71bdba7d1bfe5f",
+    "evidence": [
+      "2026年11月1日",
+      "10:00~13:00",
+      "東京都渋谷公園通りギャラリー",
+      "手話通訳付き",
+      "事前申込制",
+      "10月29日"
+    ],
+    "thumbnailPolicy": "omit",
+    "thumbnailNote": "公式OGPは横浜の既存ワークショップの写真。今回の渋谷公演の告知写真と混同しないよう省略。"
   }
 ]
