@@ -14,6 +14,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+import { cafeRelated } from './lib/cafe-related.mjs';
 import { SITE_KEYWORDS } from '../config/site.mjs';
 import { prepareDomesticPublication, prepareDomesticArchivePublication } from './lib/publication-quality.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
@@ -215,6 +216,8 @@ async function main() {
     ...opts,
   }));
 
+  if (!IS_DEV) await writeDoc('cafe-related.json', JSON.stringify({articles:cafeRelated(data.articles)},null,2)+'\n');
+  await copyAsset(join(__dirname, 'access-engagement.js'), 'access-engagement.js');
   // ---- アセットコピー ----
   await copyAsset(join(__dirname, 'access-visit.js'), 'access-visit.js');
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
