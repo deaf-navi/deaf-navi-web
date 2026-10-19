@@ -161,9 +161,6 @@
 .news-opening__text { min-width:0; }
 .news-page .news-concept { color:var(--accent-deep);font-size:1rem;font-weight:600;margin:8px 0; }
 .news-page .site-lead { max-width:65ch;line-height:1.8;margin-bottom:0; }
-.news-section-links { display:flex;align-items:center;flex-wrap:wrap;gap:4px 22px;padding:0 0 18px;margin:0 0 18px;border-bottom:1px solid var(--border-subtle);font-size:.875rem; }
-.news-section-links>span { color:var(--text-secondary); }
-.news-section-links a { display:inline-flex;align-items:center;gap:8px;min-height:44px;text-underline-offset:4px; }
 .news-next { margin:28px 0;padding:24px 0;border-block:1px solid var(--border-default); }
 .news-next h2 { font-size:1.2rem;line-height:1.65;margin:0 0 10px; }
 .news-next p { max-width:65ch;line-height:1.85; }
