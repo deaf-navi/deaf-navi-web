@@ -39,6 +39,8 @@ try{
  ok((await req('/admin/stories/',{...data,id:'',slug:'limit-bad',title:'あ'.repeat(301)})).status===400,'301 Japanese title rejected');
  const limits=await req('/admin/stories/',{...data,id:'',slug:'limit-good',title:'あ'.repeat(300),summary:'あ'.repeat(1500),body:'あ'.repeat(50000),author:'あ'.repeat(200),alt:'あ'.repeat(600),tags:'あ'.repeat(1000),sources:'あ'.repeat(300)+' | https://example.com/',related:'未公開 | /stories/fixture-story/'});
  ok(limits.status===303,'all Japanese character limits and private related story accepted');
+ const multiline=new FormData();for(const [key,value] of Object.entries({...data,id:'',slug:'crlf-limit',body:('あ\n'.repeat(24999)+'ああ').replaceAll('\n','\r\n')}))multiline.set(key,value);
+ ok((await req('/admin/stories/',multiline)).status===303,'browser CRLF counts match 50000-character textarea');
  ok((await req('/admin/stories/',{...data,id:'',slug:'bad-label',sources:'あ'.repeat(301)+' | https://example.com/'})).status===400,'301 character link label rejected');
  const slugCheck=await req('/admin/stories/',{action:'slug',csrf,slug:'fixture-story',id:''});ok(JSON.parse(slugCheck.text).used,'slug preflight detects other article');
  ok(!JSON.parse((await req('/admin/stories/',{action:'slug',csrf,slug:'fixture-story',id})).text).used,'own slug accepted');

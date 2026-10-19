@@ -36,7 +36,9 @@ function story_media_url(string $id):string {return '/stories/media/'.$id.'.webp
 function story_url(string $url):bool {return strlen($url)<2000&&!preg_match('/[\x00-\x20\x7f<>"\\\\]/',$url)&&filter_var($url,FILTER_VALIDATE_URL)&&in_array(strtolower(parse_url($url,PHP_URL_SCHEME)??''),['http','https'],true)&&!parse_url($url,PHP_URL_USER)&&!parse_url($url,PHP_URL_PASS);}
 function story_input(array $data,string $key,int $max=2000):string {
     $v=$data[$key]??'';
-    if(!is_string($v)||!preg_match('//u',$v)||mb_strlen($v,'UTF-8')>$max||preg_match('/[\x00-\x08\x0b\x0c\x0e-\x1f]/',$v))fail('入力値が不正または長すぎます: '.$key);
+    if(!is_string($v)||!preg_match('//u',$v))fail('入力値が不正です: '.$key);
+    $v=str_replace(["\r\n","\r"],"\n",$v);
+    if(mb_strlen($v,'UTF-8')>$max||preg_match('/[\x00-\x08\x0b\x0c\x0e-\x1f]/',$v))fail('入力値が不正または長すぎます: '.$key);
     return trim($v);
 }
 function story_date(?string $date):string {return $date?(new DateTimeImmutable($date))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y-m-d'):'';}
