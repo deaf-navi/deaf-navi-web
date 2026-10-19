@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-19T01:08:27.960Z",
+  "generatedAt": "2026-10-19T02:23:59.333Z",
   "counts": {
-    "uniqueInputs": 3220,
-    "alreadyPublished": 1047,
-    "outsideWindow": 1719,
+    "uniqueInputs": 3245,
+    "alreadyPublished": 1036,
+    "outsideWindow": 1756,
     "hardExcluded": 19,
-    "duplicateOfPublished": 172,
-    "candidateDuplicates": 12,
-    "eligible": 251,
+    "duplicateOfPublished": 164,
+    "candidateDuplicates": 11,
+    "eligible": 259,
     "queued": 40,
-    "deferred": 211
+    "deferred": 219
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
@@ -19,12 +19,12 @@
     "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-19T00:34:18.704Z",
+    "previousGeneratedAt": "2026-10-19T01:08:27.960Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -151,16 +151,6 @@
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/11/171319",
       "articleHash": "5f5f2eb8377eacbc0b0c49c6c511b2b42dba7397f273e971d9d9da7c2998be1a",
       "publishedAt": "2026-09-11T08:13:19.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.mimisuppo-miyagi.org",
-      "priority": 0,
-      "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/10/160239",
-      "articleHash": "479521c47f3e28426c8476065e0e946fedb802a4406449d04301006cf14528d6",
-      "publishedAt": "2026-09-10T07:02:39.000Z",
       "sourceTier": "official",
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
@@ -426,6 +416,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/series/atelier/wadachi/",
+      "articleHash": "e222a4428700319a5d9cbf822bcc7b40fd25f7a3e793d921f284fffdab1e151e",
+      "publishedAt": "2026-08-27T22:50:23.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
