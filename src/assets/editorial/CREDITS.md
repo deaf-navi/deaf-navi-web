@@ -9,9 +9,11 @@ No hearing status or use of sign language is inferred about the people pictured.
 | --- | --- | --- | --- |
 | notebook.jpg (previous, unused) | Fiona Murray-deGraaff | https://unsplash.com/photos/PSNSnsL5qXM | https://unsplash.com/license |
 | cafe-table.jpg (previous, unused) | shche_ team | https://unsplash.com/photos/Z5Xq4egaTGo | https://unsplash.com/license |
-| reading-light.jpg | JESHOOTS.COM | https://unsplash.com/photos/pUAM5hPaCRI | https://unsplash.com/license |
-| lemon-water.jpg | Julia Zolotova | https://unsplash.com/photos/K2yKpyLMVOg | https://unsplash.com/license |
+| reading-light.jpg (previous, unused) | JESHOOTS.COM | https://unsplash.com/photos/pUAM5hPaCRI | https://unsplash.com/license |
+| lemon-water.jpg (previous, unused) | Julia Zolotova | https://unsplash.com/photos/K2yKpyLMVOg | https://unsplash.com/license |
 
 Unsplash License allows free commercial and non-commercial use, including copying
 and modification. Images are used as part of the site, not sold or redistributed
 as a competing image collection. Visible captions link to the individual source.
+
+All illustrative photographs were removed from the displayed homepage on 2026-10-19 at the owner's request. Source files and license records are retained for provenance.
