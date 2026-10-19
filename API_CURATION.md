@@ -17,6 +17,8 @@
 
 起動・workflow成功と翻訳完了を区別し、承認した固定URL/文面hashについて日本語・公開データの実行エンジン/モデル・公開画面を照合する。承認済みの未訳が残れば理由を確認して扱い、12:10の別実行待ちだけにしない。実使用量を同じUTC日のUsageのData sharing incentive tierと照合し、反映待ちは既存の私有billing-reconciliation台帳で追跡する。全件Googleやキャッシュで解決した場合のAPI0件は正常と区別する。
 
+1回50件の対象上限や、共有未承認のバッチを連続失敗として止める既存処理により、承認済みの未訳が後ろに残る場合がある。この場合は同じworkflowを連打せず、当日許可と一致する未訳の固定ID・原題・短い要約だけを取り出し、既存 `review-public-text.mjs` の通常モードで補完する。保存済み成功結果は再送しない。原文・ID・日本語とエンジン/モデルを照合した結果だけを既存の公開データへ合流し、未処理のpending・確認日時・履歴はそのまま保持する。600件の上限内で今回の承認対象が欠落しないことを確認し、WorldとアプリAPIのbuild、verify、既定のPR・CI・公開手順へ進める。未承認文面の共有や上限回避は行わない。
+
 ## イベント・カフェ
 
 1. 既存の収集・照合が得た公式HTMLを対象に、`prepare-curation-review.mjs` へ `targets`（kind、title、sourceUrl、sourceMode=html、officialVerified、短いfragments、既存baseline、固定recordId）を渡す。1回最大8件。`approvedDocumentHash` がある場合はページ全体の変更も例外にする。結果は公開root・Gitの外へ0600で保存する。URLの取得失敗・抜粋の消失・画像/PDFは例外として返す。
