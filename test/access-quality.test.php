@@ -36,4 +36,7 @@ $uu=json_decode($raw,true);check($uu['raw_total']===3&&$uu['total']===1,'same-da
 check($uu['quality_counts']['suspected']===1&&$uu['quality_counts']['bot']===1,'suspected and confirmed counts separate');
 check((int)access_visitor_db()->query('SELECT COUNT(*) FROM visits')->fetchColumn()===3,'original visits preserved');
 $legacy=access_entry(json_encode(end($rows)));check($legacy['ip']===null&&$legacy['client']==='human','legacy unknown details preserved');
+check(access_retention_start(new DateTimeImmutable('2026-08-31',new DateTimeZone('Asia/Tokyo')))->format('Y-m-d')==='2026-02-28','six calendar months clamp month end');
+check(access_retention_start(new DateTimeImmutable('2024-08-31',new DateTimeZone('Asia/Tokyo')))->format('Y-m-d')==='2024-02-29','six calendar months preserve leap day');
+check(str_contains(access_quality_notice(),'定期再判定は停止中')&&!str_contains(access_quality_notice(),'更新が遅れています'),'disabled periodic analysis is not a stale-data alert');
 echo json_encode(['result'=>'ACCESS_QUALITY_TESTS_OK','checks'=>$checks,'fixture_dir'=>$tmp])."\n";

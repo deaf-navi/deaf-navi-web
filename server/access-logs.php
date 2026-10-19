@@ -21,13 +21,18 @@ function access_group(string $path): string {
     return 'pages';
 }
 
+function access_retention_start(DateTimeImmutable $today): DateTimeImmutable {
+    $first=$today->modify('first day of this month')->modify('-6 months');
+    return $first->setDate((int)$first->format('Y'),(int)$first->format('m'),min((int)$today->format('d'),(int)$first->format('t')))->setTime(0,0);
+}
+
 function access_options(): array {
     $today = new DateTimeImmutable('today', new DateTimeZone('Asia/Tokyo'));
     $from = date_value(input($_GET, 'from', 10)) ?: $today->modify('-6 days')->format('Y-m-d');
     $to = date_value(input($_GET, 'to', 10)) ?: $today->format('Y-m-d');
     $start = new DateTimeImmutable($from, new DateTimeZone('Asia/Tokyo'));
     $end = new DateTimeImmutable($to, new DateTimeZone('Asia/Tokyo'));
-    if ($end < $start || $start->diff($end)->days > 179 || $start < $today->modify('-179 days') || $end > $today) fail('直近180日以内の期間を指定してください。');
+    if ($end < $start || $start < access_retention_start($today) || $end > $today) fail('直近6か月以内の期間を指定してください。');
     $mode = input($_GET, 'mode', 10) ?: 'views';
     choice($mode, ['views'=>1,'requests'=>1]);
     $content = input($_GET, 'content', 20) ?: 'all';
@@ -264,7 +269,7 @@ function admin_access_logs(): string {
         .'<button>表示を更新</button><a href="/admin/?view=access">条件を解除</a></form>';
     if (!$r['available']) return $out.'<div class="dn-notice" role="status"><h2>アクセスログを読み取れません</h2><p>ログが未設定、または保存先を読み取れない状態です。アクセス数が0件という意味ではありません。</p></div>';
     if ($r['partial'] || $r['invalid']) $out .= '<div class="dn-error" role="status">一部のログを集計できていません。読込上限・保存中の切替・読取エラー等のため、以下は読み取れた範囲の集計です。'.($r['invalid']?'形式を確認できなかった記録：'.number_format($r['invalid']).'件。':'').'</div>';
-    $out .= '<p class="dn-muted">確認できた保存範囲：'.e(access_time($r['oldest'])).' ～ '.e(access_time($r['latest'])).'。管理画面は直近180日を表示します。180日を過ぎた分は月初に圧縮保存し、日次処理で210日超の滞留も確認します。</p>';
+    $out .= '<p class="dn-muted">確認できた保存範囲：'.e(access_time($r['oldest'])).' ～ '.e(access_time($r['latest'])).'。管理画面は直近6か月を表示します。それ以前の分は月1回、上半期・下半期別のフォルダーへ圧縮保管します。</p>';
     $out .= '<div class="admin-metrics admin-access-metrics">';
     $metrics = $o['mode']==='views' ? [['ページ閲覧数',$r['total']],['集計から除外したアクセス',array_sum($r['excluded'])]] : [['選択条件のリクエスト',$r['total']],['公開ページの成功GET',$r['pages']],['見つからないURL（404）',$r['not_found']],['サーバーエラー（5xx）',$r['errors']]];
     foreach ($metrics as [$label,$count])
@@ -301,7 +306,7 @@ function admin_access_logs(): string {
     }
     $out .= '</tbody></table></div>';
     if ($o['tab'] === 'requests') $out .= admin_pager($o['page'],$r['total'],$o['limit'],$base);
-    return $out.engagement_report_html($o).access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。通常集計は一般ブラウザーのみで、Codex・AI・bot・自動操作・管理画面・分類不明を除外します。除外した分類は調査用に切り替えて確認できます。詳細ログのある期間では、同じ接続とブラウザーの長時間の規則的な巡回を自動アクセス疑いとして通常集計から除外します。人間の自動更新等も含まれ得るため、確定botとは区別します。過去に一般ブラウザーとして保存された記録を、後から完全に分類し直すことはできません。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。同じ日の接続が後からCodex等と判定された場合は、その日の推定UUから除外します。</p><p>詳細ログでは接続IP・User-Agent・参照元ドメイン・ブラウザーの通信種別を記録します。Cookie・認証情報・入力本文・URLの検索条件・参照元の検索語は保存しません。公開領域外で管理者のみ参照できます。180日超を月初にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。210日超は日次でも確認します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
+    return $out.engagement_report_html($o).access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。通常集計は一般ブラウザーのみで、Codex・AI・bot・自動操作・管理画面・分類不明を除外します。除外した分類は調査用に切り替えて確認できます。詳細ログのある期間では、同じ接続とブラウザーの長時間の規則的な巡回を自動アクセス疑いとして通常集計から除外します。人間の自動更新等も含まれ得るため、確定botとは区別します。過去に一般ブラウザーとして保存された記録を、後から完全に分類し直すことはできません。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。同じ日の接続が後からCodex等と判定された場合は、その日の推定UUから除外します。</p><p>詳細ログでは接続IP・User-Agent・参照元ドメイン・ブラウザーの通信種別を記録します。Cookie・認証情報・入力本文・URLの検索条件・参照元の検索語は保存しません。公開領域外で管理者のみ参照できます。6か月を過ぎた分は月1回、上半期・下半期別にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
 }
 
 function access_content_html(array $options, array $report, array $unique, array $base): string {

@@ -42,7 +42,8 @@ function access_charts_html(array $options, array $report, array $unique, array 
     $out = '<section class="admin-panel admin-access-charts" aria-labelledby="access-charts-title"><h2 id="access-charts-title">アクセスの推移</h2><p>'.e($options['from']).' ～ '.e($options['to']).'・日本時間</p>';
     $out .= '<nav class="admin-chart-ranges" aria-label="グラフの表示期間">';
     $today = new DateTimeImmutable('today',new DateTimeZone('Asia/Tokyo'));
-    foreach ([7,30,180] as $days) $out .= '<a href="'.admin_query($base,['from'=>$today->modify('-'.($days-1).' days')->format('Y-m-d'),'to'=>$today->format('Y-m-d'),'page'=>1]).'">直近'.$days.'日</a>';
+    foreach ([7,30] as $days) $out .= '<a href="'.admin_query($base,['from'=>$today->modify('-'.($days-1).' days')->format('Y-m-d'),'to'=>$today->format('Y-m-d'),'page'=>1]).'">直近'.$days.'日</a>';
+    $out .= '<a href="'.admin_query($base,['from'=>access_retention_start($today)->format('Y-m-d'),'to'=>$today->format('Y-m-d'),'page'=>1]).'">直近6か月</a>';
     $out .= '</nav><div class="admin-chart-pair">';
     $out .= access_daily_chart(($options['mode']??'requests')==='views'?'ページ閲覧数':'リクエスト数','件',access_chart_series($options,$report['days'],$report['oldest']),array_merge($base,['tab'=>'requests']),$report['available']);
     $started = is_string($unique['started_at']) ? strtotime($unique['started_at']) : false;

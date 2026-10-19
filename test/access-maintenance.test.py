@@ -29,7 +29,7 @@ class Retention(unittest.TestCase):
         return path
 
     def test_monthly_and_restore(self):
-        old = self.log(181, 'access-v2-2026-03-01T00-00-00-time.log')
+        old = self.log(186, 'access-v2-2026-03-01T00-00-00-time.log')
         raw = old.read_bytes()
         fresh = self.log(179, 'access-v2-2026-03-04T00-00-00-time.log')
         active = self.log(211, 'access-v3.log')
@@ -44,20 +44,20 @@ class Retention(unittest.TestCase):
         self.assertEqual(gzip.decompress(archive.read_bytes()), raw)
         self.assertEqual(m.maintain(self.logs, self.visitors, self.now)['logs'], [])
 
-    def test_guard_and_last_monthly(self):
+    def test_manual_monthly_and_last_monthly(self):
         m.maintain(self.logs, self.visitors, self.now)
         self.now += dt.timedelta(days=1)
-        fresh = self.log(207, 'access-2026-02-06T00-00-00-time.log')
-        old = self.log(211, 'access-2026-02-01T00-00-00-time.log')
+        fresh = self.log(180, 'access-2026-02-06T00-00-00-time.log')
+        old = self.log(190, 'access-2026-02-01T00-00-00-time.log')
         result = m.maintain(self.logs, self.visitors, self.now)
-        self.assertEqual(result['mode'], '210_day_guard')
+        self.assertEqual(result['mode'], 'monthly')
         self.assertIsNotNone(result['last_monthly'])
         self.assertTrue(fresh.exists())
         self.assertFalse(old.exists())
 
     def test_corrupt_or_different_archive_retains_source(self):
-        old = self.log(181, 'access.log')
-        target = m.archive_path(self.logs, '2026-03', 'access.log.gz')
+        old = self.log(186, 'access.log')
+        target = m.archive_path(self.logs, '2026-H1', 'access.log.gz')
         target.write_bytes(gzip.compress(b'different'))
         with self.assertRaises(RuntimeError):
             m.maintain(self.logs, self.visitors, self.now)
@@ -65,7 +65,7 @@ class Retention(unittest.TestCase):
         self.assertEqual(json.loads((self.logs/'maintenance.json').read_text())['status'], 'error')
 
     def test_incomplete_file_retained(self):
-        old = self.log(181, 'access.log')
+        old = self.log(186, 'access.log')
         old.write_bytes(old.read_bytes()[:-1])
         with self.assertRaises(RuntimeError):
             m.maintain(self.logs, self.visitors, self.now)
@@ -75,7 +75,7 @@ class Retention(unittest.TestCase):
         database = self.visitors / 'visitors.sqlite'
         db = sqlite3.connect(database)
         db.execute('CREATE TABLE visits(day TEXT,visitor TEXT,path TEXT,PRIMARY KEY(day,visitor,path)) WITHOUT ROWID')
-        db.executemany('INSERT INTO visits VALUES(?,?,?)', [('2026-03-01','a'*64,'/'),('2026-08-31','b'*64,'/')])
+        db.executemany('INSERT INTO visits VALUES(?,?,?)', [('2026-02-28','a'*64,'/'),('2026-08-31','b'*64,'/')])
         db.commit()
         result = m.maintain(self.logs, self.visitors, self.now)
         self.assertEqual(result['visitors'][0]['rows'], 1)
@@ -88,9 +88,9 @@ class Retention(unittest.TestCase):
     def test_visitor_backup_conflict_rolls_back(self):
         db = sqlite3.connect(self.visitors / 'visitors.sqlite')
         db.execute('CREATE TABLE visits(day TEXT,visitor TEXT,path TEXT)')
-        db.execute("INSERT INTO visits VALUES('2026-03-01','anonymous','/')")
+        db.execute("INSERT INTO visits VALUES('2026-02-28','anonymous','/')")
         db.commit()
-        target = m.archive_path(self.visitors, '2026-03', 'visitors-2026-03-01.jsonl.gz')
+        target = m.archive_path(self.visitors, '2026-H1', 'visitors-2026-02-28.jsonl.gz')
         target.write_bytes(gzip.compress(b'wrong copy'))
         with self.assertRaises(RuntimeError):
             m.maintain(self.logs, self.visitors, self.now)
@@ -101,7 +101,7 @@ class Retention(unittest.TestCase):
         db = sqlite3.connect(self.visitors / 'visitors.sqlite')
         db.execute('CREATE TABLE visits(day TEXT,visitor TEXT,path TEXT)')
         db.execute('CREATE TABLE excluded_visitors(day TEXT,visitor TEXT,reason TEXT,PRIMARY KEY(day,visitor)) WITHOUT ROWID')
-        db.executemany('INSERT INTO excluded_visitors VALUES(?,?,?)', [('2026-03-01','a'*64,'ai'),('2026-08-31','b'*64,'automation')])
+        db.executemany('INSERT INTO excluded_visitors VALUES(?,?,?)', [('2026-02-28','a'*64,'ai'),('2026-08-31','b'*64,'automation')])
         db.commit()
         result = m.maintain(self.logs, self.visitors, self.now)
         self.assertEqual(result['visitors'][0]['table'], 'excluded_visitors')
@@ -114,14 +114,27 @@ class Retention(unittest.TestCase):
     def test_exclusion_conflict_preserves_original(self):
         db = sqlite3.connect(self.visitors / 'visitors.sqlite')
         db.execute('CREATE TABLE excluded_visitors(day TEXT,visitor TEXT,reason TEXT)')
-        db.execute("INSERT INTO excluded_visitors VALUES('2026-03-01','anonymous','ai')")
+        db.execute("INSERT INTO excluded_visitors VALUES('2026-02-28','anonymous','ai')")
         db.commit()
-        target = m.archive_path(self.visitors, '2026-03', 'excluded-visitors-2026-03-01.jsonl.gz')
+        target = m.archive_path(self.visitors, '2026-H1', 'excluded-visitors-2026-02-28.jsonl.gz')
         target.write_bytes(gzip.compress(b'wrong copy'))
         with self.assertRaises(RuntimeError):
             m.maintain(self.logs, self.visitors, self.now)
         self.assertEqual(db.execute('SELECT COUNT(*) FROM excluded_visitors').fetchone()[0], 1)
         db.close()
+
+
+    def test_calendar_boundary_and_half_year(self):
+        self.assertEqual(m.six_months_ago(dt.datetime(2026, 8, 31, 3, tzinfo=m.JST)), dt.datetime(2026, 2, 28, tzinfo=m.JST))
+        self.assertEqual(m.six_months_ago(dt.datetime(2024, 8, 31, 3, tzinfo=m.JST)), dt.datetime(2024, 2, 29, tzinfo=m.JST))
+        self.assertEqual(m.half_year(dt.date(2026, 6, 30)), '2026-H1')
+        self.assertEqual(m.half_year(dt.date(2026, 7, 1)), '2026-H2')
+        boundary = self.logs / 'access-v3-2026-03-01T00-00-00-time.log'
+        boundary.write_text(json.dumps({'ts': m.six_months_ago(self.now).timestamp()})+'\n')
+        result = m.maintain(self.logs, self.visitors, self.now)
+        self.assertTrue(boundary.exists())
+        self.assertEqual(result['retention_months'], 6)
+        self.assertEqual(result['archive_grouping'], 'half_year')
 
 
 if __name__ == '__main__':
