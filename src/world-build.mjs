@@ -231,12 +231,11 @@ function renderArticle(article, index, mode = 'jp') {
         </header>
         <div class="card__content">${renderNewsThumbnail(article, isOriginal ? 'World' : topicLabel.split('・').at(-1))}<div class="card__text">
         <h3 class="card__title" lang="${text.lang}" dir="auto">
-          <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text.title)}</a>
+          <a href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(text.title)}${isOriginal ? ' (original article, new tab)' : '（元記事・新しいタブ）'}">${escapeHtml(text.title)}</a>
         </h3>${summary ? `\n        <p class="card__summary" lang="${text.lang}" dir="auto">${escapeHtml(summary)}</p>` : ''}${originalHtml}
         </div></div>
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
-          <a class="card__read" href="${escapeHtml(article.id)}" target="_blank" rel="noopener noreferrer">${isOriginal ? 'Read article' : '記事を読む'} <span aria-hidden="true">↗</span></a>
         </footer>
       </article>`;
 }
@@ -340,7 +339,7 @@ function renderPage(data, mode = 'jp') {
   const ogImage = `${SITE_URL}og-image-world.svg`;
   const jsonLd = renderJsonLd({ generatedAt, articles, mode, pageUrl, siteName, siteDesc });
   const title = isOriginal ? `${siteName} | Original-language global deaf news` : `${siteName} | 世界の聴覚障害ニュース`;
-  const heading = isOriginal ? 'World News Original' : 'World News JP';
+  const heading = isOriginal ? 'Latest world news' : '海外の最新ニュース';
   const lead = isOriginal
     ? 'Deaf news from around the world, in the original source language.'
     : '世界のろう・難聴・手話のニュースを、日本語で。';
@@ -439,7 +438,7 @@ ${renderSiteHeader({
 
   <nav class="filters filters--world" role="navigation" aria-label="${escapeHtml(filterAria)}">
     <div class="container">
-      <div class="world-search-row"><label for="world-search">${isOriginal ? 'Search' : 'キーワード'}</label><input id="world-search" type="search" name="q" maxlength="200" autocomplete="off" placeholder="${isOriginal ? 'Search news…' : '例: 手話 教育'}"><button type="button" class="filter" data-world-reset>${isOriginal ? 'Reset' : '条件を解除'}</button></div>
+      <div class="world-search-row"><label for="world-search">${isOriginal ? 'Search news' : '海外ニュースを検索'}</label><input id="world-search" type="search" name="q" maxlength="200" autocomplete="off" placeholder="${isOriginal ? 'Search news…' : '例：手話、教育'}"><button type="button" class="filter" data-world-reset>${isOriginal ? 'Reset' : '条件を解除'}</button></div>
       <details class="world-filter-details"><summary id="world-filter-summary">${isOriginal ? 'Region / topic' : '地域・カテゴリ'}</summary>
       <div class="world-filter-group" aria-label="${escapeHtml(regionAria)}">
         <span class="filters__label">${escapeHtml(regionLabel)}</span>

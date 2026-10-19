@@ -48,7 +48,7 @@
   <link rel="stylesheet" href="./styles.css?v=20260909ui2">
   <link rel="stylesheet" href="./site-shell.css?v=20261019newsnav">
   <link rel="stylesheet" href="./support.css?v=20261016mobile2">
-<link rel="stylesheet" href="./events.css?v=20261017edition"><link rel="stylesheet" href="./browse.css?v=74ff1d7ba11b"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body class="browse-page events-page"><a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+<link rel="stylesheet" href="./events.css?v=20261017edition"><link rel="stylesheet" href="./browse.css?v=fd04c754c978"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body class="browse-page events-page"><a class="skip-link" href="#main">メインコンテンツにスキップ</a>
   <header class="dn-site-shell" role="banner">
     <div class="dn-shell-inner">
       <div class="dn-shell-top">
@@ -84,14 +84,15 @@
   </div>
   <main class="container event-page" id="main" data-recheck-ms="172800000">
     <form id="event-filters" class="event-filters" hidden role="search" aria-label="イベントを探す">
-      <label class="event-search">キーワード<input type="search" id="event-query" name="q" placeholder="例：手話 交流会" autocomplete="off"></label>
+      <label class="event-search">イベントを検索<input type="search" id="event-query" name="q" placeholder="例：手話劇、交流会" autocomplete="off"></label>
       <button type="reset" class="filter">条件を解除</button>
-      <label class="event-communication-filter">情報の受け取り方<select id="event-communication" name="communication" aria-describedby="event-communication-help"><option value="">指定しない</option><option value="sign">手話による案内・表現</option><option value="interpretation">手話通訳</option><option value="captions">字幕</option><option value="summary">要約筆記</option><option value="writing">筆談</option></select></label>
-      <p id="event-communication-help" class="event-filter-help">告知で確認できた方法から探せます。「手話の催し」でも、通訳・字幕が付くとは限りません。未確認は「対応なし」を意味しません。</p>
-      <details class="event-more-filters"><summary>地域・種類・開催月で絞り込む</summary><div class="event-filter-options">
-      <label>地域<select id="event-prefecture" name="prefecture"><option value="">すべての地域</option><option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option><option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option><option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option><option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option><option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option><option>オンライン</option></select></label>
+      <label class="event-region-filter">地域<select id="event-prefecture" name="prefecture"><option value="">すべての地域</option><option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option><option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option><option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option><option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option><option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option><option>オンライン</option></select></label>
+      <details class="event-more-filters"><summary id="event-filter-summary">種類・開催月・情報の受け取り方で絞り込む</summary><div class="event-filter-options">
+
       <label>種類<select id="event-kind" name="kind"><option value="">すべての種類</option><option value="exchange">交流・体験</option><option value="course">講座・学習</option><option value="theater">手話劇・演劇</option><option value="culture">公演・文化</option><option value="other">その他</option></select></label>
       <label>開催月<input type="month" id="event-month" name="month"></label>
+      <label class="event-communication-filter">情報の受け取り方<select id="event-communication" name="communication" aria-describedby="event-communication-help"><option value="">指定しない</option><option value="sign">手話による案内・表現</option><option value="interpretation">手話通訳</option><option value="captions">字幕</option><option value="summary">要約筆記</option><option value="writing">筆談</option></select></label>
+      <p id="event-communication-help" class="event-filter-help">告知で確認できた方法から探せます。「手話の催し」でも、通訳・字幕が付くとは限りません。未確認は「対応なし」を意味しません。</p>
       </div><label class="event-remember"><input type="checkbox" id="event-remember-region">この端末に地域を記憶する</label></details>
     </form>
     <div class="event-browse" hidden><div class="event-quick" role="group" aria-label="近日のイベント"><button type="button" class="filter" data-range="" aria-pressed="true">開催予定</button><button type="button" class="filter" data-range="weekend" aria-pressed="false">今週末</button><button type="button" class="filter" data-range="month" aria-pressed="false">今月</button></div>
@@ -572,6 +573,6 @@
       </p>
     </div>
   </footer>
-  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261017recovery"></script>  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
+  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261019reading"></script>  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
 <script src="/access-visit.js" defer></script>
 </body></html>
