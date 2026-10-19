@@ -220,7 +220,7 @@ async function main() {
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
   await copyAsset(join(ASSETS, 'site-shell.css'), 'site-shell.css');
   await copyAsset(join(ASSETS, 'home.css'), 'home.css');
-  for (const image of ['notebook.jpg', 'cafe-table.jpg']) await copyAsset(join(ASSETS, 'editorial', image), `editorial/${image}`);
+  for (const image of ['reading-light.jpg', 'lemon-water.jpg']) await copyAsset(join(ASSETS, 'editorial', image), `editorial/${image}`);
   await copyAsset(join(ASSETS, 'browse.css'), 'browse.css');
   await copyAsset(join(ASSETS, 'info.css'), 'info.css');
   await copyAsset(join(ASSETS, 'support.css'), 'support.css');
