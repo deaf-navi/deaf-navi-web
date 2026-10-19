@@ -284,7 +284,7 @@ export function renderArticleCard(a, { hidden = false, featured = false, newsMed
         </header>
         <div class="card__content">${newsMedia ? renderNewsThumbnail(a) : renderThumbnail(a)}<div class="card__text">
         <h3 class="card__title">
-          <a href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.title)}<span class="sr-only">（元記事・新しいタブ）</span></a>
+          <a href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a.title)}（元記事・新しいタブ）">${escapeHtml(a.title)}</a>
         </h3>${a.summary && !/^聴覚・手話に関わる取り組みについてのお知らせです。/u.test(a.summary) ? `
         <p class="card__summary">${escapeHtml(a.summary)}</p>` : ''}
         </div></div>

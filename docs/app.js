@@ -246,10 +246,7 @@
     var titleLink = node.querySelector('.card__title a');
     titleLink.href = a.id;
     titleLink.textContent = a.title;
-    var linkHint = document.createElement('span');
-    linkHint.className = 'sr-only';
-    linkHint.textContent = '（元記事・新しいタブ）';
-    titleLink.appendChild(linkHint);
+    titleLink.setAttribute('aria-label', a.title + '（元記事・新しいタブ）');
     var media = document.createElement('span');
     media.className = 'news-media';
     media.setAttribute('aria-hidden', 'true');
