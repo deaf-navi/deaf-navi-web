@@ -3,8 +3,8 @@
  *
  * 情報設計:
  *   1. ヘッダー（ナビ・表示設定）
- *   2. 注目: 公式・専門団体の新着
- *   3. 検索・絞り込みツールバー
+ *   2. 検索・絞り込みツールバー
+ *   3. 注目: 公式・専門団体の新着（見出し中心）
  *   4. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
  *
  * パフォーマンス方針: v1 は全505件をHTMLに埋め込み966KBあった。
@@ -28,7 +28,6 @@ import {
 import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
-import { renderNewsThumbnail } from './thumbnail.mjs';
 import { groupNewsTopics } from '../lib/news-topics.mjs';
 import { renderNewsNavigation } from './news-navigation.mjs';
 import {
@@ -179,11 +178,9 @@ function renderFeatured(featured) {
   if (!featured.length) return '';
   const items = featured.map((a) => `        <li class="featured__item">
           <a class="featured__link" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">
-            ${renderNewsThumbnail(a)}
             <div class="featured__body">
             <span class="chip chip--${escapeHtml(a.category)}">${escapeHtml(CATEGORY_UI[a.category] ?? '一般')}</span>${renderNewsContext(a)}
             <h3 class="featured__title">${escapeHtml(a.title)}</h3>
-            ${a.summary && !/^聴覚・手話に関わる取り組みについてのお知らせです。/u.test(a.summary) ? `<p class="featured__summary">${escapeHtml(a.summary)}</p>` : ''}
             <span class="featured__meta">${escapeHtml(a.sourceName)} ・ <time datetime="${escapeHtml(a.publishedAt)}">${escapeHtml(formatDateJST(a.publishedAt).slice(0, 10))}</time></span>
             </div>
           </a>
@@ -218,7 +215,7 @@ function renderToolbar() {
         <form class="discovery-tools" id="news-search-form" role="search">
           <div class="search-field">
             <label class="sr-only" for="news-search">ニュースを検索</label>
-            <input id="news-search" name="q" type="search" inputmode="search" autocomplete="off" placeholder="キーワードで検索（例: 手話通訳、補聴器）">
+            <input id="news-search" name="q" type="search" inputmode="search" autocomplete="off" placeholder="ニュースを検索（例：字幕、補聴器）">
             <button class="search-field__clear" id="news-search-clear" type="button" aria-label="検索語を消去" hidden>×</button>
           </div>
         </form>
@@ -256,6 +253,7 @@ function renderToolbar() {
           ${categoryChips}
           </div>
         </nav>
+        <p class="news-group-note" id="news-group-note">同じ話題はまとめて表示。各媒体の記事は開いて読めます。</p>
         </details>
       </div>`;
   }
@@ -298,7 +296,6 @@ function renderCardTemplate() {
             <a class="card__source" target="_blank" rel="noopener noreferrer"></a>
             <span class="card__region" hidden></span>
           </div>
-          <a class="card__read" target="_blank" rel="noopener noreferrer">記事を読む <span aria-hidden="true">↗</span></a>
         </footer>
       </article>
   </template>`;
@@ -367,11 +364,12 @@ ${renderGlobalHeader({
       <h1 class="dn-page-title"><span>聴覚障害・難聴・</span><span>手話のニュース</span></h1>
       <p class="news-concept">知ることを、つながるきっかけに。</p>
     </div>
-    <p class="site-lead">${leadPrefix}ろう者・難聴者・中途失聴者、その家族や支援者に。<br>制度や情報保障の新着から、手話イベント・カフェまで。</p>
+    <p class="site-lead">${leadPrefix}ろう者・難聴者・中途失聴者と、その家族・支援者へ。</p>
   </div></div>
 
   <main id="main" class="container" role="main">
-    <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="#news-search">記事を検索</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
+    <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
+${renderToolbar()}
 ${renderFeatured(featured)}
 
 ${renderAgentActivity()}
@@ -379,13 +377,11 @@ ${renderAgentActivity()}
     ${renderNewsNavigation()}
     <section aria-labelledby="articles-heading">
       <div class="articles-head">
-        <h2 id="articles-heading">聴覚障害に関する最新ニュース</h2>
+        <h2 id="articles-heading">最新ニュース</h2>
         <p class="meta" aria-live="polite">
           表示中: <strong id="visible-count">${initialVisibleCount}</strong> / 全 <strong id="total-count">${totalDefaultCount}</strong> <span id="news-count-unit">話題</span>
         </p>
       </div>
-${renderToolbar()}
-      <p class="news-group-note" id="news-group-note">同じ話題はまとめて表示。各媒体の記事は開いて読めます。</p>
       <p class="news-update">更新 <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time> · <a href="./${files.about}#about-policy">選定方針</a></p>
       <p class="offline-note" id="offline-note" role="status" hidden>オフライン表示中です。保存済みの内容を表示しています（最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>）。</p>
       <div id="articles" class="articles" data-total="${totalDefaultCount}" data-initial="${initialVisibleCount}" data-src="./${files.articlesJson}">
