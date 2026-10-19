@@ -34,11 +34,19 @@ function story_get(string $id):array {$r=stories_query('SELECT * FROM stories WH
 function story_public(array $r):bool {return $r['status']==='published'&&$r['published_at']!==null&&strtotime($r['published_at'])<=time();}
 function story_media_url(string $id):string {return '/stories/media/'.$id.'.webp';}
 function story_url(string $url):bool {return strlen($url)<2000&&!preg_match('/[\x00-\x20\x7f<>"\\\\]/',$url)&&filter_var($url,FILTER_VALIDATE_URL)&&in_array(strtolower(parse_url($url,PHP_URL_SCHEME)??''),['http','https'],true)&&!parse_url($url,PHP_URL_USER)&&!parse_url($url,PHP_URL_PASS);}
+function story_length(string $value):int {
+    if(function_exists('mb_strlen'))return mb_strlen($value,'UTF-8');
+    $length=preg_match_all('/./us',$value);if($length===false)fail('UTF-8の入力を指定してください。');return $length;
+}
+function story_cut(string $value,int $max):string {
+    if(function_exists('mb_substr'))return mb_substr($value,0,$max,'UTF-8');
+    $chars=preg_split('//u',$value,-1,PREG_SPLIT_NO_EMPTY);if($chars===false)fail('UTF-8の入力を指定してください。');return implode('',array_slice($chars,0,$max));
+}
 function story_input(array $data,string $key,int $max=2000):string {
     $v=$data[$key]??'';
     if(!is_string($v)||!preg_match('//u',$v))fail('入力値が不正です: '.$key);
     $v=str_replace(["\r\n","\r"],"\n",$v);
-    if(mb_strlen($v,'UTF-8')>$max||preg_match('/[\x00-\x08\x0b\x0c\x0e-\x1f]/',$v))fail('入力値が不正または長すぎます: '.$key);
+    if(story_length($v)>$max||preg_match('/[\x00-\x08\x0b\x0c\x0e-\x1f]/',$v))fail('入力値が不正または長すぎます: '.$key);
     return trim($v);
 }
 function story_date(?string $date):string {return $date?(new DateTimeImmutable($date))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y-m-d'):'';}
@@ -61,7 +69,7 @@ function story_internal(string $url,bool $allowPrivate=false):bool {
 }
 function story_links(string $text,bool $internal=false):array {
     $out=[];foreach(explode("\n",$text) as $line){if(trim($line)==='')continue;[$label,$url]=array_pad(explode('|',$line,2),2,'');$label=trim($label);$url=trim($url);
-        if(!$label||mb_strlen($label,'UTF-8')>300||!($internal?story_internal($url,true):story_url($url)))fail('リンクは「説明 | URL」の形式で、実在する安全なURLを入力してください。');
+        if(!$label||story_length($label)>300||!($internal?story_internal($url,true):story_url($url)))fail('リンクは「説明 | URL」の形式で、実在する安全なURLを入力してください。');
         if($internal&&str_starts_with($url,BASE.'/'))$url=substr($url,strlen(BASE));$out[]=['label'=>$label,'url'=>$url];if(count($out)>20)fail('リンクは20件までです。');
     }return $out;
 }

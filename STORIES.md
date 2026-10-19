@@ -69,7 +69,8 @@ dry-runは通常保存と同じ入力検証のみで、DB・画像・バック�
 本番公開はユーザー承認済み。初回は記事・画像が0件の状態で初期化し、ローカルのテストデータを持ち込まない。
 
 1. 既存リリース/設定/DBのバックアップと現在のPHP-FPM実行ユーザーを確認する。
-2. PHP 8.1以上、PDO SQLite、mbstring、GD（WebP対応）が必要。調査時点の本番GDは未導入。
+2. PHP 8.1以上、PDO SQLite、GD（WebP対応）が必要。mbstringは推奨し、未導入でも読みもの専用の
+   Unicode処理で同じ文字数判定・本文の切り出しを行う。調査時点の本番GDは未導入。
    導入時は実際のPHP-FPMバージョン用GDを使い、CLIだけでなくFPMでも確認する。
    `upload_max_filesize=2M` / `post_max_size=8M` を維持できる構成。
 3. 既定のPR・CI・リリース手順で配置する前に、ステージングの
@@ -101,5 +102,7 @@ DBのバックアップと別に、運用バックアップで `media/` と保�
 ## 検証
 
 `npm run test:stories` は一時DB・テスト専用アカウント・localhostを使用する。
-PHP CLIにSQLite/mbstring/GDが必要。Windows付属ランタイムではGDをテスト側で有効化。
+PHP CLIにSQLite/GDが必要。通常はmbstringありで検証し、Windows付属ランタイムではGDをテスト側で有効化。
+mbstring未導入の互換処理は`php -n`で常時検証する。加えて
+`DEAFNAVI_TEST_NO_MB=1`でmb_strlen/mb_substrを無効化したHTTP/CLI回帰全体を実行できる。
 本番DB・実際の記事・ユーザーを使わない。検証結果の詳細は `STORIES_VERIFICATION.md`。

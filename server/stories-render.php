@@ -21,7 +21,7 @@ function story_inline(string $text,int $depth=0):string {
     }return $out.e(substr($text,$pos));
 }
 function story_markdown(string $body):array {
-    $lines=explode("\n",str_replace("\r",'',mb_substr($body,0,50000,'UTF-8')));$out='';$toc=[];$paragraph=[];$list='';$items=[];$heading=0;
+    $lines=explode("\n",str_replace("\r",'',story_cut($body,50000)));$out='';$toc=[];$paragraph=[];$list='';$items=[];$heading=0;
     $flush=function()use(&$out,&$paragraph,&$list,&$items){if($paragraph){$text=implode("\n",array_map('trim',$paragraph));$text=preg_replace('/(?<=[\p{Han}\p{Hiragana}\p{Katakana}])\n(?=[\p{Han}\p{Hiragana}\p{Katakana}])/u','',$text);$out.='<p>'.story_inline(str_replace("\n",' ',$text)).'</p>';$paragraph=[];}if($items){$out.='<'.$list.'>'.implode('',$items).'</'.$list.'>';$list='';$items=[];}};
     foreach($lines as $line){
         if(trim($line)===''){$flush();continue;}
