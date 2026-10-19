@@ -89,7 +89,7 @@ const explicit=browser('https://deafnavi.com/?q=PRIVATE&dn_client=codex');
 ok(explicit.calls.length===1 && explicit.calls[0][1].credentials==='omit' && !JSON.stringify(explicit.calls).includes('PRIVATE'),'one beacon and no cookie/query data');
 ok(explicit.calls[0][1].headers['X-DeafNavi-Client']==='codex','explicit Codex marker retained as category');
 ok(explicit.links[0].href==='https://deafnavi.com/world/?dn_client=codex' && explicit.links[1].href==='https://external.invalid/' && explicit.links[2].href==='/export.csv','marker follows only same-site non-download links, including new tabs');
-const form={tagName:'FORM',method:'get',action:'https://deafnavi.com/search/',querySelector:()=>null,append(field){this.field=field;}};
+const form={tagName:'FORM',method:'get',action:'https://deafnavi.com/search/',getAttribute(name){return this[name];},setAttribute(name,value){this[name]=value;},querySelector:()=>null,append(field){this.field=field;}};
 explicit.events.submit({target:form});
 ok(form.field.name==='dn_client' && form.field.value==='codex','GET forms retain category');
 ok(browser('https://deafnavi.com/world/','https://deafnavi.com/?dn_client=codex').calls[0][1].headers['X-DeafNavi-Client']==='codex','same-origin navigation retains category');
