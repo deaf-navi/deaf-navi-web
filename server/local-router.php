@@ -7,6 +7,7 @@ foreach(json_decode(file_get_contents(__DIR__.'/entry-redirects.json'),true) as 
         header('Location: '.$entry['to'].($query!==''?'?'.$query:''),true,301);return;
     }
 }
+if(($path==='/stories'||str_starts_with($path,'/stories/'))||$path==='/admin/stories/'){require __DIR__.'/index.php';return;}
 if($path==='/_access/visit'){require __DIR__.'/index.php';return;}
 if($path==='/directory.css'){header('Content-Type: text/css');readfile(__DIR__.'/../src/assets/directory.css');return;}
 if($path==='/directory-ui.js'){header('Content-Type: application/javascript');readfile(__DIR__.'/../src/assets/directory-ui.js');return;}

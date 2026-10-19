@@ -163,6 +163,7 @@ export function renderSiteNav({
   newsHref = './',
   worldHref = './deaf-navi-world-jp.html',
   eventsHref,
+  storiesHref,
   guideHref = './guide.html',
   connectHref = './connect/sign-cafe/',
   toolHref = './otomado/',
@@ -172,7 +173,7 @@ export function renderSiteNav({
   const isEnglish = locale === 'en';
   const hrefs = { events: eventsHref || newsHref.replace(/index(?:-dev)?\.html$/, '') + 'events.html', news: newsHref, world: worldHref, guide: guideHref, connect: connectHref, tool: toolHref, about: aboutHref };
   const items = SITE_NAVIGATION.map(item => ({
-    key: item.key, href: hrefs[item.key], label: item[isEnglish ? 'en' : 'ja'],
+    key: item.key, href: item.key === 'stories' ? (storiesHref || newsHref.replace(/index(?:-dev)?\.html$/, '') + 'stories/') : hrefs[item.key], label: item[isEnglish ? 'en' : 'ja'],
     className: ['world', 'tool'].includes(item.key) ? `site-nav__link--${item.key}` : '',
   }));
   const links = items.map((item) => {
@@ -228,6 +229,7 @@ ${lead ? `      <p class="site-lead">${escapeHtml(lead)}</p>` : ''}
 }
 
 export function renderFooter({ year, links = [], updateScheduleAt = '' }) {
+  links = [...links, {href:'/stories/',label:'読みもの'}];
   const linksHtml = links.length
     ? `      <p>${links.map(({ href, label }) => `<a href="${href}">${escapeHtml(label)}</a>`).join(' ・ ')}</p>\n`
     : '';

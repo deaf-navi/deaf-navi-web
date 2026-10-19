@@ -31,10 +31,11 @@ jobs:
         run: npm test
 
       - name: Install PHP SQLite runtime
-        run: sudo apt-get update && sudo apt-get install -y php-cli php-sqlite3 php-mbstring
+        run: sudo apt-get update && sudo apt-get install -y php-cli php-sqlite3 php-mbstring php-gd
 
       - name: Cafe schema, migration and directory regression
         run: |
+          npm run test:stories
           npm run test:cafes
           node test/engagement.integration.mjs
           php test/cafe-event-recovery.php

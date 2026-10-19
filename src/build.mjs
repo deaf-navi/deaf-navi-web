@@ -218,6 +218,7 @@ async function main() {
 
   if (!IS_DEV) await writeDoc('cafe-related.json', JSON.stringify({articles:cafeRelated(data.articles)},null,2)+'\n');
   await copyAsset(join(__dirname, 'access-engagement.js'), 'access-engagement.js');
+  for (const asset of ['stories.css','stories.js','stories-editor.js','stories-related.js']) await copyAsset(join(__dirname, 'assets', asset), asset);
   // ---- アセットコピー ----
   await copyAsset(join(__dirname, 'access-visit.js'), 'access-visit.js');
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);

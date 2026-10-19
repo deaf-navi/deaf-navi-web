@@ -9,7 +9,8 @@ function admin_page(): string {
     if(isset($_SESSION['flash'])) {$body.='<p class="dn-notice" role="status">'.e($_SESSION['flash']).'</p>';unset($_SESSION['flash']);}
     $view=input($_GET,'view',30)?:'dashboard';
     if($user['must_change']) { $view='password';$body.='<p class="dn-error">初期パスワードを変更してください。変更が完了するまで他の管理操作は利用できません。</p>'; }
-    if($view==='cafe-events') {$body.=cafe_event_admin();}
+    if($view==='stories') {$body.=stories_admin();}
+    elseif($view==='cafe-events') {$body.=cafe_event_admin();}
     elseif($view==='submissions') {$body.=admin_submissions_table();}
     elseif($view==='audit') {$body.=admin_activity();}
     elseif($view==='access') {$body.=admin_access_logs();}

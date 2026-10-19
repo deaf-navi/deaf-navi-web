@@ -7,11 +7,11 @@
  * - 静的アセット(CSS/JS/画像)はキャッシュ優先 + 背景更新
  * - 暮らしのガイドは災害時利用を想定してプリキャッシュ
  *
- * 2026-10-19T13:58:47.039Z-c08c55c6bfe6 と c08c55c6bfe6 はビルド時に置換され、キャッシュ世代を切り替える。
+ * 2026-10-19T13:58:47.039Z-6c031285b8ef と 6c031285b8ef はビルド時に置換され、キャッシュ世代を切り替える。
  */
 
-const BUILD_ID = '2026-10-19T13:58:47.039Z-c08c55c6bfe6';
-const ASSET_VERSION = 'c08c55c6bfe6';
+const BUILD_ID = '2026-10-19T13:58:47.039Z-6c031285b8ef';
+const ASSET_VERSION = '6c031285b8ef';
 const CACHE_NAME = `deaf-navi-${BUILD_ID}`;
 
 self.addEventListener('message', (event) => {
@@ -99,7 +99,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // フォント等の外部リソースはブラウザ任せ
   // 管理画面・投稿・DB連動ページをオフラインキャッシュに保存しない。
-  if (/^\/(?:admin(?:\/|$)|submit(?:\/|$)|connect\/sign-cafe(?:\/|$)|directory-sitemap\.xml$)/.test(url.pathname)) return;
+  if (/^\/(?:stories(?:\/|$)|admin(?:\/|$)|submit(?:\/|$)|connect\/sign-cafe(?:\/|$)|directory-sitemap\.xml$)/.test(url.pathname)) return;
 
   if (request.mode === 'navigate') {
     event.respondWith(networkFirst(request, './offline.html'));

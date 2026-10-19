@@ -14,6 +14,7 @@ require __DIR__.'/map.php';
 require __DIR__.'/map-2d.php';
 require __DIR__.'/starbucks-community.php';
 require __DIR__.'/cafe-regions.php';
+require __DIR__.'/stories.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: private, no-store, max-age=0');
@@ -33,6 +34,10 @@ if(in_array($path,['/connect/sign-cafe/','/connect/sign-cafe/overseas/','/connec
     header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' ".$imageSources.$mapImages."; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 }
 try {
+    if(($path==='/stories'||str_starts_with($path,'/stories/'))||$path==='/admin/stories/'){
+        if((int)($_SERVER['CONTENT_LENGTH']??0)>8388608)fail('送信内容が大きすぎます。',413);
+        if(stories_dispatch($path))exit;
+    }
     if(in_array($path,['/connect/sign-cafe/starbucks','/connect/sign-cafe/starbucks/','/connect/sign-cafe/starbucks/index.html'],true)){
         http_response_code(410);header('X-Robots-Tag: noindex, follow');
         echo page('このページの掲載は終了しました','<p>スターバックス専用ページの掲載は終了しました。</p><p><a href="/connect/sign-cafe/">手話カフェ一覧へ</a></p>',$path,'',[],true);exit;
