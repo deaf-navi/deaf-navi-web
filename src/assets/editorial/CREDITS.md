@@ -7,8 +7,10 @@ No hearing status or use of sign language is inferred about the people pictured.
 
 | File | Photographer | Original page | License |
 | --- | --- | --- | --- |
-| notebook.jpg | Fiona Murray-deGraaff | https://unsplash.com/photos/PSNSnsL5qXM | https://unsplash.com/license |
-| cafe-table.jpg | shche_ team | https://unsplash.com/photos/Z5Xq4egaTGo | https://unsplash.com/license |
+| notebook.jpg (previous, unused) | Fiona Murray-deGraaff | https://unsplash.com/photos/PSNSnsL5qXM | https://unsplash.com/license |
+| cafe-table.jpg (previous, unused) | shche_ team | https://unsplash.com/photos/Z5Xq4egaTGo | https://unsplash.com/license |
+| reading-light.jpg | JESHOOTS.COM | https://unsplash.com/photos/pUAM5hPaCRI | https://unsplash.com/license |
+| lemon-water.jpg | Julia Zolotova | https://unsplash.com/photos/K2yKpyLMVOg | https://unsplash.com/license |
 
 Unsplash License allows free commercial and non-commercial use, including copying
 and modification. Images are used as part of the site, not sold or redistributed
