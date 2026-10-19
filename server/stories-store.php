@@ -34,7 +34,16 @@ function story_get(string $id):array {$r=stories_query('SELECT * FROM stories WH
 function story_public(array $r):bool {return $r['status']==='published'&&$r['published_at']!==null&&strtotime($r['published_at'])<=time();}
 function story_media_url(string $id):string {return '/stories/media/'.$id.'.webp';}
 function story_url(string $url):bool {return strlen($url)<2000&&!preg_match('/[\x00-\x20\x7f<>"\\\\]/',$url)&&filter_var($url,FILTER_VALIDATE_URL)&&in_array(strtolower(parse_url($url,PHP_URL_SCHEME)??''),['http','https'],true)&&!parse_url($url,PHP_URL_USER)&&!parse_url($url,PHP_URL_PASS);}
-function story_internal(string $url):bool {
+function story_input(array $data,string $key,int $max=2000):string {
+    $v=$data[$key]??'';
+    if(!is_string($v)||!preg_match('//u',$v)||mb_strlen($v,'UTF-8')>$max||preg_match('/[\x00-\x08\x0b\x0c\x0e-\x1f]/',$v))fail('入力値が不正または長すぎます: '.$key);
+    return trim($v);
+}
+function story_date(?string $date):string {return $date?(new DateTimeImmutable($date))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y-m-d'):'';}
+function story_slug_used(string $slug,string $id=''):bool {
+    return (bool)stories_query('SELECT id FROM stories WHERE slug=? AND id!=? UNION ALL SELECT story_id FROM aliases WHERE slug=? AND story_id!=?',[$slug,$id,$slug,$id])->fetchColumn();
+}
+function story_internal(string $url,bool $allowPrivate=false):bool {
     if(str_starts_with($url,BASE.'/'))$url=substr($url,strlen(BASE));
     if(!str_starts_with($url,'/')||str_starts_with($url,'//')||preg_match('/[\x00-\x20\x7f<>"\\\\%?]/',$url)||str_contains($url,'..'))return false;
     $path=explode('#',$url,2)[0];
@@ -44,19 +53,19 @@ function story_internal(string $url):bool {
         foreach(query("SELECT * FROM records WHERE publication='public'")->fetchAll() as $r)if(record_path(expanded($r))===$path&&publicly_visible(expanded($r)))return true;
         return false;
     }
-    if(preg_match('#^/stories/([a-z0-9-]+)/$#D',$path,$m)){$r=stories_query('SELECT * FROM stories WHERE slug=?',[$m[1]])->fetch();return $r&&story_public($r);}
+    if(preg_match('#^/stories/([a-z0-9-]+)/$#D',$path,$m)){$r=stories_query('SELECT * FROM stories WHERE slug=?',[$m[1]])->fetch();return $r&&($allowPrivate||story_public($r));}
     $root=getenv('DEAFNAVI_LOCAL_TEST')==='1'?__DIR__.'/../docs':'/srv/deafnavi/current';
     return preg_match('#^/(?:news/|guide(?:/|\.html$)|events(?:/|\.html$)|otomado/|deaf-navi-world-(?:jp|original)\.html$|about\.html$)#D',$path)&&is_file($root.$path.(str_ends_with($path,'/')?'index.html':''));
 }
 function story_links(string $text,bool $internal=false):array {
     $out=[];foreach(explode("\n",$text) as $line){if(trim($line)==='')continue;[$label,$url]=array_pad(explode('|',$line,2),2,'');$label=trim($label);$url=trim($url);
-        if(!$label||strlen($label)>300||!($internal?story_internal($url):story_url($url)))fail('リンクは「説明 | URL」の形式で、実在する安全なURLを入力してください。');
+        if(!$label||mb_strlen($label,'UTF-8')>300||!($internal?story_internal($url,true):story_url($url)))fail('リンクは「説明 | URL」の形式で、実在する安全なURLを入力してください。');
         if($internal&&str_starts_with($url,BASE.'/'))$url=substr($url,strlen(BASE));$out[]=['label'=>$label,'url'=>$url];if(count($out)>20)fail('リンクは20件までです。');
     }return $out;
 }
 function story_save(array $in,string $actor):string {
     $id=input($in,'id',64)?:bin2hex(random_bytes(16));$old=isset($in['id'])&&$in['id']!==''?story_get($id):null;
-    $p=[];foreach(['slug'=>100,'title'=>300,'summary'=>1500,'body'=>50000,'category'=>64,'tags'=>1000,'cover'=>64,'alt'=>600,'author'=>200,'sources'=>8000,'related'=>8000,'checked_at'=>10] as $k=>$n)$p[$k]=input($in,$k,$n);
+    $p=[];foreach(['slug'=>100,'title'=>300,'summary'=>1500,'body'=>50000,'category'=>64,'tags'=>1000,'cover'=>64,'alt'=>600,'author'=>200,'sources'=>8000,'related'=>8000,'checked_at'=>10] as $k=>$n)$p[$k]=story_input($in,$k,$n);
     if(!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$p['slug'])||in_array($p['slug'],['media','feed','sitemap','preview','api'],true))fail('URLは半角英数字とハイフンで指定してください。');
     if(!$p['title'])fail('記事タイトルを入力してください。');
     if(!isset(stories_categories()[$p['category']]))fail('カテゴリを選んでください。');
