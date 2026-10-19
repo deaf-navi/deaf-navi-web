@@ -6,7 +6,7 @@
   段落内改行、管理列・並び順、スラッグの現URL/旧URL照合、h2目次とID保持、citation、版付きCSS。
 - フェーズ2: CLIの10原稿dry-run/下書き作成/既存スラッグ拒否、未来日時の公開全経路と到来後、
   一括変更の確認・CSRF・権限・revision・再送拒否・全件ロールバック、180日境界の絞り込み。
-- `npm test`: 238件成功。`npm run test:stories`: HTTP/CLI/DB 93項目とJS 6テスト成功。
+- `npm test`: 238件成功。`npm run test:stories`: HTTP/CLI/DB 94項目とJS 6テスト成功。
   JSは文字数・退避/明示復元・revision保持・保存成功時削除・失敗時保持・利用不可・保存前警告を検証。
 - 提供された実原稿10本も隔離DBへのCLI dry-runで全件成功。本番の取り込みは未実施。
 - `npm run test:cafes` 一式、build、verify、変更PHP構文確認、diffチェック成功。

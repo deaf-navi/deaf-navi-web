@@ -52,8 +52,8 @@
     }catch(err){result.textContent=err.message;}finally{e.target.disabled=false;}
   });
   form.querySelector('[data-clear-cover]').addEventListener('click',()=>{form.elements.cover.value='';form.elements.alt.value='';form.querySelectorAll('.story-upload-preview').forEach(e=>e.remove());changed();});
-  form.addEventListener('submit',async e=>{e.preventDefault();if(saving)return;saving=true;form.inert=true;const button=form.querySelector('[type=submit]');button.disabled=true;status.textContent='保存しています…';
-    try{const result=await(await request(new FormData(form))).json();if(typeof result.redirect!=='string'||!result.redirect.startsWith('/admin/?view=stories&'))throw Error('保存結果を確認できません。入力を保持しています。');clearTimeout(storageTimer);try{localStorage.removeItem(storageKey);}catch{}dirty=false;location.assign(result.redirect);}
-    catch(err){saving=false;form.inert=false;button.disabled=false;status.textContent=err.message;}
+  form.addEventListener('submit',async e=>{e.preventDefault();if(saving)return;saving=true;const data=new FormData(form),locked=[...form.querySelectorAll('input,textarea,select,button')].map(el=>({el,disabled:el.disabled}));locked.forEach(({el})=>{el.disabled=true;});const button=form.querySelector('[type=submit]');button.disabled=true;status.textContent='保存しています…';
+    try{const result=await(await request(data)).json();if(typeof result.redirect!=='string'||!result.redirect.startsWith('/admin/?view=stories&'))throw Error('保存結果を確認できません。入力を保持しています。');clearTimeout(storageTimer);try{localStorage.removeItem(storageKey);}catch{}dirty=false;location.assign(result.redirect);}
+    catch(err){saving=false;locked.forEach(({el,disabled})=>{el.disabled=disabled;});button.disabled=false;status.textContent=err.message;}
   });
 })();
