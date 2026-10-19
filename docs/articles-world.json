@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T08:47:38.513Z",
+  "generatedAt": "2026-10-19T12:56:06.406Z",
   "variant": "world",
   "count": 600,
   "regions": {
@@ -21,8 +21,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3832,
-    "dedupedCount": 2336,
+    "rawCount": 3829,
+    "dedupedCount": 2343,
     "selectedCount": 600,
     "maxArticles": 600,
     "minScore": 8,
@@ -36,8 +36,8 @@
     "japanesePostEdit": {
       "checked": 50,
       "updated": 0,
-      "cached": 500,
-      "skipped": 28,
+      "cached": 506,
+      "skipped": 32,
       "failed": 40,
       "enabled": true,
       "attemptsPerBatch": 2,
@@ -50,8 +50,8 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 68,
-      "retainedPrevious": 47
+      "pending": 72,
+      "retainedPrevious": 40
     },
     "japanesePostEditRequired": false,
     "japanesePostEditMinCoverage": 0.85,
@@ -104,11 +104,11 @@
       "蕃新聞": 1,
       "Quotidiano Sanità": 1,
       "Merkur": 1,
+      "insalutenews.it": 1,
       "The Wom Healthy": 1,
       "Mondosanità": 2,
       "Studenti.it": 1,
       "RaiNews": 1,
-      "insalutenews.it": 1,
       "Made in Marseille": 1,
       "Financial Times": 3,
       "hessenschau.de": 2,
@@ -178,10 +178,10 @@
       "The Indian Express": 6,
       "FFVL": 1,
       "صدى البلد": 1,
+      "獨立媒體": 1,
       "Arquidiocese de BH": 1,
       "Le Parisien": 1,
       "المصري اليوم": 1,
-      "獨立媒體": 1,
       "Radio Nigeria Ibadan": 1,
       "France 3 Régions": 1,
       "The Eastleigh Voice": 1,
@@ -202,9 +202,9 @@
       "A Notícia do Ceará": 1,
       "Yenigün Gazetesi": 1,
       "The Times of India": 29,
-      "Prefeitura de Belo Horizonte": 1,
       "M6 Unlimited": 1,
       "The Guardian": 7,
+      "Prefeitura de Belo Horizonte": 1,
       "Le Berry Républicain": 1,
       "웰페어뉴스": 1,
       "TRT-MG": 1,
@@ -301,18 +301,18 @@
     },
     "sourceModeCounts": {
       "regional-fresh": 182,
-      "major-media": 329,
-      "major-media-fresh": 76,
+      "major-media-fresh": 80,
+      "major-media": 325,
       "regional-multilingual": 13
     },
     "thumbnails": {
       "articles": 600,
       "attempted": 10,
-      "cached": 539,
-      "acquired": 3,
+      "cached": 525,
+      "acquired": 2,
       "missing": 1,
-      "failed": 6,
-      "deferred": 51,
+      "failed": 7,
+      "deferred": 65,
       "withImage": 352,
       "googleStopped": false
     }
@@ -538,7 +538,7 @@
       ],
       "sourceDomain": "moroccoworldnews.com",
       "sourcePriority": 70,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -685,7 +685,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE1GUE50bzhjcENXZmpHSF9WTVVoZE1FeWlsdDFUSEthQTRwZXR6bnUtMEFvRERydTl1UUVPRFZCVzBVdw?oc=5",
-      "title": "韓流アイドルの韓国手話あいさつと台湾のろう者コミュニティーへの波紋",
+      "title": "韓流アイドルが学ぶ韓国手話のあいさつや、ファンによるコンサートでの手話応援が、台湾のろう者コミュニティーにどのような波紋を広げているかを取り上げる。",
       "summary": "韓流アイドルが学ぶ韓国手話のあいさつや、ファンによるコンサートでの手話応援が、台湾のろう者コミュニティーにどのような波紋を広げているかを取り上げる。",
       "originalTitle": "韓流idol都在學的「韓國手語打招呼」：當粉絲在演唱會現場用手語應援，這股無聲革命如何在台灣聽障社群掀起漣漪",
       "originalSummary": "韓流idol都在學的「韓國手語打招呼」：當粉絲在演唱會現場用手語應援，這股無聲革命如何在台灣聽障社群掀起漣漪",
@@ -1039,6 +1039,39 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVnpja1VuV2gzTDhSVEc0ZVpYWDJ1UEc3SFdDNXZuNGt3MHU2T0VYZ2dTWGdxY182aG56elVqTm91QTFMQXFBVzJYdktKai01Z0xDLThBUllpSXU0alRBSkJJRUNJTHZPT3duZmJlNmI3Y25ROTVoN2wxVFVVZVFkMWYzOWZVZ0phQ053al9zOGxBbHBJTjh2bTJjNTBObVVTSmZrOXVaNlhMU1J5?oc=5",
+      "title": "イタリアで、重度難聴者を対象とした外から完全に見えない人工内耳の埋め込みが初めて行われました。",
+      "summary": "イタリアで、重度難聴者を対象とした外から完全に見えない人工内耳の埋め込みが初めて行われました。",
+      "originalTitle": "Sordità grave, in Italia primo impianto cocleare totalmente invisibile",
+      "originalSummary": "Sordità grave, in Italia primo impianto cocleare totalmente invisibile",
+      "sourceName": "insalutenews.it",
+      "sourceUrl": "https://www.insalutenews.it",
+      "publishedAt": "2026-10-14T20:10:00.000Z",
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 29,
+      "curationSignals": [
+        "sordi",
+        "sordità",
+        "impianto cocleare",
+        "multilingual"
+      ],
+      "sourceDomain": "insalutenews.it",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://www.insalutenews.it/in-salute/wp-content/uploads/2026/10/intervento-aou-senese-primo-impianto-cocleare-totalmente-invisibile.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.insalutenews.it/in-salute/sordita-grave-in-italia-primo-impianto-cocleare-totalmente-invisibile/"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdjdMQzJfUFpTWTdfQjUtSkhlaUFlYUJnazVKcDdMQUtjdWtGeTZMVGMyWjNHbGdCeEU4WldjVWl0V1pIY2Y5NVZOR1dIalN4X29yeU15TUNvX21jdy1UR0hhMzctc2hsZDZZRUFJcmZOSXFlekFqb0JGTkY1bko2MzVOTHJwMk1nTk9lYkJfS29yWlBBNldZ?oc=5",
       "title": "イタリアで、重度難聴に対応する国内初の見えない人工内耳の埋め込みが行われた。",
       "summary": "イタリアで、重度難聴に対応する国内初の見えない人工内耳の埋め込みが行われた。",
@@ -1156,39 +1189,6 @@
         "url": "https://www.rainews.it/cropgd/1200x630/dl/img/2026/10/14/1791973586516_Otorini.jpg",
         "source": "og:image",
         "pageUrl": "https://www.rainews.it/amp/articoli/2026/10/orecchio-bionico-di-ultima-generazione-primo-intervento-in-italia-1c72cd85-114f-438b-97e2-7e16d2e2954b.html"
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVnpja1VuV2gzTDhSVEc0ZVpYWDJ1UEc3SFdDNXZuNGt3MHU2T0VYZ2dTWGdxY182aG56elVqTm91QTFMQXFBVzJYdktKai01Z0xDLThBUllpSXU0alRBSkJJRUNJTHZPT3duZmJlNmI3Y25ROTVoN2wxVFVVZVFkMWYzOWZVZ0phQ053al9zOGxBbHBJTjh2bTJjNTBObVVTSmZrOXVaNlhMU1J5?oc=5",
-      "title": "イタリアで、重度難聴者を対象とした外から完全に見えない人工内耳の埋め込みが初めて行われました。",
-      "summary": "イタリアで、重度難聴者を対象とした外から完全に見えない人工内耳の埋め込みが初めて行われました。",
-      "originalTitle": "Sordità grave, in Italia primo impianto cocleare totalmente invisibile",
-      "originalSummary": "Sordità grave, in Italia primo impianto cocleare totalmente invisibile",
-      "sourceName": "insalutenews.it",
-      "sourceUrl": "https://www.insalutenews.it",
-      "publishedAt": "2026-10-14T09:10:00.000Z",
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 29,
-      "curationSignals": [
-        "sordi",
-        "sordità",
-        "impianto cocleare",
-        "multilingual"
-      ],
-      "sourceDomain": "insalutenews.it",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://www.insalutenews.it/in-salute/wp-content/uploads/2026/10/intervento-aou-senese-primo-impianto-cocleare-totalmente-invisibile.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.insalutenews.it/in-salute/sordita-grave-in-italia-primo-impianto-cocleare-totalmente-invisibile/"
       }
     },
     {
@@ -3349,7 +3349,7 @@
       ],
       "sourceDomain": "theglobeandmail.com",
       "sourcePriority": 84,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -3651,13 +3651,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9lTW8yOFJQc3VjS0w1ZU5TV1RkMTNkbW9zTkdueTJNZW1yMEx0Z0NPN0laT09Hck1VdGxvc2s5TjdVdDNMSDF4Rl8yVQ?oc=5",
-      "title": "【#PLive】20260922 公共テレビ手話ニュース完全版 |国際聴覚障害者芸術祭、包括的なパフォーマンスの国境を越えた交流促進を目的に閉幕 |公共テレビ ニュース ネットワーク PNN",
-      "summary": "【#PLive】20260922 公共テレビ手話ニュース完全版 |国際聴覚障害者芸術祭、包括的なパフォーマンスの国境を越えた交流促進を目的に閉幕 |公共テレビ ニュース ネットワーク PNN",
-      "originalTitle": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
-      "originalSummary": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
-      "sourceName": "你的公共電視",
-      "sourceUrl": "https://news.pts.org.tw",
+      "id": "https://news.google.com/rss/articles/CBMijANBVV95cUxQUDRYWGI4djFnLVluXzFLYUp0Q2MyQzVHZlp0VkJTUzdJWlpnZ3JTVXRsTWZtbHJGUlZxVy1keXl6SzU4NzVlRjEyYllYSTluZm1Tak56Wkl6ZXdseXRORFItWDlvTVJZOXdnYWVRNjk2TmtYbVliQi1pSW9vSWV1SXVMMUFrTGxrU0M0cFlKYnRBVklfeTNad05tRFptQ0tKX1lrMW44SkhZMFFKa1hFX0psZU9fb0JneEI3VnZIR0pQRkE1VDlPUnY3NkRMczE0UFl4ZnNpOEZPblo0S1dvX2loYnNxbzVvc1hkaUx4bkVrWmx0QVRCcHlscmlWeTAzMUMwMnF4UTB0UWppWFJYb0IzeXhRUWk1TV9TSFBPcWt1MkV5THZkT1RnRGJWaTkzbVVQdGo4X1dCUWRSaWxnczBVSXdQYW5YQkRjZmduVUROZ3Q1QUVaVF9NTk90ZU15Ujg4dmFXNExBalZ4VGxZUGlEVDc3Uk0zZ05Ga3EyWFRpcVRrOTFIRnNhWEs?oc=5",
+      "title": "葬儀で使われる宗教的な詠唱や専門用語を伝える手話通訳が、ろう者の人生の節目を支える姿を紹介しています。",
+      "summary": "葬儀で使われる宗教的な詠唱や専門用語を伝える手話通訳が、ろう者の人生の節目を支える姿を紹介しています。",
+      "originalTitle": "【國際手語日】喪禮譯喃嘸術語手語傳譯伴聾人經歷人生| 獨媒報導",
+      "originalSummary": "【國際手語日】喪禮譯喃嘸術語手語傳譯伴聾人經歷人生| 獨媒報導",
+      "sourceName": "獨立媒體",
+      "sourceUrl": "https://www.inmediahk.net",
       "publishedAt": "2026-09-23T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -3669,15 +3669,13 @@
         "手語",
         "multilingual"
       ],
-      "sourceDomain": "news.pts.org.tw",
+      "sourceDomain": "inmediahk.net",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://i.ytimg.com/vi/Tmo9d5IhZwA/hqdefault.jpg",
-        "source": "og:image",
-        "pageUrl": "https://news.pts.org.tw/video/22164"
-      }
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWWdQUXhLTVFBZGlDbl9zWU5FbERrZG1UbHkxYTBzeTNqT2JDYTY4SGpsX0VGWXhsbmJZanUzM0FIVk5XMG80YmlEcGJhN2t5QVItM2NBRFhDVkU4Tlc4UWNrdGtOTndEZDNvdHcyMko4U0dPVnF6cGZhYXdKWHc2Y2VPcUlSVzBhQXhqdFZSM3ZkOGV6VFpKY1FYNVFpekFLWVVDSnJrc1lmaHZUTmg0aFRB?oc=5",
@@ -3762,13 +3760,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMijANBVV95cUxQUDRYWGI4djFnLVluXzFLYUp0Q2MyQzVHZlp0VkJTUzdJWlpnZ3JTVXRsTWZtbHJGUlZxVy1keXl6SzU4NzVlRjEyYllYSTluZm1Tak56Wkl6ZXdseXRORFItWDlvTVJZOXdnYWVRNjk2TmtYbVliQi1pSW9vSWV1SXVMMUFrTGxrU0M0cFlKYnRBVklfeTNad05tRFptQ0tKX1lrMW44SkhZMFFKa1hFX0psZU9fb0JneEI3VnZIR0pQRkE1VDlPUnY3NkRMczE0UFl4ZnNpOEZPblo0S1dvX2loYnNxbzVvc1hkaUx4bkVrWmx0QVRCcHlscmlWeTAzMUMwMnF4UTB0UWppWFJYb0IzeXhRUWk1TV9TSFBPcWt1MkV5THZkT1RnRGJWaTkzbVVQdGo4X1dCUWRSaWxnczBVSXdQYW5YQkRjZmduVUROZ3Q1QUVaVF9NTk90ZU15Ujg4dmFXNExBalZ4VGxZUGlEVDc3Uk0zZ05Ga3EyWFRpcVRrOTFIRnNhWEs?oc=5",
-      "title": "葬儀で使われる宗教的な詠唱や専門用語を伝える手話通訳が、ろう者の人生の節目を支える姿を紹介しています。",
-      "summary": "葬儀で使われる宗教的な詠唱や専門用語を伝える手話通訳が、ろう者の人生の節目を支える姿を紹介しています。",
-      "originalTitle": "【國際手語日】喪禮譯喃嘸術語手語傳譯伴聾人經歷人生| 獨媒報導",
-      "originalSummary": "【國際手語日】喪禮譯喃嘸術語手語傳譯伴聾人經歷人生| 獨媒報導",
-      "sourceName": "獨立媒體",
-      "sourceUrl": "https://www.inmediahk.net",
+      "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9lTW8yOFJQc3VjS0w1ZU5TV1RkMTNkbW9zTkdueTJNZW1yMEx0Z0NPN0laT09Hck1VdGxvc2s5TjdVdDNMSDF4Rl8yVQ?oc=5",
+      "title": "【#PLive】20260922 公共テレビ手話ニュース完全版 |国際聴覚障害者芸術祭、包括的なパフォーマンスの国境を越えた交流促進を目的に閉幕 |公共テレビ ニュース ネットワーク PNN",
+      "summary": "【#PLive】20260922 公共テレビ手話ニュース完全版 |国際聴覚障害者芸術祭、包括的なパフォーマンスの国境を越えた交流促進を目的に閉幕 |公共テレビ ニュース ネットワーク PNN",
+      "originalTitle": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
+      "originalSummary": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
+      "sourceName": "你的公共電視",
+      "sourceUrl": "https://news.pts.org.tw",
       "publishedAt": "2026-09-23T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -3780,13 +3778,15 @@
         "手語",
         "multilingual"
       ],
-      "sourceDomain": "inmediahk.net",
+      "sourceDomain": "news.pts.org.tw",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
+      "thumbnail": {
+        "url": "https://i.ytimg.com/vi/Tmo9d5IhZwA/hqdefault.jpg",
+        "source": "og:image",
+        "pageUrl": "https://news.pts.org.tw/video/22164"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
@@ -4250,7 +4250,7 @@
       ],
       "sourceDomain": "koreaherald.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -4726,13 +4726,13 @@
       "japanesePostEditModel": null
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeTRzYW9pQ2d4ZWplWGctcDNDSmtVbG82cnItaWtGOUh2dmtIak1ZWWhzamFpVFBkWmVRRE1tYXF5eUdWbmpXU0tMYkhPZG5OTFA1OGhTQmE5SHYzbVFFQi1xTWtXWHJ0Y0wxZ1NCcWxjY1ZOeGRsZkRybnZPeUVPUEdyZGdYSkdaU2NmSURKa2g2TzVDZzVaMEZOWVhxemFYbEFpTXNNVW9ObWhwcEI3YlVxaFYzNE1FNm9zOGJyZ2RiQW8?oc=5",
-      "title": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
-      "summary": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
-      "originalTitle": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
-      "originalSummary": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
-      "sourceName": "Prefeitura de Belo Horizonte",
-      "sourceUrl": "https://prefeitura.pbh.gov.br",
+      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
+      "title": "全国ろう者の日にブラジル手話通訳付きの歴史散策",
+      "summary": "全国ろう者の日に、ブラジル手話（Libras）の通訳付きで歴史を巡る散策が行われる。",
+      "originalTitle": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
+      "originalSummary": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
+      "sourceName": "G1",
+      "sourceUrl": "https://g1.globo.com",
       "publishedAt": "2026-09-26T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -4744,14 +4744,17 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "prefeitura.pbh.gov.br",
+      "sourceDomain": "g1.globo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://prefeitura.pbh.gov.br/sites/default/files/estrutura-de-governo/comunicacao/claudio-lacerda-ascom-smed-1.jpg",
+        "url": "https://s03.video.glbimg.com/x720/14998130.jpg",
         "source": "og:image",
-        "pageUrl": "https://prefeitura.pbh.gov.br/noticias/professor-surdo-transforma-rotina-de-escola-e-ajuda-ampliar-o-ensino-de-libras-na-rede"
+        "pageUrl": "https://g1.globo.com/rn/rio-grande-do-norte/videos-rntv-2-edicao/video/caminhada-historica-com-interpretes-de-libras-marca-dia-nacional-do-surdo-14998130.ghtml"
       }
     },
     {
@@ -4818,13 +4821,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQQUJYWXRCdzhmT2EwRV9xcW02TkF0Q0NsYUtHanFiMGs4S195Wm11cGUwWVNtQnNndXBRR0ZRRzlOdFNSSGUzN29uTVFMcElZWGhQM0NKbE9tTzdCaDJadG9hYWZralR3bnFyTktONS1jSlBhYm4yTW9qSkVXcm40WVZSX2otX3dFUUV6dzFGRHlUWkl3UU9qZzJ0ME9YWnhRanJkYTZ0VXYwOTRnWDVSa3Z0RFJydEhleGlTN3NPakI3bGRmLUxLNDFXOG1yZTZGOEJDRXNUM1VHY1ppbDJzS21DN0N5NlJQRk14ckE0WlrSAf8BQVVfeXFMTzYxWkNBWHR2SEFqWEpDVFdjaTlpRFB5STNDY3FXQVEzR0hyUHhNdE90SncwbDVtLUtlUXM3aVN6X2NmX2U4RktkYmtwRGljWnUySTc3cXlieHI2YU10aDRCT2F2V3dtbWQ3Z2tydGF0V1hmTUp2SUFBWWNQZXNWX0daeXozc0dnYmpSYVVuZGJXMjAzUXdXTDBCQ1JJQkUwWWFwOTVfcjBmZTA1TWk1Q29ZMGxqSmxwTG9IOENfcGhEQThMWnhIb2hDdjJMY08tcmZLMUliVjV3M0NuOVlDajlpQV81TnhFN2lPNWN5Wlhrbk1fSkpOTlZLTDNDQ0Fr?oc=5",
-      "title": "全国ろう者の日にブラジル手話通訳付きの歴史散策",
-      "summary": "全国ろう者の日に、ブラジル手話（Libras）の通訳付きで歴史を巡る散策が行われる。",
-      "originalTitle": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
-      "originalSummary": "Caminhada histórica com intérpretes de libras marca dia nacional do surdo",
-      "sourceName": "G1",
-      "sourceUrl": "https://g1.globo.com",
+      "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeTRzYW9pQ2d4ZWplWGctcDNDSmtVbG82cnItaWtGOUh2dmtIak1ZWWhzamFpVFBkWmVRRE1tYXF5eUdWbmpXU0tMYkhPZG5OTFA1OGhTQmE5SHYzbVFFQi1xTWtXWHJ0Y0wxZ1NCcWxjY1ZOeGRsZkRybnZPeUVPUEdyZGdYSkdaU2NmSURKa2g2TzVDZzVaMEZOWVhxemFYbEFpTXNNVW9ObWhwcEI3YlVxaFYzNE1FNm9zOGJyZ2RiQW8?oc=5",
+      "title": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
+      "summary": "聴覚障害のある教師が学校生活を変革し、BH 市のネットワークでのブラジル手話教育の拡大に貢献",
+      "originalTitle": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
+      "originalSummary": "Professor surdo transforma rotina de escola e ajuda a ampliar o ensino de Libras na Rede Municipal de BH",
+      "sourceName": "Prefeitura de Belo Horizonte",
+      "sourceUrl": "https://prefeitura.pbh.gov.br",
       "publishedAt": "2026-09-26T07:00:00.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -4836,17 +4839,14 @@
         "libras",
         "multilingual"
       ],
-      "sourceDomain": "g1.globo.com",
+      "sourceDomain": "prefeitura.pbh.gov.br",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://s03.video.glbimg.com/x720/14998130.jpg",
+        "url": "https://prefeitura.pbh.gov.br/sites/default/files/estrutura-de-governo/comunicacao/claudio-lacerda-ascom-smed-1.jpg",
         "source": "og:image",
-        "pageUrl": "https://g1.globo.com/rn/rio-grande-do-norte/videos-rntv-2-edicao/video/caminhada-historica-com-interpretes-de-libras-marca-dia-nacional-do-surdo-14998130.ghtml"
+        "pageUrl": "https://prefeitura.pbh.gov.br/noticias/professor-surdo-transforma-rotina-de-escola-e-ajuda-ampliar-o-ensino-de-libras-na-rede"
       }
     },
     {
@@ -5096,7 +5096,7 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPMzQ5WDNHMWJ0a2xUQWpGZWYwRjk2c3BoNy1zbDVhbGVDSHFuQ2Q2aHpkMnQ1a3F5UGNLM0w5RUxxdllTQmVIQnhjaVdnZUs3S0JRQVpKNWlEWmtjYXVFN1BCTE5ySXhXOE1jYkswQmNLa2NGZ3JlS3dIdW03QmRzdE9lSHJzSW5uYTQ5cGplMjJmbWMwcGVBa3NvdXhFRFVaWjBKcHhtM29maEMwSWp0ci1qR1BZcHNqdDhXZXF1enZPZlhpeXNR?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNU19NdklLSWltUngwdHJuU3hYaUdzZy00eEtTVWxjc1A5bXNZN2JGLXBoQjU5MU5jZkdCZFR2TGd5cUtjODNQQmpSOU1nbUNMZWNGeGFzWWtxZjNrWTBqRlY5b2lWVlItY1J6SUlFUUlCcUljRTdBSkF1ZlZTVUdzTWxMM1FpV0tEMTB4bUZNZS1heG5Ydml6WDZHa2lzZTJrQzV3VTFKUng2S2dpYlhJUkU4dzR5M295UnRZTlVQUDZranZjR2ZjQS1Yb0xhcGVDcmc?oc=5",
       "title": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
       "summary": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
       "originalTitle": "Clinic steps up to help former Island Deaf and Hard of Hearing Centre clients",
@@ -5122,9 +5122,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://www.ctvnews.ca/resizer/v2/https%3A%2F%2Fd3g70guqh4mw9g.cloudfront.net%2F09-25-2026%2Ft_88b9fb431aa248a2831dc55a90a90fb7_name_EDWARD.png?smart=true&auth=81938581261c2cf8b43bcb77631aab9654f1e7985ae00e1cd04b93c5b7e8f429&width=1200&height=630",
+        "url": "https://www.ctvnews.ca/resizer/v2/QTEFAEXQNBGVTN5BVL73PRY3BA.png?smart=true&auth=a43722e1661fa7c59b3d93dc4d8350df569a6468e9c42a2b7c84770510126298&width=1200&height=630",
         "source": "og:image",
-        "pageUrl": "https://www.ctvnews.ca/vancouver/video/2026/09/25/clinic-steps-up-to-help-former-island-deaf-and-hard-of-hearing-centre-clients/"
+        "pageUrl": "https://www.ctvnews.ca/vancouver/vancouver-island/article/clinic-steps-up-to-help-former-island-deaf-and-hard-of-hearing-centre-clients/"
       }
     },
     {
@@ -6198,7 +6198,7 @@
       ],
       "sourceDomain": "moroccoworldnews.com",
       "sourcePriority": 70,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -6796,7 +6796,7 @@
       ],
       "sourceDomain": "dailymaverick.co.za",
       "sourcePriority": 78,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -7186,7 +7186,7 @@
       ],
       "sourceDomain": "swissinfo.ch",
       "sourcePriority": 76,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -7897,7 +7897,7 @@
       ],
       "sourceDomain": "koreaherald.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -7985,7 +7985,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8234,7 +8234,7 @@
       ],
       "sourceDomain": "timesofisrael.com",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8830,7 +8830,7 @@
       ],
       "sourceDomain": "npr.org",
       "sourcePriority": 92,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8913,7 +8913,7 @@
       ],
       "sourceDomain": "koreaherald.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -9058,7 +9058,7 @@
       ],
       "sourceDomain": "npr.org",
       "sourcePriority": 92,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -9458,7 +9458,7 @@
       ],
       "sourceDomain": "thenationalnews.com",
       "sourcePriority": 82,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10221,7 +10221,7 @@
       ],
       "sourceDomain": "theguardian.com",
       "sourcePriority": 92,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10278,7 +10278,7 @@
       ],
       "sourceDomain": "apnews.com",
       "sourcePriority": 96,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10335,7 +10335,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "thumbnail": {
         "url": "https://www.rte.ie/images/0023f510-500.jpg",
@@ -11332,7 +11332,7 @@
       ],
       "sourceDomain": "lemonde.fr",
       "sourcePriority": 84,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -12008,7 +12008,7 @@
       ],
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -12102,7 +12102,7 @@
       ],
       "sourceDomain": "abcnews.go.com",
       "sourcePriority": 84,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "thumbnail": {
         "url": "https://s.abcnews.com/images/US/america-strong-lee-04-ht-jrl-180115_16x9_992.jpg?w=1600",
@@ -13800,7 +13800,7 @@
       ],
       "sourceDomain": "nytimes.com",
       "sourcePriority": 92,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -14480,7 +14480,7 @@
       ],
       "sourceDomain": "swissinfo.ch",
       "sourcePriority": 76,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15979,7 +15979,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -16054,34 +16054,31 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQVhVQUdJODY3UXRHaGl5WURoaHJtVkItVjVwVkhhRHpOZlY1Mlp3MHd0eVJwR0o4SDVPZjBtSmx0Yi1hUkd2bXJhWGFoWjBqNXNVd0Y5b3hBRmY1Wm5saE1JQ0Uybjl3cU9RSlY1SUwwNWwybHZ2Rkl5UEs5X3J2cUdCTFdtU3liWDY3T3VMX2NyWDhBeHBxOGtFcFNRXzVsQjBrWHU0a0xKRlBoTC1uT1JVMGdLQzBvRVI4eTFUYmtGRUNu?oc=5",
-      "title": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
-      "summary": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
-      "originalTitle": "How deaf educators put tricky climate change terms into sign language",
-      "originalSummary": "How deaf educators put tricky climate change terms into sign language",
-      "sourceName": "Euronews.com",
-      "sourceUrl": "https://www.euronews.com",
-      "publishedAt": "2025-06-01T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNdWJhVHlHa002TkgyQ1E5Q3VaOWVuaW04U0hkQ2otdU94OHBNZ2Y0M21NM3NLbzNPUUhraXY3YUU3VjExeGgtZFFzX0tTUTh3dEhNOEhxNEt5Q1dfV0U2N3h3UXlOTnc2UFVtU3ZzNjA5cTlKWkNFQ3hNeTRsU18zYkVkUGhoN29LZzZfTFhXTkVJX1Vvd1FV0gGXAUFVX3lxTE5HcGM4R0FLZHZBZ0FvRHBvUmxKQmtoTXF6MGdHbllqWVFtU0Y2MnpBdmVVcTltOWc1ajR1S25nU2lOVHBMbmZqRlhzM012cVlLQl9MaWMzUWVNZG9UVVYxOXdJMXJBenBsRTl3MnVYSjEzcS05M0F0ZVlUQnFhWDZuUFRBSGw4cUNGSUZaOFZvbWtxZjBwRWc?oc=5",
+      "title": "コソボ：聴覚障害のある子供たちが学校で苦戦している",
+      "summary": "コソボ：聴覚障害のある子供たちが学校で苦戦している",
+      "originalTitle": "Kosovo: Children with hearing impairments struggle at school",
+      "originalSummary": "Kosovo: Children with hearing impairments struggle at school",
+      "sourceName": "DW.com",
+      "sourceUrl": "https://www.dw.com",
+      "publishedAt": "2025-05-15T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 25,
       "curationSignals": [
-        "sign language",
+        "hearing impairment",
         "major-media"
       ],
-      "sourceDomain": "euronews.com",
-      "sourcePriority": 86,
+      "sourceDomain": "dw.com",
+      "sourcePriority": 88,
       "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://static.euronews.com/articles/stories/08/95/25/54/1200x675_cmsv2_432609b1-ba87-5c85-bc93-2408f2a6ca55-8952554.jpg",
+        "url": "https://static.dw.com/image/72521637_6.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.euronews.com/2025/01/06/what-is-climate-change-in-sign-language-experts-develop-new-vocabulary-for-the-deaf-commun"
+        "pageUrl": "https://www.dw.com/en/kosovo-children-with-hearing-impairments-struggle-at-school/a-72526967"
       }
     },
     {
@@ -16164,32 +16161,31 @@
       "japanesePostEditModel": null
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNdWJhVHlHa002TkgyQ1E5Q3VaOWVuaW04U0hkQ2otdU94OHBNZ2Y0M21NM3NLbzNPUUhraXY3YUU3VjExeGgtZFFzX0tTUTh3dEhNOEhxNEt5Q1dfV0U2N3h3UXlOTnc2UFVtU3ZzNjA5cTlKWkNFQ3hNeTRsU18zYkVkUGhoN29LZzZfTFhXTkVJX1Vvd1FV0gGXAUFVX3lxTE5HcGM4R0FLZHZBZ0FvRHBvUmxKQmtoTXF6MGdHbllqWVFtU0Y2MnpBdmVVcTltOWc1ajR1S25nU2lOVHBMbmZqRlhzM012cVlLQl9MaWMzUWVNZG9UVVYxOXdJMXJBenBsRTl3MnVYSjEzcS05M0F0ZVlUQnFhWDZuUFRBSGw4cUNGSUZaOFZvbWtxZjBwRWc?oc=5",
-      "title": "コソボ：聴覚障害のある子供たちが学校で苦戦している",
-      "summary": "コソボ：聴覚障害のある子供たちが学校で苦戦している",
-      "originalTitle": "Kosovo: Children with hearing impairments struggle at school",
-      "originalSummary": "Kosovo: Children with hearing impairments struggle at school",
-      "sourceName": "DW.com",
-      "sourceUrl": "https://www.dw.com",
-      "publishedAt": "2025-05-15T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1uMmluMkJtWWI3Q3dRd0JhblY2WE50bW1KWVZyckUzQU1VUHVwQ3JCQkNZRVlfNkIzdlhUTmJWLTZoT3VkOGJKbzhTQUxSdVFxTnNVeDlPYzFKUkM5?oc=5",
+      "title": "ろう学生がライフガードを対象に手話を教えた。",
+      "summary": "ろう学生がライフガードを対象に手話を教えた。",
+      "originalTitle": "Deaf students teach lifeguards sign language",
+      "originalSummary": "Deaf students teach lifeguards sign language",
+      "sourceName": "BBC",
+      "sourceUrl": "https://www.bbc.co.uk",
+      "publishedAt": "2025-05-10T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "education",
       "topicLabel": "教育",
-      "curationScore": 25,
+      "curationScore": 22,
       "curationSignals": [
-        "hearing impairment",
-        "major-media"
+        "deaf student",
+        "sign language",
+        "multilingual"
       ],
-      "sourceDomain": "dw.com",
-      "sourcePriority": 88,
-      "sourceMode": "major-media-fresh",
+      "sourceDomain": "bbc.co.uk",
+      "sourcePriority": 50,
+      "sourceMode": "regional-multilingual",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://static.dw.com/image/72521637_6.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.dw.com/en/kosovo-children-with-hearing-impairments-struggle-at-school/a-72526967"
-      }
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNUnNmR043aXQ0dkFrRlRuUW5WNHpOajI3V0NzaXl0RUhiT0plSVFzOV9OT3F5eTh0X2pxMXlFQ3hpNVlEa0tSd2VyU1NUc05XdWJsbWowblhlLVNuRDA1TUx1QUxBekNPY2h3TzdMSG9yQWdWZXpMZ1UwSzFwRFRYdTFRYlhTTXJ5b1d1NzRKMHI0UQ?oc=5",
@@ -16275,31 +16271,35 @@
       "japanesePostEditModel": null
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1uMmluMkJtWWI3Q3dRd0JhblY2WE50bW1KWVZyckUzQU1VUHVwQ3JCQkNZRVlfNkIzdlhUTmJWLTZoT3VkOGJKbzhTQUxSdVFxTnNVeDlPYzFKUkM5?oc=5",
-      "title": "ろう学生がライフガードを対象に手話を教えた。",
-      "summary": "ろう学生がライフガードを対象に手話を教えた。",
-      "originalTitle": "Deaf students teach lifeguards sign language",
-      "originalSummary": "Deaf students teach lifeguards sign language",
-      "sourceName": "BBC",
-      "sourceUrl": "https://www.bbc.co.uk",
-      "publishedAt": "2025-05-10T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOcGZVQzdtcXlBMjM5VnZtRTFWc1pPY1NrTW93RmpEaU5HNkVFT1RwQTdQVmphSlY3U1R1YTNMNVluZVZYY1p6Smc0SlVGd3lNNm1HVnVHYmw1c19VbDFZZndBcXo2Sl9wckFhOXM1R1pzV01fWGxIOERTZ21fdjNLbEU5V2dieU5Md0V4cA?oc=5",
+      "title": "音を振動に変えるベストにより、ろう者が身体で音楽を感じられるようになります。",
+      "summary": "音を振動に変えるベストにより、ろう者が身体で音楽を感じられるようになります。",
+      "originalTitle": "Vibrating vests allow deaf people to feel music",
+      "originalSummary": "Vibrating vests allow deaf people to feel music",
+      "sourceName": "DW.com",
+      "sourceUrl": "https://www.dw.com",
+      "publishedAt": "2025-04-19T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 22,
+      "topic": "culture",
+      "topicLabel": "文化・社会",
+      "curationScore": 23,
       "curationSignals": [
-        "deaf student",
-        "sign language",
-        "multilingual"
+        "deaf people",
+        "major-media"
       ],
-      "sourceDomain": "bbc.co.uk",
-      "sourcePriority": 50,
-      "sourceMode": "regional-multilingual",
+      "sourceDomain": "dw.com",
+      "sourcePriority": 88,
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://static.dw.com/image/72278046_6.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.dw.com/en/vibrating-vests-allow-deaf-people-to-feel-music/video-72278848"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQWjFRVTdQZDhFTlMxd2xIYmIxRnd0NWN0SWc3aG01UFZqcDFaOExJci1vclVlbHZ0R0JOX0JDa0x3emlxcEUwRUdFTHdlQzY1d1o0T0RhSGhyWlNxZzBaZmhmZ2ZKeFRQcTdkTzdrWm1Od3JiTlhncDRXUFV6TERmZ3lGMk5hR2UyMFVMZ3Q4dVdQUVgtNF8zOEcxZEJzLWR5bnJhWEY2MFMyMzBv?oc=5",
@@ -16390,19 +16390,19 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOcGZVQzdtcXlBMjM5VnZtRTFWc1pPY1NrTW93RmpEaU5HNkVFT1RwQTdQVmphSlY3U1R1YTNMNVluZVZYY1p6Smc0SlVGd3lNNm1HVnVHYmw1c19VbDFZZndBcXo2Sl9wckFhOXM1R1pzV01fWGxIOERTZ21fdjNLbEU5V2dieU5Md0V4cA?oc=5",
-      "title": "音を振動に変えるベストにより、ろう者が身体で音楽を感じられるようになります。",
-      "summary": "音を振動に変えるベストにより、ろう者が身体で音楽を感じられるようになります。",
-      "originalTitle": "Vibrating vests allow deaf people to feel music",
-      "originalSummary": "Vibrating vests allow deaf people to feel music",
+      "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNLTBqVjVfNlhuYXhNVzNuUWRTNzFNM2ZTZTMxeDJoajRfSXF2eVZfczkydFlDem1pdXg2MWYybjN1RV9lWnlXMlBLbHlTRUFRcG54S0VuU1pxQlQwY1ZOa2llTkRQQmdRZmtBSmxXaHhYV0ljTEx1SGhjYTdPZTR3LVpTU2syWUhPWW53?oc=5",
+      "title": "ナイジェリアの教会が、ろう者が歓迎されていると感じられる環境を整えている。",
+      "summary": "ナイジェリアの教会が、ろう者が歓迎されていると感じられる環境を整えている。",
+      "originalTitle": "Nigerian church makes deaf people feel welcome",
+      "originalSummary": "Nigerian church makes deaf people feel welcome",
       "sourceName": "DW.com",
       "sourceUrl": "https://www.dw.com",
-      "publishedAt": "2025-04-19T07:00:00.000Z",
+      "publishedAt": "2025-04-14T05:43:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "culture",
       "topicLabel": "文化・社会",
-      "curationScore": 23,
+      "curationScore": 21,
       "curationSignals": [
         "deaf people",
         "major-media"
@@ -16415,9 +16415,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://static.dw.com/image/72278046_6.jpg",
+        "url": "https://static.dw.com/image/72209458_6.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.dw.com/en/vibrating-vests-allow-deaf-people-to-feel-music/video-72278848"
+        "pageUrl": "https://www.dw.com/en/nigerian-church-makes-deaf-people-feel-welcome/video-72210352"
       }
     },
     {
@@ -16505,35 +16505,30 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNLTBqVjVfNlhuYXhNVzNuUWRTNzFNM2ZTZTMxeDJoajRfSXF2eVZfczkydFlDem1pdXg2MWYybjN1RV9lWnlXMlBLbHlTRUFRcG54S0VuU1pxQlQwY1ZOa2llTkRQQmdRZmtBSmxXaHhYV0ljTEx1SGhjYTdPZTR3LVpTU2syWUhPWW53?oc=5",
-      "title": "ナイジェリアの教会が、ろう者が歓迎されていると感じられる環境を整えている。",
-      "summary": "ナイジェリアの教会が、ろう者が歓迎されていると感じられる環境を整えている。",
-      "originalTitle": "Nigerian church makes deaf people feel welcome",
-      "originalSummary": "Nigerian church makes deaf people feel welcome",
-      "sourceName": "DW.com",
-      "sourceUrl": "https://www.dw.com",
-      "publishedAt": "2025-04-14T05:43:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5tNnpkNnNQX0N0dDltSjNkMzUxNlBNbWhRQjdLRDg1V3BxUV8xdTE1ZEp4eksxaGZWX1NHUHJrS3ROU1NEWndvcURmNTNUNGM3OGp2MERibFNuZw?oc=5",
+      "title": "英国ダービーのろう学校が、元生徒を追悼して新しいミニバスを導入した。",
+      "summary": "英国ダービーのろう学校が、元生徒を追悼して新しいミニバスを導入した。",
+      "originalTitle": "Deaf school in Derby gets new minibus in memory of ex-pupil",
+      "originalSummary": "Deaf school in Derby gets new minibus in memory of ex-pupil",
+      "sourceName": "BBC",
+      "sourceUrl": "https://www.bbc.com",
+      "publishedAt": "2025-04-09T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "culture",
-      "topicLabel": "文化・社会",
-      "curationScore": 21,
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 23,
       "curationSignals": [
-        "deaf people",
+        "deaf school",
         "major-media"
       ],
-      "sourceDomain": "dw.com",
-      "sourcePriority": 88,
+      "sourceDomain": "bbc.com",
+      "sourcePriority": 96,
       "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://static.dw.com/image/72209458_6.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.dw.com/en/nigerian-church-makes-deaf-people-feel-welcome/video-72210352"
-      }
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYzJsaFVjTHBxS0tTT2NqdzUzMUFqUXY0Y0JOVE9WQkFqTzNPaU5IaUVMbl9MZEh5RjNzRVhGb1p2MHNtN3dsSWFNYU1HanRXczh4aW1KbnBzdWlaM3l1V2J5NDBaRDU1RkY3UlhJTnUzam15bklPU1ZJQTQ2R0Q5OVNNX01Rek9OdDZ2MWdKR0dOZFJy?oc=5",
@@ -16629,30 +16624,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5tNnpkNnNQX0N0dDltSjNkMzUxNlBNbWhRQjdLRDg1V3BxUV8xdTE1ZEp4eksxaGZWX1NHUHJrS3ROU1NEWndvcURmNTNUNGM3OGp2MERibFNuZw?oc=5",
-      "title": "英国ダービーのろう学校が、元生徒を追悼して新しいミニバスを導入した。",
-      "summary": "英国ダービーのろう学校が、元生徒を追悼して新しいミニバスを導入した。",
-      "originalTitle": "Deaf school in Derby gets new minibus in memory of ex-pupil",
-      "originalSummary": "Deaf school in Derby gets new minibus in memory of ex-pupil",
-      "sourceName": "BBC",
-      "sourceUrl": "https://www.bbc.com",
-      "publishedAt": "2025-04-09T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQUFlOMVRnVkU5cWp4LVc1WlRWa0ROeUNENjFYWG9PUDFsTHdjdnhXTlN2WXJjOEpzY05IcUVxdF9HZGMyYXh4LS11SGJGMXdQTkdyaU5kbjVmYnR1Q3I4M3FrSFBvTUFWdzFOLUNLV1BOR2tUUDBmSENWWGxIbUdfRERIdVF1ZXAzcFgyQ2YzUF9DdWJ0dUs0WVpoZF9zYXVIRk5BaTNWcU5Sd0lyM3c?oc=5",
+      "title": "ローズ・アイリング＝エリスが出演する新たな英国手話番組に、視聴者から称賛の声が寄せられた。",
+      "summary": "ローズ・アイリング＝エリスが出演する新たな英国手話番組に、視聴者から称賛の声が寄せられた。",
+      "originalTitle": "Rose Ayling-Ellis called ‘amazing’ as viewers praise new British Sign Language show",
+      "originalSummary": "Rose Ayling-Ellis called ‘amazing’ as viewers praise new British Sign Language show",
+      "sourceName": "The Independent",
+      "sourceUrl": "https://www.independent.co.uk",
+      "publishedAt": "2025-03-27T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "education",
-      "topicLabel": "教育",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
       "curationScore": 23,
       "curationSignals": [
-        "deaf school",
+        "sign language",
         "major-media"
       ],
-      "sourceDomain": "bbc.com",
-      "sourcePriority": 96,
+      "sourceDomain": "independent.co.uk",
+      "sourcePriority": 78,
       "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://static.the-independent.com/2025/03/27/10/04/511635.jpg?width=1200&height=800&crop=1200:800",
+        "source": "og:image",
+        "pageUrl": "https://www.the-independent.com/arts-entertainment/tv/news/rose-alying-ellis-old-hands-new-tricks-b2722544.html"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOR3hUY18xNHNpcWpra29LX1JXRHdjWDQwVEtnVU5oQXJ2RmprNXRVTUFuRGV6ZV9TdVAxdWtsblBnWmlHckdqbVZsT3VrZTRkTEZOOW02bFZXdWxjSzNoQjZGeFZ3WGJfREpISGVoUkJwWWs2bU1lRmVoc2h6azR2SF9wcWpqYjRiRi1naXFkcGxiMC0za2pOc00wbkM?oc=5",
@@ -16738,21 +16738,21 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQUFlOMVRnVkU5cWp4LVc1WlRWa0ROeUNENjFYWG9PUDFsTHdjdnhXTlN2WXJjOEpzY05IcUVxdF9HZGMyYXh4LS11SGJGMXdQTkdyaU5kbjVmYnR1Q3I4M3FrSFBvTUFWdzFOLUNLV1BOR2tUUDBmSENWWGxIbUdfRERIdVF1ZXAzcFgyQ2YzUF9DdWJ0dUs0WVpoZF9zYXVIRk5BaTNWcU5Sd0lyM3c?oc=5",
-      "title": "ローズ・アイリング＝エリスが出演する新たな英国手話番組に、視聴者から称賛の声が寄せられた。",
-      "summary": "ローズ・アイリング＝エリスが出演する新たな英国手話番組に、視聴者から称賛の声が寄せられた。",
-      "originalTitle": "Rose Ayling-Ellis called ‘amazing’ as viewers praise new British Sign Language show",
-      "originalSummary": "Rose Ayling-Ellis called ‘amazing’ as viewers praise new British Sign Language show",
+      "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQUm4xMC10cHAzVTlQVU5tWWhsa0pUc19TckZJa2pFS2V4VXhEekxhenVqZEd6R3NKOUJ2ZU8zcUtiLUt3dUFmVWFob25SeVBhdC1MaS1yZG9qQ0NIOUVIZFF2SkJJaWk1anVlc1NvTEloUnRmeUM3anRsM0tyR0hIR3RMSDdHRkxiNm8zQUJfejVfZU00TkQ2OEVoNnR6WEJXSDEw?oc=5",
+      "title": "国会議員が補聴器を充電する必要が生じ、尊厳死をめぐる討論から早めに退席しました。",
+      "summary": "国会議員が補聴器を充電する必要が生じ、尊厳死をめぐる討論から早めに退席しました。",
+      "originalTitle": "MP forced to leave assisted dying debate early because hearing aids needed charging",
+      "originalSummary": "MP forced to leave assisted dying debate early because hearing aids needed charging",
       "sourceName": "The Independent",
       "sourceUrl": "https://www.independent.co.uk",
-      "publishedAt": "2025-03-27T07:00:00.000Z",
+      "publishedAt": "2025-03-19T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
       "curationScore": 23,
       "curationSignals": [
-        "sign language",
+        "hearing aid",
         "major-media"
       ],
       "sourceDomain": "independent.co.uk",
@@ -16763,9 +16763,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://static.the-independent.com/2025/03/27/10/04/511635.jpg?width=1200&height=800&crop=1200:800",
+        "url": "https://static.independent.co.uk/2025/02/05/16/5a5a9b98fcfe23a011cdaff725bf86dfY29udGVudHNlYXJjaGFwaSwxNzM4ODU4MDU2-2.71322649.jpg?width=1200&height=800&crop=1200:800",
         "source": "og:image",
-        "pageUrl": "https://www.the-independent.com/arts-entertainment/tv/news/rose-alying-ellis-old-hands-new-tricks-b2722544.html"
+        "pageUrl": "https://www.independent.co.uk/news/uk/politics/assisted-dying-bill-hearing-aid-naz-shah-b2717728.html"
       }
     },
     {
@@ -16851,34 +16851,34 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQUm4xMC10cHAzVTlQVU5tWWhsa0pUc19TckZJa2pFS2V4VXhEekxhenVqZEd6R3NKOUJ2ZU8zcUtiLUt3dUFmVWFob25SeVBhdC1MaS1yZG9qQ0NIOUVIZFF2SkJJaWk1anVlc1NvTEloUnRmeUM3anRsM0tyR0hIR3RMSDdHRkxiNm8zQUJfejVfZU00TkQ2OEVoNnR6WEJXSDEw?oc=5",
-      "title": "国会議員が補聴器を充電する必要が生じ、尊厳死をめぐる討論から早めに退席しました。",
-      "summary": "国会議員が補聴器を充電する必要が生じ、尊厳死をめぐる討論から早めに退席しました。",
-      "originalTitle": "MP forced to leave assisted dying debate early because hearing aids needed charging",
-      "originalSummary": "MP forced to leave assisted dying debate early because hearing aids needed charging",
-      "sourceName": "The Independent",
-      "sourceUrl": "https://www.independent.co.uk",
-      "publishedAt": "2025-03-19T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPeXpBejFFcTVxUS1ycGFibFV0a250UWRHWkRnN0tiNGZnM3p3YXFNd0IzaHZITjh5T29HQnROTFAyM280SlkzRTE0VjFFTjV3THpsbWswOWgtbUptRkJPbEhpblpWNzZnaTdyc0kwemx2a0pZQUxRQ2hnUUxoWWxTVHItVms3bGlTMmZLSEJBaFl5UlFmaHEtS2R6WEczUFljQ2VB?oc=5",
+      "title": "デフリンピックの英国サッカー代表に選ばれた10代の選手が、出場に向けた資金を募っています。",
+      "summary": "デフリンピックの英国サッカー代表に選ばれた10代の選手が、出場に向けた資金を募っています。",
+      "originalTitle": "Teenager raising funds after being selected for GB football team at Deaflympics",
+      "originalSummary": "Teenager raising funds after being selected for GB football team at Deaflympics",
+      "sourceName": "Salisbury Journal",
+      "sourceUrl": "https://www.salisburyjournal.co.uk",
+      "publishedAt": "2025-03-17T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 23,
+      "topic": "sports",
+      "topicLabel": "デフスポーツ",
+      "curationScore": 16,
       "curationSignals": [
-        "hearing aid",
-        "major-media"
+        "deaflympics",
+        "multilingual"
       ],
-      "sourceDomain": "independent.co.uk",
-      "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceDomain": "salisburyjournal.co.uk",
+      "sourcePriority": 50,
+      "sourceMode": "regional-multilingual",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://static.independent.co.uk/2025/02/05/16/5a5a9b98fcfe23a011cdaff725bf86dfY29udGVudHNlYXJjaGFwaSwxNzM4ODU4MDU2-2.71322649.jpg?width=1200&height=800&crop=1200:800",
+        "url": "https://www.salisburyjournal.co.uk/resources/images/19207380.jpg?type=og-image&xType=0&yType=31",
         "source": "og:image",
-        "pageUrl": "https://www.independent.co.uk/news/uk/politics/assisted-dying-bill-hearing-aid-naz-shah-b2717728.html"
+        "pageUrl": "https://www.salisburyjournal.co.uk/news/25009025.teenager-picked-gb-womens-football-team-deaflympics/"
       }
     },
     {
@@ -16965,34 +16965,34 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPeXpBejFFcTVxUS1ycGFibFV0a250UWRHWkRnN0tiNGZnM3p3YXFNd0IzaHZITjh5T29HQnROTFAyM280SlkzRTE0VjFFTjV3THpsbWswOWgtbUptRkJPbEhpblpWNzZnaTdyc0kwemx2a0pZQUxRQ2hnUUxoWWxTVHItVms3bGlTMmZLSEJBaFl5UlFmaHEtS2R6WEczUFljQ2VB?oc=5",
-      "title": "デフリンピックの英国サッカー代表に選ばれた10代の選手が、出場に向けた資金を募っています。",
-      "summary": "デフリンピックの英国サッカー代表に選ばれた10代の選手が、出場に向けた資金を募っています。",
-      "originalTitle": "Teenager raising funds after being selected for GB football team at Deaflympics",
-      "originalSummary": "Teenager raising funds after being selected for GB football team at Deaflympics",
-      "sourceName": "Salisbury Journal",
-      "sourceUrl": "https://www.salisburyjournal.co.uk",
-      "publishedAt": "2025-03-17T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ROU5MbGV1WWljaDljSTRKdkNEN1BZc3JDMGRqdkcyZDBma2VUN0xOcDI1YjkwU1FITjZVNWZWTFpKTllwbzh0UGwzMmQzeTVZTVRMUVc2c3h3QVE?oc=5",
+      "title": "重度難聴がありながらハープを演奏する人物の歩みを、RTÉ Radio 1の番組が紹介した。",
+      "summary": "重度難聴がありながらハープを演奏する人物の歩みを、RTÉ Radio 1の番組が紹介した。",
+      "originalTitle": "Playing the Harp with Profound Hearing Loss | The Ray D'Arcy Show - RTÉ Radio 1",
+      "originalSummary": "Playing the Harp with Profound Hearing Loss | The Ray D'Arcy Show - RTÉ Radio 1",
+      "sourceName": "RTE.ie",
+      "sourceUrl": "https://www.rte.ie",
+      "publishedAt": "2025-03-05T08:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "sports",
-      "topicLabel": "デフスポーツ",
-      "curationScore": 16,
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
       "curationSignals": [
-        "deaflympics",
-        "multilingual"
+        "hearing loss",
+        "major-media"
       ],
-      "sourceDomain": "salisburyjournal.co.uk",
-      "sourcePriority": 50,
-      "sourceMode": "regional-multilingual",
+      "sourceDomain": "rte.ie",
+      "sourcePriority": 78,
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://www.salisburyjournal.co.uk/resources/images/19207380.jpg?type=og-image&xType=0&yType=31",
+        "url": "https://www.rte.ie/images/0022075a-1200.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.salisburyjournal.co.uk/news/25009025.teenager-picked-gb-womens-football-team-deaflympics/"
+        "pageUrl": "https://www.rte.ie/radio/radio1/clips/22493859/"
       }
     },
     {
@@ -17077,14 +17077,14 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ROU5MbGV1WWljaDljSTRKdkNEN1BZc3JDMGRqdkcyZDBma2VUN0xOcDI1YjkwU1FITjZVNWZWTFpKTllwbzh0UGwzMmQzeTVZTVRMUVc2c3h3QVE?oc=5",
-      "title": "重度難聴がありながらハープを演奏する人物の歩みを、RTÉ Radio 1の番組が紹介した。",
-      "summary": "重度難聴がありながらハープを演奏する人物の歩みを、RTÉ Radio 1の番組が紹介した。",
-      "originalTitle": "Playing the Harp with Profound Hearing Loss | The Ray D'Arcy Show - RTÉ Radio 1",
-      "originalSummary": "Playing the Harp with Profound Hearing Loss | The Ray D'Arcy Show - RTÉ Radio 1",
-      "sourceName": "RTE.ie",
-      "sourceUrl": "https://www.rte.ie",
-      "publishedAt": "2025-03-05T08:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQTjBOckg4ZHpuX3NhWm1tT3A4VHlCNnF4TU4xRWg0SmtOZzZabDNIR2VGNEVYeVpOdnVUcXJqLXJGRG5Pcm5uSE95Y3Q2WDBoUWs0TkRpekxmTzZJQ3F6XzlfOV84Ui01ay1RYmhGcmY3bEJEc2F6cTdhX2F4UjdKX2xDdUd1eXJBYlIxXzdGRE41MnFxNWdSUnVNamMzTkRmSWpiWnZwbHVsTHFIT1RsWF80WWtJc1dQ?oc=5",
+      "title": "聴力低下を引き起こす可能性のある疾患について、数百万人を対象に注意が呼びかけられています。",
+      "summary": "聴力低下を引き起こす可能性のある疾患について、数百万人を対象に注意が呼びかけられています。",
+      "originalTitle": "Millions warned of condition that can cause hearing loss",
+      "originalSummary": "Millions warned of condition that can cause hearing loss",
+      "sourceName": "The Independent",
+      "sourceUrl": "https://www.independent.co.uk",
+      "publishedAt": "2025-02-20T08:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "health",
@@ -17094,22 +17094,22 @@
         "hearing loss",
         "major-media"
       ],
-      "sourceDomain": "rte.ie",
+      "sourceDomain": "independent.co.uk",
       "sourcePriority": 78,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://www.rte.ie/images/0022075a-1200.jpg",
+        "url": "https://static.the-independent.com/2024/05/12/18/49ae1648-d0f0-4d30-bd83-dafd8758f9cf.jpg?width=1200&height=800&crop=1200:800",
         "source": "og:image",
-        "pageUrl": "https://www.rte.ie/radio/radio1/clips/22493859/"
+        "pageUrl": "https://www.the-independent.com/life-style/health-and-families/hearing-loss-ear-symptoms-swimming-surfing-b2701510.html"
       }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbmhzNG4tUE8tNFhnamZCLWQtMUNNNFdteVdNS1lLbmxqYXVDRUQ2dWNKTVJkZ1JyZVJuWmROYVB0U2FJNkxRQl9ONVZqMllzSnppX1Nvb2g4cm5CdnBCanV6WUw2ZlRqdmhmU25ZaEZ1VlYxOTBQQ0RIai1yUVREU1NmZTR3QmNfN0xpVkFmcnM1MXFRSTVBekhlQXktRHZDWTJBbnlGQm96TkhlbXhmQXIzY29WeGxHYnM0SXlpejY?oc=5",
-      "title": "『Sinners』、ブラックASLで上映へ",
+      "title": "ミシシッピ州を舞台とする『Sinners』が、アクセシビリティをさらに高めるため、ブラックASL（黒人アメリカ手話）で上映されます。",
       "summary": "ミシシッピ州を舞台とする『Sinners』が、アクセシビリティをさらに高めるため、ブラックASL（黒人アメリカ手話）で上映されます。",
       "originalTitle": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
       "originalSummary": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
@@ -17201,35 +17201,27 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQTjBOckg4ZHpuX3NhWm1tT3A4VHlCNnF4TU4xRWg0SmtOZzZabDNIR2VGNEVYeVpOdnVUcXJqLXJGRG5Pcm5uSE95Y3Q2WDBoUWs0TkRpekxmTzZJQ3F6XzlfOV84Ui01ay1RYmhGcmY3bEJEc2F6cTdhX2F4UjdKX2xDdUd1eXJBYlIxXzdGRE41MnFxNWdSUnVNamMzTkRmSWpiWnZwbHVsTHFIT1RsWF80WWtJc1dQ?oc=5",
-      "title": "聴力低下を引き起こす可能性のある疾患について、数百万人を対象に注意が呼びかけられています。",
-      "summary": "聴力低下を引き起こす可能性のある疾患について、数百万人を対象に注意が呼びかけられています。",
-      "originalTitle": "Millions warned of condition that can cause hearing loss",
-      "originalSummary": "Millions warned of condition that can cause hearing loss",
-      "sourceName": "The Independent",
-      "sourceUrl": "https://www.independent.co.uk",
-      "publishedAt": "2025-02-20T08:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOdDJOR2poaDlGUjhGVnV5OVJuRFNHaGRDeV9ZdVU2WFI0ZFZpSXB6U1VRTEo2aWdGclRjLVhLMTdYTU8wWklCQmZkbGpMalp3QXBTSTduUlM1a3JEUzBKN1IyZFVja0MzYjQzd1E4dlVsWGVuREJ1N3NDMlVyVlRGV3Z0NnEwelo1bkdqR3BfYzNQd2lDY2sxc2VzNFRjYVZLaWFuWkJnSkxZTms?oc=5",
+      "title": "事実確認：英国の手話教育禁止を求める改革派議員の投稿は偽物だ",
+      "summary": "事実確認：英国の手話教育禁止を求める改革派議員の投稿は偽物だ",
+      "originalTitle": "Fact Check: Reform MP post calling for UK sign language teaching ban is fake",
+      "originalSummary": "Fact Check: Reform MP post calling for UK sign language teaching ban is fake",
+      "sourceName": "Reuters",
+      "sourceUrl": "https://www.reuters.com",
+      "publishedAt": "2025-02-14T08:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 21,
       "curationSignals": [
-        "hearing loss",
+        "sign language",
         "major-media"
       ],
-      "sourceDomain": "independent.co.uk",
-      "sourcePriority": 78,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://static.the-independent.com/2024/05/12/18/49ae1648-d0f0-4d30-bd83-dafd8758f9cf.jpg?width=1200&height=800&crop=1200:800",
-        "source": "og:image",
-        "pageUrl": "https://www.the-independent.com/life-style/health-and-families/hearing-loss-ear-symptoms-swimming-surfing-b2701510.html"
-      }
+      "sourceDomain": "reuters.com",
+      "sourcePriority": 98,
+      "sourceMode": "major-media-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNd0VsOGJZbFI0M1FPMnR6VzdkT090VnVyaUkwRFhxcGtiZ2o1V1dRUFlKY3ZDTzJQT21QRWtrTFJYdnVlS2JIYmtQUzVkamdVN1AyNExfd1Bla25aeFM2bjBwek81alhEYlFxaE9BYVhsSjBKRU0xNTFQSFFiNWJWbTZraktqTVIzaW9UTnlJdEJ1ME9Lc09UODhrWHFVdl9QT1A5VWloajhuVTRHcGFMNGdiRDk?oc=5",
@@ -17321,14 +17313,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOdDJOR2poaDlGUjhGVnV5OVJuRFNHaGRDeV9ZdVU2WFI0ZFZpSXB6U1VRTEo2aWdGclRjLVhLMTdYTU8wWklCQmZkbGpMalp3QXBTSTduUlM1a3JEUzBKN1IyZFVja0MzYjQzd1E4dlVsWGVuREJ1N3NDMlVyVlRGV3Z0NnEwelo1bkdqR3BfYzNQd2lDY2sxc2VzNFRjYVZLaWFuWkJnSkxZTms?oc=5",
-      "title": "事実確認：英国の手話教育禁止を求める改革派議員の投稿は偽物だ",
-      "summary": "事実確認：英国の手話教育禁止を求める改革派議員の投稿は偽物だ",
-      "originalTitle": "Fact Check: Reform MP post calling for UK sign language teaching ban is fake",
-      "originalSummary": "Fact Check: Reform MP post calling for UK sign language teaching ban is fake",
-      "sourceName": "Reuters",
-      "sourceUrl": "https://www.reuters.com",
-      "publishedAt": "2025-02-14T08:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNdFNBOW9QelpVN1FONnR4V1NjN2NvQWE1SFhOQ3dkdUUxUGtacHE1QjE0UWVQMXFwOVZBbi1LeThiQTFNeTk2M2x2RTBBMmQ3R1lxanQ4dl8yakFPUjdLSzQ3bXBvbmxGSnpqSHB4aVRVbmRuM2Z5aWV6cHdUUFI4eEhzUHFWNkFRSk1zdWdHcw?oc=5",
+      "title": "英国の中等教育修了資格試験GCSEで手話科目の開始が遅れていることに、批判の声が上がった。",
+      "summary": "英国の中等教育修了資格試験GCSEで手話科目の開始が遅れていることに、批判の声が上がった。",
+      "originalTitle": "Delay in start of sign language GCSE is a 'disgrace'",
+      "originalSummary": "Delay in start of sign language GCSE is a 'disgrace'",
+      "sourceName": "Sky News",
+      "sourceUrl": "https://news.sky.com",
+      "publishedAt": "2025-02-06T08:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "accessibility",
@@ -17338,10 +17330,13 @@
         "sign language",
         "major-media"
       ],
-      "sourceDomain": "reuters.com",
-      "sourcePriority": 98,
-      "sourceMode": "major-media-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "sourceDomain": "sky.com",
+      "sourcePriority": 82,
+      "sourceMode": "major-media",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNQnVTNXVIOVpKaTZCYU1kTE1pMC1nX3plU1dGRXhoUkt1ZnA0UnJ1TVBoTDFVLW1UejdvdkowNmlDNDhndXhONFpwcktReG5mS0xEQTBaNlBEazV3VXYwclVxMmRSM2cyZGJxTlZzMWI5MnVDRjN4bnotZHctdVFsblZNcldabjlRUFF5MDV4TEpWN2s?oc=5",
@@ -17432,14 +17427,14 @@
       "japanesePostEditModel": null
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNdFNBOW9QelpVN1FONnR4V1NjN2NvQWE1SFhOQ3dkdUUxUGtacHE1QjE0UWVQMXFwOVZBbi1LeThiQTFNeTk2M2x2RTBBMmQ3R1lxanQ4dl8yakFPUjdLSzQ3bXBvbmxGSnpqSHB4aVRVbmRuM2Z5aWV6cHdUUFI4eEhzUHFWNkFRSk1zdWdHcw?oc=5",
-      "title": "英国の中等教育修了資格試験GCSEで手話科目の開始が遅れていることに、批判の声が上がった。",
-      "summary": "英国の中等教育修了資格試験GCSEで手話科目の開始が遅れていることに、批判の声が上がった。",
-      "originalTitle": "Delay in start of sign language GCSE is a 'disgrace'",
-      "originalSummary": "Delay in start of sign language GCSE is a 'disgrace'",
-      "sourceName": "Sky News",
-      "sourceUrl": "https://news.sky.com",
-      "publishedAt": "2025-02-06T08:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQVhVQUdJODY3UXRHaGl5WURoaHJtVkItVjVwVkhhRHpOZlY1Mlp3MHd0eVJwR0o4SDVPZjBtSmx0Yi1hUkd2bXJhWGFoWjBqNXNVd0Y5b3hBRmY1Wm5saE1JQ0Uybjl3cU9RSlY1SUwwNWwybHZ2Rkl5UEs5X3J2cUdCTFdtU3liWDY3T3VMX2NyWDhBeHBxOGtFcFNRXzVsQjBrWHU0a0xKRlBoTC1uT1JVMGdLQzBvRVI4eTFUYmtGRUNu?oc=5",
+      "title": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
+      "summary": "ろうの教育者が、難しい気候変動用語をどのように手話で表現するかを取り上げる。",
+      "originalTitle": "How deaf educators put tricky climate change terms into sign language",
+      "originalSummary": "How deaf educators put tricky climate change terms into sign language",
+      "sourceName": "Euronews.com",
+      "sourceUrl": "https://www.euronews.com",
+      "publishedAt": "2025-01-06T08:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "accessibility",
@@ -17449,13 +17444,18 @@
         "sign language",
         "major-media"
       ],
-      "sourceDomain": "sky.com",
-      "sourcePriority": 82,
-      "sourceMode": "major-media",
+      "sourceDomain": "euronews.com",
+      "sourcePriority": 86,
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://static.euronews.com/articles/stories/08/95/25/54/1200x675_cmsv2_432609b1-ba87-5c85-bc93-2408f2a6ca55-8952554.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.euronews.com/2025/01/06/what-is-climate-change-in-sign-language-experts-develop-new-vocabulary-for-the-deaf-commun"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPemdLQVlTWkF3MVVxZEticXZ2U3pGVlVkTW1LU1lVc3o2RFdGc2luVjVGMG9abGJBUmFMeTBMNEE5RTFpeUU2emNhYzFldmNUOUlwMEVwRy1hclhoRHhqbEQ1cTBqWGpHdGExNFJlamF0ckRFZEZnNU8tcTBNN3NPSzJsb20xZWhVbHlfY3RTS09qU3ZOSFBKa0todVhpZjFJWGRaUEdCV0JpRUJNS1VDSjdMdjFsU2tHSVE?oc=5",
@@ -17505,7 +17505,7 @@
       ],
       "sourceDomain": "nation.africa",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -17718,7 +17718,7 @@
       ],
       "sourceDomain": "theglobeandmail.com",
       "sourcePriority": 84,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "thumbnail": {
         "url": "https://www.theglobeandmail.com/resizer/v2/NTDQAAQAXVGJHFRK4I2XB76VUY.JPG?auth=5f4e7abf64011c8859b3fd154f56c4e217bee6b04dc3579cb2ca239f0bf30c08&width=1200&height=800&quality=80&smart=true",
@@ -17729,7 +17729,7 @@
   ],
   "publicationReview": {
     "version": "publication-quality-v10",
-    "inputGeneratedAt": "2026-10-19T08:47:38.513Z",
+    "inputGeneratedAt": "2026-10-19T12:56:06.406Z",
     "removed": []
   }
 }
