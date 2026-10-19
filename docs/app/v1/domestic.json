@@ -4,8 +4,8 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-19T02:24:12Z",
-  "sourceGeneratedAt": "2026-10-19T02:24:12Z",
+  "generatedAt": "2026-10-19T02:37:08Z",
+  "sourceGeneratedAt": "2026-10-19T02:37:08Z",
   "count": 471,
   "language": "ja-JP",
   "refresh": {
@@ -118,20 +118,21 @@
   },
   "quality": {
     "version": "publication-quality-v10",
-    "rawCount": 3724,
-    "scoredCount": 3724,
-    "filteredCount": 1549,
+    "rawCount": 3597,
+    "scoredCount": 3597,
+    "filteredCount": 1515,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 71,
     "extraVisibleCategoryCounts": {
       "relay": 71
     },
-    "overflowCount": 565,
+    "overflowCount": 538,
     "minScore": 5,
     "categoryCountsVisible": {
+      "technology": 19,
       "general": 98,
-      "local": 65,
+      "local": 64,
       "policy": 30,
       "event": 26,
       "accessibility": 34,
@@ -140,14 +141,14 @@
       "education": 11,
       "medical": 19,
       "safety": 25,
-      "technology": 18,
       "relay": 71
     }
   },
   "counts": {
     "byCategory": {
+      "technology": 19,
       "general": 98,
-      "local": 65,
+      "local": 64,
       "policy": 30,
       "event": 26,
       "accessibility": 34,
@@ -156,12 +157,11 @@
       "education": 11,
       "medical": 19,
       "safety": 25,
-      "technology": 18,
       "relay": 71
     },
     "byLegacyCategory": {
-      "general": 116,
-      "local": 65,
+      "general": 117,
+      "local": 64,
       "policy": 160,
       "culture": 67,
       "sports": 33,
@@ -170,6 +170,24 @@
     }
   },
   "articles": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9sYm9yREJoX3NJaU5zaTlWaUNsRlN1NGpSYTQ1QWVrQS0zS2hVUko5WHJxNmk4TmVMelE1b1RZdE5DaHVTYXZPZVBIN0x4MTZ3MXA1YzVDS05WOHF2b3U3OW5xRDhFc1J2TG90NVNwZjY5SGtOWU12dHRaekxSUDQ?oc=5",
+      "stableId": "domestic_8b6d5137be9a722c4363",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9sYm9yREJoX3NJaU5zaTlWaUNsRlN1NGpSYTQ1QWVrQS0zS2hVUko5WHJxNmk4TmVMelE1b1RZdE5DaHVTYXZPZVBIN0x4MTZ3MXA1YzVDS05WOHF2b3U3OW5xRDhFc1J2TG90NVNwZjY5SGtOWU12dHRaekxSUDQ?oc=5",
+      "title": "眼鏡をかけるとせりふが見える…韓国、AI字幕で外国人向け公演観光を促進（KOREA WAVE）",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-19T02:33:16Z",
+      "sourceName": "Yahoo!ニュース",
+      "sourceURL": "https://news.yahoo.co.jp",
+      "sourceUrl": "https://news.yahoo.co.jp",
+      "sourceType": "rss",
+      "category": "technology",
+      "categoryLabel": "技術・AI",
+      "legacyCategory": "general",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE11V1VPZ1hncG0wNG5BWlU1Z2dpT3VmRUhSbFJfTXl5V1dkRC0tZGlBYTVZVll4dnd0RHd6M1ZDUjNBYWtIY1R1Y2hIdUdiWFRHRDl3UUplUGpyOEJfbElQNUFTelQwUzJM?oc=5",
       "stableId": "domestic_63cf89784ed16e5e453c",
@@ -7715,26 +7733,6 @@
       "discoveryMethod": "google-news",
       "region": "kinki",
       "prefecture": "滋賀県"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1DOEwzX0l6UGRHdE5vOFI3U0JaNTBQdTFqTFNxQ24yOWhLYkEtamdiZVZtcHhzeHBGeEdwaHR1T1NtUjRDUWhZWGRoSFJMOXJqNWItX3hSSmQtckFteXJXTHJ6bnptckpBckJMZUlvSQ?oc=5",
-      "stableId": "domestic_c7424400073b1dddda3d",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1DOEwzX0l6UGRHdE5vOFI3U0JaNTBQdTFqTFNxQ24yOWhLYkEtamdiZVZtcHhzeHBGeEdwaHR1T1NtUjRDUWhZWGRoSFJMOXJqNWItX3hSSmQtckFteXJXTHJ6bnptckpBckJMZUlvSQ?oc=5",
-      "title": "宮崎県立聴覚障害者センター３０周年 宮崎市で記念式典 節目祝い発展願う",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-24T07:00:00Z",
-      "sourceName": "宮崎日日新聞",
-      "sourceURL": "https://www.the-miyanichi.co.jp",
-      "sourceUrl": "https://www.the-miyanichi.co.jp",
-      "sourceType": "rss",
-      "category": "local",
-      "categoryLabel": "地域",
-      "legacyCategory": "local",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "region": "kyushu_okinawa",
-      "prefecture": "宮崎県"
     },
     {
       "id": "https://shichocenter.kagoshima.kagoshima.jp/archives/550",
