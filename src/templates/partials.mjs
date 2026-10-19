@@ -284,17 +284,17 @@ export function renderArticleCard(a, { hidden = false, featured = false, newsMed
         </header>
         <div class="card__content">${newsMedia ? renderNewsThumbnail(a) : renderThumbnail(a)}<div class="card__text">
         <h3 class="card__title">
-          <a href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.title)}</a>
-        </h3>${a.summary ? `
+          <a href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a.title)}（元記事・新しいタブ）">${escapeHtml(a.title)}</a>
+        </h3>${a.summary && !/^聴覚・手話に関わる取り組みについてのお知らせです。/u.test(a.summary) ? `
         <p class="card__summary">${escapeHtml(a.summary)}</p>` : ''}
         </div></div>
         <footer class="card__foot">
           <div class="card__source-group">
             <span class="source-tier source-tier--${escapeHtml(sourceTier)}" title="${escapeHtml(sourceMeta.description)}">${escapeHtml(sourceMeta.label)}</span>
-            <a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>
+            ${a.sourceUrl === a.id ? `<span class="card__source">${escapeHtml(a.sourceName)}</span>` : `<a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>`}
             ${regionChip}
-          </div>
-          <a class="card__read" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a.title)}（新しいタブで開く）">記事を読む <span aria-hidden="true">↗</span></a>
+          </div>${newsMedia ? '' : `
+          <a class="card__read" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a.title)}（新しいタブで開く）">記事を読む <span aria-hidden="true">↗</span></a>`}
         </footer>
       </article>`;
 }

@@ -246,6 +246,7 @@
     var titleLink = node.querySelector('.card__title a');
     titleLink.href = a.id;
     titleLink.textContent = a.title;
+    titleLink.setAttribute('aria-label', a.title + '（元記事・新しいタブ）');
     var media = document.createElement('span');
     media.className = 'news-media';
     media.setAttribute('aria-hidden', 'true');
@@ -259,7 +260,7 @@
     }
 
     var summary = node.querySelector('.card__summary');
-    if (a.summary) summary.textContent = a.summary;
+    if (a.summary && !/^聴覚・手話に関わる取り組みについてのお知らせです。/.test(a.summary)) summary.textContent = a.summary;
     else summary.parentNode.removeChild(summary);
 
     var tierEl = node.querySelector('.source-tier');
@@ -268,7 +269,12 @@
     tierEl.title = tierMeta.description;
 
     var sourceLink = node.querySelector('.card__source');
-    sourceLink.href = a.sourceUrl;
+    if (a.sourceUrl === a.id) {
+      var sourceText = document.createElement('span');
+      sourceText.className = sourceLink.className;
+      sourceLink.replaceWith(sourceText);
+      sourceLink = sourceText;
+    } else sourceLink.href = a.sourceUrl;
     sourceLink.textContent = a.sourceName;
 
     var regionEl = node.querySelector('.card__region');
@@ -278,9 +284,6 @@
       regionEl.title = '地域: ' + a.prefecture;
     }
 
-    var readLink = node.querySelector('.card__read');
-    readLink.href = a.id;
-    readLink.setAttribute('aria-label', a.title + '（新しいタブで開く）');
 
     return node;
   }

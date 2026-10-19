@@ -30,7 +30,7 @@ function renderNewsSectionItem({ lead: article, articles: related }) {
   return `<li><article class="reader-news-article">
     <header class="reader-news-meta"><span class="chip chip--${e(article.category)}">${e(CATEGORY_UI[article.category] || '一般')}</span>${renderNewsContext(article)}<time datetime="${e(article.publishedAt)}">${e(formatDateJST(article.publishedAt).slice(0,10))}</time></header>
     <div class="reader-news-content">${renderNewsThumbnail(article)}<div class="reader-news-text"><h3><a href="${e(article.id)}" target="_blank" rel="noopener noreferrer">${e(article.title)} <span class="sr-only">（元記事・新しいタブ）</span></a></h3>${summary}</div></div>
-    <footer class="reader-news-foot"><div class="reader-news-source"><span class="source-tier source-tier--${e(sourceTier)}">${e(sourceLabel)}</span><span>${e(article.sourceName)}</span></div><a class="reader-news-read" href="${e(article.id)}" target="_blank" rel="noopener noreferrer" aria-label="${e(article.title)}（元記事・新しいタブ）">記事を読む</a></footer>
+    <footer class="reader-news-foot"><div class="reader-news-source"><span class="source-tier source-tier--${e(sourceTier)}">${e(sourceLabel)}</span><span>${e(article.sourceName)}</span></div></footer>
   </article>${otherSources}</li>`;
 }
 
