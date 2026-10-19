@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Archive closed access logs only after a verified gzip copy exists."""
 import argparse
+import calendar
 import datetime as dt
 import gzip
 import hashlib
@@ -13,6 +14,16 @@ import tempfile
 
 JST = dt.timezone(dt.timedelta(hours=9))
 LOG_NAME = re.compile(r"^access(?:-v[0-9]+)?(?:-[0-9T.Z:+-]+(?:-(?:size|time))?)?\.log$")
+
+
+def six_months_ago(now):
+    year, month = divmod(now.year * 12 + now.month - 1 - 6, 12)
+    month += 1
+    return now.replace(year=year, month=month, day=min(now.day, calendar.monthrange(year, month)[1]), hour=0, minute=0, second=0, microsecond=0)
+
+
+def half_year(value):
+    return f"{value.year}-H{1 if value.month <= 6 else 2}"
 
 
 def sync_directory(path):
@@ -112,8 +123,8 @@ def archive_logs(root, cutoff, active="access-v3.log", index=None):
             if index is not None and (before.st_ino, before.st_size, before.st_mtime_ns) == (after.st_ino, after.st_size, after.st_mtime_ns):
                 index[source.name] = {"bytes": before.st_size, "mtime": int(before.st_mtime), "first": earliest, "last": latest}
             continue
-        month = dt.datetime.fromtimestamp(latest, JST).strftime("%Y-%m")
-        target = archive_path(root, month, source.name + ".gz")
+        period = half_year(dt.datetime.fromtimestamp(latest, JST))
+        target = archive_path(root, period, source.name + ".gz")
         checksum, size = verified_gzip(source, target)
         after = source.stat()
         if (before.st_ino, before.st_size, before.st_mtime_ns) != (after.st_ino, after.st_size, after.st_mtime_ns):
@@ -160,7 +171,7 @@ def archive_visitors(root, cutoff, table="visits"):
                         f.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
                     f.flush()
                     os.fsync(f.fileno())
-                target = archive_path(root, day[:7], prefix + day + ".jsonl.gz")
+                target = archive_path(root, half_year(dt.date.fromisoformat(day)), prefix + day + ".jsonl.gz")
                 checksum, size = verified_gzip(tmp, target)
                 atomic_json(target.with_suffix(".json"), {"day": day, "rows": len(rows), "sha256": checksum, "bytes": size, "verified": True})
                 db.execute("DELETE FROM " + table + " WHERE day=?", (day,))
@@ -181,12 +192,9 @@ def archive_visitors(root, cutoff, table="visits"):
 
 def maintain(root, visitor_root, now, force_monthly=False):
     root = root.resolve(strict=True)
-    # Monthly archive at 180 days; a daily guard handles 31-day months or a missed run.
-    monthly = force_monthly or now.day == 1
-    # Two days of headroom for a daily closed log and the next scheduled check.
-    days = 180 if monthly else 208
-    cutoff = now - dt.timedelta(days=days)
-    result = {"time": now.isoformat(), "mode": "monthly" if monthly else "210_day_guard", "retention_days": 180,
+    # Run once a month. Keep at least six calendar months, including the boundary day.
+    cutoff = six_months_ago(now)
+    result = {"time": now.isoformat(), "mode": "monthly", "retention_months": 6, "archive_grouping": "half_year",
         "cutoff": cutoff.isoformat(), "status": "ok", "logs": [], "visitors": [], "file_index": {}}
     previous = root / "maintenance.json"
     if previous.is_file() and not previous.is_symlink():
@@ -206,8 +214,7 @@ def maintain(root, visitor_root, now, force_monthly=False):
     result["archive_bytes"] = sum(p.stat().st_size for p in (root / "archive").glob("*/*.gz") if p.is_file())
     result["archive_files"] = sum(1 for _ in (root / "archive").glob("*/*.gz"))
     result["visitor_archive_bytes"] = sum(p.stat().st_size for p in (visitor_root / "archive").glob("*/*.gz") if p.is_file() and not p.is_symlink())
-    if monthly:
-        result["last_monthly"] = now.isoformat()
+    result["last_monthly"] = now.isoformat()
     atomic_json(root / "maintenance.json", result)
     return result
 

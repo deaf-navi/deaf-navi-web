@@ -103,7 +103,7 @@ try {
     r=await admin('/admin/?view=access'+query);
     ok(r.text.includes('value="views" selected') && r.text.includes('Codex・AI・bot・自動操作・管理画面・分類不明は除外'),'normal detail excludes non-human traffic by default');
     ok((r.text.match(/<svg /g)||[]).length===1 && r.text.includes('アクセスの推移') && r.text.includes('未取得のためグラフ'),'request chart available while missing UU stays unavailable');
-    ok(r.text.includes('直近180日</a>') && r.text.includes('tab=requests') && r.text.includes('日別・件'),'chart period and day drilldown available');
+    ok(r.text.includes('直近6か月</a>') && r.text.includes('tab=requests') && r.text.includes('日別・件'),'chart period and day drilldown available');
     const series=run(['-r',`require '${core}';require '${access}';echo json(access_chart_series(['from'=>'2026-09-06','to'=>'2026-09-08'],['2026-09-07'=>2],(float)strtotime('2026-09-07T00:00:00+09:00')));`]);
     ok(JSON.stringify(JSON.parse(series.stdout))===JSON.stringify({'2026-09-06':null,'2026-09-07':2,'2026-09-08':0}),'chart distinguishes not collected, positive counts and zero');
     for (const tab of ['paths','days','requests','unique']) {
@@ -149,6 +149,14 @@ try {
     ok((await admin('/admin/?view=access&client=untrusted')).status===400,'invalid category rejected');
     const from180=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo'}).format(new Date(Date.now()-179*86400000));
     ok((await admin('/admin/?view=access&from='+from180+'&to='+day)).status===200,'full 180-day range accepted');
+    const [year,month,date]=day.split('-').map(Number);
+    const monthStart=new Date(Date.UTC(year,month-7,1));
+    const monthEnd=new Date(Date.UTC(monthStart.getUTCFullYear(),monthStart.getUTCMonth()+1,0)).getUTCDate();
+    monthStart.setUTCDate(Math.min(date,monthEnd));
+    const sixMonthStart=monthStart.toISOString().slice(0,10);
+    ok((await admin('/admin/?view=access&from='+sixMonthStart+'&to='+day)).status===200,'full six-calendar-month range accepted');
+    monthStart.setUTCDate(monthStart.getUTCDate()-1);
+    ok((await admin('/admin/?view=access&from='+monthStart.toISOString().slice(0,10)+'&to='+day)).status===400,'before six-month boundary rejected');
     const visitors=join(dir,'access-visitors');mkdirSync(visitors);
     ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide.html','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
     r=await admin('/admin/?view=access&tab=unique'+query);

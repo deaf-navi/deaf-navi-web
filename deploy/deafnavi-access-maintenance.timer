@@ -1,7 +1,7 @@
 [Unit]
-Description=Deaf Navi monthly archive with daily 210-day retention guard
+Description=Deaf Navi monthly six-month retention archive
 [Timer]
-OnCalendar=*-*-* 03:30:00 Asia/Tokyo
+OnCalendar=*-*-01 03:30:00 Asia/Tokyo
 Persistent=true
 Unit=deafnavi-access-maintenance.service
 [Install]
