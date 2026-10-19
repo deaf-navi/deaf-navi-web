@@ -4,8 +4,8 @@
   "title": "Deaf Navi World Multilingual",
   "variant": "world",
   "mode": "multilingual",
-  "generatedAt": "2026-10-19T04:20:42Z",
-  "sourceGeneratedAt": "2026-10-19T04:20:42Z",
+  "generatedAt": "2026-10-19T04:24:45Z",
+  "sourceGeneratedAt": "2026-10-19T04:24:45Z",
   "count": 600,
   "language": "ja-JP",
   "refresh": {
@@ -43,8 +43,16 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 58,
-      "retainedPrevious": 32
+      "pending": 53,
+      "retainedPrevious": 32,
+      "morningCompletion": {
+        "checked": 5,
+        "updated": 5,
+        "completedAt": "2026-10-19T04:24:45.801Z",
+        "engine": "openai_complimentary",
+        "model": "gpt-6.1-sol",
+        "source": "saved-approved-pending-result"
+      }
     },
     "basePolicy": "World-JP uses Google translation and its cache first, then Deaf Navi glossary normalization and optional dedicated text-service assistance for missing translations."
   },
@@ -141,18 +149,18 @@
     "minScore": 8,
     "maxArticles": 600,
     "regionCounts": {
-      "europe_cis": 161,
       "americas": 172,
+      "asia_oceania": 148,
       "middle_east_africa": 119,
-      "asia_oceania": 148
+      "europe_cis": 161
     },
     "topicCounts": {
-      "accessibility": 190,
-      "education": 70,
-      "health": 124,
-      "general": 62,
+      "accessibility": 193,
       "rights": 21,
+      "education": 70,
+      "general": 62,
       "sports": 71,
+      "health": 121,
       "culture": 37,
       "technology": 24,
       "safety": 1
@@ -176,8 +184,16 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 58,
-      "retainedPrevious": 32
+      "pending": 53,
+      "retainedPrevious": 32,
+      "morningCompletion": {
+        "checked": 5,
+        "updated": 5,
+        "completedAt": "2026-10-19T04:24:45.801Z",
+        "engine": "openai_complimentary",
+        "model": "gpt-6.1-sol",
+        "source": "saved-approved-pending-result"
+      }
     }
   },
   "counts": {
@@ -188,9 +204,9 @@
       "asia_oceania": 148
     },
     "byTopic": {
-      "accessibility": 190,
+      "accessibility": 193,
       "education": 70,
-      "health": 124,
+      "health": 121,
       "general": 62,
       "rights": 21,
       "sports": 71,
@@ -199,20 +215,20 @@
       "safety": 1
     },
     "byLegacyCategory": {
-      "policy": 212,
+      "policy": 215,
       "education": 70,
-      "medical": 124,
+      "medical": 121,
       "general": 86,
       "sports": 71,
       "culture": 37
     },
     "byOriginalLanguage": {
       "tr": 30,
-      "pt": 16,
-      "en": 450,
+      "pt": 17,
+      "en": 448,
       "ko": 25,
       "fr": 52,
-      "zh": 13,
+      "zh": 14,
       "ar": 13,
       "es": 1
     }
@@ -27117,141 +27133,6 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE01UzI4M2dWUW5YRzFaaVBONG83WEtTc0c1YVU3c2JNbERGNDh2eHhFMW4xbXZGWGtNUGlQSVpUenpabFFlM1QtSGVLbk9wRkVZZGNMbFF1Y1RTUQ?oc=5",
-      "stableId": "world_8739e0560ccabbe0e4fc",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE01UzI4M2dWUW5YRzFaaVBONG83WEtTc0c1YVU3c2JNbERGNDh2eHhFMW4xbXZGWGtNUGlQSVpUenpabFFlM1QtSGVLbk9wRkVZZGNMbFF1Y1RTUQ?oc=5",
-      "publishedAt": "2025-06-10T07:00:00Z",
-      "sourceName": "BBC",
-      "sourceURL": "https://www.bbc.com",
-      "sourceUrl": "https://www.bbc.com",
-      "sourceDomain": "bbc.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 96,
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "rights",
-      "topicLabel": "権利・制度",
-      "legacyCategory": "policy",
-      "curationScore": 20,
-      "curationSignals": [
-        "hearing loss",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "シェフィールドの元鉄鋼労働者が難聴の和解を勝ち取る",
-      "summary": "シェフィールドの元鉄鋼労働者が難聴の和解を勝ち取る",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "シェフィールドの元鉄鋼労働者が難聴の和解を勝ち取る",
-          "summary": "シェフィールドの元鉄鋼労働者が難聴の和解を勝ち取る",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Former Sheffield steelworker wins hearing loss settlement",
-          "summary": "Former Sheffield steelworker wins hearing loss settlement",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQS21IWEtqWUJqOWV4MGdzUUdDdEJZaGJndkw2cXQzcFl5NEt0VjV0azNNVFJWbGV5VjFpUGt5aWtKWU9lNzZEeXJzczUxYm5XV1laaG92REhKQURXQUEtV2Q0SjRIb3ppa3dWeWZWajdCSHpiRjR1NG5xQmxjNFdpNWoxXy1IT0JUb1FYemFjVE9LeXJwTEZQaHktSzFsOC1I?oc=5",
-      "stableId": "world_f5ae6bb8e7b7bd522752",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQS21IWEtqWUJqOWV4MGdzUUdDdEJZaGJndkw2cXQzcFl5NEt0VjV0azNNVFJWbGV5VjFpUGt5aWtKWU9lNzZEeXJzczUxYm5XV1laaG92REhKQURXQUEtV2Q0SjRIb3ppa3dWeWZWajdCSHpiRjR1NG5xQmxjNFdpNWoxXy1IT0JUb1FYemFjVE9LeXJwTEZQaHktSzFsOC1I?oc=5",
-      "publishedAt": "2025-05-18T07:00:00Z",
-      "sourceName": "Punch Newspapers",
-      "sourceURL": "https://healthwise.punchng.com",
-      "sourceUrl": "https://healthwise.punchng.com",
-      "sourceDomain": "punchng.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 72,
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "legacyCategory": "education",
-      "curationScore": 32,
-      "curationSignals": [
-        "deaf child",
-        "deaf children",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "ろう児に必要な治療を受けさせるため、苦痛を乗り越えて奔走する保護者たちの姿を伝える。",
-      "summary": "ろう児に必要な治療を受けさせるため、苦痛を乗り越えて奔走する保護者たちの姿を伝える。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "ろう児に必要な治療を受けさせるため、苦痛を乗り越えて奔走する保護者たちの姿を伝える。",
-          "summary": "ろう児に必要な治療を受けさせるため、苦痛を乗り越えて奔走する保護者たちの姿を伝える。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "How parents push through pain to secure treatment for deaf children",
-          "summary": "How parents push through pain to secure treatment for deaf children",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSW42TnBlSGVsTjd4dU1Md2JVeTRNRlpGejU4T0g3anUwSlJYLWtoTWEzcUdBSWZxeTlmV21mNmpfeVlDMzVRUXQ2dEFpYWktWVUzNURtUVpEb1hYSTA3ZC0zUXlQSkc1VHAzNjhWMXhDS3h3dXlQUXJrVG1abVZva0NfVEFOWmpyZEd2MnpFYVZHdkVKdEFSMndQY0dTZ0FsZllTbG1sQTc0WnFWdW1pWS1oNm04RThtZFkyX3EtLVdCZE1Xb3ZVRjFHdGNKdjA2dEtPaGxHWFRPTHN0RzY1Mm1XTS1YV0XSAewBQVVfeXFMT2huMEpOREZadXJUSU5DVzdVcjNwTkw0SldCY1dJWXlCU3dzLVdTVFhCTVNUR2I4b3lvcjR4RU9yVkdLXzNwZ3ZzWUZPWEYtQXBfVVNaMmlXbG1SRXpxX1IzUXJpeHBuazFRZnN6aFRNMlZYbnh0MkJ4TWQyUFhIS2UtQXQwWmZudFdiajhxV2NPNENGNWc5UGNVbFE5bnowRl9zMTc5WnRqalFWZFZaUVdQQmpfMElXRTd2QWlicllyY2k2N01iREZZRk43X1dYdXpDc2V6eUkwQjFmaHJuMl9IeXI4cmZEbXNCcFE?oc=5",
-      "stableId": "world_19af56807d72e94598bf",
-      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSW42TnBlSGVsTjd4dU1Md2JVeTRNRlpGejU4T0g3anUwSlJYLWtoTWEzcUdBSWZxeTlmV21mNmpfeVlDMzVRUXQ2dEFpYWktWVUzNURtUVpEb1hYSTA3ZC0zUXlQSkc1VHAzNjhWMXhDS3h3dXlQUXJrVG1abVZva0NfVEFOWmpyZEd2MnpFYVZHdkVKdEFSMndQY0dTZ0FsZllTbG1sQTc0WnFWdW1pWS1oNm04RThtZFkyX3EtLVdCZE1Xb3ZVRjFHdGNKdjA2dEtPaGxHWFRPTHN0RzY1Mm1XTS1YV0XSAewBQVVfeXFMT2huMEpOREZadXJUSU5DVzdVcjNwTkw0SldCY1dJWXlCU3dzLVdTVFhCTVNUR2I4b3lvcjR4RU9yVkdLXzNwZ3ZzWUZPWEYtQXBfVVNaMmlXbG1SRXpxX1IzUXJpeHBuazFRZnN6aFRNMlZYbnh0MkJ4TWQyUFhIS2UtQXQwWmZudFdiajhxV2NPNENGNWc5UGNVbFE5bnowRl9zMTc5WnRqalFWZFZaUVdQQmpfMElXRTd2QWlicllyY2k2N01iREZZRk43X1dYdXpDc2V6eUkwQjFmaHJuMl9IeXI4cmZEbXNCcFE?oc=5",
-      "publishedAt": "2025-04-02T07:00:00Z",
-      "sourceName": "The Times of India",
-      "sourceURL": "https://timesofindia.indiatimes.com",
-      "sourceUrl": "https://timesofindia.indiatimes.com",
-      "sourceDomain": "timesofindia.indiatimes.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 76,
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 20,
-      "curationSignals": [
-        "hearing loss",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "医師らは、騒音公害の深刻化が難聴の原因になっているとして音量を下げるよう呼びかけている。",
-      "summary": "医師らは、騒音公害の深刻化が難聴の原因になっているとして音量を下げるよう呼びかけている。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "医師らは、騒音公害の深刻化が難聴の原因になっているとして音量を下げるよう呼びかけている。",
-          "summary": "医師らは、騒音公害の深刻化が難聴の原因になっているとして音量を下げるよう呼びかけている。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Turn it down! Doctors say rising noise pollution levels causing hearing loss",
-          "summary": "Turn it down! Doctors say rising noise pollution levels causing hearing loss",
-          "language": "en"
-        }
-      }
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPZGMxcUMzQ3Q4eXVYelpZQXhZVU5WQ2dIQWxYYk1wbmIxVUh5UGpabmNLU003RnA5SnNDTmE5YXVLMkc2RWFfdnA5bzJWZmRzNGZRZVF5MGd2dTRVcDdLc240d0NUY0FxVk9Zdk5DLWhlNHFKc0tnZEdNbkxqM0JrbFVoSGZlSXEyel8teUlJRzFVcmYxVFBHVlBsSlg2LWdvRTFHZlFwY0FpcUNnSGR5MHYxR3FQdFVHOVVmUURJSzR5WHBVNTN3RFExd0VnNnFDMUtv?oc=5",
       "stableId": "world_8386aac9f578b6d45744",
       "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPZGMxcUMzQ3Q4eXVYelpZQXhZVU5WQ2dIQWxYYk1wbmIxVUh5UGpabmNLU003RnA5SnNDTmE5YXVLMkc2RWFfdnA5bzJWZmRzNGZRZVF5MGd2dTRVcDdLc240d0NUY0FxVk9Zdk5DLWhlNHFKc0tnZEdNbkxqM0JrbFVoSGZlSXEyel8teUlJRzFVcmYxVFBHVlBsSlg2LWdvRTFHZlFwY0FpcUNnSGR5MHYxR3FQdFVHOVVmUURJSzR5WHBVNTN3RFExd0VnNnFDMUtv?oc=5",
@@ -27298,79 +27179,37 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQQXdFYkI1RHZzSW4zZEoxNkFlTHNlREt0eGZ5S2hHZXpDOVZ2WGJxb0doR0Q1eXRrdzFEcmtqVTkySVBEWGNvenRlcWl0dHg5VHpvc0tfamk4aEJrXzNZQU5URW1VNWJFcXpQOWF4Vko3YnhaakFERjhSNXZ1Y3JkeEtqZFVlRjNIdlBMdi1tVmFZZEd6X3gxRQ?oc=5",
-      "stableId": "world_e00ff5bc882b7f2a2372",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQQXdFYkI1RHZzSW4zZEoxNkFlTHNlREt0eGZ5S2hHZXpDOVZ2WGJxb0doR0Q1eXRrdzFEcmtqVTkySVBEWGNvenRlcWl0dHg5VHpvc0tfamk4aEJrXzNZQU5URW1VNWJFcXpQOWF4Vko3YnhaakFERjhSNXZ1Y3JkeEtqZFVlRjNIdlBMdi1tVmFZZEd6X3gxRQ?oc=5",
-      "publishedAt": "2025-06-04T07:00:00Z",
-      "sourceName": "AP News",
-      "sourceURL": "https://apnews.com",
-      "sourceUrl": "https://apnews.com",
-      "sourceDomain": "apnews.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 96,
+      "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPWS03eXEtdlZTLWZGRTdhdGN0SzljX1lra2U3MVp4SDRPcXJzNGRkM214SldKT2FnejB2dlB3UlBQVjVzRGgtV2dyMmQzMzNxVm4xN1d5NU5nVkxwa1B1c21XRlpoTVU2U2huNG9iWmRfbkdCc2FqdWdtbDBkQVJjY0FOcjZtbGdBRFM2Q2hoalBRVlBCUlBuSEtmSFlLZUVwVXdSOGRlMDVLbTNU?oc=5",
+      "stableId": "world_32211c3151892bde0906",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPWS03eXEtdlZTLWZGRTdhdGN0SzljX1lra2U3MVp4SDRPcXJzNGRkM214SldKT2FnejB2dlB3UlBQVjVzRGgtV2dyMmQzMzNxVm4xN1d5NU5nVkxwa1B1c21XRlpoTVU2U2huNG9iWmRfbkdCc2FqdWdtbDBkQVJjY0FOcjZtbGdBRFM2Q2hoalBRVlBCUlBuSEtmSFlLZUVwVXdSOGRlMDVLbTNU?oc=5",
+      "publishedAt": "2026-09-30T23:33:54Z",
+      "sourceName": "Diario TAG",
+      "sourceURL": "https://www.diariotag.com",
+      "sourceUrl": "https://www.diariotag.com",
+      "sourceDomain": "diariotag.com",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 23,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 31,
       "curationSignals": [
-        "hearing aid",
-        "major-media"
+        "sordo",
+        "sordos",
+        "lengua de señas",
+        "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "悔しさから喜びへ: 補聴器を手に入れて学んだこと",
-      "summary": "悔しさから喜びへ: 補聴器を手に入れて学んだこと",
+      "originalLanguage": "pt",
+      "title": "歯科医師がろう患者の診療に向け手話を学ぶ",
+      "summary": "歯科医師がろう患者に対応するため、手話の研修を受けています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "悔しさから喜びへ: 補聴器を手に入れて学んだこと",
-          "summary": "悔しさから喜びへ: 補聴器を手に入れて学んだこと",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "From frustration to joy: What I learned about getting a hearing aid",
-          "summary": "From frustration to joy: What I learned about getting a hearing aid",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOZWZOSUdkektYaWRMVnNMNTAxN2JNc2FnclpsNXJsbTNDbEFrNm90czkxaHJqeHJCbGNrc0JnV1pEaGc1dU1yTjNHdHBYT1dzVWpza0tPME9tRHVaMktneGF1aHNuazRIcV9EOFE2N2lKVE9JR3JiUlAwblFMRHdNemJDdUF3alRRSDVmMFJyVnJmNVNrSW9TZ1gwRGE4VUFSQTBBcEczejdEX25SdXNfRlR2Q28zbWhZeFh3cUlYSmpUbTNEMVc2RjhYTVdxTmFzc1NFaW1vdnpmUUFfNmw5cUI5QXJibXdMU0VQVkdtbGtqRkU4RXAwXzFMcHpsdw?oc=5",
-      "stableId": "world_86c20116feb2361b2b96",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOZWZOSUdkektYaWRMVnNMNTAxN2JNc2FnclpsNXJsbTNDbEFrNm90czkxaHJqeHJCbGNrc0JnV1pEaGc1dU1yTjNHdHBYT1dzVWpza0tPME9tRHVaMktneGF1aHNuazRIcV9EOFE2N2lKVE9JR3JiUlAwblFMRHdNemJDdUF3alRRSDVmMFJyVnJmNVNrSW9TZ1gwRGE4VUFSQTBBcEczejdEX25SdXNfRlR2Q28zbWhZeFh3cUlYSmpUbTNEMVc2RjhYTVdxTmFzc1NFaW1vdnpmUUFfNmw5cUI5QXJibXdMU0VQVkdtbGtqRkU4RXAwXzFMcHpsdw?oc=5",
-      "publishedAt": "2025-03-30T07:00:00Z",
-      "sourceName": "NZ Herald",
-      "sourceURL": "https://www.nzherald.co.nz",
-      "sourceUrl": "https://www.nzherald.co.nz",
-      "sourceDomain": "nzherald.co.nz",
-      "sourceMode": "major-media-fresh",
-      "sourcePriority": 80,
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 20,
-      "curationSignals": [
-        "hearing loss",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "聴覚啓発月間に合わせ、難聴のある人が日常生活を送るうえでの経験を紹介しています。",
-      "summary": "聴覚啓発月間に合わせ、難聴のある人が日常生活を送るうえでの経験を紹介しています。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "聴覚啓発月間に合わせ、難聴のある人が日常生活を送るうえでの経験を紹介しています。",
-          "summary": "聴覚啓発月間に合わせ、難聴のある人が日常生活を送るうえでの経験を紹介しています。",
+          "title": "歯科医師がろう患者の診療に向け手話を学ぶ",
+          "summary": "歯科医師がろう患者に対応するため、手話の研修を受けています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -27380,8 +27219,189 @@
           }
         },
         "original": {
-          "title": "Hearing Awareness Month: Navigating life with a hearing loss",
-          "summary": "Hearing Awareness Month: Navigating life with a hearing loss",
+          "title": "Odontólogos se capacitan en Lengua de Señas para atender a pacientes sordos",
+          "summary": "Odontólogos se capacitan en Lengua de Señas para atender a pacientes sordos",
+          "language": "pt"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQZ3V3dDRVcndtNmtDNHNubEFud1p1Nnlzd0FxSjBjQ0hhWjRsckNUNWpUZndCM3RwM1pCUnJVR2gyUnRSa3F2WldMaHd1Z1pvTl9EbGZ2dnI4TzA0Tkl1dmU1U0ktd1lOTEZ4Vll1eFdicFFxVF93a1g3a08zSXppazRSaXBEME5mQ2RHVkllS05yYldYN0oxWEVhNHlCaGFtNzBhdks1VHYwZ1RGZTdpREN3cTlCRzBqb3NiYS0xZjVWMzFJMGhydkl0NUx6SDVrWG9XSEhQUEbSAd4BQVVfeXFMUGxjNmJNTWNseWtZdFZMQXkyc19tSjV6ZWdsbXM5eG9Mbjl0MzNiVExMX05Id0lJVnpPUG9yMHF1bmNrZThmUE9MQVllOW5EMWlkMWdxSmsyV1BPOWgtaGpoYU5tSlhscWNTa1pNUEVxVjVwdGZ3NmpqdUI2cHpjVU5DMGlYQ1N6VkYzUlRCUzBZNHhIcUN6YjRYYkFhUHNHak1LRThIYkx2X21vdUpfeXVDRHcxd3lEOHhHcUs0a29mNThVcnlMZlNiNEZzZ3J5V1ZhQlBhVXFXVktXaXdR?oc=5",
+      "stableId": "world_a64d8fb89021ebb0bc25",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQZ3V3dDRVcndtNmtDNHNubEFud1p1Nnlzd0FxSjBjQ0hhWjRsckNUNWpUZndCM3RwM1pCUnJVR2gyUnRSa3F2WldMaHd1Z1pvTl9EbGZ2dnI4TzA0Tkl1dmU1U0ktd1lOTEZ4Vll1eFdicFFxVF93a1g3a08zSXppazRSaXBEME5mQ2RHVkllS05yYldYN0oxWEVhNHlCaGFtNzBhdks1VHYwZ1RGZTdpREN3cTlCRzBqb3NiYS0xZjVWMzFJMGhydkl0NUx6SDVrWG9XSEhQUEbSAd4BQVVfeXFMUGxjNmJNTWNseWtZdFZMQXkyc19tSjV6ZWdsbXM5eG9Mbjl0MzNiVExMX05Id0lJVnpPUG9yMHF1bmNrZThmUE9MQVllOW5EMWlkMWdxSmsyV1BPOWgtaGpoYU5tSlhscWNTa1pNUEVxVjVwdGZ3NmpqdUI2cHpjVU5DMGlYQ1N6VkYzUlRCUzBZNHhIcUN6YjRYYkFhUHNHak1LRThIYkx2X21vdUpfeXVDRHcxd3lEOHhHcUs0a29mNThVcnlMZlNiNEZzZ3J5V1ZhQlBhVXFXVktXaXdR?oc=5",
+      "publishedAt": "2025-08-17T07:00:00Z",
+      "sourceName": "The Times of India",
+      "sourceURL": "https://timesofindia.indiatimes.com",
+      "sourceUrl": "https://timesofindia.indiatimes.com",
+      "sourceDomain": "timesofindia.indiatimes.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 76,
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "rights",
+      "topicLabel": "権利・制度",
+      "legacyCategory": "policy",
+      "curationScore": 23,
+      "curationSignals": [
+        "hearing impaired",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "パンジャブの大学で聴覚障害者のための「共通手話」",
+      "summary": "パンジャブの大学で、聴覚障害者のための「共通手話」が取り上げられています。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "パンジャブの大学で聴覚障害者のための「共通手話」",
+          "summary": "パンジャブの大学で、聴覚障害者のための「共通手話」が取り上げられています。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "At a Punjab varsity, ‘sign lingua franca’ for the hearing impaired",
+          "summary": "At a Punjab varsity, ‘sign lingua franca’ for the hearing impaired",
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5tbl9xVWVUZW9sejl2OXBMZDhVSjRhdkliMUtZc29Udzk1T1ZUNWhnVzEzbXREVkJ5LW1jU3lBRjRKcDR5ZXNPeEkyN0JtQU1MalhYVzdkUmpqMm1oLTVhLWZXc2VFS2s?oc=5",
+      "stableId": "world_c5061fe033bedc98a431",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5tbl9xVWVUZW9sejl2OXBMZDhVSjRhdkliMUtZc29Udzk1T1ZUNWhnVzEzbXREVkJ5LW1jU3lBRjRKcDR5ZXNPeEkyN0JtQU1MalhYVzdkUmpqMm1oLTVhLWZXc2VFS2s?oc=5",
+      "publishedAt": "2026-09-14T07:00:00Z",
+      "sourceName": "人間福報電子報",
+      "sourceURL": "https://www.merit-times.com.tw",
+      "sourceUrl": "https://www.merit-times.com.tw",
+      "sourceDomain": "merit-times.com.tw",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 21,
+      "curationSignals": [
+        "聽障",
+        "手語",
+        "multilingual"
+      ],
+      "originalLanguage": "zh",
+      "title": "ロボットアームの手話教師が聴覚障害学生の学びを支援",
+      "summary": "ロボットアームの手話教師が、聴覚障害のある学生の学びを支援します。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "ロボットアームの手話教師が聴覚障害学生の学びを支援",
+          "summary": "ロボットアームの手話教師が、聴覚障害のある学生の学びを支援します。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "機器臂手語師 助聽障生求學",
+          "summary": "機器臂手語師 助聽障生求學",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbmhzNG4tUE8tNFhnamZCLWQtMUNNNFdteVdNS1lLbmxqYXVDRUQ2dWNKTVJkZ1JyZVJuWmROYVB0U2FJNkxRQl9ONVZqMllzSnppX1Nvb2g4cm5CdnBCanV6WUw2ZlRqdmhmU25ZaEZ1VlYxOTBQQ0RIai1yUVREU1NmZTR3QmNfN0xpVkFmcnM1MXFRSTVBekhlQXktRHZDWTJBbnlGQm96TkhlbXhmQXIzY29WeGxHYnM0SXlpejY?oc=5",
+      "stableId": "world_483e9066ad2a9c257b9e",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbmhzNG4tUE8tNFhnamZCLWQtMUNNNFdteVdNS1lLbmxqYXVDRUQ2dWNKTVJkZ1JyZVJuWmROYVB0U2FJNkxRQl9ONVZqMllzSnppX1Nvb2g4cm5CdnBCanV6WUw2ZlRqdmhmU25ZaEZ1VlYxOTBQQ0RIai1yUVREU1NmZTR3QmNfN0xpVkFmcnM1MXFRSTVBekhlQXktRHZDWTJBbnlGQm96TkhlbXhmQXIzY29WeGxHYnM0SXlpejY?oc=5",
+      "publishedAt": "2025-07-01T07:00:00Z",
+      "sourceName": "The Clarion-Ledger",
+      "sourceURL": "https://ftw.usatoday.com",
+      "sourceUrl": "https://ftw.usatoday.com",
+      "sourceDomain": "usatoday.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 78,
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 20,
+      "curationSignals": [
+        "accessibility",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "『Sinners』、ブラックASLで上映へ",
+      "summary": "ミシシッピ州を舞台とする『Sinners』が、アクセシビリティをさらに高めるため、ブラックASL（黒人アメリカ手話）で上映されます。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "『Sinners』、ブラックASLで上映へ",
+          "summary": "ミシシッピ州を舞台とする『Sinners』が、アクセシビリティをさらに高めるため、ブラックASL（黒人アメリカ手話）で上映されます。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
+          "summary": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPU1c2NmE0dk1mcldGbHMyMVVrc2dLVlJ1VWJ4WnFZZ2QySnBSVnRUeDdsYjlkdE9jeGVTaGtPQk9HZ29IdUlteUpQS3lyMThxVUp3R1M0cFppeDBvQmhSTEIwajlRUzNEU2xNUFhSUHpYLVBxUi1SZEJtZkptcl9NYUZ1dW1qTmstcTlZRTExX3Rfb1EwT0dia3cwMGFObzJQSzhiVzhVZTZLbXcwaWk3eHhEVU11ckhQb3FxTWFTVEpwak11QXRYV2lYcw?oc=5",
+      "stableId": "world_bd86f5671ea69d0a079d",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPU1c2NmE0dk1mcldGbHMyMVVrc2dLVlJ1VWJ4WnFZZ2QySnBSVnRUeDdsYjlkdE9jeGVTaGtPQk9HZ29IdUlteUpQS3lyMThxVUp3R1M0cFppeDBvQmhSTEIwajlRUzNEU2xNUFhSUHpYLVBxUi1SZEJtZkptcl9NYUZ1dW1qTmstcTlZRTExX3Rfb1EwT0dia3cwMGFObzJQSzhiVzhVZTZLbXcwaWk3eHhEVU11ckhQb3FxTWFTVEpwak11QXRYV2lYcw?oc=5",
+      "publishedAt": "2025-04-27T07:00:00Z",
+      "sourceName": "Daily Monitor",
+      "sourceURL": "https://www.monitor.co.ug",
+      "sourceUrl": "https://www.monitor.co.ug",
+      "sourceDomain": "monitor.co.ug",
+      "sourceMode": "major-media",
+      "sourcePriority": 74,
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "education",
+      "topicLabel": "教育",
+      "legacyCategory": "education",
+      "curationScore": 25,
+      "curationSignals": [
+        "hearing impairment",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "聴覚障害学生の大学進学の少なさを専門家が問題視",
+      "summary": "専門家らが、聴覚障害のある学生の大学進学の少なさを問題視しています。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "聴覚障害学生の大学進学の少なさを専門家が問題視",
+          "summary": "専門家らが、聴覚障害のある学生の大学進学の少なさを問題視しています。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Experts decry low university enrollment of students with hearing impairments",
+          "summary": "Experts decry low university enrollment of students with hearing impairments",
           "language": "en"
         }
       }
