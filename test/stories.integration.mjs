@@ -6,10 +6,13 @@ import {join,resolve} from 'node:path';
 import {randomBytes,createHash} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..'),dir=mkdtempSync(join(tmpdir(),'dn-stories-'));
 const env={...process.env,DEAFNAVI_LOCAL_TEST:'1',DEAFNAVI_DATA_DIR:dir};
-const phpArgs=process.platform==='win32'?['-d','extension=gd']:[];
+const phpArgs=[...(process.platform==='win32'?['-d','extension=gd']:[]),...(process.env.DEAFNAVI_TEST_NO_MB==='1'?['-d','disable_functions=mb_strlen,mb_substr']:[])];
 const run=(code)=>{const r=spawnSync('php',[...phpArgs,'-r',code],{cwd:root,env,encoding:'utf8'});assert.equal(r.status,0,r.stderr);return r.stdout;};
-const password=randomBytes(20).toString('hex');const hashed=spawnSync('php',['test/directory-hash.php'],{input:password,encoding:'utf8'}).stdout;
-let result=spawnSync('php',['server/cli.php','init'],{env,encoding:'utf8',input:JSON.stringify({username:'storyadmin',password_hash:hashed})});assert.equal(result.status,0,result.stderr);
+// Production can lack mbstring; -n exercises the actual Unicode fallback without extensions.
+const bare=spawnSync('php',['-n','-r',`require 'server/core.php';require 'server/stories-store.php';require 'server/stories-render.php';$rejected=false;try{story_input(['title'=>str_repeat('𠮷',301)],'title',300);}catch(DomainException $e){$rejected=true;}echo json(['mb'=>function_exists('mb_strlen'),'length'=>story_length(story_input(['title'=>str_repeat('𠮷',300)],'title',300)),'reject'=>$rejected,'body'=>story_length(strip_tags(story_markdown(str_repeat('あ',50001))['html'])),'links'=>story_links(str_repeat('あ',300).' | https://example.com/')]);`],{cwd:root,env,encoding:'utf8'});
+assert.equal(bare.status,0,bare.stderr||bare.stdout);const noMb=JSON.parse(bare.stdout);assert.equal(noMb.mb,false);assert.equal(noMb.length,300);assert.equal(noMb.reject,true);assert.equal(noMb.body,50000);assert.equal(noMb.links[0].label.length,300);
+const password=randomBytes(20).toString('hex');const hashed=spawnSync('php',[...phpArgs,'test/directory-hash.php'],{input:password,encoding:'utf8'}).stdout;
+let result=spawnSync('php',[...phpArgs,'server/cli.php','init'],{env,encoding:'utf8',input:JSON.stringify({username:'storyadmin',password_hash:hashed})});assert.equal(result.status,0,result.stderr);
 run("require 'server/core.php';query('UPDATE users SET must_change=0');require 'server/stories-store.php';stories_init();");
 const base='http://127.0.0.1:5238';const proc=spawn('php',[...phpArgs,'-S','127.0.0.1:5238','-t','docs','server/local-router.php'],{cwd:root,env,stdio:'ignore'});
 let cookie='';async function req(path,data,auth=true){const multipart=data instanceof FormData;const r=await fetch(base+path,{method:data?'POST':'GET',redirect:'manual',headers:{...(auth&&cookie?{cookie}:{}),...(data&&!multipart?{'Content-Type':'application/x-www-form-urlencoded'}:{})},body:data?(multipart?data:new URLSearchParams(data)):undefined});if(auth)for(const c of r.headers.getSetCookie())if(c.startsWith('deafnavi_directory='))cookie=c.split(';')[0];return {status:r.status,text:await r.text(),headers:r.headers};}
@@ -30,7 +33,7 @@ try{
  ok(!(await req('/stories/sitemap.xml',null,false)).text.includes('fixture-story'),'draft not indexed');
  ok((await req('/admin/stories/?preview='+id,null,false)).status===401,'private preview protected');
  let preview=await req('/admin/stories/?preview='+id);ok(preview.text.includes('<strong>太字</strong>')&&!preview.text.includes('aria-label="目次"')&&preview.text.includes('&lt;script&gt;'),'safe preview; h3 excluded from TOC');
- const p1=JSON.parse(run(`require 'server/core.php';require 'server/stories-store.php';require 'server/stories-render.php';$r=story_get('${id}');$r['published_at']='2026-10-20T23:30:00Z';echo json(['date'=>story_date($r['published_at']),'cards'=>story_cards([$r]),'toc'=>story_markdown("## 一\\n### 二\\n## 三"),'joined'=>story_markdown("日本語\\n本文\\nEnglish\\ntext")['html'],'long'=>mb_strlen(strip_tags(story_markdown(str_repeat('あ',50000))['html'])),'invalid'=>story_inline('[非公開](/stories/fixture-story/)'),'absolute'=>story_inline('[非公開](https://deafnavi.com/stories/fixture-story/)')]);`));
+ const p1=JSON.parse(run(`require 'server/core.php';require 'server/stories-store.php';require 'server/stories-render.php';$r=story_get('${id}');$r['published_at']='2026-10-20T23:30:00Z';echo json(['date'=>story_date($r['published_at']),'cards'=>story_cards([$r]),'toc'=>story_markdown("## 一\\n### 二\\n## 三"),'joined'=>story_markdown("日本語\\n本文\\nEnglish\\ntext")['html'],'long'=>story_length(strip_tags(story_markdown(str_repeat('あ',50000))['html'])),'invalid'=>story_inline('[非公開](/stories/fixture-story/)'),'absolute'=>story_inline('[非公開](https://deafnavi.com/stories/fixture-story/)')]);`));
  ok(p1.date==='2026-10-21'&&p1.cards.includes('2026-10-21'),'JST next-day card date');
  ok(p1.toc.toc.length===2&&p1.toc.toc[1].id==='section-3'&&p1.toc.html.includes('id="section-2"'),'h2 TOC preserves h3 heading IDs');
  ok(p1.joined==='<p>日本語本文 English text</p>'&&p1.long===50000,'paragraph joins and full Japanese body');
@@ -96,7 +99,7 @@ try{
  // Import uses shared save validation, forces drafts, backs up, and never overwrites.
  const originals=run("require 'server/core.php';require 'server/stories-store.php';echo json(stories_query('SELECT * FROM stories ORDER BY id')->fetchAll());");const backupCount=readdirSync(join(dir,'stories/backups')).length;
  const files=Array.from({length:10},(_,i)=>{const file=join(dir,`import-${i}.md`);writeFileSync(file,`---\ntitle: 取り込み${i}\nslug: import-fixture-${i}\ncategory: culture\nfeatured: ${i%2?'no':'yes'}\nsummary: 日本語の概要\ntags: 手話,交流\nauthor: 編集部\nchecked_at: 2026-10-20\nsources:\n- 出典 | https://example.com/\nrelated:\n- 関連 | /stories/limit-good/\n---\n## 取り込み本文\n日本語\n本文`);return file;});
- const cli=(args)=>spawnSync('php',['server/cli.php','stories:import',...args],{cwd:root,env,encoding:'utf8'});
+ const cli=(args)=>spawnSync('php',[...phpArgs,'server/cli.php','stories:import',...args],{cwd:root,env,encoding:'utf8'});
  const dry=cli(['--dry-run',...files]);ok(dry.status===0&&JSON.parse(dry.stdout).count===10,'CLI dry-run ten manuscripts');
  ok(originals===run("require 'server/core.php';require 'server/stories-store.php';echo json(stories_query('SELECT * FROM stories ORDER BY id')->fetchAll());")&&backupCount===readdirSync(join(dir,'stories/backups')).length,'dry-run makes no database or backup changes');
  const imported=cli(files);ok(imported.status===0&&JSON.parse(imported.stdout).status==='draft','CLI imports drafts');
