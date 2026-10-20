@@ -70,6 +70,12 @@ function story_cards(array $rows):string {
     foreach($rows as $r){$out.='<article class="story-card">'.($r['cover']?'<a href="/stories/'.e($r['slug']).'/" tabindex="-1" aria-hidden="true"><img src="'.story_media_url($r['cover']).'" alt="" width="640" height="400" loading="lazy"></a>':'').'<p class="story-meta">'.e($cats[$r['category']]??'').' · <time datetime="'.e($r['published_at']).'">'.e(story_date($r['published_at'])).'</time></p><h3><a href="/stories/'.e($r['slug']).'/">'.e($r['title']).'</a></h3><p>'.e($r['summary']).'</p></article>';}
     return $out.'</div>';
 }
+// Count the text readers see, using the same Markdown renderer as the article.
+function story_character_count(string $body):int {
+    $text=html_entity_decode(strip_tags(story_markdown($body)['html']),ENT_QUOTES|ENT_HTML5,'UTF-8');
+    $text=preg_replace('/[\s\p{Z}]+/u','',$text);
+    return preg_match_all('/./us',$text);
+}
 function stories_shell(string $title,string $body,string $path,string $summary='',array $article=[],bool $private=false):string {
     $canonical=BASE.$path;$image=BASE.(!empty($article['cover'])?story_media_url($article['cover']):'/og-image.png');
     $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'読みもの','item'=>BASE.'/stories/']];

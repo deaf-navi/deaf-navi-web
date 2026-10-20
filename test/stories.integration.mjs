@@ -50,6 +50,9 @@ try{
  const editHtml=(await req('/admin/?view=stories&mode=edit&id='+id)).text;
  ok(editHtml.includes('name="title" type="text" value="隔離テストの記事" maxlength="300"')&&editHtml.includes('data-count="body"'),'matching editor limit and counters');
  for(const sort of ['updated_at','published_at','checked_at'])ok((await req('/admin/?view=stories&sort='+sort)).text.includes('公開日（JST）'),'admin columns and '+sort+' sorting');
+ const counted=JSON.parse((await req('/admin/stories/',{action:'preview',csrf,body:'## 見出し\n本文 [案内](https://example.com/)'})).text);ok(counted.character_count===7,'preview counts readable text without URL or markup');
+ ok((await req('/admin/?view=stories')).text.includes('class="story-meta">本文 '),'list exposes body count');
+ ok((await req('/admin/?view=stories&mode=edit&id='+id)).text.includes('data-reading-count'),'editor exposes reading count separately from input limit');
  const unsafe=await req('/admin/stories/',{action:'preview',csrf,body:'[危険](javascript:alert)\n<img src=x onerror=alert(1)>'});
  ok(!JSON.parse(unsafe.text).html.includes('href="javascript:')&&!JSON.parse(unsafe.text).html.includes('<img'),'unsafe markup blocked');
  ok((await req('/admin/stories/',{...data,related:'管理 | /admin/'})).status===400,'private link rejected');
