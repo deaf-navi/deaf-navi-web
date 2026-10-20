@@ -127,10 +127,16 @@ export async function enrichNewsThumbnails(articles, {
     }
     report.attempted++;
     const previous = validThumbnail(saved[article.id]?.thumbnail) ? saved[article.id].thumbnail : null;
+    const rejectedImage = saved[article.id]?.rejectedImage;
+    let previousMissing = false;
     try {
       const verifyCandidates = async (candidates) => {
         for (const candidate of candidates.slice(0, 2)) {
+          // A browser-confirmed failure can still return HEAD 200. Recheck the
+          // publisher for a replacement, without repeatedly embedding that exact URL.
+          if (candidate.url === rejectedImage?.url) continue;
           const response = await request(candidate.url, { method: 'HEAD' });
+          if ([404, 410].includes(response.status) && candidate.url === previous?.url) previousMissing = true;
           if ([401, 403, 429].includes(response.status) || response.status >= 500) throw new Error('Image temporarily unavailable');
           const type = String(response.headers['content-type'] || '').split(';')[0].toLowerCase();
           if (response.status === 200 && /^image\/(?:jpeg|png|webp|avif|gif)$/.test(type)
@@ -152,14 +158,16 @@ export async function enrichNewsThumbnails(articles, {
       }
       if (thumbnail) { article.thumbnail = thumbnail; report.acquired++; }
       else { delete article.thumbnail; report.missing++; }
-      entries[article.id] = { checkedAt: new Date(now).toISOString(), thumbnail };
+      entries[article.id] = { checkedAt: new Date(now).toISOString(), thumbnail,
+        ...(!thumbnail && rejectedImage ? { rejectedImage } : {}) };
     } catch {
       report.failed++;
-      if (previous) article.thumbnail = previous;
+      const fallback = previousMissing ? null : previous;
+      if (fallback) article.thumbnail = fallback;
       else delete article.thumbnail;
-      // Retry transient failures after one day; never discard a last verified image.
-      entries[article.id] = { checkedAt: new Date(now).toISOString(), thumbnail: previous,
-        retryAt: new Date(now + DAY).toISOString() };
+      // Preserve images on transient errors, but not a URL just confirmed missing.
+      entries[article.id] = { checkedAt: new Date(now).toISOString(), thumbnail: fallback,
+        retryAt: new Date(now + DAY).toISOString(), ...(rejectedImage ? { rejectedImage } : {}) };
     }
   }
   // Unprocessed feed URLs have not yet passed the HTTP check.

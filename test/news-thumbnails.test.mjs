@@ -142,6 +142,71 @@ test('transient failures retain verified pictures and retry after one day', asyn
   assert.equal(Date.parse(saved.retryAt), now + 86400000);
 });
 
+test('a confirmed missing cached image is not restored when its publisher also fails', async (t) => {
+  const dir = await mkdtemp(join(tmpdir(), 'deafnavi-thumbnails-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  const cacheFile = join(dir, 'cache.json');
+  const now = Date.now();
+  for (const status of [404, 410]) {
+    await writeFile(cacheFile, JSON.stringify({ entries: { [picture.pageUrl]: {
+      checkedAt: new Date(now - 31 * 86400000).toISOString(), thumbnail: picture,
+    } } }));
+    const articles = [article()];
+    await enrichNewsThumbnails(articles, { cacheFile, now,
+      fetchResource: async (url, opts) => response(url, '', opts.method === 'HEAD' ? status : 503),
+    });
+    assert.equal(articles[0].thumbnail, undefined, `HTTP ${status} must not restore the known broken URL`);
+    const saved = JSON.parse(await readFile(cacheFile, 'utf8')).entries[picture.pageUrl];
+    assert.equal(saved.thumbnail, null);
+    assert.equal(Date.parse(saved.retryAt), now + 86400000);
+    await enrichNewsThumbnails([article()], { cacheFile, now: now + 1000,
+      fetchResource: () => { throw new Error('Retry is not due yet'); },
+    }).then(report => assert.equal(report.attempted, 0));
+  }
+});
+
+test('a missing cached image can be replaced by a newly verified publisher image', async (t) => {
+  const dir = await mkdtemp(join(tmpdir(), 'deafnavi-thumbnails-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  const cacheFile = join(dir, 'cache.json');
+  const now = Date.now(), replacement = picture.url.replace('photo.jpg', 'replacement.jpg');
+  await writeFile(cacheFile, JSON.stringify({ entries: { [picture.pageUrl]: {
+    checkedAt: new Date(now - 31 * 86400000).toISOString(), thumbnail: picture,
+  } } }));
+  const articles = [article()];
+  await enrichNewsThumbnails(articles, { cacheFile, now, fetchResource: async (url, opts) =>
+    opts.method === 'HEAD' ? response(url, '', url === picture.url ? 404 : 200, 'image/jpeg')
+      : response(url, `<meta property="og:image" content="${replacement}">`),
+  });
+  assert.equal(articles[0].thumbnail.url, replacement);
+});
+
+test('a browser-rejected URL stays omitted until the publisher provides a verified replacement', async (t) => {
+  const dir = await mkdtemp(join(tmpdir(), 'deafnavi-thumbnails-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  const cacheFile = join(dir, 'cache.json'), now = Date.now();
+  const rejectedImage = { url: picture.url, reason: 'repeated-browser-transport-error', reviewedAt: new Date(now).toISOString() };
+  await writeFile(cacheFile, JSON.stringify({ entries: { [picture.pageUrl]: {
+    checkedAt: new Date(now - 8 * 86400000).toISOString(), thumbnail: null, rejectedImage,
+  } } }));
+  let candidate = picture.url;
+  const fetchResource = async (url, opts) => {
+    if (opts.method === 'HEAD') {
+      assert.notEqual(url, rejectedImage.url);
+      return response(url, '', 200, 'image/jpeg');
+    }
+    return response(url, `<meta property="og:image" content="${candidate}">`);
+  };
+  const articles = [article()];
+  await enrichNewsThumbnails(articles, { cacheFile, now, fetchResource });
+  assert.equal(articles[0].thumbnail, undefined);
+  assert.deepEqual(JSON.parse(await readFile(cacheFile, 'utf8')).entries[picture.pageUrl].rejectedImage, rejectedImage);
+  candidate = picture.url.replace('photo.jpg', 'replacement.jpg');
+  await enrichNewsThumbnails(articles, { cacheFile, now: now + 8 * 86400000, fetchResource });
+  assert.equal(articles[0].thumbnail.url, candidate);
+  assert.equal(JSON.parse(await readFile(cacheFile, 'utf8')).entries[picture.pageUrl].rejectedImage, undefined);
+});
+
 test('SSR renders optional, escaped, lazy pictures with dimensions and no referral information', () => {
   const html = renderArticleCard({ ...article(), thumbnail: { ...picture, url: picture.url + '?a=1&b="quoted"' } });
   assert.match(html, /class="card__thumbnail"/);
@@ -171,6 +236,13 @@ test('browser helper removes failed SSR/client images and keeps the article cont
   handlers.error({ target: container.img });
   assert.equal(container.img.removed, true);
   assert.equal(container.textContent, '記事の見出しと要約');
+  const pixel = { classList: { contains: () => true }, naturalWidth: 1, naturalHeight: 1,
+    removed: false, remove() { this.removed = true; } };
+  handlers.load({ target: pixel });
+  assert.equal(pixel.removed, true);
+  const real = { ...pixel, naturalWidth: 640, naturalHeight: 360, removed: false };
+  handlers.load({ target: real });
+  assert.equal(real.removed, false);
   const empty = { insertBefore() { throw new Error('Invalid image inserted'); } };
   window.DeafNaviThumbnails.append(empty, 'javascript:alert(1)');
 });
