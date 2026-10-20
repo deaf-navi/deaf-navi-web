@@ -142,6 +142,8 @@ test('renderHomePage: WebMCP内部要素を非表示で保持し既存クライ�
   assert.ok(html.includes('src="./app.js?v=abc123"'), 'アプリJSに共有世代hashがありません');
   assert.ok(html.includes('src="./webmcp.js?v=abc123"'), 'WebMCP JSに共有世代hashがありません');
   assert.ok(html.indexOf('src="./app.js?v=abc123"') < html.indexOf('src="./webmcp.js?v=abc123"'), 'WebMCPが既存アプリより先に読み込まれています');
+  assert.match(html, /id="offline-note"[^>]+hidden><\/p>/, '通信警告は実際の状態に応じて生成する');
+  assert.ok(!html.includes('オフライン表示中です。'), '静的HTMLが未確認の通信状態を断定しない');
 });
 
 test('renderGuidePage: CUP ORDERを非公式ツールとして案内する', () => {

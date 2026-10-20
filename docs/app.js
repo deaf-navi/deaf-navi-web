@@ -74,11 +74,54 @@
   /* ---------- オフライン表示 ---------- */
 
   var offlineNote = document.getElementById('offline-note');
-  function syncOfflineNote() {
-    if (offlineNote) offlineNote.hidden = navigator.onLine !== false;
+  var dataStatus = 'idle';
+  var dataGeneratedAt = offlineNote && offlineNote.getAttribute('data-generated-at');
+  var connectionLost = navigator.onLine === false;
+  var retryTimer = null;
+  var retryCount = 0;
+  var RETRY_DELAYS = [5000, 30000];
+  function formatUpdate(iso) {
+    var date = new Date(iso);
+    if (!isFinite(date.getTime())) return '';
+    return new Intl.DateTimeFormat('sv-SE', {
+      timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hour12: false,
+    }).format(date) + ' JST';
   }
-  window.addEventListener('online', syncOfflineNote);
-  window.addEventListener('offline', syncOfflineNote);
+  function syncOfflineNote() {
+    if (!offlineNote) return;
+    var offline = navigator.onLine === false;
+    var needsNotice = offline || connectionLost || dataStatus === 'error' || dataStatus === 'cached';
+    offlineNote.hidden = !needsNotice;
+    offlineNote.textContent = '';
+    if (!needsNotice) return;
+    var message = offline
+      ? 'オフラインです。この画面に読み込んだニュースを表示しています。'
+      : dataStatus === 'cached'
+        ? '最新情報を取得できないため、保存済みのニュースを表示しています。'
+        : '最新ニュースを取得できません。読み込めた記事の範囲で表示・検索しています。';
+    if (fetchPromise) message = '最新ニュースを再取得しています。読み込めた記事は引き続き読めます。';
+    var updated = formatUpdate(dataGeneratedAt);
+    var text = document.createElement('span');
+    text.textContent = message + (updated ? '（表示データの更新: ' + updated + '）' : '');
+    offlineNote.appendChild(text);
+    var retry = document.createElement('button');
+    retry.type = 'button';
+    retry.className = 'news-retry';
+    retry.textContent = '再取得';
+    retry.disabled = offline || Boolean(fetchPromise);
+    retry.addEventListener('click', refreshNews);
+    offlineNote.appendChild(retry);
+  }
+  window.addEventListener('online', function () {
+    retryCount = 0;
+    refreshNews();
+  });
+  window.addEventListener('offline', function () {
+    connectionLost = true;
+    clearTimeout(retryTimer);
+    syncOfflineNote();
+  });
   syncOfflineNote();
 
   /* ---------- ニュース検索・絞り込み ---------- */
@@ -174,27 +217,70 @@
 
   var fetchPromise = null;
   var dataFailed = false;
-  function ensureData() {
+  function refreshNews() {
+    if (!articlesEl) return Promise.resolve(null);
+    clearTimeout(retryTimer);
+    return ensureData(true).then(function (loaded) {
+      if (loaded) apply({ updateUrl: false });
+    });
+  }
+
+  function scheduleRetry() {
+    clearTimeout(retryTimer);
+    if (navigator.onLine === false || retryCount >= RETRY_DELAYS.length
+      || (dataStatus !== 'error' && dataStatus !== 'cached')) return;
+    retryTimer = setTimeout(refreshNews, RETRY_DELAYS[retryCount++]);
+  }
+
+  function ensureData(refresh) {
     if (fetchPromise) return fetchPromise;
+    if (allArticles && dataStatus === 'ready' && !refresh) return Promise.resolve(allArticles);
+    clearTimeout(retryTimer);
+    dataFailed = false;
     var src = articlesEl.getAttribute('data-src') || './articles.json';
-    fetchPromise = fetch(src)
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 12000);
+    var cachedResponse = false;
+    fetchPromise = fetch(src, { cache: 'no-cache', signal: controller.signal })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
+        cachedResponse = res.headers.get('X-DeafNavi-Cache') === 'fallback';
         return res.json();
       })
       .then(function (data) {
-        allArticles = Array.isArray(data.articles) ? data.articles : [];
+        if (!data || !Array.isArray(data.articles) || data.articles.some(function (a) {
+          return !a || typeof a.title !== 'string' || typeof a.id !== 'string';
+        })) throw new Error('Invalid news data');
+        allArticles = data.articles;
         searchIndex = allArticles.map(function (a) {
           return normalize(a.title + ' ' + (a.summary || '') + ' ' + a.sourceName + ' ' + (a.prefecture || '') + ' ' + ({announcement:'開催案内',report:'開催報告'}[a.newsContext] || ''));
         });
+        dataStatus = cachedResponse ? 'cached' : 'ready';
+        connectionLost = cachedResponse;
+        if (!cachedResponse) retryCount = 0;
+        if (typeof data.generatedAt === 'string' && formatUpdate(data.generatedAt)) {
+          dataGeneratedAt = data.generatedAt;
+          var updateTime = document.querySelector('.news-update time');
+          if (updateTime) {
+            updateTime.setAttribute('datetime', dataGeneratedAt);
+            updateTime.textContent = formatUpdate(dataGeneratedAt);
+          }
+        }
         return allArticles;
       })
       .catch(function () {
-        // 取得失敗時はSSR済みDOMを対象に動作継続（60件フォールバック）
-        allArticles = null;
+        // Keep previously loaded data, or the readable SSR cards on the first failure.
+        dataStatus = 'error';
         dataFailed = true;
         return null;
+      })
+      .finally(function () {
+        clearTimeout(timeout);
+        fetchPromise = null; // A failed request must not permanently block recovery.
+        syncOfflineNote();
+        scheduleRetry();
       });
+    syncOfflineNote();
     return fetchPromise;
   }
 
@@ -497,6 +583,7 @@
       matchedResultCount: Number(totalCountEl ? totalCountEl.textContent : 0) || 0,
       results: getVisibleResults(10),
       dataMode: allArticles ? 'all-data' : 'ssr-fallback',
+      dataStatus: dataStatus,
     };
   }
 

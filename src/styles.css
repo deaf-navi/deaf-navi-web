@@ -1157,6 +1157,19 @@ input, select {
   font-size: 0.9rem;
 }
 
+.news-retry {
+  margin-inline-start: var(--s-3);
+  min-height: 44px;
+  padding: var(--s-2) var(--s-3);
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--bg-raised);
+  border: 1px solid currentColor;
+  border-radius: var(--r-md);
+  cursor: pointer;
+}
+.news-retry:disabled { opacity: 0.65; cursor: default; }
+
 .empty {
   text-align: center;
   color: var(--text-tertiary);

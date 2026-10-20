@@ -64,17 +64,25 @@ async function networkFirst(request, fallbackUrl) {
   const cache = await caches.open(CACHE_NAME);
   try {
     const response = await fetch(request);
-    if (response.ok && !/no-store|private/i.test(response.headers.get('Cache-Control') || '')) cache.put(request, response.clone());
+    if (response.ok && !/no-store|private/i.test(response.headers.get('Cache-Control') || '')) await cache.put(request, response.clone()).catch(() => {});
     return response;
   } catch (err) {
     const cached = await cache.match(request, { ignoreSearch: request.mode === 'navigate' });
-    if (cached) return cached;
+    if (cached) return cachedFallback(cached);
     if (fallbackUrl) {
       const fallback = await cache.match(fallbackUrl);
-      if (fallback) return fallback;
+      if (fallback) return cachedFallback(fallback);
     }
     throw err;
   }
+}
+
+function cachedFallback(response) {
+  const headers = new Headers(response.headers);
+  headers.set('X-DeafNavi-Cache', 'fallback');
+  return new Response(response.body, {
+    status: response.status, statusText: response.statusText, headers,
+  });
 }
 
 async function cacheFirstWithRefresh(request) {
