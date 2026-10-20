@@ -18,8 +18,15 @@
     if (img && img.classList && img.classList.contains('card__thumbnail')) img.remove();
   }
   document.addEventListener('error', removeFailedThumbnail, true);
+  function removeEmptyThumbnail(event) {
+    var img = event.target;
+    // Some publishers return a 1-pixel image for deleted pictures instead of a load error.
+    if (img && img.classList && img.classList.contains('card__thumbnail')
+      && (img.naturalWidth <= 1 || img.naturalHeight <= 1)) img.remove();
+  }
+  document.addEventListener('load', removeEmptyThumbnail, true);
   document.querySelectorAll('img.card__thumbnail').forEach(function (img) {
-    if (img.complete && img.naturalWidth === 0) img.remove();
+    if (img.complete && (img.naturalWidth <= 1 || img.naturalHeight <= 1)) img.remove();
   });
   window.DeafNaviThumbnails = {
     append: function (container, value) {
@@ -41,6 +48,7 @@
       img.decoding = 'async';
       img.referrerPolicy = 'no-referrer';
       img.addEventListener('error', removeFailedThumbnail);
+      img.addEventListener('load', removeEmptyThumbnail);
       img.src = url.href;
       container.insertBefore(img, container.firstChild);
     },
