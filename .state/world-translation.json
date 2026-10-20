@@ -1,5 +1,347 @@
 {
   "version": 1,
-  "checkedAt": "2026-10-20T08:27:48.707Z",
-  "pending": []
+  "checkedAt": "2026-10-20T13:37:45.180Z",
+  "pending": [
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQOW5nMUZBRUJYampqQldRek1oM2hDaGd1QklsZTlCMDFMLThvcGx6bXNkUVdUempDU1RYVWZybVEzb0FZWkJRa2NLcW1DWkktZENnc2k0N2tjTTh3UE8tTjFpSUpyenMwY1RUM3k1RDNrOHJwT0s2bzZmbTNHNmRhNFZDSWFSV01hQWlJbTB6WlVtZE5yNTlMcHlLbG1Jdjg0bUsxWThzcEdpSWpQcWRnMThLd0wxa3d2SW9BT1pSR05Kd0RBMlA4VlhlREFSd0Fnb0k3WGExbjFJZ3AwZ3JVRVZIakhLTFNXMDBPazFOTnDSAfABQVVfeXFMUDluZzFGQUVCWGpqakJXUXpNaDNoQ2hndUJJbGU5QjAxTC04b3Bsem1zZFFXVHpqQ1NUWFVmcm1RM29BWVpCUWtjS3FtQ1pJLWRDZ3NpNDdrY004d1BPLU4xaUlKcnpzMGNUVDN5NUQzazhycE9LNm82Zm0zRzZkYTRWQ0lhUldNYUFpSW0welpVbWROcjU5THB5S2xtSXY4NG1LMVk4c3BHaUlqUHFkZzE4S3dMMWt3dklvQU9aUkdOSndEQTJQOFZYZURBUndBZ29JN1hhMW4xSWdwMGdyVUVWSGpIS0xTVzAwT2sxTk5w?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "'La Bola Negra', con subtítulos adaptados para sordos a partir del viernes en Burgos",
+        "originalSummary": "'La Bola Negra', con subtítulos adaptados para sordos a partir del viernes en Burgos",
+        "sourceName": "Cadena SER",
+        "sourceUrl": "https://cadenaser.com",
+        "publishedAt": "2026-10-20T07:05:45.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "culture",
+        "topicLabel": "文化・社会",
+        "curationScore": 22,
+        "curationSignals": [
+          "sordo",
+          "sordos",
+          "multilingual"
+        ],
+        "sourceDomain": "cadenaser.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOU1FFeEllU01yMXh6VVdBeWZwZjlpR09NNzBuTC1mQmNzOHh1b3NwUDM3TmZkakFBZ0JrbHMwWkpHSG0xakFtLTZ1blJIU0g5NHFyZ2Iwd3ZQbzZHblFRcU84VXFUeGZsMjNGakEyeDZYQUZSTEpUUTZyQjZJeG1JNVg1a2I4LU85NXYyS0V1TzdCbmtUaHkyel9sT2NrakRxTU9DVHB2NWNpaFE5QlM2bmxrdGJRbW9vaEN1NUxHWC00VkRZRndjTFpOdkdjMnlJNll4ZUNPRmQwZ0NVb0YxVlNn?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Numéro d'urgence pour les sourds et les malentendants, le 114 reste encore \"trop méconnu\"",
+        "originalSummary": "Numéro d'urgence pour les sourds et les malentendants, le 114 reste encore \"trop méconnu\"",
+        "sourceName": "Infirmiers.com",
+        "sourceUrl": "http://www.infirmiers.com",
+        "publishedAt": "2026-10-15T10:54:24.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "general",
+        "topicLabel": "一般",
+        "curationScore": 18,
+        "curationSignals": [
+          "sourd",
+          "sourds",
+          "multilingual"
+        ],
+        "sourceDomain": "infirmiers.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPVS1PbTF6LUhpcm1DbW1KQWhRc09Xa1I3VzdmekpjU3NmTldlbEVLMk13UGNDbTB1SVVIcWF1ZVI5c0JPNUdQNUJCdExSZXVJclVuSVYwMThOY3AxSVU2WnZQaFNoNFZ5T3JkYVgtYmEtZ3hMZkFUYW5Fa0hFRkR1Q2taT3NTTUZnNFdhNzNJNHlZXzlJbkpyZFhnSDZkdXlEWnBQNm9fcy1MUWZyMHVJZtIBtgFBVV95cUxPWkFDTXlqc1BGM0pBYUxHU3lVVFR3ckMyOGwzdUFiLWNUd3VKSGItYXM3a1Rpd0N5NUVKSzBacmVtaUpKN3ktNkNXb1lvR0ZDNmpfS0VHZHdxeFE0djFZWkVRWGhGek51emNBS1BhMHBwTXVRMG1xYnZUNk9lTzFJZ1lZNnIyVWxzZGpNcDlEamVjOW5DMm01TS1MYUx0VE91bnhWdGxnM3dVWVRkMkZBZnhMNHFBQQ?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Sordità, all'istituto Smaldone di Lecce la giornata di sensibilizzazione mettiamoci in ascolto",
+        "originalSummary": "Sordità, all'istituto Smaldone di Lecce la giornata di sensibilizzazione mettiamoci in ascolto",
+        "sourceName": "Quotidiano Di Puglia",
+        "sourceUrl": "https://www.quotidianodipuglia.it",
+        "publishedAt": "2026-10-01T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "general",
+        "topicLabel": "一般",
+        "curationScore": 18,
+        "curationSignals": [
+          "sordi",
+          "sordità",
+          "multilingual"
+        ],
+        "sourceDomain": "quotidianodipuglia.it",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNZlpGaVV1NnA2ZHg4YUJjUjZ2X2hOT3VqS3hjMGJzZUFkdjhWUjM3ckhrSDNXVWRuc0h4aklxelRlblVWWE9XaUFLSGp6RXNMRk5uS24yU1l5amc1ZEx2OGhvMW1ZZ1NDbzFOTzIydi1aa2VkelQzYlFkMW02bC1uWEFPYzRPRFF3RTAxTG5PeDJLOGZXOEN3MjU5RnMzYzQ?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Journée Mondiale des Sourds - AISSEA",
+        "originalSummary": "Journée Mondiale des Sourds - AISSEA",
+        "sourceName": "Aulnay-sous-bois.fr",
+        "sourceUrl": "https://www.aulnay-sous-bois.fr",
+        "publishedAt": "2026-09-26T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "general",
+        "topicLabel": "一般",
+        "curationScore": 20,
+        "curationSignals": [
+          "sourd",
+          "sourds",
+          "multilingual"
+        ],
+        "sourceDomain": "aulnay-sous-bois.fr",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNZ2ZVLWFuNHB1bkR3MkltUGhjMEs3bDNwYldaTnFpdDBYQzA5UldCeUtPbG5SdXdETHphVWtfLW1GekRjSHVqak5SdW5nMXZFSElpSkV4UFJKV2REYkZoQWZnYUI1M1h2TW41b0JUNjZjcVRHMHlTZU9nc3hJdC1FaTBkX2k5V081VjVKQ2hMYjJzaDVCRENRUnJUb1UwRENWN21ZT2NqbmZBRXlwdmZRelhXNk9Iem9hMlFTMkd5b29rMkVfNWtGQjFFRExVNm5uNmfSAdcBQVVfeXFMUHNGSjFSZ2x0ZWFwaHB0MVg4dVljRGkwN3l3Z2ROVXU0al9BOWJaT21xQmY2OTRfTzg1QU93LXVHaGFsSXJxXy1mU0pkWXlDdjRLR3VUUFlUdUF0U1F6TmJKeGFFRWExN2M2YmFiOE04MWZEd2RGZmtxMHN1alk0MWlmejBtTnFCNV91YllVTnZ4OFFTU1dWRnNZQUw4WG1LQy1DSnhqemhSSU13czdkaXYyRWZfRERNQ2g4dXVNWG5WdEh6cUt3XzhkMnQ3cl9CLTRET29TZDQ?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "FDA clears hearing aid feature on Samsung Galaxy Buds",
+        "originalSummary": "FDA clears hearing aid feature on Samsung Galaxy Buds",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2026-08-12T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 23,
+        "curationSignals": [
+          "hearing aid",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5rb3dWUUMtWDFxTlFWbURBVlVEZGxIVHh2eFktNURHVS1mVTVnTnpXeWNfZEZRSDVMU3lFaDkwYm9admJMdEF4ZmR5ZWVFSDhxWU91c3RQQVNCcXM?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Nigeria Produces Africa's First Sign Language Bible",
+        "originalSummary": "Nigeria Produces Africa's First Sign Language Bible",
+        "sourceName": "allAfrica.com",
+        "sourceUrl": "https://allafrica.com",
+        "publishedAt": "2026-01-26T08:00:00.000Z",
+        "region": "middle_east_africa",
+        "regionLabel": "中東・アフリカ",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "major-media"
+        ],
+        "sourceDomain": "allafrica.com",
+        "sourcePriority": 78,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPSVg3ZkRwTk9vZUg1LUFSUGZFbS1fU3BWZUNCRXdTVC16bmFJVUE0cFA3dTRSa3E4R3M0VXNEWWpvaGlGQ19SbXVmN1h6aXctQVhCYkptSWlxcm14bDA0UGNqdjRUNkU2OW1UdlhEbjNYMTE0UUdNVU5NbFZFZGg5RWhGWEhuR1RGcEFuOE9UUlFyLVpIUXc?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Hearing loss, vertigo, tinnitus: How to protect your ears",
+        "originalSummary": "Hearing loss, vertigo, tinnitus: How to protect your ears",
+        "sourceName": "DW.com",
+        "sourceUrl": "https://www.dw.com",
+        "publishedAt": "2025-10-31T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 20,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "dw.com",
+        "sourcePriority": 88,
+        "sourceMode": "major-media-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE15d3NhVWctZnFQM0FJcmhnblNYRndBXy1NUDBjWkxVM29acE4teThpLTNPMVI4NU9pZ2NpN25ONnV6RmpQNXJaWWtnV1ZzemUzQzFEUXU1NWRXWDZU?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Deaf school unveils 'joy of sign language' artwork",
+        "originalSummary": "Deaf school unveils 'joy of sign language' artwork",
+        "sourceName": "BBC",
+        "sourceUrl": "https://www.bbc.co.uk",
+        "publishedAt": "2025-09-25T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "education",
+        "topicLabel": "教育",
+        "curationScore": 24,
+        "curationSignals": [
+          "deaf school",
+          "sign language",
+          "multilingual"
+        ],
+        "sourceDomain": "bbc.co.uk",
+        "sourcePriority": 50,
+        "sourceMode": "regional-multilingual",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBMdkIyMVNPWGh0OEw3dExScXluN0pOOS1hTEZ0YkRTVUlyQUFTRHUzcjBTU0NmUGFOeWs5Mi1VeTRkdHBDanZ6NmlDUzRyQkpIWFR5OFQ4aU43NTlz?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Multi-year Accessibility Plan 2025-2027",
+        "originalSummary": "Multi-year Accessibility Plan 2025-2027",
+        "sourceName": "Euronews.com",
+        "sourceUrl": "https://www.euronews.com",
+        "publishedAt": "2025-06-25T13:56:58.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 20,
+        "curationSignals": [
+          "accessibility",
+          "major-media"
+        ],
+        "sourceDomain": "euronews.com",
+        "sourcePriority": 86,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNdWJhVHlHa002TkgyQ1E5Q3VaOWVuaW04U0hkQ2otdU94OHBNZ2Y0M21NM3NLbzNPUUhraXY3YUU3VjExeGgtZFFzX0tTUTh3dEhNOEhxNEt5Q1dfV0U2N3h3UXlOTnc2UFVtU3ZzNjA5cTlKWkNFQ3hNeTRsU18zYkVkUGhoN29LZzZfTFhXTkVJX1Vvd1FV0gGXAUFVX3lxTE5HcGM4R0FLZHZBZ0FvRHBvUmxKQmtoTXF6MGdHbllqWVFtU0Y2MnpBdmVVcTltOWc1ajR1S25nU2lOVHBMbmZqRlhzM012cVlLQl9MaWMzUWVNZG9UVVYxOXdJMXJBenBsRTl3MnVYSjEzcS05M0F0ZVlUQnFhWDZuUFRBSGw4cUNGSUZaOFZvbWtxZjBwRWc?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Kosovo: Children with hearing impairments struggle at school",
+        "originalSummary": "Kosovo: Children with hearing impairments struggle at school",
+        "sourceName": "DW.com",
+        "sourceUrl": "https://www.dw.com",
+        "publishedAt": "2025-05-15T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "education",
+        "topicLabel": "教育",
+        "curationScore": 25,
+        "curationSignals": [
+          "hearing impairment",
+          "major-media"
+        ],
+        "sourceDomain": "dw.com",
+        "sourcePriority": 88,
+        "sourceMode": "major-media-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTDZpZEo4UzFRbzFkNjVlWUVmMkhiQk5FUUFtbDF3N2JPMGp2NmwtU0ZhVlpFM05PNW5vRzgzb25nZ3ZPbWIzcF9fUy03M1VGZjZ4cF9HSmZQRDFURWlPalI3U08ySUZZOFFyWV9sa0tWaVBoTFlOd0JyTGtYUDRMSXMzd1l4engxWkthTXdhVnIwampvdFN0bVFjWjl0NG5OdE5TMkNKazB0QXM5WWlrRWxTOUlfekdXMDJIaXpDVHBMUjNUdkNvTFpjeXVhX1pIS1dDby1LNkx6VTdFR043TG9qeHNxakIxZk5vbEhyT3PSAfYBQVVfeXFMTXZ4ajNZQVhGbWNnQnkxbUhLTklpc3NfNGtkVnMxd3o4VzZ0R2ZXYjQwWnVYb3NzcXVxdlFBZ05vam13TzRqSVFzMUZaU1pLb0Q0cHRWeWotVFhHNHVnenpyV0dCWHU1cDZvOE85cGJ1Qi12SWZxOE1WM0Y2NjRDckUwZHNVa083Y253anVfYVVfSHYyNjdVcm9zYmJjcmVpMHR6ZG1vbjRHWFMzR190ck1TVFgwLXo2LU1DcjBXTHZlTGFGVDVOX0pPb1BTSjlTc2trdC1yVmR2eGJ5c0J3amxLM3ladEF1MUZ3cVNwSU5BVVltYnNR?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Recognise Indian Sign Language as an official language, Cambridge study advises Indian government | India News",
+        "originalSummary": "Recognise Indian Sign Language as an official language, Cambridge study advises Indian government | India News",
+        "sourceName": "Hindustan Times",
+        "sourceUrl": "https://www.hindustantimes.com",
+        "publishedAt": "2025-03-17T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "rights",
+        "topicLabel": "権利・制度",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "major-media"
+        ],
+        "sourceDomain": "hindustantimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOcTFkQ3pWNUQ1RXBYakp0S3R5T2UtUlIyeUZvNWprNGJDSzZCNm9PMWl3TkprM3pObGJyY0ZmNjBtS1AyU3BudDQ1QWJ2QmFQOEg1dU9zbVV5ZVJHdDVxSHRvNFRNMXRZOV9RcEt6SS1uM2o1YTJUVFVqU1dlSm1lU2c2VmNKV0h3Ni01a0poOTd5Sjhtbkd6d3dVblJwUXlTbXFueHZWb0w3aVBXQXI0b3JsLUF0UDMyMnB0cllUbFgxVTc4bGc2RGZpc1ZwZldoVV95Zkh1RUrSAd4BQVVfeXFMTVBPTFQ1eWhGaFlId2dMclRfOUhULVZyZ2h4a0duZ1RVOG9QaDFBVU1VTl9TQmJpdXk2THlSdk9DUXQ5anBNMkl6VExnQ1cxelNadUhrSnF5Yk5QOVo1a1hPSzZPTVVwUTNVYTdSTV9MSWNnQXAzMlI1SlZDXzAybXRMa1VrMmJXanBWUENQU21qUlVwX3hxUlk2NTNpTGtPOGFfdmNXU2stQzM3R050MmtDaHFicWlCdGhSUEhEYmF2a29LSkI2V1NUQnE0TkJIZUxSYWozUVhYaG1FLUVn?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Extended earphone use puts 18-35 age group at risk of hearing loss",
+        "originalSummary": "Extended earphone use puts 18-35 age group at risk of hearing loss",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2025-03-03T08:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 20,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-20T13:37:45.174Z",
+      "lastAttemptAt": "2026-10-20T13:37:45.174Z",
+      "attempts": 1
+    }
+  ]
 }
