@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-20T07:25:13.199Z",
+  "generatedAt": "2026-10-20T07:59:50.531Z",
   "counts": {
-    "uniqueInputs": 3271,
-    "alreadyPublished": 1054,
-    "outsideWindow": 1778,
+    "uniqueInputs": 3254,
+    "alreadyPublished": 1057,
+    "outsideWindow": 1764,
     "hardExcluded": 17,
     "duplicateOfPublished": 151,
     "candidateDuplicates": 9,
-    "eligible": 262,
+    "eligible": 256,
     "queued": 40,
-    "deferred": 222
+    "deferred": 216
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
@@ -19,12 +19,12 @@
     "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-20T00:31:16.246Z",
+    "previousGeneratedAt": "2026-10-20T07:25:13.199Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -425,7 +425,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     }
   ]
 }
