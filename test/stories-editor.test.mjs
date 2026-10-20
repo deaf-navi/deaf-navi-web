@@ -23,7 +23,7 @@ function editor({stored=null,revision='1',storageBlocked=false}={}){
   const storage=new Map(stored?[[form.dataset.storageKey,JSON.stringify(stored)]]:[]),timers=new Map();let next=0,redirect=null,failSave=false;
   const context={document:{querySelector:()=>form,createElement:()=>new Element()},window:{addEventListener(){}},localStorage:{getItem:k=>{if(storageBlocked)throw Error('blocked');return storage.get(k);},setItem:(k,v)=>{if(storageBlocked)throw Error('blocked');storage.set(k,v);},removeItem:k=>storage.delete(k)},location:{assign:v=>{redirect=v;}},
     FormData:class{constructor(f){this.values=f?new Map(Object.entries(f.elements).map(([k,v])=>[k,v.value])):new Map();}set(k,v){this.values.set(k,v);}},
-    fetch:async(url,options)=>{const action=options.body.values.get('action');if(failSave&&action!=='preview'&&action!=='slug')return {ok:false,text:async()=>'<p>競合</p>'};return {ok:true,json:async()=>action==='slug'?{used:true}:action==='preview'?{html:'<p>安全なプレビュー</p>',invalid_links:['非公開 (/stories/draft/)']}:{redirect:'/admin/?view=stories&mode=edit&id=fixture'}};},
+    fetch:async(url,options)=>{const action=options.body.values.get('action');if(failSave&&action!=='preview'&&action!=='slug')return {ok:false,text:async()=>'<p>競合</p>'};return {ok:true,json:async()=>action==='slug'?{used:true}:action==='preview'?{character_count:1234,html:'<p>安全なプレビュー</p>',invalid_links:['非公開 (/stories/draft/)']}:{redirect:'/admin/?view=stories&mode=edit&id=fixture'}};},
     DOMParser:class{parseFromString(){return {querySelector:()=>({textContent:'別の保存が先に行われました。'})};}},
     setTimeout:fn=>{const id=++next;timers.set(id,fn);return id;},clearTimeout:id=>timers.delete(id),console};
   vm.runInNewContext(source,context);
@@ -50,3 +50,7 @@ test('storage unavailable does not prevent editing or saving',async()=>{
   const e=editor({storageBlocked:true});await e.input('title','変更');await e.flush();assert.match(e.control('[data-storage-status]').textContent,/退避できません/);await e.form.fire('submit',{preventDefault(){}});assert.ok(e.redirect);
 });
 test('slug preflight displays server conflict',async()=>{const e=editor();await e.input('slug','used');await e.flush();assert.match(e.control('[data-slug-status]').textContent,/使用済み/);});
+
+test('reading count updates from the same server renderer and stays separate from input limit',async()=>{
+  const e=editor();await e.input('body','**本文**');assert.match(e.control('[data-reading-count]').textContent,/計算中/);await e.flush();assert.equal(e.control('[data-reading-count]').textContent,'本文 1,234文字');assert.match(e.control('[data-count="body"]').textContent,/6 \/ 50000/);
+});

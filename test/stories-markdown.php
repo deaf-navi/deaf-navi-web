@@ -23,3 +23,7 @@ check(story_inline('`**文字**` ~~以前~~')==='<code>**文字**</code> <del>�
 check(str_contains(story_markdown("#### 小見出し")['html'],'<h4'),'small headings');
 check(str_contains(story_markdown("| 列 |\n| --- |\n| 値 |")['html'],'<table>'),'single column');
 echo "Markdown checks passed\n";
+check(story_character_count("## 見出し\n\n**本文** [案内](https://example.com/)\n\n| 列 |\n| --- |\n| 値 |")===9,'count visible heading, link label and table without markup');
+check(story_character_count('![長い代替テキスト](/stories/media/'.str_repeat('a',32).'.webp "説明")')===2,'count caption but not image alt or URL');
+check(story_character_count("𠮷 あ　\n\t<>&")===5,'count Unicode code points and literal HTML once, excluding whitespace');
+check(story_character_count('')===0,'empty count');

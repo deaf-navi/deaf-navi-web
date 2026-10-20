@@ -21,7 +21,7 @@ function stories_dispatch(string $path):bool {
         if($action==='bulk_review'){echo stories_bulk_review($_POST,$u);return true;}
         if($action==='bulk_apply'){stories_bulk_apply($_POST,(string)$u['id']);$_SESSION['flash']='選んだ記事の状態を保存しました。';header('Location: /admin/?view=stories',true,303);return true;}
         if($action==='slug'){header('Content-Type: application/json');echo json(['used'=>story_slug_used(story_input($_POST,'slug',100),input($_POST,'id',64))]);return true;}
-        if($action==='preview'){header('Content-Type: application/json');echo json(['invalid_links'=>story_invalid_links(story_input($_POST,'body',50000)),'html'=>story_link_warning(story_input($_POST,'body',50000)).story_markdown(story_input($_POST,'body',50000))['html']]);return true;}
+        if($action==='preview'){header('Content-Type: application/json');echo json(['character_count'=>story_character_count(story_input($_POST,'body',50000)),'invalid_links'=>story_invalid_links(story_input($_POST,'body',50000)),'html'=>story_link_warning(story_input($_POST,'body',50000)).story_markdown(story_input($_POST,'body',50000))['html']]);return true;}
         if($action==='upload'){header('Content-Type: application/json');echo json(stories_upload());return true;}
         if($action==='category'){
             $id=input($_POST,'category_id',64);$name=input($_POST,'category_name',100);if(!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$id)||!$name)fail('カテゴリIDと表示名を確認してください。');
