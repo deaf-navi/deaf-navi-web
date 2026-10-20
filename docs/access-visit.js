@@ -43,9 +43,10 @@
       || /\/(404|offline)\.html$/.test(location.pathname)) return;
   const headers = {'Content-Type': 'application/json'};
   if (marker) headers['X-DeafNavi-Client'] = marker;
+  // Drain even an empty 204 response: Chromium otherwise reports ERR_ABORTED.
   fetch('/_access/visit', {
     method: 'POST', credentials: 'omit', cache: 'no-store', referrerPolicy: 'no-referrer',
     keepalive: true, headers,
     body: JSON.stringify({path: location.pathname, automated: navigator.webdriver === true}),
-  }).catch(() => {});
+  }).then(response => response.text()).catch(() => {});
 })();
