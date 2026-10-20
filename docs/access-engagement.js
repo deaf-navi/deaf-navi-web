@@ -10,7 +10,8 @@
   const send = (event, key = event) => {
     if (sent.has(key)) return;
     sent.add(key);
-    fetch('/_access/visit?kind=engagement', {method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store',keepalive:true,body:JSON.stringify({source,event})}).catch(() => {});
+    // Consume the response without storing it or retrying the counted event.
+    fetch('/_access/visit?kind=engagement', {method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store',keepalive:true,body:JSON.stringify({source,event})}).then(response => response.text()).catch(() => {});
   };
   const related = document.querySelector('[data-cafe-related]');
   if (related && 'IntersectionObserver' in window) {

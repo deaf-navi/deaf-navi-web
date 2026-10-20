@@ -135,11 +135,8 @@
       "verifiedAt": "2026-10-20T14:16:39.484Z",
       "evidenceHash": "16505424a4bdda15e774e67de259f1ab4a00149ecb25515d7c52b255255feb21",
       "verification": "verified",
-      "thumbnail": {
-        "url": "https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tkLlt0Q27lpkOLHTB_k5VZb15Rx7l4zcm3QMYS4OqzZPTsSgIxVK_MfexpjeO16NzaP4G3n0ZAdb7EHyAS-wb9tJTb0x97_15GLnqP1GVA7mNSp5xL5_zaeMgtqSQ9Ns_K9ASTcCBh-Uug6GaDPEr33BTyVHnSDzxlqULAnwP8deJpeXisdkiRgiTP=w16383",
-        "source": "og:image",
-        "pageUrl": "https://www.shizudeaf.com/"
-      }
+      "thumbnailPolicy": "omit",
+      "thumbnailReviewNote": "2026-10-20: 公式サイトのGoogle Sites OGPは取得ごとにURLが変わり、保存済みURLはHEAD/GETとも403（HTML応答）。同じ画像を使う2開催回は文字サムネで表示し、無効なURLを再掲載しない。開催情報の確認日時は変更しない。"
     },
     {
       "id": "kaat-jungle-captions-2026-10-25",
@@ -926,11 +923,8 @@
       "verifiedAt": "2026-10-20T14:16:39.484Z",
       "evidenceHash": "16505424a4bdda15e774e67de259f1ab4a00149ecb25515d7c52b255255feb21",
       "verification": "verified",
-      "thumbnail": {
-        "url": "https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tkLlt0Q27lpkOLHTB_k5VZb15Rx7l4zcm3QMYS4OqzZPTsSgIxVK_MfexpjeO16NzaP4G3n0ZAdb7EHyAS-wb9tJTb0x97_15GLnqP1GVA7mNSp5xL5_zaeMgtqSQ9Ns_K9ASTcCBh-Uug6GaDPEr33BTyVHnSDzxlqULAnwP8deJpeXisdkiRgiTP=w16383",
-        "source": "og:image",
-        "pageUrl": "https://www.shizudeaf.com/"
-      }
+      "thumbnailPolicy": "omit",
+      "thumbnailReviewNote": "2026-10-20: 公式サイトのGoogle Sites OGPは取得ごとにURLが変わり、保存済みURLはHEAD/GETとも403（HTML応答）。同じ画像を使う2開催回は文字サムネで表示し、無効なURLを再掲載しない。開催情報の確認日時は変更しない。"
     },
     {
       "id": "tonancyo-shimenawa-2026-11-20",
