@@ -4,8 +4,8 @@
   "title": "Deaf Navi World Multilingual",
   "variant": "world",
   "mode": "multilingual",
-  "generatedAt": "2026-10-20T14:18:22Z",
-  "sourceGeneratedAt": "2026-10-20T14:18:22Z",
+  "generatedAt": "2026-10-20T14:58:02Z",
+  "sourceGeneratedAt": "2026-10-20T14:58:02Z",
   "count": 600,
   "language": "ja-JP",
   "refresh": {
@@ -27,11 +27,11 @@
     "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 21,
+      "checked": 40,
       "updated": 0,
-      "cached": 477,
+      "cached": 470,
       "skipped": 0,
-      "failed": 21,
+      "failed": 40,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
@@ -43,8 +43,8 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 21,
-      "retainedPrevious": 18
+      "pending": 40,
+      "retainedPrevious": 32
     },
     "basePolicy": "World-JP uses Google translation and its cache first, then Deaf Navi glossary normalization and optional dedicated text-service assistance for missing translations."
   },
@@ -135,8 +135,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3785,
-    "dedupedCount": 2307,
+    "rawCount": 3766,
+    "dedupedCount": 2276,
     "selectedCount": 600,
     "minScore": 8,
     "maxArticles": 600,
@@ -160,11 +160,11 @@
     "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 21,
+      "checked": 40,
       "updated": 0,
-      "cached": 477,
+      "cached": 470,
       "skipped": 0,
-      "failed": 21,
+      "failed": 40,
       "enabled": true,
       "attemptsPerBatch": 2,
       "splitBatchSize": 10,
@@ -176,8 +176,8 @@
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 21,
-      "retainedPrevious": 18
+      "pending": 40,
+      "retainedPrevious": 32
     }
   },
   "counts": {
@@ -316,7 +316,7 @@
       "sourceURL": "https://www.theglobeandmail.com",
       "sourceUrl": "https://www.theglobeandmail.com",
       "sourceDomain": "theglobeandmail.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -718,7 +718,7 @@
       "sourceURL": "https://www.moroccoworldnews.com",
       "sourceUrl": "https://www.moroccoworldnews.com",
       "sourceDomain": "moroccoworldnews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 70,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -1399,7 +1399,7 @@
       "sourceURL": "https://www.scmp.com",
       "sourceUrl": "https://www.scmp.com",
       "sourceDomain": "scmp.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 80,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -1660,50 +1660,6 @@
           "title": "Sordità. A Piacenza impiantato un orecchio bionico invisibile, è la prima volta in Italia",
           "summary": "Sordità. A Piacenza impiantato un orecchio bionico invisibile, è la prima volta in Italia",
           "language": "fr"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNeEJoSHFjXzRJMzBtMGhaQkNWWmp0Sk04VFozVFBUSC1tMnhfR1phejBwQ19QTm9PWTZ5UEdiR3dpQndmZHRWb3h4RmVSRkxiWTZMQm9STTVxdTR6dmR0NzZvZFZLLXI0elpHNmRUTjZ6S3dsT2dIRy12OFZBbUFWRGUtQUFMbDlhUFI5Rm5ZTHhzOVVKOXlVckxHWDBhblFUNUJSWlB3MS1NU2RFZkp1dzl3SFg2MGR3MDJIX0NZZnRBNWln?oc=5",
-      "stableId": "world_2694e1ff1cdd3517fca9",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNeEJoSHFjXzRJMzBtMGhaQkNWWmp0Sk04VFozVFBUSC1tMnhfR1phejBwQ19QTm9PWTZ5UEdiR3dpQndmZHRWb3h4RmVSRkxiWTZMQm9STTVxdTR6dmR0NzZvZFZLLXI0elpHNmRUTjZ6S3dsT2dIRy12OFZBbUFWRGUtQUFMbDlhUFI5Rm5ZTHhzOVVKOXlVckxHWDBhblFUNUJSWlB3MS1NU2RFZkp1dzl3SFg2MGR3MDJIX0NZZnRBNWln?oc=5",
-      "publishedAt": "2026-10-13T14:52:29Z",
-      "sourceName": "CTV News",
-      "sourceURL": "https://www.ctvnews.ca",
-      "sourceUrl": "https://www.ctvnews.ca",
-      "sourceDomain": "ctvnews.ca",
-      "sourceMode": "major-media-fresh",
-      "sourcePriority": 82,
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "education",
-      "topicLabel": "教育",
-      "legacyCategory": "education",
-      "curationScore": 23,
-      "curationSignals": [
-        "deaf student",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
-      "summary": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
-          "summary": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Schools for blind and deaf students closed after pipe burst causing flooding",
-          "summary": "Schools for blind and deaf students closed after pipe burst causing flooding",
-          "language": "en"
         }
       }
     },
@@ -2121,6 +2077,50 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNeEJoSHFjXzRJMzBtMGhaQkNWWmp0Sk04VFozVFBUSC1tMnhfR1phejBwQ19QTm9PWTZ5UEdiR3dpQndmZHRWb3h4RmVSRkxiWTZMQm9STTVxdTR6dmR0NzZvZFZLLXI0elpHNmRUTjZ6S3dsT2dIRy12OFZBbUFWRGUtQUFMbDlhUFI5Rm5ZTHhzOVVKOXlVckxHWDBhblFUNUJSWlB3MS1NU2RFZkp1dzl3SFg2MGR3MDJIX0NZZnRBNWln?oc=5",
+      "stableId": "world_2694e1ff1cdd3517fca9",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNeEJoSHFjXzRJMzBtMGhaQkNWWmp0Sk04VFozVFBUSC1tMnhfR1phejBwQ19QTm9PWTZ5UEdiR3dpQndmZHRWb3h4RmVSRkxiWTZMQm9STTVxdTR6dmR0NzZvZFZLLXI0elpHNmRUTjZ6S3dsT2dIRy12OFZBbUFWRGUtQUFMbDlhUFI5Rm5ZTHhzOVVKOXlVckxHWDBhblFUNUJSWlB3MS1NU2RFZkp1dzl3SFg2MGR3MDJIX0NZZnRBNWln?oc=5",
+      "publishedAt": "2026-10-13T14:52:29Z",
+      "sourceName": "CTV News",
+      "sourceURL": "https://www.ctvnews.ca",
+      "sourceUrl": "https://www.ctvnews.ca",
+      "sourceDomain": "ctvnews.ca",
+      "sourceMode": "major-media-fresh",
+      "sourcePriority": 82,
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "education",
+      "topicLabel": "教育",
+      "legacyCategory": "education",
+      "curationScore": 23,
+      "curationSignals": [
+        "deaf student",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
+      "summary": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
+          "summary": "水道管破裂で浸水、視覚障害者のための学校が閉鎖",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEdited": false,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Schools for blind and deaf students closed after pipe burst causing flooding",
+          "summary": "Schools for blind and deaf students closed after pipe burst causing flooding",
+          "language": "en"
+        }
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9FTzlMRko1M19iSEZZaXNUd1dZRTlLdE1neDJSd09HMkQyemRvUFFqQ3JHYTFERWx4ZjdnU3dGdkl1SVpJbHRMYzdWV3d1dGhjd1E?oc=5",
       "stableId": "world_0357a1068d3180707f14",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9FTzlMRko1M19iSEZZaXNUd1dZRTlLdE1neDJSd09HMkQyemRvUFFqQ3JHYTFERWx4ZjdnU3dGdkl1SVpJbHRMYzdWV3d1dGhjd1E?oc=5",
@@ -2255,51 +2255,6 @@
           "title": "لتعزيز التواصل مع الصم وضعاف السمع .. «الأوقاف» تطوّر قدرات 26 موظفاً في لغة الإشارة",
           "summary": "لتعزيز التواصل مع الصم وضعاف السمع .. «الأوقاف» تطوّر قدرات 26 موظفاً في لغة الإشارة",
           "language": "ar"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMlpUbkR4d0hRbkM2RDZHaTlyUXNMOHh6cE9QN014OEtlSFd1MDNxbWR1SWk5a3AtUWl0MHVPbVA3VmFUY0xpTFRBQlQyTjdpOEVJU1djNWhUWGtweFJPbl9lOTc4T2J0N3Y4a3RkYlJYSXJGTjJZV0dDbnVUZVQ3TGo3UkNjSE4zYkVuUW1JVFdoVG5PcGVlbGNNNmZvZ3VqcVo3MmhDWmRtN19OQzctWkVBZlpnUQ?oc=5",
-      "stableId": "world_14bd549235089e8c8e45",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMlpUbkR4d0hRbkM2RDZHaTlyUXNMOHh6cE9QN014OEtlSFd1MDNxbWR1SWk5a3AtUWl0MHVPbVA3VmFUY0xpTFRBQlQyTjdpOEVJU1djNWhUWGtweFJPbl9lOTc4T2J0N3Y4a3RkYlJYSXJGTjJZV0dDbnVUZVQ3TGo3UkNjSE4zYkVuUW1JVFdoVG5PcGVlbGNNNmZvZ3VqcVo3MmhDWmRtN19OQzctWkVBZlpnUQ?oc=5",
-      "publishedAt": "2026-10-10T07:00:00Z",
-      "sourceName": "Portal PUC-Campinas",
-      "sourceURL": "https://www.puc-campinas.edu.br",
-      "sourceUrl": "https://www.puc-campinas.edu.br",
-      "sourceDomain": "puc-campinas.edu.br",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 16,
-      "curationSignals": [
-        "libras",
-        "multilingual"
-      ],
-      "originalLanguage": "pt",
-      "title": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
-      "summary": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
-          "summary": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Oficina de Jogos Digitais em Libras promove inclusão e aprendizado",
-          "summary": "Oficina de Jogos Digitais em Libras promove inclusão e aprendizado",
-          "language": "pt"
         }
       }
     },
@@ -2442,36 +2397,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPZVhTNkROZmNkV0Q2RXJIbVBObl95MFd1aEQ1SmRqMTV6b091cmd6QXVYTWFzeFE1QmtkOU5wSFJfb3hDX09mSDQ3RmlaUW1LaUVubFM2ZFJxX3dwRlRrOGRDMkhCTnFRUkRrcWMzOVEzRjBvRmpBMHZmalZ6SmUweGlGSkViSVJ4bDhQLUtOamUxcWhaSmF5aGdla3VPc3l4U195b0NDd9IBrwFBVV95cUxNZGNZSEVuWlhfRzVONzU2MmlQc0JMazBvZ0tidzdXdFllX2ttWXY2dEVHV0NLbGdsQ0cwRTJ5OXhidmcyTWFDZ0tQbVRJYWpZTlZpWnlrVDlGYk9iRENOV0lHcUNlTUM1MWZjRHhlYTJIUTZMQzQ3Nm1XSVlNZUdvYUJhcUp3T3oydmx4eUwwd0lGaGg1VjJsSDJYRjM4VTMxcFRSMURlU1J4Q0JlMEFz?oc=5",
-      "stableId": "world_c72d05a69482333f4861",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPZVhTNkROZmNkV0Q2RXJIbVBObl95MFd1aEQ1SmRqMTV6b091cmd6QXVYTWFzeFE1QmtkOU5wSFJfb3hDX09mSDQ3RmlaUW1LaUVubFM2ZFJxX3dwRlRrOGRDMkhCTnFRUkRrcWMzOVEzRjBvRmpBMHZmalZ6SmUweGlGSkViSVJ4bDhQLUtOamUxcWhaSmF5aGdla3VPc3l4U195b0NDd9IBrwFBVV95cUxNZGNZSEVuWlhfRzVONzU2MmlQc0JMazBvZ0tidzdXdFllX2ttWXY2dEVHV0NLbGdsQ0cwRTJ5OXhidmcyTWFDZ0tQbVRJYWpZTlZpWnlrVDlGYk9iRENOV0lHcUNlTUM1MWZjRHhlYTJIUTZMQzQ3Nm1XSVlNZUdvYUJhcUp3T3oydmx4eUwwd0lGaGg1VjJsSDJYRjM4VTMxcFRSMURlU1J4Q0JlMEFz?oc=5",
-      "publishedAt": "2026-10-07T15:26:04Z",
-      "sourceName": "Diario Río Negro",
-      "sourceURL": "https://www.rionegro.com.ar",
-      "sourceUrl": "https://www.rionegro.com.ar",
-      "sourceDomain": "rionegro.com.ar",
+      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMlpUbkR4d0hRbkM2RDZHaTlyUXNMOHh6cE9QN014OEtlSFd1MDNxbWR1SWk5a3AtUWl0MHVPbVA3VmFUY0xpTFRBQlQyTjdpOEVJU1djNWhUWGtweFJPbl9lOTc4T2J0N3Y4a3RkYlJYSXJGTjJZV0dDbnVUZVQ3TGo3UkNjSE4zYkVuUW1JVFdoVG5PcGVlbGNNNmZvZ3VqcVo3MmhDWmRtN19OQzctWkVBZlpnUQ?oc=5",
+      "stableId": "world_14bd549235089e8c8e45",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMlpUbkR4d0hRbkM2RDZHaTlyUXNMOHh6cE9QN014OEtlSFd1MDNxbWR1SWk5a3AtUWl0MHVPbVA3VmFUY0xpTFRBQlQyTjdpOEVJU1djNWhUWGtweFJPbl9lOTc4T2J0N3Y4a3RkYlJYSXJGTjJZV0dDbnVUZVQ3TGo3UkNjSE4zYkVuUW1JVFdoVG5PcGVlbGNNNmZvZ3VqcVo3MmhDWmRtN19OQzctWkVBZlpnUQ?oc=5",
+      "publishedAt": "2026-10-10T07:00:00Z",
+      "sourceName": "Portal PUC-Campinas",
+      "sourceURL": "https://www.puc-campinas.edu.br",
+      "sourceUrl": "https://www.puc-campinas.edu.br",
+      "sourceDomain": "puc-campinas.edu.br",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "culture",
-      "topicLabel": "文化・社会",
-      "legacyCategory": "culture",
-      "curationScore": 22,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 16,
       "curationSignals": [
-        "sordo",
-        "sordos",
+        "libras",
         "multilingual"
       ],
       "originalLanguage": "pt",
-      "title": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
-      "summary": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
+      "title": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
+      "summary": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
-          "summary": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
+          "title": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
+          "summary": "ブラジル手話を用いたデジタルゲーム講座が、インクルージョンと学びを促進しています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -2481,8 +2435,8 @@
           }
         },
         "original": {
-          "title": "Viedma será sede de la muestra nacional de artistas sordos",
-          "summary": "Viedma será sede de la muestra nacional de artistas sordos",
+          "title": "Oficina de Jogos Digitais em Libras promove inclusão e aprendizado",
+          "summary": "Oficina de Jogos Digitais em Libras promove inclusão e aprendizado",
           "language": "pt"
         }
       }
@@ -2624,46 +2578,48 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BV1hHRTU4VlVmVXcyMWZ5NmR5ZTJ2My1TXzBhR09fM193elpoNE9lQ0ExVWpCcHFHVVh0TmJqeGFGRjJFWXVwVWt0anJlVXNRU21PVDZicGNINkNw?oc=5",
-      "stableId": "world_d3734ab4031ffaccf980",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BV1hHRTU4VlVmVXcyMWZ5NmR5ZTJ2My1TXzBhR09fM193elpoNE9lQ0ExVWpCcHFHVVh0TmJqeGFGRjJFWXVwVWt0anJlVXNRU21PVDZicGNINkNw?oc=5",
-      "publishedAt": "2026-10-06T17:34:49Z",
-      "sourceName": "Reuters",
-      "sourceURL": "https://www.reuters.com",
-      "sourceUrl": "https://www.reuters.com",
-      "sourceDomain": "reuters.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 98,
+      "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPZVhTNkROZmNkV0Q2RXJIbVBObl95MFd1aEQ1SmRqMTV6b091cmd6QXVYTWFzeFE1QmtkOU5wSFJfb3hDX09mSDQ3RmlaUW1LaUVubFM2ZFJxX3dwRlRrOGRDMkhCTnFRUkRrcWMzOVEzRjBvRmpBMHZmalZ6SmUweGlGSkViSVJ4bDhQLUtOamUxcWhaSmF5aGdla3VPc3l4U195b0NDd9IBrwFBVV95cUxNZGNZSEVuWlhfRzVONzU2MmlQc0JMazBvZ0tidzdXdFllX2ttWXY2dEVHV0NLbGdsQ0cwRTJ5OXhidmcyTWFDZ0tQbVRJYWpZTlZpWnlrVDlGYk9iRENOV0lHcUNlTUM1MWZjRHhlYTJIUTZMQzQ3Nm1XSVlNZUdvYUJhcUp3T3oydmx4eUwwd0lGaGg1VjJsSDJYRjM4VTMxcFRSMURlU1J4Q0JlMEFz?oc=5",
+      "stableId": "world_c72d05a69482333f4861",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPZVhTNkROZmNkV0Q2RXJIbVBObl95MFd1aEQ1SmRqMTV6b091cmd6QXVYTWFzeFE1QmtkOU5wSFJfb3hDX09mSDQ3RmlaUW1LaUVubFM2ZFJxX3dwRlRrOGRDMkhCTnFRUkRrcWMzOVEzRjBvRmpBMHZmalZ6SmUweGlGSkViSVJ4bDhQLUtOamUxcWhaSmF5aGdla3VPc3l4U195b0NDd9IBrwFBVV95cUxNZGNZSEVuWlhfRzVONzU2MmlQc0JMazBvZ0tidzdXdFllX2ttWXY2dEVHV0NLbGdsQ0cwRTJ5OXhidmcyTWFDZ0tQbVRJYWpZTlZpWnlrVDlGYk9iRENOV0lHcUNlTUM1MWZjRHhlYTJIUTZMQzQ3Nm1XSVlNZUdvYUJhcUp3T3oydmx4eUwwd0lGaGg1VjJsSDJYRjM4VTMxcFRSMURlU1J4Q0JlMEFz?oc=5",
+      "publishedAt": "2026-10-07T15:26:04Z",
+      "sourceName": "Diario Río Negro",
+      "sourceURL": "https://www.rionegro.com.ar",
+      "sourceUrl": "https://www.rionegro.com.ar",
+      "sourceDomain": "rionegro.com.ar",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 20,
+      "topic": "culture",
+      "topicLabel": "文化・社会",
+      "legacyCategory": "culture",
+      "curationScore": 22,
       "curationSignals": [
-        "hearing loss",
-        "major-media"
+        "sordo",
+        "sordos",
+        "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "ガザの難聴の女性たちがアニメーションを制作",
-      "summary": "ガザの難聴の女性たちがアニメーションを制作",
+      "originalLanguage": "pt",
+      "title": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
+      "summary": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ガザの難聴の女性たちがアニメーションを制作",
-          "summary": "ガザの難聴の女性たちがアニメーションを制作",
+          "title": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
+          "summary": "アルゼンチンのビエドマが、ろう芸術家による全国展覧会の開催地となる。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "Gaza women with hearing loss make animations",
-          "summary": "Gaza women with hearing loss make animations",
-          "language": "en"
+          "title": "Viedma será sede de la muestra nacional de artistas sordos",
+          "summary": "Viedma será sede de la muestra nacional de artistas sordos",
+          "language": "pt"
         }
       }
     },
@@ -2804,48 +2760,45 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
-      "stableId": "world_254ccb41eab6f301d3fe",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
-      "publishedAt": "2026-10-06T07:00:00Z",
-      "sourceName": "The Globe and Mail",
-      "sourceURL": "https://www.theglobeandmail.com",
-      "sourceUrl": "https://www.theglobeandmail.com",
-      "sourceDomain": "theglobeandmail.com",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 84,
+      "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BV1hHRTU4VlVmVXcyMWZ5NmR5ZTJ2My1TXzBhR09fM193elpoNE9lQ0ExVWpCcHFHVVh0TmJqeGFGRjJFWXVwVWt0anJlVXNRU21PVDZicGNINkNw?oc=5",
+      "stableId": "world_d3734ab4031ffaccf980",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BV1hHRTU4VlVmVXcyMWZ5NmR5ZTJ2My1TXzBhR09fM193elpoNE9lQ0ExVWpCcHFHVVh0TmJqeGFGRjJFWXVwVWt0anJlVXNRU21PVDZicGNINkNw?oc=5",
+      "publishedAt": "2026-10-06T17:34:49Z",
+      "sourceName": "Reuters",
+      "sourceURL": "https://www.reuters.com",
+      "sourceUrl": "https://www.reuters.com",
+      "sourceDomain": "reuters.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 98,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "technology",
-      "topicLabel": "技術・AI",
-      "legacyCategory": "general",
-      "curationScore": 32,
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 20,
       "curationSignals": [
-        "accessibility",
-        "hearing aid",
-        "major-media",
-        "multilingual"
+        "hearing loss",
+        "major-media"
       ],
       "originalLanguage": "en",
-      "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
-      "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+      "title": "ガザの難聴の女性たちがアニメーションを制作",
+      "summary": "ガザの難聴の女性たちがアニメーションを制作",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
-          "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+          "title": "ガザの難聴の女性たちがアニメーションを制作",
+          "summary": "ガザの難聴の女性たちがアニメーションを制作",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
+            "postEdited": false,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "As hearing aid technology improves, issues of accessibility and stigma persist",
-          "summary": "As hearing aid technology improves, issues of accessibility and stigma persist",
+          "title": "Gaza women with hearing loss make animations",
+          "summary": "Gaza women with hearing loss make animations",
           "language": "en"
         }
       }
@@ -2988,36 +2941,37 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
-      "stableId": "world_0103380c09a1ffdde7b6",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
+      "stableId": "world_254ccb41eab6f301d3fe",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNSVNmMkQ5VlNnZHQ0anlUSG55SkFKYmtmbmhid1dLRkY2czVrLUttdU5EVkdGZG90cnVsODVkVE1VNEQxRXBZWHdNZDAtckFsUGFNUTdnYUpiaE5pOTI3NHlTQlBYVktzQWpQVi1ENWQ1UE5Xb0J1d2xSSWh5dTY4XzZaS1FGSXZocEUzdVNtVlkzY3RubE1CU1dPbHdwTlZESG9Xa09BcGduNFZXd3VsaU0wSmI3dw?oc=5",
       "publishedAt": "2026-10-06T07:00:00Z",
-      "sourceName": "Pulzo",
-      "sourceURL": "https://www.pulzo.com",
-      "sourceUrl": "https://www.pulzo.com",
-      "sourceDomain": "pulzo.com",
+      "sourceName": "The Globe and Mail",
+      "sourceURL": "https://www.theglobeandmail.com",
+      "sourceUrl": "https://www.theglobeandmail.com",
+      "sourceDomain": "theglobeandmail.com",
       "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "general",
-      "topicLabel": "一般",
+      "topic": "technology",
+      "topicLabel": "技術・AI",
       "legacyCategory": "general",
-      "curationScore": 20,
+      "curationScore": 32,
       "curationSignals": [
-        "sordo",
-        "sordos",
+        "accessibility",
+        "hearing aid",
+        "major-media",
         "multilingual"
       ],
-      "originalLanguage": "pt",
-      "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
-      "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+      "originalLanguage": "en",
+      "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+      "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
-          "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+          "title": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
+          "summary": "補聴器の技術が向上する一方で、アクセシビリティや補聴器に対する偏見が依然として課題となっている。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3027,9 +2981,9 @@
           }
         },
         "original": {
-          "title": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
-          "summary": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
-          "language": "pt"
+          "title": "As hearing aid technology improves, issues of accessibility and stigma persist",
+          "summary": "As hearing aid technology improves, issues of accessibility and stigma persist",
+          "language": "en"
         }
       }
     },
@@ -3172,35 +3126,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHRuWFhhZVIxNXhLRW9qeGN1ZXZzdFNMRnliRG5LTXZVOUdrYTFXakpaamVGN2h1U3o2QlFYeWpoMFE5WmhtcUZMdUpUblZXNlF4cXZ6MlNaSkZLV0xVLU5rVW1XSW5TaTd2emZ1MUtLcUJWSk5sVzVZcGxXZjlnN1RoTTltUEdDNnJ0NkxVNmxVLTNoRURib1VCazg5VHI2LUZtOFd3?oc=5",
-      "stableId": "world_ebd4553e320d0c9eac98",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHRuWFhhZVIxNXhLRW9qeGN1ZXZzdFNMRnliRG5LTXZVOUdrYTFXakpaamVGN2h1U3o2QlFYeWpoMFE5WmhtcUZMdUpUblZXNlF4cXZ6MlNaSkZLV0xVLU5rVW1XSW5TaTd2emZ1MUtLcUJWSk5sVzVZcGxXZjlnN1RoTTltUEdDNnJ0NkxVNmxVLTNoRURib1VCazg5VHI2LUZtOFd3?oc=5",
-      "publishedAt": "2026-10-05T07:00:00Z",
-      "sourceName": "CBS News",
-      "sourceURL": "https://www.cbsnews.com",
-      "sourceUrl": "https://www.cbsnews.com",
-      "sourceDomain": "cbsnews.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 84,
+      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
+      "stableId": "world_0103380c09a1ffdde7b6",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQcDdlUDk4aUVSM2c5cEZqcEoyUWx5ZXdXOWpSVHhaLW5SZmdteEZNcnk2Ty1seW15M0V6ZlRDQUdFTlVIWEdocjJvTElmRzE5NEVrM2NFSEFFMjFNZTdhOTAtNVBCNlhaeFRDWEJiU2FucTBrS1QxMG42UFlMSEM4ZF9MSThMOG8wSzZtbHVDdVBfNHRXcG9vUVRZVi1qTVEzclBZYV9wQlRQUWZsVU1GT3hOZi1IbWxNVHNOWE1SYkhxdC1DcUZfOUM0ZmdlT0EzNUHSAdcBQVVfeXFMTVlMMnE3SzR2bWZJT2tnMnZ6b3k5RUhWUFNuckNIYm8tdHhveTI2T1daTlNpWDZoUXFMQU5rQTFCbEZmTGpOZVNEVXJKQkVsY3pEbDJDMjRPVm5pOUdjclJIcVJfYzNMNEdBU2NxZGdWaDN4bExNZzNtRkhwUk9mWkp1QmlHNFZseWtmNXh6dTdhRGhFelJDeE5Pbm1YclRXNkNKU09zWlR0bW1ia2tpR2RQVmJDY2lRV0l0TjNBb245cWZvZV8xZ3hZQnBzWEFaNHpKMHo1UE0?oc=5",
+      "publishedAt": "2026-10-06T07:00:00Z",
+      "sourceName": "Pulzo",
+      "sourceURL": "https://www.pulzo.com",
+      "sourceUrl": "https://www.pulzo.com",
+      "sourceDomain": "pulzo.com",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "culture",
-      "topicLabel": "文化・社会",
-      "legacyCategory": "culture",
-      "curationScore": 21,
+      "topic": "general",
+      "topicLabel": "一般",
+      "legacyCategory": "general",
+      "curationScore": 20,
       "curationSignals": [
-        "deaf community",
-        "major-media"
+        "sordo",
+        "sordos",
+        "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
-      "summary": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
+      "originalLanguage": "pt",
+      "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+      "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
-          "summary": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
+          "title": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
+          "summary": "8月の地震で損傷した盲児・ろう児支援施設で、修復に向けた作業が始まりました。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3210,9 +3165,9 @@
           }
         },
         "original": {
-          "title": "Sacramento theater hosts improv show for local deaf community",
-          "summary": "Sacramento theater hosts improv show for local deaf community",
-          "language": "en"
+          "title": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
+          "summary": "Inicia proceso de restauración en el Instituto para Niños Ciegos y Sordos tras daños del terremoto de agosto",
+          "language": "pt"
         }
       }
     },
@@ -3309,6 +3264,51 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHRuWFhhZVIxNXhLRW9qeGN1ZXZzdFNMRnliRG5LTXZVOUdrYTFXakpaamVGN2h1U3o2QlFYeWpoMFE5WmhtcUZMdUpUblZXNlF4cXZ6MlNaSkZLV0xVLU5rVW1XSW5TaTd2emZ1MUtLcUJWSk5sVzVZcGxXZjlnN1RoTTltUEdDNnJ0NkxVNmxVLTNoRURib1VCazg5VHI2LUZtOFd3?oc=5",
+      "stableId": "world_ebd4553e320d0c9eac98",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHRuWFhhZVIxNXhLRW9qeGN1ZXZzdFNMRnliRG5LTXZVOUdrYTFXakpaamVGN2h1U3o2QlFYeWpoMFE5WmhtcUZMdUpUblZXNlF4cXZ6MlNaSkZLV0xVLU5rVW1XSW5TaTd2emZ1MUtLcUJWSk5sVzVZcGxXZjlnN1RoTTltUEdDNnJ0NkxVNmxVLTNoRURib1VCazg5VHI2LUZtOFd3?oc=5",
+      "publishedAt": "2026-10-05T07:00:00Z",
+      "sourceName": "CBS News",
+      "sourceURL": "https://www.cbsnews.com",
+      "sourceUrl": "https://www.cbsnews.com",
+      "sourceDomain": "cbsnews.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 84,
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "culture",
+      "topicLabel": "文化・社会",
+      "legacyCategory": "culture",
+      "curationScore": 21,
+      "curationSignals": [
+        "deaf community",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
+      "summary": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
+          "summary": "サクラメントの劇場が、地域のろう者コミュニティーに向けた即興ショーを開催した。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Sacramento theater hosts improv show for local deaf community",
+          "summary": "Sacramento theater hosts improv show for local deaf community",
+          "language": "en"
+        }
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
       "stableId": "world_260bd0f1a35cfd7728bc",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
@@ -3354,57 +3354,10 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPa05RMzMwUFRNR1R5OG1kMGh6dXlPZWx2TWRGSG5JTkw4VWk2MGtMNU9nemY3elRlQjZoQ3JlMU9QZl9jY2JScDdsVWNFSjlCem1FY2VWSFVQZGJvUHRuVnNJQTc5Y0Y4amZ4NEo0RnJ1Tmg0bE9kV1RueENoNTI2Q1RhVUlsaG5NUmJNUWVReF84V2RjcjNzVFVPSnNqQk9uaHhfcWpMRGhva1lnX0d0NmVvLXNyS1ZiMS00?oc=5",
-      "stableId": "world_ba252f0f15d4e465c730",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPa05RMzMwUFRNR1R5OG1kMGh6dXlPZWx2TWRGSG5JTkw4VWk2MGtMNU9nemY3elRlQjZoQ3JlMU9QZl9jY2JScDdsVWNFSjlCem1FY2VWSFVQZGJvUHRuVnNJQTc5Y0Y4amZ4NEo0RnJ1Tmg0bE9kV1RueENoNTI2Q1RhVUlsaG5NUmJNUWVReF84V2RjcjNzVFVPSnNqQk9uaHhfcWpMRGhva1lnX0d0NmVvLXNyS1ZiMS00?oc=5",
-      "publishedAt": "2026-10-04T03:05:00Z",
-      "sourceName": "Ifronteira",
-      "sourceURL": "https://ifronteira.com",
-      "sourceUrl": "https://ifronteira.com",
-      "sourceDomain": "ifronteira.com",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 30,
-      "curationSignals": [
-        "surdo",
-        "deficiência auditiva",
-        "libras",
-        "multilingual"
-      ],
-      "originalLanguage": "fr",
-      "title": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
-      "summary": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
-          "summary": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Central de Libras oferece atendimento a eleitores surdos ou com deficiência auditiva",
-          "summary": "Central de Libras oferece atendimento a eleitores surdos ou com deficiência auditiva",
-          "language": "fr"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVGdUVmpLS1dCeUNOVFRwMWp5OXB2S1JhajZWNkFUcnE4QUdSRWNuOW1zS0owY1ZTc3ByNUx1RlJPdUFXM2V4VWhISFVvX2ZwTWI0YTc0S0RuWmFvLTk2blFQSWJlNjVDT19WVTE1NDRXVFdnOE9ZZkhpMFR6V0I3b29LYUpFQWM?oc=5",
-      "stableId": "world_13070156011f95073e06",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVGdUVmpLS1dCeUNOVFRwMWp5OXB2S1JhajZWNkFUcnE4QUdSRWNuOW1zS0owY1ZTc3ByNUx1RlJPdUFXM2V4VWhISFVvX2ZwTWI0YTc0S0RuWmFvLTk2blFQSWJlNjVDT19WVTE1NDRXVFdnOE9ZZkhpMFR6V0I3b29LYUpFQWM?oc=5",
-      "publishedAt": "2026-10-08T08:15:00Z",
+      "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQNGNOc19qYS02S3dHYkpiQmtBeWpOVldxOHhvMU5nWlZkR2syeTdZdVN1UjJKaVNIU3JuZVo0MkYxb0JFMGF2OFVJaDAxdUFRSVdteWJqUWpuUUl2UFNUdVFUZk94RFI5NktkdUZwZFFMTXJ2U05LMXdjWDVtLV9vdmVIX0liSmVBNkhDY09jTUlQYlE?oc=5",
+      "stableId": "world_981f47cd9ff6fde57184",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQNGNOc19qYS02S3dHYkpiQmtBeWpOVldxOHhvMU5nWlZkR2syeTdZdVN1UjJKaVNIU3JuZVo0MkYxb0JFMGF2OFVJaDAxdUFRSVdteWJqUWpuUUl2UFNUdVFUZk94RFI5NktkdUZwZFFMTXJ2U05LMXdjWDVtLV9vdmVIX0liSmVBNkhDY09jTUlQYlE?oc=5",
+      "publishedAt": "2026-10-08T07:00:00Z",
       "sourceName": "Oberpfalz TV",
       "sourceURL": "https://www.otv.de",
       "sourceUrl": "https://www.otv.de",
@@ -3538,14 +3491,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQdjY3eGw2VnVETDBzdUhWN2lLUl9oZ3VrSjJ4WFRZSjl6ems2REFQM1NOenQ5ZzNGTlItQ2R3ZlVnMllvOWpOUzFxYkgwR1N1TTJyLW8tdDFxUUN4ZWpwbkxRMnNKRFdNUWpQaU0wYTFER3hXcm1aRXN5V2RlczJDLV9WX2Q2dWJ4c2xQbjZKOERJMzRROGNqcTBCaVdfTFF1enk2ZG5pTVJQengyaEhjRjhSSWxySnRzN1Z3dWRrS01LVGowSDd2V1hVbWtITl9xMkxyWUJoVU5sbUNJMDNOZUZn?oc=5",
-      "stableId": "world_bbac379da95313c85730",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQdjY3eGw2VnVETDBzdUhWN2lLUl9oZ3VrSjJ4WFRZSjl6ems2REFQM1NOenQ5ZzNGTlItQ2R3ZlVnMllvOWpOUzFxYkgwR1N1TTJyLW8tdDFxUUN4ZWpwbkxRMnNKRFdNUWpQaU0wYTFER3hXcm1aRXN5V2RlczJDLV9WX2Q2dWJ4c2xQbjZKOERJMzRROGNqcTBCaVdfTFF1enk2ZG5pTVJQengyaEhjRjhSSWxySnRzN1Z3dWRrS01LVGowSDd2V1hVbWtITl9xMkxyWUJoVU5sbUNJMDNOZUZn?oc=5",
-      "publishedAt": "2026-10-03T07:00:00Z",
-      "sourceName": "Click Guarulhos",
-      "sourceURL": "https://www.clickguarulhos.com.br",
-      "sourceUrl": "https://www.clickguarulhos.com.br",
-      "sourceDomain": "clickguarulhos.com.br",
+      "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPa05RMzMwUFRNR1R5OG1kMGh6dXlPZWx2TWRGSG5JTkw4VWk2MGtMNU9nemY3elRlQjZoQ3JlMU9QZl9jY2JScDdsVWNFSjlCem1FY2VWSFVQZGJvUHRuVnNJQTc5Y0Y4amZ4NEo0RnJ1Tmg0bE9kV1RueENoNTI2Q1RhVUlsaG5NUmJNUWVReF84V2RjcjNzVFVPSnNqQk9uaHhfcWpMRGhva1lnX0d0NmVvLXNyS1ZiMS00?oc=5",
+      "stableId": "world_ba252f0f15d4e465c730",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPa05RMzMwUFRNR1R5OG1kMGh6dXlPZWx2TWRGSG5JTkw4VWk2MGtMNU9nemY3elRlQjZoQ3JlMU9QZl9jY2JScDdsVWNFSjlCem1FY2VWSFVQZGJvUHRuVnNJQTc5Y0Y4amZ4NEo0RnJ1Tmg0bE9kV1RueENoNTI2Q1RhVUlsaG5NUmJNUWVReF84V2RjcjNzVFVPSnNqQk9uaHhfcWpMRGhva1lnX0d0NmVvLXNyS1ZiMS00?oc=5",
+      "publishedAt": "2026-10-04T03:05:00Z",
+      "sourceName": "Ifronteira",
+      "sourceURL": "https://ifronteira.com",
+      "sourceUrl": "https://ifronteira.com",
+      "sourceDomain": "ifronteira.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -3553,21 +3506,22 @@
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
       "legacyCategory": "policy",
-      "curationScore": 23,
+      "curationScore": 30,
       "curationSignals": [
         "surdo",
+        "deficiência auditiva",
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "tr",
-      "title": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
-      "summary": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
+      "originalLanguage": "fr",
+      "title": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
+      "summary": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
-          "summary": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
+          "title": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
+          "summary": "手話センターは、ろう者や聴覚障害のある有権者に対応します。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3577,9 +3531,9 @@
           }
         },
         "original": {
-          "title": "Mais de 32 mil eleitores surdos de SP terão atendimento em Libras nas Eleições 2026; veja como funciona",
-          "summary": "Mais de 32 mil eleitores surdos de SP terão atendimento em Libras nas Eleições 2026; veja como funciona",
-          "language": "tr"
+          "title": "Central de Libras oferece atendimento a eleitores surdos ou com deficiência auditiva",
+          "summary": "Central de Libras oferece atendimento a eleitores surdos ou com deficiência auditiva",
+          "language": "fr"
         }
       }
     },
@@ -3722,14 +3676,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTkRpaWZIWm5GWUdMa1M3OWRSSUtpbnQxV2hiNWlPaXNEb0Y4WEpnWFVDTjl3UGNLMU1xNVJZc3ZKV3Q2WFFJZXptM2dkc3RKUjFGVURfTGw3U1BLWE1EbDluS2g3eWQzcUwtbEotM1Q0LXA3bnhzSlBOSk5ObTZoUzlDMmd1S3VsdThOOEpYM2huRG1BQjd5Z3I3Znk1UG1ucHdn0gGyAUFVX3lxTFBBb3llckdQOVJVUHpYQUhtYTd6dXZKZnJxVW9XQ3NLcDQzay1oekxiRC1KeTlzY2Jod0ZCSEU5bmFYd2JXbTQ2WUZraXNacTRjeVRFNEEzaTR0TXJyUG9tdHhaV3NXSnpZMk9TM0g1alc0M3pkM1Fvc08xd0lZeEMxd041TXJrSV85RTBaODVLc3Vhc0JxT19XYlhDNlg0eVkxTWdtZldPS2hwdXZqcWdpYnc?oc=5",
-      "stableId": "world_c5179f3ad09a5748ff7e",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTkRpaWZIWm5GWUdMa1M3OWRSSUtpbnQxV2hiNWlPaXNEb0Y4WEpnWFVDTjl3UGNLMU1xNVJZc3ZKV3Q2WFFJZXptM2dkc3RKUjFGVURfTGw3U1BLWE1EbDluS2g3eWQzcUwtbEotM1Q0LXA3bnhzSlBOSk5ObTZoUzlDMmd1S3VsdThOOEpYM2huRG1BQjd5Z3I3Znk1UG1ucHdn0gGyAUFVX3lxTFBBb3llckdQOVJVUHpYQUhtYTd6dXZKZnJxVW9XQ3NLcDQzay1oekxiRC1KeTlzY2Jod0ZCSEU5bmFYd2JXbTQ2WUZraXNacTRjeVRFNEEzaTR0TXJyUG9tdHhaV3NXSnpZMk9TM0g1alc0M3pkM1Fvc08xd0lZeEMxd041TXJrSV85RTBaODVLc3Vhc0JxT19XYlhDNlg0eVkxTWdtZldPS2hwdXZqcWdpYnc?oc=5",
-      "publishedAt": "2026-10-02T07:00:00Z",
-      "sourceName": "G1",
-      "sourceURL": "https://g1.globo.com",
-      "sourceUrl": "https://g1.globo.com",
-      "sourceDomain": "g1.globo.com",
+      "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQdjY3eGw2VnVETDBzdUhWN2lLUl9oZ3VrSjJ4WFRZSjl6ems2REFQM1NOenQ5ZzNGTlItQ2R3ZlVnMllvOWpOUzFxYkgwR1N1TTJyLW8tdDFxUUN4ZWpwbkxRMnNKRFdNUWpQaU0wYTFER3hXcm1aRXN5V2RlczJDLV9WX2Q2dWJ4c2xQbjZKOERJMzRROGNqcTBCaVdfTFF1enk2ZG5pTVJQengyaEhjRjhSSWxySnRzN1Z3dWRrS01LVGowSDd2V1hVbWtITl9xMkxyWUJoVU5sbUNJMDNOZUZn?oc=5",
+      "stableId": "world_bbac379da95313c85730",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQdjY3eGw2VnVETDBzdUhWN2lLUl9oZ3VrSjJ4WFRZSjl6ems2REFQM1NOenQ5ZzNGTlItQ2R3ZlVnMllvOWpOUzFxYkgwR1N1TTJyLW8tdDFxUUN4ZWpwbkxRMnNKRFdNUWpQaU0wYTFER3hXcm1aRXN5V2RlczJDLV9WX2Q2dWJ4c2xQbjZKOERJMzRROGNqcTBCaVdfTFF1enk2ZG5pTVJQengyaEhjRjhSSWxySnRzN1Z3dWRrS01LVGowSDd2V1hVbWtITl9xMkxyWUJoVU5sbUNJMDNOZUZn?oc=5",
+      "publishedAt": "2026-10-03T07:00:00Z",
+      "sourceName": "Click Guarulhos",
+      "sourceURL": "https://www.clickguarulhos.com.br",
+      "sourceUrl": "https://www.clickguarulhos.com.br",
+      "sourceDomain": "clickguarulhos.com.br",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -3737,21 +3691,21 @@
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
       "legacyCategory": "policy",
-      "curationScore": 21,
+      "curationScore": 23,
       "curationSignals": [
         "surdo",
         "libras",
         "multilingual"
       ],
       "originalLanguage": "tr",
-      "title": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
-      "summary": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
+      "title": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
+      "summary": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
-          "summary": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
+          "title": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
+          "summary": "2026年選挙では、サンパウロ州のろう者3万2千人超がブラジル手話Librasによる対応を受けられる。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3761,8 +3715,8 @@
           }
         },
         "original": {
-          "title": "Eleições 2026: intérpretes de Libras estarão disponíveis para eleitores surdos em Teresina",
-          "summary": "Eleições 2026: intérpretes de Libras estarão disponíveis para eleitores surdos em Teresina",
+          "title": "Mais de 32 mil eleitores surdos de SP terão atendimento em Libras nas Eleições 2026; veja como funciona",
+          "summary": "Mais de 32 mil eleitores surdos de SP terão atendimento em Libras nas Eleições 2026; veja como funciona",
           "language": "tr"
         }
       }
@@ -3858,14 +3812,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPeno2T0l4Q3V3MTc4RGExUnBzUGhmNUY4UXBQallCZTVnQUJhZFR4ak5ScVZOWjkwMWZDbnMwMzQxOFE0WklQVm9SUFNyOXlLY1hFWnE5TkVLS2NWbnIyMUpSTHN1SWVRbndsdzhDUWpNd1I0eUl6N1pVZndFTnh5VGdNRzQwT2ZKWEd3ZnpzazlicGR1aFdPUnBqMnlkUGVHTXJUMkJrU3NNMmhuQTFKWm5hM2RjUnR5R3BaX0E3QkgtWmdiNDZsWkZMUlVSbTFzc3VnMEJDV2FKTDZfWlJn0gHkAUFVX3lxTE9uZm5Hc29RTE5JYkpYVEJ0UzRvLVdyRTd3bU43cjJlbkhPZl81UjhGZVN6OUJDemd2ZnBlRmR3U0thclZyVkNPZnJTVUFYUnI2U1FHNWd5cWIwZGx2ZzBUVjNsQkNWeTVfd2FLelhQSWlWSlhVX1BfQmpNWHlkdUw3TnEtRDNjbmgzMlROOTk1UXFfS2ZOakk4blA3WURmR3NyRVZJa0RLUG9PaUxEVWVjQkRLOFhDNnMzR3VMSm9ZUEhnYjFlUGZOZm5Gbl9RUlREOWJ5V2tHeUN1aU1UZm5TRG5RVg?oc=5",
-      "stableId": "world_b2e2b8944b3b7eb94c18",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPeno2T0l4Q3V3MTc4RGExUnBzUGhmNUY4UXBQallCZTVnQUJhZFR4ak5ScVZOWjkwMWZDbnMwMzQxOFE0WklQVm9SUFNyOXlLY1hFWnE5TkVLS2NWbnIyMUpSTHN1SWVRbndsdzhDUWpNd1I0eUl6N1pVZndFTnh5VGdNRzQwT2ZKWEd3ZnpzazlicGR1aFdPUnBqMnlkUGVHTXJUMkJrU3NNMmhuQTFKWm5hM2RjUnR5R3BaX0E3QkgtWmdiNDZsWkZMUlVSbTFzc3VnMEJDV2FKTDZfWlJn0gHkAUFVX3lxTE9uZm5Hc29RTE5JYkpYVEJ0UzRvLVdyRTd3bU43cjJlbkhPZl81UjhGZVN6OUJDemd2ZnBlRmR3U0thclZyVkNPZnJTVUFYUnI2U1FHNWd5cWIwZGx2ZzBUVjNsQkNWeTVfd2FLelhQSWlWSlhVX1BfQmpNWHlkdUw3TnEtRDNjbmgzMlROOTk1UXFfS2ZOakk4blA3WURmR3NyRVZJa0RLUG9PaUxEVWVjQkRLOFhDNnMzR3VMSm9ZUEhnYjFlUGZOZm5Gbl9RUlREOWJ5V2tHeUN1aU1UZm5TRG5RVg?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTkRpaWZIWm5GWUdMa1M3OWRSSUtpbnQxV2hiNWlPaXNEb0Y4WEpnWFVDTjl3UGNLMU1xNVJZc3ZKV3Q2WFFJZXptM2dkc3RKUjFGVURfTGw3U1BLWE1EbDluS2g3eWQzcUwtbEotM1Q0LXA3bnhzSlBOSk5ObTZoUzlDMmd1S3VsdThOOEpYM2huRG1BQjd5Z3I3Znk1UG1ucHdn0gGyAUFVX3lxTFBBb3llckdQOVJVUHpYQUhtYTd6dXZKZnJxVW9XQ3NLcDQzay1oekxiRC1KeTlzY2Jod0ZCSEU5bmFYd2JXbTQ2WUZraXNacTRjeVRFNEEzaTR0TXJyUG9tdHhaV3NXSnpZMk9TM0g1alc0M3pkM1Fvc08xd0lZeEMxd041TXJrSV85RTBaODVLc3Vhc0JxT19XYlhDNlg0eVkxTWdtZldPS2hwdXZqcWdpYnc?oc=5",
+      "stableId": "world_c5179f3ad09a5748ff7e",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTkRpaWZIWm5GWUdMa1M3OWRSSUtpbnQxV2hiNWlPaXNEb0Y4WEpnWFVDTjl3UGNLMU1xNVJZc3ZKV3Q2WFFJZXptM2dkc3RKUjFGVURfTGw3U1BLWE1EbDluS2g3eWQzcUwtbEotM1Q0LXA3bnhzSlBOSk5ObTZoUzlDMmd1S3VsdThOOEpYM2huRG1BQjd5Z3I3Znk1UG1ucHdn0gGyAUFVX3lxTFBBb3llckdQOVJVUHpYQUhtYTd6dXZKZnJxVW9XQ3NLcDQzay1oekxiRC1KeTlzY2Jod0ZCSEU5bmFYd2JXbTQ2WUZraXNacTRjeVRFNEEzaTR0TXJyUG9tdHhaV3NXSnpZMk9TM0g1alc0M3pkM1Fvc08xd0lZeEMxd041TXJrSV85RTBaODVLc3Vhc0JxT19XYlhDNlg0eVkxTWdtZldPS2hwdXZqcWdpYnc?oc=5",
       "publishedAt": "2026-10-02T07:00:00Z",
-      "sourceName": "Ambito",
-      "sourceURL": "https://www.ambito.com",
-      "sourceUrl": "https://www.ambito.com",
-      "sourceDomain": "ambito.com",
+      "sourceName": "G1",
+      "sourceURL": "https://g1.globo.com",
+      "sourceUrl": "https://g1.globo.com",
+      "sourceDomain": "g1.globo.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -3873,31 +3827,33 @@
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
       "legacyCategory": "policy",
-      "curationScore": 17,
+      "curationScore": 21,
       "curationSignals": [
-        "lengua de señas",
+        "surdo",
+        "libras",
         "multilingual"
       ],
-      "originalLanguage": "pt",
-      "title": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
-      "summary": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
+      "originalLanguage": "tr",
+      "title": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
+      "summary": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
-          "summary": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
+          "title": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
+          "summary": "2026年の選挙で、テレジーナのろう有権者が利用できるブラジル手話（Libras）通訳者が配置されます。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "La Provincia promueve el uso de la Lengua de Señas Argentina para garantizar la inclusión de las personas sordas",
-          "summary": "La Provincia promueve el uso de la Lengua de Señas Argentina para garantizar la inclusión de las personas sordas",
-          "language": "pt"
+          "title": "Eleições 2026: intérpretes de Libras estarão disponíveis para eleitores surdos em Teresina",
+          "summary": "Eleições 2026: intérpretes de Libras estarão disponíveis para eleitores surdos em Teresina",
+          "language": "tr"
         }
       }
     },
@@ -3993,14 +3949,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOLU12enNrOWp5c3pEZnNuOU1URjVnMEdROHY2RElHYXZOdUNocWFSTXpVZTFCNG1haVlSNUxBR09BNGdnejB5cW5FNzBJNEVuZ3Zibk1mSlZyWEs2dnZQREFqUl8wSU11VUtzcjg5VVd5TUtNVTdwV0haSlpua09CUkFXUjJMX0lTNDJBRFlPd3ZmYnpqbG5kNU94SndyVVRXSktUbjM4VTFJZWdMaG1KUUVYeWJTcFlCMlEtdU9lNW51akhWTVB1VEwwaWt5b2gxLWVITnc0QzRrQnRITlFuSmI0X290cmln0gH3AUFVX3lxTE1leVNkbHhoUjN6a19QZXdGZWFqSDFSQnN2alRxZm5IVjRUQnVfSkkyOWRvWUIwZ3lrVlNGMFlkSG9vX0RhbGl3UDV1M2JTbk93Sm5xYmlab01ydThxQ2tYRlIxWVV5XzhLNzFXdkd0ajl3TVBBVDQ3WkNjR25hbGNQbmp0Q1BXMG43bWFad1FWVmZCSUJrMmFOOGRNWW5NNkdnUlN1VmFyN0lOVVdkLTZuSDhqQ1VZTU1KQzhxRlBTUE1hYUw5MzFUd2x6RXJEU2tmVWMxakJldEgxN2ZYa1otVWFLT0JKLUE5WXNQUVUtYVFadlJub1k?oc=5",
-      "stableId": "world_23d3313ac4efd9ec2dca",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOLU12enNrOWp5c3pEZnNuOU1URjVnMEdROHY2RElHYXZOdUNocWFSTXpVZTFCNG1haVlSNUxBR09BNGdnejB5cW5FNzBJNEVuZ3Zibk1mSlZyWEs2dnZQREFqUl8wSU11VUtzcjg5VVd5TUtNVTdwV0haSlpua09CUkFXUjJMX0lTNDJBRFlPd3ZmYnpqbG5kNU94SndyVVRXSktUbjM4VTFJZWdMaG1KUUVYeWJTcFlCMlEtdU9lNW51akhWTVB1VEwwaWt5b2gxLWVITnc0QzRrQnRITlFuSmI0X290cmln0gH3AUFVX3lxTE1leVNkbHhoUjN6a19QZXdGZWFqSDFSQnN2alRxZm5IVjRUQnVfSkkyOWRvWUIwZ3lrVlNGMFlkSG9vX0RhbGl3UDV1M2JTbk93Sm5xYmlab01ydThxQ2tYRlIxWVV5XzhLNzFXdkd0ajl3TVBBVDQ3WkNjR25hbGNQbmp0Q1BXMG43bWFad1FWVmZCSUJrMmFOOGRNWW5NNkdnUlN1VmFyN0lOVVdkLTZuSDhqQ1VZTU1KQzhxRlBTUE1hYUw5MzFUd2x6RXJEU2tmVWMxakJldEgxN2ZYa1otVWFLT0JKLUE5WXNQUVUtYVFadlJub1k?oc=5",
-      "publishedAt": "2026-10-01T07:00:00Z",
-      "sourceName": "G1",
-      "sourceURL": "https://g1.globo.com",
-      "sourceUrl": "https://g1.globo.com",
-      "sourceDomain": "g1.globo.com",
+      "id": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPeno2T0l4Q3V3MTc4RGExUnBzUGhmNUY4UXBQallCZTVnQUJhZFR4ak5ScVZOWjkwMWZDbnMwMzQxOFE0WklQVm9SUFNyOXlLY1hFWnE5TkVLS2NWbnIyMUpSTHN1SWVRbndsdzhDUWpNd1I0eUl6N1pVZndFTnh5VGdNRzQwT2ZKWEd3ZnpzazlicGR1aFdPUnBqMnlkUGVHTXJUMkJrU3NNMmhuQTFKWm5hM2RjUnR5R3BaX0E3QkgtWmdiNDZsWkZMUlVSbTFzc3VnMEJDV2FKTDZfWlJn0gHkAUFVX3lxTE9uZm5Hc29RTE5JYkpYVEJ0UzRvLVdyRTd3bU43cjJlbkhPZl81UjhGZVN6OUJDemd2ZnBlRmR3U0thclZyVkNPZnJTVUFYUnI2U1FHNWd5cWIwZGx2ZzBUVjNsQkNWeTVfd2FLelhQSWlWSlhVX1BfQmpNWHlkdUw3TnEtRDNjbmgzMlROOTk1UXFfS2ZOakk4blA3WURmR3NyRVZJa0RLUG9PaUxEVWVjQkRLOFhDNnMzR3VMSm9ZUEhnYjFlUGZOZm5Gbl9RUlREOWJ5V2tHeUN1aU1UZm5TRG5RVg?oc=5",
+      "stableId": "world_b2e2b8944b3b7eb94c18",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPeno2T0l4Q3V3MTc4RGExUnBzUGhmNUY4UXBQallCZTVnQUJhZFR4ak5ScVZOWjkwMWZDbnMwMzQxOFE0WklQVm9SUFNyOXlLY1hFWnE5TkVLS2NWbnIyMUpSTHN1SWVRbndsdzhDUWpNd1I0eUl6N1pVZndFTnh5VGdNRzQwT2ZKWEd3ZnpzazlicGR1aFdPUnBqMnlkUGVHTXJUMkJrU3NNMmhuQTFKWm5hM2RjUnR5R3BaX0E3QkgtWmdiNDZsWkZMUlVSbTFzc3VnMEJDV2FKTDZfWlJn0gHkAUFVX3lxTE9uZm5Hc29RTE5JYkpYVEJ0UzRvLVdyRTd3bU43cjJlbkhPZl81UjhGZVN6OUJDemd2ZnBlRmR3U0thclZyVkNPZnJTVUFYUnI2U1FHNWd5cWIwZGx2ZzBUVjNsQkNWeTVfd2FLelhQSWlWSlhVX1BfQmpNWHlkdUw3TnEtRDNjbmgzMlROOTk1UXFfS2ZOakk4blA3WURmR3NyRVZJa0RLUG9PaUxEVWVjQkRLOFhDNnMzR3VMSm9ZUEhnYjFlUGZOZm5Gbl9RUlREOWJ5V2tHeUN1aU1UZm5TRG5RVg?oc=5",
+      "publishedAt": "2026-10-02T07:00:00Z",
+      "sourceName": "Ambito",
+      "sourceURL": "https://www.ambito.com",
+      "sourceUrl": "https://www.ambito.com",
+      "sourceDomain": "ambito.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -4008,33 +3964,31 @@
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
       "legacyCategory": "policy",
-      "curationScore": 23,
+      "curationScore": 17,
       "curationSignals": [
-        "surdo",
-        "libras",
+        "lengua de señas",
         "multilingual"
       ],
-      "originalLanguage": "tr",
-      "title": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
-      "summary": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
+      "originalLanguage": "pt",
+      "title": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
+      "summary": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
-          "summary": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
+          "title": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
+          "summary": "州は聴覚障害者の参加を保証するためにアルゼンチン手話の使用を促進しています",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
+            "postEdited": false,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
-          "summary": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
-          "language": "tr"
+          "title": "La Provincia promueve el uso de la Lengua de Señas Argentina para garantizar la inclusión de las personas sordas",
+          "summary": "La Provincia promueve el uso de la Lengua de Señas Argentina para garantizar la inclusión de las personas sordas",
+          "language": "pt"
         }
       }
     },
@@ -4174,35 +4128,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQY1dYa2JIMFQ1Y1EyaUgzX1ktYVBSMEFqaFNPcmp2aEIxdzQyc1JtazZVMTFMVmlkUlA3TF96dEpXZkYzN0xKYTk2QXl0UnFsRU5JNUNyb3JPWGUtdGxldXZBTXV1T1ZFU0l3Z29OTW9SMVdtQWx5cGpoMGJLLXZoMkZubEdBN2psZmJHTk1vbThvYW1acjE3LWMzRDB1MG94NHc?oc=5",
-      "stableId": "world_a38f2fe241523c5b091b",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQY1dYa2JIMFQ1Y1EyaUgzX1ktYVBSMEFqaFNPcmp2aEIxdzQyc1JtazZVMTFMVmlkUlA3TF96dEpXZkYzN0xKYTk2QXl0UnFsRU5JNUNyb3JPWGUtdGxldXZBTXV1T1ZFU0l3Z29OTW9SMVdtQWx5cGpoMGJLLXZoMkZubEdBN2psZmJHTk1vbThvYW1acjE3LWMzRDB1MG94NHc?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOLU12enNrOWp5c3pEZnNuOU1URjVnMEdROHY2RElHYXZOdUNocWFSTXpVZTFCNG1haVlSNUxBR09BNGdnejB5cW5FNzBJNEVuZ3Zibk1mSlZyWEs2dnZQREFqUl8wSU11VUtzcjg5VVd5TUtNVTdwV0haSlpua09CUkFXUjJMX0lTNDJBRFlPd3ZmYnpqbG5kNU94SndyVVRXSktUbjM4VTFJZWdMaG1KUUVYeWJTcFlCMlEtdU9lNW51akhWTVB1VEwwaWt5b2gxLWVITnc0QzRrQnRITlFuSmI0X290cmln0gH3AUFVX3lxTE1leVNkbHhoUjN6a19QZXdGZWFqSDFSQnN2alRxZm5IVjRUQnVfSkkyOWRvWUIwZ3lrVlNGMFlkSG9vX0RhbGl3UDV1M2JTbk93Sm5xYmlab01ydThxQ2tYRlIxWVV5XzhLNzFXdkd0ajl3TVBBVDQ3WkNjR25hbGNQbmp0Q1BXMG43bWFad1FWVmZCSUJrMmFOOGRNWW5NNkdnUlN1VmFyN0lOVVdkLTZuSDhqQ1VZTU1KQzhxRlBTUE1hYUw5MzFUd2x6RXJEU2tmVWMxakJldEgxN2ZYa1otVWFLT0JKLUE5WXNQUVUtYVFadlJub1k?oc=5",
+      "stableId": "world_23d3313ac4efd9ec2dca",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOLU12enNrOWp5c3pEZnNuOU1URjVnMEdROHY2RElHYXZOdUNocWFSTXpVZTFCNG1haVlSNUxBR09BNGdnejB5cW5FNzBJNEVuZ3Zibk1mSlZyWEs2dnZQREFqUl8wSU11VUtzcjg5VVd5TUtNVTdwV0haSlpua09CUkFXUjJMX0lTNDJBRFlPd3ZmYnpqbG5kNU94SndyVVRXSktUbjM4VTFJZWdMaG1KUUVYeWJTcFlCMlEtdU9lNW51akhWTVB1VEwwaWt5b2gxLWVITnc0QzRrQnRITlFuSmI0X290cmln0gH3AUFVX3lxTE1leVNkbHhoUjN6a19QZXdGZWFqSDFSQnN2alRxZm5IVjRUQnVfSkkyOWRvWUIwZ3lrVlNGMFlkSG9vX0RhbGl3UDV1M2JTbk93Sm5xYmlab01ydThxQ2tYRlIxWVV5XzhLNzFXdkd0ajl3TVBBVDQ3WkNjR25hbGNQbmp0Q1BXMG43bWFad1FWVmZCSUJrMmFOOGRNWW5NNkdnUlN1VmFyN0lOVVdkLTZuSDhqQ1VZTU1KQzhxRlBTUE1hYUw5MzFUd2x6RXJEU2tmVWMxakJldEgxN2ZYa1otVWFLT0JKLUE5WXNQUVUtYVFadlJub1k?oc=5",
       "publishedAt": "2026-10-01T07:00:00Z",
-      "sourceName": "The Washington Post",
-      "sourceURL": "https://www.washingtonpost.com",
-      "sourceUrl": "https://www.washingtonpost.com",
-      "sourceDomain": "washingtonpost.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 90,
+      "sourceName": "G1",
+      "sourceURL": "https://g1.globo.com",
+      "sourceUrl": "https://g1.globo.com",
+      "sourceDomain": "g1.globo.com",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 20,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 23,
       "curationSignals": [
-        "hearing loss",
-        "major-media"
+        "surdo",
+        "libras",
+        "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
-      "summary": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
+      "originalLanguage": "tr",
+      "title": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
+      "summary": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
-          "summary": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
+          "title": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
+          "summary": "各投票所で、ろう者の有権者を対象としたブラジル手話による対応が実施される。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -4212,9 +4167,9 @@
           }
         },
         "original": {
-          "title": "Not all hearing loss is the same. Here’s what can help.",
-          "summary": "Not all hearing loss is the same. Here’s what can help.",
-          "language": "en"
+          "title": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
+          "summary": "Eleitor surdo terá atendimento em Libras nas seções eleitorais",
+          "language": "tr"
         }
       }
     },
@@ -4356,35 +4311,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNbkRLaXFidHpfTWRsZk1MM0U2dFpGdXpXN3NqZ3hNeUVTdUZoR3JmWDJMOFZHV1hRRlFieEgzd05ZYUo3eHpqUVYwWkNYWS1kOHJyOWVzMGthLUdpRG5EeGRyUnMyajNDTUREWjZZQUJFOUczcXpjQWRHQS1QenNXUDN0QXdNRkthWjdLdW1wUUppMURqTGwxOHBjcXRnOVhYOHBqY2U2ZHAxV1VOSkUzc0VJNndBNXd0Skp0aUFwZGxGWk5wbzNCXy13?oc=5",
-      "stableId": "world_55eda678b82400446447",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNbkRLaXFidHpfTWRsZk1MM0U2dFpGdXpXN3NqZ3hNeUVTdUZoR3JmWDJMOFZHV1hRRlFieEgzd05ZYUo3eHpqUVYwWkNYWS1kOHJyOWVzMGthLUdpRG5EeGRyUnMyajNDTUREWjZZQUJFOUczcXpjQWRHQS1QenNXUDN0QXdNRkthWjdLdW1wUUppMURqTGwxOHBjcXRnOVhYOHBqY2U2ZHAxV1VOSkUzc0VJNndBNXd0Skp0aUFwZGxGWk5wbzNCXy13?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQY1dYa2JIMFQ1Y1EyaUgzX1ktYVBSMEFqaFNPcmp2aEIxdzQyc1JtazZVMTFMVmlkUlA3TF96dEpXZkYzN0xKYTk2QXl0UnFsRU5JNUNyb3JPWGUtdGxldXZBTXV1T1ZFU0l3Z29OTW9SMVdtQWx5cGpoMGJLLXZoMkZubEdBN2psZmJHTk1vbThvYW1acjE3LWMzRDB1MG94NHc?oc=5",
+      "stableId": "world_a38f2fe241523c5b091b",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQY1dYa2JIMFQ1Y1EyaUgzX1ktYVBSMEFqaFNPcmp2aEIxdzQyc1JtazZVMTFMVmlkUlA3TF96dEpXZkYzN0xKYTk2QXl0UnFsRU5JNUNyb3JPWGUtdGxldXZBTXV1T1ZFU0l3Z29OTW9SMVdtQWx5cGpoMGJLLXZoMkZubEdBN2psZmJHTk1vbThvYW1acjE3LWMzRDB1MG94NHc?oc=5",
       "publishedAt": "2026-10-01T07:00:00Z",
-      "sourceName": "Diário PcD",
-      "sourceURL": "https://diariopcd.com.br",
-      "sourceUrl": "https://diariopcd.com.br",
-      "sourceDomain": "diariopcd.com.br",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "sourceName": "The Washington Post",
+      "sourceURL": "https://www.washingtonpost.com",
+      "sourceUrl": "https://www.washingtonpost.com",
+      "sourceDomain": "washingtonpost.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 90,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 16,
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 20,
       "curationSignals": [
-        "libras",
-        "multilingual"
+        "hearing loss",
+        "major-media"
       ],
-      "originalLanguage": "tr",
-      "title": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
-      "summary": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
+      "originalLanguage": "en",
+      "title": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
+      "summary": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
-          "summary": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
+          "title": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
+          "summary": "難聴の違いを踏まえ、それぞれの状態に応じて役立つ支援策を紹介している。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -4394,9 +4349,9 @@
           }
         },
         "original": {
-          "title": "TV tem Libras? E as Redes? A Acessibilidade que a Lei Eleitoral ainda não alcançou fora do horário oficial",
-          "summary": "TV tem Libras? E as Redes? A Acessibilidade que a Lei Eleitoral ainda não alcançou fora do horário oficial",
-          "language": "tr"
+          "title": "Not all hearing loss is the same. Here’s what can help.",
+          "summary": "Not all hearing loss is the same. Here’s what can help.",
+          "language": "en"
         }
       }
     },
@@ -4538,14 +4493,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdkJSNUZBLXA3aUpMMmgzM3kybVgyZU14ZkQ2WE1zbEhTVWZsYi10QWdNNHRvb3NlU01mdF9aMWJiQmVKXzR5aF95MlRkaXBBSFYxVEgzRU8xMGxmdWp0YmpCbVVmYnR0V0Y5SzFkaHBqOW8wZk1lY0dpMl9mdlQxLWZCRzJXUVpzZ3dHWGhyQ3lmeG9LTlpDazdrUm9FRGlQS1lxVFR0UWhxRGl3QWdyb2Q4RnFKQURLcHI5Tw?oc=5",
-      "stableId": "world_9048899c3c85e1be810d",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdkJSNUZBLXA3aUpMMmgzM3kybVgyZU14ZkQ2WE1zbEhTVWZsYi10QWdNNHRvb3NlU01mdF9aMWJiQmVKXzR5aF95MlRkaXBBSFYxVEgzRU8xMGxmdWp0YmpCbVVmYnR0V0Y5SzFkaHBqOW8wZk1lY0dpMl9mdlQxLWZCRzJXUVpzZ3dHWGhyQ3lmeG9LTlpDazdrUm9FRGlQS1lxVFR0UWhxRGl3QWdyb2Q4RnFKQURLcHI5Tw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNbkRLaXFidHpfTWRsZk1MM0U2dFpGdXpXN3NqZ3hNeUVTdUZoR3JmWDJMOFZHV1hRRlFieEgzd05ZYUo3eHpqUVYwWkNYWS1kOHJyOWVzMGthLUdpRG5EeGRyUnMyajNDTUREWjZZQUJFOUczcXpjQWRHQS1QenNXUDN0QXdNRkthWjdLdW1wUUppMURqTGwxOHBjcXRnOVhYOHBqY2U2ZHAxV1VOSkUzc0VJNndBNXd0Skp0aUFwZGxGWk5wbzNCXy13?oc=5",
+      "stableId": "world_55eda678b82400446447",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNbkRLaXFidHpfTWRsZk1MM0U2dFpGdXpXN3NqZ3hNeUVTdUZoR3JmWDJMOFZHV1hRRlFieEgzd05ZYUo3eHpqUVYwWkNYWS1kOHJyOWVzMGthLUdpRG5EeGRyUnMyajNDTUREWjZZQUJFOUczcXpjQWRHQS1QenNXUDN0QXdNRkthWjdLdW1wUUppMURqTGwxOHBjcXRnOVhYOHBqY2U2ZHAxV1VOSkUzc0VJNndBNXd0Skp0aUFwZGxGWk5wbzNCXy13?oc=5",
       "publishedAt": "2026-10-01T07:00:00Z",
-      "sourceName": "Câmara Municipal de Araraquara",
-      "sourceURL": "https://www.camara-arq.sp.gov.br",
-      "sourceUrl": "https://www.camara-arq.sp.gov.br",
-      "sourceDomain": "camara-arq.sp.gov.br",
+      "sourceName": "Diário PcD",
+      "sourceURL": "https://diariopcd.com.br",
+      "sourceUrl": "https://diariopcd.com.br",
+      "sourceDomain": "diariopcd.com.br",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -4558,15 +4513,15 @@
         "libras",
         "multilingual"
       ],
-      "originalLanguage": "fr",
-      "title": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
-      "summary": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
+      "originalLanguage": "tr",
+      "title": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
+      "summary": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
-          "summary": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
+          "title": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
+          "summary": "公式選挙放送の時間外では選挙法がまだ実現できていないアクセシビリティを、テレビやSNS上のLibrasを通じて問う。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -4576,9 +4531,9 @@
           }
         },
         "original": {
-          "title": "Oficina de Libras na Saúde aproxima profissionais e comunidade surda na Câmara",
-          "summary": "Oficina de Libras na Saúde aproxima profissionais e comunidade surda na Câmara",
-          "language": "fr"
+          "title": "TV tem Libras? E as Redes? A Acessibilidade que a Lei Eleitoral ainda não alcançou fora do horário oficial",
+          "summary": "TV tem Libras? E as Redes? A Acessibilidade que a Lei Eleitoral ainda não alcançou fora do horário oficial",
+          "language": "tr"
         }
       }
     },
@@ -4721,35 +4676,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSFpENmdLcEVmclJoZG5RRnBscFdIcjVFQ3VuaHA5VFFWZlpGNm9wdE5RUllCQTl1XzR1cFNWVEFVdm96UEQ2SVlOcEQydTh1TlAyeDNyUjkyTWpfODI0Z1pmTnpGc1gwLVRERjdnUUZ4ZHhiZlRUYW4yR2NXbVlULWJxNG5SZDBZbmc?oc=5",
-      "stableId": "world_f4d0a45274052688058d",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSFpENmdLcEVmclJoZG5RRnBscFdIcjVFQ3VuaHA5VFFWZlpGNm9wdE5RUllCQTl1XzR1cFNWVEFVdm96UEQ2SVlOcEQydTh1TlAyeDNyUjkyTWpfODI0Z1pmTnpGc1gwLVRERjdnUUZ4ZHhiZlRUYW4yR2NXbVlULWJxNG5SZDBZbmc?oc=5",
-      "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "The Globe and Mail",
-      "sourceURL": "https://www.theglobeandmail.com",
-      "sourceUrl": "https://www.theglobeandmail.com",
-      "sourceDomain": "theglobeandmail.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 84,
+      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdkJSNUZBLXA3aUpMMmgzM3kybVgyZU14ZkQ2WE1zbEhTVWZsYi10QWdNNHRvb3NlU01mdF9aMWJiQmVKXzR5aF95MlRkaXBBSFYxVEgzRU8xMGxmdWp0YmpCbVVmYnR0V0Y5SzFkaHBqOW8wZk1lY0dpMl9mdlQxLWZCRzJXUVpzZ3dHWGhyQ3lmeG9LTlpDazdrUm9FRGlQS1lxVFR0UWhxRGl3QWdyb2Q4RnFKQURLcHI5Tw?oc=5",
+      "stableId": "world_9048899c3c85e1be810d",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdkJSNUZBLXA3aUpMMmgzM3kybVgyZU14ZkQ2WE1zbEhTVWZsYi10QWdNNHRvb3NlU01mdF9aMWJiQmVKXzR5aF95MlRkaXBBSFYxVEgzRU8xMGxmdWp0YmpCbVVmYnR0V0Y5SzFkaHBqOW8wZk1lY0dpMl9mdlQxLWZCRzJXUVpzZ3dHWGhyQ3lmeG9LTlpDazdrUm9FRGlQS1lxVFR0UWhxRGl3QWdyb2Q4RnFKQURLcHI5Tw?oc=5",
+      "publishedAt": "2026-10-01T07:00:00Z",
+      "sourceName": "Câmara Municipal de Araraquara",
+      "sourceURL": "https://www.camara-arq.sp.gov.br",
+      "sourceUrl": "https://www.camara-arq.sp.gov.br",
+      "sourceDomain": "camara-arq.sp.gov.br",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 22,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 16,
       "curationSignals": [
-        "hearing loss",
-        "major-media"
+        "libras",
+        "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
-      "summary": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
+      "originalLanguage": "fr",
+      "title": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
+      "summary": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
-          "summary": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
+          "title": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
+          "summary": "市議会で開かれた医療分野のブラジル手話講座が、専門職とろう者コミュニティーの交流を促した。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -4759,9 +4714,9 @@
           }
         },
         "original": {
-          "title": "AI glasses offset my hearing loss and help me interact with the arts",
-          "summary": "AI glasses offset my hearing loss and help me interact with the arts",
-          "language": "en"
+          "title": "Oficina de Libras na Saúde aproxima profissionais e comunidade surda na Câmara",
+          "summary": "Oficina de Libras na Saúde aproxima profissionais e comunidade surda na Câmara",
+          "language": "fr"
         }
       }
     },
@@ -4903,36 +4858,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPdzBKbGtLR05zSzlLbU9zZXE4dE96YVRPX3JnNFlKbjctNTFLQkR3SW1LSGtxS1Yxd2Q5c1RBY09QRUtsdzBCWmNyQ3JXenV6RURiWmlJLWZfWmVDNEVqSTIyY1RPLUtWSEQ1bmVRVlpxUGp3M2xDZmpKTEc1MWF5enlvbWdwYXVkeWpUUVJma3N0R3BscjFnT0N6am11eG95eERBalRmWlhUWl9GNWJSQ0xWNnZhaUh5WVAtWDZlMHJTcWhjbGhaN0hUclRmVlRhcmctZmVtOE9kNGtUNEdLMW9wbnFkNnp4YnpMc0l2RGpoN0FjWXA1ZEJhQnVISk0?oc=5",
-      "stableId": "world_b669924f67a2b9434372",
-      "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPdzBKbGtLR05zSzlLbU9zZXE4dE96YVRPX3JnNFlKbjctNTFLQkR3SW1LSGtxS1Yxd2Q5c1RBY09QRUtsdzBCWmNyQ3JXenV6RURiWmlJLWZfWmVDNEVqSTIyY1RPLUtWSEQ1bmVRVlpxUGp3M2xDZmpKTEc1MWF5enlvbWdwYXVkeWpUUVJma3N0R3BscjFnT0N6am11eG95eERBalRmWlhUWl9GNWJSQ0xWNnZhaUh5WVAtWDZlMHJTcWhjbGhaN0hUclRmVlRhcmctZmVtOE9kNGtUNEdLMW9wbnFkNnp4YnpMc0l2RGpoN0FjWXA1ZEJhQnVISk0?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSFpENmdLcEVmclJoZG5RRnBscFdIcjVFQ3VuaHA5VFFWZlpGNm9wdE5RUllCQTl1XzR1cFNWVEFVdm96UEQ2SVlOcEQydTh1TlAyeDNyUjkyTWpfODI0Z1pmTnpGc1gwLVRERjdnUUZ4ZHhiZlRUYW4yR2NXbVlULWJxNG5SZDBZbmc?oc=5",
+      "stableId": "world_f4d0a45274052688058d",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSFpENmdLcEVmclJoZG5RRnBscFdIcjVFQ3VuaHA5VFFWZlpGNm9wdE5RUllCQTl1XzR1cFNWVEFVdm96UEQ2SVlOcEQydTh1TlAyeDNyUjkyTWpfODI0Z1pmTnpGc1gwLVRERjdnUUZ4ZHhiZlRUYW4yR2NXbVlULWJxNG5SZDBZbmc?oc=5",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "TheSuburban.com",
-      "sourceURL": "https://www.thesuburban.com",
-      "sourceUrl": "https://www.thesuburban.com",
-      "sourceDomain": "thesuburban.com",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "sourceName": "The Globe and Mail",
+      "sourceURL": "https://www.theglobeandmail.com",
+      "sourceUrl": "https://www.theglobeandmail.com",
+      "sourceDomain": "theglobeandmail.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "sports",
-      "topicLabel": "デフスポーツ",
-      "legacyCategory": "sports",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
       "curationScore": 22,
       "curationSignals": [
-        "deaflympics",
-        "deaf athlete",
-        "multilingual"
+        "hearing loss",
+        "major-media"
       ],
       "originalLanguage": "en",
-      "title": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
-      "summary": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
+      "title": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
+      "summary": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
-          "summary": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
+          "title": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
+          "summary": "AI搭載メガネが難聴による困難を補い、芸術を楽しむための交流を支えている。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -4942,8 +4896,8 @@
           }
         },
         "original": {
-          "title": "Now hear this: time to support Canada’s deaf athletes headed to the Winter Deaflympics",
-          "summary": "Now hear this: time to support Canada’s deaf athletes headed to the Winter Deaflympics",
+          "title": "AI glasses offset my hearing loss and help me interact with the arts",
+          "summary": "AI glasses offset my hearing loss and help me interact with the arts",
           "language": "en"
         }
       }
@@ -5086,35 +5040,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPOXE1VU1LdXAya1NnX2I3LW1WdVM0YmlnVXl0cHlvbURXV2pKdkxURld6S0ZfRVN0S0dCdU5hQ2x4Q2g2azBTVTI0NzhVa1hTQV9iOC1taWM4MUpUb09XVFlYajlDeFhYdEpaMGJZTTE3RVRVQXl4b04tZk90OU1tZEJYYWpaUzl1d0hzQW1xRmNnbnNpMldrdXhVaGlyT3pSRlVoN0xEVU5RREo4SzZSTA?oc=5",
-      "stableId": "world_1b2f0da26becd6bc9e65",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPOXE1VU1LdXAya1NnX2I3LW1WdVM0YmlnVXl0cHlvbURXV2pKdkxURld6S0ZfRVN0S0dCdU5hQ2x4Q2g2azBTVTI0NzhVa1hTQV9iOC1taWM4MUpUb09XVFlYajlDeFhYdEpaMGJZTTE3RVRVQXl4b04tZk90OU1tZEJYYWpaUzl1d0hzQW1xRmNnbnNpMldrdXhVaGlyT3pSRlVoN0xEVU5RREo4SzZSTA?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPdzBKbGtLR05zSzlLbU9zZXE4dE96YVRPX3JnNFlKbjctNTFLQkR3SW1LSGtxS1Yxd2Q5c1RBY09QRUtsdzBCWmNyQ3JXenV6RURiWmlJLWZfWmVDNEVqSTIyY1RPLUtWSEQ1bmVRVlpxUGp3M2xDZmpKTEc1MWF5enlvbWdwYXVkeWpUUVJma3N0R3BscjFnT0N6am11eG95eERBalRmWlhUWl9GNWJSQ0xWNnZhaUh5WVAtWDZlMHJTcWhjbGhaN0hUclRmVlRhcmctZmVtOE9kNGtUNEdLMW9wbnFkNnp4YnpMc0l2RGpoN0FjWXA1ZEJhQnVISk0?oc=5",
+      "stableId": "world_b669924f67a2b9434372",
+      "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPdzBKbGtLR05zSzlLbU9zZXE4dE96YVRPX3JnNFlKbjctNTFLQkR3SW1LSGtxS1Yxd2Q5c1RBY09QRUtsdzBCWmNyQ3JXenV6RURiWmlJLWZfWmVDNEVqSTIyY1RPLUtWSEQ1bmVRVlpxUGp3M2xDZmpKTEc1MWF5enlvbWdwYXVkeWpUUVJma3N0R3BscjFnT0N6am11eG95eERBalRmWlhUWl9GNWJSQ0xWNnZhaUh5WVAtWDZlMHJTcWhjbGhaN0hUclRmVlRhcmctZmVtOE9kNGtUNEdLMW9wbnFkNnp4YnpMc0l2RGpoN0FjWXA1ZEJhQnVISk0?oc=5",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "CBS News",
-      "sourceURL": "https://www.cbsnews.com",
-      "sourceUrl": "https://www.cbsnews.com",
-      "sourceDomain": "cbsnews.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 84,
+      "sourceName": "TheSuburban.com",
+      "sourceURL": "https://www.thesuburban.com",
+      "sourceUrl": "https://www.thesuburban.com",
+      "sourceDomain": "thesuburban.com",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "education",
-      "topicLabel": "教育",
-      "legacyCategory": "education",
-      "curationScore": 21,
+      "topic": "sports",
+      "topicLabel": "デフスポーツ",
+      "legacyCategory": "sports",
+      "curationScore": 22,
       "curationSignals": [
-        "deaf student",
-        "major-media"
+        "deaflympics",
+        "deaf athlete",
+        "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
-      "summary": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
+      "title": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
+      "summary": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
-          "summary": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
+          "title": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
+          "summary": "冬季デフリンピックに出場するカナダのろう者アスリートへの支援が呼びかけられています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5124,8 +5079,8 @@
           }
         },
         "original": {
-          "title": "Sacramento State ASL program helps deaf students pursue career dreams",
-          "summary": "Sacramento State ASL program helps deaf students pursue career dreams",
+          "title": "Now hear this: time to support Canada’s deaf athletes headed to the Winter Deaflympics",
+          "summary": "Now hear this: time to support Canada’s deaf athletes headed to the Winter Deaflympics",
           "language": "en"
         }
       }
@@ -5268,36 +5223,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
-      "stableId": "world_414cf413ddc2e554dc84",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPOXE1VU1LdXAya1NnX2I3LW1WdVM0YmlnVXl0cHlvbURXV2pKdkxURld6S0ZfRVN0S0dCdU5hQ2x4Q2g2azBTVTI0NzhVa1hTQV9iOC1taWM4MUpUb09XVFlYajlDeFhYdEpaMGJZTTE3RVRVQXl4b04tZk90OU1tZEJYYWpaUzl1d0hzQW1xRmNnbnNpMldrdXhVaGlyT3pSRlVoN0xEVU5RREo4SzZSTA?oc=5",
+      "stableId": "world_1b2f0da26becd6bc9e65",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPOXE1VU1LdXAya1NnX2I3LW1WdVM0YmlnVXl0cHlvbURXV2pKdkxURld6S0ZfRVN0S0dCdU5hQ2x4Q2g2azBTVTI0NzhVa1hTQV9iOC1taWM4MUpUb09XVFlYajlDeFhYdEpaMGJZTTE3RVRVQXl4b04tZk90OU1tZEJYYWpaUzl1d0hzQW1xRmNnbnNpMldrdXhVaGlyT3pSRlVoN0xEVU5RREo4SzZSTA?oc=5",
       "publishedAt": "2026-09-30T07:00:00Z",
-      "sourceName": "G1",
-      "sourceURL": "https://g1.globo.com",
-      "sourceUrl": "https://g1.globo.com",
-      "sourceDomain": "g1.globo.com",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "sourceName": "CBS News",
+      "sourceURL": "https://www.cbsnews.com",
+      "sourceUrl": "https://www.cbsnews.com",
+      "sourceDomain": "cbsnews.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
+      "topic": "education",
+      "topicLabel": "教育",
+      "legacyCategory": "education",
       "curationScore": 21,
       "curationSignals": [
-        "surdo",
-        "libras",
-        "multilingual"
+        "deaf student",
+        "major-media"
       ],
-      "originalLanguage": "tr",
-      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "originalLanguage": "en",
+      "title": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
+      "summary": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
-          "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+          "title": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
+          "summary": "サクラメント州立大学の米国手話（ASL）プログラムが、ろう学生の希望するキャリアへの挑戦を支えています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5307,9 +5261,9 @@
           }
         },
         "original": {
-          "title": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-          "summary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
-          "language": "tr"
+          "title": "Sacramento State ASL program helps deaf students pursue career dreams",
+          "summary": "Sacramento State ASL program helps deaf students pursue career dreams",
+          "language": "en"
         }
       }
     },
@@ -5406,14 +5360,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUWVFSnJURmtLTmRpcW4tVlBpQ3lBS3J0LUZKU3FucEtCUE8wS2xmd3ZlYlRXc3poZ2VEVUNka0NTQk82X05KU1JFYTI1N1N6TzRWd01FU2M0cjM0MTY2VlpJc3NJQzNGUXpiU0V6MmlwSWkwUGhyUEwtX0ZYRXlSRjBqM2Z2N3FxenUyVjdranJnZHdnLVZTVzlGUDFjbS1XQk1jdXBTS3dPbm9sWEp5YkR1aUktT2lWWDdPTWlCbUVsNE9p?oc=5",
-      "stableId": "world_d3adaa437df64e9a6c06",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUWVFSnJURmtLTmRpcW4tVlBpQ3lBS3J0LUZKU3FucEtCUE8wS2xmd3ZlYlRXc3poZ2VEVUNka0NTQk82X05KU1JFYTI1N1N6TzRWd01FU2M0cjM0MTY2VlpJc3NJQzNGUXpiU0V6MmlwSWkwUGhyUEwtX0ZYRXlSRjBqM2Z2N3FxenUyVjdranJnZHdnLVZTVzlGUDFjbS1XQk1jdXBTS3dPbm9sWEp5YkR1aUktT2lWWDdPTWlCbUVsNE9p?oc=5",
-      "publishedAt": "2026-09-29T07:00:00Z",
-      "sourceName": "agenciasp.sp.gov.br",
-      "sourceURL": "https://www.agenciasp.sp.gov.br",
-      "sourceUrl": "https://www.agenciasp.sp.gov.br",
-      "sourceDomain": "agenciasp.sp.gov.br",
+      "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "stableId": "world_414cf413ddc2e554dc84",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZlI2OEgxVy1oWDJLTXJtc0dwcXZBeDh3YW5qRkdJU2ZoUE8xV3BIMTYzQkxKQkhSYWtSVW5leDh4akJnWlJnT25QTTl0UHJqVXNwRWVVOXdvY3pXbzEtU1R3d19OM1ktbm8zM2FyS0c0bi1QY1VhN0FRVkZMQ0RTLWN6TTZ4X21QdXQzUTVWQWFiRzhpeFR4SjVlSUFFQkdiR3VOdXVCQzBMR041Y1E1N1Z3bEUxNUZHaHFjZHMxZG52V043U0QxV3VRaElwRXgwNmZiTjZYdlROR0NLY0tZRHcwd29mNHhPNnFOcFotUGc1R01WeXV3cXdFbkJid9IBjAJBVV95cUxOTUw1N0xuUHZIMTVkQXhDQUJXZjctanpMMEVTdFNkSXVNM3lqLVdGVVRJUGFIR2dBS09YalMtYTVta3lkLVNTbUs1T1FlU0JqdWdNTzJRQXBFY0NveTdrN2tQbDZpQzRfR1Q2dmJmcVZaT0didzktZmJmSDlnX3QyQ0s5LTRDMGdaVWxwVTExdUVMb0U3elJDVHhKS3RGckVnZGZaNWIxanhhRHJZdFBmSERaVzlWYlk4ckVKT3dkal9Tc2RnUndSZXZnUVk1ZUY0c09RSmJDV1dIbWtPcjlMM2VPSElBY0dQUUloVzNqUlNuQ3JIMXIyb3hiU1VTVm1iXzFON2dCZ3lRNVl5?oc=5",
+      "publishedAt": "2026-09-30T07:00:00Z",
+      "sourceName": "G1",
+      "sourceURL": "https://g1.globo.com",
+      "sourceUrl": "https://g1.globo.com",
+      "sourceDomain": "g1.globo.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "americas",
@@ -5421,21 +5375,21 @@
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
       "legacyCategory": "policy",
-      "curationScore": 23,
+      "curationScore": 21,
       "curationSignals": [
         "surdo",
         "libras",
         "multilingual"
       ],
       "originalLanguage": "tr",
-      "title": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
-      "summary": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
+      "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+      "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
-          "summary": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
+          "title": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
+          "summary": "ブラジルのアクレ州で、Libras通訳者の働きがろう者の選挙情報へのアクセス向上につながっている。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5445,8 +5399,8 @@
           }
         },
         "original": {
-          "title": "Eleições: saiba como eleitores surdos podem acessar suporte em Libras no dia da votação em SP",
-          "summary": "Eleições: saiba como eleitores surdos podem acessar suporte em Libras no dia da votação em SP",
+          "title": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
+          "summary": "Trabalho de intérpretes de Libras amplia acesso de eleitores surdos às informações no Acre: ‘Propósito’",
           "language": "tr"
         }
       }
@@ -5541,37 +5495,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPMHE1T25tcWFwWUZxZHEwUFRIbDdIajVtUjM5R29SM2ZWNlZLUGVGSmN4X2JRalhCdGxQX25XT0RVOXJzR0FpTlJQY1ViTlBhdWwydHRfendyMGdZc2U3WjNiamRnV3NmYm85b0hCMHNDNmg5TnhneEZSbkkwZ25fOEFPYUo5cU1UT2wyWDZSUXRSR1hTaGdwcVo3WXJrRF9feXhzQ2N0SXo1X3drMnIwNkVFdmExQkgz?oc=5",
-      "stableId": "world_b6c8faf34fd7ee1ca632",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPMHE1T25tcWFwWUZxZHEwUFRIbDdIajVtUjM5R29SM2ZWNlZLUGVGSmN4X2JRalhCdGxQX25XT0RVOXJzR0FpTlJQY1ViTlBhdWwydHRfendyMGdZc2U3WjNiamRnV3NmYm85b0hCMHNDNmg5TnhneEZSbkkwZ25fOEFPYUo5cU1UT2wyWDZSUXRSR1hTaGdwcVo3WXJrRF9feXhzQ2N0SXo1X3drMnIwNkVFdmExQkgz?oc=5",
-      "publishedAt": "2026-09-25T07:00:00Z",
-      "sourceName": "Euronews.com",
-      "sourceURL": "https://es.euronews.com",
-      "sourceUrl": "https://es.euronews.com",
-      "sourceDomain": "euronews.com",
+      "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUWVFSnJURmtLTmRpcW4tVlBpQ3lBS3J0LUZKU3FucEtCUE8wS2xmd3ZlYlRXc3poZ2VEVUNka0NTQk82X05KU1JFYTI1N1N6TzRWd01FU2M0cjM0MTY2VlpJc3NJQzNGUXpiU0V6MmlwSWkwUGhyUEwtX0ZYRXlSRjBqM2Z2N3FxenUyVjdranJnZHdnLVZTVzlGUDFjbS1XQk1jdXBTS3dPbm9sWEp5YkR1aUktT2lWWDdPTWlCbUVsNE9p?oc=5",
+      "stableId": "world_d3adaa437df64e9a6c06",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUWVFSnJURmtLTmRpcW4tVlBpQ3lBS3J0LUZKU3FucEtCUE8wS2xmd3ZlYlRXc3poZ2VEVUNka0NTQk82X05KU1JFYTI1N1N6TzRWd01FU2M0cjM0MTY2VlpJc3NJQzNGUXpiU0V6MmlwSWkwUGhyUEwtX0ZYRXlSRjBqM2Z2N3FxenUyVjdranJnZHdnLVZTVzlGUDFjbS1XQk1jdXBTS3dPbm9sWEp5YkR1aUktT2lWWDdPTWlCbUVsNE9p?oc=5",
+      "publishedAt": "2026-09-29T07:00:00Z",
+      "sourceName": "agenciasp.sp.gov.br",
+      "sourceURL": "https://www.agenciasp.sp.gov.br",
+      "sourceUrl": "https://www.agenciasp.sp.gov.br",
+      "sourceDomain": "agenciasp.sp.gov.br",
       "sourceMode": "regional-fresh",
-      "sourcePriority": 86,
+      "sourcePriority": 50,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "general",
-      "topicLabel": "一般",
-      "legacyCategory": "general",
-      "curationScore": 27,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 23,
       "curationSignals": [
-        "sordo",
-        "sordos",
-        "major-media",
+        "surdo",
+        "libras",
         "multilingual"
       ],
-      "originalLanguage": "pt",
-      "title": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
-      "summary": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
+      "originalLanguage": "tr",
+      "title": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
+      "summary": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
-          "summary": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
+          "title": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
+          "summary": "サンパウロ州で、ろう有権者が投票日にブラジル手話（Libras）による支援を利用する方法が案内されています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5581,21 +5534,21 @@
           }
         },
         "original": {
-          "title": "20 años de cárcel para una exmonja por abusos a menores sordos",
-          "summary": "20 años de cárcel para una exmonja por abusos a menores sordos",
-          "language": "pt"
+          "title": "Eleições: saiba como eleitores surdos podem acessar suporte em Libras no dia da votação em SP",
+          "summary": "Eleições: saiba como eleitores surdos podem acessar suporte em Libras no dia da votação em SP",
+          "language": "tr"
         }
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9qNE1XV0x5UXBadG1BQTA3cnR2WEZjeWVRQXJUaHpDSjZTdkpyaVBCQkprWDZ3UFJIcEFpZy00SjhUdExrYXFobno5VW05YnM?oc=5",
-      "stableId": "world_a6e9a19ded2ce199727a",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9qNE1XV0x5UXBadG1BQTA3cnR2WEZjeWVRQXJUaHpDSjZTdkpyaVBCQkprWDZ3UFJIcEFpZy00SjhUdExrYXFobno5VW05YnM?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMimgJBVV95cUxQVUJzWVVKaWxPa1o0Qm1OdTZHa0FDWFNhQWJYM05wY2xKeThGSm13ZU0xQlpHa01mcDRSM1gxZXRXLUJUV0NBV3Y5LWJDVXhGaXR4LVpOV0FZRHc2M3hlTVJfcDlSeDFld0tQZXJGRzhMaVhHWGRvMUt0VGRXcjE1VXpDZ3hHRDBvZlkwWjRBVllMQWJlZ2xNNDY5OTFKVTF0TWpnMGM3OU5wdG81Z0JVN2hldFNWaURDSWhDd2FBdElwVVYyOVRvQTRvbUM5Tks0RHFKZDdXZWFva0k3akM0WXRsTUJiazk5RlFnSTQyQnpRREVBUWg4QXBRTmszcklSU0VVM2lGS3VUZmdlOWVSazFjUFlfaU5HTUE?oc=5",
+      "stableId": "world_0516ff8b18a597b1b9e3",
+      "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxQVUJzWVVKaWxPa1o0Qm1OdTZHa0FDWFNhQWJYM05wY2xKeThGSm13ZU0xQlpHa01mcDRSM1gxZXRXLUJUV0NBV3Y5LWJDVXhGaXR4LVpOV0FZRHc2M3hlTVJfcDlSeDFld0tQZXJGRzhMaVhHWGRvMUt0VGRXcjE1VXpDZ3hHRDBvZlkwWjRBVllMQWJlZ2xNNDY5OTFKVTF0TWpnMGM3OU5wdG81Z0JVN2hldFNWaURDSWhDd2FBdElwVVYyOVRvQTRvbUM5Tks0RHFKZDdXZWFva0k3akM0WXRsTUJiazk5RlFnSTQyQnpRREVBUWg4QXBRTmszcklSU0VVM2lGS3VUZmdlOWVSazFjUFlfaU5HTUE?oc=5",
       "publishedAt": "2026-09-23T07:00:00Z",
-      "sourceName": "你的公共電視",
-      "sourceURL": "https://news.pts.org.tw",
-      "sourceUrl": "https://news.pts.org.tw",
-      "sourceDomain": "news.pts.org.tw",
+      "sourceName": "Yahoo新聞",
+      "sourceURL": "https://tw.news.yahoo.com",
+      "sourceUrl": "https://tw.news.yahoo.com",
+      "sourceDomain": "tw.news.yahoo.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "asia_oceania",
@@ -5681,35 +5634,37 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOd3AwaHp5T2UtUnFKMDJmUE1KekM1LVdYVEpMa3FvZ3RTcDVuNThyVmh4UlNtNDVBWUxPaVp6M3hHMUEtZDdNY2xfNXU5d2lKbDZXeXNNaVM4U2JoOGh1SE9vOEdRdU43ZlBqNC1pNmhTRUZVbnR6MkpPZHBRTlp5U0I0ZHdLQ1ZnYThDMEtQcjhqbkNYeThfaEVUSmxGTzFFX3c?oc=5",
-      "stableId": "world_bebb50472ad086c77719",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOd3AwaHp5T2UtUnFKMDJmUE1KekM1LVdYVEpMa3FvZ3RTcDVuNThyVmh4UlNtNDVBWUxPaVp6M3hHMUEtZDdNY2xfNXU5d2lKbDZXeXNNaVM4U2JoOGh1SE9vOEdRdU43ZlBqNC1pNmhTRUZVbnR6MkpPZHBRTlp5U0I0ZHdLQ1ZnYThDMEtQcjhqbkNYeThfaEVUSmxGTzFFX3c?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPMHE1T25tcWFwWUZxZHEwUFRIbDdIajVtUjM5R29SM2ZWNlZLUGVGSmN4X2JRalhCdGxQX25XT0RVOXJzR0FpTlJQY1ViTlBhdWwydHRfendyMGdZc2U3WjNiamRnV3NmYm85b0hCMHNDNmg5TnhneEZSbkkwZ25fOEFPYUo5cU1UT2wyWDZSUXRSR1hTaGdwcVo3WXJrRF9feXhzQ2N0SXo1X3drMnIwNkVFdmExQkgz?oc=5",
+      "stableId": "world_b6c8faf34fd7ee1ca632",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPMHE1T25tcWFwWUZxZHEwUFRIbDdIajVtUjM5R29SM2ZWNlZLUGVGSmN4X2JRalhCdGxQX25XT0RVOXJzR0FpTlJQY1ViTlBhdWwydHRfendyMGdZc2U3WjNiamRnV3NmYm85b0hCMHNDNmg5TnhneEZSbkkwZ25fOEFPYUo5cU1UT2wyWDZSUXRSR1hTaGdwcVo3WXJrRF9feXhzQ2N0SXo1X3drMnIwNkVFdmExQkgz?oc=5",
       "publishedAt": "2026-09-25T07:00:00Z",
-      "sourceName": "CTV News",
-      "sourceURL": "https://www.ctvnews.ca",
-      "sourceUrl": "https://www.ctvnews.ca",
-      "sourceDomain": "ctvnews.ca",
-      "sourceMode": "major-media",
-      "sourcePriority": 82,
+      "sourceName": "Euronews.com",
+      "sourceURL": "https://es.euronews.com",
+      "sourceUrl": "https://es.euronews.com",
+      "sourceDomain": "euronews.com",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 86,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "sports",
-      "topicLabel": "デフスポーツ",
-      "legacyCategory": "sports",
-      "curationScore": 22,
+      "topic": "general",
+      "topicLabel": "一般",
+      "legacyCategory": "general",
+      "curationScore": 27,
       "curationSignals": [
-        "deaflympics",
-        "major-media"
+        "sordo",
+        "sordos",
+        "major-media",
+        "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
-      "summary": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
+      "originalLanguage": "pt",
+      "title": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
+      "summary": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
-          "summary": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
+          "title": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
+          "summary": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5719,9 +5674,9 @@
           }
         },
         "original": {
-          "title": "Team Canada’s participation at Deaflympics at risk",
-          "summary": "Team Canada’s participation at Deaflympics at risk",
-          "language": "en"
+          "title": "20 años de cárcel para una exmonja por abusos a menores sordos",
+          "summary": "20 años de cárcel para una exmonja por abusos a menores sordos",
+          "language": "pt"
         }
       }
     },
@@ -5817,36 +5772,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNU19NdklLSWltUngwdHJuU3hYaUdzZy00eEtTVWxjc1A5bXNZN2JGLXBoQjU5MU5jZkdCZFR2TGd5cUtjODNQQmpSOU1nbUNMZWNGeGFzWWtxZjNrWTBqRlY5b2lWVlItY1J6SUlFUUlCcUljRTdBSkF1ZlZTVUdzTWxMM1FpV0tEMTB4bUZNZS1heG5Ydml6WDZHa2lzZTJrQzV3VTFKUng2S2dpYlhJUkU4dzR5M295UnRZTlVQUDZranZjR2ZjQS1Yb0xhcGVDcmc?oc=5",
-      "stableId": "world_0570ea7b594963a8a2d4",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNU19NdklLSWltUngwdHJuU3hYaUdzZy00eEtTVWxjc1A5bXNZN2JGLXBoQjU5MU5jZkdCZFR2TGd5cUtjODNQQmpSOU1nbUNMZWNGeGFzWWtxZjNrWTBqRlY5b2lWVlItY1J6SUlFUUlCcUljRTdBSkF1ZlZTVUdzTWxMM1FpV0tEMTB4bUZNZS1heG5Ydml6WDZHa2lzZTJrQzV3VTFKUng2S2dpYlhJUkU4dzR5M295UnRZTlVQUDZranZjR2ZjQS1Yb0xhcGVDcmc?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOd3AwaHp5T2UtUnFKMDJmUE1KekM1LVdYVEpMa3FvZ3RTcDVuNThyVmh4UlNtNDVBWUxPaVp6M3hHMUEtZDdNY2xfNXU5d2lKbDZXeXNNaVM4U2JoOGh1SE9vOEdRdU43ZlBqNC1pNmhTRUZVbnR6MkpPZHBRTlp5U0I0ZHdLQ1ZnYThDMEtQcjhqbkNYeThfaEVUSmxGTzFFX3c?oc=5",
+      "stableId": "world_bebb50472ad086c77719",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOd3AwaHp5T2UtUnFKMDJmUE1KekM1LVdYVEpMa3FvZ3RTcDVuNThyVmh4UlNtNDVBWUxPaVp6M3hHMUEtZDdNY2xfNXU5d2lKbDZXeXNNaVM4U2JoOGh1SE9vOEdRdU43ZlBqNC1pNmhTRUZVbnR6MkpPZHBRTlp5U0I0ZHdLQ1ZnYThDMEtQcjhqbkNYeThfaEVUSmxGTzFFX3c?oc=5",
       "publishedAt": "2026-09-25T07:00:00Z",
       "sourceName": "CTV News",
       "sourceURL": "https://www.ctvnews.ca",
       "sourceUrl": "https://www.ctvnews.ca",
       "sourceDomain": "ctvnews.ca",
-      "sourceMode": "regional-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 82,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "general",
-      "topicLabel": "一般",
-      "legacyCategory": "general",
-      "curationScore": 19,
+      "topic": "sports",
+      "topicLabel": "デフスポーツ",
+      "legacyCategory": "sports",
+      "curationScore": 22,
       "curationSignals": [
-        "hard of hearing",
-        "major-media",
-        "multilingual"
+        "deaflympics",
+        "major-media"
       ],
       "originalLanguage": "en",
-      "title": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
-      "summary": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
+      "title": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
+      "summary": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
-          "summary": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
+          "title": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
+          "summary": "カナダ代表チームのデフリンピック出場が危ぶまれています。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5856,8 +5810,8 @@
           }
         },
         "original": {
-          "title": "Clinic steps up to help former Island Deaf and Hard of Hearing Centre clients",
-          "summary": "Clinic steps up to help former Island Deaf and Hard of Hearing Centre clients",
+          "title": "Team Canada’s participation at Deaflympics at risk",
+          "summary": "Team Canada’s participation at Deaflympics at risk",
           "language": "en"
         }
       }
@@ -5871,7 +5825,7 @@
       "sourceURL": "https://www.koreaherald.com",
       "sourceUrl": "https://www.koreaherald.com",
       "sourceDomain": "koreaherald.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 74,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -5953,35 +5907,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPeHR6NzI3QmZkQmhUaE1rN2pWc1hQU2x3UXNnMkJZYVVxRWgybE1zVmlMdkFMTU5KVFAtVGhtaDRudG5iUVY4eHhONGpfODJrYVBRS1YxYzEyQjBvbWM1bmpoOGF0LVVwQlljYlRmOXhEamx2bEF1QkJzRGJMaThuVzh4UTJIZnVTcFlUYTNQN0ZvWmtvTzNqemR6cXVBU1EwNWtHenRiNjd0VXFNZFpvb0ZJblczV2c?oc=5",
-      "stableId": "world_70715a32d598b7bb0552",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPeHR6NzI3QmZkQmhUaE1rN2pWc1hQU2x3UXNnMkJZYVVxRWgybE1zVmlMdkFMTU5KVFAtVGhtaDRudG5iUVY4eHhONGpfODJrYVBRS1YxYzEyQjBvbWM1bmpoOGF0LVVwQlljYlRmOXhEamx2bEF1QkJzRGJMaThuVzh4UTJIZnVTcFlUYTNQN0ZvWmtvTzNqemR6cXVBU1EwNWtHenRiNjd0VXFNZFpvb0ZJblczV2c?oc=5",
-      "publishedAt": "2026-09-24T07:00:00Z",
-      "sourceName": "USA Today",
-      "sourceURL": "https://www.usatoday.com",
-      "sourceUrl": "https://www.usatoday.com",
-      "sourceDomain": "usatoday.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 78,
+      "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNU19NdklLSWltUngwdHJuU3hYaUdzZy00eEtTVWxjc1A5bXNZN2JGLXBoQjU5MU5jZkdCZFR2TGd5cUtjODNQQmpSOU1nbUNMZWNGeGFzWWtxZjNrWTBqRlY5b2lWVlItY1J6SUlFUUlCcUljRTdBSkF1ZlZTVUdzTWxMM1FpV0tEMTB4bUZNZS1heG5Ydml6WDZHa2lzZTJrQzV3VTFKUng2S2dpYlhJUkU4dzR5M295UnRZTlVQUDZranZjR2ZjQS1Yb0xhcGVDcmc?oc=5",
+      "stableId": "world_0570ea7b594963a8a2d4",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNU19NdklLSWltUngwdHJuU3hYaUdzZy00eEtTVWxjc1A5bXNZN2JGLXBoQjU5MU5jZkdCZFR2TGd5cUtjODNQQmpSOU1nbUNMZWNGeGFzWWtxZjNrWTBqRlY5b2lWVlItY1J6SUlFUUlCcUljRTdBSkF1ZlZTVUdzTWxMM1FpV0tEMTB4bUZNZS1heG5Ydml6WDZHa2lzZTJrQzV3VTFKUng2S2dpYlhJUkU4dzR5M295UnRZTlVQUDZranZjR2ZjQS1Yb0xhcGVDcmc?oc=5",
+      "publishedAt": "2026-09-25T07:00:00Z",
+      "sourceName": "CTV News",
+      "sourceURL": "https://www.ctvnews.ca",
+      "sourceUrl": "https://www.ctvnews.ca",
+      "sourceDomain": "ctvnews.ca",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 82,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 23,
+      "topic": "general",
+      "topicLabel": "一般",
+      "legacyCategory": "general",
+      "curationScore": 19,
       "curationSignals": [
-        "hearing aid",
-        "major-media"
+        "hard of hearing",
+        "major-media",
+        "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
-      "summary": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
+      "title": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
+      "summary": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
-          "summary": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
+          "title": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
+          "summary": "診療所が、旧アイランドろう・難聴者センターの利用者を支援する取り組みに乗り出した。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -5991,8 +5946,8 @@
           }
         },
         "original": {
-          "title": "Can AI help you hear better? Meet Elehear's latest OTC hearing aid",
-          "summary": "Can AI help you hear better? Meet Elehear's latest OTC hearing aid",
+          "title": "Clinic steps up to help former Island Deaf and Hard of Hearing Centre clients",
+          "summary": "Clinic steps up to help former Island Deaf and Hard of Hearing Centre clients",
           "language": "en"
         }
       }
@@ -6091,170 +6046,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQV3VjdFp6SmV4SDhmbWltX1ROV3R5ckw3SkY4clhmSlpCOXlWcklOQzQ2eVMwM2VtTkRpdUl4MFBvU3I2Z1pQR05BNkNNWk5QYXhSN3pPVHhsU1ZyYWdMRWtUMTRDWFJmYkRzMC02WnAyeVdkcnR3UUhXVkpZYkpwcW1YUHIzWFRGVUk5VG92dmpGaUQzVktfZFBDdzJRakhuaHozb1RR?oc=5",
-      "stableId": "world_2c95177b4e7fea9e7c0b",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQV3VjdFp6SmV4SDhmbWltX1ROV3R5ckw3SkY4clhmSlpCOXlWcklOQzQ2eVMwM2VtTkRpdUl4MFBvU3I2Z1pQR05BNkNNWk5QYXhSN3pPVHhsU1ZyYWdMRWtUMTRDWFJmYkRzMC02WnAyeVdkcnR3UUhXVkpZYkpwcW1YUHIzWFRGVUk5VG92dmpGaUQzVktfZFBDdzJRakhuaHozb1RR?oc=5",
-      "publishedAt": "2026-09-23T17:42:19Z",
-      "sourceName": "CBC",
-      "sourceURL": "https://www.cbc.ca",
-      "sourceUrl": "https://www.cbc.ca",
-      "sourceDomain": "cbc.ca",
+      "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPeHR6NzI3QmZkQmhUaE1rN2pWc1hQU2x3UXNnMkJZYVVxRWgybE1zVmlMdkFMTU5KVFAtVGhtaDRudG5iUVY4eHhONGpfODJrYVBRS1YxYzEyQjBvbWM1bmpoOGF0LVVwQlljYlRmOXhEamx2bEF1QkJzRGJMaThuVzh4UTJIZnVTcFlUYTNQN0ZvWmtvTzNqemR6cXVBU1EwNWtHenRiNjd0VXFNZFpvb0ZJblczV2c?oc=5",
+      "stableId": "world_70715a32d598b7bb0552",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPeHR6NzI3QmZkQmhUaE1rN2pWc1hQU2x3UXNnMkJZYVVxRWgybE1zVmlMdkFMTU5KVFAtVGhtaDRudG5iUVY4eHhONGpfODJrYVBRS1YxYzEyQjBvbWM1bmpoOGF0LVVwQlljYlRmOXhEamx2bEF1QkJzRGJMaThuVzh4UTJIZnVTcFlUYTNQN0ZvWmtvTzNqemR6cXVBU1EwNWtHenRiNjd0VXFNZFpvb0ZJblczV2c?oc=5",
+      "publishedAt": "2026-09-24T07:00:00Z",
+      "sourceName": "USA Today",
+      "sourceURL": "https://www.usatoday.com",
+      "sourceUrl": "https://www.usatoday.com",
+      "sourceDomain": "usatoday.com",
       "sourceMode": "major-media",
-      "sourcePriority": 90,
+      "sourcePriority": 78,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "sports",
-      "topicLabel": "デフスポーツ",
-      "legacyCategory": "sports",
-      "curationScore": 24,
-      "curationSignals": [
-        "deaflympics",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
-      "summary": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
-          "summary": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Winter Deaflympics fundraising | Calgary Eyeopener | On Demand",
-          "summary": "Winter Deaflympics fundraising | Calgary Eyeopener | On Demand",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1aWmM4TjBGTmZTVC1fcE0zMGhMLTQxY2VxdElkN0ZxQ2Qzckx0dFVfZkpxakJZeGIwWDZLa0lCb0xfVm1HMkdLc3JnSUJNQlJQblVHeVRHZnB1ZEJpcGgzTlFiTUxRZUZ6SENlQXluS2NQSG1Q0gF4QVVfeXFMTXhSZTlKclBBX3B2Z0RDazVPZUZMMmp4Q1BoMHB2b1REZE4zYjg5cWdxUlNfUUYzSzd5U196aTFaakRJUW56d0loNGJsZ3FyNWJuRzJZcW41SzktZnlMNWNsR3JMeFduYkxQdWhSUDFzRmRSa3R2c0JT?oc=5",
-      "stableId": "world_af7fca228cbdcf6a7fed",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1aWmM4TjBGTmZTVC1fcE0zMGhMLTQxY2VxdElkN0ZxQ2Qzckx0dFVfZkpxakJZeGIwWDZLa0lCb0xfVm1HMkdLc3JnSUJNQlJQblVHeVRHZnB1ZEJpcGgzTlFiTUxRZUZ6SENlQXluS2NQSG1Q0gF4QVVfeXFMTXhSZTlKclBBX3B2Z0RDazVPZUZMMmp4Q1BoMHB2b1REZE4zYjg5cWdxUlNfUUYzSzd5U196aTFaakRJUW56d0loNGJsZ3FyNWJuRzJZcW41SzktZnlMNWNsR3JMeFduYkxQdWhSUDFzRmRSa3R2c0JT?oc=5",
-      "publishedAt": "2026-09-21T08:54:29Z",
-      "sourceName": "한국장애인신문",
-      "sourceURL": "http://www.koreadisablednews.com",
-      "sourceUrl": "http://www.koreadisablednews.com",
-      "sourceDomain": "koreadisablednews.com",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 21,
-      "curationSignals": [
-        "청각장애",
-        "수어",
-        "multilingual"
-      ],
-      "originalLanguage": "ko",
-      "title": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
-      "summary": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
-          "summary": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
-          "summary": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
-          "language": "ko"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOOUViVlFUSEd2WWtnaHN4dnhYd2FDWDRoSFhXVjh3R1FtamdDSWg0dDNkMkZnWE4xOTlCQ0JpV2tWTS1UM0U0QWRqYzVxRVB2emtpMVVhNGxycWpBbTZaSlhseXZTQzlIWlktOW9WVEZqRW5vYU1zcEVrclV1ZHJVQUhXSEZ3ZEJ2NDlWV1NGRVRpVU1QdXVmTHFtN1lZZmw5RUI2dU5GbVd0MzhPOElkY1EycVl1VmFsRkh6dDh6M2Z1UlVvNEIyc2NHMl9TUzB4WUZ5dEszemtvMGRwTlkySmV5RTlZUnJ4V25IdEstdGI3b01lQ1F1WGlMLVlGWDBSZm1n0gGIAkFVX3lxTE9xT1ZiTTJVODBFOTdZQkp2Q1lZd281V1E0TU1oWGl5bGxZWURMY292X0t4R3lxQk5qNVNodmgwZEJSZ2FXRFRqQW1yNlVhZkVKb1BYczNIMXM5RFVoaU8tb0NqaHl2amtoekhib1RDdXRWRnluOU1NTEVWRlZpQ2FYRC1VMGN0RkJ2OEtHZ0tGZ2pjS2xRMzBLeHlLMUMtWmtXUS1zeUp1S29pY3JoTDNVV2J1ZE9mQUtCa0VXUTFKbmUxTU9XWUhReHl5OFhoSXZnci1iWi1OVi1EVE4xQ2dpVURjaDQ4QTZwakRzNktWM2JZRXozTHlCLW1LaEdXTDVYWjF0akhVRQ?oc=5",
-      "stableId": "world_03227f65908c5fb58701",
-      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOOUViVlFUSEd2WWtnaHN4dnhYd2FDWDRoSFhXVjh3R1FtamdDSWg0dDNkMkZnWE4xOTlCQ0JpV2tWTS1UM0U0QWRqYzVxRVB2emtpMVVhNGxycWpBbTZaSlhseXZTQzlIWlktOW9WVEZqRW5vYU1zcEVrclV1ZHJVQUhXSEZ3ZEJ2NDlWV1NGRVRpVU1QdXVmTHFtN1lZZmw5RUI2dU5GbVd0MzhPOElkY1EycVl1VmFsRkh6dDh6M2Z1UlVvNEIyc2NHMl9TUzB4WUZ5dEszemtvMGRwTlkySmV5RTlZUnJ4V25IdEstdGI3b01lQ1F1WGlMLVlGWDBSZm1n0gGIAkFVX3lxTE9xT1ZiTTJVODBFOTdZQkp2Q1lZd281V1E0TU1oWGl5bGxZWURMY292X0t4R3lxQk5qNVNodmgwZEJSZ2FXRFRqQW1yNlVhZkVKb1BYczNIMXM5RFVoaU8tb0NqaHl2amtoekhib1RDdXRWRnluOU1NTEVWRlZpQ2FYRC1VMGN0RkJ2OEtHZ0tGZ2pjS2xRMzBLeHlLMUMtWmtXUS1zeUp1S29pY3JoTDNVV2J1ZE9mQUtCa0VXUTFKbmUxTU9XWUhReHl5OFhoSXZnci1iWi1OVi1EVE4xQ2dpVURjaDQ4QTZwakRzNktWM2JZRXozTHlCLW1LaEdXTDVYWjF0akhVRQ?oc=5",
-      "publishedAt": "2026-09-29T07:00:00Z",
-      "sourceName": "ANSA",
-      "sourceURL": "https://www.ansa.it",
-      "sourceUrl": "https://www.ansa.it",
-      "sourceDomain": "ansa.it",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 76,
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
       "topic": "health",
       "topicLabel": "医療・補聴",
       "legacyCategory": "medical",
-      "curationScore": 20,
+      "curationScore": 23,
       "curationSignals": [
-        "impianto cocleare",
-        "major-media",
-        "multilingual"
-      ],
-      "originalLanguage": "en",
-      "title": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
-      "summary": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
-          "summary": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "MED-EL lancia TICI UNICO, il primo impianto cocleare invisibile disponibile sul mercato",
-          "summary": "MED-EL lancia TICI UNICO, il primo impianto cocleare invisibile disponibile sul mercato",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPSHZ3OTd3Q0xudWQ5Wl9MV3NrYlRQbmxzWUtrYnlXdDJwc1E5ZHFVTl9vOFFUNXZ3YVQ2RjRpSDJJZUpwVjhYTWZTQ1BhdlRyVVFXNTFyYWFaWXVEczBJVnBqZEhDZGUzdU1pTjNFZ0JhaWV5R012S0dRRjRLQ25CSC1idE1SbjVkT0NpSHZfWEFZNUU0bnZaeTJtdkFMdVdQRmE3ZVlsdXk2d3R1STN3ZWdEa2dLQXo2d0Q0?oc=5",
-      "stableId": "world_04d9d8453a2cc3ea5201",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPSHZ3OTd3Q0xudWQ5Wl9MV3NrYlRQbmxzWUtrYnlXdDJwc1E5ZHFVTl9vOFFUNXZ3YVQ2RjRpSDJJZUpwVjhYTWZTQ1BhdlRyVVFXNTFyYWFaWXVEczBJVnBqZEhDZGUzdU1pTjNFZ0JhaWV5R012S0dRRjRLQ25CSC1idE1SbjVkT0NpSHZfWEFZNUU0bnZaeTJtdkFMdVdQRmE3ZVlsdXk2d3R1STN3ZWdEa2dLQXo2d0Q0?oc=5",
-      "publishedAt": "2026-09-23T07:00:00Z",
-      "sourceName": "CBS News",
-      "sourceURL": "https://www.cbsnews.com",
-      "sourceUrl": "https://www.cbsnews.com",
-      "sourceDomain": "cbsnews.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 84,
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "education",
-      "topicLabel": "教育",
-      "legacyCategory": "education",
-      "curationScore": 24,
-      "curationSignals": [
-        "hard of hearing",
+        "hearing aid",
         "major-media"
       ],
       "originalLanguage": "en",
-      "title": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
-      "summary": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
+      "title": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
+      "summary": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
-          "summary": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
+          "title": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
+          "summary": "AIが聞こえの改善に役立つかという問いとともに、Elehearの最新の市販（OTC）補聴器を紹介する。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -6264,8 +6084,8 @@
           }
         },
         "original": {
-          "title": "Aurora Public Schools hosts annual Deaf and Hard of Hearing Track and Field Day",
-          "summary": "Aurora Public Schools hosts annual Deaf and Hard of Hearing Track and Field Day",
+          "title": "Can AI help you hear better? Meet Elehear's latest OTC hearing aid",
+          "summary": "Can AI help you hear better? Meet Elehear's latest OTC hearing aid",
           "language": "en"
         }
       }
@@ -6317,36 +6137,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPeTlHQ2tsMTBXVmJfVzVpYno2WVZIOHUwcFVDbjhGbW1PVVcyVy1iOGdYR0lhbFdvdUdkZ05NOUpEOG1ic253MFVNQi1DQ0sycFdORWZ0WHNFSkZ1YnJLcTV6eWJqVkVVeUdQVFFWWDhtNnBZRHpPT2NtMXJyLWJneTJVZ2FiZE95a1FfZFJnRXZ0U0xjSVhWX1ltdUM3ZlhwM1A5ZjI1ZUl0cGdYZmdqNXc0MHNFb0F5UC02RW5mYU5VODhnZThtcWxsb2dEM2J3dUlSMy1mNDQyc1FVZDItWExDNkhXeTRa?oc=5",
-      "stableId": "world_b02a9f078780d6c7cc4b",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPeTlHQ2tsMTBXVmJfVzVpYno2WVZIOHUwcFVDbjhGbW1PVVcyVy1iOGdYR0lhbFdvdUdkZ05NOUpEOG1ic253MFVNQi1DQ0sycFdORWZ0WHNFSkZ1YnJLcTV6eWJqVkVVeUdQVFFWWDhtNnBZRHpPT2NtMXJyLWJneTJVZ2FiZE95a1FfZFJnRXZ0U0xjSVhWX1ltdUM3ZlhwM1A5ZjI1ZUl0cGdYZmdqNXc0MHNFb0F5UC02RW5mYU5VODhnZThtcWxsb2dEM2J3dUlSMy1mNDQyc1FVZDItWExDNkhXeTRa?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOOUViVlFUSEd2WWtnaHN4dnhYd2FDWDRoSFhXVjh3R1FtamdDSWg0dDNkMkZnWE4xOTlCQ0JpV2tWTS1UM0U0QWRqYzVxRVB2emtpMVVhNGxycWpBbTZaSlhseXZTQzlIWlktOW9WVEZqRW5vYU1zcEVrclV1ZHJVQUhXSEZ3ZEJ2NDlWV1NGRVRpVU1QdXVmTHFtN1lZZmw5RUI2dU5GbVd0MzhPOElkY1EycVl1VmFsRkh6dDh6M2Z1UlVvNEIyc2NHMl9TUzB4WUZ5dEszemtvMGRwTlkySmV5RTlZUnJ4V25IdEstdGI3b01lQ1F1WGlMLVlGWDBSZm1n0gGIAkFVX3lxTE9xT1ZiTTJVODBFOTdZQkp2Q1lZd281V1E0TU1oWGl5bGxZWURMY292X0t4R3lxQk5qNVNodmgwZEJSZ2FXRFRqQW1yNlVhZkVKb1BYczNIMXM5RFVoaU8tb0NqaHl2amtoekhib1RDdXRWRnluOU1NTEVWRlZpQ2FYRC1VMGN0RkJ2OEtHZ0tGZ2pjS2xRMzBLeHlLMUMtWmtXUS1zeUp1S29pY3JoTDNVV2J1ZE9mQUtCa0VXUTFKbmUxTU9XWUhReHl5OFhoSXZnci1iWi1OVi1EVE4xQ2dpVURjaDQ4QTZwakRzNktWM2JZRXozTHlCLW1LaEdXTDVYWjF0akhVRQ?oc=5",
+      "stableId": "world_03227f65908c5fb58701",
+      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOOUViVlFUSEd2WWtnaHN4dnhYd2FDWDRoSFhXVjh3R1FtamdDSWg0dDNkMkZnWE4xOTlCQ0JpV2tWTS1UM0U0QWRqYzVxRVB2emtpMVVhNGxycWpBbTZaSlhseXZTQzlIWlktOW9WVEZqRW5vYU1zcEVrclV1ZHJVQUhXSEZ3ZEJ2NDlWV1NGRVRpVU1QdXVmTHFtN1lZZmw5RUI2dU5GbVd0MzhPOElkY1EycVl1VmFsRkh6dDh6M2Z1UlVvNEIyc2NHMl9TUzB4WUZ5dEszemtvMGRwTlkySmV5RTlZUnJ4V25IdEstdGI3b01lQ1F1WGlMLVlGWDBSZm1n0gGIAkFVX3lxTE9xT1ZiTTJVODBFOTdZQkp2Q1lZd281V1E0TU1oWGl5bGxZWURMY292X0t4R3lxQk5qNVNodmgwZEJSZ2FXRFRqQW1yNlVhZkVKb1BYczNIMXM5RFVoaU8tb0NqaHl2amtoekhib1RDdXRWRnluOU1NTEVWRlZpQ2FYRC1VMGN0RkJ2OEtHZ0tGZ2pjS2xRMzBLeHlLMUMtWmtXUS1zeUp1S29pY3JoTDNVV2J1ZE9mQUtCa0VXUTFKbmUxTU9XWUhReHl5OFhoSXZnci1iWi1OVi1EVE4xQ2dpVURjaDQ4QTZwakRzNktWM2JZRXozTHlCLW1LaEdXTDVYWjF0akhVRQ?oc=5",
       "publishedAt": "2026-09-29T07:00:00Z",
-      "sourceName": "Le Parisien",
-      "sourceURL": "https://www.leparisien.fr",
-      "sourceUrl": "https://www.leparisien.fr",
-      "sourceDomain": "leparisien.fr",
+      "sourceName": "ANSA",
+      "sourceURL": "https://www.ansa.it",
+      "sourceUrl": "https://www.ansa.it",
+      "sourceDomain": "ansa.it",
       "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
+      "sourcePriority": 76,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "general",
-      "topicLabel": "一般",
-      "legacyCategory": "general",
-      "curationScore": 18,
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 20,
       "curationSignals": [
-        "sourd",
-        "sourds",
+        "impianto cocleare",
+        "major-media",
         "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
-      "summary": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
+      "title": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
+      "summary": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
-          "summary": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
+          "title": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
+          "summary": "MED-EL、市場で入手可能な初の目に見えない人工内耳である TICI UNICO を発売",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -6355,53 +6175,53 @@
           }
         },
         "original": {
-          "title": "Handicap : Rives en Signes, la banque qui parle la langue des sourds",
-          "summary": "Handicap : Rives en Signes, la banque qui parle la langue des sourds",
+          "title": "MED-EL lancia TICI UNICO, il primo impianto cocleare invisibile disponibile sul mercato",
+          "summary": "MED-EL lancia TICI UNICO, il primo impianto cocleare invisibile disponibile sul mercato",
           "language": "en"
         }
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTF8zUjFTYVVOU2l2c0JINjhocGdCNFBUV0ltMUVfYXdvT0xQczJoc3ZXSUNSalMwd09Mc0M4RnJYSXhENFpmSlE1TTNVNFFic1pqblFHV1o3dFlnQ3Fob3ZibkVqNGV3U0s5VHNXQ1BWVDFEQWFId2FVTU43amp0dVhfZ3FxX2pSNldGWU95QW40Tk9FUW5sRlBqOG8wWmxMeWc?oc=5",
-      "stableId": "world_b2fc4c7a764e3cbf504e",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTF8zUjFTYVVOU2l2c0JINjhocGdCNFBUV0ltMUVfYXdvT0xQczJoc3ZXSUNSalMwd09Mc0M4RnJYSXhENFpmSlE1TTNVNFFic1pqblFHV1o3dFlnQ3Fob3ZibkVqNGV3U0s5VHNXQ1BWVDFEQWFId2FVTU43amp0dVhfZ3FxX2pSNldGWU95QW40Tk9FUW5sRlBqOG8wWmxMeWc?oc=5",
-      "publishedAt": "2026-09-23T07:00:00Z",
-      "sourceName": "CTV News",
-      "sourceURL": "https://www.ctvnews.ca",
-      "sourceUrl": "https://www.ctvnews.ca",
-      "sourceDomain": "ctvnews.ca",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 82,
+      "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQV3VjdFp6SmV4SDhmbWltX1ROV3R5ckw3SkY4clhmSlpCOXlWcklOQzQ2eVMwM2VtTkRpdUl4MFBvU3I2Z1pQR05BNkNNWk5QYXhSN3pPVHhsU1ZyYWdMRWtUMTRDWFJmYkRzMC02WnAyeVdkcnR3UUhXVkpZYkpwcW1YUHIzWFRGVUk5VG92dmpGaUQzVktfZFBDdzJRakhuaHozb1RR?oc=5",
+      "stableId": "world_2c95177b4e7fea9e7c0b",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQV3VjdFp6SmV4SDhmbWltX1ROV3R5ckw3SkY4clhmSlpCOXlWcklOQzQ2eVMwM2VtTkRpdUl4MFBvU3I2Z1pQR05BNkNNWk5QYXhSN3pPVHhsU1ZyYWdMRWtUMTRDWFJmYkRzMC02WnAyeVdkcnR3UUhXVkpZYkpwcW1YUHIzWFRGVUk5VG92dmpGaUQzVktfZFBDdzJRakhuaHozb1RR?oc=5",
+      "publishedAt": "2026-09-23T17:42:19Z",
+      "sourceName": "CBC",
+      "sourceURL": "https://www.cbc.ca",
+      "sourceUrl": "https://www.cbc.ca",
+      "sourceDomain": "cbc.ca",
+      "sourceMode": "major-media",
+      "sourcePriority": 90,
       "region": "americas",
       "regionLabel": "北米・中南米",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 22,
+      "topic": "sports",
+      "topicLabel": "デフスポーツ",
+      "legacyCategory": "sports",
+      "curationScore": 24,
       "curationSignals": [
-        "sign language",
-        "major-media",
-        "multilingual"
+        "deaflympics",
+        "major-media"
       ],
       "originalLanguage": "en",
-      "title": "マニトバ州に新たな手話トレーニングの機会が到来",
-      "summary": "マニトバ州に新たな手話トレーニングの機会が到来",
+      "title": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
+      "summary": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "マニトバ州に新たな手話トレーニングの機会が到来",
-          "summary": "マニトバ州に新たな手話トレーニングの機会が到来",
+          "title": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
+          "summary": "CBCの番組「Calgary Eyeopener」が、冬季デフリンピックに向けた資金調達を取り上げた。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "New sign language training opportunities coming to Manitoba",
-          "summary": "New sign language training opportunities coming to Manitoba",
+          "title": "Winter Deaflympics fundraising | Calgary Eyeopener | On Demand",
+          "summary": "Winter Deaflympics fundraising | Calgary Eyeopener | On Demand",
           "language": "en"
         }
       }
@@ -6447,6 +6267,141 @@
         "original": {
           "title": "Tata Steel Foundation secures full residential school admission for 12 deaf students",
           "summary": "Tata Steel Foundation secures full residential school admission for 12 deaf students",
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPeTlHQ2tsMTBXVmJfVzVpYno2WVZIOHUwcFVDbjhGbW1PVVcyVy1iOGdYR0lhbFdvdUdkZ05NOUpEOG1ic253MFVNQi1DQ0sycFdORWZ0WHNFSkZ1YnJLcTV6eWJqVkVVeUdQVFFWWDhtNnBZRHpPT2NtMXJyLWJneTJVZ2FiZE95a1FfZFJnRXZ0U0xjSVhWX1ltdUM3ZlhwM1A5ZjI1ZUl0cGdYZmdqNXc0MHNFb0F5UC02RW5mYU5VODhnZThtcWxsb2dEM2J3dUlSMy1mNDQyc1FVZDItWExDNkhXeTRa?oc=5",
+      "stableId": "world_b02a9f078780d6c7cc4b",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPeTlHQ2tsMTBXVmJfVzVpYno2WVZIOHUwcFVDbjhGbW1PVVcyVy1iOGdYR0lhbFdvdUdkZ05NOUpEOG1ic253MFVNQi1DQ0sycFdORWZ0WHNFSkZ1YnJLcTV6eWJqVkVVeUdQVFFWWDhtNnBZRHpPT2NtMXJyLWJneTJVZ2FiZE95a1FfZFJnRXZ0U0xjSVhWX1ltdUM3ZlhwM1A5ZjI1ZUl0cGdYZmdqNXc0MHNFb0F5UC02RW5mYU5VODhnZThtcWxsb2dEM2J3dUlSMy1mNDQyc1FVZDItWExDNkhXeTRa?oc=5",
+      "publishedAt": "2026-09-29T07:00:00Z",
+      "sourceName": "Le Parisien",
+      "sourceURL": "https://www.leparisien.fr",
+      "sourceUrl": "https://www.leparisien.fr",
+      "sourceDomain": "leparisien.fr",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "general",
+      "topicLabel": "一般",
+      "legacyCategory": "general",
+      "curationScore": 18,
+      "curationSignals": [
+        "sourd",
+        "sourds",
+        "multilingual"
+      ],
+      "originalLanguage": "en",
+      "title": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
+      "summary": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
+          "summary": "障害者: 聴覚障害者の言語を話すリヴ・アン・シーニュ銀行",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEdited": false,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Handicap : Rives en Signes, la banque qui parle la langue des sourds",
+          "summary": "Handicap : Rives en Signes, la banque qui parle la langue des sourds",
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPSHZ3OTd3Q0xudWQ5Wl9MV3NrYlRQbmxzWUtrYnlXdDJwc1E5ZHFVTl9vOFFUNXZ3YVQ2RjRpSDJJZUpwVjhYTWZTQ1BhdlRyVVFXNTFyYWFaWXVEczBJVnBqZEhDZGUzdU1pTjNFZ0JhaWV5R012S0dRRjRLQ25CSC1idE1SbjVkT0NpSHZfWEFZNUU0bnZaeTJtdkFMdVdQRmE3ZVlsdXk2d3R1STN3ZWdEa2dLQXo2d0Q0?oc=5",
+      "stableId": "world_04d9d8453a2cc3ea5201",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPSHZ3OTd3Q0xudWQ5Wl9MV3NrYlRQbmxzWUtrYnlXdDJwc1E5ZHFVTl9vOFFUNXZ3YVQ2RjRpSDJJZUpwVjhYTWZTQ1BhdlRyVVFXNTFyYWFaWXVEczBJVnBqZEhDZGUzdU1pTjNFZ0JhaWV5R012S0dRRjRLQ25CSC1idE1SbjVkT0NpSHZfWEFZNUU0bnZaeTJtdkFMdVdQRmE3ZVlsdXk2d3R1STN3ZWdEa2dLQXo2d0Q0?oc=5",
+      "publishedAt": "2026-09-23T07:00:00Z",
+      "sourceName": "CBS News",
+      "sourceURL": "https://www.cbsnews.com",
+      "sourceUrl": "https://www.cbsnews.com",
+      "sourceDomain": "cbsnews.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 84,
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "education",
+      "topicLabel": "教育",
+      "legacyCategory": "education",
+      "curationScore": 24,
+      "curationSignals": [
+        "hard of hearing",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
+      "summary": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
+          "summary": "オーロラ公立学校は、ろう・難聴の児童生徒が参加する恒例の陸上競技デーを開催しました。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Aurora Public Schools hosts annual Deaf and Hard of Hearing Track and Field Day",
+          "summary": "Aurora Public Schools hosts annual Deaf and Hard of Hearing Track and Field Day",
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNcDcxSnBKU3BhNUk0ZVUtb3ZHa2hxbEVybTgwMWVoODJHNndDWjlKMTVpdmx3RFlCYVZGOV9fZXUxZW9uMUdOWHJWdGNXZE9UU2UyTDRTYW54blppanpzNzE0aXJ4RlVtTzItREFuVUV3S2VrZFUwNHpRNmZWR2xabFJCVWtnVnQ5cnc?oc=5",
+      "stableId": "world_a13937c0a1a93d82316d",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNcDcxSnBKU3BhNUk0ZVUtb3ZHa2hxbEVybTgwMWVoODJHNndDWjlKMTVpdmx3RFlCYVZGOV9fZXUxZW9uMUdOWHJWdGNXZE9UU2UyTDRTYW54blppanpzNzE0aXJ4RlVtTzItREFuVUV3S2VrZFUwNHpRNmZWR2xabFJCVWtnVnQ5cnc?oc=5",
+      "publishedAt": "2026-09-21T07:00:00Z",
+      "sourceName": "The Guardian",
+      "sourceURL": "https://www.theguardian.com",
+      "sourceUrl": "https://www.theguardian.com",
+      "sourceDomain": "theguardian.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 92,
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "culture",
+      "topicLabel": "文化・社会",
+      "legacyCategory": "culture",
+      "curationScore": 21,
+      "curationSignals": [
+        "deaf people",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
+      "summary": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
+          "summary": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "‘Our culture is rich and we need our own space’: the fight to build a permanent centre for Deaf people",
+          "summary": "‘Our culture is rich and we need our own space’: the fight to build a permanent centre for Deaf people",
           "language": "en"
         }
       }
@@ -6498,182 +6453,46 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Db2ZPYktqdkdScW9ZLTkyOXJOMVNZWkpJT3VZWDF3dmZhSWU1REYwcFFzbWdMUURjWE5MNnJtd25KdEt0RDBmUFhEaEZad3pqU1d0MHRUcE1nZ1U?oc=5",
-      "stableId": "world_0d836be575972634f80d",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Db2ZPYktqdkdScW9ZLTkyOXJOMVNZWkpJT3VZWDF3dmZhSWU1REYwcFFzbWdMUURjWE5MNnJtd25KdEt0RDBmUFhEaEZad3pqU1d0MHRUcE1nZ1U?oc=5",
-      "publishedAt": "2026-09-22T07:00:00Z",
-      "sourceName": "BBC",
-      "sourceURL": "https://www.bbc.com",
-      "sourceUrl": "https://www.bbc.com",
-      "sourceDomain": "bbc.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 96,
+      "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTF8zUjFTYVVOU2l2c0JINjhocGdCNFBUV0ltMUVfYXdvT0xQczJoc3ZXSUNSalMwd09Mc0M4RnJYSXhENFpmSlE1TTNVNFFic1pqblFHV1o3dFlnQ3Fob3ZibkVqNGV3U0s5VHNXQ1BWVDFEQWFId2FVTU43amp0dVhfZ3FxX2pSNldGWU95QW40Tk9FUW5sRlBqOG8wWmxMeWc?oc=5",
+      "stableId": "world_b2fc4c7a764e3cbf504e",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTF8zUjFTYVVOU2l2c0JINjhocGdCNFBUV0ltMUVfYXdvT0xQczJoc3ZXSUNSalMwd09Mc0M4RnJYSXhENFpmSlE1TTNVNFFic1pqblFHV1o3dFlnQ3Fob3ZibkVqNGV3U0s5VHNXQ1BWVDFEQWFId2FVTU43amp0dVhfZ3FxX2pSNldGWU95QW40Tk9FUW5sRlBqOG8wWmxMeWc?oc=5",
+      "publishedAt": "2026-09-23T07:00:00Z",
+      "sourceName": "CTV News",
+      "sourceURL": "https://www.ctvnews.ca",
+      "sourceUrl": "https://www.ctvnews.ca",
+      "sourceDomain": "ctvnews.ca",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 82,
       "region": "americas",
       "regionLabel": "北米・中南米",
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
       "legacyCategory": "policy",
-      "curationScore": 21,
+      "curationScore": 22,
       "curationSignals": [
         "sign language",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
-      "summary": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
-          "summary": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Hope that abandoned deaf dog learns sign language",
-          "summary": "Hope that abandoned deaf dog learns sign language",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNcDcxSnBKU3BhNUk0ZVUtb3ZHa2hxbEVybTgwMWVoODJHNndDWjlKMTVpdmx3RFlCYVZGOV9fZXUxZW9uMUdOWHJWdGNXZE9UU2UyTDRTYW54blppanpzNzE0aXJ4RlVtTzItREFuVUV3S2VrZFUwNHpRNmZWR2xabFJCVWtnVnQ5cnc?oc=5",
-      "stableId": "world_a13937c0a1a93d82316d",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNcDcxSnBKU3BhNUk0ZVUtb3ZHa2hxbEVybTgwMWVoODJHNndDWjlKMTVpdmx3RFlCYVZGOV9fZXUxZW9uMUdOWHJWdGNXZE9UU2UyTDRTYW54blppanpzNzE0aXJ4RlVtTzItREFuVUV3S2VrZFUwNHpRNmZWR2xabFJCVWtnVnQ5cnc?oc=5",
-      "publishedAt": "2026-09-21T07:00:00Z",
-      "sourceName": "The Guardian",
-      "sourceURL": "https://www.theguardian.com",
-      "sourceUrl": "https://www.theguardian.com",
-      "sourceDomain": "theguardian.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 92,
-      "region": "asia_oceania",
-      "regionLabel": "アジア・オセアニア",
-      "topic": "culture",
-      "topicLabel": "文化・社会",
-      "legacyCategory": "culture",
-      "curationScore": 21,
-      "curationSignals": [
-        "deaf people",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
-      "summary": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
-          "summary": "ろう者の文化を育み、共有できる恒久的な拠点の設立を目指す取り組みを伝える。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "‘Our culture is rich and we need our own space’: the fight to build a permanent centre for Deaf people",
-          "summary": "‘Our culture is rich and we need our own space’: the fight to build a permanent centre for Deaf people",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
-      "stableId": "world_064e05fafaac47c86c22",
-      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
-      "publishedAt": "2026-09-27T07:00:00Z",
-      "sourceName": "France 3 Régions",
-      "sourceURL": "https://france3-regions.franceinfo.fr",
-      "sourceUrl": "https://france3-regions.franceinfo.fr",
-      "sourceDomain": "france3-regions.franceinfo.fr",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
-      "topic": "general",
-      "topicLabel": "一般",
-      "legacyCategory": "general",
-      "curationScore": 18,
-      "curationSignals": [
-        "sourd",
-        "sourds",
+        "major-media",
         "multilingual"
       ],
-      "originalLanguage": "tr",
-      "title": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
-      "summary": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
-          "summary": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
-          "summary": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
-          "language": "tr"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
-      "stableId": "world_88b2de65888cc26d38fe",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
-      "publishedAt": "2026-09-22T07:00:00Z",
-      "sourceName": "CBS News",
-      "sourceURL": "https://www.cbsnews.com",
-      "sourceUrl": "https://www.cbsnews.com",
-      "sourceDomain": "cbsnews.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 84,
-      "region": "americas",
-      "regionLabel": "北米・中南米",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 20,
-      "curationSignals": [
-        "hearing loss",
-        "major-media"
-      ],
       "originalLanguage": "en",
-      "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
-      "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+      "title": "マニトバ州に新たな手話トレーニングの機会が到来",
+      "summary": "マニトバ州に新たな手話トレーニングの機会が到来",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
-          "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+          "title": "マニトバ州に新たな手話トレーニングの機会が到来",
+          "summary": "マニトバ州に新たな手話トレーニングの機会が到来",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
+            "postEdited": false,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
-          "summary": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
+          "title": "New sign language training opportunities coming to Manitoba",
+          "summary": "New sign language training opportunities coming to Manitoba",
           "language": "en"
         }
       }
@@ -6725,6 +6544,142 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
+      "stableId": "world_064e05fafaac47c86c22",
+      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
+      "publishedAt": "2026-09-27T07:00:00Z",
+      "sourceName": "France 3 Régions",
+      "sourceURL": "https://france3-regions.franceinfo.fr",
+      "sourceUrl": "https://france3-regions.franceinfo.fr",
+      "sourceDomain": "france3-regions.franceinfo.fr",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "general",
+      "topicLabel": "一般",
+      "legacyCategory": "general",
+      "curationScore": 18,
+      "curationSignals": [
+        "sourd",
+        "sourds",
+        "multilingual"
+      ],
+      "originalLanguage": "tr",
+      "title": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
+      "summary": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
+          "summary": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
+          "summary": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
+          "language": "tr"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Db2ZPYktqdkdScW9ZLTkyOXJOMVNZWkpJT3VZWDF3dmZhSWU1REYwcFFzbWdMUURjWE5MNnJtd25KdEt0RDBmUFhEaEZad3pqU1d0MHRUcE1nZ1U?oc=5",
+      "stableId": "world_0d836be575972634f80d",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Db2ZPYktqdkdScW9ZLTkyOXJOMVNZWkpJT3VZWDF3dmZhSWU1REYwcFFzbWdMUURjWE5MNnJtd25KdEt0RDBmUFhEaEZad3pqU1d0MHRUcE1nZ1U?oc=5",
+      "publishedAt": "2026-09-22T07:00:00Z",
+      "sourceName": "BBC",
+      "sourceURL": "https://www.bbc.com",
+      "sourceUrl": "https://www.bbc.com",
+      "sourceDomain": "bbc.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 96,
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 21,
+      "curationSignals": [
+        "sign language",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
+      "summary": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
+          "summary": "置き去りにされた耳の聞こえない犬が、手話を学ぶことに期待が寄せられている。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Hope that abandoned deaf dog learns sign language",
+          "summary": "Hope that abandoned deaf dog learns sign language",
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1aWmM4TjBGTmZTVC1fcE0zMGhMLTQxY2VxdElkN0ZxQ2Qzckx0dFVfZkpxakJZeGIwWDZLa0lCb0xfVm1HMkdLc3JnSUJNQlJQblVHeVRHZnB1ZEJpcGgzTlFiTUxRZUZ6SENlQXluS2NQSG1Q0gF4QVVfeXFMTXhSZTlKclBBX3B2Z0RDazVPZUZMMmp4Q1BoMHB2b1REZE4zYjg5cWdxUlNfUUYzSzd5U196aTFaakRJUW56d0loNGJsZ3FyNWJuRzJZcW41SzktZnlMNWNsR3JMeFduYkxQdWhSUDFzRmRSa3R2c0JT?oc=5",
+      "stableId": "world_af7fca228cbdcf6a7fed",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1aWmM4TjBGTmZTVC1fcE0zMGhMLTQxY2VxdElkN0ZxQ2Qzckx0dFVfZkpxakJZeGIwWDZLa0lCb0xfVm1HMkdLc3JnSUJNQlJQblVHeVRHZnB1ZEJpcGgzTlFiTUxRZUZ6SENlQXluS2NQSG1Q0gF4QVVfeXFMTXhSZTlKclBBX3B2Z0RDazVPZUZMMmp4Q1BoMHB2b1REZE4zYjg5cWdxUlNfUUYzSzd5U196aTFaakRJUW56d0loNGJsZ3FyNWJuRzJZcW41SzktZnlMNWNsR3JMeFduYkxQdWhSUDFzRmRSa3R2c0JT?oc=5",
+      "publishedAt": "2026-09-21T07:00:00Z",
+      "sourceName": "한국장애인신문",
+      "sourceURL": "http://www.koreadisablednews.com",
+      "sourceUrl": "http://www.koreadisablednews.com",
+      "sourceDomain": "koreadisablednews.com",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
+      "region": "asia_oceania",
+      "regionLabel": "アジア・オセアニア",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 21,
+      "curationSignals": [
+        "청각장애",
+        "수어",
+        "multilingual"
+      ],
+      "originalLanguage": "ko",
+      "title": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
+      "summary": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
+          "summary": "風景遊び場、29日から農・聴覚障害者「手語文字市」展示",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEdited": false,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
+          "summary": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
+          "language": "ko"
+        }
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPT1haRVBEMHJZbUd2VjVwWHpYT0w3bFVVb19wSjBUTzYwcFpJcWRLNmNGN0ktV2RicVk3dVJlT0EtNjJpUGxsZ25YXzMzZTEwR3NJeHhzUzF3SVR5OWd0S21QU2tOdnFhdmNzZmYweHc4VFBXQ19rZ3QwTkM5WlZVNV9ZcmJ6X3luaC1CQlBiWnNIZ3M3Y1NJR0xpV0E?oc=5",
       "stableId": "world_aa52e07bcad2a3798338",
       "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPT1haRVBEMHJZbUd2VjVwWHpYT0w3bFVVb19wSjBUTzYwcFpJcWRLNmNGN0ktV2RicVk3dVJlT0EtNjJpUGxsZ25YXzMzZTEwR3NJeHhzUzF3SVR5OWd0S21QU2tOdnFhdmNzZmYweHc4VFBXQ19rZ3QwTkM5WlZVNV9ZcmJ6X3luaC1CQlBiWnNIZ3M3Y1NJR0xpV0E?oc=5",
@@ -6766,6 +6721,96 @@
         "original": {
           "title": "Accès aux soins des sourds : récit d'une longue lutte",
           "summary": "Accès aux soins des sourds : récit d'une longue lutte",
+          "language": "fr"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
+      "stableId": "world_88b2de65888cc26d38fe",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
+      "publishedAt": "2026-09-22T07:00:00Z",
+      "sourceName": "CBS News",
+      "sourceURL": "https://www.cbsnews.com",
+      "sourceUrl": "https://www.cbsnews.com",
+      "sourceDomain": "cbsnews.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 84,
+      "region": "americas",
+      "regionLabel": "北米・中南米",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 20,
+      "curationSignals": [
+        "hearing loss",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+      "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+          "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
+          "summary": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdVluTFhTel9BbUpqTGN6V2ptLXNXV0phdEJHLS1DLWRNQ2J5cXVKeFI5RkdpVDFJUEVfWEFPOGdkVnFKa1dCeGhOWS1wT1RFcjl0WjNuaTkwTFp0TlA5ZlVzN2FRQWc4RUVrSUdYMzlILXFHQmR4UDFuVndWSDNqb19KUERUcmxmaEtIckxpZFhyWjZ6elNqVktEQkFzUFZhRnA1LTNHaTR2QTVxaVB3dFJPbw?oc=5",
+      "stableId": "world_6367e9f00395749bff76",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdVluTFhTel9BbUpqTGN6V2ptLXNXV0phdEJHLS1DLWRNQ2J5cXVKeFI5RkdpVDFJUEVfWEFPOGdkVnFKa1dCeGhOWS1wT1RFcjl0WjNuaTkwTFp0TlA5ZlVzN2FRQWc4RUVrSUdYMzlILXFHQmR4UDFuVndWSDNqb19KUERUcmxmaEtIckxpZFhyWjZ6elNqVktEQkFzUFZhRnA1LTNHaTR2QTVxaVB3dFJPbw?oc=5",
+      "publishedAt": "2026-09-26T07:00:00Z",
+      "sourceName": "RTE.ie",
+      "sourceURL": "https://www.rte.ie",
+      "sourceUrl": "https://www.rte.ie",
+      "sourceDomain": "rte.ie",
+      "sourceMode": "major-media",
+      "sourcePriority": 78,
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "education",
+      "topicLabel": "教育",
+      "legacyCategory": "education",
+      "curationScore": 23,
+      "curationSignals": [
+        "sign language",
+        "major-media"
+      ],
+      "originalLanguage": "fr",
+      "title": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
+      "summary": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
+      "language": "ja-JP",
+      "defaultLocale": "ja-JP",
+      "localized": {
+        "ja": {
+          "title": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
+          "summary": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
+          "language": "ja-JP",
+          "translation": {
+            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "postEditProvider": "Codex App Server Japanese news editor v1",
+            "postEdited": true,
+            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+          }
+        },
+        "original": {
+          "title": "Holy Family School for the Deaf TY students visit RTÉ for Irish Sign Language (ISL) Awareness Week",
+          "summary": "Holy Family School for the Deaf TY students visit RTÉ for Irish Sign Language (ISL) Awareness Week",
           "language": "fr"
         }
       }
@@ -6817,47 +6862,47 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdVluTFhTel9BbUpqTGN6V2ptLXNXV0phdEJHLS1DLWRNQ2J5cXVKeFI5RkdpVDFJUEVfWEFPOGdkVnFKa1dCeGhOWS1wT1RFcjl0WjNuaTkwTFp0TlA5ZlVzN2FRQWc4RUVrSUdYMzlILXFHQmR4UDFuVndWSDNqb19KUERUcmxmaEtIckxpZFhyWjZ6elNqVktEQkFzUFZhRnA1LTNHaTR2QTVxaVB3dFJPbw?oc=5",
-      "stableId": "world_6367e9f00395749bff76",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdVluTFhTel9BbUpqTGN6V2ptLXNXV0phdEJHLS1DLWRNQ2J5cXVKeFI5RkdpVDFJUEVfWEFPOGdkVnFKa1dCeGhOWS1wT1RFcjl0WjNuaTkwTFp0TlA5ZlVzN2FRQWc4RUVrSUdYMzlILXFHQmR4UDFuVndWSDNqb19KUERUcmxmaEtIckxpZFhyWjZ6elNqVktEQkFzUFZhRnA1LTNHaTR2QTVxaVB3dFJPbw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRFRqZTJTOHNOYVNtQ01QSkFkOENqZlpudGltV1BBNmlTVEdCTDRmS2VoVFdtNEpLQUZWWVg3ODdxNl91RnVNU1RCdDZuY0Q0N1BXVU9uRjY4dnlCZ1E4WWlPTU1CY182SWhNMmN5ejZkNWk0N2dvTlV3QjVGdkxqV1dmZm11aE5oNVVNYTNGU285UWxOTGNaR2NESXFsbWczdkpMbzhnaFhhaWFJUEMzUzl6eDNoSzhBZjNUckJqZTc?oc=5",
+      "stableId": "world_599d6f4d1456cbb8a467",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRFRqZTJTOHNOYVNtQ01QSkFkOENqZlpudGltV1BBNmlTVEdCTDRmS2VoVFdtNEpLQUZWWVg3ODdxNl91RnVNU1RCdDZuY0Q0N1BXVU9uRjY4dnlCZ1E4WWlPTU1CY182SWhNMmN5ejZkNWk0N2dvTlV3QjVGdkxqV1dmZm11aE5oNVVNYTNGU285UWxOTGNaR2NESXFsbWczdkpMbzhnaFhhaWFJUEMzUzl6eDNoSzhBZjNUckJqZTc?oc=5",
       "publishedAt": "2026-09-26T07:00:00Z",
-      "sourceName": "RTE.ie",
-      "sourceURL": "https://www.rte.ie",
-      "sourceUrl": "https://www.rte.ie",
-      "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
-      "sourcePriority": 78,
+      "sourceName": "Adnkronos",
+      "sourceURL": "https://www.adnkronos.com",
+      "sourceUrl": "https://www.adnkronos.com",
+      "sourceDomain": "adnkronos.com",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "education",
-      "topicLabel": "教育",
-      "legacyCategory": "education",
-      "curationScore": 23,
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 21,
       "curationSignals": [
-        "sign language",
-        "major-media"
+        "sordi",
+        "impianto cocleare",
+        "multilingual"
       ],
-      "originalLanguage": "fr",
-      "title": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
-      "summary": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
+      "originalLanguage": "en",
+      "title": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
+      "summary": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
-          "summary": "アイルランド手話（ISL）啓発週間に合わせ、ホーリー・ファミリーろう学校の移行学年の生徒がRTÉを訪れた。",
+          "title": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
+          "summary": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEditProvider": "Codex App Server Japanese news editor v1",
-            "postEdited": true,
+            "postEdited": false,
             "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
           }
         },
         "original": {
-          "title": "Holy Family School for the Deaf TY students visit RTÉ for Irish Sign Language (ISL) Awareness Week",
-          "summary": "Holy Family School for the Deaf TY students visit RTÉ for Irish Sign Language (ISL) Awareness Week",
-          "language": "fr"
+          "title": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
+          "summary": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
+          "language": "en"
         }
       }
     },
@@ -6907,36 +6952,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRFRqZTJTOHNOYVNtQ01QSkFkOENqZlpudGltV1BBNmlTVEdCTDRmS2VoVFdtNEpLQUZWWVg3ODdxNl91RnVNU1RCdDZuY0Q0N1BXVU9uRjY4dnlCZ1E4WWlPTU1CY182SWhNMmN5ejZkNWk0N2dvTlV3QjVGdkxqV1dmZm11aE5oNVVNYTNGU285UWxOTGNaR2NESXFsbWczdkpMbzhnaFhhaWFJUEMzUzl6eDNoSzhBZjNUckJqZTc?oc=5",
-      "stableId": "world_599d6f4d1456cbb8a467",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRFRqZTJTOHNOYVNtQ01QSkFkOENqZlpudGltV1BBNmlTVEdCTDRmS2VoVFdtNEpLQUZWWVg3ODdxNl91RnVNU1RCdDZuY0Q0N1BXVU9uRjY4dnlCZ1E4WWlPTU1CY182SWhNMmN5ejZkNWk0N2dvTlV3QjVGdkxqV1dmZm11aE5oNVVNYTNGU285UWxOTGNaR2NESXFsbWczdkpMbzhnaFhhaWFJUEMzUzl6eDNoSzhBZjNUckJqZTc?oc=5",
-      "publishedAt": "2026-09-26T07:00:00Z",
-      "sourceName": "Adnkronos",
-      "sourceURL": "https://www.adnkronos.com",
-      "sourceUrl": "https://www.adnkronos.com",
-      "sourceDomain": "adnkronos.com",
+      "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQaC02ODMySHprYmxPQkIwN19ESGFmZHpLNlE4T1F6V0RGUkJmbHduMnNOYVdSak1mNl9hSk11d0pGSmhSampyQVE3RU1IaDF4NmJIcUFydVp6TXBTcDBCWktCYnBKUFNJMEtNWVBTVFF5eXhXNHFiNm12UUNuTVVkVC04Ri1VcGlWbjE0YUlaZlhjdG9SclJIZzNzc1VONmlPTHVhQVFvWXBDNkN4Z2c3OU4xak1sZVNDQVhDMnBB?oc=5",
+      "stableId": "world_460959e3e67b610ee3dd",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQaC02ODMySHprYmxPQkIwN19ESGFmZHpLNlE4T1F6V0RGUkJmbHduMnNOYVdSak1mNl9hSk11d0pGSmhSampyQVE3RU1IaDF4NmJIcUFydVp6TXBTcDBCWktCYnBKUFNJMEtNWVBTVFF5eXhXNHFiNm12UUNuTVVkVC04Ri1VcGlWbjE0YUlaZlhjdG9SclJIZzNzc1VONmlPTHVhQVFvWXBDNkN4Z2c3OU4xak1sZVNDQVhDMnBB?oc=5",
+      "publishedAt": "2026-09-25T07:00:00Z",
+      "sourceName": "Agirc-Arrco",
+      "sourceURL": "https://www.agirc-arrco.fr",
+      "sourceUrl": "https://www.agirc-arrco.fr",
+      "sourceDomain": "agirc-arrco.fr",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 21,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "legacyCategory": "policy",
+      "curationScore": 24,
       "curationSignals": [
-        "sordi",
-        "impianto cocleare",
+        "sourd",
+        "sourds",
         "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
-      "summary": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
+      "title": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
+      "summary": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
-          "summary": "世界ろう者の日、新生児スクリーニングから人工内耳まで",
+          "title": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
+          "summary": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -6945,8 +6990,8 @@
           }
         },
         "original": {
-          "title": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
-          "summary": "Giornata mondiale sordi, da screening neonatali all'impianto cocleare",
+          "title": "Semaine Mondiale des Sourds, nos services accessibles avec Acceo",
+          "summary": "Semaine Mondiale des Sourds, nos services accessibles avec Acceo",
           "language": "en"
         }
       }
@@ -6992,51 +7037,6 @@
         "original": {
           "title": "La zurda y los sordos",
           "summary": "La zurda y los sordos",
-          "language": "en"
-        }
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQaC02ODMySHprYmxPQkIwN19ESGFmZHpLNlE4T1F6V0RGUkJmbHduMnNOYVdSak1mNl9hSk11d0pGSmhSampyQVE3RU1IaDF4NmJIcUFydVp6TXBTcDBCWktCYnBKUFNJMEtNWVBTVFF5eXhXNHFiNm12UUNuTVVkVC04Ri1VcGlWbjE0YUlaZlhjdG9SclJIZzNzc1VONmlPTHVhQVFvWXBDNkN4Z2c3OU4xak1sZVNDQVhDMnBB?oc=5",
-      "stableId": "world_460959e3e67b610ee3dd",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQaC02ODMySHprYmxPQkIwN19ESGFmZHpLNlE4T1F6V0RGUkJmbHduMnNOYVdSak1mNl9hSk11d0pGSmhSampyQVE3RU1IaDF4NmJIcUFydVp6TXBTcDBCWktCYnBKUFNJMEtNWVBTVFF5eXhXNHFiNm12UUNuTVVkVC04Ri1VcGlWbjE0YUlaZlhjdG9SclJIZzNzc1VONmlPTHVhQVFvWXBDNkN4Z2c3OU4xak1sZVNDQVhDMnBB?oc=5",
-      "publishedAt": "2026-09-25T07:00:00Z",
-      "sourceName": "Agirc-Arrco",
-      "sourceURL": "https://www.agirc-arrco.fr",
-      "sourceUrl": "https://www.agirc-arrco.fr",
-      "sourceDomain": "agirc-arrco.fr",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "legacyCategory": "policy",
-      "curationScore": 24,
-      "curationSignals": [
-        "sourd",
-        "sourds",
-        "multilingual"
-      ],
-      "originalLanguage": "en",
-      "title": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
-      "summary": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
-      "language": "ja-JP",
-      "defaultLocale": "ja-JP",
-      "localized": {
-        "ja": {
-          "title": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
-          "summary": "世界ろう者週間、Acceo で当社のサービスにアクセス可能",
-          "language": "ja-JP",
-          "translation": {
-            "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-            "postEdited": false,
-            "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-          }
-        },
-        "original": {
-          "title": "Semaine Mondiale des Sourds, nos services accessibles avec Acceo",
-          "summary": "Semaine Mondiale des Sourds, nos services accessibles avec Acceo",
           "language": "en"
         }
       }
@@ -7923,7 +7923,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -8096,14 +8096,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPdFpUZFYtZDRxTVBETDFpN0szdkJDajZ1U09OWVpMWUFvaXRLY0RobEtjUGo2bll6aHBsXy1LMlZBM3RWZjg2YU5nNS0yVEpRN1pRWjR5aEJlMDVvb1YzMV91X0Fvd1doeFlzUUwwZE1pNnY5LWVabkRxSDliTG9tSDZGTW9oOFJtLWtRWEpnRmlmbXVQbDloeDRzUFg5ZVJRU1NCRm4yWU4yWUd5TzNjQXROY3RTUl84ek5Fc1F3QQ?oc=5",
-      "stableId": "world_ad138626dfb8740c021f",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPdFpUZFYtZDRxTVBETDFpN0szdkJDajZ1U09OWVpMWUFvaXRLY0RobEtjUGo2bll6aHBsXy1LMlZBM3RWZjg2YU5nNS0yVEpRN1pRWjR5aEJlMDVvb1YzMV91X0Fvd1doeFlzUUwwZE1pNnY5LWVabkRxSDliTG9tSDZGTW9oOFJtLWtRWEpnRmlmbXVQbDloeDRzUFg5ZVJRU1NCRm4yWU4yWUd5TzNjQXROY3RTUl84ek5Fc1F3QQ?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxONUUzdm5lZmJqLWNGZkVqRHZ4REpWUWZwUlFPVURqVW1zSWhiV2ZMQU5xZmFkRGFTd0J4NWZzNXIwWGJXbWFpT3pqZ0hyV0tOMTk4SGVJdWpRbUwyQlc4bnhYeGRCbktlX21tU1FweE1oYThGS2pnb2N2WlpqcUt0N1FWY0ZDMWFndFQ3dkdSLVQyMjVaY2RwMHRURU1wU3N4cFg4S2FBeUNJZw?oc=5",
+      "stableId": "world_04aab310b199832b1ab0",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxONUUzdm5lZmJqLWNGZkVqRHZ4REpWUWZwUlFPVURqVW1zSWhiV2ZMQU5xZmFkRGFTd0J4NWZzNXIwWGJXbWFpT3pqZ0hyV0tOMTk4SGVJdWpRbUwyQlc4bnhYeGRCbktlX21tU1FweE1oYThGS2pnb2N2WlpqcUt0N1FWY0ZDMWFndFQ3dkdSLVQyMjVaY2RwMHRURU1wU3N4cFg4S2FBeUNJZw?oc=5",
       "publishedAt": "2026-09-20T07:00:00Z",
-      "sourceName": "Le JSL",
-      "sourceURL": "https://www.lejsl.com",
-      "sourceUrl": "https://www.lejsl.com",
-      "sourceDomain": "lejsl.com",
+      "sourceName": "lanouvellerepublique.fr",
+      "sourceURL": "https://www.lanouvellerepublique.fr",
+      "sourceUrl": "https://www.lanouvellerepublique.fr",
+      "sourceDomain": "lanouvellerepublique.fr",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "europe_cis",
@@ -8117,15 +8117,15 @@
         "sourds",
         "multilingual"
       ],
-      "originalLanguage": "fr",
-      "title": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
-      "summary": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
+      "originalLanguage": "en",
+      "title": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
+      "summary": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
-          "summary": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
+          "title": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
+          "summary": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -8135,9 +8135,9 @@
           }
         },
         "original": {
-          "title": "Louhans-Châteaurenaud. Les visiteurs se sont pressés au musée des sourds pour les Journées du patrimoine",
-          "summary": "Louhans-Châteaurenaud. Les visiteurs se sont pressés au musée des sourds pour les Journées du patrimoine",
-          "language": "fr"
+          "title": "Les sourds de Poitiers envoient un signe fort",
+          "summary": "Les sourds de Poitiers envoient un signe fort",
+          "language": "en"
         }
       }
     },
@@ -8234,14 +8234,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxONUUzdm5lZmJqLWNGZkVqRHZ4REpWUWZwUlFPVURqVW1zSWhiV2ZMQU5xZmFkRGFTd0J4NWZzNXIwWGJXbWFpT3pqZ0hyV0tOMTk4SGVJdWpRbUwyQlc4bnhYeGRCbktlX21tU1FweE1oYThGS2pnb2N2WlpqcUt0N1FWY0ZDMWFndFQ3dkdSLVQyMjVaY2RwMHRURU1wU3N4cFg4S2FBeUNJZw?oc=5",
-      "stableId": "world_04aab310b199832b1ab0",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxONUUzdm5lZmJqLWNGZkVqRHZ4REpWUWZwUlFPVURqVW1zSWhiV2ZMQU5xZmFkRGFTd0J4NWZzNXIwWGJXbWFpT3pqZ0hyV0tOMTk4SGVJdWpRbUwyQlc4bnhYeGRCbktlX21tU1FweE1oYThGS2pnb2N2WlpqcUt0N1FWY0ZDMWFndFQ3dkdSLVQyMjVaY2RwMHRURU1wU3N4cFg4S2FBeUNJZw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPdFpUZFYtZDRxTVBETDFpN0szdkJDajZ1U09OWVpMWUFvaXRLY0RobEtjUGo2bll6aHBsXy1LMlZBM3RWZjg2YU5nNS0yVEpRN1pRWjR5aEJlMDVvb1YzMV91X0Fvd1doeFlzUUwwZE1pNnY5LWVabkRxSDliTG9tSDZGTW9oOFJtLWtRWEpnRmlmbXVQbDloeDRzUFg5ZVJRU1NCRm4yWU4yWUd5TzNjQXROY3RTUl84ek5Fc1F3QQ?oc=5",
+      "stableId": "world_ad138626dfb8740c021f",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPdFpUZFYtZDRxTVBETDFpN0szdkJDajZ1U09OWVpMWUFvaXRLY0RobEtjUGo2bll6aHBsXy1LMlZBM3RWZjg2YU5nNS0yVEpRN1pRWjR5aEJlMDVvb1YzMV91X0Fvd1doeFlzUUwwZE1pNnY5LWVabkRxSDliTG9tSDZGTW9oOFJtLWtRWEpnRmlmbXVQbDloeDRzUFg5ZVJRU1NCRm4yWU4yWUd5TzNjQXROY3RTUl84ek5Fc1F3QQ?oc=5",
       "publishedAt": "2026-09-20T07:00:00Z",
-      "sourceName": "lanouvellerepublique.fr",
-      "sourceURL": "https://www.lanouvellerepublique.fr",
-      "sourceUrl": "https://www.lanouvellerepublique.fr",
-      "sourceDomain": "lanouvellerepublique.fr",
+      "sourceName": "Le JSL",
+      "sourceURL": "https://www.lejsl.com",
+      "sourceUrl": "https://www.lejsl.com",
+      "sourceDomain": "lejsl.com",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "europe_cis",
@@ -8255,15 +8255,15 @@
         "sourds",
         "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
-      "summary": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
+      "originalLanguage": "fr",
+      "title": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
+      "summary": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
       "language": "ja-JP",
       "defaultLocale": "ja-JP",
       "localized": {
         "ja": {
-          "title": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
-          "summary": "ポワティエのろう者たちが、社会に向けて力強いメッセージを発信した。",
+          "title": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
+          "summary": "文化遺産の日に、ルアン＝シャトールノーのろう者博物館が多くの来館者でにぎわった。",
           "language": "ja-JP",
           "translation": {
             "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -8273,9 +8273,9 @@
           }
         },
         "original": {
-          "title": "Les sourds de Poitiers envoient un signe fort",
-          "summary": "Les sourds de Poitiers envoient un signe fort",
-          "language": "en"
+          "title": "Louhans-Châteaurenaud. Les visiteurs se sont pressés au musée des sourds pour les Journées du patrimoine",
+          "summary": "Louhans-Châteaurenaud. Les visiteurs se sont pressés au musée des sourds pour les Journées du patrimoine",
+          "language": "fr"
         }
       }
     },
@@ -8561,7 +8561,7 @@
       "sourceURL": "https://www.moroccoworldnews.com",
       "sourceUrl": "https://www.moroccoworldnews.com",
       "sourceDomain": "moroccoworldnews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 70,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -9104,7 +9104,7 @@
       "sourceURL": "https://www.swissinfo.ch",
       "sourceUrl": "https://www.swissinfo.ch",
       "sourceDomain": "swissinfo.ch",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 76,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -9194,7 +9194,7 @@
       "sourceURL": "https://www.usatoday.com",
       "sourceUrl": "https://www.usatoday.com",
       "sourceDomain": "usatoday.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -10635,7 +10635,7 @@
       "sourceURL": "https://www.scmp.com",
       "sourceUrl": "https://www.scmp.com",
       "sourceDomain": "scmp.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 80,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -10680,7 +10680,7 @@
       "sourceURL": "https://www.koreaherald.com",
       "sourceUrl": "https://www.koreaherald.com",
       "sourceDomain": "koreaherald.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 74,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -11039,7 +11039,7 @@
       "sourceURL": "https://www.abc.net.au",
       "sourceUrl": "https://www.abc.net.au",
       "sourceDomain": "abc.net.au",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 95,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -11174,7 +11174,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -11264,7 +11264,7 @@
       "sourceURL": "http://jewishnews.timesofisrael.com",
       "sourceUrl": "http://jewishnews.timesofisrael.com",
       "sourceDomain": "timesofisrael.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -12479,7 +12479,7 @@
       "sourceURL": "https://www.koreaherald.com",
       "sourceUrl": "https://www.koreaherald.com",
       "sourceDomain": "koreaherald.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 74,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -12974,7 +12974,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -13198,7 +13198,7 @@
       "sourceURL": "https://www.thenationalnews.com",
       "sourceUrl": "https://www.thenationalnews.com",
       "sourceDomain": "thenationalnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 82,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -13557,7 +13557,7 @@
       "sourceURL": "https://www.japantimes.co.jp",
       "sourceUrl": "https://www.japantimes.co.jp",
       "sourceDomain": "japantimes.co.jp",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 82,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -14234,7 +14234,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -14909,7 +14909,7 @@
       "sourceURL": "https://www.euronews.com",
       "sourceUrl": "https://www.euronews.com",
       "sourceDomain": "euronews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 86,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -16300,7 +16300,7 @@
       "sourceURL": "https://www.lemonde.fr",
       "sourceUrl": "https://www.lemonde.fr",
       "sourceDomain": "lemonde.fr",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 84,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -16659,7 +16659,7 @@
       "sourceURL": "https://www.independent.co.uk",
       "sourceUrl": "https://www.independent.co.uk",
       "sourceDomain": "independent.co.uk",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -16704,7 +16704,7 @@
       "sourceURL": "https://www.abc.net.au",
       "sourceUrl": "https://www.abc.net.au",
       "sourceDomain": "abc.net.au",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 95,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -17562,7 +17562,7 @@
       "sourceURL": "https://www.taipeitimes.com",
       "sourceUrl": "https://www.taipeitimes.com",
       "sourceDomain": "taipeitimes.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -17876,7 +17876,7 @@
       "sourceURL": "https://www.bbc.com",
       "sourceUrl": "https://www.bbc.com",
       "sourceDomain": "bbc.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -19270,7 +19270,7 @@
       "sourceURL": "https://www.bbc.com",
       "sourceUrl": "https://www.bbc.com",
       "sourceDomain": "bbc.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -20307,7 +20307,7 @@
       "sourceURL": "https://www.nytimes.com",
       "sourceUrl": "https://www.nytimes.com",
       "sourceDomain": "nytimes.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 92,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -20715,7 +20715,7 @@
       "sourceURL": "https://www.bbc.com",
       "sourceUrl": "https://www.bbc.com",
       "sourceDomain": "bbc.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -20761,7 +20761,7 @@
       "sourceURL": "https://www.bbc.com",
       "sourceUrl": "https://www.bbc.com",
       "sourceDomain": "bbc.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -22606,7 +22606,7 @@
       "sourceURL": "https://www.theguardian.com",
       "sourceUrl": "https://www.theguardian.com",
       "sourceDomain": "theguardian.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 92,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -23013,7 +23013,7 @@
       "sourceURL": "https://www.independent.co.uk",
       "sourceUrl": "https://www.independent.co.uk",
       "sourceDomain": "independent.co.uk",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -23283,7 +23283,7 @@
       "sourceURL": "https://www.cbc.ca",
       "sourceUrl": "https://www.cbc.ca",
       "sourceDomain": "cbc.ca",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 90,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -24091,9 +24091,9 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWDIwRXpwZ1hBckk3VnpwMVliUG1BaUtlaXk5Z1dFQjh4MnRoVFY3VlJxNkowYVlneEpFbllmSTZsUzQ4RDlTclpRbk5taW5OaUhsTHFlOHI3bkphMU1IRU9qMDJlWFZvTjJCRVZJeW1JSXQ1aDJhaHNYYWNJc3EyZFpadGZBbjJGMmx0d0Z3?oc=5",
-      "stableId": "world_c67d39922fd97fe59359",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWDIwRXpwZ1hBckk3VnpwMVliUG1BaUtlaXk5Z1dFQjh4MnRoVFY3VlJxNkowYVlneEpFbllmSTZsUzQ4RDlTclpRbk5taW5OaUhsTHFlOHI3bkphMU1IRU9qMDJlWFZvTjJCRVZJeW1JSXQ1aDJhaHNYYWNJc3EyZFpadGZBbjJGMmx0d0Z3?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOcGZVQzdtcXlBMjM5VnZtRTFWc1pPY1NrTW93RmpEaU5HNkVFT1RwQTdQVmphSlY3U1R1YTNMNVluZVZYY1p6Smc0SlVGd3lNNm1HVnVHYmw1c19VbDFZZndBcXo2Sl9wckFhOXM1R1pzV01fWGxIOERTZ21fdjNLbEU5V2dieU5Md0V4cA?oc=5",
+      "stableId": "world_048c2fee587254ce67a6",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOcGZVQzdtcXlBMjM5VnZtRTFWc1pPY1NrTW93RmpEaU5HNkVFT1RwQTdQVmphSlY3U1R1YTNMNVluZVZYY1p6Smc0SlVGd3lNNm1HVnVHYmw1c19VbDFZZndBcXo2Sl9wckFhOXM1R1pzV01fWGxIOERTZ21fdjNLbEU5V2dieU5Md0V4cA?oc=5",
       "publishedAt": "2025-04-19T07:00:00Z",
       "sourceName": "DW.com",
       "sourceURL": "https://www.dw.com",
@@ -24549,7 +24549,7 @@
       "sourceURL": "https://www.cbc.ca",
       "sourceUrl": "https://www.cbc.ca",
       "sourceDomain": "cbc.ca",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 90,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -24910,7 +24910,7 @@
       "sourceURL": "https://www.bbc.com",
       "sourceUrl": "https://www.bbc.com",
       "sourceDomain": "bbc.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 96,
       "region": "americas",
       "regionLabel": "北米・中南米",
@@ -25180,7 +25180,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -25902,7 +25902,7 @@
       "sourceURL": "https://www.euronews.com",
       "sourceUrl": "https://www.euronews.com",
       "sourceDomain": "euronews.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 86,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -26215,7 +26215,7 @@
       "sourceURL": "https://www.nzherald.co.nz",
       "sourceUrl": "https://www.nzherald.co.nz",
       "sourceDomain": "nzherald.co.nz",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 80,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -26437,7 +26437,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -26659,7 +26659,7 @@
       "sourceURL": "https://www.theglobeandmail.com",
       "sourceUrl": "https://www.theglobeandmail.com",
       "sourceDomain": "theglobeandmail.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 84,
       "region": "americas",
       "regionLabel": "北米・中南米",
