@@ -383,7 +383,7 @@ ${renderAgentActivity()}
         </p>
       </div>
       <p class="news-update">更新 <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time> · <a href="./${files.about}#about-policy">選定方針</a></p>
-      <p class="offline-note" id="offline-note" role="status" hidden>オフライン表示中です。保存済みの内容を表示しています（最終更新: <time datetime="${escapeHtml(generatedAt)}">${escapeHtml(generatedLocal)}</time>）。</p>
+      <p class="offline-note" id="offline-note" role="status" data-generated-at="${escapeHtml(generatedAt)}" hidden></p>
       <div id="articles" class="articles" data-total="${totalDefaultCount}" data-initial="${initialVisibleCount}" data-src="./${files.articlesJson}">
 ${articlesHtml}
       </div>
