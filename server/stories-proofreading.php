@@ -122,7 +122,8 @@ function story_proof_attach_images(array $plan):array {
     foreach($plan['images'] as $im){
         $_FILES['image']=$files[$im['file']];$media=stories_upload();
         foreach($plan['plans'] as &$p)if($p['input']['id']===$im['article_id']){
-            $p['changes']['cover']=['label'=>'カバー画像','before'=>$p['input']['cover'],'after'=>$media['id']];
+            if($p['input']['cover'])$p['old_image_preview']=story_media_url($p['input']['cover']);
+            $p['changes']['cover']=['label'=>'カバー画像','before'=>$p['input']['cover']?'登録済みの画像':'なし','after'=>$im['file']];
             $p['changes']['alt']=['label'=>'画像の説明','before'=>$p['input']['alt'],'after'=>$im['alt']];
             $p['input']['cover']=$media['id'];$p['input']['alt']=$im['alt'];$p['image_preview']=$media['url'];
         }unset($p);
@@ -137,7 +138,8 @@ function story_proof_review(array $user):string {
     $out='<h2>校正結果の取り込み：変更内容を確認</h2><p>記事はまだ保存していません。公開済みの記事は、反映すると公開本文も更新されます。公開状態・公開日時・情報確認日は維持します。指定した新画像だけカバーを差し替えます。画像は非公開で登録済みです。すべて問題がない場合だけまとめて反映します。</p>';
     foreach($plan['plans'] as $p){$out.='<section><h3>'.e($p['title']).'（'.e(['published'=>'公開・予約','draft'=>'下書き','archived'=>'アーカイブ'][$p['status']]).'）</h3>';
         if(!$p['changes'])$out.='<p>変更なし（保存しません）</p>';
-        if(isset($p['image_preview']))$out.='<img class="story-upload-preview" src="'.e($p['image_preview']).'" alt="'.e($p['input']['alt']).'">';
+        if(isset($p['old_image_preview']))$out.='<h4>現在のカバー画像</h4><img class="story-upload-preview" src="'.e($p['old_image_preview']).'" alt="現在のカバー画像">';
+        if(isset($p['image_preview']))$out.='<h4>新しいカバー画像</h4><img class="story-upload-preview" src="'.e($p['image_preview']).'" alt="'.e($p['input']['alt']).'">';
         foreach($p['changes'] as $change)$out.='<details open><summary>'.e($change['label']).'</summary><h4>変更前</h4><pre class="story-proof-diff">'.e($change['before']).'</pre><h4>変更後</h4><pre class="story-proof-diff">'.e($change['after']).'</pre></details>';
         $out.='</section>';
     }
