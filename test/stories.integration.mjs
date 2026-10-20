@@ -130,6 +130,35 @@ try{
  run("require 'server/core.php';require 'server/stories-store.php';stories_query(\"UPDATE stories SET body='' WHERE slug='import-fixture-1'\");");
  selection[`selected[${selected[0].id}]`]='3';selection[`selected[${selected[1].id}]`]='4';review=await req('/admin/stories/',{action:'bulk_review',csrf,target:'published',...selection});
  ok((await req('/admin/stories/',{action:'bulk_apply',csrf,confirmation:confirmation(review.text)})).status===400&&(await req('/stories/import-fixture-0/',null,false)).status===404,'bulk validation rollback is atomic');
+ // Proofreading exports bind selected IDs/revisions; images are optional and reviewed first.
+ const proofRows=()=>JSON.parse(run("require 'server/core.php';require 'server/stories-store.php';echo json(stories_query(\"SELECT * FROM stories WHERE slug IN ('import-fixture-0','import-fixture-1') ORDER BY slug\")->fetchAll());"));
+ const proofExport=async()=>{const rows=proofRows();return JSON.parse((await req('/admin/stories/',{action:'bulk_review',export_proof:'1',proof_provider:'gemini',csrf,...Object.fromEntries(rows.map(r=>['selected['+r.id+']',String(r.revision)]))})).text);};
+ const proofReview=async(d,files=[])=>{const f=new FormData();f.set('csrf',csrf);f.set('action','proof_review');f.set('proof_file',new Blob([JSON.stringify(d)],{type:'application/json'}),'proofreading.json');for(const [name,bytes] of files)f.append('proof_images[]',new Blob([bytes],{type:'image/png'}),name);return req('/admin/stories/',f);};
+ let proof=await proofExport();ok(proof.articles.length===2&&proof.instructions.includes('Strict 3:4')&&proof.instructions.includes('Gemini'),'export includes selected articles and exact image style');
+ const proofBefore=proofRows();proof.articles[0].title='校正後の題名';proof.articles[0].sources=[{url:'https://example.com/',label:'参考'}];
+ ok((await proofReview({...proof,articles:proof.articles.slice(0,1)})).status===400,'missing article rejected');
+ ok((await proofReview({...proof,batch_id:'forged'})).status===409,'unknown export rejected');
+ let bad=structuredClone(proof);bad.articles[0].status='published';ok((await proofReview(bad)).status===400,'AI cannot change publication state');
+ bad=structuredClone(proof);bad.articles[0].body+='\n![偽画像](/stories/media/'+ 'a'.repeat(32)+'.webp)';ok((await proofReview(bad)).status===400,'AI cannot invent registered images');
+ let proofPreview=await proofReview(proof);ok(proofPreview.status===200&&proofPreview.text.includes('校正後の題名'),'proof preview accepts link key order and shows diff');
+ ok(proofRows()[0].title===proofBefore[0].title,'preview does not save articles');
+ run("require 'server/core.php';require 'server/stories-store.php';stories_query(\"UPDATE stories SET revision=revision+1 WHERE slug='import-fixture-1'\");");
+ ok((await req('/admin/stories/',{action:'proof_apply',csrf,confirmation:confirmation(proofPreview.text)})).status===409&&proofRows()[0].title===proofBefore[0].title,'later stale article rolls back whole batch');
+ proof=await proofExport();proof.articles[0].title='校正後の題名';proofPreview=await proofReview(proof);ok(proofPreview.status===200,'fresh export permits review');
+ ok((await req('/admin/stories/',{action:'proof_apply',csrf,confirmation:confirmation(proofPreview.text)})).status===303,'proofreading batch applies');
+ const proofAfter=proofRows();for(const k of ['status','published_at','checked_at','cover','featured'])ok(proofAfter[0][k]===proofBefore[0][k],'proof preserves '+k);
+ ok(proofAfter[1].revision===proofBefore[1].revision+1,'unchanged article not saved');
+ ok((await proofReview(proof)).status===409,'consumed export cannot replay');
+ proof=await proofExport();proof.images=[{article_id:proof.articles[0].id,file:'article-01.png',alt:'紙の上の小さなカップ'}];
+ ok((await proofReview(proof)).status===400,'missing image rejected');
+ bad=structuredClone(proof);bad.images[0].file='../bad.png';ok((await proofReview(bad)).status===400,'image traversal rejected');
+ ok((await proofReview(proof,[['article-01.png',Buffer.from('<svg/>')]])).status===400,'forged image rejected in batch');
+ const imageBytes=Buffer.from(run("$im=imagecreatetruecolor(30,40);ob_start();imagepng($im);echo base64_encode(ob_get_clean());"),'base64');
+ proofPreview=await proofReview(proof,[['article-01.png',imageBytes]]);ok(proofPreview.status===200&&proofPreview.text.includes('story-upload-preview'),'generated image preview');
+ if(process.env.DEAFNAVI_QA_DIR){writeFileSync(join(process.env.DEAFNAVI_QA_DIR,'proof-review.html'),proofPreview.text);writeFileSync(join(process.env.DEAFNAVI_QA_DIR,'proof-list.html'),(await req('/admin/?view=stories')).text);}
+ const proofImage=proofPreview.text.match(/class="story-upload-preview" src="([^"]+)"/)[1];ok((await req(proofImage,null,false)).status===401,'import image private before applying');
+ ok((await req('/admin/stories/',{action:'proof_apply',csrf,confirmation:confirmation(proofPreview.text)})).status===303,'generated cover applies with proofread text');
+ ok(proofRows()[0].alt==='紙の上の小さなカップ'&&proofRows()[0].cover!==proofBefore[0].cover&&proofRows()[0].status==='draft','cover updated without publishing draft');
  const finalEditor=(await req('/admin/?view=stories&mode=edit&id='+id)).text;ok(finalEditor.includes('data-storage-key=')&&finalEditor.includes('data-restore')&&finalEditor.includes('data-check-list'),'recovery and pre-save check controls');
  ok(directoryBaseline===run("require 'server/core.php';echo json(query('SELECT * FROM records ORDER BY id')->fetchAll());"),'cafe records unchanged');
  ok(readdirSync(join(dir,'stories/backups')).length>=4,'consistent pre-write backups');

@@ -3,13 +3,21 @@ declare(strict_types=1);
 require_once __DIR__.'/stories-store.php';
 require_once __DIR__.'/stories-render.php';
 require_once __DIR__.'/stories-admin.php';
+require_once __DIR__.'/stories-proofreading.php';
 function stories_dispatch(string $path):bool {
     if($path==='/stories'){header('Location: /stories/',true,308);return true;}
     if($path==='/admin/stories/'){
         $u=stories_editor_user();header('X-Robots-Tag: noindex, nofollow');
         if($_SERVER['REQUEST_METHOD']==='GET'&&isset($_GET['preview'])){echo story_detail(story_get(input($_GET,'preview',64)),true);return true;}
         if($_SERVER['REQUEST_METHOD']!=='POST')fail('この操作は利用できません。',405);
-        check_csrf();$action=input($_POST,'action',20);
+        check_csrf();$action=isset($_POST['export_proof'])?'proof_export':input($_POST,'action',20);
+        if($action==='proof_export'){
+            $data=story_proof_export($_POST);header('Content-Type: application/json; charset=UTF-8');
+            header('Content-Disposition: attachment; filename="deafnavi-proofreading-'.date('Ymd-His').'.json"');
+            header('Cache-Control: private, no-store');echo json_encode($data,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);return true;
+        }
+        if($action==='proof_review'){echo story_proof_review($u);return true;}
+        if($action==='proof_apply'){$count=story_proof_apply($_POST,(string)$u['id']);$_SESSION['flash']=$count.'件の校正結果を反映しました。';header('Location: /admin/?view=stories',true,303);return true;}
         if($action==='bulk_review'){echo stories_bulk_review($_POST,$u);return true;}
         if($action==='bulk_apply'){stories_bulk_apply($_POST,(string)$u['id']);$_SESSION['flash']='選んだ記事の状態を保存しました。';header('Location: /admin/?view=stories',true,303);return true;}
         if($action==='slug'){header('Content-Type: application/json');echo json(['used'=>story_slug_used(story_input($_POST,'slug',100),input($_POST,'id',64))]);return true;}
