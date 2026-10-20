@@ -135,12 +135,16 @@ try{
  const proofExport=async()=>{const rows=proofRows();return JSON.parse((await req('/admin/stories/',{action:'bulk_review',export_proof:'1',proof_provider:'gemini',csrf,...Object.fromEntries(rows.map(r=>['selected['+r.id+']',String(r.revision)]))})).text);};
  const proofReview=async(d,files=[])=>{const f=new FormData();f.set('csrf',csrf);f.set('action','proof_review');f.set('proof_file',new Blob([JSON.stringify(d)],{type:'application/json'}),'proofreading.json');for(const [name,bytes] of files)f.append('proof_images[]',new Blob([bytes],{type:'image/png'}),name);return req('/admin/stories/',f);};
  let proof=await proofExport();ok(proof.articles.length===2&&proof.instructions.includes('Strict 3:4')&&proof.instructions.includes('Gemini'),'export includes selected articles and exact image style');
+ ok(proof.instructions_version===2&&proof.delivery_requirements.image_count===2&&proof.delivery_requirements.json_file==='proofreading.json','delivery manifest specifies real files and expected images');
+ ok(proof.instructions.includes('検索URLやリダイレクトURLに変換しない')&&proof.instructions.includes('ファイル納品は未完了')&&!proof.instructions.includes('必ず次の形のUTF-8 JSONだけを返す'),'instructions separate file content from delivery');
  const proofBefore=proofRows();proof.articles[0].title='校正後の題名';proof.articles[0].sources=[{url:'https://example.com/',label:'参考'}];
  ok((await proofReview({...proof,articles:proof.articles.slice(0,1)})).status===400,'missing article rejected');
  ok((await proofReview({...proof,batch_id:'forged'})).status===409,'unknown export rejected');
  let bad=structuredClone(proof);bad.articles[0].status='published';ok((await proofReview(bad)).status===400,'AI cannot change publication state');
  bad=structuredClone(proof);bad.articles[0].body+='\n![偽画像](/stories/media/'+ 'a'.repeat(32)+'.webp)';ok((await proofReview(bad)).status===400,'AI cannot invent registered images');
- let proofPreview=await proofReview(proof);ok(proofPreview.status===200&&proofPreview.text.includes('校正後の題名'),'proof preview accepts link key order and shows diff');
+ bad=structuredClone(proof);bad.articles[0].sources[0].url='[https://example.com/](https://example.com/)';let badReview=await proofReview(bad);ok(badReview.status===400&&badReview.text.includes('Markdownが含まれています'),'Markdown-wrapped source URL rejected clearly');
+ bad=structuredClone(proof);bad.articles[0].body+='\n[イベント](https://www.google.com/search?q=/events.html)';badReview=await proofReview(bad);ok(badReview.status===400&&badReview.text.includes('本文のリンク先'),'AI search URL insertion rejected');
+ let proofPreview=await proofReview(proof);ok(proofPreview.text.includes('画像生成は未完了です'),'missing Gemini images shown as incomplete');ok(proofPreview.status===200&&proofPreview.text.includes('校正後の題名'),'proof preview accepts link key order and shows diff');
  ok(proofRows()[0].title===proofBefore[0].title,'preview does not save articles');
  run("require 'server/core.php';require 'server/stories-store.php';stories_query(\"UPDATE stories SET revision=revision+1 WHERE slug='import-fixture-1'\");");
  ok((await req('/admin/stories/',{action:'proof_apply',csrf,confirmation:confirmation(proofPreview.text)})).status===409&&proofRows()[0].title===proofBefore[0].title,'later stale article rolls back whole batch');
