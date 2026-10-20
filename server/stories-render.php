@@ -12,20 +12,52 @@ function story_link_warning(string $body):string {
 }
 function story_inline(string $text,int $depth=0):string {
     if($depth>3)return e($text);
-    $pattern='/\[([^\]\n]+)\]\(([^\s)]+)\)|\*\*([^*\n]+)\*\*|\*([^*\n]+)\*/u';
+    $pattern='/`([^`\n]+)`|~~([^~\n]+)~~|\[([^\]\n]+)\]\(([^\s)]+)\)|\*\*([^*\n]+)\*\*|\*([^*\n]+)\*/u';
     $out='';$pos=0;preg_match_all($pattern,$text,$matches,PREG_SET_ORDER|PREG_OFFSET_CAPTURE);
     foreach($matches as $m){$out.=e(substr($text,$pos,$m[0][1]-$pos));$pos=$m[0][1]+strlen($m[0][0]);
-        if(($m[1][0]??'')!==''){$url=$m[2][0];$out.=story_link_valid($url)?'<a href="'.e($url).'" rel="noopener noreferrer">'.e($m[1][0]).'</a>':e($m[1][0]);}
-        elseif(($m[3][0]??'')!=='')$out.='<strong>'.story_inline($m[3][0],$depth+1).'</strong>';
-        else $out.='<em>'.story_inline($m[4][0],$depth+1).'</em>';
+        if(($m[1][0]??'')!=='')$out.='<code>'.e($m[1][0]).'</code>';
+        elseif(($m[2][0]??'')!=='')$out.='<del>'.story_inline($m[2][0],$depth+1).'</del>';
+        elseif(($m[3][0]??'')!==''){$url=$m[4][0];$out.=story_link_valid($url)?'<a href="'.e($url).'" rel="noopener noreferrer">'.e($m[3][0]).'</a>':e($m[3][0]);}
+        elseif(($m[5][0]??'')!=='')$out.='<strong>'.story_inline($m[5][0],$depth+1).'</strong>';
+        else $out.='<em>'.story_inline($m[6][0],$depth+1).'</em>';
     }return $out.e(substr($text,$pos));
+}
+// Split only unescaped pipes. Escaped pipes stay literal inside each cell.
+function story_table_cells(string $line):array {
+    $line=trim($line);if(str_starts_with($line,'|'))$line=substr($line,1);
+    if(str_ends_with($line,'|')&&!str_ends_with($line,'\\|'))$line=substr($line,0,-1);
+    return array_map(fn($s)=>trim(str_replace('\\|','|',$s)),preg_split('/(?<!\\\\)\|/u',$line));
+}
+function story_table_alignment(string $line):?array {
+    if(!str_contains($line,'|'))return null;
+    $cells=story_table_cells($line);$align=[];
+    foreach($cells as $cell){if(!preg_match('/^:?-{3,}:?$/',$cell))return null;
+        $align[]=str_starts_with($cell,':')?(str_ends_with($cell,':')?'center':'left'):(str_ends_with($cell,':')?'right':'left');}
+    return $align;
 }
 function story_markdown(string $body):array {
     $lines=explode("\n",str_replace("\r",'',story_cut($body,50000)));$out='';$toc=[];$paragraph=[];$list='';$items=[];$heading=0;
     $flush=function()use(&$out,&$paragraph,&$list,&$items){if($paragraph){$text=implode("\n",array_map('trim',$paragraph));$text=preg_replace('/(?<=[\p{Han}\p{Hiragana}\p{Katakana}])\n(?=[\p{Han}\p{Hiragana}\p{Katakana}])/u','',$text);$out.='<p>'.story_inline(str_replace("\n",' ',$text)).'</p>';$paragraph=[];}if($items){$out.='<'.$list.'>'.implode('',$items).'</'.$list.'>';$list='';$items=[];}};
-    foreach($lines as $line){
+    for($i=0,$n=count($lines);$i<$n;$i++){
+        $line=$lines[$i];
+        if(preg_match('/^ {0,3}(`{3,}|~{3,})[^`]*$/',$line,$f)){
+            $flush();$code=[];$marker=$f[1][0];$size=strlen($f[1]);
+            while(++$i<$n){if(preg_match('/^ {0,3}'.preg_quote($marker,'/').'{'.$size.',}\s*$/',$lines[$i]))break;$code[]=$lines[$i];}
+            $out.='<pre><code>'.e(implode("\n",$code)).'</code></pre>';continue;
+        }
+        $align=$i+1<$n?story_table_alignment($lines[$i+1]):null;
+        if($align!==null&&str_contains($line,'|')&&count(story_table_cells($line))===count($align)){
+            $flush();$out.='<div class="story-table-wrap" tabindex="0" role="region" aria-label="表（横にスクロールできます）"><table><thead><tr>';
+            foreach(story_table_cells($line) as $c=>$cell)$out.='<th scope="col" class="story-align-'.$align[$c].'">'.story_inline($cell).'</th>';
+            $out.='</tr></thead><tbody>';$i++;
+            while($i+1<$n&&trim($lines[$i+1])!==''&&str_contains($lines[$i+1],'|')){
+                $cells=story_table_cells($lines[++$i]);$out.='<tr>';
+                foreach($align as $c=>$a)$out.='<td class="story-align-'.$a.'">'.story_inline($cells[$c]??'').'</td>';
+                $out.='</tr>';
+            }$out.='</tbody></table></div>';continue;
+        }
         if(trim($line)===''){$flush();continue;}
-        if(preg_match('/^(#{2,3})\s+(.+)$/u',$line,$m)){$flush();$id='section-'.(++$heading);$level=strlen($m[1]);if($level===2)$toc[]=['id'=>$id,'title'=>$m[2],'level'=>$level];$out.='<h'.$level.' id="'.$id.'">'.story_inline($m[2]).'</h'.$level.'>';continue;}
+        if(preg_match('/^(#{2,6})\s+(.+)$/u',$line,$m)){$flush();$id='section-'.(++$heading);$level=strlen($m[1]);if($level===2)$toc[]=['id'=>$id,'title'=>$m[2],'level'=>$level];$out.='<h'.$level.' id="'.$id.'">'.story_inline($m[2]).'</h'.$level.'>';continue;}
         if(preg_match('#^!\[([^\]]+)\]\((/stories/media/[a-f0-9]{32}\.webp)(?: "([^"\n]*)")?\)$#u',$line,$m)){$flush();$out.='<figure><img src="'.e($m[2]).'" alt="'.e($m[1]).'" loading="lazy" decoding="async">'.(!empty($m[3])?'<figcaption>'.e($m[3]).'</figcaption>':'').'</figure>';continue;}
         if(preg_match('/^(?:([-*]) |(\d+)\. )(.+)$/u',$line,$m)){$type=$m[1]?'ul':'ol';if($paragraph||($list&&$list!==$type))$flush();$list=$type;$items[]='<li>'.story_inline($m[3]).'</li>';continue;}
         if(str_starts_with($line,'> ')){$flush();$out.='<blockquote><p>'.story_inline(substr($line,2)).'</p></blockquote>';continue;}
@@ -45,7 +77,7 @@ function stories_shell(string $title,string $body,string $path,string $summary='
     $schema=[['@context'=>'https://schema.org','@type'=>'BreadcrumbList','itemListElement'=>$crumbs]];
     if($article)$schema[]=['@context'=>'https://schema.org','@type'=>'Article','headline'=>$title,'citation'=>array_values(array_column(json_decode($article['sources'],true)?:[],'url')),'description'=>$summary,'image'=>$image,'datePublished'=>$article['published_at'],'dateModified'=>$article['updated_at'],'mainEntityOfPage'=>$canonical,'author'=>['@type'=>'Organization','name'=>$article['author']?:'Deaf Navi編集部'],'publisher'=>['@type'=>'Organization','name'=>'Deaf Navi']];
     $ld='';if(!$private)foreach($schema as $s)$ld.='<script type="application/ld+json">'.json_encode($s,JSON_HEX_TAG|JSON_UNESCAPED_UNICODE).'</script>';
-    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($title).' | Deaf Navi 読みもの</title><meta name="description" content="'.e($summary).'"><meta name="robots" content="'.($private?'noindex,nofollow':'index,follow').'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($title).'"><meta property="og:description" content="'.e($summary).'"><meta property="og:type" content="'.($article?'article':'website').'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:image" content="'.e($image).'"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/styles.css?v=20260909ui2"><link rel="stylesheet" href="/stories.css?v=20261019c">'.site_shell_head(true).$ld.'<script src="/access-visit.js" defer></script><script src="/stories.js" defer></script></head><body class="stories-page"><a class="skip-link" href="#main">本文へ</a>'.site_shell_header('stories').'<main id="main" class="stories-main"><nav aria-label="パンくず"><a href="/">ホーム</a> / <a href="/stories/">読みもの</a>'.($article?' / '.e($title):'').'</nav>'.$body.'</main><footer class="stories-footer"><a href="/stories/">読みもの</a> · <a href="/about.html">Deaf Naviについて</a><p>© '.date('Y').' TAMA.</p></footer></body></html>';
+    return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'.e($title).' | Deaf Navi 読みもの</title><meta name="description" content="'.e($summary).'"><meta name="robots" content="'.($private?'noindex,nofollow':'index,follow').'"><link rel="canonical" href="'.e($canonical).'"><meta property="og:title" content="'.e($title).'"><meta property="og:description" content="'.e($summary).'"><meta property="og:type" content="'.($article?'article':'website').'"><meta property="og:url" content="'.e($canonical).'"><meta property="og:image" content="'.e($image).'"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/styles.css?v=20260909ui2"><link rel="stylesheet" href="/stories.css?v=20261020md1">'.site_shell_head(true).$ld.'<script src="/access-visit.js" defer></script><script src="/stories.js" defer></script></head><body class="stories-page"><a class="skip-link" href="#main">本文へ</a>'.site_shell_header('stories').'<main id="main" class="stories-main"><nav aria-label="パンくず"><a href="/">ホーム</a> / <a href="/stories/">読みもの</a>'.($article?' / '.e($title):'').'</nav>'.$body.'</main><footer class="stories-footer"><a href="/stories/">読みもの</a> · <a href="/about.html">Deaf Naviについて</a><p>© '.date('Y').' TAMA.</p></footer></body></html>';
 }
 function stories_index():string {
     $q=input($_GET,'q',200);$cat=input($_GET,'category',64);$tag=input($_GET,'tag',100);$where=["status='published'","datetime(published_at)<=datetime(?)"];$args=[now()];
