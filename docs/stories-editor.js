@@ -33,7 +33,7 @@
   form.querySelectorAll('[data-format]').forEach(button=>button.addEventListener('click',()=>{
     const selection=body.value.slice(body.selectionStart,body.selectionEnd),word=selection||'ここに本文';
     const lines=(prefix)=>'\n'+word.split('\n').map(x=>prefix+x).join('\n')+'\n';
-    const templates={h2:'\n## '+word+'\n',h3:'\n### '+word+'\n',bold:'**'+word+'**',italic:'*'+word+'*',ul:lines('- '),ol:lines('1. '),quote:lines('> '),hr:'\n\n---\n\n'};
+    const templates={h2:'\n## '+word+'\n',h3:'\n### '+word+'\n',bold:'**'+word+'**',italic:'*'+word+'*',ul:lines('- '),ol:lines('1. '),quote:lines('> '),hr:'\n\n---\n\n',table:'\n\n| 項目 | 内容 |\n| --- | --- |\n| '+word+' | 説明 |\n\n',code:String.fromCharCode(96)+word+String.fromCharCode(96),strike:'~~'+word+'~~'};
     if(button.dataset.format==='link'){const url=prompt('リンク先URL（https:// またはサイト内の /パス）');if(url)insert('['+(selection||'リンクの説明')+']('+url+')');}
     else insert(templates[button.dataset.format]);
   }));
