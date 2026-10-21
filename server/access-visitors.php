@@ -24,7 +24,10 @@ function access_visitor_dir(): string {
 function access_visitor_db(bool $write=false): PDO {
     $path = access_visitor_dir().'/visitors.sqlite';
     if (!is_file($path) || is_link($path)) throw new RuntimeException('Visitor storage unavailable');
-    $db = new PDO('sqlite:'.$path, null, null, [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);
+    $options = [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC];
+    $db = method_exists(PDO::class, 'connect')
+        ? PDO::connect('sqlite:'.$path, null, null, $options)
+        : new PDO('sqlite:'.$path, null, null, $options);
     $db->exec('PRAGMA busy_timeout=1500');
     if (!$write) $db->exec('PRAGMA query_only=ON');
     return $db;
@@ -131,18 +134,19 @@ function access_unique_report(array $options): array {
     $result = ['available'=>false,'days'=>[],'paths'=>[],'total'=>0,'started_at'=>null,'contents'=>[]];
     try {
         $db = access_visitor_db();
+        $createFunction = method_exists($db, 'createFunction') ? 'createFunction' : 'sqliteCreateFunction';
         $result['started_at'] = $db->query("SELECT value FROM metadata WHERE key='started_at'")->fetchColumn() ?: null;
         $where = 'day>=? AND day<=? AND NOT EXISTS (SELECT 1 FROM excluded_visitors x WHERE x.day=visits.day AND x.visitor=visits.visitor)'; $args = [$options['from'],$options['to']];
-        $db->sqliteCreateFunction('quality_excluded',fn($day,$visitor)=>access_quality_class($day,$visitor)!==null?1:0,2);
+        $db->$createFunction('quality_excluded',fn($day,$visitor)=>access_quality_class($day,$visitor)!==null?1:0,2);
         $where .= ' AND quality_excluded(day,visitor)=0';
         if ($options['q']!=='') { $where .= ' AND instr(lower(path),lower(?))>0'; $args[]=$options['q']; }
-        $db->sqliteCreateFunction('content_key', fn($path)=>access_content($path), 1);
+        $db->$createFunction('content_key', fn($path)=>access_content($path), 1);
         $where .= ' AND content_key(path) IS NOT NULL';
         $s = $db->prepare('SELECT content_key(path) AS content,COUNT(DISTINCT day || ":" || visitor) AS count FROM visits WHERE '.$where.' GROUP BY content_key(path)');
         $s->execute($args);
         foreach ($s as $row) $result['contents'][$row['content']] = (int)$row['count'];
         if (($options['content']??'all')!=='all') { $where .= ' AND content_key(path)=?'; $args[]=$options['content']; }
-        $db->sqliteCreateFunction('quality_class',fn($day,$visitor)=>access_quality_class($day,$visitor)??'retained',2);
+        $db->$createFunction('quality_class',fn($day,$visitor)=>access_quality_class($day,$visitor)??'retained',2);
         $rawWhere=str_replace(' AND quality_excluded(day,visitor)=0','',$where);
         $quality=$db->prepare('SELECT quality_class(day,visitor) AS kind,COUNT(DISTINCT day || ":" || visitor) AS count FROM visits WHERE '.$rawWhere.' GROUP BY quality_class(day,visitor)');
         $quality->execute($args);$result['quality_counts']=[];$result['raw_total']=0;

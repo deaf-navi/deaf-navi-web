@@ -72,7 +72,7 @@ function cafe_event_http(array $target,string $ip):array {
         CURLOPT_WRITEFUNCTION=>function($c,$chunk)use(&$body){if(strlen($body)+strlen($chunk)>2500000)return 0;$body.=$chunk;return strlen($chunk);},
         CURLOPT_HEADERFUNCTION=>function($c,$header)use(&$location,&$type){if(stripos($header,'Location:')===0)$location=trim(substr($header,9));if(stripos($header,'Content-Type:')===0)$type=strtolower(trim(substr($header,13)));return strlen($header);}
     ]);
-    $ok=curl_exec($c);$status=(int)curl_getinfo($c,CURLINFO_RESPONSE_CODE);$code=curl_errno($c);curl_close($c);
+    $ok=curl_exec($c);$status=(int)curl_getinfo($c,CURLINFO_RESPONSE_CODE);$code=curl_errno($c);unset($c);
     return ['ok'=>$ok!==false,'status'=>$status,'body'=>$body,'location'=>$location,'type'=>$type,'error_code'=>$code];
 }
 function cafe_event_fetch_once(string $url,callable $resolve,callable $http):array {

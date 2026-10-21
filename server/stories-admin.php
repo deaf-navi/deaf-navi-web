@@ -70,6 +70,6 @@ function stories_upload():array {
     $im=@imagecreatefromstring(file_get_contents($f['tmp_name']));if(!$im)fail('画像を読み込めませんでした。');
     $scale=min(1,1600/max($info[0],$info[1]));$dst=imagecreatetruecolor(max(1,(int)($info[0]*$scale)),max(1,(int)($info[1]*$scale)));imagealphablending($dst,false);imagesavealpha($dst,true);imagecopyresampled($dst,$im,0,0,0,0,imagesx($dst),imagesy($dst),$info[0],$info[1]);
     $id=bin2hex(random_bytes(16));$path=stories_dir().'/media/'.$id.'.webp';$db=stories_db();stories_backup($db);
-    if(!imagewebp($dst,$path,82))throw new RuntimeException('Image write failed');chmod($path,0600);imagedestroy($im);imagedestroy($dst);
+    if(!imagewebp($dst,$path,82))throw new RuntimeException('Image write failed');chmod($path,0600);unset($im,$dst);
     $db->prepare('INSERT INTO media VALUES(?,?)')->execute([$id,now()]);return ['id'=>$id,'url'=>story_media_url($id)];
 }
