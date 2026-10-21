@@ -6,6 +6,7 @@ import { feedThumbnail } from './lib/thumbnail-metadata.mjs';
 import { enrichNewsThumbnails } from './lib/news-thumbnails.mjs';
 import { isHardNoiseWorldText } from './lib/world-relevance.mjs';
 import { articleCacheKey, createTranslationCache, isWeakJapaneseTranslation, assertJapaneseTranslations, translateBatch, polishJapanese } from './lib/world-translation.mjs';
+import {approvedWorldTargets} from './lib/world-approved-targets.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -1304,6 +1305,7 @@ async function ensureCodexPostEditAvailable(endpoint) {
     throw new Error('readiness response is not Codex App Server');
   }
   if (healthJson.ok === false) throw new Error(`readiness failed: ${compactText(healthText)}`);
+  return healthJson;
 }
 
 async function applyCodexJapanesePostEdit(articles, cacheArticles) {
@@ -1320,21 +1322,25 @@ async function applyCodexJapanesePostEdit(articles, cacheArticles) {
     return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: false };
   }
 
-  const targets = articles
+  let targets = articles
     .filter((article) => !cacheArticles.get(articleCacheKey(article))?.postEdited)
-    .sort((a, b) => Number(isTranslatedArticle(a)) - Number(isTranslatedArticle(b)))
-    .slice(0, CODEX_POST_EDIT_MAX_ITEMS);
+    .sort((a, b) => Number(isTranslatedArticle(a)) - Number(isTranslatedArticle(b)));
 
   if (targets.length) {
     try {
-      await ensureCodexPostEditAvailable(endpoint);
+      const health=await ensureCodexPostEditAvailable(endpoint);
+      if(health.engine==='openai_complimentary'){
+        if(!health.capabilities?.includes('filter-approved-v1'))throw new Error('Complimentary approval preflight is unavailable');
+        targets=await approvedWorldTargets(targets,{endpoint,headers:authHeaders(),limit:CODEX_POST_EDIT_MAX_ITEMS,
+          request:(url,options)=>fetchRequestWithTimeout(url,options,CODEX_POST_EDIT_TIMEOUT_MS)});
+      }else targets=targets.slice(0,CODEX_POST_EDIT_MAX_ITEMS);
     } catch (err) {
       console.warn(`[codex-postedit] skipped: Codex App Server is not available (${err.message})`);
       return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: false };
     }
   }
 
-  if (!targets.length) return { checked: 0, updated: 0, cached, skipped: 0, failed: 0, enabled: true };
+  if (!targets.length) return { checked: 0, updated: 0, cached, skipped: Math.max(0, articles.length - cached), failed: 0, enabled: true };
 
   let updated = 0;
   let failed = 0;

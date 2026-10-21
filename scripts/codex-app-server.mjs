@@ -1,7 +1,8 @@
 import { spawn } from 'node:child_process';
 import http from 'node:http';
 import {readFile} from 'node:fs/promises';
-import {createComplimentaryClient,publicItems,COMPLIMENTARY_MODEL,COMPLIMENTARY_FALLBACK_MODEL,COMPLIMENTARY_REASONING_EFFORT} from './complimentary-text-client.mjs';
+import {createComplimentaryClient,publicItems,publicTextFingerprint,validateAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_FALLBACK_MODEL,COMPLIMENTARY_REASONING_EFFORT} from './complimentary-text-client.mjs';
+import {join} from 'node:path';
 
 const textBackend=process.env.DEAFNAVI_TEXT_BACKEND||'codex';
 if(!['codex','complimentary'].includes(textBackend))throw new Error('Unsupported Deaf Navi text backend');
@@ -365,7 +366,7 @@ const server = http.createServer(async (req, res) => {
         ok: true,
         provider: 'codex_app_server',
         engine: textBackend==='complimentary'?'openai_complimentary':'codex',
-        ...(complimentary?{models:[COMPLIMENTARY_MODEL],fallback_model:COMPLIMENTARY_FALLBACK_MODEL,fallback_policy:'verified-free-group-headroom',reasoning_effort:COMPLIMENTARY_REASONING_EFFORT}:{codex_bin:codexBin,models:modelCandidates}),
+        ...(complimentary?{models:[COMPLIMENTARY_MODEL],fallback_model:COMPLIMENTARY_FALLBACK_MODEL,fallback_policy:'verified-free-group-headroom',reasoning_effort:COMPLIMENTARY_REASONING_EFFORT,capabilities:['filter-approved-v1']}:{codex_bin:codexBin,models:modelCandidates}),
       });
       return;
     }
@@ -379,6 +380,24 @@ const server = http.createServer(async (req, res) => {
       if(!result.items?.length)throw httpError(503,'Readiness text has not been approved');
       sendJson(res, 200, { ok: true, provider: 'codex_app_server', engine: result.engine ?? 'codex', model: result.model });
       return;
+    }
+
+    // Non-generating preflight. Prevent unapproved records consuming World's
+    // target limit or being counted as failed translation batches.
+    if(req.method==='POST'&&url.pathname==='/filter-approved'&&complimentary){
+      if(!authorized(req)){sendJson(res,401,{success:false,error:'unauthorized'});return;}
+      const body=await readJson(req);
+      if(!Array.isArray(body.items)||body.items.length>600||new Set(body.items.map(x=>x?.id)).size!==body.items.length)
+        throw httpError(400,'Bounded unique candidates required');
+      let approved=new Set(),accountReady=false;
+      try{
+        const lease=JSON.parse(await readFile(join(process.env.DEAFNAVI_AI_STATE_DIR,'allowance.json'),'utf8'));
+        const key=(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim();
+        validateAllowance(lease,{key,project:process.env.DEAFNAVI_OPENAI_PROJECT_ID});
+        approved=new Set(lease.approvedTextHashes??[]);accountReady=true;
+      }catch{/* Missing account evidence never becomes permission. */}
+      const approvedIds=body.items.filter(item=>{try{return approved.has(publicTextFingerprint(item));}catch{return false;}}).map(x=>x.id);
+      sendJson(res,200,{success:true,accountReady,approvedIds,generationRequests:0});return;
     }
 
     if (req.method !== 'POST' || url.pathname !== '/generate') {

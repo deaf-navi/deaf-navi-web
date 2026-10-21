@@ -1,0 +1,153 @@
+import {readFile,writeFile,rename,open,unlink,mkdir} from 'node:fs/promises';
+import {realpathSync} from 'node:fs';
+import {join,resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {randomUUID} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {reviewRecords,runDailyReview} from './daily-curation-review.mjs';
+import {prepareCurationReview} from './prepare-curation-review.mjs';
+import {prepareReviewItem,evidenceHash} from './curation-review-contract.mjs';
+import {createComplimentaryClient,publicTextFingerprint,validateAllowance,summarizeComplimentaryUsage} from './complimentary-text-client.mjs';
+import {runSourceDiscovery} from './source-discovery.mjs';
+
+export const readJson=async path=>JSON.parse(await readFile(path,'utf8'));
+export async function optionalJson(path){try{return await readJson(path);}catch(e){if(e.code==='ENOENT')return null;throw e;}}
+export async function privateJson(path,value){const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(value,null,2)+'\n',{mode:0o600});await rename(tmp,path);}
+
+// Inspect a recorded account check; never manufacture one from local usage or renew it.
+export async function accountGate({stateDir,key,project,now=Date.now()}){
+  let lease;
+  try{lease=await readJson(join(stateDir,'allowance.json'));validateAllowance(lease,{key,project,now});}
+  catch{return {ready:false,reason:'account-verification-required',automaticAccountVerification:false};}
+  for(const name of ['inflight.json','request.lock']){
+    try{await readFile(join(stateDir,name));return {ready:false,reason:'request-reconciliation-required',automaticAccountVerification:false};}
+    catch(e){if(e.code!=='ENOENT')throw e;}
+  }
+  const day=new Date(now).toISOString().slice(0,10);
+  const ledger=await optionalJson(join(stateDir,'usage-'+day+'.json'));
+  let usage=null;
+  if(ledger){try{usage=summarizeComplimentaryUsage(ledger,{day,project});}catch{return {ready:false,reason:'usage-reconciliation-required',automaticAccountVerification:false};}}
+  if(usage?.unresolved)return {ready:false,reason:'request-reconciliation-required',automaticAccountVerification:false};
+  return {ready:true,reason:null,automaticAccountVerification:false,checkedAt:lease.checkedAt,expiresAt:lease.expiresAt,
+    utcDay:day,dailyBudget:lease.dailyBudget,usage,approvalSignature:evidenceHash(JSON.stringify([lease.checkedAt,lease.expiresAt,lease.approvedTextHashes]))};
+}
+
+// Reuse only an actually reviewed exact title/excerpt on an unchanged fetched page.
+// Preserve the original sharingReviewedAt; this is NOT a new human review.
+export async function reuseReviewedText(tasks,targets,{stateDir,key,project,now=Date.now()}){
+  const byId=new Map(targets.map(t=>[t.kind+':'+t.recordId,t]));
+  const verified=[];
+  for(const task of tasks){
+    const target=byId.get(task.kind+':'+task.recordId),reviewed=Date.parse(target?.sharingReviewedAt);
+    if(!target||target.officialVerified!==true||target.sourceMode!=='html'||task.sourceMode!=='html'
+      ||!Number.isFinite(reviewed)||reviewed>now||!Number.isFinite(Date.parse(task.retrievedAt))
+      ||Date.parse(task.retrievedAt)>now||now-Date.parse(task.retrievedAt)>5*60_000
+      ||!/^[a-f0-9]{64}$/.test(target.approvedDocumentHash??'')||target.approvedDocumentHash!==task.sourceDocumentHash
+      ||target.sourceUrl!==task.sourceUrl)continue;
+    const original=prepareReviewItem({...target,text:target.fragments.join(' ')}),item=prepareReviewItem(task);
+    if(JSON.stringify(original)!==JSON.stringify(item))continue;
+    verified.push({hash:publicTextFingerprint(item),kind:task.kind,recordId:task.recordId,
+      documentHash:task.sourceDocumentHash,sharingReviewedAt:target.sharingReviewedAt});
+  }
+  if(!verified.length)return new Set();
+  const lockPath=join(stateDir,'request.lock');let lock;
+  try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code==='EEXIST')return new Set();throw e;}
+  try{
+    const path=join(stateDir,'allowance.json'),lease=await readJson(path);validateAllowance(lease,{key,project,now});
+    if(await optionalJson(join(stateDir,'inflight.json')))return new Set();
+    const allowed=new Set(lease.approvedTextHashes??[]),added=verified.filter(x=>!allowed.has(x.hash));
+    if(added.length){
+      for(const item of added)allowed.add(item.hash);
+      lease.approvedTextHashes=[...allowed];
+      lease.reusedSharingReviews=[...(lease.reusedSharingReviews??[]),...added];
+      // checkedAt, eligibility, expiresAt, budget and source review times are untouched.
+      await privateJson(path,lease);
+    }
+    return new Set(verified.map(x=>x.hash));
+  }finally{await lock.close();await unlink(lockPath);}
+}
+
+export function updateExceptionQueue(previous,entries,now){
+  const stamp=new Date(now).toISOString(),old=new Map((previous?.items??[]).map(x=>[x.key,x]));
+  const items=entries.map(entry=>{
+    const key=entry.kind+':'+entry.recordId;
+    const fingerprint=evidenceHash(JSON.stringify([entry.reasons,entry.differences??[],entry.sourceUrl??null]));
+    const prior=old.get(key);old.delete(key);
+    return {key,kind:entry.kind,recordId:entry.recordId,sourceUrl:entry.sourceUrl??null,reasons:entry.reasons,
+      differences:entry.differences??[],fingerprint,firstSeenAt:prior?.firstSeenAt??stamp,
+      changedAt:prior?.fingerprint===fingerprint?prior.changedAt:stamp,lastSeenAt:stamp};
+  });
+  return {version:1,generatedAt:stamp,items,newOrChanged:items.filter(x=>x.changedAt===stamp).map(x=>x.key),
+    resolved:[...(previous?.resolved??[]),...[...old.values()].map(x=>({...x,resolvedAt:stamp}))].slice(-500)};
+}
+
+export async function runServerCuration({stateDir,key,project,records,catalog,discoverySources=[],now=Date.now(),
+  comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery}){
+  // The outer lock serializes timer, allowance-change and operator execution.
+  const lockPath=join(stateDir,'server-curation.lock');let lock;
+  try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code==='EEXIST')return {status:'busy',submittedThisRun:0};throw e;}
+  try{
+    const gate=await accountGate({stateDir,key,project,now});
+    let allowed=new Set();
+    if(gate.ready){const lease=await readJson(join(stateDir,'allowance.json'));allowed=new Set(lease.approvedTextHashes??[]);}
+    const wrappedPrepare=async(targets,options)=>{
+      const result=await prepare(targets,options);
+      if(gate.ready&&!comparisonOnly){
+        const reused=await reuseReviewedText(result.tasks,targets,{stateDir,key,project,now});
+        for(const hash of reused)allowed.add(hash);
+      }
+      return result;
+    };
+    const before=await optionalJson(join(stateDir,'daily-curation-review.json'));
+    const report=await runDailyReview({records,catalog,stateDir,now,prepare:wrappedPrepare,
+      generate:generate??createComplimentaryClient({key,project,stateDir}),
+      canSubmit:item=>!comparisonOnly&&gate.ready&&allowed.has(publicTextFingerprint(item)),
+      approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
+    const beforeEntries=new Map((before?.entries??[]).map(x=>[x.kind+':'+x.recordId,x]));
+    const comparison={previousGeneratedAt:before?.generatedAt??null,previousSelected:before?.selected??null,
+      currentSelected:report.selected,matched:0,changed:[],added:[],removed:[]};
+    for(const entry of report.entries){const id=entry.kind+':'+entry.recordId,prior=beforeEntries.get(id);beforeEntries.delete(id);
+      if(!prior)comparison.added.push(id);
+      else if(JSON.stringify([entry.status,entry.reasons,entry.differences])===JSON.stringify([prior.status,prior.reasons,prior.differences]))comparison.matched++;
+      else comparison.changed.push({id,before:prior.status,after:entry.status,reasons:entry.reasons});}
+    comparison.removed=[...beforeEntries.keys()];
+    const queuePath=join(stateDir,'curation-exceptions.json');
+    const previousQueue=await optionalJson(queuePath)??(before?.generatedAt
+      ?updateExceptionQueue(null,(before.entries??[]).filter(x=>x.status==='exception'),Date.parse(before.generatedAt)):null);
+    const queue=updateExceptionQueue(previousQueue,report.entries.filter(x=>x.status==='exception'),now);
+    await privateJson(queuePath,queue);
+    const discovery=await discover({stateDir,sources:discoverySources,knownUrls:records.map(x=>x.sourceUrl),now});
+    const result={version:1,generatedAt:new Date(now).toISOString(),status:report.submittedThisRun===null?'needs-attention':gate.ready?'completed':'account-check-required',
+      mode:comparisonOnly?'comparison':'routine',account:gate,selected:report.selected,cached:report.cached,
+      corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,
+      submittedThisRun:report.submittedThisRun,reusedRun:report.reusedRun,comparison,
+      newOrChangedExceptions:queue.newOrChanged,discovery,
+      publication:{changed:0,policy:'existing-verified-source-publishers-only',manualReviewTimestampsChanged:false}};
+    await privateJson(join(stateDir,comparisonOnly?'server-curation-comparison.json':'server-curation.json'),result);
+    await mkdir(join(stateDir,'server-curation-runs'),{recursive:true,mode:0o700});
+    await privateJson(join(stateDir,'server-curation-runs',new Date(now).toISOString().replace(/[:.]/g,'-')+'-'+randomUUID()+'.json'),result);
+    return result;
+  }finally{await lock.close();await unlink(lockPath);}
+}
+
+if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process.argv[1]))).href){
+  try{
+    if(process.argv.slice(2).some(x=>x!=='--compare'))throw new Error('Unsupported routine argument');
+    const stateDir=process.env.DEAFNAVI_AI_STATE_DIR;
+    if(!stateDir)throw new Error('Private state required');
+    const events=await readJson('/srv/deafnavi/current/events.json');
+    const cafes=JSON.parse(execFileSync('php',['/srv/deafnavi/current/_backend/curate-cafe-events.php','--review-export'],{encoding:'utf8',timeout:60000,maxBuffer:2_000_000}));
+    const catalog=await readJson(join(stateDir,'curation-review-catalog.json'));
+    const sources=await readJson(new URL('../config/curation-discovery.json',import.meta.url));
+    const result=await runServerCuration({stateDir,records:reviewRecords(events,cafes),catalog,discoverySources:sources.sources,
+      key:(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim(),project:process.env.DEAFNAVI_OPENAI_PROJECT_ID,
+      comparisonOnly:process.argv.includes('--compare')});
+    console.log(JSON.stringify({status:result.status,selected:result.selected,cached:result.cached,exceptions:result.exceptions,
+      submittedThisRun:result.submittedThisRun,newOrChangedExceptions:result.newOrChangedExceptions?.length,
+      discoveryCandidates:result.discovery?.candidates,publication:result.publication}));
+    if(result.submittedThisRun===null)process.exitCode=1;
+  }catch{
+    // No source text, secret paths, credentials, PHP output or API body in journal.
+    console.error('SERVER_CURATION_FAILED: inspect private state; no automatic retry');process.exitCode=1;
+  }
+}
