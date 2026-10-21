@@ -27,7 +27,7 @@
     "editorial:update": "node src/editorial-update.mjs",
     "events:update": "node src/events-curate.mjs",
     "events:recover": "node src/events-curate.mjs --recover",
-    "test:stories": "php test/stories-markdown.php && node --test test/stories-editor.test.mjs && node test/stories.integration.mjs"
+    "test:stories": "php test/stories-markdown.php && node --test test/stories-editor.test.mjs test/stories-share.test.mjs && node test/stories.integration.mjs"
   },
   "engines": {
     "node": ">=20"
