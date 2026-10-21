@@ -1,29 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-21T01:23:55.296Z",
+  "generatedAt": "2026-10-21T07:12:22.482Z",
   "counts": {
-    "uniqueInputs": 3164,
-    "alreadyPublished": 1016,
-    "outsideWindow": 1732,
-    "hardExcluded": 16,
-    "duplicateOfPublished": 136,
-    "candidateDuplicates": 8,
-    "eligible": 256,
+    "uniqueInputs": 3194,
+    "alreadyPublished": 1033,
+    "outsideWindow": 1751,
+    "hardExcluded": 13,
+    "duplicateOfPublished": 143,
+    "candidateDuplicates": 5,
+    "eligible": 249,
     "queued": 40,
-    "deferred": 216
+    "deferred": 209
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 10,
-    "market-report": 5
+    "low-value-page": 6,
+    "market-report": 5,
+    "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-21T00:32:05.867Z",
+    "previousGeneratedAt": "2026-10-21T01:23:55.296Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -147,14 +148,14 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/ryuji/",
-      "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
-      "publishedAt": "2026-10-16T03:00:01.000Z",
+      "sourceUrl": "https://udcast.net/workslist/otokotomodachi/",
+      "articleHash": "2d8eaefe7bb2266343675de7c8dd3a57dece7194cdd41bf3546ef9e043e39fd2",
+      "publishedAt": "2026-10-21T06:00:23.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "new"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/nolookpark/",
@@ -187,9 +188,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/hutashika/",
-      "articleHash": "174bc6c1c7145d56a0736f2e5b7f1626d043972ce2c8a0b778ea02ad939d83a8",
-      "publishedAt": "2026-10-15T09:19:28.000Z",
+      "sourceUrl": "https://udcast.net/workslist/ryuji/",
+      "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
+      "publishedAt": "2026-10-16T03:00:01.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -217,9 +218,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/odorunew/",
-      "articleHash": "1647a6ce647c9f0923101b936720a617baff1c6f3ca38a80e5dc08f6b971304c",
-      "publishedAt": "2026-10-15T04:10:57.000Z",
+      "sourceUrl": "https://udcast.net/workslist/hutashika/",
+      "articleHash": "174bc6c1c7145d56a0736f2e5b7f1626d043972ce2c8a0b778ea02ad939d83a8",
+      "publishedAt": "2026-10-15T09:19:28.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -237,9 +238,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
-      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
-      "publishedAt": "2026-10-14T08:54:18.000Z",
+      "sourceUrl": "https://udcast.net/workslist/odorunew/",
+      "articleHash": "1647a6ce647c9f0923101b936720a617baff1c6f3ca38a80e5dc08f6b971304c",
+      "publishedAt": "2026-10-15T04:10:57.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -257,9 +258,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/komae-dousureba/",
-      "articleHash": "8585bb0046db5cb9782d4ea044b70cc27d20c70ee127c0e4fdc0601c4e5c3078",
-      "publishedAt": "2026-10-13T01:00:10.000Z",
+      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
+      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
+      "publishedAt": "2026-10-14T08:54:18.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -277,9 +278,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/mienaimusume_joeikai/",
-      "articleHash": "8e97f794f7d3636a1da1f22ea9ca78341dd8abd7f2b4831dc52200f332d473b4",
-      "publishedAt": "2026-10-08T06:40:08.000Z",
+      "sourceUrl": "https://udcast.net/workslist/komae-dousureba/",
+      "articleHash": "8585bb0046db5cb9782d4ea044b70cc27d20c70ee127c0e4fdc0601c4e5c3078",
+      "publishedAt": "2026-10-13T01:00:10.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -297,9 +298,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/cozytown45/",
-      "articleHash": "9e5fdcc3155edd85375cf55dca341f915b7746de94138ec4ab27a281f005afd1",
-      "publishedAt": "2026-10-06T02:02:12.000Z",
+      "sourceUrl": "https://udcast.net/workslist/mienaimusume_joeikai/",
+      "articleHash": "8e97f794f7d3636a1da1f22ea9ca78341dd8abd7f2b4831dc52200f332d473b4",
+      "publishedAt": "2026-10-08T06:40:08.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -317,9 +318,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/cozytown44/",
-      "articleHash": "b1e0fdd5f98c85809d0a96cecf973f762137a011922f2ea3f314d5bb72040a53",
-      "publishedAt": "2026-10-06T02:01:23.000Z",
+      "sourceUrl": "https://udcast.net/workslist/cozytown45/",
+      "articleHash": "9e5fdcc3155edd85375cf55dca341f915b7746de94138ec4ab27a281f005afd1",
+      "publishedAt": "2026-10-06T02:02:12.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -337,9 +338,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/threecode/",
-      "articleHash": "3832da623e888d360bbdcf5efb9091cbe86cafba4b4ecdb84f681290cb933bde",
-      "publishedAt": "2026-10-05T02:45:33.000Z",
+      "sourceUrl": "https://udcast.net/workslist/cozytown44/",
+      "articleHash": "b1e0fdd5f98c85809d0a96cecf973f762137a011922f2ea3f314d5bb72040a53",
+      "publishedAt": "2026-10-06T02:01:23.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
