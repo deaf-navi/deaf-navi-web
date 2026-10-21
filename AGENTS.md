@@ -2,6 +2,8 @@
 
 ## 定時更新の保護
 
+- 2026-10-21のユーザー承認によるサーバー主導の日次比較は `SERVER_CURATION.md` を参照。`deafnavi-curation` のtimer/path/serviceも保護対象。Codexは当日のアカウント確認と新規・変化した例外を扱い、サーバーの日次CLIを重複起動しない。共有・鮮度・公開承認の条件は維持する。
+
 - `DEAF_NAVI_PROTECTED_SERVICE`: 国内・WorldのActionsと公開経路は「不要なCodex関連処理の一括停止」から除外する。停止にはDeaf Naviの対象Workflowを名指しした明示指示が必要。
 - 国内イベントの通信障害復旧 `Recover Event Sources`（events-recover.yml）も保護対象。確認日時を延長せず48時間で掲載を失効させる規則と、情報源の拒否・内容変更を自動承認しない規則を維持する。
 - 手話カフェのサーバー定時処理 `deafnavi-cafe-event-sources` と、国内イベント・カフェの統合日次キュレーション `deaf-navi-2` もDeaf Naviの継続運用に含む。旧カフェチャットの `deaf-navi` はユーザー指示で停止済み。詳しくは `EVENT_CURATION.md` と `CAFE_EVENT_CURATION.md`。他アプリの停止や復元と連動させない。

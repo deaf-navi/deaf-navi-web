@@ -1,0 +1,18 @@
+[Unit]
+Description=Deaf Navi daily source comparison and exception queue
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/deaf-navi-codex-app-server.env
+WorkingDirectory=/srv/deaf-navi-codex-app-server/curation-batch
+ExecStart=/usr/bin/node /srv/deaf-navi-codex-app-server/curation-batch/scripts/server-curation.mjs
+UMask=0077
+TimeoutStartSec=20min
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/deafnavi/shared/ai
+

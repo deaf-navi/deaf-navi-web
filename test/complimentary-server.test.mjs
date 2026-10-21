@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
 import {once} from 'node:events';
 import {mkdtemp,writeFile,rm} from 'node:fs/promises';
+import {keyFingerprint,publicTextFingerprint} from '../scripts/complimentary-text-client.mjs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 
@@ -30,4 +31,15 @@ test('HTTP integration: health never generates and missing allowance fails close
   assert.equal(response.status,503);assert.equal((await response.json()).code,'complimentary_unavailable');
   assert.equal((await fetch(base+'/ready',{headers})).status,503);
   const malformed=await fetch(base+'/generate',{method:'POST',headers,body:JSON.stringify({...request,source_text:'not JSON'})});assert.equal(malformed.status,400);
+  const item={id:'one',title:'Captioned theatre',summary:'The city theatre offers captions.'};
+  assert.equal((await fetch(base+'/filter-approved',{method:'POST',body:JSON.stringify({items:[item]})})).status,401);
+  const missing=await fetch(base+'/filter-approved',{method:'POST',headers,body:JSON.stringify({items:[item]})});
+  assert.deepEqual(await missing.json(),{success:true,accountReady:false,approvedIds:[],generationRequests:0});
+  const now=Date.now(),day=new Date(now).toISOString().slice(0,10);
+  await writeFile(join(dir,'allowance.json'),JSON.stringify({version:1,projectName:'shared-free-tier',projectId:'proj_fixture',
+    keySha256:keyFingerprint('sk-proj-fixture-not-a-secret'),model:'gpt-6.1-sol',utcDay:day,checkedAt:new Date(now).toISOString(),
+    expiresAt:new Date(Date.parse(day+'T00:00:00Z')+86400000).toISOString(),enrolled:true,sharingEnabled:true,balancePositive:true,
+    publicDataOnly:true,groupDailyLimit:1_000_000,observedGroupTokens:0,dailyBudget:100_000,approvedTextHashes:[publicTextFingerprint(item)]}));
+  const ready=await fetch(base+'/filter-approved',{method:'POST',headers,body:JSON.stringify({items:[item,{...item,id:'two',title:'Changed text'}]})});
+  assert.deepEqual(await ready.json(),{success:true,accountReady:true,approvedIds:['one'],generationRequests:0});
 });

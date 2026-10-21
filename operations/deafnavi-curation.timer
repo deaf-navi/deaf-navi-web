@@ -1,0 +1,11 @@
+[Unit]
+Description=Deaf Navi daily server curation at 09:10 JST
+
+[Timer]
+OnCalendar=*-*-* 09:10:00 Asia/Tokyo
+Persistent=true
+AccuracySec=1min
+Unit=deafnavi-curation.service
+
+[Install]
+WantedBy=timers.target

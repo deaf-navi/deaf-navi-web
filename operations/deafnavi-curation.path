@@ -1,0 +1,10 @@
+[Unit]
+Description=Resume Deaf Navi comparison after a verified allowance or catalog change
+
+[Path]
+PathChanged=/srv/deafnavi/shared/ai/allowance.json
+PathChanged=/srv/deafnavi/shared/ai/curation-review-catalog.json
+Unit=deafnavi-curation.service
+
+[Install]
+WantedBy=multi-user.target
