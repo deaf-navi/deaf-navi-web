@@ -1,32 +1,41 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-21T08:29:29.122Z",
+  "generatedAt": "2026-10-21T14:28:05.919Z",
   "counts": {
     "uniqueInputs": 3195,
-    "alreadyPublished": 996,
-    "outsideWindow": 1784,
-    "hardExcluded": 16,
-    "duplicateOfPublished": 141,
-    "candidateDuplicates": 5,
-    "eligible": 253,
+    "alreadyPublished": 1015,
+    "outsideWindow": 1756,
+    "hardExcluded": 15,
+    "duplicateOfPublished": 148,
+    "candidateDuplicates": 6,
+    "eligible": 255,
     "queued": 40,
-    "deferred": 213
+    "deferred": 215
   },
   "hardExclusionReasons": {
-    "unrelated-visual-section": 1,
-    "low-value-page": 9,
     "market-report": 5,
+    "low-value-page": 9,
     "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-21T07:12:22.482Z",
+    "previousGeneratedAt": "2026-10-21T08:29:29.122Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
-    "changed": 0,
-    "unchanged": 39
+    "changed": 1,
+    "unchanged": 38
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/21/175236",
+      "articleHash": "e77f578aa954fdaba58d55642168cdb73f66c9976860126b35cebf6f1a561fa8",
+      "publishedAt": "2026-10-21T08:52:36.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/15/173417",
       "articleHash": "d977593bfab628d42ef4695d2a2f3ad0c56a5b25b722f2be69b47702b1fd2201",
@@ -138,24 +147,14 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/12/164504",
-      "articleHash": "27520e2abdb6e47802299510baaab7f5a624993fc253bf0d7782afdf6660f35f",
-      "publishedAt": "2026-09-12T07:45:04.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.mimisuppo-miyagi.org",
-      "priority": 0,
-      "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
-      "articleHash": "8efce81a52dd10d25cb1c8fffa5ed609a38eeff3efbc3f2f46db2d19d17255e1",
+      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
       "publishedAt": "2026-10-21T08:25:44.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "changed"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/otokotomodachi/",
