@@ -64,6 +64,8 @@ try{
  data.cover=image.id;data.alt='テストの白い点';data.body+='\n\n![白い点]('+image.url+' "画像の説明")\n\n[未公開リンク](/stories/limit-good/)';data.related+='\n未公開の関連記事 | /stories/limit-good/';data.status='published';data.featured='1';
  ok((await req('/admin/stories/',data)).status===303,'publish');data.revision='2';
  let publicArticle=await req('/stories/fixture-story/',null,false);ok(publicArticle.status===200&&publicArticle.text.includes('application/ld+json')&&publicArticle.text.includes('画像の説明'),'article SEO and image');
+ ok(publicArticle.text.includes('Instagramで共有')&&publicArticle.text.includes('data-share-link value="https://deafnavi.com/stories/fixture-story/"'),'Instagram canonical link helper');
+ ok(!(await req('/admin/stories/?preview='+id)).text.includes('data-story-sharing'),'private previews do not offer sharing');
  ok(publicArticle.text.includes('"citation":["https:\\/\\/example.com\\/"]'),'Article citation URLs');
  ok(publicArticle.text.includes('<p>未公開リンク</p>')&&!publicArticle.text.includes('未公開の関連記事'),'private related pages omitted and inline label retained');
  ok((await req('/admin/stories/?preview='+id)).text.includes('無効なリンク（未公開の記事など）')&&(await req('/admin/?view=stories&mode=edit&id='+id)).text.includes('無効なリンク（未公開の記事など）'),'admin preview and edit warn without blocking save');
