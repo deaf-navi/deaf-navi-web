@@ -5,7 +5,13 @@ name: CI
 
 on:
   pull_request:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      php85_only:
+        description: 'Run only the isolated PHP 8.5.12 compatibility suite'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -16,6 +22,7 @@ concurrency:
 
 jobs:
   validate:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.php85_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -64,3 +71,30 @@ jobs:
 
       - name: Verify World portal output
         run: npm run verify:world
+
+  php85:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.php85_only }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout reviewed validation ref
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Build PHP 8.5.12 and run offline existing tests
+        shell: bash
+        run: bash .github/php85/run-ci.sh
+
+      - name: Retain version, source hash, build and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: php85-linux-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/php85-evidence/
+          if-no-files-found: error
+          retention-days: 7
+          include-hidden-files: false

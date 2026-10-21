@@ -1,0 +1,66 @@
+{
+  "verified_at_utc": "2026-10-21T16:00:59.839092+00:00",
+  "images": [
+    {
+      "repository": "docker.io/library/debian",
+      "tag": "bookworm-slim",
+      "registry_manifest_url": "https://registry-1.docker.io/v2/library/debian/manifests/bookworm-slim",
+      "index_digest": "sha256:7ff6ba31527b9e336162fa061746c366c4b2032f4d2cff2078bea43f78efe3f8",
+      "linux_amd64_manifest_digest": "sha256:ec31d744f83f4a73447ba045aaab9409997efe5cc706eca4890c1be36cc1606a",
+      "config_digest": "sha256:8da84df25d28176be84164040cd45e128c6b4c6a80b7d7cbe17fe2b9f198efc2",
+      "version_environment": [],
+      "architecture": "amd64",
+      "os": "linux",
+      "metadata_only_no_layers_downloaded": true
+    },
+    {
+      "repository": "docker.io/library/node",
+      "tag": "22.23.4-bookworm-slim",
+      "registry_manifest_url": "https://registry-1.docker.io/v2/library/node/manifests/22.23.4-bookworm-slim",
+      "index_digest": "sha256:5991875dfb80938dd8a6ba3fe3e96fd04929e70792762b3319d8caadbbe229bc",
+      "linux_amd64_manifest_digest": "sha256:ea11b74b986d520137cdef9a5346e447a00f275ecc4abc0055b7151226231e09",
+      "config_digest": "sha256:58a96d9752cfedf3c4fcfcbe2dabbad725c147f7003caa9f7899a3f414ada3fc",
+      "version_environment": [
+        "NODE_VERSION=22.23.4"
+      ],
+      "architecture": "amd64",
+      "os": "linux",
+      "metadata_only_no_layers_downloaded": true
+    }
+  ],
+  "php_source": {
+    "version": "8.5.12",
+    "source_url": "https://www.php.net/distributions/php-8.5.12.tar.xz",
+    "sha256": "08bc2eba2a588654ade1357174aa646b761556c862dda0678345ee29ed481209",
+    "downloaded_bytes": 14554312,
+    "local_sha256_verified": true,
+    "archive_executed": false,
+    "official_release_api": "https://www.php.net/releases/index.php?json&version=8&max=4",
+    "official_release_api_sha256": "e51e0851e429b718cba26846247bcf32696ee86c9ecdbd114461128b83b756cb",
+    "release_date": "21 Oct 2026"
+  },
+  "unavailable_official_php_image": {
+    "tag": "php:8.5.12-cli-bookworm",
+    "observed_index_digest": "sha256:eb37f58646a901dc7727cf448cae36daaefaba79de33b5058dab79aa4c04aefb",
+    "manifests": [],
+    "amd64_php_tag_http_status": 404,
+    "used": false
+  },
+  "production_base_commit": "df9d171b03117efb70cdd4107cfaefe48e8a52eb",
+  "build_scope": "CI container only; no host PHP installation; no production changes",
+  "buildkit": {
+    "repository": "docker.io/moby/buildkit",
+    "tag": "buildx-stable-1",
+    "index_digest": "sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea",
+    "linux_amd64_manifest_digest": "sha256:98cc6a3fc46220d00f8224ae483f3274fc874e9be8d7dd1e2e2c5481209228b5",
+    "registry_manifest_url": "https://registry-1.docker.io/v2/moby/buildkit/manifests/buildx-stable-1",
+    "metadata_only_no_layers_downloaded": true,
+    "source": "https://docs.docker.com/build/builders/drivers/docker-container/"
+  },
+  "protected_tree_sha256": "1f67efcf87de4e9b549ed3c1be757a5f3bbef683b64cc9e952161dad59c62c98",
+  "protected_tree_entry_count": 683,
+  "protected_tree_exclusions": [
+    ".github/workflows/ci.yml",
+    ".github/php85/"
+  ]
+}
