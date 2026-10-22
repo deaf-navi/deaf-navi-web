@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-22T05:26:44Z",
+  "generatedAt": "2026-10-22T08:33:48Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-22T00:31:27Z",
+      "sourceGeneratedAt": "2026-10-22T08:33:48Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -193,10 +193,10 @@
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
         "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
         "japanesePostEdit": {
-          "checked": 34,
-          "updated": 34,
-          "cached": 420,
-          "skipped": 85,
+          "checked": 1,
+          "updated": 1,
+          "cached": 438,
+          "skipped": 125,
           "failed": 0,
           "enabled": true,
           "attemptsPerBatch": 2,
@@ -209,8 +209,8 @@
             "failures": 1,
             "circuitOpen": true
           },
-          "pending": 85,
-          "retainedPrevious": 43
+          "pending": 125,
+          "retainedPrevious": 75
         }
       }
     },
@@ -221,7 +221,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-22T00:31:27Z",
+      "sourceGeneratedAt": "2026-10-22T08:33:48Z",
       "language": "und",
       "regions": [
         {
@@ -303,7 +303,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-22T00:31:27Z",
+      "sourceGeneratedAt": "2026-10-22T08:33:48Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
