@@ -1,31 +1,42 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-22T05:26:17.375Z",
+  "generatedAt": "2026-10-22T08:31:57.632Z",
   "counts": {
-    "uniqueInputs": 3077,
-    "alreadyPublished": 985,
-    "outsideWindow": 1728,
-    "hardExcluded": 10,
-    "duplicateOfPublished": 120,
-    "candidateDuplicates": 3,
-    "eligible": 231,
+    "uniqueInputs": 3196,
+    "alreadyPublished": 1017,
+    "outsideWindow": 1759,
+    "hardExcluded": 15,
+    "duplicateOfPublished": 139,
+    "candidateDuplicates": 8,
+    "eligible": 258,
     "queued": 40,
-    "deferred": 191
+    "deferred": 218
   },
   "hardExclusionReasons": {
-    "low-value-page": 5,
+    "unrelated-visual-section": 1,
+    "low-value-page": 9,
     "incidental-organization-mention": 1,
     "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-22T05:20:12.778Z",
+    "previousGeneratedAt": "2026-10-22T05:26:17.375Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/22/143008",
+      "articleHash": "0ed025d16792376bfbe3b4d7aa1a82cd52eaffe47e3856d3dc2e4f9855cbcc77",
+      "publishedAt": "2026-10-22T05:30:08.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/21/175236",
       "articleHash": "e77f578aa954fdaba58d55642168cdb73f66c9976860126b35cebf6f1a561fa8",
@@ -410,16 +421,6 @@
       "sourceUrl": "https://co-coco.jp/products/orihime/",
       "articleHash": "0963451c7c44a5fea4641ad4310d064b8a006bcc98b4667db1e01029e210c3a3",
       "publishedAt": "2026-09-02T04:30:35.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/series/atelier/wadachi/",
-      "articleHash": "e222a4428700319a5d9cbf822bcc7b40fd25f7a3e793d921f284fffdab1e151e",
-      "publishedAt": "2026-08-27T22:50:23.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
