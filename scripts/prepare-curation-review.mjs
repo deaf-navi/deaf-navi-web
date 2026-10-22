@@ -18,7 +18,11 @@ export async function prepareCurationReview(targets,{fetchResource=fetchThumbnai
    if(response.status!==200||!/text\/html|application\/xhtml\+xml/i.test(response.headers?.['content-type']??''))throw new Error('source-unavailable-or-visual');
    const html=response.text.replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi,' ');
    const text=cleanHtml(html.replace(/<[^>]*>/g,' '));
-   if(target.fragments.some(fragment=>!comparable(text).includes(comparable(fragment))))throw new Error('source-fragment-changed');
+   // Comments can contain obsolete notices such as "registration closed".
+   // Retain the existing full document hash contract, but never accept excerpts
+   // from hidden HTML comments as evidence for model input.
+   const visibleText=cleanHtml(html.replace(/<!--[\s\S]*?(?:-->|$)/g,' ').replace(/<[^>]*>/g,' '));
+   if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment))))throw new Error('source-fragment-changed');
    const sourceDocumentHash=evidenceHash(text);
    if(target.approvedDocumentHash&&target.approvedDocumentHash!==sourceDocumentHash)throw new Error('source-document-changed');
    const excerpt=JSON.parse(item.summary).text;
