@@ -273,14 +273,20 @@
     {
       "sourceUrl": "https://ameblo.jp/jtd2009/entry-12948202794.html",
       "sourceName": "日本ろう者劇団「手話狂言初春の会」",
-      "state": "needs_review",
-      "reason": "10月18日も初春の会の公式本文に年・曜日・回次の不整合が残る。整合する告知が確認できるまで非公開。",
-      "missing": [
-        "開催年・日付・回次の整合する最新公式告知"
-      ],
+      "state": "published",
+      "reason": "旧記事の年・曜日・回次不一致は履歴として保持。新しい第46回公式告知と表裏チラシ、公式販売ページで2027年1月30・31日を照合して掲載。本文APIの開催日抽出不足は実目視で解消。",
+      "missing": [],
       "discoveredOn": "2026-10-16",
-      "checkedAt": "2026-10-18T00:23:00Z",
-      "recheckAfter": "2026-10-21T00:00:00Z"
+      "checkedAt": "2026-10-22T00:21:57.241Z",
+      "recheckAfter": "2026-10-23T00:00:00Z",
+      "eventIds": [
+        "jtd-kyogen-hatsuharu-2027-01-30"
+      ],
+      "evidenceUrls": [
+        "https://ameblo.jp/jtd2009/entry-12980885174.html",
+        "https://t.pia.jp/pia/event/event.do?eventCd=2638680",
+        "https://stat.ameba.jp/user_images/20261007/14/jtd2009/ac/7d/j/o1080076315829274348.jpg"
+      ]
     },
     {
       "sourceUrl": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100503",
@@ -572,6 +578,62 @@
     }
   ],
   "lastResearch": {
+    "checkedAt": "2026-10-22T00:21:57.241Z",
+    "newDetailedCandidates": 1,
+    "newDetailedPages": 2,
+    "windowEnd": "2026-12-03",
+    "performanceWindowEnd": "2027-04-22",
+    "publishedReady": [
+      "jtd-kyogen-hatsuharu-2027-01-30"
+    ],
+    "restored": [
+      "maimu-zarela-sunagawa-2026-10-25",
+      "maimu-zarela-sapporo-2026-11-06"
+    ],
+    "visualRechecked": [
+      "maimu-zarela-sunagawa-2026-10-25",
+      "maimu-zarela-sapporo-2026-11-06"
+    ],
+    "scope": "東京・神奈川、全国の手話演劇・要約筆記・字幕等の新規告知を探索。日本ろう者劇団の旧記事の不整合を最新告知・販売元・表裏チラシで解消。舞夢×座・れらの主催者本文、会場本文とチラシを実読し2公演を復旧。宮城の目視対象は公式ページの取得・表示がタイムアウトし日時を延長しない。近畿6府県のカフェ調査と2開催回の画像/PDF確認は別DB台帳へ記録。",
+    "api": {
+      "dailySelected": 24,
+      "cached": 22,
+      "corroborated": 4,
+      "reviewedUnchanged": 7,
+      "exceptions": 41,
+      "submitted": 0,
+      "newEventSubmitted": 1,
+      "newEventExceptions": 1,
+      "note": "新規公式HTMLの短い抜粋のみ当日共有承認の上で6.1 Solが抽出。開催日の構造化抽出不足・新規台帳との差を例外として扱い、公式本文・画像・販売元の日付で実確認した。成功応答を再送しない。日次比較はサーバー自律実行を参照し、手動で重複起動しない。"
+    },
+    "newsReview": {
+      "generatedAt": "2026-10-21T23:59:44.225Z",
+      "counts": {
+        "uniqueInputs": 3043,
+        "alreadyPublished": 962,
+        "outsideWindow": 1678,
+        "hardExcluded": 12,
+        "duplicateOfPublished": 136,
+        "candidateDuplicates": 7,
+        "eligible": 248,
+        "queued": 40,
+        "deferred": 208
+      },
+      "comparison": {
+        "previousGeneratedAt": "2026-10-21T14:28:05.919Z",
+        "previousQueued": 40,
+        "retained": 29,
+        "new": 11,
+        "changed": 0,
+        "unchanged": 29
+      },
+      "inspected": 1,
+      "published": 0,
+      "apiSubmitted": 0,
+      "note": "専門団体の新しいスタッフ記事「迷惑メールに気をつけよう！」の本文を確認。個人の税還付メール体験で、聴覚・情報保障との具体的な関係を確認できず追加掲載・API送信なし。明示除外と掲載済み近似重複は再調査しない。"
+    }
+  },
+  "previousResearch": {
     "checkedAt": "2026-10-21T00:22:36.346Z",
     "newDetailedCandidates": 1,
     "newDetailedPages": 1,
@@ -626,51 +688,6 @@
       "published": 0,
       "apiSubmitted": 0,
       "note": "未変更候補40件のうち専門団体上位2本文を確認。10月16日の過去告知とスタッフの猫の私的雑記で追加掲載なし。個人の健康記述は共有APIへ送信しない。明示除外・重複を維持。"
-    }
-  },
-  "previousResearch": {
-    "performanceWindowEnd": "2027-04-20",
-    "windowEnd": "2026-12-01",
-    "newDetailedPages": 2,
-    "apiComparison": {
-      "cached": 24,
-      "exceptions": 38,
-      "reviewedUnchanged": 7,
-      "submitted": 0,
-      "selected": 24,
-      "corroborated": 4
-    },
-    "publishedReady": [
-      "tonancyo-tachikawa-disaster-2026-11-11",
-      "tonancyo-shimenawa-2026-11-20"
-    ],
-    "checkedAt": "2026-10-20T00:25:25.6192109Z",
-    "scope": "東京・神奈川と全国の新規告知・手話劇を探索。東京都中難協公式本文で難聴者の防災交流と情報保障付き工作企画2件を確認。既存いぶき公式サイトに新しい公演日程の追加なし。カフェは関東7都県を探索し専用DB調査記録へ。検索だけの告知や過去公演を公開しない。",
-    "newDetailedCandidates": 2,
-    "newsReview": {
-      "apiSubmitted": 0,
-      "published": 0,
-      "generatedAt": "2026-10-20T00:15:52.835Z",
-      "note": "候補40件は前回と同文面。明示除外・重複を再調査せず維持。",
-      "counts": {
-        "uniqueInputs": 3263,
-        "alreadyPublished": 1040,
-        "outsideWindow": 1784,
-        "hardExcluded": 17,
-        "duplicateOfPublished": 152,
-        "candidateDuplicates": 11,
-        "eligible": 259,
-        "queued": 40,
-        "deferred": 219
-      },
-      "comparison": {
-        "previousGeneratedAt": "2026-10-19T16:59:30.551Z",
-        "previousQueued": 40,
-        "retained": 40,
-        "new": 0,
-        "changed": 0,
-        "unchanged": 40
-      }
     }
   }
 }
