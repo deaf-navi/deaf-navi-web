@@ -1,29 +1,29 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-21T23:59:44.225Z",
+  "generatedAt": "2026-10-22T00:28:51.897Z",
   "counts": {
-    "uniqueInputs": 3043,
-    "alreadyPublished": 962,
-    "outsideWindow": 1678,
-    "hardExcluded": 12,
-    "duplicateOfPublished": 136,
-    "candidateDuplicates": 7,
-    "eligible": 248,
+    "uniqueInputs": 3097,
+    "alreadyPublished": 963,
+    "outsideWindow": 1759,
+    "hardExcluded": 15,
+    "duplicateOfPublished": 131,
+    "candidateDuplicates": 5,
+    "eligible": 224,
     "queued": 40,
-    "deferred": 208
+    "deferred": 184
   },
   "hardExclusionReasons": {
-    "market-report": 2,
+    "market-report": 5,
     "low-value-page": 9,
     "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-21T14:28:05.919Z",
+    "previousGeneratedAt": "2026-10-21T23:59:44.225Z",
     "previousQueued": 40,
-    "retained": 29,
-    "new": 11,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 29
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -324,7 +324,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/series/work/kenzosaito/",
@@ -334,7 +334,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/careacting_2026/",
@@ -344,7 +344,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/goodjob_seminar/",
@@ -354,7 +354,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/baachankissa_fc/",
@@ -364,7 +364,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/futsuunojikan/",
@@ -374,7 +374,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/series/record/question05/",
@@ -384,7 +384,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5tTllFZGpGdlp6cXVsQlVDT1VBOEczbkxiUWlWYm9ORXVzaHZDU1VRWTJ5SERnbHZ3ZzJ5OUI1R2IyZ05mZUZfRlNVQ3RJWkNMcjFrLUlrbWtqVGRPZlJiOEVyNXVwZG5JZEdKQlhLU3BTdXc?oc=5",
@@ -394,17 +394,7 @@
       "sourceDomain": "www.city.mitoyo.lg.jp",
       "priority": 2,
       "reason": "unrelated",
-      "feedChange": "new"
-    },
-    {
-      "sourceUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNTmpHMllBejVfWFBxdW0yVksyUDM0cW1IU2hEMGxNVHZDdUl5cXg4bWlaUGw3MDNaNENOcjNLRGtfQ3JhNlB0aDZ4QkFpQUw1ekd3SVk2QUd2WXV4eWVrQ2VwMVplTjR4ckRZZlJ0c1dkREVqZm1VUUtrRXVKMC1yZ1JhaU1uWmpPellQc3JsYWF2NDg?oc=5",
-      "articleHash": "6e8d2f971aa2db8197911ff2de31e2c299a1b123cccab7cd52a377829391b986",
-      "publishedAt": "2026-08-17T07:00:00.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.city.yokohama.lg.jp",
-      "priority": 2,
-      "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBSVXYzQ3F2dW10aG82bGtlZmRsTV9KX1ZmTXpyTzdBRFJBa25saTlJY3JWMXNpUUxhRmJzRkI2WHRFdkpSOGhzQUk5VlFwbENzbGRB?oc=5",
@@ -412,6 +402,16 @@
       "publishedAt": "2026-08-03T07:00:00.000Z",
       "sourceTier": "specialist",
       "sourceDomain": "www.jfd.or.jp",
+      "priority": 2,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9CbHVCa09hbk5FMko2dHZQMGRUcTRKTEVsZEs5MTJrVzhlVVYzODkyMHgwRl9CNjB2Tnk4RW9hM3gzRVhWT3FSX1lYdE5kRHZDRjktMFdKZzF0VEoyM01xTmJLeUpic3ZjNHpwLXc5dlkxVDZscUE?oc=5",
+      "articleHash": "91a42050cce5ce47c1c7ed42007535022ffa2ed45242f6b438118743056cb645",
+      "publishedAt": "2026-07-21T07:00:00.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.city.omihachiman.lg.jp",
       "priority": 2,
       "reason": "unrelated",
       "feedChange": "new"
@@ -424,7 +424,7 @@
       "sourceDomain": "www.rehab.go.jp",
       "priority": 2,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     }
   ]
 }
