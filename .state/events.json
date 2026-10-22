@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-10-22T14:31:04.825Z",
+  "checkedAt": "2026-10-22T16:01:21.201Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -1387,33 +1387,32 @@
   "checks": [
     {
       "sourceUrl": "https://www.oioi-sign.com/events_list/",
-      "result": "verified",
-      "count": 10
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://fureailand.jp/events/8898",
       "id": "fureai-shuwa-2026-11-14",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://fureailand.jp/events/8898",
       "id": "fureai-shuwa-2027-01-22",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://fureailand.jp/events/8898",
       "id": "fureai-shuwa-2027-02-06",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://kurumecityplaza.jp/events/8576/",
       "id": "kurume-kaiju-2026-11-21",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.city.komatsu.lg.jp/soshiki/1040/shougaishafukushi/2/19003.html",
       "id": "komatsu-shuwa-stage-2026-11-08",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.mimisuppo-miyagi.org/event.html",
@@ -1463,12 +1462,12 @@
     {
       "sourceUrl": "https://www.city.omura.nagasaki.jp/kouhou/event/202608/1121.html",
       "id": "omura-sign-theater-2026-11-21",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://gikyobun.or.jp/heartful/shogaigakushu/bunka/2026.html",
       "id": "gifu-ibuki-kurayami-2026-12-05",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://zarela2009.wixsite.com/za-rela/next-stage",
@@ -1479,12 +1478,12 @@
     {
       "sourceUrl": "https://www.oioi-sign.com/event_20261103/",
       "id": "oioi-e82136764a2a7bfea721",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100503",
       "id": "tokyo-mimi-college-2026-11-03",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.pref.kanagawa.jp/docs/n7j/cnt/f537527/event.html",
@@ -1495,21 +1494,17 @@
     {
       "sourceUrl": "https://www.shizudeaf.com/",
       "id": "shizuoka-deaf-women-2026-11-15",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.shizudeaf.com/",
       "id": "shizuoka-deaf-tennis-2026-10-24",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
       "id": "spac-nihonjin-sign-2026-12-05",
-      "result": "unavailable",
-      "reason": "Event source fetch failed (code=ABORT_ERR, attempts=2): The operation was aborted",
-      "code": "ABORT_ERR",
-      "retryable": true,
-      "allowRetain": true
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
@@ -1532,32 +1527,32 @@
     {
       "sourceUrl": "https://www.tonancyo.org/event/2026/09/6-3.html",
       "id": "tonancyo-community-2026-11-03",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
       "id": "horipro-jack-captions-2027-01-30",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
       "id": "horipro-jack-captions-2027-02-02",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
       "id": "horipro-jack-captions-2027-02-03",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
       "id": "horipro-jack-captions-2027-02-06",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
       "id": "horipro-jack-captions-2027-02-07",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.city.fujieda.shizuoka.jp/soshiki/kenkofukushi/syougaifukushi/boshu/24009.html",
@@ -1568,22 +1563,22 @@
     {
       "sourceUrl": "https://www.kaat.jp/d/jungle2026",
       "id": "kaat-jungle-captions-2026-10-24",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.kaat.jp/d/jungle2026",
       "id": "kaat-jungle-captions-2026-10-25",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
       "id": "kaat-kaeru-captions-2026-11-06",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
       "id": "kaat-kaeru-captions-2026-11-07",
-      "result": "needs_review"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261101-417.html",
@@ -1597,17 +1592,17 @@
     {
       "sourceUrl": "https://www.tonancyo.org/event/2026/09/post-113.html",
       "id": "tonancyo-tachikawa-disaster-2026-11-11",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.tonancyo.org/event/2026/10/20219.html",
       "id": "tonancyo-shimenawa-2026-11-20",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://www.city.matsusaka.mie.jp/site/syougai-wel/minisyuwakyousitu.html",
       "id": "matsusaka-mini-shuwa-2026-11-14",
-      "result": "verified"
+      "result": "not_checked"
     },
     {
       "sourceUrl": "https://ameblo.jp/jtd2009/entry-12980885174.html",
@@ -1665,10 +1660,10 @@
   ],
   "thumbnails": {
     "articles": 20,
-    "attempted": 4,
-    "cached": 16,
-    "acquired": 2,
-    "missing": 2,
+    "attempted": 0,
+    "cached": 20,
+    "acquired": 0,
+    "missing": 0,
     "failed": 0,
     "deferred": 0,
     "withImage": 14,
@@ -1679,10 +1674,10 @@
     "pending": [
       {
         "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261101-417.html",
-        "failures": 1,
+        "failures": 2,
         "firstFailureAt": "2026-10-22T14:31:04.825Z",
-        "lastAttemptAt": "2026-10-22T14:31:04.825Z",
-        "nextAttemptAt": "2026-10-22T15:01:04.825Z",
+        "lastAttemptAt": "2026-10-22T16:01:21.201Z",
+        "nextAttemptAt": "2026-10-22T17:01:21.201Z",
         "code": "HTTP_503"
       },
       {
@@ -1695,10 +1690,10 @@
       },
       {
         "sourceUrl": "https://www.geigeki.jp/accessibility/support/t415-t415-12/",
-        "failures": 1,
+        "failures": 2,
         "firstFailureAt": "2026-10-22T14:31:04.825Z",
-        "lastAttemptAt": "2026-10-22T14:31:04.825Z",
-        "nextAttemptAt": "2026-10-22T15:01:04.825Z",
+        "lastAttemptAt": "2026-10-22T16:01:21.201Z",
+        "nextAttemptAt": "2026-10-22T17:01:21.201Z",
         "code": "HTTP_503"
       }
     ]
