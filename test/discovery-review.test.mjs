@@ -6,6 +6,7 @@ import {join} from 'node:path';
 import {runDiscoveryReview,candidateDisposition} from '../scripts/discovery-review.mjs';
 import {evidenceHash} from '../scripts/curation-review-contract.mjs';
 import {discoverLinks} from '../scripts/source-discovery.mjs';
+import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
 const now=Date.parse('2026-10-22T01:00:00Z');
 const text='手話交流会を開催します。開催日 2026年11月14日。会場 市民会館。';
 const target={kind:'event',recordId:'candidate-1',title:'地域の交流企画',sourceUrl:'https://example.org/events/1',officialVerified:true,sourceMode:'html',
@@ -20,6 +21,15 @@ test('specialist section admits general activity titles without treating other d
  assert.equal(discoverLinks(html,{id:'x',url:'https://example.org/'}).length,0);
  const found=discoverLinks(html,{id:'x',url:'https://example.org/',topicScope:'hearing-specialist',candidatePathPrefixes:['/event/']});
  assert.equal(found.length,1);assert.equal(found[0].publicationApproved,false);assert.equal(found[0].reviewedAt,null);
+});
+test('commented obsolete application notices and links are never evidence or candidates',async()=>{
+ const html='<p>手話交流会 2026年11月14日 市民会館 申込受付中</p><!--strong>※募集は終了しました。</strong--><!-- <a href="/event/old">手話交流イベントの募集</a> -->';
+ const fetchResource=async()=>({status:200,headers:{'content-type':'text/html'},text:html});
+ const invalid=await prepareCurationReview([{...target,approvedDocumentHash:undefined,fragments:['※募集は終了しました。']}],{now,fetchResource});
+ assert.equal(invalid.tasks.length,0);assert.equal(invalid.exceptions[0].reason,'source-fragment-changed');
+ const valid=await prepareCurationReview([{...target,approvedDocumentHash:undefined,fragments:['手話交流会 2026年11月14日 市民会館 申込受付中']}],{now,fetchResource});
+ assert.equal(valid.tasks.length,1);assert.ok(!valid.tasks[0].text.includes('終了'));
+ assert.equal(discoverLinks(html,{id:'x',url:'https://example.org/'}).length,0);
 });
 test('unapproved and unreviewed candidates never invoke API',async t=>{
  const opts=await options(t);let calls=0;

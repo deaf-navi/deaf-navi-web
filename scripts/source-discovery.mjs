@@ -8,7 +8,7 @@ import {evidenceHash} from './curation-review-contract.mjs';
 // Bounded candidate discovery only. Link text is not evidence for publication or sharing.
 export function discoverLinks(html,source,knownUrls=[]){
   const base=new URL(source.url),known=new Set(knownUrls),out=new Map();
-  const clean=html.replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi,' ');
+  const clean=html.replace(/<!--[\s\S]*?(?:-->|$)/g,' ').replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi,' ');
   for(const match of clean.matchAll(/<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)){
     try{
       const url=new URL(decodeEntities(match[1]),base);url.hash='';
