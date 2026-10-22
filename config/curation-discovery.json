@@ -4,8 +4,11 @@
     {"id": "oioi-events", "url": "https://www.oioi-sign.com/events_list/"},
     {"id": "gifu-ibuki", "url": "https://gifuibuki.amebaownd.com/"},
     {"id": "japanese-theatre-of-the-deaf", "url": "https://ameblo.jp/jtd2009/"},
-    {"id": "jdba-news", "url": "https://www.jdba.or.jp/db/blog/"},
+    {"id": "jdba-news", "url": "https://www.jdba.or.jp/db/blog/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/db/blog/resp"]},
     {"id": "deafsato-cafe", "url": "https://note.com/deafsato2025"},
-    {"id": "toyonaka-cafe", "url": "https://www.city.toyonaka.osaka.jp/kenko/chiiki/chiikifukushi/1018.html"}
+    {"id": "toyonaka-cafe", "url": "https://www.city.toyonaka.osaka.jp/kenko/chiiki/chiikifukushi/1018.html"},
+    {"id": "tonancyo-events", "url": "https://www.tonancyo.org/event/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/event/2026/", "/event/2027/"]},
+    {"id": "fureailand-events", "url": "https://fureailand.jp/events"},
+    {"id": "jfd-news", "url": "https://www.jfd.or.jp/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/2026/", "/2027/"]}
   ]
 }

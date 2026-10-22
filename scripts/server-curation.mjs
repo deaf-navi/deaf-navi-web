@@ -9,6 +9,7 @@ import {prepareCurationReview} from './prepare-curation-review.mjs';
 import {prepareReviewItem,evidenceHash} from './curation-review-contract.mjs';
 import {createComplimentaryClient,publicTextFingerprint,validateAllowance,summarizeComplimentaryUsage} from './complimentary-text-client.mjs';
 import {runSourceDiscovery} from './source-discovery.mjs';
+import {runDiscoveryReview} from './discovery-review.mjs';
 
 export const readJson=async path=>JSON.parse(await readFile(path,'utf8'));
 export async function optionalJson(path){try{return await readJson(path);}catch(e){if(e.code==='ENOENT')return null;throw e;}}
@@ -117,11 +118,20 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
     const queue=updateExceptionQueue(previousQueue,report.entries.filter(x=>x.status==='exception'),now);
     await privateJson(queuePath,queue);
     const discovery=await discover({stateDir,sources:discoverySources,knownUrls:records.map(x=>x.sourceUrl),now});
-    const result={version:1,generatedAt:new Date(now).toISOString(),status:report.submittedThisRun===null?'needs-attention':gate.ready?'completed':'account-check-required',
+    const candidateReview=await runDiscoveryReview({stateDir,catalog,knownUrls:records.map(x=>x.sourceUrl),now,prepare:wrappedPrepare,
+      generate:generate??createComplimentaryClient({key,project,stateDir}),
+      canSubmit:item=>!comparisonOnly&&gate.ready&&report.submittedThisRun!==null&&allowed.has(publicTextFingerprint(item)),
+      stopAfterError:report.submittedThisRun===null,
+      approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
+    const submittedThisRun=report.submittedThisRun===null||candidateReview.submittedThisRun===null?null:report.submittedThisRun+candidateReview.submittedThisRun;
+    const result={version:1,generatedAt:new Date(now).toISOString(),status:submittedThisRun===null?'needs-attention':gate.ready?'completed':'account-check-required',
       mode:comparisonOnly?'comparison':'routine',account:gate,selected:report.selected,cached:report.cached,
       corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,
-      submittedThisRun:report.submittedThisRun,reusedRun:report.reusedRun,comparison,
+      submittedThisRun,reusedRun:report.reusedRun,comparison,
       newOrChangedExceptions:queue.newOrChanged,discovery,
+      candidateReview:{selected:candidateReview.selected,cached:candidateReview.cached,submittedThisRun:candidateReview.submittedThisRun,
+        reusedRun:candidateReview.reusedRun,deferred:candidateReview.deferred.length,newOrChanged:candidateReview.newOrChanged,
+        dispositions:candidateReview.entries.reduce((counts,x)=>{const k=x.disposition??'needs-review';counts[k]=(counts[k]??0)+1;return counts;},{})},
       publication:{changed:0,policy:'existing-verified-source-publishers-only',manualReviewTimestampsChanged:false}};
     await privateJson(join(stateDir,comparisonOnly?'server-curation-comparison.json':'server-curation.json'),result);
     await mkdir(join(stateDir,'server-curation-runs'),{recursive:true,mode:0o700});
