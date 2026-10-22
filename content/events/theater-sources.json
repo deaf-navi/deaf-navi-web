@@ -39,7 +39,7 @@
         "https://koguyama.jp/yamabiko/yamabiko_event/41933/"
       ],
       "state": "upcoming_verified",
-      "notes": "砂川公演は既存掲載を維持。札幌11月6〜8日は会場公式本文と2026年チラシを実読。7・8日の午前開演は10:30と会場側でも確認できたため掲載対象へ。 10月19日は公共施設公式本文を再読し、掲載日時・会場・料金が不変であることを確認。目視確認日時は今回の本文再読だけでは延長しない。",
+      "notes": "2026年10月22日に主催者の次回公演本文・原寸チラシと札幌会場本文を再読。砂川10月25日13:30、札幌11月6〜8日の各回時刻、会場・札幌料金と申込案内が不変と確認し2開催情報を復旧。砂川料金は未確認のためnullを保持。",
       "eventIds": [
         "maimu-zarela-sunagawa-2026-10-25",
         "maimu-zarela-sapporo-2026-11-06"
@@ -47,8 +47,8 @@
       "missing": [
         "劇団単独の公式告知先"
       ],
-      "checkedAt": "2026-10-19T00:14:53.815Z",
-      "recheckAfter": "2026-10-20T00:00:00Z",
+      "checkedAt": "2026-10-22T00:21:57.241Z",
+      "recheckAfter": "2026-10-23T00:00:00Z",
       "queries": [
         "札幌ろうあ劇団舞夢 公演 2026",
         "札幌ろうあ劇団舞夢 公演 2027"
@@ -62,16 +62,19 @@
         "https://ameblo.jp/jtd2009/"
       ],
       "evidenceUrls": [
-        "https://ameblo.jp/jtd2009/entry-12948202794.html"
+        "https://ameblo.jp/jtd2009/entry-12948202794.html",
+        "https://ameblo.jp/jtd2009/entry-12980885174.html",
+        "https://t.pia.jp/pia/event/event.do?eventCd=2638680",
+        "https://stat.ameba.jp/user_images/20261007/14/jtd2009/ac/7d/j/o1080076315829274348.jpg"
       ],
-      "state": "needs_review",
-      "notes": "初春の会の本文は年・曜日・回次に不整合。訂正告知と国立能楽堂等の会場情報を再確認する。",
-      "eventIds": [],
-      "missing": [
-        "整合する次回公演日程"
+      "state": "upcoming_verified",
+      "notes": "旧記事の年・曜日・回次の不一致を保持しつつ、新しい第46回公式本文・表裏チラシ・公式販売元を照合。2027年1月30・31日13:30、国立能楽堂、10月28日10時発売、各席の本編字幕を確認。手話で演じる作品と声の出演を区別して掲載。",
+      "eventIds": [
+        "jtd-kyogen-hatsuharu-2027-01-30"
       ],
-      "checkedAt": "2026-10-18T00:33:05.961Z",
-      "recheckAfter": "2026-10-21T00:00:00Z",
+      "missing": [],
+      "checkedAt": "2026-10-22T00:21:57.241Z",
+      "recheckAfter": "2026-10-23T00:00:00Z",
       "queries": [
         "日本ろう者劇団 公演 2026",
         "日本ろう者劇団 公演 2027"

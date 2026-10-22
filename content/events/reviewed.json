@@ -434,14 +434,14 @@
     "sourceUrl": "https://zarela2009.wixsite.com/za-rela/next-stage",
     "status": "announced",
     "verificationMode": "visual",
-    "reviewedAt": "2026-10-18T00:30:47.000Z",
-    "sourceHash": "90b282cd5d5c772aaf14eabae4c85fdd6f3843ad6fe506164cba07975fd785fb",
+    "reviewedAt": "2026-10-22T00:21:57.241Z",
+    "sourceHash": "879fdc24091ad24c430f4037adf7797a42700042d7039e921ddaaea505666e92",
     "evidence": [
       "砂川公演 2026/10/25",
       "砂川市地域交流センターゆう",
       "チラシ：砂川 10.25(日) 13:30 ゆう大ホール"
     ],
-    "visualEvidenceUrl": "https://static.wixstatic.com/media/db547f_3effd84b7c2e40dc8657bc639d0f0264~mv2.jpg/v1/fill/w_600,h_876,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/sapporo-sunagawa-poster(1)_page-0001.jpg"
+    "visualEvidenceUrl": "https://static.wixstatic.com/media/db547f_3effd84b7c2e40dc8657bc639d0f0264~mv2.jpg"
   },
   {
     "id": "oioi-10118575d577f69c48c2",
@@ -689,11 +689,10 @@
     ],
     "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
     "status": "announced",
-    "reviewedAt": "2026-10-18T00:26:00.000Z",
+    "reviewedAt": "2026-10-22T00:21:57.241Z",
     "verificationMode": "visual",
-    "visualEvidenceUrl": "https://koguyama.jp/wp/wp-content/uploads/2026/09/SKM_C450i26091913151_page-0001-724x1024.jpg",
-    "htmlEvidenceHash": "535aa5fad6cd90422d7605cfb915e8cb426d44711e501adc88bd8927eb86cf8a",
-    "sourceHash": "9d1b4b33f0e444fd1824359b91c42fb5741280a871ed64064029d19bb3702ef3",
+    "visualEvidenceUrl": "https://static.wixstatic.com/media/db547f_3effd84b7c2e40dc8657bc639d0f0264~mv2.jpg",
+    "sourceHash": "879fdc24091ad24c430f4037adf7797a42700042d7039e921ddaaea505666e92",
     "evidence": [
       "2026.11.6〜8",
       "札幌市こどもの劇場やまびこ座",
@@ -1294,5 +1293,46 @@
     "thumbnailReviewNote": "開催内容は公式本文で確認。告知画像は未目視のため省略。",
     "sourceHash": "dc3df273714862bcb53b801090a8b2ca7211fb983d1d5ccb55f655b77cafc6a5",
     "reviewedAt": "2026-10-21T00:22:36.344Z"
+  },
+  {
+    "id": "jtd-kyogen-hatsuharu-2027-01-30",
+    "title": "第46回 手話狂言・初春の会",
+    "startDate": "2027-01-30",
+    "endDate": "2027-01-31",
+    "prefecture": "東京都",
+    "venue": "国立能楽堂",
+    "kind": "theater",
+    "time": "両日13:30開演（12:45開場）。プレレクチャー13:00〜13:20。",
+    "organizer": "社会福祉法人トット基金 日本ろう者劇団",
+    "fee": "SS席7,000円／S席6,000円／A席4,500円／B席3,000円（全席指定）。S・A・B席は4人以上で各500円引き。",
+    "target": "2026年10月28日10:00発売開始。主催者の予約フォームまたはチケットぴあへ。最新の受付状況は公式案内で確認。",
+    "description": "ろう者の俳優が演じる手話狂言。「萩大名」「文荷」「牛盗人」を上演し、三宅狂言会による声の出演もあります。",
+    "communication": [
+      {
+        "method": "sign",
+        "detail": "ろう者の俳優による手話の上演と、三宅狂言会による声の出演。"
+      },
+      {
+        "method": "captions",
+        "detail": "各席のモニターで本編字幕を無料で見られます。"
+      }
+    ],
+    "sourceName": "日本ろう者劇団（主催者）",
+    "sourceUrl": "https://ameblo.jp/jtd2009/entry-12980885174.html",
+    "status": "announced",
+    "verificationMode": "visual",
+    "reviewedAt": "2026-10-22T00:21:57.241Z",
+    "sourceHash": "e8af9d040daee728607c9db6e6748c555338c3265765afeb6241412635403132",
+    "visualEvidenceUrl": "https://stat.ameba.jp/user_images/20261007/14/jtd2009/ac/7d/j/o1080076315829274348.jpg",
+    "evidence": [
+      "2027年1月30日（土）・31日（日）",
+      "国立能楽堂",
+      "両日13時30分開演",
+      "令和8年10月28日（水）10:00〜前売開始",
+      "各席に設置されているモニターで本編の字幕を無料でご覧になれます",
+      "ろう者の俳優が手話で演じます"
+    ],
+    "thumbnailPolicy": "omit",
+    "thumbnailReviewNote": "日時・字幕対応は主催者チラシを実目視。告知画像の複製掲載は行わず、公式情報へ案内。"
   }
 ]
