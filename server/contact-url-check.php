@@ -16,7 +16,7 @@ function contact_url_check(array $payload): array {
     foreach(array_slice($urls,0,50) as $url){
         $reasons=[];$risk='no_indicator';
         $mark=function(string $level,string $reason)use(&$reasons,&$risk){$reasons[]=$reason;if($level==='high'||$risk==='no_indicator')$risk=$level;};
-        if(strlen($url)>2000){$mark('review','URLが長すぎるため全体を判定できません');$url=substr($url,0,2000);}
+        if(strlen($url)>2000){$mark('review','URLが長すぎるため全体を判定できません');$url=mb_strcut($url,0,2000,'UTF-8');}
         $explicit=(bool)preg_match('~^[a-z][a-z0-9+.-]*:~i',$url);
         $parsed=parse_url(str_starts_with($url,'//')?'https:'.$url:($explicit?$url:'https://'.$url));
         $scheme=strtolower($parsed['scheme']??'');$host=strtolower(rtrim($parsed['host']??'','.'));

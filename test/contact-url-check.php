@@ -27,6 +27,8 @@ foreach([
  'bit.ly/abc'=>'review',
 ] as $url=>$risk){$r=contact_url_check(['private_message'=>'確認「'.$url.'」です。']);check(count($r['items'])===1,'one URL: '.$url);check($r['items'][0]['risk']===$risk,'risk: '.$url);}
 $r=contact_url_check(['private_message'=>'連絡先 contact@example.org です。']);check(!$r['items'],'email is not treated as URL');
+$r=contact_url_check(['private_message'=>'https://example.org/'.str_repeat('あ',800)]);check(preg_match('//u',$r['items'][0]['url'])===1&&$r['items'][0]['risk']==='review','long Japanese URL remains valid UTF-8');
+check(json($r)!=='','long Japanese URL can be saved as JSON');
 $r=contact_url_check(['private_message'=>'https://example.org/a。https://example.org/a','source_url'=>'https://example.org/a']);check(count($r['items'])===1,'duplicate URLs deduplicated');
 $r=contact_url_check(['private_message'=>implode(' ',array_map(fn($i)=>'https://example.org/'.$i,range(1,55)))]);check($r['truncated']&&count($r['items'])===50,'bounded work explicitly reported');
 $p=['form_kind'=>'cafe_contact','contact_scope'=>'site','name'=>'PRIVATE_TITLE','email'=>'private@example.org','private_message'=>'PRIVATE_BODY https://127.0.0.1/secret?token=PRIVATE_TOKEN'];
