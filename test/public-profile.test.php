@@ -34,4 +34,26 @@ expect(!str_contains(cafe_list_media(array_replace($media,['slug'=>'unknown-cafe
 $eventMedia=array_replace($activity,['slug'=>'acoustic-cafe-sapporo-sign-20261027','official_url'=>'https://acousticcafe-sapporo.com/?p=1160','status'=>'cancelled']);
 expect(!str_contains(cafe_list_media($eventMedia),'<img '),'Cancelled event does not keep announcement imagery');
 expect(!str_contains(cafe_list_media(array_replace($eventMedia,['status'=>'unknown','activity_date'=>'2001-01-01'])),'<img '),'Past event does not keep announcement imagery');
+
+$visit=array_replace($seed[0],['kind'=>'cafe','country_code'=>'JP','name'=>'訪問条件のテスト','slug'=>'visit-fixture','shop_type'=>'permanent','status'=>'open','confirmation_status'=>'confirmed','last_verified_at'=>gmdate('Y-m-d'),'reservation'=>'5名以上は平日のみ予約可。参加費500円＋飲食代。','notes'=>'11月の回は1,000円。次回の料金は未発表。','sign_support'=>'音声を使わず交流。','writing_support'=>true,'sign_language_support'=>false,'beginner_welcome'=>null,'reservation_required'=>null,'review_notes'=>'PRIVATE_VISIT_SENTINEL','internal_note'=>'PRIVATE_VISIT_SENTINEL']);
+$html=visitor_profile($visit);
+expect(str_contains($html,'id="visit-info"')&&str_contains($html,e($visit['reservation']))&&str_contains($html,e($visit['notes'])),'Full dated and conditional pricing retained');
+expect(substr_count($html,e($visit['reservation']))===1&&substr_count($html,e($visit['notes']))===1,'Visit details not repeated in other sections');
+expect(!str_contains($html,'PRIVATE_VISIT_SENTINEL'),'Private review fields stay private');
+$summary=cafe_visit_summary($visit);
+expect(str_contains($summary,'筆談対応')&&!str_contains($summary,'初心者歓迎')&&!str_contains($summary,'手話で注文可能'),'Only explicit true communication facts summarized');
+expect(!str_contains($summary,'500円')&&str_contains($summary,'/visit-fixture/#visit-info'),'Pricing conditions are not shortened into misleading badges');
+$empty=array_replace($visit,['reservation'=>'','notes'=>'','sign_support'=>'','writing_support'=>null]);
+expect(!str_contains(cafe_visit_information($empty),'予約・事前申込は不要'),'Unknown is not no reservation');
+expect(str_contains(cafe_visit_information(array_replace($empty,['reservation_required'=>false])),'予約・事前申込は不要'),'Explicit no-reservation flag retained');
+expect(str_contains(cafe_visit_information(array_replace($empty,['reservation_required'=>true])),'事前予約・申込が必要'),'Explicit reservation requirement retained');
+foreach([['status'=>'needs_review'],['status'=>'unknown'],['status'=>'temporarily_closed'],['status'=>'permanently_closed'],['confirmation_status'=>'needs_review'],['last_verified_at'=>'2000-01-01']] as $state){
+ $old=array_replace($visit,$state);$html=cafe_visit_information($old);
+ expect(str_contains($html,'これまでに掲載した利用情報')&&str_contains($html,e($visit['reservation'])),'Old details retained as historical information');
+ expect(!str_contains(cafe_visit_summary($old),'筆談対応'),'Unconfirmed status cannot promote a communication promise');
+}
+foreach([['country_code'=>'US'],['shop_type'=>'event'],['shop_type'=>'related_organization'],['shop_type'=>'community_space'],['kind'=>'store','signing_store'=>false]] as $scope)expect(cafe_visit_summary(array_replace($visit,$scope))==='','Visit summary restricted to domestic cafes');
+expect(domestic_matches($visit,['q'=>'500円 平日']),'Reservation terms included in keyword search');
+expect(!domestic_matches($visit,['q'=>'PRIVATE_VISIT_SENTINEL']),'Private notes never searchable');
+expect(!str_contains(cafe_visit_information(array_replace($visit,['reservation'=>'<script>visitAttack()</script>'])),'<script>'),'Visit prose escaped');
 echo "PUBLIC_PROFILE_TESTS_OK\n";

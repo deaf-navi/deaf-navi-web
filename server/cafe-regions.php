@@ -13,7 +13,7 @@ function cafe_region_page(string $slug):string {
     if($cities)$body.='<p>現在の掲載地域：'.e(implode('、',array_keys($cities))).'。未掲載の場所があるため、地域内の全店舗を網羅する一覧ではありません。</p>';
     $body.='<p><a href="/guide/accessibility/">通訳・字幕・筆談の確認ポイント</a></p></section><section aria-labelledby="region-cafes"><h2 id="region-cafes">'.$label.'の掲載場所 <span class="dn-region-count">'.count($rows).'件</span></h2><p>営業状態や情報確認日もあわせてご確認ください。「確認中」は、現在の営業・開催を確認できていない情報です。</p><div class="dn-region-list">';
     foreach($rows as $p){
-        $body.='<article class="dn-region-entry"><p class="dn-location">'.e($p['city']).'</p><h3><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h3>'.cafe_badges($p).cafe_schedule_html($p).cafe_freshness_html($p).'<div class="dn-links"><a href="'.e(record_path($p)).'">参加条件・公式情報を確認する</a></div></article>';
+        $body.='<article class="dn-region-entry"><p class="dn-location">'.e($p['city']).'</p><h3><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h3>'.cafe_badges($p).cafe_schedule_html($p).cafe_freshness_html($p).cafe_visit_summary($p).'</article>';
     }
     if(!$rows)$body.='<p>現在、この地域の掲載場所を確認中です。全国の一覧やイベントからお探しください。</p>';
     $body.='</div></section><section class="dn-cafe-guide"><h2>初めて参加する前に</h2><ul><li>営業日・開催日と、予約や事前申込の要否。</li><li>手話を学び始めた方の参加条件、筆談などの対応。</li><li>飲食代と参加費、場所までの行き方。</li></ul><p>掲載情報は全国の手話カフェ一覧と同じ情報から表示しています。最新の変更は主催者・店舗の公式案内を優先してください。</p></section>';

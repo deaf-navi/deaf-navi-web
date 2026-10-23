@@ -17,6 +17,7 @@ function visitor_facts(array $p,array $fields):string {
 }
 function visitor_profile(array $p):string {
     $activity=($p['shop_type']??'')==='event';
+    $visitInfo=cafe_has_visit_info($p);
     $related=in_array(cafe_listing_group($p),['spots','organizations'],true);
     $out='<article class="dn-visitor-profile"><p class="dn-location">'.e(($p['country_code']!=='JP'?($p['country_name']?:'海外').' / ':'').$p['prefecture'].' / '.$p['city']).'</p>';
     if(!empty($p['name_kana']))$out.='<p class="dn-muted">'.e($p['name_kana']).'</p>';
@@ -28,13 +29,16 @@ function visitor_profile(array $p):string {
     elseif($p['status']!=='open')$out.='<p class="dn-notice">'.e(cafe_status_label($p)).'。訪問前に運営元の最新の案内をご確認ください。</p>';
     $out.=($p['country_code']!=='JP'?'<link rel="stylesheet" href="/world-cafes.css?v=1">'.world_badges($p):'');
     $out.=($p['country_code']==='JP'?cafe_badges($p).cafe_schedule_html($p):'');
-    if($p['country_code']==='JP'&&!empty($p['notes']))$out.='<p class="dn-notice">'.nl2br(e($p['notes'])).'</p>';
+    if(!$visitInfo&&$p['country_code']==='JP'&&!empty($p['notes']))$out.='<p class="dn-notice">'.nl2br(e($p['notes'])).'</p>';
     $out.='<p class="dn-profile-intro">'.nl2br(e($p['description']??'')).'</p>'.official_links($p);
+    if($visitInfo)$out.=cafe_visit_information($p);
     $out.='<section class="dn-visitor-section"><h2>'.($activity?'開催・参加の案内':($related?'活動・利用の案内':'営業時間・ご利用案内')).'</h2>';
     $scheduleUnconfirmed=$p['country_code']==='JP'&&in_array($p['status'],['needs_review','unknown'],true);
-    $facts=$activity?(cafe_activity_state($p)==='date_unknown'?'<p>開催日・時刻は確認中です。主催者の最新案内をご確認ください。</p>':visitor_facts($p,['activity_date'=>!empty($p['event_reported'])?'開催日（報告）':'開催日（告知）','business_hours'=>'開催時刻（告知）','reservation'=>'参加について'])):($scheduleUnconfirmed?'<p>現在の営業日・営業時間は確認中です。過去の案内を訪問予定に使わず、公式の最新情報をご確認ください。</p>':visitor_facts($p,['business_hours'=>$related?'活動時間':'営業時間','event_schedule'=>$related?'活動日':'営業日','holidays'=>'お休み','reservation'=>'予約・参加について']));
+    $fields=['business_hours'=>$related?'活動時間':'営業時間','event_schedule'=>$related?'活動日':'営業日','holidays'=>'お休み'];
+    if(!$visitInfo)$fields['reservation']='予約・参加について';
+    $facts=$activity?(cafe_activity_state($p)==='date_unknown'?'<p>開催日・時刻は確認中です。主催者の最新案内をご確認ください。</p>':visitor_facts($p,['activity_date'=>!empty($p['event_reported'])?'開催日（報告）':'開催日（告知）','business_hours'=>'開催時刻（告知）','reservation'=>'参加について'])):($scheduleUnconfirmed?'<p>現在の営業日・営業時間は確認中です。過去の案内を訪問予定に使わず、公式の最新情報をご確認ください。</p>':visitor_facts($p,$fields));
     $out.=($facts?:'<p>営業時間・営業日は、お店の最新の案内をご確認ください。</p>').'</section>';
-    if(!empty($p['sign_support']))$out.='<section class="dn-visitor-section"><h2>手話でのコミュニケーション</h2><p>'.nl2br(e($p['sign_support'])).'</p></section>';
+    if(!$visitInfo&&!empty($p['sign_support']))$out.='<section class="dn-visitor-section"><h2>手話でのコミュニケーション</h2><p>'.nl2br(e($p['sign_support'])).'</p></section>';
     $out.='<section class="dn-visitor-section"><h2>アクセス</h2>'.visitor_facts($p,['address'=>'現在所在地','previous_address'=>'旧所在地（現在の会場ではありません）','moved_at'=>'移転年月','venue_name'=>'開催会場','venue_address'=>'会場所在地']);
     if(!empty($p['map_url'])||!empty($p['address'])){
         $map=($p['map_url']??'')?:'https://www.google.com/maps/search/?api=1&query='.rawurlencode($p['address'].' '.$p['name']);
