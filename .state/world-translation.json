@@ -1,34 +1,63 @@
 {
   "version": 1,
-  "checkedAt": "2026-10-23T00:25:53.896Z",
+  "checkedAt": "2026-10-23T08:28:18.467Z",
   "pending": [
     {
       "article": {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE95UTllU2ZXRE1oZjBJazUyN0t4ODhpd1phZFJHSlVNN0xWVzRMcktETk5reUtIUVNkQzRJeUt2SEhoenZSQXlfYkZ0Y003aTdiZlN3YWgtMkhMMVJnWlFIWTlGbHM3ckhpZ0E?oc=5",
+        "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNRUNsSjdYMTNrN01OcmM4cmE3Uk4ycndZRzJmOGdEei1MSjJTNXJ1ZWd5QVRSSEZmMldFZlVJbW9HeHBIU1FaTW5qdHhqUXI3MGw3WFZBa1NaT0g5akNPMk0wSEhNMUxpOXRWU0hpb2s1dXZ6OEVlVUtuS0tGbTlvNzh0cXlpMmRVWG5RMTdKa21rZ1MzeWVvM0M3MEc1S0VLV04zUllObEVkSU42TVkxWG9UTVdVSzTSAbcBQVVfeXFMTUVDbEo3WDEzazdNTnJjOHJhN1JOMnJ3WUcyZjhnRHotTEoyUzVydWVneUFUUkhGZjJXRWZVSW1vR3hwSFNRWk1uanR4alFyNzBsN1hWQWtTWk9IOWpDTzJNMEhITTFMaTl0VlNIaW9rNXV2ejhFZVVLbktLRm05bzc4dHF5aTJkVVhuUTE3Smtta2dTM3llbzNDNzBHNUtFS1dOM1JZTmxFZElONk1ZMVhvVE1XVUs0?oc=5",
         "title": "",
         "summary": "",
-        "originalTitle": "[전주시] 수어영상 60편 제작해 청각장애인 정보접근성 강화",
-        "originalSummary": "[전주시] 수어영상 60편 제작해 청각장애인 정보접근성 강화",
-        "sourceName": "투데이안",
-        "sourceUrl": "https://www.todayan.com",
-        "publishedAt": "2026-10-22T02:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
+        "originalTitle": "Cuatro alumnos sordos de Burgos y Aranda, sin intérprete de lengua de signos: «La gente está huyendo de la profesión»",
+        "originalSummary": "Cuatro alumnos sordos de Burgos y Aranda, sin intérprete de lengua de signos: «La gente está huyendo de la profesión»",
+        "sourceName": "El Correo de Burgos",
+        "sourceUrl": "https://www.elcorreodeburgos.com",
+        "publishedAt": "2026-10-23T05:15:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
         "topic": "accessibility",
         "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 23,
+        "curationScore": 22,
         "curationSignals": [
-          "청각장애",
-          "수어",
+          "sordo",
+          "sordos",
           "multilingual"
         ],
-        "sourceDomain": "todayan.com",
+        "sourceDomain": "elcorreodeburgos.com",
         "sourcePriority": 50,
         "sourceMode": "regional-fresh",
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
-      "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOMmNyQVdvbDJIWlQtN1BSUUw3d204NGpGT3hYTkpaU2htbENkcGdMXzZBU0hPLTlvSEJFQmt2NnhyVy1zUEU0UjhoTW9XSVRqU3ZHY1FyZXlJalJnWE1nek03bkxfTWVmdzc0MndvdldwMGE3bDQxWjRGVW5ZdUlXcU0ycTV5TU56UFFRbi1ocDN4d2hqQzBPS2FaY2FOdHpHRldLclEtUHJVb3VpWjNKYkUxWDRDaXJUcnF2bjBxU1QyS0tHNkFXRm1aQmcwaXpOem4yWUlzTUgwb0d4WWxNakVCZ2NJeXJNdjJaQURWWTU1Um1WVTVZWlNQejI?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "II Seminário Estadual de Libras destaca o uso da inteligência artificial na formação de professores na área de língua de sinais",
+        "originalSummary": "II Seminário Estadual de Libras destaca o uso da inteligência artificial na formação de professores na área de língua de sinais",
+        "sourceName": "Prefeitura Municipal de Aracruz",
+        "sourceUrl": "https://aracruz.es.gov.br",
+        "publishedAt": "2026-10-22T20:15:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 23,
+        "curationSignals": [
+          "língua de sinais",
+          "libras",
+          "multilingual"
+        ],
+        "sourceDomain": "aracruz.es.gov.br",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -57,8 +86,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -86,8 +115,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -115,8 +144,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -144,8 +173,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -173,8 +202,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -202,8 +231,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -231,8 +260,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -260,8 +289,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -289,7 +318,36 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxONEYyc1FJQ0FaWnNGQWJoQ3RrSWg0UVA4U3FDWHNLc1h2a1dUbHdobEhfa0dWM2ZER1FxYW42XzRhc184TXJNNGFQSm1kZWFqU29VTWp3c2RNcnluTjREMmlVcFVEOXlJWUNuVHZydVhKRHNOM0xaZW1WWkhfRDczeHBURDdYZ1dmV0o3SE9SQkNzRFNjYU1oemx3dzVWaHl1b2lfRXN1S0oycURKSHFKbEl4RnNuVXVxYklvNDc0V0bSAcYBQVVfeXFMTjJ6b1AxUGx6OVRsMEcxNDNuLVBGQjNGM212bEhITjY5Vi1kNXNraEhLaGh6bjBmRkpaU2JvcFVnekVPcVA4U0p6emp4RDN2aE1vb2RVYU1FeUhRLV9zYWU1Y2tCZnZxVjV3by1QODBYczR0SEg4VmdBRUtiNzFtb3VhbU5YZWRxS3Y5eVI1OUNZZkg2WXhmWDBGajg3OVFPejEtellOeEZ4MmN0V3hMSzFSN3ZkME9YY0N0Rjc5T3pfWlNUZFd3?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Compra tus audífonos en Madrid en Oidox y ahorra",
+        "originalSummary": "Compra tus audífonos en Madrid en Oidox y ahorra",
+        "sourceName": "El Semanal de La Mancha",
+        "sourceUrl": "https://www.elsemanaldelamancha.com",
+        "publishedAt": "2026-10-10T11:12:02.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 20,
+        "curationSignals": [
+          "audífono",
+          "audífonos",
+          "multilingual"
+        ],
+        "sourceDomain": "elsemanaldelamancha.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -317,8 +375,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -346,38 +404,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNMk9FNjdoazlHM0lWY1BrV1ZsMEtrQWVxZ3hKRi1lZGVQeDEyQTJPUDhRYU4yNlRkOENIS21NQXJWYlc4VlEzRWx3TGFmME1TSS1sMlFfRTgxc3Bpdi15eTNIM2t4djRFTDFUTmxtc3VuYlN4NjhVS2ZqSlVIUmx6Q3ZwbUpVVUpFUmtQUUdSM3ZMUDNDZVdLbzREelNud2psaTEtUEpxVlRrZDgwS2FaOXFZUXp2NGhBaUdNa2VtWXE5bjFTdkM3N3R5S0MzTGdKSWJuRF8ycTZIRFJZZm1MN3dhSk9Zdw?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Padel sordos y con discapacidad auditiva: se esperan 29 equipos en la banca del P1000 HUDDL Aizenay",
-        "originalSummary": "Padel sordos y con discapacidad auditiva: se esperan 29 equipos en la banca del P1000 HUDDL Aizenay",
-        "sourceName": "Padel Magazine",
-        "sourceUrl": "https://padel-magazine.es",
-        "publishedAt": "2026-10-09T15:40:28.000Z",
-        "region": "europe_cis",
-        "regionLabel": "ヨーロッパ・CIS",
-        "topic": "general",
-        "topicLabel": "一般",
-        "curationScore": 31,
-        "curationSignals": [
-          "sordo",
-          "sordos",
-          "discapacidad auditiva",
-          "multilingual"
-        ],
-        "sourceDomain": "padel-magazine.es",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -405,8 +433,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -434,7 +462,36 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOOHB3Y25waTZ2Z2hObXhSbml6T1JQYUh4UUhPZm0zNjRxU2E1OHIxQThXbzlmVFV0RVdOR2NOWHhfOHJHaUxxMTFUdGNaUU56MlZlNERKTGN2ZzNvR0xEczdaa2xVV2x1QkpCTm1VZk5zQzlGaTlPLWhPajJ2cDQtVnA1SXNIb1RhVnJUcGJaYUxzU3lhanhEVGZwb096ZV9OWTNrTXJDWWd3NXExeVHSAbMBQVVfeXFMTmJ5cnJhRVdtaGl6MUlsa0V4ZGF4SHdWMzVLZi1aQzM3SlhralowX2w3dnpCOHN2dEdISE0xamZsQlZUUWF5STBZSHN5QTdma21iOWV2SkktYlphZjJHRlhhbWRJb0c4WFlzeDkzY0VaM0lSdHdPV1ZFRE15cDEzdkdLdWVIU1QxOEIwSnhIZkJLODM0SmRsZFNkX1dEYXVwcEplZWZ0ZG1lM21fbHpGRDg1SGc?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Jewish Deaf Association to train staff to be British Sign Language interpreters",
+        "originalSummary": "Jewish Deaf Association to train staff to be British Sign Language interpreters",
+        "sourceName": "Jewish News",
+        "sourceUrl": "https://www.jewishnews.co.uk",
+        "publishedAt": "2026-09-23T07:00:00.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "interpreter",
+          "multilingual"
+        ],
+        "sourceDomain": "jewishnews.co.uk",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -463,8 +520,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -492,7 +549,36 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9sS2pnRG5USGtlM1cwblZpUXpnQklMYm9iV3o0cTJrZjZOLWt3SWIxRFJwZUNtR09MQzg0NUs3UlNxZmNzM29BWW5VbkhnSjlXVlZTSFJ6YU5mZndHR1duXzNjSkkyTTBQT2RQWXBoaXVWV2t0?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "방탄소년단 뷔, 청각장애인 팬 위한 수어로 감동 선사",
+        "originalSummary": "방탄소년단 뷔, 청각장애인 팬 위한 수어로 감동 선사",
+        "sourceName": "스타뉴스",
+        "sourceUrl": "https://www.starnewskorea.com",
+        "publishedAt": "2026-09-19T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "청각장애",
+          "수어",
+          "multilingual"
+        ],
+        "sourceDomain": "starnewskorea.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -521,65 +607,36 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
-        "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB3WC1UUTZQRVNkT3htXzBreHpOWnJENkMwaEtZMXJNLUFrUDFWekl5WDFIMVItUXMwWjUxZjk3SEhQMnJHenRidzU0NzJ4MXhjWXNEZ2Z0ams0c1XSAWBBVV95cUxPcy0zOHUtc19ndkltd2stVWVwc1o0NGFxODU3NEdvQWdzU05lZUhPRmNDZGlVYXN5SWNLRFNMQ1ZubUhMam9ESHlHWkx4cGZnMzNGcVVHSXNTQXNqNDE5aGU?oc=5",
+        "id": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOTXdtMFNvRVNfYTJzQUtpQUdVVDNKZTdfdFJYZEVrRVp3eFEyX2pPRlFLZzlyLTZZX3FlbE9IYUtibU1RTm4zQk5HZDJ2OFlSTzhiMjZrYlh5SFVuRnh3RzNMN0tINmZtYUNwQUl3YThIZ2VxZGFUZUNmLTNjclFLWlBTbGgwdw?oc=5",
         "title": "",
         "summary": "",
-        "originalTitle": "이정문 \"국중박 수어서비스, 정확도 높지만 사후 관리는 부재\"",
-        "originalSummary": "이정문 \"국중박 수어서비스, 정확도 높지만 사후 관리는 부재\"",
-        "sourceName": "연합뉴스",
-        "sourceUrl": "https://www.yna.co.kr",
-        "publishedAt": "2026-09-16T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
+        "originalTitle": "Mel Gibson Apologizes After Mocking Sign Language Interpreter Onstage",
+        "originalSummary": "Mel Gibson Apologizes After Mocking Sign Language Interpreter Onstage",
+        "sourceName": "The New York Times",
+        "sourceUrl": "https://www.nytimes.com",
+        "publishedAt": "2026-08-31T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
         "topic": "accessibility",
         "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 19,
+        "curationScore": 27,
         "curationSignals": [
-          "수어",
-          "major-media",
-          "multilingual"
+          "sign language",
+          "interpreter",
+          "major-media"
         ],
-        "sourceDomain": "yna.co.kr",
-        "sourcePriority": 84,
-        "sourceMode": "regional-fresh",
+        "sourceDomain": "nytimes.com",
+        "sourcePriority": 92,
+        "sourceMode": "major-media",
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
-      "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBRGFHV3hPZWhTclJiNFdVZ1R0N094RXlfQ1hmSnV3ZVk2MjNHVU1aaVg0Ql83a21zZXRHM3k0RWJOeFRWQ2lSay0yMW5VSEFxYkNLSThIVzB2N0tJWXV3REVtd0NvZEFNeGs4Wg?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "20년 난청 겪은 만성 중이염…인공와우로 청력 회복",
-        "originalSummary": "20년 난청 겪은 만성 중이염…인공와우로 청력 회복",
-        "sourceName": "매경헬스",
-        "sourceUrl": "https://www.mkhealth.co.kr",
-        "publishedAt": "2026-09-15T07:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 21,
-        "curationSignals": [
-          "인공와우",
-          "난청",
-          "multilingual"
-        ],
-        "sourceDomain": "mkhealth.co.kr",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -607,63 +664,93 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNTDNhdTVSYVlfaGlOVWJHd1pEdXBjX3BDcmtFYW5pbVphWUN1TnBxUy1hS181dDNydk9XWkN6Rk1hOHJSTVlrekpfV2c5X3JjbEVMSzEtMUhYOVBhRUFfS1lJeVAtSGpmTmc2T0Iwd2FYenVFMHE0WFFkWnhJa3RTTXBvQmNQdGE2UThBQUxackdKem5HRVdJWWFPb0RJZFdseExVZ3NOekVsa0tGMFNQatIBtwFBVV95cUxQQjRwd0JaWFRpamNXeExSS3dGR3FqUDBEaC1iX1F2bFcxTzJrZGU4SGtfZVgxb2g0djdrRmZtOUo0Mm1nbWY2X3l0VW41dUVtYW1nVWJoU0ZCVFFPejdQX2kyOXBhZ1J6bnZOUWU2S2tHYVJBc0VCcWZGSm5mYUF4YXQwMG1wNEhReUdxZUVweUJXRkdPWDB1aXBiQ01IQklib3lZTEU2UG1tOVgwcWhkcDFYOUtRUDQ?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Movie ticket apps must disclose accessibility features for persons with disabilities: Centre",
+        "originalSummary": "Movie ticket apps must disclose accessibility features for persons with disabilities: Centre",
+        "sourceName": "The Indian Express",
+        "sourceUrl": "https://indianexpress.com",
+        "publishedAt": "2026-07-14T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "technology",
+        "topicLabel": "技術・AI",
+        "curationScore": 20,
+        "curationSignals": [
+          "accessibility",
+          "major-media"
+        ],
+        "sourceDomain": "indianexpress.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
       "article": {
-        "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPaTROdmtSV1hidFZTUXVRMlFDS3ZHbHlPWVFhZkJGWVUxT1lBdlFQMFdIRm9PN2NXdUM4ZmN6WDBMTXlsYjlPT0VLQm82eTJDcGNsdGx0bmxZNDFyWG5DV29jbmRSdjlPeEFac3dTeDd2Y1g5dktDMFVYVHRtZ0lEYXQ3U3Z1aDdKWTdLZ1FQajVUcnN5djhuNGU0aw?oc=5",
+        "id": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNWm1VN1FuQlNuV0J1cFIzMEJnLU8zdjVtTzctSy1sUXRZVkJwRVUwQ3k5MmpLdUx2a0JKYlNRUVREbjg5N1ZCbFo0a0Z0NW85dVpyZGdvX2FNY044eVNhQnQyc0pLd3dYTDN5THZEQ3lOem9zU2RLMThNWURucW5BU3lYd0h6Zjg3NTdjdjhhLWhfMWZ1V254YVllU2d6aWxFaE15ZUtyelNkNjE1Yk5MdHN1eTJ0a1VydmUzQ3NHTlpsNUhfU1BEbzBlQi13SUFBaE5RVHdIcmo3cXNmeFHSAeQBQVVfeXFMUDdROWw4aHBGWHEwa0k0dVZBSDVQZUNIazJJR0pjWEY3RzlqR01GZGVTbko3dkFjTzFFTzgtNFg0Qmg1dEhHZ1hoUThpZ0pzQU1JcFZEZVNiWmFWeWZLMjAtZUp3UFBMamFzYWZERHJBRDlFVERkdl9vc3h0dVVYMktJb1MxQVNXaHdQN3pXdnBXUkZvZmU2TTBzYTBTYTN6ZmpuN09zRUJMZERpUjFHR3hBSDNreGNKV2pUenZtM1BuZTYyMldpeEJnNGJub2JfUDAzT1AtWTFkRlpBNm11SXhncHZQ?oc=5",
         "title": "",
         "summary": "",
-        "originalTitle": "In his memoir, poet Raymond Antrobus writes of 'deaf gain' instead of hearing loss",
-        "originalSummary": "In his memoir, poet Raymond Antrobus writes of 'deaf gain' instead of hearing loss",
-        "sourceName": "NPR",
-        "sourceUrl": "https://www.npr.org",
-        "publishedAt": "2026-04-22T07:00:00.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 22,
+        "originalTitle": "Netflix expands accessibility features as global viewing habits shift",
+        "originalSummary": "Netflix expands accessibility features as global viewing habits shift",
+        "sourceName": "The Indian Express",
+        "sourceUrl": "https://indianexpress.com",
+        "publishedAt": "2026-05-23T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 20,
         "curationSignals": [
-          "hearing loss",
+          "accessibility",
           "major-media"
         ],
-        "sourceDomain": "npr.org",
-        "sourcePriority": 92,
+        "sourceDomain": "indianexpress.com",
+        "sourcePriority": 76,
         "sourceMode": "major-media",
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
-      "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
     },
     {
       "article": {
-        "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBZV1J4OXZGdWFqdEpYdlA5OWhDU2JrNnJhS1REOW1KVm4zM196V2dxNWJRQm9SRF92LUhKU2NCM3Zzd2s1NUs5QmpBbWVIMXdjeF90NFYwVnBEZWRGc0VZSVd6RmlsZVZpY09wVGo2UmxaRUlXQjZPRA?oc=5",
+        "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9JOUpvUGtpUWFkZ3NXS3E1cEs0WkM0eXh3d1pRLWRrTVpiekU1WUZCdC1TTEk5eklXbHEyNDZCNlI0ODJvdFJjSnJGWEt6d3gzY0RXV3dnQV9jdlE?oc=5",
         "title": "",
         "summary": "",
-        "originalTitle": "‘Trash’ Review: Bickering About Chores, in Sign Language",
-        "originalSummary": "‘Trash’ Review: Bickering About Chores, in Sign Language",
-        "sourceName": "The New York Times",
-        "sourceUrl": "https://www.nytimes.com",
-        "publishedAt": "2026-03-15T07:00:00.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
+        "originalTitle": "Namibia: Sign Language Interpreter Shortage Excludes People With Hearing Impairments - PDM",
+        "originalSummary": "Namibia: Sign Language Interpreter Shortage Excludes People With Hearing Impairments - PDM",
+        "sourceName": "allAfrica.com",
+        "sourceUrl": "https://allafrica.com",
+        "publishedAt": "2026-03-18T07:00:00.000Z",
+        "region": "middle_east_africa",
+        "regionLabel": "中東・アフリカ",
         "topic": "accessibility",
         "topicLabel": "アクセシビリティ・情報保障",
-        "curationScore": 21,
+        "curationScore": 38,
         "curationSignals": [
+          "hearing impairment",
           "sign language",
+          "interpreter",
           "major-media"
         ],
-        "sourceDomain": "nytimes.com",
-        "sourcePriority": 92,
+        "sourceDomain": "allafrica.com",
+        "sourcePriority": 78,
         "sourceMode": "major-media",
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
-      "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -691,8 +778,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
@@ -719,7 +806,63 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQbGUya2JJQVRDUFZlUjUtRDhZX1ctRlVUWHRPY1h4cHYwazV4NWhTdkVRdHN2RDl5RlBURVBNTWlnUl9CNFJLRTdKX2QxeHVKSUE0Q2lCM3JtX1Q1MElKNE9Ca3piZjlKQjVLeGh4cHlaa0ljMVdOblloZWF1VmttNUNrN1NWaUMxNVFZRktUXzhYMHBlZUVtQ2Fodng?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "In his memoir, poet Raymond Antrobus writes of ‘deaf gain’ instead of hearing loss",
+        "originalSummary": "In his memoir, poet Raymond Antrobus writes of ‘deaf gain’ instead of hearing loss",
+        "sourceName": "NPR",
+        "sourceUrl": "https://www.npr.org",
+        "publishedAt": "2025-09-01T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 22,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "npr.org",
+        "sourcePriority": 92,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE15Vi1LMGdPMTRQb2RGVmVvclFpMjlPcVJGckREaWh6ejlkeENiNVRoWUhKaEVZYXZvbkNpUnJKM2NsaGRMLWs0cVFfbU93aEhEamJ3?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Accessibility",
+        "originalSummary": "Accessibility",
+        "sourceName": "France 24",
+        "sourceUrl": "https://www.france24.com",
+        "publishedAt": "2025-06-26T06:51:04.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 20,
+        "curationSignals": [
+          "accessibility",
+          "major-media"
+        ],
+        "sourceDomain": "france24.com",
+        "sourcePriority": 88,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -729,7 +872,7 @@
         "summary": "",
         "originalTitle": "Multi-year Accessibility Plan 2025-2027",
         "originalSummary": "Multi-year Accessibility Plan 2025-2027",
-        "sourceName": "Euronews.com",
+        "sourceName": "Euronews",
         "sourceUrl": "https://www.euronews.com",
         "publishedAt": "2025-06-25T13:56:58.000Z",
         "region": "europe_cis",
@@ -747,36 +890,36 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 1
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
     },
     {
       "article": {
-        "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQU1PTWJHcHd3STVSdGk3Nk9kNmhLSm5iSUNtNjBkYk5sQ1h1MmdGT0NuMkk0WThWT2FfZjZFRnMyaXZodTJ0LVoxUVhpbnptSFFLQjY1Mng4S1dxTXozeHNVZ1NKR3l4c1pmQWFEaXllVjl5TjNCbnZHYkkybnU3S0FWQWxrRlNpX0xOZHQyRlFRNm9CNm95UW5pVlBrWEJOYnh0aFZvaGswN3Q0cUtONDRha3ZieW1xTmdpbV8wRXpEaEE?oc=5",
+        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYzJsaFVjTHBxS0tTT2NqdzUzMUFqUXY0Y0JOVE9WQkFqTzNPaU5IaUVMbl9MZEh5RjNzRVhGb1p2MHNtN3dsSWFNYU1HanRXczh4aW1KbnBzdWlaM3l1V2J5NDBaRDU1RkY3UlhJTnUzam15bklPU1ZJQTQ2R0Q5OVNNX01Rek9OdDZ2MWdKR0dOZFJy?oc=5",
         "title": "",
         "summary": "",
-        "originalTitle": "In navigating hearing loss, poet Raymond Antrobus explains his views on 'deaf gain'",
-        "originalSummary": "In navigating hearing loss, poet Raymond Antrobus explains his views on 'deaf gain'",
-        "sourceName": "NPR",
-        "sourceUrl": "https://www.npr.org",
-        "publishedAt": "2025-08-19T07:00:00.000Z",
-        "region": "americas",
-        "regionLabel": "北米・中南米",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 22,
+        "originalTitle": "NSCDC trains 250 officers in sign language to enhance security in FCT",
+        "originalSummary": "NSCDC trains 250 officers in sign language to enhance security in FCT",
+        "sourceName": "Punch Newspapers",
+        "sourceUrl": "https://punchng.com",
+        "publishedAt": "2025-07-16T07:00:00.000Z",
+        "region": "middle_east_africa",
+        "regionLabel": "中東・アフリカ",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 23,
         "curationSignals": [
-          "hearing loss",
+          "sign language",
           "major-media"
         ],
-        "sourceDomain": "npr.org",
-        "sourcePriority": 92,
+        "sourceDomain": "punchng.com",
+        "sourcePriority": 72,
         "sourceMode": "major-media",
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
-      "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
     },
     {
       "article": {
@@ -803,7 +946,35 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQld3VjZIMmVlYkdYTllSWG1LR2RTOERhMDhPRGRBTjRRUktraDB6ckx4OEotRkxFNGh0OFNCd0J0WWRMdE42UlkxdFFYR0lDQktXNDdQemkyZ3I2LUJXRnBVNEFOTVI4OWZIVWxQT0RQampfdTVVcTEzbVY0RW5SX09YSUR5NFBBQjBDM28zMzBrZkwydmVwYjl1UmRCR3BEb09HR2M5Z2hjUGhSTFlKLW9uOVJBd0w2dWdOREZHa1RwaGdSeVFyeVd0eU93UzFVY1dwdGlLZFI?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Accessibility settings on Sky Stream",
+        "originalSummary": "Accessibility settings on Sky Stream",
+        "sourceName": "Sky",
+        "sourceUrl": "https://www.sky.com",
+        "publishedAt": "2025-01-02T22:35:38.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 20,
+        "curationSignals": [
+          "accessibility",
+          "major-media"
+        ],
+        "sourceDomain": "sky.com",
+        "sourcePriority": 82,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
     },
     {
@@ -831,8 +1002,407 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-23T00:25:53.893Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUUUyNmUtclB2ck9xVkRTNGVFZ0ZPRXVQU2h6RmYxamV6NE4zcXJ6NXduM0ZrYjZtQXNXY2VUcS02SVJKa0lpQ080ZmVNdEUxV2ZHV0JOb0UwTlVkTDNLNHdhcFJKSW1JTE91THRoam9xU2ljNGEzNTd0TlB6N29EclM4ZU9VOHFuN1BwY3ZSVUtFbkM0eUpocHBxVVM5UTBCdThOeFZpZUVZc3Rjb2JqY1NTMDI4WnBKcXZj?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Deaf Americans sue Trump over lack of sign language interpreters for White House events",
+        "originalSummary": "Deaf Americans sue Trump over lack of sign language interpreters for White House events",
+        "sourceName": "USA Today",
+        "sourceUrl": "https://www.usatoday.com",
+        "publishedAt": "2025-05-30T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 27,
+        "curationSignals": [
+          "sign language",
+          "interpreter",
+          "major-media"
+        ],
+        "sourceDomain": "usatoday.com",
+        "sourcePriority": 78,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
       "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOR1hyeWdNTUwySVh6bExQYVFpa3c1RW5FT3hWeVF5c1R0UGk5X0J4emlFWFN3MmZ0aUpXVEs5SmFnZ0pDd3VGRUVlS2FNVGFrUnctbXNBcmtQdGhCbk9DX3gxX2NTMmJVRUZ1RGRtR2swNFo0d0xpUmVKMHlmVkZmZ0Rmc1B6MEx2QnhTdjVmdlZYaTRYTHhOVld0RE9rY2E2c2NTSGswdkFEcnNZYUdDWW5EYm1yV0NBaE1sQ2JoSjYwUHBiX3Nz?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Breaking the silence on hearing loss: She couldn’t hear at birth, now she speaks English fluently",
+        "originalSummary": "Breaking the silence on hearing loss: She couldn’t hear at birth, now she speaks English fluently",
+        "sourceName": "The Straits Times",
+        "sourceUrl": "https://www.straitstimes.com",
+        "publishedAt": "2025-03-01T08:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 20,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "straitstimes.com",
+        "sourcePriority": 82,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNY1BCaGZzMVU2cWUtQkt4MDFsT1VNTU5LMFhVWEZyUnhuV1ZReEMybjFpZGhrMHY0bkNVZHFSc1pMWmx3WDhKS2dReFdCUEREMTVjRzc3SVpQMVhDeXppSFkybFYwN2F6U3BiSHh5TEdveDF4cVdhQnQtWHFwT1hWQkdSX0tOUGZFSWN0Z3Rn?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Deaf and hard of hearing students bond through beach games in annual event",
+        "originalSummary": "Deaf and hard of hearing students bond through beach games in annual event",
+        "sourceName": "CBC",
+        "sourceUrl": "https://www.cbc.ca",
+        "publishedAt": "2025-05-30T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "education",
+        "topicLabel": "教育",
+        "curationScore": 22,
+        "curationSignals": [
+          "hard of hearing",
+          "major-media"
+        ],
+        "sourceDomain": "cbc.ca",
+        "sourcePriority": 90,
+        "sourceMode": "major-media-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPU1c2NmE0dk1mcldGbHMyMVVrc2dLVlJ1VWJ4WnFZZ2QySnBSVnRUeDdsYjlkdE9jeGVTaGtPQk9HZ29IdUlteUpQS3lyMThxVUp3R1M0cFppeDBvQmhSTEIwajlRUzNEU2xNUFhSUHpYLVBxUi1SZEJtZkptcl9NYUZ1dW1qTmstcTlZRTExX3Rfb1EwT0dia3cwMGFObzJQSzhiVzhVZTZLbXcwaWk3eHhEVU11ckhQb3FxTWFTVEpwak11QXRYV2lYcw?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Experts decry low university enrollment of students with hearing impairments",
+        "originalSummary": "Experts decry low university enrollment of students with hearing impairments",
+        "sourceName": "Daily Monitor",
+        "sourceUrl": "https://www.monitor.co.ug",
+        "publishedAt": "2025-04-27T07:00:00.000Z",
+        "region": "middle_east_africa",
+        "regionLabel": "中東・アフリカ",
+        "topic": "education",
+        "topicLabel": "教育",
+        "curationScore": 25,
+        "curationSignals": [
+          "hearing impairment",
+          "major-media"
+        ],
+        "sourceDomain": "monitor.co.ug",
+        "sourcePriority": 74,
+        "sourceMode": "major-media-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPZUtUM0VJT1F1c3IwRFJab0xZc25YNE5NV0RRcnhMa3k2NzN5c290T1FITlRjREJJYVg5OVlTOU1iR2tTdzc3Y2FyN2tUaXJGZkhjUkRXNUIzd0k4S3h0NXp2YTRrcF9EZEtSSGx5SThUeGVMWEUtNWhIZ2h3TnFyak1tb294dGR3V19CZVNKdHpQaWxGZmFwckFvS0Z1cGMyTkdvNWdQeDlVcTgzRHg3OV9rRUhBTzNDQnVZcFZXc0t3Z0hNdHR1di1JS3pBTnNMUkF2ckI4bjg2Mzl60gHiAUFVX3lxTFBrbWl6ejlncXo3ZUQ0V3FDNmFBUWthQVVleTRwd3pEeFp1OVJ6eUVZbTRuSHdNRS1RU0F3NGQ5dEVQYVNCMUlHUENLMXQwTkVZcUQycnhIeERjUkxWeUMtOUxWTzZycDFGemtTZXZqMXNuV1ZCTGFTcDVjN2h1WU9lZGQ2aURVa3pheFNGdlNHR1JKR0s1NW5jNVRESVE5Q0ZWckpKSnNuWVJ5WWZMbk9jaUY0ZjFXbzV4cWhVRDVSWkM4bTRTVkVkc1FNbVY0LU9NaXFGZUxKbWp3NV90VlNJZmc?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Earphone use for long hours may cause permanent hearing loss: Health ministry",
+        "originalSummary": "Earphone use for long hours may cause permanent hearing loss: Health ministry",
+        "sourceName": "The Times of India",
+        "sourceUrl": "https://timesofindia.indiatimes.com",
+        "publishedAt": "2025-02-28T08:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 22,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "timesofindia.indiatimes.com",
+        "sourcePriority": 76,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-21T08:29:37.733Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 9
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQVXlpVFdnblJEOS1ydV9KR05ZZ0Q1TTFvbE52WEh0Nkhacm9PR0VSbDNTX2ZKOUpJaG5CMWNaU283aHUxTEFXLXlHWV9lYkxHVmhrbTVWWTNRZFU2clpJZjBiWW42RGVqWmNwdnZ4UzZqeXllc0NQZFZzY2s1ZnlKRU9WUFc1SkVxbUxac1JQZTdpQXM?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "The White House is sued over lack of sign language interpreters at press briefings",
+        "originalSummary": "The White House is sued over lack of sign language interpreters at press briefings",
+        "sourceName": "NPR",
+        "sourceUrl": "https://www.npr.org",
+        "publishedAt": "2025-05-29T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 27,
+        "curationSignals": [
+          "sign language",
+          "interpreter",
+          "major-media"
+        ],
+        "sourceDomain": "npr.org",
+        "sourcePriority": 92,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPUTcxUVdXWi1IZ1BlYnFXV3I3eVpPXzNSSnVVOTRobzYxWnI0Z0dPeDg2QndsV0t3clZmVkYyWjVXZTEwZEFibTV5a3BqdnFGU3pRLXUzd2Fva1hYUENwS0JXdndaU3gyYWF0dzJkZHcwS24yUURzVGlBMmxwcHhfMFd1WElRX2JMRzhQRjZLMVI2eU5FR3Q2TnFTVFczaTh3MGVV?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "2025 Deaflympics: Ray of hope for Kenyan athletes",
+        "originalSummary": "2025 Deaflympics: Ray of hope for Kenyan athletes",
+        "sourceName": "Daily Nation",
+        "sourceUrl": "https://nation.africa",
+        "publishedAt": "2025-04-26T07:00:00.000Z",
+        "region": "middle_east_africa",
+        "regionLabel": "中東・アフリカ",
+        "topic": "sports",
+        "topicLabel": "デフスポーツ",
+        "curationScore": 22,
+        "curationSignals": [
+          "deaflympics",
+          "major-media"
+        ],
+        "sourceDomain": "nation.africa",
+        "sourcePriority": 78,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T08:28:18.461Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 1
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE95UTllU2ZXRE1oZjBJazUyN0t4ODhpd1phZFJHSlVNN0xWVzRMcktETk5reUtIUVNkQzRJeUt2SEhoenZSQXlfYkZ0Y003aTdiZlN3YWgtMkhMMVJnWlFIWTlGbHM3ckhpZ0E?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "[전주시] 수어영상 60편 제작해 청각장애인 정보접근성 강화",
+        "originalSummary": "[전주시] 수어영상 60편 제작해 청각장애인 정보접근성 강화",
+        "sourceName": "투데이안",
+        "sourceUrl": "https://www.todayan.com",
+        "publishedAt": "2026-10-22T02:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 23,
+        "curationSignals": [
+          "청각장애",
+          "수어",
+          "multilingual"
+        ],
+        "sourceDomain": "todayan.com",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNMk9FNjdoazlHM0lWY1BrV1ZsMEtrQWVxZ3hKRi1lZGVQeDEyQTJPUDhRYU4yNlRkOENIS21NQXJWYlc4VlEzRWx3TGFmME1TSS1sMlFfRTgxc3Bpdi15eTNIM2t4djRFTDFUTmxtc3VuYlN4NjhVS2ZqSlVIUmx6Q3ZwbUpVVUpFUmtQUUdSM3ZMUDNDZVdLbzREelNud2psaTEtUEpxVlRrZDgwS2FaOXFZUXp2NGhBaUdNa2VtWXE5bjFTdkM3N3R5S0MzTGdKSWJuRF8ycTZIRFJZZm1MN3dhSk9Zdw?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "Padel sordos y con discapacidad auditiva: se esperan 29 equipos en la banca del P1000 HUDDL Aizenay",
+        "originalSummary": "Padel sordos y con discapacidad auditiva: se esperan 29 equipos en la banca del P1000 HUDDL Aizenay",
+        "sourceName": "Padel Magazine",
+        "sourceUrl": "https://padel-magazine.es",
+        "publishedAt": "2026-10-09T15:40:28.000Z",
+        "region": "europe_cis",
+        "regionLabel": "ヨーロッパ・CIS",
+        "topic": "general",
+        "topicLabel": "一般",
+        "curationScore": 31,
+        "curationSignals": [
+          "sordo",
+          "sordos",
+          "discapacidad auditiva",
+          "multilingual"
+        ],
+        "sourceDomain": "padel-magazine.es",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB3WC1UUTZQRVNkT3htXzBreHpOWnJENkMwaEtZMXJNLUFrUDFWekl5WDFIMVItUXMwWjUxZjk3SEhQMnJHenRidzU0NzJ4MXhjWXNEZ2Z0ams0c1XSAWBBVV95cUxPcy0zOHUtc19ndkltd2stVWVwc1o0NGFxODU3NEdvQWdzU05lZUhPRmNDZGlVYXN5SWNLRFNMQ1ZubUhMam9ESHlHWkx4cGZnMzNGcVVHSXNTQXNqNDE5aGU?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "이정문 \"국중박 수어서비스, 정확도 높지만 사후 관리는 부재\"",
+        "originalSummary": "이정문 \"국중박 수어서비스, 정확도 높지만 사후 관리는 부재\"",
+        "sourceName": "연합뉴스",
+        "sourceUrl": "https://www.yna.co.kr",
+        "publishedAt": "2026-09-16T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 19,
+        "curationSignals": [
+          "수어",
+          "major-media",
+          "multilingual"
+        ],
+        "sourceDomain": "yna.co.kr",
+        "sourcePriority": 84,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBBRGFHV3hPZWhTclJiNFdVZ1R0N094RXlfQ1hmSnV3ZVk2MjNHVU1aaVg0Ql83a21zZXRHM3k0RWJOeFRWQ2lSay0yMW5VSEFxYkNLSThIVzB2N0tJWXV3REVtd0NvZEFNeGs4Wg?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "20년 난청 겪은 만성 중이염…인공와우로 청력 회복",
+        "originalSummary": "20년 난청 겪은 만성 중이염…인공와우로 청력 회복",
+        "sourceName": "매경헬스",
+        "sourceUrl": "https://www.mkhealth.co.kr",
+        "publishedAt": "2026-09-15T07:00:00.000Z",
+        "region": "asia_oceania",
+        "regionLabel": "アジア・オセアニア",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 21,
+        "curationSignals": [
+          "인공와우",
+          "난청",
+          "multilingual"
+        ],
+        "sourceDomain": "mkhealth.co.kr",
+        "sourcePriority": 50,
+        "sourceMode": "regional-fresh",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPaTROdmtSV1hidFZTUXVRMlFDS3ZHbHlPWVFhZkJGWVUxT1lBdlFQMFdIRm9PN2NXdUM4ZmN6WDBMTXlsYjlPT0VLQm82eTJDcGNsdGx0bmxZNDFyWG5DV29jbmRSdjlPeEFac3dTeDd2Y1g5dktDMFVYVHRtZ0lEYXQ3U3Z1aDdKWTdLZ1FQajVUcnN5djhuNGU0aw?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "In his memoir, poet Raymond Antrobus writes of 'deaf gain' instead of hearing loss",
+        "originalSummary": "In his memoir, poet Raymond Antrobus writes of 'deaf gain' instead of hearing loss",
+        "sourceName": "NPR",
+        "sourceUrl": "https://www.npr.org",
+        "publishedAt": "2026-04-22T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 22,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "npr.org",
+        "sourcePriority": 92,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-22T00:29:57.329Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBZV1J4OXZGdWFqdEpYdlA5OWhDU2JrNnJhS1REOW1KVm4zM196V2dxNWJRQm9SRF92LUhKU2NCM3Zzd2s1NUs5QmpBbWVIMXdjeF90NFYwVnBEZWRGc0VZSVd6RmlsZVZpY09wVGo2UmxaRUlXQjZPRA?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "‘Trash’ Review: Bickering About Chores, in Sign Language",
+        "originalSummary": "‘Trash’ Review: Bickering About Chores, in Sign Language",
+        "sourceName": "The New York Times",
+        "sourceUrl": "https://www.nytimes.com",
+        "publishedAt": "2026-03-15T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "accessibility",
+        "topicLabel": "アクセシビリティ・情報保障",
+        "curationScore": 21,
+        "curationSignals": [
+          "sign language",
+          "major-media"
+        ],
+        "sourceDomain": "nytimes.com",
+        "sourcePriority": 92,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-23T00:25:53.893Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 2
+    },
+    {
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQU1PTWJHcHd3STVSdGk3Nk9kNmhLSm5iSUNtNjBkYk5sQ1h1MmdGT0NuMkk0WThWT2FfZjZFRnMyaXZodTJ0LVoxUVhpbnptSFFLQjY1Mng4S1dxTXozeHNVZ1NKR3l4c1pmQWFEaXllVjl5TjNCbnZHYkkybnU3S0FWQWxrRlNpX0xOZHQyRlFRNm9CNm95UW5pVlBrWEJOYnh0aFZvaGswN3Q0cUtONDRha3ZieW1xTmdpbV8wRXpEaEE?oc=5",
+        "title": "",
+        "summary": "",
+        "originalTitle": "In navigating hearing loss, poet Raymond Antrobus explains his views on 'deaf gain'",
+        "originalSummary": "In navigating hearing loss, poet Raymond Antrobus explains his views on 'deaf gain'",
+        "sourceName": "NPR",
+        "sourceUrl": "https://www.npr.org",
+        "publishedAt": "2025-08-19T07:00:00.000Z",
+        "region": "americas",
+        "regionLabel": "北米・中南米",
+        "topic": "health",
+        "topicLabel": "医療・補聴",
+        "curationScore": 22,
+        "curationSignals": [
+          "hearing loss",
+          "major-media"
+        ],
+        "sourceDomain": "npr.org",
+        "sourcePriority": 92,
+        "sourceMode": "major-media",
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      },
+      "firstSeenAt": "2026-10-22T00:29:57.329Z",
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -860,8 +1430,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -890,8 +1460,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T08:32:18.256Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 4
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 5
     },
     {
       "article": {
@@ -919,8 +1489,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -947,8 +1517,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -976,8 +1546,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1004,8 +1574,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1033,8 +1603,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1062,8 +1632,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1091,8 +1661,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T14:28:04.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 7
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 8
     },
     {
       "article": {
@@ -1120,8 +1690,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1149,8 +1719,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T08:32:18.256Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 4
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 5
     },
     {
       "article": {
@@ -1177,8 +1747,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T14:28:04.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 7
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 8
     },
     {
       "article": {
@@ -1205,8 +1775,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T14:28:04.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 7
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 8
     },
     {
       "article": {
@@ -1233,36 +1803,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
-    },
-    {
-      "article": {
-        "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPZUtUM0VJT1F1c3IwRFJab0xZc25YNE5NV0RRcnhMa3k2NzN5c290T1FITlRjREJJYVg5OVlTOU1iR2tTdzc3Y2FyN2tUaXJGZkhjUkRXNUIzd0k4S3h0NXp2YTRrcF9EZEtSSGx5SThUeGVMWEUtNWhIZ2h3TnFyak1tb294dGR3V19CZVNKdHpQaWxGZmFwckFvS0Z1cGMyTkdvNWdQeDlVcTgzRHg3OV9rRUhBTzNDQnVZcFZXc0t3Z0hNdHR1di1JS3pBTnNMUkF2ckI4bjg2Mzl60gHiAUFVX3lxTFBrbWl6ejlncXo3ZUQ0V3FDNmFBUWthQVVleTRwd3pEeFp1OVJ6eUVZbTRuSHdNRS1RU0F3NGQ5dEVQYVNCMUlHUENLMXQwTkVZcUQycnhIeERjUkxWeUMtOUxWTzZycDFGemtTZXZqMXNuV1ZCTGFTcDVjN2h1WU9lZGQ2aURVa3pheFNGdlNHR1JKR0s1NW5jNVRESVE5Q0ZWckpKSnNuWVJ5WWZMbk9jaUY0ZjFXbzV4cWhVRDVSWkM4bTRTVkVkc1FNbVY0LU9NaXFGZUxKbWp3NV90VlNJZmc?oc=5",
-        "title": "",
-        "summary": "",
-        "originalTitle": "Earphone use for long hours may cause permanent hearing loss: Health ministry",
-        "originalSummary": "Earphone use for long hours may cause permanent hearing loss: Health ministry",
-        "sourceName": "The Times of India",
-        "sourceUrl": "https://timesofindia.indiatimes.com",
-        "publishedAt": "2025-02-28T08:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
-        "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 22,
-        "curationSignals": [
-          "hearing loss",
-          "major-media"
-        ],
-        "sourceDomain": "timesofindia.indiatimes.com",
-        "sourcePriority": 76,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      },
-      "firstSeenAt": "2026-10-21T08:29:37.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1289,8 +1831,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T08:29:37.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 9
     },
     {
       "article": {
@@ -1318,8 +1860,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1347,8 +1889,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1376,8 +1918,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1405,8 +1947,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1434,8 +1976,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1462,8 +2004,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-22T00:29:57.329Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 5
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 6
     },
     {
       "article": {
@@ -1491,8 +2033,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1520,8 +2062,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T14:28:04.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 7
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 8
     },
     {
       "article": {
@@ -1549,8 +2091,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1577,8 +2119,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1605,8 +2147,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1633,8 +2175,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1661,8 +2203,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1689,8 +2231,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1717,8 +2259,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1745,8 +2287,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1773,8 +2315,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1801,8 +2343,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T23:59:46.380Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 6
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 7
     },
     {
       "article": {
@@ -1829,8 +2371,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1857,8 +2399,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1885,8 +2427,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1913,8 +2455,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1941,8 +2483,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1969,8 +2511,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -1997,8 +2539,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-20T14:56:32.614Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 12
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 13
     },
     {
       "article": {
@@ -2025,8 +2567,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T14:28:04.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 7
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 8
     },
     {
       "article": {
@@ -2053,8 +2595,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T14:28:04.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 7
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 8
     },
     {
       "article": {
@@ -2081,8 +2623,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T14:28:04.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 7
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 8
     },
     {
       "article": {
@@ -2109,8 +2651,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T08:29:37.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 9
     },
     {
       "article": {
@@ -2138,8 +2680,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T08:29:37.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 9
     },
     {
       "article": {
@@ -2166,8 +2708,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T08:29:37.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 9
     },
     {
       "article": {
@@ -2194,8 +2736,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T08:29:37.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 9
     },
     {
       "article": {
@@ -2222,8 +2764,8 @@
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "firstSeenAt": "2026-10-21T08:29:37.733Z",
-      "lastAttemptAt": "2026-10-23T00:25:53.893Z",
-      "attempts": 8
+      "lastAttemptAt": "2026-10-23T08:28:18.461Z",
+      "attempts": 9
     }
   ]
 }
