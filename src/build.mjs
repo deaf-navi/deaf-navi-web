@@ -226,6 +226,8 @@ async function main() {
   await copyAsset(join(ASSETS, 'home.css'), 'home.css');
   await copyAsset(join(ASSETS, 'browse.css'), 'browse.css');
   await copyAsset(join(ASSETS, 'info.css'), 'info.css');
+  await copyAsset(join(ASSETS, 'contact-form.css'), 'contact-form.css');
+  await copyAsset(join(ASSETS, 'contact-form.js'), 'contact-form.js');
   await copyAsset(join(ASSETS, 'support.css'), 'support.css');
   await copyFile(join(ROOT, 'config', 'site-navigation.json'), join(ROOT, 'server', 'site-navigation.json'));
   await copyAsset(join(ASSETS, 'directory.css'), 'directory.css');

@@ -6,6 +6,8 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { randomBytes } from 'node:crypto';
 const root=resolve(import.meta.dirname,'..');
+const urlCheck=spawnSync('php',['test/contact-url-check.php'],{cwd:root,encoding:'utf8'});
+assert.equal(urlCheck.status,0,urlCheck.stdout+urlCheck.stderr);
 const dir=mkdtempSync(join(tmpdir(),'deafnavi-directory-test-'));
 const env={...process.env,DEAFNAVI_DATA_DIR:dir,DEAFNAVI_LOCAL_TEST:'1'};
 const initial=randomBytes(18).toString('hex'), next=randomBytes(4).toString('hex');
@@ -138,15 +140,18 @@ try {
     const ids=[...page.text.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1]);ok(ids.length===new Set(ids).size,'contact controls have unique ids');
   }
   const contactPage=await anon('/submit/?form=contact&scope=overseas');const contactCsrf=token(contactPage.text);
+  const siteContact=await anon('/submit/?form=contact&scope=site');
+  ok(siteContact.text.includes('name="contact_scope" value="site"')&&siteContact.text.includes('https://deafnavi.com/about.html'),'site uses shared contact handler and its own context');
   ok(contactPage.text.includes('https://deafnavi.com/connect/sign-cafe/overseas/'),'contact page context');
   await new Promise(r=>setTimeout(r,3200));
-  const contact={form_kind:'cafe_contact',category:'removal',name:'お問い合わせ検証',private_message:'PRIVATE_CONTACT_SENTINEL<script>not public</script>',email:'contact@example.invalid',source_url:'https://deafnavi.com/connect/sign-cafe/knot/',consent:'1',csrf:contactCsrf};
+  const contact={form_kind:'cafe_contact',contact_scope:'site',category:'removal',name:'お問い合わせ検証',private_message:'PRIVATE_CONTACT_SENTINEL<script>not public</script> https://127.0.0.1/private-link',email:'contact@example.invalid',source_url:'https://deafnavi.com/connect/sign-cafe/knot/',consent:'1',csrf:contactCsrf};
   ok((await anon('/submit/',{...contact,csrf:'invalid'})).status===403,'contact CSRF rejection');
   for(const bad of [{private_message:''},{source_url:'javascript:alert(1)'},{email:'bad address'},{category:'invented'},{website_confirm:'bot'},{consent:'0'}]){resetLimits();ok((await anon('/submit/',{...contact,...bad})).status===400,'invalid contact rejected');}
   resetLimits();ok((await anon('/submit/',contact)).status===303,'contact saved without country or city');
   ok((await anon('/submit/?received=1')).text.includes('お問い合わせを受け付けました'),'contact receipt');
   const contactState=JSON.parse(spawnSync('php',['-r',`require 'server/core.php';$r=query("SELECT * FROM submissions WHERE json_extract(payload,'$.form_kind')='cafe_contact'")->fetch();echo json(['id'=>$r['id'],'payload'=>json_decode($r['payload'],true),'outbox'=>(int)query('SELECT count(*) FROM outbox WHERE submission_id=?',[$r['id']])->fetchColumn()]);`],{cwd:root,env,encoding:'utf8'}).stdout);
   ok(contactState.outbox===1&&contactState.payload.private_message===contact.private_message,'contact and notification queued atomically');
+  ok(contactState.payload.url_screening.counts.high===1,'URL screening saved before queuing notification');
   ok(!('description' in contactState.payload)&&!('notes' in contactState.payload),'contact body is not a publication field');
   const contactId=contactState.id;
   const contactReview=await admin('/admin/?view=submission&id='+contactId);ok(contactReview.text.includes('&lt;script&gt;')&&!contactReview.text.includes('正式データへ反映'),'private contact review escapes and has no publish path');
@@ -156,6 +161,7 @@ try {
   ok((await write({action:'review',id:contactId,revision:'1',status:'approved'})).status===303,'contact can be marked handled without publishing');
   ok((await write({action:'redact_submission',id:contactId,revision:'2',confirm:'1'})).status===303,'contact private fields can be erased');
   const redacted=await admin('/admin/?view=submission&id='+contactId);ok(!redacted.text.includes('PRIVATE_CONTACT_SENTINEL')&&!redacted.text.includes('contact@example.invalid'),'contact redaction includes body and email');
+  ok(!redacted.text.includes('private-link'),'redaction also removes URL screening copies');
   const mail=spawnSync('php',['server/cli.php','mail'],{cwd:root,env,encoding:'utf8'});ok(mail.stdout.includes('MAIL_NOT_CONFIGURED'),'unconfigured mail never reported sent');
   const bulk=spawnSync('php',['-r',`require 'server/core.php';$p=json_decode(record('knot')['payload'],true);for($i=1;$i<=30;$i++){$p['slug']='pagination-'.sprintf('%02d',$i);$p['name']='ページ分割検証'.sprintf('%02d',$i);save_record($p,'cafe','pagination-'.$i,0);}`],{cwd:root,env,encoding:'utf8'});
   ok(bulk.status===0,'pagination fixture inserted');
