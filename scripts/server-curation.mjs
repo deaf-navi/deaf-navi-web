@@ -140,7 +140,7 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
         reusedRun:candidateReview.reusedRun,deferred:candidateReview.deferred.length,newOrChanged:candidateReview.newOrChanged,
         dispositions:candidateReview.entries.reduce((counts,x)=>{const k=x.disposition??'needs-review';counts[k]=(counts[k]??0)+1;return counts;},{})},
       lodging:{selected:lodging.selected,cached:lodging.cached,submittedThisRun:lodging.submittedThisRun,
-        corroborated:lodging.corroborated,exceptions:lodging.exceptions,candidates:lodging.candidates,
+        corroborated:lodging.corroborated,evidenceReviewed:lodging.evidenceReviewed,exceptions:lodging.exceptions,candidates:lodging.candidates,
         deferred:lodging.deferred.length,newOrChanged:lodging.newOrChanged,reusedRun:lodging.reusedRun},
       publication:{changed:0,policy:'existing-verified-source-publishers-only',manualReviewTimestampsChanged:false}};
     await privateJson(join(stateDir,comparisonOnly?'server-curation-comparison.json':'server-curation.json'),result);

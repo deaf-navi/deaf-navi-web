@@ -3,11 +3,28 @@ import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {prepareCurationReview} from './prepare-curation-review.mjs';
 import {reviewCurationTasks} from './curation-review.mjs';
-import {evidenceHash,prepareReviewItem,lodgingFields} from './curation-review-contract.mjs';
+import {evidenceHash,prepareReviewItem,lodgingFields,validateReviewResult,compareReview} from './curation-review-contract.mjs';
 
 const issue=(t,reason)=>({kind:'lodging',recordId:t.recordId,facilityId:t.facilityId??null,sourceUrl:t.sourceUrl??null,
   status:'exception',reasons:[reason],differences:[],publicationApproved:false,reviewedAt:null});
 const sha=value=>/^[a-f0-9]{64}$/.test(value??'');
+
+// A one-time human inspection can resolve only a cached, definite evidence
+// rejection. It never repairs unknown requests or overrides changed facts.
+function reuseEvidenceReview(entry,target,task,now){
+ const r=target.evidenceReview;
+ if(target.role!=='published'||entry.status!=='exception'||entry.reasons.length!==1||entry.reasons[0]!=='api-evidence-invalid'||!r)return entry;
+ try{
+  const item=prepareReviewItem(task),checked=Date.parse(r.checkedAt);
+  if(r.reason!=='api-evidence-invalid'||r.inputId!==item.id||r.documentHash!==task.sourceDocumentHash||r.publicationHash!==target.publicationHash
+    ||!sha(r.documentHash)||!sha(r.publicationHash)||!Number.isFinite(checked)||checked>now)return entry;
+  validateReviewResult([item],{items:[r.decision]});
+  const compared=compareReview(task,r.decision,{now});
+  if(compared.status!=='corroborated')return entry;
+  return {...entry,...compared,status:'reviewed-evidence',decision:r.decision,decisionOrigin:'manual-evidence-review',
+    evidenceReviewCheckedAt:r.checkedAt,resolvedReason:'api-evidence-invalid'};
+ }catch{return entry;}
+}
 
 // Publication hashes bind the hand-checked structured baseline to what is served.
 // No record here can publish, change operator verification or renew review dates.
@@ -55,7 +72,7 @@ export async function runLodgingReview({stateDir,snapshot,catalog,now=Date.now()
   const plan=planLodgingReview(snapshot,catalog,{now}),path=join(stateDir,'lodging-review.json');
   let previous;try{previous=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const day=new Date(now+9*3600000).toISOString().slice(0,10);
-  const signature=evidenceHash(JSON.stringify({version:1,snapshot,targets:catalog.lodgingTargets??[],candidates:catalog.lodgingCandidates??[],approvalSignature}));
+  const signature=evidenceHash(JSON.stringify({version:2,snapshot,targets:catalog.lodgingTargets??[],candidates:catalog.lodgingCandidates??[],approvalSignature}));
   if(!stopAfterError&&previous?.day===day&&previous.signature===signature&&Date.parse(previous.generatedAt)<=now)
     return {...previous,reusedRun:true,submittedThisRun:0,newOrChanged:[]};
   const old=new Map((previous?.entries??[]).map(e=>[e.recordId,e]));
@@ -75,7 +92,9 @@ export async function runLodgingReview({stateDir,snapshot,catalog,now=Date.now()
       submitted+=result.submitted;cached+=result.cached;
       for(const entry of result.entries){
         const target=batch.find(t=>t.recordId===entry.recordId);
-        const value={...entry,facilityId:target.facilityId??null,role:target.role};
+        const task=prepared.tasks.find(t=>t.recordId===entry.recordId);
+        const value={...reuseEvidenceReview(entry,target,task,now),facilityId:target.facilityId??null,role:target.role,
+          ...(task.sourceEvidenceUrl?{sourceEvidenceUrl:task.sourceEvidenceUrl,documentScope:task.documentScope}:{})};
         if(target.role==='candidate'){
           value.reasons=value.reasons.filter(r=>r!=='differs-from-current');
           if(target.operatorVerified!==true)value.reasons.push('operator-review-required');
@@ -100,7 +119,7 @@ export async function runLodgingReview({stateDir,snapshot,catalog,now=Date.now()
   const deferred=ordered.slice(8).map(t=>({recordId:t.recordId,reason:'batch-limit'}));
   for(const d of deferred)if(old.has(d.recordId))entries.push({...old.get(d.recordId),deferred:true});
   const result={version:1,day,signature,generatedAt:stamp,reusedRun:false,selected:selected.length,cached,submittedThisRun:submitted,
-    corroborated:entries.filter(e=>e.status==='corroborated').length,exceptions:entries.filter(e=>e.status==='exception').length,
+    corroborated:entries.filter(e=>e.status==='corroborated').length,evidenceReviewed:entries.filter(e=>e.status==='reviewed-evidence').length,exceptions:entries.filter(e=>e.status==='exception').length,
     candidates:entries.filter(e=>e.status==='candidate').length,entries,deferred,newOrChanged,publicationApproved:false,reviewedAt:null};
   const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(result,null,2)+'\n',{mode:0o600});await rename(tmp,path);
   return result;

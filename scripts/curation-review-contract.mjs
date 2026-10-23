@@ -156,7 +156,14 @@ export function partitionReviewResult(items,result){
   const accepted=[],rejectedItems=[];
   for(const decision of result.items){
     try{validateReviewResult([expected.get(decision.id)],{items:[decision]});accepted.push(decision);}
-    catch{rejectedItems.push({id:decision.id,reason:'api-evidence-invalid'});}
+    catch(error){
+      const codes={'Review evidence not in source':'quote-not-in-source','Definite review needs source evidence':'missing-relevance-evidence',
+        'Invalid fact evidence':'invalid-fact-evidence','Lodging value is not literal evidence':'lodging-value-not-literal',
+        'Conflicting duplicate field':'duplicate-fact-field','Date is not explicit in evidence':'date-not-explicit',
+        'Fact value not in evidence':'value-not-in-evidence','Invalid communication method':'invalid-communication',
+        'Invalid event status':'invalid-status','News review cannot create event facts':'news-facts-not-allowed'};
+      rejectedItems.push({id:decision.id,reason:'api-evidence-invalid',validationCode:codes[error.message]??'invalid-result'});
+    }
   }
   return {items:accepted,rejectedItems};
 }

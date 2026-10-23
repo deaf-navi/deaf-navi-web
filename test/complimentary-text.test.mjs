@@ -16,7 +16,7 @@ test('completed review keeps valid evidence and isolates invalid evidence after 
  const dir=await fixture(t,{approvedTextHashes:reviewItems.map(publicTextFingerprint)});
  const decisions=reviewItems.map((item,i)=>({id:item.id,relevance:'yes',contentType:'announcement',evidence:i?'偽の根拠文です':'手話交流会を開催します。',facts:[]}));
  const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>new Response(JSON.stringify({status:'completed',model:'gpt-6.1-sol',usage:{input_tokens:100,output_tokens:50},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({items:decisions})}]}]}))});
- const answer=await run(reviewItems,{purpose:'curation_review'});assert.equal(answer.items.length,1);assert.deepEqual(answer.rejectedItems,[{id:reviewItems[1].id,reason:'api-evidence-invalid'}]);
+ const answer=await run(reviewItems,{purpose:'curation_review'});assert.equal(answer.items.length,1);assert.deepEqual(answer.rejectedItems,[{id:reviewItems[1].id,reason:'api-evidence-invalid',validationCode:'quote-not-in-source'}]);
  const ledger=JSON.parse(await readFile(join(dir,'usage-2026-10-18.json'),'utf8'));assert.equal(ledger.records[0].status,'completed');assert.equal(ledger.records[0].outputTokens,50);
 });
 test('no request without current-day project-bound complimentary eligibility',async t=>{
