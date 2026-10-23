@@ -119,7 +119,9 @@ deafnavi.com {
             header Cache-Control "private, no-store, max-age=0"
             header X-Frame-Options DENY
             rewrite * /_backend/index.php
-            php_fastcgi unix//run/php/deafnavi.sock
+            php_fastcgi unix//run/php/deafnavi.sock {
+                resolve_root_symlink
+            }
         }
         @directory path /admin /admin/* /submit /submit/* /connect/sign-cafe /connect/sign-cafe/* /directory-sitemap.xml /_access/visit
         handle @directory {
@@ -129,7 +131,9 @@ deafnavi.com {
             header Cache-Control "private, no-store, max-age=0"
             header X-Frame-Options DENY
             rewrite * /_backend/index.php
-            php_fastcgi unix//run/php/deafnavi.sock
+            php_fastcgi unix//run/php/deafnavi.sock {
+                resolve_root_symlink
+            }
         }
         file_server
     }
