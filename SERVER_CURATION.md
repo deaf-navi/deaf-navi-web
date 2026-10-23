@@ -42,6 +42,20 @@ APIによる一致は掲載承認ではない。新規・変更・不足・SNS�
 
 `server-curation.json`の`candidateReview`と`discovery-review.json`の`newOrChanged`を例外対応時に確認する。`selected/cached/submittedThisRun`は対象項目数であり、API要求回数は使用台帳のroutineRequestsで確認する。候補結果の自動取得日時を人による確認日時として扱わない。
 
+## 宿泊案内の比較と候補選別（2026-10-24）
+
+既存09:10の同じ処理に宿泊案内を加える。新しいcron・APIキー・予算枠は作らない。公開`guesthouses.json`は施設ID・出典URL・掲載内容hashだけを持つ。`src/guesthouses-data.mjs`をビルドした実公開版と、手で確認した比較基準をhashで結び付ける。
+
+私有カタログの`lodgingTargets`（掲載済み）と`lodgingCandidates`（候補）へ、`kind=lodging`、固定recordId、公式URL、共有確認した短文・approvedDocumentHash・元のsharingReviewedAtを保存する。掲載済みはfacilityId/publicationHash/baseline.requiredFields/baseline.factsも必要。fieldはbooking、rates、payment、cancellation、stay、reception、lodgingCommunication。税・単位・人数・季節・経路を含む短い原文を比較し、別予約経路の条件を混ぜない。運営者の障害・健康体験・個人の連絡先は送信しない。
+
+`lodging-review.json`へ1回最大8件、4件ずつ最大2バッチを保存。通常16回/UTC日・既存の共通無料予算内で、前回確認が古い対象を優先し残りはdeferredへ。文面・判定仕様が同じなら抽出キャッシュ、同日同条件なら保存結果を再利用する。料金・予約の差異、本文hash変更、掲載版変更、取得不能、未登録、画像/PDF/SNSを例外にする。machineCheckedAtは機械取得時刻であり公開確認日時を更新しない。常設宿にイベントの48時間掲載失効を適用しない。
+
+候補のoperatorVerified/receptionVerifiedは公式情報を実確認した時だけ設定し、APIへは送らない。APIは短期宿泊案内かと条件を整理し、現在の受付・運営属性・空室を推定しない。publication-review-requiredも公開承認ではない。APIのnoで掲載削除せず、条件不足や受付不明はneeds-reviewで保持。屋久島デフファームの過去の案内だけで現在の受付を承認しない。
+
+`config/lodging-discovery.json`の専門媒体から土曜を起点に週1回、最大8ページ・各24リンクを探索し、`lodging-discovery.json`へ非公開候補を保存する。未実施なら次の同じ処理で補う。取材本文はAPIへ自動送信せず、新規公式HTML・短文の共有適性を初回確認してからカタログへ加える。登録入口外の全国検索は既存の週次Codex作業を維持し、APIに検索機能があるとは扱わない。
+
+Codexはserver-curation.jsonのlodging/lodgingDiscoveryと私有レポートのnewOrChanged・不足理由を優先し、一致結果や既知の保留を毎日作り直さない。確認できた重要差分だけ既定PR/CI/Deploy XServerで反映し、guesthouses.jsonも同時生成する。取得失敗・容量上限は例外に残し、無制限取得や閉業判断をしない。API生成・公開日時の更新・DB変更を伴わない比較モードで従来結果も照合する。
+
 ## World
 
 専用サービスの認証付きPOST /filter-approvedは、当日の有効な許可と正確な文面hashに一致するIDだけを返す。生成は行わない。WorldはこのID群を選んでから50件の上限を適用し、未承認の先頭記事が後続の承認済み記事を押し出さないようにする。補完時には予算・共有・結果不明等をもう一度検証する。未承認・未訳は保留を維持する。
