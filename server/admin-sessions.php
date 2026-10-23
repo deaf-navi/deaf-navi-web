@@ -20,7 +20,8 @@ function admin_login_cookie(string $token, int $expires): void {
         'secure'=>getenv('DEAFNAVI_LOCAL_TEST')!=='1','httponly'=>true,'samesite'=>'Lax']);
 }
 function admin_login_forget(): void {
-    unset($_SESSION['user_id'],$_SESSION['version'],$_SESSION['admin_login_hash'],$_SESSION['issued'],$_SESSION['last_active'],$_SESSION['csrf']);
+    unset($_SESSION['user_id'],$_SESSION['version'],$_SESSION['admin_login_hash'],$_SESSION['issued'],$_SESSION['last_active']);
+    $_SESSION['csrf']=uid();
     admin_login_cookie('',time()-3600);
     unset($_COOKIE[ADMIN_LOGIN_COOKIE]);
 }

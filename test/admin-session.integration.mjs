@@ -48,6 +48,7 @@ try{
  ok(Number(sql("echo query('SELECT expires_at FROM admin_login_sessions')->fetchColumn();"))>Date.now()/1000+399*86400,'durable expiration renews with browser');
  const before=await a.request(), formCsrf=csrf(before.text);
  unlinkSync(file(a));
+ ok((await a.request('/admin/',{action:'settings',csrf:formCsrf,notification_email:'session@example.invalid'})).status===303,'open form can POST directly after PHP session cleanup');
  ok(logged(await a.request()),'login survives PHP session garbage collection');
  ok(csrf((await a.request()).text)===formCsrf,'open form CSRF survives short session cleanup');
  const restarted=client([...a.jar].filter(([name])=>name==='deafnavi_admin_login'));
@@ -87,6 +88,13 @@ try{
  const expired=client(legacy.jar);expired.jar.delete('deafnavi_admin_login');
  writeFileSync(file(expired),readFileSync(file(expired),'utf8').replace(/admin_login_hash\|s:64:"[a-f0-9]+";/,''));age(expired);
  ok(!logged(await expired.request()),'already expired legacy session is not resurrected');
+ // A separate, fresh session restored from the remaining durable login.
+ const validAgain=client([['deafnavi_admin_login',legacy.jar.get('deafnavi_admin_login')]]);await validAgain.request();
+ validAgain.jar.delete('deafnavi_admin_login');
+ writeFileSync(file(validAgain),readFileSync(file(validAgain),'utf8').replace(/admin_login_hash\|s:64:"[a-f0-9]+";/,''));
+ sql("query('UPDATE users SET version=version+1');");
+ const invalidLegacy=await validAgain.request();
+ ok(!logged(invalidLegacy)&&!!csrf(invalidLegacy.text),'revoked legacy login renders a usable CSRF-protected login form');
  const anon=client();const contact=await anon.request('/submit/?form=contact&scope=site');
  ok(contact.status===200&&!anon.jar.has('deafnavi_admin_login'),'public contact gets no persistent login');
  ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no PHP warnings');
