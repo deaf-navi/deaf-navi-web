@@ -124,3 +124,17 @@ GitHubでPR121 merged、head5cba95e3/CI39344105058と配布61aaa094/XServer39344
 本人の09:32 JSTの指示と親の追跡委任により、既存接続でcurrent/hashを読む通常Deployの整合確認を準備した。ローカルでYAMLの変更範囲（既存Activate/Verifyのrunだけ）、全Deploy shellのbash構文、正常/改変/欠落PHP、正常/不正hash入力、currentの一致/不一致、公開リンク有/無、Cookie/認証headerの非出力を検証して成功。外部通信/本番操作のないfixture検証であり、実サーバー/公開の成功ではない。既存PR CI→通常マージ→正規Deployで稼働実体と公開本文を分けて確認する。復旧は今回の検証差分だけを戻せる。
 
 現在の消費側Linuxには既存Windows/SSHの遠隔実行ツールが露出せず、SSH設定/標準identity/known_hosts/agent/対象host-user変数もない。別のアプリを接続代理として使わず、既存Deploy内で非秘密のrelease path/hashと公開本文有無だけを取得する。新権限や設定変更が必要なら具体的な承認を求め、拒否を迂回しない。実行PHP版/有効FastCGI設定・原因は未確定。店舗曜日・営業状態・確認日と検索値は更新しない。
+
+### 09:47 JST 実サーバーhashと公開HTTP本文
+
+[PR141](https://github.com/deaf-navi/deaf-navi-web/pull/141)のhead `fe502e47859c98077d39d811e5792b334aa07490` /[CI39879857464](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39879857464)は全工程success。通常squash `b83508f168d98cfc8fd029c03e24246483f8d7b1` の[Deploy39880077869](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39880077869)も09:47:16 JSTにsuccess。実parent092b36de、workflowと運用5文書だけで、対象PHPはPR139と同一。
+
+09:47:10〜11 JSTの正規SSH activationで、切替前currentは `/srv/deafnavi/releases/092b36de1e7c2eeb8b00ccb2e0027298a2e4d770-39879138679-1`、切替後は `/srv/deafnavi/releases/b83508f168d98cfc8fd029c03e24246483f8d7b1-39880077869-1`。切替前PHP・staging・切替後currentの3つの実測SHA-256はすべて `868972728ac88ea7fea58d4e868da781d79a47bd907decdfac78a334309a812b` でGit原本と一致。これにより、この観測時点の配布ファイルとcurrent参照先の不一致は見つからなかった。09:18/09:28の実サーバーhashまで遡って測定したとはしない。
+
+09:47:14 JSTの既存runnerによる識別付き公開GETはHTTP/1.1 200 OK、Content-Type text/html、Via Caddy、Cache-Controlはprivate/no-store/max-age=0とno-store/no-cache/must-revalidateを返したが、新リンクはHTML内にも不在。workflowがQA未完のwarningを記録した。これは配布元/ファイルの一致と、公開本文の不一致を同時に示す。公開実行PHPのパス・保持状態/有効設定はまだ未確定で、OPcache等の原因を確定しない。
+
+[Caddy一次資料](https://caddyserver.com/docs/caddyfile/directives/php_fastcgi)と[PHP OPcache一次資料](https://www.php.net/manual/en/opcache.configuration.php)を再読した。root symlinkを実体へ解決する設定とtimestamp検証条件は一般的な仕様の根拠で、本番原因の証明ではない。Git管理のdeploy/caddy/deafnavi-directory.caddyはcurrent root・専用socket・backend rewriteで、resolve_root_symlink記載なし。有効な本番設定と同一と認定しない。
+
+次は有効なDeaf Navi専用FastCGI root/socketとPHP-FPMの関連設定を非秘密部分だけで照合する必要がある。過去のCaddy/PR30実行・cache操作の承認待ちを維持し、PR30全体の実行、設定適用、サービスreload/restart、失効は未実施。条件付きの専用resolve_root_symlink案・限定QA・復旧手順は[配信診断と承認候補](delivery-diagnosis-20261023.md)へ保存し、実設定読取と必要性の確定前に適用しない。新しい認証/権限/サービス・DNS変更は行わない。
+
+後続の通常国内生成更新 `b50b3dae2a2975d3bfa9c3347911c4d929b7779d` の[XServer39880357771](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39880357771)でも09:50:05〜06 JSTに切替前/staging/currentの同じSHA-256一致とcurrent参照先を実測。09:50:10 JSTの公開GETは再びHTTP200/no-storeでリンク不在。後続公開を待つだけでは解消を確認できていない。
