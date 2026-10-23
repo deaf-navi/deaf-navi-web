@@ -37,6 +37,8 @@ try{
  ok(navLinks.some(([,attrs,label])=>attrs.includes('href="/connect/sign-cafe/"')&&attrs.includes('aria-current="page"')&&label.replace(/<[^>]+>/g,'').trim()==='手話カフェ')&&!html.includes('href="/connect/"'),'navigation bypasses retained connect hub');
  let paths=[...html.matchAll(/class="dn-cafe-name" href="([^"]+)"/g)].map(m=>'https://deafnavi.com'+m[1]);assert.deepEqual(collection.mainEntity.itemListElement.map(x=>x.url),paths);checks++;
  ok(paths.length===24,'paginated schema describes rendered 24 rows');ok(!html.includes('PRIVATE_SEO_SENTINEL')&&!html.includes('>SEO fixture 29<'),'private details not exposed');
+ ok((html.match(/class="dn-visit-summary"/g)||[]).length===24,'visit decisions available in every listed cafe');
+ ok(html.includes('料金はどこまで確認すればよいですか？')&&html.includes('Deaf Naviのお問い合わせは掲載情報の窓口'),'practical pricing and booking guidance');
  ok(html.includes('id="cafe-guide"')&&html.includes('id="cafe-policy"'),'visible helpful content');ok(html.includes('手話カフェの情報をお待ちしています'),'approved copy retained');
  ({html}=await request(route+'?page=2'));collection=ld(html).find(x=>x['@type']==='CollectionPage');ok(canonical(html).endsWith('?page=2'),'page two self canonical');ok(meta(html,'robots').startsWith('index,follow'),'page two indexable');ok(collection.mainEntity.itemListElement[0].position===25,'page positions continue');ok(html.includes('2ページ目'),'page title distinct');
  for(const q of ['q=SEO','prefecture='+encodeURIComponent('兵庫県'),'beginner_welcome=1','sort=name','per_page=48']){({html}=await request(route+'?'+q));ok(meta(html,'robots').startsWith('noindex,follow'),'filtered/display variant excluded '+q);}
@@ -66,6 +68,7 @@ try{
  ({html}=await request(route+'seo-fixture-0/'));
  ok(html.includes('<title>SEO fixture 0（'+location.prefecture+' '+location.city+'）｜手話カフェ | Deaf Navi</title>'),'domestic detail title identifies the published place');
  ok(html.includes('<h1>SEO fixture 0</h1>'),'visible place name retained');ok(canonical(html)==='https://deafnavi.com'+route+'seo-fixture-0/','detail URL retained');
+ ok(html.includes('id="visit-info"')&&html.includes('予約・料金・会話の方法'),'visit link resolves to real detail section');
  ok(html.includes('name="twitter:title"'),'social title follows the same metadata');
  const titleBefore=html.match(/<title>([^<]+)<\/title>/)?.[1];
  run(['-r',`require '${core}';$r=query("SELECT * FROM records WHERE slug='seo-fixture-0'")->fetch();$p=expanded($r);$p['status']='permanently_closed';save_record($p,'cafe',$r['id'],(int)$r['revision']);`]);

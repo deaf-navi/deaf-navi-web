@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__.'/cafe-seo.php';
 require_once __DIR__.'/cafe-related.php';
+require_once __DIR__.'/cafe-visit.php';
 function cafe_status_label(array $p):string {
     if(in_array(cafe_listing_group($p),['spots','organizations'],true)&&in_array($p['status'],['unknown','needs_review'],true))return '活動日確認中';
     return match(cafe_activity_state($p)){'scheduled'=>'開催予定','today'=>'本日開催予定','date_elapsed'=>'開催予定日経過','ended'=>'活動終了','date_unknown'=>'開催日未確認',default=>STATUSES[$p['status']]??'営業状況未確認'};
@@ -42,7 +43,7 @@ function cafe_table_schedule(array $p):string {
 function domestic_card(array $p):string {
     $out='<article class="dn-card dn-place-card" data-cafe-id="'.e($p['id']).'">'.cafe_card_intro($p,$p['prefecture'].' '.$p['city']).cafe_badges($p).cafe_schedule_html($p).(!empty($p['description'])?'<p class="dn-card-intro">'.e($p['description']).'</p>':'');
     if(!empty($p['notes']))$out.='<p class="dn-visit-note">'.nl2br(e($p['notes'])).'</p>';
-    $out.=official_links($p,true).'<div class="dn-links">';
+    $out.=cafe_visit_summary($p).official_links($p,true).'<div class="dn-links">';
     $map=($p['map_url']??'')?:(!empty($p['address'])?'https://www.google.com/maps/search/?api=1&query='.rawurlencode($p['address'].' '.$p['name']):'');
     if($map)$out.=ext_link($map,'地図');
     return $out.'</div>'.sources_html($p).'<p><a href="'.e(cafe_correction_url($p)).'">情報を修正・追加する</a></p></article>';
@@ -69,7 +70,7 @@ function domestic_matches(array $p,array $f):bool {
     if(($f['type']??'')!==''&&$f['type']!==($p['type']??''))return false;
     foreach(CAFE_FEATURES as $k=>$label)if(($f[$k]??'')==='1'&&$p[$k]!==true)return false;
     $words=array_filter(array_map('normalized',preg_split('/[\s\p{Z}]+/u',$f['q']??'')?:[]),fn($word)=>$word!=='');
-    $search=normalized(implode(' ',array_map(fn($k)=>(string)($p[$k]??''),['name','name_kana','prefecture','city','address','venue_name','description','sign_support','operator','recurrence','notes'])));
+    $search=normalized(implode(' ',array_map(fn($k)=>(string)($p[$k]??''),['name','name_kana','prefecture','city','address','venue_name','description','sign_support','operator','recurrence','reservation','notes'])));
     foreach(CAFE_FEATURES as $k=>$label)if(($p[$k]??null)===true)$search.=' '.normalized($label);
     foreach($words as $word)if(!str_contains($search,$word))return false;
     return true;
