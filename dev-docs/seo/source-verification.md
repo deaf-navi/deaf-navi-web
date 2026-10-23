@@ -112,3 +112,15 @@ GitHubでPR121 merged、head5cba95e3/CI39344105058と配布61aaa094/XServer39344
 - [西尾茶屋公式Web](https://signing-wacafe-nishiochaya.com/)の火曜定休は確認できたが、適用日の根拠は未確定。LINEの月曜休みは親提供の相違報告で今回の再取得ではない。曜日/営業時間/確認日は変更0。
 - [Knot奈良企画](https://www.k-knot2018.com/p/15/)は奈良の会場と企画休止を案内し、[芦屋川店舗](https://www.k-knot2018.com/p/34/)は別の見出し/住所のページ。休止を店舗全体へ転用せず、店舗の現在の営業状態を今回新認定しない。連絡・予約・SNS収集拡張も行わない。
 - 合成HTTP/現行CSS・JSの9ケースで一覧移動/次のTab/条件と識別保持を確認。公開HTML/PHPの直接確認とは区別し、正規CI/Deployと親の公開QAを別に記録する。
+
+### 10/23 公開QAと配信整合の証拠
+
+[PR139](https://github.com/deaf-navi/deaf-navi-web/pull/139)のhead `2818f7507b3154e59d58c0d335f786c44829f0a2` は[CI39877067946](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39877067946)全工程success（Node271、stories JS11＋隔離128、PHP SEO130、おとまど91、国内468/World600/iOS）。通常squash `0e30ab54b385b2f0647285f9cdc006038152376e` の[XServer39877282606](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39877282606)は09:18:55 JSTにsuccess。実parentはd04e78c0、差分はPHP1行＋運用5文書。
+
+親の正式クラウドChrome/CUAでは09:21 JSTの識別付きURL、09:22 JSTの通常URLで新リンクがAX/スクリーンショットに不在。FAQ4項目の直後は掲載方針。後続main `7e2ed8bb521ff8b075e17ec51a7a893f39eca95e` の[XServer39878229270](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39878229270)も09:28:45 JSTに実deploy successだが、09:32 JSTの新規タブでも不在だった。検索条件保持/リンク移動は本番未検証、HTTPstatus未計測。タブ閉鎖済み、設定変更/キャッシュ削除なし。Deploy成功だけでは公開QAを完了としない。
+
+配布元のcafe-seo.phpは8219bytes、Git blob `82f3acee15b21d23adcc11a62fb4cede6c6f1431`、期待SHA-256 `868972728ac88ea7fea58d4e868da781d79a47bd907decdfac78a334309a812b`。現時点では本番ファイルの実測hashではない。
+
+本人の09:32 JSTの指示と親の追跡委任により、既存接続でcurrent/hashを読む通常Deployの整合確認を準備した。ローカルでYAMLの変更範囲（既存Activate/Verifyのrunだけ）、全Deploy shellのbash構文、正常/改変/欠落PHP、正常/不正hash入力、currentの一致/不一致、公開リンク有/無、Cookie/認証headerの非出力を検証して成功。外部通信/本番操作のないfixture検証であり、実サーバー/公開の成功ではない。既存PR CI→通常マージ→正規Deployで稼働実体と公開本文を分けて確認する。復旧は今回の検証差分だけを戻せる。
+
+現在の消費側Linuxには既存Windows/SSHの遠隔実行ツールが露出せず、SSH設定/標準identity/known_hosts/agent/対象host-user変数もない。別のアプリを接続代理として使わず、既存Deploy内で非秘密のrelease path/hashと公開本文有無だけを取得する。新権限や設定変更が必要なら具体的な承認を求め、拒否を迂回しない。実行PHP版/有効FastCGI設定・原因は未確定。店舗曜日・営業状態・確認日と検索値は更新しない。

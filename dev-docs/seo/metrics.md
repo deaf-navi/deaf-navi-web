@@ -121,3 +121,11 @@ GSC/GA4・自然検索クリック/表示/CTR/順位・organic session・CWVフ�
 現行CSS/未変更JSと合成HTTPの9ケース（375/1180/1280px、キーボード・クリック・一部JSなし）で移動先の可視、次のTab、query/入力値/開閉状態の保持、追加通信0、横はみ出し/JS例外なしを確認。実PHPと本番表示はCI/正規Deploy/親QAで確定する。未確認の店舗条件や確認日を件数として増やさない。
 
 GSC/GA4・自然検索クリック/表示/CTR/順位・organic session・CWVフィールドは未取得。Windows connected/authorizedは親報告であり、当環境のブラウザ/計測アクセスの成功とは別。過去の一時権限エラーも現在の取得可否と区別する。
+
+### PR139の技術検証と公開反映の区別
+
+[PR139](https://github.com/deaf-navi/deaf-navi-web/pull/139)のhead `2818f7507b3154e59d58c0d335f786c44829f0a2` は[CI39877067946](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39877067946)全工程success（Node271、stories JS11＋隔離128、PHP SEO130、おとまど91、国内468/World600/iOS）。通常squash `0e30ab54b385b2f0647285f9cdc006038152376e` の[XServer39877282606](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39877282606)は09:18:55 JSTにsuccess。実parentはd04e78c0、差分はPHP1行＋運用5文書。
+
+親の正式クラウドChrome/CUAでは09:21 JSTの識別付きURL、09:22 JSTの通常URLで新リンクがAX/スクリーンショットに不在。FAQ4項目の直後は掲載方針。後続main `7e2ed8bb521ff8b075e17ec51a7a893f39eca95e` の[XServer39878229270](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39878229270)も09:28:45 JSTに実deploy successだが、09:32 JSTの新規タブでも不在だった。検索条件保持/リンク移動は本番未検証、HTTPstatus未計測。タブ閉鎖済み、設定変更/キャッシュ削除なし。Deploy成功だけでは公開QAを完了としない。
+
+PHP原本の期待hashを確認したが本番hashは未取得。通常Deployへ整合確認を加えるfixture検証は成功し、実環境の結果は未確定。作業量/CI通過/配布件数を検索効果に置き換えない。GSC/GA4、自然検索クリック/表示/CTR/順位/organic session/CWVは未取得のまま保持する。

@@ -158,3 +158,13 @@ server/cafe-seo.phpの1行で、FAQ末尾に「手話カフェの一覧へ戻る
 現行CSS・JSを使う合成HTTPの9ケースで移動・Tab継続・条件保持を確認、1置換で元PHP全文へ戻り、空白エラーなし。既存CI→通常マージ→Deploy XServer→識別付き実URLを別々に確認する。確定ID/結果は当該PRと公開QA後に追記。復旧はこの1リンクだけのrevertと既存Deployで行える。
 
 西尾茶屋の曜日相違とKnot奈良/芦屋の対象区別は出典記録へ保存し、営業情報・確認日を変更しない。Caddy/PR30/再起動/cache purge・新権限/サービス・SNS収集・本番importは行わない。
+
+### PR139の公開QA未完と通常Deploy内の整合確認
+
+[PR139](https://github.com/deaf-navi/deaf-navi-web/pull/139)のhead `2818f7507b3154e59d58c0d335f786c44829f0a2` は[CI39877067946](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39877067946)全工程success（Node271、stories JS11＋隔離128、PHP SEO130、おとまど91、国内468/World600/iOS）。通常squash `0e30ab54b385b2f0647285f9cdc006038152376e` の[XServer39877282606](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39877282606)は09:18:55 JSTにsuccess。実parentはd04e78c0、差分はPHP1行＋運用5文書。
+
+親の正式クラウドChrome/CUAでは09:21 JSTの識別付きURL、09:22 JSTの通常URLで新リンクがAX/スクリーンショットに不在。FAQ4項目の直後は掲載方針。後続main `7e2ed8bb521ff8b075e17ec51a7a893f39eca95e` の[XServer39878229270](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39878229270)も09:28:45 JSTに実deploy successだが、09:32 JSTの新規タブでも不在だった。検索条件保持/リンク移動は本番未検証、HTTPstatus未計測。タブ閉鎖済み、設定変更/キャッシュ削除なし。Deploy成功だけでは公開QAを完了としない。
+
+09:32 JSTの本人「本番公開まで進めるようチェックしといて」と親の追跡指示に基づき、既存Deploy XServerの通常処理へ整合確認を追加する。接続先/Secrets/権限/トリガー/原子的切替は既存のまま、checkoutのGit原本hashとstaging/currentの対象PHP hash、切替前後のcurrent参照先を照合する。hash/参照先不一致では失敗させる。公開確認は識別付きカフェURLのHTMLでリンク有無と許可した公開cache headerだけを出力し、不在はwarningかつ公開QA未完とする。新規workflow/endpoint/認証や鍵の抽出、Caddy/PR30/失効/サービス再起動は行わない。
+
+ローカルでYAMLの変更範囲（既存Activate/Verifyのrunだけ）、全Deploy shellのbash構文、正常/改変/欠落PHP、正常/不正hash入力、currentの一致/不一致、公開リンク有/無、Cookie/認証headerの非出力を検証して成功。外部通信/本番操作のないfixture検証であり、実サーバー/公開の成功ではない。既存PR CI→通常マージ→正規Deployで稼働実体と公開本文を分けて確認する。復旧は今回の検証差分だけを戻せる。
