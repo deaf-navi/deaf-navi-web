@@ -21,7 +21,7 @@ summary.kind=newsは聴覚・ろう/難聴/盲ろう・手話文化・字幕/筆
 evidenceは関連性とcontentTypeを裏付けるtext内の連続した短い原文（240文字以内）、不明ならnull。告知と開催報告を区別し、混在はunknown。newsのfactsは空配列。
 event/cafeのfactsは確認できた項目だけ。各evidenceはtext内の連続した原文（240文字以内）。startDate/endDateはYYYY-MM-DD、根拠に年・月・日が全て明記され、開催日である場合だけ。公開日・締切を開催日にしない。複数の開催回をまとめず、不明・矛盾は省略。venue/applicationは本文にある表現をそのまま使う。communicationのvalueはsign/interpretation/captions/summary/writing。作品の手話表現・手話通訳・字幕・要約筆記・筆談を区別し、講師の資格や講座の題材から参加者への対応を推測しない。statusはscheduled/cancelled/full。公演の一部の回・一部席種・申込経路だけの完売は全体fullにしない。取得不可や次回未発表を中止にしない。`;
 
-export const lodgingInstructions='kind=lodgingは短期宿泊の予約・料金・滞在条件の抽出。relevanceは短期宿泊案内かどうかだけで判断する。ろう者の運営、個人の属性、現在の空室、営業継続や閉業を推測しない。factsはbooking（予約方法・確定手順）、rates（料金と単位・税・人数・季節・追加費用）、payment、cancellation、stay（宿泊設備・入退室）、reception（受付や休業の明示）、lodgingCommunication（筆談など対応方法）だけ。各valueはevidence中の連続した原文をそのまま使い、要約・数値換算・他経路の条件の混合をしない。確認できない項目は省略。日付のない常設宿にイベント開催日を要求しない。contentTypeは常設案内other、開業/受付の告知announcement、過去の取材/報告report、不明unknown。';
+export const lodgingInstructions='kind=lodgingは短期宿泊の予約・料金・滞在条件の抽出。relevanceは短期宿泊案内かどうかだけで判断する。ろう者の運営、個人の属性、現在の空室、営業継続や閉業を推測しない。factsはbooking（予約方法・確定手順）、rates（料金と単位・税・人数・季節・追加費用）、payment、cancellation、stay（宿泊設備・入退室）、reception（受付や休業の明示）、lodgingCommunication（筆談など対応方法）だけ。同じfieldは1件まで。例えば大人・子どものratesを別factsにしない。複数条件は240文字以内の一つの連続原文で裏付けられる場合のみ同じvalueに含め、無理な連結や省略で条件を変えない。各valueはevidence中の連続した原文をそのまま使い、要約・数値換算・他経路の条件の混合をしない。確認できない項目は省略。日付のない常設宿にイベント開催日を要求しない。contentTypeは常設案内other、開業/受付の告知announcement、過去の取材/報告report、不明unknown。';
 
 export function prepareReviewItem(task) {
   if(!reviewKinds.includes(task?.kind))throw new Error('Invalid review kind');
@@ -156,7 +156,14 @@ export function partitionReviewResult(items,result){
   const accepted=[],rejectedItems=[];
   for(const decision of result.items){
     try{validateReviewResult([expected.get(decision.id)],{items:[decision]});accepted.push(decision);}
-    catch{rejectedItems.push({id:decision.id,reason:'api-evidence-invalid'});}
+    catch(error){
+      const codes={'Review evidence not in source':'quote-not-in-source','Definite review needs source evidence':'missing-relevance-evidence',
+        'Invalid fact evidence':'invalid-fact-evidence','Lodging value is not literal evidence':'lodging-value-not-literal',
+        'Conflicting duplicate field':'duplicate-fact-field','Date is not explicit in evidence':'date-not-explicit',
+        'Fact value not in evidence':'value-not-in-evidence','Invalid communication method':'invalid-communication',
+        'Invalid event status':'invalid-status','News review cannot create event facts':'news-facts-not-allowed'};
+      rejectedItems.push({id:decision.id,reason:'api-evidence-invalid',validationCode:codes[error.message]??'invalid-result'});
+    }
   }
   return {items:accepted,rejectedItems};
 }

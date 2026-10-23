@@ -56,6 +56,14 @@ APIによる一致は掲載承認ではない。新規・変更・不足・SNS�
 
 Codexはserver-curation.jsonのlodging/lodgingDiscoveryと私有レポートのnewOrChanged・不足理由を優先し、一致結果や既知の保留を毎日作り直さない。確認できた重要差分だけ既定PR/CI/Deploy XServerで反映し、guesthouses.jsonも同時生成する。取得失敗・容量上限は例外に残し、無制限取得や閉業判断をしない。API生成・公開日時の更新・DB変更を伴わない比較モードで従来結果も照合する。
 
+### 大きい公式ページと確定した抽出不備の扱い
+
+たらこ湯のようにテーマのCSSがHTML本文より前に容量上限へ達する場合、公式WordPressの公開ページAPIを初回に実確認して私有対象の`wordpressPage: {id, apiUrl}`へ指定できる。宿泊対象だけ・元ページと同じorigin・固定page ID・`_fields=id,link,status,content`に限定し、応答のid/link/publish/protected=falseを照合する。取得先の自動探索・ログイン・context=edit・外部転送はしない。80万bytes・15秒・DNS/SSRF保護は維持し、rendered本文全体と取得先を含むhashをapprovedDocumentHashへ実確認時に登録する。ページ外のテーマやナビは本文hashの対象外であることをdocumentScope/sourceEvidenceUrlに明示する。公開ページ、ID、URL、本文が変われば例外へ戻す。
+
+確定済みキャッシュの`api-evidence-invalid`だけは、一度原文を再読し、私有対象へ`evidenceReview`（reason、inputId、documentHash、publicationHash、checkedAt、原文に一致するdecision）を記録できる。再取得した本文・正確な入力ID・現在の掲載版・有効な根拠引用・全必須条件との一致を毎回検証し、合格時だけ`reviewed-evidence`/`evidenceReviewed`として再利用する。APIのcorroboratedとは区別し、元の拒否キャッシュ・実確認時刻を保持する。未知の送信、候補の運営確認、変更条件、期限切れ、取得不能は解除しない。checkedAtを自動更新せず、公開reviewedAtや掲載承認も更新しない。
+
+新しい抽出不備には本文を保存せずvalidationCodeを記録する。旧キャッシュはunknown-historicalのままにし、不正応答が残っていない過去の原因を推測で埋めない。同じ短文を原因調査のためだけに再送しない。
+
 ## World
 
 専用サービスの認証付きPOST /filter-approvedは、当日の有効な許可と正確な文面hashに一致するIDだけを返す。生成は行わない。WorldはこのID群を選んでから50件の上限を適用し、未承認の先頭記事が後続の承認済み記事を押し出さないようにする。補完時には予算・共有・結果不明等をもう一度検証する。未承認・未訳は保留を維持する。

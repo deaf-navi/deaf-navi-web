@@ -25,7 +25,9 @@ export async function reviewCurationTasks(tasks,{generate,stateDir,now=Date.now(
       if(allIds.length!==missing.length||new Set(allIds).size!==missing.length||allIds.some(id=>!missing.some(item=>item.id===id))||rejected.some(x=>x.reason!=='api-evidence-invalid'))throw new Error('Invalid review partition');
       validateReviewResult(missing.filter(item=>!rejected.some(x=>x.id===item.id)),result);
       for(const decision of result.items)cache.entries[desired+':'+decision.id]={decision,model:result.model,checkedAt:new Date(now).toISOString()};
-      for(const item of rejected)cache.entries[desired+':'+item.id]={rejected:item.reason,model:result.model,checkedAt:new Date(now).toISOString()};
+      for(const item of rejected)cache.entries[desired+':'+item.id]={rejected:item.reason,
+        ...(typeof item.validationCode==='string'&&/^[a-z-]{1,50}$/.test(item.validationCode)?{validationCode:item.validationCode}:{}),
+        model:result.model,checkedAt:new Date(now).toISOString()};
       const temp=path+'.tmp-'+randomUUID();await writeFile(temp,JSON.stringify(cache)+'\n',{mode:0o600});await rename(temp,path);
     }
     const entries=tasks.map((task,i)=>{
@@ -33,7 +35,7 @@ export async function reviewCurationTasks(tasks,{generate,stateDir,now=Date.now(
       if(!stored)return {id:items[i].id,recordId:task.recordId??null,kind:task.kind,sourceUrl:task.sourceUrl,
         status:'exception',reasons:['sharing-approval-required'],differences:[],publicationApproved:false,reviewedAt:null};
       if(stored.rejected==='api-evidence-invalid')return {id:items[i].id,recordId:task.recordId??null,kind:task.kind,sourceUrl:task.sourceUrl,
-        model:stored.model,status:'exception',reasons:[stored.rejected],differences:[],publicationApproved:false,reviewedAt:null};
+        model:stored.model,status:'exception',reasons:[stored.rejected],validationCode:stored.validationCode??'unknown-historical',differences:[],publicationApproved:false,reviewedAt:null};
       validateReviewResult([items[i]],{items:[stored.decision]});
       return {id:items[i].id,recordId:task.recordId??null,kind:task.kind,sourceUrl:task.sourceUrl,
         model:stored.model,decision:stored.decision,...compareReview(task,stored.decision,{now})};

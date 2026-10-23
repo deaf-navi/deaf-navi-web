@@ -14,7 +14,7 @@ test('invalid evidence is isolated and cached as an exception without retrying g
  const second={...task,sourceUrl:'https://example.org/second'},secondItem=prepareReviewItem(second);
  const malformed={...decision,id:secondItem.id,evidence:'not in the source'};
  const split=partitionReviewResult([input,secondItem],{items:[decision,malformed]});
- assert.deepEqual(split.items,[decision]);assert.deepEqual(split.rejectedItems,[{id:secondItem.id,reason:'api-evidence-invalid'}]);
+ assert.deepEqual(split.items,[decision]);assert.deepEqual(split.rejectedItems,[{id:secondItem.id,reason:'api-evidence-invalid',validationCode:'quote-not-in-source'}]);
  assert.throws(()=>partitionReviewResult([input,secondItem],{items:[decision,decision]}));
  const stateDir=await mkdtemp(join(tmpdir(),'dn-review-partition-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));let calls=0;
  const generate=async()=>{calls++;return {model:'gpt-6.1-sol',...split};};
