@@ -4,8 +4,8 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-23T13:30:15Z",
-  "sourceGeneratedAt": "2026-10-23T13:30:15Z",
+  "generatedAt": "2026-10-23T13:44:48Z",
+  "sourceGeneratedAt": "2026-10-23T13:44:48Z",
   "count": 468,
   "language": "ja-JP",
   "refresh": {
@@ -118,23 +118,23 @@
   },
   "quality": {
     "version": "publication-quality-v10",
-    "rawCount": 3563,
-    "scoredCount": 3563,
-    "filteredCount": 1364,
+    "rawCount": 3528,
+    "scoredCount": 3528,
+    "filteredCount": 1348,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 68,
     "extraVisibleCategoryCounts": {
       "relay": 68
     },
-    "overflowCount": 547,
+    "overflowCount": 540,
     "minScore": 5,
     "categoryCountsVisible": {
-      "culture": 38,
+      "event": 32,
+      "culture": 37,
       "general": 106,
       "local": 54,
       "safety": 24,
-      "event": 31,
       "accessibility": 37,
       "sports": 33,
       "technology": 15,
@@ -146,11 +146,11 @@
   },
   "counts": {
     "byCategory": {
-      "culture": 38,
+      "event": 32,
+      "culture": 37,
       "general": 106,
       "local": 54,
       "safety": 24,
-      "event": 31,
       "accessibility": 37,
       "sports": 33,
       "technology": 15,
@@ -170,6 +170,24 @@
     }
   },
   "articles": [
+    {
+      "id": "https://www.deafswim.or.jp/2026/10/23/%e3%80%90%e3%81%94%e6%a1%88%e5%86%85%e3%80%91%e7%ac%ac-20-%e5%9b%9e%e6%97%a5%e6%9c%ac%e3%83%87%e3%83%95%e9%81%b8%e6%89%8b%e6%a8%a9%e6%b0%b4%e6%b3%b3%e7%ab%b6%e6%8a%80%e5%a4%a7%e4%bc%9a%e3%81%ab/",
+      "stableId": "domestic_8a903743a81c9b6b0651",
+      "url": "https://www.deafswim.or.jp/2026/10/23/%e3%80%90%e3%81%94%e6%a1%88%e5%86%85%e3%80%91%e7%ac%ac-20-%e5%9b%9e%e6%97%a5%e6%9c%ac%e3%83%87%e3%83%95%e9%81%b8%e6%89%8b%e6%a8%a9%e6%b0%b4%e6%b3%b3%e7%ab%b6%e6%8a%80%e5%a4%a7%e4%bc%9a%e3%81%ab/",
+      "title": "【ご案内】第 20 回日本デフ選手権水泳競技大会について",
+      "summary": "開催日 2027年1月17日（日） 会場 アクアパレットまつやま（25m） 申し込み ◾️【重要】参加をご希望 続きを読む…",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-23T13:38:56Z",
+      "sourceName": "日本デフ水泳協会",
+      "sourceURL": "https://www.deafswim.or.jp/",
+      "sourceUrl": "https://www.deafswim.or.jp/",
+      "sourceType": "rss",
+      "category": "event",
+      "categoryLabel": "イベント・講座",
+      "legacyCategory": "culture",
+      "sourceTier": "specialist",
+      "discoveryMethod": "direct-feed"
+    },
     {
       "id": "https://www.tfd.deaf.tokyo/post-6178/",
       "stableId": "domestic_11d9891cb78e966ad0ed",
@@ -7757,26 +7775,6 @@
       "legacyCategory": "medical",
       "sourceTier": "news",
       "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5SeEVPVUI0YWhxdkN1YVRrcGRJcHdZR0gwYUc2bkxZRkdsaG5LQnYyYm5iS3VwU01COHhjUm9iMGxlN0NmZXFONUI5MjlpbzlIRlpCTWRGY1pDVkt2amt2OTNudVlMTnc?oc=5",
-      "stableId": "domestic_72ab89739df025f6a33a",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5SeEVPVUI0YWhxdkN1YVRrcGRJcHdZR0gwYUc2bkxZRkdsaG5LQnYyYm5iS3VwU01COHhjUm9iMGxlN0NmZXFONUI5MjlpbzlIRlpCTWRGY1pDVkt2amt2OTNudVlMTnc?oc=5",
-      "title": "佳子さま「一生懸命頑張ってください」、鳥取で「手話パフォーマンス甲子園」出場者との交流会に参加",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-09-26T07:00:00Z",
-      "sourceName": "読売新聞",
-      "sourceURL": "https://www.yomiuri.co.jp",
-      "sourceUrl": "https://www.yomiuri.co.jp",
-      "sourceType": "rss",
-      "category": "culture",
-      "categoryLabel": "文化・芸能",
-      "legacyCategory": "culture",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "region": "chugoku_shikoku",
-      "prefecture": "鳥取県"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFAxR2ZROWZybWt6anF1ajE0WUluY3B6Z1gwQ2JYOC02amUyMktRbmNWUHgwRDV3clBtem8zbTZpWjM2WnFSMkZKVkVUS2ZpcFNOMDlac3NwVHUySGFna1ZKVDJ6aThBWE9rYXV5QjN5VXNvQQ?oc=5",
