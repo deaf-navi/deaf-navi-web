@@ -152,6 +152,10 @@ try {
   const contactState=JSON.parse(spawnSync('php',['-r',`require 'server/core.php';$r=query("SELECT * FROM submissions WHERE json_extract(payload,'$.form_kind')='cafe_contact'")->fetch();echo json(['id'=>$r['id'],'payload'=>json_decode($r['payload'],true),'outbox'=>(int)query('SELECT count(*) FROM outbox WHERE submission_id=?',[$r['id']])->fetchColumn()]);`],{cwd:root,env,encoding:'utf8'}).stdout);
   ok(contactState.outbox===1&&contactState.payload.private_message===contact.private_message,'contact and notification queued atomically');
   ok(contactState.payload.url_screening.counts.high===1,'URL screening saved before queuing notification');
+  const queuedMail=JSON.parse(spawnSync('php',['-r',`require 'server/core.php';require 'server/mail.php';$r=query("SELECT * FROM submissions WHERE json_extract(payload,'$.form_kind')='cafe_contact'")->fetch();echo json(submission_notification($r['id'],json_decode($r['payload'],true)));`],{cwd:root,env,encoding:'utf8'}).stdout);
+  ok(queuedMail.body.includes('PRIVATE_CONTACT_SENTINEL<script>not public</script>')&&queuedMail.body.includes('contact@example.invalid'),'queued contact can be understood in plaintext email');
+  ok(!queuedMail.body.includes('https://127.0.0.1')&&queuedMail.body.includes('https[:]／／127[.]0[.]0[.]1／private-link')&&queuedMail.body.includes('内部・予約IPアドレスです'),'queued contact URL defanged with individual risk reason');
+  ok((await admin('/admin/?view=settings')).text.includes('お問い合わせの通知メールには件名・本文・お名前・返信先とURL検査結果'),'notification settings describe contact forwarding');
   ok(!('description' in contactState.payload)&&!('notes' in contactState.payload),'contact body is not a publication field');
   const contactId=contactState.id;
   const contactReview=await admin('/admin/?view=submission&id='+contactId);ok(contactReview.text.includes('&lt;script&gt;')&&!contactReview.text.includes('正式データへ反映'),'private contact review escapes and has no publish path');
@@ -162,6 +166,8 @@ try {
   ok((await write({action:'redact_submission',id:contactId,revision:'2',confirm:'1'})).status===303,'contact private fields can be erased');
   const redacted=await admin('/admin/?view=submission&id='+contactId);ok(!redacted.text.includes('PRIVATE_CONTACT_SENTINEL')&&!redacted.text.includes('contact@example.invalid'),'contact redaction includes body and email');
   ok(!redacted.text.includes('private-link'),'redaction also removes URL screening copies');
+  const redactedMail=spawnSync('php',['-r',`require 'server/core.php';require 'server/mail.php';$r=query("SELECT * FROM submissions WHERE json_extract(payload,'$.form_kind')='cafe_contact'")->fetch();echo json(submission_notification($r['id'],json_decode($r['payload'],true)));`],{cwd:root,env,encoding:'utf8'}).stdout;
+  ok(!redactedMail.includes('PRIVATE_CONTACT_SENTINEL')&&!redactedMail.includes('private-link')&&!redactedMail.includes('contact@example.invalid'),'pending notification cannot resurrect redacted fields');
   const mail=spawnSync('php',['server/cli.php','mail'],{cwd:root,env,encoding:'utf8'});ok(mail.stdout.includes('MAIL_NOT_CONFIGURED'),'unconfigured mail never reported sent');
   const bulk=spawnSync('php',['-r',`require 'server/core.php';$p=json_decode(record('knot')['payload'],true);for($i=1;$i<=30;$i++){$p['slug']='pagination-'.sprintf('%02d',$i);$p['name']='ページ分割検証'.sprintf('%02d',$i);save_record($p,'cafe','pagination-'.$i,0);}`],{cwd:root,env,encoding:'utf8'});
   ok(bulk.status===0,'pagination fixture inserted');

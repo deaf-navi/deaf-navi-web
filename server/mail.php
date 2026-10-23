@@ -31,9 +31,24 @@ function submission_notification(string $id,array $p):array {
     if(!preg_match('/^[a-f0-9]{32}$/D',$id))throw new RuntimeException('Invalid notification ID');
     $contact=($p['form_kind']??'')==='cafe_contact';
     $kind=$contact?(($p['contact_scope']??'cafe')==='site'?'サイトへのお問い合わせ':'手話カフェへのお問い合わせ'):'手話カフェ情報提供';
-    // The full payload and supplied links never leave the authenticated review screen.
     $check=contact_url_check($p);
-    return ['subject'=>'Deaf Navi：'.$kind.'を受け付けました','body'=>"新しい受付を管理画面に保存しました。\n".contact_url_summary($check)."\n管理画面で内容をご確認ください。\n".BASE.'/admin/?view=submission&id='.$id];
+    $body="新しい受付を管理画面に保存しました。\n";
+    if($contact){
+        // Only these contact fields are forwarded to the configured owner, as plain text.
+        // The original payload stays unchanged; every supplied URL is defanged, even beyond the scan cap.
+        $types=['correction'=>'掲載内容の訂正','removal'=>'掲載の取り下げ','other'=>'その他のお問い合わせ'];
+        $body.="\n受付元：".$kind."\nお問い合わせの種類：".($types[$p['category']??'']??'その他のお問い合わせ')."\n受付ID：".$id."\n";
+        foreach(['name'=>'件名・対象の店舗／ページ','private_message'=>'お問い合わせ内容','submitter'=>'お名前・ニックネーム','email'=>'返信先メールアドレス','source_url'=>'対象ページURL'] as $key=>$label){
+            $value=is_string($p[$key]??null)?$p[$key]:'';
+            $body.="\n【".$label."】\n".($value!==''?contact_mail_text($value):'記載なし')."\n";
+        }
+        $body.="\n【URLの自動検査】\n".contact_url_mail_report($check)."\n\n投稿されたURLは自動リンクを防ぐ表記に変えています（[:]＝:、[.]＝.、／＝/、＼＝\\、[@]＝@）。\n";
+    }else{
+        // Information submissions retain their existing review-link-only notification.
+        $body.=contact_url_summary($check)."\n情報提供の本文・連絡先は管理画面でご確認ください。\n";
+    }
+    $body.="\n管理画面で確認・対応する：\n".BASE.'/admin/?view=submission&id='.$id;
+    return ['subject'=>'Deaf Navi：'.$kind.'を受け付けました','body'=>$body];
 }
 function send_outbox(): void {
     $path=data_dir().'/mail.php';$to=setting('notification_email');

@@ -23,7 +23,7 @@ function admin_page(): string {
     } elseif($view==='settings') {
         require_user(true);$configured=is_file(data_dir().'/mail.php');
         $counts=query('SELECT status,count(*) AS count FROM outbox GROUP BY status')->fetchAll();
-        $body.='<h2>情報提供の通知先</h2><p>お問い合わせ・情報提供は通知メールの成否にかかわらず保存されます。通知メールには受付内容の確認リンクとURL検査の要約を記載し、投稿本文・連絡先・投稿されたURLは載せません。送信先メールアドレスは公開されません。</p><p class="dn-notice">メール送信設定：'.($configured?'サーバー設定ファイルあり（到達確認は別途必要）':'未設定 — 投稿は管理画面で確認できます。通知は未送信で保管されます。').'</p><form method="post">'.csrf().'<input type="hidden" name="action" value="settings">'.field('notification_email','転送先メールアドレス',setting('notification_email'),'email').'<p><button>通知先を保存</button></p></form><h3>通知状況</h3><ul>';
+        $body.='<h2>情報提供の通知先</h2><p>お問い合わせ・情報提供は通知メールの成否にかかわらず保存されます。お問い合わせの通知メールには件名・本文・お名前・返信先とURL検査結果を記載します。投稿されたURLは自動リンクを防ぐ表記に変換し、元の内容は管理画面に保存します。店舗等の情報提供は確認リンクとURL検査の要約のみを通知します。送信先メールアドレスは公開されません。</p><p class="dn-notice">メール送信設定：'.($configured?'サーバー設定ファイルあり（到達確認は別途必要）':'未設定 — 投稿は管理画面で確認できます。通知は未送信で保管されます。').'</p><form method="post">'.csrf().'<input type="hidden" name="action" value="settings">'.field('notification_email','転送先メールアドレス',setting('notification_email'),'email').'<p><button>通知先を保存</button></p></form><h3>通知状況</h3><ul>';
         foreach($counts as $c)$body.='<li>'.e(['pending'=>'未送信','sending'=>'送信処理中','sent'=>'メールサーバー受付済み','failed'=>'送信失敗','uncertain'=>'結果不明・再送前に確認'][$c['status']]??$c['status']).'：'.(int)$c['count'].'件</li>';
         $body.='</ul><p>送信先・送信方式の設定後、未送信通知は送信処理で処理されます。結果不明の通知は自動再送しません。</p>';
         foreach(query("SELECT id,status FROM outbox WHERE status IN ('failed','uncertain') ORDER BY id DESC LIMIT 50")->fetchAll() as $mail) {
