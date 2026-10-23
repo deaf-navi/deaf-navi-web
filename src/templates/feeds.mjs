@@ -11,6 +11,7 @@ import { CATEGORY_UI } from '../../config/categories.mjs';
 import { NEWS_SECTIONS } from '../../config/news-sections.mjs';
 import { GUIDE_LAST_REVIEWED } from '../guide-data.mjs';
 import { GUIDE_TOPICS, GUIDE_TOPIC_REVIEWED } from '../guide-topics.mjs';
+import { GUESTHOUSE_GUIDE } from '../guesthouses-data.mjs';
 import { validEvent, eventPeriod } from '../lib/events.mjs';
 import { eventDetailPath } from './event-detail.mjs';
 import { escapeHtml, escapeXml } from '../lib/text.mjs';
@@ -40,6 +41,7 @@ export function renderSitemapXml({ generatedAt, isDev, files, archiveMonths = []
     { loc: `${SITE_URL}events.html`, changefreq: 'daily', priority: '0.8' },
     ...events.filter(event=>validEvent(event)&&eventPeriod(event,now)!=='review').map(event=>({loc:new URL(eventDetailPath(event),SITE_URL).href,changefreq:'daily',priority:'0.6'})),
     ...GUIDE_TOPICS.map(topic=>({loc:`${SITE_URL}guide/${topic.slug}/`,lastmod:GUIDE_TOPIC_REVIEWED,changefreq:'monthly',priority:'0.7'})),
+    { loc: new URL(GUESTHOUSE_GUIDE.path, SITE_URL).href, lastmod: GUESTHOUSE_GUIDE.reviewedAt, changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}otomado/`, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE_URL}${files.sitemapHtml}`, lastmod, changefreq: 'weekly', priority: '0.4' },
     { loc: `${SITE_URL}deaf-navi-world-jp.html`, changefreq: 'daily', priority: '0.8' },
@@ -171,6 +173,7 @@ ${renderSubHeader({
           <li><a href="./${files.oldIndex}">過去アーカイブ</a><span>掲載期間を過ぎた記事の月別アーカイブ</span></li>
           <li><a href="./${files.guide}">暮らしのガイド</a><span>緊急通報・医療・教育・就労などの公式情報</span></li>
           ${GUIDE_TOPICS.map(topic=>`<li><a href="/guide/${topic.slug}/">${escapeHtml(topic.label)}</a></li>`).join('')}
+          <li><a href="${GUESTHOUSE_GUIDE.path}">${escapeHtml(GUESTHOUSE_GUIDE.label)}</a></li>
           <li><a href="/events.html">国内の手話イベント</a><span>日程・参加条件・公式案内</span></li>
           <li><a href="/connect/sign-cafe/area/tokyo/">東京の手話カフェ</a></li><li><a href="/connect/sign-cafe/area/kanagawa/">神奈川の手話カフェ</a></li>
           <li><a href="./${files.feed}">RSSフィード</a><span>国内ニュース最新50件</span></li>
