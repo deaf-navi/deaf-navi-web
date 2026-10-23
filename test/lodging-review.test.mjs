@@ -73,7 +73,7 @@ test('candidate facts do not establish operator identity, current reception or p
  const envelope=prepareReviewItem(task).summary;assert.equal(envelope.includes('operatorVerified'),false);assert.equal(envelope.includes('publicationHash'),false);
 });
 test('eight source cap and unknown responses stop later batches without retrying or dropping records',async t=>{
- const opts=await fixture(t);opts.snapshot={version:1,records:[]};opts.catalog={version:1,lodgingCandidates:Array.from({length:10},(_,i)=>({...target,recordId:'candidate-'+i,sourceUrl:'https://example.org/stay/'+i}))};
+ const opts=await fixture(t);opts.snapshot={version:1,records:[]};opts.catalog={version:1,lodgingCandidates:Array.from({length:10},(_,i)=>({...target,facilityId:'candidate-'+i,recordId:'candidate-'+i,sourceUrl:'https://example.org/stay/'+i}))};
  let calls=0;opts.generate=async()=>{calls++;throw Error('unknown result');};
  const r=await runLodgingReview(opts);assert.equal(calls,1);assert.equal(r.submittedThisRun,null);assert.equal(r.deferred.length,2);
  assert.equal(r.entries.filter(e=>e.reasons.includes('batch-stopped-after-api-error')).length,4);
@@ -148,7 +148,7 @@ test('rejected extraction records safe diagnostic codes but no rejected response
 test('new inspected evidence is applied within the eight-target cap without starving the next rotation',async t=>{
  const opts=await fixture(t),item=prepareReviewItem(task);
  const reviewed={...target,evidenceReview:{reason:'api-evidence-invalid',inputId:item.id,documentHash:task.sourceDocumentHash,publicationHash:target.publicationHash,checkedAt:new Date(now-500).toISOString(),decision:decision(item.id)}};
- opts.catalog={...catalog,lodgingTargets:[reviewed],lodgingCandidates:Array.from({length:8},(_,i)=>({...target,recordId:'candidate-'+i,sourceUrl:'https://example.org/candidate/'+i}))};
+ opts.catalog={...catalog,lodgingTargets:[reviewed],lodgingCandidates:Array.from({length:8},(_,i)=>({...target,facilityId:'candidate-'+i,recordId:'candidate-'+i,sourceUrl:'https://example.org/candidate/'+i}))};
  await writeFile(join(opts.stateDir,'curation-review-cache.json'),JSON.stringify({version:'curation-review-v1',entries:{['gpt-6.1-sol:'+item.id]:{rejected:'api-evidence-invalid',model:'gpt-6.1-sol'}}}));
  await writeFile(join(opts.stateDir,'lodging-review.json'),JSON.stringify({entries:[...opts.catalog.lodgingCandidates.map(x=>({recordId:x.recordId,machineCheckedAt:new Date(now-10000).toISOString()})),{recordId:target.recordId,machineCheckedAt:new Date(now-100).toISOString()}]}));
  opts.canSubmit=()=>false;opts.generate=async()=>{throw Error('must not send');};
