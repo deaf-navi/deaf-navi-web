@@ -119,7 +119,7 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
     const queue=updateExceptionQueue(previousQueue,report.entries.filter(x=>x.status==='exception'),now);
     await privateJson(queuePath,queue);
     const discovery=await discover({stateDir,sources:discoverySources,knownUrls:records.map(x=>x.sourceUrl),now});
-    const lodgingDiscovery=await discover({stateDir,sources:lodgingSources,knownUrls:lodgingSnapshot.records.flatMap(r=>r.sourceUrls),now,weeklyLodging:true});
+    const lodgingDiscovery=await discover({stateDir,sources:lodgingSources,knownUrls:lodgingSnapshot.records.flatMap(r=>[...r.sourceUrls,...(r.referenceUrls??[])]),now,weeklyLodging:true});
     const candidateReview=await runDiscoveryReview({stateDir,catalog,knownUrls:records.map(x=>x.sourceUrl),now,prepare:wrappedPrepare,
       generate:generate??createComplimentaryClient({key,project,stateDir}),
       canSubmit:item=>!comparisonOnly&&gate.ready&&report.submittedThisRun!==null&&allowed.has(publicTextFingerprint(item)),

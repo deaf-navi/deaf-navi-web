@@ -4,5 +4,6 @@ export const lodgingPublicationHash=record=>createHash('sha256').update(JSON.str
 export function lodgingSnapshot(records){
   return {version:1,records:records.map(record=>({id:record.id,
     sourceUrls:[...new Set([record.bookingUrl,...(record.sources??[]).map(s=>s.url)])],
+  referenceUrls:[...new Set((record.media??[]).map(s=>s.url))],
     publicationHash:lodgingPublicationHash(record)}))};
 }

@@ -24,9 +24,12 @@ const prepare=(targets,options)=>prepareCurationReview(targets,{...options,fetch
 async function fixture(t){const stateDir=await mkdtemp(join(tmpdir(),'dn-lodging-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));return {stateDir,snapshot,catalog,now,prepare,generate,canSubmit:()=>true};}
 
 test('public snapshot contains only identity, source URLs and digest, not editorial/private facts',()=>{
- assert.deepEqual(Object.keys(snapshot.records[0]),['id','sourceUrls','publicationHash']);
+ assert.deepEqual(Object.keys(snapshot.records[0]),['id','sourceUrls','referenceUrls','publicationHash']);
  assert.equal(JSON.stringify(snapshot).includes('Private'),false);
  assert.notEqual(lodgingSnapshot([{id:'inn',bookingUrl:target.sourceUrl,facts:['Changed']}]).records[0].publicationHash,target.publicationHash);
+ const withMedia=lodgingSnapshot([{id:'inn',bookingUrl:target.sourceUrl,media:[{url:'https://example.net/interview'}]}]).records[0];
+ assert.deepEqual(withMedia.referenceUrls,['https://example.net/interview']);
+ assert.equal(withMedia.sourceUrls.includes('https://example.net/interview'),false);
 });
 test('lodging retains literal price, unit and taxes; fabricated values and cross-kind fields fail',()=>{
  const item=prepareReviewItem(task),d=decision(item.id);assert.equal(validateReviewResult([item],{items:[d]}).length,1);
