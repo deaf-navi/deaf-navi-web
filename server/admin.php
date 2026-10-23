@@ -86,16 +86,17 @@ function admin_action(): void {
         $u=query('SELECT * FROM users WHERE username=? AND active=1',[$username])->fetch();
         $dummy='$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.';
         if(!password_verify($password,$u['password_hash']??$dummy)||!$u)fail('IDまたはパスワードが正しくありません。',401);
-        session_regenerate_id(true);$_SESSION=['csrf'=>uid(),'user_id'=>$u['id'],'version'=>$u['version'],'issued'=>time(),'last_active'=>time()];audit('login');return;
+        admin_login_revoke();session_regenerate_id(true);$_SESSION=['csrf'=>uid(),'user_id'=>$u['id'],'version'=>$u['version'],'issued'=>time(),'last_active'=>time()];admin_login_issue($u);audit('login');return;
     }
     $u=require_user();
-    if($action==='logout') { audit('logout');$_SESSION=[];session_destroy();return; }
+    if($action==='logout') { audit('logout');admin_login_revoke();$_SESSION=[];session_destroy();$params=session_get_cookie_params();unset($params['lifetime']);$params['expires']=time()-3600;setcookie(session_name(),'', $params);return; }
     if($action==='password') {
         rate_limit('password',10,900);$old=input($_POST,'current_password',256);$new=input($_POST,'new_password',256);password_valid($new);
         if(!password_verify($old,$u['password_hash']))fail('現在のパスワードが正しくありません。',403);
         if($new!==input($_POST,'confirm_password',256)||$new===$old)fail('確認入力が一致しないか、現在と同じパスワードです。');
         query('UPDATE users SET password_hash=?,must_change=0,version=version+1 WHERE id=?',[password_hash($new,PASSWORD_DEFAULT),$u['id']]);
-        session_regenerate_id(true);$_SESSION['version']=$u['version']+1;$_SESSION['csrf']=uid();audit('password_changed');$_SESSION['flash']='パスワードを変更しました。';return;
+        admin_login_schema();query('DELETE FROM admin_login_sessions WHERE user_id=?',[$u['id']]);
+        session_regenerate_id(true);$_SESSION['version']=$u['version']+1;$_SESSION['csrf']=uid();admin_login_issue(array_merge($u,['version'=>$u['version']+1]));audit('password_changed');$_SESSION['flash']='パスワードを変更しました。';return;
     }
     if($u['must_change'])fail('最初にパスワードを変更してください。',403);
     if($action==='update_user') {admin_update_user($u);}

@@ -10,6 +10,7 @@ const CONFIDENCE = ['official'=>'公式確認済み','organizer'=>'主催者発�
 const REPORT_TYPES = ['new'=>'新しい手話カフェ','move'=>'移転','hours'=>'営業時間変更','url'=>'URL変更','rest'=>'休業','closed'=>'閉店','other'=>'その他'];
 require_once __DIR__.'/world-cafes.php';
 require_once __DIR__.'/cafe-model.php';
+require_once __DIR__.'/admin-sessions.php';
 const BASE = 'https://deafnavi.com';
 
 function data_dir(): string { return getenv('DEAFNAVI_DATA_DIR') ?: '/srv/deafnavi/shared/directory'; }
@@ -92,6 +93,7 @@ function start_session(): void {
     session_save_path(data_dir().'/sessions');
     session_set_cookie_params(['lifetime'=>0,'path'=>'/','secure'=>getenv('DEAFNAVI_LOCAL_TEST')!=='1','httponly'=>true,'samesite'=>'Lax']);
     session_start();
+    admin_login_restore();
     if(!isset($_SESSION['csrf'])) $_SESSION['csrf']=uid();
 }
 function csrf(): string { start_session(); return '<input type="hidden" name="csrf" value="'.e($_SESSION['csrf']).'">'; }
@@ -103,7 +105,12 @@ function current_user(): ?array {
     start_session();
     if(empty($_SESSION['user_id'])) return null;
     $u=query('SELECT * FROM users WHERE id=? AND active=1',[$_SESSION['user_id']])->fetch();
-    if(!$u || $u['version']!==($_SESSION['version']??null) || time()-($_SESSION['last_active']??0)>7200 || time()-($_SESSION['issued']??0)>43200) { unset($_SESSION['user_id']); return null; }
+    if(!$u || $u['version']!==($_SESSION['version']??null)) { admin_login_revoke(); return null; }
+    if(empty($_SESSION['admin_login_hash'])) {
+        // Upgrade only a still-valid pre-deployment login, never an expired one.
+        if(time()-($_SESSION['last_active']??0)>7200 || time()-($_SESSION['issued']??0)>43200) { unset($_SESSION['user_id']);return null; }
+        admin_login_issue($u);
+    }
     $_SESSION['last_active']=time(); return $u;
 }
 function require_user(bool $admin=false): array {

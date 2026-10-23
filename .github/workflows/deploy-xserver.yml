@@ -85,6 +85,7 @@ jobs:
           node test/stories.integration.mjs
           node test/directory.integration.mjs
           node test/admin-dashboard.integration.mjs
+          node test/admin-session.integration.mjs
           node test/access-logs.integration.mjs
           php test/access-quality.test.php
           node test/access-visitors.integration.mjs
