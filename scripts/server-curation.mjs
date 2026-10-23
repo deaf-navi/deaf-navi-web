@@ -10,6 +10,7 @@ import {prepareReviewItem,evidenceHash} from './curation-review-contract.mjs';
 import {createComplimentaryClient,publicTextFingerprint,validateAllowance,summarizeComplimentaryUsage} from './complimentary-text-client.mjs';
 import {runSourceDiscovery} from './source-discovery.mjs';
 import {runDiscoveryReview} from './discovery-review.mjs';
+import {runLodgingReview} from './lodging-review.mjs';
 
 export const readJson=async path=>JSON.parse(await readFile(path,'utf8'));
 export async function optionalJson(path){try{return await readJson(path);}catch(e){if(e.code==='ENOENT')return null;throw e;}}
@@ -82,7 +83,7 @@ export function updateExceptionQueue(previous,entries,now){
     resolved:[...(previous?.resolved??[]),...[...old.values()].map(x=>({...x,resolvedAt:stamp}))].slice(-500)};
 }
 
-export async function runServerCuration({stateDir,key,project,records,catalog,discoverySources=[],now=Date.now(),
+export async function runServerCuration({stateDir,key,project,records,catalog,discoverySources=[],lodgingSources=[],lodgingSnapshot={version:1,records:[]},now=Date.now(),
   comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery}){
   // The outer lock serializes timer, allowance-change and operator execution.
   const lockPath=join(stateDir,'server-curation.lock');let lock;
@@ -118,20 +119,29 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
     const queue=updateExceptionQueue(previousQueue,report.entries.filter(x=>x.status==='exception'),now);
     await privateJson(queuePath,queue);
     const discovery=await discover({stateDir,sources:discoverySources,knownUrls:records.map(x=>x.sourceUrl),now});
+    const lodgingDiscovery=await discover({stateDir,sources:lodgingSources,knownUrls:lodgingSnapshot.records.flatMap(r=>r.sourceUrls),now,weeklyLodging:true});
     const candidateReview=await runDiscoveryReview({stateDir,catalog,knownUrls:records.map(x=>x.sourceUrl),now,prepare:wrappedPrepare,
       generate:generate??createComplimentaryClient({key,project,stateDir}),
       canSubmit:item=>!comparisonOnly&&gate.ready&&report.submittedThisRun!==null&&allowed.has(publicTextFingerprint(item)),
       stopAfterError:report.submittedThisRun===null,
       approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
-    const submittedThisRun=report.submittedThisRun===null||candidateReview.submittedThisRun===null?null:report.submittedThisRun+candidateReview.submittedThisRun;
+    const lodging=await runLodgingReview({stateDir,snapshot:lodgingSnapshot,catalog,now,prepare:wrappedPrepare,
+      generate:generate??createComplimentaryClient({key,project,stateDir}),
+      canSubmit:item=>!comparisonOnly&&gate.ready&&report.submittedThisRun!==null&&candidateReview.submittedThisRun!==null&&allowed.has(publicTextFingerprint(item)),
+      stopAfterError:report.submittedThisRun===null||candidateReview.submittedThisRun===null,
+      approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
+    const submittedThisRun=[report,candidateReview,lodging].some(r=>r.submittedThisRun===null)?null:report.submittedThisRun+candidateReview.submittedThisRun+lodging.submittedThisRun;
     const result={version:1,generatedAt:new Date(now).toISOString(),status:submittedThisRun===null?'needs-attention':gate.ready?'completed':'account-check-required',
       mode:comparisonOnly?'comparison':'routine',account:gate,selected:report.selected,cached:report.cached,
       corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,
       submittedThisRun,reusedRun:report.reusedRun,comparison,
-      newOrChangedExceptions:queue.newOrChanged,discovery,
+      newOrChangedExceptions:queue.newOrChanged,discovery,lodgingDiscovery,
       candidateReview:{selected:candidateReview.selected,cached:candidateReview.cached,submittedThisRun:candidateReview.submittedThisRun,
         reusedRun:candidateReview.reusedRun,deferred:candidateReview.deferred.length,newOrChanged:candidateReview.newOrChanged,
         dispositions:candidateReview.entries.reduce((counts,x)=>{const k=x.disposition??'needs-review';counts[k]=(counts[k]??0)+1;return counts;},{})},
+      lodging:{selected:lodging.selected,cached:lodging.cached,submittedThisRun:lodging.submittedThisRun,
+        corroborated:lodging.corroborated,exceptions:lodging.exceptions,candidates:lodging.candidates,
+        deferred:lodging.deferred.length,newOrChanged:lodging.newOrChanged,reusedRun:lodging.reusedRun},
       publication:{changed:0,policy:'existing-verified-source-publishers-only',manualReviewTimestampsChanged:false}};
     await privateJson(join(stateDir,comparisonOnly?'server-curation-comparison.json':'server-curation.json'),result);
     await mkdir(join(stateDir,'server-curation-runs'),{recursive:true,mode:0o700});
@@ -149,12 +159,14 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process
     const cafes=JSON.parse(execFileSync('php',['/srv/deafnavi/current/_backend/curate-cafe-events.php','--review-export'],{encoding:'utf8',timeout:60000,maxBuffer:2_000_000}));
     const catalog=await readJson(join(stateDir,'curation-review-catalog.json'));
     const sources=await readJson(new URL('../config/curation-discovery.json',import.meta.url));
-    const result=await runServerCuration({stateDir,records:reviewRecords(events,cafes),catalog,discoverySources:sources.sources,
+    const lodgingSnapshot=await readJson('/srv/deafnavi/current/guesthouses.json');
+    const lodgingSources=await readJson(new URL('../config/lodging-discovery.json',import.meta.url));
+    const result=await runServerCuration({stateDir,records:reviewRecords(events,cafes),catalog,discoverySources:sources.sources,lodgingSources:lodgingSources.sources,lodgingSnapshot,
       key:(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim(),project:process.env.DEAFNAVI_OPENAI_PROJECT_ID,
       comparisonOnly:process.argv.includes('--compare')});
     console.log(JSON.stringify({status:result.status,selected:result.selected,cached:result.cached,exceptions:result.exceptions,
       submittedThisRun:result.submittedThisRun,newOrChangedExceptions:result.newOrChangedExceptions?.length,
-      discoveryCandidates:result.discovery?.candidates,publication:result.publication}));
+      discoveryCandidates:result.discovery?.candidates,lodging:result.lodging,publication:result.publication}));
     if(result.submittedThisRun===null)process.exitCode=1;
   }catch{
     // No source text, secret paths, credentials, PHP output or API body in journal.

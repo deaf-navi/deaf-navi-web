@@ -22,7 +22,9 @@ export function discoverLinks(html,source,knownUrls=[]){
       // This only discovers a link: the official body still decides relevance.
       const specialist=source.topicScope==='hearing-specialist'&&Array.isArray(source.candidatePathPrefixes)
         &&source.candidatePathPrefixes.some(prefix=>prefix.startsWith('/')&&url.pathname.startsWith(prefix))&&activity;
-      if(title.length<8||title.length>180||!(relevant&&activity||specialist))continue;
+      const lodging=source.topicScope==='lodging'&&/(?:ゲストハウス|民泊|民宿|宿泊|旅館|ホステル|ペンション)/.test(title)
+        &&(relevant||source.specialistVerified===true);
+      if(title.length<8||title.length>180||!(source.topicScope==='lodging'?lodging:relevant&&activity||specialist))continue;
       out.set(url.href,{id:'discovery-'+evidenceHash(url.href).slice(0,24),sourceId:source.id,sourceUrl:source.url,url:url.href,title,
         status:'unverified-candidate',publicationApproved:false,reviewedAt:null});
       if(out.size>=24)break;
@@ -30,12 +32,15 @@ export function discoverLinks(html,source,knownUrls=[]){
   }
   return [...out.values()];
 }
-export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date.now(),fetchResource=fetchThumbnailResource}){
+export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date.now(),fetchResource=fetchThumbnailResource,weeklyLodging=false}){
   if(!Array.isArray(sources)||sources.length>100||sources.some(x=>!x.id||new URL(x.url).protocol!=='https:'))throw new Error('Invalid discovery sources');
-  const day=new Date(now+9*3600000).toISOString().slice(0,10),path=join(stateDir,'curation-discovery.json');let old;
+  const jst=new Date(now+9*3600000),day=jst.toISOString().slice(0,10);
+  // Saturday week start; a missed Saturday is caught up once on the next run.
+  const week=new Date(Date.UTC(jst.getUTCFullYear(),jst.getUTCMonth(),jst.getUTCDate()-((jst.getUTCDay()+1)%7))).toISOString().slice(0,10);
+  const path=join(stateDir,weeklyLodging?'lodging-discovery.json':'curation-discovery.json');let old;
   try{old=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const signature=evidenceHash(JSON.stringify({version:2,sources,knownUrls:[...new Set(knownUrls)].sort()}));
-  if(old?.day===day&&old.signature===signature)return {reused:true,scanned:old.results.length,candidates:old.candidates.length,newCandidates:0};
+  if((weeklyLodging?old?.week===week:old?.day===day)&&old.signature===signature)return {reused:true,scanned:old.results.length,candidates:old.candidates.length,newCandidates:0};
   const candidates=new Map((old?.candidates??[]).map(x=>[x.url,x])),results=[];let newCandidates=0;
   const offset=sources.length?Math.floor(now/86400000)*8%sources.length:0;
   const selected=[...sources.slice(offset),...sources.slice(0,offset)].slice(0,8);
@@ -52,7 +57,7 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
   const pending=[...candidates.values()].filter(x=>!knownUrls.includes(x.url));
   const reviewQueue=pending.sort((a,b)=>b.firstSeenAt.localeCompare(a.firstSeenAt)||a.id.localeCompare(b.id)).map(x=>({id:x.id,url:x.url,sourceId:x.sourceId,
     reason:'official-body-and-sharing-review-required',publicationApproved:false}));
-  const report={version:1,day,signature,generatedAt:new Date(now).toISOString(),results,candidates:[...candidates.values()],newCandidates,reviewQueue,
+  const report={version:1,day,...(weeklyLodging?{week}:{}),signature,generatedAt:new Date(now).toISOString(),results,candidates:[...candidates.values()],newCandidates,reviewQueue,
     scope:'registered-source-links-only',publicationApproved:false};
   const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(report,null,2)+'\n',{mode:0o600});await rename(tmp,path);
   return {reused:false,scanned:results.length,candidates:candidates.size,newCandidates,unavailable:results.filter(x=>x.status==='unavailable').length};
