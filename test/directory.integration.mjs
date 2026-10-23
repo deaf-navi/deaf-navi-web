@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { randomBytes } from 'node:crypto';
 const root=resolve(import.meta.dirname,'..');
-const urlCheck=spawnSync('php',['test/contact-url-check.php'],{cwd:root,encoding:'utf8'});
+const urlCheck=spawnSync('php',['-n','test/contact-url-check.php'],{cwd:root,encoding:'utf8'});
 assert.equal(urlCheck.status,0,urlCheck.stdout+urlCheck.stderr);
 const dir=mkdtempSync(join(tmpdir(),'deafnavi-directory-test-'));
 const env={...process.env,DEAFNAVI_DATA_DIR:dir,DEAFNAVI_LOCAL_TEST:'1'};
