@@ -20,6 +20,13 @@ export const GUESTHOUSES = [
       ['所在地', '北海道白老郡白老町字虎杖浜48-1'],
     ],
     bookingUrl: 'https://tarako-yu.sakura.ne.jp/kojohama/reserve/',
+    media: [{
+      title: 'ろう・難聴版 職業ガイドブック_007 ゲストハウスオーナー',
+      publisher: 'キコニワ', type: 'インタビュー',
+      publishedAt: '2025-01-27', updatedAt: '2025-12-25', reviewedAt: '2026-10-23',
+      url: 'https://kikoniwa.com/work007/',
+      description: '女将が開業までの道のり、ペットと泊まれる宿にした理由、筆談や口話での接客を語っています。宿を営む人の考えや日々の仕事を知りたい方に。',
+    }],
     sources: [
       { label: '公式：スタッフ紹介', url: 'https://tarako-yu.sakura.ne.jp/kojohama/staff/' },
       { label: '公式：料金', url: 'https://tarako-yu.sakura.ne.jp/kojohama/plan/' },
@@ -38,6 +45,13 @@ export const GUESTHOUSES = [
       ['所在地', '長野県長野市東之門町400-1'],
     ],
     bookingUrl: 'https://sakanagi-gh.com/reservation/',
+    media: [{
+      title: '誰もが安心して泊まれる場所へ',
+      publisher: '長野県聴覚障がい者情報センター', type: 'センターだよりNo.65・PDF案内ページ',
+      publishedAt: '2026-06-02', reviewedAt: '2026-10-23',
+      url: 'https://www.nagano-choujou.com/2026/06/02/センターだより-65-誰もが安心して泊まれる場所へ/',
+      description: 'サカナギの館内を写真で紹介。呼び出し灯や光る火災報知器、お互いの顔が見えるカウンターなど、泊まる前に知りたい工夫が具体的にわかります。',
+    }],
     sources: [
       { label: '公式：宿について', url: 'https://sakanagi-gh.com/about/' },
       { label: '公式：客室・料金・設備', url: 'https://sakanagi-gh.com/rooms/' },
@@ -56,6 +70,13 @@ export const GUESTHOUSES = [
       ['所在地', '福井県丹生郡越前町陶の谷67-13-6'],
     ],
     bookingUrl: 'https://select-type.com/s/?s=7Qkr-WUF9hQ',
+    media: [{
+      title: '言葉の壁をこえて、誰もが楽しめる新しい宿「ライダー＆ゲストハウスCozy Sign」',
+      publisher: 'えちぜん観光ナビ（越前町観光連盟）', type: '訪問記事',
+      publishedAt: '2024-07-26', reviewedAt: '2026-10-23',
+      url: 'https://www.town-echizen.jp/locotabi-blog/detail.php?id=146',
+      description: '開業時に訪ねたライターが、客室や共有スペース、手話・筆談・タブレットを使う会話の工夫を写真付きで紹介しています。館内の様子を見たい方に。',
+    }],
     sources: [
       { label: '越前町観光連盟：運営者への取材（2024年）', url: 'https://www.town-echizen.jp/locotabi-blog/detail.php?id=146' },
     ],
