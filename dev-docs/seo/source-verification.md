@@ -103,3 +103,12 @@ site-shell/pageが読む表示用12 CSS/JSを同mainから実読し、合成詳�
 親の正式クラウドChromeが10/21 08:13 JSTに識別付きカフェURLをAX/スクリーンショットで照合。FAQ2問の展開と本文、外側「会話の方法・詳しい条件」→内側「詳しい条件を追加」を開くと「店舗タイプ」が現れる実UIまで一致。全条件一致の説明も確認。条件送信/サイト変更なし、タブ閉鎖済み。これは親から受領した本番証拠であり、子の直接HTTP・合成部品・実機音声の証拠とは区別する。
 
 GitHubでPR121 merged、head5cba95e3/CI39344105058と配布61aaa094/XServer39344289470のsuccessを再読。現在main3550e773のXServer39444100956も実deployがsuccess。後続39452099075はdeploy skippedであり、新配布と数えない。CI成功だけを本文反映の根拠にせず、今回の親QAと合わせて操作案内を完了とする。旧表示の原因・解消時点は未特定のまま保持する。
+
+## 2026-10-23 FAQから一覧へ戻る導線と店舗出典
+
+- 正本Library全文512行/19840bytesをnative readで再確認、更新日時は不変。現行AGENTS/SERVER_CURATIONと関連指示を確認。GitHub/Libraryの当日読取は成功し、過去の拒否/失敗を迂回しない。
+- main a1140019/d04e78c0のserver/cafe-ui.php domestic_cafe_pageは、結果section id=cafesを常に出力し、ページ送り/関連記事の後でcafe_discovery_guideを呼ぶ。FAQ末尾に同じ結果へ戻る導線はなかった。既存IDへfragment-onlyリンクを1件追加し、queryや検索処理を変更しない。
+- [W3C Link Purpose (In Context)](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html)を実読し、行き先が分かる「手話カフェの一覧へ戻る」を選ぶ。WCAG全項目適合や実機音声の検証とは主張しない。
+- [西尾茶屋公式Web](https://signing-wacafe-nishiochaya.com/)の火曜定休は確認できたが、適用日の根拠は未確定。LINEの月曜休みは親提供の相違報告で今回の再取得ではない。曜日/営業時間/確認日は変更0。
+- [Knot奈良企画](https://www.k-knot2018.com/p/15/)は奈良の会場と企画休止を案内し、[芦屋川店舗](https://www.k-knot2018.com/p/34/)は別の見出し/住所のページ。休止を店舗全体へ転用せず、店舗の現在の営業状態を今回新認定しない。連絡・予約・SNS収集拡張も行わない。
+- 合成HTTP/現行CSS・JSの9ケースで一覧移動/次のTab/条件と識別保持を確認。公開HTML/PHPの直接確認とは区別し、正規CI/Deployと親の公開QAを別に記録する。
