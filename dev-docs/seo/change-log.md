@@ -180,3 +180,15 @@ server/cafe-seo.phpの1行で、FAQ末尾に「手話カフェの一覧へ戻る
 次は有効なDeaf Navi専用FastCGI root/socketとPHP-FPMの関連設定を非秘密部分だけで照合する必要がある。過去のCaddy/PR30実行・cache操作の承認待ちを維持し、PR30全体の実行、設定適用、サービスreload/restart、失効は未実施。条件付きの専用resolve_root_symlink案・限定QA・復旧手順は[配信診断と承認候補](delivery-diagnosis-20261023.md)へ保存し、実設定読取と必要性の確定前に適用しない。新しい認証/権限/サービス・DNS変更は行わない。
 
 後続の通常国内生成更新 `b50b3dae2a2975d3bfa9c3347911c4d929b7779d` の[XServer39880357771](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39880357771)でも09:50:05〜06 JSTに切替前/staging/currentの同じSHA-256一致とcurrent参照先を実測。09:50:10 JSTの公開GETは再びHTTP200/no-storeでリンク不在。後続公開を待つだけでは解消を確認できていない。
+
+### Windows側の限定読取結果を台帳へ反映
+
+2026-10-23 10:14 JSTの本人「読み取りいいよ」と親の限定委任により、既存の正規接続でDeaf Naviの配信先/current実体と有効Caddy/FastCGI/PHP-FPM設定の非秘密項目を読むことは承認済み。設定変更・権限拡張・キャッシュ消去・再起動・graceful reloadは未承認のまま。PR30全体の実行やDB読取の包括承認へ広げない。
+
+親から受領したWindows担当作業 `01a16656-a59b-7156-b02f-cb79a1f90009` の報告では、本日成功したDeployのDEPLOY_HOSTと既存SSH宛先が一致した。ただし、Windows実行環境でそのホストとdeafnavi.comの通常DNS照会が双方「アクセス拒否」error 5となり、DNS回答は未取得。照会の実施時刻はこの子に未提供で、10:14 JSTの承認時刻を照会時刻へ転用しない。
+
+NXDOMAINやサーバー停止を確認した結果ではない。SSH認証・遠隔実行へ到達しておらず、SSH認証失敗とも扱わない。VPS内の有効Caddy/FastCGI/PHP-FPM設定・公開リクエストの実行ファイルは未取得。09:47/09:50の正規Deployで得たcurrent/hashの一致と、その時点の公開HTMLのリンク不在は従来の証拠として保持する。
+
+状態は公開QA未完・実行環境待ち。本人への具体的な阻害要因の通知済みは親の報告として記録する。権限拒否を迂回せず、追加の再公開・設定/キャッシュ/reload・権限変更は行わない。次は既存接続で限定読取を実行できる環境が利用可能になったときに再開し、承認済みの読取を再承認待ちへ戻さない。新規接続や資格情報を追加しない。
+
+今回の差分はdev-docs/seoの6文書だけ。プロダクト・生成物・workflowを変更せず、通常の文書PRと既存CIで保存する。追加Deployは起動しない。
