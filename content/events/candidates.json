@@ -476,8 +476,8 @@
       "state": "published_ready",
       "reason": "会場公式本文を実読。聴覚の鑑賞サポートが明記された開催回のみ追加。字幕対応と舞台手話表現、受付・ツアー通訳を区別。",
       "discoveredOn": "2026-10-18",
-      "checkedAt": "2026-10-18T00:25:35.247Z",
-      "recheckAfter": "2026-10-19T00:00:00Z",
+      "checkedAt": "2026-10-23T00:17:37.623Z",
+      "recheckAfter": "2026-10-24T00:00:00Z",
       "missing": []
     },
     {
@@ -487,8 +487,8 @@
       "state": "published_ready",
       "reason": "会場公式本文を実読。聴覚の鑑賞サポートが明記された開催回のみ追加。字幕対応と舞台手話表現、受付・ツアー通訳を区別。",
       "discoveredOn": "2026-10-18",
-      "checkedAt": "2026-10-18T00:25:35.247Z",
-      "recheckAfter": "2026-10-19T00:00:00Z",
+      "checkedAt": "2026-10-23T00:17:37.623Z",
+      "recheckAfter": "2026-10-24T00:00:00Z",
       "missing": []
     },
     {
@@ -498,8 +498,8 @@
       "state": "published_ready",
       "reason": "公式本文を再読して字幕対象2回の開催日時・申込条件が不変と確認。本文hash変更による保留から復旧。",
       "discoveredOn": "2026-10-18",
-      "checkedAt": "2026-10-19T00:03:30Z",
-      "recheckAfter": "2026-10-20T00:00:00Z",
+      "checkedAt": "2026-10-23T00:17:37.623Z",
+      "recheckAfter": "2026-10-24T00:00:00Z",
       "missing": []
     },
     {
@@ -509,8 +509,8 @@
       "state": "published_ready",
       "reason": "公式本文を再読して字幕対象2回の開催日時・申込条件が不変と確認。本文hash変更による保留から復旧。",
       "discoveredOn": "2026-10-18",
-      "checkedAt": "2026-10-19T00:03:30Z",
-      "recheckAfter": "2026-10-20T00:00:00Z",
+      "checkedAt": "2026-10-23T00:17:37.623Z",
+      "recheckAfter": "2026-10-24T00:00:00Z",
       "missing": []
     },
     {
@@ -575,9 +575,102 @@
       "missing": [
         "主催者の申込先・最新受付状況"
       ]
+    },
+    {
+      "sourceUrl": "https://www.tonancyo.org/event/2026/08/34.html",
+      "sourceName": "東京都中途失聴・難聴者協会",
+      "state": "published",
+      "reason": "非公開の新規候補から公式本文を実読。6.1 Solの抽出日・会場と照合し、無料・対象・随時来場を確認。3月の式典の申込未開始を11月展示会に流用しない。手話通訳等の提供は推測しない。",
+      "discoveredOn": "2026-10-22",
+      "checkedAt": "2026-10-23T00:23:59.582Z",
+      "recheckAfter": "2026-10-24T00:00:00Z",
+      "missing": [],
+      "eventIds": [
+        "tonancyo-kikoe-festa-2026-11-22"
+      ],
+      "evidenceUrls": [
+        "https://www.tonancyo.org/event/2026/08/34.html"
+      ]
+    },
+    {
+      "sourceUrl": "https://www.city.ota.tokyo.jp/seikatsu/fukushi/shougai/seikatsushien/volunteer/shigoto/nyumon.html",
+      "sourceName": "大田区",
+      "state": "needs_review",
+      "reason": "公式本文に11月14日14〜16時と会場を確認。10月15日頃詳細掲載予定のままで、対象・申込・料金が未発表。一般の講座から今回の情報保障を推測せず非公開で次回確認する。",
+      "discoveredOn": "2026-10-23",
+      "checkedAt": "2026-10-23T00:23:59.582Z",
+      "recheckAfter": "2026-10-26T00:00:00Z",
+      "missing": [
+        "参加対象",
+        "申込方法・受付状態",
+        "料金・個別の情報保障条件"
+      ]
     }
   ],
   "lastResearch": {
+    "checkedAt": "2026-10-23T00:17:37.623Z",
+    "newDetailedCandidates": 2,
+    "newDetailedPages": 2,
+    "windowEnd": "2026-12-04",
+    "performanceWindowEnd": "2027-04-23",
+    "publishedReady": [
+      "tonancyo-kikoe-festa-2026-11-22"
+    ],
+    "restored": [
+      "kaat-jungle-captions-2026-10-24",
+      "kaat-jungle-captions-2026-10-25",
+      "kaat-kaeru-captions-2026-11-06",
+      "kaat-kaeru-captions-2026-11-07",
+      "jinnancho-beginner-2026-10-23",
+      "jinnancho-beginner-2026-11-27",
+      "kanagawa-center-festival-2026-10-25"
+    ],
+    "scope": "国内ニュース候補は新規0・変更0。東京・神奈川と全国の告知を探索し、中国・四国9県のカフェ候補を確認。KAAT公式の本文を直接読み、字幕対応4回の日付・会場・先着申込・本編と受付/ツアー通訳の区別を照合。ホリプロは当日の直接取得が公式メンテナンス案内になったため、検索側の過去キャッシュだけで復旧しない。 48時間期限を迎えた本日の手話勉強会と日曜のセンターまつりは、公式PDF計3頁を新規取得・画像化して実目視。10/23・11/27の部屋・要約筆記・無料、10/25の日程・会場、最新本文の10/23正午締切を照合し3開催回を復旧。入場口の案内も追記。",
+    "api": {
+      "source": "server-curation.json",
+      "selected": 26,
+      "cached": 23,
+      "corroborated": 6,
+      "reviewedUnchanged": 7,
+      "exceptions": 40,
+      "submittedThisRun": 0,
+      "note": "日次CLIは既存pathが実行。新規送信0、既存抽出を利用。新規みみカフェは共有制限の確認が必要なためAPIへ本文を送らず公式画面で例外確認。 新規機器展示会は短文1件を通常モードで抽出し、日付と会場は一致。未掲載の空の比較基準との差は掲載前確認として実読で照合。",
+      "newEventSubmitted": 1,
+      "newEventExceptions": 1,
+      "newEventModel": "gpt-6.1-sol"
+    },
+    "newsReview": {
+      "counts": {
+        "uniqueInputs": 3164,
+        "alreadyPublished": 996,
+        "outsideWindow": 1778,
+        "hardExcluded": 14,
+        "duplicateOfPublished": 122,
+        "candidateDuplicates": 7,
+        "eligible": 247,
+        "queued": 40,
+        "deferred": 207
+      },
+      "new": 0,
+      "changed": 0,
+      "inspected": 0,
+      "published": 0,
+      "apiSubmitted": 0
+    },
+    "held": [
+      {
+        "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
+        "reason": "当日のHTTP200はシステムメンテナンス本文。5公演の承認日時・hashは更新せず、再開後に実本文を再確認する。",
+        "recheckAfter": "2026-10-24T00:00:00Z"
+      }
+    ],
+    "visualRechecked": [
+      "jinnancho-beginner-2026-10-23",
+      "jinnancho-beginner-2026-11-27",
+      "kanagawa-center-festival-2026-10-25"
+    ]
+  },
+  "previousResearch": {
     "checkedAt": "2026-10-22T00:21:57.241Z",
     "newDetailedCandidates": 1,
     "newDetailedPages": 2,
@@ -631,63 +724,6 @@
       "published": 0,
       "apiSubmitted": 0,
       "note": "専門団体の新しいスタッフ記事「迷惑メールに気をつけよう！」の本文を確認。個人の税還付メール体験で、聴覚・情報保障との具体的な関係を確認できず追加掲載・API送信なし。明示除外と掲載済み近似重複は再調査しない。"
-    }
-  },
-  "previousResearch": {
-    "checkedAt": "2026-10-21T00:22:36.346Z",
-    "newDetailedCandidates": 1,
-    "newDetailedPages": 1,
-    "windowEnd": "2026-12-02",
-    "performanceWindowEnd": "2027-04-21",
-    "publishedReady": [
-      "matsusaka-mini-shuwa-2026-11-14"
-    ],
-    "restored": [
-      "kaat-kaeru-captions-2026-11-06",
-      "kaat-kaeru-captions-2026-11-07"
-    ],
-    "visualRechecked": [
-      "jinnancho-beginner-2026-10-23",
-      "jinnancho-beginner-2026-11-27",
-      "kanagawa-center-festival-2026-10-25"
-    ],
-    "scope": "東京・神奈川、全国の新規告知と字幕・要約筆記・手話演劇を探索。松阪市の新規公式本文1件を詳査し掲載。神奈川の公式本文2公演とPDF2資料3開催回を再確認。日本ろう者劇団の年・曜日不一致は解消しておらず保留。岐阜の字幕公演は公式施設本文を再読し既存の受付条件不足を保持。中部9県と三重県のカフェ探索・非公開候補は別DB台帳へ記録。",
-    "api": {
-      "dailySelected": 24,
-      "cached": 24,
-      "corroborated": 4,
-      "reviewedUnchanged": 7,
-      "exceptions": 40,
-      "submitted": 0,
-      "newEventSubmitted": 1,
-      "newEventExceptions": 1,
-      "note": "松阪の新規開催は比較対象未登録のためdiffers-from-current。API抽出の開催日・会場を公式本文と実照合して掲載判断。"
-    },
-    "newsReview": {
-      "generatedAt": "2026-10-20T23:48:53.779Z",
-      "counts": {
-        "uniqueInputs": 3262,
-        "alreadyPublished": 1049,
-        "outsideWindow": 1778,
-        "hardExcluded": 17,
-        "duplicateOfPublished": 151,
-        "candidateDuplicates": 8,
-        "eligible": 259,
-        "queued": 40,
-        "deferred": 219
-      },
-      "comparison": {
-        "previousGeneratedAt": "2026-10-20T14:57:11.782Z",
-        "previousQueued": 40,
-        "retained": 40,
-        "new": 0,
-        "changed": 0,
-        "unchanged": 40
-      },
-      "inspected": 2,
-      "published": 0,
-      "apiSubmitted": 0,
-      "note": "未変更候補40件のうち専門団体上位2本文を確認。10月16日の過去告知とスタッフの猫の私的雑記で追加掲載なし。個人の健康記述は共有APIへ送信しない。明示除外・重複を維持。"
     }
   }
 }
