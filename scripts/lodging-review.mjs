@@ -78,7 +78,12 @@ export async function runLodgingReview({stateDir,snapshot,catalog,now=Date.now()
   const old=new Map((previous?.entries??[]).map(e=>[e.recordId,e]));
   // At most two four-item batches, sharing the existing daily token/request budget.
   // Oldest first so new candidates do not permanently starve existing sources.
-  const ordered=plan.selected.sort((a,b)=>(Date.parse(old.get(a.recordId)?.machineCheckedAt)||0)-(Date.parse(old.get(b.recordId)?.machineCheckedAt)||0)||a.recordId.localeCompare(b.recordId));
+  // Apply a newly inspected resolution once before rotating older entries. Record
+  // attempts too, so an invalid resolution cannot starve the rotation forever.
+  const reviewHash=t=>evidenceHash(JSON.stringify(t.evidenceReview??null));
+  const pendingResolution=t=>t.evidenceReview&&old.get(t.recordId)?.evidenceReviewHash!==reviewHash(t)?1:0;
+  const ordered=plan.selected.sort((a,b)=>pendingResolution(b)-pendingResolution(a)
+    ||(Date.parse(old.get(a.recordId)?.machineCheckedAt)||0)-(Date.parse(old.get(b.recordId)?.machineCheckedAt)||0)||a.recordId.localeCompare(b.recordId));
   const selected=ordered.slice(0,8),entries=[...plan.entries],sourceCache=new Map();
   let submitted=0,cached=0,failed=stopAfterError;
   for(let offset=0;offset<selected.length;offset+=4){
@@ -112,6 +117,7 @@ export async function runLodgingReview({stateDir,snapshot,catalog,now=Date.now()
   const stamp=new Date(now).toISOString(),newOrChanged=[];
   for(const e of entries){
     const prior=old.get(e.recordId);
+    const target=selected.find(t=>t.recordId===e.recordId);if(target)e.evidenceReviewHash=reviewHash(target);
     e.fingerprint=evidenceHash(JSON.stringify([e.status,e.disposition,e.reasons,e.differences,e.sourceUrl,e.decision??null]));
     if(e.fingerprint!==prior?.fingerprint)newOrChanged.push(e.recordId);
     e.firstSeenAt=prior?.firstSeenAt??stamp;e.changedAt=prior?.fingerprint===e.fingerprint?prior.changedAt:stamp;e.machineCheckedAt=stamp;

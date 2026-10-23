@@ -144,3 +144,14 @@ test('rejected extraction records safe diagnostic codes but no rejected response
  const split=partitionReviewResult([item],{items:[bad]});
  assert.equal(split.rejectedItems[0].validationCode,'lodging-value-not-literal');assert.equal(JSON.stringify(split.rejectedItems).includes('無料'),false);
 });
+
+test('new inspected evidence is applied within the eight-target cap without starving the next rotation',async t=>{
+ const opts=await fixture(t),item=prepareReviewItem(task);
+ const reviewed={...target,evidenceReview:{reason:'api-evidence-invalid',inputId:item.id,documentHash:task.sourceDocumentHash,publicationHash:target.publicationHash,checkedAt:new Date(now-500).toISOString(),decision:decision(item.id)}};
+ opts.catalog={...catalog,lodgingTargets:[reviewed],lodgingCandidates:Array.from({length:8},(_,i)=>({...target,recordId:'candidate-'+i,sourceUrl:'https://example.org/candidate/'+i}))};
+ await writeFile(join(opts.stateDir,'curation-review-cache.json'),JSON.stringify({version:'curation-review-v1',entries:{['gpt-6.1-sol:'+item.id]:{rejected:'api-evidence-invalid',model:'gpt-6.1-sol'}}}));
+ await writeFile(join(opts.stateDir,'lodging-review.json'),JSON.stringify({entries:[...opts.catalog.lodgingCandidates.map(x=>({recordId:x.recordId,machineCheckedAt:new Date(now-10000).toISOString()})),{recordId:target.recordId,machineCheckedAt:new Date(now-100).toISOString()}]}));
+ opts.canSubmit=()=>false;opts.generate=async()=>{throw Error('must not send');};
+ const first=await runLodgingReview(opts);assert.equal(first.selected,8);assert.equal(first.evidenceReviewed,1);assert.equal(first.deferred.length,1);assert.notEqual(first.deferred[0].recordId,target.recordId);
+ const second=await runLodgingReview({...opts,now:now+86400000});assert.equal(second.entries.find(e=>e.recordId===first.deferred[0].recordId).deferred,undefined);
+});
