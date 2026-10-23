@@ -141,3 +141,11 @@ PHP原本の期待hashを確認したが本番hashは未取得。通常Deployへ
 検索計測の値は増やさず、公開反映は未完のまま維持する。GSC/GA4・自然検索クリック/表示/CTR/順位・organic session・CWVは未取得。
 
 後続の通常国内生成更新 `b50b3dae2a2975d3bfa9c3347911c4d929b7779d` の[XServer39880357771](https://github.com/deaf-navi/deaf-navi-web/actions/runs/39880357771)でも09:50:05〜06 JSTに切替前/staging/currentの同じSHA-256一致とcurrent参照先を実測。09:50:10 JSTの公開GETは再びHTTP200/no-storeでリンク不在。後続公開を待つだけでは解消を確認できていない。
+
+### 限定読取は承認済み、実行環境待ち
+
+親から受領したWindows担当作業 `01a16656-a59b-7156-b02f-cb79a1f90009` の報告では、本日成功したDeployのDEPLOY_HOSTと既存SSH宛先が一致した。ただし、Windows実行環境でそのホストとdeafnavi.comの通常DNS照会が双方「アクセス拒否」error 5となり、DNS回答は未取得。照会の実施時刻はこの子に未提供で、10:14 JSTの承認時刻を照会時刻へ転用しない。
+
+NXDOMAINやサーバー停止を確認した結果ではない。SSH認証・遠隔実行へ到達しておらず、SSH認証失敗とも扱わない。VPS内の有効Caddy/FastCGI/PHP-FPM設定・公開リクエストの実行ファイルは未取得。09:47/09:50の正規Deployで得たcurrent/hashの一致と、その時点の公開HTMLのリンク不在は従来の証拠として保持する。
+
+公開QA未完・実行環境待ちを維持する。今回、新たなVPSのcurrent/hash・有効設定や公開表示は取得していない。DNS回答/SSH実行の未取得を成功・失敗件数や検索指標へ換算しない。GSC/GA4・自然検索クリック/表示/CTR/順位・organic session・CWVは引き続き未取得。追加再公開は行わない。
