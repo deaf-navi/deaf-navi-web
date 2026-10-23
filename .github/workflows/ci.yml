@@ -37,6 +37,7 @@ jobs:
         run: |
           npm run test:stories
           npm run test:cafes
+          node test/admin-session.integration.mjs
           node test/engagement.integration.mjs
           php test/cafe-event-recovery.php
           node test/cafe-event-recovery.integration.mjs
