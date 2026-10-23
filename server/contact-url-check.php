@@ -2,7 +2,18 @@
 declare(strict_types=1);
 
 // Offline screening only: never fetch a submitted URL or send private text to a third party.
-const CONTACT_URL_CHECK_VERSION = 1;
+const CONTACT_URL_CHECK_VERSION = 2;
+// Shared extraction/defanging rules cover bare domains, IDNs and IPv4 as well as schemes.
+const CONTACT_URL_PATTERN = '~(?:\b[a-z][a-z0-9+.-]*://|\b(?:javascript|data|vbscript|file):|(?<!:)//|\bwww\.)[^\s<>"\x27「」『』（）【】、。]+|(?<![@\w.-])(?:(?:[\p{L}\p{N}](?:[\p{L}\p{N}-]*[\p{L}\p{N}])?\.)+[\p{L}]{2,63}|(?:[0-9]{1,3}\.){3}[0-9]{1,3})(?![\w@.-])(?::[0-9]{1,5})?(?:[/?#][^\s<>"\x27「」『』（）【】、。]*)?~iu';
+
+function contact_mail_text(string $text):string {
+    $text=html_entity_decode(str_replace(["\r\n","\r"],"\n",$text),ENT_QUOTES|ENT_HTML5,'UTF-8');
+    // Keep paragraphs, but do not allow controls or bidi overrides to disguise the text.
+    $text=preg_replace('/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f\x{202a}-\x{202e}\x{2066}-\x{2069}]/u','',$text)??'';
+    return preg_replace_callback(CONTACT_URL_PATTERN,fn($m)=>str_replace(
+        [':','.','/','\\','@','．','｡'],['[:]','[.]','／','＼','[@]','[.]','[.]'],$m[0]
+    ),$text)??'';
+}
 function contact_url_check(array $payload): array {
     $text=[];
     foreach(['name','private_message','description','notes','source_url','official_url','instagram_url','x_url','facebook_url','submitter','address','event_schedule','business_hours'] as $key) {
@@ -10,7 +21,7 @@ function contact_url_check(array $payload): array {
     }
     $text=html_entity_decode(implode("\n",$text),ENT_QUOTES|ENT_HTML5,'UTF-8');
     // Include plain domains and non-web schemes; email addresses are not links to visit.
-    preg_match_all('~(?:\b[a-z][a-z0-9+.-]*://|\b(?:javascript|data|vbscript|file):|(?<!:)//|\bwww\.)[^\s<>"\x27「」『』（）【】、。]+|(?<![@\w.-])(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,63}(?![\w@.-])(?:/[^\s<>"\x27「」『』（）【】、。]*)?~iu',$text,$matches);
+    preg_match_all(CONTACT_URL_PATTERN,$text,$matches);
     $urls=array_values(array_unique(array_map(fn($s)=>rtrim($s,'.;,!?)]}'),$matches[0])));
     $limited=count($urls)>50;$items=[];$counts=['high'=>0,'review'=>0,'no_indicator'=>0];
     foreach(array_slice($urls,0,50) as $url){
@@ -44,7 +55,16 @@ function contact_url_check(array $payload): array {
 }
 function contact_url_summary(array $check):string {
     $c=$check['counts'];
-    return 'URL自動検査：注意度高 '.$c['high'].'件／要確認 '.$c['review'].'件／形式上の注意点なし '.$c['no_indicator'].'件'.($check['truncated']?'（50件を超えた分は未検査）':'')."\n外部サイトの安全性・マルウェア・転送先は未確認です。投稿されたURLはメールに載せていません。";
+    return 'URL自動検査：注意度高 '.$c['high'].'件／要確認 '.$c['review'].'件／形式上の注意点なし '.$c['no_indicator'].'件'.($check['truncated']?'（50件を超えた分は未検査）':'')."\n外部サイトの安全性・マルウェア・転送先は未確認です。";
+}
+function contact_url_mail_report(array $check):string {
+    $lines=[contact_url_summary($check)];
+    foreach($check['items'] as $i=>$item){
+        $label=['high'=>'注意度高','review'=>'要確認','no_indicator'=>'形式上の注意点なし'][$item['risk']];
+        $lines[]="\n".($i+1).'. '.$label.'：'.contact_mail_text($item['url']);
+        if($item['reasons'])$lines[]='理由：'.implode('／',$item['reasons']);
+    }
+    return implode("\n",$lines);
 }
 function contact_url_admin(array $payload):string {
     // Recompute so redaction and rule changes cannot leave stale URL copies visible.
