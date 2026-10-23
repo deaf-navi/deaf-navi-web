@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/contact-url-check.php';
 /** Optional private SMTP adapter. BASP21 is Windows COM; never execute it on Linux.
  * Credentials live in shared/directory/mail.php, not in Git or the public root.
  * Only the configured administrator recipient is used; submitter email is never a recipient.
@@ -26,6 +27,14 @@ function smtp_send(array $cfg,string $to,string $subject,string $body,string $me
         $dispatched=true;smtp_write($s,$headers.rtrim(chunk_split(base64_encode($body),76,"\r\n"),"\r\n")."\r\n.");smtp_read($s,[250]);
     }finally{fclose($s);}
 }
+function submission_notification(string $id,array $p):array {
+    if(!preg_match('/^[a-f0-9]{32}$/D',$id))throw new RuntimeException('Invalid notification ID');
+    $contact=($p['form_kind']??'')==='cafe_contact';
+    $kind=$contact?(($p['contact_scope']??'cafe')==='site'?'サイトへのお問い合わせ':'手話カフェへのお問い合わせ'):'手話カフェ情報提供';
+    // The full payload and supplied links never leave the authenticated review screen.
+    $check=contact_url_check($p);
+    return ['subject'=>'Deaf Navi：'.$kind.'を受け付けました','body'=>"新しい受付を管理画面に保存しました。\n".contact_url_summary($check)."\n管理画面で内容をご確認ください。\n".BASE.'/admin/?view=submission&id='.$id];
+}
 function send_outbox(): void {
     $path=data_dir().'/mail.php';$to=setting('notification_email');
     if(!is_file($path)||$to===''){echo "MAIL_NOT_CONFIGURED\n";return;}
@@ -37,8 +46,10 @@ function send_outbox(): void {
         query("UPDATE outbox SET status='sending',attempts=attempts+1,updated_at=? WHERE id=?",[now(),$r['id']]);
         $dispatched=false;
         try {
-            // No contact information in notifications; full submission stays behind login.
-            smtp_send($cfg,$to,'Deaf Navi：手話カフェ情報提供を受け付けました',"新しい情報提供を確認中として保存しました。\n管理画面で内容を確認してください。\n".BASE.'/admin/?view=submission&id='.$id,$id,$dispatched);
+            $payload=query('SELECT payload FROM submissions WHERE id=?',[$id])->fetchColumn();
+            if($payload===false)throw new RuntimeException('Submission missing');
+            $message=submission_notification($id,json_decode($payload,true,512,JSON_THROW_ON_ERROR));
+            smtp_send($cfg,$to,$message['subject'],$message['body'],$id,$dispatched);
             query("UPDATE outbox SET status='sent',last_error=NULL,updated_at=? WHERE id=?",[now(),$r['id']]);
         }catch(Throwable $ex){query('UPDATE outbox SET status=?,last_error=?,updated_at=? WHERE id=?',[$dispatched?'uncertain':'failed',$dispatched?'Delivery result unknown':'Transport failed; configuration check required',now(),$r['id']]);}
     }

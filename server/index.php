@@ -68,6 +68,7 @@ try {
         $p['category']=choice(input($_POST,'category',20),['cafe'=>1,'starbucks'=>1,'correction'=>1,'closure'=>1,'other'=>1]);
         $p['report_type']=choice(input($_POST,'report_type',20),REPORT_TYPES);
         }
+        $p['url_screening']=contact_url_check($p);
         $duplicate=!is_cafe_contact($p)&&(bool)duplicate_records($p);$id=uid();$stamp=now();
         db()->exec('BEGIN IMMEDIATE');
         try {
@@ -88,7 +89,7 @@ try {
         } else {
             $values=['category'=>input($_GET,'category',20)?:'cafe']+(input($_GET,'scope',20)==='overseas'?['country_code'=>'']:[]);
             $rid=input($_GET,'record',64);if($rid!==''){ $place=expanded(record($rid));if(!publicly_visible($place))fail('情報が見つかりません。',404);foreach(['name','country_code','country_name','prefecture','city','address','official_url','instagram_url'] as $key)$values[$key]=$place[$key]??'';$values['notes']='対象ページ: '.BASE.record_path($place);$values['report_type']='other';}
-            $body=input($_GET,'form',20)==='contact'?cafe_contact_form(input($_GET,'scope',20)==='overseas',true):(input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form($values));
+            $body=input($_GET,'form',20)==='contact'?cafe_contact_form(input($_GET,'scope',20)==='overseas',true,input($_GET,'scope',20)==='site'):(input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form($values));
         }
         echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
     } elseif($path==='/connect/sign-cafe/') {

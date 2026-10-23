@@ -1,0 +1,20 @@
+/* Scoped presentation for the shared directory form on the static about page. */
+[data-contact-form] { margin-block: 24px; }
+[data-contact-form] .dn-submit { padding: 20px; border: 1px solid var(--border-subtle, #c9d5df); border-radius: 6px; }
+[data-contact-form] h2 { font-size: 1.2rem; }
+[data-contact-form] summary, [data-contact-form] button { cursor: pointer; padding: 12px 16px; min-height: 44px; font: inherit; font-weight: 700; }
+[data-contact-form] summary { width: fit-content; }
+[data-contact-form] button { background: #08695c; color: #fff; border: 1px solid #08695c; border-radius: 5px; }
+[data-contact-form] .dn-form { margin-block: 20px; }
+[data-contact-form] .dn-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+[data-contact-form] .dn-field { display: grid; gap: 6px; min-width: 0; font-weight: 700; }
+[data-contact-form] .dn-field:has(textarea) { grid-column: 1 / -1; }
+[data-contact-form] .dn-field :is(input, textarea, select) { box-sizing: border-box; width: 100%; min-width: 0; padding: 10px 12px; font: inherit; font-weight: 400; color: var(--text-primary, #17201d); background: var(--bg-elevated, #fff); border: 1px solid #95afa2; border-radius: 5px; }
+[data-contact-form] textarea { min-height: 180px; resize: vertical; }
+[data-contact-form] .dn-check { display: flex; align-items: flex-start; gap: 10px; margin-block: 24px; }
+[data-contact-form] .dn-check input { flex-shrink: 0; margin-top: 6px; width: 20px; height: 20px; }
+[data-contact-form] :focus-visible { outline: 3px solid #198bba; outline-offset: 3px; }
+[data-contact-form] button:hover { background: #075e57; }
+[data-contact-form] summary:hover { text-decoration: underline; }
+[data-contact-form] .dn-honey { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+@media (max-width: 650px) { [data-contact-form] .dn-form-grid { grid-template-columns: 1fr; } [data-contact-form] .dn-submit { padding: 16px; } }

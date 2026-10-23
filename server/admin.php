@@ -23,7 +23,7 @@ function admin_page(): string {
     } elseif($view==='settings') {
         require_user(true);$configured=is_file(data_dir().'/mail.php');
         $counts=query('SELECT status,count(*) AS count FROM outbox GROUP BY status')->fetchAll();
-        $body.='<h2>情報提供の通知先</h2><p>投稿は通知メールの成否にかかわらず保存されます。送信先メールアドレスは公開されません。</p><p class="dn-notice">メール送信設定：'.($configured?'サーバー設定ファイルあり（到達確認は別途必要）':'未設定 — 投稿は管理画面で確認できます。通知は未送信で保管されます。').'</p><form method="post">'.csrf().'<input type="hidden" name="action" value="settings">'.field('notification_email','転送先メールアドレス',setting('notification_email'),'email').'<p><button>通知先を保存</button></p></form><h3>通知状況</h3><ul>';
+        $body.='<h2>情報提供の通知先</h2><p>お問い合わせ・情報提供は通知メールの成否にかかわらず保存されます。通知メールには受付内容の確認リンクとURL検査の要約を記載し、投稿本文・連絡先・投稿されたURLは載せません。送信先メールアドレスは公開されません。</p><p class="dn-notice">メール送信設定：'.($configured?'サーバー設定ファイルあり（到達確認は別途必要）':'未設定 — 投稿は管理画面で確認できます。通知は未送信で保管されます。').'</p><form method="post">'.csrf().'<input type="hidden" name="action" value="settings">'.field('notification_email','転送先メールアドレス',setting('notification_email'),'email').'<p><button>通知先を保存</button></p></form><h3>通知状況</h3><ul>';
         foreach($counts as $c)$body.='<li>'.e(['pending'=>'未送信','sending'=>'送信処理中','sent'=>'メールサーバー受付済み','failed'=>'送信失敗','uncertain'=>'結果不明・再送前に確認'][$c['status']]??$c['status']).'：'.(int)$c['count'].'件</li>';
         $body.='</ul><p>送信先・送信方式の設定後、未送信通知は送信処理で処理されます。結果不明の通知は自動再送しません。</p>';
         foreach(query("SELECT id,status FROM outbox WHERE status IN ('failed','uncertain') ORDER BY id DESC LIMIT 50")->fetchAll() as $mail) {
@@ -68,7 +68,7 @@ function admin_page(): string {
         $labels=record_fields('cafe')+record_fields('event')+['store_name'=>'開催店舗名','store_id'=>'既存店舗ID','report_state'=>'投稿内容の種別','category'=>'情報カテゴリ','report_type'=>'情報種別','source_url'=>'情報元URL','notes'=>'補足','submitter'=>'投稿者（非公開）','email'=>'連絡先メール（非公開）'];
         if(($p['category']??'')==='starbucks'&&empty($p['store_id']))$body.='<dt>新規店舗</dt><dd><a href="/admin/?view=edit&kind=store&submission='.e($id).'">先に開催店舗を登録（投稿状態は確認中のまま保存）</a></dd>';
         foreach($p as $k=>$v) if(is_string($v)&&$v!=='')$body.='<dt>'.e($labels[$k]??$k).'</dt><dd>'.nl2br(e($v)).'</dd>';
-        $body.='</dl><h3>重複候補（名称・住所・公式URL・Instagramで比較）</h3><ul>';
+        $body.='</dl>'.contact_url_admin($p).'<h3>重複候補（名称・住所・公式URL・Instagramで比較）</h3><ul>';
         foreach(duplicate_records($p) as $r)$body.='<li>'.e($r['name']).' — <a href="/admin/?view=edit&kind='.e($r['kind']).'&id='.e($r['id']).'&submission='.e($id).'">この情報に反映</a></li>';
         $body.='</ul><div class="dn-actions"><a class="dn-cta" href="/admin/?view=edit&kind='.($p['category']==='starbucks'?'event':'cafe').'&submission='.e($id).'">確認して正式データへ反映</a></div><form method="post">'.csrf().'<input type="hidden" name="action" value="review"><input type="hidden" name="id" value="'.e($id).'"><input type="hidden" name="revision" value="'.(int)$s['revision'].'">'.select_field('status','投稿状態',['pending'=>'確認中','rejected'=>'不採用'],$s['status']).'<button class="secondary">投稿状態のみ変更</button></form><form method="post" class="dn-danger">'.csrf().'<input type="hidden" name="action" value="redact_submission"><input type="hidden" name="id" value="'.e($id).'"><input type="hidden" name="revision" value="'.(int)$s['revision'].'"><label><input type="checkbox" name="confirm" value="1" required> 投稿者名・メール・補足を削除します（元に戻せません）</label><p><button class="secondary">投稿者情報を削除</button></p></form>';
         }
@@ -134,7 +134,7 @@ function admin_action(): void {
         $states=is_cafe_contact(json_decode($row['payload'],true))?['pending'=>1,'approved'=>1,'rejected'=>1]:['pending'=>1,'rejected'=>1];$state=choice(input($_POST,'status',20),$states);
         $s=query('UPDATE submissions SET status=?,revision=revision+1,updated_at=? WHERE id=? AND revision=?',[$state,now(),$id,(int)input($_POST,'revision',10)]);if($s->rowCount()!==1)fail('投稿が既に変更されています。',409);audit('submission_'.$state,$id);
     } elseif($action==='redact_submission') {
-        if(input($_POST,'confirm',1)!=='1')fail('削除の確認が必要です。');$id=input($_POST,'id',64);$s=query('SELECT payload FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);unset($p['email'],$p['submitter'],$p['notes']);if(is_cafe_contact($p))unset($p['private_message'],$p['name'],$p['source_url']);
+        if(input($_POST,'confirm',1)!=='1')fail('削除の確認が必要です。');$id=input($_POST,'id',64);$s=query('SELECT payload FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);unset($p['email'],$p['submitter'],$p['notes'],$p['url_screening']);if(is_cafe_contact($p))unset($p['private_message'],$p['name'],$p['source_url'],$p['url_screening']);
         $s=query('UPDATE submissions SET payload=?,revision=revision+1,updated_at=? WHERE id=? AND revision=?',[json($p),now(),$id,(int)input($_POST,'revision',10)]);if($s->rowCount()!==1)fail('投稿が既に変更されています。',409);audit('submission_contact_redacted',$id);
     } else fail('不明な操作です。');
     $_SESSION['flash']='保存しました。';
