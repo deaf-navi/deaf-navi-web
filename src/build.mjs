@@ -31,6 +31,7 @@ import { renderEventsPage } from './templates/events.mjs';
 import { validEvent } from './lib/events.mjs';
 import { renderEventDetail, renderRetiredEvent } from './templates/event-detail.mjs';
 import { renderGuideTopics } from './templates/guide-topics.mjs';
+import { renderGuesthousesPage } from './templates/guesthouses.mjs';
 import { renderNewsSections } from './templates/news-sections.mjs';
 import { ENTRY_REDIRECTS, renderEntryRedirect, renderEntryRedirectsCaddy } from './templates/entry-redirect.mjs';
 import { renderConnectPages, renderNotFoundPage } from './templates/connect.mjs';
@@ -193,6 +194,8 @@ async function main() {
     await writeDoc(page.file, page.html);
   }
   for(const page of renderGuideTopics())await writeDoc(page.file,page.html);
+  const guesthousesPage = renderGuesthousesPage();
+  await writeDoc(guesthousesPage.file, guesthousesPage.html);
   if (!IS_DEV) for (const page of renderNewsSections(data)) await writeDoc(page.file, page.html);
   for(const redirect of ENTRY_REDIRECTS)await writeDoc(redirect.from.slice(1)+'index.html',renderEntryRedirect(redirect));
   await copyFile(join(ROOT,'config','entry-redirects.json'),join(ROOT,'server','entry-redirects.json'));

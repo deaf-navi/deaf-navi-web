@@ -73,6 +73,13 @@ try {
     ok(r.status===204&&count()===beforeEvent+2,'general event page beacon accepted');
     r=await post({path:'/events.html'},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'});
     ok(r.status===204&&count()===beforeEvent+2,'general event verification remains excluded');
+    const beforeStay=count();
+    r=await post({path:'/guide/guesthouses/'},{'User-Agent':ua+' GuesthouseRoute'});
+    ok(r.status===204&&count()===beforeStay+1,'guesthouse guide beacon accepted');
+    ok(run("echo access_content('/guide/guesthouses/');").stdout==='guide','guesthouse visits counted as guides');
+    r=await post({path:'/guide/guesthouses/index.html'},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'});
+    ok(r.status===204&&count()===beforeStay+1,'guesthouse verification remains excluded');
+    ok((await post({path:'/guide/nonexistent/'})).status===400,'unlisted guide path still rejected');
 } finally {server.kill();}
 // Browser script payload never includes search values, cookies, referrer or page text.
 const source=readFileSync(join(root,'src/access-visit.js'),'utf8');
