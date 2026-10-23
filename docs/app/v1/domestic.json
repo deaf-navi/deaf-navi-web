@@ -4,9 +4,9 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-23T14:12:02Z",
-  "sourceGeneratedAt": "2026-10-23T14:12:02Z",
-  "count": 468,
+  "generatedAt": "2026-10-23T14:15:26Z",
+  "sourceGeneratedAt": "2026-10-23T14:15:26Z",
+  "count": 469,
   "language": "ja-JP",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
@@ -118,16 +118,16 @@
   },
   "quality": {
     "version": "publication-quality-v10",
-    "rawCount": 3669,
-    "scoredCount": 3669,
-    "filteredCount": 1474,
+    "rawCount": 3563,
+    "scoredCount": 3563,
+    "filteredCount": 1412,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
-    "extraVisibleCount": 68,
+    "extraVisibleCount": 69,
     "extraVisibleCategoryCounts": {
-      "relay": 68
+      "relay": 69
     },
-    "overflowCount": 554,
+    "overflowCount": 557,
     "minScore": 5,
     "categoryCountsVisible": {
       "event": 32,
@@ -140,7 +140,7 @@
       "technology": 15,
       "medical": 24,
       "policy": 29,
-      "relay": 68,
+      "relay": 69,
       "education": 9
     }
   },
@@ -156,14 +156,14 @@
       "technology": 15,
       "medical": 24,
       "policy": 29,
-      "relay": 68,
+      "relay": 69,
       "education": 9
     },
     "byLegacyCategory": {
       "culture": 70,
       "general": 120,
       "local": 54,
-      "policy": 158,
+      "policy": 159,
       "sports": 33,
       "medical": 24,
       "education": 9
@@ -8189,6 +8189,24 @@
       "discoveryMethod": "google-news",
       "region": "kanto",
       "prefecture": "神奈川県"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5oLXJFMEpobGtJWUVGN2lIbmFneUhuNjM0S2VPTXVWMVZKZi1WdEMtZWdLZEJsUlB0Zk13bXhYcnNGc3p1dkZUT1RNMG8tVUdSeEZ5a0ZMM0s5ZUFKZmJUb3U5Yw?oc=5",
+      "stableId": "domestic_5187dbf355f0b0a3701b",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5oLXJFMEpobGtJWUVGN2lIbmFneUhuNjM0S2VPTXVWMVZKZi1WdEMtZWdLZEJsUlB0Zk13bXhYcnNGc3p1dkZUT1RNMG8tVUdSeEZ5a0ZMM0s5ZUFKZmJUb3U5Yw?oc=5",
+      "title": "手話リンクを導入しました",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-08-03T07:00:00Z",
+      "sourceName": "川崎市",
+      "sourceURL": "https://www.city.kawasaki.jp",
+      "sourceUrl": "https://www.city.kawasaki.jp",
+      "sourceType": "rss",
+      "category": "relay",
+      "categoryLabel": "電話リレー・ヨメテル",
+      "legacyCategory": "policy",
+      "sourceTier": "official",
+      "discoveryMethod": "google-news"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9RNGlXalFzcmRVaEk4RzJoSFhjOTBNbUFnSWVFRXNfNkx5U3c0a25OQlBIem5aZklzc2lzdElZQXVGbjN0SGVTWG5XM1c4YnJVZTk4cnNvOXIxYjRpOXRfY1R3V09oR0U?oc=5",
