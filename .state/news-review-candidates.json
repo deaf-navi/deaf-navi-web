@@ -1,29 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-24T08:03:15.227Z",
+  "generatedAt": "2026-10-24T13:16:40.125Z",
   "counts": {
-    "uniqueInputs": 3255,
-    "alreadyPublished": 1010,
-    "outsideWindow": 1839,
-    "hardExcluded": 13,
-    "duplicateOfPublished": 137,
-    "candidateDuplicates": 3,
-    "eligible": 253,
+    "uniqueInputs": 3014,
+    "alreadyPublished": 937,
+    "outsideWindow": 1692,
+    "hardExcluded": 14,
+    "duplicateOfPublished": 117,
+    "candidateDuplicates": 4,
+    "eligible": 250,
     "queued": 40,
-    "deferred": 213
+    "deferred": 210
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
     "low-value-page": 10,
+    "incidental-organization-mention": 1,
     "market-report": 2
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-24T00:32:37.505Z",
+    "previousGeneratedAt": "2026-10-24T08:03:15.227Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -34,7 +35,7 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/22/143008",
