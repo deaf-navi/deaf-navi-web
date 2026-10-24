@@ -434,7 +434,7 @@
     "sourceUrl": "https://zarela2009.wixsite.com/za-rela/next-stage",
     "status": "announced",
     "verificationMode": "visual",
-    "reviewedAt": "2026-10-22T00:21:57.241Z",
+    "reviewedAt": "2026-10-24T00:22:47.802Z",
     "sourceHash": "879fdc24091ad24c430f4037adf7797a42700042d7039e921ddaaea505666e92",
     "evidence": [
       "砂川公演 2026/10/25",
@@ -830,13 +830,14 @@
     "sourceName": "ホリプロステージ",
     "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
     "status": "announced",
-    "reviewedAt": "2026-10-17T22:57:25.485Z",
+    "reviewedAt": "2026-10-24T00:22:47.802Z",
     "sourceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
     "evidence": [
       "2027年1月30日(土)12:30",
       "新宿文化センター 大ホール",
       "日本語字幕(音情報・話者名入り)",
-      "3営業日前の17:00"
+      "3営業日前の17:00",
+      "2027年1月30日(土)17:30"
     ],
     "communication": [
       {
@@ -865,7 +866,7 @@
     "sourceName": "ホリプロステージ",
     "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
     "status": "announced",
-    "reviewedAt": "2026-10-17T22:57:25.485Z",
+    "reviewedAt": "2026-10-24T00:22:47.802Z",
     "sourceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
     "evidence": [
       "2027年2月2日(火)18:30",
@@ -896,7 +897,7 @@
     "sourceName": "ホリプロステージ",
     "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
     "status": "announced",
-    "reviewedAt": "2026-10-17T22:57:25.485Z",
+    "reviewedAt": "2026-10-24T00:22:47.802Z",
     "sourceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
     "evidence": [
       "2027年2月3日(水)13:30",
@@ -931,7 +932,7 @@
     "sourceName": "ホリプロステージ",
     "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
     "status": "announced",
-    "reviewedAt": "2026-10-17T22:57:25.485Z",
+    "reviewedAt": "2026-10-24T00:22:47.802Z",
     "sourceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
     "evidence": [
       "2027年2月6日(土)12:30",
@@ -962,7 +963,7 @@
     "sourceName": "ホリプロステージ",
     "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
     "status": "announced",
-    "reviewedAt": "2026-10-17T22:57:25.485Z",
+    "reviewedAt": "2026-10-24T00:22:47.802Z",
     "sourceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
     "evidence": [
       "2027年2月7日(日)12:30",
@@ -1363,5 +1364,43 @@
     "communication": [],
     "thumbnailPolicy": "omit",
     "thumbnailReviewNote": "同一ページに2027年3月の式典もあり、共通画像を11月展示会単独のサムネイルと誤認させないため省略。"
+  },
+  {
+    "id": "musashino-deaf-lecture-2026-11-21",
+    "title": "第2回 聴覚障害者教養講座「デフリンピックをとおして共生社会を創る」",
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-21",
+    "prefecture": "東京都",
+    "venue": "武蔵野プレイス4Fフォーラム",
+    "kind": "course",
+    "time": "18:30〜20:30（受付18:00）",
+    "organizer": "公益財団法人武蔵野文化生涯学習事業団",
+    "fee": "無料",
+    "target": "どなたでも参加可。申込不要、当日直接会場へ。定員100名・先着順。",
+    "description": "東京2025デフリンピックの運営を担った立場から、ろう当事者の大会運営と共生社会について話す講座。武蔵野市聴覚障害者協会・武蔵野市教育委員会が共催します。",
+    "sourceName": "武蔵野プレイス（主催者）",
+    "sourceUrl": "https://www.musashino.or.jp/place/1001585/1010111.html",
+    "status": "announced",
+    "reviewedAt": "2026-10-24T00:22:47.802Z",
+    "sourceHash": "73837c32e935005f9a711a8387154dd4aba36e45d02d03a11f1164e9bdb2ccf3",
+    "evidence": [
+      "第2回 聴覚障害者教養講座",
+      "2026年11月21日(土曜日)",
+      "武蔵野プレイス4Fフォーラム",
+      "手話通訳と自動音声字幕",
+      "100名(先着順)"
+    ],
+    "communication": [
+      {
+        "method": "interpretation",
+        "detail": "講座に手話通訳がつきます。"
+      },
+      {
+        "method": "captions",
+        "detail": "講座に自動音声字幕がつきます。"
+      }
+    ],
+    "thumbnailPolicy": "omit",
+    "thumbnailReviewNote": "告知画像は転載せず、本文と公式案内へのリンクで掲載。"
   }
 ]
