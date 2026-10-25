@@ -8,6 +8,7 @@ putenv('DEAFNAVI_ACCESS_LOG_DIR='.$dir.'/logs'); putenv('DEAFNAVI_VISITOR_DIR='.
 require __DIR__.'/../server/core.php';
 require __DIR__.'/../server/admin-dashboard.php';
 require __DIR__.'/../server/access-logs.php';
+require_once __DIR__.'/../server/access-analytics-view.php';
 $n=0;
 function check(bool $value,string $message):void {global $n;if(!$value)throw new RuntimeException($message);$n++;}
 function row(string $path,float $ts,int $status=200,array $extra=[]):string {
@@ -40,6 +41,19 @@ $error=access_report(array_replace($o,['mode'=>'requests','content'=>'about','st
 check($error['total']===1&&$error['errors']===1,'content filter does not discard failed requests');
 check(access_delta(2,0,true)['percent']===null&&access_delta(2,0,true)['difference']===2,'zero denominator is not infinity');
 check(access_delta(2,1,false)['difference']===null,'incomplete comparisons remain unknown');
+$legacy=$r;$legacy['channels']=array_fill_keys(array_keys(ACCESS_CHANNELS),0);$legacy['channels']['unrecorded']=$legacy['total'];
+check(!access_referrer_coverage($legacy)['available'],'all legacy referrers are unmeasured, not zero');
+$mixed=$r;$mixed['channels']['search']--;$mixed['channels']['unrecorded']=1;
+check(access_referrer_coverage($mixed)['partial']&&access_referrer_coverage($mixed)['recorded']===3,'partial referrer coverage counts known records');
+$priorLegacy=$r;$priorLegacy['previous']=$legacy;
+$sourceHtml=access_sources($o,$priorLegacy,[],['available'=>true,'from'=>'2026-10-19']);
+check(str_contains($sourceHtml,'未取得の記録があるため')&&!str_contains($sourceHtml,'前期間0件'),'legacy previous period cannot fabricate referrer growth');
+$legacyCsv=access_csv_rows($o,$legacy,['available'=>false]);
+$searchCsv=array_values(array_filter($legacyCsv,fn($v)=>$v[0]==='request_referrers'&&$v[1]==='search'))[0];
+check($searchCsv[2]==='UNKNOWN'&&$searchCsv[6]==='unavailable','CSV referrers before measurement are UNKNOWN');
+$mixedCsv=access_csv_rows($o,$mixed,['available'=>false]);
+$searchCsv=array_values(array_filter($mixedCsv,fn($v)=>$v[0]==='request_referrers'&&$v[1]==='search'))[0];
+check($searchCsv[2]==='1'&&$searchCsv[6]==='referrer_records_partial','CSV marks counts from partial referrer records');
 check(access_report(array_replace($o,['q'=>'/','match'=>'exact']))['total']===1,'exact root filter does not match every page');
 check(access_report(array_replace($o,['q'=>'/news/','match'=>'prefix']))['total']===2,'prefix path filter matches only its subtree');
 check(access_referrer('evilgoogle.com')['channel']==='referral','domain suffix boundary');

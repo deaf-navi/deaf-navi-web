@@ -60,10 +60,15 @@ function access_overview(array $o,array $r,array $uu,array $base,array $cmp):str
     return $out.access_table_end(!$r['paths'],4).'</section>';
 }
 function access_sources(array $o,array $r,array $base,array $cmp):string {
+    $rc=access_referrer_coverage($r);$pc=access_referrer_coverage($r['previous']??[]);
+    $comparable=$cmp['available']&&!$rc['partial']&&!$pc['partial'];
     $out='<p class="aa-scope">選択中の全条件を適用。各ページのリクエストに付いた参照元です。初回の流入経路・訪問者数・検索キーワードではありません。</p>';
     $out.=access_section('参照元の区分','参照元なしには、直接入力・ブックマーク・アプリ・ブラウザーによる省略などが混在します。すべてを「直接流入」とは扱いません。');
+    $out.='<p class="aa-note">参照元の記録あり：選択期間 '.number_format($rc['recorded']).' / '.number_format($rc['total']).' 件';
+    if($cmp['from']!==null)$out.='、前期間 '.number_format($pc['recorded']).' / '.number_format($pc['total']).' 件';
+    $out.='。'.($rc['partial']?'区分ごとの件数は記録がある範囲の値です。':'').(($rc['partial']||$pc['partial'])?'未取得の記録があるため、参照元の増減は表示しません。':'').'</p>';
     $out.=access_table('参照元の区分',['区分','件数','前期間との差']);
-    foreach(ACCESS_CHANNELS as $k=>$label)$out.='<tr><th scope="row">'.e($label).'</th><td class="aa-number">'.access_number($r['channels'][$k]).'</td><td class="aa-number">'.access_change($r['channels'][$k],$r['previous']['channels'][$k]??null,$cmp['available']).'</td></tr>';
+    foreach(ACCESS_CHANNELS as $k=>$label)$out.='<tr><th scope="row">'.e($label).'</th><td class="aa-number">'.access_number($k==='unrecorded'||$rc['available']?$r['channels'][$k]:null).'</td><td class="aa-number">'.access_change($r['channels'][$k],$r['previous']['channels'][$k]??null,$comparable).'</td></tr>';
     $out.=access_table_end(false,3).'</section>';
     $out.=access_section('外部の参照元ドメイン（上位50件）','URLの全文や検索語は取得していません。ドメインの分類は既知の検索・SNSドメインとの一致によります。');
     $out.=access_table('外部の参照元',['ドメイン','区分','件数']);
