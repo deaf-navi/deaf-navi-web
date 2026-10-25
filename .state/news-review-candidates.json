@@ -1,30 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-25T08:20:13.685Z",
+  "generatedAt": "2026-10-25T12:04:07.129Z",
   "counts": {
-    "uniqueInputs": 3195,
-    "alreadyPublished": 989,
-    "outsideWindow": 1813,
-    "hardExcluded": 15,
-    "duplicateOfPublished": 132,
-    "candidateDuplicates": 3,
-    "eligible": 243,
+    "uniqueInputs": 3097,
+    "alreadyPublished": 975,
+    "outsideWindow": 1743,
+    "hardExcluded": 17,
+    "duplicateOfPublished": 131,
+    "candidateDuplicates": 4,
+    "eligible": 227,
     "queued": 40,
-    "deferred": 203
+    "deferred": 187
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 10,
-    "incidental-organization-mention": 1,
-    "market-report": 3
+    "market-report": 4,
+    "low-value-page": 11,
+    "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-25T07:05:26.119Z",
+    "previousGeneratedAt": "2026-10-25T08:20:13.685Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -228,14 +228,14 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/ryuji/",
-      "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
-      "publishedAt": "2026-10-16T03:00:01.000Z",
+      "sourceUrl": "https://udcast.net/workslist/uruwashi/",
+      "articleHash": "8b3840f2a0beed49f28250ea80c3dac0f9de13f38bc5d637aede674a4a7406d2",
+      "publishedAt": "2026-10-16T06:55:06.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "new"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/kidsmeetstudiooowa/",
@@ -248,9 +248,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/hutashika/",
-      "articleHash": "174bc6c1c7145d56a0736f2e5b7f1626d043972ce2c8a0b778ea02ad939d83a8",
-      "publishedAt": "2026-10-15T09:19:28.000Z",
+      "sourceUrl": "https://udcast.net/workslist/ryuji/",
+      "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
+      "publishedAt": "2026-10-16T03:00:01.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -268,9 +268,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/odorunew/",
-      "articleHash": "1647a6ce647c9f0923101b936720a617baff1c6f3ca38a80e5dc08f6b971304c",
-      "publishedAt": "2026-10-15T04:10:57.000Z",
+      "sourceUrl": "https://udcast.net/workslist/hutashika/",
+      "articleHash": "174bc6c1c7145d56a0736f2e5b7f1626d043972ce2c8a0b778ea02ad939d83a8",
+      "publishedAt": "2026-10-15T09:19:28.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -288,9 +288,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
-      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
-      "publishedAt": "2026-10-14T08:54:18.000Z",
+      "sourceUrl": "https://udcast.net/workslist/odorunew/",
+      "articleHash": "1647a6ce647c9f0923101b936720a617baff1c6f3ca38a80e5dc08f6b971304c",
+      "publishedAt": "2026-10-15T04:10:57.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -308,9 +308,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/mienaimusume_joeikai/",
-      "articleHash": "8e97f794f7d3636a1da1f22ea9ca78341dd8abd7f2b4831dc52200f332d473b4",
-      "publishedAt": "2026-10-08T06:40:08.000Z",
+      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
+      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
+      "publishedAt": "2026-10-14T08:54:18.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -328,9 +328,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/cozytown45/",
-      "articleHash": "9e5fdcc3155edd85375cf55dca341f915b7746de94138ec4ab27a281f005afd1",
-      "publishedAt": "2026-10-06T02:02:12.000Z",
+      "sourceUrl": "https://udcast.net/workslist/mienaimusume_joeikai/",
+      "articleHash": "8e97f794f7d3636a1da1f22ea9ca78341dd8abd7f2b4831dc52200f332d473b4",
+      "publishedAt": "2026-10-08T06:40:08.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -348,9 +348,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/cozytown44/",
-      "articleHash": "b1e0fdd5f98c85809d0a96cecf973f762137a011922f2ea3f314d5bb72040a53",
-      "publishedAt": "2026-10-06T02:01:23.000Z",
+      "sourceUrl": "https://udcast.net/workslist/cozytown45/",
+      "articleHash": "9e5fdcc3155edd85375cf55dca341f915b7746de94138ec4ab27a281f005afd1",
+      "publishedAt": "2026-10-06T02:02:12.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -363,6 +363,16 @@
       "publishedAt": "2026-09-24T02:30:00.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/cozytown44/",
+      "articleHash": "b1e0fdd5f98c85809d0a96cecf973f762137a011922f2ea3f314d5bb72040a53",
+      "publishedAt": "2026-10-06T02:01:23.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -411,16 +421,6 @@
       "sourceUrl": "https://co-coco.jp/news/bridge_sumida/",
       "articleHash": "090b88797c4db9b7616ced9a89dcc5c78c7b306a1f27d87c88edaf77f2ca7197",
       "publishedAt": "2026-09-07T22:30:15.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/products/orihime/",
-      "articleHash": "0963451c7c44a5fea4641ad4310d064b8a006bcc98b4667db1e01029e210c3a3",
-      "publishedAt": "2026-09-02T04:30:35.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
