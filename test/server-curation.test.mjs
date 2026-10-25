@@ -7,6 +7,7 @@ import {accountGate,reuseReviewedText,runServerCuration,updateExceptionQueue} fr
 import {keyFingerprint,publicTextFingerprint} from '../scripts/complimentary-text-client.mjs';
 import {evidenceHash,prepareReviewItem} from '../scripts/curation-review-contract.mjs';
 import {discoverLinks,runSourceDiscovery} from '../scripts/source-discovery.mjs';
+import {planCurationAttention} from '../scripts/curation-attention.mjs';
 const now=Date.parse('2026-10-21T01:00:00Z'),key='sk-proj-fixture-not-a-secret',project='proj_fixture';
 const text='手話交流会を開催します。開催日 2026年11月14日。会場 市民会館。';
 const target={kind:'event',recordId:'fixture-event',title:'手話交流会',sourceUrl:'https://example.org/event',sourceMode:'html',officialVerified:true,
@@ -83,4 +84,63 @@ test('daily discovery is bounded and not fetched again after account approval',a
  const options={...opts,sources,fetchResource:async()=>{calls++;return {status:200,headers:{'content-type':'text/html'},text:'<a href="/event/1">手話カフェ交流会を開催</a>'};}};
  const first=await runSourceDiscovery(options);assert.equal(first.scanned,8);assert.equal(calls,8);assert.equal(first.candidates,1);
  assert.equal((await runSourceDiscovery(options)).reused,true);assert.equal(calls,8);
+});
+
+test('visual deadlines remain due without changing the API exception, and clear after a real review',()=>{
+ const visual={...record,sourceMode:'visual',verifiedAt:new Date(now).toISOString()};
+ const original=JSON.stringify(visual);
+ const fresh=planCurationAttention([visual],null,now);assert.equal(fresh.counts.due,0);
+ const expiring=planCurationAttention([visual],fresh,now+24*3600000);
+ assert.equal(expiring.items[0].reason,'visual-review-due-before-next-run');assert.equal(expiring.newOrChanged.length,1);
+ const same=planCurationAttention([visual],expiring,now+25*3600000);
+ assert.equal(same.due.length,1);assert.equal(same.newOrChanged.length,0);
+ const expired=planCurationAttention([visual],same,now+48*3600000);
+ assert.equal(expired.items[0].reason,'freshness-expired');assert.equal(expired.newOrChanged.length,1);
+ const recovered=planCurationAttention([{...visual,verifiedAt:new Date(now+48*3600000).toISOString()}],expired,now+48*3600000);
+ assert.equal(recovered.due.length,0);assert.deepEqual(recovered.cleared,['event:fixture-event']);
+ assert.equal(JSON.stringify(visual),original);assert.equal(recovered.manualReviewTimestampsChanged,false);
+});
+test('attention separates undated/far-future/past records and groups source reads while keeping every occurrence',()=>{
+ const v={...record,sourceMode:'visual',verifiedAt:new Date(now-48*3600000).toISOString()};
+ const r=planCurationAttention([v,{...v,recordId:'near',baseline:{startDate:'2026-10-22'}},
+  {...v,recordId:'past',baseline:{startDate:'2026-10-20'}},
+  {...v,recordId:'far',baseline:{startDate:'2027-03-04'}},
+  {...v,recordId:'undated',baseline:{startDate:''}},
+  {...v,recordId:'private',publication:'draft'},
+  {...v,recordId:'theater',eventKind:'theater',baseline:{startDate:'2027-03-04'}}],null,now);
+ assert.equal(r.items.length,3);assert.equal(r.items[0].recordId,'near');assert.equal(r.sourceGroups.length,1);
+ assert.equal(r.sourceGroups[0].recordKeys.length,3);assert.equal(r.undated.length,1);assert.equal(r.outsideHorizon.length,2);
+ const jst=planCurationAttention([{...v,baseline:{startDate:'2026-10-21'}}],null,Date.parse('2026-10-21T15:00:00Z'));
+ assert.equal(jst.items.length,0);
+});
+test('HTML freshness, future dates and revision mismatches cannot be mistaken for a fresh approval',()=>{
+ const r=planCurationAttention([{...record,recordId:'future',verifiedAt:new Date(now+1000).toISOString()},
+  {...record,recordId:'old',verifiedAt:new Date(now-48*3600000).toISOString()},
+  {...record,recordId:'revision',kind:'cafe',revision:2,sourceRecordRevision:1},
+  {...record,recordId:'fresh',verifiedAt:new Date(now-36*3600000).toISOString()}],null,now);
+ assert.deepEqual(r.items.map(x=>x.recordId).sort(),['future','old','revision']);
+ assert.ok(r.items.every(x=>x.action==='check-source-change-or-recovery'));
+});
+test('attention is recomputed even when same-day visual API results are reused',async t=>{
+ const opts=await fixture(t),v={...record,sourceMode:'visual',verifiedAt:new Date(now-47*3600000).toISOString()};
+ const options={...opts,records:[v],catalog:{version:1,targets:[]},prepare,discover,generate:async()=>assert.fail('no API')};
+ const first=await runServerCuration(options);assert.equal(first.attention.expiringVisual,1);
+ const later=await runServerCuration({...options,now:now+3600000});assert.equal(later.attention.expired,1);assert.equal(later.reusedRun,true);
+ assert.deepEqual(later.newOrChangedExceptions,[]);
+});
+test('discovery recognizes cafe announcement wording and exact specialist series without approving general events',()=>{
+ const source={id:'cafe',url:'https://example.org/',discoveryGroup:'cafe',candidatePathPrefixes:['/news/'],cafeTitleTerms:['みみカフェ']};
+ const found=discoverLinks('<a href=/news/1>11月 本好きさんの手話べり会</a><a href="/news/2">11月 ろう者とおしゃべり</a><a href="/news/3">保護者向け みみカフェ 11月</a><a href="/other/4">保護者向け みみカフェ 11月</a><a href="/news/5">11月の一般読書会</a>',source);
+ assert.deepEqual(found.map(x=>x.url),['https://example.org/news/1','https://example.org/news/2','https://example.org/news/3']);
+ assert.ok(found.every(x=>x.publicationApproved===false&&x.reviewedAt===null));
+});
+test('discovery reserves cafe coverage, rotates fairly and retains eight-fetch limit after same-day input changes',async t=>{
+ const opts=await fixture(t),sources=Array.from({length:16},(_,i)=>({id:'s'+i,url:'https://example.org/'+i,...(i<8?{discoveryGroup:'cafe'}:{})}));
+ const calls=[];const options={...opts,sources,fetchResource:async url=>{calls.push(url);return {status:200,headers:{'content-type':'text/html'},text:''};}};
+ await runSourceDiscovery(options);assert.equal(calls.length,8);
+ const first=JSON.parse(await readFile(join(opts.stateDir,'curation-discovery.json')));
+ assert.equal(first.results.filter(x=>x.discoveryGroup==='cafe').length,4);
+ await runSourceDiscovery({...options,knownUrls:['https://example.org/new-publication']});assert.equal(calls.length,8);
+ await runSourceDiscovery({...options,sources:[...sources,{id:'new',url:'https://example.org/new'}]});assert.equal(calls.length,8);
+ await runSourceDiscovery({...options,now:now+86400000});assert.equal(calls.length,16);assert.equal(new Set(calls).size,16);
 });
