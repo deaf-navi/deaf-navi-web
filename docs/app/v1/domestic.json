@@ -4,9 +4,9 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-25T07:05:51Z",
-  "sourceGeneratedAt": "2026-10-25T07:05:51Z",
-  "count": 467,
+  "generatedAt": "2026-10-25T08:20:37Z",
+  "sourceGeneratedAt": "2026-10-25T08:20:37Z",
+  "count": 468,
   "language": "ja-JP",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
@@ -118,16 +118,16 @@
   },
   "quality": {
     "version": "publication-quality-v10",
-    "rawCount": 3620,
-    "scoredCount": 3620,
-    "filteredCount": 1409,
+    "rawCount": 3676,
+    "scoredCount": 3676,
+    "filteredCount": 1436,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
-    "extraVisibleCount": 67,
+    "extraVisibleCount": 68,
     "extraVisibleCategoryCounts": {
-      "relay": 67
+      "relay": 68
     },
-    "overflowCount": 530,
+    "overflowCount": 521,
     "minScore": 5,
     "categoryCountsVisible": {
       "medical": 25,
@@ -141,7 +141,7 @@
       "safety": 23,
       "sports": 34,
       "technology": 15,
-      "relay": 67
+      "relay": 68
     }
   },
   "counts": {
@@ -157,14 +157,14 @@
       "safety": 23,
       "sports": 34,
       "technology": 15,
-      "relay": 67
+      "relay": 68
     },
     "byLegacyCategory": {
       "medical": 25,
       "local": 55,
       "general": 122,
       "culture": 62,
-      "policy": 158,
+      "policy": 159,
       "education": 11,
       "sports": 34
     }
@@ -666,6 +666,24 @@
       "categoryLabel": "医療",
       "legacyCategory": "medical",
       "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INWxteUZhc0MxYUhsNVUxX3ZNbFRMQW40TzNRdW1LNDhFYlJBVGtWV1d5NTJTalItU0RQT0tZM3pEWXotek9yN2R1U3RFM21RTnVXN1BmNlR6X2ZRcmZkbHdMblZSdw?oc=5",
+      "stableId": "domestic_384b89efdf374752b62c",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INWxteUZhc0MxYUhsNVUxX3ZNbFRMQW40TzNRdW1LNDhFYlJBVGtWV1d5NTJTalItU0RQT0tZM3pEWXotek9yN2R1U3RFM21RTnVXN1BmNlR6X2ZRcmZkbHdMblZSdw?oc=5",
+      "title": "電話リレーサービス「手話リンク」始めました！",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-22T07:00:00Z",
+      "sourceName": "亀岡市",
+      "sourceURL": "https://www.city.kameoka.kyoto.jp",
+      "sourceUrl": "https://www.city.kameoka.kyoto.jp",
+      "sourceType": "rss",
+      "category": "relay",
+      "categoryLabel": "電話リレー・ヨメテル",
+      "legacyCategory": "policy",
+      "sourceTier": "official",
       "discoveryMethod": "google-news"
     },
     {
@@ -5011,6 +5029,24 @@
       "discoveryMethod": "google-news"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
+      "stableId": "domestic_2e82457486e78634ed04",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
+      "title": "大宮ろう学園が優勝 手話パフォーマンス甲子園",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-04T07:00:00Z",
+      "sourceName": "琉球新報デジタル",
+      "sourceURL": "https://ryukyushimpo.jp",
+      "sourceUrl": "https://ryukyushimpo.jp",
+      "sourceType": "rss",
+      "category": "culture",
+      "categoryLabel": "文化・芸能",
+      "legacyCategory": "culture",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1OUmRydjFmXzRxMnJoV3dsT1o0OElmM2ZTcjNqaVBrSDdHNWVBWjNWYzZBdGI0MC1wVjhUbW95eWtFN3BsazFJeGgyUmd0ZWdiLV9GWmdLNEpFUGh2V0tv?oc=5",
       "stableId": "domestic_d93eb7dbe072da5b5a5f",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1OUmRydjFmXzRxMnJoV3dsT1o0OElmM2ZTcjNqaVBrSDdHNWVBWjNWYzZBdGI0MC1wVjhUbW95eWtFN3BsazFJeGgyUmd0ZWdiLV9GWmdLNEpFUGh2V0tv?oc=5",
@@ -5029,24 +5065,6 @@
       "discoveryMethod": "google-news",
       "region": "chugoku_shikoku",
       "prefecture": "高知県"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
-      "stableId": "domestic_2e82457486e78634ed04",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
-      "title": "大宮ろう学園が優勝 手話パフォーマンス甲子園",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-04T07:00:00Z",
-      "sourceName": "琉球新報デジタル",
-      "sourceURL": "https://ryukyushimpo.jp",
-      "sourceUrl": "https://ryukyushimpo.jp",
-      "sourceType": "rss",
-      "category": "culture",
-      "categoryLabel": "文化・芸能",
-      "legacyCategory": "culture",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0tbFFHS3VoOFN2S29kNllLYlpMUnBXaHJHLW81ZFFkRDF6RGwtUzlsQ01hRnliNDhmaGJrTW5vMElmRkJJZkRHTlR2VUxUYWNLX3lLUlBB?oc=5",
@@ -6085,24 +6103,6 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
-      "stableId": "domestic_0cee655738808b01f0c8",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
-      "title": "台湾人と日本人が手話でつながる ろう映画監督の思い",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-01T07:00:00Z",
-      "sourceName": "あらたにす",
-      "sourceURL": "https://allatanys.jp",
-      "sourceUrl": "https://allatanys.jp",
-      "sourceType": "rss",
-      "category": "culture",
-      "categoryLabel": "文化・芸能",
-      "legacyCategory": "culture",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1HdzdWdDlSdG9mX1JGMVNCNlRHZjlVd29iSVZpa1UyOS0xWFBNVlZ4YnNkYkF2NXVYbWQ1SkFIdHpRM19idWt6OGREb3AzU19qVFVEendOelptTHpETWd6bDc0bFJFRWNXaFVmNzdLOFVZaTA?oc=5",
       "stableId": "domestic_d3b1056ca30b79fed057",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1HdzdWdDlSdG9mX1JGMVNCNlRHZjlVd29iSVZpa1UyOS0xWFBNVlZ4YnNkYkF2NXVYbWQ1SkFIdHpRM19idWt6OGREb3AzU19qVFVEendOelptTHpETWd6bDc0bFJFRWNXaFVmNzdLOFVZaTA?oc=5",
@@ -6121,6 +6121,24 @@
       "discoveryMethod": "google-news",
       "region": "hokkaido_tohoku",
       "prefecture": "宮城県"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
+      "stableId": "domestic_0cee655738808b01f0c8",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
+      "title": "台湾人と日本人が手話でつながる ろう映画監督の思い",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-01T07:00:00Z",
+      "sourceName": "あらたにす",
+      "sourceURL": "https://allatanys.jp",
+      "sourceUrl": "https://allatanys.jp",
+      "sourceType": "rss",
+      "category": "culture",
+      "categoryLabel": "文化・芸能",
+      "legacyCategory": "culture",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1seXN3d2dBcFA5bGIyZDlIdEg2OV9lU3M5OFZkdFMya1lrclpfQVJfWF93a3hITU4xbUVNRVE3eVR6N25jcWcxN0ZRNkVHM0p0WENNMg?oc=5",
@@ -8297,24 +8315,6 @@
       "prefecture": "三重県"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INWxteUZhc0MxYUhsNVUxX3ZNbFRMQW40TzNRdW1LNDhFYlJBVGtWV1d5NTJTalItU0RQT0tZM3pEWXotek9yN2R1U3RFM21RTnVXN1BmNlR6X2ZRcmZkbHdMblZSdw?oc=5",
-      "stableId": "domestic_384b89efdf374752b62c",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INWxteUZhc0MxYUhsNVUxX3ZNbFRMQW40TzNRdW1LNDhFYlJBVGtWV1d5NTJTalItU0RQT0tZM3pEWXotek9yN2R1U3RFM21RTnVXN1BmNlR6X2ZRcmZkbHdMblZSdw?oc=5",
-      "title": "電話リレーサービス「手話リンク」始めました！",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-07-13T06:06:44Z",
-      "sourceName": "亀岡市",
-      "sourceURL": "https://www.city.kameoka.kyoto.jp",
-      "sourceUrl": "https://www.city.kameoka.kyoto.jp",
-      "sourceType": "rss",
-      "category": "relay",
-      "categoryLabel": "電話リレー・ヨメテル",
-      "legacyCategory": "policy",
-      "sourceTier": "official",
-      "discoveryMethod": "google-news"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE50ZGNlTjNhODdWQXRFeTNTa0NrbmFpUm16RHNpd1ZpRDQ3R19qekZPSndmNWQ5NE9TZnpNcC03VmdYN0FpTXJKdHIwa3Vqc0RuVXZHNDM0ekNoRnJmZ1dPWXBqVFFZNms?oc=5",
       "stableId": "domestic_fc5bccdf0ae84ddc53f7",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE50ZGNlTjNhODdWQXRFeTNTa0NrbmFpUm16RHNpd1ZpRDQ3R19qekZPSndmNWQ5NE9TZnpNcC03VmdYN0FpTXJKdHIwa3Vqc0RuVXZHNDM0ekNoRnJmZ1dPWXBqVFFZNms?oc=5",
@@ -8333,6 +8333,24 @@
       "discoveryMethod": "google-news",
       "region": "kanto",
       "prefecture": "東京都"
+    },
+    {
+      "id": "https://www.zennancho.or.jp/6626/",
+      "stableId": "domestic_9e3a29bdf019e7dcfb83",
+      "url": "https://www.zennancho.or.jp/6626/",
+      "title": "日本財団電話リレーサービス「ヨメテル」に関するアンケートのお願い",
+      "summary": "日本財団電話リレーサービス様より「ヨメテル」に関するアンケートの協力依頼が入りました。 「ヨメテル」の利用促進、サービスの向上のため、皆様からのご意見を賜りたく、アンケートへのご協力をお願いいたします。今後とも「ヨメテル … Continue reading \"日本財団電話リレーサービス「ヨメテル」に関するアンケートのお願い\"",
+      "language": "ja-JP",
+      "publishedAt": "2026-07-09T07:05:08Z",
+      "sourceName": "全日本難聴者・中途失聴者団体連合会",
+      "sourceURL": "https://www.zennancho.or.jp/",
+      "sourceUrl": "https://www.zennancho.or.jp/",
+      "sourceType": "rss",
+      "category": "relay",
+      "categoryLabel": "電話リレー・ヨメテル",
+      "legacyCategory": "policy",
+      "sourceTier": "official",
+      "discoveryMethod": "direct-feed"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1sYkpwMjV4alVQbmFNSGJyWG5qNjdFWWNaTXBnTXo0eEQ3RjVnaDVCbXMxR2lxSzFUeVVLVWxsM1cydWx0T3FkUTdBek9DODhpb25BczFB?oc=5",
