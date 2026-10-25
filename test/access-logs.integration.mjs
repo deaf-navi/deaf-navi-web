@@ -75,7 +75,7 @@ try {
     writeFileSync(join(logsDir,'access.log'),fixture.slice(4).map(JSON.stringify).join('\n')+'\n');
     const before = readFileSync(join(logsDir,'access.log'),'utf8');
     const a = report({});
-    ok(a.total===11 && a.pages===5 && a.not_found===1 && a.errors===1,'all files, JST boundaries, method and status counts');
+    ok(a.total===11 && a.pages===3 && a.not_found===1 && a.errors===1,'all files, JST boundaries; public views use the same eligible GET 200/304 definition');
     ok(a.days[day]===11 && a.rows[0].path==='/<img src=x onerror=alert(1)>/','daily and reverse order');
     ok(!JSON.stringify(a).includes('PRIVATE_MARKER'),'query removed again by reader');
     ok(report({group:'data'}).total===1 && report({group:'assets'}).total===1 && report({group:'management'}).total===1,'content classes');
@@ -92,7 +92,7 @@ try {
     ok(clean.raw_total===11 && Object.values(clean.excluded).reduce((a,b)=>a+b,0)===8,'every excluded request has exactly one reason');
     ok(report({mode:'views',content:'world_jp',client:'human'}).total===1,'content filter applies to rows and chart totals');
     r=await admin('/admin/?view=access'+query);
-    ok(r.text.includes('コンテンツ別アクセス') && r.text.includes('World-Original') && r.text.includes('手話カフェ 海外') && r.text.includes('集計から除外したアクセス'),'eight-content overview and exclusion reasons visible');
+    ok(r.text.includes('コンテンツ別アクセス') && r.text.includes('World-Original') && r.text.includes('手話カフェ 海外') && r.text.includes('計測品質'),'content overview and quality drilldown visible');
     ok((await admin('/admin/?view=access&content=invalid')).status===400 && (await admin('/admin/?view=access&mode=invalid')).status===400,'invalid content and mode rejected');
     const compact=report({summary:true,client:'human'});
     ok(compact.total===report({client:'human'}).total && compact.errors===a.errors && compact.rows.length===5 && compact.rows.every(p=>p.group==='pages' && p.method==='GET'),'summary totals match human detail and recent list excludes assets and HEAD');
@@ -101,17 +101,28 @@ try {
     ok(summary.includes('今日のアクセス') && summary.includes('<strong>3<small>件') && summary.includes('client=human') && summary.includes('from='+day) && summary.includes('to='+day),'dashboard always summarizes today without admin traffic and links to matching detail period');
     ok(!summary.includes('&lt;img') && !summary.includes('<img') && !summary.includes('PRIVATE_MARKER'),'summary escapes log content and omits query data');
     r=await admin('/admin/?view=access'+query);
-    ok(r.text.includes('value="views" selected') && r.text.includes('Codex・AI・bot・自動操作・管理画面・分類不明は除外'),'normal detail excludes non-human traffic by default');
-    ok((r.text.match(/<svg /g)||[]).length===1 && r.text.includes('アクセスの推移') && r.text.includes('未取得のためグラフ'),'request chart available while missing UU stays unavailable');
-    ok(r.text.includes('直近6か月</a>') && r.text.includes('tab=requests') && r.text.includes('日別・件'),'chart period and day drilldown available');
+    ok(r.text.includes('value="views" selected') && r.text.includes('ページ閲覧数') && !r.text.includes('選択条件のリクエスト'),'normal detail defaults to eligible page views');
+    ok((r.text.match(/<svg /g)||[]).length===2 && r.text.includes('アクセスの推移') && r.text.includes('aa-unknown">未取得'),'current/prior charts and missing UU remain distinct');
+    ok(r.text.includes('昨日まで') && r.text.includes('tab=requests') && r.text.includes('日別・件'),'completed-period shortcuts and day drilldown available');
+    ok(r.text.includes('今日を含む期間は集計途中') && r.text.includes('比較不可'),'today never presents a completed-period percentage');
     const series=run(['-r',`require '${core}';require '${access}';echo json(access_chart_series(['from'=>'2026-09-06','to'=>'2026-09-08'],['2026-09-07'=>2],(float)strtotime('2026-09-07T00:00:00+09:00')));`]);
     ok(JSON.stringify(JSON.parse(series.stdout))===JSON.stringify({'2026-09-06':null,'2026-09-07':2,'2026-09-08':0}),'chart distinguishes not collected, positive counts and zero');
-    for (const tab of ['paths','days','requests','unique']) {
+    for (const tab of ['paths','days','requests','unique','sources','actions','quality']) {
         r = await admin('/admin/?view=access'+query+'&tab='+tab);
         ok(r.status===200 && r.text.includes('アクセスログ'),'view '+tab);
         ok(!r.text.includes('PRIVATE_MARKER') && !r.text.includes('<img src=x onerror='),'secret and markup absent');
         ok(r.headers.get('cache-control').includes('no-store') && r.headers.get('x-robots-tag').includes('noindex'),'cache and index protection');
     }
+    ok((await editor('/admin/?view=access&export=csv'+query)).status===403,'editor cannot export aggregate CSV');
+    r=await anon('/admin/?view=access&export=csv'+query);
+    ok(!r.headers.get('content-type').includes('text/csv'),'anonymous cannot export');
+    r=await admin('/admin/?view=access&export=csv'+query);
+    ok(r.status===200 && r.headers.get('content-type').includes('text/csv') && r.headers.get('content-disposition').includes('.csv') && r.headers.get('cache-control').includes('no-store'),'admin export is attachment and private');
+    ok(r.text.includes('conditions,group,all') && r.text.includes('not_comparable') && r.text.includes('date_only_no_direction') && !r.text.includes('PRIVATE_MARKER') && !r.text.includes('remote_ip') && !r.text.includes('Mozilla'),'CSV includes scope and uncertainty but no raw identity');
+    r=await admin('/admin/?view=access&tab=actions'+query+'&content=cafe&q=sample');
+    ok(r.text.includes('サイト全体・日付条件のみ') && r.text.includes('移動の方向・順番') && r.text.includes('クリック率には換算しません'),'action and co-reading scope is explicit');
+    r=await admin('/admin/?view=access&tab=quality'+query);
+    ok(r.text.includes('集計から除外したアクセス') && r.text.includes('形式不明の記録') && r.text.includes('読みものの計測漏れ'),'quality evidence and known coverage gap visible');
     r = await admin('/admin/?view=access'+query+'&q=%3Cscript%3E');
     ok(r.text.includes('&lt;script&gt;') && !r.text.includes('<script>'),'filter escaped');
     for(const bad of ['&from=2026-02-30','&from=2025-01-01&to=2026-01-01','&from=2026-09-10&to=2026-09-01','&group=invalid','&status=BAD','&tab=invalid','&q[]=x'])
@@ -160,8 +171,8 @@ try {
     const visitors=join(dir,'access-visitors');mkdirSync(visitors);
     ok(run(['-r',`require '${core}';require '${access}';access_visitor_init();access_record_visit('/','192.0.2.1','Mozilla/5.0 LocalTest');access_record_visit('/guide.html','192.0.2.1','Mozilla/5.0 LocalTest');`]).status===0,'UU fixture initialized');
     r=await admin('/admin/?view=access&tab=unique'+query);
-    ok(r.text.includes('1 人') && r.text.includes('Cookieや端末への識別子保存は使いません') && !r.text.includes('推定ユニーク数を取得できません'),'unique viewer and estimation explanation');
-    ok((r.text.match(/<svg /g)||[]).length===2 && r.text.includes('日別・人'),'UU chart renders alongside request chart');
+    ok(r.text.includes('日別の推定ユニーク数') && r.text.includes('期間全体の実人数ではありません') && !r.text.includes('推定ユニーク数を取得できません'),'unique viewer and estimation explanation');
+    ok((r.text.match(/<svg /g)||[]).length===1 && r.text.includes('日別・人'),'dedicated UU chart renders with its accessible value table');
     r=await admin('/admin/');
     ok(r.text.includes('推定ユニーク数</span><strong>1<small>人') && r.text.includes('tab=unique'),'dashboard unique metric opens detailed unique analysis');
     const baseline=report({}).total;
@@ -179,7 +190,13 @@ try {
     ok(JSON.parse(contentUnique.stdout).total===1 && JSON.parse(contentUnique.stdout).contents.cafe_overseas===1,'overseas content UU deduplicates visits to multiple overseas cafe details');
     console.log(JSON.stringify({result:'ACCESS_LOGS_TESTS_OK',checks,productionWrites:false}));
     if(preview){
-        writeFileSync(join(logsDir,'access.log'),fixture.slice(4).map(JSON.stringify).join('\n')+'\n');
+        // Clearly synthetic preview: no production logs or visitor identities.
+        const demo=[];
+        const paths=['/','/news/support/','/connect/sign-cafe/','/connect/sign-cafe/jp/','/deaf-navi-world-jp.html','/events.html','/guide.html','/stories/'];
+        for(let d=0;d<=16;d++)for(let i=0;i<90+(16-d)*7;i++)demo.push(entry(paths[(i+d)%paths.length],start-d*86400+i*91,{referrer_host:['www.google.co.jp','deafnavi.com','none-or-invalid','t.co','example.org'][i%5],user_agent:i%3?'Mozilla/5.0 (Windows NT 10.0) Chrome Fixture':'Mozilla/5.0 (iPhone; Mobile) Fixture',client_kind:i%17===0?'bot':'human'}));
+        writeFileSync(join(logsDir,'access.log'),demo.map(JSON.stringify).join('\n')+'\n');
+        const seed=run(['-r',`require '${core}';require '${access}';for($d=1;$d<=16;$d++){ $at=new DateTimeImmutable('today -'.$d.' days',new DateTimeZone('Asia/Tokyo'));for($i=1;$i<=12;$i++){access_record_visit('/','192.0.2.'.$i,'Mozilla/5.0 Fixture',$at);if($i<7)access_record_visit('/connect/sign-cafe/','192.0.2.'.$i,'Mozilla/5.0 Fixture',$at);} engagement_db(true)->prepare('INSERT OR REPLACE INTO counts VALUES(?,?,?,?)')->execute([$at->format('Y-m-d'),'cafe','related_click',3+$d%4]);} $db=access_visitor_db(true);$db->prepare('UPDATE metadata SET value=? WHERE key=?')->execute([(new DateTimeImmutable('today -17 days',new DateTimeZone('Asia/Tokyo')))->format('c'),'started_at']);`]);
+        assert.equal(seed.status,0,seed.stderr);
         console.log(`PREVIEW_READY http://127.0.0.1:${port}/admin/?view=access`);
         await new Promise(()=>{});
     }

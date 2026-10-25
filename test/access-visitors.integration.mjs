@@ -6,7 +6,7 @@ import {join,resolve} from 'node:path';
 import vm from 'node:vm';
 
 const root=resolve(import.meta.dirname,'..'), dir=mkdtempSync(join(tmpdir(),'dn-visitors-'));
-const env={...process.env,DEAFNAVI_LOCAL_TEST:'1',DEAFNAVI_VISITOR_DIR:dir};
+const env={...process.env,DEAFNAVI_LOCAL_TEST:'1',DEAFNAVI_VISITOR_DIR:dir,DEAFNAVI_DATA_DIR:dir};
 const run=code=>spawnSync('php',['-r',`require 'server/access-visitors.php';${code}`],{cwd:root,env,encoding:'utf8'});
 assert.equal(run('access_visitor_init();').status,0);
 let checks=0; const ok=(value,label)=>{assert.ok(value,label);checks++;};
@@ -80,6 +80,19 @@ try {
     r=await post({path:'/guide/guesthouses/index.html'},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'});
     ok(r.status===204&&count()===beforeStay+1,'guesthouse verification remains excluded');
     ok((await post({path:'/guide/nonexistent/'})).status===400,'unlisted guide path still rejected');
+    mkdirSync(join(dir,'stories'));
+    ok(run("$db=new PDO('sqlite:'.getenv('DEAFNAVI_DATA_DIR').'/stories/stories.sqlite');$db->exec(\"CREATE TABLE stories(slug TEXT,status TEXT,published_at TEXT); INSERT INTO stories VALUES('public-fixture','published','2020-01-01'),('draft-fixture','draft',NULL),('future-fixture','published','2099-01-01')\");").status===0,'isolated editorial fixture');
+    const beforeStory=count();
+    for(const path of ['/stories/','/stories/public-fixture/']) {
+        r=await post({path},{'User-Agent':ua+' Stories'});
+        ok(r.status===204&&!r.headers.has('set-cookie'),'dynamic story page records without session '+path);
+    }
+    ok(count()===beforeStory+2,'dynamic story pages no longer depend on physical HTML');
+    for(const path of ['/stories/draft-fixture/','/stories/future-fixture/','/stories/missing/'])
+        ok((await post({path})).status===400,'reject nonpublic editorial page '+path);
+    r=await post({path:'/stories/public-fixture/'},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'});
+    ok(r.status===204&&count()===beforeStory+2,'story verification stays excluded');
+    ok(run("echo access_visitor_db()->query(\"SELECT value FROM metadata WHERE key='stories_started_at'\")->fetchColumn();").stdout.length>10,'actual first story measurement recorded without backdating');
 } finally {server.kill();}
 // Browser script payload never includes search values, cookies, referrer or page text.
 const source=readFileSync(join(root,'src/access-visit.js'),'utf8');

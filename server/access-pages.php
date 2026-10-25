@@ -4,6 +4,22 @@ declare(strict_types=1);
 const ACCESS_CONTENTS = ['web'=>'Deaf Navi Web','world_jp'=>'World-JP','world_original'=>'World-Original','events'=>'イベント','cafe'=>'手話カフェ','cafe_overseas'=>'手話カフェ 海外','guide'=>'暮らしのガイド','otomado'=>'おとまど','about'=>'サイトについて','stories'=>'読みもの'];
 const ACCESS_EXCLUSIONS = ['bot'=>'bot・検索エンジン','ai'=>'AI・Codex','automation'=>'自動取得・監視','suspected'=>'自動アクセス疑い（規則的巡回）','internal'=>'管理・情報提供','unknown'=>'分類不明','probe'=>'不審なURL探索','not_found'=>'その他の404','unsuccessful'=>'転送・エラー・GET以外','resource'=>'API・画像・システム取得','unlisted'=>'対象外のページ'];
 
+// The visit endpoint runs before sessions/core. Read only the editorial publication
+// contract, without opening the business database or exposing draft titles/slugs.
+function access_public_story_path(string $path): bool {
+    if ($path==='/stories/') return true;
+    if (!preg_match('#^/stories/([a-z0-9-]+)/$#D',$path,$m)) return false;
+    $file=getenv('DEAFNAVI_LOCAL_TEST')==='1'
+        ? (getenv('DEAFNAVI_DATA_DIR')?:__DIR__.'/../var').'/stories/stories.sqlite'
+        : '/srv/deafnavi/shared/stories/stories.sqlite';
+    if (!is_file($file)||is_link($file)) throw new RuntimeException('Stories publication unavailable');
+    $db=new PDO('sqlite:'.$file,null,null,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+    $db->exec('PRAGMA query_only=ON; PRAGMA busy_timeout=1500');
+    $s=$db->prepare("SELECT 1 FROM stories WHERE slug=? AND status='published' AND datetime(published_at)<=datetime(?) LIMIT 1");
+    $s->execute([$m[1],gmdate('c')]);
+    return (bool)$s->fetchColumn();
+}
+
 function access_content(string $path): ?string {
     $path = rawurldecode(explode('?', $path, 2)[0]);
     if (preg_match('#[\x00-\x20\x7f\\\\]|\.\.|//#', $path)) return null;
@@ -39,6 +55,7 @@ function access_content(string $path): ?string {
 }
 
 function access_exclusion(array $row): ?string {
+    if ($row['unsafe_path']??false) return 'probe';
     $path = rawurldecode($row['path']);
     if (preg_match('#(?:^|/)(?:\.env(?:\.|/|$)|\.git(?:/|$)|wp-admin|wp-login|xmlrpc|phpmyadmin|vendor/phpunit|cgi-bin)|\.(?:php[0-9]?|asp[x]?|jsp|sql|bak)(?:/|$)|\.\.|[<>\x00-\x1f]#i', $path)) return 'probe';
     if (preg_match('#^/(?:admin|submit)(?:/|$)#', $path)) return 'internal';

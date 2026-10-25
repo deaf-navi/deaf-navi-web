@@ -46,3 +46,16 @@ function engagement_report_html(array $o):string {
     foreach($rows as $r)$out.='<tr><td>'.e(ENGAGEMENT_SOURCES[$r['source']]??'不明').'</td><td>'.e(ENGAGEMENT_EVENTS[$r['event']]??'不明').'</td><td>'.(int)$r['hits'].'</td></tr>';
     return $out.'</tbody></table></div><p>Cookie・個人識別子・IP・検索語・記事URLは保存しません。AI・bot・検証アクセスは除外します。日付・ページ区分・操作の合計だけを保持します。</p></section>';
 }
+
+function engagement_report(array $o):array {
+    $result=['available'=>false,'rows'=>[],'total'=>null,'saturated'=>false,'first_day'=>null];
+    try {
+        $db=engagement_db();
+        $result['first_day']=$db->query('SELECT MIN(day) FROM counts')->fetchColumn()?:null;
+        $s=$db->prepare('SELECT source,event,SUM(hits) AS hits,MAX(hits>=100000) AS saturated FROM counts WHERE day>=? AND day<=? GROUP BY source,event ORDER BY source,event');
+        $s->execute([$o['from'],$o['to']]); $result['rows']=$s->fetchAll(); $result['total']=0;
+        foreach ($result['rows'] as $r) { $result['total']+=(int)$r['hits']; $result['saturated']=$result['saturated']||(bool)$r['saturated']; }
+        $result['available']=true;
+    } catch (Throwable) { /* Storage failures are not a measured zero. */ }
+    return $result;
+}
