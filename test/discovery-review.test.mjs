@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,rm,readFile} from 'node:fs/promises';
+import {mkdtemp,rm,readFile,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {runDiscoveryReview,candidateDisposition} from '../scripts/discovery-review.mjs';
@@ -60,6 +60,30 @@ test('candidate date is never inferred and negative model output is only a propo
  const no=candidateDisposition({...base,decision:{...base.decision,relevance:'no'}},{now});assert.equal(no.disposition,'not-relevant-proposed');assert.equal(no.publicationApproved,false);
  const past=candidateDisposition({...base,kind:'event',reasons:['differs-from-current'],decision:{...base.decision,facts:[{field:'startDate',value:'2026-10-01'},{field:'venue',value:'市民会館'}]}},{now});
  assert.equal(past.disposition,'outside-horizon');
+});
+
+test('candidate cafe horizon expands to four months without approving or extending other events',()=>{
+ const n=Date.parse('2026-10-25T00:00:00Z');
+ const entry=day=>({kind:'cafe',reasons:['differs-from-current'],decision:{relevance:'yes',contentType:'announcement',facts:[{field:'startDate',value:day},{field:'venue',value:'市民会館'}]}});
+ for(const day of ['2027-01-22','2027-02-25']){
+  const r=candidateDisposition(entry(day),{now:n});assert.equal(r.disposition,'publication-review-required');assert.equal(r.publicationApproved,false);assert.equal(r.reviewedAt,null);
+ }
+ assert.equal(candidateDisposition(entry('2027-02-26'),{now:n}).disposition,'outside-horizon');
+ assert.equal(candidateDisposition({...entry('2027-01-22'),kind:'event'},{now:n}).disposition,'outside-horizon');
+ assert.equal(candidateDisposition({...entry('2027-01-22'),kind:'event'},{now:n,eventKind:'theater'}).disposition,'publication-review-required');
+});
+test('old same-day six-week report is reclassified from extraction cache without resending',async t=>{
+ const opts=await options(t),futureText=text.replaceAll('2026年11月14日','2027年1月22日');let calls=0;
+ const cafe={...target,kind:'cafe',fragments:[futureText],approvedDocumentHash:evidenceHash(futureText)};
+ const args={...opts,catalog:{version:1,discoveryTargets:[cafe]},canSubmit:()=>true,
+  prepare:async targets=>({tasks:targets.map(t=>({...t,text:futureText,sourceTextHash:evidenceHash(futureText),sourceDocumentHash:evidenceHash(futureText),retrievedAt:new Date(now).toISOString()})),exceptions:[]}),
+  generate:async items=>{calls++;const r=await generate(items);for(const x of r.items){x.facts[0].value='2027-01-22';x.facts[0].evidence='開催日 2027年1月22日。';}return r;}};
+ const first=await runDiscoveryReview(args);assert.equal(calls,1);
+ first.signature=evidenceHash(JSON.stringify({version:1,targets:[cafe],known:[],approvalSignature:'none'}));
+ first.entries[0].disposition='outside-horizon';
+ await writeFile(join(opts.stateDir,'discovery-review.json'),JSON.stringify(first));
+ const after=await runDiscoveryReview(args);assert.equal(after.reusedRun,false);assert.equal(after.cached,1);assert.equal(after.submittedThisRun,0);assert.equal(calls,1);
+ assert.equal(after.entries[0].disposition,'publication-review-required');assert.equal(after.entries[0].reviewedAt,null);
 });
 test('bounded domain-fair selection stops after unknown API outcome and preserves deferred entries',async t=>{
  const opts=await options(t);let calls=0;const batches=[];

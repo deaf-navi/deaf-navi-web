@@ -8,6 +8,7 @@ import {prepareCurationReview} from './prepare-curation-review.mjs';
 import {reviewCurationTasks} from './curation-review.mjs';
 import {evidenceHash,prepareReviewItem,validIsoDay} from './curation-review-contract.mjs';
 import {createComplimentaryClient,publicTextFingerprint,validateAllowance} from './complimentary-text-client.mjs';
+import {curationHorizonEnd} from './curation-horizon.mjs';
 
 const jstDay=now=>new Date(now+9*3600000).toISOString().slice(0,10);
 const DAILY_LIMIT=40,BATCH_SIZE=4;
@@ -33,8 +34,7 @@ export function planDailyReview(records,catalog,{now=Date.now(),limit=DAILY_LIMI
     if(targets.has(key)||!['event','cafe'].includes(target.kind)||!target.recordId)throw new Error('Duplicate or invalid catalog identity');
     targets.set(key,target);
   }
-  const today=jstDay(now),sixWeeks=jstDay(now+42*86400000);
-  const sixMonths=new Date(today+'T00:00:00Z');sixMonths.setUTCMonth(sixMonths.getUTCMonth()+6);
+  const today=jstDay(now);
   const selected=[],exceptions=[],deferred=[],skipped=[];const seen=new Set();
   for(const record of records){
     const key=record.kind+':'+record.recordId;
@@ -42,7 +42,7 @@ export function planDailyReview(records,catalog,{now=Date.now(),limit=DAILY_LIMI
     if(record.publication!=='public')continue;
     const day=record.baseline?.startDate;
     if(!validIsoDay(day??'')){exceptions.push(issue(record,'missing-date'));continue;}
-    if(day<today||day>(record.eventKind==='theater'?sixMonths.toISOString().slice(0,10):sixWeeks)){skipped.push({kind:record.kind,recordId:record.recordId,reason:'outside-horizon'});continue;}
+    if(day<today||day>curationHorizonEnd({...record,now})){skipped.push({kind:record.kind,recordId:record.recordId,reason:'outside-horizon'});continue;}
     if(record.sourceMode!=='html'){exceptions.push(issue(record,'visual-or-unverified-source'));continue;}
     const verified=Date.parse(record.verifiedAt);
     if(!['verified','retrying'].includes(record.verification)||!Number.isFinite(verified)||verified>now||now-verified>=48*3600000
