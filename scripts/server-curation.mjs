@@ -11,10 +11,17 @@ import {createComplimentaryClient,publicTextFingerprint,validateAllowance,summar
 import {runSourceDiscovery} from './source-discovery.mjs';
 import {runDiscoveryReview} from './discovery-review.mjs';
 import {runLodgingReview} from './lodging-review.mjs';
+import {planCurationAttention} from './curation-attention.mjs';
 
 export const readJson=async path=>JSON.parse(await readFile(path,'utf8'));
 export async function optionalJson(path){try{return await readJson(path);}catch(e){if(e.code==='ENOENT')return null;throw e;}}
 export async function privateJson(path,value){const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(value,null,2)+'\n',{mode:0o600});await rename(tmp,path);}
+export async function refreshCurationAttention({stateDir,records,now=Date.now()}){
+  const path=join(stateDir,'curation-attention.json');
+  const queue=planCurationAttention(records,await optionalJson(path),now);
+  await privateJson(path,queue);
+  return queue;
+}
 
 // Inspect a recorded account check; never manufacture one from local usage or renew it.
 export async function accountGate({stateDir,key,project,now=Date.now()}){
@@ -89,6 +96,7 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
   const lockPath=join(stateDir,'server-curation.lock');let lock;
   try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code==='EEXIST')return {status:'busy',submittedThisRun:0};throw e;}
   try{
+    const attention=await refreshCurationAttention({stateDir,records,now});
     const gate=await accountGate({stateDir,key,project,now});
     let allowed=new Set();
     if(gate.ready){const lease=await readJson(join(stateDir,'allowance.json'));allowed=new Set(lease.approvedTextHashes??[]);}
@@ -135,7 +143,7 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
       mode:comparisonOnly?'comparison':'routine',account:gate,selected:report.selected,cached:report.cached,
       corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,
       submittedThisRun,reusedRun:report.reusedRun,comparison,
-      newOrChangedExceptions:queue.newOrChanged,discovery,lodgingDiscovery,
+      newOrChangedExceptions:queue.newOrChanged,attention:attention.counts,discovery,lodgingDiscovery,
       candidateReview:{selected:candidateReview.selected,cached:candidateReview.cached,submittedThisRun:candidateReview.submittedThisRun,
         reusedRun:candidateReview.reusedRun,deferred:candidateReview.deferred.length,newOrChanged:candidateReview.newOrChanged,
         dispositions:candidateReview.entries.reduce((counts,x)=>{const k=x.disposition??'needs-review';counts[k]=(counts[k]??0)+1;return counts;},{})},
@@ -152,11 +160,22 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process.argv[1]))).href){
   try{
-    if(process.argv.slice(2).some(x=>x!=='--compare'))throw new Error('Unsupported routine argument');
+    const args=process.argv.slice(2);
+    if(args.length>1||args.some(x=>!['--compare','--attention-only'].includes(x)))throw new Error('Unsupported routine argument');
     const stateDir=process.env.DEAFNAVI_AI_STATE_DIR;
     if(!stateDir)throw new Error('Private state required');
     const events=await readJson('/srv/deafnavi/current/events.json');
     const cafes=JSON.parse(execFileSync('php',['/srv/deafnavi/current/_backend/curate-cafe-events.php','--review-export'],{encoding:'utf8',timeout:60000,maxBuffer:2_000_000}));
+    if(args.includes('--attention-only')){
+      // No key/env loading, HTTP, API, source checks or publication mutation.
+      const lockPath=join(stateDir,'server-curation.lock');let lock;
+      try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code!=='EEXIST')throw e;}
+      if(!lock){console.log(JSON.stringify({status:'busy',submittedThisRun:0}));}
+      else try{
+        const queue=await refreshCurationAttention({stateDir,records:reviewRecords(events,cafes)});
+        console.log(JSON.stringify({status:'attention-refreshed',generatedAt:queue.generatedAt,...queue.counts,submittedThisRun:0}));
+      }finally{await lock.close();await unlink(lockPath);}
+    }else{
     const catalog=await readJson(join(stateDir,'curation-review-catalog.json'));
     const sources=await readJson(new URL('../config/curation-discovery.json',import.meta.url));
     const lodgingSnapshot=await readJson('/srv/deafnavi/current/guesthouses.json');
@@ -165,9 +184,10 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process
       key:(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim(),project:process.env.DEAFNAVI_OPENAI_PROJECT_ID,
       comparisonOnly:process.argv.includes('--compare')});
     console.log(JSON.stringify({status:result.status,selected:result.selected,cached:result.cached,exceptions:result.exceptions,
-      submittedThisRun:result.submittedThisRun,newOrChangedExceptions:result.newOrChangedExceptions?.length,
+      submittedThisRun:result.submittedThisRun,attention:result.attention,newOrChangedExceptions:result.newOrChangedExceptions?.length,
       discoveryCandidates:result.discovery?.candidates,lodging:result.lodging,publication:result.publication}));
     if(result.submittedThisRun===null)process.exitCode=1;
+    }
   }catch{
     // No source text, secret paths, credentials, PHP output or API body in journal.
     console.error('SERVER_CURATION_FAILED: inspect private state; no automatic retry');process.exitCode=1;
