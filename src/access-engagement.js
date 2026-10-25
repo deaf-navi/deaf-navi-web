@@ -1,14 +1,17 @@
 (() => {
   if (!['deafnavi.com','localhost','127.0.0.1'].includes(location.hostname)) return;
-  let marker = new URLSearchParams(location.search).get('dn_client');
-  try { const ref = new URL(document.referrer); if (!marker && ref.origin === location.origin) marker = ref.searchParams.get('dn_client'); } catch {}
-  if (['codex','automation'].includes(marker) || navigator.webdriver) return;
+  const excluded = () => {
+    let marker = new URLSearchParams(location.search).get('dn_client');
+    try { const ref = new URL(document.referrer); if (!['codex','automation'].includes(marker) && ref.origin === location.origin) marker = ref.searchParams.get('dn_client'); } catch {}
+    return ['codex','automation'].includes(marker) || navigator.webdriver === true;
+  };
+  if (excluded()) return;
   const path = location.pathname.replace(/index\.html$/, '');
-  const source = path === '/' ? 'news' : path === '/news/support/' ? 'support' : path === '/news/accessibility/' ? 'accessibility' : /^\/deaf-navi-world-(jp|original)\.html$/.test(path) ? 'world' : /^\/archive\//.test(path) ? 'archive' : path === '/connect/sign-cafe/' ? 'cafe' : null;
+  const source = path === '/' ? 'news' : path === '/news/support/' ? 'support' : path === '/news/accessibility/' ? 'accessibility' : /^\/deaf-navi-world-(jp|original)\.html$/.test(path) ? 'world' : /^\/archive\//.test(path) ? 'archive' : path === '/connect/sign-cafe/' ? 'cafe' : path === '/stories/' ? 'stories' : path === '/guide/guesthouses/' ? 'guesthouses' : null;
   if (!source) return;
   const sent = new Set();
   const send = (event, key = event) => {
-    if (sent.has(key)) return;
+    if (excluded() || sent.has(key)) return;
     sent.add(key);
     // Consume the response without storing it or retrying the counted event.
     fetch('/_access/visit?kind=engagement', {method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store',keepalive:true,body:JSON.stringify({source,event})}).then(response => response.text()).catch(() => {});
@@ -26,6 +29,10 @@
     if (source === 'cafe') {
       if (link.closest('[data-cafe-related]') && url.origin === location.origin) send('related_click','related:'+url.href);
       else if (link.closest('#cafes') && url.origin === location.origin && /^\/connect\/sign-cafe\/[a-z0-9-]+\/$/.test(url.pathname) && !['map','events','overseas'].includes(url.pathname.split('/')[3])) send('cafe_detail','detail:'+url.pathname);
+    } else if (source === 'stories') {
+      if (url.origin === location.origin && /^\/stories\/[a-z0-9-]+\/$/.test(url.pathname) && link.closest('.story-card')) send('story_open','story:'+url.pathname);
+    } else if (source === 'guesthouses') {
+      if (url.origin !== location.origin && link.matches('[data-guesthouse-booking]')) send('booking_click','booking:'+url.href);
     } else if (url.origin !== location.origin && link.matches('.card__title a, a.card__read, .reader-news h3 a, .reader-news-related a, .topic-related a')) send('article_click','article:'+url.href);
   };
   document.addEventListener('click',click);document.addEventListener('auxclick',click);

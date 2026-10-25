@@ -81,10 +81,33 @@ function access_exclude_visitor(string $ip, string $ua, string $reason, ?DateTim
     $s->execute([...$identity,$reason]);
 }
 
+// Shared by PV reads and both notification endpoints. The primary-key lookup is
+// bounded; do not load all visitors, create a new identifier or scan raw logs here.
+function access_known_exclusion(string $day, string $visitor): ?string {
+    static $query;
+    $query ??= access_visitor_db()->prepare('SELECT reason FROM excluded_visitors WHERE day=? AND visitor=?');
+    $query->execute([$day,$visitor]);
+    $reason=$query->fetchColumn();$query->closeCursor();
+    if (in_array($reason,['ai','automation'],true)) return $reason;
+    return access_quality_class($day,$visitor);
+}
+
+function access_measurement_allowed(string $ua, string $marker='', bool $automated=false): bool {
+    $client=access_client($ua,$marker);
+    $ip=$_SERVER['REMOTE_ADDR']??'';
+    if ($client!=='human'||$automated) {
+        if (access_client($ua)==='human') access_exclude_visitor($ip,$ua,$client==='ai'?'ai':'automation');
+        return false;
+    }
+    $id=access_visitor_identity($ip,$ua);
+    return $id!==null && access_known_exclusion(...$id)===null;
+}
+
 function access_record_visit(string $path, string $ip, string $ua, ?DateTimeImmutable $at=null): void {
     $identity = access_visitor_identity($ip,$ua,$at);
     if (!$identity) return;
     [$day,$visitor] = $identity;
+    if (access_known_exclusion($day,$visitor)!==null) return;
     // One row per day, inferred visitor and page. A reload or retry adds no duplicate.
     $db=access_visitor_db(true);
     $s = $db->prepare('INSERT OR IGNORE INTO visits(day,visitor,path)
@@ -122,12 +145,8 @@ function access_visit_endpoint(): never {
     catch (Throwable) { http_response_code(503); exit; }
     $ua = substr($_SERVER['HTTP_USER_AGENT']??'',0,2049);
     $marker = substr($_SERVER['HTTP_X_DEAFNAVI_CLIENT']??'',0,100);
-    $client = access_client($ua,$marker);
     try {
-        if ($client !== 'human' || ($data['automated']??false)===true) {
-            // A normal browser identified as Codex later also leaves today's earlier UU out.
-            // Keep the original visit rows; do not guess at other connections or earlier days.
-            if (access_client($ua)==='human') access_exclude_visitor($_SERVER['REMOTE_ADDR']??'',$ua,$client==='ai'?'ai':'automation');
+        if (!access_measurement_allowed($ua,$marker,($data['automated']??false)===true)) {
             http_response_code(204); exit;
         }
         // REMOTE_ADDR is provided by Caddy. Never trust public X-Forwarded-For headers.

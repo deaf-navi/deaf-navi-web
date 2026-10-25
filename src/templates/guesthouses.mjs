@@ -15,7 +15,7 @@ function renderFacts(h, facts, heading, key, booking = false) {
   return `<div class="guesthouse-details" aria-labelledby="${e(h.id)}-${key}">
     <h3 id="${e(h.id)}-${key}">${e(heading)}</h3>
     <dl class="reader-facts">${facts.map(([label, text]) => `<div><dt>${e(label)}</dt><dd>${e(text)}</dd></div>`).join('')}</dl>${booking ? `
-    <p class="reader-actions"><a href="${e(h.bookingUrl)}" target="_blank" rel="noopener noreferrer">${e(h.name)}の公式予約案内（新しいタブ）</a></p>` : ''}
+    <p class="reader-actions"><a href="${e(h.bookingUrl)}" data-guesthouse-booking target="_blank" rel="noopener noreferrer">${e(h.name)}の公式予約案内（新しいタブ）</a></p>` : ''}
   </div>`;
 }
 

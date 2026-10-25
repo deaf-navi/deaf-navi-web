@@ -120,7 +120,7 @@ function access_entry(string $line): ?array {
     if(($r['purpose']??null)==='prefetch'&&$client==='human'){$client='automation';$classification='ブラウザーの先読み';}
     if($client==='human'&&$ip!==null&&$ua!==null){
         $identity=strlen($ua)<512?access_quality_identity($ip,$ua,$ts):null;
-        $quality=$identity?access_quality_class(...$identity):null;
+        $quality=$identity?access_known_exclusion(...$identity):null;
         if($quality!==null){$client=$quality;$classification=$quality==='suspected'?'同じ接続・ブラウザーの規則的な巡回':'詳細ログ照合による除外';}
     }
     if (preg_match('#^/admin(?:/|$)#',$path) && in_array($client,['human','unknown'],true)) $client='internal';

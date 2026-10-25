@@ -17,7 +17,7 @@ function page(string $title,string $body,string $path='',string $description='',
     if($scope==='overseas')$ld.='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui">';
     if(str_starts_with($path,'/connect/sign-cafe/area/'))$ld.='<link rel="stylesheet" href="/reader.css?v=20261017seo">';
     if(!$private) {
-        $ld.='<script src="/access-visit.js" defer></script><script src="/access-engagement.js?v=20261019a" defer></script><script src="/stories-related.js" defer></script><link rel="stylesheet" href="/stories.css?v=20261019c">';
+        $ld.='<script src="/access-visit.js" defer></script><script src="/access-engagement.js?v=20261025b" defer></script><script src="/stories-related.js" defer></script><link rel="stylesheet" href="/stories.css?v=20261019c">';
         if($meta)$ld.='<meta property="og:site_name" content="Deaf Navi"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'.e($documentTitle).'"><meta name="twitter:description" content="'.e($description).'"><meta name="twitter:image" content="'.BASE.'/og-image.png">';
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
         if($path!=='/connect/sign-cafe/') $crumbs[]=['@type'=>'ListItem','position'=>3,'name'=>$title,'item'=>$canonical];
