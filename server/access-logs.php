@@ -4,6 +4,7 @@ require_once __DIR__.'/access-visitors.php';
 require_once __DIR__.'/access-engagement.php';
 require_once __DIR__.'/access-charts.php';
 require_once __DIR__.'/access-pages.php';
+require_once __DIR__.'/access-analytics.php';
 
 // Read only. Logs are written by Caddy, outside the public root and application DB.
 const ACCESS_GROUPS = ['all'=>'すべてのリクエスト','pages'=>'公開ページ','data'=>'API・JSON・RSS等','assets'=>'画像・CSS・JavaScript等','management'=>'管理・情報提供'];
@@ -28,8 +29,8 @@ function access_retention_start(DateTimeImmutable $today): DateTimeImmutable {
 
 function access_options(): array {
     $today = new DateTimeImmutable('today', new DateTimeZone('Asia/Tokyo'));
-    $from = date_value(input($_GET, 'from', 10)) ?: $today->modify('-6 days')->format('Y-m-d');
-    $to = date_value(input($_GET, 'to', 10)) ?: $today->format('Y-m-d');
+    $from = date_value(input($_GET, 'from', 10)) ?: $today->modify('-7 days')->format('Y-m-d');
+    $to = date_value(input($_GET, 'to', 10)) ?: $today->modify('-1 day')->format('Y-m-d');
     $start = new DateTimeImmutable($from, new DateTimeZone('Asia/Tokyo'));
     $end = new DateTimeImmutable($to, new DateTimeZone('Asia/Tokyo'));
     if ($end < $start || $start < access_retention_start($today) || $end > $today) fail('直近6か月以内の期間を指定してください。');
@@ -44,11 +45,16 @@ function access_options(): array {
     $status = input($_GET, 'status', 3);
     choice($status, [''=>1,'2xx'=>1,'3xx'=>1,'4xx'=>1,'5xx'=>1]);
     $tab = input($_GET, 'tab', 12) ?: 'paths';
-    choice($tab, ['paths'=>1,'days'=>1,'requests'=>1,'unique'=>1]);
+    choice($tab, ['paths'=>1,'days'=>1,'requests'=>1,'unique'=>1,'sources'=>1,'actions'=>1,'quality'=>1]);
+    $compare=input($_GET,'compare',10)?:'previous';
+    choice($compare,['previous'=>1,'off'=>1]);
+    $match=input($_GET,'match',10)?:'contains';
+    choice($match,['contains'=>1,'prefix'=>1,'exact'=>1]);
     if ($mode==='views') { $client='human'; $group='all'; $status=''; }
+    $limit=admin_size();
     return ['from'=>$from, 'to'=>$to, 'start'=>$start->getTimestamp(), 'end'=>$end->modify('+1 day')->getTimestamp(),
-        'mode'=>$mode, 'content'=>$content, 'group'=>$group, 'client'=>$client, 'status'=>$status, 'q'=>input($_GET, 'q', 200), 'tab'=>$tab,
-        'page'=>max(1, (int)input($_GET, 'page', 6)), 'limit'=>admin_size()];
+        'compare'=>$compare, 'match'=>$match, 'mode'=>$mode, 'content'=>$content, 'group'=>$group, 'client'=>$client, 'status'=>$status, 'q'=>input($_GET, 'q', 200), 'tab'=>$tab,
+        'page'=>min((int)ceil(10000/$limit),max(1, (int)input($_GET, 'page', 6))), 'limit'=>$limit];
 }
 
 // Snapshot each file's length, then read complete lines newest first in bounded chunks.
@@ -88,7 +94,10 @@ function access_entry(string $line): ?array {
     $path = $req['uri'] ?? '';
     if (!is_string($path)) return null;
     $path = explode('?', $path, 2)[0];
-    if (!str_starts_with($path, '/') || strlen($path) > 8192 || preg_match('/[\x00-\x1f\x7f]/', $path) || !preg_match('//u', $path)) return null;
+    $unsafePath=!str_starts_with($path, '/') || strlen($path)>8192 || preg_match('/[\x00-\x1f\x7f]/',$path) || !preg_match('//u',$path);
+    // Preserve valid HTTP metadata for malformed/probing URLs, but never render
+    // their control bytes. These are excluded explicitly, not a missing log.
+    if ($unsafePath) $path='/[invalid-request-path]';
     $method = $req['method'] ?? '';
     if (!is_string($method) || !preg_match('/^[A-Z]{1,20}$/D', $method)) return null;
     $status = $r['status'] ?? 0;
@@ -100,7 +109,9 @@ function access_entry(string $line): ?array {
     $client = is_string($r['client_kind']??null) && isset(ACCESS_CLIENTS[$r['client_kind']]) && $r['client_kind']!=='all' ? $r['client_kind'] : 'unknown';
     $ip=is_string($req['remote_ip']??null)&&filter_var($req['remote_ip'],FILTER_VALIDATE_IP)?$req['remote_ip']:null;
     $ua=is_string($r['user_agent']??null)?substr($r['user_agent'],0,2048):null;
-    $ref=is_string($r['referrer_host']??null)&&preg_match('/^[a-zA-Z0-9.-]{1,253}$/D',$r['referrer_host'])?$r['referrer_host']:null;
+    $ref=array_key_exists('referrer_host',$r)?(is_string($r['referrer_host'])?$r['referrer_host']:'none-or-invalid'):null;
+    $refInfo=access_referrer($ref);
+    $ref=$refInfo['host']??($refInfo['channel']==='unrecorded'?null:'none-or-invalid');
     $originalClient=$client;$classification='記録時の分類';
     if($ua!==null&&in_array($client,['human','unknown'],true)){
         $new=access_client($ua);
@@ -108,7 +119,7 @@ function access_entry(string $line): ?array {
     }
     if(($r['purpose']??null)==='prefetch'&&$client==='human'){$client='automation';$classification='ブラウザーの先読み';}
     if($client==='human'&&$ip!==null&&$ua!==null){
-        $identity=access_quality_identity($ip,$ua,$ts);
+        $identity=strlen($ua)<512?access_quality_identity($ip,$ua,$ts):null;
         $quality=$identity?access_quality_class(...$identity):null;
         if($quality!==null){$client=$quality;$classification=$quality==='suspected'?'同じ接続・ブラウザーの規則的な巡回':'詳細ログ照合による除外';}
     }
@@ -116,88 +127,77 @@ function access_entry(string $line): ?array {
     if (in_array($path,['/sw.js','/otomado/sw.js'],true) && in_array($client,['human','unknown'],true)) $client='automation';
     return ['ts'=>$ts, 'host'=>$host, 'path'=>$path, 'method'=>$method, 'status'=>$status,
         'duration'=>$duration, 'size'=>is_int($r['size'] ?? null) && $r['size'] >= 0 ? $r['size'] : null,
-        'client'=>$client,'original_client'=>$originalClient,'classification'=>$classification,'ip'=>$ip,'user_agent'=>$ua,'referrer_host'=>$ref,
+        'client'=>$client,'original_client'=>$originalClient,'classification'=>$unsafePath?'URL形式不正・パス非表示':$classification,'ip'=>$ip,'user_agent'=>$ua,'referrer_host'=>$ref,'unsafe_path'=>(bool)$unsafePath,
         'group'=>access_group($path)];
 }
 
 function access_report(array $options): array {
-    $summary = ($options['summary'] ?? false) === true;
-    $report = ['available'=>false, 'partial'=>false, 'invalid'=>0, 'total'=>0, 'pages'=>0, 'not_found'=>0, 'errors'=>0,
-        'latest'=>null, 'oldest'=>null, 'paths'=>[], 'days'=>[], 'rows'=>[], 'raw_total'=>0,
-        'excluded'=>array_fill_keys(array_keys(ACCESS_EXCLUSIONS),0), 'contents'=>array_fill_keys(array_keys(ACCESS_CONTENTS),0)];
-    $dir = realpath(access_log_dir());
-    if ($dir === false || !is_dir($dir) || !is_readable($dir)) return $report;
-    $files = glob($dir.'/access*.log') ?: [];
-    $files = array_values(array_filter($files, fn($p) => preg_match('/^access(?:-v[0-9]+)?(?:-[0-9T.Z:+-]+(?:-(?:size|time))?)?\.log$/D', basename($p))));
-    usort($files, function($a, $b) {
-        return (filemtime($b) <=> filemtime($a)) ?: strcmp($b, $a);
-    });
-    $bytes = 0; $scanned = 0; $deadline = microtime(true)+($summary ? 0.5 : 4);
-    $index = access_maintenance_state()['file_index'] ?? [];
-    $offset = ($options['page']-1)*$options['limit'];
+    $summary=($options['summary']??false)===true;
+    $report=access_report_empty(); $previous=access_previous_options($options);
+    $prior=$previous?access_report_empty():null;
+    $scanStart=$previous?min($options['start'],$previous['start']):$options['start'];
+    $dir=realpath(access_log_dir());
+    if ($dir===false || !is_dir($dir) || !is_readable($dir)) return $report+['previous'=>$prior];
+    $files=array_values(array_filter(glob($dir.'/access*.log')?:[],fn($p)=>preg_match('/^access(?:-v[0-9]+)?(?:-[0-9T.Z:+-]+(?:-(?:size|time))?)?\.log$/D',basename($p))));
+    usort($files,fn($a,$b)=>(filemtime($b)<=>filemtime($a))?:strcmp($b,$a));
+    $started=microtime(true); $deadline=$started+($summary?.5:4);
+    $bytes=0; $scanned=0; $index=access_maintenance_state()['file_index']??[];
+    $offset=($options['page']-1)*$options['limit'];
+    $keep=$summary?5:min(10000,$offset+$options['limit']);
+    $heap=new SplPriorityQueue(); $heap->setExtractFlags(SplPriorityQueue::EXTR_DATA);
     foreach ($files as $file) {
-        if (is_link($file) || !is_file($file) || !is_readable($file) || dirname(realpath($file) ?: '') !== $dir) { $report['partial'] = true; continue; }
-        $handle = @fopen($file, 'rb');
-        if ($handle === false) { $report['partial'] = true; continue; }
-        $report['available'] = true;
+        if (is_link($file)||!is_file($file)||!is_readable($file)||dirname(realpath($file)?:'')!==$dir) { $report['reasons']['unreadable-file']=true; continue; }
+        $handle=@fopen($file,'rb');
+        if ($handle===false) { $report['reasons']['unreadable-file']=true; continue; }
+        $report['available']=true;
         try {
-            $range = $index[basename($file)] ?? null;
-            $stat = fstat($handle);
-            if (is_array($range) && ($range['bytes']??null)===$stat['size'] && ($range['mtime']??null)===$stat['mtime']
-                && is_numeric($range['first']??null) && is_numeric($range['last']??null)
-                && ($range['first'] >= $options['end'] || $range['last'] < $options['start'])) {
-                // Index covers complete closed files and is invalidated by size/mtime changes.
-                $report['oldest'] = min($report['oldest'] ?? $range['first'], $range['first']);
-                $report['latest'] = max($report['latest'] ?? 0, $range['last']);
-                continue;
+            $stat=fstat($handle); $range=$index[basename($file)]??null;
+            if (is_array($range)&&($range['bytes']??null)===$stat['size']&&($range['mtime']??null)===$stat['mtime']
+                &&is_numeric($range['first']??null)&&is_numeric($range['last']??null)
+                &&($range['first']>=$options['end']||$range['last']<$scanStart)) {
+                $report['oldest']=min($report['oldest']??$range['first'],$range['first']);
+                $report['latest']=max($report['latest']??0,$range['last']); continue;
             }
             foreach (access_reverse_lines($handle) as $line) {
-                $bytes += strlen($line)+1; $scanned++;
-                if ($bytes > ($summary ? 8 : 64)*1024*1024 || $scanned > ($summary ? 25000 : 200000) || ($scanned%512 === 0 && microtime(true) > $deadline)) {
-                    $report['partial'] = true; break 2;
-                }
-                $r = access_entry($line);
-                if (!$r) { $report['invalid']++; continue; }
-                $report['latest'] = max($report['latest'] ?? 0, $r['ts']);
-                $report['oldest'] = min($report['oldest'] ?? $r['ts'], $r['ts']);
-                if ($r['ts'] < $options['start'] || $r['ts'] >= $options['end']) continue;
-                if ($options['q'] !== '' && stripos($r['path'], $options['q']) === false) continue;
-                $reason = access_exclusion($r);
-                $content = $reason===null ? access_content($r['path']) : null;
-                $report['raw_total']++;
-                if ($reason!==null) $report['excluded'][$reason]++;
-                else $report['contents'][$content]++;
-                if (($options['mode']??'requests')==='views' && $reason!==null) continue;
-                if (($options['content']??'all')!=='all' && $content!==$options['content']) continue;
-                if ($options['group'] !== 'all' && $r['group'] !== $options['group']) continue;
-                if (($options['client'] ?? 'all') !== 'all' && $r['client'] !== $options['client']) continue;
-                if ($options['status'] !== '' && intdiv($r['status'], 100) !== (int)$options['status'][0]) continue;
-                if ($options['q'] !== '' && stripos($r['path'], $options['q']) === false) continue;
-                $report['total']++;
-                if ($r['group'] === 'pages' && $r['method'] === 'GET' && $r['status'] >= 200 && $r['status'] < 300) $report['pages']++;
-                if ($r['status'] === 404) $report['not_found']++;
-                if ($r['status'] >= 500) $report['errors']++;
-                if ($summary) {
-                    if ($r['group']==='pages' && $r['method']==='GET' && (count($report['rows'])<5 || $r['ts']>$report['rows'][4]['ts'])) {
-                        $report['rows'][]=$r;
-                        usort($report['rows'],fn($a,$b)=>$b['ts']<=>$a['ts']);
-                        if (count($report['rows'])>5) array_pop($report['rows']);
-                    }
+                $bytes+=strlen($line)+1; $scanned++;
+                if ($bytes>($summary?8:64)*1024*1024) { $report['reasons']['byte-limit']=true; break 2; }
+                if ($scanned>($summary?25000:200000)) { $report['reasons']['line-limit']=true; break 2; }
+                if ($scanned%512===0&&microtime(true)>$deadline) { $report['reasons']['time-limit']=true; break 2; }
+                $r=access_entry($line);
+                if (!$r) {
+                    // A timestamp outside both windows cannot affect these totals.
+                    $bad=json_decode($line,true,32); $ts=is_numeric($bad['ts']??null)?(float)$bad['ts']:null;
+                    if ($ts===null||($ts>=$scanStart&&$ts<$options['end'])) $report['invalid']++;
                     continue;
                 }
-                $key = $r['host'].$r['path'];
-                if (!isset($report['paths'][$key])) $report['paths'][$key] = ['host'=>$r['host'],'path'=>$r['path'],'count'=>0,'errors'=>0];
-                $report['paths'][$key]['count']++;
-                if ($r['status'] >= 400) $report['paths'][$key]['errors']++;
-                $day = (new DateTimeImmutable('@'.(int)$r['ts']))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y-m-d');
-                $report['days'][$day] = ($report['days'][$day] ?? 0)+1;
-                if ($report['total'] > $offset && count($report['rows']) < $options['limit']) $report['rows'][] = $r;
+                $report['oldest']=min($report['oldest']??$r['ts'],$r['ts']);
+                $report['latest']=max($report['latest']??0,$r['ts']);
+                if ($r['ts']<$scanStart||$r['ts']>=$options['end']) continue;
+                if ($previous&&$r['ts']<$options['start']) { access_aggregate_row($prior,$r,$previous); continue; }
+                if (!access_aggregate_row($report,$r,$options)) continue;
+                if ($summary && !($r['group']==='pages'&&$r['method']==='GET')) continue;
+                // Keep only the newest K rows, independently of file modification order.
+                $r['_order']=basename($file).':'.str_pad((string)$scanned,9,'0',STR_PAD_LEFT);
+                $heap->insert($r,[-$r['ts'],$r['_order']]);
+                if ($heap->count()>$keep) $heap->extract();
             }
-        } catch (Throwable) { $report['partial'] = true; }
+        } catch (Throwable) { $report['reasons']['read-or-classification-error']=true; }
         finally { fclose($handle); }
     }
-    uasort($report['paths'], fn($a, $b) => ($b['count'] <=> $a['count']) ?: strcmp($a['host'].$a['path'], $b['host'].$b['path']));
+    $rows=[]; foreach ($heap as $r) $rows[]=$r;
+    usort($rows,fn($a,$b)=>($b['ts']<=>$a['ts'])?:strcmp($a['_order'],$b['_order']));
+    $report['rows']=array_map(function($r){unset($r['_order']);return $r;},array_slice($rows,$summary?0:$offset,$summary?5:$options['limit']));
+    $report['partial']=(bool)$report['reasons'];
+    $report['scanned_lines']=$scanned; $report['scanned_bytes']=$bytes;
+    $report['elapsed_ms']=round((microtime(true)-$started)*1000,1);
+    $report['history_limited']=$report['total']>10000;
+    if ($prior!==null) foreach (['available','partial','invalid','oldest','latest','reasons','as_of'] as $key) $prior[$key]=$report[$key];
+    foreach (['paths','referrers'] as $key) {
+        uasort($report[$key],fn($a,$b)=>($b['count']<=>$a['count'])?:strcmp($a['host'].($a['path']??''),$b['host'].($b['path']??'')));
+        if ($prior!==null) uasort($prior[$key],fn($a,$b)=>($b['count']<=>$a['count'])?:strcmp($a['host'].($a['path']??''),$b['host'].($b['path']??'')));
+    }
     krsort($report['days']);
+    $report['previous']=$prior;
     return $report;
 }
 
@@ -256,59 +256,11 @@ function admin_access_summary(): string {
 
 function admin_access_logs(): string {
     require_user(true);
-    $o = access_options(); $r = access_report($o); $uu = access_unique_report($o);
-    $base = ['view'=>'access','from'=>$o['from'],'to'=>$o['to'],'mode'=>$o['mode'],'content'=>$o['content'],'group'=>$o['group'],'client'=>$o['client'],'status'=>$o['status'],'q'=>$o['q'],'tab'=>$o['tab'],'limit'=>$o['limit']];
-    $out = '<p class="admin-lead">正常な公開ページ閲覧をコンテンツ別に集計します。日時は日本時間です。</p>'.access_quality_notice();
-    $out .= '<p>'.($o['mode']==='views'?'閲覧数からbot・AI・不審なURL探索・404・管理操作・画像やAPIの取得を除外します。':'調査用の生リクエスト表示です。閲覧数として扱わないでください。').'</p>';
-    $out .= '<p class="dn-notice">'.($o['client']==='human'?'一般ブラウザーのみ集計しています。Codex・AI・bot・自動操作・管理画面・分類不明は除外しています。':'調査用の分類を表示しています。このリクエスト数を一般ユーザーの利用数として扱わないでください。').'</p>';
-    $out .= '<form method="get" class="admin-filters"><input type="hidden" name="view" value="access"><input type="hidden" name="tab" value="'.e($o['tab']).'">'
-        .select_field('mode','集計方法',['views'=>'ページ閲覧のみ','requests'=>'全リクエスト（調査用）'],$o['mode']).select_field('content','コンテンツ',['all'=>'すべて']+ACCESS_CONTENTS,$o['content'])
-        .field('from','開始日',$o['from'],'date',true).field('to','終了日',$o['to'],'date',true)
-        .($o['tab']==='unique'||$o['mode']==='views'?'':select_field('group','対象',ACCESS_GROUPS,$o['group']).select_field('client','アクセス元の分類',ACCESS_CLIENTS,$o['client']).select_field('status','応答',[''=>'すべて','2xx'=>'成功（2xx）','3xx'=>'転送等（3xx）','4xx'=>'要求エラー（4xx）','5xx'=>'サーバーエラー（5xx）'],$o['status']))
-        .field('q','URLパスで検索',$o['q']).select_field('limit','履歴の表示件数',['25'=>'25件','50'=>'50件','100'=>'100件'],(string)$o['limit'])
-        .'<button>表示を更新</button><a href="/admin/?view=access">条件を解除</a></form>';
-    if (!$r['available']) return $out.'<div class="dn-notice" role="status"><h2>アクセスログを読み取れません</h2><p>ログが未設定、または保存先を読み取れない状態です。アクセス数が0件という意味ではありません。</p></div>';
-    if ($r['partial'] || $r['invalid']) $out .= '<div class="dn-error" role="status">一部のログを集計できていません。読込上限・保存中の切替・読取エラー等のため、以下は読み取れた範囲の集計です。'.($r['invalid']?'形式を確認できなかった記録：'.number_format($r['invalid']).'件。':'').'</div>';
-    $out .= '<p class="dn-muted">確認できた保存範囲：'.e(access_time($r['oldest'])).' ～ '.e(access_time($r['latest'])).'。管理画面は直近6か月を表示します。それ以前の分は月1回、上半期・下半期別のフォルダーへ圧縮保管します。</p>';
-    $out .= '<div class="admin-metrics admin-access-metrics">';
-    $metrics = $o['mode']==='views' ? [['ページ閲覧数',$r['total']],['集計から除外したアクセス',array_sum($r['excluded'])]] : [['選択条件のリクエスト',$r['total']],['公開ページの成功GET',$r['pages']],['見つからないURL（404）',$r['not_found']],['サーバーエラー（5xx）',$r['errors']]];
-    foreach ($metrics as [$label,$count])
-        $out .= '<a href="'.admin_query($base,['tab'=>'requests']).'"><span>'.e($label).'</span><strong>'.number_format($count).'<small>件</small></strong></a>';
-    $out .= '<a href="'.admin_query($base,['tab'=>'unique']).'"><span>日別推定ユニークの合計</span><strong>'.($uu['available']?number_format($uu['total']).'<small>人日</small>':'未取得').'</strong><small>期間・コンテンツ・URL条件・一般ブラウザーのみ</small></a>';
-    $out .= '</div>';
-    if($uu['available']&&isset($uu['raw_total']))$out.='<p>詳細判定前 '.number_format($uu['raw_total']).' 人日 → 除外後 '.number_format($uu['total']).' 人日。規則的巡回の疑い：'.number_format($uu['quality_counts']['suspected']??0).' 人日。その他の詳細判定による除外：'.number_format($uu['raw_total']-$uu['total']-($uu['quality_counts']['suspected']??0)).' 人日。</p>';
-    $out .= access_content_html($o,$r,$uu,$base).access_charts_html($o,$r,$uu,$base).'<nav class="dn-admin-nav" aria-label="アクセスログの表示切替">';
-    foreach (['paths'=>'URL別件数','days'=>'日別件数','requests'=>'個別のアクセス履歴','unique'=>'推定ユニーク数'] as $tab=>$label)
-        $out .= '<a href="'.admin_query($base,['tab'=>$tab,'page'=>1]).'"'.($tab===$o['tab']?' aria-current="page"':'').'>'.e($label).'</a> ';
-    $out .= '</nav>';
-    if ($o['tab'] === 'unique') {
-        $out .= '<h2>日別の推定ユニーク数</h2><p>日本時間の1日ごとに、同じ接続IPとブラウザー情報の重複を除きます。期間・コンテンツ・URL検索条件が対象です。同じ人の別ページは日別人数で重複しません。複数日の合計は「人日」で、期間全体の実人数ではありません。</p>';
-        if (!$uu['available']) $out .= '<p class="dn-error">推定ユニーク数を取得できません。0人という意味ではありません。</p>';
-        $out .= '<p>計測開始：'.e(access_iso_time($uu['started_at']??null)).'。JavaScriptによるページ表示の通知を受け取った分を集計します。</p>'.admin_table_open('日別推定ユニーク数').'<thead><tr><th scope="col">日付（日本時間）</th><th scope="col">推定ユニーク数</th></tr></thead><tbody>';
-        foreach ($uu['days'] as $day=>$count) $out .= '<tr><th scope="row">'.e($day).'</th><td>'.number_format($count).' 人</td></tr>';
-        if (!$uu['days']) $out .= '<tr><td colspan="2" class="admin-empty">この期間・URL条件の計測記録はありません。</td></tr>';
-        $out .= '</tbody></table></div><h2>URL別の推定ユニーク数（上位50件）</h2><p>ページごとの日別人数を合計しています。別のページの人数とは重複するため、足して全体人数にはできません。</p>'.admin_table_open('URL別推定ユニーク数').'<thead><tr><th scope="col">URLパス</th><th scope="col">日別人数の合計</th></tr></thead><tbody>';
-        foreach ($uu['paths'] as $p) $out .= '<tr><th scope="row">'.e($p['path']).'</th><td>'.number_format((int)$p['count']).' 人日</td></tr>';
-        if (!$uu['paths']) $out .= '<tr><td colspan="2" class="admin-empty">計測記録はありません。</td></tr>';
-    } elseif ($o['tab'] === 'paths') {
-        $out .= '<h2>URL別件数（上位50件）</h2>'.admin_table_open('URL別アクセス件数').'<thead><tr><th scope="col">URLパス</th><th scope="col">リクエスト数</th><th scope="col">4xx・5xx</th></tr></thead><tbody>';
-        foreach (array_slice($r['paths'],0,50) as $p) $out .= '<tr><th scope="row">'.e($p['path']).'<small>'.e($p['host']).'</small></th><td>'.number_format($p['count']).'</td><td>'.number_format($p['errors']).'</td></tr>';
-        if (!$r['paths']) $out .= '<tr><td colspan="3" class="admin-empty">この条件に一致するアクセスはありません。</td></tr>';
-    } elseif ($o['tab'] === 'days') {
-        $out .= '<h2>日別件数</h2>'.admin_table_open('日別アクセス件数').'<thead><tr><th scope="col">日付（日本時間）</th><th scope="col">リクエスト数</th></tr></thead><tbody>';
-        foreach ($r['days'] as $day=>$count) $out .= '<tr><th scope="row">'.e($day).'</th><td>'.number_format($count).'</td></tr>';
-        if (!$r['days']) $out .= '<tr><td colspan="2" class="admin-empty">この条件に一致するアクセスはありません。</td></tr>';
-    } else {
-        $out .= '<h2>個別のアクセス履歴（新しい順）</h2>'.admin_pager($o['page'],$r['total'],$o['limit'],$base)
-            .admin_table_open('個別のアクセス履歴').'<thead><tr><th scope="col">日時（日本時間）</th><th scope="col">URLパス</th><th scope="col">分類・接続情報</th><th scope="col">メソッド</th><th scope="col">応答</th><th scope="col">処理時間</th><th scope="col">送信量</th></tr></thead><tbody>';
-        foreach ($r['rows'] as $p) $out .= '<tr><td>'.e(access_time($p['ts'])).'</td><th scope="row">'.e($p['path']).'<small>'.e($p['host']).'</small></th><td>'.e(ACCESS_CLIENTS[$p['client']]).'<details><summary>判定理由・IP・ブラウザー</summary><p>'.e($p['classification']).'</p><dl><dt>接続IP</dt><dd>'.e($p['ip']??'未取得（旧ログ）').'</dd><dt>User-Agent</dt><dd>'.e($p['user_agent']??'未取得（旧ログ）').'</dd><dt>参照元ドメイン</dt><dd>'.e($p['referrer_host']??'未取得').'</dd></dl></details></td><td>'.e($p['method']).'</td><td>'.$p['status'].'</td><td>'.($p['duration']===null?'不明':number_format($p['duration']*1000,1).' ms').'</td><td>'.($p['size']===null?'不明':number_format($p['size']).' B').'</td></tr>';
-        if (!$r['rows']) $out .= '<tr><td colspan="7" class="admin-empty">このページに表示するアクセスはありません。</td></tr>';
-    }
-    $out .= '</tbody></table></div>';
-    if ($o['tab'] === 'requests') $out .= admin_pager($o['page'],$r['total'],$o['limit'],$base);
-    return $out.engagement_report_html($o).access_storage_html().'<details class="admin-panel"><summary>記録の範囲と数え方</summary><p>ニュース・World・手話カフェ・地図・おとまど・API・画像等、deafnavi.com と www.deafnavi.com に届くリクエストを記録します。取得開始前の履歴、外部サイト、オフライン表示は含みません。リクエスト数には再表示・画像・bot等も含まれます。</p><p>アクセス元はUser-Agent等から分類します。通常集計は一般ブラウザーのみで、Codex・AI・bot・自動操作・管理画面・分類不明を除外します。除外した分類は調査用に切り替えて確認できます。詳細ログのある期間では、同じ接続とブラウザーの長時間の規則的な巡回を自動アクセス疑いとして通常集計から除外します。人間の自動更新等も含まれ得るため、確定botとは区別します。過去に一般ブラウザーとして保存された記録を、後から完全に分類し直すことはできません。</p><p>推定ユニーク数はIPとブラウザー情報をサーバー内で日ごとにHMAC化します。Cookieや端末への識別子保存は使いません。同じ回線・同じブラウザー情報は少なく、IPやブラウザー情報が変わると多く数える場合があります。JavaScriptが動かないアクセスは推定ユニーク数に入りません。同じ日の接続が後からCodex等と判定された場合は、その日の推定UUから除外します。</p><p>詳細ログでは接続IP・User-Agent・参照元ドメイン・ブラウザーの通信種別を記録します。Cookie・認証情報・入力本文・URLの検索条件・参照元の検索語は保存しません。公開領域外で管理者のみ参照できます。6か月を過ぎた分は月1回、上半期・下半期別にgzip圧縮し、展開内容のSHA-256一致を確認してから元記録を移します。バックアップは自動削除しません。履歴の読込は最大64 MiB・20万行・約4秒で、未集計があれば明示します。</p></details>';
+    $o=access_options(); $r=access_report($o); $uu=access_unique_report($o);
+    if (input($_GET,'export',10)==='csv') access_csv_download($o,$r,$uu);
+    require_once __DIR__.'/access-analytics-view.php';
+    return access_analytics_view($o,$r,$uu);
 }
-
 function access_content_html(array $options, array $report, array $unique, array $base): string {
     $out = '<section class="admin-panel"><h2>コンテンツ別アクセス</h2><p>選択期間・URL検索条件の一般ブラウザーによるページ閲覧です。詳細ページも各コンテンツへ含めます。</p>';
     $out .= admin_table_open('コンテンツ別アクセス').'<thead><tr><th scope="col">コンテンツ</th><th scope="col">閲覧数</th><th scope="col">日別推定UUの合計</th></tr></thead><tbody>';

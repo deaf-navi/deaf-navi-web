@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-function access_chart_series(array $options, array $days, ?float $started): array {
+function access_chart_series(array $options, array $days, ?float $started, bool $complete=true): array {
     $series = [];
     $day = new DateTimeImmutable($options['from'], new DateTimeZone('Asia/Tokyo'));
     $end = new DateTimeImmutable($options['to'], new DateTimeZone('Asia/Tokyo'));
     for (; $day <= $end; $day = $day->modify('+1 day')) {
         $date = $day->format('Y-m-d');
         $series[$date] = isset($days[$date]) ? (int)$days[$date]
-            : ($started === null || $day->modify('+1 day')->getTimestamp() <= $started ? null : 0);
+            : (!$complete || $started === null || $day->modify('+1 day')->getTimestamp() <= $started ? null : 0);
     }
     return $series;
 }
 
-function access_daily_chart(string $title, string $unit, array $series, array $base, bool $available): string {
+function access_daily_chart(string $title, string $unit, array $series, array $base, bool $available, ?int $comparisonMax=null): string {
     $out = '<figure class="admin-access-chart"><figcaption>'.e($title).'<small>日別・'.e($unit).'</small></figcaption>';
     if (!$available) return $out.'<p class="dn-notice">未取得のためグラフを表示できません。0'.e($unit).'という意味ではありません。</p></figure>';
-    $max = max([1, ...array_values(array_filter($series, fn($n)=>$n!==null))]);
+    $max = max([1, $comparisonMax??1, ...array_values(array_filter($series, fn($n)=>$n!==null))]);
     $ceiling = $max <= 5 ? $max : (int)(ceil($max / (10 ** floor(log10($max)))) * (10 ** floor(log10($max))));
     $width = 720; $height = 180; $step = $width / max(1,count($series)); $i=0;
     $out .= '<div class="admin-chart-plot"><div class="admin-chart-scale" aria-hidden="true"><span>'.number_format($ceiling).'</span><span>'.($ceiling%2 ? '' : number_format($ceiling/2)).'</span><span>0</span></div>';
@@ -45,7 +45,7 @@ function access_charts_html(array $options, array $report, array $unique, array 
     foreach ([7,30] as $days) $out .= '<a href="'.admin_query($base,['from'=>$today->modify('-'.($days-1).' days')->format('Y-m-d'),'to'=>$today->format('Y-m-d'),'page'=>1]).'">直近'.$days.'日</a>';
     $out .= '<a href="'.admin_query($base,['from'=>access_retention_start($today)->format('Y-m-d'),'to'=>$today->format('Y-m-d'),'page'=>1]).'">直近6か月</a>';
     $out .= '</nav><div class="admin-chart-pair">';
-    $out .= access_daily_chart(($options['mode']??'requests')==='views'?'ページ閲覧数':'リクエスト数','件',access_chart_series($options,$report['days'],$report['oldest']),array_merge($base,['tab'=>'requests']),$report['available']);
+    $out .= access_daily_chart(($options['mode']??'requests')==='views'?'ページ閲覧数':'リクエスト数','件',access_chart_series($options,$report['days'],$report['oldest'],!$report['partial']&&!$report['invalid']),array_merge($base,['tab'=>'requests']),$report['available']);
     $started = is_string($unique['started_at']) ? strtotime($unique['started_at']) : false;
     $out .= access_daily_chart('推定ユニーク数','人',access_chart_series($options,$unique['days'],$started===false?null:(float)$started),array_merge($base,['tab'=>'unique']),$unique['available']);
     return $out.'</div><p class="admin-chart-help">リクエストは選択中の全条件、推定UUは期間・コンテンツ・URL条件と一般ブラウザーが対象です。計測開始日は開始時刻以降の値です。日別の数値は下の表示切替でも確認できます。</p></section>';

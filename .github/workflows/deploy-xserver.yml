@@ -87,6 +87,7 @@ jobs:
           node test/admin-dashboard.integration.mjs
           node test/admin-session.integration.mjs
           node test/access-logs.integration.mjs
+          php test/access-analytics.test.php
           php test/access-quality.test.php
           node test/access-visitors.integration.mjs
           node test/engagement.integration.mjs

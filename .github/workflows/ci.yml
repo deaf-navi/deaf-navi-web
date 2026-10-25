@@ -42,6 +42,14 @@ jobs:
           php test/cafe-event-recovery.php
           node test/cafe-event-recovery.integration.mjs
 
+      - name: Private analytics accuracy and permissions
+        run: |
+          php test/access-analytics.test.php
+          php test/access-quality.test.php
+          node test/access-logs.integration.mjs
+          node test/access-visitors.integration.mjs
+          python3 test/access-maintenance.test.py
+
       - name: Install OtoMado dependencies
         run: npm ci --prefix tools/otomado
 

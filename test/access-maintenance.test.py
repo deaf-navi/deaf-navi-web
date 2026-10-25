@@ -136,6 +136,23 @@ class Retention(unittest.TestCase):
         self.assertEqual(result['retention_months'], 6)
         self.assertEqual(result['archive_grouping'], 'half_year')
 
+    def test_engagement_verified_archive_and_conflict(self):
+        db = sqlite3.connect(self.visitors / 'engagement.sqlite')
+        db.execute('CREATE TABLE counts(day TEXT,source TEXT,event TEXT,hits INTEGER,PRIMARY KEY(day,source,event)) WITHOUT ROWID')
+        db.executemany('INSERT INTO counts VALUES(?,?,?,?)', [('2026-02-28','cafe','related_view',7),('2026-08-31','news','article_click',3)])
+        db.commit()
+        result = m.maintain(self.logs, self.visitors, self.now)
+        self.assertEqual(result['engagement'][0]['rows'], 1)
+        target = next((self.visitors/'archive').glob('*/engagement-*.gz'))
+        self.assertEqual(json.loads(gzip.decompress(target.read_bytes()))['hits'], 7)
+        self.assertEqual(db.execute('SELECT day FROM counts').fetchall(), [('2026-08-31',)])
+        db.execute("INSERT INTO counts VALUES('2026-02-28','cafe','related_view',8)")
+        db.commit()
+        with self.assertRaises(RuntimeError):
+            m.maintain(self.logs, self.visitors, self.now)
+        self.assertEqual(db.execute('SELECT hits FROM counts WHERE day=?', ('2026-02-28',)).fetchone()[0], 8)
+        db.close()
+
 
 if __name__ == '__main__':
     unittest.main()

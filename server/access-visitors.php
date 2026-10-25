@@ -86,9 +86,13 @@ function access_record_visit(string $path, string $ip, string $ua, ?DateTimeImmu
     if (!$identity) return;
     [$day,$visitor] = $identity;
     // One row per day, inferred visitor and page. A reload or retry adds no duplicate.
-    $s = access_visitor_db(true)->prepare('INSERT OR IGNORE INTO visits(day,visitor,path)
+    $db=access_visitor_db(true);
+    $s = $db->prepare('INSERT OR IGNORE INTO visits(day,visitor,path)
         SELECT ?,?,? WHERE NOT EXISTS (SELECT 1 FROM excluded_visitors WHERE day=? AND visitor=?)');
     $s->execute([$day,$visitor,$path,$day,$visitor]);
+    if ($s->rowCount()>0 && str_starts_with($path,'/stories/')) {
+        $db->prepare('INSERT OR IGNORE INTO metadata(key,value) VALUES(?,?)')->execute(['stories_started_at',gmdate('c')]);
+    }
 }
 
 function access_visit_endpoint(): never {
@@ -110,8 +114,11 @@ function access_visit_endpoint(): never {
     // Accept public HTML pages only. API/assets remain covered by the Caddy request log.
     $root = getenv('DEAFNAVI_LOCAL_TEST') === '1' ? realpath(__DIR__.'/../docs') : '/srv/deafnavi/current';
     $file = $root.$path.(str_ends_with($path,'/')?'index.html':'');
-    if (!str_starts_with($path,'/connect/sign-cafe/') && (!is_file($file) || !str_ends_with($file,'.html'))) { http_response_code(400); exit; }
-    try { if (access_content($path)===null) { http_response_code(400); exit; } }
+    try {
+        $dynamicStory=access_public_story_path($path);
+        if (!$dynamicStory && !str_starts_with($path,'/connect/sign-cafe/') && (!is_file($file) || !str_ends_with($file,'.html'))) { http_response_code(400); exit; }
+        if (access_content($path)===null) { http_response_code(400); exit; }
+    }
     catch (Throwable) { http_response_code(503); exit; }
     $ua = substr($_SERVER['HTTP_USER_AGENT']??'',0,2049);
     $marker = substr($_SERVER['HTTP_X_DEAFNAVI_CLIENT']??'',0,100);
@@ -131,16 +138,24 @@ function access_visit_endpoint(): never {
 }
 
 function access_unique_report(array $options): array {
-    $result = ['available'=>false,'days'=>[],'paths'=>[],'total'=>0,'started_at'=>null,'contents'=>[]];
+    $result = ['available'=>false,'days'=>[],'paths'=>[],'total'=>0,'started_at'=>null,'stories_started_at'=>null,'contents'=>[]];
     try {
         $db = access_visitor_db();
         $createFunction = method_exists($db, 'createFunction') ? 'createFunction' : 'sqliteCreateFunction';
         $result['started_at'] = $db->query("SELECT value FROM metadata WHERE key='started_at'")->fetchColumn() ?: null;
+        $result['stories_started_at'] = $db->query("SELECT value FROM metadata WHERE key='stories_started_at'")->fetchColumn() ?: null;
         $where = 'day>=? AND day<=? AND NOT EXISTS (SELECT 1 FROM excluded_visitors x WHERE x.day=visits.day AND x.visitor=visits.visitor)'; $args = [$options['from'],$options['to']];
         $db->$createFunction('quality_excluded',fn($day,$visitor)=>access_quality_class($day,$visitor)!==null?1:0,2);
         $where .= ' AND quality_excluded(day,visitor)=0';
-        if ($options['q']!=='') { $where .= ' AND instr(lower(path),lower(?))>0'; $args[]=$options['q']; }
-        $db->$createFunction('content_key', fn($path)=>access_content($path), 1);
+        if ($options['q']!=='') {
+            $where .= match($options['match']??'contains') {'exact'=>' AND lower(path)=lower(?)','prefix'=>' AND instr(lower(path),lower(?))=1',default=>' AND instr(lower(path),lower(?))>0'};
+            $args[]=$options['q'];
+        }
+        $contentCache=[];
+        $db->$createFunction('content_key', function($path) use (&$contentCache) {
+            if (!array_key_exists($path,$contentCache)) $contentCache[$path]=access_content($path);
+            return $contentCache[$path];
+        }, 1);
         $where .= ' AND content_key(path) IS NOT NULL';
         $s = $db->prepare('SELECT content_key(path) AS content,COUNT(DISTINCT day || ":" || visitor) AS count FROM visits WHERE '.$where.' GROUP BY content_key(path)');
         $s->execute($args);
@@ -158,6 +173,10 @@ function access_unique_report(array $options): array {
             $s = $db->prepare('SELECT path,COUNT(*) AS count FROM visits WHERE '.$where.' GROUP BY path ORDER BY count DESC LIMIT 50');
             $s->execute($args); $result['paths']=$s->fetchAll();
         }
+        $storyStart=$result['stories_started_at']?strtotime($result['stories_started_at']):false;
+        $scopeStart=strtotime($options['from'].'T00:00:00+09:00');
+        $result['stories_measurement_gap']=$storyStart===false||$scopeStart<$storyStart;
+        $result['stories_gap']=in_array($options['content']??'all',['all','stories'],true)&&$result['stories_measurement_gap'];
         $result['available']=true;
     } catch (Throwable) { /* Display unavailable, never invent a zero. */ }
     return $result;

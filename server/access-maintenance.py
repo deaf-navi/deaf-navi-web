@@ -141,7 +141,9 @@ def archive_logs(root, cutoff, active="access-v3.log", index=None):
 
 
 def archive_visitors(root, cutoff, table="visits"):
-    database = root / "visitors.sqlite"
+    if table not in ("visits", "excluded_visitors", "counts"):
+        raise RuntimeError("Unexpected analytics table")
+    database = root / ("engagement.sqlite" if table == "counts" else "visitors.sqlite")
     if not database.is_file():
         return []
     if database.is_symlink():
@@ -150,12 +152,10 @@ def archive_visitors(root, cutoff, table="visits"):
     db.row_factory = sqlite3.Row
     archived = []
     try:
-        if table not in ("visits", "excluded_visitors"):
-            raise RuntimeError("Unexpected visitor table")
         if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (table,)).fetchone():
             return []
-        prefix = "visitors-" if table == "visits" else "excluded-visitors-"
-        order = "visitor,path" if table == "visits" else "visitor"
+        prefix = {"visits": "visitors-", "excluded_visitors": "excluded-visitors-", "counts": "engagement-"}[table]
+        order = {"visits": "visitor,path", "excluded_visitors": "visitor", "counts": "source,event"}[table]
         # day is Japan time; leave a boundary day intact until every record is old enough.
         days = [r[0] for r in db.execute("SELECT DISTINCT day FROM " + table + " WHERE day < ? ORDER BY day", (cutoff.strftime("%Y-%m-%d"),))]
         for day in days:
@@ -205,6 +205,7 @@ def maintain(root, visitor_root, now, force_monthly=False):
         if visitor_root.exists():
             result["visitors"] = archive_visitors(visitor_root.resolve(strict=True), cutoff)
             result["visitors"] += archive_visitors(visitor_root.resolve(strict=True), cutoff, "excluded_visitors")
+            result["engagement"] = archive_visitors(visitor_root.resolve(strict=True), cutoff, "counts")
     except Exception as ex:
         result["status"] = "error"
         result["error_type"] = type(ex).__name__  # No request data or secrets in operational output.

@@ -1,0 +1,106 @@
+/* Opus 5.5 UI proposal, adapted to the verified server-side metrics and existing admin shell. */
+.access-analytics{--aa-navy:#203449;--aa-teal:#086f72;--aa-teal-bg:#e7f4f4;--aa-text:#263448;--aa-sub:#536273;--aa-line:#dce2e7;--aa-th:#f3f6f8;--aa-warn:#794000;--aa-warn-bg:#fff6e5;min-width:0;padding:18px 24px 28px;background:#fff;color:var(--aa-text);font-size:14px;line-height:1.7;accent-color:var(--aa-teal);caret-color:var(--aa-teal);-webkit-tap-highlight-color:#cce9e9}
+.access-analytics *{box-sizing:border-box}
+.access-analytics ::selection{background:#cbe8e8;color:#203449}
+.access-analytics :is(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--aa-teal);outline-offset:3px}
+.access-analytics a{color:#08676a;text-underline-offset:3px;text-decoration-thickness:1px;touch-action:manipulation}
+.access-analytics a:hover{color:#034b4e;text-decoration-thickness:2px}
+.access-analytics :is(button,.aa-button){display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border:1px solid var(--aa-teal);border-radius:4px;background:var(--aa-teal);color:#fff;font:inherit;font-weight:600;line-height:1.5;cursor:pointer;touch-action:manipulation;text-decoration:none}
+.access-analytics .aa-button{background:#fff;color:var(--aa-teal);white-space:nowrap}
+.access-analytics :is(button,.aa-button):hover{background:#e7f4f4;color:#034b4e;border-color:#034b4e}
+.access-analytics .aa-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.access-analytics .aa-toolbar p{margin:0;color:var(--aa-sub)}
+.access-analytics .aa-filters{margin:16px 0 12px;padding:16px 0;border-block:1px solid var(--aa-line)}
+.access-analytics .aa-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px;align-items:end}
+.access-analytics .aa-filter-secondary{margin-top:12px}
+.access-analytics .dn-field{display:block;min-width:0;margin:0;font-size:12px;color:var(--aa-sub)}
+.access-analytics .dn-field :is(input,select){display:block;width:100%;min-width:0;min-height:44px;margin-top:4px;padding:7px 8px;border:1px solid #aebfc9;border-radius:4px;background:#fff;color:var(--aa-text);font:inherit;font-size:14px}
+.access-analytics .aa-filter-actions{display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap;margin-top:14px}
+.access-analytics .aa-filter-actions>a,.access-analytics .aa-filter-actions nav a{display:inline-flex;align-items:center;min-height:44px;padding:4px}
+.access-analytics .aa-filter-actions nav{display:flex;gap:4px 16px;flex-wrap:wrap;font-size:12px}
+.access-analytics .aa-period{display:flex;align-items:baseline;gap:8px 18px;flex-wrap:wrap;margin:16px 0;font-size:13px;font-variant-numeric:tabular-nums}
+.access-analytics .aa-period>span{color:var(--aa-sub)}
+.access-analytics .aa-period .aa-status{margin-left:auto;padding:2px 8px;border:1px solid var(--aa-line);border-radius:3px;font-size:12px}
+.access-analytics .aa-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;border-block:1px solid var(--aa-line)}
+.access-analytics .aa-metrics>div{padding:14px 18px;border-left:1px solid var(--aa-line);min-width:0}
+.access-analytics .aa-metrics>div:first-child{border-left:0;padding-left:0}
+.access-analytics .aa-metrics dt{font-size:12px;color:var(--aa-sub)}
+.access-analytics .aa-metrics dd{margin:6px 0 0;font-size:27px;font-weight:700;line-height:1.45;font-variant-numeric:tabular-nums}
+.access-analytics .aa-metrics dd .aa-change{font-size:21px}
+.access-analytics .aa-metrics small{font-size:12px;font-weight:400;color:var(--aa-sub);line-height:1.7}
+.access-analytics .aa-change small{display:block;font-size:12px;color:var(--aa-sub);font-weight:400}
+.access-analytics .aa-unknown{color:var(--aa-sub);font-size:12px;font-weight:400}
+.access-analytics dd>.aa-unknown{display:inline-block;padding:2px 8px;border:1px dashed #aebbc5;border-radius:3px;background:#f3f6f8;font-size:15px}
+.access-analytics .aa-tabs{display:flex;gap:0;margin-top:20px;border-bottom:1px solid var(--aa-line);max-width:100%;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#73899a #eef3f6}
+.access-analytics .aa-tabs a{display:inline-flex;flex:0 0 auto;align-items:center;min-height:46px;padding:10px 14px;border-bottom:3px solid transparent;color:var(--aa-sub);text-decoration:none;white-space:nowrap}
+.access-analytics .aa-tabs a:hover{background:var(--aa-th);color:var(--aa-navy)}
+.access-analytics .aa-tabs a[aria-current]{border-bottom-color:var(--aa-teal);color:var(--aa-navy);font-weight:700}
+.access-analytics .aa-tabs a:focus-visible{outline-offset:-3px}
+.access-analytics .aa-section{margin-top:24px;padding-top:18px;border-top:1px solid var(--aa-line);min-width:0}
+.access-analytics .aa-tabs+.aa-section,.access-analytics .aa-scope+.aa-section{border-top:0;padding-top:0}
+.access-analytics .aa-section h2{margin:0 0 8px;font-size:17px;line-height:1.5;color:var(--aa-navy);text-wrap:balance}
+.access-analytics .aa-note,.access-analytics .aa-footer-note{margin:8px 0 12px;color:var(--aa-sub);font-size:12px;line-height:1.8;max-width:90ch}
+.access-analytics .aa-scope{margin:18px 0;padding:10px 12px;background:#edf6f6;color:#234c4e;font-size:13px}
+.access-analytics .aa-notice{margin:16px 0;padding:12px 14px;border:1px solid #dcc08c;background:var(--aa-warn-bg);color:var(--aa-warn);font-size:13px}
+.access-analytics .aa-notice h2{font-size:17px;color:inherit;margin:0 0 8px}
+.access-analytics .aa-notice p{margin:8px 0 0}
+.access-analytics .aa-split,.access-analytics .aa-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;min-width:0}
+.access-analytics .aa-chart-grid{margin-top:20px}
+.access-analytics .admin-table-scroll{margin:12px 0;border:0;border-radius:0;scrollbar-width:thin;scrollbar-color:#73899a #eef3f6}
+.access-analytics .admin-table{min-width:0;width:100%;border-collapse:collapse;font-size:13px}
+.access-analytics .admin-table :is(th,td){padding:10px 12px;border-bottom:1px solid var(--aa-line);vertical-align:top;min-width:0;white-space:normal;text-align:left}
+.access-analytics .admin-table thead th{background:var(--aa-th);color:var(--aa-sub);font-size:12px;font-weight:600;white-space:nowrap}
+.access-analytics .admin-table th[scope=row]{font-weight:500;min-width:11em;max-width:32em;overflow-wrap:anywhere}
+.access-analytics .admin-table .aa-number{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.access-analytics .admin-table td small{font-size:11px}
+.access-analytics .admin-table tr:hover :is(th,td){background:#f7fafb}
+.access-analytics .admin-table th a{display:inline-block;text-decoration:underline;padding:3px 0}
+.access-analytics .admin-table small{color:var(--aa-sub)}
+.access-analytics .admin-table-scroll[aria-label="個別のアクセス履歴"] table{min-width:940px}
+.access-analytics .admin-table details{max-width:320px;overflow-wrap:anywhere;font-size:12px}
+.access-analytics .admin-table details dd{margin:0 0 10px}
+.access-analytics summary{cursor:pointer;min-height:44px;padding-block:10px}
+.access-analytics .admin-empty{color:var(--aa-sub);padding:24px!important}
+.access-analytics .aa-hour-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px 20px;margin-top:16px}
+.access-analytics .aa-hour{display:grid;grid-template-columns:3.8em minmax(0,1fr) 3.5em;align-items:center;gap:8px;font-size:12px;font-variant-numeric:tabular-nums}
+.access-analytics .aa-hour strong{text-align:right;font-weight:500}
+.access-analytics meter{width:100%;height:12px;min-width:0;accent-color:var(--aa-teal)}
+.access-analytics meter::-webkit-meter-bar{background:#edf0f3;border:0;border-radius:2px}
+.access-analytics meter::-webkit-meter-optimum-value{background:var(--aa-teal)}
+.access-analytics meter::-moz-meter-bar{background:var(--aa-teal)}
+.access-analytics .aa-facts{display:grid;grid-template-columns:minmax(8em,1fr) 3fr;gap:0;margin:14px 0}
+.access-analytics .aa-facts :is(dt,dd){margin:0;padding:10px 8px;border-bottom:1px solid var(--aa-line);overflow-wrap:anywhere}
+.access-analytics .aa-facts dt{font-size:12px;color:var(--aa-sub)}
+.access-analytics .aa-definitions dt{font-weight:700;margin-top:18px}
+.access-analytics .aa-definitions dd{margin:4px 0 0;max-width:80ch}
+.access-analytics .admin-panel{border-radius:0;margin:24px 0 0;padding:0;border:0;border-top:1px solid var(--aa-line)}
+.access-analytics .admin-chart-bar{fill:var(--aa-teal)}
+.access-analytics .admin-chart-help,.access-analytics .admin-chart-scale,.access-analytics .admin-chart-dates{color:var(--aa-sub)}
+.access-analytics .aa-footer-note{margin-top:24px;padding-top:14px;border-top:1px solid var(--aa-line);max-width:none}
+@media(max-width:1100px){.access-analytics .aa-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.access-analytics .aa-hour-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767px){
+  .access-analytics{padding:12px 12px 24px}
+  .access-analytics .aa-toolbar{align-items:flex-start}
+  .access-analytics .aa-toolbar p{font-size:13px}
+  .access-analytics .aa-filter-grid:not(.aa-filter-secondary)>.dn-field:nth-child(n+3){grid-column:1/-1}
+  .access-analytics .aa-filter-grid{gap:10px}
+  .access-analytics .dn-field :is(input,select){font-size:16px}
+  .access-analytics .aa-filter-actions>button{width:100%}
+  .access-analytics .aa-filter-actions{gap:8px 14px}
+  .access-analytics .aa-filter-actions nav{gap:4px 12px}
+  .access-analytics .aa-period{gap:6px}
+  .access-analytics .aa-period>strong{width:100%}
+  .access-analytics .aa-period .aa-status{margin-left:0}
+  .access-analytics .aa-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .access-analytics .aa-metrics>div{padding:12px}
+  .access-analytics .aa-metrics>div:first-child{grid-column:1/-1;border-bottom:1px solid var(--aa-line)}
+  .access-analytics .aa-metrics>div:nth-child(2){border-left:0;padding-left:0}
+  .access-analytics .aa-metrics dd{font-size:24px}
+  .access-analytics .aa-metrics dd .aa-change{font-size:18px}
+  .access-analytics :is(.aa-split,.aa-chart-grid){grid-template-columns:minmax(0,1fr);gap:20px}
+  .access-analytics .admin-table{font-size:12px}
+  .access-analytics .admin-table :is(th,td){padding:9px 8px}
+  .access-analytics .aa-hour-grid{grid-template-columns:minmax(0,1fr)}
+  .access-analytics .aa-facts{grid-template-columns:minmax(0,1fr)}
+  .access-analytics .aa-facts dt{padding-bottom:0;border-bottom:0;font-weight:700}
+}

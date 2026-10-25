@@ -41,6 +41,9 @@ function access_classify_build(): array {
             $isVisit=$r['path']==='/_access/visit'&&$r['method']==='POST'&&$r['status']===204;
             $isPage=$r['group']==='pages'&&$r['method']==='GET'&&in_array($r['status'],[200,304],true)&&access_content($r['path'])!==null;
             if(!$isVisit&&!$isPage)continue;
+            // Caddy caps UA at 512 bytes. Do not merge a truncated fingerprint
+            // with a full-UA visitor identity or change the existing daily HMAC.
+            if(strlen($r['user_agent'])>=512)continue;
             $id=access_quality_identity($r['ip'],$r['user_agent'],$r['ts']);if(!$id)continue;
             [$day,$visitor]=$id;$uaClass=access_client($r['user_agent']);$class=null;
             if(in_array($uaClass,['ai','bot','automation'],true))$class=$uaClass;
