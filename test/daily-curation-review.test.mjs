@@ -7,6 +7,8 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {planDailyReview,runDailyReview,reviewRecords} from '../scripts/daily-curation-review.mjs';
 import {prepareReviewItem,evidenceHash} from '../scripts/curation-review-contract.mjs';
+import {curationHorizonEnd} from '../scripts/curation-horizon.mjs';
+import {planCurationAttention} from '../scripts/curation-attention.mjs';
 const now=Date.parse('2026-10-18T12:00:00Z');
 const text='手話交流会を開催します。開催日 2026年11月14日。会場 市民会館。';
 const target={kind:'event',recordId:'fixture-event',title:'手話交流会',sourceUrl:'https://example.org/event',sourceMode:'html',officialVerified:true,sharingReviewedAt:new Date(now-60000).toISOString(),approvedDocumentHash:'a'.repeat(64),fragments:[text]};
@@ -34,12 +36,34 @@ test('planner holds visual, stale, revision-changed and unregistered evidence wi
  const p=planDailyReview([record],catalog,{now});assert.equal(p.targets.length,1);assert.deepEqual(p.targets[0].baseline,record.baseline);
  assert.throws(()=>planDailyReview([record],{version:1,targets:[target,target]},{now}));
 });
-test('planner respects public-only, 6 weeks/6 months and shares the bound between services',()=>{
+test('planner respects public-only, event horizons and shares the bound between services',()=>{
  const records=Array.from({length:10},(_,i)=>({...record,kind:i===9?'cafe':'event',recordId:'fixture-'+i,...(i===9?{revision:1,sourceRecordRevision:1}:{})}));
  const c={version:1,targets:records.map(r=>({...target,kind:r.kind,recordId:r.recordId}))};
  const p=planDailyReview(records,c,{now,limit:8});assert.equal(p.targets.length,8);assert.equal(p.targets[1].kind,'cafe');assert.equal(p.deferred.length,2);
  assert.equal(planDailyReview([{...record,publication:'draft'}],catalog,{now}).targets.length,0);
  for(const [eventKind,count] of [['exchange',0],['theater',1]])assert.equal(planDailyReview([{...record,eventKind,baseline:{...record.baseline,startDate:'2027-03-01'}}],catalog,{now}).targets.length,count);
+});
+
+test('cafe horizon is four Japan calendar months inclusive, including month ends and leap years',()=>{
+ for(const [stamp,end] of [['2026-10-25T12:00:00Z','2027-02-25'],['2026-10-25T15:00:00Z','2027-02-26'],
+  ['2026-10-31T00:00:00Z','2027-02-28'],['2027-10-31T00:00:00Z','2028-02-29'],['2026-12-31T00:00:00Z','2027-04-30']]){
+   assert.equal(curationHorizonEnd({kind:'cafe',now:Date.parse(stamp)}),end);
+ }
+ const n=Date.parse('2026-10-25T00:00:00Z');
+ assert.equal(curationHorizonEnd({kind:'event',now:n}),'2026-12-06');
+ assert.equal(curationHorizonEnd({kind:'event',eventKind:'theater',now:n}),'2027-04-25');
+});
+test('comparison and deadline queue admit distant cafes, preserve freshness and keep near dates first',()=>{
+ const n=Date.parse('2026-10-25T00:00:00Z');
+ const cafe=(id,date)=>({...record,kind:'cafe',recordId:id,revision:1,sourceRecordRevision:1,verifiedAt:new Date(n-1000).toISOString(),baseline:{...record.baseline,startDate:date}});
+ const records=[cafe('boundary','2027-02-25'),cafe('over','2027-02-26'),cafe('near','2026-11-01'),cafe('winter','2027-01-22')];
+ const c={version:1,targets:records.map(r=>({...target,kind:'cafe',recordId:r.recordId}))};
+ const p=planDailyReview(records,c,{now:n});assert.deepEqual(p.targets.map(x=>x.recordId),['near','winter','boundary']);assert.equal(p.skipped[0].recordId,'over');
+ const stale=records.map(r=>({...r,verifiedAt:new Date(n-48*3600000).toISOString()}));
+ assert.equal(planDailyReview(stale,c,{now:n}).targets.length,0);
+ const q=planCurationAttention(stale.map(r=>({...r,sourceMode:'visual'})),null,n);
+ assert.deepEqual(q.items.map(x=>x.recordId),['near','winter','boundary']);assert.equal(q.items[0].priority,'within-two-weeks');
+ assert.equal(q.manualReviewTimestampsChanged,false);assert.equal(q.publicationApproved,false);
 });
 test('registered sources beyond eight use bounded batches and stop after uncertain API results',async t=>{
  const records=Array.from({length:12},(_,i)=>({...record,recordId:'fixture-'+i,sourceUrl:record.sourceUrl+'/'+i}));

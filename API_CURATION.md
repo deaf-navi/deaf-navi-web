@@ -40,7 +40,7 @@
 
 私有 `curation-review-catalog.json`（version 1、targets）は、kind/recordId/title/sourceUrl/sourceMode=html/officialVerified=true/fragments/approvedDocumentHash/sharingReviewedAtを持つ。公式本文と共有する短文を実際に読んで登録する。全文hashは `prepare-curation-review.mjs` が実取得した `sourceDocumentHash` を使う。カタログ登録だけでは当日のAPI送信を許可しない。初期対象は確認したHTML資料から増やし、未登録・変更された文面は例外に残す。
 
-通常6週間・公演6か月の範囲で、登録済み情報をイベントとカフェ交互に最大40件選び、4件ずつ順番に比較する。同じURLのHTMLは実行内で一度だけ取得し、全文hashと抜粋の存在を再照合する（取得失敗も実行内で再送しない）。新規情報源の詳査は従来どおり1回最大8件。APIの1回・当日トークン予算、通常16回の回数上限は拡大しない。API/キャッシュ異常時は後続バッチも止め、UNKNOWNと例外を残す。
+通常の国内イベント6週間・カフェイベント4か月・公演6か月の範囲で、登録済み情報をイベントとカフェ交互に最大40件選び、4件ずつ順番に比較する。同じURLのHTMLは実行内で一度だけ取得し、全文hashと抜粋の存在を再照合する（取得失敗も実行内で再送しない）。新規情報源の詳査は従来どおり1回最大8件。APIの1回・当日トークン予算、通常16回の回数上限は拡大しない。API/キャッシュ異常時は後続バッチも止め、UNKNOWNと例外を残す。
 
 API結果・既存キャッシュと最新台帳を比較し、一致は `corroborated`、差異・不足・未登録・目視対象は `exception`。対象上限超過は `deferred` として保持する。48時間の期限切れやカフェのrevision不一致を、この処理で復旧・承認しない。常設店舗の年次棚卸は別途維持する。
 

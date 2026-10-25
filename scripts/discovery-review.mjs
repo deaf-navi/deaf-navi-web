@@ -4,6 +4,7 @@ import {randomUUID} from 'node:crypto';
 import {prepareCurationReview} from './prepare-curation-review.mjs';
 import {reviewCurationTasks} from './curation-review.mjs';
 import {evidenceHash,prepareReviewItem} from './curation-review-contract.mjs';
+import {curationHorizonEnd} from './curation-horizon.mjs';
 
 const LIMIT=8;
 const issue=(target,reason)=>({kind:target.kind,recordId:target.recordId,sourceUrl:target.sourceUrl,
@@ -18,13 +19,12 @@ export function candidateDisposition(entry,{now=Date.now(),eventKind}={}){
   const reasons=entry.reasons.filter(x=>x!=='differs-from-current');
   const facts=Object.fromEntries(decision.facts.filter(x=>x.field!=='communication').map(x=>[x.field,x.value]));
   const today=new Date(now+9*3600000).toISOString().slice(0,10);
-  const end=new Date(today+'T00:00:00Z');
-  if(eventKind==='theater')end.setUTCMonth(end.getUTCMonth()+6);else end.setUTCDate(end.getUTCDate()+42);
+  const end=curationHorizonEnd({kind:entry.kind,eventKind,now});
   let disposition='needs-review';
   if(decision.relevance==='no')disposition='not-relevant-proposed';
   else if(decision.relevance==='yes'&&entry.kind==='news'&&!reasons.length)disposition='publication-review-required';
   else if(decision.relevance==='yes'&&!reasons.length){
-    disposition=(facts.endDate??facts.startDate)<today||facts.startDate>end.toISOString().slice(0,10)?'outside-horizon':'publication-review-required';
+    disposition=(facts.endDate??facts.startDate)<today||facts.startDate>end?'outside-horizon':'publication-review-required';
   }
   return {...entry,status:'candidate',reasons,disposition,publicationApproved:false,reviewedAt:null};
 }
@@ -56,7 +56,7 @@ export async function runDiscoveryReview({stateDir,catalog,knownUrls=[],now=Date
   const groups=new Map();for(const t of valid){const d=new URL(t.sourceUrl).hostname;if(!groups.has(d))groups.set(d,[]);groups.get(d).push(t);}
   const ordered=[];while([...groups.values()].some(x=>x.length))for(const g of groups.values())if(g.length)ordered.push(g.shift());
   const selected=ordered.slice(0,LIMIT),day=new Date(now+9*3600000).toISOString().slice(0,10);
-  const signature=evidenceHash(JSON.stringify({version:1,targets,known:[...known].sort(),approvalSignature}));
+  const signature=evidenceHash(JSON.stringify({version:2,targets,known:[...known].sort(),approvalSignature}));
   if(!stopAfterError&&previous?.day===day&&previous.signature===signature&&Date.parse(previous.generatedAt)<=now
     &&now-Date.parse(previous.generatedAt)<48*3600000)return {...previous,reusedRun:true,submittedThisRun:0,newOrChanged:[]};
   let submitted=0,cached=0,failed=stopAfterError;const sourceCache=new Map();

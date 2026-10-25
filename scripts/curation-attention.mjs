@@ -1,4 +1,5 @@
 import {evidenceHash,validIsoDay} from './curation-review-contract.mjs';
+import {curationHorizonEnd} from './curation-horizon.mjs';
 
 const HOUR=3600000,DAY=24*HOUR;
 const jstDay=now=>new Date(now+9*HOUR).toISOString().slice(0,10);
@@ -6,14 +7,13 @@ const jstDay=now=>new Date(now+9*HOUR).toISOString().slice(0,10);
 // A private work queue, never a publication or a new source verification.
 // Recompute from current snapshots even when the API comparison is cached.
 export function planCurationAttention(records,previous=null,now=Date.now()){
-  const stamp=new Date(now).toISOString(),today=jstDay(now),soon=jstDay(now+14*DAY),sixWeeks=jstDay(now+42*DAY);
-  const sixMonths=new Date(today+'T00:00:00Z');sixMonths.setUTCMonth(sixMonths.getUTCMonth()+6);
+  const stamp=new Date(now).toISOString(),today=jstDay(now),soon=jstDay(now+14*DAY);
   const old=new Map((previous?.items??[]).map(x=>[x.key,x])),items=[],undated=[],outsideHorizon=[];
   for(const record of records){
     if(record.publication!=='public'||!['event','cafe'].includes(record.kind))continue;
     const key=record.kind+':'+record.recordId,day=record.baseline?.startDate;
     if(!validIsoDay(day??'')){undated.push({key,reason:'missing-date'});continue;}
-    if(day<today||day>(record.eventKind==='theater'?sixMonths.toISOString().slice(0,10):sixWeeks)){
+    if(day<today||day>curationHorizonEnd({...record,now})){
       outsideHorizon.push({key,reason:'outside-horizon'});continue;
     }
     const checked=Date.parse(record.verifiedAt),validCheck=Number.isFinite(checked)&&checked<=now;
