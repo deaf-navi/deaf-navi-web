@@ -191,7 +191,9 @@ function access_csv_rows(array $o,array $r,array $uu,array $eng=[],array $co=[])
     if ($eng) {
         $add('actions_scope','filters','date_only','');
         $add('actions_scope','earliest_saved_day',$eng['first_day'],'',$eng['available']?'observed':'unavailable');
-        foreach ($eng['rows'] as $v) $add('actions_date_only',$v['source'].'/'.$v['event'],(int)$v['hits'],'notifications',$v['saturated']?'lower_bound':'JS_received_count');
+        $add('actions_scope','exclusions_aligned_at',$eng['exclusions_aligned_at']??null,'','receipt_time_only_no_retroactive_identity');
+        foreach ($eng['measurement_starts']??[] as $m) $add('actions_measurement_start',$m['source'].'/'.$m['event'],$m['started_at'],'',$m['available']?($m['partial']?'partial_period':'measured_period'):'unmeasured');
+        foreach ($eng['rows'] as $v) $add('actions_date_only',$v['source'].'/'.$v['event'],$v['hits']===null?null:(int)$v['hits'],'notifications',$v['hits']===null?'unmeasured':($v['saturated']?'lower_bound':(!empty($v['partial'])?'partial_period':'JS_received_count')));
         if (!$eng['available']) $add('actions_date_only','total',null,'notifications','unavailable');
     }
     if ($co) {

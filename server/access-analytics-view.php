@@ -86,14 +86,16 @@ function access_sources(array $o,array $r,array $base,array $cmp):string {
 function access_actions(array $o):string {
     $eng=engagement_report($o);$co=access_covisits($o);
     $out='<p class="aa-scope">サイト全体・日付条件のみ。コンテンツ・URL・調査用の絞り込みは適用しません。</p>';
-    $out.=access_section('関連記事・記事クリック','受け取った操作通知の件数です。表示は関連記事欄が画面内に入った回数、クリックは同じページ表示中の同じリンクを重複除外します。人数・成約・読了・クリック率には換算しません。');
+    $out.=access_section('記事・公式予約案内へのクリック','受け取った操作通知の件数です。表示は関連記事欄が画面内に入った回数、クリックは同じページ表示中の同じリンクを重複除外します。予約案内を開いた件数は予約成立数ではありません。人数・成約・読了・クリック率には換算しません。');
     if(!$eng['available'])$out.='<p class="aa-notice">計測データ未取得。未開始または保存先を読み取れません。0件ではありません。</p>';
     else{
         $out.='<p class="aa-note">最古の保存日：'.e($eng['first_day']??'記録なし').'。この日より前から計測していたかは、この台帳だけでは分かりません。</p>';
         if($eng['saturated'])$out.='<p class="aa-notice">日別の記録上限に達した区分があります。「以上」と付いた値は最低件数です。</p>';
         $out.=access_table('クリック・操作の実績',['ページ区分','操作','通知件数']);
-        foreach($eng['rows'] as $v)$out.='<tr><th scope="row">'.e(ENGAGEMENT_SOURCES[$v['source']]??'不明').'</th><td>'.e(ENGAGEMENT_EVENTS[$v['event']]??'不明').'</td><td class="aa-number">'.access_number((int)$v['hits']).($v['saturated']?' 以上':'').'</td></tr>';
+        foreach($eng['rows'] as $v)$out.='<tr><th scope="row">'.e(ENGAGEMENT_SOURCES[$v['source']]??'不明').'</th><td>'.e(ENGAGEMENT_EVENTS[$v['event']]??'不明').'</td><td class="aa-number">'.access_number($v['hits']===null?null:(int)$v['hits']).($v['saturated']?' 以上':'').(!empty($v['partial'])?'<small>計測開始後のみ</small>':'').'</td></tr>';
         $out.=access_table_end(!$eng['rows'],3);
+        foreach($eng['measurement_starts'] as $m)$out.='<p class="aa-note">'.e(ENGAGEMENT_SOURCES[$m['source']]).'のクリック計測開始：'.e(access_iso_time($m['started_at'])).'。開始前は未取得です。</p>';
+        $out.='<p class="aa-note">検証アクセスの共通除外の適用開始：'.e(access_iso_time($eng['exclusions_aligned_at'])).'。クリックは受付時点の判定で除外します。個人識別子・遷移先URLを保存しないため、後から検証用と判明した接続の過去のクリックは再判定できません。旧集計は推測で補正しません。</p>';
     }
     $out.='</section>'.access_section('同日の併読（コンテンツの組み合わせ）','同じ日に同じ推定接続が両方を表示した人日数です。移動の方向・順番・セッション・カフェからニュースへの直接遷移は分かりません。読みものの過去の計測漏れは補えません。');
     if(!$co['available'])$out.='<p class="aa-notice">併読データを取得できません。0件ではありません。</p>';

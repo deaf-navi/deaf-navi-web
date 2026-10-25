@@ -39,4 +39,27 @@ $legacy=access_entry(json_encode(end($rows)));check($legacy['ip']===null&&$legac
 check(access_retention_start(new DateTimeImmutable('2026-08-31',new DateTimeZone('Asia/Tokyo')))->format('Y-m-d')==='2026-02-28','six calendar months clamp month end');
 check(access_retention_start(new DateTimeImmutable('2024-08-31',new DateTimeZone('Asia/Tokyo')))->format('Y-m-d')==='2024-02-29','six calendar months preserve leap day');
 check(str_contains(access_quality_notice(),'定期再判定は停止中')&&!str_contains(access_quality_notice(),'更新が遅れています'),'disabled periodic analysis is not a stale-data alert');
+
+$verificationUa='Mozilla/5.0 VerificationFixture';
+access_record_visit('/','192.0.2.50',$verificationUa,new DateTimeImmutable('@'.$base));
+access_exclude_visitor('192.0.2.50',$verificationUa,'ai',new DateTimeImmutable('@'.$base));
+$verifiedRow=['ts'=>$base,'request'=>['host'=>'deafnavi.com','method'=>'GET','uri'=>'/','remote_ip'=>'192.0.2.50'],'status'=>200,'client_kind'=>'human','user_agent'=>$verificationUa];
+check(access_entry(json_encode($verifiedRow))['client']==='ai','PV uses same explicit exclusion as UU');
+$verifiedRow['ts']=$base-86400;
+check(access_entry(json_encode($verifiedRow))['client']==='human','verification does not identify another day');
+$verifiedRow['ts']=$base;$verifiedRow['user_agent'].=' Other';
+check(access_entry(json_encode($verifiedRow))['client']==='human','verification does not identify another browser');
+unset($verifiedRow['request']['remote_ip']);
+check(access_entry(json_encode($verifiedRow))['client']==='human','missing old identity is not reconstructed');
+$longUa='Mozilla/5.0 '.str_repeat('x',501);access_exclude_visitor('192.0.2.50',$longUa,'automation',new DateTimeImmutable('@'.$base));
+$verifiedRow['request']['remote_ip']='192.0.2.50';$verifiedRow['user_agent']=$longUa;
+check(access_entry(json_encode($verifiedRow))['client']==='human','potentially truncated UA is not matched');
+$_SERVER['REMOTE_ADDR']='192.0.2.50';
+check(!access_measurement_allowed($verificationUa),'click and UU notification share explicit exclusion');
+$_SERVER['REMOTE_ADDR']='192.0.2.10';
+$code='require '.var_export(__DIR__.'/../server/access-visitors.php',true).';$_SERVER["REMOTE_ADDR"]="192.0.2.10";echo access_measurement_allowed('.var_export($ua,true).')?"accepted":"excluded";';
+$process=proc_open([PHP_BINARY,'-r',$code],[1=>['pipe','w'],2=>['pipe','w']],$pipes);$raw=stream_get_contents($pipes[1]);$err=stream_get_contents($pipes[2]);fclose($pipes[1]);fclose($pipes[2]);
+check(proc_close($process)===0&&$raw==='excluded','click and UU notification share saved quality exclusion: '.$err);
+$_SERVER['REMOTE_ADDR']='192.0.2.30';
+check(access_measurement_allowed('Mozilla/5.0 RealReader'),'ordinary reader still accepted');
 echo json_encode(['result'=>'ACCESS_QUALITY_TESTS_OK','checks'=>$checks,'fixture_dir'=>$tmp])."\n";

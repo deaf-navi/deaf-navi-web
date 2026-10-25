@@ -92,6 +92,13 @@ check(access_public_story_path('/stories/')&&access_public_story_path('/stories/
 check(!access_public_story_path('/stories/private-story/')&&!access_public_story_path('/stories/future-story/')&&!access_public_story_path('/stories/missing/'),'draft, future, unknown stories rejected');
 $edb=engagement_db(true);$edb->exec("INSERT INTO counts VALUES('2026-10-20','cafe','related_view',100000)");
 $eng=engagement_report($o);check($eng['saturated']&&$eng['total']===100000&&$eng['first_day']==='2026-10-20','saturation and earliest saved day are explicit');
+check(count(array_filter($eng['rows'],fn($r)=>$r['hits']===null))===2,'new click metrics without start metadata are unknown');
+$actionCsv=access_csv_rows($o,access_report_empty(),access_unique_report($o),$eng);
+$newClicks=array_values(array_filter($actionCsv,fn($r)=>$r[0]==='actions_date_only'&&in_array($r[1],['stories/story_open','guesthouses/booking_click'],true)));
+check(count($newClicks)===2&&array_column($newClicks,2)===['UNKNOWN','UNKNOWN'],'CSV does not invent zero for new historical click metrics');
+$actionHtml=access_actions($o);
+check(str_contains($actionHtml,'一覧から記事を開く')&&str_contains($actionHtml,'公式予約案内を開く')&&str_contains($actionHtml,'未取得'),'action table shows both new metrics and unknown state');
+check(str_contains($actionHtml,'過去のクリックは再判定できません'),'action table explains aggregate-only historical limitation');
 $before=['available'=>true,'total'=>0,'started_at'=>'2026-10-23T00:00:00Z','stories_started_at'=>null];
 check(access_uu_value($o,$before,0)===null,'UU before measurement start is unknown, not zero');
 $before['started_at']='2026-10-01T00:00:00Z';
