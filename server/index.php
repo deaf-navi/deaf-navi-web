@@ -111,7 +111,12 @@ try {
         $all=visible_records();$stores=[];foreach($all as $p)if($p['kind']==='store')$stores[$p['id']]=true;
         echo '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
         echo '<url><loc>'.BASE.'/connect/sign-cafe/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/map/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/overseas/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/events/</loc></url>';
-        foreach($all as $p)if($p['kind']!=='event'||isset($stores[$p['store_id']]))echo '<url><loc>'.e(BASE.record_path($p)).'</loc><lastmod>'.e(substr($p['updated_at'],0,10)).'</lastmod></url>';
+        foreach($all as $p){
+            if($p['kind']==='event'&&!isset($stores[$p['store_id']]))continue;
+            // Match detail() robots: retain the page, but do not submit noindex events.
+            if(($p['kind']==='event'||($p['shop_type']??'')==='event')&&cafe_event_period($p)==='unconfirmed')continue;
+            echo '<url><loc>'.e(BASE.record_path($p)).'</loc><lastmod>'.e(substr($p['updated_at'],0,10)).'</lastmod></url>';
+        }
         foreach(CAFE_REGION_PAGES as $slug=>$pref){foreach($all as $p)if($p['country_code']==='JP'&&($p['kind']==='cafe'||($p['kind']==='store'&&!empty($p['signing_store'])))&&domestic_matches($p,['prefecture'=>$pref])){echo '<url><loc>'.BASE.'/connect/sign-cafe/area/'.$slug.'/</loc></url>';break;}}
         echo '</urlset>';
     } else fail('情報が見つかりません。',404);

@@ -51,16 +51,22 @@ const get=async path=>{const r=await fetch(origin+path,{headers:{'User-Agent':'C
 const update=code=>php(`$old=query('SELECT * FROM cafe_event_source_state WHERE url=?',['${url}'])->fetch();${code}`);
 try{
  let html=await get('/connect/sign-cafe/events/');ok(html.includes('data-event-id="source-fixture"'),'reviewed future event listed');
+ ok((await get('/directory-sitemap.xml')).includes('/source-fixture/'),'sitemap includes verified future event');
  update(`cafe_event_source_save('${url}',cafe_event_source_transition($old,['result'=>'unavailable','fingerprint'=>null,'http_status'=>null,'retryable'=>true],time()));`);
  html=await get('/connect/sign-cafe/events/');ok(html.includes('data-event-id="source-fixture"')&&html.includes('data-cafe-source-status="retrying"'),'temporary error keeps list and explains retry');
  php(`query('UPDATE cafe_event_source_state SET last_success_at=?',[gmdate('c',time()-172801)]);query('UPDATE cafe_event_source_reviews SET reviewed_at=?',[gmdate('c',time()-172801)]);`);
  html=await get('/connect/sign-cafe/events/');ok(!html.includes('data-event-id="source-fixture"'),'expiry removes event from upcoming');
  html=await get('/connect/sign-cafe/events/?period=unconfirmed');ok(html.includes('data-event-id="source-fixture"')&&html.includes('開催中止を意味するものではありません'),'expired event retained separately');
  html=await get('/connect/sign-cafe/source-fixture/');ok(html.includes('noindex,follow')&&html.includes('data-cafe-source-status="review"'),'detail warns and noindexes expired event');
+ const expiredTables=tableDigest();
+ ok(!(await get('/directory-sitemap.xml')).includes('/source-fixture/'),'sitemap omits expired noindex event');
+ ok(tableDigest()===expiredTables,'sitemap does not renew freshness or change records');
  update(`cafe_event_source_save('${url}',cafe_event_source_transition($old,['result'=>'fetched','fingerprint'=>'${contentHash}','http_status'=>200,'review_mode'=>'html'],time()));`);
  html=await get('/connect/sign-cafe/events/');ok(html.includes('data-event-id="source-fixture"')&&!html.includes('data-cafe-source-status="retrying"'),'matching source recovers after expiry');
+ ok((await get('/directory-sitemap.xml')).includes('/source-fixture/'),'sitemap includes event after verified recovery');
  update(`cafe_event_source_save('${url}',cafe_event_source_transition($old,['result'=>'fetched','fingerprint'=>'${'b'.repeat(64)}','http_status'=>200,'review_mode'=>'html'],time()));`);
  html=await get('/connect/sign-cafe/events/');ok(!html.includes('data-event-id="source-fixture"'),'content change immediately held');
+ ok(!(await get('/directory-sitemap.xml')).includes('/source-fixture/'),'sitemap omits event when source content changes');
  // The real CLI handles a due, registered manual source without touching records.
  php(`query('UPDATE cafe_event_source_state SET next_attempt_at=?,failures=1',[gmdate('c',time()-1)]);`);
  const snapshot=tableDigest();r=run(['server/check-cafe-event-sources.php','--recover']);assert.equal(r.status,0,r.stderr);ok(JSON.parse(r.stdout).summary.sources===1,'real recovery CLI checks one due URL');

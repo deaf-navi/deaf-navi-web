@@ -78,6 +78,9 @@ try{
  ({html}=await request('/connect/sign-cafe/overseas/?q=Overdoughs'));ok(html.includes('overdoughs-cafe-circuit'),'constant overseas cafe in overseas tab');
  ({html}=await request('/connect/sign-cafe/cafe-yourself-chubo-sign/'));ok(html.includes('実際に開催されたか・次回の日程は未確認')&&!html.includes('手話や筆談で交流できるスポットです'),'historical event detail is unambiguous');
  ({html}=await request('/directory-sitemap.xml'));ok(html.includes('<loc>https://deafnavi.com'+route+'</loc>')&&!html.includes('event-fixture-hidden/'),'sitemap includes tab, protects hidden parent');
+ ok(!html.includes('/event-fixture-undated/'),'sitemap omits unconfirmed undated event');
+ for(const id of ['future','past','observation'])ok(html.includes('/event-fixture-'+id+'/'),'sitemap retains indexable event '+id);
+ ({html}=await request('/connect/sign-cafe/event-fixture-undated/'));ok(html.includes('name="robots" content="noindex,follow"'),'unconfirmed event remains available with noindex');
  ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no PHP runtime warnings');
  console.log(JSON.stringify({result:'CAFE_EVENTS_TESTS_OK',checks,productionWrites:false}));
 }finally{server.kill();}
