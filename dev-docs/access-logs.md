@@ -81,6 +81,8 @@ UA等から `human / bot / ai / automation / internal / unknown` に分類。既
 公式仕様：[Caddy access logging](https://caddyserver.com/docs/caddyfile/directives/log)、[map](https://caddyserver.com/docs/caddyfile/directives/map)、[log_append](https://caddyserver.com/docs/caddyfile/directives/log_append)。
 
 
+参照元の記録がない旧ログは、参照元なしとは分けて集計する。参照元画面は選択期間・前期間それぞれの記録済み件数を示し、一方でも未取得の記録を含む場合は参照元区分の増減を出さない。全件未取得の区分別件数はUNKNOWN、混在期間のCSVは `referrer_records_partial` とする。ページ閲覧数の期間比較とは別に判定する。
+
 ## 詳細ログによる人数再判定（2026-10-20）
 
 `access-v3.log` は同じ非公開保存先・6か月閲覧・検証付き圧縮方式を使う。旧ログを上書き・削除しない。Caddy 2.11.4では世代数制限を無効にする値は `roll_keep -1`。設定正本は `deploy/deafnavi-access-v3.caddy`。生IP・UAはサーバー外の分析サービスへ送信しない。

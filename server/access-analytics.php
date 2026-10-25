@@ -105,6 +105,14 @@ function access_delta(int $current,?int $previous,bool $valid): array {
     return ['difference'=>$current-$previous,'percent'=>$previous===0?null:round(($current-$previous)/$previous*100,1)];
 }
 
+function access_referrer_coverage(array $r):array {
+    $total=(int)($r['total']??0);$missing=(int)($r['channels']['unrecorded']??0);
+    $recorded=max(0,$total-$missing);
+    return ['recorded'=>$recorded,'missing'=>$missing,'total'=>$total,
+        'available'=>($r['available']??false)&&($total===0||$recorded>0),
+        'partial'=>$missing>0];
+}
+
 function access_uu_measurement(array $o,array $uu,?string $content=null):array {
     $content??=$o['content']??'all';
     $at=$content==='stories'?($uu['stories_started_at']??null):($uu['started_at']??null);
@@ -170,8 +178,12 @@ function access_csv_rows(array $o,array $r,array $uu,array $eng=[],array $co=[])
     }
     foreach ($r['days'] as $day=>$n) $add('daily',$day,$n,'requests');
     foreach ($r['paths'] as $p) $add('pages',$p['host'].$p['path'],$p['count'],'requests');
-    foreach ($r['channels'] as $k=>$n) $add('request_referrers',$k,$n,'requests');
-    foreach ($r['referrers'] as $p) $add('external_referrers',$p['host'],$p['count'],'requests');
+    $rc=access_referrer_coverage($r);
+    $refQuality=!$rc['available']?'unavailable':($rc['partial']?'referrer_records_partial':$quality);
+    $add('referrer_coverage','recorded',$rc['recorded'],'requests');
+    $add('referrer_coverage','unrecorded',$rc['missing'],'requests');
+    foreach ($r['channels'] as $k=>$n) $add('request_referrers',$k,$k==='unrecorded'||$rc['available']?$n:null,'requests',$k==='unrecorded'?$quality:$refQuality);
+    foreach ($r['referrers'] as $p) $add('external_referrers',$p['host'],$p['count'],'requests',$refQuality);
     foreach ($r['devices'] as $k=>$n) $add('device_estimate',$k,$n,'requests');
     foreach ($r['hours'] as $hour=>$n) $add('hour_JST',(string)$hour,$n,'requests');
     foreach ($r['excluded'] as $k=>$n) $add('excluded_all_contents',$k,$n,'requests');
