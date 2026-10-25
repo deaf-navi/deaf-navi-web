@@ -134,6 +134,12 @@ test('discovery recognizes cafe announcement wording and exact specialist series
  assert.deepEqual(found.map(x=>x.url),['https://example.org/news/1','https://example.org/news/2','https://example.org/news/3']);
  assert.ok(found.every(x=>x.publicationApproved===false&&x.reviewedAt===null));
 });
+test('Starbucks sign cafe links use the ordinary unapproved candidate flow',()=>{
+ const source={id:'community',url:'https://example.org/events/',discoveryGroup:'cafe'};
+ const found=discoverLinks('<a href="/events/sign-cafe">スターバックスで手話カフェ開催</a><a href="/events/writing">スタバで筆談交流を開催</a><a href="/events/coffee">スターバックスのコーヒーセミナー開催</a><a href="/stores/1">スターバックス店舗案内</a>',source);
+ assert.deepEqual(found.map(x=>x.url),['https://example.org/events/sign-cafe','https://example.org/events/writing']);
+ assert.ok(found.every(x=>x.status==='unverified-candidate'&&x.publicationApproved===false&&x.reviewedAt===null));
+});
 test('discovery reserves cafe coverage, rotates fairly and retains eight-fetch limit after same-day input changes',async t=>{
  const opts=await fixture(t),sources=Array.from({length:16},(_,i)=>({id:'s'+i,url:'https://example.org/'+i,...(i<8?{discoveryGroup:'cafe'}:{})}));
  const calls=[];const options={...opts,sources,fetchResource:async url=>{calls.push(url);return {status:200,headers:{'content-type':'text/html'},text:''};}};
