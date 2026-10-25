@@ -624,6 +624,63 @@
     }
   ],
   "lastResearch": {
+    "checkedAt": "2026-10-25T00:16:44.881Z",
+    "newDetailedCandidates": 0,
+    "newDetailedPages": 0,
+    "windowEnd": "2026-12-06",
+    "performanceWindowEnd": "2027-04-25",
+    "publishedReady": [],
+    "restored": [
+      "kaat-jungle-captions-2026-10-25",
+      "kaat-kaeru-captions-2026-11-06",
+      "kaat-kaeru-captions-2026-11-07",
+      "oioi-e82136764a2a7bfea721"
+    ],
+    "scope": "サーバーの新規・変化した例外を優先。KAAT2作品・3開催回と手話新喜劇3の公式本文を再読。沖縄・全国のカフェ次回告知は私有台帳へ。国内ニュース新規・変更0件。宿泊週次探索は10月24日実施済みのため重複しない。",
+    "held": [
+      {
+        "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
+        "reason": "直接取得404。過去の会場条件を流用せず、確認日時を延長しない。",
+        "recheckAfter": "2026-10-26T00:00:00Z"
+      },
+      {
+        "sourceUrl": "https://www.geigeki.jp/accessibility/support/t415-t415-12/",
+        "reason": "公式取得503。未確認の内容を承認せず再確認待ち。",
+        "recheckAfter": "2026-10-26T00:00:00Z"
+      },
+      {
+        "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261101-417.html",
+        "reason": "公式取得503。未確認の内容を承認せず再確認待ち。",
+        "recheckAfter": "2026-10-26T00:00:00Z"
+      }
+    ],
+    "newsReview": {
+      "counts": {
+        "uniqueInputs": 3049,
+        "alreadyPublished": 1008,
+        "outsideWindow": 1671,
+        "hardExcluded": 17,
+        "duplicateOfPublished": 138,
+        "candidateDuplicates": 4,
+        "eligible": 211,
+        "queued": 40,
+        "deferred": 171
+      },
+      "comparison": {
+        "previousGeneratedAt": "2026-10-24T13:16:40.125Z",
+        "previousQueued": 40,
+        "retained": 40,
+        "new": 0,
+        "changed": 0,
+        "unchanged": 40
+      },
+      "inspected": 0,
+      "published": 0,
+      "apiSubmitted": 0,
+      "note": "新規・変更なし。未変更フィードは公式本文の実確認とは扱わない。"
+    }
+  },
+  "previousResearch": {
     "checkedAt": "2026-10-24T00:22:47.802Z",
     "newDetailedCandidates": 1,
     "newDetailedPages": 1,
@@ -689,68 +746,5 @@
       "apiSubmitted": 0,
       "note": "新規・変更候補なし。未変更フィードは公式本文の再確認を意味しない。"
     }
-  },
-  "previousResearch": {
-    "checkedAt": "2026-10-23T00:17:37.623Z",
-    "newDetailedCandidates": 2,
-    "newDetailedPages": 2,
-    "windowEnd": "2026-12-04",
-    "performanceWindowEnd": "2027-04-23",
-    "publishedReady": [
-      "tonancyo-kikoe-festa-2026-11-22"
-    ],
-    "restored": [
-      "kaat-jungle-captions-2026-10-24",
-      "kaat-jungle-captions-2026-10-25",
-      "kaat-kaeru-captions-2026-11-06",
-      "kaat-kaeru-captions-2026-11-07",
-      "jinnancho-beginner-2026-10-23",
-      "jinnancho-beginner-2026-11-27",
-      "kanagawa-center-festival-2026-10-25"
-    ],
-    "scope": "国内ニュース候補は新規0・変更0。東京・神奈川と全国の告知を探索し、中国・四国9県のカフェ候補を確認。KAAT公式の本文を直接読み、字幕対応4回の日付・会場・先着申込・本編と受付/ツアー通訳の区別を照合。ホリプロは当日の直接取得が公式メンテナンス案内になったため、検索側の過去キャッシュだけで復旧しない。 48時間期限を迎えた本日の手話勉強会と日曜のセンターまつりは、公式PDF計3頁を新規取得・画像化して実目視。10/23・11/27の部屋・要約筆記・無料、10/25の日程・会場、最新本文の10/23正午締切を照合し3開催回を復旧。入場口の案内も追記。",
-    "api": {
-      "source": "server-curation.json",
-      "selected": 26,
-      "cached": 23,
-      "corroborated": 6,
-      "reviewedUnchanged": 7,
-      "exceptions": 40,
-      "submittedThisRun": 0,
-      "note": "日次CLIは既存pathが実行。新規送信0、既存抽出を利用。新規みみカフェは共有制限の確認が必要なためAPIへ本文を送らず公式画面で例外確認。 新規機器展示会は短文1件を通常モードで抽出し、日付と会場は一致。未掲載の空の比較基準との差は掲載前確認として実読で照合。",
-      "newEventSubmitted": 1,
-      "newEventExceptions": 1,
-      "newEventModel": "gpt-6.1-sol"
-    },
-    "newsReview": {
-      "counts": {
-        "uniqueInputs": 3164,
-        "alreadyPublished": 996,
-        "outsideWindow": 1778,
-        "hardExcluded": 14,
-        "duplicateOfPublished": 122,
-        "candidateDuplicates": 7,
-        "eligible": 247,
-        "queued": 40,
-        "deferred": 207
-      },
-      "new": 0,
-      "changed": 0,
-      "inspected": 0,
-      "published": 0,
-      "apiSubmitted": 0
-    },
-    "held": [
-      {
-        "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
-        "reason": "当日のHTTP200はシステムメンテナンス本文。5公演の承認日時・hashは更新せず、再開後に実本文を再確認する。",
-        "recheckAfter": "2026-10-24T00:00:00Z"
-      }
-    ],
-    "visualRechecked": [
-      "jinnancho-beginner-2026-10-23",
-      "jinnancho-beginner-2026-11-27",
-      "kanagawa-center-festival-2026-10-25"
-    ]
   }
 }
