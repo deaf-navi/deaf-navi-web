@@ -24,8 +24,8 @@ function cafe_event_source_notice(array $p):string {
     if(cafe_event_period($p)==='past')return '';
     $f=cafe_event_freshness($p);
     if($f['status']==='verified')return '';
-    $message=$f['status']==='retrying'?'情報源へ一時的につながらないため、自動で再確認しています。':'最新の開催情報を再確認中です。参加前に主催者の案内をご確認ください。';
-    if($f['verified_at'])$message.=' 最終確認：'.(new DateTimeImmutable($f['verified_at']))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y.m.d H:i').'（日本時間）。';
+    // Fetch/review history belongs to the private ledger, not visitor-facing copy.
+    $message='開催日時・参加条件は、主催者の最新案内をご確認ください。';
     return '<p class="dn-event-history-note" data-cafe-source-status="'.e($f['status']).'">'.e($message).'</p>';
 }
 function cafe_event_records():array {

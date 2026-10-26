@@ -58,6 +58,7 @@ try{
  html=await get('/connect/sign-cafe/events/');ok(!html.includes('data-event-id="source-fixture"'),'expiry removes event from upcoming');
  html=await get('/connect/sign-cafe/events/?period=unconfirmed');ok(html.includes('data-event-id="source-fixture"')&&html.includes('開催中止を意味するものではありません'),'expired event retained separately');
  html=await get('/connect/sign-cafe/source-fixture/');ok(html.includes('noindex,follow')&&html.includes('data-cafe-source-status="review"'),'detail warns and noindexes expired event');
+ ok(html.includes('開催日時・参加条件は、主催者の最新案内をご確認ください。')&&!html.includes('最終確認：')&&!html.includes('自動で再確認しています')&&!html.includes('最新の開催情報を再確認中です'),'public notice offers visitor guidance without internal investigation timestamps');
  const expiredTables=tableDigest();
  ok(!(await get('/directory-sitemap.xml')).includes('/source-fixture/'),'sitemap omits expired noindex event');
  ok(tableDigest()===expiredTables,'sitemap does not renew freshness or change records');

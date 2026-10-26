@@ -19,6 +19,7 @@ try{
     if(!in_array($mode,['--dry-run','--apply'],true)||!is_file($file)||is_link($file))fail('Usage: cafe-migrate.php --dry-run MANIFEST | --apply MANIFEST BACKUP_DIR PLAN_SHA256');
     $manifest=json_decode(file_get_contents($file),true,512,JSON_THROW_ON_ERROR);$hash=hash_file('sha256',$file);
     if(($manifest['version']??0)!==2||!preg_match('/^[a-z0-9-]{1,100}$/D',$manifest['batch']??'')||!is_array($manifest['records']??null))fail('Manifest invalid');
+    $copyOnly=($manifest['copy_only']??false)===true;
     $preserve=$manifest['preserve_ids']??[];
     if(!is_array($preserve))fail('Invalid preserve list');
     foreach($preserve as $id)if(!is_string($id)||!preg_match('/^[a-z0-9-]{1,64}$/D',$id))fail('Invalid preserved id');
@@ -30,7 +31,7 @@ try{
             if($done){if(!hash_equals($done,$hash))fail('Batch hash mismatch');db()->exec('ROLLBACK');echo json(['result'=>'ALREADY_APPLIED','changed'=>false])."\n";exit;}
         }
         $existing=query('SELECT * FROM records ORDER BY id')->fetchAll();$prepared=[];$original=[];
-        foreach($existing as $r){$original[$r['id']]=$r;if(in_array($r['id'],$preserve,true)||!in_array($r['kind'],['cafe','store'],true))continue;
+        foreach($existing as $r){$original[$r['id']]=$r;if($copyOnly||in_array($r['id'],$preserve,true)||!in_array($r['kind'],['cafe','store'],true))continue;
             $raw=json_decode($r['payload'],true,512,JSON_THROW_ON_ERROR);$p=cafe_model($raw+['kind'=>$r['kind'],'created_at'=>$r['created_at']]);
             foreach(['kind','created_at'] as $k)if(!array_key_exists($k,$raw))unset($p[$k]);
             if($r['status']==='closed')$p['status']='permanently_closed';
@@ -43,6 +44,14 @@ try{
             if(in_array($id,$preserve,true))fail('Preserved record cannot be updated: '.$id);
             if($old&&$old['publication']==='deleted')fail('Deleted record requires manual review: '.$row['slug']);
             if(isset($row['expected_revision'])&&(!$old||(int)$old['revision']!==$row['expected_revision']))fail('Revision changed: '.$row['slug'],409);
+            if($copyOnly){
+                if(!$old||$old['id']!==$row['id']||$old['publication']!=='public'||!isset($row['expected_revision'])||!is_array($row['fields']??null)||!count($row['fields'])||array_diff(array_keys($row['fields']),['notes','review_notes']))fail('Copy edits require an exact public record and notes only');
+                $p=json_decode($old['payload'],true,512,JSON_THROW_ON_ERROR);
+                foreach(array_keys($row['fields']) as $key)$p[$key]=input($row['fields'],$key,6000);
+                $prepared[$id]=['kind'=>$old['kind'],'p'=>$p,'revision'=>(int)$old['revision'],'reason'=>'public_copy'];
+                $summary[]=['id'=>$id,'name'=>$p['name'],'action'=>'copy_edit','status'=>$p['status'],'publication'=>$p['publication']];
+                continue;
+            }
             $base=$old?json_decode($old['payload'],true,512,JSON_THROW_ON_ERROR):['slug'=>$row['slug'],'name'=>$row['name'],'country_code'=>'JP','country_name'=>'日本','prefecture'=>$row['prefecture'],'city'=>$row['city'],'timezone'=>'Asia/Tokyo','publication'=>'pending','status'=>'needs_review','type'=>'special','verification_level'=>'pending','verification_sources'=>[],'last_verified_at'=>'','first_found_at'=>$manifest['date'],'subtypes'=>[]];
             $p=array_replace($prepared[$id]['p']??$base,$row['fields']);
             // Research changes cannot grant publication or restore removed records.
@@ -53,7 +62,8 @@ try{
             $prepared[$id]=['kind'=>$kind,'p'=>$p,'revision'=>(int)($old['revision']??0),'reason'=>$old?'research_update':'research_add'];
             $summary[]=['id'=>$id,'name'=>$p['name'],'action'=>$old?'update':'add','status'=>$p['status'],'publication'=>$p['publication'],'confirmation_status'=>$p['confirmation_status']];
         }
-        $planHash=hash('sha256',json(['manifest'=>$hash,'before'=>$existing,'prepared'=>$prepared]));
+        $sourceReviews=$copyOnly&&query("SELECT name FROM sqlite_master WHERE name='cafe_event_source_reviews'")->fetch()?query('SELECT * FROM cafe_event_source_reviews ORDER BY record_id')->fetchAll():[];
+        $planHash=hash('sha256',json(['manifest'=>$hash,'before'=>$existing,'prepared'=>$prepared,'sourceReviews'=>$sourceReviews]));
         $result=['result'=>'CAFE_MIGRATION_DRY_RUN_OK','batch'=>$manifest['batch'],'plan_sha256'=>$planHash,'existing'=>count($existing),'migration_records'=>count($prepared),'records'=>$summary,'changed'=>false];
         if($mode==='--dry-run'){db()->exec('ROLLBACK');echo json($result)."\n";exit;}
         if(!hash_equals($planHash,$approved)||!is_dir($backupDir)||is_link($backupDir))fail('Plan changed or backup directory invalid');
@@ -62,6 +72,10 @@ try{
         $source=new SQLite3(data_dir().'/directory.sqlite',SQLITE3_OPEN_READONLY);$target=new SQLite3($backup);
         if(!$source->backup($target)||$target->querySingle('PRAGMA integrity_check')!=='ok')fail('Backup failure');$target->close();$source->close();chmod($backup,0600);
         foreach($prepared as $id=>$item)save_record($item['p'],$item['kind'],$id,$item['revision']);
+        // An editorial notes-only change is not a new source inspection. Keep all
+        // timestamps/hashes and existing invalid bindings; carry only a matching
+        // binding to the new revision so a copy edit cannot extend freshness.
+        if($copyOnly)foreach($sourceReviews as $review){$id=$review['record_id'];if(isset($prepared[$id])&&(int)$review['record_revision']===$prepared[$id]['revision'])query('UPDATE cafe_event_source_reviews SET record_revision=? WHERE record_id=? AND record_revision=?',[$prepared[$id]['revision']+1,$id,$prepared[$id]['revision']]);}
         foreach($original as $id=>$before){$after=record($id);if(!isset($prepared[$id])&&json($after)!==json($before))fail('Unrelated record changed');if($before['slug']!==$after['slug']||$before['publication']!==$after['publication']||$before['created_at']!==$after['created_at'])fail('Identity/publication changed');}
         foreach($untouched as $table=>$before)if(!hash_equals($before,hash('sha256',json(query('SELECT * FROM '.$table.' ORDER BY 1')->fetchAll()))))fail('Unrelated table changed');
         db()->exec('CREATE TABLE IF NOT EXISTS cafe_migration_runs(batch TEXT PRIMARY KEY,manifest_hash TEXT NOT NULL,applied_at TEXT NOT NULL)');
