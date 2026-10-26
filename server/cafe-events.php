@@ -92,7 +92,7 @@ function cafe_events_page():string {
     usort($list,function($a,$b)use($f){$comparison=strcmp(cafe_event_date($a),cafe_event_date($b));return ($f['period']==='past'?-$comparison:$comparison)?:strcmp($a['name'],$b['name']);});
     $total=count($list);$size=24;$page=min(max(1,(int)$f['page']),max(1,(int)ceil($total/$size)));$list=array_slice($list,($page-1)*$size,$size);
     $body='<div class="dn-cafe-navigation">'.tabs(false,false,false,true).'</div><div class="dn-directory-layout">'.cafe_filter_panel(cafe_event_filter_form($f,$all),true).'<section id="cafe-events" class="dn-directory-results" aria-labelledby="event-list-heading"><h2 id="event-list-heading" class="dn-visually-hidden">手話カフェイベントを探す</h2>'.cafe_event_period_links($f,$counts).'<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p></div>';
-    $body.='<p class="dn-event-intro">単発開催を日付ごとに掲載しています。<a href="/connect/sign-cafe/">常設店・定期開催はカフェ一覧へ</a>。</p>'.cafe_event_regions($f,$all);
+    $body.='<p class="dn-event-intro">単発開催を日付ごとに掲載しています。<a href="/connect/sign-cafe/">常設店・定期開催はカフェ一覧へ</a>。</p>'.'<p><a class="dn-cta" href="/submit/?form=event">イベント情報を送る</a>　店頭ポスターの写真・告知URLからでも送れます。</p>'.cafe_event_regions($f,$all);
     $researched=cafe_registry_public_update();if($researched!=='')$body.='<p class="dn-event-coverage">開催情報の調査：<time datetime="'.e($researched).'">'.e(str_replace('-','.',$researched)).'</time> · 各掲載の確認日は情報源の欄をご覧ください。</p>';
     if($f['period']==='past')$body.='<p class="dn-event-history-note">過去の告知・開催報告を掲載しています。日付の経過だけで、実際に開催されたと判断していません。</p>';
     if($f['period']==='unconfirmed')$body.='<p class="dn-event-history-note">日付が未確認の情報や、確認から48時間が経過した情報、変更・取得できない情報を再確認しています。開催中止を意味するものではありません。</p>';
@@ -101,7 +101,7 @@ function cafe_events_page():string {
     if($page>1)$body.='<a href="?'.e(http_build_query($params+['page'=>$page-1])).'">← 前のページ</a>';
     $body.='<span>全'.$total.'件中 '.($total?($page-1)*$size+1:0).'〜'.min($page*$size,$total).'件</span>';
     if($page*$size<$total)$body.='<a href="?'.e(http_build_query($params+['page'=>$page+1])).'">次のページ →</a>';
-    $body.='</nav></section></div><p class="dn-guide-note">'.cafe_icon('edit').'<span>新しい開催情報や変更は<a href="/submit/">情報提供フォーム</a>からお知らせください。</span></p>';
+    $body.='</nav></section></div><p class="dn-guide-note">'.cafe_icon('edit').'<span>新しい開催情報や変更は<a href="/submit/?form=event">イベント情報を送る</a>からお知らせください。</span></p>';
     $schema=['@context'=>'https://schema.org','@type'=>'CollectionPage','url'=>BASE.CAFE_EVENTS_PATH,'name'=>'手話カフェイベント','mainEntity'=>['@type'=>'ItemList','numberOfItems'=>$total,'itemListElement'=>array_map(fn($p,$i)=>['@type'=>'ListItem','position'=>($page-1)*$size+$i+1,'name'=>$p['name'],'url'=>BASE.record_path($p)],$list,array_keys($list))]];
     $filtered=$f['period']!=='upcoming'||$f['q']!==''||$f['country']!==''||$f['region']!==''||$f['prefecture']!=='';
     $canonical=BASE.CAFE_EVENTS_PATH.($page>1?'?page='.$page:'');

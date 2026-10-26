@@ -15,6 +15,7 @@ require __DIR__.'/map-2d.php';
 require __DIR__.'/starbucks-community.php';
 require __DIR__.'/cafe-regions.php';
 require __DIR__.'/stories.php';
+require __DIR__.'/event-tip-review.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: private, no-store, max-age=0');
@@ -45,7 +46,7 @@ try {
     if(str_ends_with($path,'/index.html') && preg_match('#^/(admin/|submit/|connect/sign-cafe/)#',$path)) {
         header('Location: '.substr($path,0,-10).(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;
     }
-    if((int)($_SERVER['CONTENT_LENGTH']??0)>65536)fail('送信内容が大きすぎます。',413);
+    if((int)($_SERVER['CONTENT_LENGTH']??0)>(($path==='/submit/'&&($_GET['form']??'')==='event')?5242880:65536))fail('送信内容が大きすぎます。',413);
     if(!in_array($_SERVER['REQUEST_METHOD'],['GET','HEAD','POST'],true))fail('この操作は利用できません。',405);
     if($_SERVER['REQUEST_METHOD']==='POST') {
         if($path==='/admin/') {
@@ -57,7 +58,8 @@ try {
         check_csrf();rate_limit('submit',5,3600);
         if(input($_POST,'website_confirm',500)!=='' || time()-($_SESSION['form_issued']??time())<3)fail('フォームを確認してから送信してください。');
         if(input($_POST,'consent',1)!=='1')fail('保存と通知への同意が必要です。');
-        if(input($_POST,'form_kind',20)==='cafe_contact')$p=cafe_contact_submission($_POST);
+        if(input($_POST,'form_kind',20)==='event_tip')$p=event_tip_submission($_POST);
+        elseif(input($_POST,'form_kind',20)==='cafe_contact')$p=cafe_contact_submission($_POST);
         elseif(input($_POST,'form_kind',20)==='starbucks')$p=starbucks_submission($_POST);
         else {
         $p=[];
@@ -70,15 +72,21 @@ try {
         }
         $p['url_screening']=contact_url_check($p);
         $duplicate=!is_cafe_contact($p)&&(bool)duplicate_records($p);$id=uid();$stamp=now();
+        if(is_event_tip($p)){
+            if((int)query("SELECT count(*) FROM submissions WHERE created_at>=? AND json_extract(payload,'$.form_kind')='event_tip'",[gmdate('Y-m-d H:i:s',time()-86400)])->fetchColumn()>=100||disk_free_space(data_dir())<1073741824)fail('本日の受付が混み合っています。時間をおいてお試しください。',503);
+            $p['photos']=event_tip_uploads($id,$_FILES['event_photos']??[]);
+            if(!$p['photos']&&$p['source_url']===''&&$p['description']==='')fail('告知URL・写真・内容のいずれかを添えてください。');
+        }
         db()->exec('BEGIN IMMEDIATE');
         try {
             query('INSERT INTO submissions(id,payload,created_at,updated_at) VALUES(?,?,?,?)',[$id,json($p),$stamp,$stamp]);
             query('INSERT INTO outbox(submission_id,updated_at) VALUES(?,?)',[$id,$stamp]);db()->exec('COMMIT');
-        }catch(Throwable $ex){db()->exec('ROLLBACK');throw $ex;}
+        }catch(Throwable $ex){db()->exec('ROLLBACK');if(is_event_tip($p))event_tip_cleanup_photos($id);throw $ex;}
         $_SESSION['csrf']=uid();$_SESSION['receipt']=true;$_SESSION['contact_receipt']=is_cafe_contact($p);$_SESSION['duplicate_notice']=$duplicate;unset($_SESSION['form_issued']);
         header('Location: /submit/?received=1',true,303);exit;
     }
     if($path==='/admin' || $path==='/submit' || $path==='/connect/sign-cafe' || $path==='/connect/sign-cafe/starbucks' || $path==='/connect/sign-cafe/map' || $path==='/connect/sign-cafe/overseas' || $path==='/connect/sign-cafe/events') {header('Location: '.$path.'/'.(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;}
+    if($path==='/admin/'&&($_GET['view']??'')==='event-photo')event_tip_photo();
     if($path==='/admin/') {header('X-Robots-Tag: noindex, nofollow');echo admin_page();}
     elseif($path==='/submit/') {
         start_session();$body='';
@@ -89,7 +97,7 @@ try {
         } else {
             $values=['category'=>input($_GET,'category',20)?:'cafe']+(input($_GET,'scope',20)==='overseas'?['country_code'=>'']:[]);
             $rid=input($_GET,'record',64);if($rid!==''){ $place=expanded(record($rid));if(!publicly_visible($place))fail('情報が見つかりません。',404);foreach(['name','country_code','country_name','prefecture','city','address','official_url','instagram_url'] as $key)$values[$key]=$place[$key]??'';$values['notes']='対象ページ: '.BASE.record_path($place);$values['report_type']='other';}
-            $body=input($_GET,'form',20)==='contact'?cafe_contact_form(input($_GET,'scope',20)==='overseas',true,input($_GET,'scope',20)==='site'):(input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form($values));
+            $body=input($_GET,'form',20)==='event'?event_tip_form():(input($_GET,'form',20)==='contact'?cafe_contact_form(input($_GET,'scope',20)==='overseas',true,input($_GET,'scope',20)==='site'):(input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form($values)));
         }
         echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
     } elseif($path==='/connect/sign-cafe/') {
@@ -122,6 +130,7 @@ try {
     } else fail('情報が見つかりません。',404);
 } catch(DomainException $ex) {
     http_response_code($ex->getCode()?:400);
+    if($path==='/submit/'&&($_GET['form']??'')==='event'&&($_SERVER['REQUEST_METHOD']??'')==='POST'&&$ex->getCode()!==403){echo page('イベント情報を送る',event_tip_form($_POST,$ex->getMessage()),'/submit/','',[],true);exit;}
     echo page('入力・操作を確認してください','<div class="dn-error" role="alert">'.e($ex->getMessage()).'</div><p>戻る操作で入力内容を確認してください。競合がある場合は画面を再読み込みしてください。</p><p><a href="'.(str_starts_with($path,'/admin')?'/admin/':'/connect/sign-cafe/').'">画面へ戻る</a></p>',$path,'',[],true);
 } catch(Throwable $ex) {
     // Do not log payloads, SQL values, mail addresses, passwords or exception messages.
