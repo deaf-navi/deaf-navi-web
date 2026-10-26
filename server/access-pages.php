@@ -30,7 +30,7 @@ function access_content(string $path): ?string {
     if (isset($fixed[$path])) return $fixed[$path];
     if($path==='/stories/'||preg_match('#^/stories/[a-z0-9-]+/$#D',$path))return 'stories';
     if (in_array($path,['/news/support/','/news/accessibility/'],true)) return 'web';
-    if (in_array($path,['/guide/accessibility/','/guide/systems/','/guide/life/','/guide/guesthouses/'],true)) return 'guide';
+    if (in_array($path,['/guide/accessibility/','/guide/systems/','/guide/life/','/guide/guesthouses/','/guide/hearing-disaster/'],true)) return 'guide';
     if (in_array($path,['/connect/sign-cafe/area/tokyo/','/connect/sign-cafe/area/kanagawa/'],true)) return 'cafe';
     // Generated event details, including retained past-event pages. Never count arbitrary paths.
     if (preg_match('#^/events/[a-z0-9-]+/$#D',$path)) {

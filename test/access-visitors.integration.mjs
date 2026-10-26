@@ -79,6 +79,12 @@ try {
     ok(run("echo access_content('/guide/guesthouses/');").stdout==='guide','guesthouse visits counted as guides');
     r=await post({path:'/guide/guesthouses/index.html'},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'});
     ok(r.status===204&&count()===beforeStay+1,'guesthouse verification remains excluded');
+    const beforeDisaster=count();
+    r=await post({path:'/guide/hearing-disaster/'},{'User-Agent':ua+' HearingDisasterRoute'});
+    ok(r.status===204&&!r.headers.has('set-cookie')&&count()===beforeDisaster+1,'hearing disaster feature beacon accepted without cookies');
+    ok(run("echo access_content('/guide/hearing-disaster/');").stdout==='guide','hearing disaster feature counted as guides');
+    r=await post({path:'/guide/hearing-disaster/index.html'},{'User-Agent':'Codex-DeafNavi-Verification','X-DeafNavi-Client':'codex'});
+    ok(r.status===204&&count()===beforeDisaster+1,'hearing disaster verification remains excluded');
     ok((await post({path:'/guide/nonexistent/'})).status===400,'unlisted guide path still rejected');
     mkdirSync(join(dir,'stories'));
     ok(run("$db=new PDO('sqlite:'.getenv('DEAFNAVI_DATA_DIR').'/stories/stories.sqlite');$db->exec(\"CREATE TABLE stories(slug TEXT,status TEXT,published_at TEXT); INSERT INTO stories VALUES('public-fixture','published','2020-01-01'),('draft-fixture','draft',NULL),('future-fixture','published','2099-01-01')\");").status===0,'isolated editorial fixture');
