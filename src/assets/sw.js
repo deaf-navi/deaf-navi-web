@@ -22,7 +22,7 @@ self.addEventListener('message', (event) => {
 
 const PRECACHE_URLS = [
   './',
-  './site-shell.css?v=20261017worldheader',
+  './site-shell.css?v=20261027tagline',
   `./styles.css?v=${ASSET_VERSION}`,
   `./home.css?v=${ASSET_VERSION}`,
   `./ui-controls.js?v=${ASSET_VERSION}`,
