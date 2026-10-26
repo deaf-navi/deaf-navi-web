@@ -102,7 +102,7 @@ ${renderSiteHeader({
   })}
 
   <main id="main" class="container guide" role="main">
-    <section class="guide-reading" aria-labelledby="guide-reading-heading"><h2 id="guide-reading-heading">目的に合わせて読む</h2><nav class="reader-links" aria-label="目的別ガイド">${GUIDE_TOPICS.map(topic=>`<a href="/guide/${topic.slug}/">${escapeHtml(topic.label)}</a>`).join('')}<a href="/guide/guesthouses/">ろう者が営むゲストハウス</a><a href="/guide/hearing-disaster/">聞こえと防災</a></nav></section>
+    <section class="guide-reading" aria-labelledby="guide-reading-heading"><h2 id="guide-reading-heading">目的に合わせて読む</h2><nav class="reader-links" aria-label="目的別ガイド">${GUIDE_TOPICS.map(topic=>`<a href="/guide/${topic.slug}/">${escapeHtml(topic.label)}</a>`).join('')}<a href="/guide/guesthouses/">ろう者が営むゲストハウス・民泊</a><a href="/guide/hearing-disaster/">聞こえと防災</a></nav></section>
     <section class="guide-search" aria-labelledby="guide-search-heading">
       <div class="guide-search__head">
         <div>

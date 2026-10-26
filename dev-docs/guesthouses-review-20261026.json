@@ -2,18 +2,175 @@
   "reviewedOn": "2026-10-26",
   "scope": "Guesthouse comparison, Haru closure, access, terminology and inquiry template",
   "sources": [
-    {"url":"https://haru-aozora-com.sakura.ne.jp/minpaku.html","findings":["Closure explicitly limited to 2026-05-10 through 2026-06-06; spring rates must not be extended","One room, usually two adults; direct booking via LINE/email"],"unknown":["2027 and later opening/rates for the same period","Visual/vibration emergency equipment"]},
-    {"url":"https://www.airbnb.jp/rooms/662582894146083389","findings":["Host listing available; rates/conditions separate from direct booking"]},
-    {"url":"https://tarako-yu.sakura.ne.jp/kojohama/access/","findings":["Kojohama station: 2 minutes on foot","Noboribetsu-higashi IC: 5 minutes by car"],"rejectedSuggestion":"25 minutes on foot from station","unknown":["Parking availability, price and capacity"]},
-    {"url":"https://tarako-yu.sakura.ne.jp/kojohama/room/","findings":["Six named rooms, futon bedding, shared facilities"],"unknown":["Visual/vibration emergency equipment"],"retrieval":"Web reader timed out; official HTML fetched directly and room content inspected"},
-    {"url":"https://tarako-yu.sakura.ne.jp/kojohama/reserve/","findings":["LINE, email and telephone booking"]},
-    {"url":"https://sakanagi-gh.com/rooms/","findings":["Mixed dormitory and private rooms","Official terminology: 光る火災警報器 and 呼び出し灯"],"unknown":["Vibration emergency equipment"]},
-    {"url":"https://sakanagi-gh.com/reservation/","findings":["Booking form and LINE, confirmation email required"]},
-    {"url":"https://sakanagi-gh.com/contact/","findings":["Contact form and LINE; replies by email; no phone","No direct email booking address verified; avoid presenting reply email as a separate booking channel"]},
-    {"url":"https://select-type.com/s/?s=7Qkr-WUF9hQ","findings":["Sabae station: 20 minutes by car; Sabae IC: 25 minutes","Private-room plan includes one parking space; conditions depend on plan","Four private rooms, rider-only dormitory plan also offered","Airbnb normally, SMS/telephone for rider-only plan","Fire alarm linked to light/vibration device, emergency buttons in shared areas"],"rejectedSuggestion":"25 minutes by car from Takefu station; unsupported by official page","editorialNote":"Use station name without the outdated JR operator prefix in the source"}
+    {
+      "url": "https://haru-aozora-com.sakura.ne.jp/minpaku.html",
+      "findings": [
+        "Closure explicitly limited to 2026-05-10 through 2026-06-06; spring rates must not be extended",
+        "One room, usually two adults; direct booking via LINE/email"
+      ],
+      "unknown": [
+        "2027 and later opening/rates for the same period",
+        "Visual/vibration emergency equipment"
+      ]
+    },
+    {
+      "url": "https://www.airbnb.jp/rooms/662582894146083389",
+      "findings": [
+        "Host listing available; rates/conditions separate from direct booking"
+      ]
+    },
+    {
+      "url": "https://tarako-yu.sakura.ne.jp/kojohama/access/",
+      "findings": [
+        "Kojohama station: 2 minutes on foot",
+        "Noboribetsu-higashi IC: 5 minutes by car"
+      ],
+      "rejectedSuggestion": "25 minutes on foot from station",
+      "unknown": [
+        "Parking availability, price and capacity"
+      ]
+    },
+    {
+      "url": "https://tarako-yu.sakura.ne.jp/kojohama/room/",
+      "findings": [
+        "Six named rooms, futon bedding, shared facilities"
+      ],
+      "unknown": [
+        "Visual/vibration emergency equipment"
+      ],
+      "retrieval": "Web reader timed out; official HTML fetched directly and room content inspected"
+    },
+    {
+      "url": "https://tarako-yu.sakura.ne.jp/kojohama/reserve/",
+      "findings": [
+        "LINE, email and telephone booking"
+      ]
+    },
+    {
+      "url": "https://sakanagi-gh.com/rooms/",
+      "findings": [
+        "Mixed dormitory and private rooms",
+        "Official terminology: 光る火災警報器 and 呼び出し灯"
+      ],
+      "unknown": [
+        "Vibration emergency equipment"
+      ]
+    },
+    {
+      "url": "https://sakanagi-gh.com/reservation/",
+      "findings": [
+        "Booking form and LINE, confirmation email required"
+      ]
+    },
+    {
+      "url": "https://sakanagi-gh.com/contact/",
+      "findings": [
+        "Contact form and LINE; replies by email; no phone",
+        "No direct email booking address verified; avoid presenting reply email as a separate booking channel"
+      ]
+    },
+    {
+      "url": "https://select-type.com/s/?s=7Qkr-WUF9hQ",
+      "findings": [
+        "Sabae station: 20 minutes by car; Sabae IC: 25 minutes",
+        "Private-room plan includes one parking space; conditions depend on plan",
+        "Four private rooms, rider-only dormitory plan also offered",
+        "Airbnb normally, SMS/telephone for rider-only plan",
+        "Fire alarm linked to light/vibration device, emergency buttons in shared areas"
+      ],
+      "rejectedSuggestion": "25 minutes by car from Takefu station; unsupported by official page",
+      "editorialNote": "Use station name without the outdated JR operator prefix in the source"
+    }
   ],
   "datePolicy": "Original facility/media review dates retained; comparison and additions explicitly dated 2026-10-26. Guide modification date advanced only.",
   "spacing": "Current template already has no whitespace after opening parenthesis; preserved and tested.",
   "referenceImage": "Original referenced chat records one image attachment but does not expose its pixels; current public layout used as reference.",
-  "unknownDoesNotMeanAbsent": true
+  "unknownDoesNotMeanAbsent": true,
+  "followupReview": {
+    "checkedAt": "2026-10-26T09:00:12.592281+00:00",
+    "scope": "Opus suggested corrections independently checked against current official pages; no booking or external messages",
+    "supersedes": [
+      "Earlier no-email-booking finding for Sakanagi: official FAQ explicitly accepts email",
+      "Original property review dates now advanced only after official source reading; media dates stay independent",
+      "Past 2026 Haru closure removed from public foreground; future May 10 to June 6 remains unknown"
+    ],
+    "decisions": [
+      {
+        "property": "tarakoyu",
+        "adopted": [
+          "child rate 3300 incl tax; tax separate",
+          "3 and under sharing bedding free; own bedding charged child rate",
+          "hearing staff studying sign language, without a staffing guarantee",
+          "bring toiletries or buy single-use shampoo/rinse"
+        ],
+        "sources": [
+          "https://tarako-yu.sakura.ne.jp/kojohama/plan/",
+          "https://tarako-yu.sakura.ne.jp/kojohama/staff/",
+          "https://tarako-yu.sakura.ne.jp/kojohama/room/",
+          "https://tarako-yu.sakura.ne.jp/kojohama/reserve/",
+          "https://tarako-yu.sakura.ne.jp/kojohama/access/"
+        ],
+        "retrieval": "Official public WordPress content; publish, protected=false, canonical link matched. plan ID128, room ID87. ID90 did not match room and was not used."
+      },
+      {
+        "property": "haru-no-sora",
+        "adopted": [
+          "direct booking age bands and max 2 adults + 2 children age 11 or under",
+          "Airbnb host description uses adult age 12, not inferred from Airbnb UI",
+          "holiday surcharges and optional early/late fees",
+          "24-hour email reply is a stated practice, not a delivery guarantee",
+          "provided towels and toiletries"
+        ],
+        "sources": [
+          "https://haru-aozora-com.sakura.ne.jp/minpaku.html",
+          "https://www.airbnb.jp/rooms/662582894146083389"
+        ],
+        "unknown": [
+          "future May 10 through June 6 opening and prices",
+          "surcharge unit/overlap and final lodging tax",
+          "bath-period discrepancy between booking channels"
+        ]
+      },
+      {
+        "property": "sakanagi",
+        "adopted": [
+          "email booking from FAQ",
+          "Japanese-style room prices are group totals, not per-person",
+          "21:00 late arrival requires consultation; no contact and absent at 22:00 is no-show",
+          "confirmation email within two days; daytime closure and coded night entry",
+          "bar sign conversation, nearby paid parking",
+          "Nagano center No65 PDF page2 text and photographs visually reviewed: call light, flashing alarm and face-visible counter confirmed"
+        ],
+        "sources": [
+          "https://sakanagi-gh.com/faq/",
+          "https://sakanagi-gh.com/rooms/",
+          "https://sakanagi-gh.com/reservation/",
+          "https://sakanagi-gh.com/about/",
+          "https://www.nagano-choujou.com/2026/06/02/センターだより-65-誰もが安心して泊まれる場所へ/"
+        ]
+      },
+      {
+        "property": "cozy-sign",
+        "adopted": [
+          "rider plan SMS/telephone only, not Airbnb",
+          "advance notice for assistance dog, separate from no pets",
+          "light/vibration equipment locations and use, not tested hardware",
+          "early/late unavailable, light breakfast",
+          "whole house price base four, added guest fee, variable multi-night discount",
+          "cancellation cutoff includes adverse-weather exception; Airbnb reservation terms checked separately",
+          "verified direct Airbnb whole-house link, labeled by plan"
+        ],
+        "sources": [
+          "https://select-type.com/s/?s=7Qkr-WUF9hQ",
+          "https://www.airbnb.jp/rooms/1197522927633766571"
+        ],
+        "notAdopted": [
+          "Four official x.gd room links returned HTTP403 to direct check; no guessed Airbnb IDs or bypass. Keep official page for room/plan selection."
+        ]
+      }
+    ],
+    "dates": "All four official facility descriptions checked October 26; each property shows its own date. Comparison references those dates; media publication dates remain historical.",
+    "inquiry": "Local-only room, communication and optional child count; no submit, network, browser storage, or query persistence; invalid count never copied. Empty count stays unknown.",
+    "privacy": "No API generation, booking, contact submission, DB/auth/curation-permission update; logo hold preserved."
+  }
 }
