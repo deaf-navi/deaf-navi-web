@@ -31,7 +31,7 @@ function renderDetails(h) {
 
 function renderSources(h) {
   const sources = h.sources.filter(s => !h.media?.some(m => m.url === s.url));
-  return sources.length ? `<div class="guesthouse-sources"><p class="reader-note">掲載内容の確認に使った情報源</p><nav class="reader-links" aria-label="${e(h.name)}の確認に使った情報源">${sources.map(s => `<a href="${e(s.url)}" target="_blank" rel="noopener noreferrer">${e(s.label)}（新しいタブ）</a>`).join('')}</nav></div>` : '';
+  return sources.length ? `<div class="guesthouse-sources"><p class="reader-note">施設・料金などの詳しい案内</p><nav class="reader-links" aria-label="${e(h.name)}の詳しい案内">${sources.map(s => `<a href="${e(s.url)}" target="_blank" rel="noopener noreferrer">${e(s.label)}（新しいタブ）</a>`).join('')}</nav></div>` : '';
 }
 
 function renderMedia(h) {
@@ -39,7 +39,7 @@ function renderMedia(h) {
   return `<div class="guesthouse-media" aria-labelledby="${e(h.id)}-media-heading">
     <h3 id="${e(h.id)}-media-heading">宿の雰囲気や運営者を知る</h3>
     <ul class="reader-resources">${h.media.map(m => `<li>
-      <p class="reader-note">${e(m.publisher)} · ${e(m.type)} · <time datetime="${e(m.publishedAt)}">${e(m.publishedAt)}</time>公開${m.updatedAt ? `（<time datetime="${e(m.updatedAt)}">${e(m.updatedAt)}</time>更新）` : ''}${h.sources.some(s => s.url === m.url) ? ' · 掲載内容の確認にも使用' : ''}</p>
+      <p class="reader-note">${e(m.publisher)} · ${e(m.type)} · <time datetime="${e(m.publishedAt)}">${e(m.publishedAt)}</time>公開${m.updatedAt ? `（<time datetime="${e(m.updatedAt)}">${e(m.updatedAt)}</time>更新）` : ''}</p>
       <p class="reader-actions"><a href="${e(m.url)}" target="_blank" rel="noopener noreferrer">${e(m.title)}（新しいタブ）</a></p>
       <p>${e(m.description)}</p>
     </li>`).join('')}</ul>
@@ -48,7 +48,7 @@ function renderMedia(h) {
 }
 
 export function renderGuesthousesPage() {
-  const body = `<p>ろう者が運営に関わることを公式サイトや公表された取材記事で確認した宿を紹介しています。宿ごとに会話の方法や設備は異なります。希望する対応と宿泊条件は、予約前に各宿へ確認してください。</p>
+  const body = `<p>ろう者が営むゲストハウスや民泊を紹介しています。宿ごとに会話の方法や設備は異なります。希望する対応と宿泊条件は、予約前に各宿へ確認してください。</p>
     <nav class="reader-links" aria-label="掲載している宿">${GUESTHOUSES.map(h => `<a href="#${e(h.id)}">${e(h.area)}：${e(h.name)}</a>`).join('')}<a href="#before-booking">予約前の確認</a></nav>
     <p class="reader-note">料金は確認時点の公式掲載例で、空室や予約金額を保証するものではありません。最新の料金・営業日・取消条件はリンク先で確認できます。予約・問い合わせは各宿へ直接お願いします。</p>
     ${GUESTHOUSES.map(h => `<section class="guesthouse-entry" id="${e(h.id)}" aria-labelledby="${e(h.id)}-heading">
@@ -68,7 +68,7 @@ export function renderGuesthousesPage() {
       <h3>文字で問い合わせるときの例</h3><p class="reader-example">○月○日から○泊、大人○人で宿泊を検討しています。個室を希望し、会話は筆談を使います。予約できる部屋と追加費用を含めた料金、夜間・非常時の連絡方法を教えてください。</p>
     </section>
     <section><h2>旅先で立ち寄る場所も探す</h2><nav class="reader-links" aria-label="関連する情報"><a href="/connect/sign-cafe/">手話カフェを探す</a><a href="/events.html">国内のイベントを見る</a><a href="/guide.html">暮らしのガイドへ</a></nav></section>
-    <p class="reader-note">全国を網羅した一覧ではありません。未確認の料金や設備を推測で補わず、公表情報をもとに紹介しています。掲載内容の変更・追加情報は<a href="/about.html#about-correction">Deaf Naviのお問い合わせ</a>へお知らせください。</p>`;
+    <p class="reader-note">全国のすべての宿を掲載しているわけではありません。掲載内容の変更・追加情報は<a href="/about.html#about-correction">Deaf Naviのお問い合わせ</a>へお知らせください。</p>`;
   return {
     file: 'guide/guesthouses/index.html',
     html: renderReaderPage({ ...guide, body, schemas: [{

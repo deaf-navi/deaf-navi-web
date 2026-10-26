@@ -1,6 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
 import {eventDetailState,eventSchema,renderEventDetail,renderRetiredEvent} from '../src/templates/event-detail.mjs';
 import {renderEventsPage} from '../src/templates/events.mjs';
 import {renderSitemapXml} from '../src/templates/feeds.mjs';
@@ -12,11 +13,34 @@ const now=Date.parse('2026-10-17T02:00:00Z');
 const event={id:'test-event-20261101',title:'手話の交流会',startDate:'2026-11-01',endDate:'2026-11-01',prefecture:'東京都',venue:'会場A',kind:'exchange',status:'announced',verification:'verified',verifiedAt:'2026-10-17T01:00:00Z',evidenceHash:'a'.repeat(64),sourceUrl:'https://example.org/notice',sourceName:'主催者',time:null,fee:null,organizer:null};
 const files={oldIndex:'index-old.html',about:'about.html',guide:'guide.html',sitemapHtml:'sitemap.html'};
 test('event detail preserves unknowns and links both local detail and original source',()=>{
- const html=renderEventDetail(event,{now});assert.match(html,/href="https:\/\/example.org\/notice"/);assert.match(html,/告知で未確認/);assert.match(html,/content="index,follow/);
+ const html=renderEventDetail(event,{now});assert.match(html,/href="https:\/\/example.org\/notice"/);assert.match(html,/主催者へご確認ください/);assert.match(html,/content="index,follow/);
  const schema=eventSchema(event,now);assert.equal(schema.startDate,'2026-11-01');assert.ok(!schema.offers&&!schema.organizer);assert.ok(!schema.location.address.streetAddress);
  assert.match(renderEventsPage({events:[event]},{}),/href="\/events\/test-event-20261101\/"/);
  assert.throws(()=>renderEventDetail({...event,id:'../private'}));
  assert.doesNotMatch(renderEventDetail({...event,title:'</script><img src=x onerror=alert(1)>'},{now}),/<img src=x/);
+});
+
+test('visitor copy preserves expired-event warnings and client-side freshness without investigation prose',async()=>{
+ const stale={...event,verifiedAt:new Date(now-48*3600000).toISOString(),sourceStatus:'retrying'};
+ const html=renderEventDetail(stale,{now});
+ assert.match(html,/最新状況は公式案内へ/);
+ assert.match(html,/以前の告知をもとにした情報/);
+ assert.match(html,/noindex,follow/);
+ assert.doesNotMatch(html,/再確認中|再取得中|内容を最後に照合|開催予定としての案内を停止/);
+ const list=renderEventsPage({events:[stale]});
+ assert.doesNotMatch(list,/再確認中|再取得中|最長6時間|約30分後|順次調査/);
+ const nodes={'[data-detail-status]':{},'[data-detail-notice]':{},'[data-source-retry]':{}};
+ const article={dataset:{end:stale.endDate,status:stale.status,verification:stale.verification,verified:stale.verifiedAt,recheckMs:String(48*3600000)},querySelector:s=>nodes[s]};
+ const robots={setAttribute:(k,v)=>{robots[k]=v;}};
+ const schema={textContent:JSON.stringify([{'@type':'Event'},{'@type':'BreadcrumbList'}])};
+ const document={querySelector:s=>s==='[data-event-detail]'?article:robots,querySelectorAll:()=>[schema],addEventListener:()=>{}};
+ class Clock extends Date {static now(){return now;}}
+ vm.runInNewContext(await readFile(new URL('../src/assets/event-detail.js',import.meta.url),'utf8'),{document,Date:Clock,setInterval:()=>{}});
+ assert.equal(nodes['[data-detail-status]'].textContent,eventDetailState(stale,now).label);
+ assert.equal(nodes['[data-detail-notice]'].textContent,eventDetailState(stale,now).note);
+ assert.equal(robots.content,'noindex,follow');
+ assert.deepEqual(JSON.parse(schema.textContent),[{'@type':'BreadcrumbList'}]);
+ assert.equal(stale.verifiedAt,new Date(now-48*3600000).toISOString());
 });
 test('48-hour boundary, source change, future review time and cancellation fail closed',()=>{
  for(const candidate of [{...event,verifiedAt:new Date(now-48*3600000).toISOString()},{...event,verification:'needs_review'},{...event,verifiedAt:new Date(now+1).toISOString()}]){

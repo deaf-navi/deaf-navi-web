@@ -482,7 +482,7 @@ ${articlesHtml}
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>${isOriginal ? 'Deaf Navi World-Original shows article titles and summaries in the original source language, gathered from major media and multilingual regional Google News queries.' : 'Deaf Navi World-JP は Google News RSS を入口に、主要メディアと多言語の地域別検索を関連性スコアで絞り込み、自動翻訳とDeaf Navi向けの用語補正、必要に応じたAIによる翻訳補助を通して掲載しています。'}</p>
+      <p>${isOriginal ? 'Deaf Navi World-Original presents news about deaf and hard-of-hearing communities and sign languages, with titles and summaries in the source language.' : 'Deaf Navi World-JPでは、世界の聴覚障害・ろう者・難聴・手話に関するニュースを、日本語の見出しと概要で紹介しています。'}</p>
       <p>${isOriginal ? 'Article copyrights belong to each source. Links open the original external articles.' : '記事の著作権は各発信元に帰属します。リンク先は外部サイトです。翻訳は概要把握のための自動翻訳と編集補助です。'}</p>
       <p><a href="./guide.html">${isOriginal ? 'Guide' : '暮らしのガイド'}</a> ・ <a href="./otomado/">${isOriginal ? 'OtoMado tools' : 'おとまど'}</a> ・ <a href="./about.html">${isOriginal ? 'About Deaf Navi' : 'Deaf Naviについて'}</a> ・ <a href="${feedUrl}">${isOriginal ? 'RSS feed' : 'RSSフィード'}</a> ・ <a href="${HTML_SITEMAP_URL}">${isOriginal ? 'Sitemap' : 'サイトマップ'}</a></p>
       <hr class="site-footer__divider" aria-hidden="true">

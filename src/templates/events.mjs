@@ -9,7 +9,7 @@ import { renderNewsThumbnail } from './thumbnail.mjs';
 
 export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVersion='20261016polish' } = {}) {
   const events=(snapshot.events||[]).filter(validEvent);
-  const labels={upcoming:'開催予定',past:'過去の告知',review:'再確認中',cancelled:'中止の告知'};
+  const labels={upcoming:'開催予定',past:'過去の告知',review:'最新状況は公式案内へ',cancelled:'中止の告知'};
   const count=events.filter(event=>eventPeriod(event)==='upcoming').length;
   const prefectures=[...PREFECTURES.map(p=>p.name), 'オンライン'];
   const rows=events.map(event=>{
@@ -20,13 +20,13 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
       <div class="event-when"><div class="event-dates"><time datetime="${e(event.startDate)}">${e(date)}</time>${end}</div><span data-event-state>${e(event.status==='cancelled'?'中止の告知':event.status==='closed'&&period==='upcoming'?'受付終了の告知':labels[period])}</span></div>
       <div class="event-content"><div class="event-intro">${renderNewsThumbnail(event, EVENT_KINDS[event.kind].split('・')[0])}<div class="event-heading"><p class="event-meta">${e(event.prefecture)} · ${e(EVENT_KINDS[event.kind])}</p><h2><a href="${e(eventDetailPath(event))}">${e(event.title)}</a></h2></div></div>
       <p class="event-venue">${e(event.venue)}${event.time?` · ${e(event.time)}`:' · 時間は告知をご確認ください'}</p>${event.sourceStatus==='retrying'?`
-      <p class="event-filter-help" data-source-retry>情報源を再取得中です。内容は${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JSTの確認時点のものです。</p>`:''}
+      <p class="event-filter-help" data-source-retry>掲載内容は${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST時点のものです。参加・申込の前に主催者の最新案内をご確認ください。</p>`:''}
       ${event.description?`<p>${e(event.description)}</p>`:''}
-      <div class="event-communication" data-communication="${communication.map(item=>item.method).join(' ')}"><p class="event-communication-label">情報の受け取り方</p>${communication.length?`<ul>${communication.map(item=>`<li><strong>${e(EVENT_COMMUNICATION[item.method])}</strong>：${e(item.detail)}</li>`).join('')}</ul>`:'<p class="event-communication-unknown">告知で未確認。必要な方法は主催者へご確認ください。</p>'}</div>
+      <div class="event-communication" data-communication="${communication.map(item=>item.method).join(' ')}"><p class="event-communication-label">情報の受け取り方</p>${communication.length?`<ul>${communication.map(item=>`<li><strong>${e(EVENT_COMMUNICATION[item.method])}</strong>：${e(item.detail)}</li>`).join('')}</ul>`:'<p class="event-communication-unknown">通訳・字幕・筆談など、利用できる方法は主催者へお問い合わせください。</p>'}</div>
       ${event.fee||event.target?`<dl class="event-participation">${[['参加費',event.fee],['対象・申込',event.target]].filter(([,value])=>value).map(([label,value])=>`<div><dt>${label}</dt><dd>${e(value)}</dd></div>`).join('')}</dl>`:''}
       <p class="event-action"><a href="${e(event.detailUrl||event.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${e(event.title)}の公式案内・申込方法を見る（新しいタブ）">公式案内・申込方法を見る<span aria-hidden="true"> ↗</span></a></p>
       <details><summary>主催・情報源</summary><dl><div><dt>主催</dt><dd>${e(event.organizer||'告知をご確認ください')}</dd></div></dl>
-      <p><a href="${e(event.sourceUrl)}" target="_blank" rel="noopener noreferrer">${e(event.sourceName)}の告知</a> · 内容照合 <time datetime="${e(event.verifiedAt)}">${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST</time></p></details></div></article>`;
+      <p><a href="${e(event.sourceUrl)}" target="_blank" rel="noopener noreferrer">${e(event.sourceName)}の告知</a> · 情報確認 <time datetime="${e(event.verifiedAt)}">${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST</time></p></details></div></article>`;
   }).join('\n');
   return `<!doctype html><html lang="ja"><head>${renderHead({title:'国内の手話イベント | Deaf Navi',description:'国内の手話・ろう者コミュニティのイベントを開催日と地域から探せます。主催者・出演団体・会場の告知を確認して掲載します。',canonical:SITE_URL+'events.html',ogUrl:SITE_URL+'events.html',stylesFile:files?.styles||'styles.css',robots:isDev?'noindex,nofollow':'index,follow'})}<link rel="stylesheet" href="./events.css?v=20261017edition"><link rel="stylesheet" href="./browse.css?v=${e(clientAssetVersion)}"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body class="browse-page events-page">${renderSkipLink()}
   ${renderSiteHeader({current:'events',subLabel:'手話イベント',lead:'交流会、講座、公演。国内の催しを開催日と地域から探せます。'})}
@@ -44,13 +44,13 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
       </div><label class="event-remember"><input type="checkbox" id="event-remember-region">この端末に地域を記憶する</label></details>
     </form>
     <div class="event-browse" hidden><div class="event-quick" role="group" aria-label="近日のイベント">${[['','開催予定'],['weekend','今週末'],['month','今月']].map(([id,name])=>`<button type="button" class="filter" data-range="${id}" aria-pressed="${id===''}">${name}</button>`).join('')}</div>
-    <details class="event-history"><summary>過去・確認中など</summary><div class="event-periods" role="group" aria-label="開催時期" hidden>${Object.entries(labels).map(([id,name])=>`<button type="button" class="filter" data-period="${id}" aria-pressed="${id==='upcoming'}">${name}</button>`).join('')}</div></details></div>
+    <details class="event-history"><summary>過去の告知・その他</summary><div class="event-periods" role="group" aria-label="開催時期" hidden>${Object.entries(labels).map(([id,name])=>`<button type="button" class="filter" data-period="${id}" aria-pressed="${id==='upcoming'}">${name}</button>`).join('')}</div></details></div>
     <div class="event-results"><p id="event-count" role="status" aria-live="polite">開催予定 ${count}件</p><a href="./connect/sign-cafe/events/">手話カフェの開催情報も見る</a></div>
-    <p class="event-guidance">日時や参加条件は変更される場合があります。参加・申込の前に告知をご確認ください。掲載のない地域も順次調査しています。</p>
+    <p class="event-guidance">日時や参加条件は変更される場合があります。参加・申込の前に告知をご確認ください。</p>
     <noscript><p>以下は掲載時点で確認した全件です。開催日と告知をご確認ください。</p></noscript>
     <section class="event-list" aria-label="イベント一覧">${rows}</section>
     <div id="event-empty" class="empty"${count?' hidden':''}><p>この条件の掲載情報はまだありません。イベントが開催されていないという意味ではありません。</p><button type="reset" form="event-filters" class="filter" hidden data-event-empty-reset>条件を解除して探す</button></div>
-    <details class="event-policy"><summary>掲載・更新について</summary><p>ニュースと同じ1日3回、6:10・12:10・18:10ごろに公開情報を照合します。処理状況により遅れる場合があります。主催者、出演団体、会場の告知に明記された開催日と場所を掲載し、投稿日時を開催日として扱いません。</p><p>SNSの告知は公開本文・画像の内容を確認できたものを掲載します。一時的な通信エラーだけの場合は、最後の確認から48時間以内の情報を確認日時付きで表示し、自動で再取得します。確認日時は延長しません。内容変更・アクセス拒否・48時間以上未確認の情報は「再確認中」とし、開催予定から外します。再取得は約30分後から始め、失敗が続くと最長6時間間隔に広げます。実行時刻は前後する場合があります。過去の告知は実施済みを意味しません。</p><p>時刻・料金・主催者などが読み取れない場合は推測で補いません。告知ページが公開しているプレビュー画像を表示する場合があります。画像を取得できない場合も本文と情報源を掲載します。SNSの自動埋め込みは行いません。</p><p><a href="mailto:info@flamenut.com?subject=Deaf%20Navi%20イベント情報">イベントの情報提供・訂正</a> ／ <a href="./about.html#about-policy">サイトの選定方針</a></p></details>
+    <details class="event-policy"><summary>掲載・更新について</summary><p>主催者・出演団体・会場の告知をもとに、開催日や参加条件を紹介しています。最新の受付状況や変更は、各イベントの公式案内をご確認ください。</p><p>古い掲載情報は、開催予定と分けて残しています。掲載情報が古いことや公式ページを開けないことだけでは、中止とは判断できません。過去の告知も、実際に開催されたことや次回の予定を示すものではありません。</p><p>時刻・料金・情報保障など記載のない条件は、主催者へお問い合わせください。告知画像とあわせて、本文と公式案内へのリンクをご利用ください。</p><p><a href="mailto:info@flamenut.com?subject=Deaf%20Navi%20イベント情報">イベントの情報提供・訂正</a> ／ <a href="./about.html#about-policy">サイトの選定方針</a></p></details>
   </main>${renderFooter({year:new Date().getFullYear(),links:[{href:'./',label:'ニュース'},{href:'./connect/sign-cafe/',label:'手話カフェ'},{href:'./about.html',label:'サイトについて'}]})}
-  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261019reading"></script></body></html>`;
+  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261026readercopy"></script></body></html>`;
 }

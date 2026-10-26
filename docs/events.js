@@ -15,7 +15,7 @@ export function eventDateWindow(range, now = Date.now()) {
  const form=document.querySelector('#event-filters');if(!form)return;
  const rows=[...document.querySelectorAll('[data-event]')], buttons=[...document.querySelectorAll('[data-period]')];
  const controls={q:document.querySelector('#event-query'),prefecture:document.querySelector('#event-prefecture'),kind:document.querySelector('#event-kind'),month:document.querySelector('#event-month'),communication:document.querySelector('#event-communication')};
- const labels={upcoming:'開催予定',past:'過去の告知',review:'再確認中',cancelled:'中止の告知'};let period='upcoming', range='', sortedPeriod;
+ const labels={upcoming:'開催予定',past:'過去の告知',review:'最新状況は公式案内へ',cancelled:'中止の告知'};let period='upcoming', range='', sortedPeriod;
  const quick=[...document.querySelectorAll('[data-range]')], remember=document.querySelector('#event-remember-region');
  const storageKey='deafnavi.event-prefecture';
  function savedRegion(){try{return localStorage.getItem(storageKey)||''}catch{return ''}}
