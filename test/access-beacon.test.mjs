@@ -3,12 +3,12 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
 
-function runClient(file, fail = false) {
+function runClient(file, fail = false, pathname = '/') {
   const requests = [], handlers = {};
   let consumed = 0;
   const context = {
     URL, URLSearchParams, Set,
-    location: {hostname:'localhost', origin:'http://localhost', pathname:'/', search:'', href:'http://localhost/'},
+    location: {hostname:'localhost', origin:'http://localhost', pathname, search:'', href:'http://localhost'+pathname},
     navigator: {webdriver:false}, window: {},
     document: {referrer:'', querySelector:()=>null, querySelectorAll:()=>[],
       addEventListener:(name,fn)=>{handlers[name]=fn;}},
@@ -42,4 +42,9 @@ test('click beacon consumes its response and retains per-link deduplication', as
 test('failed beacon is not resent or substituted with extra tracking', async()=>{
   const c=runClient('access-visit.js',true);await c.settle();
   assert.equal(c.requests.length,1);assert.equal(c.consumed(),0);
+});
+
+test('untracked sitemap does not send a visit rejected by the public endpoint', async()=>{
+  const c=runClient('access-visit.js',false,'/sitemap.html');await c.settle();
+  assert.equal(c.requests.length,0);
 });

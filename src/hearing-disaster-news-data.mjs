@@ -3,7 +3,9 @@
 export const DISASTER_NEWS_REVIEWS = [
   {
     "id": "https://www.sapporo-deaf.jp/information/%e3%80%902026%e5%b9%b41%ef%bc%92%e6%9c%88%e9%96%8b%e5%82%ac%e3%80%91%e7%a4%be%e4%bc%9a%e7%94%9f%e6%b4%bb%e6%95%99%e5%ae%a4%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=%25e3%2580%25902026%25e5%25b9%25b41%25ef%25bc%2592%25e6%259c%2588%25e9%2596%258b%25e5%2582%25ac%25e3%2580%2591%25e7%25a4%25be%25e4%25bc%259a%25e7%2594%259f%25e6%25b4%25bb%25e6%2595%2599%25e5%25ae%25a4%25e3%2581%25ae%25e3%2581%258a%25e7%259f%25a5%25e3%2582%2589%25e3%2581%259b",
-    "inputHash": "4b06f8367afc1c96196a3ba2081a1e3145c191be5a83dbceaa25da91a3f05c18",
+    "inputHash": "34b35a9b29aa0eabdcccfdf5581dbecda69b0bbb9d71c47cbdc9a63d485b7380",
+    "previousInputHash": "4b06f8367afc1c96196a3ba2081a1e3145c191be5a83dbceaa25da91a3f05c18",
+    "inputNormalization": "v11: title digits and trailing RSS ellipsis only; original review time retained",
     "reviewedAt": "2026-10-26T07:35:40.927Z",
     "hearingRelevant": true,
     "evidenceUrl": "https://www.sapporo-deaf.jp/information/%e3%80%902026%e5%b9%b41%ef%bc%92%e6%9c%88%e9%96%8b%e5%82%ac%e3%80%91%e7%a4%be%e4%bc%9a%e7%94%9f%e6%b4%bb%e6%95%99%e5%ae%a4%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
@@ -12,7 +14,9 @@ export const DISASTER_NEWS_REVIEWS = [
   },
   {
     "id": "https://www.sapporo-deaf.jp/information/%e3%80%902026%e5%b9%b4%ef%bc%91%ef%bc%91%e6%9c%88%e9%96%8b%e5%82%ac%e3%80%91%e7%a4%be%e4%bc%9a%e7%94%9f%e6%b4%bb%e6%95%99%e5%ae%a4%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=%25e3%2580%25902026%25e5%25b9%25b4%25ef%25bc%2591%25ef%25bc%2591%25e6%259c%2588%25e9%2596%258b%25e5%2582%25ac%25e3%2580%2591%25e7%25a4%25be%25e4%25bc%259a%25e7%2594%259f%25e6%25b4%25bb%25e6%2595%2599%25e5%25ae%25a4%25e3%2581%25ae%25e3%2581%258a%25e7%259f%25a5%25e3%2582%2589%25e3%2581%259b",
-    "inputHash": "0f19e9acbfd8d62d6ad0d92a65e9186bf78504346cd4804bcd719c0f7b21c776",
+    "inputHash": "2f3f878b60a5e97301e8fc7fc7e39897ef0bd56a80551d43c3a10078c8d89878",
+    "previousInputHash": "0f19e9acbfd8d62d6ad0d92a65e9186bf78504346cd4804bcd719c0f7b21c776",
+    "inputNormalization": "v11: title digits and trailing RSS ellipsis only; original review time retained",
     "reviewedAt": "2026-10-26T07:35:40.927Z",
     "hearingRelevant": true,
     "evidenceUrl": "https://www.sapporo-deaf.jp/information/%e3%80%902026%e5%b9%b4%ef%bc%91%ef%bc%91%e6%9c%88%e9%96%8b%e5%82%ac%e3%80%91%e7%a4%be%e4%bc%9a%e7%94%9f%e6%b4%bb%e6%95%99%e5%ae%a4%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",

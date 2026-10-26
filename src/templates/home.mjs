@@ -134,7 +134,7 @@ function renderQuickAccess({ guideFile }) {
       icon: ICONS.phone,
       tone: 'alert',
       title: '緊急通報の準備',
-      desc: '110番アプリ・NET118・電話リレー緊急通報の登録方法',
+      desc: '110番アプリ・NET119・NET118・電話リレー緊急通報の登録方法',
     },
     {
       href: './?category=safety',

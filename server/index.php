@@ -99,7 +99,7 @@ try {
             $rid=input($_GET,'record',64);if($rid!==''){ $place=expanded(record($rid));if(!publicly_visible($place))fail('情報が見つかりません。',404);foreach(['name','country_code','country_name','prefecture','city','address','official_url','instagram_url'] as $key)$values[$key]=$place[$key]??'';$values['notes']='対象ページ: '.BASE.record_path($place);$values['report_type']='other';}
             $body=input($_GET,'form',20)==='event'?event_tip_form():(input($_GET,'form',20)==='contact'?cafe_contact_form(input($_GET,'scope',20)==='overseas',true,input($_GET,'scope',20)==='site'):(input($_GET,'category',20)==='starbucks'?starbucks_form(input($_GET,'store',64)):submission_form($values)));
         }
-        echo page('情報提供',$body,'/submit/','手話カフェ・スターバックスの情報提供。管理者の確認後に反映します。',[],true);
+        echo page(input($_GET,'form',20)==='contact'?'お問い合わせ':'情報提供',$body,'/submit/','情報提供・お問い合わせ。内容の確認後に対応します。',[],true,['siteContact'=>input($_GET,'form',20)==='contact'&&input($_GET,'scope',20)==='site']);
     } elseif($path==='/connect/sign-cafe/') {
         if(input($_GET,'events',1)==='1'||input($_GET,'shop_type',40)==='event'){
             $params=[];foreach(['q'=>200,'region'=>40,'prefecture'=>100,'dn_client'=>20] as $key=>$limit){$value=input($_GET,$key,$limit);if($value!=='')$params[$key]=$value;}

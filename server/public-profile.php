@@ -19,7 +19,7 @@ function visitor_profile(array $p):string {
     $activity=($p['shop_type']??'')==='event';
     $visitInfo=cafe_has_visit_info($p);
     $related=in_array(cafe_listing_group($p),['spots','organizations'],true);
-    $out='<article class="dn-visitor-profile"><p class="dn-location">'.e(($p['country_code']!=='JP'?($p['country_name']?:'海外').' / ':'').$p['prefecture'].' / '.$p['city']).'</p>';
+    $out='<article class="dn-visitor-profile"><p class="dn-location">'.e(implode(' / ',array_filter([$p['country_code']!=='JP'?(($p['country_name']??'')?:'海外'):'',$p['prefecture']??'',$p['city']??''],fn($v)=>trim((string)$v)!==''))).'</p>';
     if(!empty($p['name_kana']))$out.='<p class="dn-muted">'.e($p['name_kana']).'</p>';
     if($related)$out.='<p class="dn-notice">'.e(($p['shop_type']??'')==='related_organization'?'手話の講座・交流を行う団体です。店舗型のカフェではありません。':'手話や筆談で交流できるスポットです。飲食店の営業とは区別して掲載しています。').'</p>';
     if($activity){

@@ -11,7 +11,11 @@ function titleKey(a) {
 
 function incompatible(a, b) {
   const gap = Math.abs(Date.parse(a.publishedAt) - Date.parse(b.publishedAt));
-  if (!Number.isFinite(gap) || gap > 2 * 86400000) return true;
+  // Exact, specific syndicated headlines may appear days apart. Near matches
+  // retain the short window; generic recurring notices never get this extension.
+  const exactSyndication = titleKey(a).length >= 24 && titleKey(a) === titleKey(b)
+    && a.sourceName !== b.sourceName;
+  if (!Number.isFinite(gap) || gap > (exactSyndication ? 14 : 2) * 86400000) return true;
   if (a.prefecture && b.prefecture && a.prefecture !== b.prefecture) return true;
   if (a.newsContext && b.newsContext && a.newsContext !== b.newsContext) return true;
   // Preserve real event dates; remove only publication/gallery wrappers.

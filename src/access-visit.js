@@ -40,7 +40,7 @@
     }, true);
   }
   if (/^\/(admin|submit|_backend|_access|app)(\/|$)/.test(location.pathname)
-      || /\/(404|offline)\.html$/.test(location.pathname)) return;
+      || /\/(404|offline|sitemap)\.html$/.test(location.pathname)) return;
   const headers = {'Content-Type': 'application/json'};
   if (marker) headers['X-DeafNavi-Client'] = marker;
   // Drain even an empty 204 response: Chromium otherwise reports ERR_ABORTED.

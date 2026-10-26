@@ -8,7 +8,8 @@ export function isHardNoiseWorldText(text) {
   const normalized = String(text ?? '').normalize('NFKC');
   if (HARD_NOISE_PATTERNS.some((pattern) => pattern.test(normalized))) return true;
   // A surname is not evidence of Deaf relevance. Keep genuine coverage involving him.
-  const withoutName = normalized.replace(/\bUnai\s+Sordo\b/giu, '');
+  const namedUnionLeader = /\bUnai\s+Sordo\b|\bSordo\s*\(CCOO\)|\bSordo\s+y\s+[ÁA]lvarez\b/iu.test(normalized);
+  const withoutName = namedUnionLeader ? normalized.replace(/\bUnai\s+Sordo\b/giu, '').replace(/\bSordo\b/gu, '') : normalized;
   if (withoutName !== normalized && !/sord[oa]s?|lengua\s+de\s+se[nñ]as|lengua\s+de\s+signos|discapacidad\s+auditiva|hipoacusia|deaf|hearing/iu.test(withoutName)) return true;
   // audífonos means both hearing aids and headphones. Bluetooth alone is not noise.
   const hearingContext = /sord|auditiv|audici[oó]n|p[eé]rdida|hipoacusia|hearing|deaf|補聴|難聴|聴覚|accessib|accesib|sign language|lengua de (?:señas|signos)|\b(?:ASL|Libras|Auslan)\b|closed captions?|subt[ií]tulos en (?:directo|vivo)/iu.test(normalized);

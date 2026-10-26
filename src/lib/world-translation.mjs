@@ -154,3 +154,15 @@ export function polishJapanese(text) {
     .replace(/(?:Auslan（)+オーストラリア手話(?:）)+/g, 'Auslan（オーストラリア手話）')
     .trim();
 }
+
+/** Narrow corrections grounded in the original Korean; never rewrite proper
+ * names in Chinese or legitimate Japanese uses of 是正. No network request. */
+export function polishJapaneseWithSource(original, translated) {
+  let text = String(translated ?? '');
+  const source = String(original ?? '');
+  if (/수어\s*영상/u.test(source)) text = text.replace(/(?:スア|受語|手語)映像/gu, '手話動画');
+  if (/전주시정|시정[·・]\s*생활/u.test(source)) {
+    text = text.replace(/全州是正/gu, '全州市政').replace(/是正・生活情報/gu, '市政・生活情報');
+  }
+  return text;
+}

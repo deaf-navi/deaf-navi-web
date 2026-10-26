@@ -126,6 +126,10 @@ export function renderConnectPages({ places, signCafes }) {
       body: `    <section class="directory-hero"><p class="eyebrow">CONNECT</p><h2>つながる情報を、種類ごとに。</h2><p>常設の場所と単発イベントを分け、確認できた情報源を添えて掲載します。</p></section>
 ${categoryCards([
         { href: '/connect/sign-cafe/', title: '全国の手話カフェ一覧', text: '地域・営業日・手話対応から、お出かけ先を探せます。常設店舗・定期開催・サイニングストアの情報を、公式リンクと確認日を添えてご紹介します。' },
+        { href: '/connect/sign-cafe/events/', title: '手話カフェイベント', text: '単発の手話カフェ・筆談交流を、開催日や地域から探せます。' },
+        { href: '/events.html', title: '国内の手話イベント', text: '講演会・交流会・公演などの日時、会場、情報保障を確認できます。' },
+        { href: '/connect/sign-cafe/overseas/', title: '海外の手話カフェ', text: '国・都市ごとの店舗と、会話方法を知るための公式案内を紹介します。' },
+        { href: '/guide/guesthouses/', title: 'ろう者が営むゲストハウス・民泊', text: '予約方法・料金・会話方法を比較して、旅先の宿を探せます。' },
       ])}`,
     }),
   });

@@ -4,7 +4,7 @@ import { DIRECT_FEEDS, EXPANDED_DIRECT_FEEDS, SOCIAL_FEEDS } from '../../config/
 import { dedupeNearArticles, hydratePreviousArticle, publicationExclusionReason, explicitUnrelatedReason, stripInternal, QUALITY_VERSION } from './curation.mjs';
 import { normalizeTitleKey } from './text.mjs';
 import { isHardNoiseWorldText } from './world-relevance.mjs';
-import { hasMistranslatedLibras } from './world-translation.mjs';
+import { hasMistranslatedLibras, polishJapaneseWithSource } from './world-translation.mjs';
 
 const directFeeds = new Map([...DIRECT_FEEDS, ...EXPANDED_DIRECT_FEEDS, ...SOCIAL_FEEDS].map((feed) => [feed.sourceName, feed]));
 
@@ -58,5 +58,8 @@ export function prepareWorldPublication(data) {
     if (reason) removed.push({ id: article.id, title: article.title, reason });
     return !reason;
   });
-  return withReview(data, articles, removed);
+  return withReview(data, articles.map(article => ({ ...article,
+    title: polishJapaneseWithSource(article.originalTitle, article.title),
+    summary: polishJapaneseWithSource(article.originalSummary, article.summary),
+  })), removed);
 }

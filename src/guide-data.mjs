@@ -1,4 +1,4 @@
-export const GUIDE_LAST_REVIEWED = '2026-10-17';
+export const GUIDE_LAST_REVIEWED = '2026-10-26';
 
 export const GUIDE_SECTIONS = [
   {
@@ -16,10 +16,11 @@ export const GUIDE_SECTIONS = [
       },
       {
         reviewedAt: '2026-10-16',
-        title: 'Net119 緊急通報',
+        title: 'NET119 緊急通報',
         summary: 'スマートフォンから文字で救急・消防へ通報。利用地域での事前登録が必要です。',
         detail: '位置情報を添えて消防へ連絡できる緊急通報サービスです。登録方法はお住まいの地域を管轄する消防本部へ確認してください。',
         url: 'https://www.fdma.go.jp/mission/enrichment/kyukyumusen_kinkyutuhou/net119.html',
+        relatedLinks: [{ label: '登録情報の漏えいの可能性と不審メールへの注意（船橋市・2026年10月21日）', url: 'https://www.city.funabashi.lg.jp/emergency/news/attention1/p150975.html' }],
         recommended: true,
       },
       {
@@ -52,6 +53,14 @@ export const GUIDE_SECTIONS = [
     label: '医療・補聴器',
     summary: '病院探し・予約の連絡、補聴器購入前の確認',
     items: [
+      {
+        reviewedAt: '2026-10-26',
+        title: '補聴器などの補装具費支給制度',
+        summary: '補装具の購入・修理などの費用について、市区町村の障害福祉窓口で相談できます。',
+        detail: '補聴器も対象種目に含まれます。支給の対象や必要性の判定、自己負担の条件を確認し、購入前に申請手順を相談してください。',
+        url: 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/yogu/index.html',
+        linkLabel: '厚生労働省の制度案内を見る',
+      },
       {
         reviewedAt: '2026-10-17',
         title: '筆談・手話で相談できる病院を探す',
@@ -180,6 +189,22 @@ export const GUIDE_SECTIONS = [
     label: '知る・暮らす',
     summary: '暮らしを助けるツールとデフスポーツの情報',
     items: [
+      {
+        reviewedAt: '2026-10-26',
+        title: '身体障害者手帳の申請',
+        summary: '指定医の診断書・意見書などを用意し、市区町村の窓口で申請します。',
+        detail: '手帳には認定基準があります。聴覚障害に関する指定医、必要書類、申請先は、お住まいの市区町村の障害福祉窓口で確認できます。',
+        url: 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/techou.html',
+        linkLabel: '厚生労働省の手帳案内を見る',
+      },
+      {
+        reviewedAt: '2026-10-26',
+        title: '日常生活用具の給付・貸与',
+        summary: '情報・意思疎通を支える用具などを、市区町村の制度で給付・貸与する仕組みです。',
+        detail: '対象となる用具や利用者負担は市区町村で確認してください。申請して給付等の決定を受けてから利用する制度なので、購入前に窓口へ相談しましょう。',
+        url: 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/yogu/seikatsu.html',
+        linkLabel: '厚生労働省の制度概要を見る',
+      },
       {
         reviewedAt: '2026-10-16',
         title: 'CUP ORDER（カフェ注文支援ツール）',

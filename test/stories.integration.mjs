@@ -75,6 +75,17 @@ try{
  ok((await req(image.url,null,false)).status===200,'published media');ok((await req('/stories/',null,false)).text.includes('fixture-story'),'listed');
  ok((await req('/stories/feed.json?page=%2Fconnect%2Fsign-cafe%2F',null,false)).text.includes('fixture-story'),'reverse association');
  ok(!(await req('/stories/feed.json?page=%2Fevents.html',null,false)).text.includes('fixture-story'),'no unrelated recommendations');
+ for(const page of ['/sitemap.html','/index-old.html','/archive/2026-09.html']){
+   const response=await req('/stories/feed.json?page='+encodeURIComponent(page),null,false);
+   ok(response.status===200&&JSON.parse(response.text).articles.length===0,'public unrelated page has an empty feed: '+page);
+ }
+ for(const page of ['//evil.example/','/admin/','/../sitemap.html','/archive/../../admin/','/archive/missing.html']){
+   ok((await req('/stories/feed.json?page='+encodeURIComponent(page),null,false)).status===404,'private/invalid page not accepted: '+page);
+ }
+ const publicIndex=(await req('/stories/',null,false)).text;
+ ok(publicIndex.includes('<title>読みもの | Deaf Navi</title>'),'index title has no duplicated label');
+ ok(!publicIndex.includes('<option value="world-tech"'),'unpublished categories are omitted');
+
  ok((await req('/stories/?tag='+encodeURIComponent('手話'),null,false)).text.includes('fixture-story'),'tag search');
  ok(!(await req('/stories/?q=NO-MATCH',null,false)).text.includes('class="story-card"'),'search excludes');
  ok((await req('/admin/stories/',{...data,revision:'1'})).status===409,'stale edit rejected');

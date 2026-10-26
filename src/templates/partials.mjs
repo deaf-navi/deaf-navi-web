@@ -294,8 +294,7 @@ export function renderArticleCard(a, { hidden = false, featured = false, newsMed
           <div class="card__source-group">
             <span class="source-tier source-tier--${escapeHtml(sourceTier)}" title="${escapeHtml(sourceMeta.description)}">${escapeHtml(sourceMeta.label)}</span>
             ${a.sourceUrl === a.id ? `<span class="card__source">${escapeHtml(a.sourceName)}</span>` : `<a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>`}
-            ${regionChip}
-          </div>${newsMedia ? '' : `
+${regionChip ? `            ${regionChip}\n` : ''}          </div>${newsMedia ? '' : `
           <a class="card__read" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a.title)}（新しいタブで開く）">記事を読む <span aria-hidden="true">↗</span></a>`}
         </footer>
       </article>`;

@@ -57,3 +57,7 @@ expect(domestic_matches($visit,['q'=>'500円 平日']),'Reservation terms includ
 expect(!domestic_matches($visit,['q'=>'PRIVATE_VISIT_SENTINEL']),'Private notes never searchable');
 expect(!str_contains(cafe_visit_information(array_replace($visit,['reservation'=>'<script>visitAttack()</script>'])),'<script>'),'Visit prose escaped');
 echo "PUBLIC_PROFILE_TESTS_OK\n";
+
+$abroad=array_replace($p,['country_code'=>'CZ','country_name'=>'チェコ','prefecture'=>'','city'=>'Praha']);
+expect(str_contains(visitor_profile($abroad),'チェコ / Praha'),'Empty prefecture does not create duplicate separator');
+expect(!str_contains(visitor_profile($abroad),' /  / '),'No empty location component');

@@ -42,12 +42,13 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'publication-quality-v10';
+export const QUALITY_VERSION = 'publication-quality-v11';
 
 /* ---------- 分類 ---------- */
 
 export function classifyCategory(title, summary) {
-  const text = (title + ' ' + summary).toLowerCase();
+  // A performer's nickname alone is not a medical topic.
+  const text = (title + ' ' + summary).replace(/補聴器(?:を)?つけた天使/gu, '').toLowerCase();
   for (const [category, pattern] of CATEGORY_RULES) {
     if (pattern.test(text)) return category;
   }
@@ -269,6 +270,22 @@ export function isLowValueDiscoveryPage(article) {
 /** Explicit mismatches also apply to archives; missing keywords alone do not. */
 export function explicitUnrelatedReason(article) {
   const title = cleanArticleTitle(article.title, article.sourceName).normalize('NFKC');
+  let host = '';
+  try { host = new URL(article.sourceUrl || article.url || article.id).hostname.toLowerCase(); } catch {}
+  // These discovered pages reuse unrelated headlines with injected names/IDs.
+  if (host === 'media.unisba.ac.id') return 'unverified-republished-source';
+  // Japanese-language editions of foreign coverage need World source review.
+  // Keep explicit Japan-related coverage; do not move articles into World automatically.
+  if (/(?:^|\.)(?:vietnam\.vn|sortiraparis\.com)$/u.test(host)
+    && !/日本|東京|大阪|北海道|沖縄|Japan/iu.test(`${title} ${article.summary || ''}`)) return 'foreign-coverage-review-required';
+  const substantive = /いじめ|葛藤|当事者|差別|情報保障|合理的配慮|インタビュー|障害.*(?:語|経験|支援)|手話.*(?:活動|交流)/u;
+  if (/補聴器(?:を)?つけた天使/u.test(title)
+    && /彼女感|前かがみ|ミニ丈|グラビア|もん絶|メロメロ/u.test(title)
+    && !substantive.test(`${title} ${article.summary || ''}`)) return 'incidental-disability-nickname';
+  if (/ツボ/u.test(title) && /難聴|耳鳴り/u.test(title) && /治す|改善|軽減|効く|解消/u.test(title)
+    && !/臨床試験|系統的レビュー|効果.*(?:不明|認められ|ない)|根拠.*(?:ない|乏しい)|検証/u.test(`${title} ${article.summary || ''}`)) return 'health-claim-evidence-required';
+  if (/YouTube/iu.test(article.sourceName || '') && /大失態|パクる/u.test(title)
+    && /疑惑|目撃/u.test(title)) return 'speculative-celebrity-gossip';
   for (const rule of PUBLICATION_NOISE_RULES) {
     if (rule.pattern.test(title) && !rule.unless.test(`${title} ${article.summary || ''}`)) return rule.reason;
   }
