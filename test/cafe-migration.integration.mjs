@@ -49,4 +49,22 @@ sql(`$r=record('candidate-test');$p=json_decode($r['payload'],true);$p['instagra
 const dedup={...batch,batch:'dedup-test',records:[{id:'another-candidate-id',slug:'another-candidate-id',name:'別表記',prefecture:'広島県',city:'呉市',fields:{instagram_url:'https://www.instagram.com/fixture.cafe/?utm_source=test',notes:'Merge proposal'}}]};
 writeFileSync(file,JSON.stringify(dedup));r=run(['server/cafe-migrate.php','--dry-run',file]);assert.equal(r.status,0,r.stderr);
 ok(JSON.parse(r.stdout).records[0].id==='candidate-test'&&JSON.parse(r.stdout).records[0].action==='update','Instagram duplicate updates existing identity');
+// Copy-only edits cannot change event facts or turn editing into a fresh review.
+sql(`require '${root.replaceAll('\\','/')}/server/cafe-event-registry.php';cafe_registry_schema();$r=record('knot');query('INSERT INTO cafe_event_source_reviews VALUES(?,?,?,?,?,?)',['knot',$r['revision'],'https://example.org/cafe','visual',null,'2026-09-01T00:00:00+00:00']);`);
+const copyBefore=JSON.parse(sql("echo json(record('knot'));"));
+const bindingBefore=JSON.parse(sql("echo json(query(\"SELECT * FROM cafe_event_source_reviews WHERE record_id='knot'\")->fetch());"));
+const copy={version:2,copy_only:true,batch:'copy-only-fixture',date:'2026-10-26',records:[{id:'knot',slug:copyBefore.slug,name:copyBefore.name,prefecture:copyBefore.prefecture,city:copyBefore.city,expected_revision:copyBefore.revision,fields:{notes:'参加方法は主催者の案内をご確認ください。',review_notes:'PRIVATE_COPY_HISTORY'}}]};
+writeFileSync(file,JSON.stringify(copy));r=run(['server/cafe-migrate.php','--dry-run',file]);assert.equal(r.status,0,r.stderr);const copyPlan=JSON.parse(r.stdout);
+ok(copyPlan.migration_records===1,'copy mode never migrates unrelated records');
+r=run(['server/cafe-migrate.php','--apply',file,backups,copyPlan.plan_sha256]);assert.equal(r.status,0,r.stderr);
+const copyAfter=JSON.parse(sql("echo json(record('knot'));")),oldPayload=JSON.parse(copyBefore.payload),newPayload=JSON.parse(copyAfter.payload);
+for(const k of ['notes','review_notes']){delete oldPayload[k];delete newPayload[k];}
+ok(JSON.stringify(oldPayload)===JSON.stringify(newPayload),'copy mode preserves every factual field and verification date');
+const bindingAfter=JSON.parse(sql("echo json(query(\"SELECT * FROM cafe_event_source_reviews WHERE record_id='knot'\")->fetch());"));
+ok(bindingAfter.record_revision===copyAfter.revision&&bindingAfter.reviewed_at===bindingBefore.reviewed_at&&bindingAfter.fingerprint===bindingBefore.fingerprint,'copy carries binding without refreshing time or fingerprint');
+sql("query(\"UPDATE cafe_event_source_reviews SET record_revision=0 WHERE record_id='knot'\");");
+copy.batch='copy-already-stale';copy.records[0].expected_revision=copyAfter.revision;writeFileSync(file,JSON.stringify(copy));r=run(['server/cafe-migrate.php','--dry-run',file]);assert.equal(r.status,0,r.stderr);r=run(['server/cafe-migrate.php','--apply',file,backups,JSON.parse(r.stdout).plan_sha256]);assert.equal(r.status,0,r.stderr);
+ok(sql("echo query(\"SELECT record_revision FROM cafe_event_source_reviews WHERE record_id='knot'\")->fetchColumn();")==='0','copy does not revive an already stale binding');
+for(const fields of [{activity_date:'2027-01-01'},{last_verified_at:'2026-10-26'},{publication:'public'}]){copy.batch='forbidden-copy';copy.records[0].expected_revision=copyAfter.revision+1;copy.records[0].fields=fields;writeFileSync(file,JSON.stringify(copy));const stable=digest();r=run(['server/cafe-migrate.php','--dry-run',file]);ok(r.status!==0&&stable===digest(),'copy rejects factual/publication changes');}
+ok(run(['server/cli.php','check']).status===0,'copy-only integrity intact');
 console.log(JSON.stringify({result:'CAFE_MIGRATION_TESTS_OK',checks,productionWrites:false}));
