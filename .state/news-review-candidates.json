@@ -1,31 +1,32 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-26T13:43:58.020Z",
+  "generatedAt": "2026-10-26T16:05:08.935Z",
   "counts": {
-    "uniqueInputs": 3200,
-    "alreadyPublished": 989,
-    "outsideWindow": 1794,
-    "hardExcluded": 23,
-    "duplicateOfPublished": 135,
-    "candidateDuplicates": 7,
+    "uniqueInputs": 3140,
+    "alreadyPublished": 997,
+    "outsideWindow": 1720,
+    "hardExcluded": 24,
+    "duplicateOfPublished": 139,
+    "candidateDuplicates": 8,
     "eligible": 252,
     "queued": 40,
     "deferred": 212
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "foreign-coverage-review-required": 3,
+    "foreign-coverage-review-required": 4,
     "low-value-page": 10,
+    "incidental-organization-mention": 1,
     "incidental-disability-nickname": 6,
-    "market-report": 3
+    "market-report": 2
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-26T09:11:37.043Z",
+    "previousGeneratedAt": "2026-10-26T13:43:58.020Z",
     "previousQueued": 40,
     "retained": 40,
     "new": 0,
-    "changed": 3,
-    "unchanged": 37
+    "changed": 0,
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -176,7 +177,7 @@
       "sourceDomain": "palabra-i.co.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "changed"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://note.com/psy_article/n/n008022d39951",
@@ -216,7 +217,7 @@
       "sourceDomain": "palabra-i.co.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "changed"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/otokotomodachi/",
@@ -416,7 +417,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "changed"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/products/orihime/",
