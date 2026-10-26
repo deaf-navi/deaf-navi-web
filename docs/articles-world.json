@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T00:32:40.355Z",
+  "generatedAt": "2026-10-26T03:01:04.765Z",
   "variant": "world",
   "count": 600,
   "regions": {
@@ -21,8 +21,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 3694,
-    "dedupedCount": 2256,
+    "rawCount": 3739,
+    "dedupedCount": 2263,
     "selectedCount": 600,
     "maxArticles": 600,
     "minScore": 8,
@@ -34,31 +34,26 @@
     "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 34,
-      "updated": 34,
-      "cached": 412,
-      "skipped": 218,
+      "checked": 0,
+      "updated": 0,
+      "cached": 405,
+      "skipped": 247,
       "failed": 0,
       "enabled": true,
-      "attemptsPerBatch": 2,
-      "splitBatchSize": 10,
-      "maxConsecutiveFailedBatches": 2,
-      "stoppedAfterConsecutiveFailures": false,
-      "minCoverage": 0.85,
       "fallback": {
         "requested": 1,
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 218,
-      "retainedPrevious": 52
+      "pending": 247,
+      "retainedPrevious": 104
     },
     "japanesePostEditRequired": false,
     "japanesePostEditMinCoverage": 0.85,
     "japanesePostEditFailOnLowCoverage": false,
     "japanesePostEditCoverage": 0.7966666666666666,
     "freshnessCounts": {
-      "last7d": 72,
+      "last7d": 70,
       "last30d": 182,
       "last90d": 267
     },
@@ -88,11 +83,11 @@
       "G1": 3,
       "Onda Bierzo": 1,
       "웹이코노미": 1,
-      "محافظة بورسعيد": 1,
+      "بوابة الأهرام": 3,
       "Sinop Flaş Haber": 1,
       "Jornal de Barueri": 1,
       "전북중앙": 1,
-      "بوابة الأهرام": 3,
+      "أهل مصر": 1,
       "www.noroeste.com.mx": 1,
       "RaiNews": 2,
       "오늘뉴스": 1,
@@ -128,7 +123,6 @@
       "OkDiario": 1,
       "FayerWayer": 1,
       "Yahoo新聞": 1,
-      "Head Topics": 1,
       "DiarioBitcoin": 1,
       "NaTelinha": 1,
       "News.com.au": 2,
@@ -146,65 +140,66 @@
       "Le JSL": 2,
       "www.nove.firenze.it": 1,
       "Fédération Française de Tennis": 1,
+      "Head Topics": 1,
       "Frankfurter Rundschau": 1,
       "The Age": 1,
       "Tribuna do Norte": 1,
-      "Telecompaper": 1,
       "Ouest-France": 4,
       "Fundação do ABC": 1,
-      "Morocco World News": 7,
       "墨新聞-MORE News": 1,
       "El Observador CR": 1,
       "Resumen de la Región": 1,
-      "مكتب أبوظبي الإعلامي": 1,
+      "Telecompaper": 1,
       "South China Morning Post": 3,
       "GUB.UY": 1,
+      "Morocco World News": 7,
       "Jornal Correio": 1,
-      "www.wam.ae": 1,
       "蕃新聞": 1,
       "Westfalen-Blatt": 1,
+      "مكتب أبوظبي الإعلامي": 1,
       "El Sol de México": 1,
-      "صحيفة العرب القطرية": 1,
       "香港01": 1,
       "Son Dakika": 1,
+      "www.wam.ae": 1,
       "NPR": 4,
       "Hearing Practitioner Australia": 1,
       "Netzwoche": 1,
       "agenciasp.sp.gov.br": 2,
-      "بوابة أخبار اليوم الإلكترونية": 1,
+      "صحيفة العرب القطرية": 1,
       "你的公共電視": 4,
       "CTV News": 7,
-      "صحيفة سبق الإلكترونية": 1,
       "視傳媒": 1,
       "Merkur": 1,
-      "Daily Monitor": 9,
+      "بوابة أخبار اليوم الإلكترونية": 1,
       "Newtalk新聞": 1,
       "Quotidiano Sanità": 1,
       "El Tiempo": 1,
-      "وكالة الأنباء السعودية": 1,
+      "صحيفة سبق الإلكترونية": 1,
       "동아일보": 1,
       "The Wom Healthy": 1,
       "Portal PUC-Campinas": 1,
+      "Daily Monitor": 9,
       "insalutenews.it": 1,
       "Los Angeles Times": 3,
-      "اليوم السابع": 1,
-      "Studenti.it": 1,
+      "وكالة الأنباء السعودية": 1,
+      "Made in Marseille": 1,
       "Prefeitura de Araguaína": 1,
       "뉴스핌": 1,
-      "Made in Marseille": 1,
+      "Studenti.it": 1,
       "基督日報": 1,
-      "Pulzo": 1,
-      "뉴시스": 4,
-      "News24": 8,
-      "Mondosanità": 1,
-      "CBS News": 12,
       "Infirmiers.com": 1,
+      "Pulzo": 1,
+      "اليوم السابع": 1,
+      "뉴시스": 4,
+      "CBS News": 12,
+      "Mondosanità": 1,
       "Ifronteira": 1,
+      "News24": 8,
       "뉴스락": 1,
-      "The Jerusalem Post": 7,
       "Financial Times": 3,
       "hessenschau.de": 1,
       "Infocielo": 1,
+      "The Jerusalem Post": 7,
       "Le Progrès": 3,
       "ActuaLitté.com": 1,
       "Ambito": 1,
@@ -226,13 +221,13 @@
       "Fédération Française de Vol Libre": 1,
       "ANSA": 1,
       "Le Parisien": 1,
-      "France 3 Régions": 1,
       "Le Journal du Centre": 1,
+      "France 3 Régions": 1,
       "RTE.ie": 9,
       "Adnkronos": 1,
       "Aulnay-sous-bois.fr": 1,
       "Handicap.fr": 1,
-      "Euronews.com": 2,
+      "Euronews": 3,
       "Agirc-Arrco": 1,
       "YouTube": 1,
       "Manila Bulletin": 2,
@@ -244,10 +239,10 @@
       "LeccePrima": 1,
       "USA Today": 1,
       "وزارة التضامن الاجتماعي": 1,
-      "Aladom": 1,
+      "lecourrierdelamayenne.fr": 1,
       "The Eastleigh Voice": 1,
       "The Korea Herald": 5,
-      "lecourrierdelamayenne.fr": 1,
+      "Aladom": 1,
       "People Daily": 1,
       "Corse Matin": 1,
       "RNZ": 5,
@@ -289,7 +284,6 @@
       "Arab News": 1,
       "ABC News - Breaking News, Latest News and Videos": 10,
       "SMH.com.au": 2,
-      "Euronews": 2,
       "c2c": 1,
       "The Telegraph": 1,
       "UK Parliament": 2,
@@ -310,30 +304,31 @@
       "PR Newswire UK": 1,
       "Salisbury Journal": 1,
       "The Clarion-Ledger": 1,
+      "Euronews.com": 1,
       "The Times of Israel": 1
     },
     "sourceModeCounts": {
-      "major-media": 317,
+      "major-media": 314,
       "regional-fresh": 188,
-      "major-media-fresh": 80,
+      "major-media-fresh": 83,
       "regional-multilingual": 15
     },
     "thumbnails": {
       "articles": 600,
-      "attempted": 25,
-      "cached": 372,
-      "acquired": 15,
-      "missing": 7,
-      "failed": 3,
-      "deferred": 203,
-      "withImage": 351,
+      "attempted": 34,
+      "cached": 395,
+      "acquired": 8,
+      "missing": 3,
+      "failed": 23,
+      "deferred": 171,
+      "withImage": 357,
       "googleStopped": false
     }
   },
   "articles": [
     {
       "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNUUpkdVlLMEYwVjN2TzdLcS1nZ3RTOVFQeG9ISmttT0wyaFZFMERtTVNNN0YzVHQzSHMzcEowczZyRWJCOHZGb3FQSEw1Nm0yR04yUkNpRVdSUm8ydXVDRk1JdV9pOUxsc2JjbW5aLTE3aUFvak1zRWVlRkI3OHRSbTM0TE1fZXI2eXNJaWt1NVNHRDNLS2NULWJVUkszaWRsOXlPanIwSS1aZ2ZOcVQyU1pXYjZDZWZldm10amp2bWUtR1A0YXEtNVpvelNfWU4xc1E?oc=5",
-      "title": "IEC、選挙研修会での無資格手話通訳者起用に批判",
+      "title": "IECが選挙研修会で無資格の手話通訳者を起用し、批判を受けている。",
       "summary": "IECが選挙研修会で無資格の手話通訳者を起用し、批判を受けている。",
       "originalTitle": "IEC under fire after unqualified sign language interpreter used at election workshop",
       "originalSummary": "IEC under fire after unqualified sign language interpreter used at election workshop",
@@ -371,7 +366,7 @@
       "originalSummary": "B.C. Votes 2026: Presented with American Sign Language",
       "sourceName": "CBC",
       "sourceUrl": "https://www.cbc.ca",
-      "publishedAt": "2026-10-25T16:08:48.000Z",
+      "publishedAt": "2026-10-25T16:40:03.000Z",
       "region": "americas",
       "regionLabel": "北米・中南米",
       "topic": "rights",
@@ -391,7 +386,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxONzdaMUVXWi1xcURTamFzN1pVaXZWbjBjak56VHpaWnQ4QllSZDAtSG4wWDN6Z3lGd013UTBNblNSNmhHLXFfaHJ3dVRSM3ZRYmtTazVSaFg5THBTWkVNN0ZZRWEtSTlyS0dJNlktV2htbnBEOFBTeFdrRFFYaU4yZy0zVGw3TF9zdlhNQ3J5bHJLOUlJM0I1cTNnRC1UNHlrSzV1cVBEZFBHUkpkb3hFM2YwcUJ0RmFl?oc=5",
-      "title": "ナンシー近郊のミサで聴者とろう者が声を合わせる",
+      "title": "ナンシー近郊のミサで聴者とろう者が声を合わせる様子が写真で紹介された。",
       "summary": "ナンシー近郊のミサで聴者とろう者が声を合わせる様子が写真で紹介された。",
       "originalTitle": "Photos. Pour la messe, entendants et sourds unissent leurs voix près de Nancy",
       "originalSummary": "Photos. Pour la messe, entendants et sourds unissent leurs voix près de Nancy",
@@ -449,7 +444,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPaEdjWVpZYXFSS1JIR1V5YWJnN3RSckVST1hHOVRPdXNqQ09PeVlRMHdFS0lsSlgzNUF5WDE0bGF6dnhDbndoNHlqWlBFZ3lwc2oxLWdrMlh2N0FKdnloZnBMOHVhOUlyRXlEMU9FWWxrTTltVm9tRlVNNFlwZlJ6dno5eU5GTGpDN2lBQzQzd2thWnJQVEZVbDdIYzBsWEpyYU5RbVBnakcyZGVuMDJMTHl0UkllYVk?oc=5",
-      "title": "南アフリカ選挙管理委員会の手話通訳者に異議",
+      "title": "Daily Maverickは、南アフリカ選挙管理委員会が手話通訳者をめぐり異議を受けていると報じた。",
       "summary": "Daily Maverickは、南アフリカ選挙管理委員会が手話通訳者をめぐり異議を受けていると報じた。",
       "originalTitle": "South Africa’s Electoral Commission challenged over sign language interpreter — Daily Maverick",
       "originalSummary": "South Africa’s Electoral Commission challenged over sign language interpreter — Daily Maverick",
@@ -571,25 +566,25 @@
       "japanesePostEditModel": "gpt-6.1-sol"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4zRUQwZjNnYkFWWmlGY0tuemFOZkJHa2xxbTZ1QVFzWmRjZVVJRGJ1WUxQbVkxNE1MNDM0QnZiVTE0c003ei1NUk5MSWlYeTB3Y0dYaHJPUDYyS2s?oc=5",
-      "title": "ポートサイド教育当局、ろう・難聴学生のクルアーン学習支援事業の閉幕に参加",
-      "summary": "ポートサイド教育当局が、ろう・難聴の学生のクルアーン学習を支援する「心で聴くクルアーン」事業の閉幕行事に参加した。",
-      "originalTitle": "تعليم بورسعيد يشارك في ختام مبادرة «قرآن يُسمع بالقلب» لدعم تعليم القرآن الكريم للطلاب الصم وضعاف السمع",
-      "originalSummary": "تعليم بورسعيد يشارك في ختام مبادرة «قرآن يُسمع بالقلب» لدعم تعليم القرآن الكريم للطلاب الصم وضعاف السمع",
-      "sourceName": "محافظة بورسعيد",
-      "sourceUrl": "https://www.portsaid.gov.eg",
-      "publishedAt": "2026-10-25T17:17:44.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBDcm1IZHdlZTlSSzdTNWxMYklQUUExZXFsc2ZpQUxDdS1ScTUtaUM0S3ZsZHBVZGo4X0s4dzl2TTNhUjl1eHRpajR4bG9VRXFXODJxRWtn?oc=5",
+      "title": "イスラム研究機関が、ろう者や難聴者に宗教知識を届けるため手話による布教を発展させている（写真あり）。",
+      "summary": "イスラム研究機関が、ろう者や難聴者に宗教知識を届けるため手話による布教を発展させている（写真あり）。",
+      "originalTitle": "«البحوث الإسلامية» يطور الدعوة بلغة الإشارة لإيصال المعرفة الدينية للصم وضعاف السمع| صور",
+      "originalSummary": "«البحوث الإسلامية» يطور الدعوة بلغة الإشارة لإيصال المعرفة الدينية للصم وضعاف السمع| صور",
+      "sourceName": "بوابة الأهرام",
+      "sourceUrl": "https://gate.ahram.org.eg",
+      "publishedAt": "2026-10-25T15:59:00.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 24,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 22,
       "curationSignals": [
-        "الصم",
         "ضعاف السمع",
+        "لغة الإشارة",
         "multilingual"
       ],
-      "sourceDomain": "portsaid.gov.eg",
+      "sourceDomain": "gate.ahram.org.eg",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -686,31 +681,36 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBDcm1IZHdlZTlSSzdTNWxMYklQUUExZXFsc2ZpQUxDdS1ScTUtaUM0S3ZsZHBVZGo4X0s4dzl2TTNhUjl1eHRpajR4bG9VRXFXODJxRWtn?oc=5",
-      "title": "イスラム研究機関、手話による布教を推進",
-      "summary": "イスラム研究機関が、ろう者や難聴者に宗教知識を届けるため手話による布教を発展させている（写真あり）。",
-      "originalTitle": "«البحوث الإسلامية» يطور الدعوة بلغة الإشارة لإيصال المعرفة الدينية للصم وضعاف السمع| صور",
-      "originalSummary": "«البحوث الإسلامية» يطور الدعوة بلغة الإشارة لإيصال المعرفة الدينية للصم وضعاف السمع| صور",
-      "sourceName": "بوابة الأهرام",
-      "sourceUrl": "https://gate.ahram.org.eg",
-      "publishedAt": "2026-10-25T15:59:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMigwZBVV95cUxPOERuaEV5dEF5SjVWdDROTnlrSVd5MzViVjJfWDVLeWozTnI3T3RudDl3RlJPMFVXeW5KZnVTWFdwc0ZEcVVXeVY4OHRUN1ZpUTM5SEthdllOWUo0V3h1d1dTLXdLbW5GWE5qV2lhT1B2LVpTeGlnUVBzS1d3dmExYzViU1hENDZVSklmOGltZkxZZ0VubWsyYVVib1dfTVBsMk5kOWZFOF8xbjBya0x6X0RKdjRtNGZGMVVvd3c4c2lUY0ZmbHp6X3ZoeVVBUmI1YVFxdkFBUC1MWXBvalhZaE1VU2lNeENIUjNaNFBvVmsxTmhKVE1BVFNNOG5BZlZmQjJTQ1R3Y0dfel9UVU1ocGlEMDRzM2hQNVZIZHlabHZZamJVWjFNVWJyeEI0WTYxSWtHc2pKbEM2djdrSUNmYW54TTJXWm12MkYtcE9rdUhkME5MbjV0VUwwemNYY2liQVpQQmxrVERlNDhCV3JoOURQdzkyTnlZS016a3Atb2IxYzd4SEExNFRQemdxcWwwUXRmemtoUi1oaGRZcjhUQkZ0cEZLa0RhVWVScFJ5dXlLeXZ4NHRGOWVjT01UV2w4Z1JBZDBXbmE2NU5pV2hJV3M5N1l1QnJkMmU1QkpHRHF3c0JIRnRjZ1EtbXVEcUdtQXVJc2ZKRlJja2NobW9wWHh0cjEydy05T1ozVVk0RngtYXA0M0o0NVIzSTdOeXEtcFZLX3NZVGs0UXY1TmlXa1VpNXRob0NlNTR1ajc4NVIxdmhWOXRhMzBINHByZUZZU2RTMkxnNjlzdlBtSGRIdTJnNHFNU2s0SHN4a1pPSXJLcGk3MjVPMWUwZTMzM1Njd2d3YV9PeE4zRDBOMEdJVXBoZklzMWZIWVVNOTFQdkFEa1IyTkhQQXRUdVpwcHNwNU12UFRqcHl2U3BxaEtuMm05bm5LeElxTWpjeVhndnEybGc5aTVLRTBJYlpUTmtHdDdVMWhDRzE4U2g2b1VUMjBYQWNHUm0zeUhtWVRWRzRKazg?oc=5",
+      "title": "ポートサイド教育当局が、ろう・難聴の学生のクルアーン学習を支援する「心で聴くクルアーン」事業の閉幕行事に参加した。",
+      "summary": "ポートサイド教育当局が、ろう・難聴の学生のクルアーン学習を支援する「心で聴くクルアーン」事業の閉幕行事に参加した。",
+      "originalTitle": "تعليم بورسعيد يشارك في ختام مبادرة «قرآن يُسمع بالقلب» لدعم تعليم القرآن الكريم للطلاب الصم وضعاف السمع",
+      "originalSummary": "تعليم بورسعيد يشارك في ختام مبادرة «قرآن يُسمع بالقلب» لدعم تعليم القرآن الكريم للطلاب الصم وضعاف السمع",
+      "sourceName": "أهل مصر",
+      "sourceUrl": "https://ahlmasrnews.com",
+      "publishedAt": "2026-10-25T09:26:21.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 22,
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 24,
       "curationSignals": [
+        "الصم",
         "ضعاف السمع",
-        "لغة الإشارة",
         "multilingual"
       ],
-      "sourceDomain": "gate.ahram.org.eg",
+      "sourceDomain": "ahlmasrnews.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://img.ahlmasrnews.com/750x450/2026/10/%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A8%D9%88%D8%B1%D8%B3%D8%B9%D9%8A%D8%AF-%D9%8A%D8%B4%D8%A7%D8%B1%D9%83-%D9%81%D9%8A-%D8%AE%D8%AA%D8%A7%D9%85-%D9%85%D8%A8%D8%A7%D8%AF%D8%B1%D8%A9-laquo%D9%82%D8%B1%D9%86-%D9%8A%D8%B3%D9%85%D8%B9-%D8%A8%D8%A7%D9%84%D9%82%D9%84%D8%A8raquo-%D9%84%D8%AF%D8%B9%D9%85-%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D9%82%D8%B1%D9%86-%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85-%D9%84%D9%84%D8%B7%D9%84%D8%A7%D8%A8-%D8%A7%D9%84%D8%B5%D9%85-%D9%88%D8%B6%D8%B9%D8%A7%D9%81-%D8%A7%D9%84%D8%B3%D9%85%D8%B9-1792919790-0.jpg",
+        "source": "og:image",
+        "pageUrl": "https://ahlmasrnews.com/news/local-news/13499718/%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A8%D9%88%D8%B1%D8%B3%D8%B9%D9%8A%D8%AF-%D9%8A%D8%B4%D8%A7%D8%B1%D9%83-%D9%81%D9%8A-%D8%AE%D8%AA%D8%A7%D9%85-%D9%85%D8%A8%D8%A7%D8%AF%D8%B1%D8%A9-%D9%82%D8%B1%D9%86-%D9%8A%D8%B3%D9%85%D8%B9-%D8%A8%D8%A7%D9%84%D9%82%D9%84%D8%A8-%D9%84%D8%AF%D8%B9%D9%85-%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D9%82%D8%B1%D9%86-%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85-%D9%84%D9%84%D8%B7%D9%84%D8%A7%D8%A8-%D8%A7%D9%84%D8%B5%D9%85-%D9%88%D8%B6%D8%B9%D8%A7%D9%81-%D8%A7%D9%84%D8%B3%D9%85%D8%B9"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQNFRJSlVUWHBWUzZUbVN4NEs5RnFZQlMtNzZNNWdJN0ltcDktMHd6OFNtVnc0cktYVkNYanN5aklCNkNvSEpqamZjUUdNZ2pFTjhrYzVzc3M3M0hCeTJwdklzdE90NEVJV2I3eVBPNWpLVkdnOUxaQXRsdFBUem5SRm9mSEpLcERDX3NmY3paUVNxbGxRNURDeVhkbmx6MVgwX0ltQ2dRTTBwVHg3aXh1VnJydzg4WlFMSTlpMDdB0gHDAUFVX3lxTFA0U3g3cUNlZkVZTDZPaWw1R3hsTUJEWDhxYnMySjZuc24yZkVXWUItdTJyQVluWTc3RlU0ZVVodmhHX0pBNVo0MHpLWnJFTnJya2RZTmJLb2VVamxfYVQ4YWFhZ1FtT2ZHa1JlMmxNaUV2ajBUQ25WU0pLbDFzaTdqRG53RW5YWVlGZEhBV0VzcEhad2xNTGdZQzk0Q09qMVB5QWxhUWpnRWgwRF9NR01zNjRselhua2tVSmloTk9MMmZlTQ?oc=5",
@@ -745,14 +745,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNMENCYUpuYWZxbm1ib182SThIbXg3NUN5UlhvZG1WVktwQ1VVY2hVZ2tCczd1d2JycFZzaUVTRUo4R3VBbHNsRkU2OXdpYlFfSUZJS0hMTng0YmlJQ0oyRUN2YWVsTjZUYzJzUnl3ZktLdnJRUWxyakZKdlpWWFBPWmpTbHlsQVQ0N09Rb3hIc0R0SkFOTktXOUduM3BIdURIRzRZNUNkQXh2US1aV3lkRVJSQjJnQ2p5TXR0RDUzNXpoTDZ3SUV5bWxRdkhUQVJPeUltd2QzNGtXU0l6Z3Rad3ZsWTVPVEY1ZEdkYXVFUlBrQdIB8gFBVV95cUxNMENCYUpuYWZxbm1ib182SThIbXg3NUN5UlhvZG1WVktwQ1VVY2hVZ2tCczd1d2JycFZzaUVTRUo4R3VBbHNsRkU2OXdpYlFfSUZJS0hMTng0YmlJQ0oyRUN2YWVsTjZUYzJzUnl3ZktLdnJRUWxyakZKdlpWWFBPWmpTbHlsQVQ0N09Rb3hIc0R0SkFOTktXOUduM3BIdURIRzRZNUNkQXh2US1aV3lkRVJSQjJnQ2p5TXR0RDUzNXpoTDZ3SUV5bWxRdkhUQVJPeUltd2QzNGtXU0l6Z3Rad3ZsWTVPVEY1ZEdkYXVFUlBrQQ?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQNDBDWE1tbmhnbzF5R0UtOTlWbGNWSFplYkNaek5WODg1V2k4ekFtSjBFejFCWlJhU3pVSjEwZlpWMVJIVWQtam5Ubmpna0VTd01TVXA2ajhJemtuQ193alF2NU1ubHI2M3pDUGNlZHRBU0NTOTJlQUlEQzluWmJ5blVBQVRtUXRsdzhnbDJIZFhnNnRjVnc0dFFaSVdMX2w5R3JQT3Y1Nkg3ZGJJdzZDU3pfYUdnZ1pyTGxrZHdhdTBnaXZ5Ml80dnpCRVlfUFg1YkllZ3dOYU1iNXJXZlYxSDZ0RHRXdURZcUJ6UNIB8gFBVV95cUxNMENCYUpuYWZxbm1ib182SThIbXg3NUN5UlhvZG1WVktwQ1VVY2hVZ2tCczd1d2JycFZzaUVTRUo4R3VBbHNsRkU2OXdpYlFfSUZJS0hMTng0YmlJQ0oyRUN2YWVsTjZUYzJzUnl3ZktLdnJRUWxyakZKdlpWWFBPWmpTbHlsQVQ0N09Rb3hIc0R0SkFOTktXOUduM3BIdURIRzRZNUNkQXh2US1aV3lkRVJSQjJnQ2p5TXR0RDUzNXpoTDZ3SUV5bWxRdkhUQVJPeUltd2QzNGtXU0l6Z3Rad3ZsWTVPVEY1ZEdkYXVFUlBrQQ?oc=5",
       "title": "ヴァレーゼに難聴治療の卓越した専門拠点がある。",
       "summary": "ヴァレーゼに難聴治療の卓越した専門拠点がある。",
       "originalTitle": "A Varese un centro d'eccellenza per il trattamento delle sordità",
       "originalSummary": "A Varese un centro d'eccellenza per il trattamento delle sordità",
       "sourceName": "RaiNews",
       "sourceUrl": "https://www.rainews.it",
-      "publishedAt": "2026-10-23T10:05:35.000Z",
+      "publishedAt": "2026-10-23T09:53:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "topic": "general",
@@ -773,7 +773,7 @@
       "thumbnail": {
         "url": "https://www.rainews.it/cropgd/1200x630/dl/img/2026/10/23/1792749412984_sordit.JPG",
         "source": "og:image",
-        "pageUrl": "https://www.rainews.it/amp/tgr/lombardia/video/2026/10/a-varese-un-centro-deccellenza-per-il-trattamento-delle-sordita-826816d9-6d68-4734-a6d4-8e1286d73126.html"
+        "pageUrl": "https://www.rainews.it/tgr/lombardia/video/2026/10/a-varese-un-centro-deccellenza-per-il-trattamento-delle-sordita-826816d9-6d68-4734-a6d4-8e1286d73126.html"
       }
     },
     {
@@ -825,7 +825,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
@@ -990,7 +990,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQRVplYi1UQlc1YUJGM0sxbG9oV1BITjVwTWxKeTFuN18taVZmQTc0bkhLM0V3ajRxUDVHOF9JZEhZcDFsaG43YVlXVE82SFBLT2ZPdjFpVjAtOTdObVFVanJMdVMzaXplVzZqRWZwWGNVRmtXRmpxclVqYS1PMW5Ca2Fab0lwa3RYaE9UV3FEdkVkeVBfWUMtdjJXNEVfcHM?oc=5",
-      "title": "ろう者CAN、大会に臨む「ライオンズ」23人を発表",
+      "title": "ろう者アフリカ・ネーションズカップ（CAN）に出場する「ライオンズ」の23人の名簿が発表された。",
       "summary": "ろう者アフリカ・ネーションズカップ（CAN）に出場する「ライオンズ」の23人の名簿が発表された。",
       "originalTitle": "CAN des sourds : La Liste des 23 Lions pour la compétition dévoilée !",
       "originalSummary": "CAN des sourds : La Liste des 23 Lions pour la compétition dévoilée !",
@@ -1422,7 +1422,7 @@
       ],
       "sourceDomain": "reuters.com",
       "sourcePriority": 98,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -1816,32 +1816,6 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNOUZuQmo5QTVsTmVINUVxRWQ3aW5jcU1YRnJzUEVRZnJXT2h3LXdEczF3VnJTNENoTGhMaWRCZk1MMXNDU1g2YkpqOVFFeVdwR0NkM2RJeFB6RGl3ZjUySlJpTnd1VHdydktJZ2liUnhrVExhbXZ1YlltR002cVBXVmFLYzdlM2hTdFE2eFhMMW9oVVFBTnZB?oc=5",
-      "title": "ろう者スポーツ連盟が、エヌグ全国スポーツ大会からの除外と報奨の未払いに抗議している。",
-      "summary": "ろう者スポーツ連盟が、エヌグ全国スポーツ大会からの除外と報奨の未払いに抗議している。",
-      "originalTitle": "Deaf Sports Federation Protests Exclusion from Enugu National Festival and Unpaid Awards",
-      "originalSummary": "Deaf Sports Federation Protests Exclusion from Enugu National Festival and Unpaid Awards",
-      "sourceName": "Head Topics",
-      "sourceUrl": "https://ng.headtopics.com",
-      "publishedAt": "2026-10-19T01:35:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "sports",
-      "topicLabel": "デフスポーツ",
-      "curationScore": 17,
-      "curationSignals": [
-        "deaf sports",
-        "multilingual"
-      ],
-      "sourceDomain": "ng.headtopics.com",
-      "sourcePriority": 50,
-      "sourceMode": "regional-multilingual",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxORjZNdHhCZFAxMTJVQjJpYXdUVU5BUVlVdjRxWHEwX0lldzJTOFBROXdWeFFsOW5yc0RKQWR6WENwaG85T2FPbzdxZ3BRc2FaWDY1Z1lCczhHSHRQNWloOG95bVgtc1BTZmtOM2FTWTA3aEN3bTVleDVUeW5rNE9scGlWUS1rTEhlNnY5Q2IybWM3aS1kR3Nrb24yT1RiQy1tS0ZLTWRFN2VGV3JRbEg2dThVZTVReVI5N1RQN2dUQzM?oc=5",
       "title": "補聴器と死亡率: 研究により、補聴器使用者の死亡リスクが低いことが判明",
       "summary": "補聴器と死亡率: 研究により、補聴器使用者の死亡リスクが低いことが判明",
@@ -1924,34 +1898,6 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPR2lYT21xUURlVm5vbjF3WlI3SG50OVd0RTBKVmZ3amZ1ck96TExMazZISGN0X2QyQlBvckJHVkNvYzFPQkM3Y1F0VXZVYS16cWlUTjFwTHdJSGRBVDRLcjRVbGxuUkdHMGpMRl9yUTB6cHNKazV4T09jZmZFWTBwRnlxUmEzbmVy?oc=5",
-      "title": "NSFの除外：聴覚障害者スポーツの関係者が本日抗議活動を開始",
-      "summary": "NSFの除外：聴覚障害者スポーツの関係者が本日抗議活動を開始",
-      "originalTitle": "NSF exclusion: Deaf sports stakeholders set for protest today",
-      "originalSummary": "NSF exclusion: Deaf sports stakeholders set for protest today",
-      "sourceName": "Punch Newspapers",
-      "sourceUrl": "https://punchng.com",
-      "publishedAt": "2026-10-19T01:19:15.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "sports",
-      "topicLabel": "デフスポーツ",
-      "curationScore": 23,
-      "curationSignals": [
-        "deaf sports",
-        "major-media"
-      ],
-      "sourceDomain": "punchng.com",
-      "sourcePriority": 72,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://cdn.punchng.com/wp-content/uploads/2026/10/18235102/Deaf_1792363862.webp",
-        "source": "og:image",
-        "pageUrl": "https://punchng.com/nsf-exclusion-deaf-sports-stakeholders-set-for-protest-today/"
-      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOcEpKVUw3S0xhWUNvakhoNkhBMTNHVFlMRjd2cDZNY05kOHJVWFVVTXBuajVmQjREek9rQXZzMWxEbENFdXdGQ2ZRQ080VUJzSWFCTERpcVR2Z0pCd0JOdHdIUlZRX2JyRTYxRnV2aVZiUDBGcGgwZzhtWlZVbjhJbDQtOGFteFkyU0hkaHlMandjaGFxTHdrVEpMNlN5RFBxUDQ2enpLZE1lV2lOM29pd1k4TTBlQzg?oc=5",
@@ -2038,7 +1984,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOT2FFNTNfVEVYcHhiVlM5cTB4YTZGdkFOZkpQMmtVU2lLUTR1QndtbUplMk1DYlExM0paV2w4SVhIUVNOdWdNWGU5TVl0ZWN3c1haUEpjWTZJOFlJUmdLUjBGbGRqMlJRZjNranAxUkxtb0twX0ZHVTE1Z0sydTJOU1phc3d4TGxRbUdCTk5B?oc=5",
-      "title": "スペインの新たなろう者法、10月23日からの変更点",
+      "title": "スペインの新たなろう者法について、10月23日から変わる点と主な新事項が紹介されている。",
       "summary": "スペインの新たなろう者法について、10月23日から変わる点と主な新事項が紹介されている。",
       "originalTitle": "Nueva Ley de Sordos en España: qué cambia a partir de este 23 de octubre y cuáles son las principales novedades",
       "originalSummary": "Nueva Ley de Sordos en España: qué cambia a partir de este 23 de octubre y cuáles son las principales novedades",
@@ -2408,6 +2354,32 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNOUZuQmo5QTVsTmVINUVxRWQ3aW5jcU1YRnJzUEVRZnJXT2h3LXdEczF3VnJTNENoTGhMaWRCZk1MMXNDU1g2YkpqOVFFeVdwR0NkM2RJeFB6RGl3ZjUySlJpTnd1VHdydktJZ2liUnhrVExhbXZ1YlltR002cVBXVmFLYzdlM2hTdFE2eFhMMW9oVVFBTnZB?oc=5",
+      "title": "ろう者スポーツ連盟が、エヌグ全国スポーツ大会からの除外と報奨の未払いに抗議している。",
+      "summary": "ろう者スポーツ連盟が、エヌグ全国スポーツ大会からの除外と報奨の未払いに抗議している。",
+      "originalTitle": "Deaf Sports Federation Protests Exclusion from Enugu National Festival and Unpaid Awards",
+      "originalSummary": "Deaf Sports Federation Protests Exclusion from Enugu National Festival and Unpaid Awards",
+      "sourceName": "Head Topics",
+      "sourceUrl": "https://ng.headtopics.com",
+      "publishedAt": "2026-10-19T01:35:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "sports",
+      "topicLabel": "デフスポーツ",
+      "curationScore": 17,
+      "curationSignals": [
+        "deaf sports",
+        "multilingual"
+      ],
+      "sourceDomain": "ng.headtopics.com",
+      "sourcePriority": 50,
+      "sourceMode": "regional-multilingual",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVFNmWmkxbFNLRS12dnRwSC1oUG00a0pmVHFXN24yam1sMWFTbm1tQ0czanB6Nzh1akpicHU3ZmkzOXVITm8ydVhMNTY4aGdtc0FTMG1oR2dmX1huVEcyUnJLdzFHQTBuWlJyWGdHWWY4RFcxUmF1Q2R0cWh2ZTRsU2lXcml3MFczZDJlT3B5Mk9UMXhUMFVv?oc=5",
       "title": "なぜなら、彼らは警告を聞かなかったからです: ウクライナ人女性は耳の聞こえない隣人3人の死をどう経験したか",
       "summary": "なぜなら、彼らは警告を聞かなかったからです: ウクライナ人女性は耳の聞こえない隣人3人の死をどう経験したか",
@@ -2497,30 +2469,32 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM0V4ZS1ZZjI4b3NUOC10UGpNMlB3NV9iNktpZFNuOE56anlxWFptYzZVeDV1NEtNRkpiQXRHTFRNVEVxdmFoalZKT242d0Zobk1LQnEzdlJfSzJQM1RQcmRza19NUVdMM19jbXNJRjl2dXJyZXZDZ1FIN0pDdkE3bmZkcFg0bWRieHV4QjlfakNZcHQwQmFOejlqR18xWmtmYWxHaGVVWHhMbGwtY1RScElTbzExdjIzMkE?oc=5",
-      "title": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
-      "summary": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
-      "originalTitle": "Airtel Money Kenya and ChildFund provide KES 13 mln for deaf school upgrade",
-      "originalSummary": "Airtel Money Kenya and ChildFund provide KES 13 mln for deaf school upgrade",
-      "sourceName": "Telecompaper",
-      "sourceUrl": "https://www.telecompaper.com",
-      "publishedAt": "2026-10-16T09:29:51.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPR2lYT21xUURlVm5vbjF3WlI3SG50OVd0RTBKVmZ3amZ1ck96TExMazZISGN0X2QyQlBvckJHVkNvYzFPQkM3Y1F0VXZVYS16cWlUTjFwTHdJSGRBVDRLcjRVbGxuUkdHMGpMRl9yUTB6cHNKazV4T09jZmZFWTBwRnlxUmEzbmVy?oc=5",
+      "title": "NSFの除外：聴覚障害者スポーツの関係者が本日抗議活動を開始",
+      "summary": "NSFの除外：聴覚障害者スポーツの関係者が本日抗議活動を開始",
+      "originalTitle": "NSF exclusion: Deaf sports stakeholders set for protest today",
+      "originalSummary": "NSF exclusion: Deaf sports stakeholders set for protest today",
+      "sourceName": "Punch Newspapers",
+      "sourceUrl": "https://punchng.com",
+      "publishedAt": "2026-10-19T01:19:15.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 17,
+      "topic": "sports",
+      "topicLabel": "デフスポーツ",
+      "curationScore": 23,
       "curationSignals": [
-        "deaf school",
-        "multilingual"
+        "deaf sports",
+        "major-media"
       ],
-      "sourceDomain": "telecompaper.com",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
+      "sourceDomain": "punchng.com",
+      "sourcePriority": 72,
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-5.6-sol"
+      "thumbnail": {
+        "url": "https://cdn.punchng.com/wp-content/uploads/2026/10/18235102/Deaf_1792363862.webp",
+        "source": "og:image",
+        "pageUrl": "https://punchng.com/nsf-exclusion-deaf-sports-stakeholders-set-for-protest-today/"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQRzBYT1ZEbngyeFpoMnRTaGZLaENldGkyZHhYeUsxZnVZcU5FMTZzVUd6by05dThjM0Etci00T2xpVlpfbk13eHVWVzYwT1FxX19MLVppemFCLVliVHBvOXdjYUh6ZFJidHZROG80UWg0SWRtaEhybnRFcFRpZ0VMQXdJOW5DVmVJWlNWaTN2LVVxN1pYYzNvZDAyM3ByREVXOXlIYWlNZ1FuT1RYNHFqYi1ZTXNHVm9pTnVpQUJKVWdoSXI3c3YxZDdDVTZFb1gybE1CR1EySDVBUWsyT3BOTjJlazBBUnB0N01DaF9GME1mdjlPMUs4TVJoSmlBLTVKZzdmdFA3ZjktZ0NHVExuei1qNWdYMGlWTHVwYXpnZTlTTHl0?oc=5",
@@ -2580,37 +2554,6 @@
         "url": "https://fuabc.org.br/wp-content/uploads/2026/10/Escola-de-Santo-Andre-tem-vivencia-coletiva-de-Libras-para-conscientizacao-sobre-deficiencia-auditiva.jpg",
         "source": "og:image",
         "pageUrl": "https://fuabc.org.br/noticias/escola-de-sa-tem-vivencia-coletiva-de-libras-para-conscientizacao-sobre-deficiencia-auditiva/"
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOLXZ5UnNRa0FiMURnOVY4Q0ZEOG9UYmUtSVhRcFFrdW00SDNJMjZ1LXFYaHg1bDJsS0R2ZDJnMjBjTWVwVTFwSU5TM1FWWXZPTzRWT1gzSG1pSDM1R3g3a2ppOUtWaEFhQzdzQzNvZlZDX2dwdGNqT2V1aTlkOGpRSk4yUHRuUWQ5aUlGTFlxVU1uREx0QjJIR3dtRjY2LWlkY2RvaUN3aVFqMTl3UVJ2TExicXpNdTVJSElVdWktVlZ2WmZyZGl3V0RpRDNNajFXbG43Z21vQmFLdw?oc=5",
-      "title": "ララ・アスマー王女が、人工内耳手術後のモロッコとパナマの子どもたちを訪問しました。",
-      "summary": "ララ・アスマー王女が、人工内耳手術後のモロッコとパナマの子どもたちを訪問しました。",
-      "originalTitle": "Princess Lalla Asmaa Visits Moroccan and Panamanian Children After Cochlear Implant Surgeries",
-      "originalSummary": "Princess Lalla Asmaa Visits Moroccan and Panamanian Children After Cochlear Implant Surgeries",
-      "sourceName": "Morocco World News",
-      "sourceUrl": "https://www.moroccoworldnews.com",
-      "publishedAt": "2026-10-15T16:34:46.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 21,
-      "curationSignals": [
-        "cochlear implant",
-        "major-media"
-      ],
-      "sourceDomain": "moroccoworldnews.com",
-      "sourcePriority": 70,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://www.moroccoworldnews.com/wp-content/uploads/2026/06/IMG_1399-1140x815-1.webp",
-        "source": "og:image",
-        "pageUrl": "https://www.moroccoworldnews.com/2026/10/342266/princess-lalla-asmaa-visits-moroccan-and-panamanian-children-after-cochlear-implant-surgeries/"
       }
     },
     {
@@ -2704,36 +2647,30 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMizwJBVV95cUxNUTBPbjFCaldUX2xzajZJX0thYTRWQlB1YlpuTTN5MGszRllCY2c0NlREY0Z1bDhrZzVxVkpHbE1CaWZPZGw0MUkzbWJzc1NUaFNrVDZGR3VUOWt6THgtV0MxdFcyNnZNZlRPVHJ2TnZDajJ3SGhpS1hNMVIzMGNFVlhiamRKbFY3VTZxN2ZvVGtjcDhIV3EzWlFIek5FN2pWUVoySHk0YzZOMmwzRnBzZ1NjOVdfMmt3STB5dlRYU2NMS1BkZUkwQ3RJdnNwSWFVV0FhY1RyaU1FWmpIcW1jby1YYnA0U0JYRFJZakc0Ti1kcHR4dUxLMXprMGdISExZRUpiNUtoenNRU0lpOHRhZHdSZFhEREJqYnpZeG92NUkxeXlFSkFGMmRqVm9nZlNkeFhubnQwSUduMm00c2JFWENZd0ZKXzE0OF9EWC15TQ?oc=5",
-      "title": "アブダビ警察はザイード障害者機構と協力し、ろう者・難聴者が警察サービスを利用しやすくするための「手話の声」プラットフォームを開始する。",
-      "summary": "アブダビ警察はザイード障害者機構と協力し、ろう者・難聴者が警察サービスを利用しやすくするための「手話の声」プラットフォームを開始する。",
-      "originalTitle": "بالتعاون مع هيئة زايد لأصحاب الهمم.. شرطة أبوظبي تطلق منصة «صوت الإشارة» لتعزيز وصول الأفراد من فئة الصم وضعاف السمع إلى الخدمات الشرطية",
-      "originalSummary": "بالتعاون مع هيئة زايد لأصحاب الهمم.. شرطة أبوظبي تطلق منصة «صوت الإشارة» لتعزيز وصول الأفراد من فئة الصم وضعاف السمع إلى الخدمات الشرطية",
-      "sourceName": "مكتب أبوظبي الإعلامي",
-      "sourceUrl": "https://www.mediaoffice.abudhabi",
-      "publishedAt": "2026-10-15T14:12:33.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM0V4ZS1ZZjI4b3NUOC10UGpNMlB3NV9iNktpZFNuOE56anlxWFptYzZVeDV1NEtNRkpiQXRHTFRNVEVxdmFoalZKT242d0Zobk1LQnEzdlJfSzJQM1RQcmRza19NUVdMM19jbXNJRjl2dXJyZXZDZ1FIN0pDdkE3bmZkcFg0bWRieHV4QjlfakNZcHQwQmFOejlqR18xWmtmYWxHaGVVWHhMbGwtY1RScElTbzExdjIzMkE?oc=5",
+      "title": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
+      "summary": "Airtel Money KenyaとChildFundは、ろう学校の改修に1,300万KESを提供します。",
+      "originalTitle": "Airtel Money Kenya and ChildFund provide KES 13 mln for deaf school upgrade",
+      "originalSummary": "Airtel Money Kenya and ChildFund provide KES 13 mln for deaf school upgrade",
+      "sourceName": "Telecompaper",
+      "sourceUrl": "https://www.telecompaper.com",
+      "publishedAt": "2026-10-16T09:29:51.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "general",
-      "topicLabel": "一般",
-      "curationScore": 20,
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 17,
       "curationSignals": [
-        "الصم",
-        "ضعاف السمع",
+        "deaf school",
         "multilingual"
       ],
-      "sourceDomain": "mediaoffice.abudhabi",
+      "sourceDomain": "telecompaper.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol",
-      "thumbnail": {
-        "url": "https://www.mediaoffice.abudhabi/assets/resized/sm/upload/ze/9p/qp/22/thumb-0-0-0-0.webp?k=fb95376817",
-        "source": "og:image",
-        "pageUrl": "https://www.mediaoffice.abudhabi/ar/security/in-collaboration-with-zayed-authority-for-people-of-determination-abu-dhabi-police-launches-sign-language-voice-platform-to-enhance-police-services-for-deaf-and-hearing-impaired-people/"
-      }
+      "japanesePostEditModel": "gpt-5.6-sol"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQRzBoMkduM2dCRmJhRDNqeEZPLWtGbF8zMnpiVG4yUFFqVzFmcFV0U1hIZTQ4R1ZsLWNvQ2tTV3RPRm9QaEI3STI0LWR0V0JIQ3IwYUw1MnRWRnRJU2QtN0lEU21CME44RTRMNjlObkVlT3g5TTdlbFFkRnFuTlBucEZyMUV5eXVkZzkzM3BBN0RJckdweVFBbTdDbFkwSTFWOTY4Z2VNYTJpclBLaUhvd3prWXVSelhiZU9FTXp2MEc0UHctRlVUQVc2aG1NLW_SAc8BQVVfeXFMUGRBd3F5djNHaGdIbllGd1B0WGI0UkFkRjllX2hKR19RQ0ZHU3pRZ0tkZ3dQeVJxV3VfaEsyWHBYMHo5WXNzblI5SlJLX0h6VGQwVXpvM3RFTGdYMFdJUXRXRGd0djNaZ29QUVVYZEp1SHpmQUhlTnZPV3ZaN1QyTGkwYUFhRGJGOGtQTDg1ZU1WZjdtX0tsT284SXdFd0x2S1hjSG9RRjE5RXljRlBudGh6VmZILW9JVm1wQmdiOXd1ZFd0UlhUakNoVDhiX1Br?oc=5",
@@ -2794,8 +2731,39 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOLXZ5UnNRa0FiMURnOVY4Q0ZEOG9UYmUtSVhRcFFrdW00SDNJMjZ1LXFYaHg1bDJsS0R2ZDJnMjBjTWVwVTFwSU5TM1FWWXZPTzRWT1gzSG1pSDM1R3g3a2ppOUtWaEFhQzdzQzNvZlZDX2dwdGNqT2V1aTlkOGpRSk4yUHRuUWQ5aUlGTFlxVU1uREx0QjJIR3dtRjY2LWlkY2RvaUN3aVFqMTl3UVJ2TExicXpNdTVJSElVdWktVlZ2WmZyZGl3V0RpRDNNajFXbG43Z21vQmFLdw?oc=5",
+      "title": "ララ・アスマー王女が、人工内耳手術後のモロッコとパナマの子どもたちを訪問しました。",
+      "summary": "ララ・アスマー王女が、人工内耳手術後のモロッコとパナマの子どもたちを訪問しました。",
+      "originalTitle": "Princess Lalla Asmaa Visits Moroccan and Panamanian Children After Cochlear Implant Surgeries",
+      "originalSummary": "Princess Lalla Asmaa Visits Moroccan and Panamanian Children After Cochlear Implant Surgeries",
+      "sourceName": "Morocco World News",
+      "sourceUrl": "https://www.moroccoworldnews.com",
+      "publishedAt": "2026-10-15T16:34:46.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 21,
+      "curationSignals": [
+        "cochlear implant",
+        "major-media"
+      ],
+      "sourceDomain": "moroccoworldnews.com",
+      "sourcePriority": 70,
+      "sourceMode": "major-media",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://www.moroccoworldnews.com/wp-content/uploads/2026/06/IMG_1399-1140x815-1.webp",
+        "source": "og:image",
+        "pageUrl": "https://www.moroccoworldnews.com/2026/10/342266/princess-lalla-asmaa-visits-moroccan-and-panamanian-children-after-cochlear-implant-surgeries/"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQdXFwR3V2Vm1HazVRTjlHeFZ0aU5Rb2JTVXdBU1JTTm1QOVR0Z0FWeFBrejBXVVRCTkk0TjNCNzNUdEV0UU1TNGNYT1BWdHFEaFJia20xR2EybFRSS1RmRDk1R3BXLUlmSDRCdzVSaFRvSGpTaW5ZT3U1akd1NmVfdGNWakJnYzZjR2R5OGpueWZRVHFtOGdQRlQzN1V4eFFpLVFPRGxmNW4zcU1naHBhQ1ZLSExaM2lE?oc=5",
-      "title": "サルバドールでブラジル手話とアメリカ手話の書籍刊行",
+      "title": "ブラジル手話（Libras）とアメリカ手話に関する書籍がサルバドールで刊行された。",
       "summary": "ブラジル手話（Libras）とアメリカ手話に関する書籍がサルバドールで刊行された。",
       "originalTitle": "Livro sobre Libras e língua de sinais americana é lançado em Salvador",
       "originalSummary": "Livro sobre Libras e língua de sinais americana é lançado em Salvador",
@@ -2824,33 +2792,6 @@
         "source": "og:image",
         "pageUrl": "https://www.correio24horas.com.br/salvador/livro-sobre-libras-e-lingua-de-sinais-americana-e-lancado-em-salvador-1026"
       }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiqANBVV95cUxPRzlDcGZSMjY3d2Myek8tb25wX0tKU3cwczlPUTJyWEZuYm9PYTlXTDByZk9BQ1RSWG1fYlM3RTNoSU1MejgzeXBMM2d1b2UyTTE5OU1ibF9vOGdMT0cxR1IwZmlGc012RFJQUUFMRGxNdFkyZGg1T1Z1akpNc0ZEV0ltenJNNUhUS1dkTnNYeWZwUUVKb2FZYWpuSkdWLWx4Q1ZfWl9JMnNnVXFuRTNBTWZFTHIwUkJNb01OdG0xMkhsVWhxM1E5M0xoNnVGX1NnemVnX3pNYW9pOE93ZE05MTBjb2pvQjNkUS14TnhZcGE2eUdzbFlfekNlOW43ZURsc2xxVE1LM0puMkotN1Q4ZGxFNWNvemYwMHlRSW1DS01jX00tZmZnYS1Pa0hmZzlwTkFJQlEweFBGOXpTaWlaXzEzcm5yNW5ZOERvLXV1S0pTaVR3b21zUFA3eUgtZ0lydlRUcm1ZNFBQd2xGcGcyTGpkLWFqazgtZzVBVUJsbnBsbTBaX0JBcVdOYkVpUkl3eExRaEsxUzlXeVhEajNHOGZ2ZmFHT3Vp?oc=5",
-      "title": "ザーイド障害者支援機関とアブダビ警察が「手話の声」を開始",
-      "summary": "ザーイド障害者支援機関とアブダビ警察が、ろう者・難聴者の警察サービスへのアクセスを強化する「手話の声」を開始した。",
-      "originalTitle": "زايد لأصحاب الهمم وشرطة أبوظبي تطلقان \"صوت الإشارة\" لتعزيز وصول فئة الصم وضعاف السمع للخدمات الشرطية",
-      "originalSummary": "زايد لأصحاب الهمم وشرطة أبوظبي تطلقان \"صوت الإشارة\" لتعزيز وصول فئة الصم وضعاف السمع للخدمات الشرطية",
-      "sourceName": "www.wam.ae",
-      "sourceUrl": "https://www.wam.ae",
-      "publishedAt": "2026-10-15T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "general",
-      "topicLabel": "一般",
-      "curationScore": 20,
-      "curationSignals": [
-        "الصم",
-        "ضعاف السمع",
-        "multilingual"
-      ],
-      "sourceDomain": "wam.ae",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9FTzlMRko1M19iSEZZaXNUd1dZRTlLdE1neDJSd09HMkQyemRvUFFqQ3JHYTFERWx4ZjdnU3dGdkl1SVpJbHRMYzdWV3d1dGhjd1E?oc=5",
@@ -2908,6 +2849,38 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMizwJBVV95cUxNUTBPbjFCaldUX2xzajZJX0thYTRWQlB1YlpuTTN5MGszRllCY2c0NlREY0Z1bDhrZzVxVkpHbE1CaWZPZGw0MUkzbWJzc1NUaFNrVDZGR3VUOWt6THgtV0MxdFcyNnZNZlRPVHJ2TnZDajJ3SGhpS1hNMVIzMGNFVlhiamRKbFY3VTZxN2ZvVGtjcDhIV3EzWlFIek5FN2pWUVoySHk0YzZOMmwzRnBzZ1NjOVdfMmt3STB5dlRYU2NMS1BkZUkwQ3RJdnNwSWFVV0FhY1RyaU1FWmpIcW1jby1YYnA0U0JYRFJZakc0Ti1kcHR4dUxLMXprMGdISExZRUpiNUtoenNRU0lpOHRhZHdSZFhEREJqYnpZeG92NUkxeXlFSkFGMmRqVm9nZlNkeFhubnQwSUduMm00c2JFWENZd0ZKXzE0OF9EWC15TQ?oc=5",
+      "title": "アブダビ警察はザイード障害者機構と協力し、ろう者・難聴者が警察サービスを利用しやすくするための「手話の声」プラットフォームを開始する。",
+      "summary": "アブダビ警察はザイード障害者機構と協力し、ろう者・難聴者が警察サービスを利用しやすくするための「手話の声」プラットフォームを開始する。",
+      "originalTitle": "بالتعاون مع هيئة زايد لأصحاب الهمم.. شرطة أبوظبي تطلق منصة «صوت الإشارة» لتعزيز وصول الأفراد من فئة الصم وضعاف السمع إلى الخدمات الشرطية",
+      "originalSummary": "بالتعاون مع هيئة زايد لأصحاب الهمم.. شرطة أبوظبي تطلق منصة «صوت الإشارة» لتعزيز وصول الأفراد من فئة الصم وضعاف السمع إلى الخدمات الشرطية",
+      "sourceName": "مكتب أبوظبي الإعلامي",
+      "sourceUrl": "https://www.mediaoffice.abudhabi",
+      "publishedAt": "2026-10-15T14:12:33.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "general",
+      "topicLabel": "一般",
+      "curationScore": 20,
+      "curationSignals": [
+        "الصم",
+        "ضعاف السمع",
+        "multilingual"
+      ],
+      "sourceDomain": "mediaoffice.abudhabi",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://www.mediaoffice.abudhabi/assets/resized/sm/upload/ze/9p/qp/22/thumb-0-0-0-0.webp?k=fb95376817",
+        "source": "og:image",
+        "pageUrl": "https://www.mediaoffice.abudhabi/ar/security/in-collaboration-with-zayed-authority-for-people-of-determination-abu-dhabi-police-launches-sign-language-voice-platform-to-enhance-police-services-for-deaf-and-hearing-impaired-people/"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPWWlNNTJ0QnVEM2xOdlE5WkFwUXNEa2tkTXlJUzZZU0Izd3lBWnlTcjgxVkxKdTRoRFA4bG5aX2xFd0RhN1Q3eEJYdTh3RmZWWk1KcGkyc0p5Mi1MVk1qWnRqZDVxYjhHblVjRS1lMEpDU0c3T19BLTg3aHZXalJZYjhJaDFhNDhVa1I4YnlITDJWbE16dEUtaVFXOGVYbFVhRXd3NmhtQUgzajZLZXIxQXFOS09MMnZjX21vaFhrNEJaaTFZXzF2d1U0Q1UybmRITGExMk1FYktreUdjRFJYTnB5Y0pwZ3ltNDdZQQ?oc=5",
       "title": "DIFトレオン所属のサッカー選手が、2026年パンアメリカろう者サッカー選手権にメキシコ代表として出場します。",
       "summary": "DIFトレオン所属のサッカー選手が、2026年パンアメリカろう者サッカー選手権にメキシコ代表として出場します。",
@@ -2933,39 +2906,6 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi0gRBVV95cUxPV01LRzUxOFdJRE5yU2ZNQnI3OEdnbjNiVnFTWk5IbkpqV3UtT1dMUmIxTkhjcmNTLU56S1BTR3NKSTROcjhBNzhlVlQ2bm90WlZHR29abjcxRElkZ0hzTWh6OTRHd1R5M3l2U0ZHSUdyNzFncWh2QWRSV3k4VVlMVUk4UWRhSVE1LUcxdi1iUURfRkZDWmlsd250ZEw4ODI1U01VYlhEVkdIdmExYlJpR3BEMlZ5S09IZ04wZ3Y1TFBLQ2szNXBRTVJuei1GbTRKSjhDaUpsWUlaekJJTzBUYlNRS1NEZW1fektyQUNGRE9KdUNqMnF5TGF5ajRTaGtSbDl5b0MtS1k5aGowMnBLemRUNHY1X2tYajJhTlhxODZXdS1ZbHFnWVAzUWVyQ1E2a19qblQ0c0xHaGt0cUZNVDJGcGtwMXEwLWRoNEl2WXBCNUFHa2ZXVDZ4TUVXVUo5VHFLbzA2U3BJVkttdksxVEpqT3VsWGg2QlFHei1lbG5oTnRzam5jZU1iZ0NiR1N5b2ZMZFQtQmc3RmV3UkZaS2JqTnZaR1JSQVl1SlphMzI3RjRnQllKVzVQS2U0S05sZHRyWUhfZmZNVUkwZFc2RHlVWDBVU0d3U2ZDRWlSamU4dnl5U0JzSkRBX25MU1ZrQmN4dU13SmtkQ0JXaU5JQ1Q2WC1uOGZ3b2owVk9kX1JXOXlYeWlxSmNKV3FuLVo5dU1LRkl2a3VJU2NDb0VJTHZtVjcxb0F2cnF6aWd1OWhPZzhJa0QySENNcXUtd0lHS1E?oc=5",
-      "title": "ろう者や難聴者との円滑な意思疎通に向け、「ワクフ」が職員26人を対象に手話能力の向上を図りました。",
-      "summary": "ろう者や難聴者との円滑な意思疎通に向け、「ワクフ」が職員26人を対象に手話能力の向上を図りました。",
-      "originalTitle": "لتعزيز التواصل مع الصم وضعاف السمع .. «الأوقاف» تطوّر قدرات 26 موظفاً في لغة الإشارة",
-      "originalSummary": "لتعزيز التواصل مع الصم وضعاف السمع .. «الأوقاف» تطوّر قدرات 26 موظفاً في لغة الإشارة",
-      "sourceName": "صحيفة العرب القطرية",
-      "sourceUrl": "https://alarab.qa",
-      "publishedAt": "2026-10-12T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 31,
-      "curationSignals": [
-        "الصم",
-        "ضعاف السمع",
-        "لغة الإشارة",
-        "multilingual"
-      ],
-      "sourceDomain": "alarab.qa",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://alarab.qa/get/maximage/20261011_1791746420-913.jpg?t=1791746420",
-        "source": "og:image",
-        "pageUrl": "https://alarab.qa/article/12/10/2026/%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84-%D9%85%D8%B9-%D8%A7%D9%84%D8%B5%D9%85-%D9%88%D8%B6%D8%B9%D8%A7%D9%81-%D8%A7%D9%84%D8%B3%D9%85%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D9%82%D8%A7%D9%81-%D8%AA%D8%B7%D9%88%D8%B1-%D9%82%D8%AF%D8%B1%D8%A7%D8%AA-26-%D9%85%D9%88%D8%B8%D9%81%D8%A7-%D9%81%D9%8A-%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%A5%D8%B4%D8%A7%D8%B1%D8%A9"
-      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMingNBVV95cUxQX2xmcFR2RTJlZ3RfWkxTV2o2M0NLNFpaZFRkUGd1VE1haVNscDFUc05xVXdIRkVGRjVLTjBVbW1yYVVQUEsweXg3N0hKLUdlM2NBRlQ3SzdMZ1oyYkg4ODFhWFhKVmJlaXUtV3RVcDItLXlYLXhQZjVWS1dNOVNxQnhvNHYyZDBQeEdrTTBGb01sQVVyUS0xQXYyOTNBbXlMWExSOG1GaC1RNmNMSmJoV2pOM1ZVcHVEcG9zMUNwRUFmZmxHU09aanphTmEtYlVDc0pFNG1mcnkxU0hSWVdWeEVGa3BUdGI1b1ROalltWnJsdnNsRlc2Y3VxSkp4cnY1NW1LTldMRDFwa1hSVVJOcWJOVWRqdnduRWotVG40QmcyMmFfRUlEcmdhRENOV2lGRWw0Wkk2SWlZNk5aTDVCWDhTUFJ3VTkzbDRTcHVibzF0bnZ2dHUwbngxbkZ5d255eUcyaC1ER1BlbzRTVm9LLVVLelNtLVlqVmUzMmFvRm1mb1ZlSzFpaGpCYnFoZV9oUFpBUUlEdXNKSHpuMFE?oc=5",
@@ -3032,6 +2972,33 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiqANBVV95cUxPRzlDcGZSMjY3d2Myek8tb25wX0tKU3cwczlPUTJyWEZuYm9PYTlXTDByZk9BQ1RSWG1fYlM3RTNoSU1MejgzeXBMM2d1b2UyTTE5OU1ibF9vOGdMT0cxR1IwZmlGc012RFJQUUFMRGxNdFkyZGg1T1Z1akpNc0ZEV0ltenJNNUhUS1dkTnNYeWZwUUVKb2FZYWpuSkdWLWx4Q1ZfWl9JMnNnVXFuRTNBTWZFTHIwUkJNb01OdG0xMkhsVWhxM1E5M0xoNnVGX1NnemVnX3pNYW9pOE93ZE05MTBjb2pvQjNkUS14TnhZcGE2eUdzbFlfekNlOW43ZURsc2xxVE1LM0puMkotN1Q4ZGxFNWNvemYwMHlRSW1DS01jX00tZmZnYS1Pa0hmZzlwTkFJQlEweFBGOXpTaWlaXzEzcm5yNW5ZOERvLXV1S0pTaVR3b21zUFA3eUgtZ0lydlRUcm1ZNFBQd2xGcGcyTGpkLWFqazgtZzVBVUJsbnBsbTBaX0JBcVdOYkVpUkl3eExRaEsxUzlXeVhEajNHOGZ2ZmFHT3Vp?oc=5",
+      "title": "ザーイド障害者支援機関とアブダビ警察が「手話の声」を開始",
+      "summary": "ザーイド障害者支援機関とアブダビ警察が、ろう者・難聴者の警察サービスへのアクセスを強化する「手話の声」を開始した。",
+      "originalTitle": "زايد لأصحاب الهمم وشرطة أبوظبي تطلقان \"صوت الإشارة\" لتعزيز وصول فئة الصم وضعاف السمع للخدمات الشرطية",
+      "originalSummary": "زايد لأصحاب الهمم وشرطة أبوظبي تطلقان \"صوت الإشارة\" لتعزيز وصول فئة الصم وضعاف السمع للخدمات الشرطية",
+      "sourceName": "www.wam.ae",
+      "sourceUrl": "https://www.wam.ae",
+      "publishedAt": "2026-10-15T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "general",
+      "topicLabel": "一般",
+      "curationScore": 20,
+      "curationSignals": [
+        "الصم",
+        "ضعاف السمع",
+        "multilingual"
+      ],
+      "sourceDomain": "wam.ae",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQWkR4LUtMaWc3TTBUbmNzcmllM0ZlMGVKbmFla09FZFRRTkoxWVZNX1VrVkY5NTlvSTBHUTl3XzJVdGhodklZSmM3ZE5DLU5iQVlxMDZ3eVY3TjNzdEtyODc4ZmtjdUNYdDVXUkhJZ3hfcVp4M0M3WnBVdld2Wkd1WE1hNUY0VlBSLURYWGsxYjY?oc=5",
       "title": "NPRの番組「1A」が、聴力低下をめぐる課題と解決の可能性を取り上げる。",
       "summary": "NPRの番組「1A」が、聴力低下をめぐる課題と解決の可能性を取り上げる。",
@@ -3052,33 +3019,6 @@
       "sourceDomain": "npr.org",
       "sourcePriority": 92,
       "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1TYnRVblpQY0tWSWRxMllqdVZIOFN5Y0RMN3VydV9NQXVnTHhBVGVlWVZ5ODlsdzdOeVpQalZIX2VmaFl5Skc5QXl1ci1OZDBpbnVPMU1B?oc=5",
-      "title": "イスラム研究アカデミーが、アズハル・モスクでろう者や難聴者を対象とする手話付き宗教講座を続けています。",
-      "summary": "イスラム研究アカデミーが、アズハル・モスクでろう者や難聴者を対象とする手話付き宗教講座を続けています。",
-      "originalTitle": "«البحوث الإسلامية» يواصل دروس الدعوة بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر |صور",
-      "originalSummary": "«البحوث الإسلامية» يواصل دروس الدعوة بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر |صور",
-      "sourceName": "بوابة الأهرام",
-      "sourceUrl": "https://gate.ahram.org.eg",
-      "publishedAt": "2026-10-10T13:08:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 22,
-      "curationSignals": [
-        "ضعاف السمع",
-        "لغة الإشارة",
-        "multilingual"
-      ],
-      "sourceDomain": "gate.ahram.org.eg",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -3162,31 +3102,37 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi-gJBVV95cUxPZHpCcjl1U25BcVBpeDFpZHRyTjZVWnBpRTBndnlTSFdvVWNiNXliYmplN082cS04Yi01azRfR1pvVnBZVEV6ajBfd3hLVkFMb1AzSE00TVZnYTNZM2wySVpmTmUwY3hROXdrUk8tRXJsMXIwMkZQa3FKd0h5RnhWclhoX2xpWnA1ZUhpUkxYUzJPNzduVXdEMlc3TmVtemZmZ08zTUU0ODFvZERzMnFqWVlSXzZZOHNVQUdvemdrcHBNdGI4Mzhrb3pmNDFOdDhlT1B1aUpZWUxOb0dlNlBrMU04alFfb3I4Vlc0MWs4TG9zcm10NjNzQ2Z3MGRnX2MxZ21OVVFnRWVnU0pBS0hHRGxEdmJRcXFNRFlsYnZyV0xyVngtYzJyX2xUR3Z1aGRPdXd4b3R6c1VkU05ZVG5CQjBCMzVCc2hYanhtOVN1Z1NqRHRVcDR0aHBkTHMtdlQ3WC1mRHhPMDl5a2dXZGRZSVNLaHpFZjl5OEE?oc=5",
-      "title": "イスラム研究アカデミーは、ろう者や難聴者に向けた手話による宗教講座をアズハル・モスクで継続しています。",
-      "summary": "イスラム研究アカデミーは、ろう者や難聴者に向けた手話による宗教講座をアズハル・モスクで継続しています。",
-      "originalTitle": "«البحوث الإسلامية» يواصل دروسه الدعوية بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر",
-      "originalSummary": "«البحوث الإسلامية» يواصل دروسه الدعوية بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر",
-      "sourceName": "بوابة أخبار اليوم الإلكترونية",
-      "sourceUrl": "https://akhbarelyom.com",
-      "publishedAt": "2026-10-10T11:23:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMi0gRBVV95cUxPV01LRzUxOFdJRE5yU2ZNQnI3OEdnbjNiVnFTWk5IbkpqV3UtT1dMUmIxTkhjcmNTLU56S1BTR3NKSTROcjhBNzhlVlQ2bm90WlZHR29abjcxRElkZ0hzTWh6OTRHd1R5M3l2U0ZHSUdyNzFncWh2QWRSV3k4VVlMVUk4UWRhSVE1LUcxdi1iUURfRkZDWmlsd250ZEw4ODI1U01VYlhEVkdIdmExYlJpR3BEMlZ5S09IZ04wZ3Y1TFBLQ2szNXBRTVJuei1GbTRKSjhDaUpsWUlaekJJTzBUYlNRS1NEZW1fektyQUNGRE9KdUNqMnF5TGF5ajRTaGtSbDl5b0MtS1k5aGowMnBLemRUNHY1X2tYajJhTlhxODZXdS1ZbHFnWVAzUWVyQ1E2a19qblQ0c0xHaGt0cUZNVDJGcGtwMXEwLWRoNEl2WXBCNUFHa2ZXVDZ4TUVXVUo5VHFLbzA2U3BJVkttdksxVEpqT3VsWGg2QlFHei1lbG5oTnRzam5jZU1iZ0NiR1N5b2ZMZFQtQmc3RmV3UkZaS2JqTnZaR1JSQVl1SlphMzI3RjRnQllKVzVQS2U0S05sZHRyWUhfZmZNVUkwZFc2RHlVWDBVU0d3U2ZDRWlSamU4dnl5U0JzSkRBX25MU1ZrQmN4dU13SmtkQ0JXaU5JQ1Q2WC1uOGZ3b2owVk9kX1JXOXlYeWlxSmNKV3FuLVo5dU1LRkl2a3VJU2NDb0VJTHZtVjcxb0F2cnF6aWd1OWhPZzhJa0QySENNcXUtd0lHS1E?oc=5",
+      "title": "ろう者や難聴者との円滑な意思疎通に向け、「ワクフ」が職員26人を対象に手話能力の向上を図りました。",
+      "summary": "ろう者や難聴者との円滑な意思疎通に向け、「ワクフ」が職員26人を対象に手話能力の向上を図りました。",
+      "originalTitle": "لتعزيز التواصل مع الصم وضعاف السمع .. «الأوقاف» تطوّر قدرات 26 موظفاً في لغة الإشارة",
+      "originalSummary": "لتعزيز التواصل مع الصم وضعاف السمع .. «الأوقاف» تطوّر قدرات 26 موظفاً في لغة الإشارة",
+      "sourceName": "صحيفة العرب القطرية",
+      "sourceUrl": "https://alarab.qa",
+      "publishedAt": "2026-10-12T07:00:00.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 22,
+      "curationScore": 31,
       "curationSignals": [
+        "الصم",
         "ضعاف السمع",
         "لغة الإشارة",
         "multilingual"
       ],
-      "sourceDomain": "akhbarelyom.com",
+      "sourceDomain": "alarab.qa",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://alarab.qa/get/maximage/20261011_1791746420-913.jpg?t=1791746420",
+        "source": "og:image",
+        "pageUrl": "https://alarab.qa/article/12/10/2026/%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2-%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84-%D9%85%D8%B9-%D8%A7%D9%84%D8%B5%D9%85-%D9%88%D8%B6%D8%B9%D8%A7%D9%81-%D8%A7%D9%84%D8%B3%D9%85%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D9%82%D8%A7%D9%81-%D8%AA%D8%B7%D9%88%D8%B1-%D9%82%D8%AF%D8%B1%D8%A7%D8%AA-26-%D9%85%D9%88%D8%B8%D9%81%D8%A7-%D9%81%D9%8A-%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%A5%D8%B4%D8%A7%D8%B1%D8%A9"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBndlBMdzhUQ3BHcTNWWG5mRkpjRHJibkY1Z2FCT2wzbUgxY1pKTW9ydDlGMnp3djhDNlg4WGM0a1BmekV5NngtYmdJdw?oc=5",
@@ -3277,36 +3223,31 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5oYmc2QU5ieWFuRWhOWTFkaHVlcUFrZGhoMG50QU1QTUdUREVBMmtYXzk4TlRlQjVDQURheGRYTjRMb0p4V1pj?oc=5",
-      "title": "ろう者のメディア関係者「イシャール」が、サウジ手話で対話を進め、世界への発信を目指しています。",
-      "summary": "ろう者のメディア関係者「イシャール」が、サウジ手話で対話を進め、世界への発信を目指しています。",
-      "originalTitle": "«إشار».. إعلامي أصمّ يقود الحوار بلغة الإشارة السعودية.. ويطمح إلى الوصول للعالم",
-      "originalSummary": "«إشار».. إعلامي أصمّ يقود الحوار بلغة الإشارة السعودية.. ويطمح إلى الوصول للعالم",
-      "sourceName": "صحيفة سبق الإلكترونية",
-      "sourceUrl": "https://sabq.org",
-      "publishedAt": "2026-10-10T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1TYnRVblpQY0tWSWRxMllqdVZIOFN5Y0RMN3VydV9NQXVnTHhBVGVlWVZ5ODlsdzdOeVpQalZIX2VmaFl5Skc5QXl1ci1OZDBpbnVPMU1B?oc=5",
+      "title": "イスラム研究アカデミーが、アズハル・モスクでろう者や難聴者を対象とする手話付き宗教講座を続けています。",
+      "summary": "イスラム研究アカデミーが、アズハル・モスクでろう者や難聴者を対象とする手話付き宗教講座を続けています。",
+      "originalTitle": "«البحوث الإسلامية» يواصل دروس الدعوة بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر |صور",
+      "originalSummary": "«البحوث الإسلامية» يواصل دروس الدعوة بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر |صور",
+      "sourceName": "بوابة الأهرام",
+      "sourceUrl": "https://gate.ahram.org.eg",
+      "publishedAt": "2026-10-10T13:08:00.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
+      "curationScore": 22,
       "curationSignals": [
-        "أصم",
+        "ضعاف السمع",
         "لغة الإشارة",
         "multilingual"
       ],
-      "sourceDomain": "sabq.org",
+      "sourceDomain": "gate.ahram.org.eg",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://media.sabq.org/news/2026/10/e45728cc-5ef3-43ae-b0fa-e0ee1635938e/w1600.webp",
-        "source": "og:image",
-        "pageUrl": "https://sabq.org/article/Da1RDIp"
-      }
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTE4wWXZQbG5idV9wNDU5Q0trSVBsSEhZQ0J2N3haVG05OWpNZ2hlekpaSjg1dEN1bXFzd0s3UC1yX3lBcU1HWl8wWmdoUEZiOGlfTUFEYUtVU0NUMjQ1WHMwZktFUFE1SGJHSzdF?oc=5",
@@ -3403,27 +3344,31 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPYVhLY01XSXA0S0o3LXZ3ejVHLWxSUjN5eGtHQUtqZjVvZTlVTm45Vl85WGtRVjdfMVB4TjRRUVh4TERaZmc2RTRwbGdka05aU2c0dng5dWNYUUpoLWl4S2p0Rm5uaWJ4enFMcW5vZGZZekZCYTVKWHRuUnpjbjAwdEk0bGF1emEwTXJxREVCU0dMVWN1NXJVZTRGTG1QcGpxVkd2MkI1a2RYX2ZzcUx1aEpfQVpjVDJMTE9qNVZ0aWJRY1dIMzNOemJMTGpwNnNvblVHZUFlZUsxaGtPd0F5NkxQUmdOOVpkRmZhU3VxOA?oc=5",
-      "title": "ブケディの聴覚障害のある子供たちは、教師不足と親の無視により教育上の困難に直面している",
-      "summary": "ブケディの聴覚障害のある子供たちは、教師不足と親の無視により教育上の困難に直面している",
-      "originalTitle": "Bukedi’s children with hearing impairment face educational hurdles amid teacher shortage, parent neglect",
-      "originalSummary": "Bukedi’s children with hearing impairment face educational hurdles amid teacher shortage, parent neglect",
-      "sourceName": "Daily Monitor",
-      "sourceUrl": "https://www.monitor.co.ug",
-      "publishedAt": "2026-10-08T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMi-gJBVV95cUxPZHpCcjl1U25BcVBpeDFpZHRyTjZVWnBpRTBndnlTSFdvVWNiNXliYmplN082cS04Yi01azRfR1pvVnBZVEV6ajBfd3hLVkFMb1AzSE00TVZnYTNZM2wySVpmTmUwY3hROXdrUk8tRXJsMXIwMkZQa3FKd0h5RnhWclhoX2xpWnA1ZUhpUkxYUzJPNzduVXdEMlc3TmVtemZmZ08zTUU0ODFvZERzMnFqWVlSXzZZOHNVQUdvemdrcHBNdGI4Mzhrb3pmNDFOdDhlT1B1aUpZWUxOb0dlNlBrMU04alFfb3I4Vlc0MWs4TG9zcm10NjNzQ2Z3MGRnX2MxZ21OVVFnRWVnU0pBS0hHRGxEdmJRcXFNRFlsYnZyV0xyVngtYzJyX2xUR3Z1aGRPdXd4b3R6c1VkU05ZVG5CQjBCMzVCc2hYanhtOVN1Z1NqRHRVcDR0aHBkTHMtdlQ3WC1mRHhPMDl5a2dXZGRZSVNLaHpFZjl5OEE?oc=5",
+      "title": "イスラム研究アカデミーは、ろう者や難聴者に向けた手話による宗教講座をアズハル・モスクで継続しています。",
+      "summary": "イスラム研究アカデミーは、ろう者や難聴者に向けた手話による宗教講座をアズハル・モスクで継続しています。",
+      "originalTitle": "«البحوث الإسلامية» يواصل دروسه الدعوية بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر",
+      "originalSummary": "«البحوث الإسلامية» يواصل دروسه الدعوية بلغة الإشارة للصم وضعاف السمع بالجامع الأزهر",
+      "sourceName": "بوابة أخبار اليوم الإلكترونية",
+      "sourceUrl": "https://akhbarelyom.com",
+      "publishedAt": "2026-10-10T11:23:00.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 23,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 22,
       "curationSignals": [
-        "hearing impairment",
-        "major-media"
+        "ضعاف السمع",
+        "لغة الإشارة",
+        "multilingual"
       ],
-      "sourceDomain": "monitor.co.ug",
-      "sourcePriority": 74,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "sourceDomain": "akhbarelyom.com",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12STMzc3pnN3c3TVdaN2ViQk52U19OX1JSOWNHVkcxcDhvTV9OeFpkaXBUNE1CS0JWZkxYRE43MGlmQnlxUjZLcDFaSHNxdEhsZkdVVTd2QmFjcG8?oc=5",
@@ -3491,7 +3436,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMilAJBVV95cUxQMnJ4ZTNCSW0yVlBjMVZ4T3ZTMDNPSTMxbGt0cGlPTVA1VUpiQzJ4NTNQclNnU0U0YWVWa1RwS2lNUjJTdGhVUzZCRlpZWG1ET0dLMlFDbkpMR2h4VnBHY1RFaVJlVkNHcko1RWVWUHItTTd1SmdWYzJ0Y0lHa2FOazdjYXlZZTRpeEphUEdwY2FRelpwQXJzS0NaUGl3VkdtSGY3cFVvTTlCZkxtQl8tZ0ZXXzN2ZE5zYnlERzB5bGlwQzZ4M2phZ19MeHVpS1ZaMzB5VFNvdUw4Sml2RVpwSk80MEd0OWZGT0YzSzdTbmZpX05hZ0VRcE5rbGs0RU1KWTg5MzZuTnN0cFVQQnRtWHk5YXbSAZoCQVVfeXFMTTkxUF9LV211bTBYeFh6UTFtN3U2a3RvSHJwMEQtOE1wNVpwRl9GYVpRcE1Vb0FPajR6SUZhdC13NW1ZZW1WaGIxNGoyOGVfQlh1ZjU1eWhXaEQ5S2dWOFNrV1VTZ2UteWlhMUdvUnh5Vlp0eVJ4RU9QbTdPS1FVQlg4ZktGUlN2bGUyWWN6NU1TcU9icGlQQ0E1Zi1RbjFXUzFoaUk3ZWN4MlRCcUMyVzJEZmwtOUpXclk4V1ROTVk4eVlzc3BWWE5WWlZQay1PdThiV1Ffc0RXT0o2YnE1M0dNQnZkWEFIZXlscjhMYXdNMGg0Qy04VjdwekxfN044MC1rbGlTaV9KckdzY0h1NGlCeDM4aWJMOWxB?oc=5",
-      "title": "8月10日の大地震後、バジェ盲ろう児施設の再建開始",
+      "title": "支援連携組織が、8月10日の壊滅的な地震を受けたバジェ盲ろう児施設の再建を開始した。",
       "summary": "支援連携組織が、8月10日の壊滅的な地震を受けたバジェ盲ろう児施設の再建を開始した。",
       "originalTitle": "Alianza solidaria inicia la reconstrucción del Instituto para Niños Ciegos y Sordos del Valle tras el devastador terremoto del 10 de agosto",
       "originalSummary": "Alianza solidaria inicia la reconstrucción del Instituto para Niños Ciegos y Sordos del Valle tras el devastador terremoto del 10 de agosto",
@@ -3522,25 +3467,25 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9pSXNrT2p3VTZGOEUyVmtDMG9iZEtGdjF5bVc5OHFxOVloOXdjcnVwLWM2SF81NThYMk1CYXFValNUSmNGdWc?oc=5",
-      "title": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
-      "summary": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
-      "originalTitle": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
-      "originalSummary": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
-      "sourceName": "وكالة الأنباء السعودية",
-      "sourceUrl": "https://www.spa.gov.sa",
-      "publishedAt": "2026-10-07T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5oYmc2QU5ieWFuRWhOWTFkaHVlcUFrZGhoMG50QU1QTUdUREVBMmtYXzk4TlRlQjVDQURheGRYTjRMb0p4V1pj?oc=5",
+      "title": "ろう者のメディア関係者「イシャール」が、サウジ手話で対話を進め、世界への発信を目指しています。",
+      "summary": "ろう者のメディア関係者「イシャール」が、サウジ手話で対話を進め、世界への発信を目指しています。",
+      "originalTitle": "«إشار».. إعلامي أصمّ يقود الحوار بلغة الإشارة السعودية.. ويطمح إلى الوصول للعالم",
+      "originalSummary": "«إشار».. إعلامي أصمّ يقود الحوار بلغة الإشارة السعودية.. ويطمح إلى الوصول للعالم",
+      "sourceName": "صحيفة سبق الإلكترونية",
+      "sourceUrl": "https://sabq.org",
+      "publishedAt": "2026-10-10T07:00:00.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
       "topic": "accessibility",
       "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 22,
+      "curationScore": 21,
       "curationSignals": [
-        "الصم",
+        "أصم",
         "لغة الإشارة",
         "multilingual"
       ],
-      "sourceDomain": "spa.gov.sa",
+      "sourceDomain": "sabq.org",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3548,9 +3493,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://portalcdn.spa.gov.sa/backend/original/202610/F10973066.jpg",
+        "url": "https://media.sabq.org/news/2026/10/e45728cc-5ef3-43ae-b0fa-e0ee1635938e/w1600.webp",
         "source": "og:image",
-        "pageUrl": "https://www.spa.gov.sa/N2695619"
+        "pageUrl": "https://sabq.org/article/Da1RDIp"
       }
     },
     {
@@ -3644,6 +3589,29 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPYVhLY01XSXA0S0o3LXZ3ejVHLWxSUjN5eGtHQUtqZjVvZTlVTm45Vl85WGtRVjdfMVB4TjRRUVh4TERaZmc2RTRwbGdka05aU2c0dng5dWNYUUpoLWl4S2p0Rm5uaWJ4enFMcW5vZGZZekZCYTVKWHRuUnpjbjAwdEk0bGF1emEwTXJxREVCU0dMVWN1NXJVZTRGTG1QcGpxVkd2MkI1a2RYX2ZzcUx1aEpfQVpjVDJMTE9qNVZ0aWJRY1dIMzNOemJMTGpwNnNvblVHZUFlZUsxaGtPd0F5NkxQUmdOOVpkRmZhU3VxOA?oc=5",
+      "title": "ブケディの聴覚障害のある子供たちは、教師不足と親の無視により教育上の困難に直面している",
+      "summary": "ブケディの聴覚障害のある子供たちは、教師不足と親の無視により教育上の困難に直面している",
+      "originalTitle": "Bukedi’s children with hearing impairment face educational hurdles amid teacher shortage, parent neglect",
+      "originalSummary": "Bukedi’s children with hearing impairment face educational hurdles amid teacher shortage, parent neglect",
+      "sourceName": "Daily Monitor",
+      "sourceUrl": "https://www.monitor.co.ug",
+      "publishedAt": "2026-10-08T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 23,
+      "curationSignals": [
+        "hearing impairment",
+        "major-media"
+      ],
+      "sourceDomain": "monitor.co.ug",
+      "sourcePriority": 74,
+      "sourceMode": "major-media",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1BVGc4dDJzQnpnTmNiUEpwLUlqWFZtTmRvdGQtekJvZE1OSlYyTkdjejNmSGxnUHZMa3M4bFZUdnBhbGt1OXJ3dE9TTQ?oc=5",
       "title": "20261006の公視手話ニュース完全版は、アジア太平洋聴覚障害者スポーツ選手権で陸上・卓球・ボウリングのいずれも金メダルを獲得したことを伝える。",
       "summary": "20261006の公視手話ニュース完全版は、アジア太平洋聴覚障害者スポーツ選手権で陸上・卓球・ボウリングのいずれも金メダルを獲得したことを伝える。",
@@ -3674,32 +3642,6 @@
         "source": "og:image",
         "pageUrl": "https://news.pts.org.tw/video/22361"
       }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
-      "title": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
-      "summary": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
-      "originalTitle": "Why learning sign language could change deaf inclusion",
-      "originalSummary": "Why learning sign language could change deaf inclusion",
-      "sourceName": "Daily Monitor",
-      "sourceUrl": "https://www.monitor.co.ug",
-      "publishedAt": "2026-10-04T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 23,
-      "curationSignals": [
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "monitor.co.ug",
-      "sourcePriority": 74,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVnpja1VuV2gzTDhSVEc0ZVpYWDJ1UEc3SFdDNXZuNGt3MHU2T0VYZ2dTWGdxY182aG56elVqTm91QTFMQXFBVzJYdktKai01Z0xDLThBUllpSXU0alRBSkJJRUNJTHZPT3duZmJlNmI3Y25ROTVoN2wxVFVVZVFkMWYzOWZVZ0phQ053al9zOGxBbHBJTjh2bTJjNTBObVVTSmZrOXVaNlhMU1J5?oc=5",
@@ -3766,25 +3708,25 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxPaExmR0pMWFZnREV1UkZOUXNZcmYyeUpscXAwVnJ1bFZJTmJVTEI0V2VLS1RpRlFYaVlCZEVFbG5MakppNXRCczJic29pQWctb3NTQ0VHMHg0N1o5cHcxOFlEejRXT1BobFBreVlrd1dibFhCeDVTMGRnVWQzd0N2THZ4OUdKM3NMd2YyNU1ZYmpRQm1rSjJtZWthWjlobkVrTHVqa1hMZXpHem5OSjhEN1MzOVB0U0c3OHNIYnhtTGk2VkFFODdmX0x3WXFxVi1aMWx1bEp6anVkUzBkUHJuQ3BJTXNQYkFyejEzT190QS01NmVzSTdaNmprMkdoWFNVdnpvaUdMRGlXX1pGZmtIQ3lzeC1rQjVnSTZnTmRHU1ZiMGV6UmFGd2phRE9FNFpOb3drY1dyUmJHWlp3RjBzTlhUT1R4SFVwMW1fQU5QM0l0cXVWd2tpSGxKNUlQTkl5LVpLWmNqZmJ5Q2ZJLWttWTdBQUZSWndYS0Z3bmdpY3pOYlhDNHViU1ZQVUl2U1FmODZZMm9iMEJjenNsT0RPQjN5VWdhYkNaQ3VTcHMyX0E5MzZiT1Zjall0OTJlSnpielY2OHlwTXRSTkVvR1lXeXRsRnI0YXIwdEHSAdQDQVVfeXFMTUNqR2NwcDg0MHk4LXNfQlFGSkJhQjdZTzFIRWJJTnVHVkl5dlFlQkJJOXg1ZWVnZ0NQRWhFSjBsaVpYNnJLTm9zdGNqdi05cE5xSEdCVWZvekZCdmtMTVI5Mlo4dXZiUmRGV29oYUIzSUtwOFBPbTQxYnVDWnJoRjdiMDU1QUV5SkVWb2dYRUlfdXczZHRGN2liR25WcGJBYmtFa1FwXzF0THZaWEpLUGwyYmdlbzZpdG8ta3A4QWc0amx1aXhrSFItYjRhN21iR21uRk9HZC1XXzVtX0plNHV5ZXY2VE52WUxyN0JSRXk0MDZhZTV6ZHNpeUFsQjhKTWxCQm9wVFV5T3FHaVVSVmZnN1FwbHVLY2NwUGtyRHRmc1RHMk90SjNQZjJZcVYwMFlsSFg3RzQ1LUdXZXJvUENRMkxmeW5idGcyTTBHNzYzczRlY3hPZWVobW13MzVjZTQ5alJLUWxrNV9sQUtvd2VYalByOHpZYzF2UnVjSm8tRzBYZFY3ckE0M0FVYlI3RFZyQ3AwcG9mNTY2M0dCV2VyTjB0T3dCN0MwZmNRYjZHckR1UTJ6aG83M1RieHdZNVdDcjNzQWlBZ2VneXFBeEFwUW1s?oc=5",
-      "title": "エジプト・アスワンのアル・マサッラ病院で、難聴患者に補聴器190台が提供されました。",
-      "summary": "エジプト・アスワンのアル・マサッラ病院で、難聴患者に補聴器190台が提供されました。",
-      "originalTitle": "تسليم 190 سماعة طبية لمرضى ضعف السمع بمستشفى المسلة بأسوان",
-      "originalSummary": "تسليم 190 سماعة طبية لمرضى ضعف السمع بمستشفى المسلة بأسوان",
-      "sourceName": "اليوم السابع",
-      "sourceUrl": "https://www.youm7.com",
-      "publishedAt": "2026-10-04T07:00:00.000Z",
+      "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9pSXNrT2p3VTZGOEUyVmtDMG9iZEtGdjF5bVc5OHFxOVloOXdjcnVwLWM2SF81NThYMk1CYXFValNUSmNGdWc?oc=5",
+      "title": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
+      "summary": "タイバ大学は、国際手話デーに合わせて「沈黙の世界」と題した展示会を開催しました。",
+      "originalTitle": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
+      "originalSummary": "ثقافي / جامعة طيبة تنظم معرض \"عالم الصمت\" بالتزامن مع اليوم العالمي للغة الإشارة",
+      "sourceName": "وكالة الأنباء السعودية",
+      "sourceUrl": "https://www.spa.gov.sa",
+      "publishedAt": "2026-10-07T07:00:00.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 22,
       "curationSignals": [
-        "ضعف السمع",
-        "سماعة طبية",
+        "الصم",
+        "لغة الإشارة",
         "multilingual"
       ],
-      "sourceDomain": "youm7.com",
+      "sourceDomain": "spa.gov.sa",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3792,9 +3734,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://img.youm7.com/xlarge/202610040211441144_284.jpg",
+        "url": "https://portalcdn.spa.gov.sa/backend/original/202610/F10973066.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.youm7.com/story/2026/10/4/%D8%AA%D8%B3%D9%84%D9%8A%D9%85-190-%D8%B3%D9%85%D8%A7%D8%B9%D8%A9-%D8%B7%D8%A8%D9%8A%D8%A9-%D9%84%D9%85%D8%B1%D8%B6%D9%89-%D8%B6%D8%B9%D9%81-%D8%A7%D9%84%D8%B3%D9%85%D8%B9-%D8%A8%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D9%85%D8%B3%D9%84%D8%A9-%D8%A8%D8%A3%D8%B3%D9%88%D8%A7%D9%86/7566939"
+        "pageUrl": "https://www.spa.gov.sa/N2695619"
       }
     },
     {
@@ -3822,13 +3764,13 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPdkJ1eHlQMVhDbkdTMnhpN1lRUlNCdElRMF8wVEJCdjdZOEV1b0RDaUVWWHR4MkdGaEIxODd1V1RHVUVrSUQ1MWhjSEZnSFhhSFZWa0VjMU5tNHJiMHRfdU9hNTBkZ0d6MGJLdkc3aXBOLVF2LVA1djJyX3RodVVMbDRRTWpKU1hhcUh6NklHX3g3WjFYdWZIX3dGUDZQTzNyOTRNN1pBdWZUQ2FGUVE?oc=5",
-      "title": "難聴のある人を支援する、外から見えない埋め込み型バイオニックイヤーの仕組みを紹介しています。",
-      "summary": "難聴のある人を支援する、外から見えない埋め込み型バイオニックイヤーの仕組みを紹介しています。",
-      "originalTitle": "Orecchio bionico: come funziona l’impianto invisibile che aiuta contro la sordità",
-      "originalSummary": "Orecchio bionico: come funziona l’impianto invisibile che aiuta contro la sordità",
-      "sourceName": "Studenti.it",
-      "sourceUrl": "https://www.studenti.it",
+      "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQbndXNy1nMnl3alAzQU9RbS1WN2dkRWJXMVhLVEtOX1RXUWVYQ285YnlxSTFNRTk3a3hLRTdFUkt4d0JRT2NkeU5JdnpUamhIcnh1cWlYaTh5RDB0MmpabUJTLThUbjFrYUVJVEhCN2VjcTR6cHp0Ym5HVXJUWE53Mkp5VWJDV1ZYaDg2bXNNTHAyTVJHWVlhMGhTWXVpWG9CWGhlc2hSeE1YLXpocUpybWZSSGRHREMyU3Y4ZVhvc3huQ1NqanIyVUNScVZ4dFotTWZSQUtrZFFKZkNza3VPRG53?oc=5",
+      "title": "ジェレミーさんは、ろう者や難聴者が振動を通じて音楽を感じられる装置をベルサンスで制作しています。",
+      "summary": "ジェレミーさんは、ろう者や難聴者が振動を通じて音楽を感じられる装置をベルサンスで制作しています。",
+      "originalTitle": "À Belsunce, Jérémy crée des objets vibrants pour faire ressentir la musique aux sourds et malentendants",
+      "originalSummary": "À Belsunce, Jérémy crée des objets vibrants pour faire ressentir la musique aux sourds et malentendants",
+      "sourceName": "Made in Marseille",
+      "sourceUrl": "https://madeinmarseille.net",
       "publishedAt": "2026-10-14T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -3836,11 +3778,11 @@
       "topicLabel": "一般",
       "curationScore": 20,
       "curationSignals": [
-        "sordi",
-        "sordità",
+        "sourd",
+        "sourds",
         "multilingual"
       ],
-      "sourceDomain": "studenti.it",
+      "sourceDomain": "madeinmarseille.net",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3848,14 +3790,14 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://cdn.studenti.stbm.it/images/2026/10/14/orecchio-bionico-come-funziona-limpianto-invisibile-che-aiuta-contro-la-sordita_1200x800.jpeg",
+        "url": "https://madeinmarseille.net/actualites-marseille/Jeremy-Perrouin-Sound-Leaf-2-1280x853.png",
         "source": "og:image",
-        "pageUrl": "https://www.studenti.it/orecchio-bionico-come-funziona-l-impianto-invisibile-che-aiuta-contro-la-sordita.html"
+        "pageUrl": "https://madeinmarseille.net/actualite/212535-a-belsunce-jeremy-cree-des-objets-vibrants-pour-faire-ressentir-la-musique-aux-sourds-et-malentendants/"
       }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNV1czU2VUZU93eEpXNGhrMlB0dldBWHUyRlRiTkZSeXl4NmtDRURDcWlBeXpwNnBfZGhXaXFLd1NycHRKVFBhN3BkRnNLMEp2MlZRcXJFZEFTS3MycTFYRld6eXdlbWZPWWFxLWxqZ0RsS2lhTlRHNllJOW81TVZjb3hJTElmVkpPWklDREFOWkRRMUloNnVoM0xiTGxaUTBvanpHMmEzLW5WXzZPdURmRTFDYjBSanFkQWtuMDJiVndvZ3hXNHpKdDdwZEt4T21jZ1pldU5TbkxTSUtEUVE?oc=5",
-      "title": "アラグアイーナの学校、ブラジル手話教育で包摂を強化",
+      "title": "ブラジル手話（Libras）による教育が、アラグアイーナの学校でろうの生徒の日常を変え、包摂を強化している。",
       "summary": "ブラジル手話（Libras）による教育が、アラグアイーナの学校でろうの生徒の日常を変え、包摂を強化している。",
       "originalTitle": "Educação em Libras transforma rotina de alunos surdos e fortalece inclusão nas escolas de Araguaína",
       "originalSummary": "Educação em Libras transforma rotina de alunos surdos e fortalece inclusão nas escolas de Araguaína",
@@ -3886,27 +3828,26 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAyeW9lSGFFanBUVTA4X2piY1FQTjZhMlBWcHVOS20yU3IzZjhpcWN4MjlMREtJVXh5SDR5bW5KMWNLclB2T19wMTgxQnBjREgzWHczMS1B?oc=5",
-      "title": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
-      "summary": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
-      "originalTitle": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
-      "originalSummary": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
-      "sourceName": "بوابة الأهرام",
-      "sourceUrl": "https://gate.ahram.org.eg",
+      "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVDJNWGNOaUFNYXZmQVlUTU8tWllRSEVrMjBMMkRCbUZ5VXU2eE1OalJmNVMybUh0RG0zc05DN1FlNHB4UVNRNTVnMnpWTFVhRXA2a2dHQmJQbVZxZ0UzdHJKMUxDZzZWeFAzM2tJOWprZ2JxTXNsZ2FPQ2h1X1BaZHF1ZHlzbnREb2ZpQ1I4TkpTSE5HeWpBQ3ZaY1VmTkU2VHZuakFWLUY3YmlXSVdFcVpEX2h1RXNiTjVXRDlWWQ?oc=5",
+      "title": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
+      "summary": "手話の学習が、ろう者を包摂する社会の実現につながる可能性を考える。",
+      "originalTitle": "Why learning sign language could change deaf inclusion",
+      "originalSummary": "Why learning sign language could change deaf inclusion",
+      "sourceName": "Daily Monitor",
+      "sourceUrl": "https://www.monitor.co.ug",
       "publishedAt": "2026-10-04T07:00:00.000Z",
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 23,
       "curationSignals": [
-        "ضعف السمع",
-        "سماعة طبية",
-        "multilingual"
+        "sign language",
+        "major-media"
       ],
-      "sourceDomain": "gate.ahram.org.eg",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
+      "sourceDomain": "monitor.co.ug",
+      "sourcePriority": 74,
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -3945,13 +3886,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQbndXNy1nMnl3alAzQU9RbS1WN2dkRWJXMVhLVEtOX1RXUWVYQ285YnlxSTFNRTk3a3hLRTdFUkt4d0JRT2NkeU5JdnpUamhIcnh1cWlYaTh5RDB0MmpabUJTLThUbjFrYUVJVEhCN2VjcTR6cHp0Ym5HVXJUWE53Mkp5VWJDV1ZYaDg2bXNNTHAyTVJHWVlhMGhTWXVpWG9CWGhlc2hSeE1YLXpocUpybWZSSGRHREMyU3Y4ZVhvc3huQ1NqanIyVUNScVZ4dFotTWZSQUtrZFFKZkNza3VPRG53?oc=5",
-      "title": "ジェレミーさんは、ろう者や難聴者が振動を通じて音楽を感じられる装置をベルサンスで制作しています。",
-      "summary": "ジェレミーさんは、ろう者や難聴者が振動を通じて音楽を感じられる装置をベルサンスで制作しています。",
-      "originalTitle": "À Belsunce, Jérémy crée des objets vibrants pour faire ressentir la musique aux sourds et malentendants",
-      "originalSummary": "À Belsunce, Jérémy crée des objets vibrants pour faire ressentir la musique aux sourds et malentendants",
-      "sourceName": "Made in Marseille",
-      "sourceUrl": "https://madeinmarseille.net",
+      "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPdkJ1eHlQMVhDbkdTMnhpN1lRUlNCdElRMF8wVEJCdjdZOEV1b0RDaUVWWHR4MkdGaEIxODd1V1RHVUVrSUQ1MWhjSEZnSFhhSFZWa0VjMU5tNHJiMHRfdU9hNTBkZ0d6MGJLdkc3aXBOLVF2LVA1djJyX3RodVVMbDRRTWpKU1hhcUh6NklHX3g3WjFYdWZIX3dGUDZQTzNyOTRNN1pBdWZUQ2FGUVE?oc=5",
+      "title": "難聴のある人を支援する、外から見えない埋め込み型バイオニックイヤーの仕組みを紹介しています。",
+      "summary": "難聴のある人を支援する、外から見えない埋め込み型バイオニックイヤーの仕組みを紹介しています。",
+      "originalTitle": "Orecchio bionico: come funziona l’impianto invisibile che aiuta contro la sordità",
+      "originalSummary": "Orecchio bionico: come funziona l’impianto invisibile che aiuta contro la sordità",
+      "sourceName": "Studenti.it",
+      "sourceUrl": "https://www.studenti.it",
       "publishedAt": "2026-10-14T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -3959,11 +3900,11 @@
       "topicLabel": "一般",
       "curationScore": 20,
       "curationSignals": [
-        "sourd",
-        "sourds",
+        "sordi",
+        "sordità",
         "multilingual"
       ],
-      "sourceDomain": "madeinmarseille.net",
+      "sourceDomain": "studenti.it",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -3971,9 +3912,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://madeinmarseille.net/actualites-marseille/Jeremy-Perrouin-Sound-Leaf-2-1280x853.png",
+        "url": "https://cdn.studenti.stbm.it/images/2026/10/14/orecchio-bionico-come-funziona-limpianto-invisibile-che-aiuta-contro-la-sordita_1200x800.jpeg",
         "source": "og:image",
-        "pageUrl": "https://madeinmarseille.net/actualite/212535-a-belsunce-jeremy-cree-des-objets-vibrants-pour-faire-ressentir-la-musique-aux-sourds-et-malentendants/"
+        "pageUrl": "https://www.studenti.it/orecchio-bionico-come-funziona-l-impianto-invisibile-che-aiuta-contro-la-sordita.html"
       }
     },
     {
@@ -4010,6 +3951,33 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAyeW9lSGFFanBUVTA4X2piY1FQTjZhMlBWcHVOS20yU3IzZjhpcWN4MjlMREtJVXh5SDR5bW5KMWNLclB2T19wMTgxQnBjREgzWHczMS1B?oc=5",
+      "title": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
+      "summary": "アスワンで、難聴のある患者を対象に計769台の補聴器が提供されました。",
+      "originalTitle": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
+      "originalSummary": "769 سماعة طبية لمرضى ضعف السمع بأسوان | صور",
+      "sourceName": "بوابة الأهرام",
+      "sourceUrl": "https://gate.ahram.org.eg",
+      "publishedAt": "2026-10-04T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
+      "curationSignals": [
+        "ضعف السمع",
+        "سماعة طبية",
+        "multilingual"
+      ],
+      "sourceDomain": "gate.ahram.org.eg",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE05czNlcXM3enE4SGFDYl9BcDRMU0ZUN0pHLTMybjEtRGRBUkxpZlBaMkljbW1FbDhfczdHUzQ5VzZ5LWZueWEzb3N2Mmhnci1pTy1KeDVGQ0hBdw?oc=5",
       "title": "登場人物自身が手話で語るアニメ版『ルカによる福音書』が、聴覚障害者への福音伝達の壁を越える取り組みとして紹介された。",
       "summary": "登場人物自身が手話で語るアニメ版『ルカによる福音書』が、聴覚障害者への福音伝達の壁を越える取り組みとして紹介された。",
@@ -4042,40 +4010,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE45VTJGTmRjdEt2VG9ySVV1cmtWeU9VNUxCWU5rMGZDS09IME9LMHVWQzdFdEk2Mi1vbDVhVW5HSE0xeWE0UklaN3hQVk51R2EwV01BMnZ2ejhSZVE?oc=5",
-      "title": "ナミビアの支援者らは、国内にいる2万7000人のろう者のため、手話制度の早急な改革を求めた。",
-      "summary": "ナミビアの支援者らは、国内にいる2万7000人のろう者のため、手話制度の早急な改革を求めた。",
-      "originalTitle": "Namibia: Advocates Call for Urgent Sign Language Reform...27 000 Deaf People Nationwide",
-      "originalSummary": "Namibia: Advocates Call for Urgent Sign Language Reform...27 000 Deaf People Nationwide",
-      "sourceName": "allAfrica.com",
-      "sourceUrl": "https://allafrica.com",
-      "publishedAt": "2026-09-29T10:01:23.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 30,
-      "curationSignals": [
-        "deaf people",
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "allafrica.com",
-      "sourcePriority": 78,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQd0NSZzJsbklLS2pjbmgtWDNFVV90cWRBVnR3b3ZKR1l4UWtrVDljNlZpbUQxaXV0bGlhazk4OS1kc196Ymx4ZmNsYkpOVHdyMTNic21ZZUhObVlxa3FUOUNldW9aVHNfOWVEdmtza3JuTHdnakUzZWtMUnlWUzkwOUtvNS03UG96eVJqRl9zOHNYMXJlVUlFbUo1d3BySlNWWTEyZ0JuU3NIZzFuaEM1bFh2TGMwNE9oN1AtUXZHQ2ZYbzJzd29aa0kwOFJ4V0lULXJuVXJidDZVUFdmMmotY9IB5gFBVV95cUxPVHVfZnBQS3UycDVXWERLdFRYWkFhS0FJaTh2dThxZDd5S3psek1mbEpGQXZacGJmem1zaG5TalZGT3plNEwzYTdNaHkwZm1XVm1RSHJycUQ2dTNQZmdUeXhnVHd0QXh5SmdfaTMxYWk5dFJXZGFfN0lXWW9qcHJXTEJteHM0SFR5cDRXOFo3MF8yTTlVejA2QU9abWd5cmZuM3RPNDRDWWw0OE1PU3N5Q0dYdl8tUHFDRjFWWl9oTXphRWpZS3pURHQ3bXlRQ090OS1Oa25TVDhZT0I3Zzg4X21GazdFdw?oc=5",
-      "title": "難聴、目に見えないバイオニック耳が到着します。シエナとピアチェンツァで同時に最初の介入",
-      "summary": "難聴、目に見えないバイオニック耳が到着します。シエナとピアチェンツァで同時に最初の介入",
-      "originalTitle": "Sordità, arriva l'orecchio bionico invisibile. Primo intervento in contemporanea a Siena e Piacenza",
-      "originalSummary": "Sordità, arriva l'orecchio bionico invisibile. Primo intervento in contemporanea a Siena e Piacenza",
-      "sourceName": "RaiNews",
-      "sourceUrl": "https://www.rainews.it",
+      "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOU1FFeEllU01yMXh6VVdBeWZwZjlpR09NNzBuTC1mQmNzOHh1b3NwUDM3TmZkakFBZ0JrbHMwWkpHSG0xakFtLTZ1blJIU0g5NHFyZ2Iwd3ZQbzZHblFRcU84VXFUeGZsMjNGakEyeDZYQUZSTEpUUTZyQjZJeG1JNVg1a2I4LU85NXYyS0V1TzdCbmtUaHkyel9sT2NrakRxTU9DVHB2NWNpaFE5QlM2bmxrdGJRbW9vaEN1NUxHWC00VkRZRndjTFpOdkdjMnlJNll4ZUNPRmQwZ0NVb0YxVlNn?oc=5",
+      "title": "ろう者・難聴者向けの緊急通報番号114は、依然として「認知度が低すぎる」とされています。",
+      "summary": "ろう者・難聴者向けの緊急通報番号114は、依然として「認知度が低すぎる」とされています。",
+      "originalTitle": "Numéro d'urgence pour les sourds et les malentendants, le 114 reste encore \"trop méconnu\"",
+      "originalSummary": "Numéro d'urgence pour les sourds et les malentendants, le 114 reste encore \"trop méconnu\"",
+      "sourceName": "Infirmiers.com",
+      "sourceUrl": "http://www.infirmiers.com",
       "publishedAt": "2026-10-14T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -4083,18 +4024,21 @@
       "topicLabel": "一般",
       "curationScore": 18,
       "curationSignals": [
-        "sordi",
-        "sordità",
+        "sourd",
+        "sourds",
         "multilingual"
       ],
-      "sourceDomain": "rainews.it",
+      "sourceDomain": "infirmiers.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://www.rainews.it/cropgd/1600x900/dl/img/2026/10/14/1791973586516_Otorini.jpg",
-        "source": "twitter:image",
-        "pageUrl": "https://www.rainews.it/articoli/2026/10/orecchio-bionico-di-ultima-generazione-primo-intervento-in-italia-1c72cd85-114f-438b-97e2-7e16d2e2954b.html"
+        "url": "https://drupal-images-js-docs.s3.rbx.io.cloud.ovh.net/inf/prod/s3fs-public/styles/gps_large/public/2026-10/CNR114_centre-dappel.jpg?VersionId=1792060869.859507&itok=AQoCGdLs",
+        "source": "og:image",
+        "pageUrl": "https://www.infirmiers.com/profession-ide/interprofessionnalite/numero-durgence-pour-les-sourds-et-les-malentendants-le-114-reste-encore-trop-meconnu"
       }
     },
     {
@@ -4130,6 +4074,38 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxPaExmR0pMWFZnREV1UkZOUXNZcmYyeUpscXAwVnJ1bFZJTmJVTEI0V2VLS1RpRlFYaVlCZEVFbG5MakppNXRCczJic29pQWctb3NTQ0VHMHg0N1o5cHcxOFlEejRXT1BobFBreVlrd1dibFhCeDVTMGRnVWQzd0N2THZ4OUdKM3NMd2YyNU1ZYmpRQm1rSjJtZWthWjlobkVrTHVqa1hMZXpHem5OSjhEN1MzOVB0U0c3OHNIYnhtTGk2VkFFODdmX0x3WXFxVi1aMWx1bEp6anVkUzBkUHJuQ3BJTXNQYkFyejEzT190QS01NmVzSTdaNmprMkdoWFNVdnpvaUdMRGlXX1pGZmtIQ3lzeC1rQjVnSTZnTmRHU1ZiMGV6UmFGd2phRE9FNFpOb3drY1dyUmJHWlp3RjBzTlhUT1R4SFVwMW1fQU5QM0l0cXVWd2tpSGxKNUlQTkl5LVpLWmNqZmJ5Q2ZJLWttWTdBQUZSWndYS0Z3bmdpY3pOYlhDNHViU1ZQVUl2U1FmODZZMm9iMEJjenNsT0RPQjN5VWdhYkNaQ3VTcHMyX0E5MzZiT1Zjall0OTJlSnpielY2OHlwTXRSTkVvR1lXeXRsRnI0YXIwdEHSAdQDQVVfeXFMTUNqR2NwcDg0MHk4LXNfQlFGSkJhQjdZTzFIRWJJTnVHVkl5dlFlQkJJOXg1ZWVnZ0NQRWhFSjBsaVpYNnJLTm9zdGNqdi05cE5xSEdCVWZvekZCdmtMTVI5Mlo4dXZiUmRGV29oYUIzSUtwOFBPbTQxYnVDWnJoRjdiMDU1QUV5SkVWb2dYRUlfdXczZHRGN2liR25WcGJBYmtFa1FwXzF0THZaWEpLUGwyYmdlbzZpdG8ta3A4QWc0amx1aXhrSFItYjRhN21iR21uRk9HZC1XXzVtX0plNHV5ZXY2VE52WUxyN0JSRXk0MDZhZTV6ZHNpeUFsQjhKTWxCQm9wVFV5T3FHaVVSVmZnN1FwbHVLY2NwUGtyRHRmc1RHMk90SjNQZjJZcVYwMFlsSFg3RzQ1LUdXZXJvUENRMkxmeW5idGcyTTBHNzYzczRlY3hPZWVobW13MzVjZTQ5alJLUWxrNV9sQUtvd2VYalByOHpZYzF2UnVjSm8tRzBYZFY3ckE0M0FVYlI3RFZyQ3AwcG9mNTY2M0dCV2VyTjB0T3dCN0MwZmNRYjZHckR1UTJ6aG83M1RieHdZNVdDcjNzQWlBZ2VneXFBeEFwUW1s?oc=5",
+      "title": "エジプト・アスワンのアル・マサッラ病院で、難聴患者に補聴器190台が提供されました。",
+      "summary": "エジプト・アスワンのアル・マサッラ病院で、難聴患者に補聴器190台が提供されました。",
+      "originalTitle": "تسليم 190 سماعة طبية لمرضى ضعف السمع بمستشفى المسلة بأسوان",
+      "originalSummary": "تسليم 190 سماعة طبية لمرضى ضعف السمع بمستشفى المسلة بأسوان",
+      "sourceName": "اليوم السابع",
+      "sourceUrl": "https://www.youm7.com",
+      "publishedAt": "2026-10-04T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
+      "curationSignals": [
+        "ضعف السمع",
+        "سماعة طبية",
+        "multilingual"
+      ],
+      "sourceDomain": "youm7.com",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://img.youm7.com/xlarge/202610040211441144_284.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.youm7.com/story/2026/10/4/%D8%AA%D8%B3%D9%84%D9%8A%D9%85-190-%D8%B3%D9%85%D8%A7%D8%B9%D8%A9-%D8%B7%D8%A8%D9%8A%D8%A9-%D9%84%D9%85%D8%B1%D8%B6%D9%89-%D8%B6%D8%B9%D9%81-%D8%A7%D9%84%D8%B3%D9%85%D8%B9-%D8%A8%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D9%85%D8%B3%D9%84%D8%A9-%D8%A8%D8%A3%D8%B3%D9%88%D8%A7%D9%86/7566939"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBONG0ydE5KbHFmWE5BaTRFWHh0Y1JGNGdXMExqcDFGdU9aaUM3aGIzUzh2bllqSXVqekg3ekhBRUl5ZjVfc1BEYkdvck1VZllXZEUzXzlaWVEwbFlhX19kN9IBeEFVX3lxTFB2d2hIWTNUWmROSVBLbWE1R0psSkM1d1VvZWZmYnk5MjJsbUw4NjIzNk1adjNqWmM2aWNjVm50UTQwWWVTM3YwMEEycTJycmZsXzV4Q1UzVHpSZjNzcUNzNkhYUVdyRWVoZ2dLbXhuN2R2SEtuM2pGbA?oc=5",
       "title": "KCA、聴覚障害児のコミュニケーションを助ける…ヒーリングループモデル拡散",
       "summary": "KCA、聴覚障害児のコミュニケーションを助ける…ヒーリングループモデル拡散",
@@ -4159,36 +4135,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNTE1aUlF1d3dGSnptS1Y3TlFTNFNSMnV4RmRWaUZZUTJBQUJwMG5VZG1EdFdEem5QOUNxS3NxUWE4bFEzMHY5Q3JZdHEtZ0ZPN2VLQjdBNnBUR3IwZ2J0RWZ6dUF0azBVUWVkTlFIX0dZNXJvZ2ZNOF9hNllMZmlPbjhEMmRZc0FVdGxEbVVveXZxeW84LVo5bm1rT0M5cGNoRzFJOFhnMTdmYTI2WGFhRHFabUlTRm1vNW1RS0FydlQyLVZvaXo4OTF6ZldjMnd2NHpPa0o3ZEhSZw?oc=5",
-      "title": "聴覚障害のある生徒 2 人がデジタル辞書を構築し、誰もが SA 手話の学習を支援できるようにする",
-      "summary": "聴覚障害のある生徒 2 人がデジタル辞書を構築し、誰もが SA 手話の学習を支援できるようにする",
-      "originalTitle": "Two deaf pupils build digital dictionary so anyone can help with SA sign language",
-      "originalSummary": "Two deaf pupils build digital dictionary so anyone can help with SA sign language",
-      "sourceName": "News24",
-      "sourceUrl": "https://www.news24.com",
-      "publishedAt": "2026-09-29T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
-      "curationSignals": [
-        "sign language",
-        "major-media"
-      ],
-      "sourceDomain": "news24.com",
-      "sourcePriority": 82,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTGh2WFN3em1ESmQ0OFBub3AtM3A2SjJPc3I0VldnZ2l6TmFWcHpmdG9mUzRkaTQySEcxSnBSU3ZxNTZJYTF3Vm5taGRfYXB0Y0hhZWM1OTVfLS0zbFpONmZxWFl3OW5lVFRTLUJqemxaT2RwWFJtVFgxYktucjBfemRZaFFTSkR3c1F2anJMSDNYWDVjYThQTFNLSU1DUktKYUxiZ29xeUZMOTN4Y2VtOVdGZkRSMjlzcEpYdVRIb2tVcnVqaFEyaWFRbDhBbXBkSFNhMnZxVnA?oc=5",
-      "title": "睡眠中も音を聞けるという、外から見えないバイオニックイヤーがイタリアに導入されました。",
-      "summary": "睡眠中も音を聞けるという、外から見えないバイオニックイヤーがイタリアに導入されました。",
-      "originalTitle": "Sordità, arriva in Italia l’orecchio bionico invisibile: si può sentire anche mentre si dorme",
-      "originalSummary": "Sordità, arriva in Italia l’orecchio bionico invisibile: si può sentire anche mentre si dorme",
-      "sourceName": "Mondosanità",
-      "sourceUrl": "https://www.mondosanita.it",
+      "id": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQd0NSZzJsbklLS2pjbmgtWDNFVV90cWRBVnR3b3ZKR1l4UWtrVDljNlZpbUQxaXV0bGlhazk4OS1kc196Ymx4ZmNsYkpOVHdyMTNic21ZZUhObVlxa3FUOUNldW9aVHNfOWVEdmtza3JuTHdnakUzZWtMUnlWUzkwOUtvNS03UG96eVJqRl9zOHNYMXJlVUlFbUo1d3BySlNWWTEyZ0JuU3NIZzFuaEM1bFh2TGMwNE9oN1AtUXZHQ2ZYbzJzd29aa0kwOFJ4V0lULXJuVXJidDZVUFdmMmotY9IB5gFBVV95cUxPVHVfZnBQS3UycDVXWERLdFRYWkFhS0FJaTh2dThxZDd5S3psek1mbEpGQXZacGJmem1zaG5TalZGT3plNEwzYTdNaHkwZm1XVm1RSHJycUQ2dTNQZmdUeXhnVHd0QXh5SmdfaTMxYWk5dFJXZGFfN0lXWW9qcHJXTEJteHM0SFR5cDRXOFo3MF8yTTlVejA2QU9abWd5cmZuM3RPNDRDWWw0OE1PU3N5Q0dYdl8tUHFDRjFWWl9oTXphRWpZS3pURHQ3bXlRQ090OS1Oa25TVDhZT0I3Zzg4X21GazdFdw?oc=5",
+      "title": "難聴、目に見えないバイオニック耳が到着します。シエナとピアチェンツァで同時に最初の介入",
+      "summary": "難聴、目に見えないバイオニック耳が到着します。シエナとピアチェンツァで同時に最初の介入",
+      "originalTitle": "Sordità, arriva l'orecchio bionico invisibile. Primo intervento in contemporanea a Siena e Piacenza",
+      "originalSummary": "Sordità, arriva l'orecchio bionico invisibile. Primo intervento in contemporanea a Siena e Piacenza",
+      "sourceName": "RaiNews",
+      "sourceUrl": "https://www.rainews.it",
       "publishedAt": "2026-10-14T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -4200,17 +4153,14 @@
         "sordità",
         "multilingual"
       ],
-      "sourceDomain": "mondosanita.it",
+      "sourceDomain": "rainews.it",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://mondosanita.cdn.m33cloud.com/resizer/600/315/true/2026_10_14/Lorecchio_nel_sonno-1791987328063.jpg--sordita__arriva_in_italia_l_orecchio_bionico_invisibile__si_puo_sentire_anche_mentre_si_dorme.webp?1791987328680",
-        "source": "og:image",
-        "pageUrl": "https://www.mondosanita.it/news/salute/112090/sordita-arriva-in-italia-lorecchio-bionico-invisibile-si-puo-sentire-anche-mentre-si-dorme.html"
+        "url": "https://www.rainews.it/cropgd/1600x900/dl/img/2026/10/14/1791973586516_Otorini.jpg",
+        "source": "twitter:image",
+        "pageUrl": "https://www.rainews.it/articoli/2026/10/orecchio-bionico-di-ultima-generazione-primo-intervento-in-italia-1c72cd85-114f-438b-97e2-7e16d2e2954b.html"
       }
     },
     {
@@ -4245,6 +4195,33 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE45VTJGTmRjdEt2VG9ySVV1cmtWeU9VNUxCWU5rMGZDS09IME9LMHVWQzdFdEk2Mi1vbDVhVW5HSE0xeWE0UklaN3hQVk51R2EwV01BMnZ2ejhSZVE?oc=5",
+      "title": "ナミビアの支援者らは、国内にいる2万7000人のろう者のため、手話制度の早急な改革を求めた。",
+      "summary": "ナミビアの支援者らは、国内にいる2万7000人のろう者のため、手話制度の早急な改革を求めた。",
+      "originalTitle": "Namibia: Advocates Call for Urgent Sign Language Reform...27 000 Deaf People Nationwide",
+      "originalSummary": "Namibia: Advocates Call for Urgent Sign Language Reform...27 000 Deaf People Nationwide",
+      "sourceName": "allAfrica.com",
+      "sourceUrl": "https://allafrica.com",
+      "publishedAt": "2026-09-29T10:01:23.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 30,
+      "curationSignals": [
+        "deaf people",
+        "sign language",
+        "major-media"
+      ],
+      "sourceDomain": "allafrica.com",
+      "sourcePriority": 78,
+      "sourceMode": "major-media",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9OSDh2WGh2NU1RVFN2bXBZTXQ5Y1o3R1hhbUdsM1pMdnVJVFBoa2txbkhNQ2JRdnJEUC01RnFvYXlDTlZiTXpfdDlhRUlPSDZ3dzBSQUQ0ZFJHUHgweHM1MtIBeEFVX3lxTE91MEkyYS1TSUUwQmNGemIyMmtTcXYwdmdBX2RZaDRRQkd1bXJrdFU1N0k0SHhsS1pMYWo0UXp3eFFTclBzdkRiSkJCUHZRYm5CUDQ0VWRMMVpIRngzWnNidUNuNzQtQkJRaWdGeTFHTkVNTW4xZmwwUA?oc=5",
       "title": "「聴覚障害あります」 言葉にも…地下鉄で泣いた母親の事情",
       "summary": "「聴覚障害あります」 言葉にも…地下鉄で泣いた母親の事情",
@@ -4274,44 +4251,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNOTNVaXZlT2o3ZFpiUkFjeWdRQnNIaExRRjdBSXVkSTY4OTFrQWlPTl94UWtxYldPckxNODBpQmtYNC1pcFZZZFFkaHVlYzUtSTBwc1ZtSHVQd05QMWpvUUVOQVFKd1VabjQzSmZPODljVjNGcEswaE1LMWxIMnNvR1NaeFNHNVAxMWdSSnBOcW5UMVZlVEJFUDFEQTVNVkM3Nm1QVzlQSF9RZkU?oc=5",
-      "title": "MyJoyOnlineは、ガーナがガーナ手話の教育政策策定を計画していると伝えた。",
-      "summary": "MyJoyOnlineは、ガーナがガーナ手話の教育政策策定を計画していると伝えた。",
-      "originalTitle": "Ghana plans to develop education policy for Ghanaian Sign Language — MyJoyOnline",
-      "originalSummary": "Ghana plans to develop education policy for Ghanaian Sign Language — MyJoyOnline",
-      "sourceName": "UA.NEWS",
-      "sourceUrl": "https://ua.news",
-      "publishedAt": "2026-09-27T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 17,
-      "curationSignals": [
-        "sign language",
-        "multilingual"
-      ],
-      "sourceDomain": "ua.news",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol",
-      "thumbnail": {
-        "url": "https://cdn-cabinet.ua.news/uploads/images/ghana_policy_ghanaian_sign_language_educ_1790517106518.webp",
-        "source": "og:image",
-        "pageUrl": "https://ua.news/en/world/gana-planuie-rozrobiti-osvitniu-politiku-dlia-ganskoyi-zhestovoyi-movi-myjoyonline"
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOU1FFeEllU01yMXh6VVdBeWZwZjlpR09NNzBuTC1mQmNzOHh1b3NwUDM3TmZkakFBZ0JrbHMwWkpHSG0xakFtLTZ1blJIU0g5NHFyZ2Iwd3ZQbzZHblFRcU84VXFUeGZsMjNGakEyeDZYQUZSTEpUUTZyQjZJeG1JNVg1a2I4LU85NXYyS0V1TzdCbmtUaHkyel9sT2NrakRxTU9DVHB2NWNpaFE5QlM2bmxrdGJRbW9vaEN1NUxHWC00VkRZRndjTFpOdkdjMnlJNll4ZUNPRmQwZ0NVb0YxVlNn?oc=5",
-      "title": "ろう者・難聴者向けの緊急通報番号114は、依然として「認知度が低すぎる」とされています。",
-      "summary": "ろう者・難聴者向けの緊急通報番号114は、依然として「認知度が低すぎる」とされています。",
-      "originalTitle": "Numéro d'urgence pour les sourds et les malentendants, le 114 reste encore \"trop méconnu\"",
-      "originalSummary": "Numéro d'urgence pour les sourds et les malentendants, le 114 reste encore \"trop méconnu\"",
-      "sourceName": "Infirmiers.com",
-      "sourceUrl": "http://www.infirmiers.com",
+      "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTGh2WFN3em1ESmQ0OFBub3AtM3A2SjJPc3I0VldnZ2l6TmFWcHpmdG9mUzRkaTQySEcxSnBSU3ZxNTZJYTF3Vm5taGRfYXB0Y0hhZWM1OTVfLS0zbFpONmZxWFl3OW5lVFRTLUJqemxaT2RwWFJtVFgxYktucjBfemRZaFFTSkR3c1F2anJMSDNYWDVjYThQTFNLSU1DUktKYUxiZ29xeUZMOTN4Y2VtOVdGZkRSMjlzcEpYdVRIb2tVcnVqaFEyaWFRbDhBbXBkSFNhMnZxVnA?oc=5",
+      "title": "睡眠中も音を聞けるという、外から見えないバイオニックイヤーがイタリアに導入されました。",
+      "summary": "睡眠中も音を聞けるという、外から見えないバイオニックイヤーがイタリアに導入されました。",
+      "originalTitle": "Sordità, arriva in Italia l’orecchio bionico invisibile: si può sentire anche mentre si dorme",
+      "originalSummary": "Sordità, arriva in Italia l’orecchio bionico invisibile: si può sentire anche mentre si dorme",
+      "sourceName": "Mondosanità",
+      "sourceUrl": "https://www.mondosanita.it",
       "publishedAt": "2026-10-14T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -4319,21 +4265,21 @@
       "topicLabel": "一般",
       "curationScore": 18,
       "curationSignals": [
-        "sourd",
-        "sourds",
+        "sordi",
+        "sordità",
         "multilingual"
       ],
-      "sourceDomain": "infirmiers.com",
+      "sourceDomain": "mondosanita.it",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://drupal-images-js-docs.s3.rbx.io.cloud.ovh.net/inf/prod/s3fs-public/styles/gps_large/public/2026-10/CNR114_centre-dappel.jpg?VersionId=1792060869.859507&itok=AQoCGdLs",
+        "url": "https://mondosanita.cdn.m33cloud.com/resizer/600/315/true/2026_10_14/Lorecchio_nel_sonno-1791987328063.jpg--sordita__arriva_in_italia_l_orecchio_bionico_invisibile__si_puo_sentire_anche_mentre_si_dorme.webp?1791987328680",
         "source": "og:image",
-        "pageUrl": "https://www.infirmiers.com/profession-ide/interprofessionnalite/numero-durgence-pour-les-sourds-et-les-malentendants-le-114-reste-encore-trop-meconnu"
+        "pageUrl": "https://www.mondosanita.it/news/salute/112090/sordita-arriva-in-italia-lorecchio-bionico-invisibile-si-puo-sentire-anche-mentre-si-dorme.html"
       }
     },
     {
@@ -4370,8 +4316,31 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNTE1aUlF1d3dGSnptS1Y3TlFTNFNSMnV4RmRWaUZZUTJBQUJwMG5VZG1EdFdEem5QOUNxS3NxUWE4bFEzMHY5Q3JZdHEtZ0ZPN2VLQjdBNnBUR3IwZ2J0RWZ6dUF0azBVUWVkTlFIX0dZNXJvZ2ZNOF9hNllMZmlPbjhEMmRZc0FVdGxEbVVveXZxeW84LVo5bm1rT0M5cGNoRzFJOFhnMTdmYTI2WGFhRHFabUlTRm1vNW1RS0FydlQyLVZvaXo4OTF6ZldjMnd2NHpPa0o3ZEhSZw?oc=5",
+      "title": "聴覚障害のある生徒 2 人がデジタル辞書を構築し、誰もが SA 手話の学習を支援できるようにする",
+      "summary": "聴覚障害のある生徒 2 人がデジタル辞書を構築し、誰もが SA 手話の学習を支援できるようにする",
+      "originalTitle": "Two deaf pupils build digital dictionary so anyone can help with SA sign language",
+      "originalSummary": "Two deaf pupils build digital dictionary so anyone can help with SA sign language",
+      "sourceName": "News24",
+      "sourceUrl": "https://www.news24.com",
+      "publishedAt": "2026-09-29T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 21,
+      "curationSignals": [
+        "sign language",
+        "major-media"
+      ],
+      "sourceDomain": "news24.com",
+      "sourcePriority": 82,
+      "sourceMode": "major-media",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1xazJhblBGVWVvUDlpdTAtNUFhVTFEOFdQdVBVY25qVzdFZ3cwWlhxRElSNERCcWpLRURYbV9NamQ0eW9nTEdOWVROWDVGLWxueDExX2MyeHF4aF9sak84TWIzRGMyZk5jakVxcA?oc=5",
-      "title": "安養市青少年財団、役職員に手話教育",
+      "title": "「共に進もう、私たちのESG」として、安養市青少年財団が聴覚障害者との意思疎通能力を高めるため役職員向けの手話教育を実施した。",
       "summary": "「共に進もう、私たちのESG」として、安養市青少年財団が聴覚障害者との意思疎通能力を高めるため役職員向けの手話教育を実施した。",
       "originalTitle": "[함께가자 우리ESG] 안양시청소년재단, 임직원 수어 교육 실시…청각장애인 소통 역량 강화",
       "originalSummary": "[함께가자 우리ESG] 안양시청소년재단, 임직원 수어 교육 실시…청각장애인 소통 역량 강화",
@@ -4395,32 +4364,6 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
       "japanesePostEditModel": "gpt-6.1-sol"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8zaFlVME10dFAzenVtbjJlOVdsVHRKZ29PQ0podlkyVU15R3VrdlVvNE9iWExmT0NvTFllaTI1aWduTFpPU0dmS1NFZkZfVGt0eWdtZF83bDhBX1RDbUp4OUFuTTNQSkE?oc=5",
-      "title": "イスラエルの科学者らが、難聴と白髪の関連をめぐる遺伝的な謎の解明に貢献しました。",
-      "summary": "イスラエルの科学者らが、難聴と白髪の関連をめぐる遺伝的な謎の解明に貢献しました。",
-      "originalTitle": "Israeli scientists help solve genetic mystery linking hearing loss and gray hair",
-      "originalSummary": "Israeli scientists help solve genetic mystery linking hearing loss and gray hair",
-      "sourceName": "The Jerusalem Post",
-      "sourceUrl": "https://www.jpost.com",
-      "publishedAt": "2026-09-26T07:00:00.000Z",
-      "region": "middle_east_africa",
-      "regionLabel": "中東・アフリカ",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 22,
-      "curationSignals": [
-        "hearing loss",
-        "major-media"
-      ],
-      "sourceDomain": "jpost.com",
-      "sourcePriority": 74,
-      "sourceMode": "major-media-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNC1veEwxY1J2XzFTQkItc2lWWFVab011N3FKTWlDR3Z3MTZkM2x0UzgxZVRhTXBpMFhVN09lTEtxdk80eURhSEVQand3ZExXMnh4b2pqcVFjRXZ3MTNoSGh1YkZPRGhlYWVCVEs0SmFyX3daNGJIMlpmZXNtU3BxUG5CRDBVMHJqV2NYdlRNVEtpWGdRUFJnclFHeE9tRmEyWFVMdmp0aFd1Zw?oc=5",
@@ -4476,6 +4419,37 @@
       "japanesePostEditModel": null
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNOTNVaXZlT2o3ZFpiUkFjeWdRQnNIaExRRjdBSXVkSTY4OTFrQWlPTl94UWtxYldPckxNODBpQmtYNC1pcFZZZFFkaHVlYzUtSTBwc1ZtSHVQd05QMWpvUUVOQVFKd1VabjQzSmZPODljVjNGcEswaE1LMWxIMnNvR1NaeFNHNVAxMWdSSnBOcW5UMVZlVEJFUDFEQTVNVkM3Nm1QVzlQSF9RZkU?oc=5",
+      "title": "MyJoyOnlineは、ガーナがガーナ手話の教育政策策定を計画していると伝えた。",
+      "summary": "MyJoyOnlineは、ガーナがガーナ手話の教育政策策定を計画していると伝えた。",
+      "originalTitle": "Ghana plans to develop education policy for Ghanaian Sign Language — MyJoyOnline",
+      "originalSummary": "Ghana plans to develop education policy for Ghanaian Sign Language — MyJoyOnline",
+      "sourceName": "UA.NEWS",
+      "sourceUrl": "https://ua.news",
+      "publishedAt": "2026-09-27T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 17,
+      "curationSignals": [
+        "sign language",
+        "multilingual"
+      ],
+      "sourceDomain": "ua.news",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://cdn-cabinet.ua.news/uploads/images/ghana_policy_ghanaian_sign_language_educ_1790517106518.webp",
+        "source": "og:image",
+        "pageUrl": "https://ua.news/en/world/gana-planuie-rozrobiti-osvitniu-politiku-dlia-ganskoyi-zhestovoyi-movi-myjoyonline"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNNEZwcnNNekZrV2I0b2xuUHZtSGVraFR5aFJrVjBEQUU2YVpIeWg5ejhkdU1Db1pMMTlPb1RldGJPbXBpR0dWNmRFNXhKTU05My1RdDR4b1lJdm5MNlRzeHc3M0hJdWwyZ19xRDZ5TERCYWdMUHdLbjBKNFcxSkZXM29pcl9zWUNLVlluVU5rVTJmNFc4S1AzaFpqRWR5UmY2MExFaG5QQll4b0hockRwNVE2cnJyT2gxVTJGdk1GZFdPbS1wRVBYN1FKSlhXZEI2SmNZdDNEZVR6a1d4UmtqS3pGSGxrcURu?oc=5",
       "title": "フリーレンドルフのろう者の消防士が、多くの困難を乗り越えて歴史に残る一歩を刻みました。",
       "summary": "フリーレンドルフのろう者の消防士が、多くの困難を乗り越えて歴史に残る一歩を刻みました。",
@@ -4528,6 +4502,32 @@
       "sourceDomain": "infocielo.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8zaFlVME10dFAzenVtbjJlOVdsVHRKZ29PQ0podlkyVU15R3VrdlVvNE9iWExmT0NvTFllaTI1aWduTFpPU0dmS1NFZkZfVGt0eWdtZF83bDhBX1RDbUp4OUFuTTNQSkE?oc=5",
+      "title": "イスラエルの科学者らが、難聴と白髪の関連をめぐる遺伝的な謎の解明に貢献しました。",
+      "summary": "イスラエルの科学者らが、難聴と白髪の関連をめぐる遺伝的な謎の解明に貢献しました。",
+      "originalTitle": "Israeli scientists help solve genetic mystery linking hearing loss and gray hair",
+      "originalSummary": "Israeli scientists help solve genetic mystery linking hearing loss and gray hair",
+      "sourceName": "The Jerusalem Post",
+      "sourceUrl": "https://www.jpost.com",
+      "publishedAt": "2026-09-26T07:00:00.000Z",
+      "region": "middle_east_africa",
+      "regionLabel": "中東・アフリカ",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 22,
+      "curationSignals": [
+        "hearing loss",
+        "major-media"
+      ],
+      "sourceDomain": "jpost.com",
+      "sourcePriority": 74,
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -5183,33 +5183,6 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQdC00djcyd1JwdW9VQmxpbDdXbk1kZEZnbFJLMWpzUVo2RndocVJPNndaMUx4ejJtWEJZMUUwa3A4VE1MNzI1Q1dHN2JOQjdKYkpqTXZOZjFwdHBJb0hlcDctVDU5YWlZRXlkVlRqYlZBRU51OEZzeE45WkN2Q29qMEdyUDNGblYxQ0sySkFtUF9xLXpURHZQbnlTc2FmRUZ3d2E3c0hEX0xiQTV6Y01hQg?oc=5",
-      "title": "ろう者博物館でガイドツアーが行われ、フェルディナン・ベルティエに敬意が表されました。",
-      "summary": "ろう者博物館でガイドツアーが行われ、フェルディナン・ベルティエに敬意が表されました。",
-      "originalTitle": "Louhans-Châteaurenaud. Visite guidée au musée des sourds avec un hommage à Ferdinand Berthier",
-      "originalSummary": "Louhans-Châteaurenaud. Visite guidée au musée des sourds avec un hommage à Ferdinand Berthier",
-      "sourceName": "Le JSL",
-      "sourceUrl": "https://www.lejsl.com",
-      "publishedAt": "2026-10-01T07:00:00.000Z",
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
-      "topic": "general",
-      "topicLabel": "一般",
-      "curationScore": 18,
-      "curationSignals": [
-        "sourd",
-        "sourds",
-        "multilingual"
-      ],
-      "sourceDomain": "lejsl.com",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNOFZPbnQ1cTdScWV6YXc1QVRTOW9NQVY5TlZKbHVKaUl4QnM1V0I4c0Y2cG1wLWVRcE03M182TTdyYzhkSjFZN0tTUlNZNnFDcG5kS0cyOHpxbUFCRDFQdjNXZk0xLWZLSUh0T0dWR0JNOWtaVTRDUzZiR05fRVd1SWp3NktXamxaUTgyLXA5dXplSTJ2Nk80SGx5RlFEdHNVZzFUQUl0ZFdLbjRqZFRlQTZyLTZXclpJMzM3VXFpZUxpWW44TEVCTkkxRHh0X1RfOERCZm5SYndhdFoyM3NqVzV1TDRhZw?oc=5",
       "title": "デストルランド商業施設で、来場者がろう者に耳を傾け、その立場への理解を深めた。",
       "summary": "デストルランド商業施設で、来場者がろう者に耳を傾け、その立場への理解を深めた。",
@@ -5240,6 +5213,33 @@
         "source": "og:image",
         "pageUrl": "https://www.guadeloupe.franceantilles.fr/actualite/vielocale/les-visiteurs-se-sont-mis-a-lecoute-des-sourds-au-centre-commercial-destreland-1094698.php"
       }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQdC00djcyd1JwdW9VQmxpbDdXbk1kZEZnbFJLMWpzUVo2RndocVJPNndaMUx4ejJtWEJZMUUwa3A4VE1MNzI1Q1dHN2JOQjdKYkpqTXZOZjFwdHBJb0hlcDctVDU5YWlZRXlkVlRqYlZBRU51OEZzeE45WkN2Q29qMEdyUDNGblYxQ0sySkFtUF9xLXpURHZQbnlTc2FmRUZ3d2E3c0hEX0xiQTV6Y01hQg?oc=5",
+      "title": "ろう者博物館でガイドツアーが行われ、フェルディナン・ベルティエに敬意が表されました。",
+      "summary": "ろう者博物館でガイドツアーが行われ、フェルディナン・ベルティエに敬意が表されました。",
+      "originalTitle": "Louhans-Châteaurenaud. Visite guidée au musée des sourds avec un hommage à Ferdinand Berthier",
+      "originalSummary": "Louhans-Châteaurenaud. Visite guidée au musée des sourds avec un hommage à Ferdinand Berthier",
+      "sourceName": "Le JSL",
+      "sourceUrl": "https://www.lejsl.com",
+      "publishedAt": "2026-10-01T07:00:00.000Z",
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "general",
+      "topicLabel": "一般",
+      "curationScore": 18,
+      "curationSignals": [
+        "sourd",
+        "sourds",
+        "multilingual"
+      ],
+      "sourceDomain": "lejsl.com",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null
     },
     {
       "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOTTBZUTZPdzNQdm04TXprU3pybzFVQVBvMG1jSzZ2cjlRa0N2XzZZYVNJRmRJbmw1Z3hIa1lIUDFZV1E3cmdSZ0xaUmZKQUk0cVo1TWtLMVBfTTQxbUNLSVFuaVlLcFdHeVNmVndfMkpRU1E2T2ZZdjJfbnpVTE9RakhBVHRfSkxNSWJhcmNoN1Naajg5VHozcmozVGpEbmdTTklJcEY3Vzc2MndjM3JhdzBkTjZneUIzZ2J6c1dCcw?oc=5",
@@ -5466,6 +5466,30 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
+      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "originalTitle": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+      "originalSummary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+      "sourceName": "Le Journal du Centre",
+      "sourceUrl": "https://www.lejdc.fr",
+      "publishedAt": "2026-09-27T07:00:00.000Z",
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "general",
+      "topicLabel": "一般",
+      "curationScore": 18,
+      "curationSignals": [
+        "sourd",
+        "sourds",
+        "multilingual"
+      ],
+      "sourceDomain": "lejdc.fr",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
       "title": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
       "summary": "手話通訳者の存在により、リモージュ大学病院でのろう患者への支援が大きく変化した。",
@@ -5496,30 +5520,6 @@
         "source": "og:image",
         "pageUrl": "https://france3-regions.franceinfo.fr/nouvelle-aquitaine/haute-vienne/limoges/ca-a-change-ma-vie-un-interprete-bouleverse-l-accompagnement-des-patients-sourds-au-chu-de-limoges-3422162.html"
       }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
-      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
-      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
-      "originalTitle": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-      "originalSummary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-      "sourceName": "Le Journal du Centre",
-      "sourceUrl": "https://www.lejdc.fr",
-      "publishedAt": "2026-09-27T07:00:00.000Z",
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
-      "topic": "general",
-      "topicLabel": "一般",
-      "curationScore": 18,
-      "curationSignals": [
-        "sourd",
-        "sourds",
-        "multilingual"
-      ],
-      "sourceDomain": "lejdc.fr",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdVluTFhTel9BbUpqTGN6V2ptLXNXV0phdEJHLS1DLWRNQ2J5cXVKeFI5RkdpVDFJUEVfWEFPOGdkVnFKa1dCeGhOWS1wT1RFcjl0WjNuaTkwTFp0TlA5ZlVzN2FRQWc4RUVrSUdYMzlILXFHQmR4UDFuVndWSDNqb19KUERUcmxmaEtIckxpZFhyWjZ6elNqVktEQkFzUFZhRnA1LTNHaTR2QTVxaVB3dFJPbw?oc=5",
@@ -5578,7 +5578,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNZlpGaVV1NnA2ZHg4YUJjUjZ2X2hOT3VqS3hjMGJzZUFkdjhWUjM3ckhrSDNXVWRuc0h4aklxelRlblVWWE9XaUFLSGp6RXNMRk5uS24yU1l5amc1ZEx2OGhvMW1ZZ1NDbzFOTzIydi1aa2VkelQzYlFkMW02bC1uWEFPYzRPRFF3RTAxTG5PeDJLOGZXOEN3MjU5RnMzYzQ?oc=5",
-      "title": "AISSEAの世界ろう者の日",
+      "title": "AISSEAが世界ろう者の日を紹介している。",
       "summary": "AISSEAが世界ろう者の日を紹介している。",
       "originalTitle": "Journée Mondiale des Sourds - AISSEA",
       "originalSummary": "Journée Mondiale des Sourds - AISSEA",
@@ -5646,7 +5646,7 @@
       "summary": "ろう児を虐待した元修道女に、禁錮20年の判決が言い渡されました。",
       "originalTitle": "20 años de cárcel para una exmonja por abusos a menores sordos",
       "originalSummary": "20 años de cárcel para una exmonja por abusos a menores sordos",
-      "sourceName": "Euronews.com",
+      "sourceName": "Euronews",
       "sourceUrl": "https://es.euronews.com",
       "publishedAt": "2026-09-25T07:00:00.000Z",
       "region": "americas",
@@ -5968,11 +5968,11 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9lTW8yOFJQc3VjS0w1ZU5TV1RkMTNkbW9zTkdueTJNZW1yMEx0Z0NPN0laT09Hck1VdGxvc2s5TjdVdDNMSDF4Rl8yVQ?oc=5",
-      "title": "公視新聞網PNNの【#PLive】20260922公視手話ニュース完全版は、共生の舞台公演と国際交流を推進した国際ろう者芸術祭の閉幕を伝えます。",
-      "summary": "公視新聞網PNNの【#PLive】20260922公視手話ニュース完全版は、共生の舞台公演と国際交流を推進した国際ろう者芸術祭の閉幕を伝えます。",
-      "originalTitle": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
-      "originalSummary": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
+      "id": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9qNE1XV0x5UXBadG1BQTA3cnR2WEZjeWVRQXJUaHpDSjZTdkpyaVBCQkprWDZ3UFJIcEFpZy00SjhUdExrYXFobno5VW05YnM?oc=5",
+      "title": "9月23日の世界手話の日は、今年「ろう者の人権を宣言する」をテーマに掲げています。",
+      "summary": "9月23日の世界手話の日は、今年「ろう者の人権を宣言する」をテーマに掲げています。",
+      "originalTitle": "923世界手語日 今年主題「宣告聾人的人權」",
+      "originalSummary": "923世界手語日 今年主題「宣告聾人的人權」",
       "sourceName": "你的公共電視",
       "sourceUrl": "https://news.pts.org.tw",
       "publishedAt": "2026-09-23T07:00:00.000Z",
@@ -5994,9 +5994,9 @@
       "japanesePostEditEngine": "openai_complimentary",
       "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://i.ytimg.com/vi/Tmo9d5IhZwA/hqdefault.jpg",
+        "url": "https://news-data.pts.org.tw/media/296016/conversions/cover-cover_lg.webp",
         "source": "og:image",
-        "pageUrl": "https://news.pts.org.tw/video/22164"
+        "pageUrl": "https://news.pts.org.tw/article/828316"
       }
     },
     {
@@ -6088,11 +6088,11 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9qNE1XV0x5UXBadG1BQTA3cnR2WEZjeWVRQXJUaHpDSjZTdkpyaVBCQkprWDZ3UFJIcEFpZy00SjhUdExrYXFobno5VW05YnM?oc=5",
-      "title": "9月23日の世界手話の日は、今年「ろう者の人権を宣言する」をテーマに掲げています。",
-      "summary": "9月23日の世界手話の日は、今年「ろう者の人権を宣言する」をテーマに掲げています。",
-      "originalTitle": "923世界手語日 今年主題「宣告聾人的人權」",
-      "originalSummary": "923世界手語日 今年主題「宣告聾人的人權」",
+      "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9lTW8yOFJQc3VjS0w1ZU5TV1RkMTNkbW9zTkdueTJNZW1yMEx0Z0NPN0laT09Hck1VdGxvc2s5TjdVdDNMSDF4Rl8yVQ?oc=5",
+      "title": "公視新聞網PNNの【#PLive】20260922公視手話ニュース完全版は、共生の舞台公演と国際交流を推進した国際ろう者芸術祭の閉幕を伝えます。",
+      "summary": "公視新聞網PNNの【#PLive】20260922公視手話ニュース完全版は、共生の舞台公演と国際交流を推進した国際ろう者芸術祭の閉幕を伝えます。",
+      "originalTitle": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
+      "originalSummary": "【#PLive】20260922 公視手語新聞 完整版 | 國際聾人藝術節落幕推動共融演出跨國交流 ｜ 公視新聞網 PNN",
       "sourceName": "你的公共電視",
       "sourceUrl": "https://news.pts.org.tw",
       "publishedAt": "2026-09-23T07:00:00.000Z",
@@ -6114,19 +6114,19 @@
       "japanesePostEditEngine": "openai_complimentary",
       "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://news-data.pts.org.tw/media/296016/conversions/cover-cover_lg.webp",
+        "url": "https://i.ytimg.com/vi/Tmo9d5IhZwA/hqdefault.jpg",
         "source": "og:image",
-        "pageUrl": "https://news.pts.org.tw/article/828316"
+        "pageUrl": "https://news.pts.org.tw/video/22164"
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQd2N4M3pSSndjcDlFMnFtcHlQV2xEV0RtVmQtYlo5ODgyVWxfVWVkbTdHOWJ0bTlMeWY5WVRpWXJxOE9DZjN3UkozSmZ3R1ZwamxpM1JhT24xYk9LNWtrLWxOWHVMam1sNENYMUNCQ1ZEVnZIWW1GaTFGZ20wMVlGajAwa0FyUzFSVEc4NElIbkt3M3hQOENrVTJscERMUk04bDJVQXFEb2ZQNGhINk5aV3hyZ05sOTNGZXltRmRQaDMtYUNSd2tHUEZmRnhSd1d1RFQtbEtXeFdYX2c?oc=5",
-      "title": "世界ろう者の日に合わせ、支援者が知っておくべき緊急通報番号「114」が紹介された。",
-      "summary": "世界ろう者の日に合わせ、支援者が知っておくべき緊急通報番号「114」が紹介された。",
-      "originalTitle": "Journée mondiale des Sourds : le 114, un numéro d'urgence que les aidants doivent connaître",
-      "originalSummary": "Journée mondiale des Sourds : le 114, un numéro d'urgence que les aidants doivent connaître",
-      "sourceName": "Aladom",
-      "sourceUrl": "https://www.aladom.fr",
+      "id": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQaXJVN25OZHVGbXFZLW1WSnRTdUN4dTRKOUl6alIwem5TVVVPd3o1LWtTclgycU5HaHdwYUhWVnU2LWlsYmpFckxlMXFFaHVyZkZadl9ha3JBUXBhcFdtVWZVeEM2ZlNodXY1eWQwVHhYWGhOcWJrRGxNdGlhRkZ4a09Ed2xjaVFwZ20tcXpFRENJN3RJc1R6Vi1TNjdVaWp5Zy1kb3Rvdzc3cmNpMndVM3owWklEc29jendMTFRVT3ZVTi00ZkswM2FaN0JGLXZHSHA5cDNMX3RxOUtRWWlBdkJnR0lrMVl2emVpMHpqcw?oc=5",
+      "title": "フランス・ジュヴィニェのろう者3人が、人道支援を目的とする自動車ラリーを完遂しました。",
+      "summary": "フランス・ジュヴィニェのろう者3人が、人道支援を目的とする自動車ラリーを完遂しました。",
+      "originalTitle": "Juvigné. \"Bien plus qu'un simple défi automobile\" : tous les trois sourds, ils ont accompli un raid humanitaire",
+      "originalSummary": "Juvigné. \"Bien plus qu'un simple défi automobile\" : tous les trois sourds, ils ont accompli un raid humanitaire",
+      "sourceName": "lecourrierdelamayenne.fr",
+      "sourceUrl": "https://www.lecourrierdelamayenne.fr",
       "publishedAt": "2026-09-24T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -6138,7 +6138,7 @@
         "sourds",
         "multilingual"
       ],
-      "sourceDomain": "aladom.fr",
+      "sourceDomain": "lecourrierdelamayenne.fr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -6146,9 +6146,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://media.aladom.fr/news/news/2026/09/a8d9c96b-30a1-4680-a807-10e38ce156f7.jpg",
+        "url": "https://medias.lecourrierdelamayenne.fr/photos/1200/41385-fabien-alix-et-jeremy-presentent-fierement-leur-peugeot-205-avec-laquelle-ils-ont-parcouru-l-europe?v=1790179790",
         "source": "og:image",
-        "pageUrl": "https://www.aladom.fr/actualites/secteur-service/11332/journee-mondiale-des-sourds-le-114-un-numero-durgence-que-les-aidants-doivent-connaitre/"
+        "pageUrl": "https://www.lecourrierdelamayenne.fr/actualite-41385-juvigne-bien-plus-qu-un-simple-defi-automobile-tous-les-trois-sourds-ils-ont-accompli-un-raid-humanitaire"
       }
     },
     {
@@ -6241,13 +6241,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQaXJVN25OZHVGbXFZLW1WSnRTdUN4dTRKOUl6alIwem5TVVVPd3o1LWtTclgycU5HaHdwYUhWVnU2LWlsYmpFckxlMXFFaHVyZkZadl9ha3JBUXBhcFdtVWZVeEM2ZlNodXY1eWQwVHhYWGhOcWJrRGxNdGlhRkZ4a09Ed2xjaVFwZ20tcXpFRENJN3RJc1R6Vi1TNjdVaWp5Zy1kb3Rvdzc3cmNpMndVM3owWklEc29jendMTFRVT3ZVTi00ZkswM2FaN0JGLXZHSHA5cDNMX3RxOUtRWWlBdkJnR0lrMVl2emVpMHpqcw?oc=5",
-      "title": "フランス・ジュヴィニェのろう者3人が、人道支援を目的とする自動車ラリーを完遂しました。",
-      "summary": "フランス・ジュヴィニェのろう者3人が、人道支援を目的とする自動車ラリーを完遂しました。",
-      "originalTitle": "Juvigné. \"Bien plus qu'un simple défi automobile\" : tous les trois sourds, ils ont accompli un raid humanitaire",
-      "originalSummary": "Juvigné. \"Bien plus qu'un simple défi automobile\" : tous les trois sourds, ils ont accompli un raid humanitaire",
-      "sourceName": "lecourrierdelamayenne.fr",
-      "sourceUrl": "https://www.lecourrierdelamayenne.fr",
+      "id": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQd2N4M3pSSndjcDlFMnFtcHlQV2xEV0RtVmQtYlo5ODgyVWxfVWVkbTdHOWJ0bTlMeWY5WVRpWXJxOE9DZjN3UkozSmZ3R1ZwamxpM1JhT24xYk9LNWtrLWxOWHVMam1sNENYMUNCQ1ZEVnZIWW1GaTFGZ20wMVlGajAwa0FyUzFSVEc4NElIbkt3M3hQOENrVTJscERMUk04bDJVQXFEb2ZQNGhINk5aV3hyZ05sOTNGZXltRmRQaDMtYUNSd2tHUEZmRnhSd1d1RFQtbEtXeFdYX2c?oc=5",
+      "title": "世界ろう者の日に合わせ、支援者が知っておくべき緊急通報番号「114」が紹介された。",
+      "summary": "世界ろう者の日に合わせ、支援者が知っておくべき緊急通報番号「114」が紹介された。",
+      "originalTitle": "Journée mondiale des Sourds : le 114, un numéro d'urgence que les aidants doivent connaître",
+      "originalSummary": "Journée mondiale des Sourds : le 114, un numéro d'urgence que les aidants doivent connaître",
+      "sourceName": "Aladom",
+      "sourceUrl": "https://www.aladom.fr",
       "publishedAt": "2026-09-24T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -6259,7 +6259,7 @@
         "sourds",
         "multilingual"
       ],
-      "sourceDomain": "lecourrierdelamayenne.fr",
+      "sourceDomain": "aladom.fr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -6267,9 +6267,9 @@
       "japanesePostEditEngine": "unknown",
       "japanesePostEditModel": null,
       "thumbnail": {
-        "url": "https://medias.lecourrierdelamayenne.fr/photos/1200/41385-fabien-alix-et-jeremy-presentent-fierement-leur-peugeot-205-avec-laquelle-ils-ont-parcouru-l-europe?v=1790179790",
+        "url": "https://media.aladom.fr/news/news/2026/09/a8d9c96b-30a1-4680-a807-10e38ce156f7.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.lecourrierdelamayenne.fr/actualite-41385-juvigne-bien-plus-qu-un-simple-defi-automobile-tous-les-trois-sourds-ils-ont-accompli-un-raid-humanitaire"
+        "pageUrl": "https://www.aladom.fr/actualites/secteur-service/11332/journee-mondiale-des-sourds-le-114-un-numero-durgence-que-les-aidants-doivent-connaitre/"
       }
     },
     {
@@ -6488,7 +6488,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOMVZBNmNBcC1iUXM0NWVxaHNuZWc5M2FBWE1rbmtHVmR1YkdpeFk1RG5pZGctTVJMa0tLakNselZiZXlSR2xJbU85UWRROEZGVExYdXlTMF90ZUpuZGRkWGFWZy10UnFWX3JVOE9wNmJzN2Utdm03VzRjM3ZfS3l3Y21wMXBvRUdaaUdQMkJ4X1F2a1RUNGV0MzVNem05OWNVV3ZpUmFuNEtraEVLMENJclN1VE5lUHNuQ09ZQm1JTkVWWHFrZ2x5RE02bXZub29UR05YVjFzeW9vTElHRHo1MlVDNS13cmN6ZXVDd3AzcXllTjZPUjlxSTJKR3A3UQ?oc=5",
-      "title": "グランヴェル広場で初の世界ろう者の日イベント",
+      "title": "「手話の美しさを示す」ことを掲げ、グランヴェル広場で世界ろう者の日のイベントが初めて開催される。",
       "summary": "「手話の美しさを示す」ことを掲げ、グランヴェル広場で世界ろう者の日のイベントが初めて開催される。",
       "originalTitle": "« Montrer la beauté de la langue des signes » : une première édition de la Journée mondiale des sourds place Granvelle",
       "originalSummary": "« Montrer la beauté de la langue des signes » : une première édition de la Journée mondiale des sourds place Granvelle",
@@ -6636,7 +6636,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMURMUncydml1OHBmSC1xNWVPbkxCS0hXNmU2aHNzTURKVTItc1I4NGVmX1hOMjBseG1UU2d2UVF0TkxQSjFPT2J0LUNMZjRhN2N3bE1vTEZ0cThPWkRGbkFPVi1jcklSb2pCU0cwWHZzSTBPYjhQLUxFSXd6ZjU1OUEwRUFROXppeU5ndENKNDRDckx3STlwQXVEdlRGYlNPYTM4RUxzQldEd2F3MW1mY1NKWktVVmxIMkp3?oc=5",
-      "title": "ルカによる福音書を全編手話で紹介",
+      "title": "数百万人のろう者に届けるため、ルカによる福音書が全編手話で紹介された。",
       "summary": "数百万人のろう者に届けるため、ルカによる福音書が全編手話で紹介された。",
       "originalTitle": "Gospel of Luke presented entirely in sign language to reach millions of Deaf people",
       "originalSummary": "Gospel of Luke presented entirely in sign language to reach millions of Deaf people",
@@ -6908,13 +6908,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE15TkF6a2l4ZHFXQ3JjUUd4ank3ODlUZ1JKZy1UMFYwSllfd0dhSW54a1hyYjY4bnZabV9FVmpmTVVEaEFTTlB5dGx6SWdYX3pzOVRwUk1MWmNvTWNWRXJBSjhTdjNXOFBPSGhUUVctUQ?oc=5",
-      "title": "ろう者の言語である手話が文学の多様性を広げる「動く詩」展が開催される。",
-      "summary": "ろう者の言語である手話が文学の多様性を広げる「動く詩」展が開催される。",
-      "originalTitle": "농인의 언어 ‘수어’, 문학의 다양성을 넓히다. '움직이는 시' 전시 개최",
-      "originalSummary": "농인의 언어 ‘수어’, 문학의 다양성을 넓히다. '움직이는 시' 전시 개최",
-      "sourceName": "웰페어뉴스",
-      "sourceUrl": "https://www.welfarenews.net",
+      "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1aWmM4TjBGTmZTVC1fcE0zMGhMLTQxY2VxdElkN0ZxQ2Qzckx0dFVfZkpxakJZeGIwWDZLa0lCb0xfVm1HMkdLc3JnSUJNQlJQblVHeVRHZnB1ZEJpcGgzTlFiTUxRZUZ6SENlQXluS2NQSG1Q0gF4QVVfeXFMTXhSZTlKclBBX3B2Z0RDazVPZUZMMmp4Q1BoMHB2b1REZE4zYjg5cWdxUlNfUUYzSzd5U196aTFaakRJUW56d0loNGJsZ3FyNWJuRzJZcW41SzktZnlMNWNsR3JMeFduYkxQdWhSUDFzRmRSa3R2c0JT?oc=5",
+      "title": "プンギョンノリトが、29日からろう者・聴覚障害者の「手話・文字の詩」を展示する。",
+      "summary": "プンギョンノリトが、29日からろう者・聴覚障害者の「手話・文字の詩」を展示する。",
+      "originalTitle": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
+      "originalSummary": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
+      "sourceName": "한국장애인신문",
+      "sourceUrl": "http://www.koreadisablednews.com",
       "publishedAt": "2026-09-21T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -6922,11 +6922,11 @@
       "topicLabel": "アクセシビリティ・情報保障",
       "curationScore": 21,
       "curationSignals": [
-        "농인",
+        "청각장애",
         "수어",
         "multilingual"
       ],
-      "sourceDomain": "welfarenews.net",
+      "sourceDomain": "koreadisablednews.com",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -6991,13 +6991,13 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1aWmM4TjBGTmZTVC1fcE0zMGhMLTQxY2VxdElkN0ZxQ2Qzckx0dFVfZkpxakJZeGIwWDZLa0lCb0xfVm1HMkdLc3JnSUJNQlJQblVHeVRHZnB1ZEJpcGgzTlFiTUxRZUZ6SENlQXluS2NQSG1Q0gF4QVVfeXFMTXhSZTlKclBBX3B2Z0RDazVPZUZMMmp4Q1BoMHB2b1REZE4zYjg5cWdxUlNfUUYzSzd5U196aTFaakRJUW56d0loNGJsZ3FyNWJuRzJZcW41SzktZnlMNWNsR3JMeFduYkxQdWhSUDFzRmRSa3R2c0JT?oc=5",
-      "title": "プンギョンノリトが、29日からろう者・聴覚障害者の「手話・文字の詩」を展示する。",
-      "summary": "プンギョンノリトが、29日からろう者・聴覚障害者の「手話・文字の詩」を展示する。",
-      "originalTitle": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
-      "originalSummary": "풍경놀이터, 29일부터 농·청각장애인 ‘수어 문자 시’ 전시",
-      "sourceName": "한국장애인신문",
-      "sourceUrl": "http://www.koreadisablednews.com",
+      "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE15TkF6a2l4ZHFXQ3JjUUd4ank3ODlUZ1JKZy1UMFYwSllfd0dhSW54a1hyYjY4bnZabV9FVmpmTVVEaEFTTlB5dGx6SWdYX3pzOVRwUk1MWmNvTWNWRXJBSjhTdjNXOFBPSGhUUVctUQ?oc=5",
+      "title": "ろう者の言語である手話が文学の多様性を広げる「動く詩」展が開催される。",
+      "summary": "ろう者の言語である手話が文学の多様性を広げる「動く詩」展が開催される。",
+      "originalTitle": "농인의 언어 ‘수어’, 문학의 다양성을 넓히다. '움직이는 시' 전시 개최",
+      "originalSummary": "농인의 언어 ‘수어’, 문학의 다양성을 넓히다. '움직이는 시' 전시 개최",
+      "sourceName": "웰페어뉴스",
+      "sourceUrl": "https://www.welfarenews.net",
       "publishedAt": "2026-09-21T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -7005,11 +7005,11 @@
       "topicLabel": "アクセシビリティ・情報保障",
       "curationScore": 21,
       "curationSignals": [
-        "청각장애",
+        "농인",
         "수어",
         "multilingual"
       ],
-      "sourceDomain": "koreadisablednews.com",
+      "sourceDomain": "welfarenews.net",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -7561,7 +7561,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBKWjBTd1BhQmZkaTZWRnEzRDBBUTQyQ1pyUzZnS2l1ZzE4ZVhZT2N3MG1MdHp6TXJlbXB4cy1rQlllV3I4eWc3Q3dxNGFsczNKY1V1WjlrSUpvOW5ZSVdlOElxUEQ4dGVZSDdhdlBjY3BVNktDVXN5dNIBeEFVX3lxTFBKWjBTd1BhQmZkaTZWRnEzRDBBUTQyQ1pyUzZnS2l1ZzE4ZVhZT2N3MG1MdHp6TXJlbXB4cy1rQlllV3I4eWc3Q3dxNGFsczNKY1V1WjlrSUpvOW5ZSVdlOElxUEQ4dGVZSDdhdlBjY3BVNktDVXN5dA?oc=5",
-      "title": "華城市、ろう者向け「見える火災案内」で特別賞",
+      "title": "華城市が、ろう者向けの「見える火災案内」で特別賞を受賞した。",
       "summary": "華城市が、ろう者向けの「見える火災案内」で特別賞を受賞した。",
       "originalTitle": "청각장애인 위한 '보이는 화재안내'…화성시 특별상 수상",
       "originalSummary": "청각장애인 위한 '보이는 화재안내'…화성시 특별상 수상",
@@ -8136,7 +8136,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPVHltQXB6OG1YMkN0eDkzV1BpTFlTdWQ2dkxYdldCQnRUWk9nR2pQdk1hMFlUdHVoZkhiTWt4NWRKeEExMVNleF9hRVhMbTU0N3pfcXBoRlVHSzJCZ1pjOWs3cVh6VV9FU0xNVE83bERSdFhTclQ1YmRhM2t3bk5pdEYzdUR6TVpjRmt2QlZCdXdnQ0dQa3NkQVR2dkhISmNhZjhXNWczazE5VEhPLUpDTTBXREEyajZWc0FoUWtSOUtBZkE?oc=5",
-      "title": "ニュージーランド、英語をマオリ語・手話と並ぶ公用語へ",
+      "title": "ニュージーランドで、英語がマオリ語および手話と並ぶ公用語になる予定だ。",
       "summary": "ニュージーランドで、英語がマオリ語および手話と並ぶ公用語になる予定だ。",
       "originalTitle": "English to become official language of NZ alongside Te Reo Māori and sign language",
       "originalSummary": "English to become official language of NZ alongside Te Reo Māori and sign language",
@@ -8436,7 +8436,7 @@
       ],
       "sourceDomain": "timesofisrael.com",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -9419,7 +9419,7 @@
       ],
       "sourceDomain": "thenationalnews.com",
       "sourcePriority": 82,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10054,7 +10054,7 @@
       ],
       "sourceDomain": "nation.africa",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10138,7 +10138,7 @@
       ],
       "sourceDomain": "indianexpress.com",
       "sourcePriority": 76,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10234,7 +10234,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBTX2owUU9LTWFNV2Z6cjV6VndoNHgxWlNXcDVYNFlBTl9ESjhBNnB0cG5wM2owcW1BUGE2YUhpeDA5dnRQT21XQTVmWGliUWxZVDRkcVhjVQ?oc=5",
-      "title": "アルテミスIIのAI字幕に不適切語、韓国テレビに批判",
+      "title": "アルテミスIIに関するAI字幕で不具合により不適切な言葉が表示され、韓国のテレビが批判を受けている。",
       "summary": "アルテミスIIに関するAI字幕で不具合により不適切な言葉が表示され、韓国のテレビが批判を受けている。",
       "originalTitle": "Korean TV under fire over profanity glitch in AI subtitles for Artemis II",
       "originalSummary": "Korean TV under fire over profanity glitch in AI subtitles for Artemis II",
@@ -11645,7 +11645,7 @@
       ],
       "sourceDomain": "koreatimes.co.kr",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -12528,7 +12528,7 @@
       ],
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -12617,7 +12617,12 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://s.abcnews.com/images/US/starbucks-london-file-gty-ml-180226_hpMain_2_16x9_992.jpg?w=1600",
+        "source": "og:image",
+        "pageUrl": "https://abcnews.com/GMA/Living/starbucks-opening-store-employees-american-sign-language/story?id=56714693"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5fWmYxcVNBcVZ4M0FteTFjNFdTMDU2a3Q3MGFrcHRkNVhBd1h4Z2NYbS1paEhHNTNGYnVpMXJrYTlLLVQ5OElLV0FjMkxINGZvYkpOc29DNGxadms1amRwMFZ1V1BKWW80aTVmVnBOYUVaUE1pQjBsWQ?oc=5",
@@ -12639,7 +12644,7 @@
       ],
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -12674,7 +12679,12 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://cdn.punchng.com/wp-content/uploads/2019/04/24064620/Lagos-map.png",
+        "source": "og:image",
+        "pageUrl": "https://punchng.com/lagos-school-wins-bsn-quiz-for-deaf-students/"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWWVkTDFPWUpfUFJKVHI4cXEtSFczX3RIN1lIdEk2MVBlVVdkYUlNMVZSd1FTZjB4Tk1qUDkzbjBUcGlXSDE0S01sUVhyOUk3WDV3aGFSZ3ZVb1lOYXloeXlENExtam5oN3ZBT2VUbGJRYWtUeWtzUVd1NDNRQVJxWHhUSUYwdklsYnVMVjBZYk1raENva2Nlajhn?oc=5",
@@ -12753,7 +12763,7 @@
       ],
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -14233,7 +14243,7 @@
       ],
       "sourceDomain": "swissinfo.ch",
       "sourcePriority": 76,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15503,7 +15513,7 @@
       ],
       "sourceDomain": "thenationalnews.com",
       "sourcePriority": 82,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15578,7 +15588,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBMdkIyMVNPWGh0OEw3dExScXluN0pOOS1hTEZ0YkRTVUlyQUFTRHUzcjBTU0NmUGFOeWs5Mi1VeTRkdHBDanZ6NmlDUzRyQkpIWFR5OFQ4aU43NTlz?oc=5",
-      "title": "複数年アクセシビリティ計画2025-2027",
+      "title": "2025-2027年の複数年アクセシビリティ計画が示されている。",
       "summary": "2025-2027年の複数年アクセシビリティ計画が示されている。",
       "originalTitle": "Multi-year Accessibility Plan 2025-2027",
       "originalSummary": "Multi-year Accessibility Plan 2025-2027",
@@ -15729,7 +15739,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -16137,7 +16147,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcFhqTmxVNVpwQjJkeHl6NFJOWS1YalpmaVh3MkM5LWJjTFJkMnkxc29IQm9lcng3bUk3RHFUYUZld2Q0TnVuZ3dpcmQ1aU5XXzNZS2RzSlJUUGlTX1UxQTJ3c3ZNZzZvVnN3dnduZFpfbmthTnVTTUpZTk1aZlNKSjRRaUhRaFZ5TWRUbDVBUnNIQ2dVSFlTbEh6Y09vOGpKdk1MT0U2WGdsc2IzaHpVS09mcnhlWHgzWm9GbzAzT0lRTi1TSThabUg0aWtTUmtEdTRRQ2UxRlF0cDZWd0x3?oc=5",
-      "title": "SorensonのSignVideo、デフリンピック英国代表のプラチナスポンサーに",
+      "title": "SorensonのSignVideoが、デフリンピックに出場する英国代表のプラチナスポンサーに選ばれた。",
       "summary": "SorensonのSignVideoが、デフリンピックに出場する英国代表のプラチナスポンサーに選ばれた。",
       "originalTitle": "SignVideo by Sorenson Named Platinum Sponsor of Deaflympics Great Britain at Deaflympics",
       "originalSummary": "SignVideo by Sorenson Named Platinum Sponsor of Deaflympics Great Britain at Deaflympics",
@@ -16215,7 +16225,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOOFRyZko5Qk1rSTB3R214RjR6a25JUHgyT0Zvd0lHNGFuWTFNQUJmcVZxOWc2bGd4U3R4WklzM21oeDBDYkZlWlZLZDgwMHZpQmdEWHFTbUdsWmhqcGpvbXNxVzFnc2k2NUlnLWp5UUlFU0Q1QW51YTkxbUlFRTlFLUpzNUxoZmhNZ1p3SlM0TGRyRDV1ZTNnV2Q5aw?oc=5",
-      "title": "音声：Auslan通訳でコンサートを利用しやすく",
+      "title": "Auslan（オーストラリア手話）（Auslan）の通訳者がコンサートのアクセシビリティを高める取り組みを音声で紹介している。",
       "summary": "Auslan（オーストラリア手話）（Auslan）の通訳者がコンサートのアクセシビリティを高める取り組みを音声で紹介している。",
       "originalTitle": "AUDIO: Auslan interpreters make concerts accessible",
       "originalSummary": "AUDIO: Auslan interpreters make concerts accessible",
@@ -16237,7 +16247,12 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://live-production.wcms.abc-cdn.net.au/abbcb6dc2cf5affbe3018c46a9f97e17?impolicy=wcms_watermark_news&cropH=699&cropW=1242&xPos=0&yPos=79&width=862&height=485&imformat=generic",
+        "source": "og:image",
+        "pageUrl": "https://www.abc.net.au/news/2025-07-10/auslan-interpreters-making-concerts-accessible/105515188"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNLTBqVjVfNlhuYXhNVzNuUWRTNzFNM2ZTZTMxeDJoajRfSXF2eVZfczkydFlDem1pdXg2MWYybjN1RV9lWnlXMlBLbHlTRUFRcG54S0VuU1pxQlQwY1ZOa2llTkRQQmdRZmtBSmxXaHhYV0ljTEx1SGhjYTdPZTR3LVpTU2syWUhPWW53?oc=5",
@@ -16748,7 +16763,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBGMFVvLVdVRzFCdlo0RThPNEswWWJBRWdGdXJWSlNCMTYwQVhyZ3liN2dVV2N5Qkd1eEJoWGZjNWh3QXh3MXROSl9BeXdiTnh5NG1RZnFmZHJmbnJDZXY5Qk1uekd3dThkSHZ0SjQtRE96UFJsakZmQk1qWQ?oc=5",
-      "title": "ろうの生徒たち、マキンデに学校用地を売却しないよう要請",
+      "title": "ろうの生徒たちが、学校用地を売却しないようマキンデに求めている。",
       "summary": "ろうの生徒たちが、学校用地を売却しないようマキンデに求めている。",
       "originalTitle": "Deaf students urge Makinde not to sell school land",
       "originalSummary": "Deaf students urge Makinde not to sell school land",
@@ -16766,11 +16781,16 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://cdn.punchng.com/wp-content/uploads/2025/05/29184150/n.png",
+        "source": "og:image",
+        "pageUrl": "https://punchng.com/deaf-students-urge-makinde-not-to-sell-school-land/"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQaGtvSkxGQmxKZVZYLXJoRjVtVXZRTzFPLXE2Qlk1ZjBJMC1rY3lGeWU0NW1xbzVBMi13STJnYzVQUV9CWE03dS1NeGR2MFI4VUtTa3RrUjVHYlJKeU9SUkNmcF84SW1fc3B6V2JwTGtHVFA0NE1DMUZiMlJOeEJtS24xcjE1VFRXNkxjLXc0WGQ?oc=5",
@@ -16833,7 +16853,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbmhzNG4tUE8tNFhnamZCLWQtMUNNNFdteVdNS1lLbmxqYXVDRUQ2dWNKTVJkZ1JyZVJuWmROYVB0U2FJNkxRQl9ONVZqMllzSnppX1Nvb2g4cm5CdnBCanV6WUw2ZlRqdmhmU25ZaEZ1VlYxOTBQQ0RIai1yUVREU1NmZTR3QmNfN0xpVkFmcnM1MXFRSTVBekhlQXktRHZDWTJBbnlGQm96TkhlbXhmQXIzY29WeGxHYnM0SXlpejY?oc=5",
-      "title": "『Sinners』、Black ASLでの上映でアクセシビリティを拡充",
+      "title": "ミシシッピ州を舞台にした『Sinners』が、黒人アメリカ手話（Black ASL）で上映される。",
       "summary": "ミシシッピ州を舞台にした『Sinners』が、黒人アメリカ手話（Black ASL）で上映される。",
       "originalTitle": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
       "originalSummary": "'Sinners,' set in Mississippi, adds more accessibility: Will be shown in Black ASL",
@@ -16855,7 +16875,12 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol"
+      "japanesePostEditModel": "gpt-6.1-sol",
+      "thumbnail": {
+        "url": "https://ftw.usatoday.com/gcdn/authoring/authoring-images/2025/06/03/USAT/84014926007-michael-b-jordan-02.jpeg?crop=5999,3375,x0,y312&width=3200&height=1801&format=pjpg&auto=webp",
+        "source": "og:image",
+        "pageUrl": "https://ftw.usatoday.com/story/news/local/2025/07/01/sinners-movie-debuts-in-basl-black-american-sign-language/84429562007/"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxON0RDcTVJRVJFazdOQlVxMkp4MzlVRW04clNTMjdIUnJ6TjRQbXlEYzMyeFI2MmVUVmNTdi0zUGRraVdZeUdtNkhEM1QyZzRsU3VFcXhUbUxsNVVoWUxDbmJRUmU5alBrUDVrM3VzOTc1cGdhOGJHNS1xQUQ2VmRyTjkzcHJWd2FUY2ZXVHN3X3MtZzdhOFdQdkMtNUpuc2dMSHlzWVBhcEVQRVQzOElwclBmaDJURm9QU2x30gHAAUFVX3lxTE1GZlhFc0lJZ1p6bnpEZExMeHNWUXNsQzFDWnkxYnh2bTRjNHlva2JLZVpYeVNWMThwNUZiY3JiRTQ3NjhoUTE0Y2tOeXY4d0ZvczhfaGNiMWpwOE1qeF8yYWFrdHhLYXVObUl5Tmgxc05KekhJWXo3RHYxNmN4cFBaVktZdGJjRmZTY3d1ZW5ab2VmWjk5dzRuZ3VDX1ZpMWhuZ29NNlRUSU81cV9uSmdVNzRVRHU2T1RKQm5wRE05bw?oc=5",
@@ -17568,7 +17593,7 @@
   ],
   "publicationReview": {
     "version": "publication-quality-v10",
-    "inputGeneratedAt": "2026-10-26T00:32:40.355Z",
+    "inputGeneratedAt": "2026-10-26T03:01:04.765Z",
     "removed": []
   }
 }
