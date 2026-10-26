@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-26T07:18:56.530Z",
+  "generatedAt": "2026-10-26T07:52:05.144Z",
   "counts": {
-    "uniqueInputs": 3193,
-    "alreadyPublished": 1034,
-    "outsideWindow": 1732,
+    "uniqueInputs": 3178,
+    "alreadyPublished": 1033,
+    "outsideWindow": 1723,
     "hardExcluded": 15,
-    "duplicateOfPublished": 147,
+    "duplicateOfPublished": 143,
     "candidateDuplicates": 7,
-    "eligible": 258,
+    "eligible": 257,
     "queued": 40,
-    "deferred": 218
+    "deferred": 217
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
@@ -19,12 +19,12 @@
     "market-report": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-26T06:46:46.041Z",
+    "previousGeneratedAt": "2026-10-26T07:18:56.530Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -155,7 +155,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
