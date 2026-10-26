@@ -362,7 +362,6 @@ ${renderGlobalHeader({
   <div class="dn-page-intro"><div class="container news-opening">
     <div class="news-opening__text">
       <h1 class="dn-page-title"><span>聴覚障害・難聴・</span><span>手話のニュース</span></h1>
-      <p class="news-concept">知ることを、つながるきっかけに。</p>
     </div>
     <p class="site-lead">${leadPrefix}ろう者・難聴者・中途失聴者と、その家族・支援者へ。</p>
   </div></div>

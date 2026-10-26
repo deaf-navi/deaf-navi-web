@@ -195,7 +195,7 @@ export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', ed
       <div class="dn-shell-top">
         <a class="dn-shell-brand" href="${escapeHtml(homeHref)}" aria-label="Deaf Navi ${en ? 'home' : 'ホーム'}">
           <span class="dn-shell-mark" aria-hidden="true"><img src="${escapeHtml(homeHref.includes('index') ? homeHref.slice(0, homeHref.lastIndexOf('/') + 1) : homeHref)}icons/icon-192.png?v=20260917c" alt="" width="44" height="44"></span>
-          <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">${escapeHtml(edition)}</span></span><small>${en ? 'News, places & everyday support' : 'ニュースと、つながりと、暮らし。'}</small></span>
+          <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">${escapeHtml(edition)}</span></span><small>${en ? 'News, places & everyday support' : '知ることを、つながるきっかけに。'}</small></span>
         </a>
         ${renderDisplayControls()}
       </div>
