@@ -45,7 +45,7 @@ function stories_dispatch(string $path):bool {
         foreach(stories_query("SELECT slug,updated_at FROM stories WHERE status='published' AND datetime(published_at)<=datetime(?)",[now()])->fetchAll() as $r)echo '<url><loc>'.BASE.'/stories/'.e($r['slug']).'/</loc><lastmod>'.e($r['updated_at']).'</lastmod></url>';echo '</urlset>';return true;
     }
     if($path==='/stories/feed.json'){
-        $page=input($_GET,'page',500);if($page!==''&&!story_internal($page))fail('対象ページが見つかりません。',404);
+        $page=input($_GET,'page',500);if($page!==''&&!story_related_page($page))fail('対象ページが見つかりません。',404);
         $rows=stories_query("SELECT title,summary,slug,cover,alt,related FROM stories WHERE status='published' AND datetime(published_at)<=datetime(?) ORDER BY featured DESC,datetime(published_at) DESC",[now()])->fetchAll();$out=[];
         foreach($rows as $r){$match=$page==='/'||$page==='';foreach(json_decode($r['related'],true)?:[] as $l)if(explode('#',$l['url'])[0]===explode('#',$page)[0])$match=true;
             if($match)$out[]=['title'=>$r['title'],'summary'=>$r['summary'],'url'=>'/stories/'.$r['slug'].'/','cover'=>$r['cover']?story_media_url($r['cover']):null,'alt'=>$r['alt']];if(count($out)===3)break;}

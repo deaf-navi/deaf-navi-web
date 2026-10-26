@@ -214,6 +214,7 @@ ${renderSubHeader({
       <section class="sitemap-card" aria-labelledby="sitemap-info">
         <h2 id="sitemap-info">サイト情報</h2>
         <ul>
+          <li><a href="./stories/">読みもの</a><span>暮らし・制度・ろう文化の解説記事</span></li>
           <li><a href="./${files.about}">Deaf Naviについて</a><span>情報源・更新頻度・運営情報</span></li>
           <li><a href="./${files.sitemap}">XMLサイトマップ</a><span>検索エンジン向けURL一覧</span></li>
           <li><a href="./sitemap-world.xml">World XMLサイトマップ</a><span>Worldページ用URL一覧</span></li>

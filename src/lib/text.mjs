@@ -55,11 +55,13 @@ export function normalizeForSearch(text) {
 
 /** Remove publisher labels only; preserve parentheses that are part of the story. */
 export function cleanArticleTitle(title, sourceName = '') {
-  let value = String(title ?? '').trim();
+  let value = String(title ?? '').trim()
+    .replace(/[０-９]/gu, c => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+    .replace(/^ニュース\s*::\s*/u, '');
   if (sourceName) {
     value = value.replace(new RegExp(`\\s+[-－―|｜]\\s*${escapeRegExp(sourceName)}$`, 'iu'), '').trim();
   }
-  return value.replace(/\s*[（(](?:共同通信|時事通信)[）)]\s*$/u, '').trim();
+  return value.replace(/\s*[（(](?:共同通信|時事通信)[）)]\s*$/u, '').replace(/\s+[–－―-]\s*$/u, '').trim();
 }
 
 export function normalizeTitleKey(title) {
@@ -75,6 +77,8 @@ export function normalizeTitleKey(title) {
 export function cleanSummaryText(summary, title, sourceName) {
   const cleaned = String(summary ?? '')
     .replace(/\s+The post[\s\S]*?first appeared on[\s\S]*$/i, '')
+    .replace(/\s*(?:続きを読む|Read more)\s*[›»>→…]*\s*$/iu, '')
+    .replace(/\s*\[(?:…|\.{3})\]\s*$/u, '…')
     .replace(/\s+/g, ' ')
     .trim();
   if (!cleaned) return '';

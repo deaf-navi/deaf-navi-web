@@ -67,6 +67,14 @@ function story_internal(string $url,bool $allowPrivate=false):bool {
     $root=getenv('DEAFNAVI_LOCAL_TEST')==='1'?__DIR__.'/../docs':'/srv/deafnavi/current';
     return preg_match('#^/(?:news/|guide(?:/|\.html$)|events(?:/|\.html$)|otomado/|deaf-navi-world-(?:jp|original)\.html$|about\.html$)#D',$path)&&is_file($root.$path.(str_ends_with($path,'/')?'index.html':''));
 }
+// Related-feed reads also accept existing public archive/navigation pages.
+// Keep editor link validation and private-story checks separate.
+function story_related_page(string $path):bool {
+    if(story_internal($path))return true;
+    if(!preg_match('#^/(?:sitemap\.html|index-old\.html|connect/|archive/(?:(?:[0-9]{4}-[0-9]{2}|legacy|index)\.html)?)$#D',$path))return false;
+    $root=getenv('DEAFNAVI_LOCAL_TEST')==='1'?__DIR__.'/../docs':'/srv/deafnavi/current';
+    return is_file($root.$path.(str_ends_with($path,'/')?'index.html':''));
+}
 function story_links(string $text,bool $internal=false):array {
     $out=[];foreach(explode("\n",$text) as $line){if(trim($line)==='')continue;[$label,$url]=array_pad(explode('|',$line,2),2,'');$label=trim($label);$url=trim($url);
         if(!$label||story_length($label)>300||!($internal?story_internal($url,true):story_url($url)))fail('リンクは「説明 | URL」の形式で、実在する安全なURLを入力してください。');
