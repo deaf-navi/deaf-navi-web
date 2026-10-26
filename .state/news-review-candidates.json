@@ -1,30 +1,31 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-26T09:11:37.043Z",
+  "generatedAt": "2026-10-26T13:43:58.020Z",
   "counts": {
-    "uniqueInputs": 3044,
-    "alreadyPublished": 1017,
-    "outsideWindow": 1636,
-    "hardExcluded": 15,
-    "duplicateOfPublished": 140,
-    "candidateDuplicates": 6,
-    "eligible": 230,
+    "uniqueInputs": 3200,
+    "alreadyPublished": 989,
+    "outsideWindow": 1794,
+    "hardExcluded": 23,
+    "duplicateOfPublished": 135,
+    "candidateDuplicates": 7,
+    "eligible": 252,
     "queued": 40,
-    "deferred": 190
+    "deferred": 212
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
+    "foreign-coverage-review-required": 3,
     "low-value-page": 10,
-    "incidental-organization-mention": 1,
+    "incidental-disability-nickname": 6,
     "market-report": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-26T08:47:53.946Z",
+    "previousGeneratedAt": "2026-10-26T09:11:37.043Z",
     "previousQueued": 40,
     "retained": 40,
     "new": 0,
-    "changed": 0,
-    "unchanged": 40
+    "changed": 3,
+    "unchanged": 37
   },
   "candidates": [
     {
@@ -169,13 +170,13 @@
     },
     {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/post-5614/",
-      "articleHash": "e7c8f6d5204d8844e4ed0143764f9a7a5b2f711f2f5206c0b871bc1edcabacd7",
+      "articleHash": "757104d6aa4c697327af81457325947cf0b7163da7c08b2f3043cca23e0fde2c",
       "publishedAt": "2026-10-06T01:41:59.000Z",
       "sourceTier": "broad",
       "sourceDomain": "palabra-i.co.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "changed"
     },
     {
       "sourceUrl": "https://note.com/psy_article/n/n008022d39951",
@@ -209,13 +210,13 @@
     },
     {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/a11y-chiba/",
-      "articleHash": "b9efb938bae149c1913f8844b6fc70084c2c978493fa28e73ce6a195f1646414",
+      "articleHash": "1d029cc4b0bb7af2cc4f3b034385db9781daee0f00b11f944629940c95ee8694",
       "publishedAt": "2026-10-06T01:37:10.000Z",
       "sourceTier": "broad",
       "sourceDomain": "palabra-i.co.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "changed"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/otokotomodachi/",
@@ -409,13 +410,13 @@
     },
     {
       "sourceUrl": "https://co-coco.jp/news/bridge_sumida/",
-      "articleHash": "090b88797c4db9b7616ced9a89dcc5c78c7b306a1f27d87c88edaf77f2ca7197",
+      "articleHash": "6547748cef73c725e6f1c7a387c18771f6fa57f3087399b7c88d0fef779ad0ab",
       "publishedAt": "2026-09-07T22:30:15.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "changed"
     },
     {
       "sourceUrl": "https://co-coco.jp/products/orihime/",
