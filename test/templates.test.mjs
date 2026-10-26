@@ -159,3 +159,18 @@ test('renderGuidePage: CUP ORDERを非公式ツールとして案内する', () 
   assert.ok(card.includes('ツールを開く'), 'CUP ORDERのリンク表示が適切ではありません');
   assert.ok(!card.includes('公式情報を見る'), 'CUP ORDERを公式情報として案内しています');
 });
+test('guesthouse guide keeps year-scoped closure and unknown accessibility facts explicit', async () => {
+  const {GUESTHOUSES} = await import('../src/guesthouses-data.mjs');
+  const {renderGuesthousesPage} = await import('../src/templates/guesthouses.mjs');
+  const haru = GUESTHOUSES.find(h => h.id === 'haru-no-sora');
+  const rate = haru.facts.find(([label]) => label === '料金の目安')[1];
+  assert.match(rate, /2026年5月10日〜6月6日は休館/);
+  assert.match(rate, /2027年以降.*要確認/);
+  assert.doesNotMatch(rate, /春秋（4\/26〜6\/6/);
+  for (const id of ['tarakoyu', 'haru-no-sora']) assert.match(GUESTHOUSES.find(h => h.id === id).comparison.emergency, /未確認/);
+  const html = renderGuesthousesPage().html;
+  assert.match(html, /未確認.*設備がないという意味ではありません/);
+  assert.doesNotMatch(html, /（\s+<time/);
+  assert.match(html, /［個室／相部屋］/);
+  assert.match(html, /［手話／筆談］/);
+});

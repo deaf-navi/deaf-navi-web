@@ -39,6 +39,36 @@
 .reader-news h3 a{display:block;min-height:44px}
 
 /* Lodging entries keep facts readable without the narrow mobile label column. */
+.guesthouse-comparison{margin-top:28px}
+.reader .guesthouse-comparison h2{margin:0 0 8px;font-size:1.25rem}
+.guesthouse-comparison table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.875rem;line-height:1.8}
+.guesthouse-comparison th,.guesthouse-comparison td{padding:12px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border-default);overflow-wrap:anywhere}
+.guesthouse-comparison thead th{background:var(--accent-soft);color:var(--text-primary);font-weight:600}
+.guesthouse-comparison tbody th{font-weight:600}
+.guesthouse-comparison th a{display:inline-flex;align-items:center;min-height:44px}
+.guesthouse-comparison-area{display:block;color:var(--text-secondary);font-weight:400}
+.guesthouse-comparison-label{display:none}
+.guesthouse-inquiry-controls{display:flex;flex-wrap:wrap;gap:12px 24px;margin:16px 0}
+.guesthouse-inquiry-controls[hidden],.guesthouse-inquiry button[hidden]{display:none}
+.guesthouse-inquiry-controls label{display:grid;gap:4px;flex:1 1 12rem;min-width:0}
+.guesthouse-inquiry select,.guesthouse-inquiry textarea,.guesthouse-inquiry button{font:inherit;color:var(--text-primary);background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:4px;max-width:100%}
+.guesthouse-inquiry select,.guesthouse-inquiry button{min-height:44px;padding:8px 12px}
+.guesthouse-inquiry-label{display:block;margin-bottom:6px;font-weight:600}
+.guesthouse-inquiry textarea{display:block;box-sizing:border-box;width:100%;padding:12px;line-height:1.9;resize:vertical}
+.guesthouse-inquiry button{margin-top:12px;cursor:pointer;font-weight:600;color:var(--accent-deep);touch-action:manipulation}
+.guesthouse-inquiry button:hover{background:var(--accent-soft)}
+.guesthouse-inquiry button:disabled{cursor:wait;opacity:.7}
+.guesthouse-inquiry :is(select,textarea,button):focus-visible,.guesthouse-comparison a:focus-visible{outline:3px solid var(--accent-deep);outline-offset:3px}
+.guesthouse-inquiry [role=status]{min-height:1.9em}
+@media(max-width:700px){
+  .guesthouse-comparison table,.guesthouse-comparison tbody{display:block}
+  .guesthouse-comparison thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .guesthouse-comparison tr{display:block;padding:12px 0;border-bottom:1px solid var(--border-default)}
+  .guesthouse-comparison th,.guesthouse-comparison td{display:block;padding:4px 0;border:0}
+  .guesthouse-comparison tbody th{font-size:1rem}
+  .guesthouse-comparison-label{display:block;font-size:.8125rem;font-weight:600;color:var(--text-secondary)}
+  .guesthouse-inquiry textarea{min-height:19em}
+}
 .guesthouse-entry{margin-top:56px;padding-top:24px;border-top:2px solid var(--accent-deep);scroll-margin-top:7rem}
 .reader .guesthouse-heading h2{margin:0;font-size:clamp(1.3rem,2.5vw,1.5rem);line-height:1.6;text-wrap:balance}
 .reader .guesthouse-area{margin:4px 0 0;color:var(--text-secondary);font-size:.875rem}
