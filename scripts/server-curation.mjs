@@ -1,3 +1,4 @@
+import {reviewEventTips} from './event-tip-review.mjs';
 import {readFile,writeFile,rename,open,unlink,mkdir} from 'node:fs/promises';
 import {realpathSync} from 'node:fs';
 import {join,resolve} from 'node:path';
@@ -91,7 +92,7 @@ export function updateExceptionQueue(previous,entries,now){
 }
 
 export async function runServerCuration({stateDir,key,project,records,catalog,discoverySources=[],lodgingSources=[],lodgingSnapshot={version:1,records:[]},now=Date.now(),
-  comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery}){
+  comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery,eventTips=null}){
   // The outer lock serializes timer, allowance-change and operator execution.
   const lockPath=join(stateDir,'server-curation.lock');let lock;
   try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code==='EEXIST')return {status:'busy',submittedThisRun:0};throw e;}
@@ -138,19 +139,30 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
       canSubmit:item=>!comparisonOnly&&gate.ready&&report.submittedThisRun!==null&&candidateReview.submittedThisRun!==null&&allowed.has(publicTextFingerprint(item)),
       stopAfterError:report.submittedThisRun===null||candidateReview.submittedThisRun===null,
       approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
-    const submittedThisRun=[report,candidateReview,lodging].some(r=>r.submittedThisRun===null)?null:report.submittedThisRun+candidateReview.submittedThisRun+lodging.submittedThisRun;
+    let eventTipReport=null;
+    if(eventTips&&!comparisonOnly){
+      eventTipReport=await reviewEventTips({queue:eventTips.queue,stateDir,now:Date.now(),gateReady:gate.ready,
+        stopAfterError:[report,candidateReview,lodging].some(r=>r.submittedThisRun===null),
+        generate:generate??createComplimentaryClient({key,project,stateDir}),publish:eventTips.publish,
+        prepareSharing:async(tasks,targets)=>{
+          const hashes=await reuseReviewedText(tasks,targets,{stateDir,key,project,now:Date.now()});
+          return item=>hashes.has(publicTextFingerprint(item));
+        }});
+      await privateJson(join(stateDir,'event-tip-review.json'),eventTipReport);
+    }
+    const submittedThisRun=[report,candidateReview,lodging,...(eventTipReport?[eventTipReport]:[])].some(r=>r.submittedThisRun===null)?null:report.submittedThisRun+candidateReview.submittedThisRun+lodging.submittedThisRun+(eventTipReport?.submittedThisRun??0);
     const result={version:1,generatedAt:new Date(now).toISOString(),status:submittedThisRun===null?'needs-attention':gate.ready?'completed':'account-check-required',
       mode:comparisonOnly?'comparison':'routine',account:gate,selected:report.selected,cached:report.cached,
       corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,
       submittedThisRun,reusedRun:report.reusedRun,comparison,
-      newOrChangedExceptions:queue.newOrChanged,attention:attention.counts,discovery,lodgingDiscovery,
+      eventTips:eventTipReport,newOrChangedExceptions:queue.newOrChanged,attention:attention.counts,discovery,lodgingDiscovery,
       candidateReview:{selected:candidateReview.selected,cached:candidateReview.cached,submittedThisRun:candidateReview.submittedThisRun,
         reusedRun:candidateReview.reusedRun,deferred:candidateReview.deferred.length,newOrChanged:candidateReview.newOrChanged,
         dispositions:candidateReview.entries.reduce((counts,x)=>{const k=x.disposition??'needs-review';counts[k]=(counts[k]??0)+1;return counts;},{})},
       lodging:{selected:lodging.selected,cached:lodging.cached,submittedThisRun:lodging.submittedThisRun,
         corroborated:lodging.corroborated,evidenceReviewed:lodging.evidenceReviewed,exceptions:lodging.exceptions,candidates:lodging.candidates,
         deferred:lodging.deferred.length,newOrChanged:lodging.newOrChanged,reusedRun:lodging.reusedRun},
-      publication:{changed:0,policy:'existing-verified-source-publishers-only',manualReviewTimestampsChanged:false}};
+      publication:{changed:eventTipReport?.published??0,policy:'existing-verified-source-publishers-and-reviewed-user-tips',manualReviewTimestampsChanged:false}};
     await privateJson(join(stateDir,comparisonOnly?'server-curation-comparison.json':'server-curation.json'),result);
     await mkdir(join(stateDir,'server-curation-runs'),{recursive:true,mode:0o700});
     await privateJson(join(stateDir,'server-curation-runs',new Date(now).toISOString().replace(/[:.]/g,'-')+'-'+randomUUID()+'.json'),result);
@@ -180,7 +192,18 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process
     const sources=await readJson(new URL('../config/curation-discovery.json',import.meta.url));
     const lodgingSnapshot=await readJson('/srv/deafnavi/current/guesthouses.json');
     const lodgingSources=await readJson(new URL('../config/lodging-discovery.json',import.meta.url));
-    const result=await runServerCuration({stateDir,records:reviewRecords(events,cafes),catalog,discoverySources:sources.sources,lodgingSources:lodgingSources.sources,lodgingSnapshot,
+    const tipQueue=JSON.parse(execFileSync('php',['/srv/deafnavi/current/_backend/event-tip-queue.php','--export'],{encoding:'utf8',timeout:30000,maxBuffer:2_000_000}));
+    const publishTip=async decision=>{
+      const run=(mode,input)=>JSON.parse(execFileSync('/usr/sbin/runuser',['-u','deafnavi-runtime','--','/usr/bin/php','/srv/deafnavi/current/_backend/event-tip-queue.php',mode],{input:JSON.stringify(input),encoding:'utf8',timeout:60000,maxBuffer:100000,stdio:['pipe','pipe','pipe']}));
+      try{const plan=run('--dry-run',decision);return run('--apply',{...decision,planSha256:plan.planSha256});}
+      catch(error){
+        // A dry-run validation conflict is safe to route to the administrator.
+        // If apply committed, its approved state rejects this pending update.
+        const fallback={id:decision.id,revision:decision.revision,payloadHash:decision.payloadHash,status:'exception',reason:'掲載前の重複・更新競合・整合性チェックで停止しました。管理画面で確認してください。'};
+        return run('--apply',fallback);
+      }
+    };
+    const result=await runServerCuration({stateDir,eventTips:{queue:tipQueue,publish:publishTip},records:reviewRecords(events,cafes),catalog,discoverySources:sources.sources,lodgingSources:lodgingSources.sources,lodgingSnapshot,
       key:(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim(),project:process.env.DEAFNAVI_OPENAI_PROJECT_ID,
       comparisonOnly:process.argv.includes('--compare')});
     console.log(JSON.stringify({status:result.status,selected:result.selected,cached:result.cached,exceptions:result.exceptions,

@@ -40,7 +40,7 @@ function admin_page(): string {
         $submission=input($_GET,'submission',64);$sub=null;
         if($submission) {
             $sub=query('SELECT * FROM submissions WHERE id=?',[$submission])->fetch();if(!$sub)fail('投稿が見つかりません。',404);require_record_submission($sub);
-            if(!$id) { $p=array_merge($p,json_decode($sub['payload'],true)); $p['verification_sources']=array_filter([$p['source_url']??'']); $p['slug']=($kind==='event'?'event-':'cafe-').substr($submission,0,12); if($kind==='event'){$p['status']=['past'=>'ended','cancelled'=>'cancelled','scheduled'=>'scheduled','unknown'=>'date_unknown'][$p['report_state']??'unknown'];$p['confidence']='unverified';}if($kind==='store'&&isset($p['store_name']))$p['name']=$p['store_name']; }
+            if(!$id) { $p=array_merge($p,json_decode($sub['payload'],true)); if(is_event_tip($p)&&isset($p['tip_review']['record'])){$p=array_merge($p,$p['tip_review']['record']);$p['source_url']=$p['tip_review']['sourceUrl'];}  $p['verification_sources']=array_filter([$p['source_url']??'']); $p['slug']=($kind==='event'?'event-':'cafe-').substr($submission,0,12); if($kind==='event'){$p['status']=['past'=>'ended','cancelled'=>'cancelled','scheduled'=>'scheduled','unknown'=>'date_unknown'][$p['report_state']??'unknown'];$p['confidence']='unverified';}if($kind==='store'&&isset($p['store_name']))$p['name']=$p['store_name']; }
             $body.='<p class="dn-notice">投稿内容を確認し、情報源と営業状態を検証してから保存してください。修正報告は既存の店舗を選び、重複を作らずに反映してください。</p>';
             $choices=[''=>'新しい情報として登録'];foreach(query("SELECT id,name FROM records WHERE kind=? AND publication!='deleted'",[$kind])->fetchAll() as $r)$choices[$r['id']]=$r['name'];
             $body.='<form method="get"><input type="hidden" name="view" value="edit"><input type="hidden" name="kind" value="'.e($kind).'"><input type="hidden" name="submission" value="'.e($submission).'">'.select_field('id','反映先の既存情報',$choices,$id).'<button class="secondary">反映先を選択</button></form>';
@@ -62,6 +62,7 @@ function admin_page(): string {
         if($id)$body.='<aside class="dn-danger"><h3>削除・復元について</h3><p>「公開状態」を「削除済み」にして保存すると、公開画面から除外されます。閉店情報は「閉店・活動終了」で残してください。復元は公開状態を変更します。</p></aside>';
     } elseif($view==='submission') {
         $id=input($_GET,'id',64);$s=query('SELECT * FROM submissions WHERE id=?',[$id])->fetch();if(!$s)fail('投稿が見つかりません。',404);$p=json_decode($s['payload'],true);
+        if(is_event_tip($p))$body.=event_tip_admin($s,$p);
         if(is_cafe_contact($p))$body.=cafe_contact_admin_detail($s,$p);
         else {
         $body.='<h2>情報提供の確認</h2><p>状態：'.e($s['status']).' / '.e($s['created_at']).'</p><dl class="dn-detail">';
@@ -99,7 +100,8 @@ function admin_action(): void {
         session_regenerate_id(true);$_SESSION['version']=$u['version']+1;$_SESSION['csrf']=uid();admin_login_issue(array_merge($u,['version'=>$u['version']+1]));audit('password_changed');$_SESSION['flash']='パスワードを変更しました。';return;
     }
     if($u['must_change'])fail('最初にパスワードを変更してください。',403);
-    if($action==='update_user') {admin_update_user($u);}
+    if($action==='event_tip_review') {event_tip_review_save();}
+    elseif($action==='update_user') {admin_update_user($u);}
     elseif($action==='admin_preferences') {admin_save_preferences();}
     elseif($action==='create_user') {
         require_user(true);rate_limit('create_user',10,3600);$name=input($_POST,'username',40);$pw=input($_POST,'new_password',256);password_valid($pw);

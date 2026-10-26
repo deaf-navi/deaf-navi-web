@@ -1,0 +1,70 @@
+// Private fictional fixtures only: no network source fetch, mail or paid API.
+import assert from 'node:assert/strict';
+import {spawn,spawnSync} from 'node:child_process';
+import {mkdtempSync,readFileSync,readdirSync} from 'node:fs';
+import {join,resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import {randomBytes,createHash} from 'node:crypto';
+const root=resolve(import.meta.dirname,'..'),dir=mkdtempSync(join(tmpdir(),'dn-tip-http-'));
+const env={...process.env,DEAFNAVI_DATA_DIR:dir,DEAFNAVI_LOCAL_TEST:'1'};
+const run=(args,input)=>spawnSync('php',args,{cwd:root,env,input,encoding:'utf8'});
+const password=randomBytes(18).toString('hex'),hash=run(['test/directory-hash.php'],password).stdout;
+assert.equal(run(['server/cli.php','init'],JSON.stringify({username:'tipfixture',password_hash:hash})).status,0);
+const path=s=>s.replaceAll('\\','/');
+const sql=code=>{const r=run(['-r',`require '${path(join(root,'server/core.php'))}';require '${path(join(root,'server/event-tip-review.php'))}';${code}`]);assert.equal(r.status,0,r.stderr+r.stdout);return r.stdout;};
+sql('query("UPDATE users SET must_change=0");cafe_registry_schema();');
+const server=spawn('php',['-d','upload_max_filesize=2M','-d','post_max_size=7M','-S','127.0.0.1:5257','-t','docs','server/local-router.php'],{cwd:root,env,stdio:['ignore','ignore','pipe']});let logs='';server.stderr.on('data',b=>logs+=b);
+function client(){let cookie='';return async(path,body)=>{const r=await fetch('http://127.0.0.1:5257'+path,{method:body?'POST':'GET',redirect:'manual',headers:{cookie},body});for(const c of r.headers.getSetCookie())if(c.startsWith('deafnavi_directory='))cookie=c.split(';')[0];return {status:r.status,text:await r.text(),headers:r.headers};};}
+const anon=client(),admin=client(),token=t=>t.match(/name="csrf" value="([a-f0-9]+)"/)[1];
+const form=(csrf,values={},photo)=>{const f=new FormData();for(const [k,v] of Object.entries({csrf,form_kind:'event_tip',website_confirm:'',consent:'1',name:'検証専用手話カフェ',evidence_kind:'poster',venue_name:'テスト会館',prefecture:'東京都',city:'テスト市',activity_date:'',business_hours:'',source_url:'https://example.org/event',description:'店頭で見た告知です',...values}))f.set(k,v);if(photo)f.set('event_photos[]',new Blob([photo],{type:'image/png'}),'unsafe-original-name.png');return f;};
+let checks=0;const ok=(c,m)=>{assert.ok(c,m);checks++;};
+try{
+ for(let i=0;i<50;i++){try{await anon('/');break;}catch{await new Promise(r=>setTimeout(r,100));}}
+ let r=await anon('/submit/?form=event');ok(r.status===200&&r.text.includes('店頭で見た')&&r.text.includes('人から聞いた'),'all evidence types shown');ok(r.text.includes('multipart/form-data')&&!r.text.includes('name="email"'),'simple private upload form without email');const csrf=token(r.text);
+ ok((await anon('/submit/?form=event',form('bad'))).status===403,'CSRF');
+ await new Promise(r=>setTimeout(r,3100));
+ ok((await anon('/submit/?form=event',form(csrf,{evidence_kind:'invented'}))).status===400,'invalid evidence');
+ ok((await anon('/submit/?form=event',form(csrf,{activity_date:'2026-02-30'}))).status===400,'invalid date');
+ ok((await anon('/submit/?form=event',form(csrf,{},Buffer.from('<svg onload="alert(1)"></svg>')))).status===400,'SVG/script upload rejected');
+ const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=','base64');
+ r=await anon('/submit/?form=event',form(csrf,{},png));ok(r.status===303,'multipart submission saved');
+ const sub=JSON.parse(sql("echo json(query(\"SELECT * FROM submissions WHERE json_extract(payload,'$.form_kind')='event_tip'\")->fetch());")),p=JSON.parse(sub.payload);
+ ok(sub.status==='pending'&&p.tip_state==='review_required'&&p.photos.length===1,'initially pending with photo');
+ ok(readFileSync(join(dir,'event-tip-photos',sub.id,'1.jpg')).subarray(0,2).toString('hex')==='ffd8','photo reencoded');
+ ok(!JSON.stringify(p).includes('unsafe-original-name'),'no original filename retained');
+ ok((await anon('/admin/?view=event-photo&id='+sub.id+'&photo=1')).status===401,'photo authentication required');
+ r=await admin('/admin/');ok((await admin('/admin/',new URLSearchParams({csrf:token(r.text),action:'login',username:'tipfixture',password}))).status===303,'admin login');
+ r=await admin('/admin/?view=submission&id='+sub.id);ok(r.status===200&&r.text.includes('会場の実在')&&r.text.includes('写真1を確認'),'review UI');
+ ok((await admin('/admin/?view=event-photo&id='+sub.id+'&photo=1')).headers.get('content-type').includes('image/jpeg'),'private photo renders for admin');
+ ok((await admin('/admin/?view=event-photo&id=../etc&photo=1')).status===400,'photo traversal blocked');
+ const admincsrf=token(r.text);
+ ok((await admin('/admin/',new URLSearchParams({csrf:admincsrf,action:'event_tip_review',id:sub.id,revision:1}))).status===400,'missing attestations do not approve');
+ // A reviewer-verified fixture emulates source/privacy inspection; never real content.
+ const date=sql("echo (new DateTimeImmutable('tomorrow',new DateTimeZone('Asia/Tokyo')))->format('Y-m-d');");
+ const excerpt=`手話カフェを開催します。${date} テスト会館 申込不要 手話で交流。`;
+ const record={name:'検証専用手話カフェ',activity_date:date,business_hours:'18:00〜19:00',venue_name:'テスト会館',prefecture:'東京都',city:'テスト市',address:'架空町1丁目',description:'検証専用。申込不要。',venue_url:'https://example.org/venue'};
+ const review={version:1,reviewedAt:new Date(Date.now()-1000).toISOString(),reviewerId:1,sourceUrl:'https://example.org/event',sourceRawHash:'a'.repeat(64),sourceFingerprint:'b'.repeat(64),venueRawHash:'c'.repeat(64),venueQuote:'テスト会館 架空町1丁目',excerpt,application:'申込不要',communication:'sign',record,photos:p.photos};
+ const payload={...p,tip_state:'api_pending',tip_review:review};
+ sql(`$p=json_decode(base64_decode('${Buffer.from(JSON.stringify(payload)).toString('base64')}'),true);query('UPDATE submissions SET payload=?,revision=2 WHERE id=?',[json($p),'${sub.id}']);`);
+ let queue=JSON.parse(run(['server/event-tip-queue.php','--export']).stdout);ok(queue.items.length===1&&!JSON.stringify(queue).includes('店頭で見た告知です'),'queue projects reviewed material only');
+ const current=queue.items[0];
+ const d={id:sub.id,revision:current.revision,payloadHash:current.payloadHash,status:'ready',sourceRawHash:review.sourceRawHash,venueRawHash:review.venueRawHash,checkedAt:new Date().toISOString(),engine:'openai_complimentary',model:'gpt-6.1-sol',decision:{relevance:'yes',contentType:'announcement',facts:[{field:'startDate',value:date,evidence:date},{field:'venue',value:'テスト会館',evidence:'テスト会館'},{field:'application',value:'申込不要',evidence:'申込不要'},{field:'status',value:'scheduled',evidence:'開催します'},{field:'communication',value:'sign',evidence:'手話で交流'}]}};
+ const batch=(mode,data)=>run(['server/event-tip-queue.php',mode],JSON.stringify(data));
+ ok(batch('--apply',d).status===1,'plan SHA required');
+ ok(batch('--dry-run',{...d,sourceRawHash:'d'.repeat(64)}).status===1,'changed source blocked');
+ ok(batch('--dry-run',{...d,revision:1}).status===1,'stale submission blocked');
+ ok(batch('--dry-run',{...d,decision:{...d.decision,facts:d.decision.facts.filter(f=>f.field!=='application')}}).status===1,'incomplete API result blocked');
+ const protectedBefore=sql("$x=[];foreach(['users','settings','outbox'] as $t)$x[$t]=query('SELECT * FROM '.$t.' ORDER BY 1')->fetchAll();echo json($x);");
+ let plan=batch('--dry-run',d);ok(plan.status===0,plan.stderr);plan=JSON.parse(plan.stdout);ok(plan.status==='ready','dry run ready');
+ let applied=batch('--apply',{...d,planSha256:plan.planSha256});ok(applied.status===0,applied.stderr);const published=JSON.parse(applied.stdout);ok(published.status==='published','automatic transactional publication');
+ ok(batch('--apply',{...d,planSha256:plan.planSha256}).stdout.includes('already-published'),'idempotent replay');
+ ok(protectedBefore===sql("$x=[];foreach(['users','settings','outbox'] as $t)$x[$t]=query('SELECT * FROM '.$t.' ORDER BY 1')->fetchAll();echo json($x);"),'protected tables unchanged');
+ ok(readdirSync(join(dir,'event-tip-backups')).length===1,'one consistent backup');
+ r=await anon(published.path);ok(r.status===200&&r.text.includes('18:00')&&!r.text.includes('event-tip-photos')&&!r.text.includes('店頭で見た告知です'),'public data only');
+ ok((await anon('/connect/sign-cafe/events/')).text.includes('検証専用手話カフェ'),'listed as ordinary cafe event');
+ const dupId='f'.repeat(32);sql(`query('INSERT INTO submissions(id,payload,created_at,updated_at) VALUES(?,?,?,?)',['${dupId}',base64_decode('${Buffer.from(JSON.stringify(payload)).toString('base64')}'),now(),now()]);`);
+ queue=JSON.parse(run(['server/event-tip-queue.php','--export']).stdout);const dup=queue.items[0];ok(batch('--dry-run',{...d,id:dup.id,revision:dup.revision,payloadHash:dup.payloadHash}).status===1,'duplicate/absent photo never published');
+ ok(run(['server/cli.php','check']).status===0,'database integrity');
+ ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no runtime errors');
+ console.log(`Event tips integration: ${checks} checks passed`);
+}finally{server.kill();}
