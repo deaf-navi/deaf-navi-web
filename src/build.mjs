@@ -32,6 +32,7 @@ import { validEvent } from './lib/events.mjs';
 import { renderEventDetail, renderRetiredEvent } from './templates/event-detail.mjs';
 import { renderGuideTopics } from './templates/guide-topics.mjs';
 import { renderGuesthousesPage } from './templates/guesthouses.mjs';
+import { renderHearingDisasterPage } from './templates/hearing-disaster.mjs';
 import { GUESTHOUSES } from './guesthouses-data.mjs';
 import {assertPublicCopy} from './lib/public-copy.mjs';
 import { lodgingSnapshot } from './lib/lodging-snapshot.mjs';
@@ -203,6 +204,10 @@ async function main() {
   await writeDoc(guesthousesPage.file, guesthousesPage.html);
   await writeDoc('guesthouses.json', JSON.stringify(lodgingSnapshot(GUESTHOUSES), null, 2) + '\n');
   if (!IS_DEV) for (const page of renderNewsSections(data)) await writeDoc(page.file, page.html);
+  if (!IS_DEV) {
+    const disasterPage = renderHearingDisasterPage(data);
+    await writeDoc(disasterPage.file, disasterPage.html);
+  }
   for(const redirect of ENTRY_REDIRECTS)await writeDoc(redirect.from.slice(1)+'index.html',renderEntryRedirect(redirect));
   await copyFile(join(ROOT,'config','entry-redirects.json'),join(ROOT,'server','entry-redirects.json'));
   await writeFile(join(ROOT,'server','entry-redirects.caddy'),renderEntryRedirectsCaddy(),'utf8');

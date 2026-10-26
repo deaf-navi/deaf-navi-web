@@ -21,7 +21,7 @@ export function newsSectionArticles(section, articles) {
     .slice(0, 24);
 }
 
-function renderNewsSectionItem({ lead: article, articles: related }) {
+export function renderNewsSectionItem({ lead: article, articles: related }) {
   const sourceTier = getSourceTier(article);
   const sourceLabel = SOURCE_TIER_UI[sourceTier]?.label || '出典情報';
   const summary = article.summary && !/^聴覚・手話に関わる取り組みについてのお知らせです。/u.test(article.summary)
