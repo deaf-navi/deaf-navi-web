@@ -136,7 +136,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
-  <link rel="stylesheet" href="${basePath}site-shell.css?v=20261019newsnav">
+  <link rel="stylesheet" href="${basePath}site-shell.css?v=20261027tagline">
   <link rel="stylesheet" href="${basePath}support.css?v=20261016mobile2">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
@@ -195,7 +195,7 @@ export function renderGlobalHeader({ current = '', nav = {}, homeHref = './', ed
       <div class="dn-shell-top">
         <a class="dn-shell-brand" href="${escapeHtml(homeHref)}" aria-label="Deaf Navi ${en ? 'home' : 'ホーム'}">
           <span class="dn-shell-mark" aria-hidden="true"><img src="${escapeHtml(homeHref.includes('index') ? homeHref.slice(0, homeHref.lastIndexOf('/') + 1) : homeHref)}icons/icon-192.png?v=20260917c" alt="" width="44" height="44"></span>
-          <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">${escapeHtml(edition)}</span></span><small>${en ? 'News, places & everyday support' : '知ることを、つながるきっかけに。'}</small></span>
+          <span class="dn-shell-wordmark"><span class="dn-shell-name"><strong>Deaf Navi</strong><span class="dn-shell-edition">${escapeHtml(edition)}</span></span><small>${en ? 'News, places & everyday support' : '<span>知ることを、</span><span>つながるきっかけに。</span>'}</small></span>
         </a>
         ${renderDisplayControls()}
       </div>

@@ -32,6 +32,7 @@ html[data-font="xlarge"] { font-size: 125%; }
 :root[data-theme="dark"] .dn-shell-edition { background: #303334; border-color: #4a5556; color: #9edbd8; }
 .dn-shell-brand strong { display: block; font-size: 26px; line-height: 1.15; font-weight: 700; letter-spacing: -.04em; white-space: nowrap; }
 .dn-shell-brand small { display: block; margin-top: 4px; font-size: 11px; color: var(--shell-muted); letter-spacing: .05em; line-height: 1.4; }
+.dn-shell-brand small span { display: inline-block; }
 .dn-shell-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 11px; background: #087ef5; color: #fff; flex-shrink: 0; overflow: hidden; }
 .dn-shell-mark svg { width: 29px; height: 29px; stroke-width: 8; }
 .dn-shell-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
@@ -120,7 +121,7 @@ html[data-font="xlarge"] { font-size: 125%; }
   .dn-site-shell .site-nav { grid-template-columns: repeat(12,minmax(0,1fr)); width: 100%; gap: 0; }
   .dn-site-shell .site-nav__link { grid-column:span 3; padding: 9px 8px; font-size: 13px; min-height: 44px; }
   .dn-site-shell .site-nav__link:nth-child(n+5) { grid-column:span 3; }
-  .dn-shell-brand small { display: none; }
+  .dn-shell-brand small { margin-top: 2px; letter-spacing: 0; text-wrap: balance; }
   .dn-shell-top { min-height: 72px; }
   .dn-page-intro { padding-block: 20px; }
   .dn-public .dn-main, .dn-public .dn-footer, .dn-public.dn-cafe-hub .dn-main, .dn-public.dn-cafe-hub .dn-footer { padding-inline: 20px; }
