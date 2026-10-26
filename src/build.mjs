@@ -266,6 +266,7 @@ async function main() {
   await copyAsset(join(ASSETS, 'events.css'), 'events.css');
   await copyAsset(join(ASSETS, 'event-detail.js'), 'event-detail.js');
   await copyAsset(join(ASSETS, 'reader.css'), 'reader.css');
+  await copyAsset(join(ASSETS, 'guesthouses.js'), 'guesthouses.js');
   await copyAsset(join(__dirname, 'ui-controls.js'), 'ui-controls.js');
   await copyAsset(join(__dirname, 'og-image.svg'), FILES.og);
   await copyAsset(join(ROOT, 'content', 'connect', 'places.json'), join('data', 'connect', 'places.json'));

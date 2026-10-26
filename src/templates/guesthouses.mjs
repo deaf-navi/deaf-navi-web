@@ -6,9 +6,27 @@ import { renderReaderPage } from './reader.mjs';
 const highlights = {
   tarakoyu: '温泉があり、ペット同伴で泊まれる全6室の宿',
   'haru-no-sora': '1部屋のみ、通常は大人2人用の宿',
-  sakanagi: '善光寺そば、相部屋と個室がある素泊まり宿',
+  sakanagi: '善光寺そば、ドミトリー（相部屋）と個室がある素泊まり宿',
   'cozy-sign': 'ライダー以外も泊まれる、個室4室の小さな宿',
 };
+
+export const INQUIRY_TEMPLATE = '○月○日から○泊、大人○名で宿泊を検討しています。\n部屋は［個室／相部屋］を希望し、当日のやりとりは［手話／筆談］を希望します。\n空室状況と、暖房費や宿泊税など追加費用を含めた総額、また夜間・非常時の連絡方法について教えてください。';
+
+function renderComparison() {
+  const columns = [['rooms', '部屋タイプ'], ['booking', '文字での予約窓口'], ['emergency', '非常時の光・振動設備']];
+  return `<section class="guesthouse-comparison" aria-labelledby="comparison-heading">
+    <h2 id="comparison-heading">4施設を比べる</h2>
+    <p id="comparison-note" class="reader-note">比較情報の確認：2026-10-26。「未確認」は設備がないという意味ではありません。設備の使い方や夜間の対応は、予約前に宿へ確認してください。</p>
+    <table role="table" aria-labelledby="comparison-heading" aria-describedby="comparison-note">
+      <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">宿・地域</th>${columns.map(([, label]) => `<th scope="col" role="columnheader">${label}</th>`).join('')}</tr></thead>
+      <tbody role="rowgroup">${GUESTHOUSES.map(h => `<tr role="row">
+        <th scope="row" role="rowheader"><a href="#${e(h.id)}">${e(h.name)}</a><span class="guesthouse-comparison-area">${e(h.area)}</span></th>
+        ${columns.map(([key, label]) => `<td role="cell"><span class="guesthouse-comparison-label" aria-hidden="true">${label}</span>${e(h.comparison[key])}</td>`).join('')}
+      </tr>`).join('')}</tbody>
+    </table>
+    <p class="reader-note">宿名から詳しい案内・公式情報へ進めます。予約の確定条件や利用できるプランは宿ごとに異なります。</p>
+  </section>`;
+}
 
 function renderFacts(h, facts, heading, key, booking = false) {
   if (!facts.length) return '';
@@ -50,6 +68,7 @@ function renderMedia(h) {
 export function renderGuesthousesPage() {
   const body = `<p>ろう者が営むゲストハウスや民泊を紹介しています。宿ごとに会話の方法や設備は異なります。希望する対応と宿泊条件は、予約前に各宿へ確認してください。</p>
     <nav class="reader-links" aria-label="掲載している宿">${GUESTHOUSES.map(h => `<a href="#${e(h.id)}">${e(h.area)}：${e(h.name)}</a>`).join('')}<a href="#before-booking">予約前の確認</a></nav>
+    ${renderComparison()}
     <p class="reader-note">料金は確認時点の公式掲載例で、空室や予約金額を保証するものではありません。最新の料金・営業日・取消条件はリンク先で確認できます。予約・問い合わせは各宿へ直接お願いします。</p>
     ${GUESTHOUSES.map(h => `<section class="guesthouse-entry" id="${e(h.id)}" aria-labelledby="${e(h.id)}-heading">
       <header class="guesthouse-heading"><h2 id="${e(h.id)}-heading">${e(h.name)}</h2>
@@ -61,17 +80,29 @@ export function renderGuesthousesPage() {
       ${renderSources(h)}${renderMedia(h)}
     </section>`).join('')}
     <section class="guesthouse-closing" id="before-booking"><h2>予約前に確認しておくこと</h2>
-      <ul><li><strong>会話と連絡：</strong>手話・筆談など希望する方法、到着が遅れるときの連絡先、夜間にスタッフへ連絡する方法。手話が使えることから、常時スタッフが対応できるとは判断できません。</li>
+      <ul><li><strong>会話と連絡：</strong>手話・筆談など希望する会話方法、到着が遅れるときの連絡手段、夜間にスタッフへ連絡する方法を確認しましょう。手話で対応できる宿でも、時間帯によって対応できる人が不在の場合があります。希望する方法でやりとりできるか、事前に相談しておくと安心です。</li>
       <li><strong>部屋と共用設備：</strong>個室か相部屋か、階段の有無、浴室・トイレの共用範囲。ペットや子どもと泊まる場合は受入条件も確認します。</li>
       <li><strong>支払総額と取消条件：</strong>1人料金か1室料金か、宿泊税・冷暖房費・予約サイトの手数料、人数や日程を変える場合の扱い。最安値の表示だけで比べず、同じ条件で確認します。</li>
       <li><strong>非常時の知らせ方：</strong>光・振動などの設備の有無と使い方、避難口、夜間の対応。記載のない設備は「ない」と断定せず、宿へ確認してください。</li></ul>
-      <h3>文字で問い合わせるときの例</h3><p class="reader-example">○月○日から○泊、大人○人で宿泊を検討しています。個室を希望し、会話は筆談を使います。予約できる部屋と追加費用を含めた料金、夜間・非常時の連絡方法を教えてください。</p>
+      <h3>文字で問い合わせるときの例</h3>
+      <div class="guesthouse-inquiry">
+        <p id="inquiry-help" class="reader-note">希望の部屋と会話方法を選べます。コピー後に日付・泊数・人数を記入し、宿へ送ってください。</p>
+        <div class="guesthouse-inquiry-controls" data-inquiry-controls hidden>
+          <label for="inquiry-room">希望する部屋<select id="inquiry-room" name="room"><option value="">選んでください</option><option value="個室">個室</option><option value="相部屋">相部屋</option></select></label>
+          <label for="inquiry-communication">希望する会話方法<select id="inquiry-communication" name="communication"><option value="">選んでください</option><option value="手話">手話</option><option value="筆談">筆談</option></select></label>
+        </div>
+        <label class="guesthouse-inquiry-label" for="inquiry-text">問い合わせ文</label>
+        <textarea id="inquiry-text" name="inquiry" rows="7" readonly aria-describedby="inquiry-help">${e(INQUIRY_TEMPLATE)}</textarea>
+        <button type="button" data-copy-inquiry hidden>問い合わせ文をコピー</button>
+        <p class="reader-note" data-inquiry-status role="status" aria-live="polite" aria-atomic="true"></p>
+        <noscript><p class="reader-note">上の文章を選択してコピーし、［ ］内から希望する内容を選んで書き換えてください。</p></noscript>
+      </div>
     </section>
     <section class="guesthouse-closing"><h2>旅先で立ち寄る場所も探す</h2><nav class="reader-links" aria-label="関連する情報"><a href="/connect/sign-cafe/">手話カフェを探す</a><a href="/events.html">国内のイベントを見る</a><a href="/guide.html">暮らしのガイドへ</a></nav></section>
     <p class="reader-note">全国のすべての宿を掲載しているわけではありません。掲載内容の変更・追加情報は<a href="/about.html#about-correction">Deaf Naviのお問い合わせ</a>へお知らせください。</p>`;
   return {
     file: 'guide/guesthouses/index.html',
-    html: renderReaderPage({ ...guide, body, schemas: [{
+    html: renderReaderPage({ ...guide, body, scripts: '<script src="/guesthouses.js?v=20261026" defer></script>', schemas: [{
       '@context': 'https://schema.org', '@type': 'CollectionPage',
       name: guide.title, description: guide.description,
       url: new URL(guide.path, SITE_URL).href, dateModified: guide.reviewedAt,
