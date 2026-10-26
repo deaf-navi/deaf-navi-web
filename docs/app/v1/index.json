@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-26T08:03:50Z",
+  "generatedAt": "2026-10-26T08:49:46Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -21,7 +21,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v1.json",
       "count": 467,
-      "sourceGeneratedAt": "2026-10-26T08:03:50Z",
+      "sourceGeneratedAt": "2026-10-26T08:48:28Z",
       "categories": [
         {
           "id": "all",
@@ -113,7 +113,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-26T03:34:30Z",
+      "sourceGeneratedAt": "2026-10-26T08:49:46Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -195,8 +195,8 @@
         "japanesePostEdit": {
           "checked": 0,
           "updated": 0,
-          "cached": 415,
-          "skipped": 260,
+          "cached": 421,
+          "skipped": 268,
           "failed": 0,
           "enabled": true,
           "fallback": {
@@ -204,8 +204,8 @@
             "failures": 1,
             "circuitOpen": true
           },
-          "pending": 260,
-          "retainedPrevious": 97
+          "pending": 268,
+          "retainedPrevious": 82
         }
       }
     },
@@ -216,7 +216,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-26T03:34:30Z",
+      "sourceGeneratedAt": "2026-10-26T08:49:46Z",
       "language": "und",
       "regions": [
         {
@@ -298,7 +298,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 600,
-      "sourceGeneratedAt": "2026-10-26T03:34:30Z",
+      "sourceGeneratedAt": "2026-10-26T08:49:46Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
