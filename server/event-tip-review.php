@@ -25,6 +25,7 @@ function event_tip_review_save():void {
  $p=json_decode($s['payload'],true);if(!is_event_tip($p))fail('対象の投稿ではありません。');
  foreach(EVENT_TIP_CHECKS as $key=>$label)if(input($_POST,'check_'.$key,1)!=='1')fail('各確認項目の確認が必要です。');
  $record=[];foreach(['name'=>300,'activity_date'=>10,'business_hours'=>300,'venue_name'=>300,'prefecture'=>100,'city'=>200,'address'=>1000,'description'=>6000,'venue_url'=>2000] as $key=>$max){$record[$key]=input($_POST,$key,$max);if($record[$key]==='')fail('公開用の項目を入力してください。');}
+ assert_public_copy($record);
  $record['activity_date']=date_value($record['activity_date']);if(!event_tip_in_window($record['activity_date']))fail('自動掲載は本日から4暦月以内の開催が対象です。');
  $url=safe_url(input($_POST,'source_url',2000));$record['venue_url']=safe_url($record['venue_url']);
  $excerpt=input($_POST,'excerpt',4400);if(mb_strlen($excerpt)>1100)fail('引用は1100文字以内にしてください。');
@@ -62,6 +63,8 @@ function event_tip_decision(array $d,bool $apply):array {
  if(($p['tip_state']??'')==='published')return ['status'=>'already-published','id'=>$id,'recordId'=>$p['tip_record_id']];
  if($s['status']!=='pending'||($d['revision']??null)!==(int)$s['revision']||!hash_equals(hash('sha256',$s['payload']),input($d,'payloadHash',64)))fail('Submission changed',409);
  $publish=($d['status']??'')==='ready';$r=$p['tip_review']??null;
+ // Recheck even a previously approved/cached review at the final write boundary.
+ if($publish&&$r&&public_copy_issues($r['record'])){ $d['reason']='公開文に内部向けの調査メモがあります。Codexで文面を整理して再確認してください。';$publish=false; }
  $reason=input($d,'reason',1000)?:'照合に一致しません。根拠を再確認してください。';
  if(!$publish){
   if(!$apply)return ['status'=>'exception','id'=>$id];

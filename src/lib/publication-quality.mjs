@@ -1,3 +1,4 @@
+import {assertPublicCopy} from './public-copy.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import { DIRECT_FEEDS, EXPANDED_DIRECT_FEEDS, SOCIAL_FEEDS } from '../../config/sources.domestic.mjs';
 import { dedupeNearArticles, hydratePreviousArticle, publicationExclusionReason, explicitUnrelatedReason, stripInternal, QUALITY_VERSION } from './curation.mjs';
@@ -8,6 +9,7 @@ import { hasMistranslatedLibras } from './world-translation.mjs';
 const directFeeds = new Map([...DIRECT_FEEDS, ...EXPANDED_DIRECT_FEEDS, ...SOCIAL_FEEDS].map((feed) => [feed.sourceName, feed]));
 
 function withReview(data, articles, removed) {
+  assertPublicCopy(articles,'news');
   const currentReview = data.quality?.version === QUALITY_VERSION
     || (data.publicationReview?.version === QUALITY_VERSION
       && data.publicationReview?.inputGeneratedAt === data.generatedAt);

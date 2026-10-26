@@ -52,6 +52,7 @@ jobs:
       - name: Validate static release
         run: |
           set -euo pipefail
+          node scripts/verify-public-copy.mjs
           test -s docs/index.html
           test -s docs/404.html
           test -s docs/robots.txt
@@ -99,6 +100,7 @@ jobs:
           node test/cafe-seo.integration.mjs
           php test/cafe-event-recovery.php
           node test/cafe-event-recovery.integration.mjs
+          php test/public-copy.php
           node test/event-tips.integration.mjs
           node test/cafe-events.integration.mjs
           node test/cafe-event-curation.integration.mjs

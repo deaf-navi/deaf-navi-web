@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import {assertPublicCopy} from './lib/public-copy.mjs';
 import { SITE_URL } from '../config/site.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -601,6 +602,8 @@ async function main() {
     readJson('articles-world.json'),
   ]);
 
+  assertPublicCopy(domestic.articles??[],'news');
+  assertPublicCopy(world.articles??[],'news');
   await mkdir(APP_DIR, { recursive: true });
 
   await writeJson('domestic.json', buildDomesticPayload(domestic, {

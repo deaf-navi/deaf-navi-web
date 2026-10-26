@@ -130,3 +130,11 @@ DEAFNAVI_AI_STATE_DIR=/srv/deafnavi/shared/ai node /srv/deaf-navi-codex-app-serv
 定期サービスのReadWritePathsは既存aiと、この投稿掲載に必要な既存directoryのみ。DB書込みCLIはrunuserで既存deafnavi-runtimeとして実行し、所有者・DB権限・管理画面認証・共有設定を変更しない。公開PHPを先に配備し、その後curation-batchを同じコミットへ切り替える。専用service定義をバックアップしてdaemon-reloadするが、動作中処理を止めない。投稿のない確認で余分な生成を行わない。
 
 管理画面の情報提供一覧は「根拠確認待ち / API照合待ち / 判断が必要」を表示する。理由は投稿内、機械処理の件数/成否は私有event-tip-review.jsonに残す。例外は次の日の09:00以降または管理者の再確認後に再照合し、既知の例外を同日に連打しない。掲載結果不明は投稿・固定record IDを照合し、成功したAPIを再送しない。新規掲載・重要差分・障害だけ通知する。
+
+## 公開文への内部メモ混入防止（2026-10-26）
+
+server/public-copy-rules.json を正本に、公開フィールドだけを検査する。ニュース・World・国内イベント・宿泊案内のビルド、アプリ用JSON、生成HTMLのverifyと本番リリース前、カフェの公開保存、フォーム投稿の根拠確認保存・API前・最終掲載時に適用する。内部作業の文言を検出した場合は PUBLIC_COPY_REVIEW_REQUIRED / public-copy-review-required として公開を止める。フォームは私有の確認待ちへ戻す。原文を自動削除・要約せず、Codexが参加者向けに書き直し、調査経緯は既存のreview_notes/internal_note/evidenceへ保持する。難しい判断だけ利用者へ相談する。
+
+料金・予約・対象・受付/中止・未発表・以前の告知に基づく注意・自動翻訳の説明は維持する。「確認中」「未確認」だけを禁止語にしない。新たな混入パターンには、妥当な注意事項の許容例も加えてJS/PHP共通の回帰検証を行う。機械検査は補助であり、初回の内容確認や公式根拠・48時間鮮度・共有適性・無料枠条件を置き換えない。判定で公開確認日時や掲載状態を自動更新しない。ログにはフィールド名と規則IDだけを出し、投稿本文を出力しない。
+
+配備順は公開PHP→同じコミットのcuration-batch。バッチ側にもserver/public-copy-rules.jsonを同梱する。定期処理を重複起動せず、既知で変化のない例外のAPI再送は行わない。
