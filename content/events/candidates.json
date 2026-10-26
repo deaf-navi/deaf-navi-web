@@ -621,9 +621,120 @@
       "evidenceUrls": [
         "https://www.musashino.or.jp/place/1001585/1010111.html"
       ]
+    },
+    {
+      "sourceUrl": "https://www.city.nagano.nagano.jp/n102000/contents/p005999.html",
+      "sourceName": "長野市",
+      "state": "published_ready",
+      "discoveredOn": "2026-10-26",
+      "checkedAt": "2026-10-26T00:21:57.911Z",
+      "recheckAfter": "2026-10-27T00:00:00Z",
+      "reason": "市公式本文と6.1 Solによる短文抽出を照合。聞こえにくさとコミュニケーションの講演・参加型討議、要約筆記・手話通訳・ヒアリングループを明記。",
+      "missing": [],
+      "eventIds": [
+        "nagano-rabbit-10th-2026-11-01"
+      ]
+    },
+    {
+      "sourceUrl": "https://www.tfd.deaf.tokyo/post-6128/",
+      "sourceName": "東京都聴覚障害者連盟",
+      "state": "needs_review",
+      "discoveredOn": "2026-10-26",
+      "checkedAt": "2026-10-26T00:21:57.911Z",
+      "recheckAfter": "2026-10-27T00:00:00Z",
+      "reason": "11月15日の会場・申込締切11月10日・無料・手話通訳と要約筆記は公式本文で確認。全体終了16:30と第2部終了16:40が本文内で不一致。公式PDFも第2部16:40。終了時刻を勝手に統合せず非公開で追跡。",
+      "missing": [
+        "全体終了時刻の不一致解消"
+      ],
+      "evidenceUrls": [
+        "https://www.tfd.deaf.tokyo/post-6128/",
+        "https://www.tfd.deaf.tokyo/wp-content/uploads/2026/10/2e0ceff2f5a5b1e3420ffe3fbd76fb3f.pdf"
+      ]
     }
   ],
   "lastResearch": {
+    "checkedAt": "2026-10-26T00:21:57.911Z",
+    "newDetailedCandidates": 2,
+    "newDetailedPages": 2,
+    "windowEnd": "2026-12-07",
+    "performanceWindowEnd": "2027-04-26",
+    "publishedReady": [
+      "nagano-rabbit-10th-2026-11-01"
+    ],
+    "restored": [
+      "tonancyo-community-2026-11-03",
+      "komatsu-shuwa-stage-2026-11-08",
+      "kaat-kaeru-captions-2026-11-06",
+      "kaat-kaeru-captions-2026-11-07",
+      "dream-begin-2026-11-01",
+      "kanagawa-shuwa-go-2026-11-03",
+      "fujieda-summary-mini-2026-11-08"
+    ],
+    "scope": "確認期限一覧を優先し、近日7開催回を公式HTML・PDF・SNSの実読で再確認。国内新規2候補を詳査し長野1件を追加、東京1件は時刻不一致で保留。カフェは別台帳で2開催回を再確認し全国・北海道東北7道県・4暦月先とスターバックスの探索を記録。宿泊はサーバーの一致8項目を利用し同じ文面を再取得しない。",
+    "held": [
+      {
+        "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41929/",
+        "reason": "当日直接取得404。取得不能と開催中止を区別。",
+        "recheckAfter": "2026-10-27T00:00:00Z"
+      },
+      {
+        "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
+        "reason": "当日直接取得404。開催条件を流用せず目視日時を延長しない。",
+        "recheckAfter": "2026-10-27T00:00:00Z"
+      },
+      {
+        "sourceUrl": "https://www.geigeki.jp/accessibility/support/t415-t415-12/",
+        "reason": "当日08:12 JSTの定時取得503を共用。重複取得をせず確認不能を保持。",
+        "recheckAfter": "2026-10-27T00:00:00Z"
+      },
+      {
+        "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261101-417.html",
+        "reason": "当日08:12 JSTの定時取得503を共用。重複取得をせず確認不能を保持。",
+        "recheckAfter": "2026-10-27T00:00:00Z"
+      }
+    ],
+    "deferredLaterDue": [
+      "fureai-shuwa-2026-11-14",
+      "sapporo-higashi-shuwa-2026-11-15",
+      "tonancyo-kikoe-festa-2026-11-22",
+      "jinnancho-beginner-2026-11-27",
+      "spac-nihonjin-sign-2026-12-05",
+      "jtd-kyogen-hatsuharu-2027-01-30"
+    ],
+    "api": {
+      "submitted": 1,
+      "cached": 0,
+      "corroborated": 0,
+      "exceptions": 1,
+      "note": "新規長野1件。状態と情報保障の既存baseline不足を人が本文と照合して掲載判断。未知の通信や根拠不正ではない。"
+    },
+    "newsReview": {
+      "counts": {
+        "uniqueInputs": 3110,
+        "alreadyPublished": 978,
+        "outsideWindow": 1745,
+        "hardExcluded": 11,
+        "duplicateOfPublished": 125,
+        "candidateDuplicates": 3,
+        "eligible": 248,
+        "queued": 40,
+        "deferred": 208
+      },
+      "comparison": {
+        "previousGeneratedAt": "2026-10-25T13:45:06.038Z",
+        "previousQueued": 40,
+        "retained": 40,
+        "new": 0,
+        "changed": 0,
+        "unchanged": 40
+      },
+      "inspected": 0,
+      "published": 0,
+      "apiSubmitted": 0,
+      "note": "新規・変更候補0。未変更のフィード文面を公式本文の実確認と扱わない。"
+    }
+  },
+  "previousResearch": {
     "checkedAt": "2026-10-25T00:16:44.881Z",
     "newDetailedCandidates": 0,
     "newDetailedPages": 0,
@@ -683,72 +794,5 @@
     "visualRechecked": [
       "mimisuppo-shiroishi-2026-10-27"
     ]
-  },
-  "previousResearch": {
-    "checkedAt": "2026-10-24T00:22:47.802Z",
-    "newDetailedCandidates": 1,
-    "newDetailedPages": 1,
-    "windowEnd": "2026-12-05",
-    "performanceWindowEnd": "2027-04-24",
-    "publishedReady": [
-      "musashino-deaf-lecture-2026-11-21"
-    ],
-    "restored": [
-      "horipro-jack-captions-2027-01-30",
-      "horipro-jack-captions-2027-02-02",
-      "horipro-jack-captions-2027-02-03",
-      "horipro-jack-captions-2027-02-06",
-      "horipro-jack-captions-2027-02-07",
-      "maimu-zarela-sunagawa-2026-10-25"
-    ],
-    "visualRechecked": [
-      "maimu-zarela-sunagawa-2026-10-25"
-    ],
-    "scope": "東京・神奈川と全国の公式・専門情報、九州7県のカフェを探索。登録済みや近似重複は調べ直さず、新規の武蔵野講座と復旧したホリプロ本文、翌日の砂川公演の公式画像を実確認。カフェの3回の再確認と宿泊週次探索は私有台帳へ記録。",
-    "api": {
-      "source": "server-curation.json",
-      "selected": 23,
-      "cached": 21,
-      "corroborated": 6,
-      "reviewedUnchanged": 6,
-      "exceptions": 42,
-      "submittedThisRun": 0,
-      "newEventSubmitted": 1,
-      "newEventExceptions": 1,
-      "newEventModel": "gpt-6.1-sol",
-      "note": "新規講座の抽出は正常。未掲載の空の比較基準との差を手動で公式本文と照合。日次CLIは重複実行せず、保存済み自動比較を参照。"
-    },
-    "held": [
-      {
-        "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
-        "reason": "直接取得は404。主催者本文と画像で札幌の日程・時刻・会場・料金は確認できたが、会場本文にあった受付条件の現況を確認できず今回は確認日時を延長しない。次回は主催者の予約案内も含めて照合。",
-        "recheckAfter": "2026-10-25T00:00:00Z"
-      }
-    ],
-    "newsReview": {
-      "counts": {
-        "uniqueInputs": 3190,
-        "alreadyPublished": 985,
-        "outsideWindow": 1803,
-        "hardExcluded": 10,
-        "duplicateOfPublished": 130,
-        "candidateDuplicates": 5,
-        "eligible": 257,
-        "queued": 40,
-        "deferred": 217
-      },
-      "comparison": {
-        "previousGeneratedAt": "2026-10-23T22:47:13.719Z",
-        "previousQueued": 40,
-        "retained": 40,
-        "new": 0,
-        "changed": 0,
-        "unchanged": 40
-      },
-      "inspected": 0,
-      "published": 0,
-      "apiSubmitted": 0,
-      "note": "新規・変更候補なし。未変更フィードは公式本文の再確認を意味しない。"
-    }
   }
 }
