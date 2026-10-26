@@ -7,7 +7,11 @@ function public_copy_issues(array $record,string $kind='cafe'):array {
  $issues=[];
  $visit=function($value,string $path)use(&$visit,&$issues,$policy):void {
   if(is_string($value)){
-   $text=mb_convert_kana($value,'asKV','UTF-8');
+   // Core PHP only: the production CLI does not load mbstring.
+   $text=preg_replace_callback('/[\x{FF01}-\x{FF5E}]/u',static function(array $m):string {
+    $b=unpack('C*',$m[0]);$code=(($b[1]&15)<<12)|(($b[2]&63)<<6)|($b[3]&63);
+    return chr($code-0xFEE0);
+   },$value);
    $text=preg_replace('/[\s\p{Z}\p{Cf}]+/u','',$text);
    foreach($policy['rules'] as $rule)if(preg_match('~'.$rule['pattern'].'~iu',$text))$issues[]=['field'=>$path,'rule'=>$rule['id']];
   }elseif(is_array($value)){

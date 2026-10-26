@@ -41,7 +41,7 @@ jobs:
           node test/engagement.integration.mjs
           php test/cafe-event-recovery.php
           node test/cafe-event-recovery.integration.mjs
-          php test/public-copy.php
+          php -n test/public-copy.php
           node test/event-tips.integration.mjs
           node test/cafe-events.integration.mjs
           node test/cafe-event-curation.integration.mjs
