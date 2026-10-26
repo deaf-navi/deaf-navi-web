@@ -1,0 +1,19 @@
+{
+  "reviewedOn": "2026-10-26",
+  "scope": "Guesthouse comparison, Haru closure, access, terminology and inquiry template",
+  "sources": [
+    {"url":"https://haru-aozora-com.sakura.ne.jp/minpaku.html","findings":["Closure explicitly limited to 2026-05-10 through 2026-06-06; spring rates must not be extended","One room, usually two adults; direct booking via LINE/email"],"unknown":["2027 and later opening/rates for the same period","Visual/vibration emergency equipment"]},
+    {"url":"https://www.airbnb.jp/rooms/662582894146083389","findings":["Host listing available; rates/conditions separate from direct booking"]},
+    {"url":"https://tarako-yu.sakura.ne.jp/kojohama/access/","findings":["Kojohama station: 2 minutes on foot","Noboribetsu-higashi IC: 5 minutes by car"],"rejectedSuggestion":"25 minutes on foot from station","unknown":["Parking availability, price and capacity"]},
+    {"url":"https://tarako-yu.sakura.ne.jp/kojohama/room/","findings":["Six named rooms, futon bedding, shared facilities"],"unknown":["Visual/vibration emergency equipment"],"retrieval":"Web reader timed out; official HTML fetched directly and room content inspected"},
+    {"url":"https://tarako-yu.sakura.ne.jp/kojohama/reserve/","findings":["LINE, email and telephone booking"]},
+    {"url":"https://sakanagi-gh.com/rooms/","findings":["Mixed dormitory and private rooms","Official terminology: 光る火災警報器 and 呼び出し灯"],"unknown":["Vibration emergency equipment"]},
+    {"url":"https://sakanagi-gh.com/reservation/","findings":["Booking form and LINE, confirmation email required"]},
+    {"url":"https://sakanagi-gh.com/contact/","findings":["Contact form and LINE; replies by email; no phone","No direct email booking address verified; avoid presenting reply email as a separate booking channel"]},
+    {"url":"https://select-type.com/s/?s=7Qkr-WUF9hQ","findings":["Sabae station: 20 minutes by car; Sabae IC: 25 minutes","Private-room plan includes one parking space; conditions depend on plan","Four private rooms, rider-only dormitory plan also offered","Airbnb normally, SMS/telephone for rider-only plan","Fire alarm linked to light/vibration device, emergency buttons in shared areas"],"rejectedSuggestion":"25 minutes by car from Takefu station; unsupported by official page","editorialNote":"Use station name without the outdated JR operator prefix in the source"}
+  ],
+  "datePolicy": "Original facility/media review dates retained; comparison and additions explicitly dated 2026-10-26. Guide modification date advanced only.",
+  "spacing": "Current template already has no whitespace after opening parenthesis; preserved and tested.",
+  "referenceImage": "Original referenced chat records one image attachment but does not expose its pixels; current public layout used as reference.",
+  "unknownDoesNotMeanAbsent": true
+}
