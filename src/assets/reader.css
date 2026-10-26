@@ -38,17 +38,28 @@
 .reader-news h3 a{display:block;min-height:44px}
 
 /* Lodging entries keep facts readable without the narrow mobile label column. */
-.guesthouse-entry{margin-top:40px;padding-top:24px;border-top:1px solid var(--border-default);scroll-margin-top:7rem}
+.guesthouse-entry{margin-top:56px;padding-top:24px;border-top:2px solid var(--accent-deep);scroll-margin-top:7rem}
 .reader .guesthouse-heading h2{margin:0;font-size:clamp(1.3rem,2.5vw,1.5rem);line-height:1.6;text-wrap:balance}
 .reader .guesthouse-area{margin:4px 0 0;color:var(--text-secondary);font-size:.875rem}
 .reader .guesthouse-highlight{margin:12px 0 4px;font-size:1.0625rem;font-weight:600;text-wrap:pretty}
-.reader .guesthouse-details h3{margin:28px 0 8px;font-size:1.0625rem;line-height:1.7;scroll-margin-top:7rem}
-.guesthouse-details .reader-facts{margin:0 0 12px;border-top:0}
+.reader .guesthouse-details h3,.reader .guesthouse-media h3,.reader .guesthouse-closing h3,.reader .disaster-group h3{margin:36px 0 4px;padding:.3em .6em;background:var(--accent-soft);border-bottom:1px solid transparent;color:var(--text-primary);font-size:1.0625rem;line-height:1.7;text-wrap:balance;scroll-margin-top:7rem}
+.guesthouse-details .reader-facts{margin:0 0 12px;border-block:0}
 .guesthouse-details .reader-facts dt{font-weight:600}
 .guesthouse-entry .guesthouse-media{margin-top:28px}
 .guesthouse-sources{margin-top:12px}
 .reader .guesthouse-sources .reader-note{margin-bottom:0}
 .guesthouse-sources .reader-links a{font-size:.875rem}
-.guesthouse-entry+#before-booking{margin-top:40px;border-top:1px solid var(--border-default)}
-@media(max-width:600px){.guesthouse-entry{margin-top:32px;padding-top:20px}.guesthouse-details .reader-facts>div{grid-template-columns:minmax(0,1fr);gap:4px;padding-block:12px}.guesthouse-details .reader-facts dt{font-size:.875rem}}
+.reader .guesthouse-closing{margin-top:56px;border-top:2px solid var(--accent-deep);scroll-margin-top:7rem}
+.reader .guesthouse-closing>h2{margin-top:24px}
+@media(max-width:600px){.guesthouse-entry{margin-top:44px;padding-top:20px}.guesthouse-details .reader-facts>div{grid-template-columns:minmax(0,1fr);gap:4px;padding-block:12px}.guesthouse-details .reader-facts dt{font-size:.875rem}}
 @media(max-width:719px){:root[data-font] .guesthouse-details .reader-facts>div{grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* These two guides use accent rules for sections, a heading-only tint for groups,
+   and hairlines between items. Body copy stays on the shared page surface. */
+.guesthouse-media .reader-resources li,.disaster-group .reader-resources li{border-top:1px solid var(--border-subtle);padding:14px 0 16px}
+.guesthouse-media .reader-resources li:first-child,.disaster-group .reader-resources li:first-child{border-top:0;padding-top:8px}
+.reader .disaster-group h4{margin:0 0 2px;font-size:1rem;line-height:1.7;text-wrap:balance}
+.reader .disaster-part{margin-top:56px;border-top:2px solid var(--accent-deep)}
+.reader .disaster-part>h2{margin-top:20px;scroll-margin-top:7rem}
+@media(max-width:600px){.reader .disaster-part,.reader .guesthouse-closing{margin-top:44px}.reader .guesthouse-details h3,.reader .guesthouse-media h3,.reader .guesthouse-closing h3,.reader .disaster-group h3{margin-top:28px}}
+@media(forced-colors:active){.reader .guesthouse-details h3,.reader .guesthouse-media h3,.reader .guesthouse-closing h3,.reader .disaster-group h3{border-bottom-color:CanvasText}}
