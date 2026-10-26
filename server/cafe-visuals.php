@@ -49,7 +49,7 @@ function cafe_welcome(string $scope,string $title):string {
         'community'=>'手話や筆談での交流を楽しめる場所をご案内します。',
         'events'=>'一日だけ開く手話カフェや交流企画。開催日・会場・参加条件から、次のお出かけを探せます。',
     };
-    return '<header class="dn-cafe-welcome dn-welcome--'.$scope.'"><div class="dn-welcome-copy"><h1>'.e($title).'</h1></div><div class="dn-welcome-aside"><div><p class="dn-welcome-message">手話のある、ひと息を。</p><p class="dn-welcome-description">'.e($description).'</p></div></div></header>';
+    return '<header class="dn-cafe-welcome dn-welcome--'.$scope.'"><div class="dn-welcome-copy"><h1>'.e($title).'</h1></div><div class="dn-welcome-aside"><div><p class="dn-welcome-description">'.e($description).'</p></div></div></header>';
 }
 
 function cafe_filter_panel(string $form,bool $events=false):string {
