@@ -10,13 +10,13 @@ const highlights = {
   'cozy-sign': 'ライダー以外も泊まれる、個室4室の小さな宿',
 };
 
-export const INQUIRY_TEMPLATE = '○月○日から○泊、大人○名で宿泊を検討しています。\n部屋は［個室／相部屋］を希望し、当日のやりとりは［手話／筆談］を希望します。\n空室状況と、暖房費や宿泊税など追加費用を含めた総額、また夜間・非常時の連絡方法について教えてください。';
+export const INQUIRY_TEMPLATE = '○月○日から○泊、大人○名・子ども○名で宿泊を検討しています。子どもがいる場合の年齢：○歳。\n部屋は［個室／相部屋／指定なし］を希望します。\n当日のやりとりは［手話／筆談／口話／音声認識アプリ／どれでも可］を希望します。\n空室状況と、暖房費や宿泊税など追加費用を含めた総額を教えてください。\nまた、光・振動で知らせる設備の有無と、到着が遅れるときや夜間・非常時の連絡方法を教えてください。';
 
 function renderComparison() {
-  const columns = [['rooms', '部屋タイプ'], ['booking', '文字での予約窓口'], ['emergency', '非常時の光・振動設備']];
+  const columns = [['rooms', '部屋タイプ'], ['booking', '予約窓口'], ['emergency', '非常時の光・振動設備']];
   return `<section class="guesthouse-comparison" aria-labelledby="comparison-heading">
-    <h2 id="comparison-heading">4施設を比べる</h2>
-    <p id="comparison-note" class="reader-note">比較情報の確認：2026-10-26。「未確認」は設備がないという意味ではありません。設備の使い方や夜間の対応は、予約前に宿へ確認してください。</p>
+    <h2 id="comparison-heading">${GUESTHOUSES.length}施設を比べる</h2>
+    <p id="comparison-note" class="reader-note">「未確認」は設備がないという意味ではありません。設備の使い方や夜間の対応は、予約前に宿へ確認してください。公式案内の確認日は各施設の詳しい説明に記載しています。</p>
     <table role="table" aria-labelledby="comparison-heading" aria-describedby="comparison-note">
       <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">宿・地域</th>${columns.map(([, label]) => `<th scope="col" role="columnheader">${label}</th>`).join('')}</tr></thead>
       <tbody role="rowgroup">${GUESTHOUSES.map(h => `<tr role="row">
@@ -33,14 +33,14 @@ function renderFacts(h, facts, heading, key, booking = false) {
   return `<div class="guesthouse-details" aria-labelledby="${e(h.id)}-${key}">
     <h3 id="${e(h.id)}-${key}">${e(heading)}</h3>
     <dl class="reader-facts">${facts.map(([label, text]) => `<div><dt>${e(label)}</dt><dd>${e(text)}</dd></div>`).join('')}</dl>${booking ? `
-    <p class="reader-actions"><a href="${e(h.bookingUrl)}" data-guesthouse-booking target="_blank" rel="noopener noreferrer">${e(h.name)}の公式予約案内（新しいタブ）</a></p>` : ''}
+    <p class="reader-actions"><a href="${e(h.bookingUrl)}" data-guesthouse-booking target="_blank" rel="noopener noreferrer">${e(h.name)}の公式予約案内（新しいタブ）</a></p>${h.bookingLinks?.length ? `<nav class="reader-links" aria-label="${e(h.name)}の予約プラン">${h.bookingLinks.map(link => `<a href="${e(link.url)}" data-guesthouse-booking target="_blank" rel="noopener noreferrer">${e(link.label)}（新しいタブ）</a>`).join('')}</nav>` : ''}` : ''}
   </div>`;
 }
 
 function renderDetails(h) {
   const conversation = new Set(['運営・会話']);
-  const stay = new Set(['客室・滞在', '所在地']);
-  const booking = new Set(['予約', '料金の目安', '追加料金・支払い', '予約前の確認']);
+  const stay = new Set(['客室・滞在', '備品・持ち物', '光・振動の設備', '所在地']);
+  const booking = new Set(['予約', '料金の目安', '追加料金・支払い', '子ども連れ', '時間外の入退室', '到着・出入り', '貸切・連泊', '補助犬の同伴', '予約前の確認']);
   return renderFacts(h, h.facts.filter(([label]) => conversation.has(label)), '運営者と会話', 'conversation')
     + renderFacts(h, h.facts.filter(([label]) => stay.has(label)), '部屋と所在地', 'stay')
     + renderFacts(h, h.facts.filter(([label]) => !conversation.has(label) && !stay.has(label) && !booking.has(label)), 'その他の案内', 'other')
@@ -66,8 +66,7 @@ function renderMedia(h) {
 }
 
 export function renderGuesthousesPage() {
-  const body = `<p>ろう者が営むゲストハウスや民泊を紹介しています。宿ごとに会話の方法や設備は異なります。希望する対応と宿泊条件は、予約前に各宿へ確認してください。</p>
-    <nav class="reader-links" aria-label="掲載している宿">${GUESTHOUSES.map(h => `<a href="#${e(h.id)}">${e(h.area)}：${e(h.name)}</a>`).join('')}<a href="#before-booking">予約前の確認</a></nav>
+  const body = `<nav class="reader-links" aria-label="掲載している宿">${GUESTHOUSES.map(h => `<a href="#${e(h.id)}">${e(h.area)}：${e(h.name)}</a>`).join('')}<a href="#before-booking">予約前の確認</a></nav>
     ${renderComparison()}
     <p class="reader-note">料金は確認時点の公式掲載例で、空室や予約金額を保証するものではありません。最新の料金・営業日・取消条件はリンク先で確認できます。予約・問い合わせは各宿へ直接お願いします。</p>
     ${GUESTHOUSES.map(h => `<section class="guesthouse-entry" id="${e(h.id)}" aria-labelledby="${e(h.id)}-heading">
@@ -86,11 +85,13 @@ export function renderGuesthousesPage() {
       <li><strong>非常時の知らせ方：</strong>光・振動などの設備の有無と使い方、避難口、夜間の対応。記載のない設備は「ない」と断定せず、宿へ確認してください。</li></ul>
       <h3>文字で問い合わせるときの例</h3>
       <div class="guesthouse-inquiry">
-        <p id="inquiry-help" class="reader-note">希望の部屋と会話方法を選べます。コピー後に日付・泊数・人数を記入し、宿へ送ってください。</p>
+        <p id="inquiry-help" class="reader-note">希望の部屋・会話方法・子どもの人数を文面に反映できます。コピー後に日付・泊数・大人の人数・子どもの年齢を記入し、宿へ送ってください。ここで選んだ内容や人数は送信・保存されません。</p>
         <div class="guesthouse-inquiry-controls" data-inquiry-controls hidden>
-          <label for="inquiry-room">希望する部屋<select id="inquiry-room" name="room"><option value="">選んでください</option><option value="個室">個室</option><option value="相部屋">相部屋</option></select></label>
-          <label for="inquiry-communication">希望する会話方法<select id="inquiry-communication" name="communication"><option value="">選んでください</option><option value="手話">手話</option><option value="筆談">筆談</option></select></label>
+          <label for="inquiry-room">希望する部屋<select id="inquiry-room" name="room" autocomplete="off"><option value="">選んでください</option><option value="個室">個室</option><option value="相部屋">相部屋</option><option value="指定なし">指定なし</option></select></label>
+          <label for="inquiry-communication">希望する会話方法<select id="inquiry-communication" name="communication" autocomplete="off"><option value="">選んでください</option><option value="手話">手話</option><option value="筆談">筆談</option><option value="口話">口話</option><option value="音声認識アプリ">音声認識アプリ</option><option value="どれでも可">どれでも可</option></select></label>
+          <label for="inquiry-children">子どもの人数（任意）<input id="inquiry-children" name="children" autocomplete="off" type="number" min="0" max="99" step="1" inputmode="numeric" placeholder="例：2" aria-describedby="inquiry-children-help"></label>
         </div>
+        <p id="inquiry-children-help" class="reader-note">子どもがいない場合は0、未入力なら文面に「○名」を残します。子どもの年齢区分・料金・定員は宿や予約方法によって異なります。</p>
         <label class="guesthouse-inquiry-label" for="inquiry-text">問い合わせ文</label>
         <textarea id="inquiry-text" name="inquiry" rows="7" readonly aria-describedby="inquiry-help">${e(INQUIRY_TEMPLATE)}</textarea>
         <button type="button" data-copy-inquiry hidden>問い合わせ文をコピー</button>
@@ -102,7 +103,7 @@ export function renderGuesthousesPage() {
     <p class="reader-note">全国のすべての宿を掲載しているわけではありません。掲載内容の変更・追加情報は<a href="/about.html#about-correction">Deaf Naviのお問い合わせ</a>へお知らせください。</p>`;
   return {
     file: 'guide/guesthouses/index.html',
-    html: renderReaderPage({ ...guide, body, scripts: '<script src="/guesthouses.js?v=20261026" defer></script>', schemas: [{
+    html: renderReaderPage({ ...guide, body, scripts: '<script src="/guesthouses.js?v=20261026details" defer></script>', schemas: [{
       '@context': 'https://schema.org', '@type': 'CollectionPage',
       name: guide.title, description: guide.description,
       url: new URL(guide.path, SITE_URL).href, dateModified: guide.reviewedAt,

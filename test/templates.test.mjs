@@ -164,13 +164,13 @@ test('guesthouse guide keeps year-scoped closure and unknown accessibility facts
   const {renderGuesthousesPage} = await import('../src/templates/guesthouses.mjs');
   const haru = GUESTHOUSES.find(h => h.id === 'haru-no-sora');
   const rate = haru.facts.find(([label]) => label === '料金の目安')[1];
-  assert.match(rate, /2026年5月10日〜6月6日は休館/);
-  assert.match(rate, /2027年以降.*要確認/);
+  assert.doesNotMatch(rate, /毎年.*休館|2026年5月10日〜6月6日は休館/);
+  assert.match(rate, /5\/10〜6\/6の今後の営業・料金は宿へ確認/);
   assert.doesNotMatch(rate, /春秋（4\/26〜6\/6/);
   for (const id of ['tarakoyu', 'haru-no-sora']) assert.match(GUESTHOUSES.find(h => h.id === id).comparison.emergency, /未確認/);
   const html = renderGuesthousesPage().html;
   assert.match(html, /未確認.*設備がないという意味ではありません/);
   assert.doesNotMatch(html, /（\s+<time/);
-  assert.match(html, /［個室／相部屋］/);
-  assert.match(html, /［手話／筆談］/);
+  assert.match(html, /［個室／相部屋／指定なし］/);
+  assert.match(html, /［手話／筆談／口話／音声認識アプリ／どれでも可］/);
 });

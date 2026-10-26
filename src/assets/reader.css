@@ -51,14 +51,14 @@
 .guesthouse-inquiry-controls{display:flex;flex-wrap:wrap;gap:12px 24px;margin:16px 0}
 .guesthouse-inquiry-controls[hidden],.guesthouse-inquiry button[hidden]{display:none}
 .guesthouse-inquiry-controls label{display:grid;gap:4px;flex:1 1 12rem;min-width:0}
-.guesthouse-inquiry select,.guesthouse-inquiry textarea,.guesthouse-inquiry button{font:inherit;color:var(--text-primary);background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:4px;max-width:100%}
-.guesthouse-inquiry select,.guesthouse-inquiry button{min-height:44px;padding:8px 12px}
+.guesthouse-inquiry select,.guesthouse-inquiry input,.guesthouse-inquiry textarea,.guesthouse-inquiry button{font:inherit;color:var(--text-primary);background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:4px;max-width:100%}
+.guesthouse-inquiry select,.guesthouse-inquiry input,.guesthouse-inquiry button{min-height:44px;padding:8px 12px}
 .guesthouse-inquiry-label{display:block;margin-bottom:6px;font-weight:600}
 .guesthouse-inquiry textarea{display:block;box-sizing:border-box;width:100%;padding:12px;line-height:1.9;resize:vertical}
 .guesthouse-inquiry button{margin-top:12px;cursor:pointer;font-weight:600;color:var(--accent-deep);touch-action:manipulation}
 .guesthouse-inquiry button:hover{background:var(--accent-soft)}
 .guesthouse-inquiry button:disabled{cursor:wait;opacity:.7}
-.guesthouse-inquiry :is(select,textarea,button):focus-visible,.guesthouse-comparison a:focus-visible{outline:3px solid var(--accent-deep);outline-offset:3px}
+.guesthouse-inquiry :is(select,input,textarea,button):focus-visible,.guesthouse-comparison a:focus-visible{outline:3px solid var(--accent-deep);outline-offset:3px}
 .guesthouse-inquiry [role=status]{min-height:1.9em}
 @media(max-width:700px){
   .guesthouse-comparison table,.guesthouse-comparison tbody{display:block}
