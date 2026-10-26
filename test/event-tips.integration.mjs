@@ -64,6 +64,17 @@ try{
  ok((await anon('/connect/sign-cafe/events/')).text.includes('検証専用手話カフェ'),'listed as ordinary cafe event');
  const dupId='f'.repeat(32);sql(`query('INSERT INTO submissions(id,payload,created_at,updated_at) VALUES(?,?,?,?)',['${dupId}',base64_decode('${Buffer.from(JSON.stringify(payload)).toString('base64')}'),now(),now()]);`);
  queue=JSON.parse(run(['server/event-tip-queue.php','--export']).stdout);const dup=queue.items[0];ok(batch('--dry-run',{...d,id:dup.id,revision:dup.revision,payloadHash:dup.payloadHash}).status===1,'duplicate/absent photo never published');
+ // A cached ready response must still be rejected if its reviewed public copy is internal.
+ const badPayload=structuredClone(payload);badPayload.tip_review.record.description='内部向けの調査メモ：無料APIの照合待ち';
+ sql(`query('UPDATE submissions SET payload=? WHERE id=?',[base64_decode('${Buffer.from(JSON.stringify(badPayload)).toString('base64')}'),'${dupId}']);`);
+ queue=JSON.parse(run(['server/event-tip-queue.php','--export']).stdout);const bad=queue.items.find(x=>x.id===dupId);
+ const badDecision={...d,id:bad.id,revision:bad.revision,payloadHash:bad.payloadHash};
+ const recordsBefore=sql("echo json(query('SELECT * FROM records ORDER BY id')->fetchAll());");
+ ok(JSON.parse(batch('--dry-run',badDecision).stdout).status==='exception','cached ready public-copy dry run blocked');
+ ok(JSON.parse(batch('--apply',badDecision).stdout).status==='exception','bad copy routed to private exception');
+ ok(recordsBefore===sql("echo json(query('SELECT * FROM records ORDER BY id')->fetchAll());"),'rejected copy makes no record changes');
+ ok(sql(`echo query('SELECT status FROM submissions WHERE id=?',['${dupId}'])->fetchColumn();`)==='pending','submission remains pending');
+ ok(sql("try{save_record(['publication'=>'public','notes'=>'内部向けの調査メモ'],'cafe');echo 'FAIL';}catch(DomainException $e){echo 'blocked';}")==='blocked','direct publication write gate');
  ok(run(['server/cli.php','check']).status===0,'database integrity');
  ok(!/Fatal error|Warning:|Uncaught/.test(logs),'no runtime errors');
  console.log(`Event tips integration: ${checks} checks passed`);

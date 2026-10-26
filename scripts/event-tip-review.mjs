@@ -1,3 +1,4 @@
+import {publicCopyIssues} from '../src/lib/public-copy.mjs';
 import {createHash} from 'node:crypto';
 import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
 import {prepareCurationReview} from './prepare-curation-review.mjs';
@@ -6,6 +7,7 @@ import {cleanHtml} from '../src/lib/text.mjs';
 const sha=s=>createHash('sha256').update(s).digest('hex');
 const compact=s=>String(s??'').normalize('NFKC').replace(/\s/g,'');
 const reasonText={
+ 'public-copy-review-required':'公開文に内部向けの調査メモがあります。Codexで文面を整理して再確認してください。',
  'source-changed':'公式告知または会場案内が変わりました。再確認してください。',
  'source-unavailable':'公式HTMLを取得できません。画像・SNS・転送先は個別に確認してください。',
  'review-expired':'根拠の確認から48時間が経過しました。再確認してください。',
@@ -29,6 +31,7 @@ export async function reviewEventTips({queue,stateDir,now=Date.now(),gateReady,p
   const r=row.review,base={id:row.id,revision:row.revision,payloadHash:row.payloadHash};let decision;
   const exception=code=>({...base,status:'exception',reason:reasonText[code]??reasonText['details-differ']});
   try{
+   if(publicCopyIssues(r.record,'cafe').length)throw Error('public-copy-review-required');
    const age=now-Date.parse(r.reviewedAt);
    if(!Number.isFinite(age)||age<0||age>=48*3600000)throw Error('review-expired');
    if(JSON.stringify(row.photoHashes)!==JSON.stringify((r.photos??[]).map(p=>p.sha256)))throw Error('details-differ');

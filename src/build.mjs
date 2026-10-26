@@ -33,6 +33,7 @@ import { renderEventDetail, renderRetiredEvent } from './templates/event-detail.
 import { renderGuideTopics } from './templates/guide-topics.mjs';
 import { renderGuesthousesPage } from './templates/guesthouses.mjs';
 import { GUESTHOUSES } from './guesthouses-data.mjs';
+import {assertPublicCopy} from './lib/public-copy.mjs';
 import { lodgingSnapshot } from './lib/lodging-snapshot.mjs';
 import { renderNewsSections } from './templates/news-sections.mjs';
 import { ENTRY_REDIRECTS, renderEntryRedirect, renderEntryRedirectsCaddy } from './templates/entry-redirect.mjs';
@@ -130,6 +131,9 @@ async function main() {
     await writeFile(join(DOCS, FILES.oldArticlesJson), JSON.stringify(oldData, null, 2) + '\n');
   }
 
+  const eventSnapshot = JSON.parse(await readFile(join(ROOT, '.state/events.json'), 'utf8'));
+  assertPublicCopy(eventSnapshot.events??[],'event');
+  assertPublicCopy(GUESTHOUSES,'lodging');
   await mkdir(DOCS, { recursive: true });
   await mkdir(join(DOCS, 'archive'), { recursive: true });
   await mkdir(join(DOCS, 'icons'), { recursive: true });
@@ -170,7 +174,6 @@ async function main() {
 
   await writeDoc(FILES.about, renderAboutPage({ generatedAt: data.generatedAt, ...opts }));
   await writeDoc(FILES.guide, renderGuidePage(opts));
-  const eventSnapshot = JSON.parse(await readFile(join(ROOT, '.state/events.json'), 'utf8'));
   await writeDoc('events.html', renderEventsPage(eventSnapshot, opts));
   const currentEvents=(eventSnapshot.events||[]).filter(validEvent);
   const detailIds=new Set(currentEvents.map(event=>event.id));

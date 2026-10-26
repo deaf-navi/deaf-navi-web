@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/public-copy.php';
 
 const TYPES = ['permanent'=>'常設','limited'=>'限定営業','recurring'=>'定期開催','special'=>'特殊'];
 const STATUSES = ['open'=>'営業中','active_recurring'=>'定期開催中','temporarily_closed'=>'一時休業','permanently_closed'=>'閉店・活動終了','needs_review'=>'確認中','unknown'=>'営業状況未確認','closed'=>'閉店・活動終了（旧分類）'];
@@ -179,12 +180,14 @@ function validated_record(array $post, string $kind): array {
     if($p['publication']==='public' && ($p['verification_level']==='pending' || !$p['verification_sources'] || $p['last_verified_at']==='')) fail('公開には情報源・確認日・確認済みの情報確度が必要です。営業未確認の場合はその状態を明示してください。');
     if($kind!=='event'&&$p['country_code']!=='JP')$p=world_validate($post,$p);
     if($kind!=='event')$p=cafe_validate($post,$p);
+    if($p['publication']==='public')assert_public_copy($p);
     return $p;
 }
 function save_record(array $p, string $kind, string $id='', int $revision=0): string {
     $id=$id?:uid(); $stamp=now();
     // Keep unexposed payload extensions when older editors/importers save a row.
     if($revision)$p=array_replace(json_decode(record($id)['payload'],true,512,JSON_THROW_ON_ERROR),$p);
+    if(($p['publication']??'')==='public')assert_public_copy($p);
     $collision=query('SELECT id FROM records WHERE slug=? AND id!=? AND '.($kind==='event'?"kind='event'":"kind IN ('cafe','store')"),[$p['slug'],$id])->fetch();
     if($collision) fail('このURL名は既に使われています。別のURL名を指定してください。',409);
     $args=[$p['slug'],$p['name'],$p['country_code'],$p['prefecture'],$p['city'],$p['publication'],$p['status'],$p['store_id']??null,json($p),$stamp];

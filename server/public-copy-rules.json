@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "internal-marker",
+      "pattern": "内部向け(?:の)?(?:調査)?メモ|公開文の整理前の記録|公開手順待ち|再確認期限[：:]"
+    },
+    {
+      "id": "workflow-state",
+      "pattern": "(?:無料API|Codex|Dots)(?:で|による|側で|へ|の)(?:照合待ち|照合後|再確認|掲載承認)|無料APIの照合待ち|本文hash|reviewedAt|sharingReviewedAt|sourceRawHash|approvedDocumentHash|plan_sha256|api-evidence-invalid|publication-review-required|source-content-changed|reviewed-unchanged"
+    },
+    {
+      "id": "investigation-progress",
+      "pattern": "情報源を(?:自動で)?再取得中|最新の開催情報を再確認中です|開催予定としての案内を停止しています|(?:詳しい募集案内|公式告知|次回告知)(?:の公開)?を待って再確認"
+    },
+    {
+      "id": "research-narration",
+      "pattern": "今回読んだ(?:公式)?(?:ページ|本文)|(?:前回|過去回|以前|[0-9]{4}年).{0,60}(?:流用|転用)していません"
+    }
+  ],
+  "fields": {
+    "news": [
+      "title",
+      "summary",
+      "originalTitle",
+      "originalSummary"
+    ],
+    "event": [
+      "title",
+      "description",
+      "time",
+      "venue",
+      "organizer",
+      "fee",
+      "target",
+      "sourceName",
+      "communication"
+    ],
+    "lodging": [
+      "name",
+      "area",
+      "description",
+      "facts",
+      "media",
+      "sources"
+    ],
+    "cafe": [
+      "name",
+      "description",
+      "notes",
+      "business_hours",
+      "venue_name",
+      "address",
+      "access",
+      "operator",
+      "hearing_accessibility",
+      "participation_conditions",
+      "fee",
+      "target",
+      "caution",
+      "schedule_note",
+      "event_schedule",
+      "reservation",
+      "sign_support",
+      "conditions",
+      "application",
+      "organizer",
+      "partners",
+      "price",
+      "communication_methods",
+      "participation",
+      "cancellation_policy",
+      "recurrence",
+      "venue_address",
+      "previous_address",
+      "country_name",
+      "prefecture",
+      "city",
+      "subtypes",
+      "name_kana"
+    ],
+    "text": [
+      "text"
+    ]
+  }
+}

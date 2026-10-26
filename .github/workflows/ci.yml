@@ -41,6 +41,7 @@ jobs:
           node test/engagement.integration.mjs
           php test/cafe-event-recovery.php
           node test/cafe-event-recovery.integration.mjs
+          php test/public-copy.php
           node test/event-tips.integration.mjs
 
       - name: Private analytics accuracy and permissions

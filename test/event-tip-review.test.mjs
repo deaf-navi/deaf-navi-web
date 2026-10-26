@@ -32,3 +32,11 @@ test('new review scope stays bounded and exact allowlist is required even when a
  assert.ok(tipPrivacyRisk('連絡先 test@example.org'));assert.ok(tipPrivacyRisk('開催延期'));assert.equal(tipPrivacyRisk(excerpt),false);
  const more=await base();more.queue.items=Array.from({length:7},(_,i)=>({...row,id:String(i).repeat(32)}));const r=await reviewEventTips(more);assert.equal(r.selected,4);assert.equal(r.deferred,3);
 });
+
+test('internal public copy stops before fetch or API; visitor warnings still publish',async()=>{
+ const o=await base();o.queue.items[0].review.record.notes='内部向けの調査メモ：無料APIの照合待ち';
+ o.fetchResource=async()=>assert.fail('must not fetch');o.generate=async()=>assert.fail('must not generate');
+ const r=await reviewEventTips(o);assert.equal(r.published,0);assert.equal(r.submittedThisRun,0);assert.equal(r.exceptions,1);
+ const good=await base();good.queue.items[0].review.record.notes='料金は要確認です。予約は主催者の公式案内をご確認ください。';
+ assert.equal((await reviewEventTips(good)).published,1);
+});
