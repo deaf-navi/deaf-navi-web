@@ -75,11 +75,11 @@ try{
  ok((await req(image.url,null,false)).status===200,'published media');ok((await req('/stories/',null,false)).text.includes('fixture-story'),'listed');
  ok((await req('/stories/feed.json?page=%2Fconnect%2Fsign-cafe%2F',null,false)).text.includes('fixture-story'),'reverse association');
  ok(!(await req('/stories/feed.json?page=%2Fevents.html',null,false)).text.includes('fixture-story'),'no unrelated recommendations');
- for(const page of ['/sitemap.html','/index-old.html','/archive/2026-09.html']){
+ for(const page of ['/sitemap.html','/index-old.html','/archive/2026-09.html','/connect/sign-cafe/map/']){
    const response=await req('/stories/feed.json?page='+encodeURIComponent(page),null,false);
    ok(response.status===200&&JSON.parse(response.text).articles.length===0,'public unrelated page has an empty feed: '+page);
  }
- for(const page of ['//evil.example/','/admin/','/../sitemap.html','/archive/../../admin/','/archive/missing.html']){
+ for(const page of ['//evil.example/','/admin/','/../sitemap.html','/archive/../../admin/','/archive/missing.html','/connect/sign-cafe/map/admin/','/connect/sign-cafe/map/../admin/','/connect/sign-cafe/map/?private=1']){
    ok((await req('/stories/feed.json?page='+encodeURIComponent(page),null,false)).status===404,'private/invalid page not accepted: '+page);
  }
  const publicIndex=(await req('/stories/',null,false)).text;
