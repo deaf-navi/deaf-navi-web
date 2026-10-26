@@ -16,7 +16,15 @@ assert.equal(hash.status,0);assert.equal(run(['server/cli.php','init'],JSON.stri
 const snapshot=()=>sql(`$out=[];foreach(['records','users','settings','submissions','outbox','audit'] as $t)$out[$t]=query('SELECT * FROM '.$t.' ORDER BY 1')->fetchAll();echo json($out);`);
 const manifest=JSON.parse(readFileSync(join(root,'research/cafes-and-events-20261001.json'),'utf8'));
 const file=join(dir,'manifest.json'),backup=join(dir,'backups');mkdirSync(backup);writeFileSync(file,JSON.stringify(manifest));
-const before=JSON.parse(snapshot());let r=run(['server/import-cafe-listings.php','--dry-run',file]);assert.equal(r.status,0,r.stderr);
+const before=JSON.parse(snapshot());
+// Keep the historical research manifest unchanged; old internal copy must fail the new boundary.
+let r=run(['server/import-cafe-listings.php','--dry-run',file]);
+ok(r.status!==0&&r.stderr.includes('内部向けの調査メモ')&&snapshot()===JSON.stringify(before),'historical internal notes cannot be republished');
+const corrected=manifest.additions.find(x=>x.id==='overdoughs-cafe-circuit').data;
+corrected.review_notes=[corrected.review_notes,corrected.notes].filter(Boolean).join('\n');
+corrected.notes='現在の営業時間・手話対応・スタッフ属性は未確認です。利用前に店舗の公式案内をご確認ください。';
+writeFileSync(file,JSON.stringify(manifest));
+r=run(['server/import-cafe-listings.php','--dry-run',file]);assert.equal(r.status,0,r.stderr);
 const plan=JSON.parse(r.stdout);ok(plan.added===7,'seven reviewed additions');ok(plan.records.filter(x=>x.classification==='event').length===4,'four dated events');
 ok(snapshot()===JSON.stringify(before),'dry run changes no rows');
 r=run(['server/import-cafe-listings.php','--apply',file,backup,'wrong']);ok(r.status!==0&&snapshot()===JSON.stringify(before),'unapproved plan changes nothing');
