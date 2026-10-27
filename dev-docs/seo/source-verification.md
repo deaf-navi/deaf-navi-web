@@ -150,3 +150,19 @@ NXDOMAINやサーバー停止を確認した結果ではない。SSH認証・遠
 これは親から受領したWindows担当の報告であり、この子がWindowsの生ログやVPS設定を直接取得した証拠ではない。DEPLOY_HOST一致は接続先の照合で、DNS回答/SSH認証/遠隔実行の成功を意味しない。秘密値や資格情報を記録しない。
 
 状態は公開QA未完・実行環境待ち。本人への具体的な阻害要因の通知済みは親の報告として記録する。権限拒否を迂回せず、追加の再公開・設定/キャッシュ/reload・権限変更は行わない。次は既存接続で限定読取を実行できる環境が利用可能になったときに再開し、承認済みの読取を再承認待ちへ戻さない。新規接続や資格情報を追加しない。
+
+## 2026-10-27 既存公開ログと静的ソースの照合
+
+正本Library全512行/19840bytesをnative readで再確認し、更新2026-10-11T23:01:55.298096Zは不変。過去のmaterialize失敗を成功へ置換せず、追加再試行や他環境パスの流用はしない。最新AGENTSを実読、ローカルの関連.agents/skillsはなかった。
+
+10/27 07:56:25 JSTの[既存Deploy40416072301](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40416072301)は、main `20c1f7ed1e2058d72bd01bf948cbb599f1f03f76` の識別付きカフェ公開GETでHTTP200/no-storeと「手話カフェの一覧へ戻る」のHTML内存在を記録した。current参照先と対象PHPのstaging/current SHA-256 `3400dbe91cabbb9c5de67d92151959715adbafe18bc5315175169596fc05fc13` の一致もログで確認した。
+
+これは既存Actionsの観測をこの作業で読んだ証拠であり、新しい直接GET・ブラウザー実表示/クリックの証拠ではない。#cafesへの実クリック、検索query・絞込条件・表示状態の保持と、初回4修正の当日公開再読は未完。CONNECT403は新たな関連証拠がないため再試行せず、別経路で迂回しない。
+
+同じmainのsitemap.xml/sitemap-world.xmlは合計85エントリ・83固有URL。PHP配信の全国一覧/地図2URLを別扱いとし、残る静的81ページのhead全体をGitHubのソースから照合した。すべて掲載URLとcanonicalが一致し、meta noindex/refreshは検出しなかった。これは2つの静的XMLとソースheadに限る検査で、公開HTTP・Googleの選択canonical・GSC対象URL・動的directory/stories sitemapの検証ではない。
+
+検査の入力・全81ページのmetadata・範囲を[daily/2026-10-27-source-check.json](daily/2026-10-27-source-check.json)へ保存する。[Google Search Centralのsitemap公式資料](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)も参照し、掲載URLと優先canonicalの整合を検査対象にした。Googleによる実際の登録・選択や、全動的URLの監査を証明するものではない。
+
+10/26 20:50 JSTのnoindex/sitemap・redirect通知は親から受領した要約で、この接続の限定メール検索では原文を同定できなかった。10/26 07:09 JSTの別通知は前回の原文読取と今回の検索で確認できるが、両通知を同一視しない。対象URL・件数・クロール日とGSCレポート本体は未取得。外部AUDIT.mdの指摘は未検証の材料であり、変更権限や原因確定の根拠へ置換しない。
+
+PR164は未確認開催回のnoindex判定とdirectory-sitemapの除外判定を同じcafe_event_periodへ揃えた既存実装で、重複変更しない。外部監査を扱ったPR181もmergedだが、外部指摘全体が独立検証済みとは認定しない。guesthouses等の別作業は静的headの読取だけに留め、内容や制度/緊急案内を編集しない。

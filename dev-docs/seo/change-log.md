@@ -192,3 +192,15 @@ NXDOMAINやサーバー停止を確認した結果ではない。SSH認証・遠
 状態は公開QA未完・実行環境待ち。本人への具体的な阻害要因の通知済みは親の報告として記録する。権限拒否を迂回せず、追加の再公開・設定/キャッシュ/reload・権限変更は行わない。次は既存接続で限定読取を実行できる環境が利用可能になったときに再開し、承認済みの読取を再承認待ちへ戻さない。新規接続や資格情報を追加しない。
 
 今回の差分はdev-docs/seoの6文書だけ。プロダクト・生成物・workflowを変更せず、通常の文書PRと既存CIで保存する。追加Deployは起動しない。
+
+## 2026-10-27 公開証跡と未完QAの記録を更新
+
+10/27 07:56:25 JSTの[既存Deploy40416072301](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40416072301)は、main `20c1f7ed1e2058d72bd01bf948cbb599f1f03f76` の識別付きカフェ公開GETでHTTP200/no-storeと「手話カフェの一覧へ戻る」のHTML内存在を記録した。current参照先と対象PHPのstaging/current SHA-256 `3400dbe91cabbb9c5de67d92151959715adbafe18bc5315175169596fc05fc13` の一致もログで確認した。
+
+これは既存Actionsの観測をこの作業で読んだ証拠であり、新しい直接GET・ブラウザー実表示/クリックの証拠ではない。#cafesへの実クリック、検索query・絞込条件・表示状態の保持と、初回4修正の当日公開再読は未完。CONNECT403は新たな関連証拠がないため再試行せず、別経路で迂回しない。
+
+同じmainのsitemap.xml/sitemap-world.xmlは合計85エントリ・83固有URL。PHP配信の全国一覧/地図2URLを別扱いとし、残る静的81ページのhead全体をGitHubのソースから照合した。すべて掲載URLとcanonicalが一致し、meta noindex/refreshは検出しなかった。これは2つの静的XMLとソースheadに限る検査で、公開HTTP・Googleの選択canonical・GSC対象URL・動的directory/stories sitemapの検証ではない。
+
+公開コード/生成物・guesthouses・DB・収集/PWA/絞込/アプリ・workflowは変更しない。今回は公開対象外の運営記録だけを通常PR/既存CIで更新する。追加Deploy・新規接続/認証・設定/cache/reload・監視は起動しない。30日範囲は10/12〜11/10を維持する。
+
+10/23のリンク不在の観測は履歴として保存し、最新状態を「公開HTML内存在確認済み・操作QA未完」へ更新する。GSC通知との対応は未確定のまま。復旧は今回の運営文書/検査記録差分だけをrevertできる。

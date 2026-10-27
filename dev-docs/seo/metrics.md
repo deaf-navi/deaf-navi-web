@@ -149,3 +149,15 @@ PHP原本の期待hashを確認したが本番hashは未取得。通常Deployへ
 NXDOMAINやサーバー停止を確認した結果ではない。SSH認証・遠隔実行へ到達しておらず、SSH認証失敗とも扱わない。VPS内の有効Caddy/FastCGI/PHP-FPM設定・公開リクエストの実行ファイルは未取得。09:47/09:50の正規Deployで得たcurrent/hashの一致と、その時点の公開HTMLのリンク不在は従来の証拠として保持する。
 
 公開QA未完・実行環境待ちを維持する。今回、新たなVPSのcurrent/hash・有効設定や公開表示は取得していない。DNS回答/SSH実行の未取得を成功・失敗件数や検索指標へ換算しない。GSC/GA4・自然検索クリック/表示/CTR/順位・organic session・CWVは引き続き未取得。追加再公開は行わない。
+
+## 2026-10-27 技術検査と未取得の検索指標
+
+10/27 07:56:25 JSTの[既存Deploy40416072301](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40416072301)は、main `20c1f7ed1e2058d72bd01bf948cbb599f1f03f76` の識別付きカフェ公開GETでHTTP200/no-storeと「手話カフェの一覧へ戻る」のHTML内存在を記録した。current参照先と対象PHPのstaging/current SHA-256 `3400dbe91cabbb9c5de67d92151959715adbafe18bc5315175169596fc05fc13` の一致もログで確認した。
+
+これは既存Actionsの観測をこの作業で読んだ証拠であり、新しい直接GET・ブラウザー実表示/クリックの証拠ではない。#cafesへの実クリック、検索query・絞込条件・表示状態の保持と、初回4修正の当日公開再読は未完。CONNECT403は新たな関連証拠がないため再試行せず、別経路で迂回しない。
+
+同じmainのsitemap.xml/sitemap-world.xmlは合計85エントリ・83固有URL。PHP配信の全国一覧/地図2URLを別扱いとし、残る静的81ページのhead全体をGitHubのソースから照合した。すべて掲載URLとcanonicalが一致し、meta noindex/refreshは検出しなかった。これは2つの静的XMLとソースheadに限る検査で、公開HTTP・Googleの選択canonical・GSC対象URL・動的directory/stories sitemapの検証ではない。
+
+85/83/81はコミットされた静的sitemapとソース検査の件数で、GSCの有効/除外URL件数・クリック・表示・順位・CTRや訪問者数ではない。静的ソースでの不整合未検出を、本番やGoogleでの問題なしへ補完しない。GSC/GA4・自然検索・organic session・CWVフィールドは未取得であり、0/推測値/改善率は作らない。
+
+10/26 20:50 JSTのnoindex/sitemap・redirect通知は親から受領した要約で、この接続の限定メール検索では原文を同定できなかった。10/26 07:09 JSTの別通知は前回の原文読取と今回の検索で確認できるが、両通知を同一視しない。対象URL・件数・クロール日とGSCレポート本体は未取得。外部AUDIT.mdの指摘は未検証の材料であり、変更権限や原因確定の根拠へ置換しない。
