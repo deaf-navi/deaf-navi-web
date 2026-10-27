@@ -1,26 +1,27 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-27T00:22:39.410Z",
+  "generatedAt": "2026-10-27T00:48:06.851Z",
   "counts": {
-    "uniqueInputs": 2430,
-    "alreadyPublished": 787,
-    "outsideWindow": 1353,
-    "hardExcluded": 11,
-    "duplicateOfPublished": 56,
-    "candidateDuplicates": 7,
-    "eligible": 216,
+    "uniqueInputs": 2690,
+    "alreadyPublished": 881,
+    "outsideWindow": 1489,
+    "hardExcluded": 20,
+    "duplicateOfPublished": 73,
+    "candidateDuplicates": 9,
+    "eligible": 218,
     "queued": 40,
-    "deferred": 176
+    "deferred": 178
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "foreign-coverage-review-required": 5,
-    "low-value-page": 2,
+    "low-value-page": 3,
+    "foreign-coverage-review-required": 6,
     "incidental-organization-mention": 1,
-    "incidental-disability-nickname": 2
+    "incidental-disability-nickname": 6,
+    "market-report": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-26T22:52:06.057Z",
+    "previousGeneratedAt": "2026-10-27T00:22:39.410Z",
     "previousQueued": 40,
     "retained": 40,
     "new": 0,
