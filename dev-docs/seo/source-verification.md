@@ -166,3 +166,17 @@ NXDOMAINやサーバー停止を確認した結果ではない。SSH認証・遠
 10/26 20:50 JSTのnoindex/sitemap・redirect通知は親から受領した要約で、この接続の限定メール検索では原文を同定できなかった。10/26 07:09 JSTの別通知は前回の原文読取と今回の検索で確認できるが、両通知を同一視しない。対象URL・件数・クロール日とGSCレポート本体は未取得。外部AUDIT.mdの指摘は未検証の材料であり、変更権限や原因確定の根拠へ置換しない。
 
 PR164は未確認開催回のnoindex判定とdirectory-sitemapの除外判定を同じcafe_event_periodへ揃えた既存実装で、重複変更しない。外部監査を扱ったPR181もmergedだが、外部指摘全体が独立検証済みとは認定しない。guesthouses等の別作業は静的headの読取だけに留め、内容や制度/緊急案内を編集しない。
+
+## 2026-10-28 未変更分の継承と新しい差分の確認
+
+2つの静的XMLは91エントリ・89固有URL。全国カフェ一覧/地図のPHP配信2URLを除く静的87ページについて、追加・変更53ページのheadを再読し、ソース未変更の34ページは前日の検査結果を継承した。全87件で掲載URLとcanonicalが一致し、meta noindex/refreshは検出しなかった。sitemapは6URL増・削除0で、増加は既存mainの更新であり、このSEO作業による新規公開ではない。
+
+前回検査の公開ソース基準は20c1f7e、PR185/36b3f54は運営記録だけの変更。その後の96ファイル差分に対象ページが存在しない34件を継承し、53件を現在のrefから読み直した。read-only検査の入力・継承区分・全metadataは[daily/2026-10-28-source-check.json](daily/2026-10-28-source-check.json)へ保存する。動的sitemap、稼働DB、GSCの選択canonical/クロールを検証したものではない。
+
+main `1339751b23174734bc9529ad9388672bc36ca0f9` の[既存Deploy40530201910](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40530201910)は実deploy job success。10/28 00:23:39 JSTの識別付き公開GETでHTTP200/no-storeとFAQの戻りリンクのHTML内存在を記録した。current/stagingの対象PHP SHA-256は `3400dbe91cabbb9c5de67d92151959715adbafe18bc5315175169596fc05fc13` で一致。
+
+より新しい[40545029312](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40545029312)はrecovery-publication job successだがdeploy jobはskippedであり、新しい実配布とは数えない。run全体のsuccessと配布jobの実行を区別する。
+
+これはコミットされたソースheadの差分検査であり、公開ブラウザーQAやGSCの除外/登録数ではない。実クリック・query/絞込/表示状態保持、初回4修正の当日公開再読は未完。正式なブラウザー接続口やGSC対象URLがない状態を、新しい観測なしに成功/不具合と断定しない。CONNECT403の反復・別経路迂回、ユーザーPC操作、新規接続/認証、旧setup作業の再開は行わない。
+
+GSC/GA4実測・対象URLの未取得を維持し、メール/外部監査の要約から原因や変更権限を認定しない。今回、新しい公式店舗条件・確認日・営業状態を認定していない。
