@@ -204,3 +204,15 @@ NXDOMAINやサーバー停止を確認した結果ではない。SSH認証・遠
 公開コード/生成物・guesthouses・DB・収集/PWA/絞込/アプリ・workflowは変更しない。今回は公開対象外の運営記録だけを通常PR/既存CIで更新する。追加Deploy・新規接続/認証・設定/cache/reload・監視は起動しない。30日範囲は10/12〜11/10を維持する。
 
 10/23のリンク不在の観測は履歴として保存し、最新状態を「公開HTML内存在確認済み・操作QA未完」へ更新する。GSC通知との対応は未確定のまま。復旧は今回の運営文書/検査記録差分だけをrevertできる。
+
+## 2026-10-28 差分メタデータ検証と配布jobの区別
+
+前回PR185以降の14コミット/96ファイルの差分を読み、比較APIのファイル上限に達していないことを確認した。カフェのSEO・検索UI/戻りリンクのソース変更はなく、既存情報の更新と無料枠確認運用等が主な差分。今回それらのコード・内容・運用設定は編集しない。
+
+2つの静的XMLは91エントリ・89固有URL。全国カフェ一覧/地図のPHP配信2URLを除く静的87ページについて、追加・変更53ページのheadを再読し、ソース未変更の34ページは前日の検査結果を継承した。全87件で掲載URLとcanonicalが一致し、meta noindex/refreshは検出しなかった。sitemapは6URL増・削除0で、増加は既存mainの更新であり、このSEO作業による新規公開ではない。
+
+main `1339751b23174734bc9529ad9388672bc36ca0f9` の[既存Deploy40530201910](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40530201910)は実deploy job success。10/28 00:23:39 JSTの識別付き公開GETでHTTP200/no-storeとFAQの戻りリンクのHTML内存在を記録した。current/stagingの対象PHP SHA-256は `3400dbe91cabbb9c5de67d92151959715adbafe18bc5315175169596fc05fc13` で一致。
+
+より新しい[40545029312](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40545029312)はrecovery-publication job successだがdeploy jobはskippedであり、新しい実配布とは数えない。run全体のsuccessと配布jobの実行を区別する。
+
+詳細は[daily/2026-10-28.md](daily/2026-10-28.md)と同日のJSONへ保存する。変更は運営文書/検査データ4ファイルのみで、公開URL・コード・workflow・DBは変更しない。公開QA未完を維持し、追加Deployは実施しない。復旧はこの運営記録差分だけをrevertできる。
