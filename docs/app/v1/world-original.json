@@ -4,9 +4,9 @@
   "title": "Deaf Navi World-Original",
   "variant": "world",
   "mode": "original",
-  "generatedAt": "2026-10-27T00:30:58Z",
-  "sourceGeneratedAt": "2026-10-27T00:30:58Z",
-  "count": 599,
+  "generatedAt": "2026-10-27T00:42:26Z",
+  "sourceGeneratedAt": "2026-10-27T00:42:26Z",
+  "count": 600,
   "language": "und",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
@@ -184,13 +184,13 @@
     "byRegion": {
       "americas": 171,
       "middle_east_africa": 125,
-      "europe_cis": 156,
+      "europe_cis": 157,
       "asia_oceania": 147
     },
     "byTopic": {
       "accessibility": 206,
       "rights": 22,
-      "general": 57,
+      "general": 58,
       "education": 69,
       "sports": 72,
       "culture": 35,
@@ -200,7 +200,7 @@
     },
     "byLegacyCategory": {
       "policy": 231,
-      "general": 78,
+      "general": 79,
       "education": 69,
       "sports": 72,
       "culture": 35,
@@ -208,11 +208,11 @@
     },
     "byOriginalLanguage": {
       "en": 448,
+      "pt": 26,
       "fr": 48,
       "tr": 29,
       "ko": 21,
       "ar": 16,
-      "pt": 25,
       "zh": 11,
       "es": 1
     }
@@ -289,6 +289,43 @@
           "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
           "postEditProvider": "Codex App Server Japanese news editor v1",
           "postEdited": true,
+          "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+        }
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQTFV1SU5UY3FNSXBBcEVJTF9kRTB5MXhqSHo5V0MyNkRaeUx4ZnF5NTFnazJZOXNISkNtNnVtbG5mc1FhZ1ROUlNsc0ZNb2NjS1VWUlR6QUd1QWhuR0RoRzN6VmRiempZcTlZSDZScVpSNTZtM3pYWExoT0p4N3V1VHd3clNDLUFyaVk1eUVUNE5pZGNnMmY1Vg?oc=5",
+      "stableId": "world_719a8153ef6e0635d144",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQTFV1SU5UY3FNSXBBcEVJTF9kRTB5MXhqSHo5V0MyNkRaeUx4ZnF5NTFnazJZOXNISkNtNnVtbG5mc1FhZ1ROUlNsc0ZNb2NjS1VWUlR6QUd1QWhuR0RoRzN6VmRiempZcTlZSDZScVpSNTZtM3pYWExoT0p4N3V1VHd3clNDLUFyaVk1eUVUNE5pZGNnMmY1Vg?oc=5",
+      "publishedAt": "2026-10-26T11:12:21Z",
+      "sourceName": "Aragón Play",
+      "sourceURL": "https://www.aragonplay.es",
+      "sourceUrl": "https://www.aragonplay.es",
+      "sourceDomain": "aragonplay.es",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "topic": "general",
+      "topicLabel": "一般",
+      "legacyCategory": "general",
+      "curationScore": 20,
+      "curationSignals": [
+        "sordo",
+        "sordos",
+        "multilingual"
+      ],
+      "originalLanguage": "pt",
+      "title": "Colegio La Purísima para Niños Sordos",
+      "summary": "Colegio La Purísima para Niños Sordos",
+      "language": "pt",
+      "translated": {
+        "title": "ラ プリシマろう学校",
+        "summary": "ラ プリシマろう学校",
+        "language": "ja-JP",
+        "translation": {
+          "provider": "Google Translate + Deaf Navi glossary v2",
+          "postEdited": false,
           "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
         }
       }
