@@ -7,7 +7,7 @@ import {execFileSync} from 'node:child_process';
 import {prepareCurationReview} from './prepare-curation-review.mjs';
 import {reviewCurationTasks} from './curation-review.mjs';
 import {evidenceHash,prepareReviewItem,validIsoDay} from './curation-review-contract.mjs';
-import {createComplimentaryClient,publicTextFingerprint,validateAllowance} from './complimentary-text-client.mjs';
+import {createComplimentaryClient,publicTextFingerprint,validateStoredAllowance} from './complimentary-text-client.mjs';
 import {curationHorizonEnd} from './curation-horizon.mjs';
 
 const jstDay=now=>new Date(now+9*3600000).toISOString().slice(0,10);
@@ -114,7 +114,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process
     const catalog=JSON.parse(await readFile(join(stateDir,'curation-review-catalog.json'),'utf8'));
     const key=(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim(),project=process.env.DEAFNAVI_OPENAI_PROJECT_ID;
     const lease=JSON.parse(await readFile(join(stateDir,'allowance.json'),'utf8'));
-    let allowed=new Set();try{validateAllowance(lease,{key,project});allowed=new Set(lease.approvedTextHashes??[]);}catch{}
+    let allowed=new Set();try{await validateStoredAllowance(lease,{key,project,stateDir});allowed=new Set(lease.approvedTextHashes??[]);}catch{}
     const research=process.argv.includes('--research');
     const generate=createComplimentaryClient({key,project,stateDir,allowResearch:research});
     const report=await runDailyReview({records,catalog,stateDir,generate,canSubmit:item=>allowed.has(publicTextFingerprint(item)),

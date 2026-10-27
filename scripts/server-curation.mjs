@@ -8,7 +8,7 @@ import {execFileSync} from 'node:child_process';
 import {reviewRecords,runDailyReview} from './daily-curation-review.mjs';
 import {prepareCurationReview} from './prepare-curation-review.mjs';
 import {prepareReviewItem,evidenceHash} from './curation-review-contract.mjs';
-import {createComplimentaryClient,publicTextFingerprint,validateAllowance,summarizeComplimentaryUsage} from './complimentary-text-client.mjs';
+import {createComplimentaryClient,publicTextFingerprint,validateStoredAllowance,summarizeComplimentaryUsage} from './complimentary-text-client.mjs';
 import {runSourceDiscovery} from './source-discovery.mjs';
 import {runDiscoveryReview} from './discovery-review.mjs';
 import {runLodgingReview} from './lodging-review.mjs';
@@ -27,7 +27,7 @@ export async function refreshCurationAttention({stateDir,records,now=Date.now()}
 // Inspect a recorded account check; never manufacture one from local usage or renew it.
 export async function accountGate({stateDir,key,project,now=Date.now()}){
   let lease;
-  try{lease=await readJson(join(stateDir,'allowance.json'));validateAllowance(lease,{key,project,now});}
+  try{lease=await readJson(join(stateDir,'allowance.json'));await validateStoredAllowance(lease,{key,project,now,stateDir});}
   catch{return {ready:false,reason:'account-verification-required',automaticAccountVerification:false};}
   for(const name of ['inflight.json','request.lock']){
     try{await readFile(join(stateDir,name));return {ready:false,reason:'request-reconciliation-required',automaticAccountVerification:false};}
@@ -39,7 +39,8 @@ export async function accountGate({stateDir,key,project,now=Date.now()}){
   if(ledger){try{usage=summarizeComplimentaryUsage(ledger,{day,project});}catch{return {ready:false,reason:'usage-reconciliation-required',automaticAccountVerification:false};}}
   if(usage?.unresolved)return {ready:false,reason:'request-reconciliation-required',automaticAccountVerification:false};
   return {ready:true,reason:null,automaticAccountVerification:false,checkedAt:lease.checkedAt,expiresAt:lease.expiresAt,
-    utcDay:day,dailyBudget:lease.dailyBudget,usage,approvalSignature:evidenceHash(JSON.stringify([lease.checkedAt,lease.expiresAt,lease.approvedTextHashes]))};
+    settingsCheckedAt:lease.accountReview?.checkedAt??null,nextSettingsReviewAt:lease.accountReview?.expiresAt??null,
+    utcDay:day,dailyBudget:lease.dailyBudget,usage,approvalSignature:evidenceHash(JSON.stringify([lease.checkedAt,lease.expiresAt,lease.accountReview,lease.approvedTextHashes]))};
 }
 
 // Reuse only an actually reviewed exact title/excerpt on an unchanged fetched page.
@@ -63,7 +64,7 @@ export async function reuseReviewedText(tasks,targets,{stateDir,key,project,now=
   const lockPath=join(stateDir,'request.lock');let lock;
   try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code==='EEXIST')return new Set();throw e;}
   try{
-    const path=join(stateDir,'allowance.json'),lease=await readJson(path);validateAllowance(lease,{key,project,now});
+    const path=join(stateDir,'allowance.json'),lease=await readJson(path);await validateStoredAllowance(lease,{key,project,now,stateDir});
     if(await optionalJson(join(stateDir,'inflight.json')))return new Set();
     const allowed=new Set(lease.approvedTextHashes??[]),added=verified.filter(x=>!allowed.has(x.hash));
     if(added.length){
