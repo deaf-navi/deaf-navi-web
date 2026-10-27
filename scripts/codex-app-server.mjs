@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import http from 'node:http';
 import {readFile} from 'node:fs/promises';
-import {createComplimentaryClient,publicItems,publicTextFingerprint,validateAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_FALLBACK_MODEL,COMPLIMENTARY_REASONING_EFFORT} from './complimentary-text-client.mjs';
+import {createComplimentaryClient,publicItems,publicTextFingerprint,validateStoredAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_FALLBACK_MODEL,COMPLIMENTARY_REASONING_EFFORT} from './complimentary-text-client.mjs';
 import {join} from 'node:path';
 
 const textBackend=process.env.DEAFNAVI_TEXT_BACKEND||'codex';
@@ -393,7 +393,7 @@ const server = http.createServer(async (req, res) => {
       try{
         const lease=JSON.parse(await readFile(join(process.env.DEAFNAVI_AI_STATE_DIR,'allowance.json'),'utf8'));
         const key=(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim();
-        validateAllowance(lease,{key,project:process.env.DEAFNAVI_OPENAI_PROJECT_ID});
+        await validateStoredAllowance(lease,{key,project:process.env.DEAFNAVI_OPENAI_PROJECT_ID,stateDir:process.env.DEAFNAVI_AI_STATE_DIR});
         approved=new Set(lease.approvedTextHashes??[]);accountReady=true;
       }catch{/* Missing account evidence never becomes permission. */}
       const approvedIds=body.items.filter(item=>{try{return approved.has(publicTextFingerprint(item));}catch{return false;}}).map(x=>x.id);
