@@ -1,32 +1,31 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-27T08:53:27.787Z",
+  "generatedAt": "2026-10-27T15:18:29.717Z",
   "counts": {
-    "uniqueInputs": 2706,
-    "alreadyPublished": 938,
-    "outsideWindow": 1354,
-    "hardExcluded": 19,
-    "duplicateOfPublished": 99,
-    "candidateDuplicates": 9,
-    "eligible": 287,
+    "uniqueInputs": 2565,
+    "alreadyPublished": 863,
+    "outsideWindow": 1290,
+    "hardExcluded": 16,
+    "duplicateOfPublished": 86,
+    "candidateDuplicates": 5,
+    "eligible": 305,
     "queued": 40,
-    "deferred": 247
+    "deferred": 265
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
     "low-value-page": 5,
-    "foreign-coverage-review-required": 4,
-    "incidental-organization-mention": 1,
+    "foreign-coverage-review-required": 1,
     "incidental-disability-nickname": 6,
-    "market-report": 2
+    "market-report": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-27T01:58:34.101Z",
+    "previousGeneratedAt": "2026-10-27T08:53:27.787Z",
     "previousQueued": 40,
-    "retained": 37,
-    "new": 3,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 37
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -37,7 +36,7 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/24/114033",
@@ -167,7 +166,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
@@ -177,7 +176,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/post-5614/",
