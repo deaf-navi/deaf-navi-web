@@ -1,0 +1,839 @@
+{
+  "checkedAtUTC": "2026-10-27T00:06:45Z",
+  "base": "20c1f7ed1e2058d72bd01bf948cbb599f1f03f76",
+  "scope": "committed static source heads; no public request, GSC URL inspection or dynamic DB read",
+  "inputXmlFiles": [
+    "docs/sitemap.xml",
+    "docs/sitemap-world.xml"
+  ],
+  "productionRequestsByThisCheck": 0,
+  "gscAffectedUrls": null,
+  "gscExcludedCounts": null,
+  "ga4Metrics": null,
+  "xmlEntries": 85,
+  "uniqueUrls": 83,
+  "dynamicSkipped": [
+    "https://deafnavi.com/connect/sign-cafe/",
+    "https://deafnavi.com/connect/sign-cafe/map/"
+  ],
+  "staticChecked": 81,
+  "completedHeads": 81,
+  "findings": [],
+  "limitations": [
+    "Not a live HTTP or browser interaction test",
+    "No GSC affected URL or Google-selected canonical was obtained",
+    "Dynamic directory/stories sitemap responses and database indexability were not tested"
+  ],
+  "records": [
+    {
+      "url": "https://deafnavi.com/",
+      "file": "docs/index.html",
+      "canonical": "https://deafnavi.com/",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/news/support/",
+      "file": "docs/news/support/index.html",
+      "canonical": "https://deafnavi.com/news/support/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/news/accessibility/",
+      "file": "docs/news/accessibility/index.html",
+      "canonical": "https://deafnavi.com/news/accessibility/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/index-old.html",
+      "file": "docs/index-old.html",
+      "canonical": "https://deafnavi.com/index-old.html",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-09.html",
+      "file": "docs/archive/2026-09.html",
+      "canonical": "https://deafnavi.com/archive/2026-09.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-08.html",
+      "file": "docs/archive/2026-08.html",
+      "canonical": "https://deafnavi.com/archive/2026-08.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-07.html",
+      "file": "docs/archive/2026-07.html",
+      "canonical": "https://deafnavi.com/archive/2026-07.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-06.html",
+      "file": "docs/archive/2026-06.html",
+      "canonical": "https://deafnavi.com/archive/2026-06.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-05.html",
+      "file": "docs/archive/2026-05.html",
+      "canonical": "https://deafnavi.com/archive/2026-05.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-04.html",
+      "file": "docs/archive/2026-04.html",
+      "canonical": "https://deafnavi.com/archive/2026-04.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-03.html",
+      "file": "docs/archive/2026-03.html",
+      "canonical": "https://deafnavi.com/archive/2026-03.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-02.html",
+      "file": "docs/archive/2026-02.html",
+      "canonical": "https://deafnavi.com/archive/2026-02.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2026-01.html",
+      "file": "docs/archive/2026-01.html",
+      "canonical": "https://deafnavi.com/archive/2026-01.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-12.html",
+      "file": "docs/archive/2025-12.html",
+      "canonical": "https://deafnavi.com/archive/2025-12.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-11.html",
+      "file": "docs/archive/2025-11.html",
+      "canonical": "https://deafnavi.com/archive/2025-11.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-10.html",
+      "file": "docs/archive/2025-10.html",
+      "canonical": "https://deafnavi.com/archive/2025-10.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-09.html",
+      "file": "docs/archive/2025-09.html",
+      "canonical": "https://deafnavi.com/archive/2025-09.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-08.html",
+      "file": "docs/archive/2025-08.html",
+      "canonical": "https://deafnavi.com/archive/2025-08.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-07.html",
+      "file": "docs/archive/2025-07.html",
+      "canonical": "https://deafnavi.com/archive/2025-07.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-06.html",
+      "file": "docs/archive/2025-06.html",
+      "canonical": "https://deafnavi.com/archive/2025-06.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-05.html",
+      "file": "docs/archive/2025-05.html",
+      "canonical": "https://deafnavi.com/archive/2025-05.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-04.html",
+      "file": "docs/archive/2025-04.html",
+      "canonical": "https://deafnavi.com/archive/2025-04.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-03.html",
+      "file": "docs/archive/2025-03.html",
+      "canonical": "https://deafnavi.com/archive/2025-03.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-02.html",
+      "file": "docs/archive/2025-02.html",
+      "canonical": "https://deafnavi.com/archive/2025-02.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/2025-01.html",
+      "file": "docs/archive/2025-01.html",
+      "canonical": "https://deafnavi.com/archive/2025-01.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/archive/legacy.html",
+      "file": "docs/archive/legacy.html",
+      "canonical": "https://deafnavi.com/archive/legacy.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/about.html",
+      "file": "docs/about.html",
+      "canonical": "https://deafnavi.com/about.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/guide.html",
+      "file": "docs/guide.html",
+      "canonical": "https://deafnavi.com/guide.html",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events.html",
+      "file": "docs/events.html",
+      "canonical": "https://deafnavi.com/events.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-10118575d577f69c48c2/",
+      "file": "docs/events/oioi-10118575d577f69c48c2/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-10118575d577f69c48c2/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/jinnancho-beginner-2026-10-23/",
+      "file": "docs/events/jinnancho-beginner-2026-10-23/index.html",
+      "canonical": "https://deafnavi.com/events/jinnancho-beginner-2026-10-23/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/kaat-jungle-captions-2026-10-24/",
+      "file": "docs/events/kaat-jungle-captions-2026-10-24/index.html",
+      "canonical": "https://deafnavi.com/events/kaat-jungle-captions-2026-10-24/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-18c0175677ec2061d5a5/",
+      "file": "docs/events/oioi-18c0175677ec2061d5a5/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-18c0175677ec2061d5a5/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/shizuoka-deaf-tennis-2026-10-24/",
+      "file": "docs/events/shizuoka-deaf-tennis-2026-10-24/index.html",
+      "canonical": "https://deafnavi.com/events/shizuoka-deaf-tennis-2026-10-24/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/kaat-jungle-captions-2026-10-25/",
+      "file": "docs/events/kaat-jungle-captions-2026-10-25/index.html",
+      "canonical": "https://deafnavi.com/events/kaat-jungle-captions-2026-10-25/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/kanagawa-center-festival-2026-10-25/",
+      "file": "docs/events/kanagawa-center-festival-2026-10-25/index.html",
+      "canonical": "https://deafnavi.com/events/kanagawa-center-festival-2026-10-25/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/maimu-zarela-sunagawa-2026-10-25/",
+      "file": "docs/events/maimu-zarela-sunagawa-2026-10-25/index.html",
+      "canonical": "https://deafnavi.com/events/maimu-zarela-sunagawa-2026-10-25/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-db8da853227f80b5f898/",
+      "file": "docs/events/oioi-db8da853227f80b5f898/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-db8da853227f80b5f898/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/mimisuppo-shiroishi-2026-10-27/",
+      "file": "docs/events/mimisuppo-shiroishi-2026-10-27/index.html",
+      "canonical": "https://deafnavi.com/events/mimisuppo-shiroishi-2026-10-27/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/",
+      "file": "docs/events/oioi-5797b8fc3831f0b5d15c/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-694b478c545e6e15b5c9/",
+      "file": "docs/events/oioi-694b478c545e6e15b5c9/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-694b478c545e6e15b5c9/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/dream-begin-2026-11-01/",
+      "file": "docs/events/dream-begin-2026-11-01/index.html",
+      "canonical": "https://deafnavi.com/events/dream-begin-2026-11-01/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/geigeki-recallings-2026-11-01/",
+      "file": "docs/events/geigeki-recallings-2026-11-01/index.html",
+      "canonical": "https://deafnavi.com/events/geigeki-recallings-2026-11-01/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/nagano-rabbit-10th-2026-11-01/",
+      "file": "docs/events/nagano-rabbit-10th-2026-11-01/index.html",
+      "canonical": "https://deafnavi.com/events/nagano-rabbit-10th-2026-11-01/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/shibuya-engeki-school-2026-11-01/",
+      "file": "docs/events/shibuya-engeki-school-2026-11-01/index.html",
+      "canonical": "https://deafnavi.com/events/shibuya-engeki-school-2026-11-01/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/kanagawa-shuwa-go-2026-11-03/",
+      "file": "docs/events/kanagawa-shuwa-go-2026-11-03/index.html",
+      "canonical": "https://deafnavi.com/events/kanagawa-shuwa-go-2026-11-03/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-e82136764a2a7bfea721/",
+      "file": "docs/events/oioi-e82136764a2a7bfea721/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-e82136764a2a7bfea721/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/tokyo-mimi-college-2026-11-03/",
+      "file": "docs/events/tokyo-mimi-college-2026-11-03/index.html",
+      "canonical": "https://deafnavi.com/events/tokyo-mimi-college-2026-11-03/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/tonancyo-community-2026-11-03/",
+      "file": "docs/events/tonancyo-community-2026-11-03/index.html",
+      "canonical": "https://deafnavi.com/events/tonancyo-community-2026-11-03/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/kaat-kaeru-captions-2026-11-06/",
+      "file": "docs/events/kaat-kaeru-captions-2026-11-06/index.html",
+      "canonical": "https://deafnavi.com/events/kaat-kaeru-captions-2026-11-06/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/kaat-kaeru-captions-2026-11-07/",
+      "file": "docs/events/kaat-kaeru-captions-2026-11-07/index.html",
+      "canonical": "https://deafnavi.com/events/kaat-kaeru-captions-2026-11-07/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-05927e1c5575a781fb3a/",
+      "file": "docs/events/oioi-05927e1c5575a781fb3a/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-05927e1c5575a781fb3a/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/fujieda-summary-mini-2026-11-08/",
+      "file": "docs/events/fujieda-summary-mini-2026-11-08/index.html",
+      "canonical": "https://deafnavi.com/events/fujieda-summary-mini-2026-11-08/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/komatsu-shuwa-stage-2026-11-08/",
+      "file": "docs/events/komatsu-shuwa-stage-2026-11-08/index.html",
+      "canonical": "https://deafnavi.com/events/komatsu-shuwa-stage-2026-11-08/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-8eae108e454f7c323271/",
+      "file": "docs/events/oioi-8eae108e454f7c323271/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-8eae108e454f7c323271/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/tonancyo-tachikawa-disaster-2026-11-11/",
+      "file": "docs/events/tonancyo-tachikawa-disaster-2026-11-11/index.html",
+      "canonical": "https://deafnavi.com/events/tonancyo-tachikawa-disaster-2026-11-11/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/matsusaka-mini-shuwa-2026-11-14/",
+      "file": "docs/events/matsusaka-mini-shuwa-2026-11-14/index.html",
+      "canonical": "https://deafnavi.com/events/matsusaka-mini-shuwa-2026-11-14/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-c9d53214a67cbc193270/",
+      "file": "docs/events/oioi-c9d53214a67cbc193270/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-c9d53214a67cbc193270/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/shizuoka-deaf-women-2026-11-15/",
+      "file": "docs/events/shizuoka-deaf-women-2026-11-15/index.html",
+      "canonical": "https://deafnavi.com/events/shizuoka-deaf-women-2026-11-15/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/tonancyo-shimenawa-2026-11-20/",
+      "file": "docs/events/tonancyo-shimenawa-2026-11-20/index.html",
+      "canonical": "https://deafnavi.com/events/tonancyo-shimenawa-2026-11-20/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/kurume-kaiju-2026-11-21/",
+      "file": "docs/events/kurume-kaiju-2026-11-21/index.html",
+      "canonical": "https://deafnavi.com/events/kurume-kaiju-2026-11-21/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/musashino-deaf-lecture-2026-11-21/",
+      "file": "docs/events/musashino-deaf-lecture-2026-11-21/index.html",
+      "canonical": "https://deafnavi.com/events/musashino-deaf-lecture-2026-11-21/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/omura-sign-theater-2026-11-21/",
+      "file": "docs/events/omura-sign-theater-2026-11-21/index.html",
+      "canonical": "https://deafnavi.com/events/omura-sign-theater-2026-11-21/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-3baf0a91c984c8343567/",
+      "file": "docs/events/oioi-3baf0a91c984c8343567/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-3baf0a91c984c8343567/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/gifu-ibuki-kurayami-2026-12-05/",
+      "file": "docs/events/gifu-ibuki-kurayami-2026-12-05/index.html",
+      "canonical": "https://deafnavi.com/events/gifu-ibuki-kurayami-2026-12-05/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/oioi-654d6646f163162664e1/",
+      "file": "docs/events/oioi-654d6646f163162664e1/index.html",
+      "canonical": "https://deafnavi.com/events/oioi-654d6646f163162664e1/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/horipro-jack-captions-2027-01-30/",
+      "file": "docs/events/horipro-jack-captions-2027-01-30/index.html",
+      "canonical": "https://deafnavi.com/events/horipro-jack-captions-2027-01-30/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/horipro-jack-captions-2027-02-02/",
+      "file": "docs/events/horipro-jack-captions-2027-02-02/index.html",
+      "canonical": "https://deafnavi.com/events/horipro-jack-captions-2027-02-02/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/horipro-jack-captions-2027-02-03/",
+      "file": "docs/events/horipro-jack-captions-2027-02-03/index.html",
+      "canonical": "https://deafnavi.com/events/horipro-jack-captions-2027-02-03/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/horipro-jack-captions-2027-02-06/",
+      "file": "docs/events/horipro-jack-captions-2027-02-06/index.html",
+      "canonical": "https://deafnavi.com/events/horipro-jack-captions-2027-02-06/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/events/horipro-jack-captions-2027-02-07/",
+      "file": "docs/events/horipro-jack-captions-2027-02-07/index.html",
+      "canonical": "https://deafnavi.com/events/horipro-jack-captions-2027-02-07/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/guide/life/",
+      "file": "docs/guide/life/index.html",
+      "canonical": "https://deafnavi.com/guide/life/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/guide/systems/",
+      "file": "docs/guide/systems/index.html",
+      "canonical": "https://deafnavi.com/guide/systems/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/guide/accessibility/",
+      "file": "docs/guide/accessibility/index.html",
+      "canonical": "https://deafnavi.com/guide/accessibility/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/guide/guesthouses/",
+      "file": "docs/guide/guesthouses/index.html",
+      "canonical": "https://deafnavi.com/guide/guesthouses/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/guide/hearing-disaster/",
+      "file": "docs/guide/hearing-disaster/index.html",
+      "canonical": "https://deafnavi.com/guide/hearing-disaster/",
+      "robots": "index,follow,max-image-preview:large",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/otomado/",
+      "file": "docs/otomado/index.html",
+      "canonical": "https://deafnavi.com/otomado/",
+      "robots": null,
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/sitemap.html",
+      "file": "docs/sitemap.html",
+      "canonical": "https://deafnavi.com/sitemap.html",
+      "robots": "index,follow",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/deaf-navi-world-jp.html",
+      "file": "docs/deaf-navi-world-jp.html",
+      "canonical": "https://deafnavi.com/deaf-navi-world-jp.html",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/deaf-navi-world-original.html",
+      "file": "docs/deaf-navi-world-original.html",
+      "canonical": "https://deafnavi.com/deaf-navi-world-original.html",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    },
+    {
+      "url": "https://deafnavi.com/connect/",
+      "file": "docs/connect/index.html",
+      "canonical": "https://deafnavi.com/connect/",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1",
+      "refresh": null,
+      "headComplete": true,
+      "noindex": false,
+      "canonicalMismatch": false
+    }
+  ]
+}
