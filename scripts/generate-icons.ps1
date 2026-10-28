@@ -39,8 +39,9 @@ try {
     Export-Icon 192 'icon-192.png'
     Export-Icon 512 'icon-512.png'
     Export-Icon 180 'apple-touch-icon.png' 1 $true
-    # The text-free mark sits within the central safe circle; keep its blue background full bleed.
-    Export-Icon 512 'icon-maskable-512.png' 1 $true
+    # Keep the complete D, hand cutout and three rays inside the maskable safe circle.
+    # Launchers may crop everything outside the central 80%-diameter circle.
+    Export-Icon 512 'icon-maskable-512.png' 0.70 $true
 
     # Retain the old SVG URL for bookmarks and cached page markup.
     $base64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes((Join-Path $iconDir 'icon-192.png')))
