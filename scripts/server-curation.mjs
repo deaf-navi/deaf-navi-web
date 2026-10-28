@@ -1,3 +1,4 @@
+import {runOverseasCafeReview} from './overseas-cafe-review.mjs';
 import {reviewEventTips} from './event-tip-review.mjs';
 import {readFile,writeFile,rename,open,unlink,mkdir} from 'node:fs/promises';
 import {realpathSync} from 'node:fs';
@@ -93,7 +94,7 @@ export function updateExceptionQueue(previous,entries,now){
 }
 
 export async function runServerCuration({stateDir,key,project,records,catalog,discoverySources=[],lodgingSources=[],lodgingSnapshot={version:1,records:[]},now=Date.now(),
-  comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery,eventTips=null}){
+  overseasSnapshot={version:1,records:[]},overseasSources=[],comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery,eventTips=null}){
   // The outer lock serializes timer, allowance-change and operator execution.
   const lockPath=join(stateDir,'server-curation.lock');let lock;
   try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code==='EEXIST')return {status:'busy',submittedThisRun:0};throw e;}
@@ -140,10 +141,16 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
       canSubmit:item=>!comparisonOnly&&gate.ready&&report.submittedThisRun!==null&&candidateReview.submittedThisRun!==null&&allowed.has(publicTextFingerprint(item)),
       stopAfterError:report.submittedThisRun===null||candidateReview.submittedThisRun===null,
       approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
+    const overseasDiscovery=await discover({stateDir,sources:overseasSources,knownUrls:overseasSnapshot.records.flatMap(r=>r.sourceUrls),now,weeklyOverseas:true});
+    const overseas=await runOverseasCafeReview({stateDir,snapshot:overseasSnapshot,catalog,now,prepare:wrappedPrepare,
+      generate:generate??createComplimentaryClient({key,project,stateDir}),
+      canSubmit:item=>!comparisonOnly&&gate.ready&&![report,candidateReview,lodging].some(r=>r.submittedThisRun===null)&&allowed.has(publicTextFingerprint(item)),
+      stopAfterError:[report,candidateReview,lodging].some(r=>r.submittedThisRun===null),
+      approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
     let eventTipReport=null;
     if(eventTips&&!comparisonOnly){
       eventTipReport=await reviewEventTips({queue:eventTips.queue,stateDir,now:Date.now(),gateReady:gate.ready,
-        stopAfterError:[report,candidateReview,lodging].some(r=>r.submittedThisRun===null),
+        stopAfterError:[report,candidateReview,lodging,overseas].some(r=>r.submittedThisRun===null),
         generate:generate??createComplimentaryClient({key,project,stateDir}),publish:eventTips.publish,
         prepareSharing:async(tasks,targets)=>{
           const hashes=await reuseReviewedText(tasks,targets,{stateDir,key,project,now:Date.now()});
@@ -151,11 +158,13 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
         }});
       await privateJson(join(stateDir,'event-tip-review.json'),eventTipReport);
     }
-    const submittedThisRun=[report,candidateReview,lodging,...(eventTipReport?[eventTipReport]:[])].some(r=>r.submittedThisRun===null)?null:report.submittedThisRun+candidateReview.submittedThisRun+lodging.submittedThisRun+(eventTipReport?.submittedThisRun??0);
+    const submittedThisRun=[report,candidateReview,lodging,overseas,...(eventTipReport?[eventTipReport]:[])].some(r=>r.submittedThisRun===null)?null:report.submittedThisRun+candidateReview.submittedThisRun+lodging.submittedThisRun+overseas.submittedThisRun+(eventTipReport?.submittedThisRun??0);
     const result={version:1,generatedAt:new Date(now).toISOString(),status:submittedThisRun===null?'needs-attention':gate.ready?'completed':'account-check-required',
       mode:comparisonOnly?'comparison':'routine',account:gate,selected:report.selected,cached:report.cached,
       corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,
       submittedThisRun,reusedRun:report.reusedRun,comparison,
+      overseasDiscovery,overseas:{selected:overseas.selected,cached:overseas.cached,submittedThisRun:overseas.submittedThisRun,
+        corroborated:overseas.corroborated,exceptions:overseas.exceptions,candidates:overseas.candidates,deferred:overseas.deferred.length,newOrChanged:overseas.newOrChanged,coverage:overseas.coverage},
       eventTips:eventTipReport,newOrChangedExceptions:queue.newOrChanged,attention:attention.counts,discovery,lodgingDiscovery,
       candidateReview:{selected:candidateReview.selected,cached:candidateReview.cached,submittedThisRun:candidateReview.submittedThisRun,
         reusedRun:candidateReview.reusedRun,deferred:candidateReview.deferred.length,newOrChanged:candidateReview.newOrChanged,
@@ -193,6 +202,8 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process
     const sources=await readJson(new URL('../config/curation-discovery.json',import.meta.url));
     const lodgingSnapshot=await readJson('/srv/deafnavi/current/guesthouses.json');
     const lodgingSources=await readJson(new URL('../config/lodging-discovery.json',import.meta.url));
+    const overseasSnapshot=JSON.parse(execFileSync('php',['/srv/deafnavi/current/_backend/overseas-cafe-review-export.php'],{encoding:'utf8',timeout:30000,maxBuffer:2_000_000}));
+    const overseasSources=await readJson(new URL('../config/overseas-cafe-discovery.json',import.meta.url));
     const tipQueue=JSON.parse(execFileSync('php',['/srv/deafnavi/current/_backend/event-tip-queue.php','--export'],{encoding:'utf8',timeout:30000,maxBuffer:2_000_000}));
     const publishTip=async decision=>{
       const run=(mode,input)=>JSON.parse(execFileSync('/usr/sbin/runuser',['-u','deafnavi-runtime','--','/usr/bin/php','/srv/deafnavi/current/_backend/event-tip-queue.php',mode],{input:JSON.stringify(input),encoding:'utf8',timeout:60000,maxBuffer:100000,stdio:['pipe','pipe','pipe']}));
@@ -204,12 +215,12 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process
         return run('--apply',fallback);
       }
     };
-    const result=await runServerCuration({stateDir,eventTips:{queue:tipQueue,publish:publishTip},records:reviewRecords(events,cafes),catalog,discoverySources:sources.sources,lodgingSources:lodgingSources.sources,lodgingSnapshot,
+    const result=await runServerCuration({stateDir,eventTips:{queue:tipQueue,publish:publishTip},records:reviewRecords(events,cafes),catalog,discoverySources:sources.sources,lodgingSources:lodgingSources.sources,lodgingSnapshot,overseasSnapshot,overseasSources:overseasSources.sources,
       key:(await readFile(process.env.DEAFNAVI_OPENAI_KEY_FILE,'utf8')).trim(),project:process.env.DEAFNAVI_OPENAI_PROJECT_ID,
       comparisonOnly:process.argv.includes('--compare')});
     console.log(JSON.stringify({status:result.status,selected:result.selected,cached:result.cached,exceptions:result.exceptions,
       submittedThisRun:result.submittedThisRun,attention:result.attention,newOrChangedExceptions:result.newOrChangedExceptions?.length,
-      discoveryCandidates:result.discovery?.candidates,lodging:result.lodging,publication:result.publication}));
+      discoveryCandidates:result.discovery?.candidates,lodging:result.lodging,overseas:result.overseas,publication:result.publication}));
     if(result.submittedThisRun===null)process.exitCode=1;
     }
   }catch{

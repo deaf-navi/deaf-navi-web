@@ -20,6 +20,20 @@ const prepare=async targets=>({tasks:targets.map(t=>({...task,...t,text,sourceTe
 const generate=async items=>({model:'gpt-6.1-sol',items:items.map(item=>({id:item.id,relevance:'yes',contentType:'announcement',evidence:'手話交流会を開催します。',facts:[{field:'startDate',value:'2026-11-14',evidence:'開催日 2026年11月14日。'},{field:'venue',value:'市民会館',evidence:'会場 市民会館。'}]}))});
 const discover=async()=>({reused:true,scanned:0,candidates:0,newCandidates:0});
 
+test('overseas tasks use the same daily account and exact-sharing gate as domestic tasks',async t=>{
+ const excerpt='Our cafe is open Tuesday to Saturday.';
+ const overseas={...target,kind:'overseas_cafe',role:'published',recordId:'overseas',facilityId:'overseas',fragments:[excerpt],approvedDocumentHash:evidenceHash(excerpt),publicationHash:'a'.repeat(64),baseline:{requiredFields:['businessHours'],facts:{businessHours:'Tuesday to Saturday'}}};
+ const overseasSnapshot={records:[{id:'overseas',sourceUrls:[target.sourceUrl],publicationHash:overseas.publicationHash}]};
+ for(const value of [null,lease]){
+  const opts=await fixture(t,value);let calls=0;
+  const result=await runServerCuration({...opts,records:[],catalog:{version:1,targets:[],overseasCafeTargets:[overseas]},overseasSnapshot,discover,
+   prepare:async targets=>({tasks:targets.map(x=>({...x,text:excerpt,sourceDocumentHash:evidenceHash(excerpt),sourceTextHash:evidenceHash(excerpt),retrievedAt:new Date(now).toISOString()})),exceptions:[]}),
+   generate:async items=>{calls++;return {model:'gpt-6.1-sol',items:items.map(i=>({id:i.id,relevance:'yes',contentType:'other',evidence:excerpt,facts:[{field:'businessHours',value:'Tuesday to Saturday',evidence:excerpt}]}))};}});
+  assert.equal(calls,value?1:0);assert.equal(result.overseas.submittedThisRun,value?1:0);assert.equal(result.publication.changed,0);
+  if(value){const stored=JSON.parse(await readFile(join(opts.stateDir,'allowance.json')));assert.equal(stored.checkedAt,value.checkedAt);assert.equal(stored.expiresAt,value.expiresAt);assert.equal(stored.dailyBudget,value.dailyBudget);}
+ }
+});
+
 test('missing/expired account evidence stops submission without renewing eligibility',async t=>{
  for(const value of [null,{...lease,utcDay:'2026-10-20'},{...lease,sharingEnabled:false}]){
   const opts=await fixture(t,value),before=value?await readFile(join(opts.stateDir,'allowance.json'),'utf8'):null;
