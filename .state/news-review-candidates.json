@@ -1,31 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-28T07:04:33.815Z",
+  "generatedAt": "2026-10-28T07:33:48.340Z",
   "counts": {
-    "uniqueInputs": 2595,
-    "alreadyPublished": 813,
-    "outsideWindow": 1351,
-    "hardExcluded": 11,
-    "duplicateOfPublished": 94,
-    "candidateDuplicates": 12,
-    "eligible": 314,
+    "uniqueInputs": 2735,
+    "alreadyPublished": 875,
+    "outsideWindow": 1410,
+    "hardExcluded": 14,
+    "duplicateOfPublished": 106,
+    "candidateDuplicates": 10,
+    "eligible": 320,
     "queued": 40,
-    "deferred": 274
+    "deferred": 280
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 4,
-    "foreign-coverage-review-required": 4,
-    "incidental-organization-mention": 1,
+    "low-value-page": 9,
+    "foreign-coverage-review-required": 3,
     "incidental-disability-nickname": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-28T04:34:48.815Z",
+    "previousGeneratedAt": "2026-10-28T07:04:33.815Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -426,7 +425,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     }
   ]
 }
