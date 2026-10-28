@@ -2,6 +2,7 @@
   "version": 1,
   "sources": [
     {"id": "oioi-events", "url": "https://www.oioi-sign.com/events_list/"},
+    {"id": "yysystem-events", "url": "https://yysystem.com/information/?category=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/information/information-"], "restrictCandidatePaths": true},
     {"id": "gifu-ibuki", "url": "https://gifuibuki.amebaownd.com/"},
     {"id": "japanese-theatre-of-the-deaf", "url": "https://ameblo.jp/jtd2009/"},
     {"id": "jdba-news", "url": "https://www.jdba.or.jp/db/blog/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/db/blog/resp"]},
