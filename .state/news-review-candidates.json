@@ -1,31 +1,31 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-28T04:34:48.815Z",
+  "generatedAt": "2026-10-28T07:04:33.815Z",
   "counts": {
-    "uniqueInputs": 2778,
-    "alreadyPublished": 882,
-    "outsideWindow": 1488,
-    "hardExcluded": 15,
-    "duplicateOfPublished": 88,
-    "candidateDuplicates": 6,
-    "eligible": 299,
+    "uniqueInputs": 2595,
+    "alreadyPublished": 813,
+    "outsideWindow": 1351,
+    "hardExcluded": 11,
+    "duplicateOfPublished": 94,
+    "candidateDuplicates": 12,
+    "eligible": 314,
     "queued": 40,
-    "deferred": 259
+    "deferred": 274
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 8,
+    "low-value-page": 4,
     "foreign-coverage-review-required": 4,
     "incidental-organization-mention": 1,
     "incidental-disability-nickname": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-28T04:12:36.532Z",
+    "previousGeneratedAt": "2026-10-28T04:34:48.815Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -389,16 +389,6 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/mienaimusume_joeikai/",
-      "articleHash": "8e97f794f7d3636a1da1f22ea9ca78341dd8abd7f2b4831dc52200f332d473b4",
-      "publishedAt": "2026-10-08T06:40:08.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://co-coco.jp/news/sakerubashoni_oitekure/",
       "articleHash": "764891deac3df4e76a0175205b7a1ec8396417a8e1d5d68ab713680580782e6e",
       "publishedAt": "2026-09-24T02:30:00.000Z",
@@ -427,6 +417,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/kokobo/",
+      "articleHash": "98cab63910f42d5f8f34df50415f68ef2eeb33836aedde971cab5bd35547f207",
+      "publishedAt": "2026-09-14T07:30:02.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
