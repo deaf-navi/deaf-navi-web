@@ -25,17 +25,22 @@ html[data-font="xlarge"] { font-size: 125%; }
 .dn-site-shell *, .dn-site-shell *::before, .dn-site-shell *::after { box-sizing: border-box; }
 .dn-shell-inner { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 32px; }
 .dn-shell-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 82px; padding-block: 14px; }
-.dn-site-shell .dn-shell-brand { display: inline-flex; align-items: center; gap: 12px; color: var(--shell-ink); text-decoration: none; flex: 0 1 auto; min-width: 0; }
+.dn-site-shell .dn-shell-brand {
+  --brand-name-height: 30px; --brand-tag-gap: 4px; --brand-tag-line: 15px; --brand-tag-lines: 1;
+  --brand-height: calc(var(--brand-name-height) + var(--brand-tag-gap) + var(--brand-tag-line) * var(--brand-tag-lines));
+  display: inline-flex; align-items: center; gap: 12px; color: var(--shell-ink); text-decoration: none; flex: 0 1 auto; min-width: 0;
+}
 .dn-shell-wordmark { min-width: 0; }
-.dn-shell-name { display: flex; align-items: center; flex-wrap: wrap; gap: 7px 10px; }
+.dn-shell-name { display: flex; align-items: center; flex-wrap: nowrap; gap: 7px 10px; height: var(--brand-name-height); }
 .dn-shell-edition { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 64px; padding: 4px 6px; border: 1px solid #d5e2e3; border-radius: 999px; background: #edf5f5; color: #006b72; font-size: 16px; font-weight: 700; line-height: 1.25; letter-spacing: .02em; white-space: nowrap; }
 :root[data-theme="dark"] .dn-shell-edition { background: #303334; border-color: #4a5556; color: #9edbd8; }
 .dn-shell-brand strong { display: block; font-size: 26px; line-height: 1.15; font-weight: 700; letter-spacing: -.04em; white-space: nowrap; }
-.dn-shell-brand small { display: block; margin-top: 4px; font-size: 11px; color: var(--shell-muted); letter-spacing: .05em; line-height: 1.4; }
+.dn-shell-brand small { display: block; margin-top: var(--brand-tag-gap); font-size: 11px; color: var(--shell-muted); letter-spacing: .05em; line-height: var(--brand-tag-line); white-space: nowrap; }
 .dn-shell-brand small span { display: inline-block; }
-.dn-shell-mark { display: grid; place-items: center; width: 44px; height: 44px; background: transparent; flex-shrink: 0; }
-.dn-shell-mark svg { width: 29px; height: 29px; stroke-width: 8; }
-.dn-shell-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* Crop only transparent padding in the unchanged 512px artwork. Its alpha bounds
+   are x=33..481, y=76..438 (448x362); the visible mark matches both text rows. */
+.dn-shell-mark { display: block; position: relative; overflow: hidden; width: auto; height: var(--brand-height); aspect-ratio: 448 / 362; border-radius: 0; background: transparent; flex-shrink: 0; }
+.dn-shell-mark img { display: block; position: absolute; max-width: none; width: calc(100% * 512 / 448); height: auto; left: calc(-100% * 33 / 448); top: calc(-100% * 76 / 362); }
 /* Stable tracks keep active-link weight and page-specific fonts from moving tabs. */
 .dn-site-shell .site-nav { display: grid; grid-template-columns: 6fr 6fr 5fr 6fr 7fr 9fr 6fr 9fr; width: min(100%, 960px); align-items: stretch; gap: 0 8px; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; }
 .dn-site-shell .site-nav__link {
@@ -121,10 +126,20 @@ html[data-font="xlarge"] { font-size: 125%; }
   .dn-site-shell .site-nav { grid-template-columns: repeat(12,minmax(0,1fr)); width: 100%; gap: 0; }
   .dn-site-shell .site-nav__link { grid-column:span 3; padding: 9px 8px; font-size: 13px; min-height: 44px; }
   .dn-site-shell .site-nav__link:nth-child(n+5) { grid-column:span 3; }
-  .dn-shell-brand small { margin-top: 2px; letter-spacing: 0; text-wrap: balance; }
+  .dn-site-shell .dn-shell-brand { --brand-tag-gap: 2px; }
+  .dn-shell-brand small { letter-spacing: 0; }
   .dn-shell-top { min-height: 72px; }
   .dn-page-intro { padding-block: 20px; }
   .dn-public .dn-main, .dn-public .dn-footer, .dn-public.dn-cafe-hub .dn-main, .dn-public.dn-cafe-hub .dn-footer { padding-inline: 20px; }
+}
+/* Keep the brand and both controls on one row at intermediate widths too. */
+@media (max-width: 640px) {
+  .dn-site-shell .display-controls { gap: 5px; }
+  .dn-site-shell .display-controls__btn { padding: 9px; width: 44px; }
+  .dn-site-shell .display-controls__btn [data-theme-label], .dn-site-shell .display-controls__btn [data-font-label] {
+    position: absolute; width: 1px; height: 1px; min-inline-size: 0; padding: 0; margin: -1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
 }
 @media (max-width: 520px) {
   .dn-site-shell .site-nav__link:nth-child(n+5) { grid-column:span 6; }
@@ -134,24 +149,18 @@ html[data-font="xlarge"] { font-size: 125%; }
   .dn-shell-name { column-gap: 7px; }
   .dn-shell-edition { flex-basis: 48px; font-size: 12px; padding: 3px 5px; }
   .dn-shell-brand strong { font-size: 24px; }
-  .dn-site-shell .dn-shell-brand { gap: 9px; }
-  .dn-shell-mark { width: 38px; height: 38px; border-radius: 10px; }
-  .dn-site-shell .display-controls { gap: 5px; }
-  .dn-site-shell .display-controls__btn { padding: 9px; width: 44px; }
-  .dn-site-shell .display-controls__btn [data-theme-label], .dn-site-shell .display-controls__btn [data-font-label] {
-    position: absolute; width: 1px; height: 1px; min-inline-size: 0; padding: 0; margin: -1px;
-    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
-  }
+  .dn-site-shell .dn-shell-brand { --brand-name-height: 28px; --brand-tag-line: 14px; gap: 9px; }
+  .dn-shell-brand small { font-size: 10px; }
   .dn-site-shell .site-nav__link { font-size: 12px; padding-inline: 5px; }
   .dn-public .dn-filter-sidebar { padding: 14px; }
   .dn-public .dn-cafe-welcome { padding-block: 16px 20px; }
   .dn-public .dn-main { padding-top: 16px; }
   .dn-public.dn-cafe-hub .dn-field :is(input,select,textarea) { font-size: 1rem; }
 }
-@media (max-width: 360px) {
+@media (max-width: 374px) {
   .dn-shell-top { gap: 6px; }
-  .dn-site-shell .dn-shell-brand { gap: 7px; }
-  .dn-shell-mark { width: 36px; height: 36px; }
+  .dn-site-shell .dn-shell-brand { --brand-name-height: 26px; --brand-tag-lines: 2; gap: 4px; }
+  .dn-shell-brand small span { display: block; }
   .dn-shell-brand strong { font-size: 22px; }
   .dn-shell-name { column-gap: 4px; }
   .dn-shell-edition { display: none; }

@@ -33,8 +33,8 @@ export function SiteHeader() {
       <div className="dn-shell-inner">
         <div className="dn-shell-top">
           <a className="dn-shell-brand" href="../" aria-label={en ? 'Deaf Navi home' : 'Deaf Navi ホーム'}>
-            <span className="dn-shell-mark" aria-hidden="true"><img src="../icons/icon-192.png?v=20260917c" alt="" width="44" height="44" /></span>
-            <span className="dn-shell-wordmark"><span className="dn-shell-name"><strong>Deaf Navi</strong><span className="dn-shell-edition">Web</span></span><small>{en ? 'News, places & everyday support' : <><span>知ることを、</span><span>つながるきっかけに。</span></>}</small></span>
+            <span className="dn-shell-mark" aria-hidden="true"><img src="../icons/icon-512.png?v=20261028logo" alt="" width="512" height="512" /></span>
+            <span className="dn-shell-wordmark"><span className="dn-shell-name"><strong>Deaf Navi</strong><span className="dn-shell-edition">Web</span></span><small>{en ? <><span>News, places &amp;</span>{' '}<span>everyday support</span></> : <><span>知ることを、</span><span>つながるきっかけに。</span></>}</small></span>
           </a>
           <div className="display-controls">
             <button id="theme-toggle" className="display-controls__btn" type="button" aria-pressed={dark} onClick={() => update({ theme: dark ? 'light' : 'dark' })}>
