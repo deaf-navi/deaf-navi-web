@@ -1,4 +1,5 @@
 import {runOverseasCafeReview} from './overseas-cafe-review.mjs';
+import {collectOverseasCafeThumbnails} from './overseas-cafe-thumbnails.mjs';
 import {reviewEventTips} from './event-tip-review.mjs';
 import {readFile,writeFile,rename,open,unlink,mkdir} from 'node:fs/promises';
 import {realpathSync} from 'node:fs';
@@ -94,7 +95,7 @@ export function updateExceptionQueue(previous,entries,now){
 }
 
 export async function runServerCuration({stateDir,key,project,records,catalog,discoverySources=[],lodgingSources=[],lodgingSnapshot={version:1,records:[]},now=Date.now(),
-  overseasSnapshot={version:1,records:[]},overseasSources=[],comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery,eventTips=null}){
+  overseasSnapshot={version:1,records:[]},overseasSources=[],comparisonOnly=false,generate,prepare=prepareCurationReview,discover=runSourceDiscovery,collectThumbnails=collectOverseasCafeThumbnails,eventTips=null}){
   // The outer lock serializes timer, allowance-change and operator execution.
   const lockPath=join(stateDir,'server-curation.lock');let lock;
   try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code==='EEXIST')return {status:'busy',submittedThisRun:0};throw e;}
@@ -147,6 +148,12 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
       canSubmit:item=>!comparisonOnly&&gate.ready&&![report,candidateReview,lodging].some(r=>r.submittedThisRun===null)&&allowed.has(publicTextFingerprint(item)),
       stopAfterError:[report,candidateReview,lodging].some(r=>r.submittedThisRun===null),
       approvalSignature:evidenceHash(JSON.stringify([comparisonOnly?'comparison':'server-v1',gate.approvalSignature??gate.reason]))});
+    // Independent bounded metadata lookup; not shared with any AI service.
+    let overseasThumbnails=null;
+    if(!comparisonOnly){
+      try{overseasThumbnails=await collectThumbnails({snapshot:overseasSnapshot,stateDir,now});}
+      catch{overseasThumbnails={status:'metadata-check-failed',selected:null,fetched:null,cached:null,deferred:null,candidates:null,newOrChanged:[],pendingReview:[]};}
+    }
     let eventTipReport=null;
     if(eventTips&&!comparisonOnly){
       eventTipReport=await reviewEventTips({queue:eventTips.queue,stateDir,now:Date.now(),gateReady:gate.ready,
@@ -163,6 +170,7 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
       mode:comparisonOnly?'comparison':'routine',account:gate,selected:report.selected,cached:report.cached,
       corroborated:report.corroborated,reviewedUnchanged:report.reviewedUnchanged,exceptions:report.exceptions,
       submittedThisRun,reusedRun:report.reusedRun,comparison,
+      overseasThumbnails:overseasThumbnails?{status:overseasThumbnails.status??'checked',selected:overseasThumbnails.selected,fetched:overseasThumbnails.fetched,cached:overseasThumbnails.cached,deferred:overseasThumbnails.deferred,candidates:overseasThumbnails.candidates,newOrChanged:overseasThumbnails.newOrChanged,pendingReview:overseasThumbnails.pendingReview,apiRequests:0}:null,
       overseasDiscovery,overseas:{selected:overseas.selected,cached:overseas.cached,submittedThisRun:overseas.submittedThisRun,
         corroborated:overseas.corroborated,exceptions:overseas.exceptions,candidates:overseas.candidates,deferred:overseas.deferred.length,newOrChanged:overseas.newOrChanged,coverage:overseas.coverage},
       eventTips:eventTipReport,newOrChangedExceptions:queue.newOrChanged,attention:attention.counts,discovery,lodgingDiscovery,
