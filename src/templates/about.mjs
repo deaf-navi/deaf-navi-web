@@ -108,6 +108,7 @@ ${renderSiteHeader({
       <h2 id="about-operator" class="about__h2">運営</h2>
       <p>Deaf Navi Web とiOSアプリ「Deaf Navi」は <strong>TAMA</strong> が運営しています。Web版で選定したニュースや暮らしの情報をアプリと共有し、それぞれの利用場面に合った形で提供しています。</p>
       <p>Deaf Navi は、TAMAによる独立系ソフトウェア／AIスタジオ <a href="https://flamenut.com/">FlameNut</a> のプロジェクトです。</p>
+      <p>Instagram：<a href="https://www.instagram.com/deafnavi/" target="_blank" rel="noopener noreferrer">@deafnavi（新しいタブ）</a></p>
       <p>お問い合わせ：<a href="mailto:info@flamenut.com">info@flamenut.com</a></p>
     </section>
 
