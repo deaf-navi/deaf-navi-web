@@ -185,3 +185,6 @@ try {
   ok(!/Fatal error|Warning:|Uncaught/.test(errors),'no PHP runtime warnings');
   console.log(JSON.stringify({result:'DIRECTORY_HTTP_TESTS_OK',checks,dataDirectory:dir}));
 } finally {server.kill();}
+
+// Exercise the app's public projection in the same CI/deployment regression gate.
+await import('./app-directory.integration.mjs');

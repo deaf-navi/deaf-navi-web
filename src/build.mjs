@@ -14,6 +14,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+import { buildAppAPI } from './app-api-build.mjs';
 import { cafeRelated } from './lib/cafe-related.mjs';
 import { SITE_KEYWORDS } from '../config/site.mjs';
 import { prepareDomesticPublication, prepareDomesticArchivePublication } from './lib/publication-quality.mjs';
@@ -298,6 +299,8 @@ async function main() {
       .replaceAll('__ASSET_VERSION__', clientAssetVersion);
     await writeDoc('sw.js', sw);
   }
+  // Every production build, including event recovery, publishes the same app snapshot.
+  if (!IS_DEV) await buildAppAPI();
 }
 
 main().catch((err) => {

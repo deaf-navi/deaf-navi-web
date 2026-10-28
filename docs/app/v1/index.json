@@ -10,10 +10,19 @@
       "12:10",
       "18:10"
     ],
-    "recommendedTtlSeconds": 21600,
+    "recommendedTtlSeconds": 300,
     "staleAfterSeconds": 86400
   },
   "endpoints": {
+    "events": {
+      "url": "https://deafnavi.com/app/v1/events.json"
+    },
+    "directory": {
+      "url": "https://deafnavi.com/connect/sign-cafe/app-v1.json"
+    },
+    "info": {
+      "url": "https://deafnavi.com/app/v1/info.json"
+    },
     "domestic": {
       "title": "Deaf Navi Web",
       "url": "https://deafnavi.com/app/v1/domestic.json",
