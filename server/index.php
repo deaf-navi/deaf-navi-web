@@ -15,6 +15,7 @@ require __DIR__.'/starbucks-community.php';
 require __DIR__.'/cafe-regions.php';
 require __DIR__.'/stories.php';
 require __DIR__.'/event-tip-review.php';
+require __DIR__.'/app-directory.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: private, no-store, max-age=0');
@@ -33,6 +34,7 @@ if(in_array($path,['/connect/sign-cafe/','/connect/sign-cafe/overseas/','/connec
     header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' ".$imageSources.$mapImages."; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 }
 try {
+    if($path==='/connect/sign-cafe/app-v1.json')app_directory_endpoint();
     if(($path==='/stories'||str_starts_with($path,'/stories/'))||$path==='/admin/stories/'){
         if((int)($_SERVER['CONTENT_LENGTH']??0)>8388608)fail('送信内容が大きすぎます。',413);
         if(stories_dispatch($path))exit;

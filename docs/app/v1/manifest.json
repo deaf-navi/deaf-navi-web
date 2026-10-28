@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-28T09:37:38Z",
+  "generatedAt": "2026-10-28T09:49:50Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -10,10 +10,19 @@
       "12:10",
       "18:10"
     ],
-    "recommendedTtlSeconds": 21600,
+    "recommendedTtlSeconds": 300,
     "staleAfterSeconds": 86400
   },
   "endpoints": {
+    "events": {
+      "url": "https://deafnavi.com/app/v1/events.json"
+    },
+    "directory": {
+      "url": "https://deafnavi.com/connect/sign-cafe/app-v1.json"
+    },
+    "info": {
+      "url": "https://deafnavi.com/app/v1/info.json"
+    },
     "domestic": {
       "title": "Deaf Navi Web",
       "url": "https://deafnavi.com/app/v1/domestic.json",
@@ -21,7 +30,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-news-v1.json",
       "count": 458,
-      "sourceGeneratedAt": "2026-10-28T09:35:09Z",
+      "sourceGeneratedAt": "2026-10-28T09:49:50Z",
       "categories": [
         {
           "id": "all",

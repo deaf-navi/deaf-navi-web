@@ -23,7 +23,7 @@ const anon=client(), admin=client(), editor=client();
 const token=t=>{const m=t.match(/name="csrf" value="([a-f0-9]+)"/);assert.ok(m,'CSRF token present');return m[1];};
 let checks=0;function ok(condition,message){assert.ok(condition,message);checks++;}
 try {
-  for(let i=0;i<40;i++){try{await fetch(base+'/');break;}catch{await new Promise(r=>setTimeout(r,100));}}
+  for(let i=0;i<40;i++){try{await (await fetch(base+'/')).text();break;}catch{await new Promise(r=>setTimeout(r,100));}}
   let r=await anon('/connect/sign-cafe/');ok(r.status===200,'public directory');ok(r.text.includes('Knot'),'verified seed');ok(!r.text.includes('びわこ手話カフェ「わ」'),'pending never rendered');ok(r.headers.get('cache-control').includes('no-store'),'no cache');
   ok(r.text.includes('class="dn-cafe-table"')&&!r.text.includes('dn-place-grid'),'table is the default listing');
   ok((await anon('/connect/sign-cafe/?view=cards')).text.includes('dn-place-grid'),'cards require explicit selection');
@@ -190,3 +190,6 @@ try {
   ok(!/Fatal error|Warning:|Uncaught/.test(errors),'no PHP runtime warnings');
   console.log(JSON.stringify({result:'DIRECTORY_HTTP_TESTS_OK',checks,dataDirectory:dir}));
 } finally {server.kill();}
+
+// Exercise the app's public projection in the same CI/deployment regression gate.
+await import('./app-directory.integration.mjs');

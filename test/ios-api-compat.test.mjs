@@ -115,3 +115,25 @@ test('world-jp.json: モード別スキーマ（original/translation構造）', 
   const multiArticle = multi.articles[0];
   assert.ok(multiArticle.localized?.ja && multiArticle.localized?.original, 'multilingual は localized.{ja,original} を持つ');
 });
+
+test('rich domestic feed retains Web topics, images and announcement/report context', () => {
+  const raw = JSON.parse(readFileSync(join(root, 'docs', 'articles.json'), 'utf8'));
+  const output = readJson('domestic.json');
+  for (const article of raw.articles) {
+    const item = output.articles.find(a => a.id === article.id);
+    assert.ok(item.topicId && Number.isInteger(item.topicRank));
+    assert.equal(item.thumbnailURL, article.thumbnail?.url);
+    assert.equal(item.newsContext, article.newsContext);
+  }
+  assert.equal(output.refresh.recommendedTtlSeconds, 300);
+  assert.ok(Array.isArray(readJson('events.json').events));
+  assert.ok(Array.isArray(readJson('info.json')));
+});
+
+test('rich World feed retains reviewed images without changing legacy arrays', () => {
+  const raw = JSON.parse(readFileSync(join(root, 'docs', 'articles-world.json'), 'utf8'));
+  for (const filename of ['world-jp.json', 'world-original.json']) {
+    const output = readJson(filename);
+    for (const article of raw.articles) assert.equal(output.articles.find(a => a.id === article.id).thumbnailURL, article.thumbnail?.url);
+  }
+});
