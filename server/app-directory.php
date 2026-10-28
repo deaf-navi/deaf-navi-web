@@ -60,6 +60,23 @@ function app_directory_snapshot():array {
     $events=array_map('app_directory_event',cafe_event_records());
     return ['schemaVersion'=>'deaf-navi-directory.v1','generatedAt'=>gmdate('c'),'cafes'=>$cafes,'events'=>$events];
 }
+// Read the same published occurrences as the cafe list, without copying records
+// into the static event ledger or exposing private review/submission fields.
+function domestic_cafe_events_snapshot():array {
+    $events=[];
+    foreach(cafe_event_records() as $p) {
+        if(($p['country_code']??'')!=='JP'||cafe_event_date($p)===''||($p['observation_only']??'0')==='1')continue;
+        $events[]=app_directory_event($p);
+    }
+    return ['schemaVersion'=>'deaf-navi-cafe-events.v1','events'=>$events];
+}
+function domestic_cafe_events_endpoint():never {
+    if(!in_array($_SERVER['REQUEST_METHOD']??'GET',['GET','HEAD'],true)){header('Allow: GET, HEAD');http_response_code(405);exit;}
+    header('Content-Type: application/json; charset=UTF-8');
+    header('Cache-Control: no-store');header('X-Robots-Tag: noindex');
+    if(($_SERVER['REQUEST_METHOD']??'GET')!=='HEAD')echo json(domestic_cafe_events_snapshot());
+    exit;
+}
 function app_directory_endpoint():never {
     if(!in_array($_SERVER['REQUEST_METHOD']??'GET',['GET','HEAD'],true)){header('Allow: GET, HEAD');http_response_code(405);exit;}
     $data=app_directory_snapshot();

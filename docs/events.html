@@ -48,7 +48,7 @@
   <link rel="stylesheet" href="./styles.css?v=20260909ui2">
   <link rel="stylesheet" href="./site-shell.css?v=20261028align">
   <link rel="stylesheet" href="./support.css?v=20261016mobile2">
-<link rel="stylesheet" href="./events.css?v=20261017edition"><link rel="stylesheet" href="./browse.css?v=696a633e129e"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body class="browse-page events-page"><a class="skip-link" href="#main">メインコンテンツにスキップ</a>
+<link rel="stylesheet" href="./events.css?v=20261017edition"><link rel="stylesheet" href="./browse.css?v=79078860b8ef"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body class="browse-page events-page"><a class="skip-link" href="#main">メインコンテンツにスキップ</a>
   <header class="dn-site-shell" role="banner">
     <div class="dn-shell-inner">
       <div class="dn-shell-top">
@@ -80,7 +80,7 @@
   <div class="dn-page-intro ">
     <div class="container">
       <div class="dn-page-intro__row"><h1 class="dn-page-title">手話イベント</h1></div>
-      <p class="site-lead">交流会、講座、公演。国内の催しを開催日と地域から探せます。</p>
+      <p class="site-lead">交流会、講座、公演、手話カフェ。国内の催しを開催日と地域から探せます。</p>
     </div>
   </div>
   <main class="container event-page" id="main" data-recheck-ms="172800000">
@@ -90,7 +90,7 @@
       <label class="event-region-filter">地域<select id="event-prefecture" name="prefecture"><option value="">すべての地域</option><option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option><option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option><option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option><option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option><option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option><option>オンライン</option></select></label>
       <details class="event-more-filters"><summary id="event-filter-summary">種類・開催月・情報の受け取り方で絞り込む</summary><div class="event-filter-options">
 
-      <label>種類<select id="event-kind" name="kind"><option value="">すべての種類</option><option value="exchange">交流・体験</option><option value="course">講座・学習</option><option value="theater">手話劇・演劇</option><option value="culture">公演・文化</option><option value="other">その他</option></select></label>
+      <label>種類<select id="event-kind" name="kind"><option value="">すべての種類</option><option value="exchange">交流・体験</option><option value="course">講座・学習</option><option value="theater">手話劇・演劇</option><option value="culture">公演・文化</option><option value="other">その他</option><option value="cafe">手話カフェ</option></select></label>
       <label>開催月<input type="month" id="event-month" name="month"></label>
       <label class="event-communication-filter">情報の受け取り方<select id="event-communication" name="communication" aria-describedby="event-communication-help"><option value="">指定しない</option><option value="sign">手話による案内・表現</option><option value="interpretation">手話通訳</option><option value="captions">字幕</option><option value="summary">要約筆記</option><option value="writing">筆談</option></select></label>
       <p id="event-communication-help" class="event-filter-help">告知で確認できた方法から探せます。「手話の催し」でも、通訳・字幕が付くとは限りません。未確認は「対応なし」を意味しません。</p>
@@ -98,9 +98,10 @@
     </form>
     <div class="event-browse" hidden><div class="event-quick" role="group" aria-label="近日のイベント"><button type="button" class="filter" data-range="" aria-pressed="true">開催予定</button><button type="button" class="filter" data-range="weekend" aria-pressed="false">今週末</button><button type="button" class="filter" data-range="month" aria-pressed="false">今月</button></div>
     <details class="event-history"><summary>過去の告知・その他</summary><div class="event-periods" role="group" aria-label="開催時期" hidden><button type="button" class="filter" data-period="upcoming" aria-pressed="true">開催予定</button><button type="button" class="filter" data-period="past" aria-pressed="false">過去の告知</button><button type="button" class="filter" data-period="review" aria-pressed="false">最新状況は公式案内へ</button><button type="button" class="filter" data-period="cancelled" aria-pressed="false">中止の告知</button></div></details></div>
-    <div class="event-results"><p id="event-count" role="status" aria-live="polite">開催予定 39件</p><a href="./connect/sign-cafe/events/">手話カフェの開催情報も見る</a></div>
+    <div class="event-results"><p id="event-count" role="status" aria-live="polite">開催予定 39件</p><a href="./connect/sign-cafe/events/">手話カフェイベント一覧</a></div>
+    <p id="event-cafe-status" class="event-filter-help" role="status" hidden>手話カフェの開催情報を読み込み中…</p>
     <p class="event-guidance">日時や参加条件は変更される場合があります。参加・申込の前に告知をご確認ください。</p>
-    <noscript><p>以下は掲載時点で確認した全件です。開催日と告知をご確認ください。</p></noscript>
+    <noscript><p>以下は掲載時点のイベント情報です。手話カフェの開催情報は<a href="./connect/sign-cafe/events/">手話カフェイベント一覧</a>をご覧ください。</p></noscript>
     <section class="event-list" aria-label="イベント一覧"><article class="event-row" id="oioi-10118575d577f69c48c2" data-event data-start="2026-10-17" data-end="2026-10-17" data-verified="2026-10-16T23:01:51.339Z" data-verification="needs_review" data-status="announced" data-prefecture="岡山県" data-kind="culture" data-search="岡山市手話サークル麦の会 創立40周年記念 岡山県 西川アイプラザ 5階多目的ホール 岡山市手話サークル麦の会の創立40周年記念。oioiは第2部に出演します。 第2部：会員1,000円、非会員2,000円。会員家族の小学生1,000円、未就学児無料（席なし）。 第1部はどなたでも参加可。第2部は事前申込制で、申込期限の9月30日は終了しています。 第1部11:00〜11:30（受付10:30）、第2部13:30〜15:00（受付12:30） 公演・文化" hidden>
       <div class="event-when"><div class="event-dates"><time datetime="2026-10-17">2026.10.17（土）</time></div><span data-event-state>過去の告知</span></div>
       <div class="event-content"><div class="event-intro"><span class="news-media" aria-hidden="true"><span class="news-media__fallback">公演</span></span><div class="event-heading"><p class="event-meta">岡山県 · 公演・文化</p><h2><a href="/events/oioi-10118575d577f69c48c2/">岡山市手話サークル麦の会 創立40周年記念</a></h2></div></div>
@@ -665,6 +666,6 @@
       </p>
     </div>
   </footer>
-  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261026readercopy"></script>  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
+  <script src="./ui-controls.js" defer></script><script type="module" src="./events.js?v=20261029cafes"></script>  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"6473e8a5f9904585a0f0f17c8a3edfe0"}'></script>
 <script src="/access-visit.js" defer></script><script src="/access-engagement.js?v=20261025b" defer></script><script src="/stories-related.js" defer></script>
 </body></html>

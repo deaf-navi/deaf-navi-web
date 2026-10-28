@@ -35,6 +35,7 @@ if(in_array($path,['/connect/sign-cafe/','/connect/sign-cafe/overseas/','/connec
 }
 try {
     if($path==='/connect/sign-cafe/app-v1.json')app_directory_endpoint();
+    if($path==='/connect/sign-cafe/events/data.json')domestic_cafe_events_endpoint();
     if(($path==='/stories'||str_starts_with($path,'/stories/'))||$path==='/admin/stories/'){
         if((int)($_SERVER['CONTENT_LENGTH']??0)>8388608)fail('送信内容が大きすぎます。',413);
         if(stories_dispatch($path))exit;
