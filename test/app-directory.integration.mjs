@@ -34,6 +34,9 @@ try {
   assert.ok(!(await changed.json()).cafes.some(p=>p.id==='knot'),'withdrawals disappear from next snapshot');
   php(`query("UPDATE records SET publication='pending'");`);
   const empty=await (await fetch(url)).json();assert.deepEqual(empty.cafes,[]);assert.deepEqual(empty.events,[]);
+  const ended=JSON.parse(php(`require 'server/app-directory.php';$p=json_decode(query("SELECT payload FROM records WHERE id='knot'")->fetchColumn(),true);$p['status']='permanently_closed';$p['activity_date']='2099-01-01';echo json(app_directory_event($p));`));
+  assert.equal(ended.status,'ended','closure is not evidence that a particular event was cancelled');
+  assert.equal(ended.period,'past');
   assert.ok(!errors.includes('PHP Fatal error'),errors);
   console.log('App directory: privacy, tri-state fields, read-only, conditional requests, withdrawal and empty snapshot passed.');
 } finally {server.kill('SIGTERM');await new Promise(resolve=>server.once('exit',resolve));rmSync(dir,{recursive:true,force:true});}

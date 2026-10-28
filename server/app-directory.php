@@ -47,7 +47,7 @@ function app_directory_event(array $p):array {
         'time'=>$isStore?trim(($p['start_time']??'').'〜'.($p['end_time']??''),'〜'):($p['business_hours']??''),
         'target'=>implode("\n",array_filter([$p['conditions']??'',$p['application']??'',$p['reservation']??''])),
         'description'=>implode("\n\n",array_filter([$p['description']??'',$p['notes']??''])),
-        'status'=>in_array($p['status'],['cancelled','closed','permanently_closed'],true)?'cancelled':'announced',
+        'status'=>$p['status']==='cancelled'?'cancelled':(in_array($p['status'],['ended','closed','permanently_closed'],true)?'ended':'announced'),
         'period'=>cafe_event_period($p),'verification'=>$fresh['status']==='review'?'needs_review':'verified',
         'verifiedAt'=>$verified,'validUntil'=>$verified?gmdate('c',strtotime($verified)+CAFE_EVENT_FRESH_SECONDS):null,
         'communication'=>$communication,'timezone'=>($p['timezone']??'')?:'Asia/Tokyo'];
