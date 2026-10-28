@@ -4,6 +4,8 @@ import {randomUUID} from 'node:crypto';
 import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
 import {cleanHtml,decodeEntities} from '../src/lib/text.mjs';
 import {evidenceHash} from './curation-review-contract.mjs';
+const nonVenueLink=(url,title)=>/\/(?:donat(?:e|ion)|fundrais|checkout|cart|gift-?card|privacy|terms|careers|jobs|newsletter|login|register)(?:[/.\-_]|$)/i.test(new URL(url).pathname)
+  ||/^(?:donate|support (?:us|the caf[eé])|buy (?:a )?gift card|subscribe)\b/i.test(title);
 
 // Bounded candidate discovery only. Link text is not evidence for publication or sharing.
 export function discoverLinks(html,source,knownUrls=[]){
@@ -16,6 +18,7 @@ export function discoverLinks(html,source,knownUrls=[]){
         ||url.href.length>1000||/\/admin\b|\/login\b|\/search\b|\.(?:jpg|png|webp|gif|zip)$/i.test(url.pathname)
         ||[...url.searchParams.keys()].some(k=>!/^(?:id|p|page|year|month|n)$/.test(k)))continue;
       const title=cleanHtml(match[4].replace(/<[^>]*>/g,' ')).trim();
+      if(source.topicScope==='overseas-cafe'&&nonVenueLink(url.href,title))continue;
       const relevant=/(?:手話|筆談|ろう|難聴|盲ろう|聴覚|中途失聴|要約筆記|文字通訳|字幕|情報保障|ヒアリングループ)/.test(title);
       const activity=/(?:開催|公演|交流|カフェ|講座|講演|上映|募集|イベント|喫茶|観劇|舞台|例会|集い|研修|説明会|企画|支援|サポート|手話べり|おしゃべり|読書会)/.test(title);
       // A previously read named cafe series may omit "sign" in its headline.
@@ -59,11 +62,15 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
   const week=new Date(Date.UTC(jst.getUTCFullYear(),jst.getUTCMonth(),jst.getUTCDate()-((jst.getUTCDay()+1)%7))).toISOString().slice(0,10);
   const path=join(stateDir,weeklyOverseas?'overseas-cafe-discovery.json':weeklyLodging?'lodging-discovery.json':'curation-discovery.json');let old;
   try{old=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
-  const signature=evidenceHash(JSON.stringify({version:3,sources,knownUrls:[...new Set(knownUrls)].sort()}));
+  const signature=evidenceHash(JSON.stringify({version:weeklyOverseas?4:3,sources,knownUrls:[...new Set(knownUrls)].sort()}));
   const samePeriod=(weeklyLodging||weeklyOverseas)?old?.week===week:old?.day===day;
   if(samePeriod&&old.signature===signature)return {reused:true,scanned:old.results.length,attemptedThisRun:0,candidates:old.candidates.length,newCandidates:0};
   // Keep the bound even if today's publication URLs or source config change.
   const candidates=new Map((old?.candidates??[]).map(x=>[x.url,x])),results=samePeriod?[...old.results]:[];
+  const excludedCandidates=[...(old?.excludedCandidates??[])];
+  if(weeklyOverseas)for(const [url,candidate] of candidates)if(nonVenueLink(url,candidate.title)){
+    excludedCandidates.push({...candidate,excludedAt:new Date(now).toISOString(),reason:'non-venue-operation-link'});candidates.delete(url);
+  }
   const sourceChecks={...(old?.sourceChecks??{})};
   for(const result of old?.results??[]){const source=sources.find(x=>x.id===result.sourceId);
     if(source&&!sourceChecks[source.id])sourceChecks[source.id]={url:source.url,attemptedAt:old.generatedAt};}
@@ -84,7 +91,7 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
   const reviewQueue=pending.sort((a,b)=>b.firstSeenAt.localeCompare(a.firstSeenAt)||a.id.localeCompare(b.id)).map(x=>({id:x.id,url:x.url,sourceId:x.sourceId,
     reason:'official-body-and-sharing-review-required',publicationApproved:false}));
   const report={version:1,day,...((weeklyLodging||weeklyOverseas)?{week}:{}),signature,generatedAt:new Date(now).toISOString(),results,sourceChecks,candidates:[...candidates.values()],newCandidates,reviewQueue,
-    scope:'registered-source-links-only',publicationApproved:false};
+    ...(weeklyOverseas?{excludedCandidates}:{}),scope:'registered-source-links-only',publicationApproved:false};
   const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(report,null,2)+'\n',{mode:0o600});await rename(tmp,path);
   return {reused:false,scanned:results.length,attemptedThisRun:selected.length,candidates:candidates.size,newCandidates,
     unavailable:results.filter(x=>x.status==='unavailable').length};

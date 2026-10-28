@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,rm} from 'node:fs/promises';
+import {mkdtemp,rm,writeFile,readFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {planOverseasCafeReview,runOverseasCafeReview} from '../scripts/overseas-cafe-review.mjs';
@@ -64,8 +64,17 @@ test('a baseline cannot silently omit its required published comparison value',(
  assert.equal(r.selected.length,0);assert.ok(r.entries.some(e=>e.reasons.includes('structured-baseline-required')));
 });
 test('English discovery is private, rejects external operations and is weekly',async t=>{
- const opts=await fixture(t),source={id:'press',url:'https://example.org/',topicScope:'overseas-cafe'},html='<a href="/store">New Deaf Signing Coffee Store</a><a href="/travel">Safe holiday packages</a><a href="https://other.org/cafe">Deaf signing cafe</a>';
+ const opts=await fixture(t),source={id:'press',url:'https://example.org/',topicScope:'overseas-cafe'},html='<a href="/store">New Deaf Signing Coffee Store</a><a href="/travel">Safe holiday packages</a><a href="https://other.org/cafe">Deaf signing cafe</a><a href="/donate.html">Support the café</a>';
  assert.equal(discoverLinks(html,source).length,1);let calls=0;
+ assert.equal(discoverLinks(html,{...source,operatorVerified:true}).length,1);
  const o={...opts,sources:[source],weeklyOverseas:true,fetchResource:async()=>{calls++;return {status:200,headers:{'content-type':'text/html'},text:html};}};
  assert.equal((await runSourceDiscovery(o)).newCandidates,1);assert.equal((await runSourceDiscovery({...o,now:now+86400000})).reused,true);assert.equal(calls,1);
+});
+
+test('existing donation candidates retain history outside the review queue, without re-fetching',async t=>{
+ const opts=await fixture(t),path=join(opts.stateDir,'overseas-cafe-discovery.json'),source={id:'operator',url:'https://example.org/',topicScope:'overseas-cafe',operatorVerified:true};
+ await writeFile(path,JSON.stringify({day:'2026-10-28',week:'2026-10-24',signature:'old-rule',generatedAt:new Date(now).toISOString(),results:Array.from({length:8},(_,i)=>({sourceId:'already-'+i,status:'fetched'})),candidates:[{id:'donation',url:'https://example.org/donate.html',title:'Support the café',sourceId:'operator',firstSeenAt:new Date(now).toISOString()}]}));
+ const r=await runSourceDiscovery({...opts,sources:[source],weeklyOverseas:true,fetchResource:async()=>{throw Error('must not refetch');}});
+ assert.equal(r.attemptedThisRun,0);assert.equal(r.candidates,0);
+ const saved=JSON.parse(await readFile(path));assert.equal(saved.reviewQueue.length,0);assert.equal(saved.excludedCandidates[0].id,'donation');
 });
