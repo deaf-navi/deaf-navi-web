@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,rm} from 'node:fs/promises';
+import {mkdtemp,rm,writeFile,readFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {planOverseasCafeReview,runOverseasCafeReview} from '../scripts/overseas-cafe-review.mjs';
@@ -69,4 +69,12 @@ test('English discovery is private, rejects external operations and is weekly',a
  assert.equal(discoverLinks(html,{...source,operatorVerified:true}).length,1);
  const o={...opts,sources:[source],weeklyOverseas:true,fetchResource:async()=>{calls++;return {status:200,headers:{'content-type':'text/html'},text:html};}};
  assert.equal((await runSourceDiscovery(o)).newCandidates,1);assert.equal((await runSourceDiscovery({...o,now:now+86400000})).reused,true);assert.equal(calls,1);
+});
+
+test('existing donation candidates retain history outside the review queue, without re-fetching',async t=>{
+ const opts=await fixture(t),path=join(opts.stateDir,'overseas-cafe-discovery.json'),source={id:'operator',url:'https://example.org/',topicScope:'overseas-cafe',operatorVerified:true};
+ await writeFile(path,JSON.stringify({day:'2026-10-28',week:'2026-10-24',signature:'old-rule',generatedAt:new Date(now).toISOString(),results:Array.from({length:8},(_,i)=>({sourceId:'already-'+i,status:'fetched'})),candidates:[{id:'donation',url:'https://example.org/donate.html',title:'Support the café',sourceId:'operator',firstSeenAt:new Date(now).toISOString()}]}));
+ const r=await runSourceDiscovery({...opts,sources:[source],weeklyOverseas:true,fetchResource:async()=>{throw Error('must not refetch');}});
+ assert.equal(r.attemptedThisRun,0);assert.equal(r.candidates,0);
+ const saved=JSON.parse(await readFile(path));assert.equal(saved.reviewQueue.length,0);assert.equal(saved.excludedCandidates[0].id,'donation');
 });
