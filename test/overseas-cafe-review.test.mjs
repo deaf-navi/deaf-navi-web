@@ -64,8 +64,9 @@ test('a baseline cannot silently omit its required published comparison value',(
  assert.equal(r.selected.length,0);assert.ok(r.entries.some(e=>e.reasons.includes('structured-baseline-required')));
 });
 test('English discovery is private, rejects external operations and is weekly',async t=>{
- const opts=await fixture(t),source={id:'press',url:'https://example.org/',topicScope:'overseas-cafe'},html='<a href="/store">New Deaf Signing Coffee Store</a><a href="/travel">Safe holiday packages</a><a href="https://other.org/cafe">Deaf signing cafe</a>';
+ const opts=await fixture(t),source={id:'press',url:'https://example.org/',topicScope:'overseas-cafe'},html='<a href="/store">New Deaf Signing Coffee Store</a><a href="/travel">Safe holiday packages</a><a href="https://other.org/cafe">Deaf signing cafe</a><a href="/donate.html">Support the café</a>';
  assert.equal(discoverLinks(html,source).length,1);let calls=0;
+ assert.equal(discoverLinks(html,{...source,operatorVerified:true}).length,1);
  const o={...opts,sources:[source],weeklyOverseas:true,fetchResource:async()=>{calls++;return {status:200,headers:{'content-type':'text/html'},text:html};}};
  assert.equal((await runSourceDiscovery(o)).newCandidates,1);assert.equal((await runSourceDiscovery({...o,now:now+86400000})).reused,true);assert.equal(calls,1);
 });

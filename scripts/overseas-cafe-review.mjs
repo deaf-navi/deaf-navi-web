@@ -84,7 +84,9 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
    for(const e of result.entries){
     const t=batch.find(t=>t.recordId===e.recordId),value={...e,role:t.role,facilityId:t.facilityId??null,countryCode:t.countryCode??null};
     if(t.role==='candidate'){
-     value.reasons=value.reasons.filter(r=>r!=='differs-from-current');
+     // A candidate baseline is reviewed evidence too. Do not hide a changed
+     // extracted condition merely because the facility is not published yet.
+     value.reasons=[...value.reasons,...(t.pendingReasons??[])];
      if(t.identityVerified!==true)value.reasons.push('identity-review-required');
      if(t.currentOperationVerified!==true)value.reasons.push('current-operation-review-required');
      if(t.relevanceVerified!==true)value.reasons.push('signing-relevance-review-required');
