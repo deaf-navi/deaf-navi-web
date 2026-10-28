@@ -265,6 +265,7 @@ async function main() {
   await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
   await copyAsset(join(__dirname, 'events.js'), 'events.js');
+  await copyAsset(join(__dirname, 'event-cafe-feed.js'), 'event-cafe-feed.js');
   await copyAsset(join(ASSETS, 'events.css'), 'events.css');
   await copyAsset(join(ASSETS, 'event-detail.js'), 'event-detail.js');
   await copyAsset(join(ASSETS, 'reader.css'), 'reader.css');

@@ -44,6 +44,7 @@ jobs:
           php -n test/public-copy.php
           node test/event-tips.integration.mjs
           node test/cafe-events.integration.mjs
+          node test/app-directory.integration.mjs
           node test/cafe-event-curation.integration.mjs
           node test/overseas-cafe-export.integration.mjs
 

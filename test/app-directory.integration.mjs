@@ -12,6 +12,22 @@ const password=spawnSync('php',['test/directory-hash.php'],{cwd:root,input:rando
 const init=spawnSync('php',['server/cli.php','init'],{cwd:root,env,input:JSON.stringify({username:'appfixture',password_hash:password.stdout}),encoding:'utf8'});
 assert.equal(init.status,0,init.stderr);
 php(`$p=json_decode(query("SELECT payload FROM records WHERE id='knot'")->fetchColumn(),true);$p['review_notes']='PRIVATE_REVIEW_SENTINEL';$p['email']='PRIVATE_EMAIL_SENTINEL';$p['beginner_welcome']=true;$p['writing_support']=null;query("UPDATE records SET payload=? WHERE id='knot'",[json($p)]);`);
+php(`require_once 'server/cafe-event-recovery.php';cafe_event_recovery_schema();
+$base=expanded(record('knot'));
+foreach(['fresh','stale','held','cancelled','ended','foreign','pending','undated','observation','recurring'] as $key){
+ $p=$base;$id='feed-fixture-'.$key;$p['slug']=$id;$p['name']='Feed fixture '.$key;$p['shop_type']='event';$p['activity_date']='2099-11-14';$p['status']='open';$p['confirmation_status']='confirmed';$p['publication']='public';$p['country_code']='JP';$p['prefecture']='東京都';$p['verification_sources']=['https://example.org/event'];
+ if($key==='held')$p['confirmation_status']='needs_review';
+ if(in_array($key,['cancelled','ended']))$p['status']=$key;
+ if($key==='foreign')$p['country_code']='US';
+ if($key==='pending')$p['publication']='pending';
+ if($key==='undated')$p['activity_date']='';
+ if($key==='observation')$p['observation_only']='1';
+ if($key==='recurring')$p['shop_type']='recurring_program';
+ save_record($p,'cafe',$id);$r=record($id);
+ query('INSERT INTO cafe_event_source_reviews VALUES(?,?,?,?,?,?)',[$id,$r['revision'],'https://example.org/event','visual',null,gmdate('c',time()-($key==='stale'?172800:60))]);
+}
+$store=$base;$store['slug']='feed-private-parent';$store['publication']='private';save_record($store,'store','feed-private-parent');
+$p=$base;$p['slug']='feed-hidden-child';$p['store_id']='feed-private-parent';$p['event_date']='2099-11-14';$p['status']='scheduled';save_record($p,'event','feed-hidden-child');`);
 const server=spawn('php',['-S','127.0.0.1:5237','-t','docs','server/local-router.php'],{cwd:root,env,stdio:['ignore','ignore','pipe']});
 let errors='';server.stderr.on('data',d=>errors+=d);
 const url='http://127.0.0.1:5237/connect/sign-cafe/app-v1.json';
@@ -25,6 +41,20 @@ try {
   assert.ok(!data.cafes.some(p=>p.id==='biwako-wa'),'unpublished records stay private');
   const knot=data.cafes.find(p=>p.id==='knot');assert.equal(knot.beginnerWelcome,true);assert.equal(knot.writingSupport,null);
   assert.ok(data.cafes.every(p=>p.group!=='events'),'single events are separate');
+  const cafeUrl=url.replace('app-v1.json','events/data.json');
+  const cafeResponse=await fetch(cafeUrl);assert.equal(cafeResponse.status,200);assert.equal(cafeResponse.headers.get('cache-control'),'no-store');
+  const cafeRaw=await cafeResponse.text(),cafes=JSON.parse(cafeRaw);
+  assert.equal(cafes.schemaVersion,'deaf-navi-cafe-events.v1');
+  assert.ok(!cafeRaw.includes('PRIVATE_')&&!cafeRaw.includes('review_notes')&&!cafeRaw.includes('email'),'public fields only');
+  for(const key of ['foreign','pending','undated','observation','recurring'])assert.ok(!cafes.events.some(e=>e.id==='feed-fixture-'+key),'excluded '+key);
+  assert.ok(!cafes.events.some(e=>e.id==='feed-hidden-child'),'hidden parent stays private');
+  const cafe=key=>cafes.events.find(e=>e.id==='feed-fixture-'+key);
+  assert.equal(cafe('fresh').period,'upcoming');assert.equal(cafe('stale').period,'unconfirmed');assert.equal(cafe('held').period,'unconfirmed');
+  assert.equal(cafe('ended').period,'past');assert.equal(cafe('cancelled').status,'cancelled');
+  assert.equal(cafe('fresh').webUrl,'https://deafnavi.com/connect/sign-cafe/feed-fixture-fresh/');
+  assert.equal(cafe('fresh').verifiedAt,data.events.find(e=>e.id==='feed-fixture-fresh').verifiedAt,'projection never renews verification');
+  assert.equal(await (await fetch(cafeUrl,{method:'HEAD'})).text(),'');
+  const cafePost=await fetch(cafeUrl,{method:'POST'});assert.equal(cafePost.status,405);await cafePost.text();
   assert.equal(php(`echo json(query('SELECT * FROM records ORDER BY id')->fetchAll());`),before,'GET never modifies records');
   assert.equal((await fetch(url,{headers:{'If-None-Match':response.headers.get('etag')}})).status,304);
   assert.equal(await (await fetch(url,{method:'HEAD'})).text(),'');
@@ -34,9 +64,10 @@ try {
   assert.ok(!(await changed.json()).cafes.some(p=>p.id==='knot'),'withdrawals disappear from next snapshot');
   php(`query("UPDATE records SET publication='pending'");`);
   const empty=await (await fetch(url)).json();assert.deepEqual(empty.cafes,[]);assert.deepEqual(empty.events,[]);
+  assert.deepEqual((await (await fetch(cafeUrl)).json()).events,[],'withdrawals appear immediately without a rebuild or stored cache');
   const ended=JSON.parse(php(`require 'server/views.php';require 'server/app-directory.php';$p=expanded(record('knot'));$p['status']='permanently_closed';$p['activity_date']='2099-01-01';echo json(app_directory_event($p));`));
   assert.equal(ended.status,'ended','closure is not evidence that a particular event was cancelled');
   assert.equal(ended.period,'past');
   assert.ok(!errors.includes('PHP Fatal error'),errors);
-  console.log('App directory: privacy, tri-state fields, read-only, conditional requests, withdrawal and empty snapshot passed.');
+  console.log('App directory and domestic event feed: privacy, freshness, closure, parent visibility, read-only, withdrawal and empty snapshot passed.');
 } finally {server.kill('SIGTERM');await new Promise(resolve=>server.once('exit',resolve));rmSync(dir,{recursive:true,force:true});}

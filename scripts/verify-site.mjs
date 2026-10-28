@@ -291,7 +291,7 @@ for(const event of eventData.events||[]){
 }
 assert(eventHtml.includes('id="event-filters"')&&eventHtml.includes('data-recheck-ms="172800000"'),'イベントの絞り込み・鮮度判定がありません');
 assert(sitemapXml.includes('/events.html'),'サイトマップにイベントがありません');
-for(const asset of ['events.js','events.css'])assert(await fileExists(asset),`イベントのアセットがありません: ${asset}`);
+for(const asset of ['events.js','event-cafe-feed.js','events.css'])assert(await fileExists(asset),`イベントのアセットがありません: ${asset}`);
 for(const [name,html] of [['news',indexHtml],['world',worldJpHtml],['guide',guideHtml],['about',aboutHtml]])assert(html.includes('events.html'),'共通ナビにイベントがありません: '+name);
 
 /* ---------- 結果 ---------- */

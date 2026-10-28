@@ -1,3 +1,4 @@
+import {cafeFeedEvents, renderCafeEvent, eventRowPeriod} from './event-cafe-feed.js';
 // Calendar windows use Japan time, including Sunday and month/year boundaries.
 export function eventDateWindow(range, now = Date.now()) {
  const day=new Date(now+9*3600000), today=day.toISOString().slice(0,10);
@@ -22,11 +23,11 @@ export function eventDateWindow(range, now = Date.now()) {
  function saveRegion(){try{remember.checked&&controls.prefecture.value?localStorage.setItem(storageKey,controls.prefecture.value):localStorage.removeItem(storageKey)}catch{/* Search remains usable without storage. */}}
  const normalize=s=>s.normalize('NFKC').toLowerCase().trim();
  function apply(sync=true){
-  const now=Date.now(), today=new Date(now+9*3600000).toISOString().slice(0,10), stale=Number(document.querySelector('[data-recheck-ms]').dataset.recheckMs);let count=0;
+  const now=Date.now(), stale=Number(document.querySelector('[data-recheck-ms]').dataset.recheckMs);let count=0;
   const tokens=normalize(controls.q.value).split(/\s+/).filter(Boolean);
   const window=eventDateWindow(range,now);
   for(const row of rows){
-   const d=row.dataset, checked=Date.parse(d.verified);const state=d.end<today?'past':d.status==='cancelled'?'cancelled':d.verification!=='verified'||!Number.isFinite(checked)||checked>now||now-checked>=stale?'review':'upcoming';
+   const d=row.dataset, state=eventRowPeriod(d,now,stale);
    const retryNote=row.querySelector('[data-source-retry]');if(retryNote)retryNote.hidden=state==='past'||state==='cancelled';
    row.querySelector('[data-event-state]').textContent=d.status==='cancelled'?'中止の告知':state==='upcoming'&&d.status==='closed'?'受付終了の告知':labels[state];
    row.hidden=(controls.communication.value&&!row.querySelector('[data-communication]').dataset.communication.split(' ').includes(controls.communication.value))||state!==period||!tokens.every(t=>normalize(d.search).includes(t))||(controls.prefecture.value&&d.prefecture!==controls.prefecture.value)||(controls.kind.value&&d.kind!==controls.kind.value)||(controls.month.value&&!(d.start.slice(0,7)<=controls.month.value&&d.end.slice(0,7)>=controls.month.value))||(window&&(d.end<window[0]||d.start>window[1]));if(!row.hidden)count++;
@@ -34,7 +35,8 @@ export function eventDateWindow(range, now = Date.now()) {
   // Past announcements read newest first; upcoming events read nearest first.
   // Moving a row while an input blurs can cancel its native summary click.
   if(sortedPeriod!==period){rows.sort((a,b)=>(period==='past'?-1:1)*a.dataset.start.localeCompare(b.dataset.start)).forEach(row=>row.parentElement.appendChild(row));sortedPeriod=period;}
-  document.querySelector('#event-count').textContent=`${range==='weekend'?'今週末':range==='month'?'今月':labels[period]}${controls.prefecture.value?' · '+controls.prefecture.value:''} ${count}件`;document.querySelector('#event-empty').hidden=count>0;
+  const countText=count===0&&cafeState!=='ready'?(cafeState==='loading'?'件数を読み込み中':'件数未取得'):`${count}件`;
+  document.querySelector('#event-count').textContent=`${range==='weekend'?'今週末':range==='month'?'今月':labels[period]}${controls.prefecture.value?' · '+controls.prefecture.value:''} ${countText}${cafeState==='loading'?'（手話カフェを読み込み中）':cafeState==='failed'?'（手話カフェは未取得）':''}`;document.querySelector('#event-empty').hidden=count>0||cafeState!=='ready';
   const selected=[controls.kind,controls.month,controls.communication].filter(input=>input.value).length;
   document.querySelector('#event-filter-summary').textContent='種類・開催月・情報の受け取り方で絞り込む'+(selected?'（'+selected+'件選択中）':'');
   for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.period===period));
@@ -46,8 +48,25 @@ export function eventDateWindow(range, now = Date.now()) {
   if(useSaved&&!['q','prefecture','kind','month','communication','period','range'].some(key=>params.has(key)))controls.prefecture.value=saved;
   document.querySelector('.event-more-filters').open=Boolean(controls.kind.value||controls.month.value||controls.communication.value);
   document.querySelector('.event-history').open=period!=='upcoming';apply(useSaved&&Boolean(controls.prefecture.value))}
+ let cafeState='loading';
  form.hidden=false;document.querySelector('.event-browse').hidden=false;document.querySelector('.event-periods').hidden=false;document.querySelector('[data-event-empty-reset]').hidden=false;
  form.addEventListener('submit',e=>{e.preventDefault();apply()});form.addEventListener('input',e=>{if(e.target===controls.month)range='';apply()});form.addEventListener('change',e=>{if(e.target===remember||e.target===controls.prefecture)saveRegion();apply()});form.addEventListener('reset',()=>{setTimeout(()=>{period='upcoming';range='';remember.checked=false;saveRegion();document.querySelector('.event-history').open=false;apply();controls.q.focus()},0)});
  quick.forEach(button=>button.addEventListener('click',()=>{period='upcoming';range=button.dataset.range;controls.month.value='';document.querySelector('.event-history').open=false;apply()}));
  buttons.forEach(button=>button.addEventListener('click',()=>{period=button.dataset.period;range='';apply()}));window.addEventListener('popstate',()=>restore());document.addEventListener('visibilitychange',()=>{if(!document.hidden)apply(false)});setInterval(()=>{if(!document.hidden)apply(false)},60000);restore(true);
+ const notice=document.querySelector('#event-cafe-status');notice.hidden=false;
+ const controller=new AbortController(), timeout=setTimeout(()=>controller.abort(),12000);
+ const endpoint=new URL('/connect/sign-cafe/events/data.json',location.href), marker=new URLSearchParams(location.search).get('dn_client');
+ if(['codex','automation'].includes(marker))endpoint.searchParams.set('dn_client',marker);
+ // One same-origin public request; no tracking, persistent cache or per-filter polling.
+ fetch(endpoint,{credentials:'omit',cache:'no-store',referrerPolicy:'no-referrer',signal:controller.signal})
+  .then(response=>{if(!response.ok)throw new Error('Cafe feed unavailable');return response.json()})
+  .then(feed=>{
+   const events=cafeFeedEvents(feed), fragment=document.createElement('template');
+   fragment.innerHTML=events.map(renderCafeEvent).join('');
+   rows.push(...fragment.content.querySelectorAll('[data-event]'));
+   document.querySelector('.event-list').appendChild(fragment.content);
+   cafeState='ready';notice.hidden=true;sortedPeriod=undefined;apply(false);
+  })
+  .catch(()=>{cafeState='failed';notice.textContent='手話カフェの開催情報を読み込めませんでした。手話カフェイベント一覧からご覧ください。';apply(false)})
+  .finally(()=>clearTimeout(timeout));
 })();

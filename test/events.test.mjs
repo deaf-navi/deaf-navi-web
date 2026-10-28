@@ -3,6 +3,35 @@ import {parseOioiSchedule,verifyReviewedEvent,reviewedVisualEvent,eventSourceTex
 import {renderEventsPage} from '../src/templates/events.mjs';
 import {eventDateWindow} from '../src/events.js';
 import {eventSearchText} from '../src/lib/events.mjs';
+import {cafeFeedEvents,renderCafeEvent,eventRowPeriod} from '../src/event-cafe-feed.js';
+
+test('cafe feed preserves detail routes, deduplicates IDs and escapes public copy',()=>{
+ const event={origin:'cafe',id:'cafe-fixture',title:'手話カフェ <script>bad</script>',startDate:'2026-11-14',endDate:'2026-11-14',period:'upcoming',webUrl:'https://deafnavi.com/connect/sign-cafe/cafe-fixture/',prefecture:'東京都',description:'筆談 <img onerror="bad">',target:'予約不要',communication:[{method:'writing',detail:'筆談できます'},{method:'unknown',detail:'推測'}]};
+ const feed={schemaVersion:'deaf-navi-cafe-events.v1',events:[event,event]};
+ assert.equal(cafeFeedEvents(feed).length,1);
+ const html=renderCafeEvent(event);
+ assert.match(html,/href="\/connect\/sign-cafe\/cafe-fixture\/"/);
+ assert.match(html,/data-kind="cafe"/);assert.match(html,/data-communication="writing"/);
+ assert.ok(html.includes('&lt;script&gt;')&&!html.includes('<script>')&&!html.includes('<img'));
+ assert.ok(!html.includes('推測')&&!html.includes('無料'));
+ for(const change of [{webUrl:'javascript:alert(1)'},{webUrl:'https://evil.example/connect/sign-cafe/a/'},{webUrl:'https://deafnavi.com/admin/'},{startDate:'2026-02-30'},{period:'unknown'}])assert.throws(()=>cafeFeedEvents({...feed,events:[{...event,...change}]}));
+ assert.deepEqual(cafeFeedEvents({...feed,events:[]}),[]);
+ assert.throws(()=>cafeFeedEvents({events:[]}));
+});
+
+test('combined event periods never promote expired, held, ended or cancelled cafes',()=>{
+ const now=Date.parse('2026-10-29T01:00:00Z'),fresh={end:'2026-10-31',verified:new Date(now-1000).toISOString(),verification:'verified',status:'announced',cafePeriod:'upcoming'};
+ assert.equal(eventRowPeriod(fresh,now),'upcoming');
+ for(const patch of [{verified:new Date(now-48*3600000).toISOString()},{verified:new Date(now+1).toISOString()},{verified:''},{verification:'needs_review'},{cafePeriod:'unconfirmed'}])assert.equal(eventRowPeriod({...fresh,...patch},now),'review');
+ for(const patch of [{cafePeriod:'past'},{status:'ended'},{end:'2026-10-28'}])assert.equal(eventRowPeriod({...fresh,...patch},now),'past');
+ assert.equal(eventRowPeriod({...fresh,status:'cancelled',cafePeriod:'past'},now),'cancelled');
+ assert.equal(eventRowPeriod({...fresh,status:'closed',cafePeriod:undefined},now),'upcoming','general event registration closure does not imply cancellation');
+ assert.equal(eventRowPeriod({...fresh,end:'2026-10-29'},Date.parse('2026-10-29T15:00:00Z')),'past');
+ const html=renderEventsPage({events:[]});
+ assert.match(html,/<option value="cafe">手話カフェ<\/option>/);
+ assert.match(html,/id="event-cafe-status"[^>]+role="status"/);
+ assert.match(html,/<noscript><p>[^<]+<a href="\.\/connect\/sign-cafe\/events\/">/);
+});
 
 test('search covers participation conditions; communication is explicit and separately validated',()=>{
  const event={...base,fee:'小学生のみ無料',target:'きこえにくい方、事前申込',communication:[{method:'captions',detail:'第2部のみ日本語字幕。'}]};
