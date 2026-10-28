@@ -20,6 +20,16 @@ const prepare=async targets=>({tasks:targets.map(t=>({...task,...t,text,sourceTe
 const generate=async items=>({model:'gpt-6.1-sol',items:items.map(item=>({id:item.id,relevance:'yes',contentType:'announcement',evidence:'手話交流会を開催します。',facts:[{field:'startDate',value:'2026-11-14',evidence:'開催日 2026年11月14日。'},{field:'venue',value:'市民会館',evidence:'会場 市民会館。'}]}))});
 const discover=async()=>({reused:true,scanned:0,candidates:0,newCandidates:0});
 
+test('optional thumbnail failure does not interrupt text review and comparison does not fetch images',async t=>{
+ const opts=await fixture(t);let calls=0;
+ const options={...opts,records:[],catalog:{version:1,targets:[]},discover,collectThumbnails:async()=>{calls++;throw Error('fixture metadata storage error');}};
+ const result=await runServerCuration(options);
+ assert.equal(result.overseasThumbnails.status,'metadata-check-failed');assert.equal(result.overseasThumbnails.fetched,null);
+ assert.equal(result.submittedThisRun,0);assert.equal(result.publication.changed,0);
+ const compared=await runServerCuration({...options,comparisonOnly:true});
+ assert.equal(calls,1);assert.equal(compared.overseasThumbnails,null);
+});
+
 test('overseas tasks use the same daily account and exact-sharing gate as domestic tasks',async t=>{
  const excerpt='Our cafe is open Tuesday to Saturday.';
  const overseas={...target,kind:'overseas_cafe',role:'published',recordId:'overseas',facilityId:'overseas',fragments:[excerpt],approvedDocumentHash:evidenceHash(excerpt),publicationHash:'a'.repeat(64),baseline:{requiredFields:['businessHours'],facts:{businessHours:'Tuesday to Saturday'}}};
