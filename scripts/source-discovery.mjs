@@ -29,7 +29,8 @@ export function discoverLinks(html,source,knownUrls=[]){
         &&source.candidatePathPrefixes.some(prefix=>prefix.startsWith('/')&&url.pathname.startsWith(prefix))&&activity;
       const lodging=source.topicScope==='lodging'&&/(?:ゲストハウス|民泊|民宿|宿泊|旅館|ホステル|ペンション)/.test(title)
         &&(relevant||source.specialistVerified===true);
-      if(title.length<8||title.length>180||!(source.topicScope==='lodging'?lodging:relevant&&activity||specialist||namedCafe))continue;
+      const overseas=source.topicScope==='overseas-cafe'&&(/(?:deaf|signing|sign language|gebaerden|gebärden|sourd|sord|手語|手话|手話|수어)/iu.test(title)&&/(?:caf[eé]|coffee|tea|store|restaurant|bar|カフェ|咖啡|카페)/iu.test(title)||source.operatorVerified===true&&/(?:caf[eé]|coffee|tea ?house|store|location|branch)/iu.test(title));
+      if(title.length<8||title.length>180||!(source.topicScope==='overseas-cafe'?overseas:source.topicScope==='lodging'?lodging:relevant&&activity||specialist||namedCafe))continue;
       out.set(url.href,{id:'discovery-'+evidenceHash(url.href).slice(0,24),sourceId:source.id,sourceUrl:source.url,url:url.href,title,
         status:'unverified-candidate',publicationApproved:false,reviewedAt:null});
       if(out.size>=24)break;
@@ -50,16 +51,16 @@ export function selectDiscoverySources(sources,checks={},attempted=[],limit=8){
   for(const source of ordered)if(out.length<remaining&&!out.includes(source))out.push(source);
   return out;
 }
-export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date.now(),fetchResource=fetchThumbnailResource,weeklyLodging=false}){
+export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date.now(),fetchResource=fetchThumbnailResource,weeklyLodging=false,weeklyOverseas=false}){
   if(!Array.isArray(sources)||sources.length>100||new Set(sources.map(x=>x.id)).size!==sources.length
     ||sources.some(x=>!x.id||new URL(x.url).protocol!=='https:'))throw new Error('Invalid discovery sources');
   const jst=new Date(now+9*3600000),day=jst.toISOString().slice(0,10);
   // Saturday week start; a missed Saturday is caught up once on the next run.
   const week=new Date(Date.UTC(jst.getUTCFullYear(),jst.getUTCMonth(),jst.getUTCDate()-((jst.getUTCDay()+1)%7))).toISOString().slice(0,10);
-  const path=join(stateDir,weeklyLodging?'lodging-discovery.json':'curation-discovery.json');let old;
+  const path=join(stateDir,weeklyOverseas?'overseas-cafe-discovery.json':weeklyLodging?'lodging-discovery.json':'curation-discovery.json');let old;
   try{old=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const signature=evidenceHash(JSON.stringify({version:3,sources,knownUrls:[...new Set(knownUrls)].sort()}));
-  const samePeriod=weeklyLodging?old?.week===week:old?.day===day;
+  const samePeriod=(weeklyLodging||weeklyOverseas)?old?.week===week:old?.day===day;
   if(samePeriod&&old.signature===signature)return {reused:true,scanned:old.results.length,attemptedThisRun:0,candidates:old.candidates.length,newCandidates:0};
   // Keep the bound even if today's publication URLs or source config change.
   const candidates=new Map((old?.candidates??[]).map(x=>[x.url,x])),results=samePeriod?[...old.results]:[];
@@ -82,7 +83,7 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
   const pending=[...candidates.values()].filter(x=>!knownUrls.includes(x.url));
   const reviewQueue=pending.sort((a,b)=>b.firstSeenAt.localeCompare(a.firstSeenAt)||a.id.localeCompare(b.id)).map(x=>({id:x.id,url:x.url,sourceId:x.sourceId,
     reason:'official-body-and-sharing-review-required',publicationApproved:false}));
-  const report={version:1,day,...(weeklyLodging?{week}:{}),signature,generatedAt:new Date(now).toISOString(),results,sourceChecks,candidates:[...candidates.values()],newCandidates,reviewQueue,
+  const report={version:1,day,...((weeklyLodging||weeklyOverseas)?{week}:{}),signature,generatedAt:new Date(now).toISOString(),results,sourceChecks,candidates:[...candidates.values()],newCandidates,reviewQueue,
     scope:'registered-source-links-only',publicationApproved:false};
   const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(report,null,2)+'\n',{mode:0o600});await rename(tmp,path);
   return {reused:false,scanned:results.length,attemptedThisRun:selected.length,candidates:candidates.size,newCandidates,
