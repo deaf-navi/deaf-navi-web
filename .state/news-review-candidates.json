@@ -1,31 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-27T15:18:29.717Z",
+  "generatedAt": "2026-10-28T00:21:14.504Z",
   "counts": {
-    "uniqueInputs": 2565,
-    "alreadyPublished": 863,
-    "outsideWindow": 1290,
-    "hardExcluded": 16,
-    "duplicateOfPublished": 86,
-    "candidateDuplicates": 5,
-    "eligible": 305,
+    "uniqueInputs": 2642,
+    "alreadyPublished": 833,
+    "outsideWindow": 1427,
+    "hardExcluded": 12,
+    "duplicateOfPublished": 81,
+    "candidateDuplicates": 6,
+    "eligible": 283,
     "queued": 40,
-    "deferred": 265
+    "deferred": 243
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 5,
-    "foreign-coverage-review-required": 1,
-    "incidental-disability-nickname": 6,
-    "market-report": 3
+    "low-value-page": 8,
+    "foreign-coverage-review-required": 2,
+    "incidental-disability-nickname": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-27T08:53:27.787Z",
+    "previousGeneratedAt": "2026-10-27T15:18:29.717Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -159,14 +158,14 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
-      "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
-      "publishedAt": "2026-10-27T08:30:40.000Z",
+      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
+      "articleHash": "04a46d13d3c185776f2ce0972d536dd7aa9f7630898e3515fa5a74c17eeee428",
+      "publishedAt": "2026-10-27T22:20:05.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "new"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
@@ -199,9 +198,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
-      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
-      "publishedAt": "2026-10-21T08:25:44.000Z",
+      "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
+      "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
+      "publishedAt": "2026-10-27T08:30:40.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -229,9 +228,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/nolookpark/",
-      "articleHash": "cf2215aadbe00c99596ecfc2ef116704d9b8dc1626077708aee32e950faf5f9d",
-      "publishedAt": "2026-10-15T07:30:34.000Z",
+      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
+      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
+      "publishedAt": "2026-10-21T08:25:44.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -249,9 +248,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/kidsmeetstudiooowa/",
-      "articleHash": "c3374bf1c329c7cc19ba0c1e41db08bd8e1a851d429b5f6d52d3d215aefb0bff",
-      "publishedAt": "2026-10-11T03:00:59.000Z",
+      "sourceUrl": "https://co-coco.jp/news/nolookpark/",
+      "articleHash": "cf2215aadbe00c99596ecfc2ef116704d9b8dc1626077708aee32e950faf5f9d",
+      "publishedAt": "2026-10-15T07:30:34.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -269,9 +268,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/tayoriino/",
-      "articleHash": "be7df7c2508c575e0cd9594ad471d2a1bd8d8764fa103b955c19ac683642f32e",
-      "publishedAt": "2026-10-09T02:30:30.000Z",
+      "sourceUrl": "https://co-coco.jp/news/kidsmeetstudiooowa/",
+      "articleHash": "c3374bf1c329c7cc19ba0c1e41db08bd8e1a851d429b5f6d52d3d215aefb0bff",
+      "publishedAt": "2026-10-11T03:00:59.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -289,9 +288,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/book_syugei/",
-      "articleHash": "081596df7f8fecdee4a8802b5c39f28dcbc0a58195d05bfbd12bcf9677eaae53",
-      "publishedAt": "2026-10-08T22:30:43.000Z",
+      "sourceUrl": "https://co-coco.jp/news/tayoriino/",
+      "articleHash": "be7df7c2508c575e0cd9594ad471d2a1bd8d8764fa103b955c19ac683642f32e",
+      "publishedAt": "2026-10-09T02:30:30.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -309,9 +308,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/nazeewoegaku/",
-      "articleHash": "78b6635c2b9c283562540544dada0d46b7bc4ca50452c6c68076c80aaa45b456",
-      "publishedAt": "2026-10-02T07:30:27.000Z",
+      "sourceUrl": "https://co-coco.jp/news/book_syugei/",
+      "articleHash": "081596df7f8fecdee4a8802b5c39f28dcbc0a58195d05bfbd12bcf9677eaae53",
+      "publishedAt": "2026-10-08T22:30:43.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -329,9 +328,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/study/ookinashugo/",
-      "articleHash": "883157f85419e6f9d1b4d3b60d6b712af8079e81ac40d363d67a4c326d2a0c9f",
-      "publishedAt": "2026-10-02T02:45:12.000Z",
+      "sourceUrl": "https://co-coco.jp/news/nazeewoegaku/",
+      "articleHash": "78b6635c2b9c283562540544dada0d46b7bc4ca50452c6c68076c80aaa45b456",
+      "publishedAt": "2026-10-02T07:30:27.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -349,9 +348,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/modoki_event/",
-      "articleHash": "ff8cb52f05d76016d982a6a7ff4356891899943867635cfc4905aaf445402dca",
-      "publishedAt": "2026-09-28T07:30:47.000Z",
+      "sourceUrl": "https://co-coco.jp/series/study/ookinashugo/",
+      "articleHash": "883157f85419e6f9d1b4d3b60d6b712af8079e81ac40d363d67a4c326d2a0c9f",
+      "publishedAt": "2026-10-02T02:45:12.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -369,9 +368,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/sakerubashoni_oitekure/",
-      "articleHash": "764891deac3df4e76a0175205b7a1ec8396417a8e1d5d68ab713680580782e6e",
-      "publishedAt": "2026-09-24T02:30:00.000Z",
+      "sourceUrl": "https://co-coco.jp/news/modoki_event/",
+      "articleHash": "ff8cb52f05d76016d982a6a7ff4356891899943867635cfc4905aaf445402dca",
+      "publishedAt": "2026-09-28T07:30:47.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -384,6 +383,16 @@
       "publishedAt": "2026-10-08T06:40:08.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/sakerubashoni_oitekure/",
+      "articleHash": "764891deac3df4e76a0175205b7a1ec8396417a8e1d5d68ab713680580782e6e",
+      "publishedAt": "2026-09-24T02:30:00.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -412,16 +421,6 @@
       "sourceUrl": "https://co-coco.jp/news/kokobo/",
       "articleHash": "98cab63910f42d5f8f34df50415f68ef2eeb33836aedde971cab5bd35547f207",
       "publishedAt": "2026-09-14T07:30:02.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/rojo/",
-      "articleHash": "fc6e4fde98f67078a0baa1a763daa35b9370a14d9b1fd37384af72a36aaeb1bd",
-      "publishedAt": "2026-09-08T22:30:20.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
