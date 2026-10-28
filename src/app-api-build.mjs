@@ -1,9 +1,11 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {assertPublicCopy} from './lib/public-copy.mjs';
+import {groupNewsTopics} from './lib/news-topics.mjs';
+import {appEventSnapshot} from './lib/app-events.mjs';
 import { SITE_URL } from '../config/site.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -155,7 +157,7 @@ function compactObject(value) {
   const out = {};
   for (const [key, item] of Object.entries(value)) {
     if (item === undefined || item === null) continue;
-    if (Array.isArray(item) && item.length === 0) continue;
+    if (Array.isArray(item) && item.length === 0 && !['articles','events','cafes','topics'].includes(key)) continue;
     out[key] = compactObject(item);
   }
   return out;
@@ -264,6 +266,8 @@ function domesticArticle(article) {
     categoryLabel: DOMESTIC_CATEGORIES[category],
     legacyCategory: LEGACY_DOMESTIC_CATEGORY[category] ?? 'general',
     // 2.0 追加（richペイロード限定の後方互換フィールド。ios-*-v1/v2 の8キー配列には出さない）
+    newsContext: article.newsContext,
+    thumbnailURL: article.thumbnail?.url,
     sourceTier: article.sourceTier,
     discoveryMethod: article.discoveryMethod,
     region: article.region,
@@ -288,7 +292,12 @@ function iosCompatibleArticle(article, legacyCategory) {
 }
 
 function buildDomesticPayload(data, { variant, sourceFile, pageFile }) {
-  const articles = (data.articles ?? []).map(domesticArticle);
+  const raw = data.articles ?? [];
+  const topicIndex = new Map();
+  for (const subset of [raw.filter(a => a.category !== 'relay'), raw.filter(a => a.category === 'relay')]) {
+    for (const group of groupNewsTopics(subset)) group.articles.forEach((a, rank) => topicIndex.set(a.id, {topicId:stableId('topic', group.lead.id), topicRank:rank}));
+  }
+  const articles = raw.map(a => ({...domesticArticle(a), ...topicIndex.get(a.id)}));
   const sourceGeneratedAt = isoSeconds(data.generatedAt);
   return {
     schemaVersion: SCHEMA_VERSION,
@@ -303,7 +312,7 @@ function buildDomesticPayload(data, { variant, sourceFile, pageFile }) {
     refresh: {
       scheduleTimezone: 'Asia/Tokyo',
       scheduleJst: UPDATE_SCHEDULE_JST,
-      recommendedTtlSeconds: 21600,
+      recommendedTtlSeconds: 300,
       staleAfterSeconds: 86400,
     },
     source: {
@@ -378,6 +387,7 @@ function worldArticle(article, mode) {
   const base = {
     id: url,
     stableId: stableId('world', url),
+    thumbnailURL: article.thumbnail?.url,
     url,
     publishedAt: isoSeconds(article.publishedAt),
     sourceName: cleanText(article.sourceName || 'Unknown'),
@@ -448,7 +458,7 @@ function buildWorldPayload(data, mode) {
     refresh: {
       scheduleTimezone: 'Asia/Tokyo',
       scheduleJst: UPDATE_SCHEDULE_JST,
-      recommendedTtlSeconds: 21600,
+      recommendedTtlSeconds: 300,
       staleAfterSeconds: 86400,
     },
     source: {
@@ -519,10 +529,13 @@ function buildManifest({ domestic, world }) {
     refresh: {
       scheduleTimezone: 'Asia/Tokyo',
       scheduleJst: UPDATE_SCHEDULE_JST,
-      recommendedTtlSeconds: 21600,
+      recommendedTtlSeconds: 300,
       staleAfterSeconds: 86400,
     },
     endpoints: {
+      events: {url:appUrl('events.json')},
+      directory: {url:siteUrl('connect/sign-cafe/app-v1.json')},
+      info: {url:appUrl('info.json')},
       domestic: {
         title: 'Deaf Navi Web',
         url: appUrl('domestic.json'),
@@ -596,7 +609,7 @@ function buildManifest({ domestic, world }) {
   };
 }
 
-async function main() {
+export async function buildAppAPI() {
   const [domestic, world] = await Promise.all([
     readJson('articles.json'),
     readJson('articles-world.json'),
@@ -622,6 +635,10 @@ async function main() {
   await writeJson('ios-world-jp-v2.json', buildWorldExpandedArray(world, 'jp'));
   await writeJson('ios-world-original-v2.json', buildWorldExpandedArray(world, 'original'));
 
+  await writeJson('events.json', appEventSnapshot(await readJson('events.json')));
+  const info = JSON.parse(await readFile(join(ROOT, 'content', 'app', 'info.json'), 'utf8'));
+  await writeJson('info.json', info);
+
   const manifest = buildManifest({ domestic, world });
   await writeJson('manifest.json', manifest);
   await writeJson('index.json', manifest);
@@ -629,7 +646,7 @@ async function main() {
   console.log(`Deaf Navi app sync: wrote app API files to ${APP_DIR}`);
 }
 
-main().catch((err) => {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) buildAppAPI().catch((err) => {
   console.error('Deaf Navi app sync build failed:', err);
   process.exit(1);
 });

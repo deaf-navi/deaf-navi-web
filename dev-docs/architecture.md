@@ -43,7 +43,7 @@ Google News（324クエリ・多言語）
    Swift `JSONDecoder.DateDecodingStrategy.iso8601` 互換
 4. **カテゴリenum**: v1系 = `all/policy/medical/education/culture/sports/local/general` のみ。
    v2国内 = 12カテゴリ、v2World = `IOS_V2_WORLD_CATEGORY` の9種。未知カテゴリは `general` へフォールバック
-5. **省略セマンティクス**: `compactObject` は null/undefined/空配列を**キーごと省略**し、空文字列は**保持**する。
+5. **省略セマンティクス**: `compactObject` は null/undefined/空配列を**キーごと省略**（スナップショットの `articles/events/cafes/topics` は空配列を保持し、全件取り下げを表す）し、空文字列は**保持**する。
    省略→null 化や空文字→省略化は Swift Codable を壊す
 6. **その他**: `id === url`（記事URL）/ `stableId = 接頭辞_sha256先頭20hex` / `sourceURL` と `sourceUrl` の両方出力 /
    `manifest.json` と `index.json` は同一内容 / relay カテゴリは v1国内配列から除外
