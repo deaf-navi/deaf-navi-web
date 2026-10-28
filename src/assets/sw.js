@@ -22,7 +22,7 @@ self.addEventListener('message', (event) => {
 
 const PRECACHE_URLS = [
   './',
-  './site-shell.css?v=20261028logo',
+  './site-shell.css?v=20261028align',
   `./styles.css?v=${ASSET_VERSION}`,
   `./home.css?v=${ASSET_VERSION}`,
   `./ui-controls.js?v=${ASSET_VERSION}`,
@@ -35,6 +35,7 @@ const PRECACHE_URLS = [
   './favicon.ico?v=20261028logo',
   './icons/favicon-48.png?v=20261028logo',
   './icons/icon-192.png?v=20261028logo',
+  './icons/icon-512.png?v=20261028logo',
   './manifest.webmanifest?v=20261028logo',
 ];
 
