@@ -16,7 +16,7 @@ const server=spawn('php',['-S','127.0.0.1:5237','-t','docs','server/local-router
 let errors='';server.stderr.on('data',d=>errors+=d);
 const url='http://127.0.0.1:5237/connect/sign-cafe/app-v1.json';
 try {
-  for(let i=0;i<50;i++){try{await fetch(url);break;}catch{await new Promise(r=>setTimeout(r,100));}}
+  for(let i=0;i<50;i++){try{await (await fetch(url)).text();break;}catch{await new Promise(r=>setTimeout(r,100));}}
   const before=php(`echo json(query('SELECT * FROM records ORDER BY id')->fetchAll());`);
   const response=await fetch(url);assert.equal(response.status,200);
   const raw=await response.text(),data=JSON.parse(raw);
@@ -28,7 +28,7 @@ try {
   assert.equal(php(`echo json(query('SELECT * FROM records ORDER BY id')->fetchAll());`),before,'GET never modifies records');
   assert.equal((await fetch(url,{headers:{'If-None-Match':response.headers.get('etag')}})).status,304);
   assert.equal(await (await fetch(url,{method:'HEAD'})).text(),'');
-  assert.equal((await fetch(url,{method:'POST'})).status,405);
+  const rejectedPost=await fetch(url,{method:'POST'});assert.equal(rejectedPost.status,405);await rejectedPost.text();
   php(`query("UPDATE records SET publication='pending' WHERE id='knot'");`);
   const changed=await fetch(url,{headers:{'If-None-Match':response.headers.get('etag')}});assert.equal(changed.status,200);
   assert.ok(!(await changed.json()).cafes.some(p=>p.id==='knot'),'withdrawals disappear from next snapshot');

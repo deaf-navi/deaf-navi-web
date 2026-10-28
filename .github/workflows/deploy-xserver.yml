@@ -60,7 +60,9 @@ jobs:
           test -s docs/app/v1/manifest.json
           test -s docs/connect/sign-cafe/index.html
           test ! -e docs/connect/sign-cafe/starbucks/index.html
-          test -s docs/cafe-map/map-2d.js
+          test ! -e docs/cafe-map/map-2d.js
+          test ! -e docs/cafe-map/start.js
+          test -s server/ui-links.php
           test -s docs/cafe-map/leaflet/leaflet.js
           test -s docs/directory-community.css
           if find docs -type l -print -quit | grep -q .; then

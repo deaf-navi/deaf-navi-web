@@ -88,7 +88,6 @@
 .dn-directory.dn-cafe-theme .dn-result {display:flex;align-items:baseline;gap:10px;font-size:12px;margin:0;color:var(--cafe-muted);white-space:nowrap}
 .dn-directory.dn-cafe-theme .dn-result strong {font-family:inherit;font-size:44px;line-height:1;font-weight:500;letter-spacing:-.065em;color:var(--cafe-ink);font-variant-numeric:lining-nums tabular-nums}
 .dn-result-actions {display:flex;align-items:center;gap:18px}
-.dn-result-map {display:flex;align-items:center;gap:7px;min-height:44px;font-size:12px;text-decoration:none}
 .dn-view-tools {display:flex;border:1px solid var(--cafe-line);padding:3px;border-radius:5px;background:var(--cafe-paper);gap:3px}
 .dn-view-tools a {display:flex;align-items:center;justify-content:center;gap:6px;padding:7px 12px;min-height:38px;font-size:12px;text-decoration:none;border-radius:3px;color:var(--cafe-muted)}
 .dn-view-tools [aria-current] {background:var(--cafe-ink);color:var(--cafe-paper)}
@@ -266,7 +265,6 @@
   .dn-directory.dn-cafe-theme .dn-result {gap:7px;font-size:11px}
   .dn-directory.dn-cafe-theme .dn-result strong {font-size:38px}
   .dn-result-actions {gap:8px}
-  .dn-result-map {display:none}
   .dn-view-tools a {font-size:10px;min-height:36px;padding:6px 9px;gap:4px}
   .dn-view-tools .dn-cafe-icon {width:14px;height:14px}
   .dn-directory.dn-cafe-theme .dn-results-note {font-size:11px;line-height:1.85}

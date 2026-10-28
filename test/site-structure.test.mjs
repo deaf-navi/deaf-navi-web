@@ -20,7 +20,7 @@ test('ニュースの更新日時をカフェ・ツール・過去月へ流用�
     const before = readEntries('2026-10-12T00:00:00Z');
     const after = readEntries('2026-10-13T00:00:00Z');
     assert.deepEqual([...after.keys()], [...before.keys()], '更新日時だけでは検索対象URLを変更しない');
-    for (const path of ['connect/sign-cafe/', 'connect/sign-cafe/map/', 'otomado/', files.about, files.oldIndex, `archive/2026-08${suffix}.html`, 'deaf-navi-world-jp.html']) {
+    for (const path of ['connect/sign-cafe/', 'otomado/', files.about, files.oldIndex, `archive/2026-08${suffix}.html`, 'deaf-navi-world-jp.html']) {
       const url = 'https://deafnavi.com/' + path;
       assert.ok(after.has(url), path);
       assert.equal(before.get(url), null, path);
@@ -39,11 +39,13 @@ test('検索対象サイトマップからnoindexの情報提供フォームを�
   const options = { generatedAt: '2026-10-12T00:00:00Z', isDev: false, files, count: 1 };
   for (const xml of [renderSitemapXml(options), await readFile(join(docs, 'sitemap.xml'), 'utf8')]) {
     assert.doesNotMatch(xml, /<loc>https:\/\/deafnavi\.com\/(?:submit|admin)\//);
+    assert.doesNotMatch(xml, /connect\/sign-cafe\/map\//);
     assert.match(xml, /<loc>https:\/\/deafnavi\.com\/connect\/sign-cafe\/<\/loc>/);
   }
   for (const html of [renderSitemapHtmlPage(options), await readFile(join(docs, 'sitemap.html'), 'utf8')]) {
     assert.match(html, /href="\.\/connect\/sign-cafe\/overseas\/"/);
     assert.match(html, /href="\.\/connect\/sign-cafe\/events\/"/);
+    assert.doesNotMatch(html, /connect\/sign-cafe\/map\//);
   }
 });
 

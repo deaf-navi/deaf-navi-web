@@ -259,7 +259,8 @@ async function main() {
   await cp(join(ASSETS, 'cafe-art'), join(DOCS, 'cafe-art'), {recursive: true});
   await copyAsset(join(ASSETS, 'admin-dashboard.css'), 'admin-dashboard.css');
   await copyAsset(join(ASSETS, 'access-analytics.css'), 'access-analytics.css');
-  await cp(join(ASSETS, 'cafe-map'), join(DOCS, 'cafe-map'), {recursive: true});
+  // Leaflet remains in use by the separate overseas directory.
+  await cp(join(ASSETS, 'cafe-map', 'leaflet'), join(DOCS, 'cafe-map', 'leaflet'), {recursive: true});
   await copyAsset(join(__dirname, 'app.js'), FILES.app);
   await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
