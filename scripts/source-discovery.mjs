@@ -18,9 +18,12 @@ export function discoverLinks(html,source,knownUrls=[]){
         ||url.href.length>1000||/\/admin\b|\/login\b|\/search\b|\.(?:jpg|png|webp|gif|zip)$/i.test(url.pathname)
         ||[...url.searchParams.keys()].some(k=>!/^(?:id|p|page|year|month|n)$/.test(k)))continue;
       const title=cleanHtml(match[4].replace(/<[^>]*>/g,' ')).trim();
+      // Opt-in path restriction keeps a specialist site's service/navigation links out.
+      if(source.restrictCandidatePaths===true&&!(Array.isArray(source.candidatePathPrefixes)
+        &&source.candidatePathPrefixes.some(p=>typeof p==='string'&&p.startsWith('/')&&url.pathname.startsWith(p))))continue;
       if(source.topicScope==='overseas-cafe'&&nonVenueLink(url.href,title))continue;
       const relevant=/(?:手話|筆談|ろう|難聴|盲ろう|聴覚|中途失聴|要約筆記|文字通訳|字幕|情報保障|ヒアリングループ)/.test(title);
-      const activity=/(?:開催|公演|交流|カフェ|講座|講演|上映|募集|イベント|喫茶|観劇|舞台|例会|集い|研修|説明会|企画|支援|サポート|手話べり|おしゃべり|読書会)/.test(title);
+      const activity=/(?:開催|公演|交流|カフェ|講座|講演|上映|募集|イベント|喫茶|観劇|舞台|例会|集い|研修|説明会|体験会|企画|支援|サポート|手話べり|おしゃべり|読書会)/.test(title);
       // A previously read named cafe series may omit "sign" in its headline.
       // Exact configured names and paths only; this does not verify a new date.
       const namedCafe=source.discoveryGroup==='cafe'&&Array.isArray(source.cafeTitleTerms)

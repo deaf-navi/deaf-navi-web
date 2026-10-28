@@ -31,6 +31,21 @@ test('commented obsolete application notices and links are never evidence or can
  assert.equal(valid.tasks.length,1);assert.ok(!valid.tasks[0].text.includes('終了'));
  assert.equal(discoverLinks(html,{id:'x',url:'https://example.org/'}).length,0);
 });
+test('configured YYSystem event section admits experience sessions but not service pages or other origins',async()=>{
+ const config=JSON.parse(await readFile(new URL('../config/curation-discovery.json',import.meta.url),'utf8'));
+ const source=config.sources.find(x=>x.id==='yysystem-events');
+ assert.ok(source);assert.equal(new URL(source.url).searchParams.get('category'),'イベント');
+ const html='<a href="/information/information-1970-8-2/">AiLENS体験会のご案内</a>'
+  +'<a href="/information/information-4689/">世界に字幕を添える展の開催</a>'
+  +'<a href="/service/accessibility-support/">イベント向け情報保障サービス</a>'
+  +'<a href="/information/information-product/">新製品の価格改定について</a>'
+  +'<a href="https://other.example/information/information-1/">手話交流イベントの開催</a>';
+ const found=discoverLinks(html,source);
+ assert.deepEqual(found.map(x=>new URL(x.url).pathname),['/information/information-1970-8-2/','/information/information-4689/']);
+ assert.ok(found.every(x=>x.status==='unverified-candidate'&&!x.publicationApproved&&x.reviewedAt===null));
+ assert.equal(discoverLinks(html,{...source,candidatePathPrefixes:[]}).length,0);
+ assert.equal(discoverLinks(html,source,[found[0].url]).length,1);
+});
 test('unapproved and unreviewed candidates never invoke API',async t=>{
  const opts=await options(t);let calls=0;
  const r=await runDiscoveryReview({...opts,generate:async()=>{calls++;}});
