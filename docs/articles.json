@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-10-28T13:51:18.803Z",
+  "generatedAt": "2026-10-28T23:46:52.874Z",
   "variant": "prod",
   "profile": "expanded",
   "count": 459,
   "quality": {
     "version": "publication-quality-v11",
-    "rawCount": 2956,
-    "scoredCount": 2956,
+    "rawCount": 2963,
+    "scoredCount": 2963,
     "missingDateRemoved": 0,
-    "freshCount": 1418,
-    "staleOrInvalidRemoved": 1538,
-    "lowValuePageRemoved": 5,
-    "publicationRemoved": 268,
+    "freshCount": 1390,
+    "staleOrInvalidRemoved": 1573,
+    "lowValuePageRemoved": 7,
+    "publicationRemoved": 284,
     "publicationExclusions": [
       {
         "id": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
@@ -274,6 +274,11 @@
         "reason": "low-value-page"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBSVXYzQ3F2dW10aG82bGtlZmRsTV9KX1ZmTXpyTzdBRFJBa25saTlJY3JWMXNpUUxhRmJzRkI2WHRFdkpSOGhzQUk5VlFwbENzbGRB?oc=5",
+        "title": "【令和8年熊本地震 報告】熊本における中央・熊本合同対策本部会議の開催について",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9FWHVZOXI2dm1aR20wSFFpeXVwUFQxckhHcnF3cFNZNDJNVWViNFZzQlY5aFdkaldxV0FTVjJPZWpzOThwNU9CVmhxa0FDcTcwV0tfc0RncFpubGlFa2lsZVdFWkM3QzJkUEE?oc=5",
         "title": "市民活動プラザ",
         "reason": "unrelated"
@@ -287,11 +292,6 @@
         "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9kWmctbnRoQlhHTDM1MzM1WWN6WWtCZVQydGRpVHN4WE53RnhsTHFhQUxkNGhZY2g0SDRpQnVUbURaZDNCZGlSUnA2YklRT0tSOFNPR0Z0RDliU0pqM1hXczZKUzRPRDZ4ZGprUWVMU1BKMUVQeFl6TFc4SEFyQQ?oc=5",
         "title": "沈黙の世界に「音」をもたらした女性。",
         "reason": "foreign-coverage-review-required"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBSVXYzQ3F2dW10aG82bGtlZmRsTV9KX1ZmTXpyTzdBRFJBa25saTlJY3JWMXNpUUxhRmJzRkI2WHRFdkpSOGhzQUk5VlFwbENzbGRB?oc=5",
-        "title": "【令和8年熊本地震 報告】熊本における中央・熊本合同対策本部会議の開催について",
-        "reason": "unrelated"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNWF9GWDVvdENINGNnWmpXVjdwRTlfSUd5VnJiVlZUVkN5ZWF1RW05U0d5SVh4X1oyemVPTWt6djBwbkxrY3BBOVZ2VlBSRU5GcUV0WDBYdVBOdTU4TGgza2tMdTVET0dOQjJZMWNMWDBjb0VaZ3dtOHJ2ZzJVZU1IWWNyNWJZS0N1cGwtT3BLYW5zQQ?oc=5",
@@ -309,23 +309,18 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5xTHY3bE41dUFSTURPMmlveHJmNzhfYXctQVo2QThMRDhnMi1MVzg5OVF6NnlLSFk2MGZCRTZudEFLTkVTeElhSDBpZENldTExWnNfcVhMZEJISWRYTEt5YlNfS2dyUmlqVTgzRWFR?oc=5",
+        "title": "原爆の惨禍に向き合われた佳子さまと悠仁さま…内親王・親王の「務め」と時代に合わせた“心のケア”",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE96ejlZaG9FUUlHSXBMdTVicl9wWkswRDdIOU5wQnlFVmhRSEdzTkxzM2xDZjVWX29IWU1fWkpQVUtpd0JZLXhLQXMtMHlZYUlBa21yU3hnelFpaGxWdk9zNmtvV1B6aEQ4RnVNMFlCWEQ2SE1o?oc=5",
         "title": "障害者477の声 総務省へ/投票環境バリアフリー実態調査/日本障害者協議会が要請 | しんぶん赤旗",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOUTlrSHdJc0N1T3hkNml0WnNiclJIT3ZJekpHbVR2Y0xxV0lqSmtwMGtlU2dlY1NPZkFXbWxFX2VJRmZKaHNoQVJkZ2I2VlpwdXVYWl93M1N6U0VIeldYU096LTZORjdTZFBFLUMzSC1ERFdoZGVqNWE0RWE3czJQdFVuSWhjTWFQQXhYLWxpVndfSmZoYjJrM05B?oc=5",
-        "title": "令和8年度厚木市地域包括ケア市民講演会「人生の最期まで自分らしく生きる～良き人生の歩み方～」の開催について",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE95UVpTRHotLWYtWnlaNjdIYjM3WTgzQzVqN2J5a1VLQy1NMXp0ZUF1VTUxTXhYbWpKcHo1YTZTSlVUS09EZFVnbW9adnRmc2lXdC1sc05qUjlxV0FCd3VJOHU2STBDU1ZQNFo0SDFnaWFWZkhDanV6MFBrRdIBgAFBVV95cUxOcC1CeENCc2p2YzM1U3E1N2VWcjkxcUR3aEFHSVprdEF2bVFuaHFrdWtSTE9OcXNpOE5IZnFpWnRrdHhrTWQ3cEp0OElQVF9fZVNiUDdZM2Z1ZmxOMUZmZnFyNzZJRUdpeWE0SUwxVzVmOXNSQ1dBOUxXQVVrcHZpOQ?oc=5",
-        "title": "【あおもり障スポ】各会場でバリアフリー対策 改善求める声も",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE54SHQ4amt1MHQxeHVVZHR5cmtCVjBwME5ZM1BLV3hYM29LWW1nVnE2NlZFZ0pnZTk5NHVodnhVQlVMZGFBaWFYUEJYLXJCZ29EWWZz?oc=5",
-        "title": "職員募集のお知らせ",
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9FWHVZOXI2dm1aR20wSFFpeXVwUFQxckhHcnF3cFNZNDJNVWViNFZzQlY5aFdkaldxV0FTVjJPZWpzOThwNU9CVmhxa0FDcTcwV0tfc0RncFpubGlFa2lsZVdFWkM3QzJkUEE?oc=5",
+        "title": "市民活動プラザ",
         "reason": "unrelated"
       },
       {
@@ -334,9 +329,34 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBaajlnZTFlZ2NJSXRFMTJOWnVaR01uMTljMHJOVGV3eVlIRTNoNWpjTzZfcndQcWJwVWxJbW50eE9SR1plRjdMenFyOWhOaDBzZ3Mw?oc=5",
-        "title": "株式会社朝日新聞社 代表取締役社長 角田克氏と面談",
+        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQQVZtdDhyVmQycExNZm5QQTgxS0JCdmNTbjE2cWppbFJFd0lWbm9qX2NvTzQtS09NQjZORG9iNFRfVXhlSlFIUmhFZmtqWF9ESnhmNzdlNHR2OGFhLTVoaVdVbWlBTFJBcHE4RzBPS29jNzhPRmhZclNTdDcwZXAxNjAzNA?oc=5",
+        "title": "鑑賞サポート実施についてのご案内",
         "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1zWTUwZ0NPZVhSRzNCNzRXUllhX2s5XzdUeERkOHVUN19mQU1IM3ZrNzZLLUFUS3ROdzZWaGtpamNmZDcwT1BNVGRoMnJFZ0MtTnRuR1FtcGpNZDk2YWRadzJ4a2xOU1dhUjZnbFdWSUg?oc=5",
+        "title": "令和8年度 第11回バリアフリー演劇鑑賞会",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5xTUlrd2lzdGlqUEtvLVU4S3dPd2tiOFRoLXFtQktQUkFUM19jN005ZkdNWVhHVzFPcDRQUlB6cXNZUS1hNjBOVzNXZS1hYW92OWJNSm9oTEh2dw?oc=5",
+        "title": "令和8年度「情報バリアフリー役務提供事業推進助成金」の交付決定",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBBYXpkdGR2SWhMWVoyNE5vZVhlcE9YN080V3M5dnBCQ0E2TklzNEtpYUVSQlpvVGlmclBhd09RQWtLMjVCVlJKRGo0T0lPLU1jalVpTEhPYTdvZzQ5SjJvdmVYTUxibDg?oc=5",
+        "title": "鑑賞サポートで誰もが楽しめる舞台を 木ノ下歌舞伎「心中天の網島」",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB5aUxOUER6LU16bFN1clZMZHFmeUp0WGZrc2Q1eThWcGJJdHYyY3ZwOWNrUTI0TncyeldWcWdXZ2d0V3NKTXdrNGYyT2dQaXJvSjhUMHFuTlhyOWdZNHdacFFjcklfOUpT?oc=5",
+        "title": "「夜の余白」をすべての人に。“会話が見える”スナックが生んだ新しい社交場",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBlNGtzRDNtRjRYdlp3d3pMUGI4SWt6TlNkZGpLNmoteTkxVjdiNzZjd1NzUzU5YnRocHlvaXJVUjZRUEdDbHFVUUtHODBiQUtOS240bnhRZw?oc=5",
+        "title": "参加者に手話を教えるろう講師（左）と手話通訳士 - 聴覚障害の理解深める 大分県の日田市社協が12月まで手話教室、市民10人が受講 - 写真・画像(1/1)",
+        "reason": "low-value-page"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4xXzhxR0tMMTgyZDNuZmo5RFRacHMyLUJiZERQV2R2bWxmT1pPTndtbDJhQXFoRHh5bmdDSWlkams1N21URm51SDN4Z2FYaXh3eFZfUFNEbVd3NDJrWkxVVnExbkJaS3M?oc=5",
@@ -346,11 +366,6 @@
       {
         "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBjMDBJc3BJMEp0d3Bqbkw2eWhwcFU3NDAwX2llV2RaTGJZcHlSOS1JajYxQnphTjlLaTdwWUpycmZ5UERyUUNwTFRJbzhqYUhwSWtiWmZ0em1saXdL?oc=5",
         "title": "【マンガ】中学受験で合格したのに…「やっぱり地元の公立中に行く」 息子の告白に両親が出した“答え”とは？〈中学受験マンガ〉",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE42Y0lyQnJEcWNkSDRoclJWNUZrb2djQ09jMEt0ZzRDdHYwemxkMm14Z0NoUWxFS3lOZFBoZldESXF0WEZYZE9JemN5MEhXTnhLbmxIeVZn?oc=5",
-        "title": "親子で始めるAI英語⑨ AI活用でエンタメを楽しい英語学習に変えよう（後編）",
         "reason": "unrelated"
       },
       {
@@ -364,6 +379,11 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1ZT2FZWXg2NUoybjZ4aU05a1A1dHhGdF92ZzdLWmhVd0xQWVBVZ1h1V2xTcGZtRXQ2a0Jna1JEQ09NQjVCQUdEd1QzXzlCTDIxMGZqRDdxbVFHS0ZMU05YZ3M4NWtQNGhlRm5QVGxiQQ?oc=5",
+        "title": "「聲の形」映画公開10年 大垣で記念イベント上映も",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9QUnphVnV6elBUSlZjRUdSNFJhSXBKOWVGNXV6MENIc1Y3S0NpN24yekg0ZlBIMjlfUXlZdWNTTXRPYkd2ZEtfazdTejVFeF9mQlJUTWNvS1FQM0tuT0wtQzJNRVl5UnpERzk5VDA2OXhTZw?oc=5",
         "title": "認知症を抱える長崎原爆の語り部、あの日の記憶は薄れることなく…診断3年「話せるうちに伝えなくては」",
         "reason": "unrelated"
@@ -374,13 +394,23 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE0wUWVGZVNUS252T1B2WWVsV1JpQk1yb2xTSXNLQTlNOG5lYldpeXlrN29UZlQ5UUowdnpzYlhmMWZ2UXVDYVZTOXBZb0RHbnByWWF6ZHZPTjdISTZuUVNtd3pGcjlLZ0tISE5yYk1tcTYzdw?oc=5",
+        "title": "反撃能力を持つ長射程「25式地対艦誘導弾」、長崎・佐賀県にまたがる陸上自衛隊大野原演習場で展開訓練",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9tQzVMWkMxVl9EMGVxRFZfRlZMQWRvaVpFOXZLZTJVUFFPUUNrQjVseWxJYnpaTFpDaEhQMlBRcF9HeWpnbVE2Z1F0bjlLaXM2TmtYS052WFRaQ0Eya2p5QnN0cGtRRlp2RC1uenppQm1zUQ?oc=5",
         "title": "台風30号の接近見込み、福岡市教委は232校の休校を事前決定…温帯低気圧に変わったが九州を中心に大雨",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE0wUWVGZVNUS252T1B2WWVsV1JpQk1yb2xTSXNLQTlNOG5lYldpeXlrN29UZlQ5UUowdnpzYlhmMWZ2UXVDYVZTOXBZb0RHbnByWWF6ZHZPTjdISTZuUVNtd3pGcjlLZ0tISE5yYk1tcTYzdw?oc=5",
-        "title": "反撃能力を持つ長射程「25式地対艦誘導弾」、長崎・佐賀県にまたがる陸上自衛隊大野原演習場で展開訓練",
+        "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE01Qi1RNTVWVXB3YUd3bVlKRm1lVlg3alNoZjh6MmNMbEEwWnFYZXZfS2NiVU9uTERLTjVkQ1hrNlVMM3p3bnBCVUZwclhOV3JGdkx6NnNGVlFqYklXSGhqN2dn?oc=5",
+        "title": "発達障がいと防災 「避難所に行けない」子どもたち——、家族が知っておきたい備え",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBWQ3hhNTRFbFpnNmxjY0F4UTlHeHVGZGhacU9sRF8xZExWUlFwNE1ncmVRTTRMTko3X1g4WF9UUmNzaXpPak0waTkxdVIwdFdtQUJybmJ5RHpxaDZROVp0ckxGb0g?oc=5",
+        "title": "ドコモ「あんしんフィルター」、2週間にわたり利用できない状態…復旧時期は未定",
         "reason": "unrelated"
       },
       {
@@ -394,23 +424,8 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE8zMmlyT01sRE1ZeGtXcTRfTWpSODlNRmdLcTI4Z2J1ckFHTWw0S3R4WUkycFdGNjlrQVZMZ2lGLWhNWlltbldjQW1qUkE1ZC1tLXBfNjRzWFA3SHoxQkhFYmVvTEtKUQ?oc=5",
-        "title": "就任1か月の沖縄・古謝玄太知事「6、7割が基地問題」…就任直後に米海兵隊員が強盗殺人容疑で逮捕",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE0zZ0phNWZrSTFqdk5KOEVEMFAtOXVnbjNENU5HbWNyaHFhOHVRWV9SUzU3U0JOQkxHeHJmUFgxbDZCQ0lEVndRSHhJQnA3XzlHRzNSSUU5bE15M0tIenppa1hteEgtdw?oc=5",
-        "title": "ＪＲ京浜東北線が運転再開…倒木の影響で、全線で一時運転を見合わせていた",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5BVFViMTBFMHpQSjlONGx5QlpHd1JOM0RzLXh2d2tCZXNJMHVTSjhuR05TRTVLTlFveU5hTkxxSkwyalJ6X1VPU0p0b1l4UmYzQWlDZENwQTdodGZWaUI4eHAxR2ZnRXcxenlaci11VWhJaVU?oc=5",
-        "title": "「大地震5日後」想定 県訓練",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5LWmVaUE1pbVJoelg2Y1pseU9vaUJRYU1aaDFIRmZjOXc0c09UZDNvWnM4LXNfdmF2MHZubklLQXQwUUhfMk9VVk5UNGZLLUdyYlYwSjBtZjdSSHR5akdlTkk1MEktQTN6UUdpVXBIdS1ZZw?oc=5",
-        "title": "ソフトバンク正木智也が10回サヨナラ弾…牧原大成が9回2死から同点打「マキさんが作ってくれた勢いに乗った」",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5MZWdON3dYQ0pDZ1NUc21YT3FWem1LbGdOTjlxYW9icmsxY0JRNGItTkVKQUh6dTBmUkl5aXJab1JiOXBTZVFMRTR0enZibXJhdzY1MC0xMlhWMzQ2OUVzaC04VV94aVUzckZNcVZNeFJvQQ?oc=5",
+        "title": "オリックスの福良ＧＭがドラフト1位の富士大・角田楓斗投手に期待「先発でチームの柱に」…指名あいさつ受け、「1年目から戦力になれるよう頑張る」",
         "reason": "unrelated"
       },
       {
@@ -421,11 +436,6 @@
       {
         "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5GdDJyQzN4MFl1c3JjYXVMN29vbjJjcnRJVVY1Y183cEVBU0FaTkZmUWN6MDhXUVNvN3JEclZkNFgtUWxtMThRWDVTTjN5aXhrUG1tb3lRZWl1NE9TNHRZdGJUZTZ1OUhoVFhKNG1OSDJiWUk?oc=5",
         "title": "鳥取：ちばさんまんが王国の礎 県内惜別12年マンガサミットで絆：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4tdTNrVTBsTFd6YnFZd3RsczNnalR5enpOblRLakEzVDZnY2RvQmlpblpoYU9ZRTVhazFHTm5uQUlydlhqaW9lX2JhbVZnbVhKX2JYZXdMSHV0anJBcGNfR2FjMk9qUDJWV1ZvNnBUZ2xHQUk?oc=5",
-        "title": "鳥取：旧国鉄倉吉線カレンダー 観光協販売 愛好家ら写真13点：地域ニュース",
         "reason": "unrelated"
       },
       {
@@ -449,28 +459,23 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9JdUFmWlJNTVZLWkpJWUJvWmpXSTM2cm9ER3YyWlNMWFVOYjRpRDZ2OGRKdW93VVp6VzdXTEUycDNZdlQ4VXJFaDFrc3NrNDA0Z1NhUmZyYzlrWGZDQnlBZE81Q0d3Y1VVZTZqa3lGeWVqMXJa?oc=5",
-        "title": "静岡：思い出の人形 河津で供養祭 ひな人形やぬいぐるみ：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBVMlVOS2k2c0NxMG9sRmFjZDVyS0FwbjljR1ZLZ2NjUE8tUFVFYUZjT0ctWTZvMUdqR053MzU3WGFCV3VBWnk2OTBzWkFiX3ZWMVFvQXh6QWpyTkhTUGZMZ3loNURySURVUHdOeDE4d2Radw?oc=5",
+        "title": "ソフトバンク松本晴が要所を締め、6回6安打1失点…ＤｅＮＡ筒香嘉智のバットに空を切らせて雄たけび",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE43bXI3NDh2ZE9HOFdKYWl5al9YcHBkeE4tczRWbFNpdzBHcExCZ2dxNDV2V09xWm00RUloU3ZBOXZnUjJEN1BOSkdyOVNpa0E5LXp0YVNoNDlJZERRVDdUc3RmZlh5bU9kaTk5MVU5RXR6dw?oc=5",
-        "title": "福岡市長選挙に会社員・西脇寛樹氏が出馬表明…福岡県議会の金銭授受疑惑に「古い政治を変えるには選挙から」",
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE0zZ0phNWZrSTFqdk5KOEVEMFAtOXVnbjNENU5HbWNyaHFhOHVRWV9SUzU3U0JOQkxHeHJmUFgxbDZCQ0lEVndRSHhJQnA3XzlHRzNSSUU5bE15M0tIenppa1hteEgtdw?oc=5",
+        "title": "ＪＲ京浜東北線が運転再開…倒木の影響で、全線で一時運転を見合わせていた",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5MZWdON3dYQ0pDZ1NUc21YT3FWem1LbGdOTjlxYW9icmsxY0JRNGItTkVKQUh6dTBmUkl5aXJab1JiOXBTZVFMRTR0enZibXJhdzY1MC0xMlhWMzQ2OUVzaC04VV94aVUzckZNcVZNeFJvQQ?oc=5",
-        "title": "オリックスの福良ＧＭがドラフト1位の富士大・角田楓斗投手に期待「先発でチームの柱に」…指名あいさつ受け、「1年目から戦力になれるよう頑張る」",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5LWmVaUE1pbVJoelg2Y1pseU9vaUJRYU1aaDFIRmZjOXc0c09UZDNvWnM4LXNfdmF2MHZubklLQXQwUUhfMk9VVk5UNGZLLUdyYlYwSjBtZjdSSHR5akdlTkk1MEktQTN6UUdpVXBIdS1ZZw?oc=5",
+        "title": "ソフトバンク正木智也が10回サヨナラ弾…牧原大成が9回2死から同点打「マキさんが作ってくれた勢いに乗った」",
         "reason": "unrelated"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE41VExXNlE0Ujg0MlBfT2Q4Y0tQNDNKQ01uZFZESjVNQ0pIY1A5cVBQZkV6ay0wZHlSYVdJbjV3TDZRM2xhVDdvODdEV21YM1VaUzZyTV95QmpKWThFWW1MaHlUUUt5M1dBTG1HRHFUNUZBQQ?oc=5",
         "title": "九州地区高校野球大会、沖縄尚学と佐賀北が準々決勝に進出：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9oZ1FWSWRYV19xWjQxN0d5eDg4bWQyOExjYlpkVGhUWUZLcUVvNjhhYU5sZkNBemhYR1VXeDcyVjZXRnl0QS1RMG1ieUdLcHRiSkktckZTTm9BLUNwdV83UUZlMlc1TlVYRjV4TldyRnVhNV9GcGlNWA?oc=5",
-        "title": "藤井聡太竜王を好きすぎて滅、グイグイ系女子のゆるキャラが「トサカ」がささるほど超接近…「かわしきれなくて」と王者は笑み＜七番勝負第2局・番外編3完＞",
         "reason": "unrelated"
       },
       {
@@ -484,28 +489,23 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE4xOXMxU2FzZ1VuV015SlN6QmI1ZjlKSFBITHJNc2ptMk55WVR4WmxsLXhVc1hZUDNTV3BteTdLc0FKZktyQnRwVlI5ZVJVV0V3VG9LQlhOZkVoR1Z3a1Vwb1VRQWZVLVdWLUdoclBYMkEyZw?oc=5",
-        "title": "美祢市の和菓子店経営者強盗殺人、2か月で容疑者逮捕に住民「本当に良かった」と安堵…容疑者2人送検",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE8zdVNtbE1PM2M1ZU53cWhtYldCc1RnWnpST1hVeXczWGVKX28xS192WjVHVVlIYXdHNmdxeXdBajA3eXRnWWhKYkZnZFJjanpSa3YybnNjSEtGT1pvZzBYZEVhVE0xNEhYZkM4MjRyYzRqQQ?oc=5",
         "title": "立命館アジア太平洋大学が「適正校」に再選定…留学生の在留資格取得の手続きが簡素化、来年1月から1年間",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1rMktpbDlqcmtEWUY5cnhENmJaZGY5UlNybTVpMkFzeVhzUEVYZllMTWQzMy1pZGswMFFwR0YzdV9PcTVZWmx1OUxyUk43MV9BdkoyRzU1WGo1UzhxeHZ1bF9HRmNOV3BiR0N1TXhTSzBSQQ?oc=5",
-        "title": "「ＪＡさが」投資信託で74億9000万円損失…急激な金利上昇で評価損が拡大、売却して決算に計上する方針",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5tNnFvM0xKUGtIZ2wxYmkyVzgyUnJ1NGtHQTFlTlBFNGh6WnhPU1I1UnFPOTZUckhiQTZ3dk1SZTJkSm1Rb2ZEM2d5U3VDRFBxckxHUU9QMG5WVFdfeHcwbFZYR3hxeGJ4djA1ejZQZk1kZw?oc=5",
-        "title": "交通税「来年5月までに案を示したい」三日月知事が実現議論へ時期示す…「税導入」打ち出し4選決めるも、議会からは「慎重な対応」要望も",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBFRzA5c095VTJ1akRDbzJYVEdDUHpON3FoWFdRZVozQUtfa1M4SGI4Y0MtN3ZGZ2htSVVMYVVUeldjbHBTRDJ4NG9NU3ZkMzUwQzZhbU5CeThGNlVwbG9LZ2lfMnF6cUJlRmJwV2ZUOW9sQQ?oc=5",
+        "title": "沖縄県知事・古謝玄太氏「業務の6～7割が基地問題に取られる感覚」…就任1か月、県政与党「上々」野党「急進的」",
         "reason": "unrelated"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9GakpFckF1TkRicExmY0pybHg1SmNnY2d6cDVrcTVYVF83YlpXZGw1OXpYVXRTMjJybU5MeE56NUU0cEw3d2dKaklXODRyN05wZFZQVkk2MDVMRVlXMk1GVkVwMXhRZw?oc=5",
         "title": "タイムズカー情報流出で2・5万人「不審メール」、勝手にローン組まれるなりすまし被害も…集団提訴の方針",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4tdTNrVTBsTFd6YnFZd3RsczNnalR5enpOblRLakEzVDZnY2RvQmlpblpoYU9ZRTVhazFHTm5uQUlydlhqaW9lX2JhbVZnbVhKX2JYZXdMSHV0anJBcGNfR2FjMk9qUDJWV1ZvNnBUZ2xHQUk?oc=5",
+        "title": "鳥取：旧国鉄倉吉線カレンダー 観光協販売 愛好家ら写真13点：地域ニュース",
         "reason": "unrelated"
       },
       {
@@ -524,58 +524,23 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9MajhWdE14R29ZVUJJUndZVGRRMGM1T0RCaUNGUWlWTjJuS25wUG80aEN4aEVOU2Mta2J2SExVNUx2dUVxSERpUkpRZ3liaDdXQ2l1UXMxbFVIUEhIbk4wN1VvQm9fVWltbzdlem1yQnY?oc=5",
-        "title": "篠田正浩監督しのび「心中天網島」「暗殺」上映 岐阜市のロイヤル劇場…芸術性高い2作品：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE8zMmlyT01sRE1ZeGtXcTRfTWpSODlNRmdLcTI4Z2J1ckFHTWw0S3R4WUkycFdGNjlrQVZMZ2lGLWhNWlltbldjQW1qUkE1ZC1tLXBfNjRzWFA3SHoxQkhFYmVvTEtKUQ?oc=5",
+        "title": "就任1か月の沖縄・古謝玄太知事「6、7割が基地問題」…就任直後に米海兵隊員が強盗殺人容疑で逮捕",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1PY0VKclZLUnN5TThWY1pveEFwdk0xUmVwbDlCZW5tZTNTSkowdHFKT1ZneU41a1BOOWtHLUpLQURPVXR3WmlDYjdoVXJtMTAybEd6NlNrZHJqRV93bmF1QkFkd2FMNlplWEFiU002TnA?oc=5",
-        "title": "大相撲「小牧場所」4月6日に…春巡業 枝川親方「力士を間近に、楽しんで」 ：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9zb2VUWU40NEtScjdGODY1a0QzZ1hjaEl6S2lfaURNazZIazRGbnl3R0xZNUJBck1TZDlhdm9QdFRJaTF2OXpuVzFSb29TeDlCQ2dOV0xrMVBMbHo0SEFnUzc1NmlkYmpxOWlsVGVKNnRTZw?oc=5",
+        "title": "サイバー攻撃を協業で守れ…オムロンとNTTドコモビジネス、互いのノウハウ組み合わせセキュリティーシステム開発へ",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1DMnBYaVd5ZmxzU0EtX2ZDd0tyV0NhakNtVjFhMlZzSkc5b3hJajdOZXEzVUk5QU9URVA0X0IxUUVRYlE4Q1BtZVp4bnhuZjVJRGJ1WnJGSzRMQUlpR0xXSUZYU0NBbEtibVpZdHBoa0pvNVBQ?oc=5",
-        "title": "那覇市長選挙、現職の知念覚氏が新人3人を抑え再選…政権与党や野党の一部が支える：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBlLXZTMmw5TUNLSGJGWGtyNzhUenRmZHd3bjdMR2dkenBlWmVLeDVaUDhIc3ZCV2oyQlpPUmxnU2pFazEyUk9qeDZlTkRjcXYzY05lX1NjRkR4X3lDYmhDTTF0RFZmdw?oc=5",
+        "title": "部下への性的暴行、元検事正が一転無罪主張で被害女性「人生を壊され言葉にならない怒りがある」",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTFB5OTlLM0JOOGdWQXVITTJrcjR1SzdpOEZ1VUdTNm9mNEVQYV9ZaVFtSXVjOXR5VEo5NFRhakNNak1RVVhMUzVlMHRnaTEyYXE2MXZDLUxSbklfSC1qRl9jaGJxZHBjSkVxbHZr?oc=5",
-        "title": "［時代の証言者］逆境にこそ夢を 蒲島郁夫＜19＞港と駅 魅力的に変身",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBVMlVOS2k2c0NxMG9sRmFjZDVyS0FwbjljR1ZLZ2NjUE8tUFVFYUZjT0ctWTZvMUdqR053MzU3WGFCV3VBWnk2OTBzWkFiX3ZWMVFvQXh6QWpyTkhTUGZMZ3loNURySURVUHdOeDE4d2Radw?oc=5",
-        "title": "ソフトバンク松本晴が要所を締め、6回6安打1失点…ＤｅＮＡ筒香嘉智のバットに空を切らせて雄たけび",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1LQVI1TlFJQ2ZtaXNHXzNTcEdzdFRiRm5XUXZNV004MHE0R1NXX2dGM2FfVXhKa1IybFFZR2M1MmQwWW1ocUNLSEl6c1o5OU1hLUNXY2dnSlJORTc2M0tZdGNn?oc=5",
-        "title": "トランプ氏、ブラジル大統領選に「非常に腐敗したひどい選挙」と不満示す…敗れた右派候補の父親・前大統領と親しい関係",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFA4M0JDNmJBX2xfNjVrX20zd0JrSFptbW15UUk0UnJ3cmtxNFJMSnRiaHR3S2ttRG5zZ1NIaC03aUxqeVRJYkNQc2ROb0xvTHd2djYyV214NThEZWJLTW9RTmhBbXZsMi1Lcm5XbVdnX25hdw?oc=5",
-        "title": "九州地区高校野球大会、祐誠・早稲田佐賀・コザが準々決勝に進出：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE82VEpqZ2lZVExyQVUxRi1uQ0lyUU4xbllnZS1HT2g3VElzb295X0dNcjhMRFBQZW0tVjctNW1BaGx3UnRiNnY2VzFLOFAyVW1MT2FkSUZzRnpSRFh6cVp5Z1Z0ZGFVbmlNdjUxc3BYeWNDbzQ?oc=5",
-        "title": "島根：親をわが家で見送る本 ：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5qVVVGYUFwV0NSTGJ5aGJrQUdMUmVKZ2Y3Und4d1FKbmx5RVA0YUJaeTliR0cwb3lvYlZqMmlvSnpqSl9oRjNXVW9UbkhJdUt1ckFJNm00VmNtNmNPMHhxbS15Ujl1anRVTElEckY0VHprdw?oc=5",
-        "title": "福岡市長選挙に新人14人出馬意向で混迷に拍車…組織的な動きが鈍い主要政党、攻勢を強める新興勢力",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9ib0tRdFpycVJWZ0JIcEJabzZoT1JLUGZlTXgtU3BYVDZiNDNxajVEcVp3OUx2MUFnM1dhdXMwYm0zeUhOT2xyOUpNWUhxSUwza0RxQ2pJaDFFbXhTQTMxQ2VyWWZUS2Q4QllrZTBTb0Q?oc=5",
-        "title": "トヨタ試作車「耐久」完走 岡山国際サーキット…ＧＲヤリス 車高下げる：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1hZ1JBMnVpVjdkWWRqV3ZpclFqbTB6SFYzU2swdEZBMVo1dGwyZGNxbUVyeGpVbDZQbzFIRXU4VXljYmNMMVdTTWxVWlJyZnZDamhQTENSdGRaa3dxR1g4aThfRXFhWnhIUnZweFRtYi11UQ?oc=5",
-        "title": "中学校教諭が10歳代女性に性的暴行しその様子をスマホで撮影…県教委が懲戒免職「感情を制御できなかった」",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE43bXI3NDh2ZE9HOFdKYWl5al9YcHBkeE4tczRWbFNpdzBHcExCZ2dxNDV2V09xWm00RUloU3ZBOXZnUjJEN1BOSkdyOVNpa0E5LXp0YVNoNDlJZERRVDdUc3RmZlh5bU9kaTk5MVU5RXR6dw?oc=5",
+        "title": "福岡市長選挙に会社員・西脇寛樹氏が出馬表明…福岡県議会の金銭授受疑惑に「古い政治を変えるには選挙から」",
         "reason": "unrelated"
       },
       {
@@ -584,18 +549,18 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvcWNxTHNmNGlCN20tU1V6aTlzVmJTMHNmZmUtVEJIMk9pWnlfdm1NZDM0aHBDajNDdUM1OXhjOTdEMkFOUTV6THJMTGRCV1VBSHhjMFo3SDltMnMxVElpYUNpOV9TNmRhaW1v?oc=5",
-        "title": "［時代の証言者］逆境にこそ夢を 蒲島郁夫＜18＞新阿蘇大橋で復興加速",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9pdmM4MFlIamh5VEp0LXNoSnFpMExzYy1vS0JPT3F6aWxyblpDeWxEN1RubmxiRHBBQU1pMzczSG43Zkt4Y3JXalVobkFwYXozX1JLNVhXRkxzRjZGQVdjVmJ1SGwxbjlvZTZEcUVOWFoydw?oc=5",
         "title": "西九州新幹線の未整備区間、佐賀空港近くを含む23地点で地質調査へ…国・佐賀県など11月中の着手を目指す",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9tdzNSblZWekJZSkFIUWxGWlduRGpPV3h4OGg1cS1JckRhaDVFSkttSTNOZTJFLWJNblBRMmdkUDJ1dDBiUDZsYUt6WlJySGRYdDBSMkxsSTAwcGRrczQ2NUVNRjdUUUhOUmY0eFlOc2g?oc=5",
-        "title": "山裾の花畑、父の思い残す 三重・熊野市の無人集落「百夜月」…元住人、舟で川渡り管理 ：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTE55RUNOMU5UbG4xeTAxdEhmTU4xY1doSndncnMwVXFvaUs1TUhaRFp3eDdvUGxzaGxhdE1zUFU1c0pMRy10emFFTnNMTFdwNmZWQjZNN0NzRjlHUlhTVW1Jem9QeGVvN3QwQjdj?oc=5",
+        "title": "［時代の証言者］逆境にこそ夢を 蒲島郁夫＜20＞4期目襲った大水害",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1kUVg3NUs2ckJIMnhnOTVFWGk1UGxjREtWOW5uXzh3SnhnNGI0M1lvQWZNaDNFNldORC1nRFlMSUZCMzlIVGkwc2pXRjhfWXZrVEFabkdCeklOMkRVX0JtU0U4MThjUQ?oc=5",
+        "title": "中国語ＡＩの攻撃性能、脆弱性を見つけ情報抜き取りまで15秒…セキュリティー会社がダミーサイトで実演",
         "reason": "unrelated"
       },
       {
@@ -604,18 +569,8 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5oMGNwNFh4MEhlRHZNWWhQM3lFN2xPMXNZRXlETFozcW51eFk5RFh3ZDlRUFd6a3k0dWhOZWN5QXJ2MWtJa1VjXzVNS2hrbERCay1MNk1nY1BoRktwZGNCclVmLXh6RjNBMW4xNjBrQXg?oc=5",
-        "title": "来年度予算編成、愛知県知事に要望書…あいち民主県議団：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9id0ZWSzhlbUZlcFNQdDFRV0xLVWk2bEJFWXpTQ3BtUExwbXlFaVlUV1BaZk1Oc2xYakFncHd6SnVzeVFGOE9vLTRCa3dhazMwQTc4VzBLalF1SXlfLXlTSTdoUmhwUQ?oc=5",
-        "title": "「家電の聖地」が拠点、中古家電改造し「刺さる音」演奏10年…「ブラウン管ドラム」に扇風機を改造したギター「扇風琴」",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE40NHdsNDFJTk90MHRMZ1lnYnUydFpzNWtITWJ4dGY2eVo3Ykw4MGYwQ3JXOGZwQXhqWGVWQTF6QS1ib042d2tPNGJHSnUtTHFrMGV5V2tVcVRRR2RXem0tYzl4dC13TndmUHRESW1BX3k?oc=5",
-        "title": "中日復活へ、工藤新監督が抱負 選手のため対話大切に…ドラフト1位宮原投手にあいさつ：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1PY0VKclZLUnN5TThWY1pveEFwdk0xUmVwbDlCZW5tZTNTSkowdHFKT1ZneU41a1BOOWtHLUpLQURPVXR3WmlDYjdoVXJtMTAybEd6NlNrZHJqRV93bmF1QkFkd2FMNlplWEFiU002TnA?oc=5",
+        "title": "大相撲「小牧場所」4月6日に…春巡業 枝川親方「力士を間近に、楽しんで」 ：地域ニュース",
         "reason": "unrelated"
       },
       {
@@ -629,18 +584,13 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBtRlJwVTV2MV9qaGZrejB0dFBkRTJsd29WUXMwM3RHVWtLaWxUTl9TNnB4cVRpTExsNktFc1lsaWJDeXhjUVlUOXpZVVFVb2JSd295RklMWFZYd1E3MWdPd09WOVc?oc=5",
-        "title": "任天堂の宮本茂さんに文化勲章、ゲーム分野初の受章…大衆音楽の都倉俊一さん・ノーベル賞の硤合憲三さんも",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9CaGg0VVlfcnlBV0wtSEx1ZnEtMlZQRlZ2TVE3YVdxMDNHMnRYNm1RdmpNNkl4cUp5SzFBNzZnYWNKc0wtbjhfNWtTZXpaMmpER0pWakRlTkVPNDBMQTRmRFlZZXdFRmlkc2I3aGhaU3hXZw?oc=5",
-        "title": "「超人」糸井嘉男さんが出身地の応援大使に「ここの水はプロテインもおいしくしてくれる」…地元特産・丹後ちりめんの着物姿で登場",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBGQ2lHVXRZdHRuOGFZcXFEbDZ1U3FRTm9ETmN5ZHNzOGJPdUoyTjZjYzg1cFlFbjNxbmpWSmt4cy1pRUswVDk2c2NRNjU4cWloenJzR1g2bGNmaHBsekxzbFRaU1pYUGE5amw0SjY4emJlaVVkQ0hQUw?oc=5",
         "title": "【竜王戦第2局・動く棋譜速報】藤井聡太竜王－服部慎一郎七段戦は三嶋大社で…藤井竜王が勝利しシリーズ2連勝、「車掌」スタイルでアフターイベントも堪能",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTFB5OTlLM0JOOGdWQXVITTJrcjR1SzdpOEZ1VUdTNm9mNEVQYV9ZaVFtSXVjOXR5VEo5NFRhakNNak1RVVhMUzVlMHRnaTEyYXE2MXZDLUxSbklfSC1qRl9jaGJxZHBjSkVxbHZr?oc=5",
+        "title": "［時代の証言者］逆境にこそ夢を 蒲島郁夫＜19＞港と駅 魅力的に変身",
         "reason": "unrelated"
       },
       {
@@ -649,8 +599,53 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9OQktOZklPTVJpWi1xNTg0ZTl6TzV1eVJEY1JfQk9teHZfcldTQTk4a2ZBTmpXVEFQYmpLNDlCUjZZTkkzUEN2bUEzaXhYSDNuQVJzSXJtQlZ3YmpMTlRoQjVVSXV1SEFaVEVxN0pkbXU?oc=5",
-        "title": "東海富山県人会 名古屋で総会・懇親会を開催：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9wSDZpcGxhbGdwTkFGQW9nYXNaaTRWcURpTTAyV2gtZ2VOck5SLXRPUE1BNGhFcXZvMGpoRlUtSVl6UVRoazVtYWZVWV9CNWJhS1pub1E2bHZNaUtadGtINjQ3QzVlT1hxZkdGREtJQ3JMQQ?oc=5",
+        "title": "ソフトバンク松本晴が日本シリーズ初先発へ…勝てば日本一に王手「プレッシャーはあるが全力で勝負するだけ」",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INUhkNEJMeVJsU1lidnRya2VHWHJjWjR0d216NGE4MnVYRUctdVVyLUNWTlFZb19FaHRfX1FKTlNoNU9fYzU1Y2Fldy03M2dyX0xjLTh3eXFiSzc4OFBzczkxZ0JUZw?oc=5",
+        "title": "政府・与党は女系天皇や女性宮家を警戒、改正皇室典範巡り「安定継承」の議論乏しく…野党は有識者会議の設置など主張",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0yejBZWXBjbktKOFVKanZLREVCMXZwSklPUE44Y3JCT2hqT3RUaEw4SnZlSkNPSW1pUkJtUnUtejVYUkxKNWowaXQ4WFhVaExIRHRhUzlmOFdYZlhZMHFHU2lLX0JmVW1Pekh1cXhaYmg?oc=5",
+        "title": "岩屋本堂で戸閉め式 三重・松阪市の伊勢山上…修験道の開祖・役小角まつる：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE84eXZxQkx6VDNNekxCS2ZjRXdqdGFpWVBXNlRfTzVpVENQM1Iyd1ZjMG9mZkpXSXVMdW9EYWs0YmdYVzFZMFFEZER5Nm1mTThMV1F6cVg3bnlYRkNvbEI4TEJMZ1hlZw?oc=5",
+        "title": "金沢―和倉温泉間に新たな観光特急、2029年前半デビュー…「能登かがり火」改造・能登全体へ誘客",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9WSVQ1LUJLek1BUmRlVThrOUlQSVNHSUhTZXdlVTJCUFFWUWVSdXZESzUxUTZ6QzI1eXdGWWZWWnlOcHJXdGJGemExa0hsaXI2Mmk3U0ZjT1BydG84RHJjNlpwdGF5ajBpS0RtWm84Q2JXdw?oc=5",
+        "title": "「第78回正倉院展」宝物紹介…金銅幡",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5LMERXTElzYlZ3c1RRTmFJeVIxSldOS2JubTEwQy1pbmFNSkt4R1dqdFJZTm91MXlOa0c2ZVgzMHh0UUVRcU5DVllwLUtzcFItNTg3LXl3anhEcHBvdUZyNUpB?oc=5",
+        "title": "ゼレンスキー氏、スターリンク通信速度「回復した」…トランプ大統領ら米側に謝意",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9ib0tRdFpycVJWZ0JIcEJabzZoT1JLUGZlTXgtU3BYVDZiNDNxajVEcVp3OUx2MUFnM1dhdXMwYm0zeUhOT2xyOUpNWUhxSUwza0RxQ2pJaDFFbXhTQTMxQ2VyWWZUS2Q4QllrZTBTb0Q?oc=5",
+        "title": "トヨタ試作車「耐久」完走 岡山国際サーキット…ＧＲヤリス 車高下げる：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvcWNxTHNmNGlCN20tU1V6aTlzVmJTMHNmZmUtVEJIMk9pWnlfdm1NZDM0aHBDajNDdUM1OXhjOTdEMkFOUTV6THJMTGRCV1VBSHhjMFo3SDltMnMxVElpYUNpOV9TNmRhaW1v?oc=5",
+        "title": "［時代の証言者］逆境にこそ夢を 蒲島郁夫＜18＞新阿蘇大橋で復興加速",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5oMGNwNFh4MEhlRHZNWWhQM3lFN2xPMXNZRXlETFozcW51eFk5RFh3ZDlRUFd6a3k0dWhOZWN5QXJ2MWtJa1VjXzVNS2hrbERCay1MNk1nY1BoRktwZGNCclVmLXh6RjNBMW4xNjBrQXg?oc=5",
+        "title": "来年度予算編成、愛知県知事に要望書…あいち民主県議団：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1xYkNBSWE2aTVDLVNGbFBPOGlTUHBPLTZnc094RWhJdGpYb2sxZGktUUI1ZzlJcExoQTlzMFlZdWN5V0h1R09ONkJ4bVJGRFVkdFRCZ0Y1RWtFTkswR0Rvb0hoazdITkVrVGZlZkRXeEl2UQ?oc=5",
+        "title": "維新の全国政党化は足踏み…兵庫は大阪の議員が代表になる異例の人事、和歌山は連立パートナーの自民関係者から「人気も伸びしろも将来性も感じない」と評され",
         "reason": "unrelated"
       },
       {
@@ -659,33 +654,8 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE92WmZDTWxXN2d5bGZhbGZrVzI0S0ZFdE9nY19WejROSDhJSzR2TlJXcmlkaTUtRW5XTHdtS05SVUdWc0lMZVlQcnBPaWQydmlXOU5CSzdTVWZNZ3liX09IcUoxR1RPZw?oc=5",
-        "title": "福田康夫元首相の死去受け、高市首相「悲しみの念を禁じ得ない」",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9LUi1NZ3FUd0M3MTA2YmJlNVhudFVZWnZPaFBhX1p6NW1CQVliZkFhOHdleXMyX18zdGRYT3hSdUVWaDl6aVJrV3c2empBUExqaTVrVlJkSC1YUmJ6TG9IMzV5YnBVdWZpTm9BNGZtSExlZw?oc=5",
-        "title": "北九州市の路上で20歳代の女性が刺される…証言や防犯カメラから容疑者は「40～50歳くらいの男」",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE0yTXY2WkZUQlJYQVhjZTdLT0JEb0RwdGIwN0lwYXNqUVlSZXRCTWVQdVNrRm5YMEVnVFhRemljVG9CcUVsMUlMeGtjQldBblVUY3JYREhMT1IyOEJaZ3c4dmR3SElFWjZzSi1sOUdacTVvUQ?oc=5",
-        "title": "創成館・小林西・鹿児島城西が8強入り…九州地区高校野球、台風の影響で日程変更：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE8xY3FvSU1QbmRNV3dfMzB2ZVFZRzAwcnhWNzNTSzRSRk9CREI0MXdZdTZ4ZF9NZEVXeWF3V3Z6bEJKZm13MFBEU1hyMUlpbXFhdWhiLUROYTV5V0tyRU5TeUFKdEdLdWxGQzh1eHdTX0RsQQ?oc=5",
         "title": "ギラヴァンツ北九州が3―1でＡＣ長野にホーム勝利…後半に入りＦＷ高昇辰選手とＭＦ高橋大悟選手が得点",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5JQ1ZCRHp6enVpVjE5ZHBmcGxiMzhLYl9mcXYxQ09fb2VGWmVaeFhBbC1QU0NPWmFEUW5TQ1FvSnpUNnJlbHJQZkNSUkd3ZHRJdU9fYVlmYjZTUHRLaEw3Ykp3OFN3d0Q1S2g0NXhtUXRBZw?oc=5",
-        "title": "大阪地裁、遺体が見つかっていない＜妻傷害致死事件＞で求刑を上回る判決…「執拗な暴行」懲役12年6月",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5vUXNXdEVCcTlueVVlREtPMXVIMmNWRUVnX2NnQl9hZldfU3AySFpzZVh1YnZON2M2T3VEcmJzZlpNYlE0Q2dUSlgwYklmUVFfTDVxY3JKUkwzUmhiUTJhblczWUozQlF3c2hpYTM2UEZKZw?oc=5",
-        "title": "空気が澄んだ夜空の星を楽しんで…公開天文台が日本にできて100年、阿蘇外輪山や八女市星野村などに",
         "reason": "unrelated"
       },
       {
@@ -694,13 +664,48 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9NcXRsMlFjQmFGUUhzMUlyU1E2ZkJVVHZQUVhMdWJ1VWNkOWxDZ2FSRjFfUndVaTlCVXZEOGxQZ25PbDFkSTlEaTNBaHJjV29OOG50R2M2X1p4R0l4LWJLQ0JHUnlmdGFycC03V2s0Z0owdw?oc=5",
-        "title": "那覇市での女性強盗殺人、20歳の米兵を起訴…米国の親族「彼がそんな恐ろしい犯罪を犯したなんて」",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFAyaEEwbDFGRzhueE5nbFhaVE5OUFRMcUdXT2M0cWVQcjBrOEZOWmhfU0RvZmJuajhJd3BYQUljcEdMc0pvaERLU0J6NjQ4Q0U1UmlqU2FsLWk0X3V4My1iZElNd1VhZnlMWFg3OTFzejNGUQ?oc=5",
+        "title": "「長田能」30年ぶりに復活、阪神大震災で公演途絶…スマホで音声ガイド「若い世代にも足を運んでもらいやすく」",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFAyaEEwbDFGRzhueE5nbFhaVE5OUFRMcUdXT2M0cWVQcjBrOEZOWmhfU0RvZmJuajhJd3BYQUljcEdMc0pvaERLU0J6NjQ4Q0U1UmlqU2FsLWk0X3V4My1iZElNd1VhZnlMWFg3OTFzejNGUQ?oc=5",
-        "title": "「長田能」30年ぶりに復活、阪神大震災で公演途絶…スマホで音声ガイド「若い世代にも足を運んでもらいやすく」",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9LUi1NZ3FUd0M3MTA2YmJlNVhudFVZWnZPaFBhX1p6NW1CQVliZkFhOHdleXMyX18zdGRYT3hSdUVWaDl6aVJrV3c2empBUExqaTVrVlJkSC1YUmJ6TG9IMzV5YnBVdWZpTm9BNGZtSExlZw?oc=5",
+        "title": "北九州市の路上で20歳代の女性が刺される…証言や防犯カメラから容疑者は「40～50歳くらいの男」",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1rTnNoMTFkanNaZ0pPZld3RjRHTHJyVmxyN3hTZUZxZ2ZKRWJrSlhtVlloS2ZmN3ZxNzlDczlyREQxdDA3cW1TbFJqYlh2Y290Tk5aZHh5ckNfdGVLdzZ4X29XdWZoM0F0b0RReW44c2pnQQ?oc=5",
+        "title": "那覇市長選挙、現職の知念覚氏が新人3人を抑え再選…政権与党や野党の一部が支える：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5NdFRoZjVPT3BIYzU0ODhYRTBKM1J5YVJyZW54b21mQmFJQWVfTDRTZzNjV05LYW5wOWo2SmZ4Z21Ic3FmaXh0VmR1ZnJpVUo3OVNEbllkMUt4ZUhyRzZfdmRMX2E?oc=5",
+        "title": "読売333は1・8％安、3指数で下落幅最小…10月19日週の読売333分析",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5LZEJ5WTgtVXRvXzBFeWlEZzh0aFZWUng3SFRNLTJ6TmhrUENpazJWVk1oU0tPUnQ3YUxWNS1VdlB4UjN4VG1xT0xtRTMxTTlZQ0w5NURNVnQtMkd5VDJoQUlFZk5OOFRo?oc=5",
+        "title": "世界体操男子団体で日本が連覇、ロス五輪出場枠を獲得…2位ロシア・3位中国",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE81TUhIaHJZX05TbXJ4aFdKR2NHQmxmTDYxcjNXdklOM0lhOVIzeHZ0TTJISm9vd2c4cjdZUHhjNl9Mbm9wNXdFT1FCSWhwMjdaeDA2VG5yU0RvTlN4dUZES3RfU1lNQk94TG02akV1SGd5dw?oc=5",
+        "title": "田布施町長選挙、現職の東浩二氏が3選…16年ぶりの選挙戦で「無投票にはさせない」佐々木信夫氏を破る",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5fR0N1Mm1weFlLcmZtN3p6RUdWR3ZTRVd6RlhrdDVNUUFsbXZyU3ZZYjdQMGZsYkFfZTZoQkh6SGNqRFc4dHRGdTd0elNORzhxMmRYemV6RTNCMENFRy1zRUhXRm4tWHR1cjZueXBOWnBQQQ?oc=5",
+        "title": "宮崎県・日向灘を震源とする地震、宮崎市や熊本県氷川町などで震度3…マグニチュードは推定5・3",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBaS3I2YnN6RF94eEZRTW52OVJsNkxNd2VNVUpOR0JPUGFzcXEtTWQtRjY5ZUhzWGhVeWsyUWpjWEFyc1NBSW05X1hpcFhjVWhQaVFjdGlKYWlycEZLdVZCQUEzRlVISndJbURXT2lpNDNBZw?oc=5",
+        "title": "日米共同統合演習「キーン・ソード27」参加の米兵に飲酒禁止と外出制限…米軍側が訓練地を問わず",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE11N2R4ZXFfM2dZLTh2bmN3ZDR4NnRGQTFvejBYQW04YTdNRG0yNmc1UnotQXhrWUZ4WnBac090R00tRTQxZ0d5TWtLU1VWbVp1c2hiYkNkNF9qVkVVOUltMjBQaDVtZmZPbm5tUnJSV3phdmtw?oc=5",
+        "title": "石川：声援力に雨の金沢走る 金沢マラソン1万5659人参加 北陸の食も楽しむ：地域ニュース",
         "reason": "unrelated"
       },
       {
@@ -709,18 +714,13 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBSWEQ5dUdscUlfLS05dWxSMUFCR25EYS1Jckc3a0xXNkRYUVJwbGh5RGRCSzh4TGtsc21MNG44NjlzaGZwUmlzUkZQVEFSRXhadGpMOS1ucGhLa0tTclpPTVl2ZVl0UmYtNmtFeUxKY0pKMzRVUmEzNEV3?oc=5",
+        "title": "14歳山田「銅」 最年少メダル…競泳男子",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1DTXQyQ2dBLS1MRUhhVVoybE95TGtRb05HbjBORUpnWDhZcWxuSHhxNDJuOV9xd09uOXJCdnNjeUZsNk5nLUptVGp2MXhLN1o2S0F1N3BXVnlOR2Z1bjh1OXU1eUZwTmVKOXlfajJPcFNkdw?oc=5",
         "title": "長野：戦没者に祈りささげる 遺族ら600人長野で追悼式 ：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBXTlg0Mi1DLVY4Tm02MzVVTTJpbnBaRUZYWGJaZVk2ZXVtaDg2MVM2Mlp4bDktVUV0SFhDXzJsa1ZDakE1dlpMYlJacF93cmJKbXo2M1A2Qlp2OWhELUtpZEd2SjNTd1NrNHY4QldCb2VXdw?oc=5",
-        "title": "「（形が美しいあの山を）表すようなキャンプ飯を」…バイきんぐ・西村さん〈東の富士・西の大山〉魅力語る",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5NdFRoZjVPT3BIYzU0ODhYRTBKM1J5YVJyZW54b21mQmFJQWVfTDRTZzNjV05LYW5wOWo2SmZ4Z21Ic3FmaXh0VmR1ZnJpVUo3OVNEbllkMUt4ZUhyRzZfdmRMX2E?oc=5",
-        "title": "読売333は1・8％安、3指数で下落幅最小…10月19日週の読売333分析",
         "reason": "unrelated"
       },
       {
@@ -744,33 +744,13 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5LZEJ5WTgtVXRvXzBFeWlEZzh0aFZWUng3SFRNLTJ6TmhrUENpazJWVk1oU0tPUnQ3YUxWNS1VdlB4UjN4VG1xT0xtRTMxTTlZQ0w5NURNVnQtMkd5VDJoQUlFZk5OOFRo?oc=5",
-        "title": "世界体操男子団体で日本が連覇、ロス五輪出場枠を獲得…2位ロシア・3位中国",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE11N2R4ZXFfM2dZLTh2bmN3ZDR4NnRGQTFvejBYQW04YTdNRG0yNmc1UnotQXhrWUZ4WnBac090R00tRTQxZ0d5TWtLU1VWbVp1c2hiYkNkNF9qVkVVOUltMjBQaDVtZmZPbm5tUnJSV3phdmtw?oc=5",
-        "title": "石川：声援力に雨の金沢走る 金沢マラソン1万5659人参加 北陸の食も楽しむ：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBuRkxoZEFueUxkQjlQUHJXWGkzUkpEck10R2pRRVpyWlFWMElodXBoRjNJQ1pST0xnUGRFMnJ4MHBzajl2YUV5NW1aeXR0cG5xXy03VTBzQUFQNHlMbzVjQWItNnhTN2JyalJRazU5TE5pRnBVUzAtQ1JB?oc=5",
         "title": "明日へ 挑戦続く…日本 「金」最多64個",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE5FMGc5WEs3LXlWWkZDN0hRMTJnMEJjSThuMWdja2tnbXVCVmNJYVNGd19NSjdLakZZM1hhRnU0NlZ6djB5MnlTeWtPX3JGVVV3UU0zZUM4ZkpsU0Z3bTcyUG94R203N2N5Y1hmaklyX2hJUQ?oc=5",
-        "title": "岡山後楽園の月見橋から20代男性が転落して死亡…足場設置中、墜落制止用器具のハーネス外れた状態",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNVDAzLTZpWnVtVFhjQWVrYXZBWFBmNkdDbGpJUm14QTFWRnFkZk0wRVRSazZwaXNWdW85dTk0cTlhalYtVHNtOF9vX2lXWTZVUjVpVURqSzB5SEpCNEZ5d3JLY1hVUVY0Z3J1djF4UHZhQWt4RGRuOWtBVDlIUGhacmxNTQ?oc=5",
         "title": "共生への祭典 閉幕：地域ニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBsZE1PSXpFTHR2bDBhRWE4NnVqUG5kWGgxQkFDN0dxWEFSREtGcWVENlFRNVlLRnBtYmZFQ3VrSDlTb21lV2hXYVo4YTRxTlRnVUh4Tlk2eXBGcmdGMFZoVkVBeXp0UW5uai1McWFkQndrQ28zM3l3NQ?oc=5",
-        "title": "電車内から「洗車」を初めて見た藤井聡太竜王「音の迫力がすごくて貴重な体験」…服部慎一郎七段は鉄道博士の流暢アナウンスに驚愕＜七番勝負第2局・番外編2＞",
         "reason": "unrelated"
       },
       {
@@ -784,18 +764,33 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5qdU8zMkx2bFp1SDYyNmh4NW5ndDVNXzBBTlhVSFZRTnc3MXRkNmxHU2o3QXdzSldDUjFxNEdoZmJHT0ZlUUZsMVQzdjZWTE9DMGE4NlZlN0lGWDV5XzhNUV9DSGgtNm50cGxNUkJDV0U?oc=5",
+        "title": "西濃運輸 都市対抗野球優勝、祝勝会盛大に…岐阜・大垣市 「熱い応援のおかげ」 ：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBsZE1PSXpFTHR2bDBhRWE4NnVqUG5kWGgxQkFDN0dxWEFSREtGcWVENlFRNVlLRnBtYmZFQ3VrSDlTb21lV2hXYVo4YTRxTlRnVUh4Tlk2eXBGcmdGMFZoVkVBeXp0UW5uai1McWFkQndrQ28zM3l3NQ?oc=5",
+        "title": "電車内から「洗車」を初めて見た藤井聡太竜王「音の迫力がすごくて貴重な体験」…服部慎一郎七段は鉄道博士の流暢アナウンスに驚愕＜七番勝負第2局・番外編2＞",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9aT1hlN25yVG1YcjJOejlPTmppcmNYUG1MTFdTVG52MnVTWV9SRTlDdUMxX0c4QkN5TDVzYklfZnQ3TzlST1k5X2tMeDJjaHZvS0JnX3p5em1mQmkzUm9lek5FOWRYNm55WlVkd0dENmM1QQ?oc=5",
+        "title": "「煌めく未来へ全力で」 共生の祭典「青の煌めきあおもり障スポ」開幕",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFA2V1dFaFpKZVlpWUJBRmozd3BiRXNsRHNwRFdEblg0QXVUSUlrSC05TWEzOTB6UU1Jd1VtWE1teGNEbVVld2dZdFhVa1NQdGZCQmpMdVE4d1ZGd1c0bWk0N2hwX19hN2JRRncxMlZR?oc=5",
         "title": "「同時にメガネをかけた人数」424人…ギネス世界記録挑戦の会場に能楽堂が選ばれた理由は",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5yRG40M1JDNlE2dHk0N0hDc2Y5TzVzeGpSZHY4VVR4TWpkRzNfRk4xN2JkbDZsQ2wyLXZ5bmE5YlVwdVFEa3I2ZDJ5WmlsalEwVzJjc1RYbTVGWmFBOEEzLUNhM1pTc0JKc0lN?oc=5",
-        "title": "戦時下ロケ 感激の食事…須賀川市（福島県）",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBERHJSaVFTby1qblZONUlTSkh6V25xMWt5N05iYlozLW50WWxaVEJuaXJfbkRrTE5uX3ZMX2oxcVNONHBJeGFUQVFnOWlqbmNtTTJZUGM0SUxwZldJVTk4d0VTU0VPWXVId24zbmhzTlIxUQ?oc=5",
+        "title": "青森：障スポ ボッチャ 寺山・二本柳組Ｖ ：地域ニュース",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBERHJSaVFTby1qblZONUlTSkh6V25xMWt5N05iYlozLW50WWxaVEJuaXJfbkRrTE5uX3ZMX2oxcVNONHBJeGFUQVFnOWlqbmNtTTJZUGM0SUxwZldJVTk4d0VTU0VPWXVId24zbmhzTlIxUQ?oc=5",
-        "title": "青森：障スポ ボッチャ 寺山・二本柳組Ｖ ：地域ニュース",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9wSWFpeC1sbWoxNnN3Qk5TRk15dnFMWGtZV0NCaElNYVRIRFIzS3VDRlZ4X0pZT3RzSFZWOFlUeWlEX2VmekJ0SDljMUtqRVZUblZ1QU82aTZ1d1FSVHBJYVpKb29LRHRpR3gwU3JMT3ZuUQ?oc=5",
+        "title": "沖縄ツーリスト、最大73万人の顧客情報が漏えい…レンタカー予約で氏名・生年月日・運転免許証番号など",
         "reason": "unrelated"
       },
       {
@@ -809,8 +804,8 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9wSWFpeC1sbWoxNnN3Qk5TRk15dnFMWGtZV0NCaElNYVRIRFIzS3VDRlZ4X0pZT3RzSFZWOFlUeWlEX2VmekJ0SDljMUtqRVZUblZ1QU82aTZ1d1FSVHBJYVpKb29LRHRpR3gwU3JMT3ZuUQ?oc=5",
-        "title": "沖縄ツーリスト、最大73万人の顧客情報が漏えい…レンタカー予約で氏名・生年月日・運転免許証番号など",
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBqQjBOMG9DRW8tZ3FXRF9tdGRqOE9wR0NnXzRVY3BFQUR3cGVvZFJFdWY1eTR1VWJYcW5pMURJRGRoYmoxcGM0ZlJaamlDaVN1dURscExwcm01WGZBQnFlRHRfZ2g4R2pCejAyZEtkOVBqZw?oc=5",
+        "title": "園児45人ら乗った保育所のバス、遠足から戻る途中で電柱に接触する事故…5歳児3人が軽いけが",
         "reason": "unrelated"
       },
       {
@@ -834,13 +829,33 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE16Z1otdE5uR0JjMW51TXlwOUo1dS1JM2djT1BKSVdiLV9UdVdQMXZFUjEtR280ZGh1NG5uRzVNZWdySGViNkQtUUNaZDM3a1NHZzlQcFJnVGdoYUhuVlBjTTd3bGNJYzF0WWc?oc=5",
-        "title": "世界ろう野球大会、ID女子サッカーテクノアソシエ杯に協賛 障がい者スポーツ支援",
+        "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5WV1FYY3VHT3N6aEpyWnJ2WjJKZlctdWV5SV8tbkZTN3l4U1poU2ZFQ196NFh2YVRBeVBrUjZnazhhVG1hYUdOeDQyZkh6WnFTX0dTU0N1SHl0X09qdHZnaXN6am1BUUtzQ3pMU0VIOA?oc=5",
+        "title": "岐阜：アジアパラ・ゴールボール男子「金」に貢献…可児市出身の永野陽希選手：地域ニュース",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9FQVdCZGZPN3dqT0c3WnYtSk0tVDJaMXpvcjdyN0lEM20yTFRKWkFuTVZ3OEJuUDdtZFVMMXFtM3ZzdDQtcUY5SE42ajM0ZkdpQ2wzVnQxWWZPaVFRUm1fTFFwaGd2blpILVE?oc=5",
-        "title": "自治体向け「乳幼児期の保護者対象 性教育リーフレット」を制作・提供開始",
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBaejNFNzBpM3hVSTRtTlJXblljMEw4TmtfMEZGZ19fTWpjUFE3aUhXbnpuRW5qMXZfVDZTV0JzTDlaRVFaU2JpTW01NHotUnhicWtOelRNUU5pZDdLNlVOWUFxVnJqbkVXc0U0X3YtWHY?oc=5",
+        "title": "ＪＲ四日市駅前に設置、四日市公立大 あり方検討…5市5町 協議体を設置 ：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE53VW1udmkwSDVMX09oVVh0c25QUkpXT2VhUXdWa1ZVNnNSTDFFVFh5ekJ5ZTVPUVBDbzdTS3B3eTRveGxWRFRIRFJmSHd0dTN5UFNUQ01RcWtqN0VGaEJBTy1WT2l6RWhKTEoyb242MmU?oc=5",
+        "title": "アジアパラ 車いすテニス 小田凱人選手「地元で金、最高」…強烈サーブ ファンら歓声 ：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFbEZvZXhwZzEtbm1ucEk5TTdpQ25ZQTh6VHZaMXRlbk1jTE5KUlhzdTVvWGxoNkQzdnVEdnVFcXpId0JqSWFvSm1ndldvWWRtallhUnA2azNXbVk2VjBreVlhU1g2UQ?oc=5",
+        "title": "千葉から仙台まで30歳女性の遺体運ぶ、知人の男を遺棄容疑で逮捕…「連絡取れない」と夫が110番",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMidkFVX3lxTE93Z042VFVPSVA2eE1WMWxjSUdUV3Mxcm8wMHNqN0F4S1lFZldUc2NGWHpGUXEzZjV2RTZUV3NKTTExUTBuT1NTT09sLXMtcUt2V1hUVHc5R2FMRXNvaDJCMUZFaXNJa3Rhb2Q4R0tOa2R4and0ZHc?oc=5",
+        "title": "山口：身元特定至らず 関係者落胆 長生炭鉱遺骨 外務省発表受け：地域ニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE16Z1otdE5uR0JjMW51TXlwOUo1dS1JM2djT1BKSVdiLV9UdVdQMXZFUjEtR280ZGh1NG5uRzVNZWdySGViNkQtUUNaZDM3a1NHZzlQcFJnVGdoYUhuVlBjTTd3bGNJYzF0WWc?oc=5",
+        "title": "世界ろう野球大会、ID女子サッカーテクノアソシエ杯に協賛 障がい者スポーツ支援",
         "reason": "unrelated"
       },
       {
@@ -849,13 +864,18 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9DR0RHd0N3SGszb212VkkwR2lhZXpocWV0VGxSTm02S2hXUzFhR1JoN1JCOFYxRk56bXJvcFFoaWxzeUkzbzhBb2RNbFByTXhpTGpCdDBIaGxfS2hTQ3VwLUxDSy00LW12SFE?oc=5",
-        "title": "2026年10月17日、障がい当事者のオンライン交流会『凸凹村交流会』第15回に過去最多16名が参加。視覚障がい者の移動の困りごとや働き方を語り合う",
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9FQVdCZGZPN3dqT0c3WnYtSk0tVDJaMXpvcjdyN0lEM20yTFRKWkFuTVZ3OEJuUDdtZFVMMXFtM3ZzdDQtcUY5SE42ajM0ZkdpQ2wzVnQxWWZPaVFRUm1fTFFwaGd2blpILVE?oc=5",
+        "title": "自治体向け「乳幼児期の保護者対象 性教育リーフレット」を制作・提供開始",
         "reason": "unrelated"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBTS1AybS1xXy1Vc2RxSWFzc3ZnVUZKckVpV2IwOGZiOVFMR3JzQ3A0c3dxcnRER2x3bjRqbjluQWJQWjhUNGVpNXVSNW9JaHRDYS00TjBmXzZSUGt6SVpGUUNqSEgxcUcxNnc?oc=5",
         "title": "エミレーツ航空、移動に配慮を必要とされるお客様のために新たなイノベーションを展開 ドバイで「AccessAbilities Expo Dobui 2026」 が開催",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9DR0RHd0N3SGszb212VkkwR2lhZXpocWV0VGxSTm02S2hXUzFhR1JoN1JCOFYxRk56bXJvcFFoaWxzeUkzbzhBb2RNbFByTXhpTGpCdDBIaGxfS2hTQ3VwLUxDSy00LW12SFE?oc=5",
+        "title": "2026年10月17日、障がい当事者のオンライン交流会『凸凹村交流会』第15回に過去最多16名が参加。視覚障がい者の移動の困りごとや働き方を語り合う",
         "reason": "unrelated"
       },
       {
@@ -874,21 +894,6 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0zV2UzbXhSVU5WZXAxdjQ1YU9oTUY2M01RZ0VWVGpOODhEUU0zaWstTzlZdE9zR3ZjN0IyUXBxRXBXR2poem5qOU9aeVhqLWFraEc2M1VETjBoVFV0cG1qYldXS1JxUmc0MUE?oc=5",
-        "title": "障がいのあるアーティストとの共創を、企業の新たなブランド価値へ",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhNVFnWGRyU1RGSEJsM1BONjcyaDZuOURLLWRWYlQ1U1lXZFhONXR4SUMtbmxBRmFWMnVlVjBLZmVGYnFTbTBHV1lOV3RjOXVvTEdkeGVTemJ2LTV5XzZfS1l4RFROdHlBb3c?oc=5",
-        "title": "森田美勇人×Team PTW、異なるジャンルの3人が語る「自分らしく表現すること」",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9ZQUdoS3RvZ1B6RS1vN0loVUJ2Q2xRME50ei13TmlUbEY3dTM1bnNwLTdWbThZXzJuSWM3dUVsTTZiVlJacEtVUzAteHhsRHhybGpOVlJsVF96VldUcElkSjNNWmdVU05mX1E?oc=5",
-        "title": "資生堂ジャパン、化粧品専門店向けバックヤード業務効率化アプリ「Kakehashi（カケハシ）」に新機能「返品回収予約機能」を追加。2026年10月から全国で運用開始",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5ITWZMaXZJcU9NcmtWaU9saVo3ZWZ0eDZubjg0b1ctcmx1clFmZEMwZmVxT2hqT2M5VTBNZXhWOWJNTlZFalhpQ014UFRHX0dtSTR4MkdpQlc5ZDctQlpGcVpMZk42NHF2OGc?oc=5",
         "title": "ユニウェブ、1989年の創業以来、肌と心を満たすエイジングケア研究を続ける「株式会社アテニア」へ提供開始",
         "reason": "unrelated"
@@ -901,6 +906,11 @@
       {
         "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5NSDYwM0JibzlDTFRlNUM2VDVCUzZkNXV4cWlZdzdYRFJsdmJ2SVp1d1JUa0NBRFBCTzl4VDVfUmQ1NWhqRUp3Tjd5b01tQ3NTbURoSWJrRHp5VHh1QkY0cnZmLVdCMU1qY0E?oc=5",
         "title": "NTTインターコミュニケーション・センター [ICC]「わたしの身体（しんたい）はだれのもの？」の開催について",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBMN2RCSUxOWU1pT3FkdkNYWkRqMklfRDNpY2xGUWpmcW1rQ2FFd2xzZzU0SThzSU5RNWNMLTNsUDYzbURNVHBJeTNlSDUwNHE3R1BaaTFtcFo3ZFg5UmNyVGxnMHZGQzZGZWc?oc=5",
+        "title": "株式会社ブルーオーシャンシステムとボイット株式会社、介護現場のDX推進に向けた機能連携を開始",
         "reason": "unrelated"
       },
       {
@@ -919,11 +929,6 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBMN2RCSUxOWU1pT3FkdkNYWkRqMklfRDNpY2xGUWpmcW1rQ2FFd2xzZzU0SThzSU5RNWNMLTNsUDYzbURNVHBJeTNlSDUwNHE3R1BaaTFtcFo3ZFg5UmNyVGxnMHZGQzZGZWc?oc=5",
-        "title": "株式会社ブルーオーシャンシステムとボイット株式会社、介護現場のDX推進に向けた機能連携を開始",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5sMm9sUEpZSk1oRUtzdGRueVJBWU15T3A5UFNSSmRLM2VsRS1yYnZNc3pOMzlqbTRqRU1ZSW1oZXVqQVEzXzFudlVmUVFSWnFiY2Jvc25QbElZQ0lURUJoVXQyN1dkSGl5eGc?oc=5",
         "title": "【速報】島根電工の吉井蒼空、第60回島根県電気工事技能コンクールにて1位・金賞を受賞！島根県代表として来年の中国大会へ出場決定",
         "reason": "unrelated"
@@ -934,13 +939,18 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1ZOVgzTFlVM3BjSlNMajNUX01hR09yN2x5Rjh5bE9aVnl4TkJNN005eTBCVFlUWXA1Y1VUUzdDeHpWNld2R3lzdDdadHROYUZHWVBXSEtkUUdsd0Z4emhaU1pzSEZLZ1p2dEE?oc=5",
-        "title": "がん経験者向け「資生堂 外見ケア＆リフレッシュセミナー」を開催！～医学的知見・運動・化粧を融合した体験型プログラムでがん治療による外見の変化や悩みに寄り添う～",
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhNVFnWGRyU1RGSEJsM1BONjcyaDZuOURLLWRWYlQ1U1lXZFhONXR4SUMtbmxBRmFWMnVlVjBLZmVGYnFTbTBHV1lOV3RjOXVvTEdkeGVTemJ2LTV5XzZfS1l4RFROdHlBb3c?oc=5",
+        "title": "森田美勇人×Team PTW、異なるジャンルの3人が語る「自分らしく表現すること」",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5adGlhSVY4M2Y4WW5EVUp3X0M4aEJJLXM0WGoyTXBDOHYyRk5pQXRtZUZDS01YWkVVZHpwSUMwcm1uNmNpZUF4RS0xekpyblNnN3ZwMjlJM0VJM0x2OUdKaEd1UVNFb25FcGc?oc=5",
-        "title": "Xで話題を集めた「#ADHDのパワー系ソリューション」の発案者、待望の初著書！『ADHDの自分を「外側」から動かす』発売（10/21）。",
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9ZQUdoS3RvZ1B6RS1vN0loVUJ2Q2xRME50ei13TmlUbEY3dTM1bnNwLTdWbThZXzJuSWM3dUVsTTZiVlJacEtVUzAteHhsRHhybGpOVlJsVF96VldUcElkSjNNWmdVU05mX1E?oc=5",
+        "title": "資生堂ジャパン、化粧品専門店向けバックヤード業務効率化アプリ「Kakehashi（カケハシ）」に新機能「返品回収予約機能」を追加。2026年10月から全国で運用開始",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1ZOVgzTFlVM3BjSlNMajNUX01hR09yN2x5Rjh5bE9aVnl4TkJNN005eTBCVFlUWXA1Y1VUUzdDeHpWNld2R3lzdDdadHROYUZHWVBXSEtkUUdsd0Z4emhaU1pzSEZLZ1p2dEE?oc=5",
+        "title": "がん経験者向け「資生堂 外見ケア＆リフレッシュセミナー」を開催！～医学的知見・運動・化粧を融合した体験型プログラムでがん治療による外見の変化や悩みに寄り添う～",
         "reason": "unrelated"
       },
       {
@@ -959,21 +969,6 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4taHZ1NFRBNXphaGJwM09seXJXeVRPeHlfZl9ndGNtUTFSZVByRmtXN2xzdFRmc09LOHlEUFY5LUg3dEoyZFkweXZLM1hjUFJVc0dYaHpuNloyY09aRV84emplX2dubXBTQXc?oc=5",
-        "title": "G.A.グループ、第11回CareTEX大阪’26に出展しました。",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE45djZidVVCUTNJbl9md2ZrVHJNT0h6ekdCNXE3dFJvSjVScW9CSUtsMDlNUlFKbjM3dFdxMkZvd1lEbWZYbHNQdkEwZEdFdnVSeXZfclJOTWplODMyMC1OYU9JcUUwbEkxcWc?oc=5",
-        "title": "たっぷり使える増量タイプのアクアレーベルの多機能ジェルクリームが特別デザインで数量限定発売 ～2026年11月21日（土）発売～",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBJb0ZuajFjTm8waTF1UTJ6RVRkdUZ1Zkp1eTAyTE5nR0hPTmZoalJzX01VV2U5UHBBRGFhejdNUXQ0Z1B4dmhlaFdNZUJ2bHN5OFJKU1BhRDlqREdXTlNoeUtOREFVdjlnem5iWk5SSGgxcEVQRnVr?oc=5",
-        "title": "特別支援教育の充実について",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9Yb21QTmFrS1dVQ19JU29ydjdSWXRjZHdpS21QbWhWMGxuXzlRLUNGS1pvLWZReTlYZlNBY0phYThxSlltYUdDR2ZYR3lESTNQUW5zQ2h3UFlKenY3WXFB?oc=5",
         "title": "演劇作品「ＬＯＶＥ ＢＥＹＯＮＤ」",
         "reason": "unrelated"
@@ -982,46 +977,6 @@
         "id": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5zdlMyOE9QS0VZUlM4WEpjek4wRUJLWEhlS0ttNFR1V1Nta29sMVpoYlZBM2RFc1UxU2ZydXJrdk1FclFObGxxWW9iMzM?oc=5",
         "title": "小野寺修二演出「100年の眠り」がフランスで再演",
         "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB4OUhaYlJhdlN4UkNicmUybldUZjBGZWZpNGFYRXB3eFdJQ3BDUkRLakxLT19DdHhIb2ttakpzN0o4ZEhrdkdJY2F1RG1POWp5WDZGTXZ4SQ?oc=5",
-        "title": "高校生手話パフォーマンス甲子園の全国大会で、校歌の手話を披露する生徒たち - 福岡市東区の立花高、校歌斉唱を「手話付き」で行う理由は？【それで、よかよか7】 - 写真・画像(1/1)",
-        "reason": "low-value-page"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQQVZtdDhyVmQycExNZm5QQTgxS0JCdmNTbjE2cWppbFJFd0lWbm9qX2NvTzQtS09NQjZORG9iNFRfVXhlSlFIUmhFZmtqWF9ESnhmNzdlNHR2OGFhLTVoaVdVbWlBTFJBcHE4RzBPS29jNzhPRmhZclNTdDcwZXAxNjAzNA?oc=5",
-        "title": "鑑賞サポート実施についてのご案内",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBBYXpkdGR2SWhMWVoyNE5vZVhlcE9YN080V3M5dnBCQ0E2TklzNEtpYUVSQlpvVGlmclBhd09RQWtLMjVCVlJKRGo0T0lPLU1jalVpTEhPYTdvZzQ5SjJvdmVYTUxibDg?oc=5",
-        "title": "鑑賞サポートで誰もが楽しめる舞台を 木ノ下歌舞伎「心中天の網島」",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE84RW5TbXFkSzdhcDZ2VUZ1aldOdTJpakZPeE1XWURxTW5PUk9EamdPek1BYjhJeFYyNFAyQ2t2bHRxVUpZT3FHNm11WDlxNGlNckpzSWRsTWpfY2Nk?oc=5",
-        "title": "演劇をもっと自由に鑑賞",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1PUTF1aG50MjdJcmY1LTlVWFRfVkVGVlBoOWVrVzZ5Z1JVS2NXMGJtR3JQblJQVnZ3S2dpNENlMURNYWl5T1ZITHF3anBQbnpJUWxjVGNkNng?oc=5",
-        "title": "SNSで560万表示》佳子さま、“点字ブロックを避ける姿”に「どれほどのお心遣いか」と大反響…悠仁さまも見せた秋篠宮家の心配り（2ページ目",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB1Z0tjczhZLUNPY0V3R2Z6dzZyV0xKaUJDdVdPOFJvLV9nc1RZeC1Feld0ZG5EZ1ZhMF9Gd0haZ3Ixcl9ROTZqRTZjN0FqYUJKNVNlaDV1RzhsN3pRMHVDZDlJRS0wdw?oc=5",
-        "title": "大宮ろう学園が2度目優勝",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9yTUNjczk0V3FHTHRDVzFHdi11V3llTEMwTzJwQS1UWjJuaTRsTFNyWHpObE00emdfdUlDZFQ5YlhESjJuRVBqR3Y5QXpSRG9zNVVtdjJTM1RDWmJuY3Z5MXJodWxVQQ?oc=5",
-        "title": "大宮ろう学園が2度目優勝",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9GYW85Y2JGTl83cTBaTE9zc2daLVJZamlwY0NJaDByclhoc2xiSGRsS1RPT3hKZnF4RUt2MVhnaVNKMTV3ZVdZbjROZ01BaWdMbGRyYlktYw?oc=5",
-        "title": "第13回全国高校生手話パフォーマンス甲子園の演劇・コント・ポエムなどの部門で優勝した埼玉県の大宮ろう学園＝27日、鳥取市 - 大宮ろう学園が2度目優勝 手話パフォーマンス甲子園 - 写真・画像(1/1)",
-        "reason": "low-value-page"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9sTHhSTWsyQ0Y2dmkydTQ2Rlg5akpFeXFUeVM1bmxWUzdnanYxVV9DeVdUVVNJbnVsTlRySll0WHQteWhaUWRXYXlELVg1Uzd0NGkzalA4V0VfYzl1eWQ5WFh2d09yLTFvRnFfSEVpc01xMks3d0pWMDk5aFZzOWs?oc=5",
@@ -1034,8 +989,18 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1UZG5IbHpqQ2QxN2RNRUNRV3hFYkRsTUowRkNycEVvSEZkNDlvT2czaGhadDdSa2lmLWo2WFYzNlNhdVdPX2t6QTE4NlZlUQ?oc=5",
+        "title": "「ハリウッド・スターは、なぜ来日しなくなったのだろう？」映画評論家が考察",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE41bTNZZkJLSDJhM1QyLTdKLXlYZENLcWdhc1FJYjNvZHVXZlQ5VDQ2THl2bGpocnJrNUFXbmQwaHRVamRBb0xncnhqR3QzZw?oc=5",
         "title": "「平和を創ろう」映画『カンタ！ティモール』 上映会・広田奈津子監督講演会を 6月28日(日)千葉県南房総市で開催",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBGREY0amY4Z3NiRHM3eFk3Ni1GRHJTaHI0WGU0T3cteDVKaEtsT0tUR3dLSGJ1UXRQZzMwbnNRYWZjRzRYek9RUGpLZW11NXfSAU9BVV95cUxQRkRGNGpmOGdzYkRzN3hZNzYtRkRyU2hyNFhlNE93LXg1SmhLbE9LVEd3S0hidVF0UGczMG5zUWFmY0c0WHpPUVBqS2VtdTV3?oc=5",
+        "title": "ミスマガ女王・豊田ルナが映画初主演「子どもっぽくやろう」 映画『シーシュポスたちのまなざし』舞台挨拶",
         "reason": "unrelated"
       },
       {
@@ -1064,11 +1029,6 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBCeGZVdFVvSWJIbHFJYy1CWjEwTjl1MVlhM2RhNVFhNU5oby1NZm9UVVJydFNJdVkxTGVHV05CMXVYZG8xVlNCM0U5YWVHZDdqQmFqSUkwYzU?oc=5",
-        "title": "「常識」として見過ごしてきたもの、置き去りにしてきたものはないか 京都府南丹市の外国人向け防災教室で",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE0yXzRLaEFrN20xVEJHR0hDdXNIUnU2S3RVWGJkdXpIZWZVRkt2bVZOcWJPQ2tNSzh3eXhRcXBMbVBVNXRoVmdlNnVRQWpreEhtaEp5V1B5d20?oc=5",
         "title": "「災害時の連絡方法や避難経路、家族で話し合いを」京都府舞鶴市、赤十字病院職員が強調",
         "reason": "unrelated"
@@ -1079,23 +1039,78 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE44T2JxdWEzUmdVTXVibWVBUmRCekRYRnBlU1d5TFZvWF9HamRWOEdmVWszTTFIMDB5VGxlRUE0N3MtOXpIeVUyS0ZGQjY?oc=5",
-        "title": "ニュース・スポーツ",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQYzc5Y004TDhLbC1IRVJYRUZuQkkxZXVoLWc4eWJkUi03QTlnZGh3N09hRk45aWhYY0lmN25Td2RIS2xfak1EZmZSc3NhU2NtWmVGRFUxcVV4Q1hCSnhRb1d0bFlOZkxaUHVRa01taWF4aThmRm5mUzZaYkRLWEYxeW5kdWlXSmVzZHZsb0pKWDlGTmlMd3d6eEIyWkhoSEJ4SkE?oc=5",
-        "title": "兄に託した世界一 森保監督弟・洋さん、デフサッカー日本男子育成選抜監督として今月のU23世界ろう者選手権大会で準V（写真・画像 1/1）",
+        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5WdW5PZHppZU1mWGZxY0E5R1BRZGotYTNnb1k5MXlWLUc4MnlUbHEwTXNTVzM0Z3djYkl3Y1BpU1d5X1dVV2ZmOEtWdG1KV1g3V25LUjNxeDZFZmpCR2xKZVVuSVZQS180dzE4X1Vn?oc=5",
+        "title": "画像7 / 32＞聴力検査で異常が発見されない「聞き取り困難症」とは？日常会話に苦労する男子高校生を明るく描く！【作者に聞く】",
         "reason": "low-value-page"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE03ZlZKWTZia2M4dzNlTUtNbnVabnpPb3VWOS00eGJxQXp2TlBhT2ZndTZfMXA3SXdHWk1GNFBUd2FpMFVJSFQtcnZyMXBNUWkycVJkSA?oc=5",
-        "title": "10/11 RKKCSキッズパークにて、熊本県サッカー協会全面協力のもとパラフットボール体験を実施します",
+        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9id1BfOVdzNGRlSHJ1UXVwdVNFakNVdEdaODlFNEFWVFJwMXJWRUlONVVCaTFMb1BhWVRnTFFPaHJDdGpOY3diOVE0TURDb0N2MkRGZGRHU3FmREtBeWx6YnVuelFqcjJtWk44Q0p3?oc=5",
+        "title": "画像22 / 32＞聴力検査で異常が発見されない「聞き取り困難症」とは？日常会話に苦労する男子高校生を明るく描く！【作者に聞く】",
+        "reason": "low-value-page"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5TVGFoeEJLUGk1WlFtOWlPWXJJMTNQb2l2SS1XcjBTdTUxM3VYNlBNUTRHTnktYU5GNHk0dDRpc2FjOFQ1bnplN0VCbVU3cGNYcjNhS081MnJJTFJwOFpDTm8wZl92UUhxemt4TXJB?oc=5",
+        "title": "画像29 / 32＞聴力検査で異常が発見されない「聞き取り困難症」とは？日常会話に苦労する男子高校生を明るく描く！【作者に聞く】",
+        "reason": "low-value-page"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxObFZVSE1INXN5WUVNckpCSzRFWHJrVFVfMmdQZ05KSGNxUXlBOFlaTHB2ZkNETmF1Rzg0VW1HLXdKOUMycm9QdUl6UDFUazNMSHg3eUhTTkNjTmhXT2RCSWl4N1BIaU80WHBmMlJHTm5IdDROSDJlenZqTDF2ZW5iSjNxTldEdk1YSTJMV2JR?oc=5",
+        "title": "「…悪い！何の話？」“聞こえている”のに“聞き取れない”!?「聞き取り困難症」の主人公が奮闘する日常 (ウォーカープラス)",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFAtWHZGZUNWdzlocWZmSERjMlpGRW81dUFMN2hYN1ZrOERVV2JGV1VjWk5sVy1HV0Z3aFJLbjBDXzBnMWE1aUpaa0hyNTYxTEZlLTdQcDh5Yw?oc=5",
+        "title": "第30回全国中途失聴者・難聴者福祉大会の式典に出席し、手話であいさつされる佳子さま＝18日午前、京都市（代表撮影） - 佳子さま、難聴者大会出席 京都訪問 - 写真・画像(1/1)",
+        "reason": "low-value-page"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9UYXNySUJrV04yeUlCMjdSV3NUdXJZWXRzMl9mREdwSEdqN09mclZ6QjFGN1c4MkVEYjRxdldWUV9ESzcyQXRxNDVxRk15LU5QMHpyVHJSbXRCRmRRN2k0ZV85SnFlc2kxSWhUSkhyTDU?oc=5",
+        "title": "2026 10月 10",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPdFlGMXpScDJnVktTa29WWXR3aEpWR0xIUjBiSnB5TDZHTi1yeU9iWWhUbTBhSER0R1RKdHd5S3lGUlB2Z2tsVHE4S3p1bWE1c0h3NWtFODhyaDFmNkdNWFN4VTVUbmNUMnMxMmFSVXd6YlZnLUxsRE1icmZXOGxpcFIxaXpIN1d3a1dtMXM0TXFENlAwMkZBSTh1LW9NTjg?oc=5",
+        "title": "お知らせ : ブログ : 高槻市議会議員 吉田あきひろのごきんじょニュース",
         "reason": "unrelated"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQeFo2S2hHbnlSdjF3MEhqR2pHRTIyODA2aGttOWpoTk1UNWtoaDJ6YnlKb0d0QlFEa2F0UXhkUHhBb1hGcEFQb3RQaTJ3a0syN3VRN1ZlbmNsZTVqUENleG5HU25vMlZVMm9oU2tUWENGaUlXTGJGWnB0QndoZll6YVc5allTdWp1WHNMdUhXMTluaEFOT29yR1lsT3djOTFBY2d4Sy1ZaGFvSzcyaHk5aHBWZzJGbGJxQXF5bkhBcDJaZ01CbUY4SWlEdUZXX3YxZ3pLRDNzVHpvaWNxV3YwS0RVRHh4R3JJd1ZqbVFlY2hpZGlYaFFr?oc=5",
         "title": "聞き取り困難症について : ブログ : 高槻市議会議員 吉田あきひろのごきんじょニュース",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9oOGVJNTJGdnNpS0NBQnUxNzZMVGZmeVRqRjNuLUNlLWJ0U3B4LXZzaXl6Rlh4X29BR1ZIZGZVUFdDelRFeEluSzdvWEFyTUN5Y0ZaT0o0UWd2Zw?oc=5",
+        "title": "【写真・画像】佳子さま 全国中途失聴者・難聴者福祉大会に出席 1枚目",
+        "reason": "low-value-page"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNZmxvV3RwdExic1pQamlzTGNYOWpSUzZYUUdzN0VabzBKZ21rdGI0UlpJOVREc2x1dG5sLWtfYWNITnhUTktqTndJVElsRGZ5UWJpcVBUSWdpdmlLZnUwTlBSLUVxUnFvSWE0eVVoLTNBb0NDc0ZfU2ZDTlg3dzNKWkphSlE0NmRpMW1ra1p2MGU3dTFlc3NTNkNHS1VkWmpLTTk3Y3A2UXdrd1JWMXpqeU5zN0IzcDZMempRRXBRVEdkcnFMNmk4Mjh5RHhnZzlSVUdoaW1HWnRBVldETXBEaDNR?oc=5",
+        "title": "聞き取り困難症（LiD） : ブログ : 貝塚市議会議員 前園隆博",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE4wSmIwMVlBd1hiWjdIODRJeGNIeU1QcVozWGFFQmR6MEp5bHpfcTI1ekVxM2FMS3lqbW9lcm5uMm1mUk1vMlJzZVh4VXV6LXdrU1F2c1Bxd1dqYzF0MHlvdXhB?oc=5",
+        "title": "聞き取り困難症の判断指標 15分テスト、学校でも実施可能",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMi3wJBVV95cUxOUWxzZGtDSngzd1RxLUFhNWlwekZ3eWlEdUFBOXlTYnppaFA3M2xfaVhVU1lXSlhBNC1BMEVpNVBOZzltZGpjU09xbEMzaUF3YS10QlczRDVLZUFUSll0UzQ5bnQ4TXJUdTd5SEpnTjNENG9pa09NejI4NFdMNzl1RENLYWQ5LUJUQ2NSYjVRZG5Gc1RTckc4OWFydTEwQldTenIwVnQ3WmxGVDNyaGxpRGNZai16Q2lvVFdENDN6Y04zSThaQVRSOVRsaHBHNTFWRkttdFQ0djVpbUFlRkVXN0FaS0haenllUWZ0TnJUd0pNMkJGcVRUSkdUX01kUFVkSEk0NlZqbENaNHlqeW9nSG9wNVVacFVxdkVUUG5YZC1QVzlabm9sYnNHTUVtRjJIVDVxUmRmUGJSNnZaT1diMm9McU1GUHFtNWEtVl9JMVBEUHFJVHlnSnZRQ2hhUkU?oc=5",
+        "title": "「聞き取り困難症（LiD/APD）」をご存知ですか？",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMifEFVX3lxTE82QTgtV3JpbGk4OEl5Rkp6dEd1TVV0aExVLUc1OEEyLWdwRGE3c0hkM0dWVFc4d1p4dGlSUF9xU0ZwMy1hQWJxb1piNE1kcW1GSkJRV0xnakszZFBSbDg2eFdaOFg4VjBwdGxXeldkZmFZREhXVVE2NGlDaFA?oc=5",
+        "title": "午後5時台 「聞き取り困難症」とは? | 午後LIVE ニュースーン",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTFA3ZHdpWF9DLVRNck9YSG5HRmhHMTI4S09SdmJOSFhGd052NDlSVVV4eUFxTllIMGRzOU9EMUVwWmVTYllVN2pFalZlWHZ3cnY1X1dHRXl5TThmc1h5dTFMd0k4Xy1UcWhJNFczTzEwQmVENEJQdS1wLQ?oc=5",
+        "title": "聞き取り困難症の苦悩知って : ブログ : 八千代市議会議員 末永たかし",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0zeS1wMzlZVW1rMURRTGd6d0NZMDQyaWlRWE9LLXYyODRDNFlKMk9vRmtWSnZpQWlMVHpubDdqSHpKdGM2VnRyZXROSzJpMzdnSGkxczU5Mm5HRU1wYkxwa1k5OXhzdF9aX0cyVw?oc=5",
+        "title": "騒音低減イヤホン、自転車の青切符で配慮を 聞き取り困難症の当事者、「違反」誤認懸念",
         "reason": "unrelated"
       },
       {
@@ -1109,23 +1124,13 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8tRVJtdGNfblB2bmtraEtLbzI2TU9uRXd1cmk4VFMzM3B0anZXUkdzUUpPaEliUTZ3LU11M0UwM09xeENKVGdKanlwM0pla214Z281aUowRnVlazBqQ3RyN3RNYlNKSVBVenc?oc=5",
-        "title": "八王子まつり期間中に開催される「ハートフルシネマデイ」でAuracast™による補聴支援を実施",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9nTE5QTEs0NWVXSVB5Mlh0TTJfSU90TEVxdldTSnNaMDhFOEFSNFFfcG5vdzBRdUEtMm9semhDWEg3X0VHMEpQSy02SkJSam9oVmp3?oc=5",
         "title": "「トイレ情報共有マップくん」が総務省「情報アクセシビリティ好事例2025」に選定 | 合同会社ファービヨンド",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9TdlNyWHdxRk94TUJfdHlBNldLNV84N0JFYmtMM3lUV2lxUjdGZTVoaGp4UktpSWp6ajZ4blBBcmhtd2o4Z25fYnNGaWxHdU1yN3BaaU1haWFHTVhlSXBQSU5UZ0xaMUNpaGc?oc=5",
-        "title": "視覚障害者向けネットショップ横断検索サービス『よむぽち』を公開「買う自由」を支える情報アクセシビリティプラットフォームへ",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBZOGZ3RjJhMzhyWVNSU0VLOEF6WjRZOUdvZ1hZTzkzWlFkdktIMHR4bjdGM2RhbWZkYm84djg0VVBEODZLaGlocDFfd0RIcENyT1pmYTJDUTljcnNxVlZfZDVQQ3dSTUlNUFE?oc=5",
-        "title": "コーポレートサイトを全面リニューアル 全社コンテンツの構成を刷新し、法人のお客様をはじめとする来訪者の情報アクセシビリティとUI/UXを最適化",
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8tRVJtdGNfblB2bmtraEtLbzI2TU9uRXd1cmk4VFMzM3B0anZXUkdzUUpPaEliUTZ3LU11M0UwM09xeENKVGdKanlwM0pla214Z281aUowRnVlazBqQ3RyN3RNYlNKSVBVenc?oc=5",
+        "title": "八王子まつり期間中に開催される「ハートフルシネマデイ」でAuracast™による補聴支援を実施",
         "reason": "unrelated"
       },
       {
@@ -1146,6 +1151,11 @@
       {
         "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBldUFSdmdVUWRMRGFuYzdZbmFISlh5WnQ0d0g0RjUtQUsxcTBlZXQ1a0c2a3l1VGhfNFIySlJWQnhlSHZKNW9qVzhySmd0ZUl1T2dwMlRMY2pNZWhFSGYzZnRadkozNHU2cUE?oc=5",
         "title": "「マゴみみチャレンジ by ヨメテル」 5月15日（金）より公開",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBKYjhuYWRvZW9ueENYUWVjb1dyUTNfVGVxYVBpWVNfU2xjeWdoWHRMb1ZuRUF2OTQtTlhnN245bWx0dVBOZUhQb2FaSm00NEV0UkFRVQ?oc=5",
+        "title": "ボーイングCEO「業績の先行き不透明感は薄れつつある」",
         "reason": "unrelated"
       },
       {
@@ -1179,23 +1189,8 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5nQzVjNXR5VmFCeXIwWjhCUEc3cDJEQ1Fkd3FxMkNfTHJlNVZET0g4MEI3QzRRZ3pzb3dkRkJIZlRhLVo2NUxPeWhpTi1IcndFODY1R0IwTzZ0aVRfdTRKb2YyaUpJdko4b1E?oc=5",
-        "title": "Google、AI画像生成・編集ツール「Google Pics」提供開始 特定オブジェクトの編集や文字翻訳も可能",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB0dHY5LWNGVFN2c2F4MVI5cEFOc0N3c2RQNzM0cThFNE5hNHRNSFBqV3B0aERiekNEOUdRT2U2ZFJ1a1ZxX2phNFlNeTVHUlR6SXlZVFoyM3J1ZWtUSVJnN0tDWmQ3X0YtVHc?oc=5",
-        "title": "メタリアル",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFA4clhUTTdVMWgtN3ZvSDk1ek1ud1JTYWwtV2t3VzNRbUpFWEduWVFXSzFaZVd2QkxRZGpvcEx6V2s1MlphSVduN2ExOVFpRDd1V2JjUkg4UGRDOEVRb3lwWXU5aWFIU2lXOVYxcDlpOTBWZw?oc=5",
         "title": "テキスト翻訳・ファイル翻訳・リアルタイム音声翻訳の導入により、増大する韓国語↔日本語の通訳翻訳業務に対応し、コスト削減も実現｜Infoseekニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8yZnZDVTBDbUp0RHQzMlZsMmdqbk8zVDBITTctU0g1ekx3TjRkc3JhSjZaaEI2dThVOVdFRFpxVU11bjRSNmZqZWZEQmtUaERWMnpyWE1yOFNENnJwaEt5YzU0WHpIRVZH?oc=5",
-        "title": "国産AI翻訳サービス「PLaMo翻訳」のオンライン会議向け機能、無料トライアルを開始",
         "reason": "unrelated"
       },
       {
@@ -1209,33 +1204,8 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE51eHM3dndpR0doVW5zdFhQVG14bzNxcnZqeUQzNDRpSnpEMWxHVG5hTzBYVDFjNUN3MWx5MFR6MU1PVHJzbmEtVk5RLThsQUtkY0Y4VXRQM01tTkxXNmNEMGJKeXVWM1RM?oc=5",
-        "title": "テックウインド、オールインワンAI翻訳ソフト「Vurbo.AI」の国内取り扱いを開始",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5DRThuRHgtcU9KSjljcHowcnpubDlFRGpwTy00VkgyWkpUMUwzNUFBQTc1aEdUMFBNQUpmUlFPUWJDaEwwWkE?oc=5",
-        "title": "ロゼッタの産業翻訳AI T-4OO、高精度モードでテキスト翻訳APIに対応",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQQVZtdDhyVmQycExNZm5QQTgxS0JCdmNTbjE2cWppbFJFd0lWbm9qX2NvTzQtS09NQjZORG9iNFRfVXhlSlFIUmhFZmtqWF9ESnhmNzdlNHR2OGFhLTVoaVdVbWlBTFJBcHE4RzBPS29jNzhPRmhZclNTdDcwZXAxNjAzNA?oc=5",
-        "title": "鑑賞サポート実施についてのご案内",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBlNGtzRDNtRjRYdlp3d3pMUGI4SWt6TlNkZGpLNmoteTkxVjdiNzZjd1NzUzU5YnRocHlvaXJVUjZRUEdDbHFVUUtHODBiQUtOS240bnhRZw?oc=5",
-        "title": "参加者に手話を教えるろう講師（左）と手話通訳士 - 聴覚障害の理解深める 大分県の日田市社協が12月まで手話教室、市民10人が受講 - 写真・画像(1/1)",
-        "reason": "low-value-page"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ENDQxOHNTbXF5amFQYkJKa1dxQndrZUR3TmpRSzZKMG1IeHVLRllSSVliY1FleUNaZzBGSHJZNVNEZklkYlE0cmNDWVRUUUF4NU1uLXBGUG5UM1QxV0ROMTlmSUxQOTl2ZExoX1ZB?oc=5",
-        "title": "アーティスト・トーク ｜ イベント ｜ アーカイブ",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBBYXpkdGR2SWhMWVoyNE5vZVhlcE9YN080V3M5dnBCQ0E2TklzNEtpYUVSQlpvVGlmclBhd09RQWtLMjVCVlJKRGo0T0lPLU1jalVpTEhPYTdvZzQ5SjJvdmVYTUxibDg?oc=5",
-        "title": "鑑賞サポートで誰もが楽しめる舞台を 木ノ下歌舞伎「心中天の網島」",
+        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1IQXgtOTJtY2VDZWtEMVVQVjBNSmpSNmZmSzc0VWVkNWE2NVNBcEZjclVBdEwzNjhDamZiNUduNXY0YmhRT25HSGJ5amJIUkx5dmdEUGpfMWtHYnJrVEE5MlZVRFl6QXBIY01pUXRrWWw0SXFL?oc=5",
+        "title": "障がい学生支援ボランティア養成講座を開催しました|教育|FUKUDAism（フクダイズム）",
         "reason": "unrelated"
       },
       {
@@ -1244,68 +1214,73 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0xUTRUcTA1dk9GQzFrckxtMXRNczJCZUJnd3VKV0RQMkdhcGw0aHJpX21WLV9HOGNzT1B6TURYdDZNZXlJM0lBTzJVYlJsWG9nLWR0dmxzS0oxWjBheG9RZUNPREhYY0JiVmc?oc=5",
+        "title": "【アプリ不要】お試し無料キャンペーン中にヨメテルで電話してみよう",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9fTWZMYUNsOFYyUDNBbUdNUzFzcnduS0RNSUM2SGpZS3I2R3pzUUlEaWlWVW9nU0pvZlpFWWcxODZ5Skd3YWZ5Sm9BZE9qdV9JUnBWQ1NhUTNvZDhMdV9aaE5aT2lLejczalE?oc=5",
+        "title": "相手の声が読める電話「ヨメテル」: AIと人間の協働「＋修正」で更なる精度向上へ",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBldUFSdmdVUWRMRGFuYzdZbmFISlh5WnQ0d0g0RjUtQUsxcTBlZXQ1a0c2a3l1VGhfNFIySlJWQnhlSHZKNW9qVzhySmd0ZUl1T2dwMlRMY2pNZWhFSGYzZnRadkozNHU2cUE?oc=5",
+        "title": "「マゴみみチャレンジ by ヨメテル」 5月15日（金）より公開",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1veDVCVmQtcWxjNXVmc0JjT0dVMDJ4OUNZM19SVXVYMVdPRVNTTlpoYjhCUUFDQTk5QTRKMThLenVMTnVZS2ZBazQwQ3hfa19TaWd1eEFXa29LOXFoWk9OWXJvcm8zS2lfZWlLWjNOMkRqU1RVOGxhd2s4cjlsRjg?oc=5",
+        "title": "「もっと上から撮ってくれ」“補聴器をつけた天使”26歳グラドル、スーパーで“前かがみ”買い物、ファンもん絶「5度見は絶対する」「また彼女感出てる！」（中日スポーツ）",
+        "reason": "incidental-disability-nickname"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9aaU1DR1FoRGdLdnZkQ0txTTRjcXhLS0RzMDFaX013WFJqWWp5czhZMnpUVW03a3M0N0duY29jZndtX2dpWS13MVlvM3RNNjFwRHF4dkpFenVWOXV5N0NCUmQtSVF6d202RXcxejRBWHZfeVpsRUYxTFdac2VGbVk?oc=5",
         "title": "「補聴器をつけた天使」我妻ゆりか 彼女感にメロメロ！料理動画に「この姿で台所…？」（日刊スポーツ）",
         "reason": "incidental-disability-nickname"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5lWENMRWEwREFSRno1YTFBOVkwU3loMnBUZzN5NUg1aE5IMVpHNndtdkdoa2VVblVHTnJVT2Z4UlhSeDVXUHd6N1hZLUJNSE9VWWJJVlh4d3lYczhoWThn?oc=5",
-        "title": "「音はいらない」という言葉から考えたこと。そしてマンション管理の未来に向けて。",
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNSjAwQ1Z6SHktQk5PTF91VHlJSGlhYW84enNLUUJyNUJRRC1yYlpLanVGVDdLNno1TEZOVWMxc1FTYV9sVTNjUV81eVVGNFZOUGlpc2NySms4YVBmSGI3OTFwSlNBdDJ1d2lvajFQdUN2UkZmSHpaUW5Hc3NqZWp2anhjWmFaS3ZQYnl6U05n?oc=5",
+        "title": "「補聴器をつけた天使」我妻ゆりか 彼女感にメロメロ！料理動画に「この姿で台所…？」 (日刊スポーツ)",
+        "reason": "incidental-disability-nickname"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNam9iemRWbkM2TDVibWRsWklQUlpWdThCanZKUFRkb0N6dFFsX0t6WXM0QnVmdUY5bTEyN0RNVVJOQUVuLWlCb2NLMFlHdkdWZDJqYjd3WDdxeHh6TVVSeWtjS2FFYTVoZzVMZUJFR216X2ZYaUI0RWZJYmh5aXRyNXo1NW90UVNjcjNPeXFn?oc=5",
+        "title": "「もっと上から撮ってくれ」“補聴器をつけた天使”26歳グラドル、スーパーで“前かがみ”買い物、ファンもん絶「5度見は絶対する」「また彼女感出てる！」 (中日スポーツ)",
+        "reason": "incidental-disability-nickname"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNZkF2ZU8yUmd3dnp4TGtWaVlNTFNrSVE4RkNFc2RlOFFhMjNOWWl2TmZkN3M3TUlqbURaRjNPdWFIaUpyOGJGQUJjYS1WQmZkVkRadjFUWTRva0M1bEZ4NXZCenh1RGVoemFLZnM0UHB5MnprMUpUM29TWWt3UXB4cXlBaU1oeEFMSVVfSzVR?oc=5",
+        "title": "「この服はアウト」〝補聴器つけた天使〟グラドル我妻ゆりか、ピタピタミニ丈に「メリハリ素晴らしい」「揺れてるし」",
+        "reason": "incidental-disability-nickname"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9XczREZ3FvcHVfWExHeGdrYUw3U3JCcHhiWnMtN3pqdTlzZjUyUG51NzZxdUd0RkxmSFRoQzl2M2djOWxmTUFZbkl0dEhPSlE?oc=5",
+        "title": "充電式補聴器の世界市場規模：年平均成長率16.4%予測、最新トレンドと需要変化2026-2032",
+        "reason": "market-report"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5oQ3FKekRldmhJRW9NZWhTVm1sZWZFQjFCb0RWOXVqOUUxZm4xckw1SERSY3E5d0huTnpacS1mOU1OZVhRUWk3V0xCYVNkTmNraUVTdW1EbFZEczJhX3kxaGdoWQ?oc=5",
+        "title": "「2026年 第47回 本田賞」をグレアム・M・クラーク教授とインゲボルグ・ホフマイヤー博士が受賞 | Honda 企業情報サイト",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBwei1qUk9haWs1OEU2R0Y2eXUwTjE2S1JUWmR6X3pjdXIwMlcwVGt0MHhnQ3NCcWdFUlVyc0J0Ymwxb1pSbUE?oc=5",
-        "title": "【読者イベント第3弾報告レポート】薬師寺の特別拝観と副住職・大谷徹奘さんの法話｜拝観ツアーで「きこえ」の改善を体感",
-        "reason": "unrelated"
+        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE93bXRjVjRBTklkNWNENkJwZVBzRGoxNk16NnJodzlxeEtyZjZxaWc5alktd1hJUGVwR1NYempmRkZmUEgwaENSeHNsWnh1c2hDVG9tVnAtMTduZDI5dTBJ?oc=5",
+        "title": "「この服はアウト」〝補聴器つけた天使〟グラドル我妻ゆりか、ピタピタミニ丈に「メリハリ素晴らしい」「揺れてるし」",
+        "reason": "incidental-disability-nickname"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBRSllicFRyWVZySHFMdk1uUmNpNlhRdExxZjIzVWJZNGJxVEUweGtSaTFLOTRHQVR4eTctNjdZMVdYZndfVXRMZ1Nyc05kMkhQT3pUXzIzNFg?oc=5",
-        "title": "滋賀県甲賀市で「日本記録王者」が広報大使に 町にUターンして練習「挑戦の大切さ伝えたい」",
-        "reason": "unrelated"
+        "id": "https://news.google.com/rss/articles/CBMiR0FVX3lxTFB6bVdYRVl0cXpXX1ktd3pqN0dHeERsS0tialpfZXdEZngwa1NrOW1YV1ZLY3JUTEJtV1dwZHNabFYtMTNocEE0?oc=5",
+        "title": "補聴器の日本市場（2026年-2035年）、市場規模・分析レポートを発表",
+        "reason": "market-report"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBJeG9MRmtpTHgwMUhITktyaTBOUmZEQTBpZF84dDlWSzJrY1JCYkFmTWozd01WX1Jtc2lIVzFMRUphckhFV2NfdEVtTE5pQW1wOFRUSzF3NUc3N0hnRm93?oc=5",
-        "title": "「音はいらない」という言葉から考えたこと10月25日（日）島田くによ活動報告News📣 野火止...",
-        "reason": "unrelated"
+        "id": "https://news.google.com/rss/articles/CBMiR0FVX3lxTFBtN2dLSEFvbzJET1RlTmNaYVFXYkZKYkd6WEVyVV9jeWV4Y2F1RkdRZjlHdWtLVnlnX1dUUFpjbGFTQjJHNEhZ?oc=5",
+        "title": "人工内耳の世界市場（2026年～2032年）、市場規模（成人用、小児用）・分析レポートを発表",
+        "reason": "market-report"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5HSXlYYnRISkRlM1VDQk9ETEg5WW5CanJxaW9XeVV0Y3FJUmJUdnhOVTFrX3c0NDVGVGhOVzlZdV9YMjVxbVh3R2U5S01NYTJaUnBLaDlYZDVUU0lMM01Ud1l6VXFsYTEzb2xneUVrOXM5a2pkU002bE5tbEh5NDA?oc=5",
-        "title": "Ray-Ban Metaスマートグラスの第3世代が発表。7万8980円からで日本でも買えるよ（ギズモード・ジャパン）",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5DMVFhamhtVmFmQ3luUEZ0MUMybkc2dmczVnE4U2hDT0Jrek1XUEFfNl9ual9HT0FGcXJSMXhKeEFGLXE5RzhYdHBvM2lSbkFFTktISA?oc=5",
-        "title": "【実際の動画】「最近の路線いいぞ！」我妻ゆりか、“スキ”が多めな買い物ショット",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5qQzVndUZFemVuenhnRnlKWWI2QklQUkN2SzhDQWIwclV5R05GeWU4ZnRPeGpHSEE1ajZVcmlDVVVjU0UxcFRud2tPWUlJR0steXlLeGRUN05KT3ZSUGR3MFhRa05JM19wWkNjS3h3?oc=5",
-        "title": "台風一過 石垣市で被害の爪痕深く",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE01U3ZtYUtVdnBvVnVCamZ2Mi00VHR2U1RBTTJHMHRCaTMySVpwTHZrV24xX2RJLXFha3VpcnpVVmJ1X2tuaWQ4MWNaNXhFT2RfSDF1QXNVaE5ZYks1Z1gxQTN2bkxTUWxLWXJSZDBn?oc=5",
-        "title": "「だれ？」「え？華原朋美さん？」「ビビった」45歳で出産…息子とお出かけ華原朋美の近影に「別人のよう」「凄い」",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1oUkliejh4djlxemczQURDd0JScXZEM0dlb1gzcWdfZ0NHZFFxUHlDZUdCa0FUd1pveXVjWlkzcEI5cENxd2NGRWFzcEh3TmNFeUNReWNlaWk?oc=5",
-        "title": "滋賀県栗東市長選、25日投開票 新人・現職の一騎打ち、大勢判明の時間は",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE0yNnpTX2x2TlRkbmNqTDMxNkYxck10X05va1hqVmZZUk9VNXV1MzRsUFVBcTEtak5KRkRhY0tyZEg0NlJoMDg3Zkx3el9ETG9vU1lWbnpyS1p0UkxZN1JReGtLZ1VsZUFSOWR3NlhSeWRfdw?oc=5",
-        "title": "「毎日に、晴れやかな彩を。」メガネの愛眼POCOP Rouge×Wpc. Patternsコラボメガネ発売！",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9DSEROdkdvd3pVY1g1bTNwb2FrTE54T0F5U2tkZ2FlTmQ3bGhBcWNrR1RKeVlydmtTcVh0RDdtaDlINWpvTUdUdUQtNTk1dUlid0VfSFFMX1RPWlg3OTIw?oc=5",
-        "title": "「眼鏡市場」で楽天ペイが利用可能に 条件達成で最大1.5％還元｜Infoseekニュース",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1QQTd2bzNzQ3o0UzhOaU4wcy0zMjZRVlNBY0dBTFpNWUVCTzdYWUdaN3U2WjNVeDh5VkRNaDgyWVA3TkFxMTQ2OW5wSlhSN0I5TzdWc09hVldyTDZ5ZDhQNWpB?oc=5",
-        "title": "多くの人に文化や芸術を届けるためにバリアフリーの字幕や音声ガイド",
+        "id": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9CbHVCa09hbk5FMko2dHZQMGRUcTRKTEVsZEs5MTJrVzhlVVYzODkyMHgwRl9CNjB2Tnk4RW9hM3gzRVhWT3FSX1lYdE5kRHZDRjktMFdKZzF0VEoyM01xTmJLeUpic3ZjNHpwLXc5dlkxVDZscUE?oc=5",
+        "title": "補装具・日常生活用具等の申請について",
         "reason": "unrelated"
       },
       {
@@ -1314,18 +1289,18 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiREFVX3lxTFB2OXZ3ZzlSUFFuTmZVR2FtMXNGY2pTVXozTUJ5X0xfRzhORVVxWm9WSDJXME96Q3NTMnVTOTBJLW9henBw?oc=5",
-        "title": "映画『わたしの知らない子どもたち』バリアフリー上映のご案内",
-        "reason": "unrelated"
-      },
-      {
-        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1veEkzTDhzYkV5Z2JmSW5BbHFIdlhCdktQM0xkNlJoWVdDdEJfLWhEQXN2YW44azlXZ2FEZXhabkFidl9ZdGtkSnMtQ1g2d19xcUVoSXNjUEFkTWxUU1Bmek9pYktRUQ?oc=5",
-        "title": "【10月9日（金）より対応開始】『どこよりも遠い場所にいる君へ』 バリアフリー上映のご案内",
+        "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5JRXkyYmxSalA1b3dLY1Q4QkRvUGo4X3BYUUtVYTRpM0ktU1VTdmVXU3VlVVBHUEhNZFAwbFhlYWhmX1RfSm54eg?oc=5",
+        "title": "『HELLO! MOVIE』を採用したバリアフリー上映が決定！",
         "reason": "unrelated"
       },
       {
         "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5Xb2hGcGt3TEM0SllIZUh6a0MzYmo3dUd4Z0lnTTFUSTd1SFpuZmFzeDBTeDQzVmVPejhidkowaUZyZ0ZnLUdCT0ozdGRSOW9pcWhHQnMyY1BLNkN5M0tEN1pYVHpSRW1IRUxkQ1pwRHppSEU?oc=5",
         "title": "映画『だぁれかさんとアソぼ？』バリアフリー上映のご案内＝2026年8月7日（金)より対応開始",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1veEkzTDhzYkV5Z2JmSW5BbHFIdlhCdktQM0xkNlJoWVdDdEJfLWhEQXN2YW44azlXZ2FEZXhabkFidl9ZdGtkSnMtQ1g2d19xcUVoSXNjUEFkTWxUU1Bmek9pYktRUQ?oc=5",
+        "title": "【10月9日（金）より対応開始】『どこよりも遠い場所にいる君へ』 バリアフリー上映のご案内",
         "reason": "unrelated"
       },
       {
@@ -1339,13 +1314,118 @@
         "reason": "unrelated"
       },
       {
+        "id": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9ETEx5My1zS0M3OVBaNnBydHdFLV9lbFRwT2Q4RmJFMGVadGxDTW9HOUJ1dEhxWGJxaE1Wb0p2YjZfN0tDYnc5QUJCd3RQRUotLTFwQVB1TzhDSHZlYUpwd0NYdFNpQ3dmWkZrajJ4cGhaREd5V1E?oc=5",
+        "title": "バリアフリー上映のご案内＝2026年5月22日（金)より対応開始 | ニュース | 映画『ミステリー・アリーナ』｜5月22日（金）公開",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5UdVkwVGVBbUdweU5RaTZOd3hzQlVpOUxYU0Y1UlJGMkJJTWxjRW5RX25oWmpIT2dTWDBwVFhBYlZ1VXBxeDZkSERwZjNtcWZHUGow?oc=5",
+        "title": "エンドロールに載っていない バリアフリー映画の「質」を守る障害者の名前と、文化の未来",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBMRWUzYjF2UnpSbEYyUmtHdXlibGtEdWZ6QzFxTHEwUGUxX0VMRWRfZ201LXRsTllNQkJ0WmYxcXBOUk1XLXdxMA?oc=5",
+        "title": "「開かれた映画体験」へ、映像作品のバリアフリー化で Palabra株式会社 山上庄子さん",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE43RlBnbVBBY19HYkw2QW82RTFIeklVZkdHQTBHVUlZZWRyZVRJS1k4N0hPUy05WEtHdG1UaUNnVGprZnpzU2dwZ1dwR3JsRjZKN3dOLWNYUF9NelpYWFlUNlNFOW9fZ0kxVnlCT3RjbUs3ZFBZQl9ESTA1b1lPY2M?oc=5",
+        "title": "新劇場版☆ケロロ軍曹 復活して速攻地球滅亡の危機であります！",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiREFVX3lxTFB2OXZ3ZzlSUFFuTmZVR2FtMXNGY2pTVXozTUJ5X0xfRzhORVVxWm9WSDJXME96Q3NTMnVTOTBJLW9henBw?oc=5",
+        "title": "映画『わたしの知らない子どもたち』バリアフリー上映のご案内",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB5aUxOUER6LU16bFN1clZMZHFmeUp0WGZrc2Q1eThWcGJJdHYyY3ZwOWNrUTI0TncyeldWcWdXZ2d0V3NKTXdrNGYyT2dQaXJvSjhUMHFuTlhyOWdZNHdacFFjcklfOUpT?oc=5",
+        "title": "「夜の余白」をすべての人に。“会話が見える”スナックが生んだ新しい社交場",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBWcGdGM0Q1RmVMNEpMaTFtVVZGUkpsVzdPazB4Z3ZmWm1JZzRwbUd5SmN1VE8tQ1hqUnpxSU9DX0dQQWtKa2hTcEJyNTVMRVBTNXltT0ZvWlBucFZEd2FJMjlxUVdsQjlZZUswcg?oc=5",
+        "title": "【2026年版】ディズニープラスの字幕設定を完全解説！表示や変更・トラブル対応まで紹介 – エンタメサービス比較-Branc",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1RbHJqWEFUcGZ0WTVDcGhwSjF1eThhbjRDZFB0TmJCdF9vYi1nalZHc2x3S0VNQTlma2haLXFaUU9tLXp1cnJaeG9CU2VWcWtwTTFJ?oc=5",
+        "title": "「Linux」でお薦めの音声入力アプリ4選--ローカル処理対応でプライバシーも安心",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE55cEgwc21WZFRvS09BY1dOVkFORlBfZm1LQjA1amU1bjFuTlUwN3BFd3JfMGRneENfNXNwSmFlQTZ6UDFGb3lubzVabmdTaW0ya2ZTU1MtWUhCbVctenpfMHl0bXZKYUVxV0E?oc=5",
+        "title": "ソースネクスト[4344]：音声入力ソフト「いきなりAI 音声タイピング Pro」発売に関するお知らせ 2026年10月7日(適時開示) ：日経会社情報DIGITAL",
+        "reason": "unrelated"
+      },
+      {
         "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8tYVhmUGZhdVBlNnZNbEM0YUhvb1NGLW9EcjJuZVkyX0lHRHhMT05FSzJkT0NZLVFjZnFwNV9ORXF1TmRfSXY2QUt2eFhJQUl6MU9VRjFTWUluWHFwZ3NqUmtNbHFXQkZJcFhEUzdQUE1vLUhw?oc=5",
         "title": "【ユーステラ】音声合成ソフト「COEIROINK」向け音声ライブラリ「MYCOEIROINK 山野マコト」をリリース",
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8yajJhblAyM05lbGw1VjZmSDR0WXdHY2NkN0UyMWIzMjJrOEQzU2ItbzhDZVFFSjdJbGc4c3NwSzhqaHRxRFNycDVLaGxHS2JmeWRqQTR6QldaeE85YkNwNVV3?oc=5",
-        "title": "【ユーステラ】音声合成ソフト「COEIROINK」向け音声ライブラリ「MYCOEIROINK 山野マコト」をリリース (2026年10月27日掲載)",
+        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPN2IxR2J2c2duWVZDV3JDMGFOVEhwYkE1Y2NHUmI3VnJJaVJEX3dLdFBreUpQckRZRHBrUjJzdGFuTWVOYXFxa2ZDVnRhTm55b3JNbWFYeWdBVURyNXRLSERTRE9Zd3JVSk9ZcUZoVDhRYUR3NFp6UUttNnJmcmNEajI0UUNXbWppeDh2NG1sQ05uRVpDbFdMS3lUUVFRSjdtOFE?oc=5",
+        "title": "NVIDIAはイスラエルの企業と提携し、手話翻訳のためのAIを開発する。",
+        "reason": "foreign-coverage-review-required"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPREJmellpT1JzNURsT3lmSFhmbG45dk5xQkVqMl91d3oxTUJwLVNUOTJQcjdTSHd6Y2pmVXBobEZlZHRJR1ZNV0pmX3llV2h2LUY4WTlsLTlaVVVleWNPVTFhbzFSbzVocUVBRVdUZDlIX3NhZ0hhQ0ZnV2ZVOC1PMGlnazA3WU1mMVRCdXB3?oc=5",
+        "title": "「Linux」でお薦めの音声入力アプリ4選--ローカル処理対応でプライバシーも安心",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPQS1CWWJUajJnWWd0aFhJMV9MbF9HRjJLaG1kVHZRUlRlbUZpUDhqT1p1LUpJWGJxNW5GaWVzekpIa2psd1dEWUtBUHZtUkVhUkdmU1NMSlc5UGZBeUxYOGF5Vk00QWItb2NxOVlWZTZuc2hrX1ZrdDdGYzhveVBfNGxtZHpWYTZk?oc=5",
+        "title": "「Linux」でお薦めの音声入力アプリ4選--ローカル処理対応でプライバシーも安心",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0tTUFJbV9pVWtUMUdTRlZCd19mNHdsR3lCRU01dEZEYjJxNFdOS253bUgzWGZWem9IQ3psWU91TGF4dTRKM1ZvYzdjcFdLZk1aMkc3UFJhbUJEZXhzWkRCdFp5a0kxZTNGNjJPXw?oc=5",
+        "title": "ソースネクスト、音声入力ソフト「いきなりAI 音声タイピング Pro」を発売",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5ubXdjVzAzZzBmMHA5dVZ0WXRkLTBQYUZseUZEcFUzTHVOdjRwWUxUQlpocVFicGU0WmRJX1FRTHFQQW1adm5rTHNxel84MUZsM0hjVDlZZURVQQ?oc=5",
+        "title": "クーロシュ氏：月1.8万ドルを稼ぐ音声入力アプリ、最高の製品ではなく高齢者市場の開拓で勝利",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQQVZtdDhyVmQycExNZm5QQTgxS0JCdmNTbjE2cWppbFJFd0lWbm9qX2NvTzQtS09NQjZORG9iNFRfVXhlSlFIUmhFZmtqWF9ESnhmNzdlNHR2OGFhLTVoaVdVbWlBTFJBcHE4RzBPS29jNzhPRmhZclNTdDcwZXAxNjAzNA?oc=5",
+        "title": "鑑賞サポート実施についてのご案内",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBwVWoxaThyRVc4YXFVYzJMOFEwX2JJbUFqcnRVdi1TUE9LVzJfN0tsVnNqWl9WazBkN3NBLVRkMy1GbEQ2empsb01xVExvcE0wYVZ5Ynp6RHAxOUtndXNqNkhqcldDOEJZUFE?oc=5",
+        "title": "音声入力ソフト『いきなりAI 音声タイピング Pro』10月7日発売！ AIが言い直しも整えた文章に",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5zQUN4cVRFY1gxYUFXVG5RdDZSamMtd3BJeWg0RFh3NmxSaWhuVjdLQTAta3VxMWxYdXdfakFTZkpybHBOZlN6OEdwa0JabW1xNVZCdUVndUZrYWhKUUZzT1RJUEFGZkxBZHc?oc=5",
+        "title": "話すだけで文章が書ける？ AI音声入力アプリ「Genspark Speakly」を使ってみた",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9wYnpzdVJ6MlY5WkRxRDBYNm8xOVdFLUk0LVE1bVkzc181NnpNUjNGUjBVd2V0c1hBNUtBekROV3BudWFpWXRJUjljaVI?oc=5",
+        "title": "Desktop Mate、音声合成ソフトキャラクター「弦巻マキ」のDLCをリリース 録り下ろしボイスと、ギターを手にしたモーションを多数収録",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE43MFI0akxEOXJQX2RqUjZVck1PYlpXU2VaUFhYUTZTSk9ZV1hrVFZPOUFlSHk4V2NjM0ZNVHc2cTZjU0p3LU5zdkFQYko?oc=5",
+        "title": "Desktop Mate、音声合成ソフトキャラクター「宮舞モカ」のDLCを9/29にリリース 声優・峯田茉優による録り下ろしボイスを収録",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ENDQxOHNTbXF5amFQYkJKa1dxQndrZUR3TmpRSzZKMG1IeHVLRllSSVliY1FleUNaZzBGSHJZNVNEZklkYlE0cmNDWVRUUUF4NU1uLXBGUG5UM1QxV0ROMTlmSUxQOTl2ZExoX1ZB?oc=5",
+        "title": "アーティスト・トーク ｜ イベント ｜ アーカイブ",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFB0LThQY2JpVmFPbGlyMVl4ZXg3X2Rvc1VsMmhiVnIxVUszU0l0c2NBVUtfOFFSMkg4Qzh6SzJoNVpVQVkzcEZxQmhVd1M?oc=5",
+        "title": "Desktop Mate 音声合成ソフトキャラクター「宮舞モカ」DLCがリリース 声優・峯田茉優による録り下ろしボイスを収録",
+        "reason": "unrelated"
+      },
+      {
+        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5UT2FINTRpZVBYTHBycGZZTndRenpwLWVNRXNsQTdLQjFvX3JvYndRVUFLdlY3Z3FuWUNaY0lVWTYyM0ZOZDdwbVJSc2FtUWlRS19nTDJPVVBuYWN3a2NGTm8zOW1qNlJ4S1VuTFF3?oc=5",
+        "title": "トークイベント｜志村信裕×木下知威 ｜ イベント ｜ アーカイブ",
         "reason": "unrelated"
       },
       {
@@ -1354,26 +1434,39 @@
         "reason": "unrelated"
       }
     ],
-    "filteredCount": 1069,
-    "lowScoreRemoved": 81,
-    "nearDuplicateRemoved": 211,
-    "finalCountBeforeLimit": 858,
+    "filteredCount": 1049,
+    "lowScoreRemoved": 57,
+    "nearDuplicateRemoved": 209,
+    "finalCountBeforeLimit": 840,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 59,
     "extraVisibleCategoryCounts": {
       "relay": 59
     },
-    "overflowCount": 399,
+    "overflowCount": 381,
     "minScore": 5,
     "maxCurrentAgeDays": 180,
     "fallbackRetentionDays": 45,
-    "fallbackCandidateCount": 223,
+    "fallbackCandidateCount": 242,
     "sourceHealth": {
       "direct": {
         "requested": 32,
-        "succeeded": 32,
-        "failed": []
+        "succeeded": 29,
+        "failed": [
+          {
+            "sourceName": "全通研NOW!!",
+            "status": 403
+          },
+          {
+            "sourceName": "全日本ろうあ連盟 YouTube",
+            "status": 404
+          },
+          {
+            "sourceName": "全国手話研修センター YouTube",
+            "status": 404
+          }
+        ]
       },
       "discovery": {
         "requested": 36,
@@ -1387,7 +1480,7 @@
       }
     },
     "sourceCountsBefore": {
-      "全日本ろうあ連盟": 190,
+      "全日本ろうあ連盟": 220,
       "しかくタイムズ（イベント）": 20,
       "東京都聴覚障害者連盟": 6,
       "こここ": 25,
@@ -1402,328 +1495,309 @@
       "東京手話通訳等派遣センター": 1,
       "電話リレーサービス": 23,
       "日本財団電話リレーサービス": 15,
-      "全通研NOW!!": 10,
       "日本聴覚医学会": 10,
       "北海道聴覚障がい者情報センター": 5,
       "札幌聴覚障害者協会": 7,
       "兵庫県立聴覚障害者情報センター": 100,
       "鹿児島県視聴覚障害者情報センター": 10,
       "沖縄聴覚障害者情報センター": 10,
-      "全日本ろうあ連盟 YouTube": 15,
-      "全国手話研修センター YouTube": 10,
       "ONTELOPE note": 25,
       "うりぼー note": 25,
       "UDCast": 10,
       "UDCast 作品情報": 10,
       "Palabra": 10,
       "Silent Voice": 10,
-      "下野新聞社": 15,
-      "日本経済新聞": 14,
-      "毎日新聞": 45,
-      "聖教新聞": 1,
+      "日本経済新聞": 25,
+      "下野新聞社": 14,
       "山陽新聞": 19,
+      "毎日新聞": 40,
+      "朝日新聞": 203,
+      "聖教新聞": 1,
       "47NEWS": 25,
-      "朝日新聞": 200,
-      "福島民報デジタル": 8,
       "女性自身": 1,
-      "北日本新聞webunプラス": 2,
-      "京都新聞デジタル": 16,
+      "福島民報デジタル": 4,
+      "Yahoo!ニュース": 64,
       "高知新聞": 6,
-      "Yahoo!ニュース": 63,
-      "千葉テレビ放送株式会社": 1,
       "NEWSjp": 1,
-      "西日本新聞me": 17,
-      "イザ！": 3,
-      "南日本新聞": 3,
-      "日テレNEWS NNN": 36,
-      "매일경제": 4,
-      "RBB TODAY": 2,
-      "朝日放送": 1,
-      "テレ朝NEWS": 5,
-      "TBS NEWS DIG": 42,
-      "つながるさがし": 1,
-      "Vietnam.vn": 3,
-      "amass": 1,
-      "三豊市": 3,
-      "NHK": 9,
+      "西日本新聞me": 16,
+      "北日本新聞webunプラス": 1,
+      "三豊市": 4,
       "HGPI": 2,
-      "東京新聞": 24,
+      "南日本新聞": 4,
+      "日テレNEWS NNN": 34,
+      "朝日放送": 1,
+      "千葉テレビ放送株式会社": 1,
+      "RBB TODAY": 2,
+      "ナショナルジオグラフィック日本版": 3,
       "時事ドットコム": 7,
-      "ナショナルジオグラフィック日本版": 2,
-      "FNNプライムオンライン": 13,
-      "産経ニュース": 15,
-      "オリコンニュース": 2,
+      "イザ！": 4,
+      "テレ朝NEWS": 4,
       "愛媛県庁公式ホームページ": 1,
-      "読売新聞": 140,
-      "Newscast.jp": 6,
-      "山陽新聞デジタル｜さんデジ": 1,
+      "つながるさがし": 2,
+      "宮城県": 2,
+      "産経ニュース": 16,
+      "東浦町": 1,
+      "NHK": 9,
+      "オリコンニュース": 5,
+      "仙台市公式ホームページ": 2,
+      "TBS NEWS DIG": 27,
+      "Vietnam.vn": 4,
+      "読売新聞": 138,
       "NHKニュース": 7,
-      "両丹日日新聞": 1,
-      "OHK 岡山放送": 5,
+      "Newscast.jp": 14,
       "日本医師会": 1,
-      "仙台市公式ホームページ": 1,
-      "tenki.jp": 1,
+      "東京新聞": 19,
+      "CAMPFIRE (キャンプファイヤー)": 9,
+      "OHK 岡山放送": 5,
+      "政府広報オンライン": 8,
+      "Tohoku University": 1,
+      "両丹日日新聞": 2,
+      "福井新聞社": 6,
+      "amass": 1,
       "大津市": 2,
-      "福井新聞社": 8,
-      "タウンニュース": 8,
+      "Science Tokyo": 1,
+      "メディカルドック": 2,
+      "tenki.jp": 1,
+      "袋井市": 3,
+      "タウンニュース": 16,
       "PHPオンライン": 1,
-      "メディカルドック": 1,
-      "Science Tokyo": 2,
-      "北海道新聞デジタル": 19,
-      "神奈川県": 6,
-      "丹波篠山市": 6,
-      "石垣市": 8,
-      "日本財団": 21,
+      "神奈川県": 7,
+      "丹波篠山市": 4,
+      "石垣市": 3,
+      "日本財団": 26,
       "香川県": 1,
-      "広島県公式ホームページ": 3,
-      "岡山市": 5,
-      "小松市": 1,
-      "亀岡市": 5,
-      "目黒区": 7,
+      "広島県公式ホームページ": 2,
+      "岡山市": 4,
+      "ライブドアニュース": 9,
+      "Excite エキサイト": 8,
+      "鹿児島県公式ホームページ": 5,
       "幸手市": 4,
-      "宮城県": 1,
-      "佐賀新聞": 9,
       "テレ東BIZ": 1,
-      "長泉町": 3,
-      "糸満市ホームページ": 1,
-      "AERA DIGITAL": 8,
       "日刊工業新聞": 1,
-      "조선일보": 2,
-      "渋谷区": 1,
-      "内閣府ホームページ": 2,
       "河北新報オンライン": 2,
-      "都庁総合ホームページ": 13,
-      "福岡県庁ホームページ": 2,
-      "生駒市公式ホームページ": 1,
-      "日田市": 1,
-      "ｄメニューニュース": 9,
-      "郡山市": 3,
-      "流山市": 4,
-      "舞台『ハリー・ポッターと呪いの子』": 5,
-      "www.city.shinagawa.tokyo.jp": 6,
-      "大田区": 4,
+      "都庁総合ホームページ": 11,
+      "ｄメニューニュース": 8,
+      "AERA DIGITAL": 8,
       "財経新聞": 1,
-      "前橋市": 5,
-      "熊本市公式サイト": 3,
-      "北九州市": 1,
-      "川崎市": 3,
+      "大田区": 5,
       "愛知県公式Webサイト": 1,
-      "加賀市": 1,
-      "藤枝市": 6,
-      "政府広報オンライン": 5,
-      "選挙ドットコム": 22,
-      "日本科学未来館": 1,
-      "大分県ホームページ": 2,
-      "大分トリニータオフィシャルサイト": 1,
-      "Dialogue for People": 4,
-      "高島市": 4,
-      "バーチャル高校野球": 3,
-      "埼玉県": 5,
-      "新潟日報": 12,
-      "兵庫県": 2,
-      "函館市": 5,
-      "アーツカウンシル東京": 5,
-      "日本ユニセフ協会": 1,
+      "川崎市": 3,
+      "伊勢崎市": 2,
+      "藤枝市": 4,
+      "選挙ドットコム": 21,
+      "新潟日報": 9,
       "TopNews": 1,
-      "西宮市": 3,
-      "朝日新聞厚生文化事業団": 1,
-      "熊本日日新聞社": 5,
-      "高槻市ホームページ": 2,
-      "札幌市": 3,
-      "リセマム": 3,
-      "八戸市": 1,
-      "龍ケ崎市": 2,
-      "富谷市ホームページ": 1,
-      "山口県ホームページ トップページ": 1,
-      "逗子葉山経済新聞": 1,
-      "茨城大学": 2,
-      "ASCII.jp": 3,
-      "クラウドファンディング - READYFOR": 16,
-      "PR TIMES": 155,
+      "兵庫県": 3,
+      "岐阜県公式ホームページ": 3,
+      "ABEMA TIMES": 2,
+      "PR TIMES": 164,
+      "au Webポータル": 2,
+      "伊藤忠商事株式会社": 1,
+      "明石市": 3,
+      "とりネット／鳥取県公式サイト": 21,
+      "内閣府ホームページ": 2,
+      "目黒区": 7,
+      "郡山市": 3,
+      "日高市ホームページ": 2,
+      "埼玉県": 6,
+      "山口県ホームページ": 2,
+      "F1-Gate.com": 1,
+      "Dellows News": 7,
       "電通デジタル": 1,
-      "早稲田大学": 2,
-      "ハフポスト": 8,
-      "TOKYO MX": 2,
-      "総務省": 7,
-      "沖縄タイムス社": 11,
+      "総務省": 8,
+      "TOKYO MX": 3,
+      "クラウドファンディング - READYFOR": 10,
       "PlayStation.Blog 日本語": 1,
-      "CAMPFIRE (キャンプファイヤー)": 10,
+      "同志社大学": 1,
+      "ハフポスト": 7,
       "カレントアウェアネス・ポータル": 1,
       "リアルサウンド": 3,
-      "ReadyFor(クラウドファンディング)": 4,
-      "さくマガ": 1,
+      "ReadyFor(クラウドファンディング)": 3,
       "WIRED.jp": 1,
+      "日本科学未来館": 1,
+      "さくマガ": 1,
       "帝京平成大学": 1,
-      "pronews.com": 1,
       "Impress Watch": 6,
-      "NICT": 6,
-      "cinemacafe.net": 5,
-      "美術手帖": 1,
-      "桐生タイムス": 2,
-      "TechTargetジャパン": 1,
-      "京都大学新聞社": 1,
-      "ソフトバンク": 5,
-      "ケータイ Watch": 4,
-      "ePARA": 1,
-      "山本博司": 6,
-      "ドリームニュース": 2,
-      "Airbnb Newsroom": 1,
-      "ライブドアニュース": 9,
-      "Dellows News": 8,
-      "日本共産党": 4,
-      "小金井市": 2,
+      "ソフトバンク": 8,
+      "日本共産党": 3,
+      "佐賀新聞": 7,
+      "舞台『ハリー・ポッターと呪いの子』": 4,
+      "アーツカウンシル東京": 2,
+      "流山市": 5,
       "菊池市公式ウェブサイト": 3,
-      "テレビ東京": 3,
+      "熊本日日新聞社": 4,
+      "リセマム": 2,
+      "DIVERSITY IN THE ARTS TODAY": 10,
+      "札幌市": 2,
+      "radiko news": 2,
+      "Bunkamura": 2,
+      "テレビ東京": 2,
+      "加古川市": 2,
       "ひたちなか市公式ウェブサイト": 4,
-      "飯能市": 5,
-      "滑川市ホームページ": 2,
-      "福山市ホームページ": 2,
-      "HORIPRO STAGE": 3,
-      "墨田区": 2,
-      "つがる市": 2,
-      "深谷市": 3,
-      "厚木市": 4,
-      "国土交通省": 2,
-      "東京工科大学": 3,
+      "NICT": 5,
+      "アニメ「魔法科高校の劣等生」": 3,
+      "琉球新報デジタル": 7,
+      "YOUよっかいち": 7,
+      "中日新聞Web": 21,
+      "公明新聞電子版プラス": 8,
+      "飯能市": 4,
+      "映画.com": 9,
+      "WAM NET": 5,
+      "北海道新聞デジタル": 13,
+      "jig.jp": 1,
+      "愛媛新聞": 7,
+      "福岡市": 3,
+      "ナタリー": 20,
+      "www.tv-tokyo.co.jp": 5,
+      "HelenTech": 3,
+      "フロントロウ": 2,
+      "京都新聞デジタル": 14,
+      "公明党": 36,
+      "ELLEgirl": 2,
+      "静岡新聞DIGITAL": 11,
+      "中国新聞デジタル": 3,
+      "沖縄タイムス社": 9,
+      "朝日新聞厚生文化事業団": 1,
+      "高崎市": 2,
+      "KSBニュース": 5,
+      "東愛知新聞": 3,
+      "日本テレビ": 2,
+      "所沢市": 3,
+      "荘内日報": 3,
+      "福岡市観光情報サイト よかなび": 2,
+      "TABI LABO": 2,
+      "KAB 熊本朝日放送": 3,
+      "SmartNews": 3,
+      "東京工科大学": 2,
       "東広島市": 1,
-      "鹿児島県公式ホームページ": 4,
-      "日本ケアフィット共育機構": 2,
+      "福岡県庁ホームページ": 1,
+      "日本ケアフィット共育機構": 3,
       "富士見市": 1,
       "日本聴力障害新聞": 1,
       "やさしい朝日新聞": 1,
       "sippo": 3,
       "好書好日": 2,
-      "国立障害者リハビリテーションセンター": 100,
-      "ナタリー": 25,
+      "国立障害者リハビリテーションセンター": 58,
       "motion-gallery.net": 5,
       "NiEW": 2,
       "朝日新聞GLOBE＋": 2,
-      "オルタナ": 3,
-      "NHK ONE": 13,
-      "Koubo": 5,
-      "日経ビジネス電子版": 1,
-      "サンスポ": 3,
-      "ぴあエンタメ情報": 5,
+      "オルタナ": 2,
+      "NHK ONE": 17,
+      "日経ビジネス電子版": 2,
+      "サンスポ": 1,
       "tosonline.jp": 1,
-      "中日新聞Web": 19,
-      "エンタメ特化型情報メディア スパイス": 3,
-      "TOHOKU360": 1,
+      "ぴあエンタメ情報": 6,
+      "エンタメ特化型情報メディア スパイス": 4,
+      "TOHOKU360": 2,
       "エントレ": 1,
       "神戸新聞": 3,
       "ENCOUNT": 1,
-      "スポーツTOKYOインフォメーション": 7,
+      "スポーツTOKYOインフォメーション": 11,
       "美術館・アート情報": 1,
-      "シネマトゥデイ": 4,
+      "シネマトゥデイ": 5,
       "hotosena.com": 1,
-      "radiko news": 2,
-      "Fany Magazine": 1,
-      "Bunkamura": 2,
-      "日本テレビ": 2,
-      "DIVERSITY IN THE ARTS TODAY": 9,
-      "琉球新報デジタル": 5,
-      "東日新聞": 1,
-      "au Webポータル": 3,
-      "日本海新聞": 5,
-      "東愛知新聞": 2,
-      "映画.com": 8,
-      "北國新聞": 2,
-      "週刊女性PRIME": 2,
-      "埼玉新聞": 2,
-      "とりネット／鳥取県公式サイト": 2,
-      "nnn.co.jp": 3,
-      "宮内庁": 3,
-      "www.tbsradio.jp": 4,
+      "宮内庁": 2,
+      "コカ･コーラ ボトラーズジャパン株式会社": 2,
+      "TOKYO HEADLINE": 1,
+      "あらたにす": 2,
+      "滋賀報知新聞": 1,
+      "www.tbsradio.jp": 3,
       "JICA - 国際協力機構": 2,
-      "アットプレス": 4,
-      "CINEMA FACTORY": 1,
+      "アットプレス": 3,
       "TBSラジオ": 1,
-      "静岡新聞DIGITAL": 11,
+      "CINEMA FACTORY": 1,
+      "フィールドキャスター": 1,
+      "FNNプライムオンライン": 7,
       "高円寺経済新聞": 1,
       "NCC長崎文化放送": 1,
-      "神戸映画資料館": 1,
+      "モデルプレス": 1,
       "COOL KAGAWA": 1,
+      "ログミーBusiness": 1,
+      "津山朝日新聞社": 1,
       "ファッションプレス": 1,
-      "MOVIE WALKER PRESS": 1,
-      "KADOKAWAオフィシャルサイト": 3,
-      "映画の時間": 1,
-      "キネマ旬報WEB": 2,
-      "CINRA": 5,
+      "甲府経済新聞": 1,
+      "五井平和財団": 1,
+      "映画の時間": 2,
+      "MOVIE WALKER PRESS": 2,
+      "CLASSY.[クラッシィ]": 1,
+      "Pouch［ポーチ］": 1,
+      "ダ・ヴィンチWeb": 7,
+      "THE RIVER": 1,
+      "valuepress": 2,
+      "ねとらぼ": 1,
+      "KADOKAWAオフィシャルサイト": 2,
+      "note": 2,
+      "ウートピ": 1,
+      "PR EDGE": 1,
+      "スクリーンオンライン": 1,
+      "webDICE": 3,
+      "IGN Japan": 1,
+      "otaru-uc.ac.jp": 1,
+      "Japaaan": 1,
+      "NB Press Online": 1,
+      "www.otaru-uc.ac.jp": 1,
+      "キネマ旬報WEB": 1,
+      "cinemacafe.net": 3,
+      "CINRA": 3,
       "British Culture in Japan": 2,
       "SODANE": 1,
-      "滋賀大学": 2,
+      "滋賀大学": 1,
       "マガジン9": 1,
       "横浜日吉新聞": 1,
       "放送ライブラリー公式ページ": 1,
       "本の話": 1,
-      "文春オンライン": 1,
-      "www.hakuhodo.co.jp": 3,
+      "文春オンライン": 2,
+      "www.hakuhodo.co.jp": 2,
       "banger.jp": 1,
       "HTB 北海道テレビ": 2,
-      "valuepress": 1,
-      "webdice.jp": 1,
       "BANGER!!!（バンガー!!!）映画評論・情報サイト": 2,
+      "webdice.jp": 1,
       "ムビコレ": 1,
       "岡山経済新聞": 1,
       "サカエ経済新聞": 1,
-      "ニッキンONLINE": 3,
-      "遠賀町": 2,
+      "ニッキンONLINE": 2,
       "CNET Japan": 1,
-      "Aisin Seiki": 2,
+      "遠賀町": 2,
+      "Aisin Seiki": 1,
       "Zoom": 1,
       "IT Leaders": 1,
-      "Ledge.ai": 1,
       "36Kr Japan": 1,
-      "ZDNET Japan": 1,
-      "知財図鑑": 1,
+      "Ledge.ai": 1,
       "ビジネス+IT": 1,
-      "川口市ホームページ": 2,
-      "WEB防災情報新聞": 6,
+      "ZDNET Japan": 2,
+      "知財図鑑": 1,
+      "WEB防災情報新聞": 7,
+      "川口市ホームページ": 1,
       "土浦市": 1,
-      "カナロコ": 7,
+      "カナロコ": 6,
       "横浜市": 1,
       "わかやま新報": 1,
       "NTT東日本": 1,
-      "国立研究開発法人科学技術振興機構": 1,
       "Peace Winds Japan": 1,
+      "国立研究開発法人科学技術振興機構": 2,
       "www.ryukoku.ac.jp": 1,
-      "東京大学": 1,
       "FTV 福島テレビ": 1,
+      "東京大学": 1,
       "長崎新聞ホームページ": 2,
-      "公明党": 22,
-      "本庄市ホームページ": 1,
       "リスク対策.com": 1,
       "京都府": 1,
-      "徳島新聞デジタル": 2,
+      "徳島新聞デジタル": 1,
       "尾道市": 1,
       "kenoh.com": 2,
-      "兵庫県ホームページ": 1,
-      "Excite エキサイト": 7,
-      "Infoseek": 13,
-      "東信ジャーナル 電子版": 1,
-      "ASATAN": 1,
-      "AGARA 紀伊民報": 2,
+      "兵庫県ホームページ": 2,
       "野々市市ホームページ": 1,
       "燕市": 1,
+      "東信ジャーナル 電子版": 2,
       "福岡ふかぼりメディア ささっとー": 1,
-      "高知県": 3,
-      "東信ジャーナル": 1,
-      "LIGARE（リガーレ）": 1,
-      "Living": 1,
-      "スターバックス ストーリーズ": 1,
-      "法政大学": 1,
-      "京都市": 4,
-      "河内長野市": 2,
-      "丹波新聞": 1,
-      "やしおん": 3,
-      "週刊アスキー": 2,
+      "ニコニコニュース": 5,
       "city.shinagawa.tokyo.jp": 1,
+      "Infoseek": 11,
       "文部科学省": 2,
       "スポーツ庁 Web広報マガジン": 3,
       "静岡県公式ホームページ": 2,
       "船橋市ホームページ": 3,
-      "吹田市公式ウェブサイト": 2,
-      "佐倉市": 2,
-      "所沢市": 2,
+      "吹田市公式ウェブサイト": 1,
+      "佐倉市": 3,
       "港区": 2,
       "那珂市": 1,
       "千葉県公式ホームページ": 4,
@@ -1731,307 +1805,347 @@
       "WEB広報東京都": 2,
       "立命館大学": 1,
       "Olympics": 1,
+      "BBC": 2,
       "足立区": 1,
+      "亀岡市": 4,
       "JTBコーポレートサイト": 2,
       "東京都公式アプリ": 1,
       "和光市公式ホームページ": 2,
       "nippon.com": 3,
+      "Nippon.com": 1,
       "東京都立大学": 1,
-      "日本大学": 2,
-      "ぼ活！": 4,
+      "日本大学": 1,
+      "ぼ活！": 5,
       "笹川スポーツ財団": 1,
-      "スポーツナビ": 2,
-      "アルビレックス新潟 公式サイト": 1,
-      "福祉新聞Web": 5,
-      "Sports for Social": 1,
-      "LOOK 静岡朝日テレビ": 1,
-      "リアルスポーツ": 1,
-      "東海大学": 1,
-      "電気新聞ウェブサイト": 1,
-      "滋賀県": 2,
-      "彦根経済新聞": 4,
-      "TBS DOCS": 1,
-      "MA SPORTS": 1,
-      "KSBニュース": 4,
-      "日本陸上競技連盟公式サイト": 1,
-      "JFA": 1,
-      "山形新聞": 2,
-      "上毛新聞電子版": 3,
-      "ＫＴＳ鹿児島テレビ": 1,
       "プライドハウス東京": 1,
-      "早稲田スポーツ新聞会": 1,
-      "スポーツ報知": 1,
-      "デーリー東北": 1,
-      "上越妙高タウン情報": 1,
-      "秋田魁新報電子版": 3,
-      "ゴムタイムス": 1,
-      "Paraphoto": 1,
-      "sannichi.co.jp": 1,
-      "ニコニコニュース": 5,
-      "F−SPO": 1,
-      "公明新聞電子版プラス": 5,
+      "アルビレックス新潟 公式サイト": 1,
+      "福祉新聞Web": 4,
+      "Sports for Social": 1,
+      "スポーツナビ": 1,
+      "滋賀県": 3,
+      "group.ntt": 1,
+      "茨城大学": 1,
+      "TBS DOCS": 1,
+      "JFA": 3,
+      "早稲田大学": 2,
+      "TEAM BEYOND": 1,
+      "島津製作所": 1,
+      "九州産業大学": 1,
+      "ニッポン放送 ラジオAM1242+FM93": 1,
+      "www.miyagi-fa.com": 1,
+      "寝屋川市": 1,
+      "アシックス コーポレートサイト": 1,
+      "神奈川県ホームページ": 1,
+      "亜細亜大学": 1,
+      "ウォーカープラス": 4,
+      "QAB 琉球朝日放送": 2,
+      "ABEMA": 3,
+      "埼玉新聞": 1,
+      "UQライフ": 2,
+      "TVer": 7,
       "khb東日本放送": 1,
       "時事メディカル": 2,
       "たまひよ": 3,
-      "南海日日新聞": 2,
+      "日経メディカル": 1,
+      "山本博司": 5,
+      "nnn.co.jp": 3,
+      "with class": 1,
+      "婦人公論.jp": 2,
+      "LEE": 1,
+      "南海日日新聞": 1,
+      "前橋市": 2,
+      "熊本市公式サイト": 2,
       "越谷市ホームページ": 1,
-      "YOUよっかいち": 5,
+      "大分県ホームページ": 1,
+      "函館市": 3,
+      "龍ケ崎市": 1,
       "鶴ヶ島市": 1,
-      "愛媛新聞": 4,
-      "信濃毎日新聞デジタル": 1,
       "ふじみ野市": 2,
       "岡崎市公式ホームページ": 1,
       "アメーバブログ": 1,
-      "福島市公式ホームページ": 1,
-      "焼津市": 1,
       "電波タイムズ": 1,
-      "日高市ホームページ": 1,
-      "福島県ホームページ": 1,
-      "交野市": 1,
+      "信濃毎日新聞デジタル": 1,
       "北海道ニュースリンク": 1,
+      "山陰中央新報デジタル": 2,
+      "GMOインターネットグループ株式会社": 1,
+      "福島市公式ホームページ": 2,
+      "焼津市": 2,
+      "十勝毎日新聞": 2,
+      "福島県ホームページ": 1,
+      "ドリームニュース": 1,
+      "交野市": 1,
       "本巣市": 1,
+      "高知県": 2,
       "天理市": 1,
       "鳩山町ホームページ": 1,
       "宍粟市": 1,
       "倉吉市": 1,
-      "大分市": 1,
+      "河内長野市": 1,
       "江別市": 2,
+      "大分市": 1,
       "株式会社グラファー": 1,
       "養父市": 1,
-      "山陰中央新報デジタル": 3,
       "加須市": 1,
-      "荒川区公式サイト": 2,
+      "荒川区公式サイト": 1,
       "根室市": 1,
-      "近江八幡市": 2,
-      "Helpfeel Inc.": 1,
+      "www.city.shinagawa.tokyo.jp": 6,
       "千代田区": 2,
       "千代田区ホームページ": 2,
-      "自由民主党": 2,
-      "北海道北広島市": 1,
+      "北海道北広島市": 2,
       "稲敷市ホームページ": 1,
-      "明石市": 2,
+      "自由民主党": 2,
       "NTTドコモ": 3,
       "萩市ホームページ": 1,
-      "www.j-wave.co.jp": 1,
       "Shionogi Inc.": 1,
       "小樽市": 1,
       "琉球銀行": 1,
       "藤井寺市": 1,
-      "Kirin Holdings Company, Limited": 1,
       "電通報": 1,
+      "ケータイ Watch": 4,
       "alterna.co.jp": 2,
       "医薬通信社": 1,
       "いきものがかり OFFICIAL WEBSITE": 1,
-      "ITmedia": 4,
+      "ITmedia": 3,
       "AdverTimes.（アドタイ） by 宣伝会議": 1,
       "KDDI ニュースルーム": 1,
-      "観光経済新聞": 2,
-      "マイナビニュース": 2,
-      "日経CNBC online": 22,
+      "上毛新聞電子版": 5,
+      "www.j-wave.co.jp": 1,
+      "やしおん": 1,
+      "観光経済新聞": 1,
+      "マイナビニュース": 3,
+      "日経CNBC online": 21,
       "元町映画館": 2,
       "歌舞伎美人": 1,
-      "松竹株式会社": 7,
-      "アニメ「魔法科高校の劣等生」": 1,
+      "松竹株式会社": 16,
+      "HORIPRO STAGE": 2,
       "TBSテレビ": 3,
-      "horipro-stage.jp": 1,
+      "horipro-stage.jp": 3,
       "東映株式会社": 1,
       "Billboard JAPAN": 1,
       "Capcom": 1,
       "KEK｜高エネルギー加速器研究機構": 2,
       "映画すみっコぐらし": 1,
       "円谷ステーション": 1,
-      "窓の杜": 3,
-      "Chosunbiz": 1,
+      "厚木市": 3,
+      "FC東京オフィシャルホームページ": 1,
+      "ASCII.jp": 1,
       "CGinterest": 1,
+      "Chosunbiz": 1,
       "柏市": 1,
       "茨木市": 1,
       "三郷市": 1,
-      "FC東京オフィシャルホームページ": 1,
+      "国土交通省": 1,
       "株式会社トラストバンク": 1,
-      "BBC": 1,
       "Microsoft": 5,
-      "axismag.jp": 1,
       "INTERNET Watch": 1,
-      "クラウド Watch": 1,
-      "日経クロステック": 1,
+      "axismag.jp": 1,
+      "GIGAZINE": 3,
       "UMKテレビ宮崎": 2,
-      "Samsung Magazine": 1,
-      "Wotpack.ru": 1,
       "山口新聞 電子版": 1,
       "やまがたぐらし": 1,
-      "市民タイムス": 2,
+      "市民タイムス": 1,
       "サガテレビ": 1,
       "FITNESS LOVE": 2,
       "LAWSON": 1,
+      "京都市": 2,
       "東愛知新聞社": 1,
-      "webDICE": 2,
       "ニュース和歌山": 1,
       "流通ニュース": 1,
       "ニューズウィーク日本版": 1,
-      "ファミリーマート": 2,
+      "ファミリーマート": 1,
       "ryukoku.ac.jp": 1,
-      "BCN Retail": 2,
-      "東洋経済オンライン": 1,
-      "四国新聞": 5,
-      "神戸ジャーナル": 1,
+      "BCN Retail": 1,
+      "東洋経済オンライン": 3,
+      "週刊アスキー": 1,
       "グルメ Watch": 1,
+      "神戸ジャーナル": 1,
+      "四国新聞": 5,
       "advanced by massmedian": 1,
       "さくらんぼテレビ": 1,
       "日本社会事業大学": 1,
-      "福祉新聞": 1,
-      "www.tochigi-tv.jp": 1,
-      "Hint-Pot | ヒントポット": 1,
-      "加古川市": 2,
       "玉野市": 1,
-      "WAM NET": 5,
-      "www.tv-tokyo.co.jp": 1,
-      "フロントロウ": 1,
-      "福岡市": 1,
-      "Digital PR Platform": 1,
-      "奄美新聞": 1,
-      "福岡市観光情報サイト よかなび": 1,
-      "中国新聞デジタル": 3,
-      "荘内日報": 2,
-      "高崎市": 1,
-      "ELLEgirl": 1,
-      "SmartNews": 2,
-      "KAB 熊本朝日放送": 1,
-      "東京都渋谷公園通りギャラリー": 1,
-      "レッツエンジョイ東京": 1,
-      "大竹市ホームページ": 2,
-      "岐阜県公式ホームページ": 2,
+      "滑川市ホームページ": 1,
+      "長泉町": 2,
+      "福山市ホームページ": 2,
+      "大阪府太子町": 1,
+      "高島市": 2,
+      "つがる市": 1,
+      "墨田区": 1,
+      "福岡大学": 1,
+      "西宮市": 1,
       "加東市": 1,
-      "山口県ホームページ": 1,
       "栃木県公式ホームページ": 1,
       "宮崎日日新聞": 1,
-      "鎌倉市": 1,
       "KFB福島放送": 1,
+      "新周南新聞社": 1,
+      "UX新潟テレビ21": 1,
+      "SBIホールディングス": 1,
+      "鎌倉市": 1,
       "伊勢新聞": 1,
       "にいがた経済新聞": 1,
-      "新周南新聞社": 1,
-      "QAB 琉球朝日放送": 3,
-      "サンテレビ": 1,
-      "Kiss PRESS(キッスプレス)": 1,
-      "TOSオンライン": 1,
-      "泉大津市": 1,
+      "山形新聞": 1,
+      "近江八幡市": 2,
+      "高槻市ホームページ": 1,
+      "Science Portal": 1,
+      "陸前高田市ホームページ": 1,
       "西東京市": 1,
-      "www.city.yao.osaka.jp": 1,
-      "袋井市": 2,
+      "深谷市": 1,
       "利府町": 1,
-      "東浦町": 1,
-      "All About ニュース": 1,
-      "サライ.jp": 1,
-      "北中城村ホームページ": 1,
-      "国立大学法人 岡山大学": 1,
-      "WEBザテレビジョン": 3,
-      "長周新聞": 1,
+      "www.daisen.jp": 1,
+      "西スポWEB OTTO!": 2,
+      "補助金ポータル": 1,
+      "JCP TOKYO": 2,
+      "湘南人": 1,
+      "大崎市": 1,
+      "Honda Global": 1,
+      "国立大学法人群馬大学": 2,
+      "PRESIDENT Online（プレジデントオンライン）": 1,
+      "薬事日報": 1,
+      "共同通信PRワイヤー": 3,
+      "京都民報Web": 1,
+      "株式会社共同通信社": 1,
+      "BigGo ファイナンス": 2,
+      "Gizmodo": 1,
+      "D4P": 1,
+      "関西学院大学": 2,
       "IDEAS FOR GOOD": 1,
-      "ダイヤモンド・オンライン": 1,
-      "東京都教育委員会": 1,
-      "NIE 教育に新聞を": 2,
-      "地域ニュースサイト号外NET": 1,
-      "terukosan.com": 1,
+      "長周新聞": 1,
+      "国立大学法人 岡山大学": 1,
+      "NIE 教育に新聞を": 1,
       "minions.jp": 1,
       "Mrs. GREEN APPLE OFFICIAL SITE": 1,
       "仮面ライダーWEB【公式】": 2,
+      "バンダイナムコピクチャーズ": 1,
       "株式会社K2 Pictures": 1,
+      "movie02.ten-sura.com": 1,
+      "Dtimes": 1,
+      "KAI-YOU": 1,
+      "奈良新聞": 1,
+      "浦安経済新聞": 1,
+      "Mogura VR": 3,
+      "PRONEWS": 1,
+      "山口県ホームページ トップページ": 1,
+      "AppBank": 3,
+      "Brand New Creativity": 2,
+      "PC Watch": 1,
+      "映画『愚か者の身分』": 1,
       "https://hyakuemu-anime.com/": 1,
+      "上越妙高タウン情報": 1,
+      "NEC wisdom": 1,
+      "GUNDAM Official Website": 1,
       "「進撃の巨人」The Final Season": 1,
-      "TOHOシネマズ": 1,
-      "株式会社サンライズ社": 1,
+      "ニュースメディアVOIX": 2,
       "AV Watch": 1,
-      "京都大学": 1,
-      "株式会社図書館流通センター（TRC）": 1,
+      "映画『科捜研の女": 1,
+      "株式会社サンライズ社": 1,
+      "NEC": 1,
+      "堺市": 1,
+      "OVO [オーヴォ]": 1,
+      "Nintendo DREAM WEB": 1,
+      "AIsmiley": 4,
+      "Koubo": 1,
+      "Hint-Pot | ヒントポット": 1,
+      "AFPBB News": 1,
       "鶴岡市": 1,
+      "インナビネット": 1,
+      "日経クロステック Active": 1,
+      "The Medical AI Times": 1,
+      "panora.tokyo": 1,
+      "PANORA": 2,
+      "東京都渋谷公園通りギャラリー": 2,
+      "教育新聞": 1,
+      "サンテレビ": 1,
+      "ハーバー・ビジネス・オンライン": 1,
       "コングラント": 1,
       "全国盲ろう者協会": 5,
       "Mantan Web": 1,
+      "매일경제": 1,
+      "All About ニュース": 1,
       "Mezha.net": 1,
-      "関西学院大学": 1,
+      "秋田魁新報電子版": 2,
+      "小松市": 1,
+      "電気新聞ウェブサイト": 1,
       "YouTube": 6,
-      "HelenTech": 1,
-      "JCP TOKYO": 2,
-      "国立大学法人群馬大学": 1,
-      "AFPBB News": 1,
+      "泉大津市": 1,
+      "逗子葉山経済新聞": 1,
+      "桐生タイムス": 1,
       "www.nnn.co.jp": 2,
-      "TVer": 7,
-      "ABEMA": 2,
+      "北國新聞": 1,
       "デイリースポーツ": 1,
+      "渋谷区": 1,
       "号外NET 杉並区": 1,
+      "全通研NOW!!": 3,
       "日刊ゲンダイDIGITAL": 1,
       "函館イベント情報局": 1,
-      "ニュースメディアVOIX": 1,
+      "糸満市ホームページ": 1,
       "まいどなニュース": 1,
+      "Dialogue for People": 1,
       "スポニチ Sponichi Annex": 1,
       "日本デフバスケットボール協会": 3,
-      "note": 1,
       "LIMO | くらしとお金の経済メディア": 2,
-      "GIGAZINE": 1,
       "IndexBox": 1,
       "慶應義塾": 1,
       "www.chukei-news.co.jp": 1,
-      "Brand New Creativity": 1,
+      "加賀市": 1,
+      "sannichi.co.jp": 1,
       "東海村": 1,
       "奈良新聞デジタル": 1,
-      "AppBank": 1,
+      "生駒市公式ホームページ": 1,
       "岐阜新聞デジタル": 1,
+      "日本海新聞": 1,
       "中部経済新聞": 1,
-      "湘南人": 1,
+      "日田市": 1,
       "東奥日報社": 1,
-      "Science Portal": 1,
-      "伊勢崎市": 1,
-      "十勝毎日新聞": 1,
-      "あらたにす": 1,
+      "彦根経済新聞": 4,
       "hokkaido-np.co.jp": 1,
       "news.yahoo.co.jp": 1,
       "上越タイムス社": 1,
-      "和泉市": 1,
-      "UX新潟テレビ21": 1
+      "和泉市": 1
     },
     "sourceCountsAfter": {
-      "北海道新聞デジタル": 12,
+      "Excite エキサイト": 6,
+      "北海道新聞デジタル": 9,
       "amass": 1,
-      "ニコニコニュース": 3,
+      "ニコニコニュース": 4,
       "UDCast 作品情報": 1,
       "Mantan Web": 1,
       "Dellows News": 7,
       "みみサポみやぎ公式ブログ": 17,
       "イザ！": 2,
-      "NHK": 5,
+      "NHK": 3,
       "東京都聴覚障害者連盟": 6,
-      "福島民報デジタル": 6,
+      "福島民報デジタル": 3,
       "電話リレーサービス": 23,
       "聴力障害者情報文化センター": 10,
       "滋賀県立聴覚障害者センター": 12,
-      "毎日新聞": 18,
+      "毎日新聞": 17,
       "聖教新聞": 1,
-      "47NEWS": 10,
-      "日本経済新聞": 5,
+      "47NEWS": 12,
+      "日本経済新聞": 11,
       "北日本新聞webunプラス": 1,
       "下野新聞社": 8,
       "RBB TODAY": 2,
       "NHK ONE": 3,
       "매일경제": 1,
       "All About ニュース": 1,
-      "Koubo": 2,
-      "PR TIMES": 18,
+      "Koubo": 1,
+      "PR TIMES": 17,
       "ライブドアニュース": 5,
       "選挙ドットコム": 10,
       "山陽新聞": 14,
-      "朝日新聞": 28,
+      "朝日新聞": 29,
       "沖縄聴覚障害者情報センター": 10,
-      "Excite エキサイト": 5,
-      "西日本新聞me": 6,
+      "西日本新聞me": 5,
       "NEWSjp": 1,
       "Infoseek": 7,
-      "読売新聞": 22,
+      "読売新聞": 20,
       "東京都立大学": 1,
       "山口新聞 電子版": 1,
       "高知新聞": 2,
       "京都新聞デジタル": 7,
       "Mezha.net": 1,
-      "佐賀新聞": 5,
-      "秋田魁新報電子版": 3,
+      "佐賀新聞": 4,
+      "秋田魁新報電子版": 2,
       "日本デフ水泳協会": 7,
       "東京工科大学": 1,
       "幸手市": 2,
@@ -2040,62 +2154,62 @@
       "全国手話研修センター": 10,
       "札幌聴覚障害者協会": 7,
       "電気新聞ウェブサイト": 1,
-      "静岡新聞DIGITAL": 5,
-      "時事ドットコム": 4,
+      "静岡新聞DIGITAL": 4,
+      "時事ドットコム": 5,
       "鹿児島県視聴覚障害者情報センター": 9,
       "亀岡市": 2,
       "UDCast": 3,
       "YouTube": 6,
       "HelenTech": 1,
       "東京新聞": 6,
-      "日テレNEWS NNN": 13,
-      "公明新聞電子版プラス": 4,
+      "日テレNEWS NNN": 11,
+      "公明新聞電子版プラス": 5,
       "日本財団電話リレーサービス": 2,
       "www.city.shinagawa.tokyo.jp": 6,
       "JCP TOKYO": 2,
       "泉大津市": 1,
-      "宮城県": 1,
+      "宮城県": 2,
       "目黒区": 1,
       "逗子葉山経済新聞": 1,
       "city.shinagawa.tokyo.jp": 1,
-      "国立大学法人群馬大学": 1,
-      "Yahoo!ニュース": 21,
+      "国立大学法人群馬大学": 2,
+      "Yahoo!ニュース": 23,
       "桐生タイムス": 1,
       "さくらんぼテレビ": 1,
-      "FNNプライムオンライン": 9,
+      "FNNプライムオンライン": 4,
       "AFPBB News": 1,
       "NHKニュース": 4,
       "QAB 琉球朝日放送": 1,
       "www.nnn.co.jp": 2,
       "北國新聞": 1,
-      "熊本日日新聞社": 2,
+      "熊本日日新聞社": 3,
       "TVer": 7,
       "SmartNews": 2,
       "ABEMA": 2,
       "ｄメニューニュース": 4,
       "デイリースポーツ": 1,
-      "福井新聞社": 6,
+      "福井新聞社": 5,
       "南日本新聞": 2,
       "渋谷区": 1,
-      "Palabra": 4,
+      "Palabra": 3,
       "号外NET 杉並区": 1,
-      "全通研NOW!!": 10,
+      "全通研NOW!!": 3,
       "全日本難聴者・中途失聴者団体連合会": 15,
       "日刊ゲンダイDIGITAL": 1,
-      "愛媛新聞": 4,
+      "愛媛新聞": 5,
       "元町映画館": 1,
       "函館イベント情報局": 1,
       "cinemacafe.net": 1,
       "スポーツTOKYOインフォメーション": 1,
-      "TBS NEWS DIG": 17,
-      "早稲田大学": 1,
-      "ニュースメディアVOIX": 1,
+      "TBS NEWS DIG": 12,
+      "早稲田大学": 2,
+      "ニュースメディアVOIX": 2,
       "WAM NET": 2,
       "糸満市ホームページ": 1,
       "まいどなニュース": 1,
-      "前橋市": 2,
+      "前橋市": 1,
       "BANGER!!!（バンガー!!!）映画評論・情報サイト": 2,
-      "Dialogue for People": 2,
+      "Dialogue for People": 1,
       "スポニチ Sponichi Annex": 1,
       "日本デフバスケットボール協会": 3,
       "note": 1,
@@ -2107,7 +2221,7 @@
       "山本博司": 1,
       "motion-gallery.net": 2,
       "鹿児島県公式ホームページ": 1,
-      "タウンニュース": 3,
+      "タウンニュース": 10,
       "www.chukei-news.co.jp": 1,
       "兵庫県立聴覚障害者情報センター": 31,
       "加賀市": 1,
@@ -2121,122 +2235,121 @@
       "四国新聞": 3,
       "北海道聴覚障がい者情報センター": 5,
       "奈良新聞デジタル": 1,
-      "AppBank": 1,
+      "AppBank": 2,
       "生駒市公式ホームページ": 1,
       "琉球新報デジタル": 3,
       "岐阜新聞デジタル": 1,
-      "日本海新聞": 5,
-      "山陰中央新報デジタル": 2,
+      "日本海新聞": 1,
+      "山陰中央新報デジタル": 1,
       "AERA DIGITAL": 1,
-      "nnn.co.jp": 3,
+      "nnn.co.jp": 2,
       "中部経済新聞": 1,
       "流山市": 2,
       "FITNESS LOVE": 2,
       "日田市": 1,
-      "上毛新聞電子版": 2,
+      "上毛新聞電子版": 4,
       "湘南人": 1,
-      "沖縄タイムス社": 3,
+      "沖縄タイムス社": 4,
       "日経CNBC online": 1,
       "東奥日報社": 1,
       "近江八幡市": 1,
       "Science Portal": 1,
-      "長泉町": 1,
       "伊勢崎市": 1,
+      "長泉町": 1,
       "袋井市": 1,
       "十勝毎日新聞": 1,
+      "あらたにす": 1,
       "スポーツナビ": 1,
       "彦根経済新聞": 4,
-      "あらたにす": 1,
       "hokkaido-np.co.jp": 1,
       "news.yahoo.co.jp": 1,
       "上越タイムス社": 1,
-      "産経ニュース": 7,
+      "産経ニュース": 4,
       "和泉市": 1,
       "熊本市公式サイト": 2,
       "Chosunbiz": 1,
       "新潟日報": 4,
-      "公明党": 5,
+      "公明党": 10,
       "こここ": 2,
       "全国盲ろう者協会": 5,
       "川口市ホームページ": 1,
       "UX新潟テレビ21": 1,
-      "札幌市": 2,
-      "テレ朝NEWS": 1,
       "両丹日日新聞": 1,
-      "中日新聞Web": 5,
+      "中日新聞Web": 6,
+      "Newscast.jp": 6,
       "tenki.jp": 1,
-      "山陽新聞デジタル｜さんデジ": 1,
-      "MA SPORTS": 1,
+      "PRONEWS": 1,
+      "札幌市": 1,
       "YOUよっかいち": 2,
-      "レッツエンジョイ東京": 1,
-      "デーリー東北": 1,
+      "D4P": 1,
+      "ケータイ Watch": 1,
       "政府広報オンライン": 1,
-      "ナタリー": 8,
+      "ナタリー": 5,
       "radiko news": 1,
-      "全日本ろうあ連盟 YouTube": 5,
-      "茨城大学": 1,
-      "キネマ旬報WEB": 1,
       "新周南新聞社": 1,
+      "jig.jp": 1,
       "東愛知新聞": 1,
-      "石垣市": 3,
+      "www.tv-tokyo.co.jp": 1,
+      "Impress Watch": 1,
       "PHPオンライン": 1,
-      "北九州市": 1,
-      "山口県ホームページ トップページ": 1,
+      "クラウドファンディング - READYFOR": 1,
       "厚木市": 1,
       "信濃毎日新聞デジタル": 1,
-      "オリコンニュース": 1,
-      "西宮市": 2,
-      "日本科学未来館": 1,
+      "オリコンニュース": 2,
+      "ソフトバンク": 2,
+      "BigGo ファイナンス": 1,
       "愛知県公式Webサイト": 1,
       "東広島市": 1,
-      "神奈川県": 2,
+      "神奈川県": 1,
       "内閣府ホームページ": 1,
-      "CINRA": 1,
-      "Digital PR Platform": 1,
+      "文春オンライン": 2,
+      "Dtimes": 1,
       "OHK 岡山放送": 1,
-      "福岡県庁ホームページ": 1,
       "フロントロウ": 1,
-      "Newscast.jp": 2,
       "宮崎日日新聞": 1,
-      "映画.com": 2,
+      "映画.com": 3,
       "ELLEgirl": 1,
+      "インナビネット": 1,
       "全日本ろうあ連盟スポーツ委員会": 2,
       "三豊市": 1,
-      "郡山市": 1,
+      "PRESIDENT Online（プレジデントオンライン）": 1,
       "ONTELOPE note": 2,
-      "吹田市公式ウェブサイト": 1,
       "龍ケ崎市": 1,
       "総務省": 1,
-      "ASCII.jp": 1,
       "加東市": 1,
       "和光市公式ホームページ": 1,
-      "函館市": 4,
-      "やしおん": 1,
       "やまがたぐらし": 1,
       "大津市": 1,
+      "Gizmodo": 1,
       "DIVERSITY IN THE ARTS TODAY": 1,
-      "高槻市ホームページ": 2,
+      "滋賀報知新聞": 1,
+      "西宮市": 1,
+      "共同通信PRワイヤー": 3,
+      "Mogura VR": 2,
       "minions.jp": 1,
       "福岡市観光情報サイト よかなび": 1,
-      "terukosan.com": 1,
       "舞台『ハリー・ポッターと呪いの子』": 1,
       "ナショナルジオグラフィック日本版": 1,
-      "バーチャル高校野球": 1,
-      "カナロコ": 2,
+      "カナロコ": 1,
+      "長崎新聞ホームページ": 1,
       "川崎市": 1,
       "栃木県公式ホームページ": 1,
+      "高槻市ホームページ": 1,
       "兵庫県ホームページ": 1,
       "越谷市ホームページ": 1,
       "HGPI": 2,
-      "早稲田スポーツ新聞会": 1,
       "メディカルドック": 1,
+      "陸前高田市ホームページ": 1,
       "アーツカウンシル東京": 1,
       "日本医師会": 1,
-      "文春オンライン": 1,
+      "薬事日報": 1,
+      "東洋経済オンライン": 1,
+      "株式会社共同通信社": 1,
       "サガテレビ": 1,
-      "山形新聞": 1,
+      "補助金ポータル": 1,
       "リセマム": 1,
       "しかくタイムズ（イベント）": 2,
+      "奈良新聞": 1,
       "愛媛県庁公式ホームページ": 1,
       "西東京市": 1,
       "Science Tokyo": 1,
@@ -2244,45 +2357,43 @@
       "Mrs. GREEN APPLE OFFICIAL SITE": 1,
       "KFB福島放送": 1,
       "滋賀県": 1,
+      "AIsmiley": 1,
       "UMKテレビ宮崎": 1,
-      "小金井市": 1,
+      "The Medical AI Times": 1,
       "丹波篠山市": 1,
-      "とりネット／鳥取県公式サイト": 1,
-      "KSBニュース": 2,
-      "中国新聞デジタル": 3,
-      "国立大学法人 岡山大学": 1,
+      "とりネット／鳥取県公式サイト": 2,
       "仙台市公式ホームページ": 1,
+      "東信ジャーナル 電子版": 1,
       "KAB 熊本朝日放送": 1,
       "静岡県公式ホームページ": 1,
-      "ASATAN": 1,
-      "日本陸上競技連盟公式サイト": 1,
+      "函館市": 3,
+      "中国新聞デジタル": 2,
       "広島県公式ホームページ": 1,
       "高崎市": 1,
       "大田区": 1,
       "日本社会事業大学": 1,
-      "サンスポ": 1,
       "山口県ホームページ": 1,
+      "KSBニュース": 2,
       "KADOKAWAオフィシャルサイト": 1,
       "高島市": 1,
       "荘内日報": 1,
       "大分県ホームページ": 1,
       "CAMPFIRE (キャンプファイヤー)": 1,
       "福岡市": 1,
+      "Tohoku University": 1,
       "埼玉県": 1,
       "アニメ「魔法科高校の劣等生」": 1,
       "JFA": 1,
-      "クラウドファンディング - READYFOR": 1,
-      "スポーツ報知": 1,
       "日本財団": 1
     },
     "categoryCountsVisible": {
+      "general": 114,
       "sports": 39,
-      "general": 113,
       "culture": 16,
       "safety": 24,
-      "local": 58,
-      "medical": 27,
-      "event": 32,
+      "local": 57,
+      "medical": 26,
+      "event": 33,
       "accessibility": 36,
       "technology": 14,
       "education": 11,
@@ -2290,37 +2401,36 @@
       "relay": 59
     },
     "regionCountsVisible": {
+      "chugoku_shikoku": 30,
       "hokkaido_tohoku": 21,
       "chubu": 8,
       "kanto": 15,
       "kyushu_okinawa": 13,
-      "chugoku_shikoku": 29,
       "kinki": 16
     },
     "sourceTypeCountsAfter": {
-      "rss": 838,
-      "social": 10,
-      "official-page": 5,
-      "video": 5
+      "rss": 826,
+      "social": 9,
+      "official-page": 5
     },
     "sourceTierCountsAfter": {
-      "google": 503,
-      "broad": 34,
-      "official": 283,
-      "specialist": 38
+      "google": 504,
+      "broad": 39,
+      "official": 266,
+      "specialist": 31
     },
     "categoryCountsAfter": {
-      "sports": 93,
-      "general": 199,
-      "culture": 45,
+      "general": 191,
+      "sports": 55,
+      "culture": 26,
       "safety": 42,
-      "local": 91,
-      "medical": 32,
-      "event": 73,
-      "accessibility": 121,
-      "technology": 23,
-      "education": 21,
-      "policy": 59,
+      "local": 87,
+      "medical": 61,
+      "event": 70,
+      "accessibility": 120,
+      "technology": 33,
+      "education": 19,
+      "policy": 77,
       "relay": 59
     },
     "duplicateSamples": [
@@ -2332,6 +2442,20 @@
         "keptId": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9acmFwV1RwejN5am9lanctd2pHYnZScGc1dm12a3pjRVM4YnFoOUxrNDBvYmxETEZQTnNsTTlRaW9qS2lnUDRHWDYxQTdVdlkzNWE4Uk1wOE1rZ1dRaDJkT0xJYUJsQ3VNLVFwS0xn?oc=5"
       },
       {
+        "kept": "新潟市が5月から遠隔手話通訳・文字通訳サービスの実証利用 聴覚障害者の来庁時、コミュニケーション手段に",
+        "dropped": "新潟市が5月から遠隔手話通訳・文字通訳サービスの実証利用 聴覚障害者の来庁時、コミュニケーション手段に",
+        "droppedSource": "WAM NET",
+        "droppedId": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9acmFwV1RwejN5am9lanctd2pHYnZScGc1dm12a3pjRVM4YnFoOUxrNDBvYmxETEZQTnNsTTlRaW9qS2lnUDRHWDYxQTdVdlkzNWE4Uk1wOE1rZ1dRaDJkT0xJYUJsQ3VNLVFwS0xn?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9acmFwV1RwejN5am9lanctd2pHYnZScGc1dm12a3pjRVM4YnFoOUxrNDBvYmxETEZQTnNsTTlRaW9qS2lnUDRHWDYxQTdVdlkzNWE4Uk1wOE1rZ1dRaDJkT0xJYUJsQ3VNLVFwS0xn?oc=5"
+      },
+      {
+        "kept": "「手話奉仕員」「手話通訳者」養成講習会の手話サポーターを募集",
+        "dropped": "「手話奉仕員」「手話通訳者」養成講習会の手話サポーターを募集",
+        "droppedSource": "福岡市",
+        "droppedId": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQeC1FMnBldVpGbDVwcDFOdWxFSmw3ZFhmQnhwNkdmMzAxVlI3b0xFQVVUMzZMSlhfRG9pQUk5eVE0S3JrN0xDOUJCRTZuYTFQWGpWTkRhekRFcGItVm1Yb2RwdDJ1LXZlaFRFTm1PY3NNOEw2VFJPeW5pa3ZBOVNCcWhoNHM?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQeC1FMnBldVpGbDVwcDFOdWxFSmw3ZFhmQnhwNkdmMzAxVlI3b0xFQVVUMzZMSlhfRG9pQUk5eVE0S3JrN0xDOUJCRTZuYTFQWGpWTkRhekRFcGItVm1Yb2RwdDJ1LXZlaFRFTm1PY3NNOEw2VFJPeW5pa3ZBOVNCcWhoNHM?oc=5"
+      },
+      {
         "kept": "聴覚障害者の災害時支援用バンダナについて",
         "dropped": "聴覚障害者の災害時支援用バンダナについて",
         "droppedSource": "大津市",
@@ -2339,11 +2463,18 @@
         "keptId": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9VYUJldEl2dnQtMDJGWDA4Ql9BM21oT3MweHFjWDZmRGY1MXZUejFTblpVdVhFQ3I0Tmd5SmpkZENDQ0dhd3Z0dU9DZmkxdnYxN3Y1RThEWUp3VUJ5TWRNdkxtR2dxMlpJR25n?oc=5"
       },
       {
-        "kept": "幸手市手話言語条例",
-        "dropped": "幸手市手話言語条例",
-        "droppedSource": "幸手市",
-        "droppedId": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPdml3Ymx6STdMRzZTeVNETzJyaVhmdnl1N0l3YnZMODh2MW51NDY3QXZTQnlkVkxlcEllMkdhaDc0NjRIM1pjUXZfY0s4NV9YV0RJN1k4QWlxLTNqdDU5LXBoN3hyeW8zbUo5V2JzTmg1MjcycHYyQ0JIUkpwVXZjOWVLa2FmTjA?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPdml3Ymx6STdMRzZTeVNETzJyaVhmdnl1N0l3YnZMODh2MW51NDY3QXZTQnlkVkxlcEllMkdhaDc0NjRIM1pjUXZfY0s4NV9YV0RJN1k4QWlxLTNqdDU5LXBoN3hyeW8zbUo5V2JzTmg1MjcycHYyQ0JIUkpwVXZjOWVLa2FmTjA?oc=5"
+        "kept": "かごしま県民手話言語条例が施行されました",
+        "dropped": "かごしま県民手話言語条例が施行されました",
+        "droppedSource": "鹿児島県公式ホームページ",
+        "droppedId": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZ1pCdUJYeXcwUjl2YXhTVWpTd0NGc1JDNnBUSTd5VkFuNGJoVms2QWRTdG9IS1lXbEJSOUkzWTNoMjlnb1BYV1c0Ny1ZNy1QVE5BaW02NjVkYnVZOFVBaS16MDAxQ2ZpSmVIc1JlRHdjakNZMnhDTmJFNzEzWFVIcQ?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZ1pCdUJYeXcwUjl2YXhTVWpTd0NGc1JDNnBUSTd5VkFuNGJoVms2QWRTdG9IS1lXbEJSOUkzWTNoMjlnb1BYV1c0Ny1ZNy1QVE5BaW02NjVkYnVZOFVBaS16MDAxQ2ZpSmVIc1JlRHdjakNZMnhDTmJFNzEzWFVIcQ?oc=5"
+      },
+      {
+        "kept": "【講座終了】加齢性難聴についての講座（香川県加齢性難聴対策推進事業）について",
+        "dropped": "【講座終了】加齢性難聴についての講座（香川県加齢性難聴対策推進事業）について",
+        "droppedSource": "三豊市",
+        "droppedId": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBIWWNtX3VST0I4VVl5RVZVR1EwWTJ3a0lRLU1DWGYyX2d3TU1ZTHdvNlk1MjJEQXF5SWI4ZG95eWotNlRGUW9xellIYmd6RXVwMGJKX29oS3N5UjJPa0pycjlRc29VYmM0YTduWHFzQlYwVjk4UElRclFOYzhNZU0?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBIWWNtX3VST0I4VVl5RVZVR1EwWTJ3a0lRLU1DWGYyX2d3TU1ZTHdvNlk1MjJEQXF5SWI4ZG95eWotNlRGUW9xellIYmd6RXVwMGJKX29oS3N5UjJPa0pycjlRc29VYmM0YTduWHFzQlYwVjk4UElRclFOYzhNZU0?oc=5"
       },
       {
         "kept": "（一財）日本財団電話リレーサービス視察",
@@ -2353,13 +2484,6 @@
         "keptId": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB2U1BocVB4ZWh3NFVNQVZTS3BUVHJKWjlZX0RGRm9oMFVza0FlWHZfckZUTHpPME5lSUd5aGVFZ1B4SGROMkR4alRYUmxRYkM2VUItZW10ZXlTYVQ1QzhXZlkwSXVaLVlaS3c5OQ?oc=5"
       },
       {
-        "kept": "手話通訳者を設置しています",
-        "dropped": "手話通訳者を設置しています",
-        "droppedSource": "小金井市",
-        "droppedId": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNXzZVNTFHVFlWNlpOOEE2c0MzNWgySHRCQjFCdmx0SXlPZ0FCNEF4Z1pLdlFULXFRQWg5QzROckdBWWoyU2p2Z2dpeG9PZ3pmRjhUV1owVlR2b3VMV1U1MlIyc0wyUFU3aExvWUxxNTU0VzdlSnhxMVEtVWZrRXpGMUliTjE1dXYwcjdKeVRfNWZpdFdZZjlUQ0RjbFlMSjZD?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNXzZVNTFHVFlWNlpOOEE2c0MzNWgySHRCQjFCdmx0SXlPZ0FCNEF4Z1pLdlFULXFRQWg5QzROckdBWWoyU2p2Z2dpeG9PZ3pmRjhUV1owVlR2b3VMV1U1MlIyc0wyUFU3aExvWUxxNTU0VzdlSnhxMVEtVWZrRXpGMUliTjE1dXYwcjdKeVRfNWZpdFdZZjlUQ0RjbFlMSjZD?oc=5"
-      },
-      {
         "kept": "県庁代表電話に手話通訳を介して電話が掛けられるサービスを開始します",
         "dropped": "県庁代表電話に手話通訳を介して電話が掛けられるサービスを開始します",
         "droppedSource": "埼玉県",
@@ -2372,20 +2496,6 @@
         "droppedSource": "埼玉県",
         "droppedId": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9XWFJ6SXR6bEgySy1XWDNvVE1LQXREcXdLNlhJODF2d2JCWDg1bkY2SldRNVZFdW5jRW1IVDE3b3JKTnZtU05KU2diT2RadWRqUkIxajhnQ3ZEb0twMXUtSDRaazdiMmdXTlptcmZYVQ?oc=5",
         "keptId": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9XWFJ6SXR6bEgySy1XWDNvVE1LQXREcXdLNlhJODF2d2JCWDg1bkY2SldRNVZFdW5jRW1IVDE3b3JKTnZtU05KU2diT2RadWRqUkIxajhnQ3ZEb0twMXUtSDRaazdiMmdXTlptcmZYVQ?oc=5"
-      },
-      {
-        "kept": "「手話リンク」サービスの導入について",
-        "dropped": "「手話リンク」サービスの導入について",
-        "droppedSource": "広島県公式ホームページ",
-        "droppedId": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5MLUptY0UydUdzWVdQTkJxOUxibDY2RGpiUUpSMFlRUWVDSHBMaENVNlZ6WkR1OEkwbk1GTzBUZ2tpV3FhWGhDdEM4ZjZIeHdSQ2VnWXJXVFJmeDVER1ZnSDE2Wjl2VWRrVGFHeHVR?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5MLUptY0UydUdzWVdQTkJxOUxibDY2RGpiUUpSMFlRUWVDSHBMaENVNlZ6WkR1OEkwbk1GTzBUZ2tpV3FhWGhDdEM4ZjZIeHdSQ2VnWXJXVFJmeDVER1ZnSDE2Wjl2VWRrVGFHeHVR?oc=5"
-      },
-      {
-        "kept": "「手話の日」に手話文化を感じてみませんか？",
-        "dropped": "「手話の日」に手話文化を感じてみませんか？",
-        "droppedSource": "内閣府ホームページ",
-        "droppedId": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5mQXVod2szY2N0N2VhNlowdFZibDJ2TThiVWFLVDRTdlZJVXRTZUg3Vk96TEF6Y1lWdUpFXy1QS01sSWFmRmVvVWgyekpiU0lkVGM2aFdQOVkxZkZQRU04?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5mQXVod2szY2N0N2VhNlowdFZibDJ2TThiVWFLVDRTdlZJVXRTZUg3Vk96TEF6Y1lWdUpFXy1QS01sSWFmRmVvVWgyekpiU0lkVGM2aFdQOVkxZkZQRU04?oc=5"
       },
       {
         "kept": "9月23日は「手話の日」手話に関する理解促進と普及啓発について|8月",
@@ -2395,20 +2505,6 @@
         "keptId": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5yeUttbm8wYm56SGZMV1l2XzRNOGo3QnpyTUxkLWxSVEV0LUVTRFo0SG9zYVdqMTdMOFZSUUNEYnJIVnpZamxHTE9aRGhUcmV3RGJpbVRoV3ViWng5Vlk0YXB0aWRGOTlXVWhmUmEzSVFzNmlf?oc=5"
       },
       {
-        "kept": "手話によるお問合せ（電話・窓口）について",
-        "dropped": "手話によるお問合せ（電話・窓口）について",
-        "droppedSource": "高島市",
-        "droppedId": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQY1VISGxsbzJQeGR6MzdVa0o2bTZkd296R3JLeHV1Tlg5ZWE0TWE4Mk4zOUVPY2pVTzRNWWJKSkEzbmd4bFRVS0pHUXE1dm4wenR0OW0xY3dkZ3MyZE9Dc2FGeDhVVWZoLXl3bVdoZjhZLTFxWW5oNU9ZblZaamJFdUZCV0dVLTJEUTNpSkdHQQ?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQY1VISGxsbzJQeGR6MzdVa0o2bTZkd296R3JLeHV1Tlg5ZWE0TWE4Mk4zOUVPY2pVTzRNWWJKSkEzbmd4bFRVS0pHUXE1dm4wenR0OW0xY3dkZ3MyZE9Dc2FGeDhVVWZoLXl3bVdoZjhZLTFxWW5oNU9ZblZaamJFdUZCV0dVLTJEUTNpSkdHQQ?oc=5"
-      },
-      {
-        "kept": "手話に関する施策の推進に関する法律（手話施策推進法）について",
-        "dropped": "手話に関する施策の推進に関する法律（手話施策推進法）について",
-        "droppedSource": "大分県ホームページ",
-        "droppedId": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9XX3d2Nzh0a3BmY21jek8xT3RNOVlQRk5DdVZtMUx3WTNpMGFfZ21RX2ZUanI2YUFwQjhTbmMxUU16ZjdlVTZKQzBHdEhxYURXOWNKSE9jWW83dF9XVmtBckRLTmxPdw?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9XX3d2Nzh0a3BmY21jek8xT3RNOVlQRk5DdVZtMUx3WTNpMGFfZ21RX2ZUanI2YUFwQjhTbmMxUU16ZjdlVTZKQzBHdEhxYURXOWNKSE9jWW83dF9XVmtBckRLTmxPdw?oc=5"
-      },
-      {
         "kept": "電話リレーサービス「手話リンク」始めました！",
         "dropped": "電話リレーサービス「手話リンク」始めました！",
         "droppedSource": "亀岡市",
@@ -2416,46 +2512,25 @@
         "keptId": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INWxteUZhc0MxYUhsNVUxX3ZNbFRMQW40TzNRdW1LNDhFYlJBVGtWV1d5NTJTalItU0RQT0tZM3pEWXotek9yN2R1U3RFM21RTnVXN1BmNlR6X2ZRcmZkbHdMblZSdw?oc=5"
       },
       {
-        "kept": "電話リレーサービス「手話リンク」始めました！",
-        "dropped": "電話リレーサービス「手話リンク」始めました！",
-        "droppedSource": "亀岡市",
-        "droppedId": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INWxteUZhc0MxYUhsNVUxX3ZNbFRMQW40TzNRdW1LNDhFYlJBVGtWV1d5NTJTalItU0RQT0tZM3pEWXotek9yN2R1U3RFM21RTnVXN1BmNlR6X2ZRcmZkbHdMblZSdw?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5INWxteUZhc0MxYUhsNVUxX3ZNbFRMQW40TzNRdW1LNDhFYlJBVGtWV1d5NTJTalItU0RQT0tZM3pEWXotek9yN2R1U3RFM21RTnVXN1BmNlR6X2ZRcmZkbHdMblZSdw?oc=5"
+        "kept": "難聴高齢者補聴器購入費助成事業者登録",
+        "dropped": "難聴高齢者補聴器購入費助成事業者登録",
+        "droppedSource": "仙台市公式ホームページ",
+        "droppedId": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNS3l5bnQ5X2RyNlRiN2ppU2Rmc3o3THMtQ3c2bmIxSnJjWkFTWnpfLXZldVcyeUtCd1lYMElYVHZrOFAtd1c4STJSVlJBX1dORVZFRWxLOGVtMnNsdlpLdHpwcVM0SjI4eUswT2x4WDVTLWYwd29xZm9EaWFCOGdnYTc4Vkt0LWpkMlhUVExLY1RzZw?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNS3l5bnQ5X2RyNlRiN2ppU2Rmc3o3THMtQ3c2bmIxSnJjWkFTWnpfLXZldVcyeUtCd1lYMElYVHZrOFAtd1c4STJSVlJBX1dORVZFRWxLOGVtMnNsdlpLdHpwcVM0SjI4eUswT2x4WDVTLWYwd29xZm9EaWFCOGdnYTc4Vkt0LWpkMlhUVExLY1RzZw?oc=5"
       },
       {
-        "kept": "目黒区手話言語条例",
-        "dropped": "目黒区手話言語条例",
-        "droppedSource": "目黒区",
-        "droppedId": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPMk14OTctM0FGWS15ZE1odTQ1eGdaRGtTVk9BTjgtTE1Nc0RPUFNuV3JrYlh4U054NWZNcFByb1gyMlEyUUJnejM5aVhhUzRqd0JwMk1CYVFuLVd0MDlrU1hPR0kzNkVhdzgzM013c2M2Qmh3aWdHb2RkVi1FcnJHSlFYcUgyZm41aFJTblFWaUtWVzVNZFV0cFlaZmtrTkY5NHl3?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPMk14OTctM0FGWS15ZE1odTQ1eGdaRGtTVk9BTjgtTE1Nc0RPUFNuV3JrYlh4U054NWZNcFByb1gyMlEyUUJnejM5aVhhUzRqd0JwMk1CYVFuLVd0MDlrU1hPR0kzNkVhdzgzM013c2M2Qmh3aWdHb2RkVi1FcnJHSlFYcUgyZm41aFJTblFWaUtWVzVNZFV0cFlaZmtrTkY5NHl3?oc=5"
+        "kept": "男女共同参画講演会 「スーパー主夫が長期入院して気がついた！ 暮らしを楽にする 楽家事のススメ」（手話通訳あり）",
+        "dropped": "男女共同参画講演会 「スーパー主夫が長期入院して気がついた！ 暮らしを楽にする 楽家事のススメ」（手話通訳あり）",
+        "droppedSource": "高崎市",
+        "droppedId": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5XRGFQYkNKZDRqX3d3bURNbDZldmVJR1NQQmxXX2JMZTRiazd6QWdpNUNBZmV4Y2VOUEtGV1pDOFpSSy1UYmp3OTMxSmZyTG01YWJVdkxxSk5VcFZ5VWVR?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5XRGFQYkNKZDRqX3d3bURNbDZldmVJR1NQQmxXX2JMZTRiazd6QWdpNUNBZmV4Y2VOUEtGV1pDOFpSSy1UYmp3OTMxSmZyTG01YWJVdkxxSk5VcFZ5VWVR?oc=5"
       },
       {
-        "kept": "前橋市手話言語条例が施行から10周年を迎えました",
-        "dropped": "前橋市手話言語条例が施行から10周年を迎えました",
-        "droppedSource": "前橋市",
-        "droppedId": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBRS3NPZHdFSGlvM3JsTDJlNFlEd1czQ29kQm12cGpYS1VvbHRkZU8zaVJoNERZd0xXeFUtWTJUNlRYWTlUcjR2SGdqLWVCVkRGaHBoWlh4Qm5JckQ5cGo1YVFOOHl4ajJoYk5mZ1IzS2I5ekotRGNMTWIwUFc?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBRS3NPZHdFSGlvM3JsTDJlNFlEd1czQ29kQm12cGpYS1VvbHRkZU8zaVJoNERZd0xXeFUtWTJUNlRYWTlUcjR2SGdqLWVCVkRGaHBoWlh4Qm5JckQ5cGo1YVFOOHl4ajJoYk5mZ1IzS2I5ekotRGNMTWIwUFc?oc=5"
-      },
-      {
-        "kept": "藤枝市手話言語条例／藤枝市ホームページ",
-        "dropped": "藤枝市手話言語条例／藤枝市ホームページ",
-        "droppedSource": "藤枝市",
-        "droppedId": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNVW5IY0lEMmJidjdTRk9KUVM3T0NickktOUJfRncxZF84UDd3M18wZ0RoRC1TVTluUGFLRDVHYzgtRkpGT3ZmWEoycFFndTRtZXlUMG1mb3FUd1AzbzZSRGdKZ0wtbTBnRU5ETnNSU3JmRXFIbDlDNjJFUEJwNFA4RFNfdGtfSnRObmk1Zy1sdUhCQXBFdnpJ?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNVW5IY0lEMmJidjdTRk9KUVM3T0NickktOUJfRncxZF84UDd3M18wZ0RoRC1TVTluUGFLRDVHYzgtRkpGT3ZmWEoycFFndTRtZXlUMG1mb3FUd1AzbzZSRGdKZ0wtbTBnRU5ETnNSU3JmRXFIbDlDNjJFUEJwNFA4RFNfdGtfSnRObmk1Zy1sdUhCQXBFdnpJ?oc=5"
-      },
-      {
-        "kept": "龍ケ崎市手話言語条例",
-        "dropped": "龍ケ崎市手話言語条例",
-        "droppedSource": "龍ケ崎市",
-        "droppedId": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPOHVmYW12VmRfZVhNczRkNW5VWFlxTDdRY05oSlF6LU52bG1URUl4cTdERUllRzQ5clowRU9heGgxNGN3ZmFyd2dkTm4yMGpvRzQ3eHhDNWh0WEJGWE5zUWJleW5EWnYzQUtQai1jMUxJU3F4QVNwYm1FS0Y3OGhfZHVzMEcwaVZtSm9Ta2g5eG1kaFFObHV0aWMtb1NSUFk?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPOHVmYW12VmRfZVhNczRkNW5VWFlxTDdRY05oSlF6LU52bG1URUl4cTdERUllRzQ5clowRU9heGgxNGN3ZmFyd2dkTm4yMGpvRzQ3eHhDNWh0WEJGWE5zUWJleW5EWnYzQUtQai1jMUxJU3F4QVNwYm1FS0Y3OGhfZHVzMEcwaVZtSm9Ta2g5eG1kaFFObHV0aWMtb1NSUFk?oc=5"
-      },
-      {
-        "kept": "熊本市手話言語条例・熊本市手話に関する施策の推進方針・手話施策推進法について",
-        "dropped": "熊本市手話言語条例・熊本市手話に関する施策の推進方針・手話施策推進法について",
-        "droppedSource": "熊本市公式サイト",
-        "droppedId": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE53czBtd0pnS0FkQXMwM1N2UkFia0Q0WE5yYWVLZm5RVlhILVV1UVJ0ODhlRHlsclNiUFM4aGNvM1J3T3RjeUwwZ0hjdkV0VU81U3QtWWhWYVZ2QkpFY3RkRF9B?oc=5",
-        "keptId": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE53czBtd0pnS0FkQXMwM1N2UkFia0Q0WE5yYWVLZm5RVlhILVV1UVJ0ODhlRHlsclNiUFM4aGNvM1J3T3RjeUwwZ0hjdkV0VU81U3QtWWhWYVZ2QkpFY3RkRF9B?oc=5"
+        "kept": "手話動画「9月23日［手話の日］創建100周年の札幌市資料館で手話通訳つきガイドツアー開催」",
+        "dropped": "手話動画「9月23日［手話の日］創建100周年の札幌市資料館で手話通訳つきガイドツアー開催」",
+        "droppedSource": "札幌市",
+        "droppedId": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWFdfV3hJVlF6d1lnQWU3dTliTTdlS2ZqUUVaOWRqZDZrb2M3MFhQSzNKY0ttUnJIYndPWUNEUnZ4bklzZVlOTkw2MVMwODdyNms5UW5kUTNUNFIydXhESHB0SmFkRFoyZ29nMGVNajlMOTZPWGw3NjhqdGpYeHF4MmN3cUl0NmRnTVhzSQ?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWFdfV3hJVlF6d1lnQWU3dTliTTdlS2ZqUUVaOWRqZDZrb2M3MFhQSzNKY0ttUnJIYndPWUNEUnZ4bklzZVlOTkw2MVMwODdyNms5UW5kUTNUNFIydXhESHB0SmFkRFoyZ29nMGVNajlMOTZPWGw3NjhqdGpYeHF4MmN3cUl0NmRnTVhzSQ?oc=5"
       },
       {
         "kept": "手話リンクを導入しました",
@@ -2463,23 +2538,44 @@
         "droppedSource": "川崎市",
         "droppedId": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5oLXJFMEpobGtJWUVGN2lIbmFneUhuNjM0S2VPTXVWMVZKZi1WdEMtZWdLZEJsUlB0Zk13bXhYcnNGc3p1dkZUT1RNMG8tVUdSeEZ5a0ZMM0s5ZUFKZmJUb3U5Yw?oc=5",
         "keptId": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5oLXJFMEpobGtJWUVGN2lIbmFneUhuNjM0S2VPTXVWMVZKZi1WdEMtZWdLZEJsUlB0Zk13bXhYcnNGc3p1dkZUT1RNMG8tVUdSeEZ5a0ZMM0s5ZUFKZmJUb3U5Yw?oc=5"
+      },
+      {
+        "kept": "手話で電話をかける",
+        "dropped": "手話で電話をかける",
+        "droppedSource": "大田区",
+        "droppedId": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9jUjNNSm5KSGo0WmRmQ1hCVEVFN3p4TDF3YnB2Umpkd1ZLRDUxTG4xRHF1cGNlWVlKQTdmUUdPUE9nd2tFbHVsbmJESUlzMjM0YVBrbDNJMUwyYU9POTNlYWVBUGZlU19ZQ0Z0WnBLLVJqd2pyRlY0cQ?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9jUjNNSm5KSGo0WmRmQ1hCVEVFN3p4TDF3YnB2Umpkd1ZLRDUxTG4xRHF1cGNlWVlKQTdmUUdPUE9nd2tFbHVsbmJESUlzMjM0YVBrbDNJMUwyYU9POTNlYWVBUGZlU19ZQ0Z0WnBLLVJqd2pyRlY0cQ?oc=5"
+      },
+      {
+        "kept": "手話で電話をかける",
+        "dropped": "手話で電話をかける",
+        "droppedSource": "大田区",
+        "droppedId": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9jUjNNSm5KSGo0WmRmQ1hCVEVFN3p4TDF3YnB2Umpkd1ZLRDUxTG4xRHF1cGNlWVlKQTdmUUdPUE9nd2tFbHVsbmJESUlzMjM0YVBrbDNJMUwyYU9POTNlYWVBUGZlU19ZQ0Z0WnBLLVJqd2pyRlY0cQ?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9jUjNNSm5KSGo0WmRmQ1hCVEVFN3p4TDF3YnB2Umpkd1ZLRDUxTG4xRHF1cGNlWVlKQTdmUUdPUE9nd2tFbHVsbmJESUlzMjM0YVBrbDNJMUwyYU9POTNlYWVBUGZlU19ZQ0Z0WnBLLVJqd2pyRlY0cQ?oc=5"
+      },
+      {
+        "kept": "【令和8年熊本地震】聴覚障害者災害救援中央本部運営委員長 石橋大吾より ご支援のお願い（手話言語）",
+        "dropped": "【令和8年熊本地震】聴覚障害者災害救援中央本部運営委員長 石橋大吾より ご支援のお願い（手話言語）",
+        "droppedSource": "全日本ろうあ連盟",
+        "droppedId": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBaSkpmc25ITDM5b1JUOElxUmcwUnpQcVJTc3FmTnBJbTdaZmIxakNYYWRNVWE1VTBuVy1CMGJMbGVTZHowMWJRMjJNVjA4a2dBR1Yw?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBaSkpmc25ITDM5b1JUOElxUmcwUnpQcVJTc3FmTnBJbTdaZmIxakNYYWRNVWE1VTBuVy1CMGJMbGVTZHowMWJRMjJNVjA4a2dBR1Yw?oc=5"
+      },
+      {
+        "kept": "黒潮町 大規模災害に備え 遠隔手話通訳の提供会社と協定締結",
+        "dropped": "黒潮町 大規模災害に備え 遠隔手話通訳の提供会社と協定締結",
+        "droppedSource": "NHKニュース",
+        "droppedId": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE52eFB0Q1ZtV0szaFJYLVMyR2JCUS1GaUJ5MjNYMWZhMlkzY2h4U3JPRHluTTlYbk1wczhTUDF3dnhOYUxWaG9JTW5ncHVwOV9Ra0VPc2ZpRzU?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE52eFB0Q1ZtV0szaFJYLVMyR2JCUS1GaUJ5MjNYMWZhMlkzY2h4U3JPRHluTTlYbk1wczhTUDF3dnhOYUxWaG9JTW5ncHVwOV9Ra0VPc2ZpRzU?oc=5"
+      },
+      {
+        "kept": "黒潮町 大規模災害に備え 遠隔手話通訳の提供会社と協定締結",
+        "dropped": "黒潮町 大規模災害に備え 遠隔手話通訳の提供会社と協定締結",
+        "droppedSource": "NHKニュース",
+        "droppedId": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE52eFB0Q1ZtV0szaFJYLVMyR2JCUS1GaUJ5MjNYMWZhMlkzY2h4U3JPRHluTTlYbk1wczhTUDF3dnhOYUxWaG9JTW5ncHVwOV9Ra0VPc2ZpRzU?oc=5",
+        "keptId": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE52eFB0Q1ZtV0szaFJYLVMyR2JCUS1GaUJ5MjNYMWZhMlkzY2h4U3JPRHluTTlYbk1wczhTUDF3dnhOYUxWaG9JTW5ncHVwOV9Ra0VPc2ZpRzU?oc=5"
       }
     ],
     "droppedSamples": [
-      {
-        "title": "厚生労働省にきこえない・きこえにくい者の権利保障に関する要望書を提出",
-        "sourceName": "全日本ろうあ連盟",
-        "score": 4,
-        "signals": []
-      },
-      {
-        "title": "「さよなら京都事務所」全日本ろうあ連盟の「日本聴力障害新聞」編集拠点が半世紀の歴史に幕",
-        "sourceName": "京都新聞デジタル",
-        "score": 3,
-        "signals": [
-          "聴力"
-        ]
-      },
       {
         "title": "天皇、皇后両陛下、「よさこい高知文化祭」開会式に出席 手話で交流 [高知県]",
         "sourceName": "朝日新聞",
@@ -2505,32 +2601,8 @@
         ]
       },
       {
-        "title": "両陛下、高知文化祭に出席 よさこい鑑賞、手話で交流も",
-        "sourceName": "朝日新聞",
-        "score": 3,
-        "signals": [
-          "手話"
-        ]
-      },
-      {
-        "title": "佳子さま「昨日もお話ししましたよね」 手話甲子園優勝の高校生が感じた「形だけではない」手話",
-        "sourceName": "AERA DIGITAL",
-        "score": 3,
-        "signals": [
-          "手話"
-        ]
-      },
-      {
         "title": "伊藤忠、「手話」覚え「手話」で注文 体験型カフェ開設",
         "sourceName": "日刊工業新聞",
-        "score": 3,
-        "signals": [
-          "手話"
-        ]
-      },
-      {
-        "title": "牛汀善行賞大賞に湖南大手話サークル「ハヌルグリム」",
-        "sourceName": "조선일보",
         "score": 3,
         "signals": [
           "手話"
@@ -2561,6 +2633,22 @@
         ]
       },
       {
+        "title": "両陛下、高知文化祭に出席 よさこい鑑賞、手話で交流も",
+        "sourceName": "朝日新聞",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
+        "title": "佳子さま「昨日もお話ししましたよね」 手話甲子園優勝の高校生が感じた「形だけではない」手話",
+        "sourceName": "AERA DIGITAL",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
         "title": "tvOS 27.2、手話対応とスクリーンセーバを改善へ Apple TV 4K向けにRC公開",
         "sourceName": "財経新聞",
         "score": 3,
@@ -2577,8 +2665,56 @@
         ]
       },
       {
-        "title": "【イベント】9/6（日）FC今治戦 ハローキティ×大分県 手話の日PRイベント開催のお知らせ",
-        "sourceName": "大分トリニータオフィシャルサイト",
+        "title": "「手話の方が安上がりかも」フェルスタッペンが無線トラブルに皮肉、レッドブルF1は次期エンジニアを評価",
+        "sourceName": "TopNews",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
+        "title": "手話の国歌 正式版を ろうあ連盟が試行版作り、国に要望",
+        "sourceName": "東京新聞",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
+        "title": "お二人で秋らしいワインレッドを身にまとわれ… 天皇陛下と雅子さまご夫婦で“秋のリンクコーデ”で開会式へ 手話での心温まる交流の瞬間も",
+        "sourceName": "ABEMA TIMES",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
+        "title": "ユーステラグループ、VR手話サポートギミック「Virtual Sign」を「Lumia／ルミア」のサンプル・製品版アバターに同梱",
+        "sourceName": "PR TIMES",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
+        "title": "ノーマライゼーション実現に向けた手話体験型カフェ「shuwa2（シュワシュワ）」運営開始のお知らせ",
+        "sourceName": "伊藤忠商事株式会社",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
+        "title": "マックス・フェルスタッペン レッドブルF1の無線に皮肉「手話の方が安い」",
+        "sourceName": "F1-Gate.com",
+        "score": 3,
+        "signals": [
+          "手話"
+        ]
+      },
+      {
+        "title": "手話の利用拒否、後絶たず 筆談で意思疎通可と誤解 独自言語、情報格差も",
+        "sourceName": "山陽新聞",
         "score": 3,
         "signals": [
           "手話"
@@ -2587,30 +2723,6 @@
       {
         "title": "夏の甲子園で初、開閉会式に手話 聞こえずとも「同じ喜び、感動を」",
         "sourceName": "朝日新聞",
-        "score": 3,
-        "signals": [
-          "手話"
-        ]
-      },
-      {
-        "title": "9月23日は手話の日、やってみませんか 毎年新しい表現、方言も",
-        "sourceName": "朝日新聞",
-        "score": 3,
-        "signals": [
-          "手話"
-        ]
-      },
-      {
-        "title": "手話でつながる新たな学びの場 ユニセフハウスで初の手話ガイドツアーを実施|",
-        "sourceName": "日本ユニセフ協会",
-        "score": 3,
-        "signals": [
-          "手話"
-        ]
-      },
-      {
-        "title": "「手話の方が安上がりかも」フェルスタッペンが無線トラブルに皮肉、レッドブルF1は次期エンジニアを評価",
-        "sourceName": "TopNews",
         "score": 3,
         "signals": [
           "手話"
@@ -2631,17 +2743,31 @@
     },
     "thumbnails": {
       "articles": 459,
-      "attempted": 12,
-      "cached": 447,
-      "acquired": 4,
-      "missing": 7,
-      "failed": 1,
+      "attempted": 19,
+      "cached": 440,
+      "acquired": 3,
+      "missing": 12,
+      "failed": 4,
       "deferred": 0,
       "withImage": 273,
       "googleStopped": false
     }
   },
   "articles": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5BQWUzRGNqVFdnSTEzZ241cUpWSEh0WjlMdVZlN2ZETmNvR0pEN2VsSE5uZlVoOGZkRnpKMnZ3OTBnYXA3SE8yV0VWZF9ldTI0Q3lnU21PdmMycjVrc1I3Y1ZacGgwenk5a2x2MWM4ZHk?oc=5",
+      "title": "ろう者に寄り添う医師育成 手話必修の鳥取大医学部",
+      "summary": "",
+      "sourceName": "Excite エキサイト",
+      "sourceUrl": "http://www.excite.co.jp",
+      "publishedAt": "2026-10-28T22:02:00.000Z",
+      "sourceType": "rss",
+      "category": "general",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "region": "chugoku_shikoku",
+      "prefecture": "鳥取県"
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5aRjhPbmU0a3BwNFRMQXRNM0swclhMekhGaXNDbEVYN21OUHJvRXQyNU1SRzRIcjBVaVY5Unl0YTAxeWdkcWFwMk5JZ3UzTVFSQ2lkSW9qWWs3Zw?oc=5",
       "title": "デフリンピック金の森本悠生、国際大会で銀メダル2個獲得 攻守で成長 デフバドミントン",
@@ -2789,7 +2915,7 @@
     {
       "id": "https://www.tfd.deaf.tokyo/post-6198/",
       "title": "東京2025デフリンピック「活動報告書」について",
-      "summary": "東京2025デフリンピック「活動報告書」について 東京2025デフリンピックは、全国の皆様からの多大なるご協力のもと大成功をおさめ、無事に閉幕してから早くも1年が経過いたしました。 当連盟は、2018年5月20日の評議員…",
+      "summary": "東京2025デフリンピックは、全国の皆様からの多大なるご協力のもと大成功をおさめ、無事に閉幕してから早くも1年が経過いたしました。 当連盟は、2018年5月20日の評議員会での決議以来、8年間にわたり招致活動および推進活…",
       "sourceName": "東京都聴覚障害者連盟",
       "sourceUrl": "https://www.tfd.deaf.tokyo/",
       "publishedAt": "2026-10-28T04:10:57.000Z",
@@ -3147,7 +3273,7 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB6bnFvb1dTU25OMzVKMGpZUFJ6VldDcElQTFFkTzFoa0NBbDFsRHFkRVpKbE1VZklSYXpSX21JWVJFSXhYYzRocFo1aGhIRlNXQW5zcV80LTZDVnJ1WFpVZVZ5ZnN6d0ZqMFhfR1FaTlpCbUthNHZZc2JKYw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBTb29QdmlhdHZSWktZT0lHNEU4UEJhM2hnN1dNTUJLMTlIMG1WUGN0ajRuaGdjaUpxb2xpc2U3dWdwTldCTlBiUjk4bkw4dldZdGJPdg?oc=5",
       "title": "字幕制作ソフトを開発・販売するカンバス 音声認識API「AmiVoice(R)︎ API」との連携に対応",
       "summary": "",
       "sourceName": "ニコニコニュース",
@@ -4625,6 +4751,11 @@
       "publishedAt": "2026-10-20T12:32:22.000Z",
       "sourceType": "rss",
       "category": "event",
+      "thumbnail": {
+        "url": "https://www.tfd.deaf.tokyo/wp-content/uploads/2026/10/5621deba8a18b839c7a4321764bb05e8-2.jpeg",
+        "source": "og:image",
+        "pageUrl": "https://www.tfd.deaf.tokyo/post-6140/"
+      },
       "sourceTier": "official",
       "discoveryMethod": "direct-feed"
     },
@@ -5021,23 +5152,6 @@
       "discoveryMethod": "direct-feed"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE56bkY1eGdQUDMyY1VURVJCa012RlZXWlpIWEdxbTV6RlJHbEFTQWZCTHlSdEFxWkk1T1R3NmRGSkdZLTZUWDh0d291LUdBZEpZNFo3U2dvLWM?oc=5",
-      "title": "佳子さま「全国中途失聴者・難聴者福祉大会」に初出席 手話など通じて懇談 – Quebee キュエビー",
-      "summary": "",
-      "sourceName": "QAB 琉球朝日放送",
-      "sourceUrl": "https://www.qab.co.jp",
-      "publishedAt": "2026-10-18T23:15:42.000Z",
-      "sourceType": "rss",
-      "category": "general",
-      "thumbnail": {
-        "url": "https://www.qab.co.jp/quebee/wp-content/uploads/000541096_640.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.qab.co.jp/quebee/video/000541096/"
-      },
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5ZLXpjSDV1YkxFOElod2EzNWs1amJKYXZXaXFwQjJMcU1lbS1ZVEtQNXJPeGdVb09PQmhtbzJ6VExNNFZIc2hEMzdwTGxpZm1mSDBLa0tianhWQWxp?oc=5",
       "title": "佳子さま 聴覚障害ある人たちとの交流会にご出席 京都",
       "summary": "",
@@ -5091,6 +5205,23 @@
         "url": "https://cdn.mainichi.jp/vol1/2021/02/20/20210220hpr00m070001000q/0c10.jpg?1",
         "source": "og:image",
         "pageUrl": "https://mainichi.jp/maisho/articles/20261019/kei/00s/00s/012000c"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE56bkY1eGdQUDMyY1VURVJCa012RlZXWlpIWEdxbTV6RlJHbEFTQWZCTHlSdEFxWkk1T1R3NmRGSkdZLTZUWDh0d291LUdBZEpZNFo3U2dvLWM?oc=5",
+      "title": "佳子さま「全国中途失聴者・難聴者福祉大会」に初出席 手話など通じて懇談 – Quebee キュエビー",
+      "summary": "",
+      "sourceName": "QAB 琉球朝日放送",
+      "sourceUrl": "https://www.qab.co.jp",
+      "publishedAt": "2026-10-18T20:46:47.000Z",
+      "sourceType": "rss",
+      "category": "general",
+      "thumbnail": {
+        "url": "https://www.qab.co.jp/quebee/wp-content/uploads/000541096_640.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.qab.co.jp/quebee/video/000541096/"
       },
       "sourceTier": "news",
       "discoveryMethod": "google-news"
@@ -6020,7 +6151,7 @@
       "prefecture": "福岡県"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFAxamxDejVLWUlRMlhtRlNlZFIzazBMc2UyQ1RzZFNWQ1Y3cE1WNjJzaXYyVnAyNnBuSkdhNTY1UVpleFN0NHJqY3dlT2x1aTBRYS1mWVEzTQ?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE41RmxEbERqaE9KeXduTmZsZ0JWZjlPOHVXMFBGa00wdWdIRjhWcTU5Sl9DbmpnNXdNX2w0eElacW5vVW1tRXVRSkE2eVQ1dTN4d05GbmlVWXVxb3pQSXV5TVVHYzVzVlU?oc=5",
       "title": "聴覚障害者向け「NET119」不正アクセスで情報漏えいか 石川・能美市消防本部",
       "summary": "",
       "sourceName": "TBS NEWS DIG",
@@ -6031,7 +6162,7 @@
       "thumbnail": {
         "url": "https://newsdig.ismcdn.jp/mwimgs/e/a/1200w/img_ea9d2c69d3e26577ff9460484060ea3b214291.jpg",
         "source": "og:image",
-        "pageUrl": "https://newsdig.tbs.co.jp/articles/-/3015118"
+        "pageUrl": "https://newsdig.tbs.co.jp/articles/mro/3015118?display=1"
       },
       "sourceTier": "news",
       "discoveryMethod": "google-news"
@@ -8112,6 +8243,23 @@
       "discoveryMethod": "google-news"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1kdTlyWHBFNDJDWHpZbFYzMDlYV3ZNb1k5WWQyT2dTRTFvcmxBMHlYdjN4aHlzb01BTlZPN1RXVEZzdmFFV0ppa0hMZE1YVTdOSFQxYko2Nk5seF9GbzhaMl9ORjQ?oc=5",
+      "title": "補聴器の無料相談会 10月13日（火） 多摩区総合庁舎4階で",
+      "summary": "",
+      "sourceName": "タウンニュース",
+      "sourceUrl": "https://www.townnews.co.jp",
+      "publishedAt": "2026-10-02T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "event",
+      "thumbnail": {
+        "url": "https://www.townnews.co.jp/0203/images/a001477636_09.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.townnews.co.jp/0203/2026/10/02/854460.html"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9fVmh1Rm12WEExNll2bGloeTRkS3hCQy1oYmI0SldMSENkNWt4c3NGMV9fVEVvdEpzdWdFbjdvaWpnSF9mcXpVRFJnZTFWcWRidkMwMFM3QVdSaEw2bmtwalJn?oc=5",
       "title": "41年ぶりの群馬県開催、きょう2日からデフ陸上・全国聾学校大会 県勢も13人が闘志",
       "summary": "",
@@ -8131,6 +8279,18 @@
       "prefecture": "群馬県"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBGbFI0NVE4Ujd3U0E3MzQ4c3dCZGNQY25neFkwR1AyZ1F0RGtIRVRQN2xneEhfcXdBS1BaclRObk5JbFE1b0tPM0FJYmRxcmw0Y3NpMjA2eHduX1pOS185Mm1RcE1nc1Rp?oc=5",
+      "title": "【平塚市】平塚市の補聴器購入費助成制度｜65歳以上を対象に最大6万円を助成、予約は10月9日から",
+      "summary": "",
+      "sourceName": "湘南人",
+      "sourceUrl": "https://shonanjin.com",
+      "publishedAt": "2026-10-02T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "policy",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1TcFBqTWpLVi1GNmhTMUdobXNHRWczY1ZFYVA2OC0yYzJpXzFSREI4bUZoMkZhU01GMHhEVGZZQi05S2pIdl8yQmtOdw?oc=5",
       "title": "カトリック広島司教区の白浜司教が退任へ 聴覚障害が悪化 核廃絶へ尽力",
       "summary": "",
@@ -8144,18 +8304,6 @@
         "source": "og:image",
         "pageUrl": "https://www.47news.jp/15026303.html"
       },
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBGbFI0NVE4Ujd3U0E3MzQ4c3dCZGNQY25neFkwR1AyZ1F0RGtIRVRQN2xneEhfcXdBS1BaclRObk5JbFE1b0tPM0FJYmRxcmw0Y3NpMjA2eHduX1pOS185Mm1RcE1nc1Rp?oc=5",
-      "title": "【平塚市】平塚市の補聴器購入費助成制度｜65歳以上を対象に最大6万円を助成、予約は10月9日から",
-      "summary": "",
-      "sourceName": "湘南人",
-      "sourceUrl": "https://shonanjin.com",
-      "publishedAt": "2026-10-02T07:00:00.000Z",
-      "sourceType": "rss",
-      "category": "policy",
       "sourceTier": "news",
       "discoveryMethod": "google-news"
     },
@@ -8472,11 +8620,11 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5lS00ta0h1RjQxeDFSYVNHdjRVTlhobVdGS2JDdTh6blRNRE1GQkYtajNiajdoVHlzSVNCRDJZWnc1TWNfS0duRk9kUkhaREs3ajJUTGdJYXZmSHU2WHo2UnhNSUpvSzlNSWtIRmpWWEE?oc=5",
-      "title": "手話に関する取り組みについて",
+      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPazR2R0xyLWYwOUV5X1NRU254QzdFd0RyQmw1dXh5MEp0eklVZjJkRUlUa2ZxZzgyc0RlMV9NejQ3aEFFWm5WdTZ3ZWM3TnpEYTRLd0M3d0RsWG4yOWhJTi1VeTF6RkV2NnJ0a3A2Y3lqWlpwRGplOEpVS1RsNEh4VXlpemt4ZTNXMkE?oc=5",
+      "title": "手話をやってみよう！",
       "summary": "",
-      "sourceName": "長泉町",
-      "sourceUrl": "https://www.town.nagaizumi.lg.jp",
+      "sourceName": "伊勢崎市",
+      "sourceUrl": "https://www.city.isesaki.lg.jp",
       "publishedAt": "2026-10-01T07:00:00.000Z",
       "sourceType": "rss",
       "category": "general",
@@ -8484,11 +8632,11 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPazR2R0xyLWYwOUV5X1NRU254QzdFd0RyQmw1dXh5MEp0eklVZjJkRUlUa2ZxZzgyc0RlMV9NejQ3aEFFWm5WdTZ3ZWM3TnpEYTRLd0M3d0RsWG4yOWhJTi1VeTF6RkV2NnJ0a3A2Y3lqWlpwRGplOEpVS1RsNEh4VXlpemt4ZTNXMkE?oc=5",
-      "title": "手話をやってみよう！",
+      "id": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5lS00ta0h1RjQxeDFSYVNHdjRVTlhobVdGS2JDdTh6blRNRE1GQkYtajNiajdoVHlzSVNCRDJZWnc1TWNfS0duRk9kUkhaREs3ajJUTGdJYXZmSHU2WHo2UnhNSUpvSzlNSWtIRmpWWEE?oc=5",
+      "title": "手話に関する取り組みについて",
       "summary": "",
-      "sourceName": "伊勢崎市",
-      "sourceUrl": "https://www.city.isesaki.lg.jp",
+      "sourceName": "長泉町",
+      "sourceUrl": "https://www.town.nagaizumi.lg.jp",
       "publishedAt": "2026-10-01T07:00:00.000Z",
       "sourceType": "rss",
       "category": "general",
@@ -8588,6 +8736,23 @@
       "discoveryMethod": "google-news"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
+      "title": "台湾人と日本人が手話でつながる ろう映画監督の思い",
+      "summary": "",
+      "sourceName": "あらたにす",
+      "sourceUrl": "https://allatanys.jp",
+      "publishedAt": "2026-10-01T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "culture",
+      "thumbnail": {
+        "url": "https://allatanys.jp/wp/wp-content/uploads/2026/10/2222.jpg",
+        "source": "og:image",
+        "pageUrl": "https://allatanys.jp/blogs/31463/"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1HdzdWdDlSdG9mX1JGMVNCNlRHZjlVd29iSVZpa1UyOS0xWFBNVlZ4YnNkYkF2NXVYbWQ1SkFIdHpRM19idWt6OGREb3AzU19qVFVEendOelptTHpETWd6bDc0bFJFRWNXaFVmNzdLOFVZaTA?oc=5",
       "title": "【仙台大学】第23回日本デフ陸上競技選手権大会で本学学生・OBが大活躍 学長へ大会結果を報告",
       "summary": "",
@@ -8653,23 +8818,6 @@
         "url": "https://images.keizai.biz/hikone_keizai/photonews/1790828656_b.jpg",
         "source": "og:image",
         "pageUrl": "https://hikone.keizai.biz/photoflash/2606/"
-      },
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
-      "title": "台湾人と日本人が手話でつながる ろう映画監督の思い",
-      "summary": "",
-      "sourceName": "あらたにす",
-      "sourceUrl": "https://allatanys.jp",
-      "publishedAt": "2026-10-01T07:00:00.000Z",
-      "sourceType": "rss",
-      "category": "culture",
-      "thumbnail": {
-        "url": "https://allatanys.jp/wp/wp-content/uploads/2026/10/2222.jpg",
-        "source": "og:image",
-        "pageUrl": "https://allatanys.jp/blogs/31463/"
       },
       "sourceTier": "news",
       "discoveryMethod": "google-news"
@@ -8966,40 +9114,6 @@
         "url": "https://biz.chosun.com/resizer/v2/MU3WGOLBMU3TOM3DHBRTCOBTGM.jpg?auth=8459b820a9887563d1ac528521f21d3d50d7942fce644f88c82ac78ee40ece06&width=1200&height=630&smart=true",
         "source": "og:image",
         "pageUrl": "https://biz.chosun.com/jp/jp-it/2026/09/30/FGI3ZOLILFAJRNDTWBQ6MQMJDU/"
-      },
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE40UjNwRWNRcURJUjI2XzRLTl8wNjhKdmVoUWVCNjJtcTlWYzJSX3VjT3BDOHJMcnFVVUI3a1JfQkJnelNBNG1fTTdSSUdaaG9MMHZqYXppMGVob0xscXc?oc=5",
-      "title": "ろう者が描いたデザイン、コーヒーのドリップバッグに 柏崎市の介護施設が郵便局で販売「利用者の生きがいに」",
-      "summary": "",
-      "sourceName": "新潟日報",
-      "sourceUrl": "https://www.niigata-nippo.co.jp",
-      "publishedAt": "2026-09-30T07:00:00.000Z",
-      "sourceType": "rss",
-      "category": "local",
-      "thumbnail": {
-        "url": "https://niigata-nippo.ismcdn.jp/mwimgs/c/0/1200m/img_c0e25082fe4be77614c679a0a32b4c9d208823.jpg?rd=202610141744",
-        "source": "og:image",
-        "pageUrl": "https://www.niigata-nippo.co.jp/articles/-/915487"
-      },
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMitwJBVV95cUxOcjRkU1ZmcmNZZVM4RktoRFIwX0VSOHEwOVp3Vk1WNzkycThTZjlWUm1VYmxaQ2xWUXYzbXdjNmR1MkVOd2pQNUFuMWJLUThndk9jYWYxOGpSZ1RDUFRITWtBd05RMWJaMTc1anY0REh5N0w4OU9HQXI2SnNPTGhoUThaRzRMRG1oOURGNl9ONEplMFRKaXc4OGtFd184Z3lMeWR2T2x2ZjBDTTVubTE0ZmFZMEtOLTdCTm50WC13cmZNNzQ3eGNKUHpwaXlEYnNNVnJ5Zm41YzVCd2RZeXhIY0J4bjY0TXhqVmhOM3R6amc4Q00ycGpqVTBsMFN1YnEwZHRRcGNWMHRrUml4ZHNmdEJQUXNjVFZBUzRvZ2hqd2tRSEd3YVRad0xSaTdyRTZGYWRSWG1QMA?oc=5",
-      "title": "2026.9.30 高齢者補聴器支給事業について質疑",
-      "summary": "",
-      "sourceName": "公明党",
-      "sourceUrl": "https://www.komei.or.jp",
-      "publishedAt": "2026-09-30T07:00:00.000Z",
-      "sourceType": "rss",
-      "category": "medical",
-      "thumbnail": {
-        "url": "https://www.komei.or.jp/km/nakane-takuya-koto/files/2026/10/fdbb3f15f8f8da385bac29e61013ee6c-1024x654.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.komei.or.jp/km/nakane-takuya-koto/2026/09/30/2026-9-30-%E9%AB%98%E9%BD%A2%E8%80%85%E8%A3%9C%E8%81%B4%E5%99%A8%E6%94%AF%E7%B5%A6%E4%BA%8B%E6%A5%AD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%B3%AA%E7%96%91/"
       },
       "sourceTier": "news",
       "discoveryMethod": "google-news"
@@ -9736,7 +9850,7 @@
   ],
   "publicationReview": {
     "version": "publication-quality-v11",
-    "inputGeneratedAt": "2026-10-28T13:51:18.803Z",
+    "inputGeneratedAt": "2026-10-28T23:46:52.874Z",
     "removed": []
   }
 }

@@ -1,30 +1,31 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-28T13:50:54.556Z",
+  "generatedAt": "2026-10-28T23:46:16.453Z",
   "counts": {
-    "uniqueInputs": 2737,
-    "alreadyPublished": 858,
-    "outsideWindow": 1448,
-    "hardExcluded": 9,
-    "duplicateOfPublished": 100,
+    "uniqueInputs": 2708,
+    "alreadyPublished": 840,
+    "outsideWindow": 1462,
+    "hardExcluded": 20,
+    "duplicateOfPublished": 81,
     "candidateDuplicates": 7,
-    "eligible": 315,
+    "eligible": 298,
     "queued": 40,
-    "deferred": 275
+    "deferred": 258
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 5,
-    "foreign-coverage-review-required": 2,
-    "incidental-disability-nickname": 1
+    "low-value-page": 7,
+    "foreign-coverage-review-required": 3,
+    "incidental-disability-nickname": 6,
+    "market-report": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-28T09:49:36.258Z",
+    "previousGeneratedAt": "2026-10-28T13:50:54.556Z",
     "previousQueued": 40,
     "retained": 40,
     "new": 0,
-    "changed": 1,
-    "unchanged": 39
+    "changed": 0,
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -175,7 +176,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "changed"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
