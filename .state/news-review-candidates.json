@@ -1,32 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-28T09:49:36.258Z",
+  "generatedAt": "2026-10-28T13:50:54.556Z",
   "counts": {
-    "uniqueInputs": 2682,
-    "alreadyPublished": 883,
-    "outsideWindow": 1408,
-    "hardExcluded": 21,
-    "duplicateOfPublished": 82,
-    "candidateDuplicates": 5,
-    "eligible": 283,
+    "uniqueInputs": 2737,
+    "alreadyPublished": 858,
+    "outsideWindow": 1448,
+    "hardExcluded": 9,
+    "duplicateOfPublished": 100,
+    "candidateDuplicates": 7,
+    "eligible": 315,
     "queued": 40,
-    "deferred": 243
+    "deferred": 275
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 7,
-    "foreign-coverage-review-required": 4,
-    "incidental-organization-mention": 1,
-    "incidental-disability-nickname": 5,
-    "market-report": 3
+    "low-value-page": 5,
+    "foreign-coverage-review-required": 2,
+    "incidental-disability-nickname": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-28T09:33:46.610Z",
+    "previousGeneratedAt": "2026-10-28T09:49:36.258Z",
     "previousQueued": 40,
     "retained": 40,
     "new": 0,
-    "changed": 0,
-    "unchanged": 40
+    "changed": 1,
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -171,13 +169,13 @@
     },
     {
       "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
-      "articleHash": "04a46d13d3c185776f2ce0972d536dd7aa9f7630898e3515fa5a74c17eeee428",
+      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
       "publishedAt": "2026-10-27T22:20:05.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "changed"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
