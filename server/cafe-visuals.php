@@ -68,7 +68,7 @@ function cafe_view_tools(bool $overseas,array $filters):string {
 }
 
 function cafe_result_bar(int $total,bool $overseas,array $filters):string {
-    return '<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p><div class="dn-result-actions">'.($overseas?'<span class="dn-time-note">'.cafe_icon('clock').'現地時間</span>':'<a class="dn-result-map" href="/connect/sign-cafe/map/">'.cafe_icon('map').'地図から探す</a>').cafe_view_tools($overseas,$filters).'</div></div>';
+    return '<div class="dn-result-bar"><p class="dn-result" role="status">該当 <strong>'.$total.'</strong>件</p><div class="dn-result-actions">'.($overseas?'<span class="dn-time-note">'.cafe_icon('clock').'現地時間</span>':'').cafe_view_tools($overseas,$filters).'</div></div>';
 }
 
 function cafe_listing_advice(bool $overseas=false):string {

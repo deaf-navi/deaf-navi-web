@@ -48,15 +48,20 @@ try {
   ok(order((await anon('/connect/sign-cafe/?history=1')).text).length===19,'19 including paused history');
   r=await anon('/connect/sign-cafe/hands-place/');
   ok(r.status===200&&r.text.includes('営業状況未確認')&&!r.text.includes('"@type":"Place"'),'unknown operation shown without confirmed Place schema');
-  r=await anon('/connect/sign-cafe/map/');
-  ok(r.status===200&&r.text.includes('全国の手話カフェマップ')&&r.text.includes('位置確認待ち'),'map HTML fallback');
-  ok(!r.text.includes('three.module')&&r.text.includes('atlas-start'),'2D map opt-in');
-  ok((await anon('/connect/sign-cafe/map?x=1')).headers.get('location')==='/connect/sign-cafe/map/?x=1','map slash redirect preserves query');
-  const map=JSON.parse((await anon('/connect/sign-cafe/map/data.json')).text);
-  ok(map.spots.length===14,'14 verified approximate coordinates');
-  ok(!JSON.stringify(map).match(/internal_note|payload|password|biwako-wa|hohoemi|kurashi-cafe|submitter/),'map safe public fields only');
-  ok(map.spots.some(p=>p.slug==='hands-place'&&p.statusCode==='unknown'),'unknown status retained on map');
-  ok((await anon('/directory-sitemap.xml')).text.includes('/connect/sign-cafe/map/'),'map sitemap');
+  for(const path of ['/connect/sign-cafe/map','/connect/sign-cafe/map/','/connect/sign-cafe/map/index.html']){
+    r=await anon(path+'?x=1&dn_client=codex');
+    ok(r.status===301&&r.headers.get('location')==='/connect/sign-cafe/?dn_client=codex','retired map redirects directly and preserves verification label: '+path);
+  }
+  r=await anon('/connect/sign-cafe/map/?dn_client=visitor');
+  ok(r.headers.get('location')==='/connect/sign-cafe/','unknown marker and old query are not forwarded');
+  r=await anon('/connect/sign-cafe/map/data.json');
+  ok(r.status===410&&r.headers.get('content-type').includes('application/json'),'retired map data is gone');
+  ok(JSON.parse(r.text).error==='map-retired'&&!r.text.includes('spots'),'retired map data returns no coordinates');
+  ok(!(await anon('/directory-sitemap.xml')).text.includes('/connect/sign-cafe/map/'),'retired map excluded from directory sitemap');
+  r=await anon('/connect/sign-cafe/');
+  ok(!r.text.includes('/connect/sign-cafe/map/')&&!r.text.includes('dn-result-map'),'domestic list has no retired map entry');
+  r=await anon('/connect/sign-cafe/hands-place/');
+  ok(r.status===200&&r.text.includes('地図・行き方を確認する')&&r.text.includes('google.com/maps'),'individual external directions remain available');
   ok(!(await anon('/connect/sign-cafe/?prefecture=奈良県')).text.includes('class="dn-cafe-row"'),'empty prefecture');
   ok((await anon('/connect/sign-cafe/biwako-wa/')).status===404,'pending details blocked');
   ok(!(await anon('/directory-sitemap.xml')).text.includes('biwako-wa'),'pending sitemap excluded');

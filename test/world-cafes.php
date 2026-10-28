@@ -18,7 +18,7 @@ foreach([['is_chain'=>'maybe'],['world_region'=>'invalid'],['deaf_relation'=>'fa
 for($i=0;$i<500;$i++)check(world_matches(array_replace($base,['name'=>'Store '.$i]),['region'=>'asia','brand'=>'starbucks']));
 require __DIR__.'/../server/views.php';
 require __DIR__.'/../server/public-profile.php';
-require __DIR__.'/../server/map-2d.php';
+require __DIR__.'/../server/ui-links.php';
 $rows=[];for($i=0;$i<105;$i++)$rows[]=array_replace($base,['kind'=>'store','slug'=>'fixture-'.$i,'name'=>'Fixture '.sprintf('%03d',$i)]);
 $_GET=['sort'=>'name'];$html=world_table($rows,['country'=>'MY']);check(substr_count($html,'data-slug=')===50);check(str_contains($html,'country=MY'));check(str_contains($html,'page=2'));check(str_contains($html,'aria-sort="ascending"'));
 $_GET=['sort'=>'name','page'=>'3'];$html=world_table($rows,['country'=>'MY']);check(substr_count($html,'data-slug=')===5);check(str_contains($html,'全105件中 101〜105件'));check(str_contains($html,'fixture-104'));

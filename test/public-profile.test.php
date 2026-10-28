@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require __DIR__.'/../server/core.php';
 require __DIR__.'/../server/views.php';
-require __DIR__.'/../server/map-2d.php';
+require __DIR__.'/../server/ui-links.php';
 require __DIR__.'/../server/public-profile.php';
 function expect(bool $v,string $message):void {if(!$v)throw new RuntimeException($message);}
 $seed=json_decode(file_get_contents(__DIR__.'/../server/seed.json'),true);

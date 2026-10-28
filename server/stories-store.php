@@ -70,8 +70,6 @@ function story_internal(string $url,bool $allowPrivate=false):bool {
 // Related-feed reads also accept existing public archive/navigation pages.
 // Keep editor link validation and private-story checks separate.
 function story_related_page(string $path):bool {
-    // This public route is rendered by PHP, not a cafe record or static file.
-    if($path==='/connect/sign-cafe/map/')return true;
     if(story_internal($path))return true;
     if(!preg_match('#^/(?:sitemap\.html|index-old\.html|connect/|archive/(?:(?:[0-9]{4}-[0-9]{2}|legacy|index)\.html)?)$#D',$path))return false;
     $root=getenv('DEAFNAVI_LOCAL_TEST')==='1'?__DIR__.'/../docs':'/srv/deafnavi/current';

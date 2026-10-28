@@ -51,7 +51,7 @@ try{
  ok(!r.text.includes('<script>bad</script>')&&r.text.includes('&lt;script&gt;'),'stored text escaped');
  ok(!(await anon(path+'?country=GB')).text.includes('data-slug="overseas-fixture"'),'country filter excludes other country');
  ok((await anon('/connect/sign-cafe/')).text.match(/<tbody>[\s\S]*?<\/tbody>/)[0]===domesticBefore,'domestic listing unchanged');
- ok(!(await anon('/connect/sign-cafe/map/')).text.includes('海外検証カフェ'),'Japan map does not show overseas as unlocated');
+ ok((await anon('/connect/sign-cafe/map/')).headers.get('location')==='/connect/sign-cafe/','retired domestic map returns to domestic list');
  r=await anon('/connect/sign-cafe/overseas-fixture/');ok(r.status===200&&r.text.includes('href="/connect/sign-cafe/overseas/">← 一覧へ'),'detail returns overseas');
  r=await admin('/admin/?view=records&kind=cafe&scope=overseas&q='+encodeURIComponent('アメリカ')+'&sort=name&dir=asc');
  ok(r.text.includes('海外検証カフェ')&&r.text.includes('scope=overseas')&&r.text.includes('アメリカ'),'admin country search and region');

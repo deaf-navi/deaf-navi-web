@@ -10,8 +10,7 @@ require __DIR__.'/public-profile.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/admin-dashboard.php';
 require __DIR__.'/access-logs.php';
-require __DIR__.'/map.php';
-require __DIR__.'/map-2d.php';
+require __DIR__.'/ui-links.php';
 require __DIR__.'/starbucks-community.php';
 require __DIR__.'/cafe-regions.php';
 require __DIR__.'/stories.php';
@@ -25,7 +24,6 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
 header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 ini_set('display_errors','0');
 $path=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
-if(in_array($path,['/connect/sign-cafe/map/','/connect/sign-cafe/overseas/'],true))header("Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 // Only the three public lists may load these exact reviewed image URLs.
 // Admin, forms, detail pages and network/script permissions stay unchanged.
 if(in_array($path,['/connect/sign-cafe/','/connect/sign-cafe/overseas/','/connect/sign-cafe/events/'],true)){
@@ -42,6 +40,16 @@ try {
     if(in_array($path,['/connect/sign-cafe/starbucks','/connect/sign-cafe/starbucks/','/connect/sign-cafe/starbucks/index.html'],true)){
         http_response_code(410);header('X-Robots-Tag: noindex, follow');
         echo page('このページの掲載は終了しました','<p>スターバックス専用ページの掲載は終了しました。</p><p><a href="/connect/sign-cafe/">手話カフェ一覧へ</a></p>',$path,'',[],true);exit;
+    }
+    // The retired domestic map has an equivalent browse destination, not a new map.
+    if(in_array($path,['/connect/sign-cafe/map','/connect/sign-cafe/map/','/connect/sign-cafe/map/index.html'],true)){
+        if(!in_array($_SERVER['REQUEST_METHOD'],['GET','HEAD'],true))fail('この操作は利用できません。',405);
+        $marker=$_GET['dn_client']??null;
+        header('Location: /connect/sign-cafe/'.(in_array($marker,['codex','automation'],true)?'?dn_client='.$marker:''),true,301);exit;
+    }
+    if($path==='/connect/sign-cafe/map/data.json'){
+        http_response_code(410);header('Content-Type: application/json; charset=UTF-8');header('X-Robots-Tag: noindex');
+        echo json(['error'=>'map-retired','browseUrl'=>'/connect/sign-cafe/']);exit;
     }
     if(str_ends_with($path,'/index.html') && preg_match('#^/(admin/|submit/|connect/sign-cafe/)#',$path)) {
         header('Location: '.substr($path,0,-10).(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;
@@ -85,7 +93,7 @@ try {
         $_SESSION['csrf']=uid();$_SESSION['receipt']=true;$_SESSION['contact_receipt']=is_cafe_contact($p);$_SESSION['duplicate_notice']=$duplicate;unset($_SESSION['form_issued']);
         header('Location: /submit/?received=1',true,303);exit;
     }
-    if($path==='/admin' || $path==='/submit' || $path==='/connect/sign-cafe' || $path==='/connect/sign-cafe/starbucks' || $path==='/connect/sign-cafe/map' || $path==='/connect/sign-cafe/overseas' || $path==='/connect/sign-cafe/events') {header('Location: '.$path.'/'.(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;}
+    if($path==='/admin' || $path==='/submit' || $path==='/connect/sign-cafe' || $path==='/connect/sign-cafe/starbucks' || $path==='/connect/sign-cafe/overseas' || $path==='/connect/sign-cafe/events') {header('Location: '.$path.'/'.(empty($_SERVER['QUERY_STRING'])?'':'?'.str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING'])),true,308);exit;}
     if($path==='/admin/'&&($_GET['view']??'')==='event-photo')event_tip_photo();
     if($path==='/admin/') {header('X-Robots-Tag: noindex, nofollow');echo admin_page();}
     elseif($path==='/submit/') {
@@ -111,14 +119,12 @@ try {
     elseif($path==='/connect/sign-cafe/events/')echo cafe_events_page();
     elseif($path==='/connect/sign-cafe/overseas/map.json'){header('Content-Type: application/json; charset=UTF-8');echo json(world_map_data());}
     elseif($path==='/connect/sign-cafe/overseas/')echo cafe_list(true);
-    elseif($path==='/connect/sign-cafe/map/')echo map_page_2d();
-    elseif($path==='/connect/sign-cafe/map/data.json'){header('Content-Type: application/json; charset=UTF-8');echo json(map_data());}
     elseif(preg_match('#^/connect/sign-cafe/(starbucks/)?([a-z0-9-]+)/$#D',$path,$m))echo detail($m[2],$m[1]!=='');
     elseif($path==='/directory-sitemap.xml') {
         header('Content-Type: application/xml; charset=UTF-8');
         $all=visible_records();$stores=[];foreach($all as $p)if($p['kind']==='store')$stores[$p['id']]=true;
         echo '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-        echo '<url><loc>'.BASE.'/connect/sign-cafe/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/map/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/overseas/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/events/</loc></url>';
+        echo '<url><loc>'.BASE.'/connect/sign-cafe/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/overseas/</loc></url><url><loc>'.BASE.'/connect/sign-cafe/events/</loc></url>';
         foreach($all as $p){
             if($p['kind']==='event'&&!isset($stores[$p['store_id']]))continue;
             // Match detail() robots: retain the page, but do not submit noindex events.
