@@ -1,30 +1,32 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-28T04:01:30.959Z",
+  "generatedAt": "2026-10-28T04:12:36.532Z",
   "counts": {
-    "uniqueInputs": 2558,
-    "alreadyPublished": 837,
-    "outsideWindow": 1320,
-    "hardExcluded": 12,
-    "duplicateOfPublished": 83,
-    "candidateDuplicates": 8,
-    "eligible": 298,
+    "uniqueInputs": 2584,
+    "alreadyPublished": 872,
+    "outsideWindow": 1326,
+    "hardExcluded": 14,
+    "duplicateOfPublished": 76,
+    "candidateDuplicates": 5,
+    "eligible": 291,
     "queued": 40,
-    "deferred": 258
+    "deferred": 251
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 7,
+    "low-value-page": 2,
     "foreign-coverage-review-required": 3,
-    "incidental-disability-nickname": 1
+    "incidental-organization-mention": 1,
+    "incidental-disability-nickname": 5,
+    "market-report": 2
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-28T00:27:20.528Z",
+    "previousGeneratedAt": "2026-10-28T04:01:30.959Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -165,7 +167,7 @@
       "sourceDomain": "palabra-i.co.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
