@@ -168,3 +168,18 @@ server/public-copy-rules.json を正本に、公開フィールドだけを検�
 2026-10-28のユーザー依頼による既存64件の初回取得は、通常キュレーションCLIと分離したメタデータ取得だけで1回実施する。初回結果を同じ私有キャッシュへ引き継ぎ、定時処理で再取得しない。通常のテキスト無料API比較とその予算・停止条件は変更しない。
 
 画像候補の確認結果は元のURLと実確認日時を持つ `review` として私有台帳に保持する。選択・不採用の判断を同じ候補に対して毎日繰り返さず、URL変更は新しい候補へ戻す。`selected` は選定レコード数、`fetched` は実際に開始した公式ページ取得数、`cached`・`deferred` と区別する。取得失敗や台帳エラーを営業停止と判断せず、画像処理の失敗で既存のテキスト照合・投稿確認を止めない。
+
+
+## 処理範囲と未処理の集計（2026-10-29）
+
+毎朝は `server-curation.mjs --status-only` を最初に1回実行し、私有 `curation-operator-brief.json` を読む。このモードは既存ロックと公開スナップショットを使う期限一覧・保存済み結果の機械集計だけで、API、情報源HTTP、公開DB更新、当日許可更新を行わない。通常CLIの重複起動はしない。詳細が必要な項目だけ `curation-work-status.json` と各元台帳を開く。
+
+`executionStatus=completed` は実行サイクルの終了、`coverageStatus=complete/incomplete/unknown` は対象の確認状態として分ける。未処理は blocked（比較基準・送信不明等）、initial-review（共有・初回登録）、review-required（条件差分・画像等）、source-unavailable、queued、waiting-sourceに分類する。件数の単位は確認項目であり、店舗数・イベント数・API要求数ではない。同日取得済みは未処理へ加算しない。古い/欠損レポートはUNKNOWN。公開判断や確認期限は更新しない。
+
+`firstSeenAt/ageDays/reasons` を保持し、同じ理由のまま残る停止も対応一覧から消さない。新規差分だけで完了にしない。海外は最新掲載数・比較用登録店数・API共有条件を満たす店数・未登録店数・比較している項目（住所/営業時間等）を数える。住所だけの比較を全営業条件の確認と説明しない。確認できない項目や画像/SNSは例外へ残す。
+
+Codexは blocked、期限到来、未登録の初回確認、条件差分を優先し、通常一致や既知の取得不能を毎朝再調査しない。実際に調査して次の発表を待つ対象だけ、私有 `curation-work-decisions.json` のitemsへ key/fingerprint/disposition=waiting-source/reviewedAt/nextCheckAtを記録できる。最大7日、同じfingerprintだけに適用し、内容変更・期限到来時は再び対応一覧へ戻す。blockedをこの記録で隠せない。元の未処理件数・理由・経過日数は残る。
+
+宿泊案内を編集・公開した後は、公開guesthouses.jsonと登録済みbaselineを照合する。比較対象の条件が変わらず公式本文hashも同じ場合のみ、`rebindLodgingPublication`（scripts/rebind-curation-publication.mjs）へ実読した新旧publicationHash/documentHash/baselineHash/checkedAt/conditionsMatchPublicationと根拠メモを渡す。30分以内の実確認・現行公開版・全条件一致が必須。既存evidenceReviewがある項目も実読し、旧記録をbaselineReviewHistoryへ保存する。元のsharingReviewedAt・根拠確認日・拒否キャッシュを保持し、公開reviewedAtは延長しない。条件変更時はこの結び直しを使わず、正式な原文確認・比較値更新を行う。定時処理から自動で結び直さない。
+
+カタログ更新後は既存pathの通常実行を待ち、宿泊のpublication-baseline-review-requiredが解消したこと、API実使用/キャッシュ/原文確認済み再利用/例外を区別して確認する。海外の同日8項目を使い切っている場合は新規登録を翌日以降の巡回へ残し、上限をリセット・手動迂回しない。新規登録だけをAPI実処理済みとは報告しない。通常16要求、共通予算、当日許可、正確な文面の共有確認、結果不明停止は維持する。
