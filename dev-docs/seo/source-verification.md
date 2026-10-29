@@ -180,3 +180,11 @@ main `1339751b23174734bc9529ad9388672bc36ca0f9` の[既存Deploy40530201910](htt
 これはコミットされたソースheadの差分検査であり、公開ブラウザーQAやGSCの除外/登録数ではない。実クリック・query/絞込/表示状態保持、初回4修正の当日公開再読は未完。正式なブラウザー接続口やGSC対象URLがない状態を、新しい観測なしに成功/不具合と断定しない。CONNECT403の反復・別経路迂回、ユーザーPC操作、新規接続/認証、旧setup作業の再開は行わない。
 
 GSC/GA4実測・対象URLの未取得を維持し、メール/外部監査の要約から原因や変更権限を認定しない。今回、新しい公式店舗条件・確認日・営業状態を認定していない。
+
+## 2026-10-29 公開実操作QAと初回4修正の再読
+
+親の正式cloud Chromeによる10/29 08:57 JSTの実測報告を受領。SELF＋東京都・該当1件・カード表示からFAQの#cafesを実クリックし、query/入力/選択/件数/表示をDOM/AXで保持、スクリーンショットで一覧への移動を確認した。SEO-13はこの条件で完了し、全条件/モバイルへ広げない。08:58 JSTにはSELF上野1店の所在地title/OG/self-canonical、公開XML89 locでsubmit除外、HTMLサイトマップ2導線、guide入口から現行guide.htmlへの到達も確認。guideのHTTP301自体と制度本文の監修は未実施。実測URLと詳細範囲は[daily/2026-10-29.md](daily/2026-10-29.md)へ保存する。
+
+同日08:49 JSTの[既存Deploy40789874694](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40789874694)はdeploy job123172146042のUpload/Activate/Verifyまでsuccess、recovery-publicationはskipped。識別付き公開GETはHTTP200/no-store・戻りリンクHTML内存在。main 1f99c60の原本とstaging/current PHP SHA-256の一致も独立照合した。追加配布や新しいサーバー設定読取をこの日次が実行したとはしない。
+
+10/23の不在/Windows DNS拒否は当時の履歴として保持する。現在の親Chrome成功とこのexecutorの接続口不足を区別し、旧設定候補の再実行待ちへ戻さない。GSC/GA4実測・例URL/件数/クロール日は未取得。店舗条件の一次出典・確認日・営業情報は更新していない。
