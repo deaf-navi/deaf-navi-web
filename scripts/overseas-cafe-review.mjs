@@ -84,7 +84,7 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
    submitted+=result.submitted;cached+=result.cached;
    for(const e of result.entries){
     const t=batch.find(t=>t.recordId===e.recordId),value={...e,role:t.role,facilityId:t.facilityId??null,countryCode:t.countryCode??null,
-     comparisonScopes:t.comparisonScopes??{},differences:(e.differences??[]).map(d=>({...d,scope:t.comparisonScopes?.[d.field]??'publication'}))};
+     comparisonScopes:t.comparisonScopes??{},differenceScopes:Object.fromEntries((e.differences??[]).map(field=>[field,t.comparisonScopes?.[field]??'publication']))};
     if(t.role==='candidate'){
      // A candidate baseline is reviewed evidence too. Do not hide a changed
      // extracted condition merely because the facility is not published yet.
