@@ -11,6 +11,18 @@ const lease={version:1,projectName:'shared-free-tier',projectId:project,keySha25
 const items=[{id:'0',topic:'文化',original_title:'Captioned theatre on 2026-10-25',original_summary:'The city theatre offers Japanese captions.'}];
 async function fixture(t,overrides={}){const dir=await mkdtemp(join(tmpdir(),'dn-free-'));t.after(()=>rm(dir,{recursive:true,force:true}));await writeFile(join(dir,'allowance.json'),JSON.stringify({...lease,approvedTextHashes:items.map(publicTextFingerprint),...overrides}));return dir;}
 const result=()=>new Response(JSON.stringify({status:'completed',usage:{input_tokens:100,output_tokens:50},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({items:[{id:'0',title:'字幕付き演劇',summary:'市立劇場で日本語字幕を提供します。'}]})}]}]}),{status:200});
+
+test('request and token caps distinguish no-send deferral and leave usage and locks intact',async t=>{
+ for(const reason of ['daily-request-limit','daily-token-budget']){
+  const dir=await fixture(t,reason==='daily-token-budget'?{dailyBudget:100}:{}),records=reason==='daily-request-limit'?Array.from({length:16},()=>({status:'completed',reservedTokens:1000,inputTokens:1,outputTokens:1,runMode:'routine'})):[];
+  const ledger={version:1,day:lease.utcDay,projectId:project,reserved:records.length*1000,records},path=join(dir,'usage-'+lease.utcDay+'.json');
+  await writeFile(path,JSON.stringify(ledger));let calls=0;
+  const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return result();}});
+  await assert.rejects(run(items),e=>e.code==='complimentary_unavailable'&&e.submissionState==='not-sent'&&e.deferReason===reason);
+  assert.equal(calls,0);assert.deepEqual(JSON.parse(await readFile(path)),ledger);
+  for(const name of ['request.lock','inflight.json'])await assert.rejects(readFile(join(dir,name)),{code:'ENOENT'});
+ }
+});
 test('completed review keeps valid evidence and isolates invalid evidence after recording all usage',async t=>{
  const reviewItems=['one','two'].map(id=>prepareReviewItem({kind:'event',sourceUrl:'https://example.org/'+id,title:'手話交流会',text:'手話交流会を開催します。開催日2026年11月14日。会場は市民会館。'}));
  const dir=await fixture(t,{approvedTextHashes:reviewItems.map(publicTextFingerprint)});

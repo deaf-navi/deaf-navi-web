@@ -7,7 +7,7 @@ import {evidenceHash,prepareReviewItem,overseasFields} from './curation-review-c
 import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
 import {cleanHtml} from '../src/lib/text.mjs';
 import {publicationBindingMatches} from './publication-binding.mjs';
-import {planOverseasRotation,overseasTargetSignature} from './overseas-cafe-rotation.mjs';
+import {planOverseasRotation,overseasTargetSignature,overseasDailyItemLimit,OVERSEAS_BATCH_SIZE,OVERSEAS_TRAVEL_ITEMS} from './overseas-cafe-rotation.mjs';
 import {overseasFieldCoverage} from './curation-review-intake.mjs';
 
 const sha=x=>/^[a-f0-9]{64}$/.test(x??'');
@@ -42,7 +42,8 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
  let previous;try{previous=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
  if(previous?.submittedThisRun===null)stopAfterError=true;
  let decisions=[];try{decisions=JSON.parse(await readFile(join(stateDir,'curation-work-decisions.json'),'utf8')).items??[];}catch(e){if(e.code!=='ENOENT')throw e;}
- const day=new Date(now+9*3600000).toISOString().slice(0,10),signature=evidenceHash(JSON.stringify([3,snapshot,catalog.overseasCafeTargets??[],approvalSignature,decisions]));
+ const dailyItems=overseasDailyItemLimit(catalog);
+ const day=new Date(now+9*3600000).toISOString().slice(0,10),signature=evidenceHash(JSON.stringify([4,dailyItems,snapshot,catalog.overseasCafeTargets??[],approvalSignature,decisions]));
  if(!stopAfterError&&previous?.day===day&&previous.signature===signature)return {...previous,reusedRun:true,submittedThisRun:previous.submittedThisRun===null?null:0,newOrChanged:[]};
  const old=new Map((previous?.entries??[]).map(e=>[e.recordId,e]));
  // A changing allowance cannot reopen the same day's acquisition budget.
@@ -51,15 +52,17 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
  const probes=(catalog.overseasCafeTargets??[]).filter(t=>!plan.selected.includes(t)&&t.role==='candidate'&&t.sourceMode==='html');
  for(const e of plan.entries.filter(e=>e.role==='published'&&e.reasons.includes('sharing-review-required')&&e.sourceUrl))probes.push({...e,sourceMode:'html'});
  const eligible=[...plan.selected,...probes];
- const rotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous,decisions,now});
+ const rotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous,decisions,now,dailyItems});
  const {selected,attempted,deferred}=rotation;
  const entries=plan.entries.filter(e=>!selected.some(t=>probes.includes(t)&&t.recordId===e.recordId)).map(e=>{
   const prior=old.get(e.recordId);
   return !selected.some(t=>t.recordId===e.recordId)&&prior?.sourceUrl===e.sourceUrl&&JSON.stringify(prior.reasons)===JSON.stringify(e.reasons)?{...prior,deferred:true}:e;
  }),sourceCache=new Map(),fetched=new Set(),actuallyAttempted=new Set();
- let submitted=stopAfterError?null:0,cached=0,failed=stopAfterError;
- for(let offset=0;offset<selected.length;offset+=4){
-  const batch=selected.slice(offset,offset+4);attempted.push(...batch.map(t=>t.recordId));
+ let submitted=stopAfterError?null:0,cached=0,failed=stopAfterError,capacityStop=null;
+ for(let offset=0;offset<selected.length;offset+=OVERSEAS_BATCH_SIZE){
+  const batch=selected.slice(offset,offset+OVERSEAS_BATCH_SIZE);
+  if(capacityStop){deferred.push(...batch.map(t=>({recordId:t.recordId,sourceUrl:t.sourceUrl,reason:capacityStop})));continue;}
+  attempted.push(...batch.map(t=>t.recordId));
   if(failed){entries.push(...batch.map(t=>issue(t,'batch-stopped-after-api-error')));continue;}
   const sharedBatch=batch.filter(t=>plan.selected.includes(t));
   for(const t of batch.filter(t=>probes.includes(t))){
@@ -97,7 +100,12 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
     }
     entries.push(value);
    }
-  }catch{failed=true;submitted=null;entries.push(...prepared.tasks.map(t=>issue({...sharedBatch.find(x=>x.recordId===t.recordId),...t},'api-or-cache-unavailable')));}
+  }catch(error){
+   if(error.code==='complimentary_unavailable'&&error.submissionState==='not-sent'&&['daily-request-limit','daily-token-budget','verified-free-headroom'].includes(error.deferReason)){
+    capacityStop=error.deferReason;
+    entries.push(...prepared.tasks.map(t=>({...issue({...sharedBatch.find(x=>x.recordId===t.recordId),...t},capacityStop),status:'deferred'})));
+   }else{failed=true;submitted=null;entries.push(...prepared.tasks.map(t=>issue({...sharedBatch.find(x=>x.recordId===t.recordId),...t},'api-or-cache-unavailable')));}
+  }
  }
  const stamp=new Date(now).toISOString(),newOrChanged=[];
  for(const e of entries){
@@ -113,14 +121,15 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
   if(prior?.fingerprint!==e.fingerprint)newOrChanged.push(e.recordId);
  }
  for(const d of deferred)if(old.has(d.recordId)&&!entries.some(e=>e.recordId===d.recordId))entries.push({...old.get(d.recordId),deferred:true});
- const nextRotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous:{day,attempted,entries},decisions,now:now+86400000});
+ const nextRotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous:{day,attempted,entries},decisions,now:now+86400000,dailyItems});
  const result={version:1,day,signature,generatedAt:stamp,reusedRun:false,selected:selected.length,selection:rotation.selection,attempted,cached,submittedThisRun:submitted,entries,deferred,newOrChanged,
+  capacity:{dailyItems,batchItems:OVERSEAS_BATCH_SIZE,maxBatches:dailyItems/OVERSEAS_BATCH_SIZE,publishedSlots:dailyItems-OVERSEAS_TRAVEL_ITEMS-1,attemptedToday:attempted.length,actuallyAttemptedThisRun:actuallyAttempted.size,remainingToday:Math.max(0,dailyItems-attempted.length),stoppedBy:capacityStop},
   fieldCoverage:overseasFieldCoverage(snapshot,catalog,entries),
   rotationWork:plan.selected.filter(t=>t.role==='published').map(t=>{
    const e=entries.find(e=>e.recordId===t.recordId),d=deferred.find(d=>d.recordId===t.recordId),targetSignature=overseasTargetSignature(t);
    const current=e?.targetSignature===targetSignature,fetchedAt=Date.parse(e?.machineCheckedAt);
    const pending=!(current&&e?.status==='corroborated'&&Number.isFinite(fetchedAt)&&now-fetchedAt<7*86400000);
-   const held=d&&['waiting-source-until','source-retry-after'].includes(d.reason);
+   const held=d&&['waiting-source-until','source-retry-after','daily-request-limit','daily-token-budget','verified-free-headroom'].includes(d.reason);
    return {recordId:t.recordId,targetSignature,pending,actionable:pending&&!held&&(!current||!e?.reasons?.length),
     lastAttemptedAt:e?.lastAttemptedAt??null,holdReason:held?d.reason:current&&e?.reasons?.length?'exception-review-required':null};
   }),

@@ -7,7 +7,10 @@ export function buildCurationProgress({report,previous={},executionStatus,now=Da
  if(!Array.isArray(report?.rotationWork)||!Number.isFinite(generated)||generated>now||now-generated>36*3600000)
   return {...previous,version:1,generatedAt:stamp,state:'unknown',newAlerts:[],resolved:[],reason:'missing-or-stale-rotation-evidence'};
  const observed=executionStatus==='completed'&&day(generated)===day(now),old=new Map((previous.items??[]).map(x=>[x.recordId,x]));
- const pending=report.rotationWork.filter(x=>x.pending),grace=Math.max(3,Math.ceil(pending.length/4)+2);
+ // Older persisted reports used four published slots. Do not retroactively
+ // reinterpret them; use the capacity actually recorded for this run.
+ const slots=Number.isSafeInteger(report.capacity?.publishedSlots)&&report.capacity.publishedSlots>0?report.capacity.publishedSlots:4;
+ const pending=report.rotationWork.filter(x=>x.pending),grace=Math.max(3,Math.ceil(pending.length/slots)+2);
  const items=pending.map(x=>{
   const p=old.get(x.recordId),reset=!p||p.targetSignature!==x.targetSignature||p.lastAttemptedAt!==x.lastAttemptedAt;
   const opportunityDays=reset?[]:[...(p.opportunityDays??[])];

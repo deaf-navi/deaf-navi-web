@@ -33,7 +33,7 @@ export function buildWorkStatus({reports={},previous={},decisions=[],attention=n
   let category=reasons.some(x=>/publication-baseline|structured-baseline|api-or-cache|batch-stopped|account-verification|request-reconciliation/.test(x))?'blocked':
    reasons.some(x=>/sharing-|review-catalog|official-html/.test(x))?'initial-review':
    reasons.some(x=>/unavailable|timeout|fetch-failed/.test(x))?'source-unavailable':
-   reasons.every(x=>/^(daily-source-limit|daily-travel-limit|batch-limit|outside-horizon|source-retry-after|waiting-source-until)$/.test(x))&&reasons.length?'queued':'review-required';
+   reasons.every(x=>/^(daily-source-limit|daily-travel-limit|daily-request-limit|daily-token-budget|verified-free-headroom|batch-limit|outside-horizon|source-retry-after|waiting-source-until)$/.test(x))&&reasons.length?'queued':'review-required';
   const fingerprint=e.fingerprint??hash([e.status,e.disposition,reasons,e.sourceUrl,e.documentHash,e.publicationHash,e.differences??[],...(e.sourceChange?[e.sourceChange.fingerprint]:[])]);
   const prior=old.get(key),initial=prior?.firstSeenAt??e.firstSeenAt??e.changedAt??e.machineCheckedAt??new Date(now).toISOString();
   const firstSeenAt=stamp(initial)!==null&&stamp(initial)<=now?initial:new Date(now).toISOString();
@@ -56,7 +56,7 @@ export function buildWorkStatus({reports={},previous={},decisions=[],attention=n
   modules[module]={state:stale?'stale':'observed',generatedAt:r.generatedAt??null,file,records:r.entries.length,
    confirmed:r.entries.filter(e=>done.has(e.status)).length,
    pending:items.filter(x=>x.module===module).length,selected:r.selected??null,cached:r.cached??null,
-   submittedItems:r.submittedThisRun??null,coverage:r.coverage??null};
+   submittedItems:r.submittedThisRun??null,coverage:r.coverage??null,capacity:r.capacity??null};
   if(module==='tips'){
    modules[module].unreviewed=r.unreviewed??null;modules[module].deferred=r.deferred??null;
    if((r.unreviewed??0)+(typeof r.deferred==='number'?r.deferred:0)>0){unknown.push('tip-identities');modules[module].state='pending-in-admin';}
