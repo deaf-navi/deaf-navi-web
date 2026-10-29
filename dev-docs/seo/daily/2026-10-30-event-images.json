@@ -17,7 +17,18 @@
       "announcementPage": "https://www.oioi-sign.com/event_20261031-2/",
       "artifactImage": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
       "artifactMatchesBody": true,
-      "publicBrowserQa": null
+      "publicBrowserQa": {
+        "status": "passed",
+        "sourceThread": "01a171a1-1825-71f6-bf65-72e393cf502e",
+        "observedAtUTC": [
+          "2026-10-29T23:46:58Z",
+          "2026-10-29T23:47:27Z"
+        ],
+        "eventImageMatchesBody": true,
+        "imageComplete": true,
+        "naturalWidth": 1046,
+        "viewportWidth": 1180
+      }
     },
     {
       "url": "https://deafnavi.com/events/oioi-694b478c545e6e15b5c9/",
@@ -180,7 +191,38 @@
       "publicBrowserQa": null
     }
   ],
-  "publicBrowserQa": null,
+  "publicBrowserQa": {
+    "source": "parent formal cloud Chrome report",
+    "sourceThread": "01a171a1-1825-71f6-bf65-72e393cf502e",
+    "observedAtUTC": [
+      "2026-10-29T23:46:58Z",
+      "2026-10-29T23:47:27Z"
+    ],
+    "observedAtJST": "2026-10-30 08:46:58–08:47:27 JST",
+    "url": "https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/?dn_client=codex",
+    "status": "passed representative URL",
+    "image": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
+    "eventImageMatchesBody": true,
+    "imageComplete": true,
+    "naturalWidth": 1046,
+    "canonical": "https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/",
+    "startDate": "2026-10-31",
+    "endDate": "2026-10-31",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "unknownFieldsAbsent": [
+      "offers",
+      "performer",
+      "organizer"
+    ],
+    "viewportWidth": 1180,
+    "horizontalOverflow": false,
+    "httpStatus": null,
+    "mobileQa": null,
+    "all21LiveUrlsQa": false,
+    "gscWarningResolution": null,
+    "qaTabClosed": true,
+    "settingsChanged": false
+  },
   "executorProductionRequests": 0,
   "gscAffectedUrls": null,
   "gscAffectedCount": null,

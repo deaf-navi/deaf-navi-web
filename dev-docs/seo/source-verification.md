@@ -197,6 +197,8 @@ GSC/GA4実測・対象URLの未取得を維持し、メール/外部監査の要
 
 同一main 111080bのsrc/templates/event-detail.mjsでは本文がevent.thumbnail.urlの画像を表示している一方、Event JSON-LDのimageがなかった。既存の収集側は対象開催回の公式告知から取得した画像を保持し、thumbnailPolicy=omitと48時間鮮度を適用する。PR208はその既存画像の有効なHTTPS URLのみをEvent.imageへ引き継ぐ。新規画像取得・画像生成・代替ロゴの補完は行わない。server/views.phpの手話カフェ専用Eventは対象外。
 
-公開確認対象は https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/?dn_client=codex 。期待するEvent.imageと本文reader-poster.srcは、ともに https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png 。配布成功後に親へ具体URLと期待内容を伝達したが、この記録時点で代表URLの公開DOM/スクリーンショット再読結果は未受領。このexecutorの正式ブラウザー操作口はないため、実公開QAは未完として保存する。生成物の一致や通常Deploy成功を、代表イベントの実表示確認へ置き換えない。
+親作業01a171a1-1825-71f6-bf65-72e393cf502eから、10/30 08:46:58〜08:47:27 JST（10/29 23:46:58〜23:47:27 UTC）の既存正式cloud Chromeによる公開実測報告を受領。https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/?dn_client=codex のAX/DOM/実画面で、Event.imageと本文img.reader-poster.srcはともに https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png と完全一致。画像complete=true/naturalWidth1046、告知画像のaltあり。canonicalはqueryなしの自己URL、Event.startDate/endDate=2026-10-31、EventScheduled。未確認offers/performer/organizerは出力されず、本文の時間/参加費/主催は確認案内のまま。1180px viewportで横はみ出しなし、見出し/開催予定/会場等の表示も確認した。
+
+これは親の独立した実測報告で、このexecutorが同じ生AX/スクリーンショットを再取得したとはしない。代表1URLの限定QAは完了。HTTPステータス・モバイル・全21URLの実表示・GSC警告解消は未確認。QAタブ閉鎖済み、設定/原本変更なし。
 
 画像寸法/Googlebotの実取得/リッチリザルト採用、通知対象と今回の静的Event詳細の対応は未検証。GSC/GA4実測を0・推測値・QA件数へ置換しない。詳細は[daily/2026-10-30.md](daily/2026-10-30.md)を参照。
