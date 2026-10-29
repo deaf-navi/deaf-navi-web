@@ -1,6 +1,7 @@
 import { SITE_URL } from '../../config/site.mjs';
 import { EVENT_COMMUNICATION, EVENT_RECHECK_MS } from '../../config/events.mjs';
 import { escapeHtml as e } from '../lib/text.mjs';
+import { publicUrl } from '../lib/thumbnail-metadata.mjs';
 import { eventPeriod, eventDateLabel, validEvent } from '../lib/events.mjs';
 import { renderReaderPage } from './reader.mjs';
 export const eventDetailPath=event=>`/events/${event.id}/`;
@@ -13,7 +14,8 @@ export function eventDetailState(event,now=Date.now()) {
 }
 export function eventSchema(event,now=Date.now()) {
  if(!validEvent(event)||eventPeriod(event,now)!=='upcoming'||event.prefecture==='オンライン')return null;
- return {'@context':'https://schema.org','@type':'Event',name:event.title,url:new URL(eventDetailPath(event),SITE_URL).href,startDate:event.startDate,endDate:event.endDate||event.startDate,eventStatus:'https://schema.org/EventScheduled',location:{'@type':'Place',name:event.venue,address:{'@type':'PostalAddress',addressRegion:event.prefecture,addressCountry:'JP'}},...(event.description?{description:event.description}:{}),...(event.organizer?{organizer:{'@type':'Organization',name:event.organizer}}:{})};
+ const image=event.thumbnailPolicy==='omit'?null:publicUrl(event.thumbnail?.url);
+ return {'@context':'https://schema.org','@type':'Event',name:event.title,url:new URL(eventDetailPath(event),SITE_URL).href,startDate:event.startDate,endDate:event.endDate||event.startDate,eventStatus:'https://schema.org/EventScheduled',location:{'@type':'Place',name:event.venue,address:{'@type':'PostalAddress',addressRegion:event.prefecture,addressCountry:'JP'}},...(image?.startsWith('https:')?{image}:{}),...(event.description?{description:event.description}:{}),...(event.organizer?{organizer:{'@type':'Organization',name:event.organizer}}:{})};
 }
 export function renderEventDetail(event,{now=Date.now()}={}) {
  if(!validEvent(event))throw new Error('Invalid event detail');
