@@ -4,9 +4,9 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-10-29T04:42:03Z",
-  "sourceGeneratedAt": "2026-10-29T04:42:03Z",
-  "count": 456,
+  "generatedAt": "2026-10-29T05:36:11Z",
+  "sourceGeneratedAt": "2026-10-29T05:36:11Z",
+  "count": 458,
   "language": "ja-JP",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
@@ -118,16 +118,16 @@
   },
   "quality": {
     "version": "publication-quality-v11",
-    "rawCount": 2666,
-    "scoredCount": 2666,
-    "filteredCount": 962,
+    "rawCount": 2687,
+    "scoredCount": 2687,
+    "filteredCount": 1024,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
-    "extraVisibleCount": 56,
+    "extraVisibleCount": 58,
     "extraVisibleCategoryCounts": {
-      "relay": 56
+      "relay": 58
     },
-    "overflowCount": 343,
+    "overflowCount": 394,
     "minScore": 5,
     "categoryCountsVisible": {
       "accessibility": 36,
@@ -141,7 +141,7 @@
       "local": 57,
       "education": 11,
       "policy": 30,
-      "relay": 56
+      "relay": 58
     }
   },
   "counts": {
@@ -157,10 +157,10 @@
       "local": 57,
       "education": 11,
       "policy": 30,
-      "relay": 56
+      "relay": 58
     },
     "byLegacyCategory": {
-      "policy": 146,
+      "policy": 148,
       "medical": 27,
       "general": 128,
       "sports": 39,
@@ -3277,27 +3277,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE10LWxsU3pkRER2RVNqZWVob05qV3M2XzVDd21GMW9FNjRNQWp4VmFkUDJtTkNzOUF4OUh1QzJwTWpraVRXbVE?oc=5",
-      "stableId": "domestic_39d5c412db55e40ee7b5",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE10LWxsU3pkRER2RVNqZWVob05qV3M2XzVDd21GMW9FNjRNQWp4VmFkUDJtTkNzOUF4OUh1QzJwTWpraVRXbVE?oc=5",
-      "title": "AmiVoice APIとTeamLogが技術連携 難聴者の情報保障向上へ",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-19T21:07:57Z",
-      "sourceName": "Dellows News",
-      "sourceURL": "https://news.dellows.jp",
-      "sourceUrl": "https://news.dellows.jp",
-      "sourceType": "rss",
-      "category": "accessibility",
-      "categoryLabel": "情報保障・アクセシビリティ",
-      "legacyCategory": "policy",
-      "thumbnailURL": "https://news.dellows.jp/wp-content/uploads/2026/10/653980_1.jpg",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_39d5c412db55e40ee7b5",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5JOXN0QU1feFRmQmVrNGJhSFVWU2FpcVFNdmZFSFlRVm5ZeHZQWWc2OC1xWE8zODQteXdZZmljckxEOEQ0RzNSTm9Bd29UenZqQVVzcl9EYXJTUQ?oc=5",
       "stableId": "domestic_306dabe133f175ac86d4",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5JOXN0QU1feFRmQmVrNGJhSFVWU2FpcVFNdmZFSFlRVm5ZeHZQWWc2OC1xWE8zODQteXdZZmljckxEOEQ0RzNSTm9Bd29UenZqQVVzcl9EYXJTUQ?oc=5",
@@ -5931,6 +5910,27 @@
       "topicRank": 0
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE10LWxsU3pkRER2RVNqZWVob05qV3M2XzVDd21GMW9FNjRNQWp4VmFkUDJtTkNzOUF4OUh1QzJwTWpraVRXbVE?oc=5",
+      "stableId": "domestic_39d5c412db55e40ee7b5",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE10LWxsU3pkRER2RVNqZWVob05qV3M2XzVDd21GMW9FNjRNQWp4VmFkUDJtTkNzOUF4OUh1QzJwTWpraVRXbVE?oc=5",
+      "title": "AmiVoice APIとTeamLogが技術連携 難聴者の情報保障向上へ",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-09T07:00:00Z",
+      "sourceName": "Dellows News",
+      "sourceURL": "https://news.dellows.jp",
+      "sourceUrl": "https://news.dellows.jp",
+      "sourceType": "rss",
+      "category": "accessibility",
+      "categoryLabel": "情報保障・アクセシビリティ",
+      "legacyCategory": "policy",
+      "thumbnailURL": "https://news.dellows.jp/wp-content/uploads/2026/10/653980_1.jpg",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_39d5c412db55e40ee7b5",
+      "topicRank": 0
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE04czJxYUY1OGZZQS01S3Frd1JtM2dPOG5kUDNaYVVtczFfNmZtdmF6NHNSenBYZ2RoRGNlRmt4TkR0ekxLT3VNbEJlQnRRblBqWjVaWkl2VlQ1SjQ?oc=5",
       "stableId": "domestic_0d83183e6622036270cf",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE04czJxYUY1OGZZQS01S3Frd1JtM2dPOG5kUDNaYVVtczFfNmZtdmF6NHNSenBYZ2RoRGNlRmt4TkR0ekxLT3VNbEJlQnRRblBqWjVaWkl2VlQ1SjQ?oc=5",
@@ -7447,6 +7447,27 @@
       "topicRank": 0
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1MazhTaUhCOU9WUGVTamVTUWljOFBURTFLdFJrTE80RWhkR0RkakFZQ05vVXMyVUlCV0FvZ1JEWUltYUE0OEtsLTNlZ2tsLXl4?oc=5",
+      "stableId": "domestic_394a9a79e88d5d7e0aa9",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1MazhTaUhCOU9WUGVTamVTUWljOFBURTFLdFJrTE80RWhkR0RkakFZQ05vVXMyVUlCV0FvZ1JEWUltYUE0OEtsLTNlZ2tsLXl4?oc=5",
+      "title": "ミニ傘で伝統踊り紹介 米子市 全国盲ろう者大会開幕",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-03T07:00:00Z",
+      "sourceName": "nnn.co.jp",
+      "sourceURL": "https://www.nnn.co.jp",
+      "sourceUrl": "https://www.nnn.co.jp",
+      "sourceType": "rss",
+      "category": "local",
+      "categoryLabel": "地域",
+      "legacyCategory": "local",
+      "thumbnailURL": "https://nihonkai.ismcdn.jp/mwimgs/8/4/-/img_8490a9b9943f6c7b11d8ce08fc335a201841959.jpg",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_394a9a79e88d5d7e0aa9",
+      "topicRank": 0
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBJM0dMZDk2b0xxaVlQdXZZMjRMUFFzaExuOFJjQjc1N3JOUTBhYnhEaW85LXA3Tm9tQzRqZ2FoSWpMdVVqWkhPdFlnWWV0MzJuaGVuSzVpcDVldw?oc=5",
       "stableId": "domestic_aac9285e5359c7642813",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBJM0dMZDk2b0xxaVlQdXZZMjRMUFFzaExuOFJjQjc1N3JOUTBhYnhEaW85LXA3Tm9tQzRqZ2FoSWpMdVVqWkhPdFlnWWV0MzJuaGVuSzVpcDVldw?oc=5",
@@ -7465,27 +7486,6 @@
       "sourceTier": "news",
       "discoveryMethod": "google-news",
       "topicId": "topic_aac9285e5359c7642813",
-      "topicRank": 0
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1MazhTaUhCOU9WUGVTamVTUWljOFBURTFLdFJrTE80RWhkR0RkakFZQ05vVXMyVUlCV0FvZ1JEWUltYUE0OEtsLTNlZ2tsLXl4?oc=5",
-      "stableId": "domestic_394a9a79e88d5d7e0aa9",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1MazhTaUhCOU9WUGVTamVTUWljOFBURTFLdFJrTE80RWhkR0RkakFZQ05vVXMyVUlCV0FvZ1JEWUltYUE0OEtsLTNlZ2tsLXl4?oc=5",
-      "title": "ミニ傘で伝統踊り紹介 米子市 全国盲ろう者大会開幕",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-02T20:00:00Z",
-      "sourceName": "nnn.co.jp",
-      "sourceURL": "https://www.nnn.co.jp",
-      "sourceUrl": "https://www.nnn.co.jp",
-      "sourceType": "rss",
-      "category": "local",
-      "categoryLabel": "地域",
-      "legacyCategory": "local",
-      "thumbnailURL": "https://nihonkai.ismcdn.jp/mwimgs/8/4/-/img_8490a9b9943f6c7b11d8ce08fc335a201841959.jpg",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_394a9a79e88d5d7e0aa9",
       "topicRank": 0
     },
     {
@@ -8397,27 +8397,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
-      "stableId": "domestic_0cee655738808b01f0c8",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
-      "title": "台湾人と日本人が手話でつながる ろう映画監督の思い",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-01T07:00:00Z",
-      "sourceName": "あらたにす",
-      "sourceURL": "https://allatanys.jp",
-      "sourceUrl": "https://allatanys.jp",
-      "sourceType": "rss",
-      "category": "culture",
-      "categoryLabel": "文化・芸能",
-      "legacyCategory": "culture",
-      "thumbnailURL": "https://allatanys.jp/wp/wp-content/uploads/2026/10/2222.jpg",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_0cee655738808b01f0c8",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1HdzdWdDlSdG9mX1JGMVNCNlRHZjlVd29iSVZpa1UyOS0xWFBNVlZ4YnNkYkF2NXVYbWQ1SkFIdHpRM19idWt6OGREb3AzU19qVFVEendOelptTHpETWd6bDc0bFJFRWNXaFVmNzdLOFVZaTA?oc=5",
       "stableId": "domestic_d3b1056ca30b79fed057",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1HdzdWdDlSdG9mX1JGMVNCNlRHZjlVd29iSVZpa1UyOS0xWFBNVlZ4YnNkYkF2NXVYbWQ1SkFIdHpRM19idWt6OGREb3AzU19qVFVEendOelptTHpETWd6bDc0bFJFRWNXaFVmNzdLOFVZaTA?oc=5",
@@ -8438,6 +8417,27 @@
       "region": "hokkaido_tohoku",
       "prefecture": "宮城県",
       "topicId": "topic_d3b1056ca30b79fed057",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
+      "stableId": "domestic_0cee655738808b01f0c8",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1DTkNUOTBuS184MThTTEJWcU9Mbm9UR3VEUEdVSkVwU081ZTVOb1pYMFJxWkRXVzRyVFhvMkNWMFpUdWNlUTdUMg?oc=5",
+      "title": "台湾人と日本人が手話でつながる ろう映画監督の思い",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-01T07:00:00Z",
+      "sourceName": "あらたにす",
+      "sourceURL": "https://allatanys.jp",
+      "sourceUrl": "https://allatanys.jp",
+      "sourceType": "rss",
+      "category": "culture",
+      "categoryLabel": "文化・芸能",
+      "legacyCategory": "culture",
+      "thumbnailURL": "https://allatanys.jp/wp/wp-content/uploads/2026/10/2222.jpg",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_0cee655738808b01f0c8",
       "topicRank": 0
     },
     {
@@ -9078,6 +9078,27 @@
       "topicRank": 0
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9yZUdNbWFYSmtsMnQ4V25XZ3FucXdRaG5rZ0p1NGh1cW1sWUt0bU5CeEhjQVl5TFFmaTVpYmpHZ3ZseVhZczVRdW1EQUY2OUl3QmJ0aUpPUE5zZ1BuOU0wZzBwaXVEanZfNGc?oc=5",
+      "stableId": "domestic_7dfc630e0abc5a323ab5",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9yZUdNbWFYSmtsMnQ4V25XZ3FucXdRaG5rZ0p1NGh1cW1sWUt0bU5CeEhjQVl5TFFmaTVpYmpHZ3ZseVhZczVRdW1EQUY2OUl3QmJ0aUpPUE5zZ1BuOU0wZzBwaXVEanZfNGc?oc=5",
+      "title": "「読める電話ボックス」が羽田空港に4日間限定で登場 | 一般財団法人日本財団電話リレーサービスのプレスリリース",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-08-27T07:00:00Z",
+      "sourceName": "PR TIMES",
+      "sourceURL": "https://prtimes.jp",
+      "sourceUrl": "https://prtimes.jp",
+      "sourceType": "rss",
+      "category": "relay",
+      "categoryLabel": "電話リレー・ヨメテル",
+      "legacyCategory": "policy",
+      "thumbnailURL": "https://prcdn.freetls.fastly.net/release_image/72444/13/72444-13-12d202bee5b3277042de8bfdbc56384d-1178x884.png?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
+      "sourceTier": "broad",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_7dfc630e0abc5a323ab5",
+      "topicRank": 0
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB2U1BocVB4ZWh3NFVNQVZTS3BUVHJKWjlZX0RGRm9oMFVza0FlWHZfckZUTHpPME5lSUd5aGVFZ1B4SGROMkR4alRYUmxRYkM2VUItZW10ZXlTYVQ1QzhXZlkwSXVaLVlaS3c5OQ?oc=5",
       "stableId": "domestic_8030628db815ade82a10",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB2U1BocVB4ZWh3NFVNQVZTS3BUVHJKWjlZX0RGRm9oMFVza0FlWHZfckZUTHpPME5lSUd5aGVFZ1B4SGROMkR4alRYUmxRYkM2VUItZW10ZXlTYVQ1QzhXZlkwSXVaLVlaS3c5OQ?oc=5",
@@ -9243,6 +9264,27 @@
       "region": "kanto",
       "prefecture": "栃木県",
       "topicId": "topic_919d3e2114d85c611ee8",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1ONi1YNnAzQVg5ZWxvUDJwX0hWUWNqZFR0anIzeGlCNDY3SGhIUkFsZkM3S1E2NkVLM05Da0IteWhnWTNhZDItcDNFSVE5elVEc1RhR1doeE9QV0lndDViX2xn?oc=5",
+      "stableId": "domestic_ab947f18bc8e6cffd5ad",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1ONi1YNnAzQVg5ZWxvUDJwX0hWUWNqZFR0anIzeGlCNDY3SGhIUkFsZkM3S1E2NkVLM05Da0IteWhnWTNhZDItcDNFSVE5elVEc1RhR1doeE9QV0lndDViX2xn?oc=5",
+      "title": "誰もが「電話」にアクセスできるように 新しい公共インフラ「電話リレーサービス」の可能性",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-07-30T04:09:13Z",
+      "sourceName": "朝日新聞",
+      "sourceURL": "https://www.asahi.com",
+      "sourceUrl": "https://www.asahi.com",
+      "sourceType": "rss",
+      "category": "relay",
+      "categoryLabel": "電話リレー・ヨメテル",
+      "legacyCategory": "policy",
+      "thumbnailURL": "https://www.asahi.com/ads/ishisotsushien/assets/img/article/16/ogp.jpg",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_ab947f18bc8e6cffd5ad",
       "topicRank": 0
     },
     {
