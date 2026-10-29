@@ -15,6 +15,7 @@ import {runSourceDiscovery} from './source-discovery.mjs';
 import {runDiscoveryReview} from './discovery-review.mjs';
 import {runLodgingReview} from './lodging-review.mjs';
 import {planCurationAttention} from './curation-attention.mjs';
+import {refreshWorkStatus} from './curation-work-status.mjs';
 
 export const readJson=async path=>JSON.parse(await readFile(path,'utf8'));
 export async function optionalJson(path){try{return await readJson(path);}catch(e){if(e.code==='ENOENT')return null;throw e;}}
@@ -181,6 +182,11 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
         corroborated:lodging.corroborated,evidenceReviewed:lodging.evidenceReviewed,exceptions:lodging.exceptions,candidates:lodging.candidates,
         deferred:lodging.deferred.length,newOrChanged:lodging.newOrChanged,reusedRun:lodging.reusedRun},
       publication:{changed:eventTipReport?.published??0,policy:'existing-verified-source-publishers-and-reviewed-user-tips',manualReviewTimestampsChanged:false}};
+    if(!comparisonOnly){
+      const work=await refreshWorkStatus({stateDir,now:Date.now(),executionStatus:result.status,attention});
+      result.work={coverageStatus:work.coverageStatus,pending:work.pending,categoryCounts:work.categoryCounts,
+        unknownModules:work.unknownModules,oldestPendingAt:work.oldestPendingAt,detailFile:'curation-work-status.json'};
+    }
     await privateJson(join(stateDir,comparisonOnly?'server-curation-comparison.json':'server-curation.json'),result);
     await mkdir(join(stateDir,'server-curation-runs'),{recursive:true,mode:0o700});
     await privateJson(join(stateDir,'server-curation-runs',new Date(now).toISOString().replace(/[:.]/g,'-')+'-'+randomUUID()+'.json'),result);
@@ -191,19 +197,23 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
 if(process.argv[1]&&import.meta.url===pathToFileURL(realpathSync(resolve(process.argv[1]))).href){
   try{
     const args=process.argv.slice(2);
-    if(args.length>1||args.some(x=>!['--compare','--attention-only'].includes(x)))throw new Error('Unsupported routine argument');
+    if(args.length>1||args.some(x=>!['--compare','--attention-only','--status-only'].includes(x)))throw new Error('Unsupported routine argument');
     const stateDir=process.env.DEAFNAVI_AI_STATE_DIR;
     if(!stateDir)throw new Error('Private state required');
     const events=await readJson('/srv/deafnavi/current/events.json');
     const cafes=JSON.parse(execFileSync('php',['/srv/deafnavi/current/_backend/curate-cafe-events.php','--review-export'],{encoding:'utf8',timeout:60000,maxBuffer:2_000_000}));
-    if(args.includes('--attention-only')){
+    if(args.includes('--attention-only')||args.includes('--status-only')){
       // No key/env loading, HTTP, API, source checks or publication mutation.
       const lockPath=join(stateDir,'server-curation.lock');let lock;
       try{lock=await open(lockPath,'wx',0o600);}catch(e){if(e.code!=='EEXIST')throw e;}
       if(!lock){console.log(JSON.stringify({status:'busy',submittedThisRun:0}));}
       else try{
         const queue=await refreshCurationAttention({stateDir,records:reviewRecords(events,cafes)});
-        console.log(JSON.stringify({status:'attention-refreshed',generatedAt:queue.generatedAt,...queue.counts,submittedThisRun:0}));
+        const work=args.includes('--status-only')?await refreshWorkStatus({stateDir,attention:queue,
+          executionStatus:(await optionalJson(join(stateDir,'server-curation.json')))?.status??null}):null;
+        console.log(JSON.stringify({status:work?'status-refreshed':'attention-refreshed',generatedAt:queue.generatedAt,...queue.counts,submittedThisRun:0,
+          ...(work?{coverageStatus:work.coverageStatus,pending:work.pending,categoryCounts:work.categoryCounts,unknownModules:work.unknownModules,
+          briefFile:'curation-operator-brief.json'}:{})}));
       }finally{await lock.close();await unlink(lockPath);}
     }else{
     const catalog=await readJson(join(stateDir,'curation-review-catalog.json'));

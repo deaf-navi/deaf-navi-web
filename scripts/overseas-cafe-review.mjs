@@ -110,6 +110,10 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
  for(const d of deferred)if(old.has(d.recordId)&&!entries.some(e=>e.recordId===d.recordId))entries.push({...old.get(d.recordId),deferred:true});
  const result={version:1,day,signature,generatedAt:stamp,reusedRun:false,selected:selected.length,attempted,cached,submittedThisRun:submitted,entries,deferred,newOrChanged,
   corroborated:entries.filter(e=>e.status==='corroborated').length,exceptions:entries.filter(e=>e.status==='exception').length,candidates:entries.filter(e=>e.status==='candidate').length,
-  coverage:{published:snapshot.records.length,configured:catalog.overseasCafeTargets?.length??0,sharedEligible:plan.selected.length,localOnly:probes.length},publicationApproved:false,reviewedAt:null};
+  coverage:{published:snapshot.records.length,configured:catalog.overseasCafeTargets?.length??0,sharedEligible:plan.selected.length,localOnly:probes.length,
+    configuredPublished:(catalog.overseasCafeTargets??[]).filter(t=>t.role==='published').length,
+    sharedEligiblePublished:plan.selected.filter(t=>t.role==='published').length,
+    unregisteredPublished:snapshot.records.filter(r=>!(catalog.overseasCafeTargets??[]).some(t=>t.role==='published'&&t.facilityId===r.id)).length,
+    monitoredFields:plan.selected.filter(t=>t.role==='published').reduce((counts,t)=>{for(const f of t.baseline.requiredFields)counts[f]=(counts[f]??0)+1;return counts;},{})},publicationApproved:false,reviewedAt:null};
  const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(result,null,2)+'\n',{mode:0o600});await rename(tmp,path);return result;
 }
