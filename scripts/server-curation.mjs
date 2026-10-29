@@ -185,7 +185,7 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
     if(!comparisonOnly){
       const work=await refreshWorkStatus({stateDir,now:Date.now(),executionStatus:result.status,attention});
       result.work={coverageStatus:work.coverageStatus,pending:work.pending,categoryCounts:work.categoryCounts,
-        unknownModules:work.unknownModules,oldestPendingAt:work.oldestPendingAt,detailFile:'curation-work-status.json'};
+        unknownModules:work.unknownModules,oldestPendingAt:work.oldestPendingAt,intake:work.intake,progress:work.progress,detailFile:'curation-work-status.json'};
     }
     await privateJson(join(stateDir,comparisonOnly?'server-curation-comparison.json':'server-curation.json'),result);
     await mkdir(join(stateDir,'server-curation-runs'),{recursive:true,mode:0o700});

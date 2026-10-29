@@ -1,6 +1,8 @@
 import {readFile,writeFile,rename} from 'node:fs/promises';
 import {join} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
+import {buildIntakeQueue} from './curation-review-intake.mjs';
+import {buildCurationProgress} from './curation-progress.mjs';
 
 const files={daily:'daily-curation-review.json',candidates:'discovery-review.json',lodging:'lodging-review.json',overseas:'overseas-cafe-review.json',tips:'event-tip-review.json'};
 const done=new Set(['corroborated','reviewed-unchanged','reviewed-evidence','published','already-published']);
@@ -32,7 +34,7 @@ export function buildWorkStatus({reports={},previous={},decisions=[],attention=n
    reasons.some(x=>/sharing-|review-catalog|official-html/.test(x))?'initial-review':
    reasons.some(x=>/unavailable|timeout|fetch-failed/.test(x))?'source-unavailable':
    reasons.every(x=>/^(daily-source-limit|daily-travel-limit|batch-limit|outside-horizon|source-retry-after|waiting-source-until)$/.test(x))&&reasons.length?'queued':'review-required';
-  const fingerprint=e.fingerprint??hash([e.status,e.disposition,reasons,e.sourceUrl,e.documentHash,e.publicationHash,e.differences??[]]);
+  const fingerprint=e.fingerprint??hash([e.status,e.disposition,reasons,e.sourceUrl,e.documentHash,e.publicationHash,e.differences??[],...(e.sourceChange?[e.sourceChange.fingerprint]:[])]);
   const prior=old.get(key),initial=prior?.firstSeenAt??e.firstSeenAt??e.changedAt??e.machineCheckedAt??new Date(now).toISOString();
   const firstSeenAt=stamp(initial)!==null&&stamp(initial)<=now?initial:new Date(now).toISOString();
   const decision=decisions.find(x=>x.key===key&&x.fingerprint===fingerprint&&x.disposition==='waiting-source'
@@ -41,7 +43,7 @@ export function buildWorkStatus({reports={},previous={},decisions=[],attention=n
   const ageDays=Math.max(0,Math.floor((now-Date.parse(firstSeenAt))/86400000));
   items.push({key,module,recordId:id,sourceUrl:e.sourceUrl??e.url??null,category,reasons,fingerprint,firstSeenAt,
    changedAt:prior?.fingerprint===fingerprint?prior.changedAt:new Date(now).toISOString(),ageDays,
-   due:due.has(id),nextCheckAt:decision?.nextCheckAt??e.nextCheckAt??null,
+   due:due.has(id),nextCheckAt:decision?.nextCheckAt??e.nextCheckAt??null,...(e.sourceChange?{sourceChange:e.sourceChange}:{}),
    priority:category==='blocked'?0:due.has(id)?1:category==='initial-review'?2:category==='queued'||category==='waiting-source'?5:3});
  };
  for(const [module,file] of Object.entries(files)){
@@ -98,7 +100,20 @@ export async function refreshWorkStatus({stateDir,now=Date.now(),executionStatus
   decisions:(await optional(join(stateDir,'curation-work-decisions.json')))?.items??[],
   attention:attention??await optional(join(stateDir,'curation-attention.json')),now,executionStatus});
  await save(join(stateDir,'curation-work-status.json'),result);
+ const intake=buildIntakeQueue(result,await optional(join(stateDir,'curation-review-catalog.json'))??{},{now});
+ await save(join(stateDir,'curation-intake.json'),intake);
+ const progress=buildCurationProgress({report:reports.overseas,previous:await optional(join(stateDir,'curation-progress.json'))??{},executionStatus,now});
+ await save(join(stateDir,'curation-progress.json'),progress);
  const {items,sourceGroups,...brief}=result;
+ brief.intake={count:intake.count,detailFile:'curation-intake.json'};
+ brief.progress={state:progress.state,alerts:progress.alerts??[],newAlerts:progress.newAlerts,resolved:progress.resolved,detailFile:'curation-progress.json'};
+ brief.overseasFieldCoverage=Array.isArray(reports.overseas?.fieldCoverage)?{
+  facilities:reports.overseas.fieldCoverage.length,detailFile:'overseas-cafe-review.json',
+  fields:reports.overseas.fieldCoverage.reduce((out,r)=>{for(const [key,f] of Object.entries(r.fields)){
+   out[key]??={registered:0,apiCorroborated:0,notConfigured:0,sourceOnly:0};
+   out[key].registered+=Number(f.state!=='not-configured');out[key].apiCorroborated+=Number(f.state==='api-corroborated');
+   out[key].notConfigured+=Number(f.state==='not-configured');out[key].sourceOnly+=Number(f.scope==='source-only');
+  }return out;},{})}:null;
  await save(join(stateDir,'curation-operator-brief.json'),{...brief,detailFile:'curation-work-status.json',apiRequests:0});
  return brief;
 }

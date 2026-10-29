@@ -3,6 +3,7 @@ import {pathToFileURL} from 'node:url';
 import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
 import {cleanHtml} from '../src/lib/text.mjs';
 import {prepareReviewItem,evidenceHash} from './curation-review-contract.mjs';
+import {describeSourceChange} from './curation-source-change.mjs';
 const comparable=text=>String(text).normalize('NFKC').replace(/\s+/g,'');
 // Explicitly reviewed public WordPress pages only; never discover an alternate
 // endpoint automatically or accept private/edit contexts as a size-limit escape.
@@ -21,6 +22,7 @@ export async function prepareCurationReview(targets,{fetchResource=fetchThumbnai
  if(!Array.isArray(targets)||targets.length<1||targets.length>8)throw new Error('Select 1 to 8 source targets');
  const tasks=[],exceptions=[];
  for(const target of targets){
+  let sourceChange;
   try{
    if(target.officialVerified!==true||target.sourceMode!=='html'||!Array.isArray(target.fragments)||!target.fragments.length)throw new Error('official-html-fragments-required');
    const item=prepareReviewItem({...target,text:target.fragments.join(' ')});
@@ -40,8 +42,10 @@ export async function prepareCurationReview(targets,{fetchResource=fetchThumbnai
    // Retain the existing full document hash contract, but never accept excerpts
    // from hidden HTML comments as evidence for model input.
    const visibleText=cleanHtml(html.replace(/<!--[\s\S]*?(?:-->|$)/g,' ').replace(/<[^>]*>/g,' '));
-   if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment))))throw new Error('source-fragment-changed');
    const sourceDocumentHash=evidenceHash(transport.id?'wordpress-page-v1\n'+transport.url+'\n'+text:text);
+   if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment)))||target.approvedDocumentHash&&target.approvedDocumentHash!==sourceDocumentHash)
+    sourceChange=describeSourceChange(target,visibleText,sourceDocumentHash);
+   if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment))))throw new Error('source-fragment-changed');
    if(target.approvedDocumentHash&&target.approvedDocumentHash!==sourceDocumentHash)throw new Error('source-document-changed');
    const excerpt=JSON.parse(item.summary).text;
    tasks.push({kind:target.kind,title:item.title,sourceUrl:target.sourceUrl,recordId:target.recordId??null,
@@ -49,7 +53,7 @@ export async function prepareCurationReview(targets,{fetchResource=fetchThumbnai
     text:excerpt,sourceTextHash:evidenceHash(excerpt),sourceDocumentHash,
     ...(transport.id?{sourceEvidenceUrl:transport.url,documentScope:'wordpress-page-content'}:{}),
     sourceMode:'html',officialVerified:true,retrievedAt:new Date(now).toISOString()});
-  }catch(error){exceptions.push({kind:target.kind,recordId:target.recordId??null,sourceUrl:target.sourceUrl,reason:/^(official-|source-)/.test(error.message)?error.message:'invalid-or-unavailable-source',reviewedAt:null});}
+  }catch(error){exceptions.push({kind:target.kind,recordId:target.recordId??null,sourceUrl:target.sourceUrl,reason:/^(official-|source-)/.test(error.message)?error.message:'invalid-or-unavailable-source',...(sourceChange?{sourceChange}:{}),reviewedAt:null});}
  }
  return {generatedAt:new Date(now).toISOString(),publicDataReviewed:false,tasks,exceptions,items:tasks.map(prepareReviewItem)};
 }
