@@ -216,3 +216,9 @@ main `1339751b23174734bc9529ad9388672bc36ca0f9` の[既存Deploy40530201910](htt
 より新しい[40545029312](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40545029312)はrecovery-publication job successだがdeploy jobはskippedであり、新しい実配布とは数えない。run全体のsuccessと配布jobの実行を区別する。
 
 詳細は[daily/2026-10-28.md](daily/2026-10-28.md)と同日のJSONへ保存する。変更は運営文書/検査データ4ファイルのみで、公開URL・コード・workflow・DBは変更しない。公開QA未完を維持し、追加Deployは実施しない。復旧はこの運営記録差分だけをrevertできる。
+
+## 2026-10-29 SEO-13の限定実操作QA完了と現行導線の確認
+
+親の正式cloud Chromeで08:57 JSTにSELF＋東京都・該当1件・カード表示を保ってFAQ→#cafesへ実移動。08:58 JSTには初回4修正も限定再読した。詳細なquery・URL・観測範囲・既存Deploy40789874694の証跡は[daily/2026-10-29.md](daily/2026-10-29.md)へ保存する。SEO-13と配信診断冒頭の現在状態を更新し、10/23の履歴は残す。全条件/モバイル・guideのHTTP301・GSC/GA4の未取得は完了へ置換しない。
+
+公開URL/コードの変更は0件。既存mainのPR199/200等を保持し、今回の差分は運営記録5ファイルのみ。draft PR→既存最終head CI→通常ポリシーでの保存とし、approveレビュー・追加Deployは実行しない。復旧は今回の記録差分だけをrevertできる。次の優先は既存GSCアクセスでの対象URL/クロール情報の照合と、適用日付き一次情報待ちのSEO-05。
