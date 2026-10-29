@@ -188,3 +188,15 @@ GSC/GA4実測・対象URLの未取得を維持し、メール/外部監査の要
 同日08:49 JSTの[既存Deploy40789874694](https://github.com/deaf-navi/deaf-navi-web/actions/runs/40789874694)はdeploy job123172146042のUpload/Activate/Verifyまでsuccess、recovery-publicationはskipped。識別付き公開GETはHTTP200/no-store・戻りリンクHTML内存在。main 1f99c60の原本とstaging/current PHP SHA-256の一致も独立照合した。追加配布や新しいサーバー設定読取をこの日次が実行したとはしない。
 
 10/23の不在/Windows DNS拒否は当時の履歴として保持する。現在の親Chrome成功とこのexecutorの接続口不足を区別し、旧設定候補の再実行待ちへ戻さない。GSC/GA4実測・例URL/件数/クロール日は未取得。店舗条件の一次出典・確認日・営業情報は更新していない。
+
+## 2026-10-30 Event画像とGSC通知の切り分け
+
+親が確認した10/29の通知はoffers・image・performer・organizer.urlの4種類の非重大警告であり、4URL/4件ではない。例URL・理由別件数・クロール日時は未取得。親は10/29 23:26:44 UTC頃（10/30 08:26 JST）に既存の正式cloud ChromeでSearch Consoleを開いたが、/search-console/aboutへ遷移し「今すぐ開始」がGoogle ServiceLoginを指す未ログイン紹介ページだった。レポート読取・サインイン・新認証は行わずタブを閉じた。このexecutorにもGSC/GA4操作口はなく、既存認証でのレポート照合は未実施。
+
+[Google Event公式仕様](https://developers.google.com/search/docs/appearance/structured-data/event)では画像等の推奨項目を説明している。警告を消すために未知の料金・出演者・主催者URLを補わない。告知ページの発行元URLを主催者ドメインへ自動転用せず、参加費の文章を単一のOffer価格へ機械変換しない。
+
+同一main 111080bのsrc/templates/event-detail.mjsでは本文がevent.thumbnail.urlの画像を表示している一方、Event JSON-LDのimageがなかった。既存の収集側は対象開催回の公式告知から取得した画像を保持し、thumbnailPolicy=omitと48時間鮮度を適用する。PR208はその既存画像の有効なHTTPS URLのみをEvent.imageへ引き継ぐ。新規画像取得・画像生成・代替ロゴの補完は行わない。server/views.phpの手話カフェ専用Eventは対象外。
+
+公開確認対象は https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/?dn_client=codex 。期待するEvent.imageと本文reader-poster.srcは、ともに https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png 。配布成功後に親へ具体URLと期待内容を伝達したが、この記録時点で代表URLの公開DOM/スクリーンショット再読結果は未受領。このexecutorの正式ブラウザー操作口はないため、実公開QAは未完として保存する。生成物の一致や通常Deploy成功を、代表イベントの実表示確認へ置き換えない。
+
+画像寸法/Googlebotの実取得/リッチリザルト採用、通知対象と今回の静的Event詳細の対応は未検証。GSC/GA4実測を0・推測値・QA件数へ置換しない。詳細は[daily/2026-10-30.md](daily/2026-10-30.md)を参照。
