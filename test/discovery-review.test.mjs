@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import {mkdtemp,rm,readFile,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {runDiscoveryReview,candidateDisposition} from '../scripts/discovery-review.mjs';
-import {evidenceHash} from '../scripts/curation-review-contract.mjs';
+import {runDiscoveryReview,candidateDisposition,matchesPublishedCandidate} from '../scripts/discovery-review.mjs';
+import {evidenceHash,prepareReviewItem} from '../scripts/curation-review-contract.mjs';
 import {discoverLinks} from '../scripts/source-discovery.mjs';
 import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
 const now=Date.parse('2026-10-22T01:00:00Z');
@@ -62,12 +62,12 @@ test('approved extraction is cached and requires publication review, never creat
  assert.equal((await runDiscoveryReview(args)).reusedRun,true);assert.equal(calls,1);
  const next=await runDiscoveryReview({...args,approvalSignature:'next-check'});assert.equal(next.cached,1);assert.equal(next.submittedThisRun,0);assert.equal(calls,1);assert.deepEqual(next.newOrChanged,[]);
 });
-test('changed document and already published URL cannot reuse candidate approval',async t=>{
+test('changed document remains blocked but a known event URL alone does not close a candidate',async t=>{
  const opts=await options(t);let calls=0;
  const r=await runDiscoveryReview({...opts,canSubmit:()=>true,prepare:async targets=>({tasks:[],exceptions:targets.map(x=>({...x,reason:'source-document-changed'}))}),generate:async()=>{calls++;}});
  assert.equal(calls,0);assert.equal(r.entries[0].reasons[0],'source-document-changed');
- const p=await runDiscoveryReview({...opts,knownUrls:[target.sourceUrl],canSubmit:()=>true,generate:async()=>{calls++;}});
- assert.equal(p.selected,0);assert.equal(p.entries[0].disposition,'published-source');assert.equal(calls,0);
+ const p=await runDiscoveryReview({...opts,knownUrls:[target.sourceUrl],canSubmit:()=>false,generate:async()=>{calls++;}});
+ assert.equal(p.selected,1);assert.equal(p.entries[0].reasons[0],'sharing-approval-required');assert.equal(calls,0);
 });
 test('candidate date is never inferred and negative model output is only a proposal',()=>{
  const base={kind:'cafe',reasons:['missing-startDate','differs-from-current'],decision:{relevance:'yes',contentType:'announcement',facts:[{field:'venue',value:'市民会館'}]}};
@@ -108,4 +108,18 @@ test('bounded domain-fair selection stops after unknown API outcome and preserve
  assert.equal(r.entries.filter(x=>x.reasons.includes('batch-stopped-after-api-error')).length,4);
  assert.equal(JSON.parse(await readFile(join(opts.stateDir,'discovery-review.json'))).publicationApproved,false);
  const stopped=await runDiscoveryReview({...opts,catalog,stopAfterError:true,canSubmit:()=>true,generate:async()=>{calls++;}});assert.equal(calls,1);assert.equal(stopped.submittedThisRun,0);
+});
+
+
+test('published receipt closes exact occurrence without fetching or resending; changed date, time, venue and input stay pending',async t=>{
+ const opts=await options(t);
+ const receipt={inputId:prepareReviewItem({...target,text}).id,startDate:'2026-11-14',endDate:null,venue:'市民会館',time:'14:00'};
+ const bound={...target,publishedIdentity:receipt};
+ const published={kind:target.kind,recordId:target.recordId,publication:'public',sourceUrl:target.sourceUrl,occurrence:receipt};
+ const r=await runDiscoveryReview({...opts,catalog:{discoveryTargets:[bound]},publishedRecords:[published],prepare:async()=>{throw Error('already published: no fetch');},generate:async()=>{throw Error('no resend');}});
+ assert.equal(r.entries[0].status,'already-published');assert.equal(r.selected,0);assert.equal(r.submittedThisRun,0);assert.equal(r.reviewedAt,null);
+ for(const patch of [{startDate:'2026-11-15'},{venue:'別の会館'},{time:'15:00'}])assert.equal(matchesPublishedCandidate(bound,{...published,occurrence:{...receipt,...patch}}),false);
+ assert.equal(matchesPublishedCandidate({...bound,fragments:[text+' Changed.']},published),false);
+ assert.equal(matchesPublishedCandidate({...bound,recordId:'next-occurrence'},published),false);
+ assert.equal(matchesPublishedCandidate(bound,{...published,publication:'private'}),false);
 });

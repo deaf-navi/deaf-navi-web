@@ -7,6 +7,19 @@ const done=new Set(['corroborated','reviewed-unchanged','reviewed-evidence','pub
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const stamp=value=>Number.isFinite(Date.parse(value))?Date.parse(value):null;
 const countBy=(items,field)=>items.reduce((out,x)=>{out[x[field]]=(out[x[field]]??0)+1;return out;},{});
+export function groupReviewSources(items){
+ const groups=new Map();
+ for(const item of items){
+  let sourceUrl=null;try{const u=new URL(item.sourceUrl);u.hash='';if(['https:','http:'].includes(u.protocol))sourceUrl=u.href;}catch{}
+  const key=sourceUrl??item.key;
+  if(!groups.has(key))groups.set(key,{sourceUrl,priority:item.priority,members:[],activeItems:0});
+  const group=groups.get(key);group.priority=Math.min(group.priority,item.priority);
+  group.members.push({key:item.key,module:item.module,recordId:item.recordId,sourceUrl:item.sourceUrl,category:item.category,reasons:item.reasons,nextCheckAt:item.nextCheckAt});
+  if(!['waiting-source','queued'].includes(item.category))group.activeItems++;
+ }
+ return [...groups.values()].sort((a,b)=>a.priority-b.priority).map(g=>({...g,itemCount:g.members.length,
+  perRecordReviewRequired:true,publicationApproved:false,reviewedAt:null}));
+}
 export function buildWorkStatus({reports={},previous={},decisions=[],attention=null,now=Date.now(),executionStatus=null}={}){
  const old=new Map((previous.items??[]).map(x=>[x.key,x])),modules={},items=[],unknown=[];
  const due=new Set((attention?.items??[]).filter(x=>x.priority==='within-two-weeks').map(x=>String(x.recordId)));
@@ -18,7 +31,7 @@ export function buildWorkStatus({reports={},previous={},decisions=[],attention=n
   let category=reasons.some(x=>/publication-baseline|structured-baseline|api-or-cache|batch-stopped|account-verification|request-reconciliation/.test(x))?'blocked':
    reasons.some(x=>/sharing-|review-catalog|official-html/.test(x))?'initial-review':
    reasons.some(x=>/unavailable|timeout|fetch-failed/.test(x))?'source-unavailable':
-   reasons.every(x=>/^(daily-source-limit|batch-limit|outside-horizon)$/.test(x))&&reasons.length?'queued':'review-required';
+   reasons.every(x=>/^(daily-source-limit|daily-travel-limit|batch-limit|outside-horizon|source-retry-after|waiting-source-until)$/.test(x))&&reasons.length?'queued':'review-required';
   const fingerprint=e.fingerprint??hash([e.status,e.disposition,reasons,e.sourceUrl,e.documentHash,e.publicationHash,e.differences??[]]);
   const prior=old.get(key),initial=prior?.firstSeenAt??e.firstSeenAt??e.changedAt??e.machineCheckedAt??new Date(now).toISOString();
   const firstSeenAt=stamp(initial)!==null&&stamp(initial)<=now?initial:new Date(now).toISOString();
@@ -28,7 +41,7 @@ export function buildWorkStatus({reports={},previous={},decisions=[],attention=n
   const ageDays=Math.max(0,Math.floor((now-Date.parse(firstSeenAt))/86400000));
   items.push({key,module,recordId:id,sourceUrl:e.sourceUrl??e.url??null,category,reasons,fingerprint,firstSeenAt,
    changedAt:prior?.fingerprint===fingerprint?prior.changedAt:new Date(now).toISOString(),ageDays,
-   due:due.has(id),nextCheckAt:decision?.nextCheckAt??null,
+   due:due.has(id),nextCheckAt:decision?.nextCheckAt??e.nextCheckAt??null,
    priority:category==='blocked'?0:due.has(id)?1:category==='initial-review'?2:category==='queued'||category==='waiting-source'?5:3});
  };
  for(const [module,file] of Object.entries(files)){
@@ -61,10 +74,13 @@ export function buildWorkStatus({reports={},previous={},decisions=[],attention=n
  const unidentifiedTips=(reports.tips?.unreviewed??0)+(typeof reports.tips?.deferred==='number'?reports.tips.deferred:0);
  const pending=items.length+unidentifiedTips,categoryCounts=countBy(items,'category');
  if(unidentifiedTips)categoryCounts['initial-review']=(categoryCounts['initial-review']??0)+unidentifiedTips;
+ const sourceGroups=groupReviewSources(items),activeGroups=sourceGroups.filter(g=>g.activeItems>0);
  const result={version:1,generatedAt:new Date(now).toISOString(),executionStatus,
   coverageStatus:unknown.length?'unknown':pending?'incomplete':'complete',
   unit:'review-items-not-unique-facilities-or-api-requests',pending,unknownModules:unknown,categoryCounts,reasonCounts,
-  oldestPendingAt:items.map(x=>x.firstSeenAt).sort()[0]??null,modules,items,
+  oldestPendingAt:items.map(x=>x.firstSeenAt).sort()[0]??null,modules,items,sourceGroups,
+  sourceGroupCounts:{all:sourceGroups.length,active:activeGroups.length,shared:sourceGroups.filter(g=>g.sourceUrl&&g.itemCount>1).length},
+  operatorSourceGroups:activeGroups.slice(0,12),
   operatorQueue:items.filter(x=>!['queued','waiting-source'].includes(x.category)).slice(0,12),
   publicationApproved:false,reviewedAt:null};
  return result;
@@ -82,7 +98,7 @@ export async function refreshWorkStatus({stateDir,now=Date.now(),executionStatus
   decisions:(await optional(join(stateDir,'curation-work-decisions.json')))?.items??[],
   attention:attention??await optional(join(stateDir,'curation-attention.json')),now,executionStatus});
  await save(join(stateDir,'curation-work-status.json'),result);
- const {items,...brief}=result;
+ const {items,sourceGroups,...brief}=result;
  await save(join(stateDir,'curation-operator-brief.json'),{...brief,detailFile:'curation-work-status.json',apiRequests:0});
  return brief;
 }

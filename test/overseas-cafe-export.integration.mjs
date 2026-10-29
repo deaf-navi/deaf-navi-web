@@ -16,7 +16,13 @@ try{
  const result=spawnSync('php',['server/overseas-cafe-review-export.php'],{env,encoding:'utf8'});
  assert.equal(result.status,0,result.stderr);
  const out=JSON.parse(result.stdout);assert.equal(out.records.length,1);assert.equal(out.records[0].id,'public');
- assert.deepEqual(Object.keys(out.records[0]),['id','countryCode','revision','publicationHash','sourceUrls','slug','officialUrl']);
+ assert.deepEqual(Object.keys(out.records[0]),['id','countryCode','revision','publicationHash','comparisonVersion','comparisonHash','sourceUrls','slug','officialUrl']);
+ assert.equal(out.records[0].comparisonVersion,1);assert.match(out.records[0].comparisonHash,/^[a-f0-9]{64}$/);
+ const compare=spawnSync('php',['-r',`require 'server/curation-comparison.php';
+ $p=['business_hours'=>'10-17','address'=>'A','review_notes'=>'private'];$h=overseas_cafe_comparison_hash($p);
+ $p['review_notes']='another private note';if(overseas_cafe_comparison_hash($p)!==$h)exit(1);
+ foreach(['business_hours','address','unknown_future_condition','last_verified_at'] as $key){$q=$p;$q[$key]='changed';if(overseas_cafe_comparison_hash($q)===$h)exit(2);}`],{env,encoding:'utf8'});
+ assert.equal(compare.status,0,compare.stderr);
  assert.match(out.records[0].publicationHash,/^[a-f0-9]{64}$/);assert.doesNotMatch(result.stdout,/private-sentinel|submitter|secret@/);
  assert.deepEqual(readFileSync(join(dir,'directory.sqlite')),before);
  assert.notEqual(spawnSync('php',['server/overseas-cafe-review-export.php','unexpected'],{env}).status,0);

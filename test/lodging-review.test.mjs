@@ -9,6 +9,7 @@ import {evidenceHash,prepareReviewItem,validateReviewResult,compareReview,partit
 import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
 import {discoverLinks,runSourceDiscovery} from '../scripts/source-discovery.mjs';
 import {runServerCuration} from '../scripts/server-curation.mjs';
+import {enrollComparisonBindings} from '../scripts/publication-binding.mjs';
 const now=Date.parse('2026-10-24T01:00:00Z');
 const text='素泊まりの宿です。予約フォームで予約。1泊1人6,750円（税込）、宿泊税別。チェックイン15時。';
 const snapshot=lodgingSnapshot([{id:'inn',bookingUrl:'https://example.org/stay',sources:[],reviewedAt:'2026-10-01',facts:['Private editorial baseline']}]);
@@ -24,7 +25,7 @@ const prepare=(targets,options)=>prepareCurationReview(targets,{...options,fetch
 async function fixture(t){const stateDir=await mkdtemp(join(tmpdir(),'dn-lodging-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));return {stateDir,snapshot,catalog,now,prepare,generate,canSubmit:()=>true};}
 
 test('public snapshot contains only identity, source URLs and digest, not editorial/private facts',()=>{
- assert.deepEqual(Object.keys(snapshot.records[0]),['id','sourceUrls','referenceUrls','publicationHash']);
+ assert.deepEqual(Object.keys(snapshot.records[0]),['id','sourceUrls','referenceUrls','publicationHash','comparisonVersion','comparisonHash']);
  assert.equal(JSON.stringify(snapshot).includes('Private'),false);
  assert.notEqual(lodgingSnapshot([{id:'inn',bookingUrl:target.sourceUrl,facts:['Changed']}]).records[0].publicationHash,target.publicationHash);
  const withMedia=lodgingSnapshot([{id:'inn',bookingUrl:target.sourceUrl,media:[{url:'https://example.net/interview'}]}]).records[0];
@@ -131,6 +132,12 @@ test('one-time literal evidence review resolves a cached rejection without imper
  const first=await runLodgingReview(opts);assert.equal(first.evidenceReviewed,1);assert.equal(first.entries[0].status,'reviewed-evidence');assert.equal(first.entries[0].reviewedAt,null);assert.equal(first.entries[0].publicationApproved,false);
  assert.equal(first.entries[0].evidenceReviewCheckedAt,reviewed.evidenceReview.checkedAt);assert.equal(first.submittedThisRun,0);assert.equal(first.corroborated,0);
  const again=await runLodgingReview({...opts,now:now+86400000});assert.equal(again.evidenceReviewed,1);assert.deepEqual(again.newOrChanged,[]);assert.equal(again.entries[0].evidenceReviewCheckedAt,reviewed.evidenceReview.checkedAt);
+ assert.equal(await readFile(join(opts.stateDir,'curation-review-cache.json'),'utf8'),raw);
+ const bound=enrollComparisonBindings(opts.catalog,{lodging:snapshot},now).catalog;
+ const cosmetic=structuredClone(snapshot);cosmetic.records[0].publicationHash='e'.repeat(64);
+ const unchanged=await runLodgingReview({...opts,catalog:bound,snapshot:cosmetic});
+ assert.equal(unchanged.evidenceReviewed,1);assert.equal(unchanged.submittedThisRun,0);
+ assert.equal(unchanged.entries[0].evidenceReviewCheckedAt,reviewed.evidenceReview.checkedAt);
  assert.equal(await readFile(join(opts.stateDir,'curation-review-cache.json'),'utf8'),raw);
  for(const patch of [{inputId:'wrong'},{documentHash:'f'.repeat(64)},{publicationHash:'f'.repeat(64)},{checkedAt:new Date(now+1000).toISOString()},{decision:{...d,facts:[{field:'rates',value:'無料',evidence:'予約フォームで予約。'}]}}]){
   const r=await runLodgingReview({...opts,catalog:{...catalog,lodgingTargets:[{...reviewed,evidenceReview:{...reviewed.evidenceReview,...patch}}]}});assert.equal(r.entries[0].status,'exception');

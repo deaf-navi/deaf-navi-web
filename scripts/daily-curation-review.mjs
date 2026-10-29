@@ -19,6 +19,7 @@ export function reviewRecords(events,cafes){
     publication:'public',sourceUrl:event.sourceUrl,sourceMode:event.verificationMode??'html',
     publicationContentHash:evidenceHash(JSON.stringify(Object.fromEntries(['title','startDate','endDate','prefecture','venue','kind','sourceName','sourceUrl','organizer','time','fee','target','status','description','communication','participation'].map(key=>[key,event[key]??null])))),
     verification:event.verification,verifiedAt:event.verifiedAt,
+    occurrence:{startDate:event.startDate,endDate:event.endDate??null,venue:event.venue,time:event.time??null},
     baseline:{startDate:event.startDate,...(event.endDate?{endDate:event.endDate}:{}),
       venue:event.venue,communication:(event.communication??[]).map(x=>x.method),
       status:event.status==='announced'?'scheduled':event.status}})),...cafes.records];

@@ -7,6 +7,7 @@ import {planOverseasCafeReview,runOverseasCafeReview} from '../scripts/overseas-
 import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
 import {evidenceHash,prepareReviewItem,validateReviewResult} from '../scripts/curation-review-contract.mjs';
 import {discoverLinks,runSourceDiscovery} from '../scripts/source-discovery.mjs';
+import {planOverseasRotation,overseasTargetSignature} from '../scripts/overseas-cafe-rotation.mjs';
 const now=Date.parse('2026-10-28T03:00:00Z'),text='Our cafe is open Tuesday to Saturday. Visit Bischofstrasse 11.';
 const target={kind:'overseas_cafe',recordId:'gutmut-hours',role:'published',facilityId:'gutmut',sourceUrl:'https://example.org/cafe',title:'Cafe opening hours',sourceMode:'html',officialVerified:true,sharingReviewedAt:'2026-10-28T02:00:00Z',approvedDocumentHash:evidenceHash(text),publicationHash:'a'.repeat(64),fragments:[text],baseline:{requiredFields:['businessHours'],facts:{businessHours:'Tuesday to Saturday'}}};
 const snapshot={version:1,records:[{id:'gutmut',publicationHash:'a'.repeat(64),sourceUrls:[target.sourceUrl]}]};
@@ -54,14 +55,39 @@ test('unshared registered leads and published pages are locally watched, not sub
  const r=await runOverseasCafeReview(o);assert.equal(calls,0);assert.equal(fetches,1);assert.equal(r.selected,2);assert.equal(r.entries.length,2);
  assert.ok(r.entries.every(e=>e.fetchStatus==='fetched-unshared'&&e.reviewedAt===null));
  assert.deepEqual((await runOverseasCafeReview({...o,now:now+86400000})).newOrChanged,[]);
- const changed=await runOverseasCafeReview({...o,now:now+2*86400000,fetchResource:async()=>{throw Error('unavailable');}});
- assert.equal(changed.newOrChanged.length,2);assert.ok(changed.entries.every(e=>e.machineCheckedAt===new Date(now+86400000).toISOString()));
+ const changed=await runOverseasCafeReview({...o,now:now+7*86400000,fetchResource:async()=>{throw Error('unavailable');}});
+ assert.equal(changed.newOrChanged.length,2);assert.ok(changed.entries.every(e=>e.machineCheckedAt===new Date(now).toISOString()));
  assert.equal(calls,0);
 });
 
 test('a baseline cannot silently omit its required published comparison value',()=>{
  const r=planOverseasCafeReview(snapshot,{overseasCafeTargets:[{...target,baseline:{requiredFields:['businessHours'],facts:{}}}]},now);
  assert.equal(r.selected.length,0);assert.ok(r.entries.some(e=>e.reasons.includes('structured-baseline-required')));
+});
+
+test('rotation gives published comparisons precedence, keeps candidate fairness and strict daily caps',()=>{
+ const eligible=[...Array.from({length:4},(_,i)=>({...target,role:'travel',recordId:'travel-'+i})),...Array.from({length:10},(_,i)=>({...target,recordId:'published-'+i})),...Array.from({length:15},(_,i)=>({...target,role:'candidate',recordId:'probe-'+i}))];
+ const sharedIds=new Set(eligible.filter(t=>t.role!=='candidate').map(t=>t.recordId));
+ const first=planOverseasRotation({eligible,sharedIds,now});assert.equal(first.selected.length,8);
+ assert.equal(first.selected.filter(t=>t.role==='travel').length,3);assert.equal(first.selected.filter(t=>t.role==='published').length,4);assert.equal(first.selected.filter(t=>t.role==='candidate').length,1);
+ assert.ok(first.deferred.some(d=>d.reason==='daily-travel-limit'));
+ const previous={day:'2026-10-28',attempted:first.selected.map(t=>t.recordId),entries:first.selected.map(t=>({recordId:t.recordId,lastAttemptedAt:new Date(now).toISOString(),targetSignature:overseasTargetSignature(t),decision:{}}))};
+ assert.equal(planOverseasRotation({eligible,sharedIds,previous,now:now+1000}).selected.length,0);
+ const next=planOverseasRotation({eligible,sharedIds,previous,now:now+86400000});assert.ok(next.selected.some(t=>t.recordId==='published-4'));assert.ok(next.selected.some(t=>t.recordId==='probe-1'));
+});
+
+test('retry and explicit waiting have deadlines; changed reviewed conditions and travel bypass them',()=>{
+ const eligible=[target,{...target,recordId:'travel',role:'travel'}],sharedIds=new Set(eligible.map(t=>t.recordId));
+ const prior={recordId:target.recordId,lastAttemptedAt:new Date(now-3600000).toISOString(),fingerprint:'fp',targetSignature:overseasTargetSignature(target),consecutiveSourceFailures:2};
+ const previous={entries:[prior,{...prior,recordId:'travel',targetSignature:overseasTargetSignature(eligible[1])}]};
+ const args={eligible,sharedIds,previous,now};const r=planOverseasRotation(args);
+ assert.deepEqual(r.selected.map(t=>t.recordId),['travel']);assert.ok(r.deferred[0].nextCheckAt);
+ assert.equal(planOverseasRotation({...args,now:now+4*86400000}).selected.length,2);
+ assert.equal(planOverseasRotation({...args,eligible:[{...target,approvedDocumentHash:'b'.repeat(64)}]}).selected.length,1);
+ previous.entries[0].consecutiveSourceFailures=0;
+ const decisions=[{key:'overseas:'+target.recordId,fingerprint:'fp',disposition:'waiting-source',reviewedAt:new Date(now-1000).toISOString(),nextCheckAt:new Date(now+86400000).toISOString()}];
+ assert.equal(planOverseasRotation({...args,decisions}).deferred[0].reason,'waiting-source-until');
+ decisions[0].fingerprint='obsolete';assert.equal(planOverseasRotation({...args,decisions}).selected.length,2);
 });
 test('English discovery is private, rejects external operations and is weekly',async t=>{
  const opts=await fixture(t),source={id:'press',url:'https://example.org/',topicScope:'overseas-cafe'},html='<a href="/store">New Deaf Signing Coffee Store</a><a href="/travel">Safe holiday packages</a><a href="https://other.org/cafe">Deaf signing cafe</a><a href="/donate.html">Support the café</a>';

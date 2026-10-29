@@ -6,6 +6,8 @@ import {reviewCurationTasks} from './curation-review.mjs';
 import {evidenceHash,prepareReviewItem,overseasFields} from './curation-review-contract.mjs';
 import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
 import {cleanHtml} from '../src/lib/text.mjs';
+import {publicationBindingMatches} from './publication-binding.mjs';
+import {planOverseasRotation,overseasTargetSignature} from './overseas-cafe-rotation.mjs';
 
 const sha=x=>/^[a-f0-9]{64}$/.test(x??'');
 const issue=(t,reason)=>({kind:'overseas_cafe',recordId:t.recordId,role:t.role,sourceUrl:t.sourceUrl??null,status:'exception',reasons:[reason],differences:[],publicationApproved:false,reviewedAt:null});
@@ -18,7 +20,7 @@ export function planOverseasCafeReview(snapshot,catalog,now=Date.now()){
   seen.add(t.recordId);
   if(t.role==='published'){
    const r=records.get(t.facilityId);
-   if(!r||!sha(r.publicationHash)||r.publicationHash!==t.publicationHash||!r.sourceUrls.includes(t.sourceUrl)){entries.push(issue(t,'publication-baseline-review-required'));continue;}
+   if(!publicationBindingMatches(r,t)||!r.sourceUrls.includes(t.sourceUrl)){entries.push(issue(t,'publication-baseline-review-required'));continue;}
   }
   if(t.role==='travel'){
    const u=new URL(t.sourceUrl);
@@ -38,21 +40,19 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
  const path=join(stateDir,'overseas-cafe-review.json'),plan=planOverseasCafeReview(snapshot,catalog,now);
  let previous;try{previous=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
  if(previous?.submittedThisRun===null)stopAfterError=true;
- const day=new Date(now+9*3600000).toISOString().slice(0,10),signature=evidenceHash(JSON.stringify([snapshot,catalog.overseasCafeTargets??[],approvalSignature]));
+ let decisions=[];try{decisions=JSON.parse(await readFile(join(stateDir,'curation-work-decisions.json'),'utf8')).items??[];}catch(e){if(e.code!=='ENOENT')throw e;}
+ const day=new Date(now+9*3600000).toISOString().slice(0,10),signature=evidenceHash(JSON.stringify([2,snapshot,catalog.overseasCafeTargets??[],approvalSignature,decisions]));
  if(!stopAfterError&&previous?.day===day&&previous.signature===signature)return {...previous,reusedRun:true,submittedThisRun:previous.submittedThisRun===null?null:0,newOrChanged:[]};
  const old=new Map((previous?.entries??[]).map(e=>[e.recordId,e]));
  // A changing allowance cannot reopen the same day's acquisition budget.
- const attempted=previous?.day===day?[...(previous.attempted??[])]:[];
  // Unapproved, explicitly registered leads receive a bounded hash/availability
  // check locally. No unreviewed text is ever sent to the shared API.
  const probes=(catalog.overseasCafeTargets??[]).filter(t=>!plan.selected.includes(t)&&t.role==='candidate'&&t.sourceMode==='html');
  for(const e of plan.entries.filter(e=>e.role==='published'&&e.reasons.includes('sharing-review-required')&&e.sourceUrl))probes.push({...e,sourceMode:'html'});
  const eligible=[...plan.selected,...probes];
- const priority=t=>t.role==='travel'?0:t.role==='candidate'?1:plan.selected.includes(t)?2:3;
- const ordered=eligible.filter(t=>!attempted.includes(t.recordId)).sort((a,b)=>(Date.parse(old.get(a.recordId)?.lastAttemptedAt)||0)-(Date.parse(old.get(b.recordId)?.lastAttemptedAt)||0)||priority(a)-priority(b)||a.recordId.localeCompare(b.recordId));
- const travelSlots=Math.max(0,3-attempted.filter(id=>eligible.some(t=>t.recordId===id&&t.role==='travel')).length);
- const travelFirst=ordered.filter(t=>t.role==='travel').slice(0,travelSlots);
- const selected=[...travelFirst,...ordered.filter(t=>!travelFirst.includes(t))].slice(0,Math.max(0,8-attempted.length)),entries=plan.entries.filter(e=>!selected.some(t=>probes.includes(t)&&t.recordId===e.recordId)).map(e=>{
+ const rotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous,decisions,now});
+ const {selected,attempted,deferred}=rotation;
+ const entries=plan.entries.filter(e=>!selected.some(t=>probes.includes(t)&&t.recordId===e.recordId)).map(e=>{
   const prior=old.get(e.recordId);
   return !selected.some(t=>t.recordId===e.recordId)&&prior?.sourceUrl===e.sourceUrl&&JSON.stringify(prior.reasons)===JSON.stringify(e.reasons)?{...prior,deferred:true}:e;
  }),sourceCache=new Map(),fetched=new Set(),actuallyAttempted=new Set();
@@ -103,12 +103,17 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
   e.firstSeenAt=prior?.firstSeenAt??stamp;e.changedAt=prior?.fingerprint===e.fingerprint?prior.changedAt:stamp;
   // Pending/unselected source records are not claimed as machine-fetched.
   e.lastAttemptedAt=actuallyAttempted.has(e.recordId)?stamp:prior?.lastAttemptedAt??null;
+  const t=eligible.find(t=>t.recordId===e.recordId);
+  e.targetSignature=actuallyAttempted.has(e.recordId)&&t?overseasTargetSignature(t):prior?.targetSignature??null;
+  const unavailable=e.fetchStatus==='unavailable'||e.reasons.some(r=>/source-unavailable|invalid-or-unavailable-source|fetch-failed|fetch-unavailable|timeout/.test(r));
+  e.consecutiveSourceFailures=actuallyAttempted.has(e.recordId)?unavailable?(prior?.consecutiveSourceFailures??0)+1:0:prior?.consecutiveSourceFailures??0;
   e.machineCheckedAt=fetched.has(e.recordId)?stamp:prior?.machineCheckedAt??null;
   if(prior?.fingerprint!==e.fingerprint)newOrChanged.push(e.recordId);
  }
- const deferred=eligible.filter(t=>!selected.includes(t)).map(t=>({recordId:t.recordId,reason:attempted.includes(t.recordId)?'already-attempted-today':'daily-source-limit'}));
  for(const d of deferred)if(old.has(d.recordId)&&!entries.some(e=>e.recordId===d.recordId))entries.push({...old.get(d.recordId),deferred:true});
- const result={version:1,day,signature,generatedAt:stamp,reusedRun:false,selected:selected.length,attempted,cached,submittedThisRun:submitted,entries,deferred,newOrChanged,
+ const nextRotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous:{day,attempted,entries},decisions,now:now+86400000});
+ const result={version:1,day,signature,generatedAt:stamp,reusedRun:false,selected:selected.length,selection:rotation.selection,attempted,cached,submittedThisRun:submitted,entries,deferred,newOrChanged,
+  nextRotationPreview:{simulation:true,at:new Date(now+86400000).toISOString(),selection:nextRotation.selection,deferred:nextRotation.deferred.length},
   corroborated:entries.filter(e=>e.status==='corroborated').length,exceptions:entries.filter(e=>e.status==='exception').length,candidates:entries.filter(e=>e.status==='candidate').length,
   coverage:{published:snapshot.records.length,configured:catalog.overseasCafeTargets?.length??0,sharedEligible:plan.selected.length,localOnly:probes.length,
     configuredPublished:(catalog.overseasCafeTargets??[]).filter(t=>t.role==='published').length,

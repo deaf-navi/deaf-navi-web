@@ -29,7 +29,17 @@ export function candidateDisposition(entry,{now=Date.now(),eventKind}={}){
   return {...entry,status:'candidate',reasons,disposition,publicationApproved:false,reviewedAt:null};
 }
 
-export async function runDiscoveryReview({stateDir,catalog,knownUrls=[],now=Date.now(),prepare=prepareCurationReview,
+export function matchesPublishedCandidate(target,record){
+ const binding=target.publishedIdentity;
+ if(!binding||!record||record.publication!=='public'||record.kind!==target.kind||record.recordId!==target.recordId
+  ||urlKey(record.sourceUrl)!==urlKey(target.sourceUrl))return false;
+ try{
+  if(binding.inputId!==prepareReviewItem({...target,text:target.fragments?.join(' ')}).id)return false;
+  return ['startDate','endDate','venue','time'].every(key=>(binding[key]??null)===(record.occurrence?.[key]??record.baseline?.[key]??null))
+   &&typeof binding.startDate==='string'&&typeof binding.venue==='string'&&binding.venue.trim().length>0;
+ }catch{return false;}
+}
+export async function runDiscoveryReview({stateDir,catalog,knownUrls=[],publishedRecords=[],now=Date.now(),prepare=prepareCurationReview,
   generate,canSubmit=()=>false,approvalSignature='none',stopAfterError=false}={}){
   const targets=catalog.discoveryTargets??[];
   if(!Array.isArray(targets)||targets.length>200)throw new Error('Invalid discovery review catalog');
@@ -41,7 +51,11 @@ export async function runDiscoveryReview({stateDir,catalog,knownUrls=[],now=Date
   for(const target of targets){
     const id=target.kind+':'+target.recordId;
     if(seen.has(id)||!target.recordId)throw new Error('Duplicate candidate review identity');seen.add(id);
-    if(known.has(urlKey(target.sourceUrl))){entries.push({...issue(target,'already-published-source'),disposition:'published-source'});continue;}
+    const published=publishedRecords.find(r=>r.kind===target.kind&&r.recordId===target.recordId);
+    if(target.kind==='news'&&known.has(urlKey(target.sourceUrl))||matchesPublishedCandidate(target,published)){
+      entries.push({...issue(target,'already-published-identity'),status:'already-published',disposition:'published',publicationId:target.recordId});continue;
+    }
+    if(published){entries.push(issue(target,'published-identity-review-required'));continue;}
     if(!['news','event','cafe'].includes(target.kind)||target.officialVerified!==true||target.sourceMode!=='html'
       ||!Number.isFinite(Date.parse(target.sharingReviewedAt))||Date.parse(target.sharingReviewedAt)>now
       ||!/^[a-f0-9]{64}$/.test(target.approvedDocumentHash??'')){
@@ -56,7 +70,7 @@ export async function runDiscoveryReview({stateDir,catalog,knownUrls=[],now=Date
   const groups=new Map();for(const t of valid){const d=new URL(t.sourceUrl).hostname;if(!groups.has(d))groups.set(d,[]);groups.get(d).push(t);}
   const ordered=[];while([...groups.values()].some(x=>x.length))for(const g of groups.values())if(g.length)ordered.push(g.shift());
   const selected=ordered.slice(0,LIMIT),day=new Date(now+9*3600000).toISOString().slice(0,10);
-  const signature=evidenceHash(JSON.stringify({version:2,targets,known:[...known].sort(),approvalSignature}));
+  const signature=evidenceHash(JSON.stringify({version:3,targets,known:[...known].sort(),publishedRecords,approvalSignature}));
   if(!stopAfterError&&previous?.day===day&&previous.signature===signature&&Date.parse(previous.generatedAt)<=now
     &&now-Date.parse(previous.generatedAt)<48*3600000)return {...previous,reusedRun:true,submittedThisRun:0,newOrChanged:[]};
   let submitted=0,cached=0,failed=stopAfterError;const sourceCache=new Map();
