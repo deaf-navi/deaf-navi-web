@@ -684,63 +684,97 @@
       "eventIds": [
         "kawasaki-tsunagu-festival-2026-11-21"
       ]
+    },
+    {
+      "sourceUrl": "https://yysystem.com/information/information-1970-8-2/",
+      "sourceName": "YYSystem",
+      "state": "published_ready",
+      "discoveredOn": "2026-10-28",
+      "checkedAt": "2026-10-29T00:35:59.513Z",
+      "recheckAfter": "2026-10-30T00:00:00Z",
+      "reason": "主催者の開催回一覧と公式申込フォームで日時・会場・無料・10月31日締切・抽選と連絡期限を照合。東京2回は受付終了で今回の新規掲載対象に含めない。フォーム・画像・個人情報を共有APIに送信しない。",
+      "missing": [],
+      "eventIds": [
+        "yysystem-ailens-nagoya-2026-11-03",
+        "yysystem-ailens-nagoya-2026-11-23",
+        "yysystem-ailens-hiroshima-2026-11-23"
+      ],
+      "evidenceUrls": [
+        "https://yysystem.com/information/information-1970-8-2/",
+        "https://forms.cloud.microsoft/r/AmtfQPejKN"
+      ]
     }
   ],
   "lastResearch": {
-    "checkedAt": "2026-10-28T00:15:02.413Z",
-    "newDetailedCandidates": 2,
+    "checkedAt": "2026-10-29T00:35:59.513Z",
+    "newDetailedCandidates": 3,
     "newDetailedPages": 2,
-    "windowEnd": "2026-12-09",
-    "performanceWindowEnd": "2027-04-28",
+    "windowEnd": "2026-12-10",
+    "performanceWindowEnd": "2027-04-29",
     "publishedReady": [
-      "myoko-shuwa-workshop-2026-11-29",
-      "kawasaki-tsunagu-festival-2026-11-21"
+      "yysystem-ailens-nagoya-2026-11-03",
+      "yysystem-ailens-nagoya-2026-11-23",
+      "yysystem-ailens-hiroshima-2026-11-23"
     ],
-    "restored": [],
-    "scope": "水曜重点の中部9県と全国のカフェを4暦月先まで探索。国内イベントは妙高市の手話体験と川崎市の情報保障付き交流企画を新規詳査。東京・神奈川・岐阜の公演も検索し、登録済みと候補を固定URLで照合。カフェと宿泊の詳細は非公開運用台帳に保存。",
+    "restored": [
+      "kurume-kaiju-2026-11-21",
+      "sapporo-higashi-shuwa-2026-11-15",
+      "jinnancho-beginner-2026-11-27",
+      "dream-begin-2026-11-01",
+      "kanagawa-shuwa-go-2026-11-03",
+      "fujieda-summary-mini-2026-11-08",
+      "jtd-kyogen-hatsuharu-2027-01-30"
+    ],
+    "scope": "期限優先の公式本文・PDF・画像・SNS確認。YYSystem公式一覧と申込フォームの募集説明を実読。カフェ6件は専用台帳で確認。",
     "held": [
       {
         "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41929/",
-        "reason": "当日直接取得でトップページへ転送後HTTP503。未確認日時を延長せず中止とも判断しない。",
-        "recheckAfter": "2026-10-29T00:00:00Z"
+        "reason": "本日直接取得はrootへ転送後HTTP503。以前の開催条件や確認日時を延長せず、取得不能と中止を区別。",
+        "recheckAfter": "2026-10-30T00:00:00Z"
       },
       {
         "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
-        "reason": "当日直接取得でトップページへ転送後HTTP503。画像未確認として保留。",
-        "recheckAfter": "2026-10-29T00:00:00Z"
+        "reason": "本日直接取得はrootへ転送後HTTP503。同日の共通結果を利用し連続再試行しない。",
+        "recheckAfter": "2026-10-30T00:00:00Z"
       }
     ],
     "api": {
-      "submitted": 0,
+      "runGeneratedAt": "2026-10-29T00:34:32.212Z",
+      "selected": 26,
       "cached": 19,
-      "corroborated": 5,
-      "reviewedUnchanged": 4,
-      "exceptions": 36,
-      "note": "09:10の既存サーバー比較を再利用。新規2件は市公式HTMLの実読で判断。"
+      "submittedThisRun": 3,
+      "submittedUnit": "items",
+      "newRequests": 2,
+      "inputTokens": 2014,
+      "outputTokens": 954,
+      "newCandidateCorroborated": 0,
+      "newCandidateExceptions": 3,
+      "validationCode": "invalid-fact-evidence",
+      "note": "共有確認済みの公式一覧抜粋を既存path起動が比較。3件は根拠検証で不採用、保存結果を保持し再送しない。公式一覧と公式申込フォームの実読に基づく従来の個別掲載判断であり、API一致とは扱わない。"
     },
     "newsReview": {
       "version": 2,
-      "generatedAt": "2026-10-27T15:18:29.717Z",
+      "generatedAt": "2026-10-28T23:46:16.453Z",
       "counts": {
-        "uniqueInputs": 2565,
-        "alreadyPublished": 863,
-        "outsideWindow": 1290,
-        "hardExcluded": 16,
-        "duplicateOfPublished": 86,
-        "candidateDuplicates": 5,
-        "eligible": 305,
+        "uniqueInputs": 2708,
+        "alreadyPublished": 840,
+        "outsideWindow": 1462,
+        "hardExcluded": 20,
+        "duplicateOfPublished": 81,
+        "candidateDuplicates": 7,
+        "eligible": 298,
         "queued": 40,
-        "deferred": 265
+        "deferred": 258
       },
       "hardExclusionReasons": {
         "unrelated-visual-section": 1,
-        "low-value-page": 5,
-        "foreign-coverage-review-required": 1,
+        "low-value-page": 7,
+        "foreign-coverage-review-required": 3,
         "incidental-disability-nickname": 6,
         "market-report": 3
       },
       "comparison": {
-        "previousGeneratedAt": "2026-10-27T08:53:27.787Z",
+        "previousGeneratedAt": "2026-10-28T13:50:54.556Z",
         "previousQueued": 40,
         "retained": 40,
         "new": 0,
@@ -749,7 +783,8 @@
       },
       "inspected": 0,
       "published": 0,
-      "apiSubmitted": 0
+      "apiSubmitted": 0,
+      "note": "新規・変更候補0。既知の不変候補を再調査しない。"
     }
   },
   "previousResearch": {
@@ -894,6 +929,72 @@
         "published": 0,
         "apiSubmitted": 0,
         "note": "新規・変更候補0。未変更のフィード文面を公式本文の実確認と扱わない。"
+      }
+    },
+    {
+      "checkedAt": "2026-10-28T00:15:02.413Z",
+      "newDetailedCandidates": 2,
+      "newDetailedPages": 2,
+      "windowEnd": "2026-12-09",
+      "performanceWindowEnd": "2027-04-28",
+      "publishedReady": [
+        "myoko-shuwa-workshop-2026-11-29",
+        "kawasaki-tsunagu-festival-2026-11-21"
+      ],
+      "restored": [],
+      "scope": "水曜重点の中部9県と全国のカフェを4暦月先まで探索。国内イベントは妙高市の手話体験と川崎市の情報保障付き交流企画を新規詳査。東京・神奈川・岐阜の公演も検索し、登録済みと候補を固定URLで照合。カフェと宿泊の詳細は非公開運用台帳に保存。",
+      "held": [
+        {
+          "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41929/",
+          "reason": "当日直接取得でトップページへ転送後HTTP503。未確認日時を延長せず中止とも判断しない。",
+          "recheckAfter": "2026-10-29T00:00:00Z"
+        },
+        {
+          "sourceUrl": "https://koguyama.jp/yamabiko/yamabiko_event/41933/",
+          "reason": "当日直接取得でトップページへ転送後HTTP503。画像未確認として保留。",
+          "recheckAfter": "2026-10-29T00:00:00Z"
+        }
+      ],
+      "api": {
+        "submitted": 0,
+        "cached": 19,
+        "corroborated": 5,
+        "reviewedUnchanged": 4,
+        "exceptions": 36,
+        "note": "09:10の既存サーバー比較を再利用。新規2件は市公式HTMLの実読で判断。"
+      },
+      "newsReview": {
+        "version": 2,
+        "generatedAt": "2026-10-27T15:18:29.717Z",
+        "counts": {
+          "uniqueInputs": 2565,
+          "alreadyPublished": 863,
+          "outsideWindow": 1290,
+          "hardExcluded": 16,
+          "duplicateOfPublished": 86,
+          "candidateDuplicates": 5,
+          "eligible": 305,
+          "queued": 40,
+          "deferred": 265
+        },
+        "hardExclusionReasons": {
+          "unrelated-visual-section": 1,
+          "low-value-page": 5,
+          "foreign-coverage-review-required": 1,
+          "incidental-disability-nickname": 6,
+          "market-report": 3
+        },
+        "comparison": {
+          "previousGeneratedAt": "2026-10-27T08:53:27.787Z",
+          "previousQueued": 40,
+          "retained": 40,
+          "new": 0,
+          "changed": 0,
+          "unchanged": 40
+        },
+        "inspected": 0,
+        "published": 0,
+        "apiSubmitted": 0
       }
     }
   ]
