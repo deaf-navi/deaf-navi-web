@@ -22,6 +22,12 @@ test('existing published hash, exact sharing and official MOFA URL are required'
  assert.equal(planOverseasCafeReview(snapshot,{overseasCafeTargets:[target]},now).selected.length,1);
  for(const patch of [{publicationHash:'b'.repeat(64)},{sharingReviewedAt:null},{role:'travel',sourceUrl:'https://example.org/risk'}])assert.equal(planOverseasCafeReview(snapshot,{overseasCafeTargets:[{...target,...patch}]},now).selected.length,0);
 });
+test('source-only differences retain the field-name array used by existing consumers',async t=>{
+ const opts=await fixture(t);opts.catalog={overseasCafeTargets:[{...target,comparisonScopes:{businessHours:'source-only'},baseline:{requiredFields:['businessHours'],facts:{businessHours:'Monday'}}}]};
+ const r=await runOverseasCafeReview(opts),e=r.entries[0];
+ assert.deepEqual(e.differences,['businessHours']);assert.deepEqual(e.differenceScopes,{businessHours:'source-only'});
+ assert.ok(e.reasons.includes('differs-from-current'));assert.equal(e.publicationApproved,false);
+});
 test('API response cached across days; no DB changes or confirmation renewal',async t=>{
  const opts=await fixture(t);let calls=0;opts.generate=async items=>{calls++;return {model:'fixture',items:items.map(i=>decision(i.id))};};
  const r=await runOverseasCafeReview(opts);assert.equal(r.corroborated,1);assert.equal(calls,1);assert.equal(r.reviewedAt,null);assert.equal(r.publicationApproved,false);
