@@ -8,7 +8,7 @@ import {curationHorizonEnd} from './curation-horizon.mjs';
 
 const LIMIT=8;
 const issue=(target,reason)=>({kind:target.kind,recordId:target.recordId,sourceUrl:target.sourceUrl,
-  status:'exception',reasons:[reason],publicationApproved:false,reviewedAt:null});
+  status:'exception',reasons:[reason],...(target.sourceChange?{sourceChange:target.sourceChange}:{}),publicationApproved:false,reviewedAt:null});
 const urlKey=value=>{try{const u=new URL(value);u.hash='';return u.href;}catch{return null;}};
 
 // Candidate extraction has no publication baseline. A valid extraction is a draft,

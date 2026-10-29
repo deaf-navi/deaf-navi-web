@@ -8,9 +8,10 @@ import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
 import {cleanHtml} from '../src/lib/text.mjs';
 import {publicationBindingMatches} from './publication-binding.mjs';
 import {planOverseasRotation,overseasTargetSignature} from './overseas-cafe-rotation.mjs';
+import {overseasFieldCoverage} from './curation-review-intake.mjs';
 
 const sha=x=>/^[a-f0-9]{64}$/.test(x??'');
-const issue=(t,reason)=>({kind:'overseas_cafe',recordId:t.recordId,role:t.role,sourceUrl:t.sourceUrl??null,status:'exception',reasons:[reason],differences:[],publicationApproved:false,reviewedAt:null});
+const issue=(t,reason)=>({kind:'overseas_cafe',recordId:t.recordId,role:t.role,sourceUrl:t.sourceUrl??null,status:'exception',reasons:[reason],differences:[],...(t.sourceChange?{sourceChange:t.sourceChange}:{}),publicationApproved:false,reviewedAt:null});
 export function planOverseasCafeReview(snapshot,catalog,now=Date.now()){
  const records=new Map((snapshot?.records??[]).map(r=>[r.id,r]));
  const targets=catalog.overseasCafeTargets??[],seen=new Set(),selected=[],entries=[];
@@ -41,7 +42,7 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
  let previous;try{previous=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
  if(previous?.submittedThisRun===null)stopAfterError=true;
  let decisions=[];try{decisions=JSON.parse(await readFile(join(stateDir,'curation-work-decisions.json'),'utf8')).items??[];}catch(e){if(e.code!=='ENOENT')throw e;}
- const day=new Date(now+9*3600000).toISOString().slice(0,10),signature=evidenceHash(JSON.stringify([2,snapshot,catalog.overseasCafeTargets??[],approvalSignature,decisions]));
+ const day=new Date(now+9*3600000).toISOString().slice(0,10),signature=evidenceHash(JSON.stringify([3,snapshot,catalog.overseasCafeTargets??[],approvalSignature,decisions]));
  if(!stopAfterError&&previous?.day===day&&previous.signature===signature)return {...previous,reusedRun:true,submittedThisRun:previous.submittedThisRun===null?null:0,newOrChanged:[]};
  const old=new Map((previous?.entries??[]).map(e=>[e.recordId,e]));
  // A changing allowance cannot reopen the same day's acquisition budget.
@@ -82,7 +83,8 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
    const result=await reviewCurationTasks(prepared.tasks,{stateDir,now,generate,canSubmit,runMode:'routine'});
    submitted+=result.submitted;cached+=result.cached;
    for(const e of result.entries){
-    const t=batch.find(t=>t.recordId===e.recordId),value={...e,role:t.role,facilityId:t.facilityId??null,countryCode:t.countryCode??null};
+    const t=batch.find(t=>t.recordId===e.recordId),value={...e,role:t.role,facilityId:t.facilityId??null,countryCode:t.countryCode??null,
+     comparisonScopes:t.comparisonScopes??{},differences:(e.differences??[]).map(d=>({...d,scope:t.comparisonScopes?.[d.field]??'publication'}))};
     if(t.role==='candidate'){
      // A candidate baseline is reviewed evidence too. Do not hide a changed
      // extracted condition merely because the facility is not published yet.
@@ -99,7 +101,7 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
  }
  const stamp=new Date(now).toISOString(),newOrChanged=[];
  for(const e of entries){
-  const prior=old.get(e.recordId);e.fingerprint=evidenceHash(JSON.stringify([e.status,e.disposition,e.reasons,e.differences,e.decision??null,e.sourceUrl,e.fetchStatus,e.observedDocumentHash]));
+  const prior=old.get(e.recordId);e.fingerprint=evidenceHash(JSON.stringify([e.status,e.disposition,e.reasons,e.differences,e.decision??null,e.sourceUrl,e.fetchStatus,e.observedDocumentHash,...(e.sourceChange?[e.sourceChange.fingerprint]:[])]));
   e.firstSeenAt=prior?.firstSeenAt??stamp;e.changedAt=prior?.fingerprint===e.fingerprint?prior.changedAt:stamp;
   // Pending/unselected source records are not claimed as machine-fetched.
   e.lastAttemptedAt=actuallyAttempted.has(e.recordId)?stamp:prior?.lastAttemptedAt??null;
@@ -113,6 +115,15 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
  for(const d of deferred)if(old.has(d.recordId)&&!entries.some(e=>e.recordId===d.recordId))entries.push({...old.get(d.recordId),deferred:true});
  const nextRotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous:{day,attempted,entries},decisions,now:now+86400000});
  const result={version:1,day,signature,generatedAt:stamp,reusedRun:false,selected:selected.length,selection:rotation.selection,attempted,cached,submittedThisRun:submitted,entries,deferred,newOrChanged,
+  fieldCoverage:overseasFieldCoverage(snapshot,catalog,entries),
+  rotationWork:plan.selected.filter(t=>t.role==='published').map(t=>{
+   const e=entries.find(e=>e.recordId===t.recordId),d=deferred.find(d=>d.recordId===t.recordId),targetSignature=overseasTargetSignature(t);
+   const current=e?.targetSignature===targetSignature,fetchedAt=Date.parse(e?.machineCheckedAt);
+   const pending=!(current&&e?.status==='corroborated'&&Number.isFinite(fetchedAt)&&now-fetchedAt<7*86400000);
+   const held=d&&['waiting-source-until','source-retry-after'].includes(d.reason);
+   return {recordId:t.recordId,targetSignature,pending,actionable:pending&&!held&&(!current||!e?.reasons?.length),
+    lastAttemptedAt:e?.lastAttemptedAt??null,holdReason:held?d.reason:current&&e?.reasons?.length?'exception-review-required':null};
+  }),
   nextRotationPreview:{simulation:true,at:new Date(now+86400000).toISOString(),selection:nextRotation.selection,deferred:nextRotation.deferred.length},
   corroborated:entries.filter(e=>e.status==='corroborated').length,exceptions:entries.filter(e=>e.status==='exception').length,candidates:entries.filter(e=>e.status==='candidate').length,
   coverage:{published:snapshot.records.length,configured:catalog.overseasCafeTargets?.length??0,sharedEligible:plan.selected.length,localOnly:probes.length,

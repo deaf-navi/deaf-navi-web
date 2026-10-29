@@ -7,7 +7,7 @@ import {reviewCurationTasks} from './curation-review.mjs';
 import {evidenceHash,prepareReviewItem,lodgingFields,validateReviewResult,compareReview} from './curation-review-contract.mjs';
 
 const issue=(t,reason)=>({kind:'lodging',recordId:t.recordId,facilityId:t.facilityId??null,sourceUrl:t.sourceUrl??null,
-  status:'exception',reasons:[reason],differences:[],publicationApproved:false,reviewedAt:null});
+  status:'exception',reasons:[reason],differences:[],...(t.sourceChange?{sourceChange:t.sourceChange}:{}),publicationApproved:false,reviewedAt:null});
 const sha=value=>/^[a-f0-9]{64}$/.test(value??'');
 
 // A one-time human inspection can resolve only a cached, definite evidence
