@@ -1,6 +1,7 @@
 import {readFile,writeFile,rename} from 'node:fs/promises';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
+import {publicationBindingMatches} from './publication-binding.mjs';
 import {prepareCurationReview} from './prepare-curation-review.mjs';
 import {reviewCurationTasks} from './curation-review.mjs';
 import {evidenceHash,prepareReviewItem,lodgingFields,validateReviewResult,compareReview} from './curation-review-contract.mjs';
@@ -46,7 +47,7 @@ export function planLodgingReview(snapshot,catalog,{now=Date.now()}={}){
     }
     if(role==='published'){
       const record=records.get(t.facilityId);
-      if(!record||record.publicationHash!==t.publicationHash||!record.sourceUrls.includes(t.sourceUrl)){
+      if(!publicationBindingMatches(record,t)||!record.sourceUrls.includes(t.sourceUrl)){
         entries.push({...issue(t,'publication-baseline-review-required'),role});continue;
       }
       if(!Array.isArray(t.baseline?.requiredFields)||!t.baseline.requiredFields.length

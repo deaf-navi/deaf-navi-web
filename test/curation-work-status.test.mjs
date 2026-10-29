@@ -9,6 +9,15 @@ test('due items absent from comparison report remain actionable',()=>{
 });
 const now=Date.parse('2026-10-29T02:00:00Z');
 const empty=()=>Object.fromEntries(['daily','candidates','lodging','overseas','tips'].map(k=>[k,{generatedAt:new Date(now).toISOString(),entries:[],deferred:[],unreviewed:0}]));
+
+test('one source group retains every occurrence and does not merge queries, dates or approvals',()=>{
+ const reports=empty();reports.candidates.entries=['event-a','event-b'].map(recordId=>({recordId,status:'exception',sourceUrl:'https://example.org/events#next',reasons:['date-check']}));
+ reports.overseas.entries=[{recordId:'branch-a',sourceUrl:'https://example.org/events',reasons:['venue-check']},{recordId:'branch-b',sourceUrl:'https://example.org/events?branch=b',reasons:['venue-check']}];
+ const r=buildWorkStatus({reports,now});assert.equal(r.pending,4);assert.equal(r.sourceGroups.length,2);assert.equal(r.sourceGroupCounts.shared,1);
+ const g=r.operatorSourceGroups[0];assert.equal(g.members.length,3);assert.equal(g.perRecordReviewRequired,true);assert.equal(g.publicationApproved,false);assert.equal(g.reviewedAt,null);
+ assert.equal(new Set(g.members.map(m=>m.key)).size,3);
+ reports.candidates.entries[0].status='already-published';assert.equal(buildWorkStatus({reports,now}).pending,3);
+});
 test('cycle completed is separate from coverage and baseline blockage remains actionable',()=>{
  const reports=empty();reports.lodging.entries=[{recordId:'a',status:'exception',reasons:['publication-baseline-review-required'],firstSeenAt:'2026-10-27T01:00:00Z'}];
  const r=buildWorkStatus({reports,now,executionStatus:'completed'});

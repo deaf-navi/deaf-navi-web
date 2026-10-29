@@ -14,10 +14,13 @@ export function rebindLodgingPublication(catalog,snapshot,review,{now=Date.now()
    ||item.baselineHash!==evidenceHash(JSON.stringify(target.baseline))||item.conditionsMatchPublication!==true
    ||typeof item.note!=='string'||!item.note.trim()||item.note.length>500)throw Error('Publication binding review does not match');
   seen.add(item.recordId);
-  const prior={publicationHash:target.publicationHash,evidenceReview:target.evidenceReview??null,baselineReview:target.baselineReview??null};
+  const prior={publicationHash:target.publicationHash,evidenceReview:target.evidenceReview??null,baselineReview:target.baselineReview??null,comparisonBinding:target.comparisonBinding??null};
   if(target.evidenceReview&&item.evidenceConditionsRechecked!==true)throw Error('Evidence review requires explicit recheck');
   target.baselineReviewHistory=[...(target.baselineReviewHistory??[]),prior];
   target.publicationHash=record.publicationHash;
+  if(record.comparisonVersion===1&&/^[a-f0-9]{64}$/.test(record.comparisonHash??''))
+   target.comparisonBinding={version:1,publicationHash:record.publicationHash,comparisonHash:record.comparisonHash,enrolledAt:new Date(now).toISOString()};
+  else delete target.comparisonBinding;
   target.baselineReview={...item};
   if(target.evidenceReview){
    if(target.evidenceReview.documentHash!==item.documentHash||target.evidenceReview.publicationHash!==prior.publicationHash)throw Error('Evidence identity changed');

@@ -183,3 +183,14 @@ Codexは blocked、期限到来、未登録の初回確認、条件差分を優�
 宿泊案内を編集・公開した後は、公開guesthouses.jsonと登録済みbaselineを照合する。比較対象の条件が変わらず公式本文hashも同じ場合のみ、`rebindLodgingPublication`（scripts/rebind-curation-publication.mjs）へ実読した新旧publicationHash/documentHash/baselineHash/checkedAt/conditionsMatchPublicationと根拠メモを渡す。30分以内の実確認・現行公開版・全条件一致が必須。既存evidenceReviewがある項目も実読し、旧記録をbaselineReviewHistoryへ保存する。元のsharingReviewedAt・根拠確認日・拒否キャッシュを保持し、公開reviewedAtは延長しない。条件変更時はこの結び直しを使わず、正式な原文確認・比較値更新を行う。定時処理から自動で結び直さない。
 
 カタログ更新後は既存pathの通常実行を待ち、宿泊のpublication-baseline-review-requiredが解消したこと、API実使用/キャッシュ/原文確認済み再利用/例外を区別して確認する。海外の同日8項目を使い切っている場合は新規登録を翌日以降の巡回へ残し、上限をリセット・手動迂回しない。新規登録だけをAPI実処理済みとは報告しない。通常16要求、共通予算、当日許可、正確な文面の共有確認、結果不明停止は維持する。
+
+
+## 比較停止の再発防止・海外の巡回順・確認の集約（2026-10-29）
+
+掲載版全体の `publicationHash` は監査用に保持し、比較用の `comparisonVersion=1` / `comparisonHash` を併記する。宿泊の除外対象は紹介記事の `media` だけ、海外カフェは非公開の `review_notes` だけ。画像サムネイルの別設定は従来どおり掲載条件の外にある。料金・予約・所在地・営業・会話方法・注意事項・確認日時、その他の未知のフィールドは除外しない。元の掲載版が完全一致する対象に限り `enrollComparisonBindings` で私有カタログへ `comparisonBinding` を初期登録する。不一致を自動承認せず、従来の実読・rebindへ回す。以後、全体hashが変わっても登録済み比較hashと版が一致すれば比較を続ける。元のpublicationHash、sharingReviewedAt、evidenceReview.checkedAt、公開確認日・年次/48時間期限は進めない。
+
+海外は引き続き1 JST日8項目、4項目×最大2バッチ、渡航は最大3項目を優先。残りは共有確認済みの掲載店（変更・初回API照合・7日以上未巡回）を優先し、古い候補/未共有の取得確認にも原則1枠を残す。掲載店の仕事がない余りは候補へ回す。未共有ページの同一取得確認は7日おき、取得失敗は1日・3日・7日の間隔にし、正確なfingerprintに対応する既存waiting-source期限も尊重する。共有確認済みの条件が変わった場合と渡航情報はこの待機を使わない。API結果不明の停止は解除しない。項目が多ければ全店週1回とは断定しない。`selection` は実選択の理由、`nextRotationPreview` は保存済み台帳による翌日の予測であり、取得・API処理の実績ではない。上限を使い切った当日の更新でattemptedをリセットしない。
+
+候補を掲載済み扱いにする場合、ニュース以外は公式URLだけで除外しない。実際の掲載を確認し、対象候補の正確なinputIdと掲載レコードの固定ID・開催日/終了日・会場・時刻を `publishedIdentity` に記録する。公開状態とその回の全項目が一致したときだけ `already-published` として未処理から外し、原候補・照合記録・履歴は残す。同一URLの別開催回、日程/会場/時刻の相違、変更された短文は引き続き確認待ち。掲載済み記録の内容変更・中止等は通常の掲載照合が担当する。候補の整理から公開承認や確認日時を作らない。
+
+朝は `curation-operator-brief.json` の `operatorSourceGroups` を優先する。詳細の `curation-work-status.json` は全 `sourceGroups` と従来の個別itemsを持つ。URLのフラグメントだけを除いて同一公式ページをまとめ、クエリが違うページは統合しない。同日取得済みの本文を共用できる場合は一度読み、各memberの開催回/店舗ごとの日時・会場・条件・共有適性を個別に確認する。グループ単位の一括承認・一括鮮度延長は禁止。pendingは確認項目数、sourceGroupCountsはページ等のグループ数で区別する。共有キャッシュによるHTTP取得の重複防止は既存のsourceCacheを使用する。これらの整理に追加API・cron・手動日次実行は使わない。
