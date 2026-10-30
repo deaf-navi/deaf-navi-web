@@ -1,7 +1,7 @@
 import {readFile,writeFile,open,rename,unlink} from 'node:fs/promises';
 import {join} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
-import {reviewSchema,reviewInstructions,lodgingInstructions,overseasInstructions,parseReviewInput,partitionReviewResult} from './curation-review-contract.mjs';
+import {reviewSchema,reviewInstructions,lodgingInstructions,overseasInstructions,overseasExtractionCompleteness,parseReviewInput,partitionReviewResult} from './curation-review-contract.mjs';
 
 // No general agent tools, arbitrary endpoint, paid fallback, or automatic lease renewal.
 // One reviewed model policy for the client, allowance recorder, and health endpoint.
@@ -188,7 +188,7 @@ export function createComplimentaryClient({key,project,stateDir,fetchImpl=fetch,
       else if(input.some(item=>!approved.has(publicTextFingerprint(item))))throw deny('Exact public text has not been approved for sharing today');
       if(!input.length)return {success:true,provider:'codex_app_server',engine:'openai_complimentary',model:MODEL,items:[]};
       const outputLimit=reviewing?6000:MAX_OUTPUT;
-      const reviewPrompt=reviewInstructions+(reviewing&&input.some(item=>parseReviewInput(item).kind==='lodging')?'\n'+lodgingInstructions:'')+(reviewing&&input.some(item=>parseReviewInput(item).kind==='overseas_cafe')?'\n'+overseasInstructions:'');
+      const reviewPrompt=reviewInstructions+(reviewing&&input.some(item=>parseReviewInput(item).kind==='lodging')?'\n'+lodgingInstructions:'')+(reviewing&&input.some(item=>parseReviewInput(item).kind==='overseas_cafe')?'\n'+overseasInstructions+'\n'+overseasExtractionCompleteness:'');
       const payload={model:MODEL,reasoning:{effort:COMPLIMENTARY_REASONING_EFFORT},store:false,service_tier:'default',instructions:reviewing?reviewPrompt:instructions,input:JSON.stringify(input),max_output_tokens:outputLimit,text:{format:{type:'json_schema',name:reviewing?'curation_review':'public_news_items',strict:true,schema:reviewing?reviewSchema:schema}}};
       // UTF-8 byte count + output ceiling intentionally overestimates tokenizer usage.
       const reserve=Buffer.byteLength(JSON.stringify(payload),'utf8')+outputLimit+2056;

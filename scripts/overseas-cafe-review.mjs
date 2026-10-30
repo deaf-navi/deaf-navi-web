@@ -9,6 +9,7 @@ import {cleanHtml} from '../src/lib/text.mjs';
 import {publicationBindingMatches} from './publication-binding.mjs';
 import {planOverseasRotation,overseasTargetSignature,overseasDailyItemLimit,OVERSEAS_BATCH_SIZE,OVERSEAS_TRAVEL_ITEMS} from './overseas-cafe-rotation.mjs';
 import {overseasFieldCoverage} from './curation-review-intake.mjs';
+import {reuseOverseasEvidenceReview,reconcileSavedOverseasEvidence} from './overseas-evidence-review.mjs';
 
 const sha=x=>/^[a-f0-9]{64}$/.test(x??'');
 const issue=(t,reason)=>({kind:'overseas_cafe',recordId:t.recordId,role:t.role,sourceUrl:t.sourceUrl??null,status:'exception',reasons:[reason],differences:[],...(t.sourceChange?{sourceChange:t.sourceChange}:{}),publicationApproved:false,reviewedAt:null});
@@ -85,8 +86,9 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
   try{
    const result=await reviewCurationTasks(prepared.tasks,{stateDir,now,generate,canSubmit,runMode:'routine'});
    submitted+=result.submitted;cached+=result.cached;
-   for(const e of result.entries){
-    const t=batch.find(t=>t.recordId===e.recordId),value={...e,role:t.role,facilityId:t.facilityId??null,countryCode:t.countryCode??null,
+   for(const raw of result.entries){
+    const t=batch.find(t=>t.recordId===raw.recordId),task=prepared.tasks.find(t=>t.recordId===raw.recordId);
+    const e=reuseOverseasEvidenceReview(raw,t,task,now),value={...e,role:t.role,facilityId:t.facilityId??null,countryCode:t.countryCode??null,
      comparisonScopes:t.comparisonScopes??{},differenceScopes:Object.fromEntries((e.differences??[]).map(field=>[field,t.comparisonScopes?.[field]??'publication']))};
     if(t.role==='candidate'){
      // A candidate baseline is reviewed evidence too. Do not hide a changed
@@ -107,6 +109,10 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
    }else{failed=true;submitted=null;entries.push(...prepared.tasks.map(t=>issue({...sharedBatch.find(x=>x.recordId===t.recordId),...t},'api-or-cache-unavailable')));}
   }
  }
+ for(const d of deferred)if(old.has(d.recordId)&&!entries.some(e=>e.recordId===d.recordId)){
+  const prior=old.get(d.recordId),t=plan.selected.find(t=>t.recordId===d.recordId);
+  entries.push({...(!failed&&t?reconcileSavedOverseasEvidence(prior,t,now):prior),deferred:true});
+ }
  const stamp=new Date(now).toISOString(),newOrChanged=[];
  for(const e of entries){
   const prior=old.get(e.recordId);e.fingerprint=evidenceHash(JSON.stringify([e.status,e.disposition,e.reasons,e.differences,e.decision??null,e.sourceUrl,e.fetchStatus,e.observedDocumentHash,...(e.sourceChange?[e.sourceChange.fingerprint]:[])]));
@@ -120,7 +126,6 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
   e.machineCheckedAt=fetched.has(e.recordId)?stamp:prior?.machineCheckedAt??null;
   if(prior?.fingerprint!==e.fingerprint)newOrChanged.push(e.recordId);
  }
- for(const d of deferred)if(old.has(d.recordId)&&!entries.some(e=>e.recordId===d.recordId))entries.push({...old.get(d.recordId),deferred:true});
  const nextRotation=planOverseasRotation({eligible,sharedIds:new Set(plan.selected.map(t=>t.recordId)),previous:{day,attempted,entries},decisions,now:now+86400000,dailyItems});
  const result={version:1,day,signature,generatedAt:stamp,reusedRun:false,selected:selected.length,selection:rotation.selection,attempted,cached,submittedThisRun:submitted,entries,deferred,newOrChanged,
   capacity:{dailyItems,batchItems:OVERSEAS_BATCH_SIZE,maxBatches:dailyItems/OVERSEAS_BATCH_SIZE,publishedSlots:dailyItems-OVERSEAS_TRAVEL_ITEMS-1,attemptedToday:attempted.length,actuallyAttemptedThisRun:actuallyAttempted.size,remainingToday:Math.max(0,dailyItems-attempted.length),stoppedBy:capacityStop},
@@ -128,13 +133,13 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
   rotationWork:plan.selected.filter(t=>t.role==='published').map(t=>{
    const e=entries.find(e=>e.recordId===t.recordId),d=deferred.find(d=>d.recordId===t.recordId),targetSignature=overseasTargetSignature(t);
    const current=e?.targetSignature===targetSignature,fetchedAt=Date.parse(e?.machineCheckedAt);
-   const pending=!(current&&e?.status==='corroborated'&&Number.isFinite(fetchedAt)&&now-fetchedAt<7*86400000);
+   const pending=!(current&&['corroborated','reviewed-evidence'].includes(e?.status)&&Number.isFinite(fetchedAt)&&now-fetchedAt<7*86400000);
    const held=d&&['waiting-source-until','source-retry-after','daily-request-limit','daily-token-budget','verified-free-headroom'].includes(d.reason);
    return {recordId:t.recordId,targetSignature,pending,actionable:pending&&!held&&(!current||!e?.reasons?.length),
     lastAttemptedAt:e?.lastAttemptedAt??null,holdReason:held?d.reason:current&&e?.reasons?.length?'exception-review-required':null};
   }),
   nextRotationPreview:{simulation:true,at:new Date(now+86400000).toISOString(),selection:nextRotation.selection,deferred:nextRotation.deferred.length},
-  corroborated:entries.filter(e=>e.status==='corroborated').length,exceptions:entries.filter(e=>e.status==='exception').length,candidates:entries.filter(e=>e.status==='candidate').length,
+  corroborated:entries.filter(e=>e.status==='corroborated').length,evidenceReviewed:entries.filter(e=>e.status==='reviewed-evidence').length,exceptions:entries.filter(e=>e.status==='exception').length,candidates:entries.filter(e=>e.status==='candidate').length,
   coverage:{published:snapshot.records.length,configured:catalog.overseasCafeTargets?.length??0,sharedEligible:plan.selected.length,localOnly:probes.length,
     configuredPublished:(catalog.overseasCafeTargets??[]).filter(t=>t.role==='published').length,
     sharedEligiblePublished:plan.selected.filter(t=>t.role==='published').length,

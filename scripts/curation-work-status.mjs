@@ -110,8 +110,9 @@ export async function refreshWorkStatus({stateDir,now=Date.now(),executionStatus
  brief.overseasFieldCoverage=Array.isArray(reports.overseas?.fieldCoverage)?{
   facilities:reports.overseas.fieldCoverage.length,detailFile:'overseas-cafe-review.json',
   fields:reports.overseas.fieldCoverage.reduce((out,r)=>{for(const [key,f] of Object.entries(r.fields)){
-   out[key]??={registered:0,apiCorroborated:0,notConfigured:0,sourceOnly:0};
+   out[key]??={registered:0,apiCorroborated:0,evidenceReviewed:0,notConfigured:0,sourceOnly:0};
    out[key].registered+=Number(f.state!=='not-configured');out[key].apiCorroborated+=Number(f.state==='api-corroborated');
+   out[key].evidenceReviewed+=Number(f.state==='reviewed-evidence');
    out[key].notConfigured+=Number(f.state==='not-configured');out[key].sourceOnly+=Number(f.scope==='source-only');
   }return out;},{})}:null;
  await save(join(stateDir,'curation-operator-brief.json'),{...brief,detailFile:'curation-work-status.json',apiRequests:0});
