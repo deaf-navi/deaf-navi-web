@@ -1,0 +1,128 @@
+{
+  "sourceRef": "a93cc5b721ec453c1ada916a9dd3c0f0144cfa96",
+  "scope": "read-only source/deployment reconciliation and pending narrow-viewport public QA",
+  "comparedFrom": "63d4d3262af2dc309f6b2da4d304829a93a54b29",
+  "comparedCommits": 20,
+  "comparedFiles": 219,
+  "existingDeployRun": 41097134475,
+  "existingDeployJob": 124205716404,
+  "priorCi": [
+    {
+      "pr": 212,
+      "head": "d663e213f5989b799ada62824cf1f3b33da876c9",
+      "ciRun": 41015956570,
+      "conclusion": "success",
+      "merge": "8aba90ef1ebc6896c6b0fc5416bb1019b1fee591"
+    },
+    {
+      "pr": 215,
+      "head": "a7aa8cc0d8e233caf7afee5165cb048b8264503a",
+      "ciRun": 41025380831,
+      "conclusion": "success",
+      "merge": "7e912daa8f679c02392d7ee31087e887fba1410a"
+    },
+    {
+      "pr": 216,
+      "head": "25bdb4cb412b37e25ec7c993cfefc5c3edd4822c",
+      "ciRun": 41026558197,
+      "conclusion": "success",
+      "merge": "2f6ef0e74b1cc8f9c1f7cef8444a92a556dc2377"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/events/fujieda-summary-mini-2026-11-08/index.html",
+      "sourceRef": "a93cc5b721ec453c1ada916a9dd3c0f0144cfa96",
+      "canonical": "https://deafnavi.com/events/fujieda-summary-mini-2026-11-08/",
+      "event": {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "聞こえにくい方に書いて伝える方法 ― 要約筆記ミニ講座",
+        "url": "https://deafnavi.com/events/fujieda-summary-mini-2026-11-08/",
+        "startDate": "2026-11-08",
+        "endDate": "2026-11-08",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "藤枝市生涯学習センター 視聴覚室（藤枝市茶町1丁目5番5号）",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "静岡県",
+            "addressCountry": "JP"
+          }
+        },
+        "description": "難聴者の体験談、要約筆記の紹介、筆談体験などを通じて、書いて伝える方法を学びます。",
+        "organizer": [
+          {
+            "@type": "Organization",
+            "name": "要約筆記サークル「藤枝」"
+          },
+          {
+            "@type": "Organization",
+            "name": "藤枝市",
+            "url": "https://www.city.fujieda.shizuoka.jp/"
+          }
+        ],
+        "offers": [
+          {
+            "@type": "Offer",
+            "price": 0,
+            "priceCurrency": "JPY",
+            "url": "https://www.city.fujieda.shizuoka.jp/soshiki/kenkofukushi/syougaifukushi/boshu/24009.html",
+            "validFrom": "2026-10-19"
+          }
+        ]
+      },
+      "bodyImage": null,
+      "publicBrowserQa": null
+    },
+    {
+      "path": "docs/events/oioi-5797b8fc3831f0b5d15c/index.html",
+      "sourceRef": "a93cc5b721ec453c1ada916a9dd3c0f0144cfa96",
+      "canonical": "https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/",
+      "event": {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "大阪成蹊大学 大阪成蹊短期大学 CAMPAS FESTIVAL 2026 大学祭",
+        "url": "https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/",
+        "startDate": "2026-10-31",
+        "endDate": "2026-10-31",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "大阪成蹊大学 駅前キャンパス こみちホール",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "大阪府",
+            "addressCountry": "JP"
+          }
+        },
+        "image": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
+        "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。"
+      },
+      "bodyImage": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
+      "publicBrowserQa": null
+    },
+    {
+      "path": "docs/events/mimisuppo-shiroishi-2026-10-27/index.html",
+      "sourceRef": "a93cc5b721ec453c1ada916a9dd3c0f0144cfa96",
+      "canonical": "https://deafnavi.com/events/mimisuppo-shiroishi-2026-10-27/",
+      "event": null,
+      "bodyImage": null,
+      "publicBrowserQa": null
+    }
+  ],
+  "publicBrowserQa": [],
+  "browserCapabilityInExecutor": false,
+  "executorProductionRequests": 0,
+  "gscAffectedUrls": null,
+  "gscAffectedCount": null,
+  "gscCrawlDates": null,
+  "gscMetrics": null,
+  "ga4Metrics": null,
+  "limitations": [
+    "No GSC validation success or metrics have been measured.",
+    "Source/artifact checks are distinct from live browser QA.",
+    "No code, existing collection, app integration or server settings changed."
+  ]
+}
