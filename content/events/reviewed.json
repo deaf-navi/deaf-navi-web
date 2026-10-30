@@ -1018,7 +1018,7 @@
     "status": "announced",
     "verificationMode": "visual",
     "visualEvidenceUrl": "https://www.city.fujieda.shizuoka.jp/material/files/group/109/tirashi.pdf",
-    "reviewedAt": "2026-10-29T00:35:59.513Z",
+    "reviewedAt": "2026-10-30T08:09:37.287Z",
     "sourceHash": "87afc72109399fc9d07324b6b8fc60110e5ce67d3093c09e355ff908aafdae79",
     "htmlEvidenceHash": "c52b6c4b07fb523703b2bcc8acdfcfd9dd75002f6a62db1f9696a8cec49c415b",
     "evidence": [
@@ -1026,9 +1026,27 @@
       "藤枝市生涯学習センター（視聴覚室）",
       "13:15〜15:30",
       "申込み期間：10月19日（月）〜11月2日（月）",
-      "内容は文字で表示（要約筆記）します"
+      "内容は文字で表示（要約筆記）します",
+      "参加費 無料",
+      "共催：要約筆記サークル「藤枝」・藤枝市"
     ],
-    "reviewNote": "10月29日に当該回の公式HTMLと同一の現行PDF/画像を実読・目視。開催日・時刻・会場・対象・料金・申込と確認できた情報保障が掲載内容と一致。取得日時だけではなく実目視に基づく確認。"
+    "reviewNote": "2026年10月30日に公式HTMLと同じ現行PDFを実読・目視。開催日・時刻・会場・対象・申込期間・要約筆記の案内が一致。参加費無料、共催は要約筆記サークル「藤枝」と藤枝市。市の公式URLを確認。サークル独自URL・出演者名・イベント専用の画像URLは未確認。料金0円の申込案内のみ構造化し、空席・販売開始は推測しない。",
+    "organizers": [
+      {
+        "name": "要約筆記サークル「藤枝」"
+      },
+      {
+        "name": "藤枝市",
+        "url": "https://www.city.fujieda.shizuoka.jp/"
+      }
+    ],
+    "offers": [
+      {
+        "price": 0,
+        "priceCurrency": "JPY",
+        "url": "https://www.city.fujieda.shizuoka.jp/soshiki/kenkofukushi/syougaifukushi/boshu/24009.html"
+      }
+    ]
   },
   {
     "id": "kaat-jungle-captions-2026-10-24",

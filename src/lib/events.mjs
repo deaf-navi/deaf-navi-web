@@ -19,6 +19,20 @@ export function eventSourceText(html) {
   const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] || html;
   return cleanHtml(body.replace(/<!--[^]*?-->|<(script|style|noscript|nav|header|footer)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, '').replace(/<[^>]+>/g, ' ')).normalize('NFKC');
 }
+// Optional facts are entered only after an official-source review. Never infer
+// a ticket price, organizer identity or availability from missing/free-form copy.
+function validEventTerms(event) {
+  const https = value => publicUrl(value)?.startsWith('https:');
+  const name = value => typeof value === 'string' && value.trim().length > 0 && value.length <= 300;
+  return (event.organizers == null || (Array.isArray(event.organizers) && event.organizers.length > 0 && event.organizers.length <= 12
+    && event.organizers.every(item => item && name(item.name)
+      && (item.type == null || ['Organization','Person'].includes(item.type))
+      && (item.url == null || https(item.url)))))
+    && (event.offers == null || (Array.isArray(event.offers) && event.offers.length > 0 && event.offers.length <= 12
+      && event.offers.every(item => item && typeof item.price === 'number' && Number.isFinite(item.price) && item.price >= 0
+        && typeof item.priceCurrency === 'string' && /^[A-Z]{3}$/.test(item.priceCurrency)
+        && https(item.url) && (item.name == null || name(item.name)))));
+}
 export function validEvent(event) {
   return event && /^[a-z0-9][a-z0-9-]{1,120}$/.test(event.id || '')
     && typeof event.title === 'string' && event.title.length > 1 && event.title.length <= 300
@@ -29,7 +43,7 @@ export function validEvent(event) {
     && EVENT_KINDS[event.kind] && ['announced','closed','cancelled'].includes(event.status)
     && ['verified','needs_review'].includes(event.verification) && publicUrl(event.sourceUrl)?.startsWith('https:')
     && (!event.detailUrl || publicUrl(event.detailUrl)?.startsWith('https:'))
-    && typeof event.sourceName === 'string' && event.sourceName.length > 0
+    && typeof event.sourceName === 'string' && event.sourceName.length > 0 && validEventTerms(event)
     && Number.isFinite(Date.parse(event.verifiedAt)) && /^[a-f0-9]{64}$/.test(event.evidenceHash || '')
     && (event.applicationDeadline == null || validDeadlineDate(event.applicationDeadline))
     && (event.deadlineScope == null || ['participation','captions','interpretation','other'].includes(event.deadlineScope))
