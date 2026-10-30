@@ -1,6 +1,6 @@
 {
   "sourceRef": "a93cc5b721ec453c1ada916a9dd3c0f0144cfa96",
-  "scope": "read-only source/deployment reconciliation and pending narrow-viewport public QA",
+  "scope": "read-only source/deployment reconciliation plus parent desktop public QA; 390px narrow viewport unperformed",
   "comparedFrom": "63d4d3262af2dc309f6b2da4d304829a93a54b29",
   "comparedCommits": 20,
   "comparedFiles": 219,
@@ -101,7 +101,24 @@
         "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。"
       },
       "bodyImage": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
-      "publicBrowserQa": null
+      "publicBrowserQa": {
+        "scope": "desktop",
+        "source": {
+          "kind": "parent-provided formal cloud Chrome report",
+          "threadId": "01a18caa-7292-765d-89a3-5a40b01180e2",
+          "agent": "/root/verify_deafnavi_mobile_layout",
+          "measuredByThisExecutor": false
+        },
+        "sessionObservedAtUTC": [
+          "2026-10-30T23:24:53Z",
+          "2026-10-30T23:25:20Z"
+        ],
+        "viewport": {
+          "width": 1180,
+          "height": 757
+        },
+        "eventImageMatchesBody": true
+      }
     },
     {
       "path": "docs/events/mimisuppo-shiroishi-2026-10-27/index.html",
@@ -112,7 +129,77 @@
       "publicBrowserQa": null
     }
   ],
-  "publicBrowserQa": [],
+  "publicBrowserQa": [
+    {
+      "source": {
+        "kind": "parent-provided formal cloud Chrome report",
+        "threadId": "01a18caa-7292-765d-89a3-5a40b01180e2",
+        "agent": "/root/verify_deafnavi_mobile_layout",
+        "measuredByThisExecutor": false
+      },
+      "sessionObservedAtUTC": [
+        "2026-10-30T23:24:53Z",
+        "2026-10-30T23:25:20Z"
+      ],
+      "sessionObservedAtJST": "2026-10-31 08:24:53–08:25:20 JST",
+      "scope": "desktop",
+      "viewport": {
+        "width": 1180,
+        "height": 757
+      },
+      "clientWidth": 1165,
+      "scrollWidth": 1165,
+      "horizontalOverflow": false,
+      "url": "https://deafnavi.com/connect/sign-cafe/?dn_client=codex&q=SELF&prefecture=%E6%9D%B1%E4%BA%AC%E9%83%BD&sort=confirmed&dir=asc&view=cards#cafe-guide",
+      "action": "FAQ return link actually clicked",
+      "finalFragment": "#cafes",
+      "retainedQuery": {
+        "q": "SELF",
+        "prefecture": "東京都",
+        "sort": "confirmed",
+        "dir": "asc",
+        "view": "cards"
+      },
+      "resultCount": 1
+    },
+    {
+      "source": {
+        "kind": "parent-provided formal cloud Chrome report",
+        "threadId": "01a18caa-7292-765d-89a3-5a40b01180e2",
+        "agent": "/root/verify_deafnavi_mobile_layout",
+        "measuredByThisExecutor": false
+      },
+      "sessionObservedAtUTC": [
+        "2026-10-30T23:24:53Z",
+        "2026-10-30T23:25:20Z"
+      ],
+      "sessionObservedAtJST": "2026-10-31 08:24:53–08:25:20 JST",
+      "scope": "desktop",
+      "viewport": {
+        "width": 1180,
+        "height": 757
+      },
+      "clientWidth": 1165,
+      "scrollWidth": 1165,
+      "horizontalOverflow": false,
+      "url": "https://deafnavi.com/events/oioi-5797b8fc3831f0b5d15c/?dn_client=codex",
+      "eventImage": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
+      "bodyImgSrc": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
+      "bodyImgCurrentSrc": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
+      "imageComplete": true,
+      "naturalSize": {
+        "width": 1046,
+        "height": 1446
+      },
+      "renderedSize": {
+        "width": 240,
+        "height": 320
+      },
+      "bodyImageAndLinksVisibleInScreenshot": true,
+      "linkHrefsChecked": true,
+      "allLinkDestinationsVisited": false
+    }
+  ],
   "browserCapabilityInExecutor": false,
   "executorProductionRequests": 0,
   "gscAffectedUrls": null,
@@ -124,5 +211,23 @@
     "No GSC validation success or metrics have been measured.",
     "Source/artifact checks are distinct from live browser QA.",
     "No code, existing collection, app integration or server settings changed."
+  ],
+  "narrowViewportQa": {
+    "status": "unperformed",
+    "requestedWidth": 390,
+    "reason": "parent public browser API has no viewport change; prior enterprise DevTools denial was not bypassed or retried",
+    "source": {
+      "kind": "parent-provided formal cloud Chrome report",
+      "threadId": "01a18caa-7292-765d-89a3-5a40b01180e2",
+      "agent": "/root/verify_deafnavi_mobile_layout",
+      "measuredByThisExecutor": false
+    }
+  },
+  "remainingUnverified": [
+    "390px narrow viewport",
+    "all 21 live URLs",
+    "physical devices and Safari",
+    "all linked destinations",
+    "GSC/GA4 metrics and GSC warning resolution"
   ]
 }
