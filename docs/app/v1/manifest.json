@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-30T01:30:48Z",
+  "generatedAt": "2026-10-30T06:52:06Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -121,8 +121,8 @@
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
-      "count": 577,
-      "sourceGeneratedAt": "2026-10-30T00:55:51Z",
+      "count": 594,
+      "sourceGeneratedAt": "2026-10-30T06:52:06Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -208,17 +208,17 @@
         "japanesePostEdit": {
           "checked": 0,
           "updated": 0,
-          "cached": 318,
-          "skipped": 353,
+          "cached": 273,
+          "skipped": 378,
           "failed": 0,
           "enabled": true,
           "fallback": {
-            "requested": 1,
-            "failures": 1,
-            "circuitOpen": true
+            "requested": 100,
+            "failures": 8,
+            "circuitOpen": false
           },
-          "pending": 353,
-          "retainedPrevious": 131
+          "pending": 378,
+          "retainedPrevious": 140
         }
       }
     },
@@ -228,8 +228,8 @@
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
-      "count": 577,
-      "sourceGeneratedAt": "2026-10-30T00:55:51Z",
+      "count": 594,
+      "sourceGeneratedAt": "2026-10-30T06:52:06Z",
       "language": "und",
       "regions": [
         {
@@ -314,8 +314,8 @@
       "title": "Deaf Navi World Multilingual",
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
-      "count": 577,
-      "sourceGeneratedAt": "2026-10-30T00:55:51Z",
+      "count": 594,
+      "sourceGeneratedAt": "2026-10-30T06:52:06Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
