@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';import {spawn,spawnSync} from 'node:child_process';import {mkdtempSync,writeFileSync,readFileSync} from 'node:fs';import {tmpdir} from 'node:os';import {join,resolve} from 'node:path';import {randomBytes} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..'),env={...process.env,DEAFNAVI_DATA_DIR:mkdtempSync(join(tmpdir(),'deafnavi-admin-dash-')),DEAFNAVI_LOCAL_TEST:'1'},password=randomBytes(18).toString('hex');
 const run=(args,input)=>spawnSync('php',args,{cwd:root,env,input,encoding:'utf8'});const hash=run(['test/directory-hash.php'],password).stdout;
+const qualityRelease=run(['test/quality-report-release.php']);assert.equal(qualityRelease.status,0,qualityRelease.stderr||qualityRelease.stdout);
 assert.equal(run(['server/cli.php','init'],JSON.stringify({username:'testadmin',password_hash:hash})).status,0);
 const core=join(root,'server/core.php').replaceAll('\\','/');
 const sql=code=>run(['-r',`require '${core}';${code}`]);
