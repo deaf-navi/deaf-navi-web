@@ -57,7 +57,7 @@ test('unknown API outcome stops second batch and remains unresolved',async t=>{
 test('a deployment carries forward the eight already attempted sources and uses only sixteen more',()=>{
  const eligible=Array.from({length:40},(_,i)=>({...target,recordId:'p-'+i}));
  const previous={day:'2026-10-28',attempted:eligible.slice(0,8).map(t=>t.recordId)};
- const r=planOverseasRotation({eligible,sharedIds:new Set(eligible.map(t=>t.recordId)),previous,now});
+ const r=planOverseasRotation({eligible,sharedIds:new Set(eligible.map(t=>t.recordId)),previous,now,dailyItems:24});
  assert.equal(r.selected.length,16);assert.equal(r.attempted.length,8);
  assert.ok(r.selected.every(t=>!previous.attempted.includes(t.recordId)));
 });
@@ -97,12 +97,12 @@ test('a baseline cannot silently omit its required published comparison value',(
 test('rotation gives published comparisons precedence, keeps candidate fairness and strict daily caps',()=>{
  const eligible=[...Array.from({length:4},(_,i)=>({...target,role:'travel',recordId:'travel-'+i})),...Array.from({length:25},(_,i)=>({...target,recordId:'published-'+i})),...Array.from({length:15},(_,i)=>({...target,role:'candidate',recordId:'probe-'+i}))];
  const sharedIds=new Set(eligible.filter(t=>t.role!=='candidate').map(t=>t.recordId));
- const first=planOverseasRotation({eligible,sharedIds,now});assert.equal(first.selected.length,24);
+ const first=planOverseasRotation({eligible,sharedIds,now,dailyItems:24});assert.equal(first.selected.length,24);
  assert.equal(first.selected.filter(t=>t.role==='travel').length,3);assert.equal(first.selected.filter(t=>t.role==='published').length,20);assert.equal(first.selected.filter(t=>t.role==='candidate').length,1);
  assert.ok(first.deferred.some(d=>d.reason==='daily-travel-limit'));
  const previous={day:'2026-10-28',attempted:first.selected.map(t=>t.recordId),entries:first.selected.map(t=>({recordId:t.recordId,lastAttemptedAt:new Date(now).toISOString(),targetSignature:overseasTargetSignature(t),decision:{}}))};
- assert.equal(planOverseasRotation({eligible,sharedIds,previous,now:now+1000}).selected.length,0);
- const next=planOverseasRotation({eligible,sharedIds,previous,now:now+86400000});assert.ok(next.selected.some(t=>t.recordId==='published-5'));assert.ok(next.selected.some(t=>t.recordId==='probe-1'));
+ assert.equal(planOverseasRotation({eligible,sharedIds,previous,now:now+1000,dailyItems:24}).selected.length,0);
+ const next=planOverseasRotation({eligible,sharedIds,previous,now:now+86400000,dailyItems:24});assert.ok(next.selected.some(t=>t.recordId==='published-5'));assert.ok(next.selected.some(t=>t.recordId==='probe-1'));
 });
 
 test('retry and explicit waiting have deadlines; changed reviewed conditions and travel bypass them',()=>{
@@ -137,5 +137,24 @@ test('existing donation candidates retain history outside the review queue, with
 test('capacity opt-in is explicit and cannot exceed the fixed hard limit',()=>{
  assert.equal(overseasDailyItemLimit({}),8);
  assert.equal(overseasDailyItemLimit({overseasRotationPolicy:{version:1,dailyItems:24,batchItems:4}}),24);
- for(const policy of [{version:1,dailyItems:100,batchItems:4},{version:1,dailyItems:24,batchItems:20},null])assert.throws(()=>overseasDailyItemLimit({overseasRotationPolicy:policy}));
+ assert.equal(overseasDailyItemLimit({overseasRotationPolicy:{version:1,dailyItems:36,batchItems:4}}),36);
+ for(const policy of [{version:1,dailyItems:35,batchItems:4},{version:1,dailyItems:37,batchItems:4},{version:1,dailyItems:100,batchItems:4},{version:1,dailyItems:24,batchItems:20},null])assert.throws(()=>overseasDailyItemLimit({overseasRotationPolicy:policy}));
+});
+
+// Review orchestration integration: expanding a live day must retain its prior IDs.
+test('36-item policy processes only twelve more after 24, in batches of four',async t=>{
+ const opts=await fixture(t);opts.snapshot={records:[]};const targets=Array.from({length:40},(_,i)=>({...target,role:'candidate',recordId:'candidate-'+i,sourceUrl:'https://example.org/'+i}));
+ opts.catalog={overseasRotationPolicy:{version:1,dailyItems:24,batchItems:4},overseasCafeTargets:targets};
+ const acquisitions=[],batches=[];opts.prepare=(ts,o)=>{acquisitions.push(...ts.map(t=>t.recordId));return prepare(ts,o);};opts.generate=async items=>{batches.push(items.map(i=>i.id));return {model:'fixture',items:items.map(i=>decision(i.id))};};
+ const first=await runOverseasCafeReview(opts);assert.equal(first.attempted.length,24);assert.equal(batches.length,6);
+ opts.catalog.overseasRotationPolicy.dailyItems=36;
+ const expanded=await runOverseasCafeReview({...opts,now:now+1000});
+ assert.equal(expanded.selected,12);assert.equal(expanded.submittedThisRun,12);assert.equal(expanded.capacity.attemptedToday,36);assert.equal(expanded.capacity.actuallyAttemptedThisRun,12);assert.equal(expanded.capacity.maxBatches,9);assert.equal(expanded.capacity.remainingToday,0);
+ assert.equal(new Set(acquisitions).size,36);assert.equal(acquisitions.length,36);assert.ok(first.attempted.every(id=>expanded.attempted.includes(id)));assert.equal(batches.length,9);assert.ok(batches.every(x=>x.length===4));
+ const again=await runOverseasCafeReview({...opts,approvalSignature:'changed',now:now+2000});assert.equal(again.selected,0);assert.equal(again.submittedThisRun,0);assert.equal(acquisitions.length,36);assert.equal(batches.length,9);
+});
+
+test('36-item rotation preserves three travel slots and candidate fairness',()=>{
+ const eligible=[...Array.from({length:4},(_,i)=>({...target,role:'travel',recordId:'travel-'+i})),...Array.from({length:40},(_,i)=>({...target,recordId:'published-'+i})),{...target,role:'candidate',recordId:'candidate'}];
+ const r=planOverseasRotation({eligible,sharedIds:new Set(eligible.map(t=>t.recordId)),now,dailyItems:36});assert.equal(r.selected.length,36);assert.equal(r.selected.filter(t=>t.role==='travel').length,3);assert.equal(r.selected.filter(t=>t.role==='published').length,32);assert.equal(r.selected.filter(t=>t.role==='candidate').length,1);
 });
