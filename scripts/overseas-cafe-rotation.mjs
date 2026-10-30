@@ -3,18 +3,18 @@ const day=now=>new Date(now+9*3600000).toISOString().slice(0,10);
 const time=value=>Date.parse(value)||0;
 const DAY=86400000;
 // Source work is bounded separately from the shared API request/token budget.
-export const OVERSEAS_DAILY_ITEMS=24;
+export const OVERSEAS_DAILY_ITEMS=36;
 export const OVERSEAS_BATCH_SIZE=4;
 export const OVERSEAS_TRAVEL_ITEMS=3;
 export function overseasDailyItemLimit(catalog){
  const policy=catalog?.overseasRotationPolicy;
  if(policy===undefined)return 8; // Existing deployments require explicit rollout.
- if(policy?.version!==1||![8,OVERSEAS_DAILY_ITEMS].includes(policy.dailyItems)||policy.batchItems!==OVERSEAS_BATCH_SIZE)throw Error('Invalid overseas capacity policy');
+ if(policy?.version!==1||![8,24,OVERSEAS_DAILY_ITEMS].includes(policy.dailyItems)||policy.batchItems!==OVERSEAS_BATCH_SIZE)throw Error('Invalid overseas capacity policy');
  return policy.dailyItems;
 }
 export const overseasTargetSignature=t=>evidenceHash(JSON.stringify([t.sourceUrl,t.approvedDocumentHash,t.fragments,t.baseline,t.comparisonBinding?.comparisonHash??t.publicationHash]));
 export function planOverseasRotation({eligible,sharedIds,previous={},decisions=[],now=Date.now(),dailyItems=OVERSEAS_DAILY_ITEMS}){
- if(![8,OVERSEAS_DAILY_ITEMS].includes(dailyItems))throw Error('Invalid overseas daily limit');
+ if(![8,24,OVERSEAS_DAILY_ITEMS].includes(dailyItems))throw Error('Invalid overseas daily limit');
  const old=new Map((previous.entries??[]).map(e=>[e.recordId,e]));
  const attempted=previous.day===day(now)?[...new Set(previous.attempted??[])]:[];
  const deferred=[],ready=[];
