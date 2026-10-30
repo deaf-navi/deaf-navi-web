@@ -31,6 +31,15 @@ test('free text and source publisher never imply offers, organizer URLs or perfo
  assert.ok(!('offers' in schema));assert.ok(!('performer' in schema));
 });
 
+test('a reviewed registration start date keeps day precision without invented opening hours',()=>{
+ const input={...reviewedTerms,offers:[{...reviewedTerms.offers[0],validFrom:'2026-10-19'}]};
+ assert.equal(eventSchema(input,now).offers[0].validFrom,'2026-10-19');
+ assert.ok(!('availability' in eventSchema(input,now).offers[0]));
+ for(const value of ['2026-02-30','10月19日','',123]){
+  assert.ok(!validEvent({...input,offers:[{...input.offers[0],validFrom:value}]}));
+ }
+});
+
 test('optional event terms reject invalid prices, URLs and entity names',()=>{
  for(const patch of [
   {offers:[{price:-1,priceCurrency:'JPY',url:event.sourceUrl}]},

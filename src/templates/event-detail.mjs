@@ -19,7 +19,7 @@ export function eventSchema(event,now=Date.now()) {
  const organizer=event.organizers
   ?event.organizers.map(item=>({'@type':item.type||'Organization',name:item.name,...(item.url?{url:publicUrl(item.url)}:{})}))
   :event.organizer?{'@type':'Organization',name:event.organizer}:null;
- const offers=event.offers?.map(item=>({'@type':'Offer',price:item.price,priceCurrency:item.priceCurrency,url:publicUrl(item.url),...(item.name?{name:item.name}:{})}));
+ const offers=event.offers?.map(item=>({'@type':'Offer',price:item.price,priceCurrency:item.priceCurrency,url:publicUrl(item.url),...(item.name?{name:item.name}:{}),...(item.validFrom?{validFrom:item.validFrom}:{})}));
  return {'@context':'https://schema.org','@type':'Event',name:event.title,url:new URL(eventDetailPath(event),SITE_URL).href,startDate:event.startDate,endDate:event.endDate||event.startDate,eventStatus:'https://schema.org/EventScheduled',location:{'@type':'Place',name:event.venue,address:{'@type':'PostalAddress',addressRegion:event.prefecture,addressCountry:'JP'}},...(image?.startsWith('https:')?{image}:{}),...(event.description?{description:event.description}:{}),...(organizer?{organizer}:{}),...(offers?{offers}:{})};
 }
 export function renderEventDetail(event,{now=Date.now()}={}) {
