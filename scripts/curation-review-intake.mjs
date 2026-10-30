@@ -7,9 +7,11 @@ export function overseasFieldCoverage(snapshot,catalog,entries){
   const targets=(catalog.overseasCafeTargets??[]).filter(t=>t.role==='published'&&t.facilityId===r.id);
   const fields=Object.fromEntries(cafeCoverageFields.map(field=>{
    const configured=targets.filter(t=>t.baseline?.requiredFields?.includes(field)&&publicationBindingMatches(r,t)&&r.sourceUrls.includes(t.sourceUrl));
+   let matchedEntry;
    const matched=configured.find(t=>{let id;try{id=prepareReviewItem({...t,text:t.fragments.join(' ')}).id;}catch{return false;}
-    return entries.some(e=>e.recordId===t.recordId&&e.status==='corroborated'&&e.decision?.id===id);});
-   return [field,{state:matched?'api-corroborated':configured.length?'registered-awaiting-comparison':'not-configured',
+    matchedEntry=entries.find(e=>e.recordId===t.recordId&&['corroborated','reviewed-evidence'].includes(e.status)&&e.decision?.id===id
+     &&(e.status!=='reviewed-evidence'||e.reviewedDecision?.id===id));return !!matchedEntry;});
+   return [field,{state:matched?matchedEntry.status==='corroborated'?'api-corroborated':'reviewed-evidence':configured.length?'registered-awaiting-comparison':'not-configured',
     scope:(matched??configured[0])?.comparisonScopes?.[field]??(configured.length?'publication':null)}];
   }));
   return {facilityId:r.id,publicationHash:r.publicationHash,sourceUrls:r.sourceUrls,fields,publicationApproved:false};

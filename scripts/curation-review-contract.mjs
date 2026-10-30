@@ -25,6 +25,7 @@ event/cafeのfactsは確認できた項目だけ。各evidenceはtext内の連�
 export const lodgingInstructions='kind=lodgingは短期宿泊の予約・料金・滞在条件の抽出。relevanceは短期宿泊案内かどうかだけで判断する。ろう者の運営、個人の属性、現在の空室、営業継続や閉業を推測しない。factsはbooking（予約方法・確定手順）、rates（料金と単位・税・人数・季節・追加費用）、payment、cancellation、stay（宿泊設備・入退室）、reception（受付や休業の明示）、lodgingCommunication（筆談など対応方法）だけ。同じfieldは1件まで。例えば大人・子どものratesを別factsにしない。複数条件は240文字以内の一つの連続原文で裏付けられる場合のみ同じvalueに含め、無理な連結や省略で条件を変えない。各valueはevidence中の連続した原文をそのまま使い、要約・数値換算・他経路の条件の混合をしない。確認できない項目は省略。日付のない常設宿にイベント開催日を要求しない。contentTypeは常設案内other、開業/受付の告知announcement、過去の取材/報告report、不明unknown。';
 
 export const overseasInstructions='kind=overseas_cafeは海外常設カフェの営業案内、または外務省の渡航危険情報を原文のまま抽出する。イベント開催日を要求しない。relevanceは店舗の来店案内または公式の渡航情報かで判断し、個人の障害や健康状態・店舗の手話対応・地域の安全性は推測しない。fieldsはbusinessHours（現地時間の営業曜日と時間）、address、ordering（注文・会話方法）、booking、operation（営業・休業の明示）、locations（支店案内）、advisory（危険レベルと助言）、affectedAreas（対象地域）、issuedAt（発出日）。valueはevidence内の連続原文をそのまま使い、翻訳・要約・時差変換・危険度の数値化をしない。各根拠240文字以内。同fieldは1件まで。全国と地域限定の危険度を混ぜず、取得不能を閉店、情報なしを安全としない。企業規模・公的施設・雇用属性から安全を保証しない。過去報告はreport、通常案内other、開店等告知announcement。';
+export const overseasExtractionCompleteness='海外カフェの短文にある来店条件は項目ごとに漏れなく抽出する。定期開催曜日・除外月はoperationまたはbusinessHours、手話での応対やスタッフとの会話案内はorderingに含める。施設名と地名で構成される支店・会場案内はlocations、番地を含む住所はaddress。店名・導入句・例外条件を勝手に省かず、240文字以内の条件のまとまりを連続した原文で保持する。同じ条件を複数項目へ重複して増やさず、営業時間に含めた定休日だけを別の閉店情報として重複抽出しない。独立した臨時休業・閉店・変更の告知はoperationに必ず残す。足りない条件を推測して補わない。';
 
 export function prepareReviewItem(task) {
   if(!reviewKinds.includes(task?.kind))throw new Error('Invalid review kind');

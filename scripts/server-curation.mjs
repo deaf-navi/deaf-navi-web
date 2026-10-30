@@ -173,7 +173,7 @@ export async function runServerCuration({stateDir,key,project,records,catalog,di
       submittedThisRun,reusedRun:report.reusedRun,comparison,
       overseasThumbnails:overseasThumbnails?{status:overseasThumbnails.status??'checked',selected:overseasThumbnails.selected,fetched:overseasThumbnails.fetched,cached:overseasThumbnails.cached,deferred:overseasThumbnails.deferred,candidates:overseasThumbnails.candidates,newOrChanged:overseasThumbnails.newOrChanged,pendingReview:overseasThumbnails.pendingReview,apiRequests:0}:null,
       overseasDiscovery,overseas:{selected:overseas.selected,cached:overseas.cached,submittedThisRun:overseas.submittedThisRun,
-        corroborated:overseas.corroborated,exceptions:overseas.exceptions,candidates:overseas.candidates,deferred:overseas.deferred.length,newOrChanged:overseas.newOrChanged,coverage:overseas.coverage,capacity:overseas.capacity??null},
+        corroborated:overseas.corroborated,evidenceReviewed:overseas.evidenceReviewed,exceptions:overseas.exceptions,candidates:overseas.candidates,deferred:overseas.deferred.length,newOrChanged:overseas.newOrChanged,coverage:overseas.coverage,capacity:overseas.capacity??null},
       eventTips:eventTipReport,newOrChangedExceptions:queue.newOrChanged,attention:attention.counts,discovery,lodgingDiscovery,
       candidateReview:{selected:candidateReview.selected,cached:candidateReview.cached,submittedThisRun:candidateReview.submittedThisRun,
         reusedRun:candidateReview.reusedRun,deferred:candidateReview.deferred.length,newOrChanged:candidateReview.newOrChanged,
