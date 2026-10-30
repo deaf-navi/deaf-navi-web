@@ -31,7 +31,8 @@ function validEventTerms(event) {
     && (event.offers == null || (Array.isArray(event.offers) && event.offers.length > 0 && event.offers.length <= 12
       && event.offers.every(item => item && typeof item.price === 'number' && Number.isFinite(item.price) && item.price >= 0
         && typeof item.priceCurrency === 'string' && /^[A-Z]{3}$/.test(item.priceCurrency)
-        && https(item.url) && (item.name == null || name(item.name)))));
+        && https(item.url) && (item.name == null || name(item.name))
+        && (item.validFrom == null || validEventDate(item.validFrom)))));
 }
 export function validEvent(event) {
   return event && /^[a-z0-9][a-z0-9-]{1,120}$/.test(event.id || '')
