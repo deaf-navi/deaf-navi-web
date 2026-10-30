@@ -1,32 +1,32 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-30T00:54:38.153Z",
+  "generatedAt": "2026-10-30T01:29:17.121Z",
   "counts": {
-    "uniqueInputs": 2801,
-    "alreadyPublished": 905,
-    "outsideWindow": 1526,
-    "hardExcluded": 20,
-    "duplicateOfPublished": 102,
-    "candidateDuplicates": 2,
-    "eligible": 246,
+    "uniqueInputs": 2789,
+    "alreadyPublished": 941,
+    "outsideWindow": 1437,
+    "hardExcluded": 18,
+    "duplicateOfPublished": 119,
+    "candidateDuplicates": 7,
+    "eligible": 267,
     "queued": 40,
-    "deferred": 206
+    "deferred": 227
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 6,
-    "foreign-coverage-review-required": 2,
+    "low-value-page": 4,
+    "foreign-coverage-review-required": 3,
     "incidental-organization-mention": 1,
     "incidental-disability-nickname": 6,
-    "market-report": 4
+    "market-report": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-29T23:37:24.342Z",
+    "previousGeneratedAt": "2026-10-30T00:54:38.153Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -170,6 +170,16 @@
       "feedChange": "unchanged"
     },
     {
+      "sourceUrl": "https://udcast.net/workslist/hoshinokyoshitsu/",
+      "articleHash": "37e9ef7b1f639046cadf08272a783f0065d3f47a4a56798006564f75bcf26911",
+      "publishedAt": "2026-10-30T01:19:43.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/trial_audiodiscription/",
       "articleHash": "9cd0699fd39f637f7a9f068da211b5220e3612fec6378d1069fdb21917e6c6da",
       "publishedAt": "2026-10-28T03:27:47.000Z",
@@ -190,21 +200,21 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
-      "articleHash": "df24968e6a0050d62d2d4e87e26f8ac8b45172748d8193de8fa1243adf3deb43",
-      "publishedAt": "2026-10-27T06:01:08.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://note.com/psy_article/n/n008022d39951",
       "articleHash": "c07f4d1481defa2b8994a02b4f6f968736d0f818fef6e1d11e775cfa20bb4293",
       "publishedAt": "2026-05-31T14:40:03.000Z",
       "sourceTier": "broad",
       "sourceDomain": "note.com",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
+      "articleHash": "df24968e6a0050d62d2d4e87e26f8ac8b45172748d8193de8fa1243adf3deb43",
+      "publishedAt": "2026-10-27T06:01:08.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -360,9 +370,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/odorunew/",
-      "articleHash": "1647a6ce647c9f0923101b936720a617baff1c6f3ca38a80e5dc08f6b971304c",
-      "publishedAt": "2026-10-15T04:10:57.000Z",
+      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
+      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
+      "publishedAt": "2026-10-14T08:54:18.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -375,16 +385,6 @@
       "publishedAt": "2026-10-02T02:45:12.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
-      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
-      "publishedAt": "2026-10-14T08:54:18.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
