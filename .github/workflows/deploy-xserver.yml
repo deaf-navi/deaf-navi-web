@@ -9,6 +9,13 @@ on:
     paths:
       - 'docs/**'
       - 'server/**'
+      - 'scripts/report-publication-quality.mjs'
+      - 'src/lib/quality-report.mjs'
+      - 'src/lib/events.mjs'
+      - 'src/lib/source-review.mjs'
+      - 'src/event-deadline.js'
+      - '.state/events.json'
+      - '.state/publication-review-*.json'
       - '.github/workflows/deploy-xserver.yml'
   workflow_dispatch: {}
 
@@ -77,6 +84,18 @@ jobs:
             exit 1
           fi
 
+      - name: Generate private quality report for this release
+        run: |
+          set -euo pipefail
+          node scripts/report-publication-quality.mjs \
+            --output "$RUNNER_TEMP/${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.quality.json" \
+            --release-id "${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            --source-commit "$(git rev-parse HEAD)"
+          if find docs server \( -name '*publication-quality-report*' -o -name '*.quality.json' \) -print -quit | grep -q .; then
+            echo 'Operational quality reports must not enter the public archive.' >&2
+            exit 1
+          fi
+
       - name: Install PHP image test runtime
         run: sudo apt-get update && sudo apt-get install -y php-cli php-sqlite3 php-mbstring php-gd
 
@@ -108,6 +127,9 @@ jobs:
           node test/cafe-event-curation.integration.mjs
           php test/public-profile.test.php
           node test/social-import.mjs
+          node scripts/report-publication-quality.mjs \
+            --check "$RUNNER_TEMP/${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.quality.json" \
+            --source-commit "$(git rev-parse HEAD)"
           tar -czf "$RUNNER_TEMP/deafnavi-site.tar.gz" --transform='s,^server,_backend,' -C docs . -C .. server
 
       - name: Configure SSH
@@ -136,6 +158,9 @@ jobs:
           scp -i ~/.ssh/deafnavi_deploy -o BatchMode=yes \
             "$RUNNER_TEMP/deafnavi-site.tar.gz" \
             "$DEPLOY_USER@$DEPLOY_HOST:/srv/deafnavi/incoming/$archive"
+          scp -i ~/.ssh/deafnavi_deploy -o BatchMode=yes \
+            "$RUNNER_TEMP/${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.quality.json" \
+            "$DEPLOY_USER@$DEPLOY_HOST:/srv/deafnavi/incoming/${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.quality.json"
 
       - name: Activate release atomically
         env:
@@ -147,16 +172,20 @@ jobs:
           release_id="${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           source_commit="$(git rev-parse HEAD)"
           expected_backend_sha="$(git show "$source_commit:server/cafe-seo.php" | sha256sum | cut -d ' ' -f 1)"
+          expected_quality_sha="$(sha256sum "$RUNNER_TEMP/${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.quality.json" | cut -d ' ' -f 1)"
           printf 'Release source commit: %s\n' "$source_commit"
           ssh -i ~/.ssh/deafnavi_deploy -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
-            bash -s -- "$archive" "$release_id" "$expected_backend_sha" <<'REMOTE'
+            bash -s -- "$archive" "$release_id" "$expected_backend_sha" "$expected_quality_sha" <<'REMOTE'
           set -euo pipefail
           archive_name="$1"
           release_id="$2"
           expected_backend_sha="$3"
+          expected_quality_sha="$4"
           [[ "$expected_backend_sha" =~ ^[0-9a-f]{64}$ ]] || { echo 'Invalid backend checksum.' >&2; exit 1; }
+          [[ "$expected_quality_sha" =~ ^[0-9a-f]{64}$ ]] || { echo 'Invalid quality checksum.' >&2; exit 1; }
           root=/srv/deafnavi
           archive="$root/incoming/$archive_name"
+          quality_incoming="$root/incoming/$release_id.quality.json"
           staging="$root/releases/.staging-$release_id"
           release="$root/releases/$release_id"
 
@@ -212,6 +241,23 @@ jobs:
           fi
 
           verify_cafe_backend "$staging"
+          # Same-release report is prepared outside the document root before switching current.
+          # Runtime and deployment users retain their existing permissions; the DB stays private.
+          test -f "$quality_incoming" && test ! -L "$quality_incoming"
+          test "$(sha256sum "$quality_incoming" | cut -d ' ' -f 1)" = "$expected_quality_sha"
+          php -r 'require $argv[1]; $r=json_decode(file_get_contents($argv[2]),true,512,JSON_THROW_ON_ERROR); if(!is_array($r)||!admin_quality_release_report_valid($r,$argv[3],$argv[4]))exit(1);' \
+            "$staging/_backend/quality-overview.php" "$quality_incoming" "$release_id" "$staging/articles-world.json"
+          quality_dir="$root/shared/publication-quality"
+          test ! -L "$quality_dir"
+          mkdir -p "$quality_dir"
+          chgrp caddy "$quality_dir"
+          chmod 750 "$quality_dir"
+          quality_file="$quality_dir/$release_id.json"
+          test ! -e "$quality_file" && test ! -L "$quality_file"
+          chgrp caddy "$quality_incoming"
+          chmod 640 "$quality_incoming"
+          mv "$quality_incoming" "$quality_file"
+          test "$(sha256sum "$quality_file" | cut -d ' ' -f 1)" = "$expected_quality_sha"
           chgrp -R caddy "$staging"
           find "$staging" -type d -exec chmod 750 {} +
           find "$staging" -type f -exec chmod 640 {} +
@@ -222,6 +268,9 @@ jobs:
           printf 'Activated current target: %s\n' "$current_target"
           test "$current_target" = "$release" || { echo 'Current target mismatch.' >&2; exit 1; }
           verify_cafe_backend "$root/current"
+          test -s "$quality_file"
+          stat -c 'Private quality report: %U:%G %a' "$quality_dir" "$quality_file"
+          printf 'Private quality report SHA-256: %s\n' "$expected_quality_sha"
           printf '%s\n' "$release_id" > "$root/shared/last-release"
           REMOTE
 

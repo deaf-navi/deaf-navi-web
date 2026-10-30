@@ -3501,7 +3501,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZEIwT0tIV3JyMTU4M0t4d1FFTTlzUDVtYU5uY1dtU0NpNmI4bGdEOFl5VlZ6MkQtbk1PZTAxRGk3NHQ0d0EwZ1hhVW40emVkdmJSUGhvSnBkYlZmU3h5YXAwVXZkVnlOdmwwbWI2dWRPZV8yVEJBcHQ3Y2REc09rc0xnNDdLT3ZrUVdWTFU5bU9GTVc5cmNjR09TSnhLbWJVZUl1bUxzY0hsX1pORmNxUDN2cGJUMDNkMXd5WkJ2YjF5NDVCYXVTMm9fSdIB3wFBVV95cUxQaC11ejA1UTFNOHFvSlkzZk01aG5ULWRBeVNFbHYtYk0wYVhLWFlKMkF2YURZam5sWmpGVkxvQlpIUnNNSmVKRHAyWnhsUVdhbndHLVZWSmxuWjlYai1Ud1lwU1JfVnk0Nm5vUkJpSGNhS01FUUotTFFqdjhudlVLdVNQZkVhUTcwcVU1cEdhc3RpeFF5R2xBZEtFV3ZmVjA5N3p5WDZOS1ItdGdYVjAwc0kwZTh3empxbTd6WTNFZHZTTmt5d0tNSzZ1X05aZE9GbHFHZExxNUtrNjZLNW9B?oc=5",
-      "status": "held",
+      "status": "excluded",
       "reason": "unrelated",
       "firstSeenAt": "2026-10-30T06:52:06.944Z",
       "lastSeenAt": "2026-10-30T06:52:06.944Z",
@@ -3520,7 +3520,69 @@
         "regionLabel": "地域未確認",
         "topic": "general",
         "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-      }
+      },
+      "originalReason": "unrelated",
+      "reviewedBy": "codex-opus-source-review",
+      "reviewedAt": "2026-10-30T07:40:39.255Z",
+      "reviewers": [
+        "Codex",
+        "claude-opus-5-5"
+      ],
+      "sourceArticleUrl": "https://elpais.com/economia/2026-10-22/sordo-y-alvarez-auguran-que-pp-y-vox-aprobaran-el-despido-libre-y-gratuito-si-gobiernan.html",
+      "sourcePublishedDate": "2026-10-22",
+      "sourceUpdatedDate": null,
+      "sourcePublication": {
+        "originalPublishedDate": "2026-10-22",
+        "originalPublishedAtUtc": null,
+        "pageRepublishedDate": null,
+        "originalDateBasis": "EL PAÍSの本文表示：22 oct 2026 - 13:13 CEST。秒精度の原記事日時は記録せず、配信日時とは分離。"
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://elpais.com/economia/2026-10-22/sordo-y-alvarez-auguran-que-pp-y-vox-aprobaran-el-despido-libre-y-gratuito-si-gobiernan.html",
+          "method": "article-text",
+          "checkedAt": "2026-10-30T07:36:32.249780+00:00",
+          "excerpt": "CC OO, Unai Sordo",
+          "fetchedBodySha256": "c11e803c61c65329cb135fd5303b669010b0cec23da42815731edc7fa9dc5545",
+          "reviewer": "Codex"
+        },
+        {
+          "url": "https://www.ccoo.es/noticia:771142--Unai_Sordo_La_CEOE_tambien_es_destinataria_principal_de_esta_huelga_general%E2%80%9D&opc_id=8c53f4de8f8f09d2e54f19daf8d8ed95",
+          "method": "article-text",
+          "checkedAt": "2026-10-30T07:40:39.255Z",
+          "excerpt": "El secretario general de CCOO, Unai Sordo",
+          "reviewer": "Codex",
+          "note": "CCOO公式記事の役職・氏名を確認。原記事と同一記事という根拠には使わない。"
+        }
+      ],
+      "reviewNote": "原文本文ではCCOOのUnai Sordo氏とUGTのPepe Álvarez氏が解雇・賃金・年金など労働政策を論じている。見出しのSordoは姓であり、この記事の主題は聴覚障害・手話・補聴ではないため掲載対象外。人物本人の聴覚状態は判断していない。",
+      "opusNote": "除外に同意（Codexによる原文取得記録が条件）。OpusはEL PAÍS本文・CCOO公式本文を取得できず、EFE配信とUGT公式・見出しを補助確認した。原文本文の確認はCodexが担当。",
+      "reviewHistory": [
+        {
+          "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZEIwT0tIV3JyMTU4M0t4d1FFTTlzUDVtYU5uY1dtU0NpNmI4bGdEOFl5VlZ6MkQtbk1PZTAxRGk3NHQ0d0EwZ1hhVW40emVkdmJSUGhvSnBkYlZmU3h5YXAwVXZkVnlOdmwwbWI2dWRPZV8yVEJBcHQ3Y2REc09rc0xnNDdLT3ZrUVdWTFU5bU9GTVc5cmNjR09TSnhLbWJVZUl1bUxzY0hsX1pORmNxUDN2cGJUMDNkMXd5WkJ2YjF5NDVCYXVTMm9fSdIB3wFBVV95cUxQaC11ejA1UTFNOHFvSlkzZk01aG5ULWRBeVNFbHYtYk0wYVhLWFlKMkF2YURZam5sWmpGVkxvQlpIUnNNSmVKRHAyWnhsUVdhbndHLVZWSmxuWjlYai1Ud1lwU1JfVnk0Nm5vUkJpSGNhS01FUUotTFFqdjhudlVLdVNQZkVhUTcwcVU1cEdhc3RpeFF5R2xBZEtFV3ZmVjA5N3p5WDZOS1ItdGdYVjAwc0kwZTh3empxbTd6WTNFZHZTTmt5d0tNSzZ1X05aZE9GbHFHZExxNUtrNjZLNW9B?oc=5",
+          "status": "held",
+          "reason": "unrelated",
+          "firstSeenAt": "2026-10-30T06:52:06.944Z",
+          "lastSeenAt": "2026-10-30T06:52:06.944Z",
+          "sourceFingerprint": "0ed8d61b67b4213b7eaa7a6383f428540aac7f7d8f9452bfbe67866bcea4308e",
+          "translationFingerprint": "7fe93f2df9678a75ddecf8f5b0999bed499e89dd889908318aea9d2b78d01b13",
+          "article": {
+            "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZEIwT0tIV3JyMTU4M0t4d1FFTTlzUDVtYU5uY1dtU0NpNmI4bGdEOFl5VlZ6MkQtbk1PZTAxRGk3NHQ0d0EwZ1hhVW40emVkdmJSUGhvSnBkYlZmU3h5YXAwVXZkVnlOdmwwbWI2dWRPZV8yVEJBcHQ3Y2REc09rc0xnNDdLT3ZrUVdWTFU5bU9GTVc5cmNjR09TSnhLbWJVZUl1bUxzY0hsX1pORmNxUDN2cGJUMDNkMXd5WkJ2YjF5NDVCYXVTMm9fSdIB3wFBVV95cUxQaC11ejA1UTFNOHFvSlkzZk01aG5ULWRBeVNFbHYtYk0wYVhLWFlKMkF2YURZam5sWmpGVkxvQlpIUnNNSmVKRHAyWnhsUVdhbndHLVZWSmxuWjlYai1Ud1lwU1JfVnk0Nm5vUkJpSGNhS01FUUotTFFqdjhudlVLdVNQZkVhUTcwcVU1cEdhc3RpeFF5R2xBZEtFV3ZmVjA5N3p5WDZOS1ItdGdYVjAwc0kwZTh3empxbTd6WTNFZHZTTmt5d0tNSzZ1X05aZE9GbHFHZExxNUtrNjZLNW9B?oc=5",
+            "title": "ソルド氏とアルバレス氏は、PPとヴォックスが統治すれば「自由かつ自由な解雇」を承認すると予想している",
+            "summary": "ソルド氏とアルバレス氏は、PPとヴォックスが統治すれば「自由かつ自由な解雇」を承認すると予想している",
+            "originalTitle": "Sordo y Álvarez auguran que PP y Vox aprobarán “el despido libre y gratuito” si gobiernan",
+            "originalSummary": "Sordo y Álvarez auguran que PP y Vox aprobarán “el despido libre y gratuito” si gobiernan",
+            "sourceName": "EL PAÍS",
+            "sourceUrl": "https://elpais.com",
+            "publishedAt": "2026-10-22T11:13:02.000Z",
+            "region": "unknown",
+            "regionLabel": "地域未確認",
+            "topic": "general",
+            "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+          }
+        }
+      ],
+      "dispositionDigest": "fb9d745a3e47fdcaa8f5add92f70ef92a66b47bbc1f008f666cc1eb018601cb6"
     }
   ]
 }

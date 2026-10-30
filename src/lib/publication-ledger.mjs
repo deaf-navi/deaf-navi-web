@@ -3,6 +3,7 @@ import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import {join} from 'node:path';
 import {polishJapaneseWithSource} from './world-translation.mjs';
 import {validSourceReview,reviewedTextFingerprint} from './source-review.mjs';
+export const PUBLICATION_REVIEW_STATUSES=Object.freeze(['held','approved','source-verified','excluded','archived']);
 
 export const sourceFingerprint = a => createHash('sha256').update(JSON.stringify([a.originalTitle ?? a.title, a.originalSummary ?? a.summary, a.sourceUrl ?? null])).digest('hex');
 export const translationFingerprint = a => createHash('sha256').update(JSON.stringify([polishJapaneseWithSource(a.originalTitle,a.title),polishJapaneseWithSource(a.originalSummary,a.summary)])).digest('hex');

@@ -2,6 +2,35 @@
 declare(strict_types=1);
 // Authenticated admin overview only. This generated report contains public
 // source material; no submissions or visitor identifiers are exported to it.
+function admin_quality_release_id(?string $backendDir=null):?string {
+    $backendDir=realpath($backendDir??__DIR__)?:($backendDir??__DIR__);
+    $id=basename(dirname($backendDir));
+    return preg_match('/^[0-9a-f]{40}-[1-9]\d*-[1-9]\d*$/D',$id)===1?$id:null;
+}
+function admin_quality_report_path(?string $dataDir=null,?string $backendDir=null):string {
+    $dataDir=$dataDir??data_dir();$release=admin_quality_release_id($backendDir);
+    $backendDir=realpath($backendDir??__DIR__)?:($backendDir??__DIR__);
+    if($release===null&&basename(dirname($backendDir,2))==='releases')return '';
+    return $release!==null?dirname($dataDir).'/publication-quality/'.$release.'.json':$dataDir.'/publication-quality-report.json';
+}
+function admin_quality_deployment_matches(array $report,string $releaseId):bool {
+    $binding=$report['deployment']??null;
+    if(($report['schemaVersion']??null)!=='deafnavi-quality-report.v1'||!is_array($binding)||!is_array($binding['inputSha256']??null)||($binding['releaseId']??null)!==$releaseId||($binding['sourceCommit']??null)!==substr($releaseId,0,40))return false;
+    if(preg_match('/^[0-9a-f]{40}-[1-9]\d*-[1-9]\d*$/D',$releaseId)!==1)return false;
+    foreach(['events','domesticLedger','worldLedger','worldArticles'] as $key)if(!is_string($binding['inputSha256'][$key]??null)||preg_match('/^[0-9a-f]{64}$/D',$binding['inputSha256'][$key])!==1)return false;
+    return true;
+}
+function admin_quality_report_valid(array $report):bool {
+    if(($report['schemaVersion']??'')!=='deafnavi-quality-report.v1'||!is_array($report['coverage']??null)||!is_array($report['events']??null)||!is_array($report['holds']??null)||!is_array($report['classificationReview']??null)||!is_string($report['generatedAt']??null)||strtotime($report['generatedAt'])===false||!isset($report['range']['from'],$report['range']['through'],$report['recheckDue']))return false;
+    if(!is_int($report['recheckDue'])||$report['recheckDue']<0)return false;
+    if(isset($report['resolvedReviews'])&&!is_array($report['resolvedReviews']))return false;
+    if(isset($report['integrityWarnings'])&&!is_array($report['integrityWarnings']))return false;
+    foreach(['time','fee','signup','deadline','communication'] as $key){$coverage=$report['coverage'][$key]??[];foreach(['confirmed','notApplicable','unknown','total'] as $count)if(!isset($coverage[$count])||!is_int($coverage[$count])||$coverage[$count]<0)return false;if($coverage['confirmed']+$coverage['notApplicable']+$coverage['unknown']!==$coverage['total']||$coverage['total']!==count($report['events']))return false;}
+    return true;
+}
+function admin_quality_release_report_valid(array $report,string $releaseId,string $worldFile):bool {
+    return admin_quality_report_valid($report)&&admin_quality_deployment_matches($report,$releaseId)&&is_file($worldFile)&&hash_equals($report['deployment']['inputSha256']['worldArticles'],hash_file('sha256',$worldFile));
+}
 function admin_quality_source_dates(array $record):string {
     $source=$record['sourcePublication']??null;
     if(!is_array($source))return ($record['sourcePublishedDate']??'')!==''?'<br>原記事の公開日：'.e($record['sourcePublishedDate']).(($record['sourceUpdatedDate']??'')!==''?' ／ 原記事の更新日：'.e($record['sourceUpdatedDate']):'').' ／ 配信日時：'.e($record['feedPublishedAt']??'未確認'):'';
@@ -15,14 +44,13 @@ function admin_quality_source_dates(array $record):string {
     return '<br>'.implode(' ／ ',$parts);
 }
 function admin_quality_overview(?string $file=null):string {
-    $path=$file??data_dir().'/publication-quality-report.json';
+    $path=$file??admin_quality_report_path();
     $report=is_file($path)?json_decode((string)file_get_contents($path),true):null;
     $missing='<section><h2>掲載品質の確認</h2><p>品質集計は未取得です。件数・充足率は未確認です。</p></section>';
-    if(!is_array($report)||($report['schemaVersion']??'')!=='deafnavi-quality-report.v1'||!is_array($report['coverage']??null)||!is_array($report['events']??null)||!is_array($report['holds']??null)||!is_array($report['classificationReview']??null)||strtotime($report['generatedAt']??'')===false||!isset($report['range']['from'],$report['range']['through'],$report['recheckDue']))return $missing;
-    if(isset($report['resolvedReviews'])&&!is_array($report['resolvedReviews']))return $missing;
-    if(isset($report['integrityWarnings'])&&!is_array($report['integrityWarnings']))return $missing;
+    $release=$file===null?admin_quality_release_id():null;
+    if($release!==null&&(!is_array($report)||!admin_quality_deployment_matches($report,$release)))return $missing;
+    if(!is_array($report)||!admin_quality_report_valid($report))return $missing;
     $fields=['time'=>'時刻','fee'=>'料金','signup'=>'申込方法','deadline'=>'申込締切','communication'=>'情報の受け取り方'];
-    foreach(array_keys($fields) as $key){$coverage=$report['coverage'][$key]??[];foreach(['confirmed','notApplicable','unknown','total'] as $count)if(!isset($coverage[$count])||!is_int($coverage[$count])||$coverage[$count]<0)return $missing;if($coverage['confirmed']+$coverage['notApplicable']+$coverage['unknown']!==$coverage['total'])return $missing;}
     $out='<section><h2>掲載品質の確認</h2><p>集計：'.e($report['generatedAt']).' ／ '.e($report['range']['from']).'〜'.e($report['range']['through']).'</p><p>以下は集計時点の記載状況です。支援の利用可否や参加可能性を保証しません。期限切れの確認情報も要確認として含みます。</p>';
     if(time()-strtotime($report['generatedAt'])>86400)$out.='<p>この集計は24時間以上前のものです。最新の集計で確認してください。</p>';
     if(!empty($report['integrityWarnings']))$out.='<p role="alert">処理済みの確認記録に整合性の不一致が'.count($report['integrityWarnings']).'件あります。根拠の記録を再確認してください。掲載対象外の状態は維持されています。</p>';
