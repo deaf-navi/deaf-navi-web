@@ -14,6 +14,14 @@ export function isHardNoiseWorldText(text) {
   // audífonos means both hearing aids and headphones. Bluetooth alone is not noise.
   const hearingContext = /sord|auditiv|audici[oó]n|p[eé]rdida|hipoacusia|hearing|deaf|補聴|難聴|聴覚|accessib|accesib|sign language|lengua de (?:señas|signos)|\b(?:ASL|Libras|Auslan)\b|closed captions?|subt[ií]tulos en (?:directo|vivo)/iu.test(normalized);
   if (hearingContext) return false;
+  if (/Mejores aud[ií]fonos.*Premios Xataka/iu.test(normalized)) return true;
+  // Source-checked false positives: a celebrity's sarcastic caption and a
+  // general TikTok Shop sales feature, not accessibility reporting.
+  if (/\bVijay Deverakonda\b/iu.test(normalized) && /\bKoffee With Karan\b/iu.test(normalized) && /\bneeds? subtitles\b/iu.test(normalized)) return true;
+  if (/TikTok/iu.test(normalized) && /aud[ií]fonos/iu.test(normalized) && /as[ií] crece su tienda/iu.test(normalized)) return true;
+  if (/aud[ií]fonos/iu.test(normalized)
+    && /\b(?:Sony|Hello Kitty)\b/iu.test(normalized)
+    && /edici[oó]n (?:limitada|especial)|colecci[oó]n|colaboraci[oó]n/iu.test(normalized)) return true;
   if (/aud[ií]fonos/iu.test(normalized)
     && /gam(?:ing|er)|videojuegos|headsets?|auriculares|razer|soundcore|anker|tablet|smartwatch|deportivos|traducen idiomas|cancelaci[oó]n de ruido|escuchar m[uú]sica|sonido envolvente|k-pop|bocinas y cargadores/iu.test(normalized)) return true;
   // Subtitles can also mean fabricated political translations or tourism credits.

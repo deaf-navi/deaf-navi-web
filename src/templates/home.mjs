@@ -3,9 +3,10 @@
  *
  * 情報設計:
  *   1. ヘッダー（ナビ・表示設定）
- *   2. 検索・絞り込みツールバー
- *   3. 注目: 公式・専門団体の新着（見出し中心）
- *   4. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
+ *   2. 目的別の入口（出かける・暮らし・その場で使う）とニュース一覧への移動
+ *   3. 検索・絞り込みツールバー
+ *   4. 注目: 公式・専門団体の新着（見出し中心）
+ *   5. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
  *
  * パフォーマンス方針: v1 は全505件をHTMLに埋め込み966KBあった。
  * 2.0 は初期60件のみSSRし、全件データはクライアントが articles.json を
@@ -171,6 +172,51 @@ ${items.map((item) => `      <a class="quick-access__item${item.tone ? ` quick-a
           <span class="quick-access__desc">${escapeHtml(item.desc)}</span>
         </span>
       </a>`).join('\n')}
+    </nav>`;
+}
+
+/**
+ * ニュースより前に置く目的別の入口。新しい中間ページは作らず、既存ページへ直接つなぐ。
+ * 下部の近道カード（renderQuickAccess）とは役割を分け、文字と罫線だけで示す。
+ */
+function renderPurposeNav({ guideFile }) {
+  const groups = [
+    {
+      title: '出かける',
+      desc: '会話の方法に合う行き先や催し、宿を探す',
+      links: [
+        ['./events.html', 'イベント'],
+        ['./connect/sign-cafe/', '手話カフェ'],
+        ['./guide/guesthouses/', 'ろう者が営む宿'],
+      ],
+    },
+    {
+      title: '暮らしで困ったとき',
+      desc: '病院・窓口での伝え方、電話や緊急時の連絡',
+      links: [
+        ['./guide/life/', '病院・窓口で伝える'],
+        [`./${guideFile}#guide-emergency`, '緊急時の連絡方法'],
+        ['./stories/relay-yometel-net119/', '電話リレーなどの記事'],
+        [`./${guideFile}`, '暮らしのガイド'],
+      ],
+    },
+    {
+      title: 'その場で使う',
+      desc: '筆談・字幕・音の見張りをブラウザですぐ使う',
+      links: [
+        ['./otomado/#/board', '筆談ボードを開く'],
+        ['./otomado/', 'おとまどの機能と説明'],
+      ],
+    },
+  ];
+  return `    <nav class="purpose-nav" aria-labelledby="purpose-nav-heading">
+      <h2 id="purpose-nav-heading" class="sr-only">目的から探す</h2>
+${groups.map((group) => `      <div class="purpose-nav__group">
+        <h3 class="purpose-nav__title">${escapeHtml(group.title)}</h3>
+        <p class="purpose-nav__desc">${escapeHtml(group.desc)}</p>
+        <ul class="purpose-nav__links">${group.links.map(([href, label]) => `<li><a href="${href}">${escapeHtml(label)}</a></li>`).join('')}</ul>
+      </div>`).join('\n')}
+      <p class="purpose-nav__news"><a href="#articles-heading">最新ニュースへ</a></p>
     </nav>`;
 }
 
@@ -367,7 +413,7 @@ ${renderGlobalHeader({
   </div></div>
 
   <main id="main" class="container" role="main">
-    <nav class="news-jump" aria-label="ニュースページ内の移動"><a href="#articles-heading">最新ニュースへ</a><a href="./${files.guide}#guide-emergency">緊急時の連絡方法</a></nav>
+${renderPurposeNav({ guideFile: files.guide })}
 ${renderToolbar()}
 ${renderFeatured(featured)}
 
@@ -400,7 +446,7 @@ ${articlesHtml}
 ${renderQuickAccess({ guideFile: files.guide })}
 
       <section class="news-next" aria-labelledby="news-next-heading">
-        <div><h2 id="news-next-heading">知ったことを、出かけるきっかけに。</h2><p>手話や筆談で交流できる場所、参加できる催しを探せます。自分に合う会話の方法や参加条件も、出かける前に確認しましょう。</p><nav aria-label="出かけるための情報"><a href="/connect/sign-cafe/">全国の手話カフェ一覧</a><a href="/events.html">国内の手話イベント</a><a href="/guide/accessibility/">通訳・字幕・筆談の確認ポイント</a></nav></div>
+        <div><h2 id="news-next-heading">知ったことを、出かけるきっかけに。</h2><p>手話や筆談で交流できる場所、参加できる催しを探せます。自分に合う会話の方法や参加条件も、出かける前に確認しましょう。</p><nav aria-label="出かけるための情報"><a href="/connect/sign-cafe/">全国の手話カフェ一覧</a><a href="/events.html">きこえ・手話のイベント</a><a href="/guide/accessibility/">通訳・字幕・筆談の確認ポイント</a></nav></div>
       </section>
 
       <aside class="app-cta" aria-label="Deaf Navi アプリのご案内">

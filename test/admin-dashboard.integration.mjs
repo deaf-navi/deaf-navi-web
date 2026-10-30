@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';import {spawn,spawnSync} from 'node:child_process';import {mkdtempSync} from 'node:fs';import {tmpdir} from 'node:os';import {join,resolve} from 'node:path';import {randomBytes} from 'node:crypto';
+import assert from 'node:assert/strict';import {spawn,spawnSync} from 'node:child_process';import {mkdtempSync,writeFileSync,readFileSync} from 'node:fs';import {tmpdir} from 'node:os';import {join,resolve} from 'node:path';import {randomBytes} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..'),env={...process.env,DEAFNAVI_DATA_DIR:mkdtempSync(join(tmpdir(),'deafnavi-admin-dash-')),DEAFNAVI_LOCAL_TEST:'1'},password=randomBytes(18).toString('hex');
 const run=(args,input)=>spawnSync('php',args,{cwd:root,env,input,encoding:'utf8'});const hash=run(['test/directory-hash.php'],password).stdout;
 assert.equal(run(['server/cli.php','init'],JSON.stringify({username:'testadmin',password_hash:hash})).status,0);
@@ -12,6 +12,33 @@ try{
 for(let i=0;i<40;i++){try{await anon('/');break;}catch{await new Promise(r=>setTimeout(r,100));}}
 let r=await admin('/admin/');let csrf=token(r.text);ok((await admin('/admin/',{csrf,action:'login',username:'testadmin',password})).status===303,'login');
 r=await admin('/admin/');csrf=token(r.text);ok(r.text.includes('admin-sidebar')&&r.text.includes('admin-metrics'),'dashboard shell');
+ok(r.text.includes('品質集計は未取得'),'missing report is unknown, not zero');
+const coverage=Object.fromEntries(['time','fee','signup','deadline','communication'].map(k=>[k,{confirmed:0,notApplicable:0,unknown:0,total:0}]));
+writeFileSync(join(env.DEAFNAVI_DATA_DIR,'publication-quality-report.json'),JSON.stringify({schemaVersion:'deafnavi-quality-report.v1',generatedAt:new Date().toISOString(),range:{from:'2026-10-29',through:'2026-11-27'},coverage,events:[],holds:[{title:'<script>quality-fixture</script>',translatedTitle:'<b>訳文</b>',reason:'source-date-mismatch',sourcePublishedDate:'2001-02-13',sourceUpdatedDate:null,feedPublishedAt:'2026-02-11T20:46:09.000Z',articleUrl:'javascript:alert(1)',sourceUrl:'https://example.org/quality-source'}],recheckDue:0,classificationReview:[]}));
+r=await admin('/admin/');ok(r.text.includes('今後30日のイベント情報充足')&&r.text.includes('&lt;script&gt;quality-fixture')&&!r.text.includes('<script>quality-fixture'),'private report renders escaped source evidence');
+ok(r.text.includes('href="https://example.org/quality-source"')&&!r.text.includes('href="javascript:')&&r.text.includes('&lt;b&gt;訳文'),'held source links validate protocol and translation escapes');
+ok(r.text.includes('原記事と配信日時が不一致')&&r.text.includes('原記事の公開日：2001-02-13')&&r.text.includes('配信日時：2026-02-11T20:46:09.000Z'),'source and feed dates remain distinct');
+ok(!(await anon('/admin/')).text.includes('quality-fixture'),'report is behind existing admin authentication');
+const reportPath=join(env.DEAFNAVI_DATA_DIR,'publication-quality-report.json');
+writeFileSync(reportPath,JSON.stringify({schemaVersion:'deafnavi-quality-report.v1',generatedAt:new Date().toISOString(),range:{from:'2026-10-29',through:'2026-11-27'},coverage,events:[],holds:[],recheckDue:0,classificationReview:[],resolvedReviews:[
+ {status:'archived',title:'<script>archive-fixture</script>',sourcePublishedDate:'2001-02-13',feedPublishedAt:'2026-02-11T20:46:09.000Z',articleUrl:'javascript:alert(1)',sourceUrl:'https://example.org/archive',reviewNote:'<img src=x onerror=alert(1)>'},
+ {status:'excluded',title:'広告 fixture',reason:'advertisement',articleUrl:'https://example.org/ad'},
+]}));
+r=await admin('/admin/');ok(r.text.includes('公開保留：0件')&&r.text.includes('処理済みの確認記録（2件）')&&r.text.includes('過去記事として保管')&&r.text.includes('記事広告のため対象外'),'resolved records stay separate from holds');
+ok(r.text.includes('&lt;script&gt;archive-fixture')&&r.text.includes('&lt;img src=x')&&!r.text.includes('<script>archive-fixture')&&!r.text.includes('href="javascript:'),'resolved notes and links are escaped and validated');
+ok(r.text.includes('原記事の公開日：2001-02-13')&&r.text.includes('配信日時：2026-02-11T20:46:09.000Z'),'archive retains source and collected dates independently');
+ok(!(await anon('/admin/')).text.includes('archive-fixture'),'resolved report remains private');
+const detailed=JSON.parse(readFileSync(reportPath,'utf8'));
+detailed.resolvedReviews[0].sourcePublication={editorialOriginalDate:'2020-08-27',originalPublishedDate:'2020-08-27',pageRepublishedDate:'2021-05-07',originalPublishedAtUtc:null};
+detailed.resolvedReviews.push({status:'archived',title:'UTC date fixture',sourcePublication:{originalPublishedDate:'2001-02-13',originalPublishedAtUtc:'2001-02-14T03:58:44Z'},feedPublishedAt:'2026-02-11T20:46:09Z'});
+detailed.holds=[{title:'Reopened fixture',reason:'source-changed-after-closure',reopenedFrom:{status:'archived'},previousSourcePublication:{originalPublishedDate:'2001-02-13'},articleUrl:'https://example.org/original'}];
+detailed.integrityWarnings=[{id:'fixture',reason:'disposition-checksum-mismatch'}];writeFileSync(reportPath,JSON.stringify(detailed));r=await admin('/admin/');
+ok(r.text.includes('初出（編集注記）：2020-08-27')&&r.text.includes('ページ再公開日：2021-05-07')&&!r.text.includes('原記事の更新日：2021-05-07'),'editorial first publication and republication are distinct');
+ok(r.text.includes('公開日（媒体の表示）：2001-02-13')&&r.text.includes('公開日時（UTC）：2001-02-14T03:58:44Z'),'publisher date and UTC instant remain distinct');
+ok(r.text.includes('処理済み記事の原文が変更')&&r.text.includes('前回確認した原記事の公開日：2001-02-13'),'reopened closure keeps prior date context');
+ok(r.text.includes('role="alert">処理済みの確認記録に整合性の不一致が1件'),'checksum warning is visible to authenticated admin');
+writeFileSync(reportPath,JSON.stringify({schemaVersion:'deafnavi-quality-report.v1',generatedAt:new Date().toISOString(),range:{from:'2026-10-29',through:'2026-11-27'},coverage:{},events:[],holds:[],recheckDue:0,classificationReview:[]}));
+ok((await admin('/admin/')).text.includes('品質集計は未取得'),'incomplete coverage is unknown, not zero');
 const post=async data=>admin('/admin/',{csrf,...data});
 for(const kind of ['cafe','store','event']){
  for(const sort of ['name','region','publication','status','updated','verified','date'])ok((await admin('/admin/?view=records&kind='+kind+'&sort='+sort)).status===200,'sort SQL valid');

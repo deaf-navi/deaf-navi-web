@@ -98,6 +98,11 @@
   .dn-domestic-filter .dn-check { min-height:44px; }
 }
 
+/* After filtered results, region shortcuts keep their label (they start a new search) and full targets. */
+.dn-directory.dn-cafe-theme .dn-quick-places--after { margin:0 0 8px;padding-top:12px;border-top:1px solid var(--cafe-line); }
+.dn-directory.dn-cafe-theme .dn-quick-places--after .dn-quick-label { display:inline;font-size:calc(12px * var(--cafe-scale));color:var(--cafe-muted); }
+.dn-directory.dn-cafe-theme .dn-quick-places--after a { min-height:44px; }
+
 /* Related reading follows the completed search results, never the filters. */
 .dn-related-news{margin:2rem 0;padding:1.25rem 0;border-top:1px solid var(--cafe-line,#cad8d8);max-width:56rem}
 .dn-related-news h2{font-size:1.15rem;margin:0 0 .5rem}

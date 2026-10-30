@@ -18,6 +18,7 @@ import { buildAppAPI } from './app-api-build.mjs';
 import { cafeRelated } from './lib/cafe-related.mjs';
 import { SITE_KEYWORDS } from '../config/site.mjs';
 import { prepareDomesticPublication, prepareDomesticArchivePublication } from './lib/publication-quality.mjs';
+import { readPublicationLedger, savePublicationLedger } from './lib/publication-ledger.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderHomePage } from './templates/home.mjs';
@@ -107,7 +108,7 @@ async function copyAsset(src, destFile) {
 }
 
 async function getClientAssetVersion() {
-  const clientFiles = ['styles.css', 'assets/site-shell.css', 'assets/home.css', 'assets/browse.css', 'assets/info.css', 'assets/support.css', 'ui-controls.js', 'app.js', 'webmcp.js'];
+  const clientFiles = ['styles.css', 'assets/site-shell.css', 'assets/home.css', 'assets/browse.css', 'assets/info.css', 'assets/support.css', 'ui-controls.js', 'app.js', 'webmcp.js', 'events.js', 'event-deadline.js', 'assets/events.css', 'assets/event-detail.js'];
   const contents = await Promise.all(
     clientFiles.map((file) => readFile(join(__dirname, file))),
   );
@@ -119,7 +120,9 @@ async function getClientAssetVersion() {
 async function main() {
   console.log(`Build variant: ${VARIANT}`);
   const savedData = JSON.parse(await readFile(join(DOCS, FILES.articlesJson), 'utf8'));
-  const data = prepareDomesticPublication(savedData);
+  const domesticLedger = await readPublicationLedger(ROOT,'domestic');
+  const data = prepareDomesticPublication(savedData,{ledger:domesticLedger});
+  await savePublicationLedger(ROOT, 'domestic', domesticLedger, savedData, data);
   if (data !== savedData) await writeFile(join(DOCS, FILES.articlesJson), JSON.stringify(data, null, 2) + '\n');
   let oldData;
   try {
@@ -127,7 +130,7 @@ async function main() {
   } catch {
     oldData = { generatedAt: data.generatedAt, count: 0, articles: [] };
   }
-  const reviewedOldData = prepareDomesticArchivePublication(oldData);
+  const reviewedOldData = prepareDomesticArchivePublication(oldData,{ledger:domesticLedger});
   if (reviewedOldData !== oldData) {
     oldData = reviewedOldData;
     await writeFile(join(DOCS, FILES.oldArticlesJson), JSON.stringify(oldData, null, 2) + '\n');
@@ -265,6 +268,7 @@ async function main() {
   await copyAsset(join(__dirname, 'webmcp.js'), 'webmcp.js');
   await copyAsset(join(__dirname, 'guide.js'), FILES.guideJs);
   await copyAsset(join(__dirname, 'events.js'), 'events.js');
+  await copyAsset(join(__dirname, 'event-deadline.js'), 'event-deadline.js');
   await copyAsset(join(__dirname, 'event-cafe-feed.js'), 'event-cafe-feed.js');
   await copyAsset(join(ASSETS, 'events.css'), 'events.css');
   await copyAsset(join(ASSETS, 'event-detail.js'), 'event-detail.js');

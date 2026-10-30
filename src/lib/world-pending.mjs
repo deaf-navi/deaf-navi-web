@@ -30,10 +30,13 @@ export function settleTranslations(attempted, previous, entries, { now = Date.no
   let retained = 0;
   for (const [items, fallback] of [[attempted, false], [previous, true]]) {
     for (const article of items) {
+      // A one-snapshot editorial restoration is not a fresh collection result.
+      if(fallback && article.publicationRestoredSnapshot)continue;
       const key = articleCacheKey(article);
       if (!isTranslatedArticle(article) || ids.has(article.id) || sources.has(key)) continue;
       if (articles.length >= limit) break;
-      articles.push(article);
+      const {publicationRestoredSnapshot,...fresh}=article;
+      articles.push(fallback?article:fresh);
       ids.add(article.id); sources.add(key);
       if (fallback) retained++;
     }

@@ -25,6 +25,8 @@ let checks=0;function ok(condition,message){assert.ok(condition,message);checks+
 try {
   for(let i=0;i<40;i++){try{await (await fetch(base+'/')).text();break;}catch{await new Promise(r=>setTimeout(r,100));}}
   let r=await anon('/connect/sign-cafe/');ok(r.status===200,'public directory');ok(r.text.includes('Knot'),'verified seed');ok(!r.text.includes('びわこ手話カフェ「わ」'),'pending never rendered');ok(r.headers.get('cache-control').includes('no-store'),'no cache');
+  const imagePolicy=r.headers.get('content-security-policy').split(';').find(x=>x.trim().startsWith('img-src'));
+  ok(!/[?#]/.test(imagePolicy)&&imagePolicy.includes('/cdn/shop/files/OD-Black.png'),'CSP image paths exclude ignored query and fragment without broadening hosts');
   ok(r.text.includes('class="dn-cafe-table"')&&!r.text.includes('dn-place-grid'),'table is the default listing');
   ok((await anon('/connect/sign-cafe/?view=cards')).text.includes('dn-place-grid'),'cards require explicit selection');
   ok((await anon('/connect/sign-cafe/?q=大阪')).text.includes('2U'),'search');

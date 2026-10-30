@@ -1,5 +1,6 @@
 import {validEvent, eventPeriod} from './events.mjs';
 import {EVENT_RECHECK_MS} from '../../config/events.mjs';
+import {eventDeadline} from '../event-deadline.js';
 
 // Public fields only. Evidence hashes and private review notes are not app content.
 export function appEventSnapshot(snapshot) {
@@ -9,6 +10,8 @@ export function appEventSnapshot(snapshot) {
       if (event[key] != null) item[key] = event[key];
     }
     item.webUrl = `https://deafnavi.com/events/${event.id}/`;
+    const deadline=eventDeadline(event);
+    if(deadline){item.applicationDeadline=deadline.date;item.deadlineScope=deadline.scope;}
     item.validUntil = new Date(Date.parse(event.verifiedAt) + EVENT_RECHECK_MS).toISOString();
     item.period = eventPeriod(event);
     item.thumbnailURL = event.thumbnail?.url;

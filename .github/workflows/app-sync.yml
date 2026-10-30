@@ -38,6 +38,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/app
+          git add .state/publication-review-world.json .state/publication-review-domestic.json
           if git diff --cached --quiet; then
             echo "No app sync changes to commit."
             exit 0
@@ -49,12 +50,16 @@ jobs:
               exit 0
             fi
             echo "Push failed (attempt $attempt). Rebuilding app sync JSON on latest main..."
+            cp .state/publication-review-world.json .state/publication-review-domestic.json "$RUNNER_TEMP"/
             git rebase --abort 2>/dev/null || true
             git merge --abort 2>/dev/null || true
             git fetch origin main
             git reset --hard origin/main
+            node scripts/merge-publication-ledger.mjs world "$RUNNER_TEMP"/publication-review-world.json
+            node scripts/merge-publication-ledger.mjs domestic "$RUNNER_TEMP"/publication-review-domestic.json
             npm run build:app-api
             git add docs/app
+            git add .state/publication-review-world.json .state/publication-review-domestic.json
             if git diff --cached --quiet; then
               echo "No app sync changes after rebuild."
               exit 0

@@ -4,7 +4,8 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { SITE_URL } from '../config/site.mjs';
 import { assertJapaneseTranslations } from './lib/world-translation.mjs';
-import { prepareWorldPublication } from './lib/publication-quality.mjs';
+import { prepareWorldPublication, publicPublicationSnapshot } from './lib/publication-quality.mjs';
+import { readPublicationLedger, savePublicationLedger, restoreSourceReviewedArticles } from './lib/publication-ledger.mjs';
 import { cleanSummaryText } from './lib/text.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
@@ -49,9 +50,10 @@ const SITE_DESC = '世界中の主要メディアと多言語の地域別Google 
 const ORIGINAL_SITE_DESC = 'Original-language global news articles gathered from major media and multilingual regional Google News queries about deaf, hard-of-hearing, sign language, accessibility, health, education, culture, and deaf sports topics.';
 const INITIAL_VISIBLE = 40;
 
-const REGION_ORDER = ['all', 'asia_oceania', 'americas', 'europe_cis', 'middle_east_africa'];
+const REGION_ORDER = ['all', 'asia_oceania', 'americas', 'europe_cis', 'middle_east_africa', 'unknown'];
 const TOPIC_ORDER = ['all', 'accessibility', 'rights', 'health', 'education', 'technology', 'culture', 'sports', 'safety', 'general'];
 const REGION_UI = {
+  unknown: '地域未確認',
   all: 'すべての地域',
   asia_oceania: 'アジア・オセアニア',
   americas: '北米・中南米',
@@ -72,6 +74,7 @@ const TOPIC_UI = {
 };
 
 const REGION_UI_EN = {
+  unknown: 'Location unconfirmed',
   all: 'All regions',
   asia_oceania: 'Asia / Oceania',
   americas: 'Americas',
@@ -191,6 +194,7 @@ function renderButtons(items, ui, attr, allLabel) {
   }).join('\n          ');
 }
 
+const hasReviewedText=article=>['human-review','codex-opus-source-review'].includes(article.japanesePostEditEngine);
 function articleText(article, mode) {
   if (mode === 'original') {
     const title = article.originalTitle || article.title;
@@ -203,8 +207,8 @@ function articleText(article, mode) {
   }
 
   return {
-    title: refineJapanese(article.title || article.originalTitle),
-    summary: refineJapanese(article.summary || article.originalSummary || article.title || article.originalTitle),
+    title: hasReviewedText(article)?article.title:refineJapanese(article.title || article.originalTitle),
+    summary: hasReviewedText(article)?article.summary:refineJapanese(article.summary || article.originalSummary || article.title || article.originalTitle),
     original: article.originalTitle || '',
     lang: 'ja',
   };
@@ -218,7 +222,9 @@ function renderArticle(article, index, mode = 'jp') {
   const regionLabel = regionUi[article.region] ?? article.regionLabel ?? 'Uncategorized';
   const topicLabel = topicUi[article.topic] ?? article.topicLabel ?? 'General';
   const text = articleText(article, mode);
-  const summary = cleanSummaryText(text.summary, text.title, article.sourceName);
+  const summary = text.summary?.trim() === text.title?.trim()
+    ? ''
+    : mode==='jp'&&hasReviewedText(article)?text.summary:cleanSummaryText(text.summary, text.title, article.sourceName);
   const originalHtml = mode === 'jp' && text.original
     ? `\n        <details class="world-original"><summary>原題を確認</summary><p class="card__original" lang="${detectOriginalLang(text.original)}" dir="auto">${escapeHtml(text.original)}</p></details>`
     : '';
@@ -414,7 +420,7 @@ function renderPage(data, mode = 'jp') {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
-  <link rel="stylesheet" href="./site-shell.css?v=20261028align">
+  <link rel="stylesheet" href="./site-shell.css?v=20261029purpose">
   <link rel="stylesheet" href="./browse.css?v=${CLIENT_VERSION}">
 
   ${jsonLd}
@@ -595,9 +601,13 @@ function renderOriginalLegacyRedirect() {
 async function main() {
   const raw = await readFile(DATA_FILE, 'utf8');
   const savedData = JSON.parse(raw);
-  const data = prepareWorldPublication(savedData);
+  const ledger = await readPublicationLedger(ROOT, 'world');
+  const input = restoreSourceReviewedArticles(savedData,ledger);
+  const data = prepareWorldPublication(input, {ledger});
   assertJapaneseTranslations(data.articles ?? []);
-  if (data !== savedData) await writeFile(DATA_FILE, JSON.stringify(data, null, 2) + '\n');
+  await savePublicationLedger(ROOT, 'world', ledger, input, data);
+  const publicData=publicPublicationSnapshot(data);
+  if (publicData !== savedData) await writeFile(DATA_FILE, JSON.stringify(publicData, null, 2) + '\n');
   await mkdir(DOCS, { recursive: true });
   await writeFile(JP_HTML_OUT, injectAccessVisit(injectCloudflareAnalytics(renderPage(data, 'jp'))), 'utf8');
   await writeFile(ORIGINAL_HTML_OUT, injectAccessVisit(injectCloudflareAnalytics(renderPage(data, 'original'))), 'utf8');

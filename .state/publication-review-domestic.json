@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9kdWxVM1d4Z0FYWml2RnJ1NHdpLV9vakpnbk9VT1Nockl3OURnR18yYUFLLUpocGNYeDdGTmlYZGxPcG94Y3Q3SzFxZmFwMWVWdFFpRk42cmVyakkybjRaYzN4SkxwZEIzby1hN0dwbXNZZzhQaXRyMlBjMA?oc=5",
+      "status": "excluded",
+      "reason": "incidental-celebrity-history",
+      "firstSeenAt": "2026-10-29T06:31:09.887Z",
+      "sourceFingerprint": "88b5c0e73faf556f48a5f95290e8c90b4a1946fd9abeba0880d5ee23e0e557f3",
+      "translationFingerprint": "e90296b5ac75fa2ed69b06e43bb293476777671131a6c5e6a772cb14790abc80",
+      "article": {
+        "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9kdWxVM1d4Z0FYWml2RnJ1NHdpLV9vakpnbk9VT1Nockl3OURnR18yYUFLLUpocGNYeDdGTmlYZGxPcG94Y3Q3SzFxZmFwMWVWdFFpRk42cmVyakkybjRaYzN4SkxwZEIzby1hN0dwbXNZZzhQaXRyMlBjMA?oc=5",
+        "title": "《清純派から大胆変貌》紅白4度出場歌手 突発性難聴で活動休止→グループ脱退→ラッパー転身でビキニ姿も披露した新境地",
+        "summary": "",
+        "sourceName": "ニコニコニュース",
+        "sourceUrl": "https://news.nicovideo.jp",
+        "publishedAt": "2026-10-28T08:21:35.000Z"
+      },
+      "originalReason": "incidental-celebrity-history",
+      "reviewedBy": "codex-opus-source-review",
+      "reviewedAt": "2026-10-29T13:28:42.212Z",
+      "reviewers": [
+        "Codex",
+        "claude-opus-5-5"
+      ],
+      "sourceEvidence": [
+        {
+          "url": "https://jisin.jp/entertainment/entertainment-news/2606514/?rf=2",
+          "excerpt": "ラッパーに転身し、かつての清純派イメージから一変した姿",
+          "method": "search-index",
+          "kind": "original-publisher",
+          "checkedAt": "2026-10-29T13:26:11.999Z"
+        }
+      ],
+      "sourceArticleUrl": "https://jisin.jp/entertainment/entertainment-news/2606514/?rf=2",
+      "reviewNote": "芸能活動・近影が主題。突発性難聴は経歴中の言及で、難聴や情報保障の実用情報を確認できない。",
+      "opusNote": "除外に同意。WebFetchでも突発性難聴の言及は「突発性難聴で活動休止→グループ脱退→ラッパー転身…」という経歴の流れの一言だけで、表示された本文に支援・制度・情報保障の情報はなかった。本文全体は未確認（抜粋のみ表示）という限界はdraftどおり維持。",
+      "limits": "本文冒頭のみ確認。掲載対象外の判断を維持し、全文確認済みとはしない。",
+      "reviewDigest": "d3b56b080af813f8e60b1f28ff964c7ef6d58438085a0d7e79f1f393287a4c8e"
+    }
+  ]
+}

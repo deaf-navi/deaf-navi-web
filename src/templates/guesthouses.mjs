@@ -99,7 +99,7 @@ export function renderGuesthousesPage() {
         <noscript><p class="reader-note">上の文章を選択してコピーし、［ ］内から希望する内容を選んで書き換えてください。</p></noscript>
       </div>
     </section>
-    <section class="guesthouse-closing"><h2>旅先で立ち寄る場所も探す</h2><nav class="reader-links" aria-label="関連する情報"><a href="/connect/sign-cafe/">手話カフェを探す</a><a href="/events.html">国内のイベントを見る</a><a href="/guide.html">暮らしのガイドへ</a></nav></section>
+    <section class="guesthouse-closing"><h2>旅先で立ち寄る場所も探す</h2><nav class="reader-links" aria-label="関連する情報"><a href="/connect/sign-cafe/">手話カフェを探す</a><a href="/events.html">国内のイベントを見る</a><a href="/stories/relay-yometel-net119/">文字や手話で電話を利用する方法</a><a href="/guide.html">暮らしのガイドへ</a></nav></section>
     <p class="reader-note">全国のすべての宿を掲載しているわけではありません。掲載内容の変更・追加情報は<a href="/about.html#about-correction">Deaf Naviのお問い合わせ</a>へお知らせください。</p>`;
   return {
     file: 'guide/guesthouses/index.html',

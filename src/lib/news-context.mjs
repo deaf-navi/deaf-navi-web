@@ -19,5 +19,8 @@ export function newsContext(article) {
 }
 
 export function newsContextLabel(article) {
+  // This official path is the provider's introduction list, not a newly held
+  // event. Keep the organisation's original headline and add section context.
+  try { const url=new URL(article.id); if(url.hostname==='www.nftrs.or.jp' && /^\/sl-list\//.test(url.pathname)) return '手話リンクの導入法人情報'; } catch {}
   return NEWS_CONTEXT_LABELS[article.newsContext ?? newsContext(article)] ?? '';
 }

@@ -72,8 +72,10 @@ function cafe_result_bar(int $total,bool $overseas,array $filters):string {
 }
 
 function cafe_listing_advice(bool $overseas=false):string {
-    $text=$overseas?'手話は国や地域によって異なります。訪問前に公式サイト・SNSで営業日と手話対応をご確認ください。営業状況が不明なお店は「確認中」「営業状況未確認」と表示しています。':'「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。情報確認日は次回の開催日を保証するものではありません。訪問前に公式サイト・SNSで営業日・次回日程をご確認ください。';
-    return '<details class="dn-listing-advice"><summary>'.cafe_icon('book').'<span>訪問前に公式情報を確認</span><span class="dn-advice-note">'.($overseas?'手話・営業時間について':'営業状態の見方').'</span></summary><p class="dn-muted dn-results-note">'.$text.'</p><p class="dn-muted dn-results-note">会話の補助に <a href="/otomado/#/board">おとまどの筆談を開く</a></p></details>';
+    $text=$overseas?'手話は国や地域によって異なります。訪問前に公式サイト・SNSで営業日と手話対応をご確認ください。営業状況が不明なお店は「確認中」「営業状況未確認」と表示しています。':'「営業中」は掲載情報の確認状態です。今この時刻に開いていることを示しません。情報確認日は次回の開催日を保証するものではありません。「確認中」「営業状況未確認」は、閉店・休業という意味ではありません。訪問前に公式サイト・SNSで営業日・次回日程をご確認ください。';
+    // Domestic: the open-now caveat stays readable while the details are folded.
+    $summary=$overseas?'訪問前に公式情報を確認':'「営業中」でも今開いているとは限りません';
+    return '<details class="dn-listing-advice"><summary>'.cafe_icon('book').'<span>'.$summary.'</span><span class="dn-advice-note">'.($overseas?'手話・営業時間について':'確認日・公式情報の見方').'</span></summary><p class="dn-muted dn-results-note">'.$text.'</p><p class="dn-muted dn-results-note">会話の補助に <a href="/otomado/#/board">おとまどの筆談を開く</a></p></details>';
 }
 
 function cafe_active_filters(array $filters,bool $overseas=false):string {
@@ -92,7 +94,8 @@ function cafe_active_filters(array $filters,bool $overseas=false):string {
     return $out!==''?'<nav class="dn-active-filters" aria-label="選択中の検索条件">'.$out.'</nav>':'';
 }
 
-function cafe_quick_places(array $all,bool $overseas=false):string {
+// $afterResults: shown below filtered results. These links replace the current conditions, so say so.
+function cafe_quick_places(array $all,bool $overseas=false,bool $afterResults=false):string {
     $places=$overseas?['FR'=>'フランス','US'=>'アメリカ','TH'=>'タイ','MY'=>'マレーシア']:['東京都'=>'東京','大阪府'=>'大阪','京都府'=>'京都','福岡県'=>'福岡'];
     $key=$overseas?'country':'prefecture';$out='';
     foreach($places as $value=>$label) {
@@ -100,7 +103,7 @@ function cafe_quick_places(array $all,bool $overseas=false):string {
         if(!$count)continue;
         $out.='<a href="?'.e(http_build_query([$key=>$value])).'#cafes">'.e($label).'<span>'.$count.'</span></a>';
     }
-    return $out!==''?'<nav class="dn-quick-places" aria-label="'.($overseas?'国から探す':'都道府県から探す').'">'.cafe_icon('pin').'<span class="dn-quick-label">'.($overseas?'国から':'地域から').'</span>'.$out.'</nav>':'';
+    return $out!==''?'<nav class="dn-quick-places'.($afterResults?' dn-quick-places--after':'').'" aria-label="'.($overseas?'国から探す':'都道府県から探す').'">'.cafe_icon('pin').'<span class="dn-quick-label">'.($afterResults?'地域から探し直す':($overseas?'国から':'地域から')).'</span>'.$out.'</nav>':'';
 }
 
 function cafe_notice_link():string {

@@ -3,7 +3,7 @@
  * 語彙・しきい値は config/ 配下で管理する。
  */
 
-import { newsContext } from './news-context.mjs';
+import { newsContext, newsContextLabel } from './news-context.mjs';
 import {newsArticleHash,savedNewsAssistanceIsCurrent,stampNewsAssistance} from './news-assistance.mjs';
 import {
   CATEGORY_RULES,
@@ -42,7 +42,7 @@ const {
   FUTURE_TOLERANCE_HOURS,
 } = CURATION_LIMITS;
 
-export const QUALITY_VERSION = 'publication-quality-v11';
+export const QUALITY_VERSION = 'publication-quality-v12';
 
 /* ---------- 分類 ---------- */
 
@@ -279,6 +279,8 @@ export function explicitUnrelatedReason(article) {
   if (/(?:^|\.)(?:vietnam\.vn|sortiraparis\.com)$/u.test(host)
     && !/日本|東京|大阪|北海道|沖縄|Japan/iu.test(`${title} ${article.summary || ''}`)) return 'foreign-coverage-review-required';
   const substantive = /いじめ|葛藤|当事者|差別|情報保障|合理的配慮|インタビュー|障害.*(?:語|経験|支援)|手話.*(?:活動|交流)/u;
+  if (/突発性難聴.*活動休止/u.test(title) && /ビキニ|水着|グラビア/u.test(title)
+    && !/情報保障|合理的配慮|手話|字幕|治療|療養|闘病|経験を語|当事者|差別/u.test(`${title} ${article.summary || ''}`)) return 'incidental-celebrity-history';
   if (/補聴器(?:を)?つけた天使/u.test(title)
     && /彼女感|前かがみ|ミニ丈|グラビア|もん絶|メロメロ/u.test(title)
     && !substantive.test(`${title} ${article.summary || ''}`)) return 'incidental-disability-nickname';
@@ -456,6 +458,9 @@ export function stripInternal(article, { keepScores = false } = {}) {
   const context = _assistedContext??newsContext(clean);
   if (context) clean.newsContext = context;
   else delete clean.newsContext;
+  const label=newsContextLabel(clean);
+  if(label==='手話リンクの導入法人情報')clean.contextLabel=label;
+  else delete clean.contextLabel;
   if(_assistedReview)clean.newsAssistance=stampNewsAssistance(clean,_assistedReview);
   clean.sourceTier = sourceTier;
   clean.discoveryMethod = _feedUrl || clean.discoveryMethod === 'direct-feed'

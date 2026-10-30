@@ -4,9 +4,17 @@ import { DIRECT_FEEDS, EXPANDED_DIRECT_FEEDS, SOCIAL_FEEDS } from '../../config/
 import { dedupeNearArticles, hydratePreviousArticle, publicationExclusionReason, explicitUnrelatedReason, stripInternal, QUALITY_VERSION } from './curation.mjs';
 import { normalizeTitleKey } from './text.mjs';
 import { isHardNoiseWorldText } from './world-relevance.mjs';
-import { hasMistranslatedLibras, polishJapaneseWithSource } from './world-translation.mjs';
+import { translationReviewReason, polishJapaneseWithSource } from './world-translation.mjs';
+import { worldLocation } from './world-location.mjs';
+import { heldPublicationReason,applyApprovedWorldTranslation,sourceReviewedDecision } from './publication-ledger.mjs';
 
 const directFeeds = new Map([...DIRECT_FEEDS, ...EXPANDED_DIRECT_FEEDS, ...SOCIAL_FEEDS].map((feed) => [feed.sourceName, feed]));
+
+// Removal details are consumed by the private ledger before public serialization.
+export function publicPublicationSnapshot(data) {
+  if(!data.publicationReview?.removed?.length)return data;
+  return {...data,publicationReview:{...data.publicationReview,removedCount:data.publicationReview.removed.length,removed:[]}};
+}
 
 function withReview(data, articles, removed) {
   assertPublicCopy(articles,'news');
@@ -23,12 +31,12 @@ function withReview(data, articles, removed) {
 }
 
 /** Validate saved snapshots on rebuild too, including workflow conflict recovery. */
-export function prepareDomesticPublication(data,{now=Date.now()}={}) {
+export function prepareDomesticPublication(data,{now=Date.now(),ledger}={}) {
   const removed = [];
   const eligible = [];
   for (const saved of data.articles ?? []) {
     const article = hydratePreviousArticle(saved, directFeeds,{now});
-    const reason = publicationExclusionReason(article);
+    const reason = heldPublicationReason(saved,ledger) || publicationExclusionReason(article);
     if (reason) removed.push({ id: article.id, title: article.title, reason });
     else eligible.push({ ...article, _dedupeKey: normalizeTitleKey(article.title) });
   }
@@ -38,28 +46,38 @@ export function prepareDomesticPublication(data,{now=Date.now()}={}) {
   return withReview(data, articles.map((article) => stripInternal(article)), removed);
 }
 
-export function prepareDomesticArchivePublication(data) {
+export function prepareDomesticArchivePublication(data,{ledger}={}) {
   const removed = [];
   const articles = (data.articles ?? []).filter((article) => {
-    const reason = explicitUnrelatedReason(article);
+    const reason = heldPublicationReason(article,ledger) || explicitUnrelatedReason(article);
     if (reason) removed.push({ id: article.id, title: article.title, reason });
     return !reason;
   });
   return withReview(data, articles, removed);
 }
 
-export function prepareWorldPublication(data) {
+export function prepareWorldPublication(data, {ledger} = {}) {
   const removed = [];
-  const articles = (data.articles ?? []).filter((article) => {
+  const articles = (data.articles ?? []).map(article=>applyApprovedWorldTranslation(article,ledger)).filter((article) => {
     const noise = isHardNoiseWorldText(`${article.originalTitle ?? ''} ${article.originalSummary ?? ''}`);
-    const mistranslated = hasMistranslatedLibras(article.originalTitle, article.title)
-      || hasMistranslatedLibras(article.originalSummary, article.summary);
-    const reason = noise ? 'unrelated' : mistranslated ? 'translation-review' : null;
+    const mistranslated = translationReviewReason(article.originalTitle, article.title)
+      || translationReviewReason(article.originalSummary, article.summary);
+    const unclearSource = /News Breakdown, Science Latest, Travel Ideas, Mighty Challenge/iu.test(article.originalTitle||'')
+      && !sourceReviewedDecision(article,ledger)?.sourceContextConfirmed;
+    const reason = heldPublicationReason(article, ledger) || (noise ? 'unrelated' : unclearSource ? 'source-context-review' : mistranslated ? 'translation-review' : null);
     if (reason) removed.push({ id: article.id, title: article.title, reason });
     return !reason;
   });
-  return withReview(data, articles.map(article => ({ ...article,
-    title: polishJapaneseWithSource(article.originalTitle, article.title),
-    summary: polishJapaneseWithSource(article.originalSummary, article.summary),
-  })), removed);
+  const published=articles.map(article => ({ ...article,
+    ...(Object.hasOwn(article, 'region') ? worldLocation(article,{ledger}) : {}),
+    title: ['human-review','codex-opus-source-review'].includes(article.japanesePostEditEngine)?article.title:polishJapaneseWithSource(article.originalTitle, article.title),
+    summary: ['human-review','codex-opus-source-review'].includes(article.japanesePostEditEngine)?article.summary:polishJapaneseWithSource(article.originalSummary, article.summary),
+  }));
+  const result=withReview(data,published,removed);
+  if(!result.quality)return result;
+  const countBy=key=>published.reduce((counts,a)=>{counts[a[key]||'unknown']=(counts[a[key]||'unknown']||0)+1;return counts;},{});
+  // Preserve collection statistics while making published counts explicit.
+  const publishedCounts={selectedCount:published.length,regionCounts:countBy('region'),topicCounts:countBy('topic')};
+  if(isDeepStrictEqual(result.quality.publishedCounts,publishedCounts))return result;
+  return {...result,quality:{...result.quality,publishedCounts}};
 }

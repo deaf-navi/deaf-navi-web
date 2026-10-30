@@ -78,7 +78,8 @@ function domestic_matches(array $p,array $f):bool {
 function domestic_filters(array $f):string {
     $regions=['北海道','東北','関東','中部','近畿','中国','四国','九州','沖縄'];$prefs=explode(' ',JP_PREFECTURES);
     $prefRegions=array_combine($prefs,array_map(fn($pref)=>region($pref,'JP'),$prefs));
-    $out='<form method="get" data-pref-regions="'.e(json_encode($prefRegions,JSON_UNESCAPED_UNICODE)).'" class="dn-domestic-filter" aria-label="日本の手話カフェを絞り込む"><div class="dn-search-primary">'.field('q','店舗名・地域・キーワード',$f['q'],'search').select_field('region','地域',[''=>'全国']+array_combine($regions,$regions),$f['region']).select_field('prefecture','都道府県',[''=>'すべて']+array_combine($prefs,$prefs),$f['prefecture']).'<button class="dn-search-button">'.cafe_icon('search').'<span>この条件で探す</span></button></div>';
+    // Submitting lands on the result count; the query stays in the URL for back, reload and no-JS use.
+    $out='<form method="get" action="/connect/sign-cafe/#cafes" data-pref-regions="'.e(json_encode($prefRegions,JSON_UNESCAPED_UNICODE)).'" class="dn-domestic-filter" aria-label="日本の手話カフェを絞り込む"><div class="dn-search-primary">'.field('q','店舗名・地域・キーワード',$f['q'],'search').select_field('region','地域',[''=>'全国']+array_combine($regions,$regions),$f['region']).select_field('prefecture','都道府県',[''=>'すべて']+array_combine($prefs,$prefs),$f['prefecture']).'<button class="dn-search-button">'.cafe_icon('search').'<span>この条件で探す</span></button></div>';
     $primaryFeatures=['sign_language_support','writing_support','beginner_welcome'];
     $selectedOptions=array_filter(array_intersect_key($f,array_flip(['listing','shop_type','status','operator_type','sign_language_level','events',...array_keys(CAFE_FEATURES)])));
     $out.='<details class="dn-search-options"'.($selectedOptions?' open':'').'><summary>会話の方法・詳しい条件'.($selectedOptions?'（'.count($selectedOptions).'件選択中）':'').'</summary><fieldset class="dn-feature-checks dn-primary-features"><legend>会話の方法・初めての方へ</legend>';
@@ -95,8 +96,25 @@ function domestic_empty(array $f):string {
     $prefs=explode(' ',JP_PREFECTURES);$reg=($f['prefecture']??'')!==''?region($f['prefecture'],'JP'):($f['region']??'');
     $neighbors=$f['prefecture']==='奈良県'?['大阪府','京都府','兵庫県']:array_values(array_filter($prefs,fn($p)=>$p!==$f['prefecture']&&region($p,'JP')===$reg));
     $out='<section class="dn-empty"><h2>条件に一致する掲載情報はまだありません</h2><p>未調査・確認待ちの店舗もあります。お店が存在しないという意味ではありません。</p><div class="dn-links">';
-    foreach($neighbors as $pref)$out.='<a href="?'.e(http_build_query(['prefecture'=>$pref])).'">'.e($pref).'を見る</a>';
-    return $out.'<a href="?'.e(http_build_query(['region'=>$reg,'shop_type'=>'recurring_program'])).'">地域の定期開催を見る</a><a href="/connect/sign-cafe/events/">手話カフェイベントを見る</a><a href="/connect/sign-cafe/">条件をすべて解除</a><a href="/submit/">新しい情報を提供する</a></div></section>';
+    foreach($neighbors as $pref)$out.='<a href="?'.e(http_build_query(['prefecture'=>$pref])).'#cafes">'.e($pref).'を見る</a>';
+    return $out.'<a href="?'.e(http_build_query(['region'=>$reg,'shop_type'=>'recurring_program'])).'#cafes">地域の定期開催を見る</a><a href="/connect/sign-cafe/events/">手話カフェイベントを見る</a><a href="/connect/sign-cafe/#cafes">条件をすべて解除</a><a href="/submit/">新しい情報を提供する</a></div></section>';
+}
+function domestic_pagination(array $f,int $page,int $size,int $total):string {
+    $params=array_filter($f,fn($v)=>$v!=='');unset($params['page']);$out='<nav class="dn-pagination" aria-label="日本の手話カフェのページ">';
+    if($page>1)$out.='<a href="?'.e(http_build_query($params+['page'=>$page-1])).'#cafes">← 前のページ</a>';
+    $out.='<span>全'.$total.'件中 '.($total?($page-1)*$size+1:0).'〜'.min($page*$size,$total).'件</span>';
+    if($page*$size<$total)$out.='<a href="?'.e(http_build_query($params+['page'=>$page+1])).'#cafes">次のページ →</a>';
+    return $out.'</nav>';
+}
+// Count, chosen conditions and the first place stay together. Once conditions are
+// chosen, the region shortcuts (which start a new search) follow the results instead.
+function domestic_results(array $all,array $list,array $f,int $total,int $page,int $size):string {
+    $chips=cafe_active_filters($f);$filtered=$chips!=='';$places=cafe_quick_places($all,false,$filtered);
+    $out='<section id="cafes" class="dn-directory-results" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading" class="dn-visually-hidden">手話カフェを探す</h2>'.cafe_result_bar($total,false,$f).$chips.($filtered?'':$places);
+    if(!$list)$out.=domestic_empty($f);
+    elseif(($f['view']??'table')==='table')$out.=cafe_listing_advice().cafe_table($list);
+    else $out.=cafe_listing_advice().'<div class="dn-place-grid">'.implode('',array_map('domestic_card',$list)).'</div><details class="dn-compare"><summary>同じ結果を表で比較する</summary>'.cafe_table($list).'</details>';
+    return $out.domestic_pagination($f,$page,$size,$total).($filtered?$places:'').'</section>';
 }
 // Use published states and dates only; this does not imply a venue is open now.
 function cafe_priority_compare(array $a,array $b):int {
@@ -110,15 +128,8 @@ function domestic_cafe_page():string {
     usort($list,fn($a,$b)=>($f['dir']==='desc'?-1:1)*($sort==='confirmed'?cafe_priority_compare($a,$b):(($collator?$collator->compare(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)):strcmp(cafe_sort_key($a,$sort),cafe_sort_key($b,$sort)))?:strcmp($a['slug'],$b['slug']))));
     $total=count($list);$size=in_array($f['per_page'],['24','48','96'],true)?(int)$f['per_page']:24;$page=min(max(1,(int)$f['page']),max(1,(int)ceil($total/$size)));$list=array_slice($list,($page-1)*$size,$size);
     $seo=cafe_directory_seo($f,$list,$total,$page,$size);
-    $body='<div class="dn-cafe-navigation">'.tabs(false,false,false).'<details class="dn-guide-menu"><summary>使い方・掲載方針<span aria-hidden="true">＋</span></summary><nav class="dn-section-links" aria-label="手話カフェの探し方">'.cafe_guide_link('#cafe-regions','地域から探す','pin').cafe_guide_link('#cafe-guide','初めての方へ','book').cafe_guide_link('#cafe-policy','掲載・更新方針','edit').'</nav></details></div><div class="dn-directory-layout">'.cafe_filter_panel(domestic_filters($f)).'<section id="cafes" class="dn-directory-results" aria-labelledby="cafe-list-heading"><h2 id="cafe-list-heading" class="dn-visually-hidden">手話カフェを探す</h2>'.cafe_result_bar($total,false,$f).cafe_active_filters($f).cafe_quick_places($all).cafe_listing_advice();
-    if(!$list)$body.=domestic_empty($f);
-    elseif($f['view']==='table')$body.=cafe_table($list);
-    else{$body.='<div class="dn-place-grid">'.implode('',array_map('domestic_card',$list)).'</div><details class="dn-compare"><summary>同じ結果を表で比較する</summary>'.cafe_table($list).'</details>';}
-    $params=array_filter($f,fn($v)=>$v!=='');unset($params['page']);$body.='<nav class="dn-pagination" aria-label="日本の手話カフェのページ">';
-    if($page>1)$body.='<a href="?'.e(http_build_query($params+['page'=>$page-1])).'">← 前のページ</a>';
-    $body.='<span>全'.$total.'件中 '.($total?($page-1)*$size+1:0).'〜'.min($page*$size,$total).'件</span>';
-    if($page*$size<$total)$body.='<a href="?'.e(http_build_query($params+['page'=>$page+1])).'">次のページ →</a>';
-    $body.='</nav></section></div>'.cafe_related_news().cafe_notice_link().cafe_discovery_guide($all).cafe_listing_notice();
+    $body='<div class="dn-cafe-navigation">'.tabs(false,false,false).'<details class="dn-guide-menu"><summary>使い方・掲載方針<span aria-hidden="true">＋</span></summary><nav class="dn-section-links" aria-label="手話カフェの探し方">'.cafe_guide_link('#cafe-regions','地域から探す','pin').cafe_guide_link('#cafe-guide','初めての方へ','book').cafe_guide_link('#cafe-policy','掲載・更新方針','edit').'</nav></details></div><div class="dn-directory-layout">'.cafe_filter_panel(domestic_filters($f)).domestic_results($all,$list,$f,$total,$page,$size);
+    $body.='</div>'.cafe_related_news().cafe_notice_link().cafe_discovery_guide($all).cafe_listing_notice();
     return page(cafe_listing_title($f),$body.cafe_contact_form().submission_form(),'/connect/sign-cafe/',CAFE_DIRECTORY_DESCRIPTION,$seo['structured'],false,$seo);
 }
 function cafe_admin_fields(array $p):string {

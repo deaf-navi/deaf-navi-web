@@ -3,6 +3,7 @@ import { cleanHtml } from './text.mjs';
 import { tagAttributes, publicUrl } from './thumbnail-metadata.mjs';
 import { EVENT_RECHECK_MS, EVENT_KINDS, EVENT_COMMUNICATION } from '../../config/events.mjs';
 import { PREFECTURES } from '../../config/regions.mjs';
+import {validDeadlineDate} from '../event-deadline.js';
 
 export const eventDay = (now = Date.now()) => new Date(now + 9 * 3600000).toISOString().slice(0, 10);
 export const eventHash = value => createHash('sha256').update(value).digest('hex');
@@ -30,7 +31,15 @@ export function validEvent(event) {
     && (!event.detailUrl || publicUrl(event.detailUrl)?.startsWith('https:'))
     && typeof event.sourceName === 'string' && event.sourceName.length > 0
     && Number.isFinite(Date.parse(event.verifiedAt)) && /^[a-f0-9]{64}$/.test(event.evidenceHash || '')
-    && (event.communication == null || (Array.isArray(event.communication) && event.communication.length <= 5
+    && (event.applicationDeadline == null || validDeadlineDate(event.applicationDeadline))
+    && (event.deadlineScope == null || ['participation','captions','interpretation','other'].includes(event.deadlineScope))
+    && (event.communicationAvailability == null || (['available','unavailable','unknown'].includes(event.communicationAvailability)
+      && (event.communicationAvailability!=='unavailable' || (typeof event.informationNotes?.communication==='string' && event.informationNotes.communication.trim().length>0 && event.informationNotes.communication.length<=300 && !(event.communication||[]).length))))
+    && (event.informationStatus == null || (typeof event.informationStatus==='object' && !Array.isArray(event.informationStatus)
+      && Object.entries(event.informationStatus).every(([key,value])=>['time','fee','signup','deadline','communication'].includes(key)
+        && ['confirmed','not_applicable','unknown'].includes(value)
+        && (value!=='not_applicable' || (typeof event.informationNotes?.[key]==='string' && event.informationNotes[key].trim().length>0 && event.informationNotes[key].length<=300)))))
+    && (event.communication == null || (Array.isArray(event.communication) && event.communication.length <= Object.keys(EVENT_COMMUNICATION).length
       && new Set(event.communication.map(item=>item?.method)).size === event.communication.length
       && event.communication.every(item=>Object.hasOwn(EVENT_COMMUNICATION,item?.method)
         && typeof item.detail === 'string' && item.detail.trim().length > 0 && item.detail.length <= 300)));

@@ -73,6 +73,11 @@
 .events-page .event-heading h2 { margin-bottom: 0; }
 .events-page .event-participation { padding-top: 8px; border-top: 1px solid var(--border-subtle); }
 .events-page .event-content summary { min-height: 44px; }
+/* Contribution entries sit with the results; each link names the form's own scope. */
+.events-page .event-guidance { margin-bottom: 4px; }
+.events-page .event-contribute { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; margin: 0 0 16px; font-size: .8125rem; line-height: 1.7; }
+.events-page .event-contribute__label { color: var(--text-secondary); font-weight: 600; }
+.events-page .event-contribute a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 
 /* The same quiet 4:3 media frame as the news home, including missing images. */
 .browse-page .news-media { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 5px; background: var(--accent-soft); }

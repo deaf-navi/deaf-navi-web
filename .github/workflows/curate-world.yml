@@ -95,7 +95,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .state/world-translation.json docs/app docs/articles-world.json docs/deaf-navi-world-jp.html docs/deaf-navi-world-original.html docs/deaf-navi-world-en.html docs/deaf-navi-world.html docs/styles-world.css docs/app-world.js docs/feed-world.xml docs/feed-world-original.xml docs/feed-world-en.xml docs/sitemap-world.xml docs/og-image-world.svg
-          git add .state/thumbnails-world.json docs/ui-controls.js docs/browse.css
+          git add .state/thumbnails-world.json docs/ui-controls.js docs/browse.css .state/publication-review-world.json .state/publication-review-domestic.json
           if git diff --cached --quiet; then
             echo "No world changes to commit."
             exit 0
@@ -111,18 +111,21 @@ jobs:
             git merge --abort 2>/dev/null || true
             cp docs/articles-world.json "$RUNNER_TEMP"/
             cp .state/world-translation.json "$RUNNER_TEMP"/world-translation.json
+            cp .state/publication-review-world.json .state/publication-review-domestic.json "$RUNNER_TEMP"/
             cp .state/thumbnails-world.json "$RUNNER_TEMP"/
             git fetch origin main
             git reset --hard origin/main
             cp "$RUNNER_TEMP"/articles-world.json docs/
             mkdir -p .state
             cp "$RUNNER_TEMP"/world-translation.json .state/
+            node scripts/merge-publication-ledger.mjs world "$RUNNER_TEMP"/publication-review-world.json
+            node scripts/merge-publication-ledger.mjs domestic "$RUNNER_TEMP"/publication-review-domestic.json
             cp "$RUNNER_TEMP"/thumbnails-world.json .state/
             npm run build:world
             npm run verify:world
             npm run build:app-api
             git add .state/world-translation.json docs/app docs/articles-world.json docs/deaf-navi-world-jp.html docs/deaf-navi-world-original.html docs/deaf-navi-world-en.html docs/deaf-navi-world.html docs/styles-world.css docs/app-world.js docs/feed-world.xml docs/feed-world-original.xml docs/feed-world-en.xml docs/sitemap-world.xml docs/og-image-world.svg
-            git add .state/thumbnails-world.json docs/ui-controls.js docs/browse.css
+            git add .state/thumbnails-world.json docs/ui-controls.js docs/browse.css .state/publication-review-world.json .state/publication-review-domestic.json
             if git diff --cached --quiet; then
               echo "No world changes after rebuild."
               exit 0
