@@ -1,34 +1,44 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-30T01:29:17.121Z",
+  "generatedAt": "2026-10-30T06:49:23.161Z",
   "counts": {
-    "uniqueInputs": 2789,
-    "alreadyPublished": 941,
-    "outsideWindow": 1437,
-    "hardExcluded": 18,
-    "duplicateOfPublished": 119,
-    "candidateDuplicates": 7,
-    "eligible": 267,
+    "uniqueInputs": 2491,
+    "alreadyPublished": 803,
+    "outsideWindow": 1368,
+    "hardExcluded": 19,
+    "duplicateOfPublished": 80,
+    "candidateDuplicates": 5,
+    "eligible": 216,
     "queued": 40,
-    "deferred": 227
+    "deferred": 176
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 4,
+    "low-value-page": 3,
+    "incidental-celebrity-history": 2,
     "foreign-coverage-review-required": 3,
-    "incidental-organization-mention": 1,
     "incidental-disability-nickname": 6,
-    "market-report": 3
+    "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-30T00:54:38.153Z",
+    "previousGeneratedAt": "2026-10-30T01:29:17.121Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 38,
+    "new": 2,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 38
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/30/135547",
+      "articleHash": "72223d0d489e8af6c1d1c96d7953992170248bd912dd51ac42dc31c8b949c0ab",
+      "publishedAt": "2026-10-30T04:55:47.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/29/153326",
       "articleHash": "724f414427e0880ee22438bad0299943fd48f73a2c3114fab903a16aa7ec5238",
@@ -170,9 +180,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/hoshinokyoshitsu/",
-      "articleHash": "37e9ef7b1f639046cadf08272a783f0065d3f47a4a56798006564f75bcf26911",
-      "publishedAt": "2026-10-30T01:19:43.000Z",
+      "sourceUrl": "https://udcast.net/workslist/subemayo/",
+      "articleHash": "431612cbb624bcbe083f4124264239521e021142df2b80466a37da2af4dc0cfd",
+      "publishedAt": "2026-10-30T04:21:53.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -210,9 +220,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
-      "articleHash": "df24968e6a0050d62d2d4e87e26f8ac8b45172748d8193de8fa1243adf3deb43",
-      "publishedAt": "2026-10-27T06:01:08.000Z",
+      "sourceUrl": "https://udcast.net/workslist/hoshinokyoshitsu/",
+      "articleHash": "37e9ef7b1f639046cadf08272a783f0065d3f47a4a56798006564f75bcf26911",
+      "publishedAt": "2026-10-30T01:19:43.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -240,9 +250,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/karugamodanchi12/",
-      "articleHash": "46d034d3b2e67ba251d894956bf85573d721fcd84c98b8afdd759b1101b4f8be",
-      "publishedAt": "2026-10-26T07:16:48.000Z",
+      "sourceUrl": "https://udcast.net/workslist/3mmlove-movie/",
+      "articleHash": "df24968e6a0050d62d2d4e87e26f8ac8b45172748d8193de8fa1243adf3deb43",
+      "publishedAt": "2026-10-27T06:01:08.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -270,9 +280,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/nanjihoshinogotoku/",
-      "articleHash": "62422b9ce3862f5f8a0f260449b027c83ad95d8cfbcc7772446d16a0dc10aec4",
-      "publishedAt": "2026-10-22T04:54:41.000Z",
+      "sourceUrl": "https://udcast.net/workslist/karugamodanchi12/",
+      "articleHash": "46d034d3b2e67ba251d894956bf85573d721fcd84c98b8afdd759b1101b4f8be",
+      "publishedAt": "2026-10-26T07:16:48.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -290,9 +300,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/otokotomodachi/",
-      "articleHash": "2d8eaefe7bb2266343675de7c8dd3a57dece7194cdd41bf3546ef9e043e39fd2",
-      "publishedAt": "2026-10-21T06:00:23.000Z",
+      "sourceUrl": "https://udcast.net/workslist/nanjihoshinogotoku/",
+      "articleHash": "62422b9ce3862f5f8a0f260449b027c83ad95d8cfbcc7772446d16a0dc10aec4",
+      "publishedAt": "2026-10-22T04:54:41.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -310,9 +320,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/uruwashi/",
-      "articleHash": "8b3840f2a0beed49f28250ea80c3dac0f9de13f38bc5d637aede674a4a7406d2",
-      "publishedAt": "2026-10-16T06:55:06.000Z",
+      "sourceUrl": "https://udcast.net/workslist/otokotomodachi/",
+      "articleHash": "2d8eaefe7bb2266343675de7c8dd3a57dece7194cdd41bf3546ef9e043e39fd2",
+      "publishedAt": "2026-10-21T06:00:23.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -330,9 +340,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/ryuji/",
-      "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
-      "publishedAt": "2026-10-16T03:00:01.000Z",
+      "sourceUrl": "https://udcast.net/workslist/uruwashi/",
+      "articleHash": "8b3840f2a0beed49f28250ea80c3dac0f9de13f38bc5d637aede674a4a7406d2",
+      "publishedAt": "2026-10-16T06:55:06.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -350,9 +360,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/hutashika/",
-      "articleHash": "174bc6c1c7145d56a0736f2e5b7f1626d043972ce2c8a0b778ea02ad939d83a8",
-      "publishedAt": "2026-10-15T09:19:28.000Z",
+      "sourceUrl": "https://udcast.net/workslist/ryuji/",
+      "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
+      "publishedAt": "2026-10-16T03:00:01.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -370,9 +380,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/orchestrada28th/",
-      "articleHash": "5d85259731ce903125320770846582dd88b32901a56317a98c2456200ebb01e0",
-      "publishedAt": "2026-10-14T08:54:18.000Z",
+      "sourceUrl": "https://udcast.net/workslist/hutashika/",
+      "articleHash": "174bc6c1c7145d56a0736f2e5b7f1626d043972ce2c8a0b778ea02ad939d83a8",
+      "publishedAt": "2026-10-15T09:19:28.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -413,16 +423,6 @@
       "sourceUrl": "https://co-coco.jp/series/work/makotomizutani/",
       "articleHash": "a85c3b8f83f1259d55f82cdec31ed87837edd248c52c616eeefdfd042a3c019e",
       "publishedAt": "2026-09-17T21:45:03.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/wakenaiart/",
-      "articleHash": "ace77581af8fd775ed71d044048111bf94a3444bc503ee3ded606485d8c95068",
-      "publishedAt": "2026-09-17T02:30:48.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
