@@ -5,6 +5,7 @@ import { retryCandidates, settleTranslations, isTranslatedArticle } from './lib/
 import { feedThumbnail } from './lib/thumbnail-metadata.mjs';
 import { enrichNewsThumbnails } from './lib/news-thumbnails.mjs';
 import { isHardNoiseWorldText } from './lib/world-relevance.mjs';
+import { worldLocation, WORLD_REGION_LABELS } from './lib/world-location.mjs';
 import { articleCacheKey, createTranslationCache, isWeakJapaneseTranslation, assertJapaneseTranslations, translateBatch, polishJapanese } from './lib/world-translation.mjs';
 import {approvedWorldTargets} from './lib/world-approved-targets.mjs';
 
@@ -55,7 +56,7 @@ const REGIONS = {
   middle_east_africa: '中東・アフリカ',
 };
 
-const REGION_ORDER = Object.keys(REGIONS);
+const REGION_ORDER = [...Object.keys(REGIONS), 'unknown'];
 
 const TOPICS = {
   accessibility: 'アクセシビリティ・情報保障',
@@ -672,7 +673,8 @@ function parseItems(xml, job) {
 
     const knownDomain = findKnownDomain(sourceUrl || articleUrl);
     const sourceMeta = DOMAIN_META.get(knownDomain);
-    const region = job.region;
+    const location = worldLocation({id:articleUrl,originalTitle,originalSummary:originalSummary||originalTitle,sourceUrl});
+    const region = location.region;
     const topic = inferTopic(`${originalTitle} ${originalSummary}`, job.topic);
     const scoreInfo = scoreArticle({
       originalTitle,
@@ -707,7 +709,9 @@ function parseItems(xml, job) {
       sourceUrl,
       publishedAt,
       region,
-      regionLabel: REGIONS[region],
+      regionLabel: WORLD_REGION_LABELS[region],
+      regionEvidence: location.regionEvidence,
+      discoveryRegion: job.region,
       topic,
       topicLabel: TOPICS[topic],
       curationScore: scoreInfo.score,
@@ -996,7 +1000,7 @@ function ageDays(article, now = Date.now()) {
 function interleaveByRegion(articles) {
   const groups = new Map(REGION_ORDER.map((region) => [region, []]));
   for (const article of [...articles].sort(displaySort)) {
-    const key = groups.has(article.region) ? article.region : REGION_ORDER[0];
+    const key = groups.has(article.region) ? article.region : 'unknown';
     groups.get(key).push(article);
   }
 

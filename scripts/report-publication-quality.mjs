@@ -1,0 +1,11 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {qualityReport} from '../src/lib/quality-report.mjs';
+import {readPublicationLedger} from '../src/lib/publication-ledger.mjs';
+const root=resolve(import.meta.dirname,'..');
+const snapshot=JSON.parse(await readFile(join(root,'.state/events.json'),'utf8'));
+const world=JSON.parse(await readFile(join(root,'docs/articles-world.json'),'utf8'));
+const report=qualityReport(snapshot,{domestic:await readPublicationLedger(root,'domestic'),world:await readPublicationLedger(root,'world')},{worldArticles:world.articles});
+await mkdir(join(root,'.state'),{recursive:true});
+await writeFile(join(root,'.state/publication-quality-report.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify({report:'.state/publication-quality-report.json',events:report.events.length,holds:report.holds.length,recheckDue:report.recheckDue,metrics:report.metrics},null,2));

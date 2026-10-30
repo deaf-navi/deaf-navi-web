@@ -6,6 +6,9 @@ import { fileURLToPath } from 'node:url';
 import {assertPublicCopy} from './lib/public-copy.mjs';
 import {groupNewsTopics} from './lib/news-topics.mjs';
 import {appEventSnapshot} from './lib/app-events.mjs';
+import {prepareDomesticPublication, prepareWorldPublication} from './lib/publication-quality.mjs';
+import {readPublicationLedger, savePublicationLedger} from './lib/publication-ledger.mjs';
+import {newsContextLabel} from './lib/news-context.mjs';
 import { SITE_URL } from '../config/site.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -68,6 +71,7 @@ const LEGACY_DOMESTIC_CATEGORY = {
 };
 
 const WORLD_REGIONS = {
+  unknown: '地域未確認',
   asia_oceania: 'アジア・オセアニア',
   americas: '北米・中南米',
   europe_cis: 'ヨーロッパ・CIS',
@@ -191,7 +195,7 @@ function domesticFilters() {
 }
 
 function worldRegionFilters(regions = WORLD_REGIONS) {
-  const entries = Object.entries(regions);
+  const entries = Object.entries({...regions, unknown: WORLD_REGIONS.unknown});
   return [
     { id: 'all', label: 'すべての地域' },
     ...entries.map(([id, label]) => ({ id, label })),
@@ -214,7 +218,7 @@ function qualitySummary(quality) {
     scoredCount: quality.scoredCount,
     filteredCount: quality.filteredCount,
     dedupedCount: quality.dedupedCount,
-    selectedCount: quality.selectedCount,
+    selectedCount: quality.publishedCounts?.selectedCount ?? quality.selectedCount,
     primaryCategoryLimit: quality.primaryCategoryLimit,
     primaryVisibleCount: quality.primaryVisibleCount,
     extraVisibleCount: quality.extraVisibleCount,
@@ -222,8 +226,8 @@ function qualitySummary(quality) {
     overflowCount: quality.overflowCount,
     minScore: quality.minScore,
     maxArticles: quality.maxArticles,
-    regionCounts: quality.regionCounts,
-    topicCounts: quality.topicCounts,
+    regionCounts: quality.publishedCounts?.regionCounts ?? quality.regionCounts,
+    topicCounts: quality.publishedCounts?.topicCounts ?? quality.topicCounts,
     categoryCountsVisible: quality.categoryCountsVisible,
     translationProvider: quality.translationProvider,
     japanesePostEditProvider: quality.japanesePostEditProvider,
@@ -267,6 +271,7 @@ function domesticArticle(article) {
     legacyCategory: LEGACY_DOMESTIC_CATEGORY[category] ?? 'general',
     // 2.0 追加（richペイロード限定の後方互換フィールド。ios-*-v1/v2 の8キー配列には出さない）
     newsContext: article.newsContext,
+    contextLabel: newsContextLabel(article) || undefined,
     thumbnailURL: article.thumbnail?.url,
     sourceTier: article.sourceTier,
     discoveryMethod: article.discoveryMethod,
@@ -610,10 +615,16 @@ function buildManifest({ domestic, world }) {
 }
 
 export async function buildAppAPI() {
-  const [domestic, world] = await Promise.all([
+  const [savedDomestic, savedWorld] = await Promise.all([
     readJson('articles.json'),
     readJson('articles-world.json'),
   ]);
+  const domesticLedger = await readPublicationLedger(ROOT,'domestic');
+  const domestic = prepareDomesticPublication(savedDomestic,{ledger:domesticLedger});
+  await savePublicationLedger(ROOT,'domestic',domesticLedger,savedDomestic,domestic);
+  const ledger = await readPublicationLedger(ROOT, 'world');
+  const world = prepareWorldPublication(savedWorld, {ledger});
+  await savePublicationLedger(ROOT, 'world', ledger, savedWorld, world);
 
   assertPublicCopy(domestic.articles??[],'news');
   assertPublicCopy(world.articles??[],'news');

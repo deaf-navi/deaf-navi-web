@@ -25,11 +25,13 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
 header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 ini_set('display_errors','0');
 $path=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
-// Only the three public lists may load these exact reviewed image URLs.
+// Only the three public lists may load these reviewed image paths.
 // Admin, forms, detail pages and network/script permissions stay unchanged.
 if(in_array($path,['/connect/sign-cafe/','/connect/sign-cafe/overseas/','/connect/sign-cafe/events/'],true)){
     // A literal comma separates CSP policies; URL-encode it in image paths.
-    $imageSources=str_replace(',','%2C',implode(' ',array_unique(array_column(cafe_thumbnail_entries(),'url'))));
+    // CSP ignores URL queries/fragments; omit them to retain the same matching
+    // paths without invalid-source warnings. Do not widen to whole origins.
+    $imageSources=str_replace(',','%2C',implode(' ',array_unique(array_map(fn($url)=>preg_replace('/[?#].*$/','',$url),array_column(cafe_thumbnail_entries(),'url')))));
     $mapImages=$path==='/connect/sign-cafe/overseas/'?' data: https://tile.openstreetmap.org':'';
     header("Content-Security-Policy: default-src 'none'; script-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' ".$imageSources.$mapImages."; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'");
 }

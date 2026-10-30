@@ -19,8 +19,11 @@ function incompatible(a, b) {
   if (a.prefecture && b.prefecture && a.prefecture !== b.prefecture) return true;
   if (a.newsContext && b.newsContext && a.newsContext !== b.newsContext) return true;
   // Preserve real event dates; remove only publication/gallery wrappers.
+  const dates = x => String(x.title).normalize('NFKC').match(/(?:20\d{2}年)?\d{1,2}月\d{1,2}日/gu)?.join('|') || '';
+  if (dates(a) && dates(b) && dates(a) !== dates(b)) return true;
   const numbers = x => cleanArticleTitle(x.title, x.sourceName).normalize('NFKC')
     .replace(/(?:20\d{2}|令和\d+)年\d{1,2}月\d{1,2}日掲載/gu, '')
+    .replace(/(?:20\d{2}年)?\d{1,2}月\d{1,2}日/gu, '')
     .replace(/\[写真特集\d+\/\d+\]/gu, '').match(/\d+/g)?.join('|') || '';
   const status = x => String(x.title).match(/中止|延期|満席|完売|否決|可決/gu)?.sort().join('|') || '';
   if (status(a) !== status(b)) return true;
@@ -31,6 +34,13 @@ export function sameNewsTopic(a, b) {
   if (a.id === b.id) return true;
   if (incompatible(a, b)) return false;
   const ak = titleKey(a), bk = titleKey(b);
+  // A missing date is not a conflicting date. Only use this relaxation for a
+  // specifically named anniversary; recurring generic notices keep strict rules.
+  const anniversary = x => String(x.title).normalize('NFKC')
+    .replace(/(?:20\d{2}年)?\d{1,2}月\d{1,2}日/gu, '')
+    .replace(/(?:大学|協会|市|県)が/gu, m=>m.slice(0,-1))
+    .replace(/を(?:に)?開催(?:します|へ)?[。！]?$/u,'').replace(/\s+/gu,'');
+  if (/\d+周年記念/u.test(ak) && anniversary(a) === anniversary(b)) return true;
   // Short headlines need the specific subject/event evidence below; generic
   // short labels must not qualify through string similarity alone.
   if (Math.min(ak.length, bk.length) >= 12) {

@@ -6,6 +6,7 @@ export const EVENT_COMMUNICATION = {
   captions: '字幕',
   summary: '要約筆記',
   writing: '筆談',
+  loop: 'ヒアリングループ',
 };
 export const EVENT_SOURCES = [
   { id: 'oioi', name: '手話エンターテイメント発信団 oioi', url: 'https://www.oioi-sign.com/events_list/', adapter: 'oioi-schedule' },

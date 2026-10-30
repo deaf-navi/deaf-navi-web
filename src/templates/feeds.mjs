@@ -99,7 +99,7 @@ export function renderRss({ generatedAt, articles, isDev, files }) {
       <link>${escapeXml(a.id)}</link>
       <guid isPermaLink="true">${escapeXml(a.id)}</guid>
       <pubDate>${pubDate}</pubDate>
-      <description>${escapeXml(a.summary)}</description>
+      <description>${escapeXml([a.contextLabel,a.summary].filter(Boolean).join('。'))}</description>
       <category>${escapeXml(CATEGORY_UI[a.category] ?? '一般')}</category>
       <source url="${escapeXml(a.sourceUrl)}">${escapeXml(a.sourceName)}</source>
     </item>`;

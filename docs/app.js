@@ -253,7 +253,7 @@
         })) throw new Error('Invalid news data');
         allArticles = data.articles;
         searchIndex = allArticles.map(function (a) {
-          return normalize(a.title + ' ' + (a.summary || '') + ' ' + a.sourceName + ' ' + (a.prefecture || '') + ' ' + ({announcement:'開催案内',report:'開催報告'}[a.newsContext] || ''));
+          return normalize(a.title + ' ' + (a.summary || '') + ' ' + (a.contextLabel || '') + ' ' + a.sourceName + ' ' + (a.prefecture || '') + ' ' + ({announcement:'開催案内',report:'開催報告'}[a.newsContext] || ''));
         });
         dataStatus = cachedResponse ? 'cached' : 'ready';
         connectionLost = cachedResponse;
@@ -304,7 +304,7 @@
     var chip = node.querySelector('.chip');
     chip.className = 'chip chip--' + a.category;
     chip.textContent = CATEGORY_UI[a.category] || '一般';
-    var contextLabel = { announcement: '開催案内', report: '開催報告' }[a.newsContext];
+    var contextLabel = a.contextLabel || { announcement: '開催案内', report: '開催報告' }[a.newsContext];
     if (contextLabel) {
       var contextBadge = document.createElement('span');
       contextBadge.className = 'news-context';

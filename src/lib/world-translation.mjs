@@ -2,14 +2,25 @@ const SEPARATOR = '<<<DEAF_NAVI_WORLD_SPLIT>>>';
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function hasLibrasSignContext(text) {
-  return /\bLibras\b/u.test(text)
+  return /\blibras\b/iu.test(text)
     && /surd|sina[il]|ensina|curso|int[eé]rprete|interpreta|inclus|acessib|tradu|l[ií]ngua|comunica|oficina|educa|aprendiz|em Libras/iu.test(text)
     && !/\bLibras\s+(?:esterlinas|brit[aâ]nicas|de peso)\b/iu.test(text);
 }
 
 export function hasMistranslatedLibras(original, translated) {
   return hasLibrasSignContext(String(original ?? ''))
-    && /天秤座|てんびん座|ポンド/u.test(String(translated ?? ''));
+    && /天秤座|てんびん座|ポンド|パウンド/u.test(String(translated ?? ''));
+}
+
+// These are review signals, never authority to rewrite a clinical/policy claim.
+export function translationReviewReason(original, translated) {
+  if (hasMistranslatedLibras(original, translated)) return 'libras-meaning';
+  if (/청신경/u.test(String(original ?? '')) && /青神経/u.test(String(translated ?? ''))) return 'clinical-term';
+  if (/المعرفة الشرعية/u.test(String(original ?? '')) && /手話の法的知識/u.test(String(translated ?? ''))) return 'religious-context';
+  if (/(?:aud[ií]fonos|niños sordos).*falla la comunicación/iu.test(String(original ?? '')) && /通信障害/u.test(String(translated ?? ''))) return 'communication-context';
+  if (/Montalbanais/iu.test(String(original ?? '')) && /モンタルバニア/u.test(String(translated ?? ''))) return 'place-name';
+  if (/São Paulo São Libras/iu.test(String(original ?? '')) && /リングア.*ブラジレイラ/u.test(String(translated ?? ''))) return 'program-name';
+  return null;
 }
 
 // A Japanese prefix must never turn an untranslated source into a cache hit.
@@ -17,7 +28,7 @@ export function isWeakJapaneseTranslation(original, translated) {
   const source = String(original ?? '').trim();
   const value = String(translated ?? '').trim();
   if (!value || /海外メディアの記事\s*[:：]|<<<|DEAF_NAVI_WORLD_SPLIT/.test(value)) return true;
-  if (hasMistranslatedLibras(source, value)) return true;
+  if (translationReviewReason(source, value)) return true;
   if (!/[\u3040-\u30ff\u3400-\u9fff]/.test(value)) return true;
   // Kana may legitimately be unchanged when the source is already Japanese.
   if (value === source && !/[\u3041-\u3096\u30a1-\u30fa]/.test(source)) return true;
@@ -88,8 +99,8 @@ function retryAfterMs(value) {
 export async function translateBatch(texts, { fetchImpl = fetch, sleep = wait, retries = 2 } = {}) {
   if (!texts.length) return [];
   // Expand the Brazilian sign-language acronym before machine translation.
-  const prepared = texts.map((text) => hasLibrasSignContext(text)
-    ? text.replace(/\bLibras\b/gu, 'Língua Brasileira de Sinais') : text);
+  const prepared = texts.map((text) => hasLibrasSignContext(text) && !/São Paulo São Libras/iu.test(text)
+    ? text.replace(/\blibras\b/giu, 'Língua Brasileira de Sinais') : text);
   const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ja&dt=t&q=${encodeURIComponent(prepared.join(`\n${SEPARATOR}\n`))}`;
   let result;
   for (let attempt = 0; ; attempt += 1) {

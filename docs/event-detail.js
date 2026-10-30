@@ -1,3 +1,4 @@
+import {eventDeadline,deadlineLabel} from './event-deadline.js';
 (()=>{
  const article=document.querySelector('[data-event-detail]');if(!article)return;
  function update(){
@@ -9,6 +10,7 @@
   if(['review','past','cancelled'].includes(state))for(const el of document.querySelectorAll('script[type="application/ld+json"]')){
    try{const data=JSON.parse(el.textContent);if(Array.isArray(data))el.textContent=JSON.stringify(data.filter(item=>item['@type']!=='Event'));}catch{}
   }
+  const deadlineNode=article.querySelector('[data-event-deadline]');if(deadlineNode)deadlineNode.textContent=deadlineLabel(eventDeadline({applicationDeadline:deadlineNode.dataset.eventDeadline,deadlineScope:deadlineNode.dataset.deadlineScope},now));
   const retryNote=article.querySelector('[data-source-retry]');if(retryNote)retryNote.hidden=state==='past'||state==='cancelled';
   if(state==='review')document.querySelector('meta[name="robots"]')?.setAttribute('content','noindex,follow');
  }

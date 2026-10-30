@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/quality-overview.php';
 function admin_cafe_scope():string {
     $scope=input($_GET,'scope',20);
     if($scope!=='')return choice($scope,['domestic'=>1,'overseas'=>1]);
@@ -72,7 +73,7 @@ function admin_overview():string {
     $metrics=[['確認待ちの投稿',"SELECT count(*) FROM submissions WHERE status='pending'",'/admin/?view=submissions&status=pending'],['公開中の手話カフェ',"SELECT count(*) FROM records WHERE kind='cafe' AND country_code='JP' AND publication='public'",'/admin/?view=records&kind=cafe&scope=domestic&publication=public'],['公開中の海外の手話カフェ',"SELECT count(*) FROM records WHERE kind IN ('cafe','store') AND country_code!='JP' AND publication='public'",'/admin/?view=records&kind=cafe&scope=overseas&publication=public'],['スターバックス店舗',"SELECT count(*) FROM records WHERE kind='store' AND publication!='deleted'",'/admin/?view=records&kind=store'],['開催情報',"SELECT count(*) FROM records WHERE kind='event' AND publication!='deleted'",'/admin/?view=records&kind=event']];
     $out='<p class="admin-lead">掲載情報と、みなさんから届いた情報を管理します。</p><div class="admin-metrics">';
     foreach($metrics as [$label,$sql,$url])$out.='<a href="'.e($url).'"><span>'.e($label).'</span><strong>'.(int)query($sql)->fetchColumn().'<small>件</small></strong></a>';
-    return $out.'</div>'.((current_user()['role']??'')==='admin'?admin_access_summary():'').cafe_admin_metrics().admin_submissions_table(true).admin_activity(true);
+    return $out.'</div>'.((current_user()['role']??'')==='admin'?admin_access_summary():'').admin_quality_overview().cafe_admin_metrics().admin_submissions_table(true).admin_activity(true);
 }
 function admin_edit_fields(array $p,string $kind):string {
     $all=record_fields($kind);

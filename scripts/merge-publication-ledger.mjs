@@ -1,0 +1,10 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {readPublicationLedger,mergePublicationLedgers} from '../src/lib/publication-ledger.mjs';
+const [scope,savedFile]=process.argv.slice(2);
+if(!['world','domestic'].includes(scope)||!savedFile)throw new Error('Usage: merge-publication-ledger.mjs world|domestic SAVED_LEDGER');
+const root=resolve(import.meta.dirname,'..');
+const incoming=JSON.parse(await readFile(savedFile,'utf8'));
+const ledger=mergePublicationLedgers(await readPublicationLedger(root,scope),incoming);
+await mkdir(join(root,'.state'),{recursive:true});
+await writeFile(join(root,'.state',`publication-review-${scope}.json`),JSON.stringify(ledger,null,2)+'\n');

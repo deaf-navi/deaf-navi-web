@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
+import {eventDeadline,deadlineLabel} from '../src/event-deadline.js';
 import {eventDetailState,eventSchema,renderEventDetail,renderRetiredEvent} from '../src/templates/event-detail.mjs';
 import {renderEventsPage} from '../src/templates/events.mjs';
 import {renderSitemapXml} from '../src/templates/feeds.mjs';
@@ -35,7 +36,8 @@ test('visitor copy preserves expired-event warnings and client-side freshness wi
  const schema={textContent:JSON.stringify([{'@type':'Event'},{'@type':'BreadcrumbList'}])};
  const document={querySelector:s=>s==='[data-event-detail]'?article:robots,querySelectorAll:()=>[schema],addEventListener:()=>{}};
  class Clock extends Date {static now(){return now;}}
- vm.runInNewContext(await readFile(new URL('../src/assets/event-detail.js',import.meta.url),'utf8'),{document,Date:Clock,setInterval:()=>{}});
+ const detailScript=(await readFile(new URL('../src/assets/event-detail.js',import.meta.url),'utf8')).replace("import {eventDeadline,deadlineLabel} from './event-deadline.js';",'');
+ vm.runInNewContext(detailScript,{document,Date:Clock,setInterval:()=>{},eventDeadline,deadlineLabel});
  assert.equal(nodes['[data-detail-status]'].textContent,eventDetailState(stale,now).label);
  assert.equal(nodes['[data-detail-notice]'].textContent,eventDetailState(stale,now).note);
  assert.equal(robots.content,'noindex,follow');

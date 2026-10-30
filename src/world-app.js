@@ -56,9 +56,9 @@
   }
 
   function balanceAllRegionCards(cards) {
-    const regionOrder = ['asia_oceania', 'americas', 'europe_cis', 'middle_east_africa'];
+    const regionOrder = ['asia_oceania', 'americas', 'europe_cis', 'middle_east_africa', 'unknown'];
     const groups = new Map(regionOrder.map((region) => [region, []]));
-    const fallbackRegion = regionOrder[0];
+    const fallbackRegion = 'unknown';
 
     cards
       .slice()
