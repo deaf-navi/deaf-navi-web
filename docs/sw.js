@@ -7,11 +7,11 @@
  * - 静的アセット(CSS/JS/画像)はキャッシュ優先 + 背景更新
  * - 暮らしのガイドは災害時利用を想定してプリキャッシュ
  *
- * 2026-10-31T15:15:21.758Z-f40e8a9a1377 と f40e8a9a1377 はビルド時に置換され、キャッシュ世代を切り替える。
+ * 2026-10-31T22:20:18.009Z-57b748eafd06 と 57b748eafd06 はビルド時に置換され、キャッシュ世代を切り替える。
  */
 
-const BUILD_ID = '2026-10-31T15:15:21.758Z-f40e8a9a1377';
-const ASSET_VERSION = 'f40e8a9a1377';
+const BUILD_ID = '2026-10-31T22:20:18.009Z-57b748eafd06';
+const ASSET_VERSION = '57b748eafd06';
 const CACHE_NAME = `deaf-navi-${BUILD_ID}`;
 
 self.addEventListener('message', (event) => {
@@ -107,6 +107,8 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // フォント等の外部リソースはブラウザ任せ
+  // App Storeへの転送はネットワークに任せ、応答や遷移先を保存しない。
+  if (/^\/go\/ios(?:\/|$)/.test(url.pathname)) return;
   // 管理画面・投稿・DB連動ページをオフラインキャッシュに保存しない。
   if (/^\/(?:stories(?:\/|$)|admin(?:\/|$)|submit(?:\/|$)|connect\/sign-cafe(?:\/|$)|directory-sitemap\.xml$)/.test(url.pathname)) return;
 
