@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-10-31T22:20:18Z",
+  "generatedAt": "2026-10-31T22:31:17Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -122,7 +122,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
       "count": 589,
-      "sourceGeneratedAt": "2026-10-31T22:19:47Z",
+      "sourceGeneratedAt": "2026-10-31T22:31:17Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -208,8 +208,8 @@
         "japanesePostEdit": {
           "checked": 0,
           "updated": 0,
-          "cached": 257,
-          "skipped": 375,
+          "cached": 259,
+          "skipped": 400,
           "failed": 0,
           "enabled": true,
           "fallback": {
@@ -217,8 +217,8 @@
             "failures": 1,
             "circuitOpen": true
           },
-          "pending": 375,
-          "retainedPrevious": 125
+          "pending": 400,
+          "retainedPrevious": 127
         }
       }
     },
@@ -229,7 +229,7 @@
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
       "count": 589,
-      "sourceGeneratedAt": "2026-10-31T22:19:47Z",
+      "sourceGeneratedAt": "2026-10-31T22:31:17Z",
       "language": "und",
       "regions": [
         {
@@ -315,7 +315,7 @@
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "count": 589,
-      "sourceGeneratedAt": "2026-10-31T22:19:47Z",
+      "sourceGeneratedAt": "2026-10-31T22:31:17Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {
