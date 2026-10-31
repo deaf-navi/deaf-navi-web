@@ -456,7 +456,7 @@ ${renderQuickAccess({ guideFile: files.guide })}
       <aside class="app-cta" aria-label="Deaf Navi アプリのご案内">
         <div class="app-cta__text">
           <span class="app-cta__label">iPhoneアプリ・無料</span>
-          <h2 class="app-cta__title">筆談も、見せるカードも、ひとつのアプリに。</h2>
+          <h2 class="app-cta__title">筆談も、見せるカードも、<span>ひとつのアプリに。</span></h2>
           <p class="app-cta__desc">筆談やフレーズを選んで見せるコミュニケーションボード、作成・保存できる緊急カード。ニュースやイベントの確認も、Deaf Naviアプリから。</p>
         </div>
         <a class="app-cta__btn" href="/go/ios/footer" target="_blank" rel="noopener noreferrer" aria-label="App Storeで見る（新しいタブで開く）">

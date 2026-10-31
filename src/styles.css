@@ -1293,6 +1293,8 @@ input, select {
   margin-top: var(--s-1);
 }
 
+.app-cta__title > span { display: inline-block; }
+
 .app-cta__desc {
   margin-top: var(--s-2);
   font-size: 0.9rem;
