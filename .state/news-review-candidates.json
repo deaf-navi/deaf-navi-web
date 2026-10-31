@@ -1,32 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-31T00:49:14.487Z",
+  "generatedAt": "2026-10-31T09:31:15.570Z",
   "counts": {
-    "uniqueInputs": 2577,
-    "alreadyPublished": 845,
-    "outsideWindow": 1409,
-    "hardExcluded": 17,
-    "duplicateOfPublished": 76,
-    "candidateDuplicates": 4,
-    "eligible": 226,
+    "uniqueInputs": 2781,
+    "alreadyPublished": 905,
+    "outsideWindow": 1480,
+    "hardExcluded": 8,
+    "duplicateOfPublished": 110,
+    "candidateDuplicates": 7,
+    "eligible": 271,
     "queued": 40,
-    "deferred": 186
+    "deferred": 231
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 2,
-    "incidental-celebrity-history": 2,
-    "foreign-coverage-review-required": 3,
-    "incidental-disability-nickname": 5,
-    "market-report": 4
+    "incidental-celebrity-history": 1,
+    "low-value-page": 4,
+    "incidental-disability-nickname": 2
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-31T00:42:59.013Z",
+    "previousGeneratedAt": "2026-10-31T00:49:14.487Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -163,16 +161,6 @@
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/26/101947",
       "articleHash": "c8afc9cf6ca68006dacfd68fe80f1e78d81c757e69df432ef5f6f984666f86de",
       "publishedAt": "2026-09-26T01:19:47.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.mimisuppo-miyagi.org",
-      "priority": 0,
-      "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/25/145642",
-      "articleHash": "d670e89e8f2c3afbdbbaa0716b027c412767013d9e31610f3c08b4aba45b7873",
-      "publishedAt": "2026-09-25T05:56:42.000Z",
       "sourceTier": "official",
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
@@ -428,6 +416,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/wakenaiart/",
+      "articleHash": "ace77581af8fd775ed71d044048111bf94a3444bc503ee3ded606485d8c95068",
+      "publishedAt": "2026-09-17T02:30:48.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
