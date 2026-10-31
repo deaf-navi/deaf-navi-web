@@ -121,7 +121,7 @@ ${renderSiteHeader({
           <h2 id="about-ios-app">情報とコミュニケーション支援を、いつでも手元に。</h2>
           <p class="about-app__lead">聴覚障害のある方、ろう者・難聴者、その家族や支援者のために、制度・イベント・ニュースと日常のコミュニケーション支援をひとつにまとめた情報アプリです。</p>
           <p>Deaf Navi Webで選定した国内・海外ニュースをアプリでも確認でき、暮らしのガイドや情報保障ツールは必要な場面ですぐに開けます。</p>
-          <a class="about-app__store-link" href="${APP_STORE_URL}" target="_blank" rel="noopener noreferrer" aria-label="App StoreでDeaf Naviを開く（新しいタブで開く）">
+          <a class="about-app__store-link" href="/go/ios/about" target="_blank" rel="noopener noreferrer" aria-label="App StoreでDeaf Naviを開く（新しいタブで開く）">
             App Storeで見る ${EXTERNAL_ARROW_SVG}
           </a>
         </div>
@@ -137,7 +137,7 @@ ${renderSiteHeader({
         </section>
         <section class="about-app__feature" aria-labelledby="about-app-tools">
           <h3 id="about-app-tools">情報保障ツール</h3>
-          <p>緊急カード、コミュニケーションボード、筆談・音声、周囲の音などを日常の場面に合わせて使えます。</p>
+          <p>緊急カード、コミュニケーションボード、筆談・音声、周囲の音などを日常の場面に合わせて使えます。作成した緊急カードは端末内に保存でき、ウィジェットからすぐに開けます。</p>
         </section>
       </div>
     </section>

@@ -1,6 +1,7 @@
 <?php
 // For isolated local testing only; never routed publicly on XServer.
 $path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
+if($path==='/go/ios'||str_starts_with($path,'/go/ios/')){require __DIR__.'/ios-app-redirect.php';return;}
 foreach(json_decode(file_get_contents(__DIR__.'/entry-redirects.json'),true) as $entry){
     if(in_array($path,[rtrim($entry['from'],'/'),$entry['from'],$entry['from'].'index.html'],true)){
         $query=str_replace(["\r","\n"],'',$_SERVER['QUERY_STRING']??'');

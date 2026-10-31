@@ -42,6 +42,7 @@ jobs:
           php test/cafe-event-recovery.php
           node test/cafe-event-recovery.integration.mjs
           php -n test/public-copy.php
+          php -n test/ios-app-promotion.php
           node test/event-tips.integration.mjs
           node test/cafe-events.integration.mjs
           node test/app-directory.integration.mjs

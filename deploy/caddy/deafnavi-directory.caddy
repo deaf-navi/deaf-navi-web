@@ -66,6 +66,7 @@ deafnavi.com {
     route {
         @private path /_backend /_backend/* *.php *.sqlite *.sqlite3 *.sql /connect/places /connect/places/* /connect/communities /connect/communities/*
         respond @private "Not Found" 404
+        import /srv/deafnavi/current/_backend/ios-app-routes.caddy
         @directory path /admin /admin/* /submit /submit/* /connect/sign-cafe /connect/sign-cafe/* /directory-sitemap.xml /_access/visit
         handle @directory {
             request_body {
