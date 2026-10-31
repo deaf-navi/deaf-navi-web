@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__.'/site-shell.php';
+require_once __DIR__.'/ios-app-promotion.php';
 require_once __DIR__.'/cafe-ui.php';
 require_once __DIR__.'/cafe-contact.php';
 require_once __DIR__.'/cafe-visuals.php';
@@ -16,6 +17,7 @@ function page(string $title,string $body,string $path='',string $description='',
     $robots=$private?'noindex,nofollow':($meta['robots']??'index,follow');
     $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.ico?v=20261028logo" sizes="16x16 32x32 48x48"><link rel="icon" href="/icons/favicon-48.png?v=20261028logo" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=20261028logo" sizes="180x180"><script src="/directory-safety.js?v=20260908loading" defer></script><script src="/directory-ui.js?v=20261019cafereading" defer></script>';
     $cafeStyle=str_starts_with($path,'/connect/sign-cafe/')?'<link rel="stylesheet" href="/cafe-guide.css?v=20261017cafeheader"><link rel="stylesheet" href="/cafe-polish.css?v=20261029results"><script src="/cafe-search.js?v=20261016a" defer></script>':'';
+    $ld.=ios_app_banner($path, $robots);
     if($scope==='overseas')$ld.='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui">';
     if(str_starts_with($path,'/connect/sign-cafe/area/'))$ld.='<link rel="stylesheet" href="/reader.css?v=20261017seo">';
     if(!$private) {

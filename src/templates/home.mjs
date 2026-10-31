@@ -14,7 +14,6 @@
  */
 
 import {
-  APP_STORE_URL,
   SITE_DESC,
   SITE_NAME,
   SITE_TAGLINE,
@@ -208,13 +207,18 @@ function renderPurposeNav({ guideFile }) {
         ['./otomado/', 'おとまどの機能と説明'],
       ],
     },
+    {
+      title: 'iPhoneアプリ（無料）',
+      desc: '筆談・見せるカードを手元に。Webの情報も引き続きそのまま読めます。',
+      links: [['/go/ios/top', 'App Storeで見る', true]],
+    },
   ];
   return `    <nav class="purpose-nav" aria-labelledby="purpose-nav-heading">
       <h2 id="purpose-nav-heading" class="sr-only">目的から探す</h2>
 ${groups.map((group) => `      <div class="purpose-nav__group">
         <h3 class="purpose-nav__title">${escapeHtml(group.title)}</h3>
         <p class="purpose-nav__desc">${escapeHtml(group.desc)}</p>
-        <ul class="purpose-nav__links">${group.links.map(([href, label]) => `<li><a href="${href}">${escapeHtml(label)}</a></li>`).join('')}</ul>
+        <ul class="purpose-nav__links">${group.links.map(([href, label, external]) => `<li><a href="${href}"${external ? ' target="_blank" rel="noopener noreferrer" aria-label="App Storeで見る（新しいタブで開く）"' : ''}>${escapeHtml(label)}${external ? ' <span aria-hidden="true">↗</span>' : ''}</a></li>`).join('')}</ul>
       </div>`).join('\n')}
       <p class="purpose-nav__news"><a href="#articles-heading">最新ニュースへ</a></p>
     </nav>`;
@@ -451,11 +455,11 @@ ${renderQuickAccess({ guideFile: files.guide })}
 
       <aside class="app-cta" aria-label="Deaf Navi アプリのご案内">
         <div class="app-cta__text">
-          <span class="app-cta__label" lang="en">iPhone App</span>
-          <h2 class="app-cta__title">外出先でも、Deaf Navi を。</h2>
-          <p class="app-cta__desc">同じキュレーションをスマホからも閲覧できる iOS アプリ「Deaf Navi」。緊急カード・手話ガイド・制度情報をオフラインでも。</p>
+          <span class="app-cta__label">iPhoneアプリ・無料</span>
+          <h2 class="app-cta__title">筆談も、見せるカードも、ひとつのアプリに。</h2>
+          <p class="app-cta__desc">筆談やフレーズを選んで見せるコミュニケーションボード、作成・保存できる緊急カード。ニュースやイベントの確認も、Deaf Naviアプリから。</p>
         </div>
-        <a class="app-cta__btn" href="${APP_STORE_URL}" target="_blank" rel="noopener noreferrer">
+        <a class="app-cta__btn" href="/go/ios/footer" target="_blank" rel="noopener noreferrer" aria-label="App Storeで見る（新しいタブで開く）">
           App Store で見る
           ${EXTERNAL_ARROW_SVG}
         </a>

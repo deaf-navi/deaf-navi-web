@@ -11,6 +11,7 @@ import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
 import { renderNewsThumbnail } from './templates/thumbnail.mjs';
+import { renderIosAppBanner } from './lib/ios-app-promotion.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -377,6 +378,7 @@ function renderPage(data, mode = 'jp') {
   <meta name="author" content="TAMA">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <meta name="googlebot" content="index,follow">
+  ${renderIosAppBanner('/world.html')}
   <meta name="theme-color" content="#075e57">
   <link rel="canonical" href="${pageUrl}">
   <link rel="alternate" hreflang="ja" href="${JP_PAGE_URL}">
@@ -420,7 +422,7 @@ function renderPage(data, mode = 'jp') {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
-  <link rel="stylesheet" href="./site-shell.css?v=20261029purpose">
+  <link rel="stylesheet" href="./site-shell.css?v=20261101app">
   <link rel="stylesheet" href="./browse.css?v=${CLIENT_VERSION}">
 
   ${jsonLd}

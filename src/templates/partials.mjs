@@ -14,6 +14,7 @@ import { renderThumbnail, renderNewsThumbnail } from './thumbnail.mjs';
 import { REGION_UI } from '../../config/regions.mjs';
 import SITE_NAVIGATION from '../../config/site-navigation.json' with { type: 'json' };
 import { escapeHtml } from '../lib/text.mjs';
+import { renderIosAppBanner } from '../lib/ios-app-promotion.mjs';
 import { formatDateJST, relativeTime } from '../lib/dates.mjs';
 import { newsContextLabel } from '../lib/news-context.mjs';
 
@@ -95,6 +96,7 @@ export function renderHead({
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="${robots}">
   <meta name="theme-color" content="#075e57">
+  ${renderIosAppBanner(canonical, robots)}
   <link rel="canonical" href="${canonical}">
 ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)}" href="${feedUrl}">\n` : ''}  <link rel="icon" href="${basePath}favicon.ico?v=20261028logo" sizes="16x16 32x32 48x48">
   <link rel="icon" href="${basePath}icons/favicon-48.png?v=20261028logo" type="image/png" sizes="48x48">
@@ -136,7 +138,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
-  <link rel="stylesheet" href="${basePath}site-shell.css?v=20261029purpose">
+  <link rel="stylesheet" href="${basePath}site-shell.css?v=20261101app">
   <link rel="stylesheet" href="${basePath}support.css?v=20261016mobile2">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }

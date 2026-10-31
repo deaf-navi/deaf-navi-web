@@ -107,6 +107,8 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // フォント等の外部リソースはブラウザ任せ
+  // App Storeへの転送はネットワークに任せ、応答や遷移先を保存しない。
+  if (/^\/go\/ios(?:\/|$)/.test(url.pathname)) return;
   // 管理画面・投稿・DB連動ページをオフラインキャッシュに保存しない。
   if (/^\/(?:stories(?:\/|$)|admin(?:\/|$)|submit(?:\/|$)|connect\/sign-cafe(?:\/|$)|directory-sitemap\.xml$)/.test(url.pathname)) return;
 

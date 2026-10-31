@@ -179,7 +179,7 @@ html[data-font="xlarge"] { font-size: 125%; }
 @media(max-width:360px){.news-navigation a{padding-inline:8px}}
 
 /* Home: purpose entries before the news. Ruled text groups, not cards. */
-.purpose-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; margin: 4px 0 8px; }
+.purpose-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 24px; margin: 4px 0 8px; }
 .purpose-nav__group { min-width: 0; padding: 12px 0 4px; border-top: 1px solid var(--border-default); }
 .purpose-nav__title { margin: 0; color: var(--text-primary); font-size: 1rem; font-weight: 700; line-height: 1.6; }
 .purpose-nav__desc { margin: 2px 0 0; color: var(--text-secondary); font-size: .8125rem; line-height: 1.7; text-wrap: pretty; }
@@ -190,6 +190,9 @@ html[data-font="xlarge"] { font-size: 125%; }
 }
 .purpose-nav__news { grid-column: 1 / -1; margin: 0; }
 .purpose-nav__news a { font-size: .8125rem; }
+@media (min-width: 720px) and (max-width: 1099px) {
+  .purpose-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 719px) {
   .purpose-nav { grid-template-columns: minmax(0, 1fr); margin-top: 0; }
   .purpose-nav__group { padding-top: 8px; }

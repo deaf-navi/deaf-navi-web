@@ -1,0 +1,11 @@
+# Import within the existing Deaf Navi route, after private-file protection.
+@iosAppRedirect path /go/ios /go/ios/*
+handle @iosAppRedirect {
+    request_body {
+        max_size 1KB
+    }
+    rewrite * /_backend/ios-app-redirect.php
+    php_fastcgi unix//run/php/deafnavi.sock {
+        resolve_root_symlink
+    }
+}

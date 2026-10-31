@@ -77,6 +77,14 @@
 
 .guide-card__steps{font-size:.875rem;line-height:1.9;padding-left:1.5em;margin:10px 0}.guide-card__related{display:block;width:fit-content;margin-top:8px;min-height:44px;padding-block:10px}
 
+/* Complement to official emergency services; not a guide search result. */
+.guide-app-note { margin-top: 20px; padding: 16px 0 0; border-top: 1px dashed var(--border-default); }
+.guide-app-note h3 { margin: 0 0 8px; font-size: 1rem; line-height: 1.7; color: var(--text-primary); scroll-margin-top: 5rem; }
+.guide-app-note p { margin: 8px 0; font-size: .9375rem; line-height: 1.8; }
+.guide-app-note .guide-app-note__detail { color: var(--text-secondary); font-size: .875rem; }
+.guide-app-note a { display: inline-flex; align-items: center; gap: .35em; min-height: 44px; font-weight: 600; text-underline-offset: 4px; }
+.guide-app-note a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+
 /* A recognizable, accessible link to the official Instagram account. */
 .about-page .about-instagram { display: inline-flex; align-items: center; gap: 14px; max-width: 100%; min-height: 64px; padding: 10px 16px; border: 1px solid #edc6dc; border-radius: 8px; background: #fff5fa; color: #8a285e; text-decoration: none; }
 .about-instagram__icon { flex: 0 0 auto; }

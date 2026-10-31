@@ -53,6 +53,12 @@ export function renderGuidePage({ isDev, files, clientAssetVersion = '20261016in
       <div class="guide-grid">
 ${section.items.map((item) => renderGuideItem(item, section.label)).join('\n')}
       </div>
+${section.id === 'emergency' ? `      <aside class="guide-app-note" aria-labelledby="guide-app-heading">
+        <h3 id="guide-app-heading">伝えたい内容を、iPhoneに保存しておく</h3>
+        <p>Deaf Naviアプリでは、必要な情報を緊急カードにまとめて端末内に保存し、大きな文字で提示できます。ウィジェットからカードを開くこともできます。</p>
+        <p class="guide-app-note__detail">無料のiPhoneアプリです。緊急通報の方法や登録は、上の各サービスの公式案内をご確認ください。</p>
+        <a href="/go/ios/guide" target="_blank" rel="noopener noreferrer" aria-label="App Storeで見る（新しいタブで開く）">App Storeで見る <span aria-hidden="true">↗</span></a>
+      </aside>` : ''}
     </section>`).join('\n');
   const guideJsonLd = {
     '@context': 'https://schema.org',

@@ -39,7 +39,7 @@ function mediaBlock(css, width) {
   throw new Error(`${width} のメディアクエリが閉じていません`);
 }
 
-test('トップ: 目的別の3入口をニュースより前に置き、ニュース一覧への移動も残す', () => {
+test('トップ: 目的別の4入口をニュースより前に置き、ニュース一覧への移動も残す', () => {
   const html = renderHome();
   const nav = purposeNav(html);
   assert.ok(nav, '目的別の入口がありません');
@@ -49,7 +49,7 @@ test('トップ: 目的別の3入口をニュースより前に置き、ニュ�
 
   const groups = Object.fromEntries(nav.split('<div class="purpose-nav__group">').slice(1)
     .map(group => [group.match(/class="purpose-nav__title">([^<]+)</)[1], group]));
-  assert.deepEqual(Object.keys(groups), ['出かける', '暮らしで困ったとき', 'その場で使う']);
+  assert.deepEqual(Object.keys(groups), ['出かける', '暮らしで困ったとき', 'その場で使う', 'iPhoneアプリ（無料）']);
   for (const href of ['./events.html', './connect/sign-cafe/', './guide/guesthouses/']) {
     assert.ok(groups['出かける'].includes(`href="${href}"`), `「出かける」から ${href} へ進めません`);
   }
@@ -67,6 +67,7 @@ test('トップ: 目的別の入口は既存ページだけへつなぎ、中間
     ...GUIDE_TOPICS.map(topic => `./guide/${topic.slug}/`),
     `.${GUESTHOUSE_GUIDE.path}`,
     ...PUBLISHED_STORIES,
+    '/go/ios/top',
   ]);
   const hrefs = [...purposeNav(html).matchAll(/href="([^"]+)"/g)].map(match => match[1]);
   assert.ok(hrefs.length >= 8);
