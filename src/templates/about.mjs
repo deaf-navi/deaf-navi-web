@@ -37,7 +37,7 @@ export function renderAboutPage({ generatedAt, isDev, files, clientAssetVersion 
       operatingSystem: 'iOS',
       applicationCategory: 'LifestyleApplication',
       url: APP_STORE_URL,
-      image: `${SITE_URL}deaf-navi-ios-app-icon.png`,
+      image: `${SITE_URL}deaf-navi-ios-app-icon-20261030.jpg`,
       description: '聴覚障害のある方、ろう者・難聴者、その家族や支援者のために、制度・イベント・ニュースとコミュニケーション支援をまとめたiOSアプリ。',
     },
   };
@@ -108,14 +108,14 @@ ${renderSiteHeader({
       <h2 id="about-operator" class="about__h2">運営</h2>
       <p>Deaf Navi Web とiOSアプリ「Deaf Navi」は <strong>TAMA</strong> が運営しています。Web版で選定したニュースや暮らしの情報をアプリと共有し、それぞれの利用場面に合った形で提供しています。</p>
       <p>Deaf Navi は、TAMAによる独立系ソフトウェア／AIスタジオ <a href="https://flamenut.com/">FlameNut</a> のプロジェクトです。</p>
-      <p>Instagram：<a href="https://www.instagram.com/deafnavi/" target="_blank" rel="noopener noreferrer">@deafnavi（新しいタブ）</a></p>
+      <p><a class="about-instagram" href="https://www.instagram.com/deafnavi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @deafnavi（新しいタブ）"><svg class="about-instagram__icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="about-instagram__text"><strong>Instagram</strong><span>@deafnavi</span></span><span aria-hidden="true">↗</span></a></p>
       <p>お問い合わせ：<a href="mailto:info@flamenut.com">info@flamenut.com</a></p>
     </section>
 
 
     <section id="ios-app" class="about-app" aria-labelledby="about-ios-app">
       <div class="about-app__intro">
-        <img class="about-app__icon" src="./deaf-navi-ios-app-icon.png" width="160" height="160" loading="lazy" decoding="async" alt="Deaf Navi iOSアプリのアイコン">
+        <img class="about-app__icon" src="./deaf-navi-ios-app-icon-20261030.jpg" width="160" height="160" loading="lazy" decoding="async" alt="Deaf Navi iOSアプリのアイコン">
         <div class="about-app__copy">
           <p class="about-app__eyebrow" lang="en">Deaf Navi for iOS</p>
           <h2 id="about-ios-app">情報とコミュニケーション支援を、いつでも手元に。</h2>

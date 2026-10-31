@@ -168,9 +168,9 @@ assert(aboutHtml.includes('id="about-privacy"'), 'About にアクセス解析と
 assert(aboutHtml.includes('Deaf Navi Web 2.0'), 'About に 2.0 の更新履歴がありません。');
 assert(aboutHtml.includes('href="./otomado/"'), 'About におとまどへの導線がありません。');
 assert(aboutHtml.includes('id="ios-app"'), 'About にiOSアプリ紹介がありません。');
-assert(aboutHtml.includes('deaf-navi-ios-app-icon.png'), 'About にiOSアプリアイコンがありません。');
+assert(aboutHtml.includes('deaf-navi-ios-app-icon-20261030.jpg'), 'About にiOSアプリアイコンがありません。');
 assert(aboutHtml.includes('https://apps.apple.com/jp/app/deaf-navi/id6761352199'), 'About にApp Store導線がありません。');
-assert(await fileExists('deaf-navi-ios-app-icon.png'), 'iOSアプリアイコンが公開ディレクトリにありません。');
+assert(await fileExists('deaf-navi-ios-app-icon-20261030.jpg'), 'iOSアプリアイコンが公開ディレクトリにありません。');
 assert(aboutHtml.includes('class="site-footer__update"'), 'About の最下部に更新時刻がありません。');
 assert(guideHtml.includes('id="guide-search"'), '暮らしのガイドに検索欄がありません。');
 assert(guideHtml.includes('site-nav__link is-current') && guideHtml.includes('aria-current="page"><span>暮らしのガイド</span>'), '暮らしのガイドの共通ナビに現在地表示がありません。');

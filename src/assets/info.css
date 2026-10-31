@@ -76,3 +76,13 @@
 }
 
 .guide-card__steps{font-size:.875rem;line-height:1.9;padding-left:1.5em;margin:10px 0}.guide-card__related{display:block;width:fit-content;margin-top:8px;min-height:44px;padding-block:10px}
+
+/* A recognizable, accessible link to the official Instagram account. */
+.about-page .about-instagram { display: inline-flex; align-items: center; gap: 14px; max-width: 100%; min-height: 64px; padding: 10px 16px; border: 1px solid #edc6dc; border-radius: 8px; background: #fff5fa; color: #8a285e; text-decoration: none; }
+.about-instagram__icon { flex: 0 0 auto; }
+.about-instagram__text { display: grid; line-height: 1.5; min-width: 0; }
+.about-instagram__text > span { font-size: .875rem; }
+.about-page .about-instagram:hover { background: #fbe5f0; text-decoration: underline; }
+.about-page .about-instagram:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+:root[data-theme="dark"] .about-instagram { color: #ffb1d2; background: #351f2b; border-color: #754052; }
+:root[data-theme="dark"] .about-instagram:hover { background: #4b2a3d; }

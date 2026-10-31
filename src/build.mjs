@@ -290,6 +290,7 @@ async function main() {
   }
   await copyAsset(join(ASSETS, 'og-image.png'), 'og-image.png');
   await copyAsset(join(ASSETS, 'deaf-navi-ios-app-icon.png'), 'deaf-navi-ios-app-icon.png');
+  await copyAsset(join(ASSETS, 'deaf-navi-ios-app-icon-20261030.jpg'), 'deaf-navi-ios-app-icon-20261030.jpg');
   if (await fileExists(join(ASSETS, 'icons'))) {
     for (const icon of await readdir(join(ASSETS, 'icons'))) {
       await copyAsset(join(ASSETS, 'icons', icon), join('icons', icon));
