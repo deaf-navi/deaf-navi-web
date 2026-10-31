@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-10-31T00:22:01.536Z",
+  "checkedAt": "2026-10-31T00:34:11.767Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -284,7 +284,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "fb2506e68c0fcc70857a850bc27d1224f7f32b2ac1c37984166893eea17a89e1",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261031-2.png",
@@ -311,7 +311,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "de41f5f37a19b943c74e26feaf892c90f3c3df7b4c226142791cc8e7ef995b88",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/08/event_20261031.png",
@@ -346,8 +346,8 @@
         }
       ],
       "reviewNote": "10月29日に現行公式HTMLの公演概要を実読。日時・会場・料金・最前列のみ完売・予定される鑑賞支援が本文に明記されているため、本文hash照合へ切替。新しいチラシの目視とは扱わない。以前の目視根拠は調査履歴へ保持。健康体験を共有APIへ送らない。",
-      "verifiedAt": "2026-10-29T00:35:59.513Z",
-      "evidenceHash": "f6d0bb7fa57f7c1885460ee2b017eddd058fdf4422bc5e09be72fa230942a07e",
+      "verifiedAt": "2026-10-31T00:25:48.346Z",
+      "evidenceHash": "18c6bb9642ce956cc68ae11459f0b2632140427aa115367be7c12876d5bd6a22",
       "verification": "needs_review"
     },
     {
@@ -376,7 +376,7 @@
           "detail": "第2部の映像を舞台上の手話表現で鑑賞できます。"
         }
       ],
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "981bb447c52a54d190746420306cf4f04190a2e3378cbb8ec1823a53f70ef89a",
       "verification": "verified",
       "thumbnail": {
@@ -414,7 +414,7 @@
       "reviewNote": "市公式本文を実読。開催年・月日・時刻・会場・対象・無料・先着100名とメール申込、情報保障を確認。公式本文の個人名・連絡先・健康体験を除いた短文のみ6.1 Solへ送信し日付・会場・情報保障を照合。新規掲載のため既存台帳の状態・対応方法との差は人が確認した。締切は推測しない。",
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "告知の内容を示す画像を未確認のため、自治体の汎用画像を表示しない。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "e556ac435599b0ee5576c177a4b01fdea488c46e6387d33bbac91f4b01695a03",
       "verification": "verified"
     },
@@ -442,7 +442,7 @@
       "status": "closed",
       "thumbnailPolicy": "omit",
       "thumbnailNote": "公式OGPは横浜の既存ワークショップの写真。今回の渋谷公演の告知写真と混同しないよう省略。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "2fb659f92f8319c13e87f877fcde0711eccc24986b7d8c8adec45f9e42865ed1",
       "verification": "verified"
     },
@@ -509,7 +509,7 @@
       "visualEvidenceUrl": "https://www.pref.kanagawa.jp/documents/93455/syuwa-go_260903_ol.pdf",
       "htmlEvidenceHash": "30eab7b6aa2a8c8dc31ceee81020db606c27f81632c4d7110a9d44e1ed7d366f",
       "reviewNote": "10月29日に当該回の公式HTMLと同一の現行PDF/画像を実読・目視。開催日・時刻・会場・対象・料金・申込と確認できた情報保障が掲載内容と一致。取得日時だけではなく実目視に基づく確認。",
-      "verifiedAt": "2026-10-29T00:35:59.513Z",
+      "verifiedAt": "2026-10-31T00:25:48.346Z",
       "evidenceHash": "28c95201a2b41d762973db867684b60b8ba220617007627fba7fd68e5780536b",
       "verification": "verified"
     },
@@ -540,7 +540,7 @@
         }
       ],
       "reviewNote": "公式の両公演の日時・会場・料金・手話と字幕・申込欄の満員御礼を実読。既存の受付終了を維持し、中止へ変更しない。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "871fff7e9d37408eeb90762468a9b223508b0049d73329c27e06baf69ecefab4",
       "verification": "verified",
       "thumbnail": {
@@ -565,7 +565,7 @@
       "sourceName": "東京都",
       "sourceUrl": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100503",
       "status": "announced",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "52a2eba6571be3bb696f7fe93d0a4f56298a67517ffc793b4f8abf8dbca9f0e5",
       "verification": "verified",
       "thumbnail": {
@@ -601,7 +601,7 @@
         }
       ],
       "reviewNote": "公式本文で旧10月21日の取り消し線と10月26日への締切延長を実読。11月3日14〜16時、会場、無料・先着60名、申込方法、要約筆記・手話通訳・ヒアリングループを照合。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "1799978e903fc83a5161e568f33254dc15ac14f52af5c945531809420e06291a",
       "verification": "verified"
     },
@@ -658,8 +658,8 @@
       "htmlEvidenceHash": "220aeedf257068938f4b02b89daaa73583d7ecac7dc4f8760738b49b179483a2",
       "visualEvidenceUrl": "https://forms.cloud.microsoft/r/AmtfQPejKN",
       "reviewNote": "公式の現在の体験会一覧と、一覧からリンクされたMicrosoft Formsの募集説明・選択肢をブラウザで実読。東京の受付終了回を混同せず、追加募集の3開催回だけを登録。参加者への手話通訳などは明記がないため推定しない。フォーム入力・送信なし。",
-      "verifiedAt": "2026-10-29T00:35:59.513Z",
-      "evidenceHash": "4b11d2e5d6cc3cc0c0f6641bcdbd33a044b0083009eaa3d4a44c8ca260c21cd7",
+      "verifiedAt": "2026-10-31T00:29:10.744Z",
+      "evidenceHash": "9f4b1ff6004c0dd75537780001058a42b839eb5e5b0b1915ae33edb0d4096614",
       "verification": "verified",
       "thumbnail": {
         "url": "https://yysystem.com/wp-content/uploads/2026/05/vvvvvvvvvvvvvvvvvvvvvvd.png",
@@ -694,9 +694,14 @@
       "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
       "status": "announced",
       "reviewNote": "10月26日に公式本文を実読。11月6日18時・7日12時30分、ホール、料金、字幕タブレット席の先着・数量限定とチケット同時申込が不変。11月6日は記録撮影あり。全公演向けの聴覚支援機器・台本の申込期限を字幕席へ流用しない。",
-      "verifiedAt": "2026-10-26T00:14:12.952Z",
-      "evidenceHash": "2ce4557bc9bf7fe523fcdc4bce2626d1d291bd4bad0fade0afd7513d0d9babba",
-      "verification": "needs_review"
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
+      "evidenceHash": "e754801526450424c7002d71562c9a65fe004cb374eb52ba68bcd916bbc8f578",
+      "verification": "verified",
+      "thumbnail": {
+        "url": "https://www.kaat.jp/public_kanagawa-arts.or.jp/img/photo/40265_1.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.kaat.jp/d/kaeru2026"
+      }
     },
     {
       "id": "maimu-zarela-sapporo-2026-11-06",
@@ -753,9 +758,14 @@
       "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
       "status": "announced",
       "reviewNote": "10月26日に公式本文を実読。11月6日18時・7日12時30分、ホール、料金、字幕タブレット席の先着・数量限定とチケット同時申込が不変。11月6日は記録撮影あり。全公演向けの聴覚支援機器・台本の申込期限を字幕席へ流用しない。",
-      "verifiedAt": "2026-10-26T00:14:12.952Z",
-      "evidenceHash": "2ce4557bc9bf7fe523fcdc4bce2626d1d291bd4bad0fade0afd7513d0d9babba",
-      "verification": "needs_review"
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
+      "evidenceHash": "e754801526450424c7002d71562c9a65fe004cb374eb52ba68bcd916bbc8f578",
+      "verification": "verified",
+      "thumbnail": {
+        "url": "https://www.kaat.jp/public_kanagawa-arts.or.jp/img/photo/40265_1.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.kaat.jp/d/kaeru2026"
+      }
     },
     {
       "id": "oioi-05927e1c5575a781fb3a",
@@ -776,7 +786,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "9bc1269dce6eb28725d78aa0e3e8bdb201a2d860d78e912c48cff0176897defb",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/event_20261107.png",
@@ -848,7 +858,7 @@
       "sourceUrl": "https://www.city.komatsu.lg.jp/soshiki/1040/shougaishafukushi/2/19003.html",
       "status": "announced",
       "reviewNote": "10月23日更新の市公式本文を実読。11月8日12:00〜12:25、会場、手話体験、無料・申込不要、優先席と撮影条件を確認。終了後のミニライブとは区別。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "874785d0f6597dedfaacfe93e463a23a71769bed63f82620904835109a16c641",
       "verification": "verified",
       "thumbnail": {
@@ -876,7 +886,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "a062a32cdbd279d2c2c445a4cd91f661e33e7ee3c2668a92c05c4b2c8667713f",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/event_20261108.jpg",
@@ -902,7 +912,7 @@
       "sourceName": "東京都中途失聴・難聴者協会",
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "本文を確認。今回の開催回に対応する画像は未確認のため省略。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "cd0dff36ce5d98c3377bdd718a51c7299c91181cad59db2296feb790b2e9d4b5",
       "verification": "verified"
     },
@@ -922,7 +932,7 @@
       "sourceName": "ふれあいランド岩手",
       "sourceUrl": "https://fureailand.jp/events/8898",
       "status": "announced",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "89bb7f71cf2c06db2c724bb40797eafce099d107a3817a3d20a00aecfea15dca",
       "verification": "verified"
     },
@@ -944,7 +954,7 @@
       "sourceUrl": "https://www.city.matsusaka.mie.jp/site/syougai-wel/minisyuwakyousitu.html",
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "開催内容は公式本文で確認。告知画像は未目視のため省略。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "dc3df273714862bcb53b801090a8b2ca7211fb983d1d5ccb55f655b77cafc6a5",
       "verification": "verified"
     },
@@ -967,7 +977,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "d86a5d21dd00f2f834ff935a73ffde87e43ee93dd12a2b0bc77edd640088821e",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261115.png",
@@ -1049,7 +1059,7 @@
       "sourceName": "東京都中途失聴・難聴者協会",
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "本文を確認。今回の開催回に対応する画像は未確認のため省略。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "d00cb50ad5a3009d5210fae5034378d9d3973cfc24bc8bee5d21a0dd916e3b38",
       "verification": "verified"
     },
@@ -1101,7 +1111,7 @@
       "sourceName": "久留米シティプラザ",
       "sourceUrl": "https://kurumecityplaza.jp/events/8576/",
       "status": "announced",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "c8593b540f60cb8927b413a59edab3192f91fecdbce9adabc1f350a3b53b349a",
       "verification": "verified",
       "thumbnail": {
@@ -1138,7 +1148,7 @@
       ],
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "告知画像は転載せず、本文と公式案内へのリンクで掲載。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "73837c32e935005f9a711a8387154dd4aba36e45d02d03a11f1164e9bdb2ccf3",
       "verification": "verified"
     },
@@ -1158,7 +1168,7 @@
       "sourceName": "大村市",
       "sourceUrl": "https://www.city.omura.nagasaki.jp/kouhou/event/202608/1121.html",
       "status": "announced",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "af2bdd9d327027fe76557706f87c39e31e6009692bb294bdb0e8a7f3fde0cf69",
       "verification": "verified"
     },
@@ -1181,7 +1191,7 @@
       "communication": [],
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "同一ページに2027年3月の式典もあり、共通画像を11月展示会単独のサムネイルと誤認させないため省略。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "2ad81d9e5d91278bbfe1c64d4193c20b6f86d149a16b40ad8888892a30d2f7d8",
       "verification": "verified"
     },
@@ -1205,8 +1215,8 @@
       "htmlEvidenceHash": "220aeedf257068938f4b02b89daaa73583d7ecac7dc4f8760738b49b179483a2",
       "visualEvidenceUrl": "https://forms.cloud.microsoft/r/AmtfQPejKN",
       "reviewNote": "公式の現在の体験会一覧と、一覧からリンクされたMicrosoft Formsの募集説明・選択肢をブラウザで実読。東京の受付終了回を混同せず、追加募集の3開催回だけを登録。参加者への手話通訳などは明記がないため推定しない。フォーム入力・送信なし。",
-      "verifiedAt": "2026-10-29T00:35:59.513Z",
-      "evidenceHash": "78207d43ee81d4e3b9e75ea7a3a83a5a5883dbea0011cfb518ac5583851b3ddb",
+      "verifiedAt": "2026-10-31T00:29:10.744Z",
+      "evidenceHash": "c9fbe8bd0d91b0806a410b223b33572eeba63ff9a999fb67abfdf5a7d04110eb",
       "verification": "verified",
       "thumbnail": {
         "url": "https://yysystem.com/wp-content/uploads/2026/05/vvvvvvvvvvvvvvvvvvvvvvd.png",
@@ -1234,8 +1244,8 @@
       "htmlEvidenceHash": "220aeedf257068938f4b02b89daaa73583d7ecac7dc4f8760738b49b179483a2",
       "visualEvidenceUrl": "https://forms.cloud.microsoft/r/AmtfQPejKN",
       "reviewNote": "公式の現在の体験会一覧と、一覧からリンクされたMicrosoft Formsの募集説明・選択肢をブラウザで実読。東京の受付終了回を混同せず、追加募集の3開催回だけを登録。参加者への手話通訳などは明記がないため推定しない。フォーム入力・送信なし。",
-      "verifiedAt": "2026-10-29T00:35:59.513Z",
-      "evidenceHash": "a75a1afeb4076406186dcc55c2955c64fb142bd641058e1470e81dcd82bcdc75",
+      "verifiedAt": "2026-10-31T00:29:10.744Z",
+      "evidenceHash": "b121aac8ca0efb9e7c79f3a7482b37829c19b83c58d0514b00bc73cd45d3dd56",
       "verification": "verified",
       "thumbnail": {
         "url": "https://yysystem.com/wp-content/uploads/2026/05/vvvvvvvvvvvvvvvvvvvvvvd.png",
@@ -1262,7 +1272,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "68e1d2ad7e5ee83b6c7d19a3282fd7bcfdd41ad6e77b5e7d8ecb2a91cd585722",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261112.png",
@@ -1323,7 +1333,7 @@
       "status": "announced",
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "告知画像を実見していないため、自治体共通画像や過去の写真を流用しない。",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "aaa7e9079c61a51153c79a92e1fae863ee84a533065479da2960b455a756093a",
       "verification": "verified"
     },
@@ -1353,7 +1363,7 @@
           "detail": "全日字幕付き。"
         }
       ],
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "527d9c0018e0dfc9a368c87cf2990abc05854d349f995abcd733502a7b103a68",
       "verification": "verified"
     },
@@ -1409,7 +1419,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "6bef06840929821a291e77a24973de6f4e7cc03e4697c60b52c07571630db350",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/%E3%82%AA%E3%82%A4%E3%83%88%E3%83%BC%E3%83%BC%E3%82%AF%EF%BC%81%E5%AE%A3%E4%BC%9D%E3%83%93%E3%83%A9-22.png",
@@ -1463,7 +1473,7 @@
           "detail": "17:30公演後のアフタートークのみ。"
         }
       ],
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
       "verification": "verified",
       "thumbnail": {
@@ -1530,7 +1540,7 @@
           "detail": "事前予約の字幕用スマートグラスで日本語字幕（音情報・話者名入り）。"
         }
       ],
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
       "verification": "verified",
       "thumbnail": {
@@ -1565,7 +1575,7 @@
           "detail": "公演後のアフタートークのみ。"
         }
       ],
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
       "verification": "verified",
       "thumbnail": {
@@ -1616,7 +1626,7 @@
           "detail": "事前予約の字幕用スマートグラスで日本語字幕（音情報・話者名入り）。"
         }
       ],
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
       "verification": "verified",
       "thumbnail": {
@@ -1647,7 +1657,7 @@
           "detail": "事前予約の字幕用スマートグラスで日本語字幕（音情報・話者名入り）。"
         }
       ],
-      "verifiedAt": "2026-10-31T00:22:01.536Z",
+      "verifiedAt": "2026-10-31T00:34:11.767Z",
       "evidenceHash": "29e8a65a4671ec3a9ae9e7a479d873ec244c91633ba170eaf7bb2991a794d01e",
       "verification": "verified",
       "thumbnail": {
@@ -1807,12 +1817,12 @@
     {
       "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
       "id": "kaat-kaeru-captions-2026-11-06",
-      "result": "needs_review"
+      "result": "verified"
     },
     {
       "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
       "id": "kaat-kaeru-captions-2026-11-07",
-      "result": "needs_review"
+      "result": "verified"
     },
     {
       "sourceUrl": "https://inclusion-art.jp/archive/event/2026/20261101-417.html",
@@ -1906,41 +1916,31 @@
       "reason": "source-content-changed"
     },
     {
-      "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
-      "id": "kaat-kaeru-captions-2026-11-06",
-      "reason": "source-content-changed"
-    },
-    {
-      "sourceUrl": "https://www.kaat.jp/d/kaeru2026",
-      "id": "kaat-kaeru-captions-2026-11-07",
-      "reason": "source-content-changed"
-    },
-    {
       "sourceUrl": "https://www.city.kawasaki.jp/350/page/0000190217.html",
       "id": "kawasaki-tsunagu-festival-2026-11-21",
       "reason": "source-content-changed"
     }
   ],
   "thumbnails": {
-    "articles": 23,
+    "articles": 24,
     "attempted": 1,
-    "cached": 22,
-    "acquired": 0,
-    "missing": 1,
+    "cached": 23,
+    "acquired": 1,
+    "missing": 0,
     "failed": 0,
     "deferred": 0,
-    "withImage": 15,
+    "withImage": 16,
     "googleStopped": false,
-    "eventsWithImage": 21
+    "eventsWithImage": 23
   },
   "recovery": {
     "pending": [
       {
         "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
-        "failures": 18,
+        "failures": 19,
         "firstFailureAt": "2026-10-29T00:53:03.870Z",
-        "lastAttemptAt": "2026-10-31T00:22:01.536Z",
-        "nextAttemptAt": "2026-10-31T06:22:01.536Z",
+        "lastAttemptAt": "2026-10-31T00:34:11.767Z",
+        "nextAttemptAt": "2026-10-31T06:34:11.767Z",
         "code": "ABORT_ERR"
       }
     ]

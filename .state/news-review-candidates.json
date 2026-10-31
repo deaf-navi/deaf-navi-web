@@ -1,26 +1,27 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-31T00:20:30.900Z",
+  "generatedAt": "2026-10-31T00:33:31.994Z",
   "counts": {
-    "uniqueInputs": 2807,
-    "alreadyPublished": 885,
-    "outsideWindow": 1506,
-    "hardExcluded": 17,
-    "duplicateOfPublished": 115,
-    "candidateDuplicates": 12,
-    "eligible": 272,
+    "uniqueInputs": 2896,
+    "alreadyPublished": 933,
+    "outsideWindow": 1562,
+    "hardExcluded": 26,
+    "duplicateOfPublished": 109,
+    "candidateDuplicates": 9,
+    "eligible": 257,
     "queued": 40,
-    "deferred": 232
+    "deferred": 217
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 9,
+    "low-value-page": 10,
     "incidental-celebrity-history": 2,
-    "foreign-coverage-review-required": 4,
-    "incidental-disability-nickname": 1
+    "foreign-coverage-review-required": 3,
+    "incidental-disability-nickname": 6,
+    "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-30T09:54:11.259Z",
+    "previousGeneratedAt": "2026-10-31T00:20:30.900Z",
     "previousQueued": 40,
     "retained": 40,
     "new": 0,
