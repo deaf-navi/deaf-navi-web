@@ -1,32 +1,31 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-30T09:54:11.259Z",
+  "generatedAt": "2026-10-31T00:20:30.900Z",
   "counts": {
-    "uniqueInputs": 2751,
-    "alreadyPublished": 896,
-    "outsideWindow": 1461,
-    "hardExcluded": 22,
-    "duplicateOfPublished": 105,
-    "candidateDuplicates": 13,
-    "eligible": 254,
+    "uniqueInputs": 2807,
+    "alreadyPublished": 885,
+    "outsideWindow": 1506,
+    "hardExcluded": 17,
+    "duplicateOfPublished": 115,
+    "candidateDuplicates": 12,
+    "eligible": 272,
     "queued": 40,
-    "deferred": 214
+    "deferred": 232
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 5,
+    "low-value-page": 9,
     "incidental-celebrity-history": 2,
     "foreign-coverage-review-required": 4,
-    "incidental-disability-nickname": 6,
-    "market-report": 4
+    "incidental-disability-nickname": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-10-30T08:31:20.278Z",
+    "previousGeneratedAt": "2026-10-30T09:54:11.259Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -187,7 +186,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/trial_audiodiscription/",
