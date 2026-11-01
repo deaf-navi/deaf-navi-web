@@ -183,7 +183,7 @@
     "sourceUrl": "https://www.sapporo-deaf.jp/information/%E6%9D%B1%E5%8C%BA%E6%94%AF%E9%83%A8%E4%B8%BB%E5%82%AC%E3%80%8C%E7%AC%AC14%E5%9B%9E%E6%9D%B1%E5%8C%BA%E6%89%8B%E8%A9%B1%E3%81%BE%E3%81%A4%E3%82%8A%E3%80%8D%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/",
     "status": "announced",
     "verificationMode": "visual",
-    "reviewedAt": "2026-10-29T00:35:59.513Z",
+    "reviewedAt": "2026-11-01T00:13:13.654Z",
     "sourceHash": "32b050def5c13ea7fd5ede5064e46fcf1f656589e242946061c9608c6c661c19",
     "evidence": [
       "2026年11月15日（日）",
@@ -192,8 +192,8 @@
       "会費1,500円（高校生以上）"
     ],
     "visualEvidenceUrl": "https://sapporo-deaf.sakura.ne.jp/wp/wp-content/uploads/2026/10/73c2f38fc03d1fb967d60fbde5e744a1.png",
-    "htmlEvidenceHash": "42f20f0cba2ad6f5e00a2854e5249cb9e510b337b51cacbdf3f92fa68e3d4f1a",
-    "reviewNote": "10月29日に当該回の公式HTMLと同一の現行PDF/画像を実読・目視。開催日・時刻・会場・対象・料金・申込と確認できた情報保障が掲載内容と一致。取得日時だけではなく実目視に基づく確認。"
+    "htmlEvidenceHash": "c589e5d77d81da2d1ff1d3c888ba535f57d33705aed60c85b16c140784f9eacd",
+    "reviewNote": "11月1日に現行の公式本文と添付資料を実読・目視。開催年・日程・時刻・会場・料金・対象・申込条件を照合。確認できた条件を保持。"
   },
   {
     "id": "jinnancho-beginner-2026-10-23",
@@ -606,8 +606,8 @@
     "sourceName": "公益社団法人 静岡県聴覚障害者協会",
     "sourceUrl": "https://www.shizudeaf.com/",
     "status": "announced",
-    "reviewedAt": "2026-10-27T01:50:30.098Z",
-    "sourceHash": "2e518499363e6e5dab5a69b989cb81b8236c50209f92b3ec82dea5dc7c175fdf",
+    "reviewedAt": "2026-11-01T00:13:13.654Z",
+    "sourceHash": "32658fe6b4a39b32d00157d7070fadc0a0fba53891b873c22fd053d884884bdc",
     "evidence": [
       "2026年11月15日(日)午前10時〜",
       "伊豆市生きいきプラザ 市民文化ホール",
@@ -1021,7 +1021,7 @@
     "status": "announced",
     "verificationMode": "visual",
     "visualEvidenceUrl": "https://www.city.fujieda.shizuoka.jp/material/files/group/109/tirashi.pdf",
-    "reviewedAt": "2026-10-30T08:09:37.287Z",
+    "reviewedAt": "2026-11-01T00:13:13.654Z",
     "sourceHash": "87afc72109399fc9d07324b6b8fc60110e5ce67d3093c09e355ff908aafdae79",
     "htmlEvidenceHash": "c52b6c4b07fb523703b2bcc8acdfcfd9dd75002f6a62db1f9696a8cec49c415b",
     "evidence": [
@@ -1033,7 +1033,7 @@
       "参加費 無料",
       "共催：要約筆記サークル「藤枝」・藤枝市"
     ],
-    "reviewNote": "2026年10月30日に公式HTMLと同じ現行PDFを実読・目視。開催日・時刻・会場・対象・申込期間・要約筆記の案内が一致。参加費無料、共催は要約筆記サークル「藤枝」と藤枝市。市の公式URLを確認。サークル独自URL・出演者名・イベント専用の画像URLは未確認。料金0円の申込案内のみ構造化し、空席・販売開始は推測しない。",
+    "reviewNote": "11月1日に現行の公式本文と添付資料を実読・目視。開催年・日程・時刻・会場・料金・対象・申込条件を照合。確認できた条件を保持。",
     "organizers": [
       {
         "name": "要約筆記サークル「藤枝」"
@@ -1643,5 +1643,32 @@
       "10月31日(土)23:59締切"
     ],
     "reviewNote": "公式の現在の体験会一覧と、一覧からリンクされたMicrosoft Formsの募集説明・選択肢をブラウザで実読。東京の受付終了回を混同せず、追加募集の3開催回だけを登録。参加者への手話通訳などは明記がないため推定しない。フォーム入力・送信なし。"
+  },
+  {
+    "id": "shizuoka-welfare-employment-2026-11-01",
+    "title": "2026年度 福祉労働学習会",
+    "startDate": "2026-11-01",
+    "endDate": "2026-11-01",
+    "prefecture": "静岡県",
+    "venue": "静岡県総合社会福祉会館（シズウエル）5階会議室",
+    "kind": "course",
+    "time": "13:00〜16:00（受付12:30〜）",
+    "organizer": "公益社団法人 静岡県聴覚障害者協会",
+    "fee": "静聴協正会員・賛助会員500円、非会員1,000円",
+    "target": "どなたでも参加可能。当日参加もできますが、資料を受け取れない場合があります。会場は7階703から5階会議室に変更されています。",
+    "description": "ろう者の就労に役立つ福祉サービスと雇用促進法について学ぶ学習会。合理的配慮や働く機会について考えます。",
+    "sourceName": "公益社団法人 静岡県聴覚障害者協会",
+    "sourceUrl": "https://www.shizudeaf.com/",
+    "status": "announced",
+    "reviewedAt": "2026-11-01T00:13:13.654Z",
+    "sourceHash": "32658fe6b4a39b32d00157d7070fadc0a0fba53891b873c22fd053d884884bdc",
+    "evidence": [
+      "2026年 11月1日(日)13:00~16:00",
+      "5階会議室",
+      "当日参加もできます",
+      "非会員:1,000円"
+    ],
+    "thumbnailPolicy": "omit",
+    "thumbnailReviewNote": "同一公式ページの既存Google Sites画像は変動URLのため使用しない。"
   }
 ]
