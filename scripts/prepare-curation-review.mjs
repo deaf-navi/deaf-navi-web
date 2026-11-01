@@ -4,6 +4,7 @@ import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
 import {cleanHtml} from '../src/lib/text.mjs';
 import {prepareReviewItem,evidenceHash} from './curation-review-contract.mjs';
 import {describeSourceChange} from './curation-source-change.mjs';
+import {makeSourceReceipt,reviewedSourceTask} from './overseas-reviewed-source.mjs';
 const comparable=text=>String(text).normalize('NFKC').replace(/\s+/g,'');
 // Explicitly reviewed public WordPress pages only; never discover an alternate
 // endpoint automatically or accept private/edit contexts as a size-limit escape.
@@ -18,12 +19,17 @@ function sourceTransport(target){
 }
 // Exact, operator-selected public fragments; fetching is not sharing approval.
 // Changed pages and visual evidence remain exceptions, not freshness renewals.
-export async function prepareCurationReview(targets,{fetchResource=fetchThumbnailResource,now=Date.now(),sourceCache=new Map()}={}) {
+export async function prepareCurationReview(targets,{fetchResource=fetchThumbnailResource,now=Date.now(),sourceCache=new Map(),reviewedSourceReceipts=new Map()}={}) {
  if(!Array.isArray(targets)||targets.length<1||targets.length>8)throw new Error('Select 1 to 8 source targets');
  const tasks=[],exceptions=[];
  for(const target of targets){
-  let sourceChange;
+  let sourceChange,sourceReceipt;
   try{
+   if(reviewedSourceReceipts.has(target.recordId)){
+    const task=reviewedSourceTask(target,reviewedSourceReceipts.get(target.recordId),now);
+    if(!task)throw Error('source-reapproval-receipt-invalid');
+    tasks.push(task);continue;
+   }
    if(target.officialVerified!==true||target.sourceMode!=='html'||!Array.isArray(target.fragments)||!target.fragments.length)throw new Error('official-html-fragments-required');
    const item=prepareReviewItem({...target,text:target.fragments.join(' ')});
    const transport=sourceTransport(target);
@@ -46,14 +52,17 @@ export async function prepareCurationReview(targets,{fetchResource=fetchThumbnai
    if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment)))||target.approvedDocumentHash&&target.approvedDocumentHash!==sourceDocumentHash)
     sourceChange=describeSourceChange(target,visibleText,sourceDocumentHash);
    if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment))))throw new Error('source-fragment-changed');
-   if(target.approvedDocumentHash&&target.approvedDocumentHash!==sourceDocumentHash)throw new Error('source-document-changed');
+   if(target.approvedDocumentHash&&target.approvedDocumentHash!==sourceDocumentHash){
+    sourceReceipt=makeSourceReceipt(target,sourceDocumentHash,now);
+    throw new Error('source-document-changed');
+   }
    const excerpt=JSON.parse(item.summary).text;
    tasks.push({kind:target.kind,title:item.title,sourceUrl:target.sourceUrl,recordId:target.recordId??null,
     baseline:target.baseline??{},comparisonBaselineHash:target.comparisonBaselineHash,comparisonReview:target.comparisonReview,
     text:excerpt,sourceTextHash:evidenceHash(excerpt),sourceDocumentHash,
     ...(transport.id?{sourceEvidenceUrl:transport.url,documentScope:'wordpress-page-content'}:{}),
     sourceMode:'html',officialVerified:true,retrievedAt:new Date(now).toISOString()});
-  }catch(error){exceptions.push({kind:target.kind,recordId:target.recordId??null,sourceUrl:target.sourceUrl,reason:/^(official-|source-)/.test(error.message)?error.message:'invalid-or-unavailable-source',...(sourceChange?{sourceChange}:{}),reviewedAt:null});}
+  }catch(error){exceptions.push({kind:target.kind,recordId:target.recordId??null,sourceUrl:target.sourceUrl,reason:/^(official-|source-)/.test(error.message)?error.message:'invalid-or-unavailable-source',...(sourceChange?{sourceChange}:{}),...(sourceReceipt?{sourceReceipt}:{}),reviewedAt:null});}
  }
  return {generatedAt:new Date(now).toISOString(),publicDataReviewed:false,tasks,exceptions,items:tasks.map(prepareReviewItem)};
 }

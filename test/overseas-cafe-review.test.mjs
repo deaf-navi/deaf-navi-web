@@ -158,3 +158,53 @@ test('36-item rotation preserves three travel slots and candidate fairness',()=>
  const eligible=[...Array.from({length:4},(_,i)=>({...target,role:'travel',recordId:'travel-'+i})),...Array.from({length:40},(_,i)=>({...target,recordId:'published-'+i})),{...target,role:'candidate',recordId:'candidate'}];
  const r=planOverseasRotation({eligible,sharedIds:new Set(eligible.map(t=>t.recordId)),now,dailyItems:36});assert.equal(r.selected.length,36);assert.equal(r.selected.filter(t=>t.role==='travel').length,3);assert.equal(r.selected.filter(t=>t.role==='published').length,32);assert.equal(r.selected.filter(t=>t.role==='candidate').length,1);
 });
+
+
+test('explicit fresh full-document reapproval resumes API without HTTP or resetting attempted IDs',async t=>{
+ const opts=await fixture(t);let fetches=0,calls=0;
+ const changed=text+' New public navigation.';
+ opts.prepare=(targets,options)=>prepareCurationReview(targets,{...options,fetchResource:async()=>{fetches++;return {status:200,headers:{'content-type':'text/html'},text:changed};}});
+ opts.generate=async items=>{calls++;return {model:'fixture',items:items.map(i=>decision(i.id))};};
+ const first=await runOverseasCafeReview(opts);
+ assert.equal(first.entries[0].reasons[0],'source-document-changed');assert.ok(first.entries[0].sourceReceipt);
+ assert.equal(calls,0);assert.equal(fetches,1);
+ const reapproved={...target,approvedDocumentHash:evidenceHash(changed),sharingReviewedAt:new Date(now+60000).toISOString()};
+ const again=await runOverseasCafeReview({...opts,now:now+90000,catalog:{overseasCafeTargets:[reapproved]}});
+ assert.equal(fetches,1);assert.equal(calls,1);assert.equal(again.corroborated,1);
+ assert.equal(again.resumedWithoutFetch,1);assert.equal(again.selected,0);assert.equal(again.capacity.actuallyAttemptedThisRun,0);
+ assert.equal(again.capacity.apiBatchesToday,1);assert.deepEqual(again.attempted,first.attempted);
+ assert.equal(again.entries[0].machineCheckedAt,new Date(now).toISOString());assert.equal(again.entries[0].lastAttemptedAt,new Date(now).toISOString());
+ assert.equal(again.entries[0].reviewedAt,null);
+ await runOverseasCafeReview({...opts,now:now+120000,catalog:{overseasCafeTargets:[reapproved]},approvalSignature:'another-path'});
+ assert.equal(calls,1);assert.equal(fetches,1);
+});
+
+test('receipt never substitutes for approval, unchanged bindings, visibility or five-minute freshness',async t=>{
+ const {makeSourceReceipt,reviewedSourceTask}=await import('../scripts/overseas-reviewed-source.mjs');
+ const changed=text+' Changed footer.',receipt=makeSourceReceipt(target,evidenceHash(changed),now);
+ const approved={...target,approvedDocumentHash:evidenceHash(changed),sharingReviewedAt:new Date(now+1000).toISOString()};
+ assert.ok(reviewedSourceTask(approved,receipt,now+2000));
+ for(const patch of [{sharingReviewedAt:target.sharingReviewedAt},{sourceUrl:'https://example.org/other'},{fragments:['Other text']},{title:'Other title'},
+  {comparisonScopes:{businessHours:'source-only'}},{baseline:{...target.baseline,facts:{businessHours:'Monday'}}},{publicationHash:'b'.repeat(64)}])
+  assert.equal(reviewedSourceTask({...approved,...patch},receipt,now+2000),null);
+ assert.equal(reviewedSourceTask(approved,receipt,now+300001),null);
+ const hidden=await prepareCurationReview([target],{now,fetchResource:async()=>({status:200,headers:{'content-type':'text/html'},text:'<!--'+text+'--><p>New</p>'})});
+ assert.equal(hidden.exceptions[0].sourceReceipt,undefined);
+});
+
+test('resumption obeys account approval, known daily batch count and the existing batch limit',async t=>{
+ const opts=await fixture(t),changed=text+' New footer.';let calls=0;
+ opts.prepare=(targets,options)=>prepareCurationReview(targets,{...options,fetchResource:async()=>({status:200,headers:{'content-type':'text/html'},text:changed})});
+ opts.generate=async items=>{calls++;return {model:'fixture',items:items.map(i=>decision(i.id))};};
+ const initial=await runOverseasCafeReview(opts),catalog={overseasCafeTargets:[{...target,approvedDocumentHash:evidenceHash(changed),sharingReviewedAt:new Date(now+1000).toISOString()}]};
+ let r=await runOverseasCafeReview({...opts,catalog,now:now+2000,canSubmit:()=>false});assert.equal(calls,0);assert.equal(r.submittedThisRun,0);
+ r=await runOverseasCafeReview({...opts,catalog,now:now+3000,approvalSignature:'verified'});assert.equal(calls,1);assert.equal(r.corroborated,1);
+ for(const count of [undefined,2]){
+  const previous=structuredClone(initial);previous.capacity.apiBatchesToday=count;
+  await writeFile(join(opts.stateDir,'overseas-cafe-review.json'),JSON.stringify(previous));
+  // Remove the fixture success cache only in this isolated test to measure admission.
+  await writeFile(join(opts.stateDir,'curation-review-cache.json'),JSON.stringify({version:'curation-review-v1',entries:{}}));
+  const result=await runOverseasCafeReview({...opts,catalog,now:now+4000});
+  assert.equal(calls,1);if(count===undefined)assert.equal(result.resumedWithoutFetch,0);else assert.equal(result.capacity.stoppedBy,'overseas-batch-limit');
+ }
+});
