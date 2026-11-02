@@ -57,7 +57,7 @@ export function selectDiscoverySources(sources,checks={},attempted=[],limit=8){
   for(const source of ordered)if(out.length<remaining&&!out.includes(source))out.push(source);
   return out;
 }
-export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date.now(),fetchResource=fetchThumbnailResource,weeklyLodging=false,weeklyOverseas=false}){
+export async function runSourceDiscovery({stateDir,sources,knownUrls=[],reviewedSources=[],now=Date.now(),fetchResource=fetchThumbnailResource,weeklyLodging=false,weeklyOverseas=false}){
   if(!Array.isArray(sources)||sources.length>100||new Set(sources.map(x=>x.id)).size!==sources.length
     ||sources.some(x=>!x.id||new URL(x.url).protocol!=='https:'))throw new Error('Invalid discovery sources');
   const jst=new Date(now+9*3600000),day=jst.toISOString().slice(0,10);
@@ -65,7 +65,8 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
   const week=new Date(Date.UTC(jst.getUTCFullYear(),jst.getUTCMonth(),jst.getUTCDate()-((jst.getUTCDay()+1)%7))).toISOString().slice(0,10);
   const path=join(stateDir,weeklyOverseas?'overseas-cafe-discovery.json':weeklyLodging?'lodging-discovery.json':'curation-discovery.json');let old;
   try{old=JSON.parse(await readFile(path,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
-  const signature=evidenceHash(JSON.stringify({version:weeklyOverseas?4:3,sources,knownUrls:[...new Set(knownUrls)].sort()}));
+  const signature=evidenceHash(JSON.stringify({version:weeklyOverseas?4:weeklyLodging?3:5,sources,knownUrls:[...new Set(knownUrls)].sort(),
+    ...(!weeklyOverseas&&!weeklyLodging?{reviewedSources}:{})}));
   const samePeriod=(weeklyLodging||weeklyOverseas)?old?.week===week:old?.day===day;
   if(samePeriod&&old.signature===signature)return {reused:true,scanned:old.results.length,attemptedThisRun:0,candidates:old.candidates.length,newCandidates:0};
   // Keep the bound even if today's publication URLs or source config change.
@@ -75,6 +76,7 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
     excludedCandidates.push({...candidate,excludedAt:new Date(now).toISOString(),reason:'non-venue-operation-link'});candidates.delete(url);
   }
   const sourceChecks={...(old?.sourceChecks??{})};
+  const watched=new Map((old?.watchedPages??[]).map(x=>[x.sourceId,x]));
   for(const result of old?.results??[]){const source=sources.find(x=>x.id===result.sourceId);
     if(source&&!sourceChecks[source.id])sourceChecks[source.id]={url:source.url,attemptedAt:old.generatedAt};}
   let newCandidates=0;
@@ -84,6 +86,17 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
       const response=await fetchResource(source.url,{userAgent:'Codex-DeafNavi-Verification',maxBytes:800000,timeoutMs:15000,allowUrl:url=>url===source.url});
       if(response.status!==200||!/text\/html|application\/xhtml\+xml/i.test(response.headers?.['content-type']??''))throw new Error('unavailable');
       const found=discoverLinks(response.text,source,knownUrls);
+      // Rolling announcements can add dates without adding a link (store pages,
+      // recurring calendars). Only configured pages are watched; no text is sent
+      // to AI and an unchanged known URL never counts as a new event.
+      if(source.watchPage===true&&!weeklyLodging&&!weeklyOverseas){
+        const body=response.text.replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi,' ');
+        const documentHash=evidenceHash(cleanHtml(body.replace(/<[^>]*>/g,' ')));
+        const prior=watched.get(source.id),stamp=new Date(now).toISOString();
+        watched.set(source.id,{id:'source-page-'+evidenceHash(source.url).slice(0,24),sourceId:source.id,url:source.url,
+          documentHash,firstSeenAt:prior?.firstSeenAt??stamp,changedAt:prior?.documentHash===documentHash?prior.changedAt:stamp,
+          fetchedAt:stamp,publicationApproved:false,reviewedAt:null});
+      }
       for(const candidate of found){const prior=candidates.get(candidate.url);if(!prior)newCandidates++;
         candidates.set(candidate.url,{...prior,...candidate,firstSeenAt:prior?.firstSeenAt??new Date(now).toISOString(),lastSeenAt:new Date(now).toISOString()});}
       results.push({sourceId:source.id,discoveryGroup:source.discoveryGroup??'other',status:'fetched',candidates:found.length});
@@ -93,8 +106,15 @@ export async function runSourceDiscovery({stateDir,sources,knownUrls=[],now=Date
   const pending=[...candidates.values()].filter(x=>!knownUrls.includes(x.url));
   const reviewQueue=pending.sort((a,b)=>b.firstSeenAt.localeCompare(a.firstSeenAt)||a.id.localeCompare(b.id)).map(x=>({id:x.id,url:x.url,sourceId:x.sourceId,
     reason:'official-body-and-sharing-review-required',publicationApproved:false}));
+  for(const page of watched.values()){
+    if(!sources.some(s=>s.id===page.sourceId&&s.url===page.url&&s.watchPage===true))continue;
+    const reviewed=reviewedSources.some(t=>t.sourceUrl===page.url&&t.officialVerified===true&&t.sourceMode==='html'
+      &&t.approvedDocumentHash===page.documentHash&&Number.isFinite(Date.parse(t.sharingReviewedAt))&&Date.parse(t.sharingReviewedAt)<=now);
+    if(!reviewed&&!reviewQueue.some(x=>x.url===page.url))reviewQueue.push({...page,reason:'rolling-source-body-review-required'});
+  }
   const report={version:1,day,...((weeklyLodging||weeklyOverseas)?{week}:{}),signature,generatedAt:new Date(now).toISOString(),results,sourceChecks,candidates:[...candidates.values()],newCandidates,reviewQueue,
-    ...(weeklyOverseas?{excludedCandidates}:{}),scope:'registered-source-links-only',publicationApproved:false};
+    ...(weeklyOverseas?{excludedCandidates}:{}),...(!weeklyOverseas&&!weeklyLodging?{watchedPages:[...watched.values()]}:{}),
+    scope:!weeklyOverseas&&!weeklyLodging?'registered-source-links-and-configured-rolling-pages':'registered-source-links-only',publicationApproved:false};
   const tmp=path+'.tmp-'+randomUUID();await writeFile(tmp,JSON.stringify(report,null,2)+'\n',{mode:0o600});await rename(tmp,path);
   return {reused:false,scanned:results.length,attemptedThisRun:selected.length,candidates:candidates.size,newCandidates,
     unavailable:results.filter(x=>x.status==='unavailable').length};

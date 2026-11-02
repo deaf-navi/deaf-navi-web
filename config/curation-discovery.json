@@ -7,13 +7,16 @@
     {"id": "japanese-theatre-of-the-deaf", "url": "https://ameblo.jp/jtd2009/"},
     {"id": "jdba-news", "url": "https://www.jdba.or.jp/db/blog/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/db/blog/resp"]},
     {"id": "deafsato-cafe", "url": "https://note.com/deafsato2025", "discoveryGroup": "cafe"},
-    {"id": "toyonaka-cafe", "url": "https://www.city.toyonaka.osaka.jp/kenko/chiiki/chiikifukushi/1018.html", "discoveryGroup": "cafe"},
+    {"id": "toyonaka-cafe", "url": "https://www.city.toyonaka.osaka.jp/kenko/chiiki/chiikifukushi/1018.html", "discoveryGroup": "cafe", "watchPage": true},
     {"id": "setagaya-plaza-cafe", "url": "https://www.setagaya-sougouplaza.jp/news/event/", "discoveryGroup": "cafe"},
     {"id": "ya-sign-book-cafe", "url": "https://yungadult.hatenablog.com/", "discoveryGroup": "cafe"},
     {"id": "lamunedou-cafe", "url": "https://lamunedou.com/reservation/event/", "discoveryGroup": "cafe"},
     {"id": "ehime-mimi-cafe", "url": "https://sityoukaku.pref.ehime.jp/news/", "discoveryGroup": "cafe", "candidatePathPrefixes": ["/news/"], "cafeTitleTerms": ["みみカフェ"]},
     {"id": "tonancyo-events", "url": "https://www.tonancyo.org/event/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/event/2026/", "/event/2027/"]},
     {"id": "fureailand-events", "url": "https://fureailand.jp/events"},
-    {"id": "jfd-news", "url": "https://www.jfd.or.jp/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/2026/", "/2027/"]}
+    {"id": "jfd-news", "url": "https://www.jfd.or.jp/", "topicScope": "hearing-specialist", "candidatePathPrefixes": ["/2026/", "/2027/"]},
+    {"id":"yysystem-ailens-calendar","url":"https://yysystem.com/information/information-1970-8-2/","watchPage":true,"restrictCandidatePaths":true,"candidatePathPrefixes":["/information/information-"],"topicScope":"hearing-specialist"},
+    {"id":"starbucks-sakai-higashi-cafe","url":"https://store.starbucks.co.jp/detail-1767/","discoveryGroup":"cafe","watchPage":true,"restrictCandidatePaths":true,"candidatePathPrefixes":["/detail-1767/"]},
+    {"id":"houhou-sign-cafe-calendar","url":"https://www.houhounomori.com/","discoveryGroup":"cafe","watchPage":true}
   ]
 }

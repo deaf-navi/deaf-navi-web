@@ -3,6 +3,7 @@ import {join} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
 import {buildIntakeQueue} from './curation-review-intake.mjs';
 import {buildCurationProgress} from './curation-progress.mjs';
+import {eventResearchStatus} from './event-research-status.mjs';
 
 const files={daily:'daily-curation-review.json',candidates:'discovery-review.json',lodging:'lodging-review.json',overseas:'overseas-cafe-review.json',tips:'event-tip-review.json'};
 const done=new Set(['corroborated','reviewed-unchanged','reviewed-evidence','published','already-published']);
@@ -100,11 +101,13 @@ export async function refreshWorkStatus({stateDir,now=Date.now(),executionStatus
   decisions:(await optional(join(stateDir,'curation-work-decisions.json')))?.items??[],
   attention:attention??await optional(join(stateDir,'curation-attention.json')),now,executionStatus});
  await save(join(stateDir,'curation-work-status.json'),result);
- const intake=buildIntakeQueue(result,await optional(join(stateDir,'curation-review-catalog.json'))??{},{now});
+ const catalog=await optional(join(stateDir,'curation-review-catalog.json'))??{};
+ const intake=buildIntakeQueue(result,catalog,{now});
  await save(join(stateDir,'curation-intake.json'),intake);
  const progress=buildCurationProgress({report:reports.overseas,previous:await optional(join(stateDir,'curation-progress.json'))??{},executionStatus,now});
  await save(join(stateDir,'curation-progress.json'),progress);
  const {items,sourceGroups,...brief}=result;
+ brief.eventResearch=eventResearchStatus({discovery:reports.eventDiscovery,review:reports.candidates,catalog,now});
  brief.intake={count:intake.count,detailFile:'curation-intake.json'};
  brief.progress={state:progress.state,alerts:progress.alerts??[],newAlerts:progress.newAlerts,resolved:progress.resolved,detailFile:'curation-progress.json'};
  brief.overseasFieldCoverage=Array.isArray(reports.overseas?.fieldCoverage)?{
