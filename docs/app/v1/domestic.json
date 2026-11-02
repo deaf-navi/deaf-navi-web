@@ -4,9 +4,9 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-11-02T00:31:58Z",
-  "sourceGeneratedAt": "2026-11-02T00:31:58Z",
-  "count": 457,
+  "generatedAt": "2026-11-02T00:38:14Z",
+  "sourceGeneratedAt": "2026-11-02T00:38:14Z",
+  "count": 455,
   "language": "ja-JP",
   "refresh": {
     "scheduleTimezone": "Asia/Tokyo",
@@ -118,24 +118,24 @@
   },
   "quality": {
     "version": "publication-quality-v12",
-    "rawCount": 2827,
-    "scoredCount": 2827,
-    "filteredCount": 943,
+    "rawCount": 2997,
+    "scoredCount": 2997,
+    "filteredCount": 1074,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
-    "extraVisibleCount": 57,
+    "extraVisibleCount": 55,
     "extraVisibleCategoryCounts": {
-      "relay": 57
+      "relay": 55
     },
-    "overflowCount": 333,
+    "overflowCount": 441,
     "minScore": 5,
     "categoryCountsVisible": {
       "safety": 22,
       "local": 59,
-      "general": 116,
-      "sports": 36,
+      "general": 115,
+      "sports": 37,
       "policy": 28,
-      "relay": 57,
+      "relay": 55,
       "event": 33,
       "education": 11,
       "accessibility": 35,
@@ -148,10 +148,10 @@
     "byCategory": {
       "safety": 22,
       "local": 59,
-      "general": 116,
-      "sports": 36,
+      "general": 115,
+      "sports": 37,
       "policy": 28,
-      "relay": 57,
+      "relay": 55,
       "event": 33,
       "education": 11,
       "accessibility": 35,
@@ -160,10 +160,10 @@
       "culture": 13
     },
     "byLegacyCategory": {
-      "policy": 142,
+      "policy": 140,
       "local": 59,
-      "general": 133,
-      "sports": 36,
+      "general": 132,
+      "sports": 37,
       "culture": 46,
       "education": 11,
       "medical": 30
@@ -378,6 +378,26 @@
       "sourceTier": "news",
       "discoveryMethod": "google-news",
       "topicId": "topic_b50e49d3ddfad58bcc24",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1pclhBVkl6amlqOGk2V0ZYMldLUHJ4cmk3UHRqVUQ1eEhUNXRwc1JIdURFUFhEYnVfTDhscm54bTdvcWk0SnlnTlE2WVhZeGFZRlhNYkk1SDZqN04xUUswSkVTdktyTlZUV3lhNXhWdmduVXo2QWZPLXMtNA?oc=5",
+      "stableId": "domestic_b570e09899189adba9a2",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1pclhBVkl6amlqOGk2V0ZYMldLUHJ4cmk3UHRqVUQ1eEhUNXRwc1JIdURFUFhEYnVfTDhscm54bTdvcWk0SnlnTlE2WVhZeGFZRlhNYkk1SDZqN04xUUswSkVTdktyTlZUV3lhNXhWdmduVXo2QWZPLXMtNA?oc=5",
+      "title": "デフバレーで金メダル 照明灯",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-11-01T00:30:00Z",
+      "sourceName": "カナロコ",
+      "sourceURL": "https://www.kanaloco.jp",
+      "sourceUrl": "https://www.kanaloco.jp",
+      "sourceType": "rss",
+      "category": "sports",
+      "categoryLabel": "デフスポーツ",
+      "legacyCategory": "sports",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_b570e09899189adba9a2",
       "topicRank": 0
     },
     {
@@ -5003,7 +5023,7 @@
       "legacyCategory": "local",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 1
     },
     {
@@ -5023,7 +5043,7 @@
       "legacyCategory": "general",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 2
     },
     {
@@ -5043,7 +5063,7 @@
       "legacyCategory": "general",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 3
     },
     {
@@ -5064,7 +5084,7 @@
       "thumbnailURL": "https://img.topics.smt.news.goo.ne.jp/picture/abematimes/m_abematimes-10281738.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 4
     },
     {
@@ -5085,7 +5105,7 @@
       "thumbnailURL": "https://article-image-ix.nikkei.com/https%3A%2F%2Fimgix-proxy.n8s.jp%2FDSXZQO3742990018102026000000-1.jpg?auto=compress&bg=FFFF&crop=focalpoint&fit=crop&fm=jpg&fp-x=0.49&fp-y=0.27&h=630&w=1200&s=3237ec5c20c712e7e1f12c2bfa7492d3",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 5
     },
     {
@@ -5106,7 +5126,7 @@
       "thumbnailURL": "https://i.daily.jp/society/national/2026/10/18/Images/f_20942745.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 6
     },
     {
@@ -5127,7 +5147,7 @@
       "thumbnailURL": "https://fki.ismcdn.jp/mwimgs/c/8/-/img_c885f7969d36876e38c9a6e72a1ac94911852.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 7
     },
     {
@@ -5148,7 +5168,7 @@
       "thumbnailURL": "https://373news.com/_news/newspack/photo/2026/10/PN2026101801000632.-.-.CI0003.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 8
     },
     {
@@ -5173,27 +5193,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObWJqcHNES0VOcVN3OFY3amhEcWJKTVpUcUF1RGd5THZ5MThMdDBJdHZUTkI3c1JibkktX0gxQkhlQndPSzR5LW4xRTBCamJNZHBxdGN6WGljUmF3MnZ4TVBNbGtQSWY2RXNfZjFvWGs4a1M4ZGZ6OVNuWFhHb21tNS1BTkQ4REk?oc=5",
-      "stableId": "domestic_5a359a9788660e31754b",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObWJqcHNES0VOcVN3OFY3amhEcWJKTVpUcUF1RGd5THZ5MThMdDBJdHZUTkI3c1JibkktX0gxQkhlQndPSzR5LW4xRTBCamJNZHBxdGN6WGljUmF3MnZ4TVBNbGtQSWY2RXNfZjFvWGs4a1M4ZGZ6OVNuWFhHb21tNS1BTkQ4REk?oc=5",
-      "title": "佳子さま 「全国中途失聴者・難聴者福祉大会」ご出席 功労者と懇談も [写真特集1/8]",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-18T07:00:00Z",
-      "sourceName": "毎日新聞",
-      "sourceURL": "https://mainichi.jp",
-      "sourceUrl": "https://mainichi.jp",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018mpj00m040064000p/0c10.jpg?1",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1wSjA5ampnWlRXb0VYWW5pVk9NbWtibjlKdGs2RlA3MU5zOHNzaEZ5ampSTTUtRE1oVnd4dG14MU8yM0Y0TG5BU2tyd3k2VlVtN2luMVhJSmlhd2VqbWRxM3l4U1h1Qjc2?oc=5",
       "stableId": "domestic_761d1486c11f659002d0",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1wSjA5ampnWlRXb0VYWW5pVk9NbWtibjlKdGs2RlA3MU5zOHNzaEZ5ampSTTUtRE1oVnd4dG14MU8yM0Y0TG5BU2tyd3k2VlVtN2luMVhJSmlhd2VqbWRxM3l4U1h1Qjc2?oc=5",
@@ -5211,7 +5210,28 @@
       "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018k0000m040085000p/0c10.jpg?1",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObWJqcHNES0VOcVN3OFY3amhEcWJKTVpUcUF1RGd5THZ5MThMdDBJdHZUTkI3c1JibkktX0gxQkhlQndPSzR5LW4xRTBCamJNZHBxdGN6WGljUmF3MnZ4TVBNbGtQSWY2RXNfZjFvWGs4a1M4ZGZ6OVNuWFhHb21tNS1BTkQ4REk?oc=5",
+      "stableId": "domestic_5a359a9788660e31754b",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObWJqcHNES0VOcVN3OFY3amhEcWJKTVpUcUF1RGd5THZ5MThMdDBJdHZUTkI3c1JibkktX0gxQkhlQndPSzR5LW4xRTBCamJNZHBxdGN6WGljUmF3MnZ4TVBNbGtQSWY2RXNfZjFvWGs4a1M4ZGZ6OVNuWFhHb21tNS1BTkQ4REk?oc=5",
+      "title": "佳子さま 「全国中途失聴者・難聴者福祉大会」ご出席 功労者と懇談も [写真特集1/8]",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-18T07:00:00Z",
+      "sourceName": "毎日新聞",
+      "sourceURL": "https://mainichi.jp",
+      "sourceUrl": "https://mainichi.jp",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018mpj00m040064000p/0c10.jpg?1",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 9
     },
     {
@@ -5232,7 +5252,7 @@
       "thumbnailURL": "https://www.yomiuri.co.jp/media/2026/10/20261018-GYT1I00150-1.jpg?type=ogp",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 10
     },
     {
@@ -5255,7 +5275,7 @@
       "discoveryMethod": "google-news",
       "region": "kinki",
       "prefecture": "京都府",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 11
     },
     {
@@ -5296,7 +5316,7 @@
       "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018mpj00m040068000p/0c10.jpg?1",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_5a359a9788660e31754b",
+      "topicId": "topic_761d1486c11f659002d0",
       "topicRank": 12
     },
     {
@@ -7954,9 +7974,9 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9TYmptRy1SallqbFlxTGgwN1d6VDFHOFpYSV9rbFBiOGFZTXRUYzhZQUJiempNcGFDT3gyNXA4OWdjMlZWRlpqYUx6OTdoOU5oMmNaYVlFU1p5NlVhY1JPYTNMME9ZSXM?oc=5",
-      "stableId": "domestic_7b89f67958ed46ef6027",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9TYmptRy1SallqbFlxTGgwN1d6VDFHOFpYSV9rbFBiOGFZTXRUYzhZQUJiempNcGFDT3gyNXA4OWdjMlZWRlpqYUx6OTdoOU5oMmNaYVlFU1p5NlVhY1JPYTNMME9ZSXM?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LM1JqRm5pMnBITURjVjRWbkloblBuVG5iRXFGaGd3R2ozR3NwN1VPWkpMV0NEUGU4b1dxV0JXLWlpb1ZkaW1yakJiWmpSMm8yMEU1Q2JTcXN1Zw?oc=5",
+      "stableId": "domestic_f05093ceb70def0a0cce",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LM1JqRm5pMnBITURjVjRWbkloblBuVG5iRXFGaGd3R2ozR3NwN1VPWkpMV0NEUGU4b1dxV0JXLWlpb1ZkaW1yakJiWmpSMm8yMEU1Q2JTcXN1Zw?oc=5",
       "title": "チャットで119番通報「NET119」とは？ 聴覚障害のある生徒が体験「私たちにもできそう」 利用には事前登録が必要 新潟市",
       "summary": "",
       "language": "ja-JP",
@@ -7973,7 +7993,7 @@
       "discoveryMethod": "google-news",
       "region": "chubu",
       "prefecture": "新潟県",
-      "topicId": "topic_7b89f67958ed46ef6027",
+      "topicId": "topic_f05093ceb70def0a0cce",
       "topicRank": 0
     },
     {
@@ -8315,29 +8335,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5RUUJTSHRGVFBxTVVVbEVOY1pUcjNGcGlSZTQxOWJ0UmZyY2Q5Q0hMRUNPU1JPX2NPVnlFVEVuVXRUaExDb2Y0UUEwdVc4SmR3R0dFSkFNZmQ2c3R6SjVYM1ZtME9oVksxYkl4OUZQSUxBcTFxVzFiOWkwQVFPckU?oc=5",
-      "stableId": "domestic_fc6a8c88838fef204a90",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5RUUJTSHRGVFBxTVVVbEVOY1pUcjNGcGlSZTQxOWJ0UmZyY2Q5Q0hMRUNPU1JPX2NPVnlFVEVuVXRUaExDb2Y0UUEwdVc4SmR3R0dFSkFNZmQ2c3R6SjVYM1ZtME9oVksxYkl4OUZQSUxBcTFxVzFiOWkwQVFPckU?oc=5",
-      "title": "【鳥取】山陰で初開催「全国盲ろう者大会」盲ろう者の自立と社会参加を目指して（米子市）（中海テレビ放送）",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-05T07:00:00Z",
-      "sourceName": "Yahoo!ニュース",
-      "sourceURL": "https://news.yahoo.co.jp",
-      "sourceUrl": "https://news.yahoo.co.jp",
-      "sourceType": "rss",
-      "category": "local",
-      "categoryLabel": "地域",
-      "legacyCategory": "local",
-      "thumbnailURL": "https://newsatcl-pctr.c.yimg.jp/t/amd-img/20261005-00010001-chukaiv-000-3-thumb.jpg?exp=10800",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "region": "chugoku_shikoku",
-      "prefecture": "鳥取県",
-      "topicId": "topic_fc6a8c88838fef204a90",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9fRlQzcmJsNjRzRVVZdXAtdGxJUzd3YmRyTW1YT09lUlVaWjFNMkR0eGJFRzVFdGF3VEJMbC1QSTVkYlI0UE1sZ1U0RjZ3Z2dDMEZrYUJNaEZid0NqaHBqa0JvVUZCZERZWnJtcUVjVmpFN0JGeGFabjZITmxfUW8?oc=5",
       "stableId": "domestic_e801cb9aa24b4c3629c4",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9fRlQzcmJsNjRzRVVZdXAtdGxJUzd3YmRyTW1YT09lUlVaWjFNMkR0eGJFRzVFdGF3VEJMbC1QSTVkYlI0UE1sZ1U0RjZ3Z2dDMEZrYUJNaEZid0NqaHBqa0JvVUZCZERZWnJtcUVjVmpFN0JGeGFabjZITmxfUW8?oc=5",
@@ -8358,6 +8355,29 @@
       "region": "chugoku_shikoku",
       "prefecture": "鳥取県",
       "topicId": "topic_e801cb9aa24b4c3629c4",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5RUUJTSHRGVFBxTVVVbEVOY1pUcjNGcGlSZTQxOWJ0UmZyY2Q5Q0hMRUNPU1JPX2NPVnlFVEVuVXRUaExDb2Y0UUEwdVc4SmR3R0dFSkFNZmQ2c3R6SjVYM1ZtME9oVksxYkl4OUZQSUxBcTFxVzFiOWkwQVFPckU?oc=5",
+      "stableId": "domestic_fc6a8c88838fef204a90",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5RUUJTSHRGVFBxTVVVbEVOY1pUcjNGcGlSZTQxOWJ0UmZyY2Q5Q0hMRUNPU1JPX2NPVnlFVEVuVXRUaExDb2Y0UUEwdVc4SmR3R0dFSkFNZmQ2c3R6SjVYM1ZtME9oVksxYkl4OUZQSUxBcTFxVzFiOWkwQVFPckU?oc=5",
+      "title": "【鳥取】山陰で初開催「全国盲ろう者大会」盲ろう者の自立と社会参加を目指して（米子市）（中海テレビ放送）",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-05T07:00:00Z",
+      "sourceName": "Yahoo!ニュース",
+      "sourceURL": "https://news.yahoo.co.jp",
+      "sourceUrl": "https://news.yahoo.co.jp",
+      "sourceType": "rss",
+      "category": "local",
+      "categoryLabel": "地域",
+      "legacyCategory": "local",
+      "thumbnailURL": "https://newsatcl-pctr.c.yimg.jp/t/amd-img/20261005-00010001-chukaiv-000-3-thumb.jpg?exp=10800",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "region": "chugoku_shikoku",
+      "prefecture": "鳥取県",
+      "topicId": "topic_fc6a8c88838fef204a90",
       "topicRank": 0
     },
     {
@@ -8465,26 +8485,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
-      "stableId": "domestic_2e82457486e78634ed04",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
-      "title": "大宮ろう学園が優勝 手話パフォーマンス甲子園",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-04T07:00:00Z",
-      "sourceName": "琉球新報デジタル",
-      "sourceURL": "https://ryukyushimpo.jp",
-      "sourceUrl": "https://ryukyushimpo.jp",
-      "sourceType": "rss",
-      "category": "culture",
-      "categoryLabel": "文化・芸能",
-      "legacyCategory": "culture",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_2e82457486e78634ed04",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1OUmRydjFmXzRxMnJoV3dsT1o0OElmM2ZTcjNqaVBrSDdHNWVBWjNWYzZBdGI0MC1wVjhUbW95eWtFN3BsazFJeGgyUmd0ZWdiLV9GWmdLNEpFUGh2V0tv?oc=5",
       "stableId": "domestic_d93eb7dbe072da5b5a5f",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1OUmRydjFmXzRxMnJoV3dsT1o0OElmM2ZTcjNqaVBrSDdHNWVBWjNWYzZBdGI0MC1wVjhUbW95eWtFN3BsazFJeGgyUmd0ZWdiLV9GWmdLNEpFUGh2V0tv?oc=5",
@@ -8505,6 +8505,26 @@
       "region": "chugoku_shikoku",
       "prefecture": "高知県",
       "topicId": "topic_d93eb7dbe072da5b5a5f",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
+      "stableId": "domestic_2e82457486e78634ed04",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9RTWpHSlhVbWFYTG95SWdpeENRMmpHSTdUSmpSZTJVMEtuQXZiUnVOSy1zTTdyMGY5TVJrQ0xqS1puTF96T05SbkU0ZENtbFZtRDNQREZKWXdWRV9JRk9IQVFR?oc=5",
+      "title": "大宮ろう学園が優勝 手話パフォーマンス甲子園",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-04T07:00:00Z",
+      "sourceName": "琉球新報デジタル",
+      "sourceURL": "https://ryukyushimpo.jp",
+      "sourceUrl": "https://ryukyushimpo.jp",
+      "sourceType": "rss",
+      "category": "culture",
+      "categoryLabel": "文化・芸能",
+      "legacyCategory": "culture",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_2e82457486e78634ed04",
       "topicRank": 0
     },
     {
@@ -8870,27 +8890,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBsYkM0Mk82QndyaEMzeFBIMGpMN19qd3pCN0l6OWVROFBmQVpMM1FvdGFMOERzRDJNT2RQVTUySGlGMzVQVUVfVmlmR0lQNGxEUHJqN19jaXJWWGk5MHJ3bjZaRjBKMHZO?oc=5",
-      "stableId": "domestic_baf6d150e7b8255c4536",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBsYkM0Mk82QndyaEMzeFBIMGpMN19qd3pCN0l6OWVROFBmQVpMM1FvdGFMOERzRDJNT2RQVTUySGlGMzVQVUVfVmlmR0lQNGxEUHJqN19jaXJWWGk5MHJ3bjZaRjBKMHZO?oc=5",
-      "title": "ぐるっと流山 第7回流山手話フェスタ2026",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-02T09:08:31Z",
-      "sourceName": "流山市",
-      "sourceURL": "https://www.city.nagareyama.chiba.jp",
-      "sourceUrl": "https://www.city.nagareyama.chiba.jp",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "thumbnailURL": "https://www.city.nagareyama.chiba.jp/_template_/_site_/_default_/_res/images/sns/ogimage.png",
-      "sourceTier": "official",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_baf6d150e7b8255c4536",
-      "topicRank": 0
-    },
-    {
       "id": "https://www.nftrs.or.jp/news/fy2026/ev20260930",
       "stableId": "domestic_880a6a30cf2d7dd23075",
       "url": "https://www.nftrs.or.jp/news/fy2026/ev20260930",
@@ -9063,27 +9062,6 @@
       "region": "kyushu_okinawa",
       "prefecture": "宮崎県",
       "topicId": "topic_4c566f16d85b9be07eec",
-      "topicRank": 0
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9yZUdNbWFYSmtsMnQ4V25XZ3FucXdRaG5rZ0p1NGh1cW1sWUt0bU5CeEhjQVl5TFFmaTVpYmpHZ3ZseVhZczVRdW1EQUY2OUl3QmJ0aUpPUE5zZ1BuOU0wZzBwaXVEanZfNGc?oc=5",
-      "stableId": "domestic_7dfc630e0abc5a323ab5",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9yZUdNbWFYSmtsMnQ4V25XZ3FucXdRaG5rZ0p1NGh1cW1sWUt0bU5CeEhjQVl5TFFmaTVpYmpHZ3ZseVhZczVRdW1EQUY2OUl3QmJ0aUpPUE5zZ1BuOU0wZzBwaXVEanZfNGc?oc=5",
-      "title": "「読める電話ボックス」が羽田空港に4日間限定で登場 | 一般財団法人日本財団電話リレーサービスのプレスリリース",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-08-27T07:00:00Z",
-      "sourceName": "PR TIMES",
-      "sourceURL": "https://prtimes.jp",
-      "sourceUrl": "https://prtimes.jp",
-      "sourceType": "rss",
-      "category": "relay",
-      "categoryLabel": "電話リレー・ヨメテル",
-      "legacyCategory": "policy",
-      "thumbnailURL": "https://prcdn.freetls.fastly.net/release_image/72444/13/72444-13-12d202bee5b3277042de8bfdbc56384d-1178x884.png?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
-      "sourceTier": "broad",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_7dfc630e0abc5a323ab5",
       "topicRank": 0
     },
     {
@@ -9273,27 +9251,6 @@
       "sourceTier": "news",
       "discoveryMethod": "google-news",
       "topicId": "topic_3949b584d478d2795e26",
-      "topicRank": 0
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1ONi1YNnAzQVg5ZWxvUDJwX0hWUWNqZFR0anIzeGlCNDY3SGhIUkFsZkM3S1E2NkVLM05Da0IteWhnWTNhZDItcDNFSVE5elVEc1RhR1doeE9QV0lndDViX2xn?oc=5",
-      "stableId": "domestic_ab947f18bc8e6cffd5ad",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1ONi1YNnAzQVg5ZWxvUDJwX0hWUWNqZFR0anIzeGlCNDY3SGhIUkFsZkM3S1E2NkVLM05Da0IteWhnWTNhZDItcDNFSVE5elVEc1RhR1doeE9QV0lndDViX2xn?oc=5",
-      "title": "誰もが「電話」にアクセスできるように 新しい公共インフラ「電話リレーサービス」の可能性",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-07-30T04:09:13Z",
-      "sourceName": "朝日新聞",
-      "sourceURL": "https://www.asahi.com",
-      "sourceUrl": "https://www.asahi.com",
-      "sourceType": "rss",
-      "category": "relay",
-      "categoryLabel": "電話リレー・ヨメテル",
-      "legacyCategory": "policy",
-      "thumbnailURL": "https://www.asahi.com/ads/ishisotsushien/assets/img/article/16/ogp.jpg",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_ab947f18bc8e6cffd5ad",
       "topicRank": 0
     },
     {
@@ -9765,9 +9722,9 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1WUHc3VHQ0andnN1FKRUVfY09hd3hwUVYtUHhvempPZi1fQUFWM3JCaXYwYkVuQkwyMVN4N0pKUENWeEJXaFNpVC13bndmOXlpQ1ZaR24wc2d6dw?oc=5",
-      "stableId": "domestic_63b1ccc8e01e862759fa",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1WUHc3VHQ0andnN1FKRUVfY09hd3hwUVYtUHhvempPZi1fQUFWM3JCaXYwYkVuQkwyMVN4N0pKUENWeEJXaFNpVC13bndmOXlpQ1ZaR24wc2d6dw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9KYlVCT0hBT2JtaFZmYUMxd2c5MU0wNXF0OXpDalQ4X21qQThmeFRCOUlVR0dlY0F4X2x1R085U2VUVHk1UXpKVjNXMzE4QV9zU3VxdlA1U0s3Y1RQNE5LR3p4WXpBZzg?oc=5",
+      "stableId": "domestic_9313d0f7aa1bd81ffc04",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9KYlVCT0hBT2JtaFZmYUMxd2c5MU0wNXF0OXpDalQ4X21qQThmeFRCOUlVR0dlY0F4X2x1R085U2VUVHk1UXpKVjNXMzE4QV9zU3VxdlA1U0s3Y1RQNE5LR3p4WXpBZzg?oc=5",
       "title": "石川県警がビデオ通話による手話通訳サービス「手話リンク」を導入 県内の交番・駐在所など174拠点で運用開始",
       "summary": "",
       "language": "ja-JP",
@@ -9784,7 +9741,7 @@
       "discoveryMethod": "google-news",
       "region": "chubu",
       "prefecture": "石川県",
-      "topicId": "topic_63b1ccc8e01e862759fa",
+      "topicId": "topic_9313d0f7aa1bd81ffc04",
       "topicRank": 0
     },
     {
