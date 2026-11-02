@@ -3,13 +3,28 @@ import assert from 'node:assert/strict';
 import {mkdtemp,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {prepareReviewItem,validateReviewResult,partitionReviewResult,explicitDates,evidenceHash,compareReview} from '../scripts/curation-review-contract.mjs';
+import {prepareReviewItem,validateReviewResult,partitionReviewResult,explicitDates,evidenceHash,compareReview,reviewSchemaForItems,reviewSchema} from '../scripts/curation-review-contract.mjs';
 import {reviewCurationTasks} from '../scripts/curation-review.mjs';
 const now=Date.parse('2026-10-18T04:00:00Z');
 const task={kind:'event',title:'手話交流会',sourceUrl:'https://example.org/event',text:'手話交流会を開催します。開催日 2026年11月14日。会場 市民会館。申込締切 2026年11月1日。',sourceMode:'html',officialVerified:true,retrievedAt:new Date(now-1000).toISOString(),baseline:{startDate:'2026-11-14',venue:'市民会館'}};
 task.sourceTextHash=evidenceHash(task.text);
 const input=prepareReviewItem(task);
 const decision={id:input.id,relevance:'yes',contentType:'announcement',evidence:'手話交流会を開催します。',facts:[{field:'startDate',value:'2026-11-14',evidence:'開催日 2026年11月14日。'},{field:'venue',value:'市民会館',evidence:'会場 市民会館。'}]};
+
+test('event/cafe extraction cannot request lodging fields and diagnostics do not expose rejected text',()=>{
+ const cafe=prepareReviewItem({...task,kind:'cafe'}),get=s=>s.properties.items.items.properties.facts.items.properties.field.enum;
+ const before=JSON.stringify(reviewSchema);
+ assert.deepEqual(get(reviewSchemaForItems([input,cafe])),['startDate','endDate','venue','application','communication','status']);
+ assert.ok(get(reviewSchemaForItems([prepareReviewItem({...task,kind:'lodging'})])).includes('rates'));
+ assert.ok(get(reviewSchemaForItems([prepareReviewItem({...task,kind:'overseas_cafe'})])).includes('businessHours'));
+ assert.equal(JSON.stringify(reviewSchema),before);
+ for(const [fact,code] of [[{field:'rates',value:'無料',evidence:'手話交流会を開催します。'},'field-not-allowed-for-kind'],
+  [{field:'venue',value:'市民会館',evidence:'資料にない会場'},'fact-quote-not-in-source']]){
+  const r=partitionReviewResult([input],{items:[{...decision,facts:[fact]}]});
+  assert.equal(r.items.length,0);assert.equal(r.rejectedItems[0].validationCode,code);
+  assert.deepEqual(Object.keys(r.rejectedItems[0]).sort(),['id','reason','validationCode']);
+ }
+});
 test('invalid evidence is isolated and cached as an exception without retrying good or bad items',async t=>{
  const second={...task,sourceUrl:'https://example.org/second'},secondItem=prepareReviewItem(second);
  const malformed={...decision,id:secondItem.id,evidence:'not in the source'};
