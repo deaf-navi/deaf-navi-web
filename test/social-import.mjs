@@ -10,8 +10,8 @@ const state=()=>JSON.parse(run(['-r',`require '${core}';echo json(['users'=>quer
 const v2=run(['-r',`require '${core}';$r=record('knot');$p=json_decode($r['payload'],true);$p['has_deaf_staff']=true;$p['attribute_sources']=['https://example.org/published-attribute'];$p['recurrence']='毎月第3月曜日';$p['future_extension']=['nested'=>['KEEP']];query('UPDATE records SET payload=? WHERE id=?',[json($p),'knot']);`]);assert.equal(v2.status,0,v2.stderr);
 const before=state();let result=run(['server/import-social-links.php','content/connect/social-links-20260906.json',backup]);assert.equal(result.status,0,result.stderr);
 const after=state();for(const k of ['users','settings','submissions','outbox'])assert.deepEqual(after[k],before[k]);
-assert.equal(after.records.length,29);let count=0;
+assert.equal(before.records.length,baseline.length);assert.equal(after.records.length,before.records.length);let count=0;
 for(const row of before.records){const next=after.records.find(r=>r.id===row.id),u=manifest.updates.find(u=>u.id===row.id);if(!u){assert.deepEqual(next,row);continue;}
  const original=JSON.parse(row.payload),updated=JSON.parse(next.payload);for(const [k,v] of Object.entries(original))if(!(k in u.links))assert.deepEqual(updated[k],v,k);for(const [k,v] of Object.entries(u.links)){assert.equal(updated[k],v);count++;}assert.equal(next.revision,row.revision+1);}
 result=run(['server/import-social-links.php','content/connect/social-links-20260906.json',backup]);assert.equal(result.status,1);assert.deepEqual(state(),after);assert.equal(readdirSync(backup).length,1);
-console.log(JSON.stringify({result:'SOCIAL_IMPORT_TESTS_OK',updated:8,links:count,recordsPreserved:29,unrelatedValuesUnchanged:true,repeatRejected:true}));
+console.log(JSON.stringify({result:'SOCIAL_IMPORT_TESTS_OK',updated:8,links:count,recordsPreserved:after.records.length,unrelatedValuesUnchanged:true,repeatRejected:true}));
