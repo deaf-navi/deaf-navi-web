@@ -7,6 +7,7 @@ import {runDiscoveryReview,candidateDisposition,matchesPublishedCandidate} from 
 import {evidenceHash,prepareReviewItem} from '../scripts/curation-review-contract.mjs';
 import {discoverLinks} from '../scripts/source-discovery.mjs';
 import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
+import {eventResearchStatus} from '../scripts/event-research-status.mjs';
 const now=Date.parse('2026-10-22T01:00:00Z');
 const text='手話交流会を開催します。開催日 2026年11月14日。会場 市民会館。';
 const target={kind:'event',recordId:'candidate-1',title:'地域の交流企画',sourceUrl:'https://example.org/events/1',officialVerified:true,sourceMode:'html',
@@ -15,6 +16,20 @@ const prepare=async targets=>({tasks:targets.map(t=>({...t,text,sourceTextHash:e
 const generate=async items=>({model:'gpt-6.1-sol',items:items.map(item=>({id:item.id,relevance:'yes',contentType:'announcement',evidence:'手話交流会を開催します。',facts:[
   {field:'startDate',value:'2026-11-14',evidence:'開催日 2026年11月14日。'},{field:'venue',value:'市民会館',evidence:'会場 市民会館。'}]}))});
 async function options(t){const stateDir=await mkdtemp(join(tmpdir(),'dn-candidates-'));t.after(()=>rm(stateDir,{recursive:true,force:true}));return {stateDir,now,catalog:{version:1,discoveryTargets:[target]},prepare,generate};}
+
+test('event research reports link-only intake, inactive candidates and exact API inputs separately',()=>{
+ const inputId=prepareReviewItem({...target,text}).id,generatedAt=new Date(now).toISOString();
+ const discovery={generatedAt,results:[{status:'fetched'},{status:'unavailable'}],newCandidates:1,reviewQueue:[{url:target.sourceUrl},{id:'new',url:'https://example.org/new'}]};
+ const review={generatedAt,selected:1,cached:1,submittedThisRun:0,entries:[{...target,status:'candidate',decision:{id:inputId},disposition:'outside-horizon'}]};
+ const status=eventResearchStatus({discovery,review,catalog:{discoveryTargets:[target]},now});
+ assert.equal(status.initialSharingReview.pendingSources,1);assert.equal(status.extraction.active,0);
+ assert.equal(status.attention,'candidate-intake-required');assert.equal(status.collection.unavailablePages,1);
+ assert.equal(status.extraction.submittedItemsThisRun,0);assert.equal(status.extraction.cachedItemsThisRun,1);
+ review.entries[0].disposition='publication-review-required';review.entries[0].decision.id='older-input';
+ assert.equal(eventResearchStatus({discovery,review,catalog:{discoveryTargets:[target]},now}).extraction.publicationReviewReady,0);
+ assert.equal(eventResearchStatus({now}).state,'unknown');
+ assert.equal(eventResearchStatus({discovery,review,catalog:{discoveryTargets:[target]},now:now+37*3600000}).state,'stale');
+});
 
 test('specialist section admits general activity titles without treating other domains as specialists',()=>{
  const html='<a href="/event/2026/welcome">10月例会 新入会員説明会＆歓迎会</a><a href="/shop/ad">一般商品の企画と販売について</a>';

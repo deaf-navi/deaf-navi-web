@@ -110,6 +110,35 @@ test('daily discovery is bounded and not fetched again after account approval',a
  assert.equal((await runSourceDiscovery(options)).reused,true);assert.equal(calls,8);
 });
 
+test('rolling pages detect changed bodies even for published URLs with no candidate links',async t=>{
+ const opts=await fixture(t),source={id:'calendar',url:target.sourceUrl,watchPage:true,discoveryGroup:'cafe'};
+ let calls=0,body='手話交流会の開催予定は後日お知らせします。';
+ const args={...opts,sources:[source],knownUrls:[source.url],fetchResource:async()=>{calls++;return {status:200,headers:{'content-type':'text/html'},text:'<p>'+body+'</p>'};}};
+ await runSourceDiscovery(args);
+ let r=JSON.parse(await readFile(join(opts.stateDir,'curation-discovery.json')));
+ assert.equal(r.candidates.length,0);assert.equal(r.reviewQueue[0].reason,'rolling-source-body-review-required');
+ const original=r.watchedPages[0].changedAt;
+ const reviewedSources=[{...target,approvedDocumentHash:evidenceHash(body)}];
+ await runSourceDiscovery({...args,reviewedSources});
+ r=JSON.parse(await readFile(join(opts.stateDir,'curation-discovery.json')));
+ assert.equal(calls,1);assert.equal(r.reviewQueue.length,0);assert.equal(r.watchedPages[0].changedAt,original);
+ body='手話交流会 2026年11月30日 市民会館';
+ await runSourceDiscovery({...args,reviewedSources,now:now+86400000});
+ r=JSON.parse(await readFile(join(opts.stateDir,'curation-discovery.json')));
+ assert.equal(calls,2);assert.equal(r.reviewQueue.length,1);assert.notEqual(r.watchedPages[0].changedAt,original);
+ assert.equal(r.watchedPages[0].publicationApproved,false);assert.equal(r.watchedPages[0].reviewedAt,null);
+});
+
+test('rolling page fetch failure preserves prior hash and does not claim an empty calendar',async t=>{
+ const opts=await fixture(t),sources=[{id:'calendar',url:target.sourceUrl,watchPage:true}];
+ await runSourceDiscovery({...opts,sources,fetchResource:async()=>({status:200,headers:{'content-type':'text/html'},text:'<p>手話カフェ</p>'})});
+ const before=JSON.parse(await readFile(join(opts.stateDir,'curation-discovery.json')));
+ await runSourceDiscovery({...opts,sources,now:now+86400000,fetchResource:async()=>{throw Error('network');}});
+ const after=JSON.parse(await readFile(join(opts.stateDir,'curation-discovery.json')));
+ assert.deepEqual(after.watchedPages,before.watchedPages);assert.equal(after.results[0].status,'unavailable');
+ assert.equal(after.results[0].candidates,null);assert.equal(after.reviewQueue.length,1);
+});
+
 test('visual deadlines remain due without changing the API exception, and clear after a real review',()=>{
  const visual={...record,sourceMode:'visual',verifiedAt:new Date(now).toISOString()};
  const original=JSON.stringify(visual);
