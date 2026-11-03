@@ -4,8 +4,8 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-11-03T01:08:48Z",
-  "sourceGeneratedAt": "2026-11-03T01:08:48Z",
+  "generatedAt": "2026-11-03T02:53:24Z",
+  "sourceGeneratedAt": "2026-11-03T02:53:24Z",
   "count": 451,
   "language": "ja-JP",
   "refresh": {
@@ -118,25 +118,25 @@
   },
   "quality": {
     "version": "publication-quality-v12",
-    "rawCount": 3088,
-    "scoredCount": 3088,
-    "filteredCount": 1213,
+    "rawCount": 2784,
+    "scoredCount": 2784,
+    "filteredCount": 1029,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 51,
     "extraVisibleCategoryCounts": {
       "relay": 51
     },
-    "overflowCount": 475,
+    "overflowCount": 402,
     "minScore": 5,
     "categoryCountsVisible": {
+      "local": 56,
       "policy": 30,
       "event": 34,
-      "general": 123,
+      "general": 122,
       "accessibility": 34,
       "medical": 29,
       "safety": 22,
-      "local": 55,
       "sports": 35,
       "relay": 51,
       "education": 10,
@@ -146,13 +146,13 @@
   },
   "counts": {
     "byCategory": {
+      "local": 56,
       "policy": 30,
       "event": 34,
-      "general": 123,
+      "general": 122,
       "accessibility": 34,
       "medical": 29,
       "safety": 22,
-      "local": 55,
       "sports": 35,
       "relay": 51,
       "education": 10,
@@ -160,16 +160,37 @@
       "culture": 11
     },
     "byLegacyCategory": {
+      "local": 56,
       "policy": 137,
       "culture": 45,
-      "general": 140,
+      "general": 139,
       "medical": 29,
-      "local": 55,
       "sports": 35,
       "education": 10
     }
   },
   "articles": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE52MmVZMFpDVko3V0gyNXczVzNKMmlKT0szcGxEblhrZld5aUxVeTVVZGtMbG9LcUl0Xzc0NzlGUU1FRkpzekhIRmc4OA?oc=5",
+      "stableId": "domestic_4f799053685cedb337d7",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE52MmVZMFpDVko3V0gyNXczVzNKMmlKT0szcGxEblhrZld5aUxVeTVVZGtMbG9LcUl0Xzc0NzlGUU1FRkpzekhIRmc4OA?oc=5",
+      "title": "スポーツワイド スポーツで交流 県ろうあ者大会 西郷",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-11-03T02:14:59Z",
+      "sourceName": "47NEWS",
+      "sourceURL": "https://www.47news.jp",
+      "sourceUrl": "https://www.47news.jp",
+      "sourceType": "rss",
+      "category": "local",
+      "categoryLabel": "地域",
+      "legacyCategory": "local",
+      "thumbnailURL": "https://img.cf.47news.jp/public/photo/c64ad5e3ea0bbbfec372fc2edf6f4c1b/photo.jpg",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_4f799053685cedb337d7",
+      "topicRank": 0
+    },
     {
       "id": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB4eUIyZGFtdTctMWRMT3gxakh5QndHUm9EZ3V4Y25ZaWRxRDRqZUFtM2JkOGI1anFpVF92QjZjNUNLWEhXN1NUZXdZY004UQ?oc=5",
       "stableId": "domestic_cca5a8b0e495c9e45a11",
@@ -480,6 +501,26 @@
       "sourceTier": "news",
       "discoveryMethod": "google-news",
       "topicId": "topic_5c72981deeb7439a342f",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9EdS1xSjBkZGJxb0FCYXV1Z0psMTJ4TEhGSFdaN1ktam84RVpTbThJeHZwbWo2UF9lLVAzUF95X1Y2ZjRnS3VNdUNTMldxQk53dV8teWxCQjNVdUljN2ZLWklQM2JBVWFQQ0ZjX0lHdkZTSlRpYmpUU28zNA?oc=5",
+      "stableId": "domestic_4ebc3e66947b9ebbeb68",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9EdS1xSjBkZGJxb0FCYXV1Z0psMTJ4TEhGSFdaN1ktam84RVpTbThJeHZwbWo2UF9lLVAzUF95X1Y2ZjRnS3VNdUNTMldxQk53dV8teWxCQjNVdUljN2ZLWklQM2JBVWFQQ0ZjX0lHdkZTSlRpYmpUU28zNA?oc=5",
+      "title": "「聴覚障害」に関するプレスリリース一覧",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-11-02T03:34:37Z",
+      "sourceName": "PR TIMES",
+      "sourceURL": "https://prtimes.jp",
+      "sourceUrl": "https://prtimes.jp",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "sourceTier": "broad",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_4ebc3e66947b9ebbeb68",
       "topicRank": 0
     },
     {
@@ -5421,7 +5462,7 @@
       "legacyCategory": "local",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 1
     },
     {
@@ -5441,7 +5482,7 @@
       "legacyCategory": "general",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 2
     },
     {
@@ -5461,7 +5502,7 @@
       "legacyCategory": "general",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 3
     },
     {
@@ -5482,7 +5523,7 @@
       "thumbnailURL": "https://img.topics.smt.news.goo.ne.jp/picture/abematimes/m_abematimes-10281738.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 4
     },
     {
@@ -5503,7 +5544,7 @@
       "thumbnailURL": "https://article-image-ix.nikkei.com/https%3A%2F%2Fimgix-proxy.n8s.jp%2FDSXZQO3742990018102026000000-1.jpg?auto=compress&bg=FFFF&crop=focalpoint&fit=crop&fm=jpg&fp-x=0.49&fp-y=0.27&h=630&w=1200&s=3237ec5c20c712e7e1f12c2bfa7492d3",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 5
     },
     {
@@ -5524,7 +5565,7 @@
       "thumbnailURL": "https://i.daily.jp/society/national/2026/10/18/Images/f_20942745.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 6
     },
     {
@@ -5545,7 +5586,7 @@
       "thumbnailURL": "https://fki.ismcdn.jp/mwimgs/c/8/-/img_c885f7969d36876e38c9a6e72a1ac94911852.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 7
     },
     {
@@ -5566,7 +5607,7 @@
       "thumbnailURL": "https://373news.com/_news/newspack/photo/2026/10/PN2026101801000632.-.-.CI0003.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 8
     },
     {
@@ -5591,27 +5632,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1wSjA5ampnWlRXb0VYWW5pVk9NbWtibjlKdGs2RlA3MU5zOHNzaEZ5ampSTTUtRE1oVnd4dG14MU8yM0Y0TG5BU2tyd3k2VlVtN2luMVhJSmlhd2VqbWRxM3l4U1h1Qjc2?oc=5",
-      "stableId": "domestic_761d1486c11f659002d0",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1wSjA5ampnWlRXb0VYWW5pVk9NbWtibjlKdGs2RlA3MU5zOHNzaEZ5ampSTTUtRE1oVnd4dG14MU8yM0Y0TG5BU2tyd3k2VlVtN2luMVhJSmlhd2VqbWRxM3l4U1h1Qjc2?oc=5",
-      "title": "佳子さま「共に生きる社会に」 中途失聴者・難聴者らの集いで",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-18T07:00:00Z",
-      "sourceName": "毎日新聞",
-      "sourceURL": "https://mainichi.jp",
-      "sourceUrl": "https://mainichi.jp",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018k0000m040085000p/0c10.jpg?1",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObWJqcHNES0VOcVN3OFY3amhEcWJKTVpUcUF1RGd5THZ5MThMdDBJdHZUTkI3c1JibkktX0gxQkhlQndPSzR5LW4xRTBCamJNZHBxdGN6WGljUmF3MnZ4TVBNbGtQSWY2RXNfZjFvWGs4a1M4ZGZ6OVNuWFhHb21tNS1BTkQ4REk?oc=5",
       "stableId": "domestic_5a359a9788660e31754b",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObWJqcHNES0VOcVN3OFY3amhEcWJKTVpUcUF1RGd5THZ5MThMdDBJdHZUTkI3c1JibkktX0gxQkhlQndPSzR5LW4xRTBCamJNZHBxdGN6WGljUmF3MnZ4TVBNbGtQSWY2RXNfZjFvWGs4a1M4ZGZ6OVNuWFhHb21tNS1BTkQ4REk?oc=5",
@@ -5629,7 +5649,28 @@
       "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018mpj00m040064000p/0c10.jpg?1",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1wSjA5ampnWlRXb0VYWW5pVk9NbWtibjlKdGs2RlA3MU5zOHNzaEZ5ampSTTUtRE1oVnd4dG14MU8yM0Y0TG5BU2tyd3k2VlVtN2luMVhJSmlhd2VqbWRxM3l4U1h1Qjc2?oc=5",
+      "stableId": "domestic_761d1486c11f659002d0",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1wSjA5ampnWlRXb0VYWW5pVk9NbWtibjlKdGs2RlA3MU5zOHNzaEZ5ampSTTUtRE1oVnd4dG14MU8yM0Y0TG5BU2tyd3k2VlVtN2luMVhJSmlhd2VqbWRxM3l4U1h1Qjc2?oc=5",
+      "title": "佳子さま「共に生きる社会に」 中途失聴者・難聴者らの集いで",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-18T07:00:00Z",
+      "sourceName": "毎日新聞",
+      "sourceURL": "https://mainichi.jp",
+      "sourceUrl": "https://mainichi.jp",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018k0000m040085000p/0c10.jpg?1",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 9
     },
     {
@@ -5650,7 +5691,7 @@
       "thumbnailURL": "https://www.yomiuri.co.jp/media/2026/10/20261018-GYT1I00150-1.jpg?type=ogp",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 10
     },
     {
@@ -5673,7 +5714,7 @@
       "discoveryMethod": "google-news",
       "region": "kinki",
       "prefecture": "京都府",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 11
     },
     {
@@ -5694,7 +5735,7 @@
       "thumbnailURL": "https://cdn.mainichi.jp/vol1/2026/10/18/20261018mpj00m040068000p/0c10.jpg?1",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_761d1486c11f659002d0",
+      "topicId": "topic_5a359a9788660e31754b",
       "topicRank": 12
     },
     {
@@ -6945,27 +6986,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiPEFVX3lxTE1ZeTFqNDJzN01oVTdfcC1mT19xamhXTnhtRmNNMWxmX3NWLWJvRmxkNkViQWNlcDBISVZzdw?oc=5",
-      "stableId": "domestic_61c25b6b1b247140b1ec",
-      "url": "https://news.google.com/rss/articles/CBMiPEFVX3lxTE1ZeTFqNDJzN01oVTdfcC1mT19xamhXTnhtRmNNMWxmX3NWLWJvRmxkNkViQWNlcDBISVZzdw?oc=5",
-      "title": "ろう者の自己探求「デフフッド」とは？――松﨑丈さんインタビュー【後編】",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-13T07:00:00Z",
-      "sourceName": "Dialogue for People",
-      "sourceURL": "https://d4p.world",
-      "sourceUrl": "https://d4p.world",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "thumbnailURL": "https://d4p.world/wp/wp-content/uploads/2026/10/ab1eb98ca7638ff198748b85db9c2226.jpg",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_61c25b6b1b247140b1ec",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9faXNCVGZnd3dON29INlppbGVPT0U0RlpnaW5qdmtUN3N3NThQbFNnWTRJU2NBaHJUamxwNW1Qd1pKOGEzZUVSeFNB?oc=5",
       "stableId": "domestic_bafd80fc0f03db1f44ec",
       "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9faXNCVGZnd3dON29INlppbGVPT0U0RlpnaW5qdmtUN3N3NThQbFNnWTRJU2NBaHJUamxwNW1Qd1pKOGEzZUVSeFNB?oc=5",
@@ -6984,6 +7004,27 @@
       "sourceTier": "news",
       "discoveryMethod": "google-news",
       "topicId": "topic_bafd80fc0f03db1f44ec",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiPEFVX3lxTE1ZeTFqNDJzN01oVTdfcC1mT19xamhXTnhtRmNNMWxmX3NWLWJvRmxkNkViQWNlcDBISVZzdw?oc=5",
+      "stableId": "domestic_61c25b6b1b247140b1ec",
+      "url": "https://news.google.com/rss/articles/CBMiPEFVX3lxTE1ZeTFqNDJzN01oVTdfcC1mT19xamhXTnhtRmNNMWxmX3NWLWJvRmxkNkViQWNlcDBISVZzdw?oc=5",
+      "title": "ろう者の自己探求「デフフッド」とは？――松﨑丈さんインタビュー【後編】",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-13T07:00:00Z",
+      "sourceName": "Dialogue for People",
+      "sourceURL": "https://d4p.world",
+      "sourceUrl": "https://d4p.world",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "thumbnailURL": "https://d4p.world/wp/wp-content/uploads/2026/10/ab1eb98ca7638ff198748b85db9c2226.jpg",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_61c25b6b1b247140b1ec",
       "topicRank": 0
     },
     {
@@ -7247,24 +7288,24 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5pUm01YXBKTTI4bXpuclJDMDBXODZzZzlVTlNreHQwZDVnQXhQOTJQVEZyb1lYQU5HLXg0QzZJUnRCSHZ1ZFVfaS1Hbw?oc=5",
-      "stableId": "domestic_cc36c4831551ba9ea8bc",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5pUm01YXBKTTI4bXpuclJDMDBXODZzZzlVTlNreHQwZDVnQXhQOTJQVEZyb1lYQU5HLXg0QzZJUnRCSHZ1ZFVfaS1Hbw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8tTVUxQ1BER3dpV2ZVMkxyRko5ZGZyZW9vY0VTbVJBeFE2bXNzYnRkNzc3SXV3NkJMTnNTczlfZHVXZ29DOVpJaktaZzhDcEVQbTRUaGtMWWZrTEQwbkNWZ0JCVWdHOEFJNzEwV3dCWdIBdEFVX3lxTE1FdXhtM1ZEZVVpNXd5b1NzcncyUkxva056Rk54ZmpmQUowQ1luTElCbm1WNGJuMnBVZlBiYnZLQnFtMURBZGRzblEwcWZCU29UN25lVnQtQ1VRQW13cTN1TXd6ZVFNTEsxVE1IMENLOU8tZF9l?oc=5",
+      "stableId": "domestic_5812c4737375aa8ac989",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8tTVUxQ1BER3dpV2ZVMkxyRko5ZGZyZW9vY0VTbVJBeFE2bXNzYnRkNzc3SXV3NkJMTnNTczlfZHVXZ29DOVpJaktaZzhDcEVQbTRUaGtMWWZrTEQwbkNWZ0JCVWdHOEFJNzEwV3dCWdIBdEFVX3lxTE1FdXhtM1ZEZVVpNXd5b1NzcncyUkxva056Rk54ZmpmQUowQ1luTElCbm1WNGJuMnBVZlBiYnZLQnFtMURBZGRzblEwcWZCU29UN25lVnQtQ1VRQW13cTN1TXd6ZVFNTEsxVE1IMENLOU8tZF9l?oc=5",
       "title": "0歳から手話に親しんで 聴覚障害児向け集い、大阪",
       "summary": "",
       "language": "ja-JP",
       "publishedAt": "2026-10-11T07:00:00Z",
-      "sourceName": "47NEWS",
-      "sourceURL": "https://www.47news.jp",
-      "sourceUrl": "https://www.47news.jp",
+      "sourceName": "Infoseek",
+      "sourceURL": "https://news.infoseek.co.jp",
+      "sourceUrl": "https://news.infoseek.co.jp",
       "sourceType": "rss",
       "category": "general",
       "categoryLabel": "一般",
       "legacyCategory": "general",
-      "thumbnailURL": "https://img.cf.47news.jp/public/photo/2355a506c7f7ef832cce048b5e67a5bd/photo.jpg",
+      "thumbnailURL": "https://media.image.infoseek.co.jp/isnews/photos/kyodo/kyodo_1481940118761046026_0-enlarge.jpg",
       "sourceTier": "news",
       "discoveryMethod": "google-news",
-      "topicId": "topic_cc36c4831551ba9ea8bc",
+      "topicId": "topic_5812c4737375aa8ac989",
       "topicRank": 0
     },
     {
@@ -8818,48 +8859,6 @@
       "sourceTier": "specialist",
       "discoveryMethod": "direct-feed",
       "topicId": "topic_2d21f76f4ea49b066ace",
-      "topicRank": 0
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9YaXlqRnlHNmZ3cFlvVFFPdkZ5Z0sydDdDcFk3dUI5MlFPdG1EOFN1VGJrczJVRlJ4Zi1vWkNuSjE5U21WaFJ5dk9femt1ZEhvQmVuSW9hU3lfOTdDM0lCWVUyalZHUTE1cVE?oc=5",
-      "stableId": "domestic_83d1f195b38dc1ae6040",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9YaXlqRnlHNmZ3cFlvVFFPdkZ5Z0sydDdDcFk3dUI5MlFPdG1EOFN1VGJrczJVRlJ4Zi1vWkNuSjE5U21WaFJ5dk9femt1ZEhvQmVuSW9hU3lfOTdDM0lCWVUyalZHUTE1cVE?oc=5",
-      "title": "手話学習サービス「サインアイオー」がろう者と1対1で話せる「オンライン会話」を10月1日開始",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-04T09:16:33Z",
-      "sourceName": "AppBank",
-      "sourceURL": "https://www.appbank.net",
-      "sourceUrl": "https://www.appbank.net",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "thumbnailURL": "https://www.appbank.net/wp-content/uploads/2026/10/20261001_200738_176_06.webp",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_83d1f195b38dc1ae6040",
-      "topicRank": 0
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1jOEVWVEpjZVVZcG9pZ3hZMGZLbTcyN0FhSnlsd3BPUXJsUXhiTFJ2Sks5SHV5U2hUNnpGVzFOd3hRZWZLdXJUbWlLazRXMHN4Q0F4VXl6TQ?oc=5",
-      "stableId": "domestic_200ea4df96c58f8eeebd",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1jOEVWVEpjZVVZcG9pZ3hZMGZLbTcyN0FhSnlsd3BPUXJsUXhiTFJ2Sks5SHV5U2hUNnpGVzFOd3hRZWZLdXJUbWlLazRXMHN4Q0F4VXl6TQ?oc=5",
-      "title": "手話の日・手話言語の国際デー2026",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-04T07:00:00Z",
-      "sourceName": "生駒市公式ホームページ",
-      "sourceURL": "https://www.city.ikoma.lg.jp",
-      "sourceUrl": "https://www.city.ikoma.lg.jp",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "thumbnailURL": "https://www.city.ikoma.lg.jp/design_img/og_image.jpg",
-      "sourceTier": "official",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_200ea4df96c58f8eeebd",
       "topicRank": 0
     },
     {
