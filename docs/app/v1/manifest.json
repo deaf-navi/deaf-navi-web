@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-app-sync.v1",
-  "generatedAt": "2026-11-03T10:45:00Z",
+  "generatedAt": "2026-11-03T10:46:59Z",
   "siteUrl": "https://deafnavi.com/",
   "appBaseUrl": "https://deafnavi.com/app/v1/",
   "refresh": {
@@ -121,8 +121,8 @@
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-jp-v1.json",
-      "count": 588,
-      "sourceGeneratedAt": "2026-11-03T02:55:08Z",
+      "count": 587,
+      "sourceGeneratedAt": "2026-11-03T10:46:59Z",
       "language": "ja-JP",
       "regions": [
         {
@@ -208,8 +208,8 @@
         "japanesePostEdit": {
           "checked": 0,
           "updated": 0,
-          "cached": 241,
-          "skipped": 442,
+          "cached": 237,
+          "skipped": 458,
           "failed": 0,
           "enabled": true,
           "fallback": {
@@ -217,8 +217,8 @@
             "failures": 1,
             "circuitOpen": true
           },
-          "pending": 442,
-          "retainedPrevious": 110
+          "pending": 458,
+          "retainedPrevious": 95
         }
       }
     },
@@ -228,8 +228,8 @@
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
       "iosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v2.json",
       "legacyIosCompatibleUrl": "https://deafnavi.com/app/v1/ios-world-original-v1.json",
-      "count": 588,
-      "sourceGeneratedAt": "2026-11-03T02:55:08Z",
+      "count": 587,
+      "sourceGeneratedAt": "2026-11-03T10:46:59Z",
       "language": "und",
       "regions": [
         {
@@ -314,8 +314,8 @@
       "title": "Deaf Navi World Multilingual",
       "url": "https://deafnavi.com/app/v1/world-multilingual.json",
       "rawJsonUrl": "https://deafnavi.com/articles-world.json",
-      "count": 588,
-      "sourceGeneratedAt": "2026-11-03T02:55:08Z",
+      "count": 587,
+      "sourceGeneratedAt": "2026-11-03T10:46:59Z",
       "defaultLocale": "ja-JP",
       "regions": [
         {

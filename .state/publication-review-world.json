@@ -613,67 +613,95 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1rclcyNGJKNkl1VkU0NmdBVDBaUGpscHQzRzJsRUhvN2ZlWUJNVDFtZW14VkRCOHpVSDh2V1R6N2xXQ3ZSbTFrREJNcjdLNUQ4eF9fWExCZ2NSbHgwdW5OS2MtTE5QRmNIQ0Y2aU43a3JVZUNuaFVn?oc=5",
-      "status": "source-verified",
-      "reason": "source-context-review",
+      "status": "held",
+      "reason": "review-expired-or-changed",
       "firstSeenAt": "2026-10-29T07:50:16.801Z",
+      "lastSeenAt": "2026-11-03T10:46:59.785Z",
       "sourceFingerprint": "ee3cc425fd9cb44ea053ef949632f934d0d8e3eef36b8cdeba91e4e62db5a3fb",
-      "translationFingerprint": "a7faa52b5ba305a2a631dd50d74a54811b15aa48aa57a250b2688e85301a37f9",
+      "translationFingerprint": "d29f872fa57b6fb4662e02ca6865c4a416f7ff3d6b27d185535cff290eb128e5",
       "article": {
         "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1rclcyNGJKNkl1VkU0NmdBVDBaUGpscHQzRzJsRUhvN2ZlWUJNVDFtZW14VkRCOHpVSDh2V1R6N2xXQ3ZSbTFrREJNcjdLNUQ4eF9fWExCZ2NSbHgwdW5OS2MtTE5QRmNIQ0Y2aU43a3JVZUNuaFVn?oc=5",
-        "title": "豪ABCラジオ「Nightlife」で約47分の難聴特集、聴覚の専門家が解説（音声番組）",
+        "title": "オーストラリアABCの「Nightlife」が10月26日の放送で難聴を取り上げ、Hearing Australiaの聴覚の専門家が解説しました。元ページは複数の話題を含む番組全体のもので、難聴のコーナーは約47分の音声です。文字起こしの提供は未確認です。",
         "summary": "オーストラリアABCの「Nightlife」が10月26日の放送で難聴を取り上げ、Hearing Australiaの聴覚の専門家が解説しました。元ページは複数の話題を含む番組全体のもので、難聴のコーナーは約47分の音声です。文字起こしの提供は未確認です。",
         "originalTitle": "Hearing Loss, News Breakdown, Science Latest, Travel Ideas, Mighty Challenge, Daily Issues, American Insight",
         "originalSummary": "Hearing Loss, News Breakdown, Science Latest, Travel Ideas, Mighty Challenge, Daily Issues, American Insight",
         "sourceName": "ABC News & Headlines – Australian Broadcasting Corporation",
         "sourceUrl": "https://www.abc.net.au",
-        "publishedAt": "2026-10-26T11:00:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
+        "publishedAt": "2026-10-26T07:00:00.000Z",
+        "region": "unknown",
+        "regionLabel": "地域未確認",
         "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 22,
-        "curationSignals": [
-          "hearing loss",
-          "major-media"
-        ],
-        "sourceDomain": "abc.net.au",
-        "sourcePriority": 95,
-        "sourceMode": "major-media",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-        "thumbnail": {
-          "url": "https://www.abc.net.au/core-assets/listen/abc-listen.png?imformat=generic",
-          "source": "og:image",
-          "pageUrl": "https://www.abc.net.au/listen/programs/nightlife/nightlife/107292790"
-        }
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "originalReason": "source-context-review",
-      "reviewedBy": "codex-opus-source-review",
-      "reviewedAt": "2026-10-29T13:28:42.212Z",
-      "reviewers": [
-        "Codex",
-        "claude-opus-5-5"
-      ],
-      "sourceEvidence": [
+      "reviewHistory": [
         {
-          "url": "https://www.abc.net.au/listen/programs/nightlife/nightlife/107292790",
-          "excerpt": "First Hour - Hearing Loss",
-          "method": "article-text",
-          "kind": "official-broadcaster",
-          "checkedAt": "2026-10-29T13:26:11.999Z"
+          "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1rclcyNGJKNkl1VkU0NmdBVDBaUGpscHQzRzJsRUhvN2ZlWUJNVDFtZW14VkRCOHpVSDh2V1R6N2xXQ3ZSbTFrREJNcjdLNUQ4eF9fWExCZ2NSbHgwdW5OS2MtTE5QRmNIQ0Y2aU43a3JVZUNuaFVn?oc=5",
+          "status": "source-verified",
+          "reason": "source-context-review",
+          "firstSeenAt": "2026-10-29T07:50:16.801Z",
+          "sourceFingerprint": "ee3cc425fd9cb44ea053ef949632f934d0d8e3eef36b8cdeba91e4e62db5a3fb",
+          "translationFingerprint": "a7faa52b5ba305a2a631dd50d74a54811b15aa48aa57a250b2688e85301a37f9",
+          "article": {
+            "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1rclcyNGJKNkl1VkU0NmdBVDBaUGpscHQzRzJsRUhvN2ZlWUJNVDFtZW14VkRCOHpVSDh2V1R6N2xXQ3ZSbTFrREJNcjdLNUQ4eF9fWExCZ2NSbHgwdW5OS2MtTE5QRmNIQ0Y2aU43a3JVZUNuaFVn?oc=5",
+            "title": "豪ABCラジオ「Nightlife」で約47分の難聴特集、聴覚の専門家が解説（音声番組）",
+            "summary": "オーストラリアABCの「Nightlife」が10月26日の放送で難聴を取り上げ、Hearing Australiaの聴覚の専門家が解説しました。元ページは複数の話題を含む番組全体のもので、難聴のコーナーは約47分の音声です。文字起こしの提供は未確認です。",
+            "originalTitle": "Hearing Loss, News Breakdown, Science Latest, Travel Ideas, Mighty Challenge, Daily Issues, American Insight",
+            "originalSummary": "Hearing Loss, News Breakdown, Science Latest, Travel Ideas, Mighty Challenge, Daily Issues, American Insight",
+            "sourceName": "ABC News & Headlines – Australian Broadcasting Corporation",
+            "sourceUrl": "https://www.abc.net.au",
+            "publishedAt": "2026-10-26T11:00:00.000Z",
+            "region": "asia_oceania",
+            "regionLabel": "アジア・オセアニア",
+            "topic": "health",
+            "topicLabel": "医療・補聴",
+            "curationScore": 22,
+            "curationSignals": [
+              "hearing loss",
+              "major-media"
+            ],
+            "sourceDomain": "abc.net.au",
+            "sourcePriority": 95,
+            "sourceMode": "major-media",
+            "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "thumbnail": {
+              "url": "https://www.abc.net.au/core-assets/listen/abc-listen.png?imformat=generic",
+              "source": "og:image",
+              "pageUrl": "https://www.abc.net.au/listen/programs/nightlife/nightlife/107292790"
+            }
+          },
+          "originalReason": "source-context-review",
+          "reviewedBy": "codex-opus-source-review",
+          "reviewedAt": "2026-10-29T13:28:42.212Z",
+          "reviewers": [
+            "Codex",
+            "claude-opus-5-5"
+          ],
+          "sourceEvidence": [
+            {
+              "url": "https://www.abc.net.au/listen/programs/nightlife/nightlife/107292790",
+              "excerpt": "First Hour - Hearing Loss",
+              "method": "article-text",
+              "kind": "official-broadcaster",
+              "checkedAt": "2026-10-29T13:26:11.999Z"
+            }
+          ],
+          "sourceArticleUrl": "https://www.abc.net.au/listen/programs/nightlife/nightlife/107292790",
+          "reviewNote": "音声を聴いて検証したわけではない。公式番組説明に基づき、文字起こしの有無は未確認と明示。",
+          "opusNote": "修正に同意。前回私がこの記事を「無関係な話題の一覧」と評価したのは誤りで、撤回する。WebFetchで番組ページを確認した。番組は702 ABC Sydneyの「Nightlife」（司会Philip Clark、2026年10月26日22時放送、全3時間54分）。第1時間のコーナー「Hearing Loss」は46分57秒で、ゲストはHearing AustraliaのSenior AudiologistのMarc Vandenberg。ほかのコーナーは別の話題。番組ページに文字起こしは提供されておらず、音声は聴いていない。音声のみの番組で、ろう者・難聴者がそのままでは利用しにくい点を要約にはっきり書くべき。",
+          "limits": "音声を聴いて検証したわけではない。公式番組説明に基づき、文字起こしの有無は未確認と明示。",
+          "sourcePublishedAt": "2026-10-26T11:00:00.000Z",
+          "reviewedTextFingerprint": "a7faa52b5ba305a2a631dd50d74a54811b15aa48aa57a250b2688e85301a37f9",
+          "correctionTopic": "health",
+          "correctionTopicLabel": "医療・補聴",
+          "region": "asia_oceania",
+          "place": "Australia",
+          "evidence": "First Hour - Hearing Loss",
+          "restorationSnapshot": "2026-10-29T00:59:37.501Z",
+          "sourceContextConfirmed": true,
+          "reviewDigest": "75a095eb8849d0f95fa0db9225608c33b401388f0e5a3ad4e1b9329e1f698671"
         }
       ],
-      "sourceArticleUrl": "https://www.abc.net.au/listen/programs/nightlife/nightlife/107292790",
-      "reviewNote": "音声を聴いて検証したわけではない。公式番組説明に基づき、文字起こしの有無は未確認と明示。",
-      "opusNote": "修正に同意。前回私がこの記事を「無関係な話題の一覧」と評価したのは誤りで、撤回する。WebFetchで番組ページを確認した。番組は702 ABC Sydneyの「Nightlife」（司会Philip Clark、2026年10月26日22時放送、全3時間54分）。第1時間のコーナー「Hearing Loss」は46分57秒で、ゲストはHearing AustraliaのSenior AudiologistのMarc Vandenberg。ほかのコーナーは別の話題。番組ページに文字起こしは提供されておらず、音声は聴いていない。音声のみの番組で、ろう者・難聴者がそのままでは利用しにくい点を要約にはっきり書くべき。",
-      "limits": "音声を聴いて検証したわけではない。公式番組説明に基づき、文字起こしの有無は未確認と明示。",
-      "sourcePublishedAt": "2026-10-26T11:00:00.000Z",
-      "reviewedTextFingerprint": "a7faa52b5ba305a2a631dd50d74a54811b15aa48aa57a250b2688e85301a37f9",
-      "correctionTopic": "health",
-      "correctionTopicLabel": "医療・補聴",
-      "region": "asia_oceania",
-      "place": "Australia",
-      "evidence": "First Hour - Hearing Loss",
-      "restorationSnapshot": "2026-10-29T00:59:37.501Z",
       "observations": [
         {
           "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1rclcyNGJKNkl1VkU0NmdBVDBaUGpscHQzRzJsRUhvN2ZlWUJNVDFtZW14VkRCOHpVSDh2V1R6N2xXQ3ZSbTFrREJNcjdLNUQ4eF9fWExCZ2NSbHgwdW5OS2MtTE5QRmNIQ0Y2aU43a3JVZUNuaFVn?oc=5",
@@ -688,10 +716,36 @@
           "regionLabel": "地域未確認",
           "topic": "health",
           "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+        },
+        {
+          "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1rclcyNGJKNkl1VkU0NmdBVDBaUGpscHQzRzJsRUhvN2ZlWUJNVDFtZW14VkRCOHpVSDh2V1R6N2xXQ3ZSbTFrREJNcjdLNUQ4eF9fWExCZ2NSbHgwdW5OS2MtTE5QRmNIQ0Y2aU43a3JVZUNuaFVn?oc=5",
+          "title": "豪ABCラジオ「Nightlife」で約47分の難聴特集、聴覚の専門家が解説（音声番組）",
+          "summary": "オーストラリアABCの「Nightlife」が10月26日の放送で難聴を取り上げ、Hearing Australiaの聴覚の専門家が解説しました。元ページは複数の話題を含む番組全体のもので、難聴のコーナーは約47分の音声です。文字起こしの提供は未確認です。",
+          "originalTitle": "Hearing Loss, News Breakdown, Science Latest, Travel Ideas, Mighty Challenge, Daily Issues, American Insight",
+          "originalSummary": "Hearing Loss, News Breakdown, Science Latest, Travel Ideas, Mighty Challenge, Daily Issues, American Insight",
+          "sourceName": "ABC News & Headlines – Australian Broadcasting Corporation",
+          "sourceUrl": "https://www.abc.net.au",
+          "publishedAt": "2026-10-26T11:00:00.000Z",
+          "region": "asia_oceania",
+          "regionLabel": "アジア・オセアニア",
+          "topic": "health",
+          "topicLabel": "医療・補聴",
+          "curationScore": 22,
+          "curationSignals": [
+            "hearing loss",
+            "major-media"
+          ],
+          "sourceDomain": "abc.net.au",
+          "sourcePriority": 95,
+          "sourceMode": "major-media",
+          "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+          "thumbnail": {
+            "url": "https://www.abc.net.au/core-assets/listen/abc-listen.png?imformat=generic",
+            "source": "og:image",
+            "pageUrl": "https://www.abc.net.au/listen/programs/nightlife/nightlife/107292790"
+          }
         }
-      ],
-      "sourceContextConfirmed": true,
-      "reviewDigest": "75a095eb8849d0f95fa0db9225608c33b401388f0e5a3ad4e1b9329e1f698671"
+      ]
     },
     {
       "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRmZZOWkwaVZvU21RQklQcHRaVU1hTDk3dGRZV1diNHYxcnhMWlNXbm5sLWlmSXhRcnhQRGtKSnYwOEUzYTRXRE9EYXhPTTQwSUJPNDNtRUxHY2ZzaktBa2VFZFh2SVBzdHk2NEVyT0xISUd4SWhQbmkyZW9JUHV1WEpfNk1LMEFjZ3h4TWR4SlFsZUNWRTFpVjZ30gGfAUFVX3lxTE42M2x2VTgzckt4R1Bqcl9oZUM4ZjF1dTdHWGlfcXUxdU9zdzhMT1I1V043ckJ2UXBiWENzdi1OaFhuN0FsNnpsakhISHQ1TnpJT09rOUJjV0dpVTJmWnB5V0tKR1gyZ3hRSkpxcXhKQjRkcUVienlVWlYtS3VJeFhxOHVzWnZ3dEZpZlhNb2x6TWhwR2wtOUNCM0Y2WlVvQQ?oc=5",
