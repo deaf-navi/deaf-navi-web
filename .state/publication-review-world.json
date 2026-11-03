@@ -379,75 +379,102 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOUm9GUVlaM1RFdFNwZkFGbnd2WFZGVDVIamt6LWdUYkc0OTlBanlvVFd4UzBzdUlhRkJTVHBiUGFmZXJlRC1kZWhsMUJ3V1VTVWtkeXdMVzd4REVxblo2WUliUTBVRlNpcEpzS3FFSFVhRWtNMDdkbWczNVFpUVR4Umkyb2lPZHFTR2hrblltcHdSdEJGeXR4dGZST2R3cWd6a3lWeGY0NUlzcUpNNFRibXJjYWFjamN2N21xMUZmNTNhcElMSWJuenl6VUtSeHJ0MzZyVllzZ3huSHhWUnNzemMzenF4S1pEZ29BbXJHY19LcVNBa2FRQWU4ajVhSE0tQ2FfVjItUHoyTVFmVzBnczlteHJKdw?oc=5",
-      "status": "source-verified",
-      "reason": "translation-review",
+      "status": "held",
+      "reason": "review-expired-or-changed",
       "firstSeenAt": "2026-10-29T07:18:27.636Z",
+      "lastSeenAt": "2026-11-03T02:55:08.734Z",
       "sourceFingerprint": "32a206cd0fb1225eb144e84fe56b0dfb887a96ac4b0a5542418bf0b1da652f3f",
-      "translationFingerprint": "3e60fbe3881b65c305a7c36413403a0384f09e81e9031769820a04baddbd49f9",
+      "translationFingerprint": "831f1b6998e78fccb6606d78d620e65876c835eb1c7487b9d07b49086d68e750",
       "article": {
         "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOUm9GUVlaM1RFdFNwZkFGbnd2WFZGVDVIamt6LWdUYkc0OTlBanlvVFd4UzBzdUlhRkJTVHBiUGFmZXJlRC1kZWhsMUJ3V1VTVWtkeXdMVzd4REVxblo2WUliUTBVRlNpcEpzS3FFSFVhRWtNMDdkbWczNVFpUVR4Umkyb2lPZHFTR2hrblltcHdSdEJGeXR4dGZST2R3cWd6a3lWeGY0NUlzcUpNNFRibXJjYWFjamN2N21xMUZmNTNhcElMSWJuenl6VUtSeHJ0MzZyVllzZ3huSHhWUnNzemMzenF4S1pEZ29BbXJHY19LcVNBa2FRQWU4ajVhSE0tQ2FfVjItUHoyTVFmVzBnczlteHJKdw?oc=5",
-        "title": "フランス・モントーバンの住民が手話を学び、舞台づくりに参加",
+        "title": "フランス南西部モントーバンの社会センター「ラ・コメット」で、住民がフランス手話（LSF）を学び、舞台での発表に向けて練習する様子を地元紙ラ・デペッシュが伝えました。",
         "summary": "フランス南西部モントーバンの社会センター「ラ・コメット」で、住民がフランス手話（LSF）を学び、舞台での発表に向けて練習する様子を地元紙ラ・デペッシュが伝えました。",
         "originalTitle": "REPORTAGE. Ces Montalbanais apprennent à parler avec les mains avant de se produire en spectacle : \"Chez les sourds, il ne faut jamais se vexer\"",
         "originalSummary": "REPORTAGE. Ces Montalbanais apprennent à parler avec les mains avant de se produire en spectacle : \"Chez les sourds, il ne faut jamais se vexer\"",
         "sourceName": "ladepeche.fr",
         "sourceUrl": "https://www.ladepeche.fr",
-        "publishedAt": "2026-10-25T13:01:00.000Z",
-        "region": "europe_cis",
-        "regionLabel": "ヨーロッパ・CIS",
+        "publishedAt": "2026-10-25T07:00:00.000Z",
+        "region": "unknown",
+        "regionLabel": "地域未確認",
         "topic": "technology",
-        "topicLabel": "技術・AI",
-        "curationScore": 22,
-        "curationSignals": [
-          "sourd",
-          "sourds",
-          "multilingual"
-        ],
-        "sourceDomain": "ladepeche.fr",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-        "thumbnail": {
-          "url": "https://images.ladepeche.fr/api/v1/images/view/6ada1c6d453da927fe075ed6/hd/image.jpg?v=1",
-          "source": "og:image",
-          "pageUrl": "https://www.ladepeche.fr/2026/10/25/reportage-ces-montalbanais-apprennent-a-parler-avec-les-mains-avant-de-se-produire-en-spectacle-chez-les-sourds-il-ne-faut-jamais-se-vexer-13615468.php"
-        }
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "originalReason": "translation-review",
-      "reviewedBy": "codex-opus-source-review",
-      "reviewedAt": "2026-10-29T13:28:42.212Z",
-      "reviewers": [
-        "Codex",
-        "claude-opus-5-5"
-      ],
-      "sourceEvidence": [
+      "reviewHistory": [
         {
-          "url": "https://www.ladepeche.fr/2026/10/25/reportage-ces-montalbanais-apprennent-a-parler-avec-les-mains-avant-de-se-produire-en-spectacle-chez-les-sourds-il-ne-faut-jamais-se-vexer-13615468.php",
-          "excerpt": "À Montauban (Tarn-et-Garonne), au centre social La Comète",
-          "method": "article-text",
-          "kind": "original-publisher",
-          "checkedAt": "2026-10-29T13:26:11.999Z"
-        },
-        {
-          "url": "https://www.insee.fr/fr/statistiques/1405599?geo=COM-82121+FE-1",
-          "excerpt": "Commune : Montauban (82121)",
-          "method": "official-location",
-          "kind": "official-statistics",
-          "checkedAt": "2026-10-29T13:26:11.999Z"
+          "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOUm9GUVlaM1RFdFNwZkFGbnd2WFZGVDVIamt6LWdUYkc0OTlBanlvVFd4UzBzdUlhRkJTVHBiUGFmZXJlRC1kZWhsMUJ3V1VTVWtkeXdMVzd4REVxblo2WUliUTBVRlNpcEpzS3FFSFVhRWtNMDdkbWczNVFpUVR4Umkyb2lPZHFTR2hrblltcHdSdEJGeXR4dGZST2R3cWd6a3lWeGY0NUlzcUpNNFRibXJjYWFjamN2N21xMUZmNTNhcElMSWJuenl6VUtSeHJ0MzZyVllzZ3huSHhWUnNzemMzenF4S1pEZ29BbXJHY19LcVNBa2FRQWU4ajVhSE0tQ2FfVjItUHoyTVFmVzBnczlteHJKdw?oc=5",
+          "status": "source-verified",
+          "reason": "translation-review",
+          "firstSeenAt": "2026-10-29T07:18:27.636Z",
+          "sourceFingerprint": "32a206cd0fb1225eb144e84fe56b0dfb887a96ac4b0a5542418bf0b1da652f3f",
+          "translationFingerprint": "3e60fbe3881b65c305a7c36413403a0384f09e81e9031769820a04baddbd49f9",
+          "article": {
+            "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOUm9GUVlaM1RFdFNwZkFGbnd2WFZGVDVIamt6LWdUYkc0OTlBanlvVFd4UzBzdUlhRkJTVHBiUGFmZXJlRC1kZWhsMUJ3V1VTVWtkeXdMVzd4REVxblo2WUliUTBVRlNpcEpzS3FFSFVhRWtNMDdkbWczNVFpUVR4Umkyb2lPZHFTR2hrblltcHdSdEJGeXR4dGZST2R3cWd6a3lWeGY0NUlzcUpNNFRibXJjYWFjamN2N21xMUZmNTNhcElMSWJuenl6VUtSeHJ0MzZyVllzZ3huSHhWUnNzemMzenF4S1pEZ29BbXJHY19LcVNBa2FRQWU4ajVhSE0tQ2FfVjItUHoyTVFmVzBnczlteHJKdw?oc=5",
+            "title": "フランス・モントーバンの住民が手話を学び、舞台づくりに参加",
+            "summary": "フランス南西部モントーバンの社会センター「ラ・コメット」で、住民がフランス手話（LSF）を学び、舞台での発表に向けて練習する様子を地元紙ラ・デペッシュが伝えました。",
+            "originalTitle": "REPORTAGE. Ces Montalbanais apprennent à parler avec les mains avant de se produire en spectacle : \"Chez les sourds, il ne faut jamais se vexer\"",
+            "originalSummary": "REPORTAGE. Ces Montalbanais apprennent à parler avec les mains avant de se produire en spectacle : \"Chez les sourds, il ne faut jamais se vexer\"",
+            "sourceName": "ladepeche.fr",
+            "sourceUrl": "https://www.ladepeche.fr",
+            "publishedAt": "2026-10-25T13:01:00.000Z",
+            "region": "europe_cis",
+            "regionLabel": "ヨーロッパ・CIS",
+            "topic": "technology",
+            "topicLabel": "技術・AI",
+            "curationScore": 22,
+            "curationSignals": [
+              "sourd",
+              "sourds",
+              "multilingual"
+            ],
+            "sourceDomain": "ladepeche.fr",
+            "sourcePriority": 50,
+            "sourceMode": "regional-fresh",
+            "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "thumbnail": {
+              "url": "https://images.ladepeche.fr/api/v1/images/view/6ada1c6d453da927fe075ed6/hd/image.jpg?v=1",
+              "source": "og:image",
+              "pageUrl": "https://www.ladepeche.fr/2026/10/25/reportage-ces-montalbanais-apprennent-a-parler-avec-les-mains-avant-de-se-produire-en-spectacle-chez-les-sourds-il-ne-faut-jamais-se-vexer-13615468.php"
+            }
+          },
+          "originalReason": "translation-review",
+          "reviewedBy": "codex-opus-source-review",
+          "reviewedAt": "2026-10-29T13:28:42.212Z",
+          "reviewers": [
+            "Codex",
+            "claude-opus-5-5"
+          ],
+          "sourceEvidence": [
+            {
+              "url": "https://www.ladepeche.fr/2026/10/25/reportage-ces-montalbanais-apprennent-a-parler-avec-les-mains-avant-de-se-produire-en-spectacle-chez-les-sourds-il-ne-faut-jamais-se-vexer-13615468.php",
+              "excerpt": "À Montauban (Tarn-et-Garonne), au centre social La Comète",
+              "method": "article-text",
+              "kind": "original-publisher",
+              "checkedAt": "2026-10-29T13:26:11.999Z"
+            },
+            {
+              "url": "https://www.insee.fr/fr/statistiques/1405599?geo=COM-82121+FE-1",
+              "excerpt": "Commune : Montauban (82121)",
+              "method": "official-location",
+              "kind": "official-statistics",
+              "checkedAt": "2026-10-29T13:26:11.999Z"
+            }
+          ],
+          "sourceArticleUrl": "https://www.ladepeche.fr/2026/10/25/reportage-ces-montalbanais-apprennent-a-parler-avec-les-mains-avant-de-se-produire-en-spectacle-chez-les-sourds-il-ne-faut-jamais-se-vexer-13615468.php",
+          "reviewNote": "住民を指すMontalbanaisを架空地名にしない。国名の確認は後続の自治体公式資料でも照合する。",
+          "opusNote": "修正と地名の扱い（Montalbanaisは住民の呼び名でありMontaubanと読み替える）に同意。ただしla depeche.frは今回ツールが取得を拒否し、検索でも当該記事は見つからなかった。draft要約の「図書館と文学祭が連携」「子どもから大人まで」は私の側では裏付けが取れていない。Lettres d'automne 2026の公開情報にも、手話やLa Comèteへの言及は見つからなかった。Codexが本文でこの記述を確認していないなら削り、確認済みの範囲（Montauban、centre social La Comète、住民がLSFを学んで舞台で発表）だけで書く。なお地域の判定は、原題に「Montauban」の文字列がないため現行のworld-location.mjsの照合では一致しない（コード指摘7を参照）。",
+          "limits": "住民を指すMontalbanaisを架空地名にしない。国名の確認は後続の自治体公式資料でも照合する。",
+          "sourcePublishedAt": "2026-10-25T13:01:00.000Z",
+          "reviewedTextFingerprint": "3e60fbe3881b65c305a7c36413403a0384f09e81e9031769820a04baddbd49f9",
+          "correctionTopic": "culture",
+          "correctionTopicLabel": "文化・社会",
+          "region": "europe_cis",
+          "place": "Montauban (Tarn-et-Garonne)",
+          "evidence": "À Montauban (Tarn-et-Garonne), au centre social La Comète / Commune : Montauban (82121)",
+          "restorationSnapshot": "2026-10-29T00:59:37.501Z",
+          "reviewDigest": "32278c60dfb84c71471a791a4be94e5496243d66112eef3b15f0088f6656406e"
         }
       ],
-      "sourceArticleUrl": "https://www.ladepeche.fr/2026/10/25/reportage-ces-montalbanais-apprennent-a-parler-avec-les-mains-avant-de-se-produire-en-spectacle-chez-les-sourds-il-ne-faut-jamais-se-vexer-13615468.php",
-      "reviewNote": "住民を指すMontalbanaisを架空地名にしない。国名の確認は後続の自治体公式資料でも照合する。",
-      "opusNote": "修正と地名の扱い（Montalbanaisは住民の呼び名でありMontaubanと読み替える）に同意。ただしla depeche.frは今回ツールが取得を拒否し、検索でも当該記事は見つからなかった。draft要約の「図書館と文学祭が連携」「子どもから大人まで」は私の側では裏付けが取れていない。Lettres d'automne 2026の公開情報にも、手話やLa Comèteへの言及は見つからなかった。Codexが本文でこの記述を確認していないなら削り、確認済みの範囲（Montauban、centre social La Comète、住民がLSFを学んで舞台で発表）だけで書く。なお地域の判定は、原題に「Montauban」の文字列がないため現行のworld-location.mjsの照合では一致しない（コード指摘7を参照）。",
-      "limits": "住民を指すMontalbanaisを架空地名にしない。国名の確認は後続の自治体公式資料でも照合する。",
-      "sourcePublishedAt": "2026-10-25T13:01:00.000Z",
-      "reviewedTextFingerprint": "3e60fbe3881b65c305a7c36413403a0384f09e81e9031769820a04baddbd49f9",
-      "correctionTopic": "culture",
-      "correctionTopicLabel": "文化・社会",
-      "region": "europe_cis",
-      "place": "Montauban (Tarn-et-Garonne)",
-      "evidence": "À Montauban (Tarn-et-Garonne), au centre social La Comète / Commune : Montauban (82121)",
-      "restorationSnapshot": "2026-10-29T00:59:37.501Z",
       "observations": [
         {
           "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOUm9GUVlaM1RFdFNwZkFGbnd2WFZGVDVIamt6LWdUYkc0OTlBanlvVFd4UzBzdUlhRkJTVHBiUGFmZXJlRC1kZWhsMUJ3V1VTVWtkeXdMVzd4REVxblo2WUliUTBVRlNpcEpzS3FFSFVhRWtNMDdkbWczNVFpUVR4Umkyb2lPZHFTR2hrblltcHdSdEJGeXR4dGZST2R3cWd6a3lWeGY0NUlzcUpNNFRibXJjYWFjamN2N21xMUZmNTNhcElMSWJuenl6VUtSeHJ0MzZyVllzZ3huSHhWUnNzemMzenF4S1pEZ29BbXJHY19LcVNBa2FRQWU4ajVhSE0tQ2FfVjItUHoyTVFmVzBnczlteHJKdw?oc=5",
@@ -462,9 +489,37 @@
           "regionLabel": "地域未確認",
           "topic": "technology",
           "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+        },
+        {
+          "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOUm9GUVlaM1RFdFNwZkFGbnd2WFZGVDVIamt6LWdUYkc0OTlBanlvVFd4UzBzdUlhRkJTVHBiUGFmZXJlRC1kZWhsMUJ3V1VTVWtkeXdMVzd4REVxblo2WUliUTBVRlNpcEpzS3FFSFVhRWtNMDdkbWczNVFpUVR4Umkyb2lPZHFTR2hrblltcHdSdEJGeXR4dGZST2R3cWd6a3lWeGY0NUlzcUpNNFRibXJjYWFjamN2N21xMUZmNTNhcElMSWJuenl6VUtSeHJ0MzZyVllzZ3huSHhWUnNzemMzenF4S1pEZ29BbXJHY19LcVNBa2FRQWU4ajVhSE0tQ2FfVjItUHoyTVFmVzBnczlteHJKdw?oc=5",
+          "title": "フランス・モントーバンの住民が手話を学び、舞台づくりに参加",
+          "summary": "フランス南西部モントーバンの社会センター「ラ・コメット」で、住民がフランス手話（LSF）を学び、舞台での発表に向けて練習する様子を地元紙ラ・デペッシュが伝えました。",
+          "originalTitle": "REPORTAGE. Ces Montalbanais apprennent à parler avec les mains avant de se produire en spectacle : \"Chez les sourds, il ne faut jamais se vexer\"",
+          "originalSummary": "REPORTAGE. Ces Montalbanais apprennent à parler avec les mains avant de se produire en spectacle : \"Chez les sourds, il ne faut jamais se vexer\"",
+          "sourceName": "ladepeche.fr",
+          "sourceUrl": "https://www.ladepeche.fr",
+          "publishedAt": "2026-10-25T13:01:00.000Z",
+          "region": "europe_cis",
+          "regionLabel": "ヨーロッパ・CIS",
+          "topic": "technology",
+          "topicLabel": "技術・AI",
+          "curationScore": 22,
+          "curationSignals": [
+            "sourd",
+            "sourds",
+            "multilingual"
+          ],
+          "sourceDomain": "ladepeche.fr",
+          "sourcePriority": 50,
+          "sourceMode": "regional-fresh",
+          "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+          "thumbnail": {
+            "url": "https://images.ladepeche.fr/api/v1/images/view/6ada1c6d453da927fe075ed6/hd/image.jpg?v=1",
+            "source": "og:image",
+            "pageUrl": "https://www.ladepeche.fr/2026/10/25/reportage-ces-montalbanais-apprennent-a-parler-avec-les-mains-avant-de-se-produire-en-spectacle-chez-les-sourds-il-ne-faut-jamais-se-vexer-13615468.php"
+          }
         }
-      ],
-      "reviewDigest": "32278c60dfb84c71471a791a4be94e5496243d66112eef3b15f0088f6656406e"
+      ]
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPbjJFTkFvT19hSUxaYVZRaDZzQjU0U01DSzFhSUpGcXRIb0UwUlNaZnExRDNwTmFMdlR5WGMtamVtNGtoR3FGM3N4Q3pWeS1FNlJFREJhNklFNW9wY1JWRjVMakdOOVd0cU9BMTBNYUQ3cGp2VjV5UjBrcVlxd3g5cTZROG9Gd2kxcWdvZzFmQVhpaUE0Ymp1Q2ozZXRDdjQxMmZXWW9uWjhKSVB5OWJRcVMzSlRxUjdjdkVkX1pCTWVNTDFSaXlRZ04tUjVlczR0dE9TdV9feEYybFdTTWkwanNjLWgxR2dRQXRKQ0NB0gGIAkFVX3lxTE41b3BmQmtpZlJ1R3NacDltclVQSVhpcm9SNlhVVUdKMXBPQ2s3VE1JYVl6bjAxRkV4aE9aZ0NQQnI4akpJUFVsZE85LXRSNzl0ZVlRWTllYkhYcWk4OWhuU29zVkFnLW0yY1NhMUVvcU14RDBpS1k0eno4cDdrd0luMXdRWVVjNkxualFfMmNxcnJjMThNSlRaRmtrX2ZfcUFLUkI1NDUtak9uVEkydHJwY2pSZ3dFaXJ0ajBhMkg5aXpfWEcyR053aWViR3A1WHRsVVlWcnUyR0NBZ1hkQ1hxN3J4cUdpeEtmVl9CamtrbDhKU2hFSXNVb0EwZFV1MjM1c21tLVZUYg?oc=5",
