@@ -2,6 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { isHardNoiseWorldText } from '../src/lib/world-relevance.mjs';
+import { prepareWorldPublication } from '../src/lib/publication-quality.mjs';
+
+test('Portuguese pound amounts do not qualify salary stories as Libras news', () => {
+  const title = 'Como trabalhar no Reino Unido em 2027: visto Skilled Worker exige salário mínimo de 41.700 libras por ano, cerca de R$ 303 mil, mas o piso cai para 25.000 libras em parte das vagas de saúde e educação';
+  assert.equal(isHardNoiseWorldText(title), true);
+  assert.equal(isHardNoiseWorldText('Reino Unido oferece salário de 40 mil libras esterlinas'), true);
+  for (const relevant of [
+    'Curso de Libras no Reino Unido custa 100 libras',
+    'Intérprete de BSL recebe salário de 41.700 libras no Reino Unido',
+    'Trabalhadores surdos pedem salário de 25.000 libras',
+    'Estudantes aprendem Libras e a cultura surda',
+  ]) assert.equal(isHardNoiseWorldText(relevant), false, relevant);
+  const result = prepareWorldPublication({articles:[{
+    id:'currency-only', originalTitle:title, originalSummary:title,
+    title:'英国の最低賃金は41,700ブラジル手話', summary:'英国の最低賃金について',
+  }]});
+  assert.equal(result.articles.length, 0);
+  assert.equal(result.publicationReview.removed[0].reason, 'unrelated');
+});
 
 test('World relevance: Spanish deaf-ear idioms are rejected', () => {
   assert.equal(
