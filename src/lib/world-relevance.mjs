@@ -7,6 +7,12 @@ const HARD_NOISE_PATTERNS = [
 export function isHardNoiseWorldText(text) {
   const normalized = String(text ?? '').normalize('NFKC');
   if (HARD_NOISE_PATTERNS.some((pattern) => pattern.test(normalized))) return true;
+  // Portuguese "libras" also denotes pounds. An amount in a salary/currency
+  // story is not a sign-language signal; retain any independent Deaf context.
+  const withoutPounds = normalized.replace(/\b\d[\d.,\s]*(?:mil\s+|milh[oõ]es\s+(?:de\s+)?)?libras(?:\s+esterlinas)?\b/giu, '');
+  if (withoutPounds !== normalized
+    && /sal[aá]rio|\b(?:GBP|Reino Unido|esterlinas)\b|\bc[aâ]mbio\b/iu.test(normalized)
+    && !/surd|surdez|sord|auditiv|hearing|deaf|l[ií]ngua de (?:sinais|gestos)|sign language|\b(?:Libras|ASL|BSL)\b|acessib|accessib|legendas|int[eé]rprete/iu.test(withoutPounds)) return true;
   // A surname is not evidence of Deaf relevance. Keep genuine coverage involving him.
   const namedUnionLeader = /\bUnai\s+Sordo\b|\bSordo\s*\(CCOO\)|\bSordo\s+y\s+[ÁA]lvarez\b/iu.test(normalized);
   const withoutName = namedUnionLeader ? normalized.replace(/\bUnai\s+Sordo\b/giu, '').replace(/\bSordo\b/gu, '') : normalized;
