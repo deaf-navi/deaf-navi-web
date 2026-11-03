@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-02T10:54:15.657Z",
+  "generatedAt": "2026-11-03T00:34:34.827Z",
   "counts": {
-    "uniqueInputs": 2838,
-    "alreadyPublished": 914,
-    "outsideWindow": 1540,
-    "hardExcluded": 18,
-    "duplicateOfPublished": 116,
-    "candidateDuplicates": 5,
+    "uniqueInputs": 2708,
+    "alreadyPublished": 940,
+    "outsideWindow": 1387,
+    "hardExcluded": 7,
+    "duplicateOfPublished": 119,
+    "candidateDuplicates": 10,
     "eligible": 245,
     "queued": 40,
     "deferred": 205
@@ -15,18 +15,16 @@
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
     "incidental-celebrity-history": 1,
-    "low-value-page": 7,
-    "incidental-organization-mention": 1,
-    "market-report": 3,
-    "incidental-disability-nickname": 5
+    "low-value-page": 4,
+    "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-02T01:09:51.211Z",
+    "previousGeneratedAt": "2026-11-02T10:54:15.657Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -427,7 +425,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     }
   ]
 }
