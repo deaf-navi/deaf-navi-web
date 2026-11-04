@@ -1,34 +1,42 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-04T01:15:29.770Z",
+  "generatedAt": "2026-11-04T04:13:35.710Z",
   "counts": {
-    "uniqueInputs": 2564,
-    "alreadyPublished": 908,
-    "outsideWindow": 1377,
-    "hardExcluded": 13,
-    "duplicateOfPublished": 88,
-    "candidateDuplicates": 3,
-    "eligible": 175,
+    "uniqueInputs": 2661,
+    "alreadyPublished": 842,
+    "outsideWindow": 1495,
+    "hardExcluded": 4,
+    "duplicateOfPublished": 89,
+    "candidateDuplicates": 7,
+    "eligible": 224,
     "queued": 40,
-    "deferred": 135
+    "deferred": 184
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
     "incidental-celebrity-history": 1,
-    "low-value-page": 2,
     "foreign-coverage-review-required": 1,
-    "incidental-disability-nickname": 5,
-    "market-report": 3
+    "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-04T00:53:22.119Z",
+    "previousGeneratedAt": "2026-11-04T01:15:29.770Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/04/110522",
+      "articleHash": "9c234f3b8ab2c8dc5f31ee9cf8519b752434cc51c3ae45c714e52f76daaa184a",
+      "publishedAt": "2026-11-04T02:05:22.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/30/135547",
       "articleHash": "72223d0d489e8af6c1d1c96d7953992170248bd912dd51ac42dc31c8b949c0ab",
@@ -413,16 +421,6 @@
       "sourceUrl": "https://co-coco.jp/news/wakenaiart/",
       "articleHash": "ace77581af8fd775ed71d044048111bf94a3444bc503ee3ded606485d8c95068",
       "publishedAt": "2026-09-17T02:30:48.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/kokobo/",
-      "articleHash": "98cab63910f42d5f8f34df50415f68ef2eeb33836aedde971cab5bd35547f207",
-      "publishedAt": "2026-09-14T07:30:02.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
