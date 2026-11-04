@@ -1,25 +1,25 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-04T04:13:35.710Z",
+  "generatedAt": "2026-11-04T10:47:20.787Z",
   "counts": {
-    "uniqueInputs": 2661,
-    "alreadyPublished": 842,
-    "outsideWindow": 1495,
-    "hardExcluded": 4,
-    "duplicateOfPublished": 89,
-    "candidateDuplicates": 7,
-    "eligible": 224,
+    "uniqueInputs": 2787,
+    "alreadyPublished": 893,
+    "outsideWindow": 1510,
+    "hardExcluded": 6,
+    "duplicateOfPublished": 101,
+    "candidateDuplicates": 8,
+    "eligible": 269,
     "queued": 40,
-    "deferred": 184
+    "deferred": 229
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
     "incidental-celebrity-history": 1,
-    "foreign-coverage-review-required": 1,
+    "low-value-page": 3,
     "incidental-organization-mention": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-04T01:15:29.770Z",
+    "previousGeneratedAt": "2026-11-04T04:13:35.710Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -35,7 +35,7 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/30/135547",
@@ -168,6 +168,16 @@
       "feedChange": "unchanged"
     },
     {
+      "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
+      "articleHash": "8559c4728ef1fbdbd00e3d86117ab8e8fefa2ac0f8c47458964c0b1ade638887",
+      "publishedAt": "2026-11-04T07:30:26.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
       "sourceUrl": "https://udcast.net/workslist/s-bunsan_youth/",
       "articleHash": "89251f230cbec6dd9b9bcd5a44503d7fb78620bf30252099c73cf58b4950ab12",
       "publishedAt": "2026-10-30T09:27:48.000Z",
@@ -188,21 +198,21 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
-      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
-      "publishedAt": "2026-10-27T22:20:05.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://note.com/psy_article/n/n008022d39951",
       "articleHash": "c07f4d1481defa2b8994a02b4f6f968736d0f818fef6e1d11e775cfa20bb4293",
       "publishedAt": "2026-05-31T14:40:03.000Z",
       "sourceTier": "broad",
       "sourceDomain": "note.com",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
+      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
+      "publishedAt": "2026-10-27T22:20:05.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -411,16 +421,6 @@
       "sourceUrl": "https://co-coco.jp/series/work/makotomizutani/",
       "articleHash": "a85c3b8f83f1259d55f82cdec31ed87837edd248c52c616eeefdfd042a3c019e",
       "publishedAt": "2026-09-17T21:45:03.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/wakenaiart/",
-      "articleHash": "ace77581af8fd775ed71d044048111bf94a3444bc503ee3ded606485d8c95068",
-      "publishedAt": "2026-09-17T02:30:48.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
