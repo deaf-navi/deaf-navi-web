@@ -4,6 +4,7 @@ declare(strict_types=1);
 if(PHP_SAPI!=='cli'){http_response_code(404);exit;}
 require __DIR__.'/core.php';
 require __DIR__.'/cafe-event-registry.php';
+require __DIR__.'/cafe-distinct-events.php';
 umask(0077);
 try {
     $mode=$argv[1]??'';
@@ -64,7 +65,7 @@ try {
             if(($p['shop_type']??'')==='event'){
                 if($series[$sid]['series_kind']!=='oneoff'||empty($p['activity_date']))fail('A dated one-off series is required');
                 if(isset($p['event_reported'])&&!is_bool($p['event_reported']))fail('Held-report flag must be boolean');
-                if(!$old)foreach($records as $other){$op=isset($other['payload'])&&is_string($other['payload'])?expanded($other):$other;$od=$op['kind']==='event'?($op['event_date']??''):($op['activity_date']??'');if($op['publication']==='deleted'||cafe_listing_group($op)!=='events'||$od!==$p['activity_date']||$op['country_code']!==$p['country_code']||$op['prefecture']!==$p['prefecture']||$op['city']!==$p['city'])continue;$sameName=normalized($op['name'])===normalized($p['name']);$sameVenue=!empty($p['venue_name'])&&normalized($p['venue_name'])===normalized($op['venue_name']??'');if($sameName||$sameVenue)fail('Existing event on the same date and location; update its record instead');}
+                if(!$old)foreach($records as $other){$op=isset($other['payload'])&&is_string($other['payload'])?expanded($other):$other;$od=$op['kind']==='event'?($op['event_date']??''):($op['activity_date']??'');if($op['publication']==='deleted'||cafe_listing_group($op)!=='events'||$od!==$p['activity_date']||$op['country_code']!==$p['country_code']||$op['prefecture']!==$p['prefecture']||$op['city']!==$p['city'])continue;$sameName=normalized($op['name'])===normalized($p['name']);$sameVenue=!empty($p['venue_name'])&&normalized($p['venue_name'])===normalized($op['venue_name']??'');if($sameName||($sameVenue&&!cafe_distinct_event_reviewed($p,$op,$item,$m['source_reviews'])))fail('Existing event on the same date and location; update its record instead');}
                 $links[]=['series_id'=>$sid,'record_id'=>$id,'slot'=>$item['slot']??'default'];
             }else{
                 if($series[$sid]['series_kind']!=='recurring'||!in_array($p['shop_type']??'',['recurring_program','recurring_popup','public_recurring','community_program'],true))fail('Only event or recurring-program listings are in scope');

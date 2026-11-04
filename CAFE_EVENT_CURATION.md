@@ -118,6 +118,8 @@ HTML本文hashは `--export` のsource_healthから取得できる。reviewed_at
 1. 本番の最新コード、レコードIDとrevision、追跡台帳のrevisionを確認する。公開HTTPには `Codex-DeafNavi-Verification`、本番ブラウザーURLには `dn_client=codex` を付ける。
 2. マニフェストは公開root以外の `/srv/deafnavi/incoming/` 内に0700の専用フォルダを作り0600で置く。既存設定や認証情報を含めない。
 3. `php /srv/deafnavi/current/_backend/curate-cafe-events.php --dry-run MANIFEST` を実行。名称・日付・追加/更新・分類・リンク・確認数をレビューする。
+
+同日同会場の別企画は、通常の重複拒否を自動解除しない。両企画を同一公式根拠で実読し、名称が異なり、`business_hours` が厳密な `HH:MM〜HH:MM`（日をまたがない単一時間帯）で重ならない場合に限り、新規upsertの `distinct_from` へ `{record_id, expected_revision, evidence_url, reason}` を明示できる。既存開催回の現行revisionに結びついた48時間以内のsource reviewと、新規開催回の通常のsource reviewを必要とする。別名だけ、時刻不明、時間帯の重複、古い確認、別根拠、非公開レコードは許容しない。既存回の上書きや日時・会場の偽装をせず、同一plan SHA・バックアップ・transaction・保護テーブル検査はそのまま適用する。
 4. `--apply MANIFEST PRIVATE_BACKUP_DIR PLAN_SHA256` でレビューした同じ差分を反映。SQLiteの整合したバックアップ、transaction、revision/planの再照合、batchの重複防止、操作履歴を使う。非公開レコードの承認、既存URL変更、掲載削除はこの処理では行わない。無関係のレコードとusers/settings/submissions/outboxを保持する。
 5. DBのintegrity/foreign keys、差分件数、公開画面・日付/地域/都道府県の絞り込みを確認する。コード変更は毎回不要。処理の結果が不明なら同じbatchを照合してから再試行する。
 
