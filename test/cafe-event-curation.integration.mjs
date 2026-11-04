@@ -67,6 +67,39 @@ ok(sql(`require '${fetchHelper}';$body='<main>'.str_repeat('Event information ',
 ok(sql(`require '${fetchHelper}';ini_set('pcre.backtrack_limit','1000000');$body='<nav>'.str_repeat('x',1200000).'</nav><main>'.str_repeat('Event information ',20).'</main>';echo json(cafe_event_fingerprint($body,'text/html')===null);`)==='true','large HTML requiring manual review does not abort the source check at the regular-expression limit');
 ok(sql(`require '${fetchHelper}';$body='<meta charset="shift_jis"><main>'.str_repeat('手話カフェの開催情報 ',20).'</main>';echo json(cafe_event_fingerprint(iconv('UTF-8','CP932',$body),'text/html')===cafe_event_fingerprint($body,'text/html'));`)==='true','declared Japanese legacy encoding is normalized for source changes');
 ok(JSON.parse(sql(`echo json(array_map(fn($d)=>cafe_registry_discovery_regions($d),['2026-10-05','2026-10-06','2026-10-07','2026-10-08','2026-10-09','2026-10-10','2026-10-11']));`)).flat().length===9,'weekly discovery rotation covers every domestic region');
+// Distinct, non-overlapping programs at one venue require an explicit reviewed collision.
+sql(`$p=expanded(record('curation-event-a'));$p['business_hours']='10:00〜12:00';save_record($p,'cafe','curation-event-a',$p['revision']);$r=record('curation-event-a');query('INSERT INTO cafe_event_source_reviews VALUES(?,?,?,?,?,?)',['curation-event-a',$r['revision'],'https://example.org/event','visual',null,gmdate('c',time()-30)]);`);
+const morning=JSON.parse(sql("echo json(expanded(record('curation-event-a')));"));
+const separate={version:1,batch:'fixture-distinct-session',checked_on:day,
+ series:[{id:'fixture-other-series',expected_revision:0,data:{title:'別企画',country_code:'JP',prefecture:'大阪府',city:'吹田市',series_kind:'oneoff',state:'watching',source_urls:['https://example.org/event'],next_check_on:day,annual_review_due_on:day}}],
+ checks:[{series_id:'fixture-other-series',expected_revision:0,result:'updated',evidence_urls:['https://example.org/event'],next_check_on:day}],
+ upserts:[{id:'curation-event-afternoon',series_id:'fixture-other-series',expected_revision:0,data:{...fixture,slug:'curation-event-afternoon',name:'別企画の手話交流 fixture',business_hours:'13:00〜16:00'},distinct_from:[{record_id:'curation-event-a',expected_revision:morning.revision,evidence_url:'https://example.org/event',reason:'同じ公式募集欄で午前と午後の異なる企画・時刻を実確認。'}]}],
+ source_reviews:[{record_id:'curation-event-afternoon',expected_revision:0,url:'https://example.org/event',mode:'visual',reviewed_at:new Date(Date.now()-20000).toISOString()}]};
+const beforeSeparate=snap();
+for(const [label,mutate] of [
+ ['implicit',m=>delete m.upserts[0].distinct_from],
+ ['wrong revision',m=>m.upserts[0].distinct_from[0].expected_revision++],
+ ['same name',m=>m.upserts[0].data.name=fixture.name],
+ ['overlap',m=>m.upserts[0].data.business_hours='11:00〜14:00'],
+ ['unknown time',m=>m.upserts[0].data.business_hours='午後'],
+ ['partial time',m=>m.upserts[0].data.business_hours='13:00〜16:00、延長あり'],
+ ['overnight',m=>m.upserts[0].data.business_hours='23:00〜02:00'],
+ ['invalid clock',m=>m.upserts[0].data.business_hours='25:00〜26:00'],
+ ['wrong evidence',m=>m.upserts[0].distinct_from[0].evidence_url='https://example.org/unrelated'],
+ ['no source review',m=>m.source_reviews=[]],
+ ['stale new review',m=>m.source_reviews[0].reviewed_at='2020-01-01T00:00:00Z'],
+ ['repeated declaration',m=>m.upserts[0].distinct_from.push({...m.upserts[0].distinct_from[0]})]
+]){const m=structuredClone(separate);mutate(m);r=batch(m);ok(r.status!==0&&snap()===beforeSeparate,'distinct collision rejects '+label+' without changes');}
+sql("query(\"UPDATE cafe_event_source_reviews SET record_revision=0 WHERE record_id='curation-event-a'\");");
+const staleSeparate=snap();r=batch(separate);ok(r.status!==0&&snap()===staleSeparate,'stale existing source review cannot authorize a separate session');
+sql(`query("UPDATE cafe_event_source_reviews SET record_revision=? WHERE record_id='curation-event-a'",[${morning.revision}]);`);
+r=batch(separate);assert.equal(r.status,0,r.stderr);const separatePlan=JSON.parse(r.stdout);ok(snap()===beforeSeparate,'reviewed distinct-session dry run is read only');
+r=batch(separate,'--apply',separatePlan.plan_sha256);assert.equal(r.status,0,r.stderr);
+const afterSeparate=JSON.parse(snap()),beforeSeparateObject=JSON.parse(beforeSeparate);
+ok(afterSeparate.records.length===beforeSeparateObject.records.length+1,'one reviewed afternoon event added');
+for(const row of beforeSeparateObject.records)ok(JSON.stringify(afterSeparate.records.find(x=>x.id===row.id))===JSON.stringify(row),'distinct session preserves original '+row.id);
+for(const table of ['users','settings','submissions','outbox'])ok(JSON.stringify(afterSeparate[table])===JSON.stringify(beforeSeparateObject[table]),'distinct session protects '+table);
+const finalSeparate=snap();r=batch(separate,'--apply',separatePlan.plan_sha256);ok(r.status===0&&JSON.parse(r.stdout).result==='ALREADY_APPLIED'&&snap()===finalSeparate,'distinct session remains idempotent');
 sql("query('UPDATE users SET must_change=0');");
 const server=spawn('php',['-S','127.0.0.1:5232','-t','docs','server/local-router.php'],{cwd:root,env,stdio:['ignore','ignore','pipe']});let logs='';server.stderr.on('data',b=>logs+=b);let cookie='';
 const request=async(path,data)=>{const r=await fetch('http://127.0.0.1:5232'+path,{method:data?'POST':'GET',redirect:'manual',headers:{cookie,...(data?{'Content-Type':'application/x-www-form-urlencoded'}:{})},body:data?new URLSearchParams(data):undefined});for(const c of r.headers.getSetCookie())if(c.startsWith('deafnavi_directory='))cookie=c.split(';')[0];return {status:r.status,text:await r.text()};};
