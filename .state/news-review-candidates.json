@@ -1,30 +1,28 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-04T10:47:20.787Z",
+  "generatedAt": "2026-11-05T00:37:06.085Z",
   "counts": {
-    "uniqueInputs": 2787,
-    "alreadyPublished": 893,
-    "outsideWindow": 1510,
-    "hardExcluded": 6,
-    "duplicateOfPublished": 101,
-    "candidateDuplicates": 8,
-    "eligible": 269,
+    "uniqueInputs": 1937,
+    "alreadyPublished": 651,
+    "outsideWindow": 1023,
+    "hardExcluded": 2,
+    "duplicateOfPublished": 32,
+    "candidateDuplicates": 3,
+    "eligible": 226,
     "queued": 40,
-    "deferred": 229
+    "deferred": 186
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "incidental-celebrity-history": 1,
-    "low-value-page": 3,
-    "incidental-organization-mention": 1
+    "incidental-celebrity-history": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-04T04:13:35.710Z",
+    "previousGeneratedAt": "2026-11-04T10:47:20.787Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -175,7 +173,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/s-bunsan_youth/",
