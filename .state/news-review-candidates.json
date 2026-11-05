@@ -1,30 +1,41 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-05T01:26:29.250Z",
+  "generatedAt": "2026-11-05T10:44:44.135Z",
   "counts": {
-    "uniqueInputs": 1924,
-    "alreadyPublished": 639,
-    "outsideWindow": 1020,
-    "hardExcluded": 2,
-    "duplicateOfPublished": 32,
+    "uniqueInputs": 1955,
+    "alreadyPublished": 648,
+    "outsideWindow": 1039,
+    "hardExcluded": 3,
+    "duplicateOfPublished": 37,
     "candidateDuplicates": 3,
-    "eligible": 228,
+    "eligible": 225,
     "queued": 40,
-    "deferred": 188
+    "deferred": 185
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "incidental-celebrity-history": 1
+    "incidental-celebrity-history": 1,
+    "foreign-coverage-review-required": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-05T00:48:40.330Z",
+    "previousGeneratedAt": "2026-11-05T01:26:29.250Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 38,
+    "new": 2,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 38
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/05/140958",
+      "articleHash": "b79d4cdfa82898993549d1e6811c6d437c2d2f5cabb896d88597c605022f4c79",
+      "publishedAt": "2026-11-05T05:09:58.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/04/110522",
       "articleHash": "9c234f3b8ab2c8dc5f31ee9cf8519b752434cc51c3ae45c714e52f76daaa184a",
@@ -156,14 +167,14 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/09/29/155539",
-      "articleHash": "a29b916b410a015fc423d13e1c0c2cb13cd13f6890cfa5f723de583a73d0de28",
-      "publishedAt": "2026-09-29T06:55:39.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.mimisuppo-miyagi.org",
-      "priority": 0,
-      "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
+      "sourceUrl": "https://udcast.net/workslist/wandance/",
+      "articleHash": "2ec03aaef33e1e07ec25ee6f1897e4af25c92a1afabb35ef4e434ff3622a12da",
+      "publishedAt": "2026-11-05T09:00:47.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
@@ -171,16 +182,6 @@
       "publishedAt": "2026-11-04T07:30:26.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/s-bunsan_youth/",
-      "articleHash": "89251f230cbec6dd9b9bcd5a44503d7fb78620bf30252099c73cf58b4950ab12",
-      "publishedAt": "2026-10-30T09:27:48.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -206,21 +207,21 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
-      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
-      "publishedAt": "2026-10-27T22:20:05.000Z",
+      "sourceUrl": "https://udcast.net/workslist/s-bunsan_youth/",
+      "articleHash": "89251f230cbec6dd9b9bcd5a44503d7fb78620bf30252099c73cf58b4950ab12",
+      "publishedAt": "2026-10-30T09:27:48.000Z",
       "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
+      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/subemayo/",
-      "articleHash": "431612cbb624bcbe083f4124264239521e021142df2b80466a37da2af4dc0cfd",
-      "publishedAt": "2026-10-30T04:21:53.000Z",
+      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
+      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
+      "publishedAt": "2026-10-27T22:20:05.000Z",
       "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
+      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -236,6 +237,16 @@
       "feedChange": "unchanged"
     },
     {
+      "sourceUrl": "https://udcast.net/workslist/subemayo/",
+      "articleHash": "431612cbb624bcbe083f4124264239521e021142df2b80466a37da2af4dc0cfd",
+      "publishedAt": "2026-10-30T04:21:53.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
       "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
       "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
       "publishedAt": "2026-10-27T08:30:40.000Z",
@@ -246,21 +257,21 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/hoshinokyoshitsu/",
-      "articleHash": "37e9ef7b1f639046cadf08272a783f0065d3f47a4a56798006564f75bcf26911",
-      "publishedAt": "2026-10-30T01:19:43.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/a11y-chiba/",
       "articleHash": "1d029cc4b0bb7af2cc4f3b034385db9781daee0f00b11f944629940c95ee8694",
       "publishedAt": "2026-10-06T01:37:10.000Z",
       "sourceTier": "broad",
       "sourceDomain": "palabra-i.co.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/hoshinokyoshitsu/",
+      "articleHash": "37e9ef7b1f639046cadf08272a783f0065d3f47a4a56798006564f75bcf26911",
+      "publishedAt": "2026-10-30T01:19:43.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -371,16 +382,6 @@
       "publishedAt": "2026-10-02T07:30:27.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/ryuji/",
-      "articleHash": "0534ac08298ec05739db9bbf2d4915051533075d3bbdcd4e56ca858b2275aa29",
-      "publishedAt": "2026-10-16T03:00:01.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
