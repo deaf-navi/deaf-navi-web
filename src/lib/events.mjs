@@ -7,6 +7,17 @@ import {validDeadlineDate} from '../event-deadline.js';
 
 export const eventDay = (now = Date.now()) => new Date(now + 9 * 3600000).toISOString().slice(0, 10);
 export const eventHash = value => createHash('sha256').update(value).digest('hex');
+
+// Keep operational notes in the source snapshot, never in the public feed.
+// evidenceHash remains for existing feed consumers that validate events.
+export function publicEventSnapshot(snapshot) {
+  const fields=['id','title','startDate','endDate','prefecture','venue','kind','sourceId','sourceName','sourceUrl','detailUrl',
+    'organizer','organizers','time','fee','target','status','description','verification','verifiedAt','evidenceHash',
+    'sourceStatus','communication','communicationAvailability','applicationDeadline','deadlineScope','informationStatus',
+    'informationNotes','offers','thumbnail','thumbnailPolicy','verificationMode','visualEvidenceUrl','corroboratingUrls'];
+  return {version:1,checkedAt:snapshot.checkedAt,events:(snapshot.events||[]).map(event=>
+    Object.fromEntries(Object.entries(event).filter(([key])=>fields.includes(key))))};
+}
 export function validEventDate(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
     && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;

@@ -30,7 +30,7 @@ import {
 import { renderAboutPage } from './templates/about.mjs';
 import { renderGuidePage } from './templates/guide.mjs';
 import { renderEventsPage } from './templates/events.mjs';
-import { validEvent } from './lib/events.mjs';
+import { validEvent, publicEventSnapshot } from './lib/events.mjs';
 import { renderEventDetail, renderRetiredEvent } from './templates/event-detail.mjs';
 import { renderGuideTopics } from './templates/guide-topics.mjs';
 import { renderGuesthousesPage } from './templates/guesthouses.mjs';
@@ -192,7 +192,7 @@ async function main() {
     detailIds.add(id);
   }
   await writeDoc('events/page-ids.json',JSON.stringify([...detailIds].sort(),null,2)+'\n');
-  await writeDoc('events.json', JSON.stringify({ version: 1, checkedAt: eventSnapshot.checkedAt, events: eventSnapshot.events }, null, 2) + '\n');
+  await writeDoc('events.json', JSON.stringify(publicEventSnapshot(eventSnapshot), null, 2) + '\n');
   const [places, signCafes, starbucksEntries] = await Promise.all([
     readFile(join(ROOT, 'content', 'connect', 'places.json'), 'utf8').then(JSON.parse),
     readFile(join(ROOT, 'content', 'connect', 'sign-cafes.json'), 'utf8').then(JSON.parse),
