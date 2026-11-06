@@ -1,29 +1,28 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-05T10:44:44.135Z",
+  "generatedAt": "2026-11-06T00:29:58.643Z",
   "counts": {
-    "uniqueInputs": 1955,
-    "alreadyPublished": 648,
-    "outsideWindow": 1039,
-    "hardExcluded": 3,
-    "duplicateOfPublished": 37,
-    "candidateDuplicates": 3,
-    "eligible": 225,
+    "uniqueInputs": 1919,
+    "alreadyPublished": 635,
+    "outsideWindow": 1046,
+    "hardExcluded": 2,
+    "duplicateOfPublished": 30,
+    "candidateDuplicates": 1,
+    "eligible": 205,
     "queued": 40,
-    "deferred": 185
+    "deferred": 165
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "incidental-celebrity-history": 1,
-    "foreign-coverage-review-required": 1
+    "incidental-celebrity-history": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-05T01:26:29.250Z",
+    "previousGeneratedAt": "2026-11-05T10:44:44.135Z",
     "previousQueued": 40,
-    "retained": 38,
-    "new": 2,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 38
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -34,7 +33,7 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/04/110522",
@@ -174,7 +173,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
