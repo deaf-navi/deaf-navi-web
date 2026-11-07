@@ -3,75 +3,102 @@
   "entries": [
     {
       "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lWWhiMG85M2E1eUNCcGFrM0hLWW0wMHdOWlpmb080YnZKV29JTmRwcE1yY3h4NWlVYndLZUI1ZlRGc3ZWVVlvWnZOWXJ6Z3c5ejlEMGpla2RPQdIBX0FVX3lxTE1DaXQ2SEhJbExaQVhyUk9KNWoybTJHdXZOMWRBZDFKZUJabDNtX2s4UmNiSVdmcWdmdkhNSkVZeTdrVkhweFRtVlB0UXlQRnp2S3F6UWxrRUVoNFNsVWd3?oc=5",
-      "status": "source-verified",
-      "reason": "translation-review",
+      "status": "held",
+      "reason": "review-expired-or-changed",
       "firstSeenAt": "2026-10-29T06:24:16.860Z",
+      "lastSeenAt": "2026-11-07T00:24:48.176Z",
       "sourceFingerprint": "d32954b72db3c35af7d607bf08174e5fafc14b0db48b838bbbef7ee50ef25fe1",
-      "translationFingerprint": "656fb4f266c6fb94ed24a6ec164c790fcaa2376f28a76f23d84fec0421910fdb",
+      "translationFingerprint": "d19a14efef15ddc0fab3b56e5161faf8dfca79224315465eb6e27d49fc65cc42",
       "article": {
         "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lWWhiMG85M2E1eUNCcGFrM0hLWW0wMHdOWlpmb080YnZKV29JTmRwcE1yY3h4NWlVYndLZUI1ZlRGc3ZWVVlvWnZOWXJ6Z3c5ejlEMGpla2RPQdIBX0FVX3lxTE1DaXQ2SEhJbExaQVhyUk9KNWoybTJHdXZOMWRBZDFKZUJabDNtX2s4UmNiSVdmcWdmdkhNSkVZeTdrVkhweFRtVlB0UXlQRnp2S3F6UWxrRUVoNFNsVWd3?oc=5",
-        "title": "MRIで聴神経が見えない子どもの人工内耳、韓国の観察研究が聴こえの改善傾向を報告",
+        "title": "韓国の研究チームが、MRIで聴神経が確認できない子どもへの人工内耳について、過去の経過を調べた観察研究を報告しました。早期の手術、電極配置、機器の早期作動を組み合わせた群で、聴こえの評価が高い傾向でした。MRIで見えなくても神経の反応が確認された例がある一方、効果には個人差があり、対象人数が少ないため追加の検証が必要とされています。",
         "summary": "韓国の研究チームが、MRIで聴神経が確認できない子どもへの人工内耳について、過去の経過を調べた観察研究を報告しました。早期の手術、電極配置、機器の早期作動を組み合わせた群で、聴こえの評価が高い傾向でした。MRIで見えなくても神経の反応が確認された例がある一方、効果には個人差があり、対象人数が少ないため追加の検証が必要とされています。",
         "originalTitle": "청신경 아예 안 보이는 선천성 난청이라도··· 인공와우 수술로 청각 발달 가능성 보인다",
         "originalSummary": "청신경 아예 안 보이는 선천성 난청이라도··· 인공와우 수술로 청각 발달 가능성 보인다",
         "sourceName": "경향신문",
         "sourceUrl": "https://www.khan.co.kr",
-        "publishedAt": "2026-10-28T04:19:00.000Z",
-        "region": "asia_oceania",
-        "regionLabel": "アジア・オセアニア",
+        "publishedAt": "2026-10-28T07:00:00.000Z",
+        "region": "unknown",
+        "regionLabel": "地域未確認",
         "topic": "health",
-        "topicLabel": "医療・補聴",
-        "curationScore": 21,
-        "curationSignals": [
-          "인공와우",
-          "난청",
-          "multilingual"
-        ],
-        "sourceDomain": "khan.co.kr",
-        "sourcePriority": 50,
-        "sourceMode": "regional-fresh",
-        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-        "thumbnail": {
-          "url": "https://img.khan.co.kr/news/2026/10/28/news-p.v1.20261028.d44d9d29e7eb4f6e8bd59ccd14cc0e4b_P1.png",
-          "source": "og:image",
-          "pageUrl": "https://www.khan.co.kr/article/202610281319001"
-        }
+        "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
       },
       "originalReason": "translation-review",
-      "reviewedBy": "codex-opus-source-review",
-      "reviewedAt": "2026-10-29T13:28:42.212Z",
-      "reviewers": [
-        "Codex",
-        "claude-opus-5-5"
-      ],
-      "sourceEvidence": [
+      "reviewHistory": [
         {
-          "url": "https://www.khan.co.kr/article/202610281319001",
-          "excerpt": "분당서울대병원 이비인후과 최병윤 교수",
-          "method": "article-text",
-          "kind": "original-publisher",
-          "checkedAt": "2026-10-29T13:26:11.999Z"
-        },
-        {
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42872457/",
-          "excerpt": "Retrospective cohort study.",
-          "method": "search-index",
-          "kind": "primary-research",
-          "checkedAt": "2026-10-29T13:26:11.999Z"
+          "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lWWhiMG85M2E1eUNCcGFrM0hLWW0wMHdOWlpmb080YnZKV29JTmRwcE1yY3h4NWlVYndLZUI1ZlRGc3ZWVVlvWnZOWXJ6Z3c5ejlEMGpla2RPQdIBX0FVX3lxTE1DaXQ2SEhJbExaQVhyUk9KNWoybTJHdXZOMWRBZDFKZUJabDNtX2s4UmNiSVdmcWdmdkhNSkVZeTdrVkhweFRtVlB0UXlQRnp2S3F6UWxrRUVoNFNsVWd3?oc=5",
+          "status": "source-verified",
+          "reason": "translation-review",
+          "firstSeenAt": "2026-10-29T06:24:16.860Z",
+          "sourceFingerprint": "d32954b72db3c35af7d607bf08174e5fafc14b0db48b838bbbef7ee50ef25fe1",
+          "translationFingerprint": "656fb4f266c6fb94ed24a6ec164c790fcaa2376f28a76f23d84fec0421910fdb",
+          "article": {
+            "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lWWhiMG85M2E1eUNCcGFrM0hLWW0wMHdOWlpmb080YnZKV29JTmRwcE1yY3h4NWlVYndLZUI1ZlRGc3ZWVVlvWnZOWXJ6Z3c5ejlEMGpla2RPQdIBX0FVX3lxTE1DaXQ2SEhJbExaQVhyUk9KNWoybTJHdXZOMWRBZDFKZUJabDNtX2s4UmNiSVdmcWdmdkhNSkVZeTdrVkhweFRtVlB0UXlQRnp2S3F6UWxrRUVoNFNsVWd3?oc=5",
+            "title": "MRIで聴神経が見えない子どもの人工内耳、韓国の観察研究が聴こえの改善傾向を報告",
+            "summary": "韓国の研究チームが、MRIで聴神経が確認できない子どもへの人工内耳について、過去の経過を調べた観察研究を報告しました。早期の手術、電極配置、機器の早期作動を組み合わせた群で、聴こえの評価が高い傾向でした。MRIで見えなくても神経の反応が確認された例がある一方、効果には個人差があり、対象人数が少ないため追加の検証が必要とされています。",
+            "originalTitle": "청신경 아예 안 보이는 선천성 난청이라도··· 인공와우 수술로 청각 발달 가능성 보인다",
+            "originalSummary": "청신경 아예 안 보이는 선천성 난청이라도··· 인공와우 수술로 청각 발달 가능성 보인다",
+            "sourceName": "경향신문",
+            "sourceUrl": "https://www.khan.co.kr",
+            "publishedAt": "2026-10-28T04:19:00.000Z",
+            "region": "asia_oceania",
+            "regionLabel": "アジア・オセアニア",
+            "topic": "health",
+            "topicLabel": "医療・補聴",
+            "curationScore": 21,
+            "curationSignals": [
+              "인공와우",
+              "난청",
+              "multilingual"
+            ],
+            "sourceDomain": "khan.co.kr",
+            "sourcePriority": 50,
+            "sourceMode": "regional-fresh",
+            "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+            "thumbnail": {
+              "url": "https://img.khan.co.kr/news/2026/10/28/news-p.v1.20261028.d44d9d29e7eb4f6e8bd59ccd14cc0e4b_P1.png",
+              "source": "og:image",
+              "pageUrl": "https://www.khan.co.kr/article/202610281319001"
+            }
+          },
+          "originalReason": "translation-review",
+          "reviewedBy": "codex-opus-source-review",
+          "reviewedAt": "2026-10-29T13:28:42.212Z",
+          "reviewers": [
+            "Codex",
+            "claude-opus-5-5"
+          ],
+          "sourceEvidence": [
+            {
+              "url": "https://www.khan.co.kr/article/202610281319001",
+              "excerpt": "분당서울대병원 이비인후과 최병윤 교수",
+              "method": "article-text",
+              "kind": "original-publisher",
+              "checkedAt": "2026-10-29T13:26:11.999Z"
+            },
+            {
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42872457/",
+              "excerpt": "Retrospective cohort study.",
+              "method": "search-index",
+              "kind": "primary-research",
+              "checkedAt": "2026-10-29T13:26:11.999Z"
+            }
+          ],
+          "sourceArticleUrl": "https://www.khan.co.kr/article/202610281319001",
+          "reviewNote": "医療助言にはしない。全体46人と術後比較36人を混同せず、人数・改善率は見出し要約に追加しない。",
+          "opusNote": "修正に同意。ただし要約に次の4点を入れるべき。(1) 研究デザインはPubMed抄録上「Retrospective cohort study」（後ろ向き観察研究）で、Otology & Neurotology 2026年10月14日オンライン先行公開。抄録の対象は両側聴神経無形成の小児46人（86耳、2施設、2011〜2024年）、京郷新聞の記事は1年以上経過観察した36人。人数は要約に入れない（draftのlimitsどおり）。(2) MRIで見えないことは神経がまったく無いことを意味しない。京郷新聞は「MRI 검사에서 청신경이 보이지 않던 환아에게도 반응이 확인됐다」と報じ、抄録も「No clear association was observed between MRI-based CN aplasia severity」とECAP陽性・聴取成績の関係を否定している。(3) 個人差。EMPES群とそれ以外の群で差があり、抄録にも分布の幅（variability）の記述がある。京郷新聞は言語発達が他の難聴児より全体に遅いことも伝えている。(4) 京郷新聞によれば研究者は「연구에 참여한 환아 수가 적은 만큼 추가적인 검증도 필요」と述べている。draftの見出し・要約は(2)の「反応が確認された例がある」と、観察研究であることが抜けている。医療助言にしない方針は維持する。",
+          "limits": "医療助言にはしない。全体46人と術後比較36人を混同せず、人数・改善率は見出し要約に追加しない。",
+          "sourcePublishedAt": "2026-10-28T04:19:00.000Z",
+          "reviewedTextFingerprint": "656fb4f266c6fb94ed24a6ec164c790fcaa2376f28a76f23d84fec0421910fdb",
+          "correctionTopic": "health",
+          "correctionTopicLabel": "医療・補聴",
+          "region": "asia_oceania",
+          "place": "Seoul National University Bundang Hospital, Seongnam",
+          "evidence": "분당서울대병원 이비인후과 최병윤 교수 / Retrospective cohort study.",
+          "restorationSnapshot": "2026-10-29T00:59:37.501Z",
+          "reviewDigest": "19fb15814cea325c25d011b44afabd07faa27c8e6f8f84ea07b0e6170f0186ee"
         }
       ],
-      "sourceArticleUrl": "https://www.khan.co.kr/article/202610281319001",
-      "reviewNote": "医療助言にはしない。全体46人と術後比較36人を混同せず、人数・改善率は見出し要約に追加しない。",
-      "opusNote": "修正に同意。ただし要約に次の4点を入れるべき。(1) 研究デザインはPubMed抄録上「Retrospective cohort study」（後ろ向き観察研究）で、Otology & Neurotology 2026年10月14日オンライン先行公開。抄録の対象は両側聴神経無形成の小児46人（86耳、2施設、2011〜2024年）、京郷新聞の記事は1年以上経過観察した36人。人数は要約に入れない（draftのlimitsどおり）。(2) MRIで見えないことは神経がまったく無いことを意味しない。京郷新聞は「MRI 검사에서 청신경이 보이지 않던 환아에게도 반응이 확인됐다」と報じ、抄録も「No clear association was observed between MRI-based CN aplasia severity」とECAP陽性・聴取成績の関係を否定している。(3) 個人差。EMPES群とそれ以外の群で差があり、抄録にも分布の幅（variability）の記述がある。京郷新聞は言語発達が他の難聴児より全体に遅いことも伝えている。(4) 京郷新聞によれば研究者は「연구에 참여한 환아 수가 적은 만큼 추가적인 검증도 필요」と述べている。draftの見出し・要約は(2)の「反応が確認された例がある」と、観察研究であることが抜けている。医療助言にしない方針は維持する。",
-      "limits": "医療助言にはしない。全体46人と術後比較36人を混同せず、人数・改善率は見出し要約に追加しない。",
-      "sourcePublishedAt": "2026-10-28T04:19:00.000Z",
-      "reviewedTextFingerprint": "656fb4f266c6fb94ed24a6ec164c790fcaa2376f28a76f23d84fec0421910fdb",
-      "correctionTopic": "health",
-      "correctionTopicLabel": "医療・補聴",
-      "region": "asia_oceania",
-      "place": "Seoul National University Bundang Hospital, Seongnam",
-      "evidence": "분당서울대병원 이비인후과 최병윤 교수 / Retrospective cohort study.",
-      "restorationSnapshot": "2026-10-29T00:59:37.501Z",
       "observations": [
         {
           "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lWWhiMG85M2E1eUNCcGFrM0hLWW0wMHdOWlpmb080YnZKV29JTmRwcE1yY3h4NWlVYndLZUI1ZlRGc3ZWVVlvWnZOWXJ6Z3c5ejlEMGpla2RPQdIBX0FVX3lxTE1DaXQ2SEhJbExaQVhyUk9KNWoybTJHdXZOMWRBZDFKZUJabDNtX2s4UmNiSVdmcWdmdkhNSkVZeTdrVkhweFRtVlB0UXlQRnp2S3F6UWxrRUVoNFNsVWd3?oc=5",
@@ -86,9 +113,37 @@
           "regionLabel": "アジア・オセアニア",
           "topic": "health",
           "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+        },
+        {
+          "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lWWhiMG85M2E1eUNCcGFrM0hLWW0wMHdOWlpmb080YnZKV29JTmRwcE1yY3h4NWlVYndLZUI1ZlRGc3ZWVVlvWnZOWXJ6Z3c5ejlEMGpla2RPQdIBX0FVX3lxTE1DaXQ2SEhJbExaQVhyUk9KNWoybTJHdXZOMWRBZDFKZUJabDNtX2s4UmNiSVdmcWdmdkhNSkVZeTdrVkhweFRtVlB0UXlQRnp2S3F6UWxrRUVoNFNsVWd3?oc=5",
+          "title": "MRIで聴神経が見えない子どもの人工内耳、韓国の観察研究が聴こえの改善傾向を報告",
+          "summary": "韓国の研究チームが、MRIで聴神経が確認できない子どもへの人工内耳について、過去の経過を調べた観察研究を報告しました。早期の手術、電極配置、機器の早期作動を組み合わせた群で、聴こえの評価が高い傾向でした。MRIで見えなくても神経の反応が確認された例がある一方、効果には個人差があり、対象人数が少ないため追加の検証が必要とされています。",
+          "originalTitle": "청신경 아예 안 보이는 선천성 난청이라도··· 인공와우 수술로 청각 발달 가능성 보인다",
+          "originalSummary": "청신경 아예 안 보이는 선천성 난청이라도··· 인공와우 수술로 청각 발달 가능성 보인다",
+          "sourceName": "경향신문",
+          "sourceUrl": "https://www.khan.co.kr",
+          "publishedAt": "2026-10-28T04:19:00.000Z",
+          "region": "asia_oceania",
+          "regionLabel": "アジア・オセアニア",
+          "topic": "health",
+          "topicLabel": "医療・補聴",
+          "curationScore": 21,
+          "curationSignals": [
+            "인공와우",
+            "난청",
+            "multilingual"
+          ],
+          "sourceDomain": "khan.co.kr",
+          "sourcePriority": 50,
+          "sourceMode": "regional-fresh",
+          "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+          "thumbnail": {
+            "url": "https://img.khan.co.kr/news/2026/10/28/news-p.v1.20261028.d44d9d29e7eb4f6e8bd59ccd14cc0e4b_P1.png",
+            "source": "og:image",
+            "pageUrl": "https://www.khan.co.kr/article/202610281319001"
+          }
         }
-      ],
-      "reviewDigest": "19fb15814cea325c25d011b44afabd07faa27c8e6f8f84ea07b0e6170f0186ee"
+      ]
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPSHk0TklaVmU4aTlsR2VGdEZNYThRZWVGcWpwRmpJVnZBR1dVT0lXeTc5Mk9nZ0Q2OEtXeEcwLXhiSE1ieThyRFhYUXpPbUg3T0plc0lkWkNIQlJLZGkxcC1jUEZ4RVA0eGxWNVNIWU5GendlQ2FieU5FUlNxaW5rYjVWSGJiODdFN09rVlg5eFhRMk1tWnI2VjlhN1pOb2xhOUEwMVV0SUxCWENFUDA5LW84OWdTUGFmVzdLTGhCazhvNkw1aUJ4WmxDcDhXLWtoY3RoN2hjR1pBeFFH0gHiAUFVX3lxTE5KWDBtUGtIT3VKNEpDSWlXYWFuTWFqNUstRWJjVUdoZTBGQnZCM0lEWVJYbjBNNVY4ZEMzUE9nUmJKMUEyTkFZV1ZMVGVYb0oyNUVaNXc5ZjNBQlA0OTkxQVBJZmhFa195WU01UktHb3ctWWNZT3hhWktGREZscUxRbGR0NHdlZFZmQi1BMDltVlVaN1hiSUV6T2x2aDRCTzNERE11VjlaMC1vZFk2ZnRTelRDMGN5VzlUM1FZdmFiV3ZtaHU0NVhFQ0RRRDN3ZklUX2Z2TmVuVDdWUEh3UTVTNGc?oc=5",
