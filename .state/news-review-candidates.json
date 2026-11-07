@@ -1,30 +1,39 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-07T00:51:56.901Z",
+  "generatedAt": "2026-11-07T09:56:39.341Z",
   "counts": {
-    "uniqueInputs": 1943,
-    "alreadyPublished": 641,
-    "outsideWindow": 1079,
-    "hardExcluded": 2,
-    "duplicateOfPublished": 36,
-    "candidateDuplicates": 1,
-    "eligible": 184,
+    "uniqueInputs": 1975,
+    "alreadyPublished": 649,
+    "outsideWindow": 1090,
+    "hardExcluded": 1,
+    "duplicateOfPublished": 37,
+    "candidateDuplicates": 3,
+    "eligible": 195,
     "queued": 40,
-    "deferred": 144
+    "deferred": 155
   },
   "hardExclusionReasons": {
-    "unrelated-visual-section": 1,
-    "foreign-coverage-review-required": 1
+    "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-07T00:24:27.683Z",
+    "previousGeneratedAt": "2026-11-07T00:51:56.901Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/07/154140",
+      "articleHash": "330105401e7250e75cfc12ea8d22e9f2774a26d80dd61ed88450f9e1e6f19278",
+      "publishedAt": "2026-11-07T06:41:40.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/06/142958",
       "articleHash": "582fc17700fa617eff95320d04cf0c5a73fe0fafdb98da68c62556b969e176ec",
@@ -409,16 +418,6 @@
       "sourceUrl": "https://co-coco.jp/news/sakerubashoni_oitekure/",
       "articleHash": "764891deac3df4e76a0175205b7a1ec8396417a8e1d5d68ab713680580782e6e",
       "publishedAt": "2026-09-24T02:30:00.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/series/work/makotomizutani/",
-      "articleHash": "a85c3b8f83f1259d55f82cdec31ed87837edd248c52c616eeefdfd042a3c019e",
-      "publishedAt": "2026-09-17T21:45:03.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
