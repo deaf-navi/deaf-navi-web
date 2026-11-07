@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T00:24:47.806Z",
+  "generatedAt": "2026-11-07T00:54:15.172Z",
   "variant": "world",
   "count": 599,
   "regions": {
@@ -21,9 +21,9 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 2690,
-    "dedupedCount": 1778,
-    "selectedCount": 600,
+    "rawCount": 2695,
+    "dedupedCount": 1780,
+    "selectedCount": 599,
     "maxArticles": 600,
     "minScore": 8,
     "freshLookback": "45d",
@@ -34,36 +34,31 @@
     "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 17,
-      "updated": 17,
-      "cached": 233,
-      "skipped": 502,
+      "checked": 0,
+      "updated": 0,
+      "cached": 239,
+      "skipped": 499,
       "failed": 0,
       "enabled": true,
-      "attemptsPerBatch": 2,
-      "splitBatchSize": 10,
-      "maxConsecutiveFailedBatches": 2,
-      "stoppedAfterConsecutiveFailures": false,
-      "minCoverage": 0.85,
       "fallback": {
         "requested": 1,
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 502,
-      "retainedPrevious": 168
+      "pending": 499,
+      "retainedPrevious": 179
     },
     "japanesePostEditRequired": false,
     "japanesePostEditMinCoverage": 0.85,
     "japanesePostEditFailOnLowCoverage": false,
-    "japanesePostEditCoverage": 0.4816666666666667,
+    "japanesePostEditCoverage": 0.48247078464106846,
     "freshnessCounts": {
       "last7d": 72,
-      "last30d": 197,
-      "last90d": 306
+      "last30d": 196,
+      "last90d": 305
     },
     "regionCounts": {
-      "unknown": 430,
+      "unknown": 429,
       "middle_east_africa": 47,
       "europe_cis": 40,
       "americas": 33,
@@ -76,7 +71,7 @@
       "culture": 27,
       "education": 71,
       "rights": 20,
-      "health": 126,
+      "health": 125,
       "technology": 24,
       "safety": 2
     },
@@ -156,7 +151,7 @@
       "아주경제": 1,
       "Telemundo 52": 1,
       "AIP - Agence Ivoirienne de Presse": 1,
-      "녹색경제신문": 1,
+      "더파워": 1,
       "Strisciarossa": 1,
       "Tribuna Hoje": 1,
       "فاس نيوز": 1,
@@ -165,7 +160,7 @@
       "dostor.org": 2,
       "Costa Norte": 1,
       "Alparslan Diyarı": 1,
-      "더파워": 1,
+      "녹색경제신문": 1,
       "La Región": 1,
       "REDE BRASIL DE TELEVISÃO": 1,
       "Daily Maverick": 2,
@@ -207,7 +202,6 @@
       "صدى البلد": 1,
       "Chiesa di Milano": 1,
       "Archidiócesis de Valencia": 1,
-      "경향신문": 1,
       "CTV News": 9,
       "한국일보": 1,
       "L'Indépendant": 1,
@@ -230,9 +224,9 @@
       "Frankfurter Rundschau": 1,
       "Ouest-France": 3,
       "Son Dakika": 1,
-      "TL7, Télévision loire 7": 1,
-      "Westfalen-Blatt": 1,
       "Netzwoche": 1,
+      "Westfalen-Blatt": 1,
+      "TL7, Télévision loire 7": 1,
       "Merkur": 1,
       "Morocco World News": 8,
       "Financial Times": 2,
@@ -259,16 +253,16 @@
       "Le Progrès": 2,
       "The Korea Times": 6,
       "Le Télégramme": 1,
-      "France 3 Régions": 1,
-      "Milwaukee Journal Sentinel": 1,
       "Le Journal du Centre": 1,
+      "Milwaukee Journal Sentinel": 1,
+      "France 3 Régions": 1,
       "RTE.ie": 7,
       "Department for Communities": 1,
       "Health Tech World": 1,
       "Saray Medya": 1,
       "Ambito": 1,
-      "에이블뉴스": 1,
       "월드장애인사랑뉴스": 1,
+      "에이블뉴스": 1,
       "The Washington Post": 5,
       "뉴스핌": 1,
       "Fédération Française de Vol Libre": 1,
@@ -335,20 +329,20 @@
       "EL PAÍS English": 1
     },
     "sourceModeCounts": {
-      "regional-fresh": 220,
-      "major-media": 301,
-      "major-media-fresh": 70,
+      "regional-fresh": 219,
+      "major-media": 295,
+      "major-media-fresh": 76,
       "regional-multilingual": 9
     },
     "thumbnails": {
-      "articles": 600,
-      "attempted": 34,
-      "cached": 429,
-      "acquired": 9,
-      "missing": 6,
-      "failed": 19,
-      "deferred": 137,
-      "withImage": 323,
+      "articles": 599,
+      "attempted": 23,
+      "cached": 440,
+      "acquired": 0,
+      "missing": 0,
+      "failed": 23,
+      "deferred": 136,
+      "withImage": 322,
       "googleStopped": false
     },
     "publishedCounts": {
@@ -515,7 +509,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1yUXRRMTJOYks5QmFndTlUV3FuRHNuV0RwdlhCVkl0b0xJVVlvV2Fpb0tyR1pqTVFfVGJDa1J6aFNUUFhWaUh0ZUp5ZnhhTEZuZE5YOGw0ZXZaNmZrWTFzN283SUZMdzJWVjd6RlBGSkJOcW5meldEcUZWYw?oc=5",
-      "title": "議会に手話通訳者を配置",
+      "title": "議会に手話通訳者が配置される。",
       "summary": "議会に手話通訳者が配置される。",
       "originalTitle": "Parliament gets sign language interpreters",
       "originalSummary": "Parliament gets sign language interpreters",
@@ -662,7 +656,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFBRR0F1YkFlMW1TQ3RWVk5xWjgwQmwtQ2Q2WWVlb3Q1TTNYNG1jNDJVaUE4bkNHQWkxSUJweUw4V0dZenRyeHFLOWxOY0NGMlpRRVNub2p6T2o5VXFMUUpqOFhmMHN4cGs3YW16SExlQ2tGZw?oc=5",
-      "title": "病院でろう患者向けLibras通訳導入の可能性",
+      "title": "病院でろう患者向けにブラジル手話（Libras）の通訳者が配置される可能性がある。",
       "summary": "病院でろう患者向けにブラジル手話（Libras）の通訳者が配置される可能性がある。",
       "originalTitle": "Hospitais poderão ter intérprete de Libras para pacientes surdos",
       "originalSummary": "Hospitais poderão ter intérprete de Libras para pacientes surdos",
@@ -1056,7 +1050,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQcTNyMWZCLTEtSmMwSklOaEZyRFBZSkY3Y2hMeGJsWEg0RF8xbmpsenY4blVlMGhrUXkxNDBVVDFpOHBSZXE4aEFEcENVbHZPb2RZdHd3YW1jZTQwYnA0eWZpTWxTalFab0VUMmtCZE1QT3NnVFRSTjNFSDBVeFNqcXktQzNsckNRek9OVHM1cnJ1XzlsTDJROVFGQThMQ29KUVMtaUIxdjBSM2NNNGFSZ282LWpfYWktSE1iQTQwejYySHY5OHhRWk1EM013UldFV21nWA?oc=5",
-      "title": "ろう児の聞こえる親に無料BSL講座を",
+      "title": "ろう児の聞こえる親に、英国手話（BSL）の無料講座を提供するよう求めている。",
       "summary": "ろう児の聞こえる親に、英国手話（BSL）の無料講座を提供するよう求めている。",
       "originalTitle": "Put British Sign Language in our hands: Provide free BSL classes to hearing parents of deaf children",
       "originalSummary": "Put British Sign Language in our hands: Provide free BSL classes to hearing parents of deaf children",
@@ -1454,7 +1448,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNcVBXWGtTd0FpeEw5SHo3UFN3aVB3a1FWS3F4TUpwandlQUg5RHI2WHl0aUpBRzBnNGxtcjBPM0NsZUFVbGZWVVVBV3VNRDVqbC0wVGNqVU0tbG95OV9BdW9teVQwcjNwSnBtVldWUDBBY1o0WExaV0l0VTFua1JIYXJHZTdtaHhZeEc0ZFA3cDJSUEl0V3Ytc2J3Zlk0MWtoei1qeWtjTXBwUUxObUxjQmhqQm9OdFRvb251SkRIaURFZ2diVWNIRUtR?oc=5",
-      "title": "メルスィンで聴覚障害者に映像手話支援",
+      "title": "メルスィンで、聴覚障害のある市民に映像による手話支援が提供される。",
       "summary": "メルスィンで、聴覚障害のある市民に映像による手話支援が提供される。",
       "originalTitle": "Mersin'de işitme engelli vatandaşlara görüntülü işaret dili desteği",
       "originalSummary": "Mersin'de işitme engelli vatandaşlara görüntülü işaret dili desteği",
@@ -3198,13 +3192,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
-      "title": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
-      "summary": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
-      "originalTitle": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
-      "originalSummary": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
-      "sourceName": "녹색경제신문",
-      "sourceUrl": "https://www.greened.kr",
+      "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
+      "title": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
+      "summary": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
+      "originalTitle": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
+      "originalSummary": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
+      "sourceName": "더파워",
+      "sourceUrl": "https://www.thepowernews.co.kr",
       "publishedAt": "2026-10-22T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -3224,14 +3218,17 @@
         "수어",
         "multilingual"
       ],
-      "sourceDomain": "greened.kr",
+      "sourceDomain": "thepowernews.co.kr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://www.greened.kr/news/thumbnail/202610/352727_404643_1421_v150.jpg",
+        "url": "https://cliimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=999&simg=202610221132440850703dfcd109a811513921884.jpg&nmt=7",
         "source": "og:image",
-        "pageUrl": "https://www.greened.kr/news/articleView.html?idxno=352727"
+        "pageUrl": "https://www.thepowernews.co.kr/view.php?ud=2026102211322048593dfcd109a8_7"
       }
     },
     {
@@ -3553,13 +3550,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
-      "title": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
-      "summary": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
-      "originalTitle": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
-      "originalSummary": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
-      "sourceName": "더파워",
-      "sourceUrl": "https://www.thepowernews.co.kr",
+      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
+      "title": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
+      "summary": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
+      "originalTitle": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
+      "originalSummary": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
+      "sourceName": "녹색경제신문",
+      "sourceUrl": "https://www.greened.kr",
       "publishedAt": "2026-10-22T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -3579,17 +3576,14 @@
         "수어",
         "multilingual"
       ],
-      "sourceDomain": "thepowernews.co.kr",
+      "sourceDomain": "greened.kr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://cliimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=999&simg=202610221132440850703dfcd109a811513921884.jpg&nmt=7",
+        "url": "https://www.greened.kr/news/thumbnail/202610/352727_404643_1421_v150.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.thepowernews.co.kr/view.php?ud=2026102211322048593dfcd109a8_7"
+        "pageUrl": "https://www.greened.kr/news/articleView.html?idxno=352727"
       }
     },
     {
@@ -4041,7 +4035,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9ybi1fWFkwUFkzalVHcERROUFYUll5S0I1MW02TWdCMFAwc080QTgxZWl4MG9JMTd5dWtla19EZ2xMMkQ1SkUtY1FRTTJKSUtNQkdRUHM2MDZHNlE?oc=5",
-      "title": "南アフリカIEC、無資格の手話通訳者起用で批判",
+      "title": "南アフリカのIECが、選挙ワークショップで無資格の手話通訳者を起用したとして批判を受けている。",
       "summary": "南アフリカのIECが、選挙ワークショップで無資格の手話通訳者を起用したとして批判を受けている。",
       "originalTitle": "South Africa: IEC Under Fire After Unqualified Sign Language Interpreter Used At Election Workshop",
       "originalSummary": "South Africa: IEC Under Fire After Unqualified Sign Language Interpreter Used At Election Workshop",
@@ -5582,7 +5576,7 @@
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOZlJGaWlqeW1xR2FDUkozYTNiYTVmNUdUYVdaVTlLcXZ6TWVHclBOdHJKTlpvVjBwOVlYcWVqYWFoRXRyOTZlc3hFZTh5V191NmJzUmh3ejluNVVZd09pVlpyREk0QjlqRU9uZVZDeEZfUm9hdWczN29pcGk0OW1Qd1VIdERYQ0kycnlHdE10THJScTdNTmdHazF6dTNuNV9IRllqVVI2R05lTmsyTGtBMTlTYTJMUmQ2bm9IT28wel9Danl2eXRScWFuY0FUVmpGM1E?oc=5",
-      "title": "ヴィナッサンで歌と手話のコンサート",
+      "title": "ヴィナッサンで、アクセシビリティを祝う歌と手話を組み合わせたコンサートが開かれる。",
       "summary": "ヴィナッサンで、アクセシビリティを祝う歌と手話を組み合わせたコンサートが開かれる。",
       "originalTitle": "Un concert mêlant chant et langue des signes pour célébrer l’accessibilité à Vinassan",
       "originalSummary": "Un concert mêlant chant et langue des signes pour célébrer l’accessibilité à Vinassan",
@@ -6671,13 +6665,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
-      "title": "ロワールろう者ホームの新しい敷地",
-      "summary": "ロワールろう者ホームの新しい敷地",
-      "originalTitle": "Nouveaux locaux pour le foyer des Sourds de la Loire",
-      "originalSummary": "Nouveaux locaux pour le foyer des Sourds de la Loire",
-      "sourceName": "TL7, Télévision loire 7",
-      "sourceUrl": "https://www.tl7.fr",
+      "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
+      "title": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
+      "summary": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
+      "originalTitle": "Wie gut Gehörlose in der Schweiz telefonieren können",
+      "originalSummary": "Wie gut Gehörlose in der Schweiz telefonieren können",
+      "sourceName": "Netzwoche",
+      "sourceUrl": "https://www.netzwoche.ch",
       "publishedAt": "2026-10-16T07:00:00.000Z",
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -6687,23 +6681,18 @@
         "mentions": []
       },
       "discoveryRegion": "europe_cis",
-      "topic": "rights",
-      "topicLabel": "権利・制度",
+      "topic": "general",
+      "topicLabel": "一般",
       "curationScore": 20,
       "curationSignals": [
-        "sourd",
-        "sourds",
+        "gehörlos",
+        "gehörlose",
         "multilingual"
       ],
-      "sourceDomain": "tl7.fr",
+      "sourceDomain": "netzwoche.ch",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://s1.dmcdn.net/v/g4tgY1guCohdmXUBe/x240",
-        "source": "og:image",
-        "pageUrl": "https://www.tl7.fr/replay/saint-etienne-metropole_97/nouveaux-locaux-pour-le-foyer-des-sourds-de-la-loire_xboab36.html"
-      }
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPR3E0NW1uVC15WUpuY1dCdDR2TngzY1MwZlJBWFVGV3NJM3otQ2hyaVR0Qldsb3VicUJ2TFA2M0RZTUNrV3VkS1FkZnZvTWdlTWlXRm9aU0RXMnpHOFFRMGJVVGdER2N2YUtNX1Y2VGVTZnZrV25lZm5QZ1o3cXBMcmVnSGF5Y1NjWW1MTklrZ1FkWDVFOTJELXZVNEVGakJHRXJYMzR2S2laa3dTVzkyUVdkaw?oc=5",
@@ -6741,13 +6730,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
-      "title": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
-      "summary": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
-      "originalTitle": "Wie gut Gehörlose in der Schweiz telefonieren können",
-      "originalSummary": "Wie gut Gehörlose in der Schweiz telefonieren können",
-      "sourceName": "Netzwoche",
-      "sourceUrl": "https://www.netzwoche.ch",
+      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
+      "title": "ロワールろう者ホームの新しい敷地",
+      "summary": "ロワールろう者ホームの新しい敷地",
+      "originalTitle": "Nouveaux locaux pour le foyer des Sourds de la Loire",
+      "originalSummary": "Nouveaux locaux pour le foyer des Sourds de la Loire",
+      "sourceName": "TL7, Télévision loire 7",
+      "sourceUrl": "https://www.tl7.fr",
       "publishedAt": "2026-10-16T07:00:00.000Z",
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -6757,18 +6746,23 @@
         "mentions": []
       },
       "discoveryRegion": "europe_cis",
-      "topic": "general",
-      "topicLabel": "一般",
+      "topic": "rights",
+      "topicLabel": "権利・制度",
       "curationScore": 20,
       "curationSignals": [
-        "gehörlos",
-        "gehörlose",
+        "sourd",
+        "sourds",
         "multilingual"
       ],
-      "sourceDomain": "netzwoche.ch",
+      "sourceDomain": "tl7.fr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "thumbnail": {
+        "url": "https://s1.dmcdn.net/v/g4tgY1guCohdmXUBe/x240",
+        "source": "og:image",
+        "pageUrl": "https://www.tl7.fr/replay/saint-etienne-metropole_97/nouveaux-locaux-pour-le-foyer-des-sourds-de-la-loire_xboab36.html"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMimwJBVV95cUxQVVpWeVRMd09BODNxU1NMbFF3VWR5UTRPdS0wa29SMTZ6WWpDeUV2RHdCd3BxX1lJRHBwcG9sRnJuVUREMVItd09Qdzk3SjRLWWxPQVZhS3ZMVDF6R0t5U0JGenVlZ0tMTmtRcjkwMmlZcXU4S0ZIVWJCcGZDRzd2LVJLbDlkbElKQVp3NWpxb3dkX3F1dGlJa3Nka0xPOFNTdG1qdlk3Y2Y1TFZ3d0d2N3FxbWVtMzN5UlZodjJfV0pZSnpYLXdGUkhHZ05YMGhUNldIdGd5OWJRc2R3WXdsbmZqRUI4ZGVEa2NlV0wwZzlnc2w0SXJ0UFdIUUp4ZEJPNEdjd2JTUENORG9lajVCNXJIZWRwZTNnbm04?oc=5",
@@ -6889,7 +6883,7 @@
       ],
       "sourceDomain": "moroccoworldnews.com",
       "sourcePriority": 70,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8052,26 +8046,26 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
-      "title": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
-      "summary": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
-      "originalTitle": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
-      "originalSummary": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
-      "sourceName": "France 3 Régions",
-      "sourceUrl": "https://france3-regions.franceinfo.fr",
+      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
+      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "originalTitle": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+      "originalSummary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+      "sourceName": "Le Journal du Centre",
+      "sourceUrl": "https://www.lejdc.fr",
       "publishedAt": "2026-09-27T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "regionEvidence": {
         "method": "codex-opus-source-review",
         "status": "source-verified",
-        "reviewedAt": "2026-10-29T13:28:42.212Z",
+        "reviewedAt": "2026-10-29T15:54:51.705Z",
         "mentions": [
-          "Limoges (Haute-Vienne), France"
+          "Bourgogne-Franche-Comté, France"
         ],
         "sources": [
           {
-            "url": "https://www.limoges.fr/rapports-de-la-chambre-regionale-des-comptes",
+            "url": "https://www.bourgognefranchecomte.fr/index.php/la-region-en-quelques-chiffres",
             "method": "official-location"
           }
         ]
@@ -8085,15 +8079,10 @@
         "sourds",
         "multilingual"
       ],
-      "sourceDomain": "france3-regions.franceinfo.fr",
+      "sourceDomain": "lejdc.fr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://france3-regions.franceinfo.fr/image/vG80OMVYrmldxBa7m7CWeZt6hlI/930x620/regions/2026/09/23/6ab3fb5863d49458814325.jpg",
-        "source": "og:image",
-        "pageUrl": "https://france3-regions.franceinfo.fr/nouvelle-aquitaine/haute-vienne/limoges/ca-a-change-ma-vie-un-interprete-bouleverse-l-accompagnement-des-patients-sourds-au-chu-de-limoges-3422162.html"
-      }
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOYnV6M0ZnVTVYa0hKcElEVkd6dGFhRnJBbDRsV0JRN0tjb1JIUWJ0N0FZWnZ0YjhxelRCbUlPVjRaNXR2Q0F6N21fNC1IVDQtc1RPeFV6RzhYX05iZFc0YlJLX3JmYUVSd1d0eHFfbllQWnNHY1ZyUGNiNUZGa1VSMWVwSDcyOWc4ZmRvY3dQM0lxd1hKWlN2M0E5VVhMSDludnVBOVlkM28wLWRMcVNHcTBwaXp2QURMaEc0eU5HbHlOWXkxWlo3TTA4X0lva1E?oc=5",
@@ -8123,7 +8112,7 @@
       ],
       "sourceDomain": "moroccoworldnews.com",
       "sourcePriority": 70,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8214,26 +8203,26 @@
       "japanesePostEditModel": null
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
-      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
-      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
-      "originalTitle": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-      "originalSummary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-      "sourceName": "Le Journal du Centre",
-      "sourceUrl": "https://www.lejdc.fr",
+      "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
+      "title": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
+      "summary": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
+      "originalTitle": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
+      "originalSummary": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
+      "sourceName": "France 3 Régions",
+      "sourceUrl": "https://france3-regions.franceinfo.fr",
       "publishedAt": "2026-09-27T07:00:00.000Z",
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
       "regionEvidence": {
         "method": "codex-opus-source-review",
         "status": "source-verified",
-        "reviewedAt": "2026-10-29T15:54:51.705Z",
+        "reviewedAt": "2026-10-29T13:28:42.212Z",
         "mentions": [
-          "Bourgogne-Franche-Comté, France"
+          "Limoges (Haute-Vienne), France"
         ],
         "sources": [
           {
-            "url": "https://www.bourgognefranchecomte.fr/index.php/la-region-en-quelques-chiffres",
+            "url": "https://www.limoges.fr/rapports-de-la-chambre-regionale-des-comptes",
             "method": "official-location"
           }
         ]
@@ -8247,10 +8236,15 @@
         "sourds",
         "multilingual"
       ],
-      "sourceDomain": "lejdc.fr",
+      "sourceDomain": "france3-regions.franceinfo.fr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "thumbnail": {
+        "url": "https://france3-regions.franceinfo.fr/image/vG80OMVYrmldxBa7m7CWeZt6hlI/930x620/regions/2026/09/23/6ab3fb5863d49458814325.jpg",
+        "source": "og:image",
+        "pageUrl": "https://france3-regions.franceinfo.fr/nouvelle-aquitaine/haute-vienne/limoges/ca-a-change-ma-vie-un-interprete-bouleverse-l-accompagnement-des-patients-sourds-au-chu-de-limoges-3422162.html"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNN3h1NU1MN3JtXzljeHp5NDViWEV0NE4tOFZBTzduZ3l1VjdJb00yNXVsLTdNYlExb3l1SUJUNzBPQzNQaVYtXzdOMXdNbUVlZ2EzaHI3cm8yaVJGVEhnR3lvYTJzY1NVeVh5WERvTnluNlgwZHZXeHJmNWF5V3lVVzVqTQ?oc=5",
@@ -8518,7 +8512,7 @@
       ],
       "sourceDomain": "monitor.co.ug",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -8633,36 +8627,6 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNczlhTm14LWdxTHRLWnMtaFNjZ0Qxb09xM0pja1pFdHVTTGFTNW1ualRwcVF0Y3lUZGtxcU5CZ1ZqMDlMenFIZGRIZS1PS2p6NHczYUZFZW82SmxMbDQtWUtCeTBzN04yXzFwcHF30gFyQVVfeXFMUEdydDBIX1JMTEQtWHpUZ0x1Ml8zbjY0OUxNTEFhT09MQ3VmV0ttaWh0MlNBdzVDSDBfaWlEMFU0NUg5RzhZaDBuZlVSRGhBRFBpZ012a3IwRWNtbkFaYXpjWlprM1pXNlZHdlNSYkthUHVB?oc=5",
-      "title": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
-      "summary": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
-      "originalTitle": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
-      "originalSummary": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
-      "sourceName": "에이블뉴스",
-      "sourceUrl": "https://www.ablenews.co.kr",
-      "publishedAt": "2026-10-01T07:00:00.000Z",
-      "region": "unknown",
-      "regionLabel": "地域未確認",
-      "regionEvidence": {
-        "method": "source-text-v1",
-        "status": "unconfirmed",
-        "mentions": []
-      },
-      "discoveryRegion": "asia_oceania",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 22,
-      "curationSignals": [
-        "청각장애",
-        "인공와우",
-        "multilingual"
-      ],
-      "sourceDomain": "ablenews.co.kr",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTFB4Vm5yYlNZWHpMajdGdlNFU0ZtSURrUzcyN1p5Z2htclRwX0hzaktQdEdnd2JXR0NVbVc5M3g2aFBucGhranVzUEFhTFpNSE5GeEFGWk00U3F3Ui1YNFl3S3J1dGdVdk00NTdBUWl0cw?oc=5",
       "title": "聴覚障害者人工内耳外部装置「本人負担80％」交換5年新しい2.6倍…一度に約890万ウォン",
       "summary": "聴覚障害者人工内耳外部装置「本人負担80％」交換5年新しい2.6倍…一度に約890万ウォン",
@@ -8688,6 +8652,36 @@
         "multilingual"
       ],
       "sourceDomain": "youcandonews.com",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNczlhTm14LWdxTHRLWnMtaFNjZ0Qxb09xM0pja1pFdHVTTGFTNW1ualRwcVF0Y3lUZGtxcU5CZ1ZqMDlMenFIZGRIZS1PS2p6NHczYUZFZW82SmxMbDQtWUtCeTBzN04yXzFwcHF30gFyQVVfeXFMUEdydDBIX1JMTEQtWHpUZ0x1Ml8zbjY0OUxNTEFhT09MQ3VmV0ttaWh0MlNBdzVDSDBfaWlEMFU0NUg5RzhZaDBuZlVSRGhBRFBpZ012a3IwRWNtbkFaYXpjWlprM1pXNlZHdlNSYkthUHVB?oc=5",
+      "title": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
+      "summary": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
+      "originalTitle": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
+      "originalSummary": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
+      "sourceName": "에이블뉴스",
+      "sourceUrl": "https://www.ablenews.co.kr",
+      "publishedAt": "2026-10-01T07:00:00.000Z",
+      "region": "unknown",
+      "regionLabel": "地域未確認",
+      "regionEvidence": {
+        "method": "source-text-v1",
+        "status": "unconfirmed",
+        "mentions": []
+      },
+      "discoveryRegion": "asia_oceania",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 22,
+      "curationSignals": [
+        "청각장애",
+        "인공와우",
+        "multilingual"
+      ],
+      "sourceDomain": "ablenews.co.kr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
@@ -9289,7 +9283,7 @@
       ],
       "sourceDomain": "jpost.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -10127,6 +10121,43 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
+      "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+      "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+      "originalTitle": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
+      "originalSummary": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
+      "sourceName": "CBS News",
+      "sourceUrl": "https://www.cbsnews.com",
+      "publishedAt": "2026-09-22T07:00:00.000Z",
+      "region": "unknown",
+      "regionLabel": "地域未確認",
+      "regionEvidence": {
+        "method": "source-text-v1",
+        "status": "unconfirmed",
+        "mentions": []
+      },
+      "discoveryRegion": "americas",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "curationScore": 20,
+      "curationSignals": [
+        "hearing loss",
+        "major-media"
+      ],
+      "sourceDomain": "cbsnews.com",
+      "sourcePriority": 84,
+      "sourceMode": "major-media",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "unknown",
+      "japanesePostEditModel": null,
+      "thumbnail": {
+        "url": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/09/22/25e22a89-dc81-43f0-becd-a9d6216477f1/thumbnail/1200x630/ce43ed1e9809183afd04c1d4fd722d0c/738952250401b05e25ea9481b34ecdc0-0-1790048717952.png",
+        "source": "og:image",
+        "pageUrl": "https://www.cbsnews.com/chicago/video/experts-say-treatment-of-hearing-loss-may-lower-development-of-alzheimers-disease/"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNUVFpb1JJUUdic2ZpM0pmU2ZxcjZrQ3RCMzZQaFpLU3VMQUo3TjFwXzVaRUx3TWpIbVJ4X1Jael9LdFYtN0hCVVFXMXZVOFhqTklYZkxKQzVBOWFPUmpuSFNWOTQwdEJXazBwcXZ0X3JhdzF3TlZXWll2YXpMSjBtVjl4NXE5ZnVHdzc4LXVPd2FSNDIzUF83TlBsMEM4aFdkemdHREw3VnVvZExwQVF0TXFLcEVXbWtFRzRGTWJB?oc=5",
       "title": "ろうのマオリのために、ロボットを活用した手話通訳システムの開発が進められている。",
       "summary": "ろうのマオリのために、ロボットを活用した手話通訳システムの開発が進められている。",
@@ -10367,43 +10398,6 @@
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
       "japanesePostEditModel": "gpt-6.1-sol"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
-      "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
-      "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
-      "originalTitle": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
-      "originalSummary": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
-      "sourceName": "CBS News",
-      "sourceUrl": "https://www.cbsnews.com",
-      "publishedAt": "2026-09-21T07:00:00.000Z",
-      "region": "unknown",
-      "regionLabel": "地域未確認",
-      "regionEvidence": {
-        "method": "source-text-v1",
-        "status": "unconfirmed",
-        "mentions": []
-      },
-      "discoveryRegion": "americas",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "curationScore": 20,
-      "curationSignals": [
-        "hearing loss",
-        "major-media"
-      ],
-      "sourceDomain": "cbsnews.com",
-      "sourcePriority": 84,
-      "sourceMode": "major-media",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "unknown",
-      "japanesePostEditModel": null,
-      "thumbnail": {
-        "url": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/09/22/25e22a89-dc81-43f0-becd-a9d6216477f1/thumbnail/1200x630/ce43ed1e9809183afd04c1d4fd722d0c/738952250401b05e25ea9481b34ecdc0-0-1790048717952.png",
-        "source": "og:image",
-        "pageUrl": "https://www.cbsnews.com/chicago/video/experts-say-treatment-of-hearing-loss-may-lower-development-of-alzheimers-disease/"
-      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQM3dHZlNUSnp3aW1GT1ZCWmw5dXlpMVNIZW5pbFF4MU43bm1qU2VNc2lFX1FhWjlGV09icDNZdkJJLXRyZm9VTUNPd1Bia2k3Sk4zUzlqa3pWazg5M2lxSi1hZFREVGkySnBWV2FBUkkwUmFoUWE0Z1lkTEhIUU5qdFplRENRWnNDNk5zdS16Y2NBNWhVZXlDRzlvYmxnZ3BudC00SnlwWWI?oc=5",
@@ -11275,7 +11269,7 @@
       ],
       "sourceDomain": "swissinfo.ch",
       "sourcePriority": 76,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -13018,7 +13012,7 @@
       ],
       "sourceDomain": "jpost.com",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -13666,7 +13660,7 @@
       ],
       "sourceDomain": "news24.com",
       "sourcePriority": 82,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15681,7 +15675,7 @@
       ],
       "sourceDomain": "smh.com.au",
       "sourcePriority": 80,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15816,7 +15810,7 @@
       ],
       "sourceDomain": "taipeitimes.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
@@ -16398,7 +16392,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -17711,7 +17705,7 @@
       ],
       "sourceDomain": "lemonde.fr",
       "sourcePriority": 84,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -19926,7 +19920,7 @@
       ],
       "sourceDomain": "monitor.co.ug",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -22815,8 +22809,7 @@
   ],
   "publicationReview": {
     "version": "publication-quality-v12",
-    "inputGeneratedAt": "2026-11-07T00:24:47.806Z",
-    "removed": [],
-    "removedCount": 1
+    "inputGeneratedAt": "2026-11-07T00:54:15.172Z",
+    "removed": []
   }
 }

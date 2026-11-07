@@ -4,8 +4,8 @@
   "title": "Deaf Navi World-JP",
   "variant": "world",
   "mode": "jp",
-  "generatedAt": "2026-11-07T00:24:47Z",
-  "sourceGeneratedAt": "2026-11-07T00:24:47Z",
+  "generatedAt": "2026-11-07T00:54:15Z",
+  "sourceGeneratedAt": "2026-11-07T00:54:15Z",
   "count": 599,
   "language": "ja-JP",
   "refresh": {
@@ -27,24 +27,19 @@
     "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 17,
-      "updated": 17,
-      "cached": 233,
-      "skipped": 502,
+      "checked": 0,
+      "updated": 0,
+      "cached": 239,
+      "skipped": 499,
       "failed": 0,
       "enabled": true,
-      "attemptsPerBatch": 2,
-      "splitBatchSize": 10,
-      "maxConsecutiveFailedBatches": 2,
-      "stoppedAfterConsecutiveFailures": false,
-      "minCoverage": 0.85,
       "fallback": {
         "requested": 1,
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 502,
-      "retainedPrevious": 168
+      "pending": 499,
+      "retainedPrevious": 179
     },
     "basePolicy": "World-JP uses Google translation and its cache first, then Deaf Navi glossary normalization and optional dedicated text-service assistance for missing translations."
   },
@@ -139,8 +134,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 2690,
-    "dedupedCount": 1778,
+    "rawCount": 2695,
+    "dedupedCount": 1780,
     "selectedCount": 599,
     "minScore": 8,
     "maxArticles": 600,
@@ -165,24 +160,19 @@
     "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
     "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
     "japanesePostEdit": {
-      "checked": 17,
-      "updated": 17,
-      "cached": 233,
-      "skipped": 502,
+      "checked": 0,
+      "updated": 0,
+      "cached": 239,
+      "skipped": 499,
       "failed": 0,
       "enabled": true,
-      "attemptsPerBatch": 2,
-      "splitBatchSize": 10,
-      "maxConsecutiveFailedBatches": 2,
-      "stoppedAfterConsecutiveFailures": false,
-      "minCoverage": 0.85,
       "fallback": {
         "requested": 1,
         "failures": 1,
         "circuitOpen": true
       },
-      "pending": 502,
-      "retainedPrevious": 168
+      "pending": 499,
+      "retainedPrevious": 179
     }
   },
   "counts": {
@@ -398,7 +388,7 @@
         "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "議会に手話通訳者を配置",
+      "title": "議会に手話通訳者が配置される。",
       "summary": "議会に手話通訳者が配置される。",
       "language": "ja-JP",
       "original": {
@@ -552,7 +542,7 @@
         "multilingual"
       ],
       "originalLanguage": "fr",
-      "title": "病院でろう患者向けLibras通訳導入の可能性",
+      "title": "病院でろう患者向けにブラジル手話（Libras）の通訳者が配置される可能性がある。",
       "summary": "病院でろう患者向けにブラジル手話（Libras）の通訳者が配置される可能性がある。",
       "language": "ja-JP",
       "original": {
@@ -979,7 +969,7 @@
         "multilingual"
       ],
       "originalLanguage": "en",
-      "title": "ろう児の聞こえる親に無料BSL講座を",
+      "title": "ろう児の聞こえる親に、英国手話（BSL）の無料講座を提供するよう求めている。",
       "summary": "ろう児の聞こえる親に、英国手話（BSL）の無料講座を提供するよう求めている。",
       "language": "ja-JP",
       "original": {
@@ -1402,7 +1392,7 @@
         "multilingual"
       ],
       "originalLanguage": "tr",
-      "title": "メルスィンで聴覚障害者に映像手話支援",
+      "title": "メルスィンで、聴覚障害のある市民に映像による手話支援が提供される。",
       "summary": "メルスィンで、聴覚障害のある市民に映像による手話支援が提供される。",
       "language": "ja-JP",
       "original": {
@@ -3307,15 +3297,15 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
-      "stableId": "world_4f4dcec766c266290030",
-      "thumbnailURL": "https://www.greened.kr/news/thumbnail/202610/352727_404643_1421_v150.jpg",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
+      "stableId": "world_868da0af1872ac921684",
+      "thumbnailURL": "https://cliimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=999&simg=202610221132440850703dfcd109a811513921884.jpg&nmt=7",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
       "publishedAt": "2026-10-22T07:00:00Z",
-      "sourceName": "녹색경제신문",
-      "sourceURL": "https://www.greened.kr",
-      "sourceUrl": "https://www.greened.kr",
-      "sourceDomain": "greened.kr",
+      "sourceName": "더파워",
+      "sourceURL": "https://www.thepowernews.co.kr",
+      "sourceUrl": "https://www.thepowernews.co.kr",
+      "sourceDomain": "thepowernews.co.kr",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "asia_oceania",
@@ -3330,17 +3320,18 @@
         "multilingual"
       ],
       "originalLanguage": "ko",
-      "title": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
-      "summary": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
+      "title": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
+      "summary": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
       "language": "ja-JP",
       "original": {
-        "title": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
-        "summary": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
+        "title": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
+        "summary": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
         "language": "ko"
       },
       "translation": {
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-        "postEdited": false,
+        "postEditProvider": "Codex App Server Japanese news editor v1",
+        "postEdited": true,
         "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
       }
     },
@@ -3648,15 +3639,15 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
-      "stableId": "world_868da0af1872ac921684",
-      "thumbnailURL": "https://cliimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=999&simg=202610221132440850703dfcd109a811513921884.jpg&nmt=7",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
+      "stableId": "world_4f4dcec766c266290030",
+      "thumbnailURL": "https://www.greened.kr/news/thumbnail/202610/352727_404643_1421_v150.jpg",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
       "publishedAt": "2026-10-22T07:00:00Z",
-      "sourceName": "더파워",
-      "sourceURL": "https://www.thepowernews.co.kr",
-      "sourceUrl": "https://www.thepowernews.co.kr",
-      "sourceDomain": "thepowernews.co.kr",
+      "sourceName": "녹색경제신문",
+      "sourceURL": "https://www.greened.kr",
+      "sourceUrl": "https://www.greened.kr",
+      "sourceDomain": "greened.kr",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "asia_oceania",
@@ -3671,18 +3662,17 @@
         "multilingual"
       ],
       "originalLanguage": "ko",
-      "title": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
-      "summary": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
+      "title": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
+      "summary": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
       "language": "ja-JP",
       "original": {
-        "title": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
-        "summary": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
+        "title": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
+        "summary": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
         "language": "ko"
       },
       "translation": {
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-        "postEditProvider": "Codex App Server Japanese news editor v1",
-        "postEdited": true,
+        "postEdited": false,
         "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
       }
     },
@@ -4163,7 +4153,7 @@
         "major-media"
       ],
       "originalLanguage": "en",
-      "title": "南アフリカIEC、無資格の手話通訳者起用で批判",
+      "title": "南アフリカのIECが、選挙ワークショップで無資格の手話通訳者を起用したとして批判を受けている。",
       "summary": "南アフリカのIECが、選挙ワークショップで無資格の手話通訳者を起用したとして批判を受けている。",
       "language": "ja-JP",
       "original": {
@@ -5761,7 +5751,7 @@
         "multilingual"
       ],
       "originalLanguage": "fr",
-      "title": "ヴィナッサンで歌と手話のコンサート",
+      "title": "ヴィナッサンで、アクセシビリティを祝う歌と手話を組み合わせたコンサートが開かれる。",
       "summary": "ヴィナッサンで、アクセシビリティを祝う歌と手話を組み合わせたコンサートが開かれる。",
       "language": "ja-JP",
       "original": {
@@ -6875,36 +6865,35 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
-      "stableId": "world_7de463d99eef1d3ff0a1",
-      "thumbnailURL": "https://s1.dmcdn.net/v/g4tgY1guCohdmXUBe/x240",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
+      "stableId": "world_467711586ee409a05b6c",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
       "publishedAt": "2026-10-16T07:00:00Z",
-      "sourceName": "TL7, Télévision loire 7",
-      "sourceURL": "https://www.tl7.fr",
-      "sourceUrl": "https://www.tl7.fr",
-      "sourceDomain": "tl7.fr",
+      "sourceName": "Netzwoche",
+      "sourceURL": "https://www.netzwoche.ch",
+      "sourceUrl": "https://www.netzwoche.ch",
+      "sourceDomain": "netzwoche.ch",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "unknown",
       "regionLabel": "地域未確認",
-      "topic": "rights",
-      "topicLabel": "権利・制度",
-      "legacyCategory": "policy",
+      "topic": "general",
+      "topicLabel": "一般",
+      "legacyCategory": "general",
       "curationScore": 20,
       "curationSignals": [
-        "sourd",
-        "sourds",
+        "gehörlos",
+        "gehörlose",
         "multilingual"
       ],
-      "originalLanguage": "en",
-      "title": "ロワールろう者ホームの新しい敷地",
-      "summary": "ロワールろう者ホームの新しい敷地",
+      "originalLanguage": "tr",
+      "title": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
+      "summary": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
       "language": "ja-JP",
       "original": {
-        "title": "Nouveaux locaux pour le foyer des Sourds de la Loire",
-        "summary": "Nouveaux locaux pour le foyer des Sourds de la Loire",
-        "language": "en"
+        "title": "Wie gut Gehörlose in der Schweiz telefonieren können",
+        "summary": "Wie gut Gehörlose in der Schweiz telefonieren können",
+        "language": "tr"
       },
       "translation": {
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -6951,35 +6940,36 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
-      "stableId": "world_467711586ee409a05b6c",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
+      "stableId": "world_7de463d99eef1d3ff0a1",
+      "thumbnailURL": "https://s1.dmcdn.net/v/g4tgY1guCohdmXUBe/x240",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
       "publishedAt": "2026-10-16T07:00:00Z",
-      "sourceName": "Netzwoche",
-      "sourceURL": "https://www.netzwoche.ch",
-      "sourceUrl": "https://www.netzwoche.ch",
-      "sourceDomain": "netzwoche.ch",
+      "sourceName": "TL7, Télévision loire 7",
+      "sourceURL": "https://www.tl7.fr",
+      "sourceUrl": "https://www.tl7.fr",
+      "sourceDomain": "tl7.fr",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "unknown",
       "regionLabel": "地域未確認",
-      "topic": "general",
-      "topicLabel": "一般",
-      "legacyCategory": "general",
+      "topic": "rights",
+      "topicLabel": "権利・制度",
+      "legacyCategory": "policy",
       "curationScore": 20,
       "curationSignals": [
-        "gehörlos",
-        "gehörlose",
+        "sourd",
+        "sourds",
         "multilingual"
       ],
-      "originalLanguage": "tr",
-      "title": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
-      "summary": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
+      "originalLanguage": "en",
+      "title": "ロワールろう者ホームの新しい敷地",
+      "summary": "ロワールろう者ホームの新しい敷地",
       "language": "ja-JP",
       "original": {
-        "title": "Wie gut Gehörlose in der Schweiz telefonieren können",
-        "summary": "Wie gut Gehörlose in der Schweiz telefonieren können",
-        "language": "tr"
+        "title": "Nouveaux locaux pour le foyer des Sourds de la Loire",
+        "summary": "Nouveaux locaux pour le foyer des Sourds de la Loire",
+        "language": "en"
       },
       "translation": {
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -7073,7 +7063,7 @@
       "sourceURL": "https://www.moroccoworldnews.com",
       "sourceUrl": "https://www.moroccoworldnews.com",
       "sourceDomain": "moroccoworldnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 70,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -8266,15 +8256,14 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
-      "stableId": "world_064e05fafaac47c86c22",
-      "thumbnailURL": "https://france3-regions.franceinfo.fr/image/vG80OMVYrmldxBa7m7CWeZt6hlI/930x620/regions/2026/09/23/6ab3fb5863d49458814325.jpg",
-      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
+      "stableId": "world_38235e51b9dbd596d655",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
       "publishedAt": "2026-09-27T07:00:00Z",
-      "sourceName": "France 3 Régions",
-      "sourceURL": "https://france3-regions.franceinfo.fr",
-      "sourceUrl": "https://france3-regions.franceinfo.fr",
-      "sourceDomain": "france3-regions.franceinfo.fr",
+      "sourceName": "Le Journal du Centre",
+      "sourceURL": "https://www.lejdc.fr",
+      "sourceUrl": "https://www.lejdc.fr",
+      "sourceDomain": "lejdc.fr",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "europe_cis",
@@ -8288,14 +8277,14 @@
         "sourds",
         "multilingual"
       ],
-      "originalLanguage": "tr",
-      "title": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
-      "summary": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
+      "originalLanguage": "fr",
+      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
       "language": "ja-JP",
       "original": {
-        "title": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
-        "summary": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
-        "language": "tr"
+        "title": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+        "summary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+        "language": "fr"
       },
       "translation": {
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -8313,7 +8302,7 @@
       "sourceURL": "https://www.moroccoworldnews.com",
       "sourceUrl": "https://www.moroccoworldnews.com",
       "sourceDomain": "moroccoworldnews.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 70,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -8418,14 +8407,15 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
-      "stableId": "world_38235e51b9dbd596d655",
-      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
+      "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
+      "stableId": "world_064e05fafaac47c86c22",
+      "thumbnailURL": "https://france3-regions.franceinfo.fr/image/vG80OMVYrmldxBa7m7CWeZt6hlI/930x620/regions/2026/09/23/6ab3fb5863d49458814325.jpg",
+      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
       "publishedAt": "2026-09-27T07:00:00Z",
-      "sourceName": "Le Journal du Centre",
-      "sourceURL": "https://www.lejdc.fr",
-      "sourceUrl": "https://www.lejdc.fr",
-      "sourceDomain": "lejdc.fr",
+      "sourceName": "France 3 Régions",
+      "sourceURL": "https://france3-regions.franceinfo.fr",
+      "sourceUrl": "https://france3-regions.franceinfo.fr",
+      "sourceDomain": "france3-regions.franceinfo.fr",
       "sourceMode": "regional-fresh",
       "sourcePriority": 50,
       "region": "europe_cis",
@@ -8439,14 +8429,14 @@
         "sourds",
         "multilingual"
       ],
-      "originalLanguage": "fr",
-      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
-      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "originalLanguage": "tr",
+      "title": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
+      "summary": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
       "language": "ja-JP",
       "original": {
-        "title": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-        "summary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-        "language": "fr"
+        "title": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
+        "summary": "\"Ça a changé ma vie\" : un interprète bouleverse l'accompagnement des patients sourds au CHU de Limoges",
+        "language": "tr"
       },
       "translation": {
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -8688,7 +8678,7 @@
       "sourceURL": "https://www.monitor.co.ug",
       "sourceUrl": "https://www.monitor.co.ug",
       "sourceDomain": "monitor.co.ug",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -8829,43 +8819,6 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNczlhTm14LWdxTHRLWnMtaFNjZ0Qxb09xM0pja1pFdHVTTGFTNW1ualRwcVF0Y3lUZGtxcU5CZ1ZqMDlMenFIZGRIZS1PS2p6NHczYUZFZW82SmxMbDQtWUtCeTBzN04yXzFwcHF30gFyQVVfeXFMUEdydDBIX1JMTEQtWHpUZ0x1Ml8zbjY0OUxNTEFhT09MQ3VmV0ttaWh0MlNBdzVDSDBfaWlEMFU0NUg5RzhZaDBuZlVSRGhBRFBpZ012a3IwRWNtbkFaYXpjWlprM1pXNlZHdlNSYkthUHVB?oc=5",
-      "stableId": "world_20659be34cd1d97d2631",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNczlhTm14LWdxTHRLWnMtaFNjZ0Qxb09xM0pja1pFdHVTTGFTNW1ualRwcVF0Y3lUZGtxcU5CZ1ZqMDlMenFIZGRIZS1PS2p6NHczYUZFZW82SmxMbDQtWUtCeTBzN04yXzFwcHF30gFyQVVfeXFMUEdydDBIX1JMTEQtWHpUZ0x1Ml8zbjY0OUxNTEFhT09MQ3VmV0ttaWh0MlNBdzVDSDBfaWlEMFU0NUg5RzhZaDBuZlVSRGhBRFBpZ012a3IwRWNtbkFaYXpjWlprM1pXNlZHdlNSYkthUHVB?oc=5",
-      "publishedAt": "2026-10-01T07:00:00Z",
-      "sourceName": "에이블뉴스",
-      "sourceURL": "https://www.ablenews.co.kr",
-      "sourceUrl": "https://www.ablenews.co.kr",
-      "sourceDomain": "ablenews.co.kr",
-      "sourceMode": "regional-fresh",
-      "sourcePriority": 50,
-      "region": "unknown",
-      "regionLabel": "地域未確認",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 22,
-      "curationSignals": [
-        "청각장애",
-        "인공와우",
-        "multilingual"
-      ],
-      "originalLanguage": "ko",
-      "title": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
-      "summary": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
-      "language": "ja-JP",
-      "original": {
-        "title": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
-        "summary": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
-        "language": "ko"
-      },
-      "translation": {
-        "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-        "postEdited": false,
-        "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-      }
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTFB4Vm5yYlNZWHpMajdGdlNFU0ZtSURrUzcyN1p5Z2htclRwX0hzaktQdEdnd2JXR0NVbVc5M3g2aFBucGhranVzUEFhTFpNSE5GeEFGWk00U3F3Ui1YNFl3S3J1dGdVdk00NTdBUWl0cw?oc=5",
       "stableId": "world_50466ff0ec58d1442e03",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFB4Vm5yYlNZWHpMajdGdlNFU0ZtSURrUzcyN1p5Z2htclRwX0hzaktQdEdnd2JXR0NVbVc5M3g2aFBucGhranVzUEFhTFpNSE5GeEFGWk00U3F3Ui1YNFl3S3J1dGdVdk00NTdBUWl0cw?oc=5",
@@ -8894,6 +8847,43 @@
       "original": {
         "title": "청각장애인 인공와우 외부장치 ‘본인부담 80%’ 교체 5년 새 2.6배…한 번에 약 890만원",
         "summary": "청각장애인 인공와우 외부장치 ‘본인부담 80%’ 교체 5년 새 2.6배…한 번에 약 890만원",
+        "language": "ko"
+      },
+      "translation": {
+        "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+        "postEdited": false,
+        "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+      }
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNczlhTm14LWdxTHRLWnMtaFNjZ0Qxb09xM0pja1pFdHVTTGFTNW1ualRwcVF0Y3lUZGtxcU5CZ1ZqMDlMenFIZGRIZS1PS2p6NHczYUZFZW82SmxMbDQtWUtCeTBzN04yXzFwcHF30gFyQVVfeXFMUEdydDBIX1JMTEQtWHpUZ0x1Ml8zbjY0OUxNTEFhT09MQ3VmV0ttaWh0MlNBdzVDSDBfaWlEMFU0NUg5RzhZaDBuZlVSRGhBRFBpZ012a3IwRWNtbkFaYXpjWlprM1pXNlZHdlNSYkthUHVB?oc=5",
+      "stableId": "world_20659be34cd1d97d2631",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNczlhTm14LWdxTHRLWnMtaFNjZ0Qxb09xM0pja1pFdHVTTGFTNW1ualRwcVF0Y3lUZGtxcU5CZ1ZqMDlMenFIZGRIZS1PS2p6NHczYUZFZW82SmxMbDQtWUtCeTBzN04yXzFwcHF30gFyQVVfeXFMUEdydDBIX1JMTEQtWHpUZ0x1Ml8zbjY0OUxNTEFhT09MQ3VmV0ttaWh0MlNBdzVDSDBfaWlEMFU0NUg5RzhZaDBuZlVSRGhBRFBpZ012a3IwRWNtbkFaYXpjWlprM1pXNlZHdlNSYkthUHVB?oc=5",
+      "publishedAt": "2026-10-01T07:00:00Z",
+      "sourceName": "에이블뉴스",
+      "sourceURL": "https://www.ablenews.co.kr",
+      "sourceUrl": "https://www.ablenews.co.kr",
+      "sourceDomain": "ablenews.co.kr",
+      "sourceMode": "regional-fresh",
+      "sourcePriority": 50,
+      "region": "unknown",
+      "regionLabel": "地域未確認",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 22,
+      "curationSignals": [
+        "청각장애",
+        "인공와우",
+        "multilingual"
+      ],
+      "originalLanguage": "ko",
+      "title": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
+      "summary": "聴覚障害者人工内耳外部装置交換費用負担カー、「健保支援拡大必要」",
+      "language": "ja-JP",
+      "original": {
+        "title": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
+        "summary": "청각장애인 인공와우 외부장치 교체비용 부담 커, “건보 지원 확대 필요”",
         "language": "ko"
       },
       "translation": {
@@ -9473,7 +9463,7 @@
       "sourceURL": "https://www.jpost.com",
       "sourceUrl": "https://www.jpost.com",
       "sourceDomain": "jpost.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -10300,6 +10290,44 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
+      "stableId": "world_88b2de65888cc26d38fe",
+      "thumbnailURL": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/09/22/25e22a89-dc81-43f0-becd-a9d6216477f1/thumbnail/1200x630/ce43ed1e9809183afd04c1d4fd722d0c/738952250401b05e25ea9481b34ecdc0-0-1790048717952.png",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
+      "publishedAt": "2026-09-22T07:00:00Z",
+      "sourceName": "CBS News",
+      "sourceURL": "https://www.cbsnews.com",
+      "sourceUrl": "https://www.cbsnews.com",
+      "sourceDomain": "cbsnews.com",
+      "sourceMode": "major-media",
+      "sourcePriority": 84,
+      "region": "unknown",
+      "regionLabel": "地域未確認",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
+      "legacyCategory": "medical",
+      "curationScore": 20,
+      "curationSignals": [
+        "hearing loss",
+        "major-media"
+      ],
+      "originalLanguage": "en",
+      "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+      "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
+      "language": "ja-JP",
+      "original": {
+        "title": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
+        "summary": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
+        "language": "en"
+      },
+      "translation": {
+        "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+        "postEditProvider": "Codex App Server Japanese news editor v1",
+        "postEdited": true,
+        "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNUVFpb1JJUUdic2ZpM0pmU2ZxcjZrQ3RCMzZQaFpLU3VMQUo3TjFwXzVaRUx3TWpIbVJ4X1Jael9LdFYtN0hCVVFXMXZVOFhqTklYZkxKQzVBOWFPUmpuSFNWOTQwdEJXazBwcXZ0X3JhdzF3TlZXWll2YXpMSjBtVjl4NXE5ZnVHdzc4LXVPd2FSNDIzUF83TlBsMEM4aFdkemdHREw3VnVvZExwQVF0TXFLcEVXbWtFRzRGTWJB?oc=5",
       "stableId": "world_c52840c55dba79c37f52",
       "thumbnailURL": "https://media.rnztools.nz/rnz/image/upload/s--PfQ6M1yf--/t_tohu-badge-facebook/f_auto/q_auto/4JHYJBS_SignPepper_robot_jpg",
@@ -10517,44 +10545,6 @@
         "title": "농인의 언어 ‘수어’, 문학의 다양성을 넓히다. '움직이는 시' 전시 개최",
         "summary": "농인의 언어 ‘수어’, 문학의 다양성을 넓히다. '움직이는 시' 전시 개최",
         "language": "ko"
-      },
-      "translation": {
-        "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-        "postEditProvider": "Codex App Server Japanese news editor v1",
-        "postEdited": true,
-        "policy": "Google translation and Deaf Navi glossary first; the dedicated text service optionally supplements missing translations when eligible. Untranslated articles are deferred."
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
-      "stableId": "world_88b2de65888cc26d38fe",
-      "thumbnailURL": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/09/22/25e22a89-dc81-43f0-becd-a9d6216477f1/thumbnail/1200x630/ce43ed1e9809183afd04c1d4fd722d0c/738952250401b05e25ea9481b34ecdc0-0-1790048717952.png",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPOUR1R1diR01uajlGYUF3d1VfTDVCeWs2TXBDOC0yUW1MZWJHZGVVLVVRM1R1Wm9femlnTlpjeXh0TVVPOUVzZEx0c2hWa2hRUExlNl9TMWMtanNZODl4UjFpS29uT3JmaWVLTi1VNFMzR1duWHZNeXBVY3lJeGJ4NDZVenVCNTE5RmFsM212SElacFRVcHE4TmduMXZtSGZhb0ZPR1JWR3I1N0dyeFhfaU52UkFOb2QzREtSNg?oc=5",
-      "publishedAt": "2026-09-21T07:00:00Z",
-      "sourceName": "CBS News",
-      "sourceURL": "https://www.cbsnews.com",
-      "sourceUrl": "https://www.cbsnews.com",
-      "sourceDomain": "cbsnews.com",
-      "sourceMode": "major-media",
-      "sourcePriority": 84,
-      "region": "unknown",
-      "regionLabel": "地域未確認",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
-      "legacyCategory": "medical",
-      "curationScore": 20,
-      "curationSignals": [
-        "hearing loss",
-        "major-media"
-      ],
-      "originalLanguage": "en",
-      "title": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
-      "summary": "専門家は、難聴を治療することでアルツハイマー病の発症リスクが低下する可能性があると指摘しています。",
-      "language": "ja-JP",
-      "original": {
-        "title": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
-        "summary": "Experts say treatment of hearing loss may lower development of Alzheimer’s disease",
-        "language": "en"
       },
       "translation": {
         "provider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
@@ -11391,7 +11381,7 @@
       "sourceURL": "https://www.swissinfo.ch",
       "sourceUrl": "https://www.swissinfo.ch",
       "sourceDomain": "swissinfo.ch",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 76,
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -13099,7 +13089,7 @@
       "sourceURL": "https://www.jpost.com",
       "sourceUrl": "https://www.jpost.com",
       "sourceDomain": "jpost.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -13732,7 +13722,7 @@
       "sourceURL": "https://www.news24.com",
       "sourceUrl": "https://www.news24.com",
       "sourceDomain": "news24.com",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 82,
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -15696,7 +15686,7 @@
       "sourceURL": "https://www.smh.com.au",
       "sourceUrl": "https://www.smh.com.au",
       "sourceDomain": "smh.com.au",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 80,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -15808,7 +15798,7 @@
       "sourceURL": "https://www.taipeitimes.com",
       "sourceUrl": "https://www.taipeitimes.com",
       "sourceDomain": "taipeitimes.com",
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "sourcePriority": 72,
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -16371,7 +16361,7 @@
       "sourceURL": "https://www.rte.ie",
       "sourceUrl": "https://www.rte.ie",
       "sourceDomain": "rte.ie",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 78,
       "region": "europe_cis",
       "regionLabel": "ヨーロッパ・CIS",
@@ -17604,7 +17594,7 @@
       "sourceURL": "https://www.lemonde.fr",
       "sourceUrl": "https://www.lemonde.fr",
       "sourceDomain": "lemonde.fr",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 84,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
@@ -19664,7 +19654,7 @@
       "sourceURL": "https://www.monitor.co.ug",
       "sourceUrl": "https://www.monitor.co.ug",
       "sourceDomain": "monitor.co.ug",
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "sourcePriority": 74,
       "region": "middle_east_africa",
       "regionLabel": "中東・アフリカ",
