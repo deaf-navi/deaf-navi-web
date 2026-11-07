@@ -1,29 +1,28 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-06T10:43:37.109Z",
+  "generatedAt": "2026-11-07T00:24:27.683Z",
   "counts": {
-    "uniqueInputs": 1965,
-    "alreadyPublished": 665,
+    "uniqueInputs": 1946,
+    "alreadyPublished": 643,
     "outsideWindow": 1077,
-    "hardExcluded": 3,
-    "duplicateOfPublished": 33,
-    "candidateDuplicates": 0,
-    "eligible": 187,
+    "hardExcluded": 2,
+    "duplicateOfPublished": 38,
+    "candidateDuplicates": 1,
+    "eligible": 185,
     "queued": 40,
-    "deferred": 147
+    "deferred": 145
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "incidental-celebrity-history": 1,
     "foreign-coverage-review-required": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-06T01:30:27.187Z",
+    "previousGeneratedAt": "2026-11-06T10:43:37.109Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -34,7 +33,7 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/05/140958",
