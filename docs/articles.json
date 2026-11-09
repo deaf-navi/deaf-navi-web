@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-11-09T00:41:10.021Z",
+  "generatedAt": "2026-11-09T00:46:51.280Z",
   "variant": "prod",
   "profile": "expanded",
   "count": 425,
   "quality": {
     "version": "publication-quality-v12",
-    "rawCount": 2127,
-    "scoredCount": 2127,
+    "rawCount": 2117,
+    "scoredCount": 2117,
     "missingDateRemoved": 0,
-    "freshCount": 904,
-    "staleOrInvalidRemoved": 1223,
+    "freshCount": 893,
+    "staleOrInvalidRemoved": 1224,
     "lowValuePageRemoved": 0,
-    "publicationRemoved": 153,
+    "publicationRemoved": 152,
     "publicationExclusions": [
       {
         "id": "https://co-coco.jp/news/wonyoung_mimibi/",
@@ -504,11 +504,6 @@
         "reason": "unrelated"
       },
       {
-        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1lYnF5MUNTR0hDSGhuak9aeVJyRUxNV3N6aXZ2Vjc4d2lmQmxGLUtIU1R0cFJnLV96MUNpU01Sa3QxeTJQWmhpOEgwWVNUV09DSndyT2FqTm5FUW9fVnlHQm9Ud2UxT0wzUFlHbGUyR3ZJaWN4?oc=5",
-        "title": "「試合出続ける選手に」 Ｇ3位・池田 横浜高で指名あいさつ",
-        "reason": "unrelated"
-      },
-      {
         "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ZdlZON01IamN6RUNGY2l3Uno2aHQzcFkyaXBuUW5RQWxkLWlyQ0JsY3JrZkhheU94QWJnQUptcEtDWGNMM3doRFMyWFdfTmIwWEstZzBZUjh0UFR3N2RoUHRHdFpPWExMN1FxUWN6WXNKZw?oc=5",
         "title": "青森：競泳・佐々木「高み目指す」 八戸市スポーツ栄光賞4人 ：地域ニュース",
         "reason": "unrelated"
@@ -779,26 +774,30 @@
         "reason": "unrelated"
       }
     ],
-    "filteredCount": 722,
+    "filteredCount": 712,
     "lowScoreRemoved": 29,
-    "nearDuplicateRemoved": 76,
-    "finalCountBeforeLimit": 646,
+    "nearDuplicateRemoved": 75,
+    "finalCountBeforeLimit": 637,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 25,
     "extraVisibleCategoryCounts": {
       "relay": 25
     },
-    "overflowCount": 221,
+    "overflowCount": 212,
     "minScore": 5,
     "maxCurrentAgeDays": 180,
     "fallbackRetentionDays": 45,
-    "fallbackCandidateCount": 296,
+    "fallbackCandidateCount": 297,
     "sourceHealth": {
       "direct": {
         "requested": 32,
-        "succeeded": 30,
+        "succeeded": 29,
         "failed": [
+          {
+            "sourceName": "全通研NOW!!",
+            "status": 403
+          },
           {
             "sourceName": "全日本ろうあ連盟 YouTube",
             "status": 404
@@ -836,7 +835,6 @@
       "東京手話通訳等派遣センター": 1,
       "電話リレーサービス": 27,
       "日本財団電話リレーサービス": 15,
-      "全通研NOW!!": 10,
       "日本聴覚医学会": 10,
       "北海道聴覚障がい者情報センター": 5,
       "札幌聴覚障害者協会": 6,
@@ -898,7 +896,7 @@
       "大阪府警本部": 1,
       "兵庫県": 10,
       "岐阜県公式ホームページ": 2,
-      "東京新聞": 11,
+      "東京新聞": 10,
       "目黒区": 5,
       "とりネット／鳥取県公式サイト": 20,
       "郡山市": 4,
@@ -952,7 +950,7 @@
       "産経ニュース": 5,
       "ナタリー": 7,
       "西日本新聞me": 5,
-      "motion-gallery.net": 5,
+      "motion-gallery.net": 4,
       "朝日新聞GLOBE＋": 2,
       "サンスポ": 2,
       "中日新聞Web": 5,
@@ -1162,8 +1160,8 @@
       "近江八幡市": 1,
       "高槻市ホームページ": 1,
       "西東京市": 1,
-      "www.city.yao.osaka.jp": 1,
       "袋井市": 1,
+      "www.city.yao.osaka.jp": 1,
       "利府町": 1,
       "北中城村ホームページ": 1,
       "스타뉴스": 1,
@@ -1223,6 +1221,7 @@
       "デーリー東北": 1,
       "亜州日報": 1,
       "TOSオンライン": 1,
+      "全通研NOW!!": 2,
       "cozre[コズレ]": 1,
       "聖教新聞": 1,
       "北日本新聞webunプラス": 1,
@@ -1358,7 +1357,7 @@
       "河北新報オンライン": 2,
       "亜州日報": 1,
       "TOSオンライン": 1,
-      "全通研NOW!!": 10,
+      "全通研NOW!!": 2,
       "cozre[コズレ]": 1,
       "Dellows News": 6,
       "NHK": 2,
@@ -1441,7 +1440,6 @@
       "IndexBox": 1,
       "慶應義塾": 1,
       "山本博司": 1,
-      "motion-gallery.net": 1,
       "鹿児島県": 1,
       "日本ろう者劇団": 10,
       "加東市": 2,
@@ -1517,29 +1515,29 @@
       "hokkaido_tohoku": 13
     },
     "sourceTypeCountsAfter": {
-      "rss": 629,
+      "rss": 620,
       "social": 12,
       "official-page": 5
     },
     "sourceTierCountsAfter": {
       "official": 229,
-      "google": 353,
+      "google": 352,
       "broad": 29,
-      "specialist": 35
+      "specialist": 27
     },
     "categoryCountsAfter": {
       "general": 186,
-      "sports": 64,
+      "sports": 63,
       "medical": 33,
-      "accessibility": 65,
+      "accessibility": 61,
       "relay": 25,
       "policy": 45,
       "local": 74,
       "culture": 20,
-      "safety": 31,
+      "safety": 30,
       "technology": 24,
-      "event": 63,
-      "education": 16
+      "event": 61,
+      "education": 15
     },
     "duplicateSamples": [
       {
@@ -1849,11 +1847,11 @@
     },
     "thumbnails": {
       "articles": 425,
-      "attempted": 31,
-      "cached": 394,
-      "acquired": 3,
-      "missing": 7,
-      "failed": 21,
+      "attempted": 6,
+      "cached": 419,
+      "acquired": 0,
+      "missing": 5,
+      "failed": 1,
       "deferred": 0,
       "withImage": 271,
       "googleStopped": false
@@ -8492,7 +8490,7 @@
   ],
   "publicationReview": {
     "version": "publication-quality-v12",
-    "inputGeneratedAt": "2026-11-09T00:41:10.021Z",
+    "inputGeneratedAt": "2026-11-09T00:46:51.280Z",
     "removed": []
   }
 }
