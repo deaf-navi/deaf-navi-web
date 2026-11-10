@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-10T04:47:44.968Z",
+  "checkedAt": "2026-11-10T13:46:16.043Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -2179,10 +2179,10 @@
   ],
   "thumbnails": {
     "articles": 12,
-    "attempted": 0,
-    "cached": 12,
-    "acquired": 0,
-    "missing": 0,
+    "attempted": 6,
+    "cached": 6,
+    "acquired": 4,
+    "missing": 2,
     "failed": 0,
     "deferred": 0,
     "withImage": 7,
@@ -2193,10 +2193,10 @@
     "pending": [
       {
         "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
-        "failures": 3,
+        "failures": 4,
         "firstFailureAt": "2026-11-10T00:50:34.825Z",
-        "lastAttemptAt": "2026-11-10T04:47:44.968Z",
-        "nextAttemptAt": "2026-11-10T06:47:44.968Z",
+        "lastAttemptAt": "2026-11-10T13:46:16.043Z",
+        "nextAttemptAt": "2026-11-10T17:46:16.043Z",
         "code": "ABORT_ERR"
       }
     ]
