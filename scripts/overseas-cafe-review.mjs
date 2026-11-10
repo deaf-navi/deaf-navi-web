@@ -2,11 +2,10 @@ import {reviewedSourceTask} from './overseas-reviewed-source.mjs';
 import {readFile,writeFile,rename} from 'node:fs/promises';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
-import {prepareCurationReview} from './prepare-curation-review.mjs';
+import {prepareCurationReview,curationDocumentEvidence} from './prepare-curation-review.mjs';
 import {reviewCurationTasks} from './curation-review.mjs';
 import {evidenceHash,prepareReviewItem,overseasFields} from './curation-review-contract.mjs';
 import {fetchThumbnailResource} from '../src/lib/thumbnail-fetch.mjs';
-import {cleanHtml} from '../src/lib/text.mjs';
 import {publicationBindingMatches} from './publication-binding.mjs';
 import {planOverseasRotation,overseasTargetSignature,overseasDailyItemLimit,OVERSEAS_BATCH_SIZE,OVERSEAS_TRAVEL_ITEMS} from './overseas-cafe-rotation.mjs';
 import {overseasFieldCoverage} from './curation-review-intake.mjs';
@@ -88,7 +87,7 @@ export async function runOverseasCafeReview({stateDir,snapshot={records:[]},cata
     if(!sourceCache.has(t.sourceUrl))sourceCache.set(t.sourceUrl,fetchResource(t.sourceUrl,{userAgent:'Codex-DeafNavi-Verification',maxBytes:800000,timeoutMs:15000,allowUrl:u=>u===t.sourceUrl}));
     const r=await sourceCache.get(t.sourceUrl);
     if(r.status!==200||!/text\/html|application\/xhtml\+xml/i.test(r.headers?.['content-type']??''))throw Error('unavailable');
-    e.observedDocumentHash=evidenceHash(cleanHtml(r.text.replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]*>/g,' ')));
+    e.observedDocumentHash=curationDocumentEvidence(r.text).documentHash;
     e.fetchStatus='fetched-unshared';fetched.add(t.recordId);
    }catch{e.fetchStatus='unavailable';}
    entries.push(e);

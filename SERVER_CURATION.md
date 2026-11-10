@@ -172,6 +172,8 @@ server/public-copy-rules.json を正本に、公開フィールドだけを検�
 
 ## 処理範囲と未処理の集計（2026-10-29）
 
+共有再承認の `approvedDocumentHash` は `scripts/prepare-curation-review.mjs` の `curationDocumentEvidence(保存したHTML).documentHash` を使う。同関数の `text` と `visibleText` を実読し、同じ保存HTMLから短文の存在と全条件を確認する。イベント公開用の `eventSourceText` はナビゲーション等の除去・文字正規化が異なるため共有hashへ流用しない。hashが一致しても実読・共有承認・公開確認を兼ねず、本文変更は従来どおり例外へ戻す。WordPress専用入力は既定のURL・scope付きhashを維持する。
+
 毎朝は `server-curation.mjs --status-only` を最初に1回実行し、私有 `curation-operator-brief.json` を読む。このモードは既存ロックと公開スナップショットを使う期限一覧・保存済み結果の機械集計だけで、API、情報源HTTP、公開DB更新、当日許可更新を行わない。通常CLIの重複起動はしない。詳細が必要な項目だけ `curation-work-status.json` と各元台帳を開く。
 
 `executionStatus=completed` は実行サイクルの終了、`coverageStatus=complete/incomplete/unknown` は対象の確認状態として分ける。未処理は blocked（比較基準・送信不明等）、initial-review（共有・初回登録）、review-required（条件差分・画像等）、source-unavailable、queued、waiting-sourceに分類する。件数の単位は確認項目であり、店舗数・イベント数・API要求数ではない。同日取得済みは未処理へ加算しない。古い/欠損レポートはUNKNOWN。公開判断や確認期限は更新しない。
