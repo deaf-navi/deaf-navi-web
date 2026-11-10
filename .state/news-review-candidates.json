@@ -1,22 +1,22 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-10T00:49:03.604Z",
+  "generatedAt": "2026-11-10T03:27:19.467Z",
   "counts": {
-    "uniqueInputs": 1967,
-    "alreadyPublished": 643,
-    "outsideWindow": 1102,
+    "uniqueInputs": 1969,
+    "alreadyPublished": 648,
+    "outsideWindow": 1103,
     "hardExcluded": 1,
-    "duplicateOfPublished": 37,
-    "candidateDuplicates": 2,
-    "eligible": 182,
+    "duplicateOfPublished": 31,
+    "candidateDuplicates": 3,
+    "eligible": 183,
     "queued": 40,
-    "deferred": 142
+    "deferred": 143
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-09T11:20:39.397Z",
+    "previousGeneratedAt": "2026-11-10T00:49:03.604Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -24,6 +24,16 @@
     "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/10/102751",
+      "articleHash": "8cc6cf0b32bece1d4695867657c5280a581ed751068c44d42bb85bc419ff05e6",
+      "publishedAt": "2026-11-10T01:27:51.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/07/154140",
       "articleHash": "330105401e7250e75cfc12ea8d22e9f2774a26d80dd61ed88450f9e1e6f19278",
@@ -182,7 +192,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/karigurashi4k/",
@@ -408,16 +418,6 @@
       "sourceUrl": "https://co-coco.jp/series/study/ookinashugo/",
       "articleHash": "883157f85419e6f9d1b4d3b60d6b712af8079e81ac40d363d67a4c326d2a0c9f",
       "publishedAt": "2026-10-02T02:45:12.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/modoki_event/",
-      "articleHash": "ff8cb52f05d76016d982a6a7ff4356891899943867635cfc4905aaf445402dca",
-      "publishedAt": "2026-09-28T07:30:47.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
