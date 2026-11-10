@@ -1,14 +1,103 @@
 {
-  "generatedAt": "2026-11-09T11:22:09.717Z",
+  "generatedAt": "2026-11-10T00:50:34.139Z",
   "variant": "prod",
   "profile": "expanded",
   "count": 5000,
   "source": {
-    "currentOverflowCount": 225,
+    "currentOverflowCount": 217,
     "previousOldCount": 5000,
     "maxOldArticles": 5000
   },
   "articles": [
+    {
+      "id": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9sYWlXX1hEVU40cUZwV3FnZWlSLVZyanh0U3MteFV2TXdTSENvN042M1gzR3o5a1BTeGpwSTNCRTJkbnVyS3FCcHBOaVE?oc=5",
+      "title": "【障害者手帳】住民税課税世帯でも補装具費の自己負担は月「3万7200円」まで。補聴器や車椅子の購入決定は令和6年度に14万9267件",
+      "summary": "",
+      "sourceName": "LIMO | くらしとお金の経済メディア",
+      "sourceUrl": "https://limo.media",
+      "publishedAt": "2026-10-11T09:22:00.000Z",
+      "sourceType": "rss",
+      "category": "medical",
+      "thumbnail": {
+        "url": "https://limo.ismcdn.jp/mwimgs/9/9/1200w/img_993f03e6a35dd9c4cde158f6aebfa32668455.jpg",
+        "source": "og:image",
+        "pageUrl": "https://limo.media/articles/-/141395"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5Hb1phb21ab3YyR1owZ0YtdU8zanZFdzJmUmF3dUxPWThUUEExRTBxS3pYRHJZdDVWQkNNZm9LYzZfbFNBbUFhTmtTNWMwUXR2WTQyLVBKNUM?oc=5",
+      "title": "手話体験会、盲導犬訓練士の実演も 京都府亀岡市で障害の有無超えて交流するイベント",
+      "summary": "",
+      "sourceName": "京都新聞デジタル",
+      "sourceUrl": "https://www.kyoto-np.co.jp",
+      "publishedAt": "2026-10-11T08:30:00.000Z",
+      "sourceType": "rss",
+      "category": "event",
+      "thumbnail": {
+        "url": "https://kyoto-np.ismcdn.jp/mwimgs/f/c/1200wm/img_fcf5dc5ab27142078613c1d909cdaea53133204.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.kyoto-np.co.jp/articles/-/1806448"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "region": "kinki",
+      "prefecture": "京都府"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBETHNzODItRmhhajBXWkIwaVNJM2p6U1d5bndTT0lmazJXemduMlhZTW1LUXBobENtSWhnQ0ZxcHdla0d0NmpXckdzZFhuemZpbkF4X21QLUM3RWNhcTQ0?oc=5",
+      "title": "秋篠宮家の次女・佳子さま 9月に「手話パフォーマンス甲子園」出席 鳥取県訪問へ",
+      "summary": "",
+      "sourceName": "TBS NEWS DIG",
+      "sourceUrl": "https://newsdig.tbs.co.jp",
+      "publishedAt": "2026-10-11T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "culture",
+      "thumbnail": {
+        "url": "https://newsdig.ismcdn.jp/mwimgs/2/5/1200w/img_25a450bce585b5ab31e8c0f22db2734c114425.jpg",
+        "source": "og:image",
+        "pageUrl": "https://newsdig.tbs.co.jp/articles/gallery/2129843"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "region": "chugoku_shikoku",
+      "prefecture": "鳥取県"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5pUm01YXBKTTI4bXpuclJDMDBXODZzZzlVTlNreHQwZDVnQXhQOTJQVEZyb1lYQU5HLXg0QzZJUnRCSHZ1ZFVfaS1Hbw?oc=5",
+      "title": "0歳から手話に親しんで 聴覚障害児向け集い、大阪",
+      "summary": "",
+      "sourceName": "47NEWS",
+      "sourceUrl": "https://www.47news.jp",
+      "publishedAt": "2026-10-11T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "general",
+      "thumbnail": {
+        "url": "https://img.cf.47news.jp/public/photo/2355a506c7f7ef832cce048b5e67a5bd/photo.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.47news.jp/15068822.html"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9CN05IMkVORjU1Q0FVTmd0cnVRNlpONWxLVGxiaU4wQmF6cFNSay1BanJEQ2tsVVpxNS0zWXlnUWFzdUw5amNDUTJoTmxldnhyMkVNWmdUSQ?oc=5",
+      "title": "CPUのみで動作するリアルタイム多言語音声認識「早耳」、GPUもクラウドAPIも使わずメモリ2GB未満でライブ字幕表示からブラウザ表示・話者ラベル付け・翻訳字幕まで可能",
+      "summary": "",
+      "sourceName": "GIGAZINE",
+      "sourceUrl": "https://gigazine.net",
+      "publishedAt": "2026-10-11T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "technology",
+      "thumbnail": {
+        "url": "https://i.gzn.jp/img/2026/10/11/hayamimi/00.jpg",
+        "source": "og:image",
+        "pageUrl": "https://gigazine.net/news/20261011-hayamimi/"
+      },
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
     {
       "id": "https://www.jfd.or.jp/2026/10/11/pid30797",
       "title": "厚生労働省にきこえない・きこえにくい者の権利保障に関する要望書を提出",
@@ -73,6 +162,18 @@
       "discoveryMethod": "google-news"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5ERFZyYWZFMjVxVGt5cGxKcG5Dam9rZWdQZmNtZjRGdmVYVlhnN2JZQ2tWNHk0WFoxOXpNejllR3FvM2xjTGxPWmVuTTRFaE1wV3c?oc=5",
+      "title": "手話で行政相談可能に 聴覚障害者ら向け、浅口市が新サービス",
+      "summary": "",
+      "sourceName": "山陽新聞",
+      "sourceUrl": "https://www.sanyonews.jp",
+      "publishedAt": "2026-10-10T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "local",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMickFVX3lxTE1UU2VYRkpRamVYSlFsdHdBalhzNW84MXFZLS1wNExTVlJSMzFUYlVIOUFfWVBiNWF5dUlWeS1GNmxfdmxld21lb2JwMDB5T01VNV9ZYW5GcHZzcldFa0xkbEkxYllCUWtMYkN6YXVFR1NwUQ?oc=5",
       "title": "手話・ろう者学研究フェス2026 ろう者が研究を行うということ",
       "summary": "",
@@ -87,18 +188,6 @@
         "pageUrl": "https://www.keio.ac.jp/ja/about/engagement/society/news/2608039/"
       },
       "sourceTier": "official",
-      "discoveryMethod": "google-news"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5ERFZyYWZFMjVxVGt5cGxKcG5Dam9rZWdQZmNtZjRGdmVYVlhnN2JZQ2tWNHk0WFoxOXpNejllR3FvM2xjTGxPWmVuTTRFaE1wV3c?oc=5",
-      "title": "手話で行政相談可能に 聴覚障害者ら向け、浅口市が新サービス",
-      "summary": "",
-      "sourceName": "山陽新聞",
-      "sourceUrl": "https://www.sanyonews.jp",
-      "publishedAt": "2026-10-10T07:00:00.000Z",
-      "sourceType": "rss",
-      "category": "local",
-      "sourceTier": "news",
       "discoveryMethod": "google-news"
     },
     {
@@ -14007,20 +14096,6 @@
       "discoveryMethod": "google-news"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1FR1kxZ2dGMDVpdzZmR1BDR0VJRXYzQkhXTGpjXy1pRTktcThGVlRpeVZjSS05VmdnSnZheWlKMURtRk1GeXFicVV1R1ViblBSbXBsMXZVYk1xXzJRbHZLN0J4OGxVVTQ?oc=5",
-      "title": "「海は誰にでも同じ波が来る」 聴覚障害の元プロボディーボーダー [島根県]",
-      "summary": "",
-      "sourceName": "朝日新聞",
-      "sourceUrl": "https://www.asahi.com",
-      "publishedAt": "2026-08-25T07:00:00.000Z",
-      "sourceType": "rss",
-      "category": "local",
-      "region": "chugoku_shikoku",
-      "prefecture": "島根県",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news"
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9SZG4zUzJ5d3dYcWswdE9wckpsZWhoQnBZbHJmNXpfMzBuWkxKNjlPVWlWcjF2QnY4N2hrRHhmOGxkeEJpNG9wQVZOb0hGMFVBMVBjVjhQUmpJQmJQdk11UFQ5NG40OWxVT0ljdTR2TzBMVjFSa3EzTXl5R2JNdmM?oc=5",
       "title": "「盲ろう者」の全国大会前に米子市長を表敬訪問 視覚と聴覚に障害がある盲ろう者と支援団体関係者で大会への理解と協力を求める 全国大会には盲ろう者と介助者合わせて600人が参加 鳥取県米子市（2026年8月25日掲載）",
       "summary": "",
@@ -14031,6 +14106,20 @@
       "category": "policy",
       "region": "chugoku_shikoku",
       "prefecture": "鳥取県",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1FR1kxZ2dGMDVpdzZmR1BDR0VJRXYzQkhXTGpjXy1pRTktcThGVlRpeVZjSS05VmdnSnZheWlKMURtRk1GeXFicVV1R1ViblBSbXBsMXZVYk1xXzJRbHZLN0J4OGxVVTQ?oc=5",
+      "title": "「海は誰にでも同じ波が来る」 聴覚障害の元プロボディーボーダー [島根県]",
+      "summary": "",
+      "sourceName": "朝日新聞",
+      "sourceUrl": "https://www.asahi.com",
+      "publishedAt": "2026-08-25T07:00:00.000Z",
+      "sourceType": "rss",
+      "category": "local",
+      "region": "chugoku_shikoku",
+      "prefecture": "島根県",
       "sourceTier": "news",
       "discoveryMethod": "google-news"
     },
@@ -57241,21 +57330,6 @@
       ]
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBETHNzODItRmhhajBXWkIwaVNJM2p6U1d5bndTT0lmazJXemduMlhZTW1LUXBobENtSWhnQ0ZxcHdla0d0NmpXckdzZFhuemZpbkF4X21QLUM3RWNhcTQ0?oc=5",
-      "title": "秋篠宮家の次女・佳子さま 9月に「手話パフォーマンス甲子園」出席 鳥取県訪問へ - TBS NEWS DIG",
-      "summary": "秋篠宮家の次女・佳子さま 9月に「手話パフォーマンス甲子園」出席 鳥取県訪問へ TBS NEWS DIG",
-      "sourceName": "TBS NEWS DIG",
-      "sourceUrl": "https://newsdig.tbs.co.jp",
-      "publishedAt": "2025-08-26T09:42:25.000Z",
-      "category": "culture",
-      "sourceType": "rss",
-      "curationScore": 10,
-      "curationSignals": [
-        "手話パフォーマンス",
-        "手話"
-      ]
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQUEZkcENtRUZ3R2xZTTdzX0VSX2xMS19FS1B3WkM1SXJZUjBzb1NzbjNBZVFzSzhNWGtuSXVnUTFXWlFHNGJpblZka1d4TzFjTVFWSUgyQ1RwYlRWM1c0VzVaX1ExVTBkS3d6d2hjOWxLa3VJc3dkUTlnTU9RVl9BaTJQNDQwZGs?oc=5",
       "title": "手話パフォーマンス甲子園に佳子さまが出席 予選を勝ち抜いた16チームのステージを観覧 鳥取県倉吉市 - 日テレNEWS NNN",
       "summary": "手話パフォーマンス甲子園に佳子さまが出席 予選を勝ち抜いた16チームのステージを観覧 鳥取県倉吉市 日テレNEWS NNN",
@@ -63601,60 +63675,11 @@
         "避難",
         "災害"
       ]
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8yNTdtejFjdVpqRUhTejJGaDgzTWVaZ1hjUVhhY2hMQngwaVlPU2RvOWs5RGJjRWNGWUtVc0JwY2hFVXFUZ3p0dVJSbW0xbHpjeTV3Z3RqRlNEbFpWbjRvVkx1WjBMUTMwdm53US02TWdFMlBKdnpjbmFFVkxGZVE?oc=5",
-      "title": "令和６年度身体障害者補助犬訓練者等研修会日程表（オンライン研修） - rehab.go.jp",
-      "summary": "令和６年度身体障害者補助犬訓練者等研修会日程表（オンライン研修） rehab.go.jp",
-      "sourceName": "rehab.go.jp",
-      "sourceUrl": "https://www.rehab.go.jp",
-      "publishedAt": "2024-12-03T06:50:44.000Z",
-      "category": "event",
-      "sourceType": "rss"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE90bVBFWk5ZU0paVGYzR3lkZVduVHFHdTdFTEtNeENJNm1RaHM0c0FnWUw4VUY2VGJWNDlHUXZ5TktLYnlwbWhKVTBpNjdWaUVsbDBFNjFjZlduTDBzbUE0djA3Mk8yNHc?oc=5",
-      "title": "難聴児の早期療育モデル事業向け、オーストラリアの機関と協定 [静岡県] - 朝日新聞",
-      "summary": "難聴児の早期療育モデル事業向け、オーストラリアの機関と協定 [静岡県] 朝日新聞",
-      "sourceName": "朝日新聞",
-      "sourceUrl": "https://www.asahi.com",
-      "publishedAt": "2024-12-01T08:00:00.000Z",
-      "category": "local",
-      "sourceType": "rss",
-      "curationScore": 8,
-      "curationSignals": [
-        "難聴"
-      ]
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1IeHlXS29CVnhSR1ZNVHNpZ1lJaHE0bmNjNkdUbHNCRWtHd2pHdWRKTFVZV2Z6aWxyUEg5bVM2YllRNUVXQ2YwVk1vcHlWLV9iTTBidmpnU0dpWE8tZXFEMDJmQm9sUFZtV0ZNTFBXOUtiM2kyYmFvMVhR?oc=5",
-      "title": "日本デフ陸上、１９歳の石本龍一朗が４００障害で優勝「ＪＡＰＡＮのジャージー着てみたい」 - 読売新聞",
-      "summary": "日本デフ陸上、１９歳の石本龍一朗が４００障害で優勝「ＪＡＰＡＮのジャージー着てみたい」 読売新聞",
-      "sourceName": "読売新聞",
-      "sourceUrl": "https://www.yomiuri.co.jp",
-      "publishedAt": "2024-12-01T08:00:00.000Z",
-      "category": "sports",
-      "sourceType": "rss"
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBWM0pNUTFnTi1Ga2E2QXB4dVpYVUJUM000WGtESlpkdEszMGliSzYzdHN0M3dhT21CZzFhZ2RlaFJOSW5yMm5UZElwWVowUzJqMUtGSVZoaTBERDFaTkNKdFhRYWxXV3hLSmZZSnRlNmxvYmM0amlBbTdn?oc=5",
-      "title": "祖父は聴覚障害を持った理髪師だった……このテーマを６年かけて孫の作家が小説に - 読売新聞",
-      "summary": "祖父は聴覚障害を持った理髪師だった……このテーマを６年かけて孫の作家が小説に 読売新聞",
-      "sourceName": "読売新聞",
-      "sourceUrl": "https://www.yomiuri.co.jp",
-      "publishedAt": "2024-11-29T08:00:00.000Z",
-      "category": "general",
-      "sourceType": "rss",
-      "curationScore": 11,
-      "curationSignals": [
-        "聴覚障害",
-        "聴覚"
-      ]
     }
   ],
   "publicationReview": {
     "version": "publication-quality-v12",
-    "inputGeneratedAt": "2026-11-09T11:22:09.717Z",
+    "inputGeneratedAt": "2026-11-10T00:50:34.139Z",
     "removed": []
   }
 }
