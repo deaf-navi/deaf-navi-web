@@ -1,11 +1,25 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {prepareCurationReview} from '../scripts/prepare-curation-review.mjs';
+import {prepareCurationReview,curationDocumentEvidence} from '../scripts/prepare-curation-review.mjs';
+import {eventSourceText,eventHash} from '../src/lib/events.mjs';
 import {evidenceHash,prepareReviewItem} from '../scripts/curation-review-contract.mjs';
 import {applyReviewedOverseasIntake,overseasFieldCoverage,buildIntakeQueue} from '../scripts/curation-review-intake.mjs';
 import {buildCurationProgress} from '../scripts/curation-progress.mjs';
 const now=Date.parse('2026-10-29T04:00:00Z'),stamp=new Date(now).toISOString();
 const target={kind:'overseas_cafe',recordId:'published-shop',facilityId:'shop',role:'published',sourceUrl:'https://example.org/shop',title:'Cafe',officialVerified:true,sourceMode:'html',approvedDocumentHash:evidenceHash('Open Monday 10-18'),fragments:['Open Monday 10-18'],baseline:{requiredFields:['businessHours'],facts:{businessHours:'Open Monday 10-18'}}};
+test('operator full-document evidence matches server preparation without weakening body-change guards',async()=>{
+ const html='<html><head><title>Cafe</title><script>private</script></head><body><nav>Menu</nav><p>Open Monday 10-18</p><footer>Terms Ａ</footer></body></html>';
+ const evidence=curationDocumentEvidence(html),reviewed={...target,approvedDocumentHash:evidence.documentHash};
+ const prepare=(t,h=html)=>prepareCurationReview([t],{now,fetchResource:async()=>({status:200,headers:{'content-type':'text/html'},text:h})});
+ const accepted=await prepare(reviewed);
+ assert.equal(accepted.tasks.length,1);assert.equal(accepted.tasks[0].sourceDocumentHash,evidence.documentHash);
+ assert.equal(accepted.publicDataReviewed,false);assert.ok(!evidence.text.includes('private'));
+ assert.notEqual(eventHash(eventSourceText(html)),evidence.documentHash);
+ assert.equal((await prepare({...target,approvedDocumentHash:eventHash(eventSourceText(html))})).exceptions[0].reason,'source-document-changed');
+ assert.equal((await prepare(reviewed,html.replace('Terms Ａ','Terms Ｂ'))).exceptions[0].reason,'source-document-changed');
+ const hidden='<!--Open Monday 10-18--><p>Closed</p>';
+ assert.equal((await prepare({...reviewed,approvedDocumentHash:curationDocumentEvidence(hidden).documentHash},hidden)).exceptions[0].reason,'source-fragment-changed');
+});
 test('source deltas retain only approved fragments, and never unblock changed or hidden text',async()=>{
  for(const html of ['<p>Open Monday 10-18</p><p>New private@example.org text</p>','<!--Open Monday 10-18--><p>Closed</p>']){
   const r=await prepareCurationReview([target],{now,fetchResource:async()=>({status:200,headers:{'content-type':'text/html'},text:html})});

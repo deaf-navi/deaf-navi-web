@@ -6,6 +6,15 @@ import {prepareReviewItem,evidenceHash} from './curation-review-contract.mjs';
 import {describeSourceChange} from './curation-source-change.mjs';
 import {makeSourceReceipt,reviewedSourceTask} from './overseas-reviewed-source.mjs';
 const comparable=text=>String(text).normalize('NFKC').replace(/\s+/g,'');
+// The operator must hash the same entire document as the server. Event display
+// extraction (eventSourceText) deliberately removes navigation and normalizes
+// characters, so its hash is not a sharing-approval hash.
+export function curationDocumentEvidence(rendered){
+ const html=rendered.replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi,' ');
+ const text=cleanHtml(html.replace(/<[^>]*>/g,' '));
+ const visibleText=cleanHtml(html.replace(/<!--[\s\S]*?(?:-->|$)/g,' ').replace(/<[^>]*>/g,' '));
+ return {text,visibleText,documentHash:evidenceHash(text)};
+}
 // Explicitly reviewed public WordPress pages only; never discover an alternate
 // endpoint automatically or accept private/edit contexts as a size-limit escape.
 function sourceTransport(target){
@@ -42,13 +51,11 @@ export async function prepareCurationReview(targets,{fetchResource=fetchThumbnai
     if(page.id!==transport.id||page.link!==target.sourceUrl||page.status!=='publish'||page.content?.protected!==false||typeof page.content.rendered!=='string')throw Error('source-wordpress-page-mismatch');
     rendered=page.content.rendered;
    }
-   const html=rendered.replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi,' ');
-   const text=cleanHtml(html.replace(/<[^>]*>/g,' '));
    // Comments can contain obsolete notices such as "registration closed".
    // Retain the existing full document hash contract, but never accept excerpts
    // from hidden HTML comments as evidence for model input.
-   const visibleText=cleanHtml(html.replace(/<!--[\s\S]*?(?:-->|$)/g,' ').replace(/<[^>]*>/g,' '));
-   const sourceDocumentHash=evidenceHash(transport.id?'wordpress-page-v1\n'+transport.url+'\n'+text:text);
+   const {text,visibleText,documentHash}=curationDocumentEvidence(rendered);
+   const sourceDocumentHash=transport.id?evidenceHash('wordpress-page-v1\n'+transport.url+'\n'+text):documentHash;
    if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment)))||target.approvedDocumentHash&&target.approvedDocumentHash!==sourceDocumentHash)
     sourceChange=describeSourceChange(target,visibleText,sourceDocumentHash);
    if(target.fragments.some(fragment=>!comparable(visibleText).includes(comparable(fragment))))throw new Error('source-fragment-changed');
