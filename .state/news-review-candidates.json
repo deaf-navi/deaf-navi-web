@@ -1,29 +1,39 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-11T01:12:59.647Z",
+  "generatedAt": "2026-11-11T10:44:46.775Z",
   "counts": {
-    "uniqueInputs": 1959,
-    "alreadyPublished": 646,
-    "outsideWindow": 1103,
+    "uniqueInputs": 1995,
+    "alreadyPublished": 654,
+    "outsideWindow": 1061,
     "hardExcluded": 1,
     "duplicateOfPublished": 31,
-    "candidateDuplicates": 2,
-    "eligible": 176,
+    "candidateDuplicates": 4,
+    "eligible": 244,
     "queued": 40,
-    "deferred": 136
+    "deferred": 204
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-11T00:33:31.067Z",
+    "previousGeneratedAt": "2026-11-11T01:12:59.647Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/11/134248",
+      "articleHash": "46a631a111af4c5674a693bc140b1d26b14ca7708a4bc4d5a8e24dc44c603f68",
+      "publishedAt": "2026-11-11T04:42:48.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/10/102751",
       "articleHash": "8cc6cf0b32bece1d4695867657c5280a581ed751068c44d42bb85bc419ff05e6",
@@ -408,16 +418,6 @@
       "sourceUrl": "https://co-coco.jp/news/book_syugei/",
       "articleHash": "081596df7f8fecdee4a8802b5c39f28dcbc0a58195d05bfbd12bcf9677eaae53",
       "publishedAt": "2026-10-08T22:30:43.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/nazeewoegaku/",
-      "articleHash": "78b6635c2b9c283562540544dada0d46b7bc4ca50452c6c68076c80aaa45b456",
-      "publishedAt": "2026-10-02T07:30:27.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
