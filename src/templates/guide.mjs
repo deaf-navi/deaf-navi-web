@@ -33,7 +33,9 @@ ${item.steps?.length ? `          <ol class="guide-card__steps" aria-label="利�
           <a class="guide-card__link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.title)}の${escapeHtml(linkLabel)}（新しいタブで開く）">
             ${escapeHtml(linkLabel)} <span aria-hidden="true">↗</span>
           </a>
-${(item.relatedLinks||[]).map(link=>`          <a class="guide-card__link guide-card__related" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(link.label)}（新しいタブで開く）">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('')}
+${(item.relatedLinks||[]).map(link=>/^\/(?!\/)/.test(link.url)
+    ? `          <a class="guide-card__link guide-card__related" href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a>`
+    : `          <a class="guide-card__link guide-card__related" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(link.label)}（新しいタブで開く）">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('')}
         </article>`;
 }
 

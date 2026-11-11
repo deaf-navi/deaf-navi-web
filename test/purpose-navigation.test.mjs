@@ -57,6 +57,7 @@ test('トップ: 目的別の4入口をニュースより前に置き、ニュ�
   assert.match(groups['その場で使う'], /href="\.\/otomado\/#\/board"/);
   assert.match(groups['その場で使う'], /筆談/, 'おとまどを用途の説明なしで置いています');
   assert.match(nav, /<a href="#articles-heading">最新ニュースへ<\/a>/);
+  assert.ok(nav.indexOf('href="#articles-heading"') < nav.indexOf('class="purpose-nav__group"'), '最新ニュースへの移動が4つの入口より後ろにあります');
   assert.ok(html.includes('id="articles-heading"'));
 });
 

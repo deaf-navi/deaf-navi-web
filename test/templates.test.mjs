@@ -146,6 +146,46 @@ test('renderHomePage: WebMCP内部要素を非表示で保持し既存クライ�
   assert.ok(!html.includes('オフライン表示中です。'), '静的HTMLが未確認の通信状態を断定しない');
 });
 
+test('renderHomePage: 初期表示は20話題に絞り、残りは全件データと入口から読める', () => {
+  const articles = Array.from({ length: 25 }, (_, i) => article({
+    id: `https://example.com/topic-${i}`,
+    title: `第${i + 1}回の個別の話題`,
+    sourceName: `テスト新聞${i}`,
+    publishedAt: new Date(Date.parse('2026-11-01T00:00:00Z') - i * 3_600_000).toISOString(),
+  }));
+  const html = renderHomePage(
+    { generatedAt: '2026-11-01T00:00:00Z', count: articles.length, articles },
+    { isDev: false, files: FILES, keywords: 'k', now: Date.parse('2026-11-01T00:00:00Z') },
+  );
+  const list = html.slice(html.indexOf('<div id="articles"'), html.indexOf('id="empty-msg"'));
+
+  assert.equal((list.match(/class="news-topic"/g) ?? []).length, 20, 'SSRの初期表示が20話題ではありません');
+  assert.match(html, /id="visible-count">20<\/strong> \/ 全 <strong id="total-count">25<\/strong>/);
+  assert.match(html, /<div id="articles"[^>]*data-total="25"[^>]*data-initial="20"[^>]*data-src="\.\/articles\.json"/, '追加表示用の全件データへの参照がありません');
+  assert.match(html, /<button type="button" id="load-more-btn" class="load-more-btn">/, '追加表示のボタンが隠れています');
+  assert.ok(html.includes('（あと 5 話題）'));
+  assert.ok(html.includes('id="news-search"') && html.includes('id="news-filters"'), '検索・絞り込みがありません');
+  assert.ok(html.includes('href="./feed.xml"') && html.includes('href="./index-old.html"'), 'RSS・過去アーカイブの入口がありません');
+});
+
+test('renderGuidePage: サイト内の読みものは同じタブ、外部の関連リンクは別タブで開く', () => {
+  const html = renderGuidePage({ isDev: false, files: FILES });
+  const related = [...html.matchAll(/<a class="guide-card__link guide-card__related"[^>]*>[\s\S]*?<\/a>/g)].map(m => m[0]);
+  const internal = related.filter(link => link.includes('href="/stories/relay-yometel-net119/"'));
+  const external = related.filter(link => link.includes('href="https://'));
+
+  assert.equal(internal.length, 4, '読みものへの関連リンクが4項目にありません');
+  assert.equal(internal.length + external.length, related.length);
+  for (const link of internal) {
+    assert.ok(link.includes('Deaf Naviの読みもの'), 'Deaf Naviの記事だと分かりません');
+    assert.ok(!/target=|aria-label=|↗|新しいタブ/.test(link), `サイト内リンクを別タブ扱いにしています: ${link}`);
+  }
+  assert.ok(external.length >= 4, '既存の外部関連リンクが減っています');
+  for (const link of external) {
+    assert.ok(link.includes('target="_blank" rel="noopener noreferrer"') && link.includes('（新しいタブで開く）') && link.includes('↗'), `外部リンクの別タブ表示が失われています: ${link}`);
+  }
+});
+
 test('renderGuidePage: CUP ORDERを非公式ツールとして案内する', () => {
   const html = renderGuidePage({ isDev: false, files: FILES });
   const linkIndex = html.indexOf('href="https://cup-order.github.io/index.html"');
