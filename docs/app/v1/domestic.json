@@ -4,8 +4,8 @@
   "title": "Deaf Navi Web",
   "variant": "prod",
   "profile": "expanded",
-  "generatedAt": "2026-11-11T00:34:48Z",
-  "sourceGeneratedAt": "2026-11-11T00:34:48Z",
+  "generatedAt": "2026-11-11T01:14:11Z",
+  "sourceGeneratedAt": "2026-11-11T01:14:11Z",
   "count": 427,
   "language": "ja-JP",
   "refresh": {
@@ -118,27 +118,27 @@
   },
   "quality": {
     "version": "publication-quality-v12",
-    "rawCount": 2167,
-    "scoredCount": 2167,
-    "filteredCount": 755,
+    "rawCount": 2131,
+    "scoredCount": 2131,
+    "filteredCount": 740,
     "primaryCategoryLimit": 400,
     "primaryVisibleCount": 400,
     "extraVisibleCount": 27,
     "extraVisibleCategoryCounts": {
       "relay": 27
     },
-    "overflowCount": 233,
+    "overflowCount": 219,
     "minScore": 5,
     "categoryCountsVisible": {
-      "technology": 16,
+      "technology": 15,
       "accessibility": 37,
       "event": 29,
       "medical": 33,
+      "local": 50,
       "general": 128,
       "sports": 44,
       "education": 7,
       "policy": 27,
-      "local": 49,
       "safety": 20,
       "relay": 27,
       "culture": 10
@@ -146,27 +146,27 @@
   },
   "counts": {
     "byCategory": {
-      "technology": 16,
+      "technology": 15,
       "accessibility": 37,
       "event": 29,
       "medical": 33,
+      "local": 50,
       "general": 128,
       "sports": 44,
       "education": 7,
       "policy": 27,
-      "local": 49,
       "safety": 20,
       "relay": 27,
       "culture": 10
     },
     "byLegacyCategory": {
-      "general": 144,
+      "general": 143,
       "policy": 111,
       "culture": 39,
       "medical": 33,
+      "local": 50,
       "sports": 44,
-      "education": 7,
-      "local": 49
+      "education": 7
     }
   },
   "articles": [
@@ -361,6 +361,27 @@
       "sourceTier": "news",
       "discoveryMethod": "google-news",
       "topicId": "topic_db87a5792dcd82930147",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1kbF9ic0RRREZJQ1l2UjNYVmY0M3dSUUplR2VXaW43cjU3cmRBZHBpb1JqMHlqRk9PRFdCUF9vSWxtMjBSVGwxQkowbmdQTHNSc1IyNkN3?oc=5",
+      "stableId": "domestic_208d18bf397fe630a9ce",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1kbF9ic0RRREZJQ1l2UjNYVmY0M3dSUUplR2VXaW43cjU3cmRBZHBpb1JqMHlqRk9PRFdCUF9vSWxtMjBSVGwxQkowbmdQTHNSc1IyNkN3?oc=5",
+      "title": "わかめ手話サークル(鳴門市) ろう者と健常者 触れ合う【地域を創る四国を拓く】",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-11-10T20:00:00Z",
+      "sourceName": "徳島新聞デジタル",
+      "sourceURL": "https://www.topics.or.jp",
+      "sourceUrl": "https://www.topics.or.jp",
+      "sourceType": "rss",
+      "category": "local",
+      "categoryLabel": "地域",
+      "legacyCategory": "local",
+      "thumbnailURL": "https://tokushima.ismcdn.jp/mwimgs/5/9/1200wm/img_5928749b47036437f78b23ae6eebe003138658.jpg",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_208d18bf397fe630a9ce",
       "topicRank": 0
     },
     {
@@ -3500,27 +3521,6 @@
       "topicRank": 0
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5JZHMySVpCZkhzbXBCVnhZY2FsZE5Ra3dTUGcwbTdsYXUxNUpTWWpNZm1PUS1WWnFCamJuZjRtY1FSNVNPT0hsNlBhdDNWTS1WZkpVajkweUJaQ0x1LVBmQU90ODFibldtNm9NRHNTdl9UR2JuMFhuakpwX1ZMVDQ?oc=5",
-      "stableId": "domestic_a7638cc3c83b6dc5a2be",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5JZHMySVpCZkhzbXBCVnhZY2FsZE5Ra3dTUGcwbTdsYXUxNUpTWWpNZm1PUS1WWnFCamJuZjRtY1FSNVNPT0hsNlBhdDNWTS1WZkpVajkweUJaQ0x1LVBmQU90ODFibldtNm9NRHNTdl9UR2JuMFhuakpwX1ZMVDQ?oc=5",
-      "title": "難聴・足の悪化も「おせんべいはお湯に」超健康志向のパー子と林家ペー、結婚54年目の「深夜の攻防戦」（CHANTO WEB）",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-30T07:00:00Z",
-      "sourceName": "Yahoo!ニュース",
-      "sourceURL": "https://news.yahoo.co.jp",
-      "sourceUrl": "https://news.yahoo.co.jp",
-      "sourceType": "rss",
-      "category": "general",
-      "categoryLabel": "一般",
-      "legacyCategory": "general",
-      "thumbnailURL": "https://newsatcl-pctr.c.yimg.jp/t/amd-img/20261030-02009390-chanto-000-1-view.jpg?exp=10800",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_a7638cc3c83b6dc5a2be",
-      "topicRank": 0
-    },
-    {
       "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5nUGJIeDFvX3BHcld0VkpleFFObGxhWWJHMC1mUTNWcWRwXzZTYW5KcVdfREg0aVFHU09Da2ZnQXlzQS03cTZmck9UaDJlRUZlLVRqcHoxU183S1BWUUNQZUYwNF93dmdSVDF2NGJSRzBLTmxONEl4bGJqR3Vma2M?oc=5",
       "stableId": "domestic_fb788765329030ecafdf",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5nUGJIeDFvX3BHcld0VkpleFFObGxhWWJHMC1mUTNWcWRwXzZTYW5KcVdfREg0aVFHU09Da2ZnQXlzQS03cTZmck9UaDJlRUZlLVRqcHoxU183S1BWUUNQZUYwNF93dmdSVDF2NGJSRzBLTmxONEl4bGJqR3Vma2M?oc=5",
@@ -3539,6 +3539,27 @@
       "sourceTier": "news",
       "discoveryMethod": "google-news",
       "topicId": "topic_fb788765329030ecafdf",
+      "topicRank": 0
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5JZHMySVpCZkhzbXBCVnhZY2FsZE5Ra3dTUGcwbTdsYXUxNUpTWWpNZm1PUS1WWnFCamJuZjRtY1FSNVNPT0hsNlBhdDNWTS1WZkpVajkweUJaQ0x1LVBmQU90ODFibldtNm9NRHNTdl9UR2JuMFhuakpwX1ZMVDQ?oc=5",
+      "stableId": "domestic_a7638cc3c83b6dc5a2be",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5JZHMySVpCZkhzbXBCVnhZY2FsZE5Ra3dTUGcwbTdsYXUxNUpTWWpNZm1PUS1WWnFCamJuZjRtY1FSNVNPT0hsNlBhdDNWTS1WZkpVajkweUJaQ0x1LVBmQU90ODFibldtNm9NRHNTdl9UR2JuMFhuakpwX1ZMVDQ?oc=5",
+      "title": "難聴・足の悪化も「おせんべいはお湯に」超健康志向のパー子と林家ペー、結婚54年目の「深夜の攻防戦」（CHANTO WEB）",
+      "summary": "",
+      "language": "ja-JP",
+      "publishedAt": "2026-10-30T07:00:00Z",
+      "sourceName": "Yahoo!ニュース",
+      "sourceURL": "https://news.yahoo.co.jp",
+      "sourceUrl": "https://news.yahoo.co.jp",
+      "sourceType": "rss",
+      "category": "general",
+      "categoryLabel": "一般",
+      "legacyCategory": "general",
+      "thumbnailURL": "https://newsatcl-pctr.c.yimg.jp/t/amd-img/20261030-02009390-chanto-000-1-view.jpg?exp=10800",
+      "sourceTier": "news",
+      "discoveryMethod": "google-news",
+      "topicId": "topic_a7638cc3c83b6dc5a2be",
       "topicRank": 0
     },
     {
@@ -8844,26 +8865,6 @@
       "sourceTier": "official",
       "discoveryMethod": "google-news",
       "topicId": "topic_a6b1190c92e486c24b22",
-      "topicRank": 0
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9ENnVLTTNEMi04VXF5MnBicVRBdlZJWEpOankyWVFjejRjTmVVbG43b0lMSDQ1cFBJcFBiM2Zlc29Va2RuSWFwbDdJakVlYzdiZVlMemstZHllcWc?oc=5",
-      "stableId": "domestic_d56b25483f6a04d6102c",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9ENnVLTTNEMi04VXF5MnBicVRBdlZJWEpOankyWVFjejRjTmVVbG43b0lMSDQ1cFBJcFBiM2Zlc29Va2RuSWFwbDdJakVlYzdiZVlMemstZHllcWc?oc=5",
-      "title": "【手話通訳あり】「伝わらないの壁をなくす！情報保障DXによる『パフォーマンス最大化』事例で分かる、ろう・難聴者雇用×AI音声認識」オンデマンド配信を開始",
-      "summary": "",
-      "language": "ja-JP",
-      "publishedAt": "2026-10-14T07:00:00Z",
-      "sourceName": "朝日新聞",
-      "sourceURL": "https://www.asahi.com",
-      "sourceUrl": "https://www.asahi.com",
-      "sourceType": "rss",
-      "category": "technology",
-      "categoryLabel": "技術・AI",
-      "legacyCategory": "general",
-      "sourceTier": "news",
-      "discoveryMethod": "google-news",
-      "topicId": "topic_d56b25483f6a04d6102c",
       "topicRank": 0
     },
     {
