@@ -1,27 +1,27 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-10T16:59:34.870Z",
+  "generatedAt": "2026-11-11T00:33:31.067Z",
   "counts": {
-    "uniqueInputs": 1992,
-    "alreadyPublished": 652,
-    "outsideWindow": 1123,
+    "uniqueInputs": 1998,
+    "alreadyPublished": 660,
+    "outsideWindow": 1125,
     "hardExcluded": 1,
     "duplicateOfPublished": 35,
     "candidateDuplicates": 2,
-    "eligible": 179,
+    "eligible": 175,
     "queued": 40,
-    "deferred": 139
+    "deferred": 135
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-10T03:27:19.467Z",
+    "previousGeneratedAt": "2026-11-10T16:59:34.870Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -185,14 +185,14 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/work/natsumi_watanabe/",
-      "articleHash": "f79624da7a6ae678763bb00504eb10b84b9039d16b23baeed625d2d9f72f5906",
-      "publishedAt": "2026-11-09T22:30:14.000Z",
+      "sourceUrl": "https://co-coco.jp/series/nursing/greentaoka/",
+      "articleHash": "8a754049789f1da010eb61ffe29deab1faecd494c9dc98e4a34df5536ebf184b",
+      "publishedAt": "2026-11-11T00:00:25.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "new"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/karigurashi4k/",
@@ -225,9 +225,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
-      "articleHash": "8559c4728ef1fbdbd00e3d86117ab8e8fefa2ac0f8c47458964c0b1ade638887",
-      "publishedAt": "2026-11-04T07:30:26.000Z",
+      "sourceUrl": "https://co-coco.jp/series/work/natsumi_watanabe/",
+      "articleHash": "f79624da7a6ae678763bb00504eb10b84b9039d16b23baeed625d2d9f72f5906",
+      "publishedAt": "2026-11-09T22:30:14.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -255,9 +255,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
-      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
-      "publishedAt": "2026-10-27T22:20:05.000Z",
+      "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
+      "articleHash": "8559c4728ef1fbdbd00e3d86117ab8e8fefa2ac0f8c47458964c0b1ade638887",
+      "publishedAt": "2026-11-04T07:30:26.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -285,9 +285,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
-      "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
-      "publishedAt": "2026-10-27T08:30:40.000Z",
+      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
+      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
+      "publishedAt": "2026-10-27T22:20:05.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -305,9 +305,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
-      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
-      "publishedAt": "2026-10-21T08:25:44.000Z",
+      "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
+      "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
+      "publishedAt": "2026-10-27T08:30:40.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -325,9 +325,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/nolookpark/",
-      "articleHash": "cf2215aadbe00c99596ecfc2ef116704d9b8dc1626077708aee32e950faf5f9d",
-      "publishedAt": "2026-10-15T07:30:34.000Z",
+      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
+      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
+      "publishedAt": "2026-10-21T08:25:44.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -345,9 +345,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/kidsmeetstudiooowa/",
-      "articleHash": "c3374bf1c329c7cc19ba0c1e41db08bd8e1a851d429b5f6d52d3d215aefb0bff",
-      "publishedAt": "2026-10-11T03:00:59.000Z",
+      "sourceUrl": "https://co-coco.jp/news/nolookpark/",
+      "articleHash": "cf2215aadbe00c99596ecfc2ef116704d9b8dc1626077708aee32e950faf5f9d",
+      "publishedAt": "2026-10-15T07:30:34.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -365,9 +365,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/tayoriino/",
-      "articleHash": "be7df7c2508c575e0cd9594ad471d2a1bd8d8764fa103b955c19ac683642f32e",
-      "publishedAt": "2026-10-09T02:30:30.000Z",
+      "sourceUrl": "https://co-coco.jp/news/kidsmeetstudiooowa/",
+      "articleHash": "c3374bf1c329c7cc19ba0c1e41db08bd8e1a851d429b5f6d52d3d215aefb0bff",
+      "publishedAt": "2026-10-11T03:00:59.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -385,9 +385,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/book_syugei/",
-      "articleHash": "081596df7f8fecdee4a8802b5c39f28dcbc0a58195d05bfbd12bcf9677eaae53",
-      "publishedAt": "2026-10-08T22:30:43.000Z",
+      "sourceUrl": "https://co-coco.jp/news/tayoriino/",
+      "articleHash": "be7df7c2508c575e0cd9594ad471d2a1bd8d8764fa103b955c19ac683642f32e",
+      "publishedAt": "2026-10-09T02:30:30.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -405,9 +405,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/nazeewoegaku/",
-      "articleHash": "78b6635c2b9c283562540544dada0d46b7bc4ca50452c6c68076c80aaa45b456",
-      "publishedAt": "2026-10-02T07:30:27.000Z",
+      "sourceUrl": "https://co-coco.jp/news/book_syugei/",
+      "articleHash": "081596df7f8fecdee4a8802b5c39f28dcbc0a58195d05bfbd12bcf9677eaae53",
+      "publishedAt": "2026-10-08T22:30:43.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
@@ -415,9 +415,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/study/ookinashugo/",
-      "articleHash": "883157f85419e6f9d1b4d3b60d6b712af8079e81ac40d363d67a4c326d2a0c9f",
-      "publishedAt": "2026-10-02T02:45:12.000Z",
+      "sourceUrl": "https://co-coco.jp/news/nazeewoegaku/",
+      "articleHash": "78b6635c2b9c283562540544dada0d46b7bc4ca50452c6c68076c80aaa45b456",
+      "publishedAt": "2026-10-02T07:30:27.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
