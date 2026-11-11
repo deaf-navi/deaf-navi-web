@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-events.v1",
-  "generatedAt": "2026-11-10T17:01:05.640Z",
+  "generatedAt": "2026-11-11T00:21:43.578Z",
   "events": [
     {
       "origin": "events",
@@ -863,14 +863,16 @@
       "organizer": "大熊インキュベーションセンター",
       "time": "手話講座 17:30〜18:30／ディナー交流会 18:30〜20:00",
       "fee": "手話講座は無料。ディナー交流会は2,500円。",
-      "target": "初めて手話を学ぶ方も参加できます。交流会からの参加も可。申込は主催者ページからPeatixへ。申込期限は11月10日（火）正午。最新の受付状況は申込先でご確認ください。",
-      "status": "announced",
+      "target": "初めて手話を学ぶ方も参加できます。交流会からの参加も可。Peatixでの申込受付は終了しました。販売期限は11月10日（火）22:00と案内されています。",
+      "status": "closed",
       "description": "あいさつや指文字を学び、手話で自己紹介に挑戦します。講座後は食事を囲んで参加者同士で交流します。",
-      "verification": "needs_review",
-      "verifiedAt": "2026-11-09T00:32:37.744Z",
+      "verification": "verified",
+      "verifiedAt": "2026-11-11T00:11:53.450Z",
       "webUrl": "https://deafnavi.com/events/okuma-shuwa-dinner-2026-11-11/",
-      "validUntil": "2026-11-11T00:32:37.744Z",
-      "period": "review"
+      "applicationDeadline": "2026-11-10",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-13T00:11:53.450Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -890,9 +892,9 @@
       "status": "announced",
       "description": "防災体験と施設見学、ランチを通じて災害への備えを学ぶ企画。情報保障の方法は公式窓口へ確認してください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/tonancyo-tachikawa-disaster-2026-11-11/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -912,11 +914,11 @@
       "target": "来場には事前登録があります。登録方法はメッセナゴヤ公式サイトをご確認ください。",
       "status": "announced",
       "description": "透明ディスプレイへのリアルタイム文字起こしと、字幕スマートグラス「AiLENS」を体験できる展示です。",
-      "verification": "needs_review",
-      "verifiedAt": "2026-11-08T00:21:53.736Z",
+      "verification": "verified",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/yysystem-messe-nagoya-2026-11-11/",
-      "validUntil": "2026-11-10T00:21:53.736Z",
-      "period": "review"
+      "validUntil": "2026-11-13T00:21:43.578Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -936,7 +938,7 @@
       "status": "closed",
       "description": "「アジア美術の歩き方 南アジア特別編」を学芸員の解説と手話通訳で巡ります。参加者と手話による対話を交えながら作品を鑑賞します。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "communication": [
         {
           "method": "interpretation",
@@ -946,7 +948,7 @@
       "webUrl": "https://deafnavi.com/events/fukuoka-asian-sign-tour-2026-11-14/",
       "applicationDeadline": "2026-11-07",
       "deadlineScope": "participation",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -967,9 +969,9 @@
       "status": "announced",
       "description": "手話通訳士と学びながら、参加者同士で交流する催し。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/fureai-shuwa-2026-11-14/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -989,9 +991,9 @@
       "status": "announced",
       "description": "手話の体験とスタンプラリー、手話普及啓発ポスター表彰式を行います。ミニ手話体験教室は1組8分程度です。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/matsusaka-mini-shuwa-2026-11-14/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1009,9 +1011,9 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/oioi-c9d53214a67cbc193270/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261115.png"
     },
@@ -1033,9 +1035,9 @@
       "status": "announced",
       "description": "午前は映画上映、午後は交流やモルック体験。公共交通機関での来場を案内しています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:32:37.744Z",
+      "verifiedAt": "2026-11-11T00:20:34.959Z",
       "webUrl": "https://deafnavi.com/events/sapporo-higashi-shuwa-2026-11-15/",
-      "validUntil": "2026-11-11T00:32:37.744Z",
+      "validUntil": "2026-11-13T00:20:34.959Z",
       "period": "upcoming"
     },
     {
@@ -1055,9 +1057,9 @@
       "status": "announced",
       "description": "藤田由紀子さんを迎え、生い立ちをテーマにした講演を行うつどい。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/shizuoka-deaf-women-2026-11-15/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1078,7 +1080,7 @@
       "status": "announced",
       "description": "しめ縄飾りを作る交流企画。要約筆記・手話通訳・ヒアリングループの用意が案内されています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "communication": [
         {
           "method": "summary",
@@ -1090,7 +1092,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/tonancyo-shimenawa-2026-11-20/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1110,7 +1112,7 @@
       "status": "announced",
       "description": "福祉団体の体験コーナーや作品展示などを通じて、障害のある人と地域の人が交流する催しです。記念のつどいと抽選会に手話通訳・要約筆記があり、会場内での利用も受付で相談できます。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "communication": [
         {
           "method": "interpretation",
@@ -1122,7 +1124,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/kawasaki-tsunagu-festival-2026-11-21/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1143,9 +1145,9 @@
       "status": "announced",
       "description": "手話を中心に、ステージ・販売・交流を楽しむ催し。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/kurume-kaiju-2026-11-21/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming",
       "thumbnailURL": "https://kurumecityplaza.jp/uploads/event/image/8576/086a16b0bf.jpg"
     },
@@ -1167,7 +1169,7 @@
       "status": "announced",
       "description": "東京2025デフリンピックの運営を担った立場から、ろう当事者の大会運営と共生社会について話す講座。武蔵野市聴覚障害者協会・武蔵野市教育委員会が共催します。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "communication": [
         {
           "method": "interpretation",
@@ -1179,7 +1181,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/musashino-deaf-lecture-2026-11-21/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1198,9 +1200,9 @@
       "status": "announced",
       "description": "表彰式とピアノ演奏に加え、劇団ヒロシ軍が手話劇を上演する予定です。開演時刻・申込方法は市の案内で確認してください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/omura-sign-theater-2026-11-21/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1221,9 +1223,9 @@
       "status": "announced",
       "description": "きこえやコミュニケーション、暮らしを支える機器・サービスの展示会です。実機を試したり、出展企業・団体の担当者に相談したりできます。2027年3月の記念式典・祝賀会とは別の催しです。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/tonancyo-kikoe-festa-2026-11-22/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1244,7 +1246,7 @@
       "status": "announced",
       "description": "中難協三田絵手紙サークルによる絵手紙の講座です。聞こえの状態に配慮した文字通訳とヒアリングループを利用できます。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:32:37.744Z",
+      "verifiedAt": "2026-11-11T00:20:34.959Z",
       "communication": [
         {
           "method": "summary",
@@ -1256,7 +1258,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/tonancyo-ikigai-etegami-2026-11-23/",
-      "validUntil": "2026-11-11T00:32:37.744Z",
+      "validUntil": "2026-11-13T00:20:34.959Z",
       "period": "upcoming"
     },
     {
@@ -1277,10 +1279,10 @@
       "status": "announced",
       "description": "会話をリアルタイムに文字にして表示するスマートグラス「AiLENS」を試せる体験会です。当日の写真・映像を広報やSNSなどで使用する場合があると案内されています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:23:11.836Z",
+      "verifiedAt": "2026-11-11T00:11:27.475Z",
       "webUrl": "https://deafnavi.com/events/yysystem-ailens-hiroshima-2026-11-23/",
-      "validUntil": "2026-11-11T00:23:11.836Z",
-      "period": "review",
+      "validUntil": "2026-11-13T00:11:27.475Z",
+      "period": "upcoming",
       "thumbnailURL": "https://yysystem.com/wp-content/uploads/2026/05/vvvvvvvvvvvvvvvvvvvvvvd.png"
     },
     {
@@ -1301,10 +1303,10 @@
       "status": "announced",
       "description": "会話をリアルタイムに文字にして表示するスマートグラス「AiLENS」を試せる体験会です。当日の写真・映像を広報やSNSなどで使用する場合があると案内されています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:23:11.836Z",
+      "verifiedAt": "2026-11-11T00:11:27.475Z",
       "webUrl": "https://deafnavi.com/events/yysystem-ailens-nagoya-2026-11-23/",
-      "validUntil": "2026-11-11T00:23:11.836Z",
-      "period": "review",
+      "validUntil": "2026-11-13T00:11:27.475Z",
+      "period": "upcoming",
       "thumbnailURL": "https://yysystem.com/wp-content/uploads/2026/05/vvvvvvvvvvvvvvvvvvvvvvd.png"
     },
     {
@@ -1322,9 +1324,9 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/oioi-3baf0a91c984c8343567/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261112.png"
     },
@@ -1346,7 +1348,7 @@
       "status": "announced",
       "description": "手話の基礎や復習を交えた勉強会。要約筆記あり。17時以降は藤沢郵便局側の守衛口から入場します。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:32:37.744Z",
+      "verifiedAt": "2026-11-11T00:20:34.959Z",
       "communication": [
         {
           "method": "summary",
@@ -1354,7 +1356,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/jinnancho-beginner-2026-11-27/",
-      "validUntil": "2026-11-11T00:32:37.744Z",
+      "validUntil": "2026-11-13T00:20:34.959Z",
       "period": "upcoming",
       "thumbnailURL": "https://jinnancho.org/wp-content/uploads/2017/08/mimimark01.jpg"
     },
@@ -1398,9 +1400,9 @@
       "status": "announced",
       "description": "聴覚障害への理解と、手話でのコミュニケーションを学ぶ体験講座です。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/myoko-shuwa-workshop-2026-11-29/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1444,10 +1446,10 @@
       "status": "announced",
       "description": "手話でゆっくり交流するバーイベント。途中参加・途中退席もできます。同名の別店舗と間違えないよう、練馬区富士見台2丁目31-24の住所をご確認ください。会場は喫煙目的店として案内されています。入店条件の詳細は主催者の案内をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:14:11.546Z",
+      "verifiedAt": "2026-11-11T00:10:42.561Z",
       "webUrl": "https://deafnavi.com/events/yubitopia-shuwaberiba-2026-11-29/",
-      "validUntil": "2026-11-11T00:14:11.546Z",
-      "period": "review"
+      "validUntil": "2026-11-13T00:10:42.561Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1467,7 +1469,7 @@
       "status": "announced",
       "description": "岐阜ろう劇団いぶきが、ぎふ演劇シーズン2026で上演。全日字幕付き。10月2日発売。申込方法・最新の残席は公式案内をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "communication": [
         {
           "method": "captions",
@@ -1475,7 +1477,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/gifu-ibuki-kurayami-2026-12-05/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1493,9 +1495,9 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/oioi-979bfc235331102b2298/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_20261205.png"
     },
@@ -1517,8 +1519,7 @@
       "status": "announced",
       "description": "日本からブラジルへ渡った家族を描く日本語上演の演劇。12月5・6日は舞台手話通訳と日本語ポータブル字幕機で鑑賞できます。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T00:43:49.022Z",
-      "sourceStatus": "retrying",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "communication": [
         {
           "method": "interpretation",
@@ -1530,7 +1531,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/spac-nihonjin-sign-2026-12-05/",
-      "validUntil": "2026-11-12T00:43:49.022Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1551,7 +1552,7 @@
       "status": "announced",
       "description": "手話通訳者を介して参加者同士で話しながら、コレクションを鑑賞します。手話が苦手な方には補助道具が用意されます。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "communication": [
         {
           "method": "interpretation",
@@ -1559,7 +1560,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/fukuoka-art-accessible-tour-2026-12-06/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming"
     },
     {
@@ -1580,12 +1581,12 @@
       "status": "announced",
       "description": "ろう者のお話、地元の手話サークル紹介、地域のクイズ、吉野杉のmyお箸作りやおしゃべり交流、よどりダンスを楽しむ企画です。昼食は各自持参してください。雨天決行ですが、当日午前7時に大淀町に警報が出ている場合は中止です。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:24:44.961Z",
+      "verifiedAt": "2026-11-11T00:13:00.015Z",
       "webUrl": "https://deafnavi.com/events/nara-gururi-kensaren-oyodo-2026-12-06/",
       "applicationDeadline": "2026-11-20",
       "deadlineScope": "participation",
-      "validUntil": "2026-11-11T00:24:44.961Z",
-      "period": "review"
+      "validUntil": "2026-11-13T00:13:00.015Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1648,9 +1649,9 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-10T17:01:05.640Z",
+      "verifiedAt": "2026-11-11T00:21:43.578Z",
       "webUrl": "https://deafnavi.com/events/oioi-654d6646f163162664e1/",
-      "validUntil": "2026-11-12T17:01:05.640Z",
+      "validUntil": "2026-11-13T00:21:43.578Z",
       "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/%E3%82%AA%E3%82%A4%E3%83%88%E3%83%BC%E3%83%BC%E3%82%AF%EF%BC%81%E5%AE%A3%E4%BC%9D%E3%83%93%E3%83%A9-22.png"
     },
@@ -1728,7 +1729,7 @@
       "status": "announced",
       "description": "ろう者の俳優が演じる手話狂言。「萩大名」「文荷」「牛盗人」を上演し、三宅狂言会による声の出演もあります。",
       "verification": "verified",
-      "verifiedAt": "2026-11-09T00:32:37.744Z",
+      "verifiedAt": "2026-11-11T00:20:34.959Z",
       "communication": [
         {
           "method": "sign",
@@ -1740,7 +1741,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/jtd-kyogen-hatsuharu-2027-01-30/",
-      "validUntil": "2026-11-11T00:32:37.744Z",
+      "validUntil": "2026-11-13T00:20:34.959Z",
       "period": "upcoming"
     },
     {
