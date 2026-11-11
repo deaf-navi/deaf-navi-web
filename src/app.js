@@ -1,7 +1,7 @@
 /**
  * Deaf Navi Web 2.0 クライアント。
  *
- * - 初期表示はサーバ生成の60件（JSなしでも閲覧可能）
+ * - 初期表示はサーバ生成の20話題（JSなしでも閲覧可能）
  * - articles.json を取得後はデータ駆動で全件を検索・絞り込み
  * - カテゴリ / 情報源 / 期間 / 地域 / フリーワード + URL同期
  * - テーマ・文字サイズ切替（localStorage保存）
@@ -13,8 +13,8 @@
 (function () {
   'use strict';
 
-  var INITIAL_VISIBLE = 60;
-  var LOAD_MORE_STEP = 60;
+  var INITIAL_VISIBLE = 20;
+  var LOAD_MORE_STEP = 20;
   var EXCLUDED_FROM_ALL = { relay: true };
 
   var CATEGORY_UI = {
@@ -778,9 +778,9 @@
   activateCategory(state.category);
 
   // deep link（URLパラメータ）がある場合のみ即時フィルタを適用する。
-  // 無い場合は SSR の初期表示（60件 / 全400件表記 / もっと読むボタン）を
+  // 無い場合は SSR の初期表示（20話題 / 全件数の表記 / もっと読むボタン）を
   // そのまま使い、全件データ取得後にカウント類を同期する。
-  // （DOMモードのapplyはSSRの60件しか見えず、件数表示を壊すため）
+  // （DOMモードのapplyはSSRの20話題しか見えず、件数表示を壊すため）
   function syncAfterData() {
     ensureData().then(function (loaded) {
       if (loaded) apply({ updateUrl: false });

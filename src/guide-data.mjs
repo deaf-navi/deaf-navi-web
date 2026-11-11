@@ -20,7 +20,10 @@ export const GUIDE_SECTIONS = [
         summary: 'スマートフォンから文字で救急・消防へ通報。利用地域での事前登録が必要です。',
         detail: '位置情報を添えて消防へ連絡できる緊急通報サービスです。登録方法はお住まいの地域を管轄する消防本部へ確認してください。',
         url: 'https://www.fdma.go.jp/mission/enrichment/kyukyumusen_kinkyutuhou/net119.html',
-        relatedLinks: [{ label: '登録情報の漏えいの可能性と不審メールへの注意（船橋市・2026年10月21日）', url: 'https://www.city.funabashi.lg.jp/emergency/news/attention1/p150975.html' }],
+        relatedLinks: [
+          { label: '登録情報の漏えいの可能性と不審メールへの注意（船橋市・2026年10月21日）', url: 'https://www.city.funabashi.lg.jp/emergency/news/attention1/p150975.html' },
+          { label: '選び方と登録手順（Deaf Naviの読みもの）', url: '/stories/relay-yometel-net119/' },
+        ],
         recommended: true,
       },
       {
@@ -29,6 +32,7 @@ export const GUIDE_SECTIONS = [
         summary: '手話・文字を通訳オペレータが音声につなぎ、24時間緊急通報できます。',
         detail: '電話リレーサービスの利用登録が必要です。平時のうちに登録と緊急通報の手順を確認してください。',
         url: 'https://www.nftrs.or.jp/about/',
+        relatedLinks: [{ label: '選び方と登録手順（Deaf Naviの読みもの）', url: '/stories/relay-yometel-net119/' }],
         recommended: true,
       },
       {
@@ -171,7 +175,10 @@ export const GUIDE_SECTIONS = [
         summary: '手話・文字と音声を通訳オペレータがつなぐ公共サービスです。',
         detail: '電話の発着信に加え、110・118・119への緊急通報にも対応しています。',
         url: 'https://www.nftrs.or.jp/about/',
-        relatedLinks: [{ label: '登録方法を手話・文章で見る', url: 'https://www.nftrs.or.jp/learn-more/registrations' }],
+        relatedLinks: [
+          { label: '登録方法を手話・文章で見る', url: 'https://www.nftrs.or.jp/learn-more/registrations' },
+          { label: '選び方と登録手順（Deaf Naviの読みもの）', url: '/stories/relay-yometel-net119/' },
+        ],
         recommended: true,
       },
       {
@@ -180,6 +187,7 @@ export const GUIDE_SECTIONS = [
         summary: '電話の相手の声を文字で読める、聴覚障害者向けの電話サービスです。',
         detail: 'AIによる文字化と、オペレータによる修正を加える方式から選べます。利用条件と対応端末は公式サイトで確認してください。',
         url: 'https://www.yometel.jp/',
+        relatedLinks: [{ label: '選び方と登録手順（Deaf Naviの読みもの）', url: '/stories/relay-yometel-net119/' }],
         recommended: true,
       },
     ],

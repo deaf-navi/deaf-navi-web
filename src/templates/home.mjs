@@ -6,11 +6,11 @@
  *   2. 目的別の入口（出かける・暮らし・その場で使う）とニュース一覧への移動
  *   3. 検索・絞り込みツールバー
  *   4. 注目: 公式・専門団体の新着（見出し中心）
- *   5. 最新ニュース（初期表示60件をSSR、残りは articles.json から遅延描画）
+ *   5. 最新ニュース（初期表示20話題をSSR、残りは articles.json から遅延描画）
  *
  * パフォーマンス方針: v1 は全505件をHTMLに埋め込み966KBあった。
- * 2.0 は初期60件のみSSRし、全件データはクライアントが articles.json を
- * 必要時に取得する（HTML約1/5、DOMノード約1/8）。
+ * 2.0 は初期表示分のみSSRし、全件データはクライアントが articles.json を
+ * 必要時に取得する。
  */
 
 import {
@@ -43,7 +43,7 @@ import {
   renderGlobalHeader,
 } from './partials.mjs';
 
-export const INITIAL_VISIBLE = 60;
+export const INITIAL_VISIBLE = 20;
 export const FEATURED_COUNT = 2;
 export const FEATURED_MAX_AGE_DAYS = 14;
 
@@ -215,12 +215,12 @@ function renderPurposeNav({ guideFile }) {
   ];
   return `    <nav class="purpose-nav" aria-labelledby="purpose-nav-heading">
       <h2 id="purpose-nav-heading" class="sr-only">目的から探す</h2>
+      <p class="purpose-nav__news"><a href="#articles-heading">最新ニュースへ</a></p>
 ${groups.map((group) => `      <div class="purpose-nav__group">
         <h3 class="purpose-nav__title">${escapeHtml(group.title)}</h3>
         <p class="purpose-nav__desc">${escapeHtml(group.desc)}</p>
         <ul class="purpose-nav__links">${group.links.map(([href, label, external]) => `<li><a href="${href}"${external ? ' target="_blank" rel="noopener noreferrer" aria-label="App Storeで見る（新しいタブで開く）"' : ''}>${escapeHtml(label)}${external ? ' <span aria-hidden="true">↗</span>' : ''}</a></li>`).join('')}</ul>
       </div>`).join('\n')}
-      <p class="purpose-nav__news"><a href="#articles-heading">最新ニュースへ</a></p>
     </nav>`;
 }
 
