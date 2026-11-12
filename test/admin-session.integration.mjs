@@ -32,7 +32,9 @@ const file=c=>join(dir,'sessions','sess_'+c.jar.get('deafnavi_directory'));
 const age=c=>writeFileSync(file(c),readFileSync(file(c),'utf8').replace(/issued\|i:\d+;/,`issued|i:${Math.floor(Date.now()/1000)-13*3600};`).replace(/last_active\|i:\d+;/,`last_active|i:${Math.floor(Date.now()/1000)-3*3600};`));
 const login=async c=>{sql("query('DELETE FROM limits');");const page=await c.request();const r=await c.request('/admin/',{action:'login',csrf:csrf(page.text),username:'sessiontest',password});ok(r.status===303,'password login succeeds');return r;};
 try{
- for(let i=0;i<40;i++){try{await fetch('http://127.0.0.1:5217/');break;}catch{await new Promise(r=>setTimeout(r,100));}}
+ // Drain the readiness response before beginning the session assertions. Leaving
+ // the homepage body unread can leave Undici's parser paused when PHP closes it.
+ for(let i=0;i<40;i++){try{const ready=await fetch('http://127.0.0.1:5217/');await ready.arrayBuffer();break;}catch{await new Promise(r=>setTimeout(r,100));}}
  const a=client(), b=client();
  const response=await login(a);await a.request();age(a);
  ok(logged(await a.request()),'login survives 3h inactivity and 13h since login');
