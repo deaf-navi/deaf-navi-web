@@ -21,8 +21,14 @@ export function eventShare(event, url, kind='event') {
 }
 export function shareControl(data) {
   if (!clean(data.title) || !shareUrl(data.url)) return '';
-  // The plain link remains useful without JavaScript. Other controls are enhanced on open.
-  return `<details class="dn-share" data-content-share="${escape(JSON.stringify(data))}"><summary>共有<span class="dn-share-sr">：${escape(data.title)}</span></summary><div class="dn-share-panel"><a href="${escape(shareUrl(data.url))}" data-share-permalink>共有するリンクを開く</a><noscript><p>リンク先のURLをコピーしてSNSに貼り付けられます。</p></noscript></div></details>`;
+  return `<div class="dn-share" data-content-share="${escape(JSON.stringify(data))}">${shareIcons(sharePresentation(data).xUrl)}<div class="dn-share-panel" hidden></div><p class="dn-share-status" role="status"></p><noscript><a href="${escape(shareUrl(data.url))}">リンクを開いて共有</a></noscript></div>`;
+}
+export function shareIcons(xUrl='') {
+  const svg=body=>`<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">${body}</svg>`;
+  return `<div class="dn-share-icons" role="group" aria-label="SNSで共有">
+<a class="dn-share-icon" data-share-x href="${escape(xUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Xで共有（新しいタブ）" title="Xで共有">${svg('<path fill="currentColor" d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.4l8.2-9.4L.8 2h6.5l4.5 6.8L18.9 2ZM17.8 20h1.7L6.3 3.9H4.5L17.8 20Z"/>')}</a>
+<button class="dn-share-icon" data-share-instagram type="button" aria-label="Instagramで紹介する" title="Instagramで紹介する" aria-expanded="false">${svg('<g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>')}</button>
+<button class="dn-share-icon" data-share-copy type="button" aria-label="リンクをコピー" title="リンクをコピー">${svg('<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m10 14 4-4M9 16l-2 2a4.2 4.2 0 0 1-6-6l4-4a4.2 4.2 0 0 1 6 0M15 8l2-2a4.2 4.2 0 0 1 6 6l-4 4a4.2 4.2 0 0 1-6 0" transform="translate(1 0) scale(.92)"/></g>')}</button></div>`;
 }
 export function shareState(data, now=Date.now()) {
   if (data.kind === 'news') return '';

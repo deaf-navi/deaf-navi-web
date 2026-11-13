@@ -72,6 +72,7 @@ try{
  ok(shared?.kind==='cafe'&&shared.url==='https://deafnavi.com/connect/sign-cafe/event-fixture-future/','share links identify the exact cafe occurrence');
  ok(!('internal_note' in shared)&&!('review_notes' in shared),'share payload excludes private fields');
  ok(html.includes('/content-share.css?v=')&&html.includes('/content-share-ui.js?v='),'public cafe page loads sharing assets');
+ ok(html.includes('data-share-x')&&html.includes('data-share-instagram')&&html.includes('data-share-copy')&&!html.includes('<summary>共有'),'cafe pages show direct social icons without the old share disclosure');
  const detail=await request('/connect/sign-cafe/event-fixture-future/');
  ok(detail.response.status===200&&shares(detail.html).some(x=>x.url===shared.url),'detail and listing share the same occurrence URL');
  const schema=ld(html).find(x=>x['@type']==='CollectionPage');ok(schema?.mainEntity.itemListElement.some(x=>x.url.endsWith('/event-fixture-future/')),'schema describes rendered events');

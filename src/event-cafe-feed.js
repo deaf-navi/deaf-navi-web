@@ -1,4 +1,4 @@
-import {shareControl, eventShare} from './content-share.js?v=20261113share1';
+import {shareControl, eventShare} from './content-share.js?v=20261114icons1';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const methods = {sign:'手話による案内・表現',writing:'筆談'};
 const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0,10) === value;

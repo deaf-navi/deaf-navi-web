@@ -29,7 +29,7 @@ import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import { groupNewsTopics } from '../lib/news-topics.mjs';
-import { shareControl, newsShare } from '../content-share.js';
+import { shareControl, shareIcons, newsShare } from '../content-share.js';
 import { renderNewsNavigation } from './news-navigation.mjs';
 import {
   EXTERNAL_ARROW_SVG,
@@ -349,7 +349,7 @@ function renderCardTemplate() {
             <span class="card__region" hidden></span>
           </div>
         </footer>
-        <details class="dn-share" data-content-share><summary>共有<span class="dn-share-sr"></span></summary><div class="dn-share-panel"><a data-share-permalink>共有するリンクを開く</a></div></details>
+        <div class="dn-share" data-content-share>${shareIcons()}<div class="dn-share-panel" hidden></div><p class="dn-share-status" role="status"></p></div>
       </article>
   </template>`;
 }
