@@ -5,6 +5,9 @@
 .dn-share-icon svg{display:block;flex:none;width:20px;height:20px}
 /* Cafe theme gives every button white text; these compact controls use plain surfaces. */
 .dn-cafe-theme .dn-share button{color:var(--text,#203c3a)!important}
+.dn-directory.dn-cafe-theme .dn-main .dn-share .dn-share-icon{padding:0;border:0;background:transparent;color:var(--text,#203c3a)!important}
+.dn-directory.dn-cafe-theme .dn-main .dn-share .dn-share-icon:hover,.dn-directory.dn-cafe-theme .dn-main .dn-share .dn-share-icon[aria-expanded="true"]{background:var(--surface-alt,#eaf4f1)}
+.dn-directory.dn-cafe-theme .dn-main .dn-share .dn-share-close{background:transparent;color:var(--text,#203c3a)!important}
 .dn-share-panel{box-sizing:border-box;max-width:34rem;margin-block:.5rem;padding:1rem;border:1px solid var(--border,#88a9a1);border-radius:6px;background:var(--surface,#fff);overflow-wrap:anywhere}
 .dn-share-panel p{margin:.5rem 0}
 .dn-share-panel-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
