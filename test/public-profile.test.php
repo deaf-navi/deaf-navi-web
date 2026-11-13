@@ -61,3 +61,16 @@ echo "PUBLIC_PROFILE_TESTS_OK\n";
 $abroad=array_replace($p,['country_code'=>'CZ','country_name'=>'チェコ','prefecture'=>'','city'=>'Praha']);
 expect(str_contains(visitor_profile($abroad),'チェコ / Praha'),'Empty prefecture does not create duplicate separator');
 expect(!str_contains(visitor_profile($abroad),' /  / '),'No empty location component');
+
+$sourceRecord=['official_url'=>'https://example.org/event/','verification_sources'=>['https://example.org/event/','https://example.org/flyer.pdf','https://example.org/event/'],'last_verified_at'=>'2026-09-05'];
+$sourceBefore=$sourceRecord;$links=source_links_for_display($sourceRecord);
+expect(count($links)===2,'Exact source duplicates rendered once');
+expect($links[0]['label']==='公式サイト · example.org'&&$links[1]['label']==='PDF資料 · example.org','Same-host page and PDF distinguished');
+expect($sourceRecord===$sourceBefore,'Source records and original verification date remain unchanged');
+expect(str_contains(sources_html($sourceRecord),'2026-09-05'),'Original verification date displayed');
+$other=['verification_sources'=>['https://example.org/a','https://example.org/b','https://example.org/?p=1','https://example.org/?p=2','https://example.org/a#section']];
+$links=source_links_for_display($other);
+expect(count($links)===5&&count(array_unique(array_column($links,'label')))===5,'Different paths, query values and fragments are retained with distinct labels');
+expect(array_column($links,'url')===$other['verification_sources'],'Source URLs are not rewritten');
+expect(!str_contains(sources_html(['verification_sources'=>['https://example.org/a?x=%3Cscript%3E&y=2']]),'<script>'),'Source labels are escaped');
+expect(str_contains(official_links(['name'=>'Test','official_url'=>'https://example.org/'],true),'>公式サイト</a>'),'Compact official link has a clear label');

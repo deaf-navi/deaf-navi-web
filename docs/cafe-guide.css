@@ -185,7 +185,9 @@
 .dn-empty h2 {font-size:22px;line-height:1.7;margin:0 0 14px}
 .dn-empty .dn-links {gap:10px 20px}
 .dn-empty a {display:inline-flex;align-items:center;min-height:44px}
-.dn-directory.dn-cafe-theme .dn-official-links {background:var(--cafe-soft);border-color:var(--cafe-line);border-radius:4px}
+.dn-directory.dn-cafe-theme .dn-official-links {background:transparent;border:0;border-radius:0}
+.dn-directory.dn-cafe-theme .dn-official-links nav {width:fit-content;max-width:100%}
+.dn-directory.dn-cafe-theme .dn-sources a {overflow-wrap:anywhere}
 .dn-directory.dn-cafe-theme .dn-official-links a {background:var(--cafe-paper);border:1px solid var(--cafe-line);color:var(--cafe-ink);min-height:44px;border-radius:4px}
 .dn-directory.dn-cafe-theme .dn-action-link {background:var(--cafe-paper);border-color:var(--cafe-line);color:var(--cafe-ink);border-radius:4px}
 .dn-directory.dn-cafe-theme .dn-visitor-profile {max-width:900px;margin:24px auto 0}
