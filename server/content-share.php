@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__.'/app-directory.php';
 
 // Reuse the public feed projection, without private notes or review data.
 function cafe_event_share(array $p):string {
+    require_once __DIR__.'/app-directory.php';
     $public=app_directory_event($p);
     $data=['kind'=>'cafe','title'=>$public['title'],'url'=>$public['webUrl']];
     foreach(['startDate','endDate','time','venue','prefecture','target','status','period','verification','verifiedAt','validUntil','timezone'] as $key)$data[$key]=$public[$key]??'';

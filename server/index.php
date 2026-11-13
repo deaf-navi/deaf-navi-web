@@ -15,7 +15,7 @@ require __DIR__.'/starbucks-community.php';
 require __DIR__.'/cafe-regions.php';
 require __DIR__.'/stories.php';
 require __DIR__.'/event-tip-review.php';
-require_once __DIR__.'/app-directory.php';
+require __DIR__.'/app-directory.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: private, no-store, max-age=0');
