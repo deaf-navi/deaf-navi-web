@@ -16,12 +16,12 @@ function page(string $title,string $body,string $path='',string $description='',
     $documentTitle=$meta['title']??($title==='Deaf Navi｜手話カフェ'?$title:$title.' | Deaf Navi');
     $robots=$private?'noindex,nofollow':($meta['robots']??'index,follow');
     $ld='<link rel="stylesheet" href="/directory-community.css?v=20260907tables"><link rel="icon" href="/favicon.ico?v=20261028logo" sizes="16x16 32x32 48x48"><link rel="icon" href="/icons/favicon-48.png?v=20261028logo" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=20261028logo" sizes="180x180"><script src="/directory-safety.js?v=20260908loading" defer></script><script src="/directory-ui.js?v=20261019cafereading" defer></script>';
-    $cafeStyle=str_starts_with($path,'/connect/sign-cafe/')?'<link rel="stylesheet" href="/cafe-guide.css?v=20261017cafeheader"><link rel="stylesheet" href="/cafe-polish.css?v=20261029results"><script src="/cafe-search.js?v=20261016a" defer></script>':'';
+    $cafeStyle=str_starts_with($path,'/connect/sign-cafe/')?'<link rel="stylesheet" href="/cafe-guide.css?v=20261114links1"><link rel="stylesheet" href="/cafe-polish.css?v=20261029results"><script src="/cafe-search.js?v=20261016a" defer></script>':'';
     $ld.=ios_app_banner($path, $robots);
     if($scope==='overseas')$ld.='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui">';
     if(str_starts_with($path,'/connect/sign-cafe/area/'))$ld.='<link rel="stylesheet" href="/reader.css?v=20261017seo">';
     if(!$private) {
-        $ld.='<link rel="stylesheet" href="/content-share.css?v=20261114icons2"><script type="module" src="/content-share-ui.js?v=20261114icons1"></script>';
+        $ld.='<link rel="stylesheet" href="/content-share.css?v=20261114icons2"><script type="module" src="/content-share-ui.js?v=20261114appshare1"></script>';
         $ld.='<script src="/access-visit.js" defer></script><script src="/access-engagement.js?v=20261025b" defer></script><script src="/stories-related.js" defer></script><link rel="stylesheet" href="/stories.css?v=20261019c">';
         if($meta)$ld.='<meta property="og:site_name" content="Deaf Navi"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'.e($documentTitle).'"><meta name="twitter:description" content="'.e($description).'"><meta name="twitter:image" content="'.BASE.'/og-image.png">';
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
@@ -51,9 +51,29 @@ function select_field(string $name,string $label,array $options,string $selected
     return $html.'</select></label>';
 }
 function record_path(array $r): string { return '/connect/sign-cafe/'.($r['kind']==='event'?'starbucks/':'').$r['slug'].'/'; }
+function source_links_for_display(array $p): array {
+    // Deduplicate the display only; preserve source URLs and their review history.
+    $urls=array_values(array_unique(array_filter(array_map('trim',$p['verification_sources']??[]))));
+    $labels=[];
+    foreach($urls as $url){
+        $parts=parse_url($url);$host=$parts['host']??'';$path=$parts['path']??'';
+        $kind=preg_match('/\.pdf$/i',$path)?'PDF資料':($url===trim($p['official_url']??'')?'公式サイト':'Webページ');
+        $labels[]=$kind.' · '.$host;
+    }
+    $counts=array_count_values($labels);$links=[];
+    foreach($urls as $i=>$url){
+        $label=$labels[$i];
+        if($counts[$label]>1){
+            $parts=parse_url($url);
+            $label.=($parts['path']??'/').(isset($parts['query'])?'?'.$parts['query']:'').(isset($parts['fragment'])?'#'.$parts['fragment']:'');
+        }
+        $links[]=['url'=>$url,'label'=>$label];
+    }
+    return $links;
+}
 function sources_html(array $p): string {
     $out='<div class="dn-sources"><span>情報確認日：'.e(($p['last_verified_at']??'')?:'未確認').'</span><details><summary>情報源を確認する</summary><ul>';
-    foreach($p['verification_sources']??[] as $i=>$url) $out.='<li>'.ext_link($url,'情報源 '.($i+1).' · '.(parse_url($url,PHP_URL_HOST)?:'')).'</li>';
+    foreach(source_links_for_display($p) as $link) $out.='<li>'.ext_link($link['url'],$link['label']).'</li>';
     return $out.'</ul></details></div>'.cafe_freshness_html($p);
 }
 function cafe_card(array $p): string {

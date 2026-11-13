@@ -426,7 +426,7 @@ function renderPage(data, mode = 'jp') {
   <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
   <link rel="stylesheet" href="./site-shell.css?v=20261101app">
   <link rel="stylesheet" href="./content-share.css?v=20261114icons1">
-  <script type="module" src="./content-share-ui.js?v=20261114icons1"></script>
+  <script type="module" src="./content-share-ui.js?v=20261114appshare1"></script>
   <link rel="stylesheet" href="./browse.css?v=${CLIENT_VERSION}">
 
   ${jsonLd}

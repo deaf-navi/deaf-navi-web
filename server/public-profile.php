@@ -3,7 +3,7 @@ declare(strict_types=1);
 // Public presentation is an allowlist, deliberately separate from admin fields.
 function official_links(array $p,bool $compact=false):string {
     $links=[];$seen=[];
-    foreach(['official_url'=>$compact?'HP':'公式サイト（HP）','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','line_url'=>'LINE','youtube_url'=>'YouTube'] as $key=>$label){
+    foreach(['official_url'=>$compact?'公式サイト':'公式サイト（HP）','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','line_url'=>'LINE','youtube_url'=>'YouTube'] as $key=>$label){
         $url=$p[$key]??'';if($url===''||isset($seen[rtrim($url,'/')]))continue;
         $seen[rtrim($url,'/')]=true;
         $links[]='<a href="'.e(safe_url($url)).'" target="_blank" rel="noopener noreferrer" aria-label="'.e($p['name'].'の'.$label).'（別タブで開きます）">'.e($label).'</a>';

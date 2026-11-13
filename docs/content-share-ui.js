@@ -36,7 +36,37 @@ export function drawShareImage(canvas,presentation) {
 }
 const panels=new WeakMap();
 let panelSequence=0;
+let appSharePending=false;
 function current(root) { return sharePresentation(JSON.parse(root.dataset.contentShare)); }
+function supportsAppSharing() { return typeof navigator.share==='function'&&typeof navigator.canShare==='function'&&typeof File==='function'; }
+export function shareImageFile(presentation) {
+  const canvas=document.createElement('canvas');drawShareImage(canvas,presentation);
+  // Keep file creation synchronous: Safari needs the original click activation.
+  const bytes=Uint8Array.from(atob(canvas.toDataURL('image/png').split(',')[1]),c=>c.charCodeAt(0));
+  return new File([bytes],'deafnavi-share.png',{type:'image/png'});
+}
+function openPanel(root) {
+  for(const other of document.querySelectorAll('[data-content-share]'))if(other!==root)closePanel(other);
+  initialize(root).get();root.querySelector('.dn-share-panel').hidden=false;
+  root.querySelector('[data-share-instagram]').setAttribute('aria-expanded','true');
+}
+async function shareToApps(root) {
+  if(!supportsAppSharing())return false;
+  const status=root.querySelector('.dn-share-status');
+  if(appSharePending){status.textContent='開いている共有画面で操作してください。';return true;}
+  let file;
+  try{file=shareImageFile(current(root));if(!navigator.canShare({files:[file]}))return false;}catch{return false;}
+  appSharePending=true;
+  try{
+    // Files only: some targets reject mixed link/text + image payloads.
+    await navigator.share({files:[file]});
+    openPanel(root);status.textContent='画像を共有先へ渡しました。必要に応じて紹介文をコピーし、投稿はInstagramで確定してください。';
+  }catch(error){
+    if(error?.name==='AbortError')status.textContent='共有をキャンセルしました。';
+    else{openPanel(root);status.textContent='アプリへ画像を渡せませんでした。画像を保存してInstagramで選んでください。';}
+  }finally{appSharePending=false;}
+  return true;
+}
 function closePanel(root,focus=false) {
   root.querySelector('.dn-share-panel').hidden=true;
   const trigger=root.querySelector('[data-share-instagram]');trigger.setAttribute('aria-expanded','false');
@@ -50,13 +80,14 @@ function initialize(root) {
   const heading=document.createElement('div');heading.className='dn-share-panel-head';
   const title=document.createElement('strong');title.textContent='Instagramで紹介';heading.append(title);
   const close=document.createElement('button');close.type='button';close.className='dn-share-close';close.textContent='閉じる';close.addEventListener('click',()=>closePanel(root,true));heading.append(close);
-  const help=document.createElement('p');help.textContent='紹介文をコピーし、画像を保存してInstagramの投稿画面で選んでください。';
+  const help=document.createElement('p');help.textContent=supportsAppSharing()?'共有先にInstagramが表示される場合は選んでください。表示されない場合は画像を保存して投稿画面で選べます。紹介文は別にコピーできます。':'紹介文をコピーし、画像を保存してInstagramの投稿画面で選んでください。';
   const label=document.createElement('label');label.textContent='紹介文';
   const text=document.createElement('textarea');text.readOnly=true;text.rows=4;label.append(text);
   const actions=document.createElement('div');actions.className='dn-share-actions';
   const canvas=document.createElement('canvas');canvas.hidden=true;canvas.setAttribute('role','img');
   const get=()=>{const p=current(root);text.value=p.text;root.querySelector('[data-share-x]').href=p.xUrl;return p;};
   const button=(name,handler)=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.addEventListener('click',async()=>{status.textContent='';try{await handler(b);}catch{status.textContent='操作できませんでした。紹介文を選択してコピーしてください。';}});actions.append(b);return b;};
+  if(supportsAppSharing())button('アプリに画像を送る',async()=>{if(!await shareToApps(root))status.textContent='この端末では画像の共有に対応していません。画像を保存してInstagramで選んでください。';});
   button('紹介文をコピー',async()=>{const p=get();try{await navigator.clipboard.writeText(p.text);status.textContent='紹介文とリンクをコピーしました。';}catch{text.focus();text.select();status.textContent='選択された紹介文を手動でコピーしてください。';}});
   button('画像を保存',async b=>{
     b.disabled=true;
@@ -83,8 +114,8 @@ if(typeof document!=='undefined') {
       if(control.matches('[data-share-instagram]')){
         const panel=root.querySelector('.dn-share-panel');
         if(!panel.hidden){closePanel(root);return;}
-        for(const other of document.querySelectorAll('[data-content-share]'))if(other!==root)closePanel(other);
-        initialize(root).get();panel.hidden=false;control.setAttribute('aria-expanded','true');return;
+        if(!await shareToApps(root))openPanel(root);
+        return;
       }
       try{await navigator.clipboard.writeText(current(root).url);status.textContent='リンクをコピーしました。';}
       catch{const {text}=initialize(root);text.value=current(root).url;root.querySelector('.dn-share-panel').hidden=false;root.querySelector('[data-share-instagram]').setAttribute('aria-expanded','true');text.focus();text.select();status.textContent='選択されたリンクを手動でコピーしてください。';}

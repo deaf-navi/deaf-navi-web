@@ -141,7 +141,7 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
   <link rel="stylesheet" href="${basePath}site-shell.css?v=20261101app">
   <link rel="stylesheet" href="${basePath}content-share.css?v=20261114icons1">
-  <script type="module" src="${basePath}content-share-ui.js?v=20261114icons1"></script>
+  <script type="module" src="${basePath}content-share-ui.js?v=20261114appshare1"></script>
   <link rel="stylesheet" href="${basePath}support.css?v=20261016mobile2">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
