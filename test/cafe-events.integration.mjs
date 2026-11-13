@@ -67,6 +67,13 @@ try{
  ok((tabs.match(/<a /g)||[]).length===3&&tabs.includes('href="'+route+'" aria-current="page"'),'three tabs, correct current state');
  ok(html.includes('data-event-id="event-fixture-future"')&&!html.includes('data-event-id="event-fixture-past"')&&!html.includes('data-event-id="event-fixture-undated"'),'default is upcoming only');
  ok(!html.includes('PRIVATE_EVENT_SENTINEL')&&!html.includes('PRIVATE_EVENT_PARENT_SENTINEL'),'private fields and hidden venues never exposed');
+ const shares=page=>[...page.matchAll(/data-content-share="([^"]+)"/g)].map(m=>JSON.parse(m[1].replaceAll('&quot;','"').replaceAll('&#039;',"'").replaceAll('&#39;',"'").replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&amp;','&')));
+ const shared=shares(html).find(x=>x.title==='Event fixture future');
+ ok(shared?.kind==='cafe'&&shared.url==='https://deafnavi.com/connect/sign-cafe/event-fixture-future/','share links identify the exact cafe occurrence');
+ ok(!('internal_note' in shared)&&!('review_notes' in shared),'share payload excludes private fields');
+ ok(html.includes('/content-share.css?v=')&&html.includes('/content-share-ui.js?v='),'public cafe page loads sharing assets');
+ const detail=await request('/connect/sign-cafe/event-fixture-future/');
+ ok(detail.response.status===200&&shares(detail.html).some(x=>x.url===shared.url),'detail and listing share the same occurrence URL');
  const schema=ld(html).find(x=>x['@type']==='CollectionPage');ok(schema?.mainEntity.itemListElement.some(x=>x.url.endsWith('/event-fixture-future/')),'schema describes rendered events');
  ok(!ld(html).some(x=>x['@type']==='Event'),'no invented Event structured data');
  ({html}=await request(route+'?period=past'));ok(html.includes('data-event-id="event-fixture-past"')&&!html.includes('data-event-id="event-fixture-future"'),'past events separate');

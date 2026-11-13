@@ -11,6 +11,7 @@ import {
 } from '../../config/site.mjs';
 import { CATEGORY_UI, SOURCE_TIER_UI } from '../../config/categories.mjs';
 import { renderThumbnail, renderNewsThumbnail } from './thumbnail.mjs';
+import { shareControl, newsShare } from '../content-share.js';
 import { REGION_UI } from '../../config/regions.mjs';
 import SITE_NAVIGATION from '../../config/site-navigation.json' with { type: 'json' };
 import { escapeHtml } from '../lib/text.mjs';
@@ -139,6 +140,8 @@ ${feedUrl ? `  <link rel="alternate" type="application/rss+xml" title="${escapeH
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="${basePath}${stylesFile}${stylesFile.includes('?') ? '' : '?v=20260909ui2'}">
   <link rel="stylesheet" href="${basePath}site-shell.css?v=20261101app">
+  <link rel="stylesheet" href="${basePath}content-share.css?v=20261113share1">
+  <script type="module" src="${basePath}content-share-ui.js?v=20261113share1"></script>
   <link rel="stylesheet" href="${basePath}support.css?v=20261016mobile2">
 ${jsonLd ? `\n  ${jsonLd}\n` : ''}${extraHead}`;
 }
@@ -299,6 +302,7 @@ export function renderArticleCard(a, { hidden = false, featured = false, newsMed
 ${regionChip ? `            ${regionChip}\n` : ''}          </div>${newsMedia ? '' : `
           <a class="card__read" href="${escapeHtml(a.id)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a.title)}（新しいタブで開く）">記事を読む <span aria-hidden="true">↗</span></a>`}
         </footer>
+        ${shareControl(newsShare(a))}
       </article>`;
 }
 

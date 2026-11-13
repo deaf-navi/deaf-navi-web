@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__.'/cafe-event-registry.php';
+require_once __DIR__.'/content-share.php';
 
 const CAFE_EVENTS_PATH='/connect/sign-cafe/events/';
 const CAFE_EVENTS_DESCRIPTION='単発の手話カフェ・交流イベントを開催日と地域から探せます。今後の開催告知と過去の開催情報を分け、会場・参加条件・公式情報を紹介します。';
@@ -83,7 +84,7 @@ function cafe_event_card(array $p):string {
     $out='<article class="dn-card dn-place-card dn-event-card" data-event-id="'.e($p['id']).'"><div class="dn-event-heading"><div class="dn-event-date">'.cafe_icon('calendar').($date!==''?'<time datetime="'.e($date).'">'.e(str_replace('-','.',$date)).'</time>':'<span>日付未確認</span>').'</div><span class="dn-badge">'.e(cafe_event_label($p)).'</span></div>'.cafe_card_intro($p,$location).'<dl class="dn-facts"><dt>会場</dt><dd>'.e($venue).'</dd><dt>開催時間</dt><dd>'.e($time?:'未確認').'</dd></dl><p class="dn-card-intro">'.nl2br(e($p['description']??'')).'</p>';
     if(!empty($p['notes']))$out.='<p class="dn-visit-note">'.nl2br(e($p['notes'])).'</p>';
     if(cafe_event_period($p)==='past'&&empty($p['event_reported'])&&($p['observation_only']??'0')!=='1')$out.='<p class="dn-event-history-note">過去の日付の告知情報です。実施済み・次回開催を示すものではありません。</p>';
-    return $out.cafe_event_source_notice($p).official_links($p,true).sources_html($p).'</article>';
+    return $out.cafe_event_source_notice($p).official_links($p,true).sources_html($p).cafe_event_share($p).'</article>';
 }
 function cafe_events_page():string {
     $all=cafe_event_records();$f=cafe_event_filters();$matched=array_values(array_filter($all,fn($p)=>cafe_event_matches($p,$f)));

@@ -29,6 +29,7 @@ import { REGION_ORDER, REGION_UI } from '../../config/regions.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST } from '../lib/dates.mjs';
 import { groupNewsTopics } from '../lib/news-topics.mjs';
+import { shareControl, newsShare } from '../content-share.js';
 import { renderNewsNavigation } from './news-navigation.mjs';
 import {
   EXTERNAL_ARROW_SVG,
@@ -234,6 +235,7 @@ function renderFeatured(featured) {
             <span class="featured__meta">${escapeHtml(a.sourceName)} ・ <time datetime="${escapeHtml(a.publishedAt)}">${escapeHtml(formatDateJST(a.publishedAt).slice(0, 10))}</time></span>
             </div>
           </a>
+          ${shareControl(newsShare(a))}
         </li>`).join('\n');
   return `    <section class="featured" id="featured-news" aria-labelledby="featured-heading">
       <div class="featured__head">
@@ -347,6 +349,7 @@ function renderCardTemplate() {
             <span class="card__region" hidden></span>
           </div>
         </footer>
+        <details class="dn-share" data-content-share><summary>共有<span class="dn-share-sr"></span></summary><div class="dn-share-panel"><a data-share-permalink>共有するリンクを開く</a></div></details>
       </article>
   </template>`;
 }

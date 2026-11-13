@@ -21,6 +21,7 @@ function page(string $title,string $body,string $path='',string $description='',
     if($scope==='overseas')$ld.='<link rel="stylesheet" href="/world-cafes.css?v=20260908ui">';
     if(str_starts_with($path,'/connect/sign-cafe/area/'))$ld.='<link rel="stylesheet" href="/reader.css?v=20261017seo">';
     if(!$private) {
+        $ld.='<link rel="stylesheet" href="/content-share.css?v=20261113share1"><script type="module" src="/content-share-ui.js?v=20261113share1"></script>';
         $ld.='<script src="/access-visit.js" defer></script><script src="/access-engagement.js?v=20261025b" defer></script><script src="/stories-related.js" defer></script><link rel="stylesheet" href="/stories.css?v=20261019c">';
         if($meta)$ld.='<meta property="og:site_name" content="Deaf Navi"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'.e($documentTitle).'"><meta name="twitter:description" content="'.e($description).'"><meta name="twitter:image" content="'.BASE.'/og-image.png">';
         $crumbs=[['@type'=>'ListItem','position'=>1,'name'=>'ホーム','item'=>BASE.'/'],['@type'=>'ListItem','position'=>2,'name'=>'手話カフェ','item'=>BASE.'/connect/sign-cafe/']];
@@ -146,6 +147,7 @@ function detail(string $slug,bool $event): string {
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
     if($singleEvent)$body.=cafe_event_source_notice($p);
     $body.=$event?event_card($p,$store).visitor_event_details($p):cafe_record_area_link($p).visitor_profile($p);
+    if($singleEvent){$shareRecord=$p;if($event){foreach(['prefecture','city','address'] as $key)$shareRecord[$key]=$store[$key];$shareRecord['venue_name']=$store['name'];}$body.=cafe_event_share($shareRecord);}
     if($event) $body.='<h2>開催店舗</h2><p>'.e($store['name'].' / '.$store['address']).'</p>'.disclaimer();
     if(!$event && $p['kind']==='store'&&$p['country_code']==='JP') {
         $body.='<h2>この店舗の開催履歴</h2>';
