@@ -1,27 +1,27 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-12T10:55:35.151Z",
+  "generatedAt": "2026-11-13T00:34:37.310Z",
   "counts": {
-    "uniqueInputs": 1989,
-    "alreadyPublished": 662,
-    "outsideWindow": 1116,
+    "uniqueInputs": 807,
+    "alreadyPublished": 538,
+    "outsideWindow": 215,
     "hardExcluded": 1,
-    "duplicateOfPublished": 27,
-    "candidateDuplicates": 3,
-    "eligible": 180,
+    "duplicateOfPublished": 2,
+    "candidateDuplicates": 0,
+    "eligible": 51,
     "queued": 40,
-    "deferred": 140
+    "deferred": 11
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-12T02:13:19.965Z",
+    "previousGeneratedAt": "2026-11-12T10:55:35.151Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -32,7 +32,7 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/11/134248",
