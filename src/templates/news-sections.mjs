@@ -8,6 +8,7 @@ import { getSourceTier, renderNewsContext } from './partials.mjs';
 import { CATEGORY_UI, SOURCE_TIER_UI } from '../../config/categories.mjs';
 import { renderNewsThumbnail } from './thumbnail.mjs';
 import { renderReaderPage } from './reader.mjs';
+import { shareControl, newsShare } from '../content-share.js';
 
 export function newsSectionArticles(section, articles) {
   // General technology/education stories are not automatically about access or support.
@@ -26,11 +27,12 @@ export function renderNewsSectionItem({ lead: article, articles: related }) {
   const sourceLabel = SOURCE_TIER_UI[sourceTier]?.label || '出典情報';
   const summary = article.summary && !/^聴覚・手話に関わる取り組みについてのお知らせです。/u.test(article.summary)
     ? `<p class="reader-news-summary">${e(article.summary)}</p>` : '';
-  const otherSources = related.length > 1 ? `<details class="reader-news-related"><summary>同じ話題の出典 ${related.length - 1}件</summary><ul>${related.slice(1).map(other => `<li><a href="${e(other.id)}" target="_blank" rel="noopener noreferrer">${e(other.title)}（${e(other.sourceName)}・新しいタブ）</a></li>`).join('')}</ul></details>` : '';
+  const otherSources = related.length > 1 ? `<details class="reader-news-related"><summary>同じ話題の出典 ${related.length - 1}件</summary><ul>${related.slice(1).map(other => `<li><a href="${e(other.id)}" target="_blank" rel="noopener noreferrer">${e(other.title)}（${e(other.sourceName)}・新しいタブ）</a>${shareControl(newsShare(other))}</li>`).join('')}</ul></details>` : '';
   return `<li><article class="reader-news-article">
     <header class="reader-news-meta"><span class="chip chip--${e(article.category)}">${e(CATEGORY_UI[article.category] || '一般')}</span>${renderNewsContext(article)}<time datetime="${e(article.publishedAt)}">${e(formatDateJST(article.publishedAt).slice(0,10))}</time></header>
     <div class="reader-news-content">${renderNewsThumbnail(article)}<div class="reader-news-text"><h3><a href="${e(article.id)}" target="_blank" rel="noopener noreferrer">${e(article.title)} <span class="sr-only">（元記事・新しいタブ）</span></a></h3>${summary}</div></div>
     <footer class="reader-news-foot"><div class="reader-news-source"><span class="source-tier source-tier--${e(sourceTier)}">${e(sourceLabel)}</span><span>${e(article.sourceName)}</span></div></footer>
+    ${shareControl(newsShare(article))}
   </article>${otherSources}</li>`;
 }
 

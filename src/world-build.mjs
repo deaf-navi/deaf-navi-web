@@ -10,6 +10,7 @@ import { cleanSummaryText } from './lib/text.mjs';
 import { injectCloudflareAnalytics } from './lib/analytics.mjs';
 import { injectAccessVisit } from './lib/access-visit.mjs';
 import { renderSiteHeader } from './templates/partials.mjs';
+import { shareControl, newsShare } from './content-share.js';
 import { renderNewsThumbnail } from './templates/thumbnail.mjs';
 import { renderIosAppBanner } from './lib/ios-app-promotion.mjs';
 
@@ -244,6 +245,7 @@ function renderArticle(article, index, mode = 'jp') {
         <footer class="card__foot">
           <a class="card__source" href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.sourceName)}</a>
         </footer>
+        ${shareControl(newsShare({...article,title:text.title}))}
       </article>`;
 }
 
@@ -423,6 +425,8 @@ function renderPage(data, mode = 'jp') {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
   <link rel="stylesheet" href="./site-shell.css?v=20261101app">
+  <link rel="stylesheet" href="./content-share.css?v=20261113share1">
+  <script type="module" src="./content-share-ui.js?v=20261113share1"></script>
   <link rel="stylesheet" href="./browse.css?v=${CLIENT_VERSION}">
 
   ${jsonLd}
@@ -620,6 +624,8 @@ async function main() {
   await writeFile(ORIGINAL_FEED_OUT, originalFeed, 'utf8');
   await writeFile(EN_LEGACY_FEED_OUT, originalFeed, 'utf8');
   await writeFile(SITEMAP_OUT, renderSitemap(data), 'utf8');
+  await copyFile(join(__dirname, 'content-share.js'), join(DOCS, 'content-share.js'));
+  for (const asset of ['content-share.css','content-share-ui.js']) await copyFile(join(__dirname, 'assets', asset), join(DOCS, asset));
   await copyFile(STYLES_SRC, STYLES_OUT);
   await copyFile(join(__dirname, 'assets/browse.css'), join(DOCS, 'browse.css'));
   await copyFile(APP_SRC, APP_OUT);

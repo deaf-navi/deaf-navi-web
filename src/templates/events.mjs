@@ -7,6 +7,7 @@ import { PREFECTURES } from '../../config/regions.mjs';
 import { escapeHtml as e } from '../lib/text.mjs';
 import { renderHead, renderSiteHeader, renderSkipLink, renderFooter } from './partials.mjs';
 import { renderNewsThumbnail } from './thumbnail.mjs';
+import { shareControl, eventShare } from '../content-share.js';
 
 export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVersion='20261016polish' } = {}) {
   const events=(snapshot.events||[]).filter(validEvent);
@@ -28,6 +29,7 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
       ${event.fee||event.target?`<dl class="event-participation">${[['参加費',event.fee],['対象・申込',event.target]].filter(([,value])=>value).map(([label,value])=>`<div><dt>${label}</dt><dd>${e(value)}</dd></div>`).join('')}</dl>`:''}
 ${deadline?`      <p class="event-deadline" data-event-deadline="${e(deadline.date)}" data-deadline-scope="${e(deadline.scope)}">${e(deadlineLabel(deadline))}</p>`:''}
       <p class="event-action"><a href="${e(event.detailUrl||event.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${e(event.title)}の公式案内・申込方法を見る（新しいタブ）">公式案内・申込方法を見る<span aria-hidden="true"> ↗</span></a></p>
+      ${shareControl(eventShare(event,new URL(eventDetailPath(event),SITE_URL).href))}
       <details><summary>主催・情報源</summary><dl><div><dt>主催</dt><dd>${e(event.organizer||'告知をご確認ください')}</dd></div></dl>
       <p><a href="${e(event.sourceUrl)}" target="_blank" rel="noopener noreferrer">${e(event.sourceName)}の告知</a> · 情報確認 <time datetime="${e(event.verifiedAt)}">${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST</time></p></details></div></article>`;
   }).join('\n');

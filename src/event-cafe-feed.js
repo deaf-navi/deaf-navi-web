@@ -1,3 +1,4 @@
+import {shareControl, eventShare} from './content-share.js?v=20261113share1';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const methods = {sign:'手話による案内・表現',writing:'筆談'};
 const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0,10) === value;
@@ -38,5 +39,5 @@ export function renderCafeEvent(event) {
  ${event.description?`<p>${e(event.description)}</p>`:''}
  <div class="event-communication" data-communication="${communication.map(item=>item.method).join(' ')}"><p class="event-communication-label">情報の受け取り方</p>${communication.length?`<ul>${communication.map(item=>`<li><strong>${methods[item.method]}</strong>：${e(item.detail)}</li>`).join('')}</ul>`:'<p class="event-communication-unknown">通訳・字幕・筆談など、利用できる方法は主催者へお問い合わせください。</p>'}</div>
  ${event.target?`<dl class="event-participation"><div><dt>対象・申込</dt><dd>${e(event.target)}</dd></div></dl>`:''}
- <p class="event-action"><a href="${e(path)}" aria-label="${e(event.title)}の詳細・参加方法を見る">詳細・参加方法を見る</a></p></div></article>`;
+ <p class="event-action"><a href="${e(path)}" aria-label="${e(event.title)}の詳細・参加方法を見る">詳細・参加方法を見る</a></p>${shareControl(eventShare(event,event.webUrl,'cafe'))}</div></article>`;
 }

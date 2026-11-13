@@ -363,6 +363,14 @@
     } else sourceLink.href = a.sourceUrl;
     sourceLink.textContent = a.sourceName;
 
+    // Only the selected article's public headline, source and original URL are shared.
+    var share = node.querySelector('[data-content-share]');
+    if (share) {
+      share.dataset.contentShare = JSON.stringify({kind:'news',title:a.title,url:a.id,source:a.sourceName,publishedAt:a.publishedAt});
+      share.querySelector('.dn-share-sr').textContent = '：' + a.title;
+      share.querySelector('[data-share-permalink]').href = a.id;
+    }
+
     var regionEl = node.querySelector('.card__region');
     if (a.prefecture) {
       regionEl.hidden = false;

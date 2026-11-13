@@ -238,6 +238,8 @@ async function main() {
   await copyAsset(join(__dirname, 'access-engagement.js'), 'access-engagement.js');
   for (const asset of ['stories.css','stories.js','stories-editor.js','stories-related.js']) await copyAsset(join(__dirname, 'assets', asset), asset);
   // ---- アセットコピー ----
+  await copyAsset(join(__dirname, 'content-share.js'), 'content-share.js');
+  for (const asset of ['content-share.css','content-share-ui.js']) await copyAsset(join(ASSETS, asset), asset);
   await copyAsset(join(__dirname, 'access-visit.js'), 'access-visit.js');
   await copyAsset(join(__dirname, 'styles.css'), FILES.styles);
   await copyAsset(join(ASSETS, 'site-shell.css'), 'site-shell.css');
