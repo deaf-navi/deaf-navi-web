@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T15:17:57.384Z",
+  "generatedAt": "2026-11-13T15:48:09.377Z",
   "variant": "world",
   "count": 600,
   "regions": {
@@ -21,8 +21,8 @@
   },
   "quality": {
     "version": "world-v6",
-    "rawCount": 2678,
-    "dedupedCount": 1785,
+    "rawCount": 2667,
+    "dedupedCount": 1780,
     "selectedCount": 600,
     "maxArticles": 600,
     "minScore": 8,
@@ -36,7 +36,7 @@
     "japanesePostEdit": {
       "checked": 0,
       "updated": 0,
-      "cached": 239,
+      "cached": 238,
       "skipped": 510,
       "failed": 0,
       "enabled": true,
@@ -46,7 +46,7 @@
         "circuitOpen": true
       },
       "pending": 510,
-      "retainedPrevious": 214
+      "retainedPrevious": 216
     },
     "japanesePostEditRequired": false,
     "japanesePostEditMinCoverage": 0.85,
@@ -120,7 +120,7 @@
       "بوابة الشروق": 2,
       "Telemundo 52": 1,
       "Libertà": 1,
-      "더파워": 1,
+      "녹색경제신문": 1,
       "REDE BRASIL DE TELEVISÃO": 2,
       "Tribuna Hoje": 1,
       "AIP - Agence Ivoirienne de Presse": 1,
@@ -130,7 +130,7 @@
       "Costa Norte": 1,
       "فاس نيوز": 1,
       "Onda Bierzo": 1,
-      "녹색경제신문": 1,
+      "더파워": 1,
       "에이블뉴스": 2,
       "Alparslan Diyarı": 1,
       "La Región": 1,
@@ -201,9 +201,9 @@
       "Tododisca": 1,
       "Polesine24": 1,
       "Nau": 1,
-      "La Voz de Galicia": 1,
-      "SRF": 1,
       "20Minutos": 2,
+      "SRF": 1,
+      "La Voz de Galicia": 1,
       "JeChange": 1,
       "Cinealliance": 1,
       "워크투데이": 1,
@@ -242,8 +242,8 @@
       "www.saint-etienne.fr": 1,
       "world of buzz": 1,
       "Prefeitura de Aracruz": 1,
-      "Yale Climate Connections": 1,
       "InYourArea": 1,
+      "Yale Climate Connections": 1,
       "The New York Times": 6,
       "OkDiario": 1,
       "Diario de Burgos": 1,
@@ -254,9 +254,9 @@
       "Le JSL": 1,
       "Frankfurter Rundschau": 1,
       "Ouest-France": 3,
-      "Netzwoche": 1,
-      "Westfalen-Blatt": 1,
       "TL7, Télévision loire 7": 1,
+      "Westfalen-Blatt": 1,
+      "Netzwoche": 1,
       "Merkur": 1,
       "Morocco World News": 6,
       "مكتب أبوظبي الإعلامي": 1,
@@ -295,8 +295,8 @@
       "Le Progrès": 3,
       "ActuaLitté.com": 1,
       "Le Republicain Lorrain": 1,
-      "France 3 Régions": 1,
       "Le Journal du Centre": 1,
+      "France 3 Régions": 1,
       "RelationclientMag.fr": 1,
       "Daily Monitor": 7,
       "ici.fr": 1,
@@ -363,19 +363,19 @@
       "EL PAÍS English": 1
     },
     "sourceModeCounts": {
-      "regional-fresh": 268,
-      "major-media": 265,
-      "major-media-fresh": 61,
-      "regional-multilingual": 6
+      "regional-fresh": 267,
+      "regional-multilingual": 7,
+      "major-media": 263,
+      "major-media-fresh": 63
     },
     "thumbnails": {
       "articles": 600,
-      "attempted": 31,
-      "cached": 466,
-      "acquired": 2,
-      "missing": 0,
-      "failed": 29,
-      "deferred": 103,
+      "attempted": 36,
+      "cached": 497,
+      "acquired": 3,
+      "missing": 18,
+      "failed": 15,
+      "deferred": 67,
       "withImage": 340,
       "googleStopped": false
     },
@@ -507,7 +507,7 @@
       ],
       "sourceDomain": "techpoint.africa",
       "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
+      "sourceMode": "regional-multilingual",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "openai_complimentary",
@@ -2079,13 +2079,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
-      "title": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
-      "summary": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
-      "originalTitle": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
-      "originalSummary": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
-      "sourceName": "더파워",
-      "sourceUrl": "https://www.thepowernews.co.kr",
+      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
+      "title": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
+      "summary": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
+      "originalTitle": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
+      "originalSummary": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
+      "sourceName": "녹색경제신문",
+      "sourceUrl": "https://www.greened.kr",
       "publishedAt": "2026-10-22T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -2105,17 +2105,14 @@
         "수어",
         "multilingual"
       ],
-      "sourceDomain": "thepowernews.co.kr",
+      "sourceDomain": "greened.kr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
-      "japanesePostEditEngine": "openai_complimentary",
-      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://cliimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=999&simg=202610221132440850703dfcd109a811513921884.jpg&nmt=7",
+        "url": "https://www.greened.kr/news/thumbnail/202610/352727_404643_1421_v150.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.thepowernews.co.kr/view.php?ud=2026102211322048593dfcd109a8_7"
+        "pageUrl": "https://www.greened.kr/news/articleView.html?idxno=352727"
       }
     },
     {
@@ -2471,13 +2468,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkYlhvOGZscVdsdWlJZF9SeF9kcGVRbFpZUHczSW5aNEd1ZXliT080eEtQa3F2SjBQU2RSR2JIWUZScVRCam5XNjVic21hT3NhU0p6VDAwNnpuazRJVF9QS2R0cmxTTG5R?oc=5",
-      "title": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
-      "summary": "障壁のない行政…全州市、ろう者のための「市政・生活情報手話動画」大幅拡大",
-      "originalTitle": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
-      "originalSummary": "장벽 없는 행정… 전주시, 청각장애인 위한 ‘시정·생활 정보 수어영상’ 대폭 확대",
-      "sourceName": "녹색경제신문",
-      "sourceUrl": "https://www.greened.kr",
+      "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9YNk16QnNIa0s3WUxGU1ZRdUp0ZHZPUzlHNXI2OVNObmNmdVRtNE5WOTdvUk8tVzFGQ2ZROXRKQXdKSDZHc3RDVm82YUs4Z3N4d2ZWM0V2RUsxRGttd2IyNEpqUXR3UGtNZ3hKbG9wWjFHcjMyOGNsYzhfR3ZHdw?oc=5",
+      "title": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
+      "summary": "全州市はろう者向け手話動画60本の制作を進め、今年は43本を完成させた。",
+      "originalTitle": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
+      "originalSummary": "전주시, 청각장애인 수어영상 60편 제작…올해 43편 완료",
+      "sourceName": "더파워",
+      "sourceUrl": "https://www.thepowernews.co.kr",
       "publishedAt": "2026-10-22T07:00:00.000Z",
       "region": "asia_oceania",
       "regionLabel": "アジア・オセアニア",
@@ -2497,14 +2494,17 @@
         "수어",
         "multilingual"
       ],
-      "sourceDomain": "greened.kr",
+      "sourceDomain": "thepowernews.co.kr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
+      "japanesePostEditEngine": "openai_complimentary",
+      "japanesePostEditModel": "gpt-6.1-sol",
       "thumbnail": {
-        "url": "https://www.greened.kr/news/thumbnail/202610/352727_404643_1421_v150.jpg",
+        "url": "https://cliimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=999&simg=202610221132440850703dfcd109a811513921884.jpg&nmt=7",
         "source": "og:image",
-        "pageUrl": "https://www.greened.kr/news/articleView.html?idxno=352727"
+        "pageUrl": "https://www.thepowernews.co.kr/view.php?ud=2026102211322048593dfcd109a8_7"
       }
     },
     {
@@ -5458,13 +5458,13 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxPbzM3QzNfUTBRWGk3cHg4cDFTR3p4dXBad1ctQXdxeUR2OE84Umx2aHduZjRQdkNHdjBrcGtDQmJiTVFyeEZYSEhEZ2dpY0JhdEo0TEpTT2NIb1VJWlgxZGQ2YXpjcEdlUmpES3g5OUZTa2dqV1dtMEFsajRsT3l0NnRYTkRNQ0VCT29wS19XZmJjNFlpcjZXZ1J3OVJWY2VQY1VMVzlMX3E5VkN0UC14UTRtc3JfcDdYb0d1OFJFRU1LcTh3RVVfMFpRS2dFcmJMS251cnRiTFZ4aEZiTi1iNlVDOGNuRVlVQ1F4OWxBYkJTbW45UTlwYldpdnh3UXd2SFQ0UjZyMXN3TWEtdWhzdDEyWDZVd9IBmwJBVV95cUxOZ3Z5TEVJV3M2OFhnb2l5ZlQtN2VGU0Y1S0hvTm9PUFNYOC1GenFhaUR2VGZxN3ZfQjVFRkRQeFhrSXZTS1VKekJQdVFGWno2WkFtZ0RsQXczZy1JN1VqMmp2c2dYSk83eEtJZVV3TFcxY1dtbklfcERCb0pOQkJYbFZzWmtLU2xpSWR2X0pMeUFUR3k1T0VFMFVNbC1wbWcyLUUxZkpBel9BeG05dmZQR0RUdDVXSW5LMklvclViVFBCc19WS21wMDdSTDdQX3dVbWxhLU5ablZMMVRTVHp3YkV3Um5NRm0zdzlnVFBLRDM3SWhIOWlfQ1lMUjZVVktWbGxFVjFKR2hfVGpHYUgxUXBaQWNwRktsUzZv?oc=5",
-      "title": "補聴器に対する偏見が認知症のリスクを倍増させる：「多くの人は、自分の障害を他人に見てもらうよりも、聞こえないことを好む」",
-      "summary": "補聴器に対する偏見が認知症のリスクを倍増させる：「多くの人は、自分の障害を他人に見てもらうよりも、聞こえないことを好む」",
-      "originalTitle": "El estigma de los audífonos duplica el riesgo de demencia: «Muchas personas prefieren no oír a que otros vean su discapacidad»",
-      "originalSummary": "El estigma de los audífonos duplica el riesgo de demencia: «Muchas personas prefieren no oír a que otros vean su discapacidad»",
-      "sourceName": "La Voz de Galicia",
-      "sourceUrl": "https://www.lavozdegalicia.es",
+      "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPMDl3em1wT3RUVGV5elRmT29keHhQM1RIWVlJRi1IUUdaTkZOdDU0YUV5LWhOemxRQmhZa0UzV0NlNFRqc2xDa2tNV3hfNy1MU09BbVhqa1A3OVU5bVMwZjFKRGNrNjRiNkVCekpLSzJwOFplVGJBemZHdjRQcjBaSUhVdXcwdDl5VEsyYy03T0hfaDUyOHdyRUp1Mmw?oc=5",
+      "title": "フレドリクセン氏のソノトーンから、AI を搭載したメガネや補聴器まで: これがテクノロジーが聞こえの向上への障壁を打ち破る方法です",
+      "summary": "フレドリクセン氏のソノトーンから、AI を搭載したメガネや補聴器まで: これがテクノロジーが聞こえの向上への障壁を打ち破る方法です",
+      "originalTitle": "Del sonotone del señor Fredricksen a gafas y audífonos con IA: así derriba la tecnología las barreras para escuchar mejor",
+      "originalSummary": "Del sonotone del señor Fredricksen a gafas y audífonos con IA: así derriba la tecnología las barreras para escuchar mejor",
+      "sourceName": "20Minutos",
+      "sourceUrl": "https://www.20minutos.es",
       "publishedAt": "2026-10-31T07:00:00.000Z",
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -5474,22 +5474,22 @@
         "mentions": []
       },
       "discoveryRegion": "europe_cis",
-      "topic": "health",
-      "topicLabel": "医療・補聴",
+      "topic": "technology",
+      "topicLabel": "技術・AI",
       "curationScore": 20,
       "curationSignals": [
         "audífono",
         "audífonos",
         "multilingual"
       ],
-      "sourceDomain": "lavozdegalicia.es",
+      "sourceDomain": "20minutos.es",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "thumbnail": {
-        "url": "https://img.lavdg.com/sc/fd_xB4UA9a8oo0N8_MAhE2afyjo=/1280x/2026/10/30/00121793355603007818499/Foto/X27M8032.jpg",
+        "url": "https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2026/10/31/6ae5d6572d28d2-67064154.jpeg",
         "source": "og:image",
-        "pageUrl": "https://www.lavozdegalicia.es/noticia/lavozdelasalud/enfermedades/2026/10/31/estigma-audifonos-duplica-riesgo-demencia-personas-prefieren-oir-vean-discapacidad/00031793456648324371962.htm"
+        "pageUrl": "https://www.20minutos.es/tecnologia/fabricantes/sonotone-audifono-con-ia-mo-gafas_7055796_0.html"
       }
     },
     {
@@ -5523,13 +5523,13 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPMDl3em1wT3RUVGV5elRmT29keHhQM1RIWVlJRi1IUUdaTkZOdDU0YUV5LWhOemxRQmhZa0UzV0NlNFRqc2xDa2tNV3hfNy1MU09BbVhqa1A3OVU5bVMwZjFKRGNrNjRiNkVCekpLSzJwOFplVGJBemZHdjRQcjBaSUhVdXcwdDl5VEsyYy03T0hfaDUyOHdyRUp1Mmw?oc=5",
-      "title": "フレドリクセン氏のソノトーンから、AI を搭載したメガネや補聴器まで: これがテクノロジーが聞こえの向上への障壁を打ち破る方法です",
-      "summary": "フレドリクセン氏のソノトーンから、AI を搭載したメガネや補聴器まで: これがテクノロジーが聞こえの向上への障壁を打ち破る方法です",
-      "originalTitle": "Del sonotone del señor Fredricksen a gafas y audífonos con IA: así derriba la tecnología las barreras para escuchar mejor",
-      "originalSummary": "Del sonotone del señor Fredricksen a gafas y audífonos con IA: así derriba la tecnología las barreras para escuchar mejor",
-      "sourceName": "20Minutos",
-      "sourceUrl": "https://www.20minutos.es",
+      "id": "https://news.google.com/rss/articles/CBMilgJBVV95cUxPbzM3QzNfUTBRWGk3cHg4cDFTR3p4dXBad1ctQXdxeUR2OE84Umx2aHduZjRQdkNHdjBrcGtDQmJiTVFyeEZYSEhEZ2dpY0JhdEo0TEpTT2NIb1VJWlgxZGQ2YXpjcEdlUmpES3g5OUZTa2dqV1dtMEFsajRsT3l0NnRYTkRNQ0VCT29wS19XZmJjNFlpcjZXZ1J3OVJWY2VQY1VMVzlMX3E5VkN0UC14UTRtc3JfcDdYb0d1OFJFRU1LcTh3RVVfMFpRS2dFcmJMS251cnRiTFZ4aEZiTi1iNlVDOGNuRVlVQ1F4OWxBYkJTbW45UTlwYldpdnh3UXd2SFQ0UjZyMXN3TWEtdWhzdDEyWDZVd9IBmwJBVV95cUxOZ3Z5TEVJV3M2OFhnb2l5ZlQtN2VGU0Y1S0hvTm9PUFNYOC1GenFhaUR2VGZxN3ZfQjVFRkRQeFhrSXZTS1VKekJQdVFGWno2WkFtZ0RsQXczZy1JN1VqMmp2c2dYSk83eEtJZVV3TFcxY1dtbklfcERCb0pOQkJYbFZzWmtLU2xpSWR2X0pMeUFUR3k1T0VFMFVNbC1wbWcyLUUxZkpBel9BeG05dmZQR0RUdDVXSW5LMklvclViVFBCc19WS21wMDdSTDdQX3dVbWxhLU5ablZMMVRTVHp3YkV3Um5NRm0zdzlnVFBLRDM3SWhIOWlfQ1lMUjZVVktWbGxFVjFKR2hfVGpHYUgxUXBaQWNwRktsUzZv?oc=5",
+      "title": "補聴器に対する偏見が認知症のリスクを倍増させる：「多くの人は、自分の障害を他人に見てもらうよりも、聞こえないことを好む」",
+      "summary": "補聴器に対する偏見が認知症のリスクを倍増させる：「多くの人は、自分の障害を他人に見てもらうよりも、聞こえないことを好む」",
+      "originalTitle": "El estigma de los audífonos duplica el riesgo de demencia: «Muchas personas prefieren no oír a que otros vean su discapacidad»",
+      "originalSummary": "El estigma de los audífonos duplica el riesgo de demencia: «Muchas personas prefieren no oír a que otros vean su discapacidad»",
+      "sourceName": "La Voz de Galicia",
+      "sourceUrl": "https://www.lavozdegalicia.es",
       "publishedAt": "2026-10-31T07:00:00.000Z",
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -5539,22 +5539,22 @@
         "mentions": []
       },
       "discoveryRegion": "europe_cis",
-      "topic": "technology",
-      "topicLabel": "技術・AI",
+      "topic": "health",
+      "topicLabel": "医療・補聴",
       "curationScore": 20,
       "curationSignals": [
         "audífono",
         "audífonos",
         "multilingual"
       ],
-      "sourceDomain": "20minutos.es",
+      "sourceDomain": "lavozdegalicia.es",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "thumbnail": {
-        "url": "https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2026/10/31/6ae5d6572d28d2-67064154.jpeg",
+        "url": "https://img.lavdg.com/sc/fd_xB4UA9a8oo0N8_MAhE2afyjo=/1280x/2026/10/30/00121793355603007818499/Foto/X27M8032.jpg",
         "source": "og:image",
-        "pageUrl": "https://www.20minutos.es/tecnologia/fabricantes/sonotone-audifono-con-ia-mo-gafas_7055796_0.html"
+        "pageUrl": "https://www.lavozdegalicia.es/noticia/lavozdelasalud/enfermedades/2026/10/31/estigma-audifonos-duplica-riesgo-demencia-personas-prefieren-oir-vean-discapacidad/00031793456648324371962.htm"
       }
     },
     {
@@ -7402,6 +7402,41 @@
       }
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPX2lvcHhVbGpGT3V3YXZFTnFGU3JrRHg1cElJYXpGTHhlRnc2TFlaY3VmY0IxOUJtT0I4cjNnMGhYN1huR3pEMFN0UVhvN0lfaVdia3BsNmR1TXRCVkw3M0dxWUhqelZPREhoN0V1TGJ4cElBME5fVnVuanpOckt6WGcwem1IUnJ1WG5mVWNjY2xXZlFpMFhKWmlseEJiYzlydUhsRFFyeXE1WFRWUTlV?oc=5",
+      "title": "「聴覚障害のある子供たちに大きな夢を持ってもらい、自分たちが達成できるすべてのことを信じてほしい」",
+      "summary": "「聴覚障害のある子供たちに大きな夢を持ってもらい、自分たちが達成できるすべてのことを信じてほしい」",
+      "originalTitle": "'I want deaf children to dream big and believe in everything they can achieve'",
+      "originalSummary": "'I want deaf children to dream big and believe in everything they can achieve'",
+      "sourceName": "InYourArea",
+      "sourceUrl": "https://www.inyourarea.co.uk",
+      "publishedAt": "2026-10-22T07:00:00.000Z",
+      "region": "unknown",
+      "regionLabel": "地域未確認",
+      "regionEvidence": {
+        "method": "source-text-v1",
+        "status": "unconfirmed",
+        "mentions": []
+      },
+      "discoveryRegion": "europe_cis",
+      "topic": "education",
+      "topicLabel": "教育",
+      "curationScore": 22,
+      "curationSignals": [
+        "deaf child",
+        "deaf children",
+        "multilingual"
+      ],
+      "sourceDomain": "inyourarea.co.uk",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "thumbnail": {
+        "url": "https://images-cropper-prod.inyourarea.co.uk/unsafe/700x394/smart/harvester-img-dda05b1484766a6018c75f0769306d62.jpg",
+        "source": "og:image",
+        "pageUrl": "https://www.inyourarea.co.uk/news/i-want-deaf-children-to-dream-big-and-believe-in-everything-they-can-achieve"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOM19SZzlscWxSRnBNMk9tb1M4eTlSYzVoR0hEQ3VTRHBqNFZJY3dMTTRWeUNGMUZLeWg0WHMwZEhWZTJGNFdDakJCZlN3RVYyY2FVOVVxVy1YU0Y0dDk3ajE3MTNCUWVaUDdvQnd0OXFkQmxibDFRcHVrR2VJaUtocXF3ZzhmSElXQjNybDdRWUZtTHlfUkdFc2FoUlpxQ3JjMnhjYk92YmtHRnA5ekFaZ25fQmRDSXM0aFI4TkdvejNEUjNNRFFWc1l5eWc2eHM?oc=5",
       "title": "プエルトリコ西部では、ろう者の住民が地域コミュニティーで異常気象に関する情報を得ている。",
       "summary": "プエルトリコ西部では、ろう者の住民が地域コミュニティーで異常気象に関する情報を得ている。",
@@ -7437,41 +7472,6 @@
         "url": "https://yaleclimateconnections.org/wp-content/uploads/2026/10/fethi-benattallah-0hkWVHnPdss-unsplash-scaled.jpg",
         "source": "og:image",
         "pageUrl": "https://yaleclimateconnections.org/2026/10/en-el-oeste-de-puerto-rico-residentes-sordos-se-informan-del-clima-extremo-en-la-comunidad/"
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPX2lvcHhVbGpGT3V3YXZFTnFGU3JrRHg1cElJYXpGTHhlRnc2TFlaY3VmY0IxOUJtT0I4cjNnMGhYN1huR3pEMFN0UVhvN0lfaVdia3BsNmR1TXRCVkw3M0dxWUhqelZPREhoN0V1TGJ4cElBME5fVnVuanpOckt6WGcwem1IUnJ1WG5mVWNjY2xXZlFpMFhKWmlseEJiYzlydUhsRFFyeXE1WFRWUTlV?oc=5",
-      "title": "「聴覚障害のある子供たちに大きな夢を持ってもらい、自分たちが達成できるすべてのことを信じてほしい」",
-      "summary": "「聴覚障害のある子供たちに大きな夢を持ってもらい、自分たちが達成できるすべてのことを信じてほしい」",
-      "originalTitle": "'I want deaf children to dream big and believe in everything they can achieve'",
-      "originalSummary": "'I want deaf children to dream big and believe in everything they can achieve'",
-      "sourceName": "InYourArea",
-      "sourceUrl": "https://www.inyourarea.co.uk",
-      "publishedAt": "2026-10-22T07:00:00.000Z",
-      "region": "unknown",
-      "regionLabel": "地域未確認",
-      "regionEvidence": {
-        "method": "source-text-v1",
-        "status": "unconfirmed",
-        "mentions": []
-      },
-      "discoveryRegion": "europe_cis",
-      "topic": "education",
-      "topicLabel": "教育",
-      "curationScore": 22,
-      "curationSignals": [
-        "deaf child",
-        "deaf children",
-        "multilingual"
-      ],
-      "sourceDomain": "inyourarea.co.uk",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://images-cropper-prod.inyourarea.co.uk/unsafe/700x394/smart/harvester-img-dda05b1484766a6018c75f0769306d62.jpg",
-        "source": "og:image",
-        "pageUrl": "https://www.inyourarea.co.uk/news/i-want-deaf-children-to-dream-big-and-believe-in-everything-they-can-achieve"
       }
     },
     {
@@ -8041,13 +8041,13 @@
       "japanesePostEditModel": "gpt-6.1-sol"
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
-      "title": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
-      "summary": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
-      "originalTitle": "Wie gut Gehörlose in der Schweiz telefonieren können",
-      "originalSummary": "Wie gut Gehörlose in der Schweiz telefonieren können",
-      "sourceName": "Netzwoche",
-      "sourceUrl": "https://www.netzwoche.ch",
+      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
+      "title": "ロワールろう者ホームの新しい敷地",
+      "summary": "ロワールろう者ホームの新しい敷地",
+      "originalTitle": "Nouveaux locaux pour le foyer des Sourds de la Loire",
+      "originalSummary": "Nouveaux locaux pour le foyer des Sourds de la Loire",
+      "sourceName": "TL7, Télévision loire 7",
+      "sourceUrl": "https://www.tl7.fr",
       "publishedAt": "2026-10-16T07:00:00.000Z",
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -8057,18 +8057,23 @@
         "mentions": []
       },
       "discoveryRegion": "europe_cis",
-      "topic": "general",
-      "topicLabel": "一般",
+      "topic": "rights",
+      "topicLabel": "権利・制度",
       "curationScore": 20,
       "curationSignals": [
-        "gehörlos",
-        "gehörlose",
+        "sourd",
+        "sourds",
         "multilingual"
       ],
-      "sourceDomain": "netzwoche.ch",
+      "sourceDomain": "tl7.fr",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "thumbnail": {
+        "url": "https://s1.dmcdn.net/v/g4tgY1guCohdmXUBe/x240",
+        "source": "og:image",
+        "pageUrl": "https://www.tl7.fr/replay/saint-etienne-metropole_97/nouveaux-locaux-pour-le-foyer-des-sourds-de-la-loire_xboab36.html"
+      }
     },
     {
       "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPR3E0NW1uVC15WUpuY1dCdDR2TngzY1MwZlJBWFVGV3NJM3otQ2hyaVR0Qldsb3VicUJ2TFA2M0RZTUNrV3VkS1FkZnZvTWdlTWlXRm9aU0RXMnpHOFFRMGJVVGdER2N2YUtNX1Y2VGVTZnZrV25lZm5QZ1o3cXBMcmVnSGF5Y1NjWW1MTklrZ1FkWDVFOTJELXZVNEVGakJHRXJYMzR2S2laa3dTVzkyUVdkaw?oc=5",
@@ -8106,13 +8111,13 @@
       }
     },
     {
-      "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZWtrY1hIY2VDN2M3WXdjaGVNcGl1MUloU0dZZW13WW1fbDJ5aE00ZU1yN05hVFNHcnFoMU5YbHREaFJCY3JnZFR4OTUwc0JBdUFWY2JlQTc2TUkwZUZHQ1RDbnlxMjhkVE12Nzc3Q0oxQWdWcTFvVUJRXzFZZjk5UDZNYjRsSi1iZjJfTGxjeFhQMXJpd3BaSU1Ic25CQkxwSEFoNFJTa09ueGNWRnF3V1RqbXU0M1lrekE?oc=5",
-      "title": "ロワールろう者ホームの新しい敷地",
-      "summary": "ロワールろう者ホームの新しい敷地",
-      "originalTitle": "Nouveaux locaux pour le foyer des Sourds de la Loire",
-      "originalSummary": "Nouveaux locaux pour le foyer des Sourds de la Loire",
-      "sourceName": "TL7, Télévision loire 7",
-      "sourceUrl": "https://www.tl7.fr",
+      "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWXhrTVlqV09TYmVOdjFXVlBRWVJqRHdzSG41Ry1seHhKUlhzTWxjUHVsVzZVNDV1WEJabGZHZ2R6Z3U0TktyTEZqWWRSSEhfNXZ0bURhRlR3a0RCV3lvNjFCbXZtQ0lnTlhieWdmNy1Sc2lReU1UZVRxSmEzaXhjT2hrRkdxSDFtUlVvNTJVZkJ0aWdZYk5XLWg3SQ?oc=5",
+      "title": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
+      "summary": "スイスで聴覚障害者がどれだけ上手に電話をかけることができるか",
+      "originalTitle": "Wie gut Gehörlose in der Schweiz telefonieren können",
+      "originalSummary": "Wie gut Gehörlose in der Schweiz telefonieren können",
+      "sourceName": "Netzwoche",
+      "sourceUrl": "https://www.netzwoche.ch",
       "publishedAt": "2026-10-16T07:00:00.000Z",
       "region": "unknown",
       "regionLabel": "地域未確認",
@@ -8122,23 +8127,18 @@
         "mentions": []
       },
       "discoveryRegion": "europe_cis",
-      "topic": "rights",
-      "topicLabel": "権利・制度",
+      "topic": "general",
+      "topicLabel": "一般",
       "curationScore": 20,
       "curationSignals": [
-        "sourd",
-        "sourds",
+        "gehörlos",
+        "gehörlose",
         "multilingual"
       ],
-      "sourceDomain": "tl7.fr",
+      "sourceDomain": "netzwoche.ch",
       "sourcePriority": 50,
       "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://s1.dmcdn.net/v/g4tgY1guCohdmXUBe/x240",
-        "source": "og:image",
-        "pageUrl": "https://www.tl7.fr/replay/saint-etienne-metropole_97/nouveaux-locaux-pour-le-foyer-des-sourds-de-la-loire_xboab36.html"
-      }
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMimwJBVV95cUxQVVpWeVRMd09BODNxU1NMbFF3VWR5UTRPdS0wa29SMTZ6WWpDeUV2RHdCd3BxX1lJRHBwcG9sRnJuVUREMVItd09Qdzk3SjRLWWxPQVZhS3ZMVDF6R0t5U0JGenVlZ0tMTmtRcjkwMmlZcXU4S0ZIVWJCcGZDRzd2LVJLbDlkbElKQVp3NWpxb3dkX3F1dGlJa3Nka0xPOFNTdG1qdlk3Y2Y1TFZ3d0d2N3FxbWVtMzN5UlZodjJfV0pZSnpYLXdGUkhHZ05YMGhUNldIdGd5OWJRc2R3WXdsbmZqRUI4ZGVEa2NlV0wwZzlnc2w0SXJ0UFdIUUp4ZEJPNEdjd2JTUENORG9lajVCNXJIZWRwZTNnbm04?oc=5",
@@ -10208,6 +10208,80 @@
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
+      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
+      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
+      "originalTitle": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+      "originalSummary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
+      "sourceName": "Le Journal du Centre",
+      "sourceUrl": "https://www.lejdc.fr",
+      "publishedAt": "2026-09-27T07:00:00.000Z",
+      "region": "europe_cis",
+      "regionLabel": "ヨーロッパ・CIS",
+      "regionEvidence": {
+        "method": "codex-opus-source-review",
+        "status": "source-verified",
+        "reviewedAt": "2026-10-29T15:54:51.705Z",
+        "mentions": [
+          "Bourgogne-Franche-Comté, France"
+        ],
+        "sources": [
+          {
+            "url": "https://www.bourgognefranchecomte.fr/index.php/la-region-en-quelques-chiffres",
+            "method": "official-location"
+          }
+        ]
+      },
+      "discoveryRegion": "europe_cis",
+      "topic": "general",
+      "topicLabel": "一般",
+      "curationScore": 18,
+      "curationSignals": [
+        "sourd",
+        "sourds",
+        "multilingual"
+      ],
+      "sourceDomain": "lejdc.fr",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
+    },
+    {
+      "id": "https://news.google.com/rss/articles/CBMingNBVV95cUxQX2xmcFR2RTJlZ3RfWkxTV2o2M0NLNFpaZFRkUGd1VE1haVNscDFUc05xVXdIRkVGRjVLTjBVbW1yYVVQUEsweXg3N0hKLUdlM2NBRlQ3SzdMZ1oyYkg4ODFhWFhKVmJlaXUtV3RVcDItLXlYLXhQZjVWS1dNOVNxQnhvNHYyZDBQeEdrTTBGb01sQVVyUS0xQXYyOTNBbXlMWExSOG1GaC1RNmNMSmJoV2pOM1ZVcHVEcG9zMUNwRUFmZmxHU09aanphTmEtYlVDc0pFNG1mcnkxU0hSWVdWeEVGa3BUdGI1b1ROalltWnJsdnNsRlc2Y3VxSkp4cnY1NW1LTldMRDFwa1hSVVJOcWJOVWRqdnduRWotVG40QmcyMmFfRUlEcmdhRENOV2lGRWw0Wkk2SWlZNk5aTDVCWDhTUFJ3VTkzbDRTcHVibzF0bnZ2dHUwbngxbkZ5d255eUcyaC1ER1BlbzRTVm9LLVVLelNtLVlqVmUzMmFvRm1mb1ZlSzFpaGpCYnFoZV9oUFpBUUlEdXNKSHpuMFE?oc=5",
+      "title": "河南省出身の古代衣装を着た女性の手話通訳者は、聴覚障害のある観光客向けのパフォーマンスの通訳で有名になり、「最も強力なNPC」と称賛された",
+      "summary": "河南省出身の古代衣装を着た女性の手話通訳者は、聴覚障害のある観光客向けのパフォーマンスの通訳で有名になり、「最も強力なNPC」と称賛された",
+      "originalTitle": "河南古裝女手語翻譯爆紅 為聽障遊客解說演出 獲讚「最夯NPC」",
+      "originalSummary": "河南古裝女手語翻譯爆紅 為聽障遊客解說演出 獲讚「最夯NPC」",
+      "sourceName": "香港01",
+      "sourceUrl": "https://www.hk01.com",
+      "publishedAt": "2026-10-10T07:00:00.000Z",
+      "region": "unknown",
+      "regionLabel": "地域未確認",
+      "regionEvidence": {
+        "method": "source-text-v1",
+        "status": "unconfirmed",
+        "mentions": []
+      },
+      "discoveryRegion": "asia_oceania",
+      "topic": "accessibility",
+      "topicLabel": "アクセシビリティ・情報保障",
+      "curationScore": 21,
+      "curationSignals": [
+        "聽障",
+        "手語",
+        "multilingual"
+      ],
+      "sourceDomain": "hk01.com",
+      "sourcePriority": 50,
+      "sourceMode": "regional-fresh",
+      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
+      "thumbnail": {
+        "url": "https://cdn.hk01.com/di/media/images/dw/20261009/1185265202099130368023459.png/OiC0QAI8nCPYsNJaBsmFpnRYZWu-FVe4al1asWpdWrE",
+        "source": "og:image",
+        "pageUrl": "https://www.hk01.com/%E7%86%B1%E7%88%86%E8%A9%B1%E9%A1%8C/60397816/%E6%B2%B3%E5%8D%97%E5%8F%A4%E8%A3%9D%E5%A5%B3%E6%89%8B%E8%AA%9E%E7%BF%BB%E8%AD%AF%E7%88%86%E7%B4%85-%E7%82%BA%E8%81%BD%E9%9A%9C%E9%81%8A%E5%AE%A2%E8%A7%A3%E8%AA%AA%E6%BC%94%E5%87%BA-%E7%8D%B2%E8%AE%9A-%E6%9C%80%E5%A4%AFnpc"
+      }
+    },
+    {
       "id": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLTNGQ0RCWlJnLUR2SEc0UE5iQUwzQkdJeU9LTElYUnFPU0FuTktCbjd2TjhBVjhvcFREZllIZGpCRjIwaXdhT2dKUGpvWG96NHI5aDBzMU9xVDlmN19vSC12NklNd2tsd1liZl9BbFk1OTNKMmt0dXl6SUdJYzVzMG41dHpZM24ycU54OTF5TUZnZEFqSUxacWZnWkZlRUFOUEdxcENMTmdpVGFyajNTTHlXVkFNRFFaQjdzaTYxbjBQQ1NqbXNwWTF1Wk1mWHliczJZWHRDalo5bU16RTJUcURqbjZseHRJZTdQSVdRV0QxMFJ3SjB6aTgyNWdmQ2syNDRSUHFkbnU0SkxkeU5OMFpaMEVmY0Zu?oc=5",
       "title": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
       "summary": "「私の人生は変わりました」：リモージュ大学病院で通訳者が聴覚障害者患者のサポートを妨害",
@@ -10250,80 +10324,6 @@
         "source": "og:image",
         "pageUrl": "https://france3-regions.franceinfo.fr/nouvelle-aquitaine/haute-vienne/limoges/ca-a-change-ma-vie-un-interprete-bouleverse-l-accompagnement-des-patients-sourds-au-chu-de-limoges-3422162.html"
       }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMingNBVV95cUxQX2xmcFR2RTJlZ3RfWkxTV2o2M0NLNFpaZFRkUGd1VE1haVNscDFUc05xVXdIRkVGRjVLTjBVbW1yYVVQUEsweXg3N0hKLUdlM2NBRlQ3SzdMZ1oyYkg4ODFhWFhKVmJlaXUtV3RVcDItLXlYLXhQZjVWS1dNOVNxQnhvNHYyZDBQeEdrTTBGb01sQVVyUS0xQXYyOTNBbXlMWExSOG1GaC1RNmNMSmJoV2pOM1ZVcHVEcG9zMUNwRUFmZmxHU09aanphTmEtYlVDc0pFNG1mcnkxU0hSWVdWeEVGa3BUdGI1b1ROalltWnJsdnNsRlc2Y3VxSkp4cnY1NW1LTldMRDFwa1hSVVJOcWJOVWRqdnduRWotVG40QmcyMmFfRUlEcmdhRENOV2lGRWw0Wkk2SWlZNk5aTDVCWDhTUFJ3VTkzbDRTcHVibzF0bnZ2dHUwbngxbkZ5d255eUcyaC1ER1BlbzRTVm9LLVVLelNtLVlqVmUzMmFvRm1mb1ZlSzFpaGpCYnFoZV9oUFpBUUlEdXNKSHpuMFE?oc=5",
-      "title": "河南省出身の古代衣装を着た女性の手話通訳者は、聴覚障害のある観光客向けのパフォーマンスの通訳で有名になり、「最も強力なNPC」と称賛された",
-      "summary": "河南省出身の古代衣装を着た女性の手話通訳者は、聴覚障害のある観光客向けのパフォーマンスの通訳で有名になり、「最も強力なNPC」と称賛された",
-      "originalTitle": "河南古裝女手語翻譯爆紅 為聽障遊客解說演出 獲讚「最夯NPC」",
-      "originalSummary": "河南古裝女手語翻譯爆紅 為聽障遊客解說演出 獲讚「最夯NPC」",
-      "sourceName": "香港01",
-      "sourceUrl": "https://www.hk01.com",
-      "publishedAt": "2026-10-10T07:00:00.000Z",
-      "region": "unknown",
-      "regionLabel": "地域未確認",
-      "regionEvidence": {
-        "method": "source-text-v1",
-        "status": "unconfirmed",
-        "mentions": []
-      },
-      "discoveryRegion": "asia_oceania",
-      "topic": "accessibility",
-      "topicLabel": "アクセシビリティ・情報保障",
-      "curationScore": 21,
-      "curationSignals": [
-        "聽障",
-        "手語",
-        "multilingual"
-      ],
-      "sourceDomain": "hk01.com",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
-      "thumbnail": {
-        "url": "https://cdn.hk01.com/di/media/images/dw/20261009/1185265202099130368023459.png/OiC0QAI8nCPYsNJaBsmFpnRYZWu-FVe4al1asWpdWrE",
-        "source": "og:image",
-        "pageUrl": "https://www.hk01.com/%E7%86%B1%E7%88%86%E8%A9%B1%E9%A1%8C/60397816/%E6%B2%B3%E5%8D%97%E5%8F%A4%E8%A3%9D%E5%A5%B3%E6%89%8B%E8%AA%9E%E7%BF%BB%E8%AD%AF%E7%88%86%E7%B4%85-%E7%82%BA%E8%81%BD%E9%9A%9C%E9%81%8A%E5%AE%A2%E8%A7%A3%E8%AA%AA%E6%BC%94%E5%87%BA-%E7%8D%B2%E8%AE%9A-%E6%9C%80%E5%A4%AFnpc"
-      }
-    },
-    {
-      "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNN0tESU1aSGdXcHM4bm96S1YxZ25TeDBtMXhIRWZIZGJoWTUzWUNiY0o1YkxiYmVZWEQ2WGRUWV9yOFVXc1I2enJNRGZOaGxBRzZ6aFQ1eHdpZDZzQTB1NTJPN1dkVkZGYXhNNm1neDJoZEJFOHhNcmtRWEhLMl9udXJRUnF2NXVHaTZzODQ3bHRPcDczQkczZ1JzOVhOSUdXRURDd250Rk81ZTNDQV9KS3RFZnJLNkZOWlpvZEllN0tQRnF5RURtWW5KN1NsVERPSXE0eG9EbFc0WVhkSDVjMEhnYXVKOHNRWkN6a2VB?oc=5",
-      "title": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
-      "summary": "2人の聴覚障害者の自転車選手が世界ろう者の日のためにブルゴーニュ・フランシュ・コンテ地域の600キロを走行",
-      "originalTitle": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-      "originalSummary": "Deux cyclistes sourds parcourent 600 km en Bourgogne-Franche-Comté pour la Journée mondiale des sourds",
-      "sourceName": "Le Journal du Centre",
-      "sourceUrl": "https://www.lejdc.fr",
-      "publishedAt": "2026-09-27T07:00:00.000Z",
-      "region": "europe_cis",
-      "regionLabel": "ヨーロッパ・CIS",
-      "regionEvidence": {
-        "method": "codex-opus-source-review",
-        "status": "source-verified",
-        "reviewedAt": "2026-10-29T15:54:51.705Z",
-        "mentions": [
-          "Bourgogne-Franche-Comté, France"
-        ],
-        "sources": [
-          {
-            "url": "https://www.bourgognefranchecomte.fr/index.php/la-region-en-quelques-chiffres",
-            "method": "official-location"
-          }
-        ]
-      },
-      "discoveryRegion": "europe_cis",
-      "topic": "general",
-      "topicLabel": "一般",
-      "curationScore": 18,
-      "curationSignals": [
-        "sourd",
-        "sourds",
-        "multilingual"
-      ],
-      "sourceDomain": "lejdc.fr",
-      "sourcePriority": 50,
-      "sourceMode": "regional-fresh",
-      "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
       "id": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQRFVpQmlRYzZqX19EYU1aTnpYMURrSGlxbjQtemFOeWUydWV3aXJNS2w4QlVBUzRISm9jNjBwd1c4Tkw3WmV1dzBIaERSNzdUSERNSk1EYVk2WS1ybUtlZGZPMDFSYm5FS1RZRWg2c3paVDA2SFZ0SVBlSHYzRDdiaFBoenNTVU9tcURySWpMU0hCVTZkYlBWb1Jqc01VeVp5ampfVlJpUVZuZHVndW1uNW5yRWhRLVV0QzJnWlh1Vl9lQUs2SG5OeHlzR1JfTXY10gHWAUFVX3lxTE5pT2xiTlh3eEhtOTM4UUNPbGtraXdJcUZwd2tPY3Z3WkVCdXdCN3puYjJ3WHRLdm1idmhUTFIwRTg4dEp5VnAtYXRNMm1RVjZRaXp6VEU4Q19icTJtZDBiazIxeHlINkdESWVSeTJVak5aYzRicEhSY2FQczI2S1BaRldIcGZnWVh3ZUhUcVlmdkJON1BISDNhWHBnOUdiTG41ZFN3SEdFN3p0TG1xeWppM1lLbEF1SXhPaEd6VTJfOThSckhpZExSbHBiTXBuSzBYZXFWa3c?oc=5",
@@ -11099,7 +11099,7 @@
       ],
       "sourceDomain": "timesofindia.indiatimes.com",
       "sourcePriority": 76,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
@@ -11137,7 +11137,7 @@
       ],
       "sourceDomain": "monitor.co.ug",
       "sourcePriority": 74,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -13016,7 +13016,7 @@
       ],
       "sourceDomain": "swissinfo.ch",
       "sourcePriority": 76,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -13461,7 +13461,7 @@
       ],
       "sourceDomain": "arabnews.com",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "thumbnail": {
         "url": "https://assets.maestronewsroom.com/media/30f6532d-717b-4366-9158-9c455299fcd9/arabnews-import/2026/03/4691150-292014280.jpg",
@@ -14273,7 +14273,7 @@
       ],
       "sourceDomain": "scmp.com",
       "sourcePriority": 80,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -14623,7 +14623,7 @@
       ],
       "sourceDomain": "punchng.com",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -14918,7 +14918,7 @@
       ],
       "sourceDomain": "aljazeera.com",
       "sourcePriority": 92,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -15599,7 +15599,7 @@
       ],
       "sourceDomain": "japantimes.co.jp",
       "sourcePriority": 82,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -17089,7 +17089,7 @@
       ],
       "sourceDomain": "rte.ie",
       "sourcePriority": 78,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -18434,7 +18434,7 @@
       ],
       "sourceDomain": "independent.co.uk",
       "sourcePriority": 78,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -21606,7 +21606,7 @@
       ],
       "sourceDomain": "channelnewsasia.com",
       "sourcePriority": 84,
-      "sourceMode": "major-media-fresh",
+      "sourceMode": "major-media",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback"
     },
     {
@@ -22463,7 +22463,7 @@
       ],
       "sourceDomain": "guardian.ng",
       "sourcePriority": 72,
-      "sourceMode": "major-media",
+      "sourceMode": "major-media-fresh",
       "translationProvider": "Google Translate + Deaf Navi glossary v2 + dedicated text fallback",
       "japanesePostEditProvider": "Codex App Server Japanese news editor v1",
       "japanesePostEditEngine": "unknown",
@@ -22963,7 +22963,7 @@
   ],
   "publicationReview": {
     "version": "publication-quality-v12",
-    "inputGeneratedAt": "2026-11-13T15:17:57.384Z",
+    "inputGeneratedAt": "2026-11-13T15:48:09.377Z",
     "removed": []
   }
 }
