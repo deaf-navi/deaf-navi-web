@@ -51,5 +51,15 @@ test('dynamic cafe rows and news cards each expose the exact selected item, with
 test('browser sharing never fetches, posts or copies third-party pictures',()=>{
   const ui=readFileSync(new URL('../src/assets/content-share-ui.js',import.meta.url),'utf8');
   assert.doesNotMatch(ui,/\bfetch\s*\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|\.drawImage\(/);
-  assert.match(ui,/AbortError/);assert.match(ui,/text\.select\(\)/);
+  assert.match(ui,/Escape/);assert.match(ui,/text\.select\(\)/);
+});
+
+test('small named social icons are visible immediately, with Instagram tools initially hidden',()=>{
+  const html=shareControl(newsShare({id:'https://example.com/story',title:'見出し'}));
+  assert.doesNotMatch(html,/<details|<summary/);
+  for(const name of ['data-share-x','data-share-instagram','data-share-copy'])assert.match(html,new RegExp(name));
+  assert.match(html,/aria-label="Xで共有（新しいタブ）"/);
+  assert.match(html,/aria-expanded="false"/);
+  assert.match(html,/class="dn-share-panel" hidden/);
+  assert.equal((html.match(/aria-hidden="true"/g)||[]).length,3);
 });

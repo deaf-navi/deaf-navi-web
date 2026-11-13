@@ -425,8 +425,8 @@ function renderPage(data, mode = 'jp') {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="./styles-world.css?v=${CLIENT_VERSION}">
   <link rel="stylesheet" href="./site-shell.css?v=20261101app">
-  <link rel="stylesheet" href="./content-share.css?v=20261113share1">
-  <script type="module" src="./content-share-ui.js?v=20261113share1"></script>
+  <link rel="stylesheet" href="./content-share.css?v=20261114icons1">
+  <script type="module" src="./content-share-ui.js?v=20261114icons1"></script>
   <link rel="stylesheet" href="./browse.css?v=${CLIENT_VERSION}">
 
   ${jsonLd}

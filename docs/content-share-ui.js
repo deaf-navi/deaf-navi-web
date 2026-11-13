@@ -1,4 +1,4 @@
-import {sharePresentation} from './content-share.js?v=20261113share1';
+import {sharePresentation} from './content-share.js?v=20261114icons1';
 
 function wrap(ctx,text,width) {
   const lines=[];let line='';
@@ -34,43 +34,63 @@ export function drawShareImage(canvas,presentation) {
   y=1170;for(const line of wrap(ctx,presentation.note,952).slice(0,3)){ctx.fillText(line,64,y);y+=40;}
   ctx.font='24px sans-serif';ctx.fillText('リンク・出典は紹介文へ  /  deafnavi.com',64,1300);
 }
-const refreshers=new WeakMap();
-function initialize(root) {
-  if(refreshers.has(root)){refreshers.get(root)();return;}
-  const data=JSON.parse(root.dataset.contentShare),panel=root.querySelector('.dn-share-panel');
-  const p=sharePresentation(data);root.dataset.shareReady='true';
-  const notice=document.createElement('p');notice.textContent='自分のSNSで紹介できます。投稿は各SNSの画面で確認・確定してください。';
-  const actions=document.createElement('div');actions.className='dn-share-actions';
-  const status=document.createElement('p');status.className='dn-share-status';status.setAttribute('role','status');
-  const label=document.createElement('label');label.textContent='紹介文とリンク';
-  const text=document.createElement('textarea');text.readOnly=true;text.rows=6;label.append(text);
-  const canvas=document.createElement('canvas');canvas.hidden=true;canvas.setAttribute('role','img');
-  const get=()=>{const current=sharePresentation(data);text.value=current.text;x.href=current.xUrl;return current;};
-  const button=(name,handler)=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.addEventListener('click',async()=>{status.textContent='';try{await handler(b);}catch(err){status.textContent=err.message || '操作できませんでした。紹介文を手動でコピーしてください。';}});actions.append(b);return b;};
-  const x=document.createElement('a');x.textContent='Xで共有';x.href=p.xUrl;x.target='_blank';x.rel='noopener noreferrer';x.setAttribute('aria-label','Xで共有（新しいタブ）');x.addEventListener('click',get);actions.append(x);
-  button('紹介文をコピー',async()=>{const current=get();try{await navigator.clipboard.writeText(current.text);status.textContent='紹介文とリンクをコピーしました。';}catch{text.focus();text.select();status.textContent='自動コピーができませんでした。選択された紹介文を手動でコピーしてください。';}});
-  button('リンクをコピー',async()=>{const current=get();try{await navigator.clipboard.writeText(current.url);status.textContent='リンクをコピーしました。';}catch{text.value=current.url;text.focus();text.select();status.textContent='選択されたリンクを手動でコピーしてください。';}});
-  if(typeof navigator.share==='function')button('スマホなどの共有メニュー',async()=>{const current=get();try{await navigator.share({title:current.title,text:current.text.replace(current.url+'\n',''),url:current.url});}catch(err){if(err.name!=='AbortError')throw new Error('共有画面を開けませんでした。紹介文やリンクのコピーをご利用ください。');}});
-  const instagram=document.createElement('details');const summary=document.createElement('summary');summary.textContent='Instagramで紹介する';instagram.append(summary);
-  const help=document.createElement('p');help.textContent='①紹介文をコピー ②画像を保存 ③Instagramで画像を選び、紹介文を貼り付けます。リンクはプロフィールやストーリーズのリンクスタンプにも使えます。共有先・利用できる機能は端末やアプリによって異なります。';instagram.append(help);
-  const imageActions=document.createElement('div');imageActions.className='dn-share-actions';instagram.append(imageActions);
-  const save=button('Instagram用画像を保存',async b=>{
-    b.disabled=true;
-    try{const current=get();drawShareImage(canvas,current);canvas.hidden=false;canvas.setAttribute('aria-label',current.title+'。'+current.note);
-      const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw new Error('画像を保存できませんでした。紹介文をコピーしてご利用ください。');
-      const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='deafnavi-share.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
-      status.textContent='画像の保存を開始しました。Instagramで画像を選び、コピーした紹介文を貼り付けてください。';
-    }finally{b.disabled=false;}
-  });imageActions.append(save);
-  const open=document.createElement('a');open.href='https://www.instagram.com/';open.textContent='Instagramを開く';open.target='_blank';open.rel='noopener noreferrer';open.setAttribute('aria-label','Instagramを開く（新しいタブ）');imageActions.append(open);instagram.append(canvas);
-  panel.prepend(notice,actions,label,instagram,status);refreshers.set(root,get);get();
+const panels=new WeakMap();
+let panelSequence=0;
+function current(root) { return sharePresentation(JSON.parse(root.dataset.contentShare)); }
+function closePanel(root,focus=false) {
+  root.querySelector('.dn-share-panel').hidden=true;
+  const trigger=root.querySelector('[data-share-instagram]');trigger.setAttribute('aria-expanded','false');
+  if(focus)trigger.focus();
 }
-if(typeof document!=='undefined')document.addEventListener('toggle',event=>{
-  const root=event.target;if(!root.matches?.('[data-content-share]')||!root.open)return;
-  try{initialize(root);}catch{const p=document.createElement('p');p.textContent='共有機能を読み込めませんでした。リンク先のURLをコピーしてください。';root.querySelector('.dn-share-panel').append(p);}
-},true);
+function initialize(root) {
+  if(panels.has(root))return panels.get(root);
+  const panel=root.querySelector('.dn-share-panel'),status=root.querySelector('.dn-share-status');
+  panel.id='dn-instagram-'+(++panelSequence);
+  root.querySelector('[data-share-instagram]').setAttribute('aria-controls',panel.id);
+  const heading=document.createElement('div');heading.className='dn-share-panel-head';
+  const title=document.createElement('strong');title.textContent='Instagramで紹介';heading.append(title);
+  const close=document.createElement('button');close.type='button';close.className='dn-share-close';close.textContent='閉じる';close.addEventListener('click',()=>closePanel(root,true));heading.append(close);
+  const help=document.createElement('p');help.textContent='紹介文をコピーし、画像を保存してInstagramの投稿画面で選んでください。';
+  const label=document.createElement('label');label.textContent='紹介文';
+  const text=document.createElement('textarea');text.readOnly=true;text.rows=4;label.append(text);
+  const actions=document.createElement('div');actions.className='dn-share-actions';
+  const canvas=document.createElement('canvas');canvas.hidden=true;canvas.setAttribute('role','img');
+  const get=()=>{const p=current(root);text.value=p.text;root.querySelector('[data-share-x]').href=p.xUrl;return p;};
+  const button=(name,handler)=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.addEventListener('click',async()=>{status.textContent='';try{await handler(b);}catch{status.textContent='操作できませんでした。紹介文を選択してコピーしてください。';}});actions.append(b);return b;};
+  button('紹介文をコピー',async()=>{const p=get();try{await navigator.clipboard.writeText(p.text);status.textContent='紹介文とリンクをコピーしました。';}catch{text.focus();text.select();status.textContent='選択された紹介文を手動でコピーしてください。';}});
+  button('画像を保存',async b=>{
+    b.disabled=true;
+    try{const p=get();drawShareImage(canvas,p);canvas.hidden=false;canvas.setAttribute('aria-label',p.title+'。'+p.note);
+      const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw new Error('画像の作成に失敗しました。');
+      const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='deafnavi-share.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+      status.textContent='画像の保存を開始しました。Instagramの投稿画面で画像を選んでください。';
+    }finally{b.disabled=false;}
+  });
+  const open=document.createElement('a');open.href='https://www.instagram.com/';open.textContent='Instagramを開く';open.target='_blank';open.rel='noopener noreferrer';open.setAttribute('aria-label','Instagramを開く（新しいタブ）');actions.append(open);
+  const note=document.createElement('p');note.className='dn-share-note';note.textContent='投稿の確定はInstagramで行います。リンクはストーリーズのリンクスタンプなどに使えます。';
+  panel.append(heading,help,label,actions,canvas,note);panels.set(root,{get,text});return panels.get(root);
+}
 if(typeof document!=='undefined') {
-  const refresh=()=>{if(!document.hidden)for(const root of document.querySelectorAll('[data-content-share][open]'))refreshers.get(root)?.();};
-  document.addEventListener('visibilitychange',refresh);
-  setInterval(refresh,60000);
+  const updateX=event=>{const x=event.target.closest?.('[data-share-x]');if(x)try{x.href=current(x.closest('[data-content-share]')).xUrl;}catch{}};
+  for(const type of ['pointerover','focusin','contextmenu'])document.addEventListener(type,updateX);
+  // Delegation also covers news pagination and cafes loaded from the public feed.
+  document.addEventListener('click',async event=>{
+    const control=event.target.closest?.('[data-share-x],[data-share-instagram],[data-share-copy]');
+    const root=control?.closest('[data-content-share]');if(!root)return;
+    const status=root.querySelector('.dn-share-status');status.textContent='';
+    try {
+      if(control.matches('[data-share-x]')){control.href=current(root).xUrl;return;}
+      if(control.matches('[data-share-instagram]')){
+        const panel=root.querySelector('.dn-share-panel');
+        if(!panel.hidden){closePanel(root);return;}
+        for(const other of document.querySelectorAll('[data-content-share]'))if(other!==root)closePanel(other);
+        initialize(root).get();panel.hidden=false;control.setAttribute('aria-expanded','true');return;
+      }
+      try{await navigator.clipboard.writeText(current(root).url);status.textContent='リンクをコピーしました。';}
+      catch{const {text}=initialize(root);text.value=current(root).url;root.querySelector('.dn-share-panel').hidden=false;root.querySelector('[data-share-instagram]').setAttribute('aria-expanded','true');text.focus();text.select();status.textContent='選択されたリンクを手動でコピーしてください。';}
+    }catch{if(control.matches('[data-share-x]'))event.preventDefault();status.textContent='情報を読み込めませんでした。ページのリンクをコピーしてください。';}
+  });
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){const root=event.target.closest?.('[data-content-share]')||document.querySelector('[data-share-instagram][aria-expanded="true"]')?.closest('[data-content-share]');if(root&&!root.querySelector('.dn-share-panel').hidden){closePanel(root,true);event.preventDefault();}}});
+  const refresh=()=>{if(!document.hidden)for(const root of document.querySelectorAll('[data-content-share]'))if(!root.querySelector('.dn-share-panel').hidden)panels.get(root)?.get();};
+  document.addEventListener('visibilitychange',refresh);setInterval(refresh,60000);
 }
