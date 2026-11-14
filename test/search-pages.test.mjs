@@ -21,6 +21,25 @@ test('event detail preserves unknowns and links both local detail and original s
  assert.doesNotMatch(renderEventDetail({...event,title:'</script><img src=x onerror=alert(1)>'},{now}),/<img src=x/);
 });
 
+test('event list and detail link identical sources once without losing attribution or distinct URLs',()=>{
+ const original=JSON.stringify(event);
+ for(const render of [e=>renderEventsPage({events:[e]}),e=>renderEventDetail(e,{now})]){
+  for(const detailUrl of [undefined,event.sourceUrl]){
+   const html=render({...event,detailUrl});
+   assert.equal(html.split(`href="${event.sourceUrl}"`).length-1,1);
+   assert.match(html,/<span>主催者の告知<\/span>/);
+   assert.ok(html.includes(event.verifiedAt));
+  }
+  for(const detailUrl of ['https://example.org/notice.pdf','https://example.org/notice?booking=1','https://example.org/notice#apply']){
+   const html=render({...event,detailUrl});
+   assert.equal(html.split(`href="${event.sourceUrl}"`).length-1,1);
+   assert.equal(html.split(`href="${detailUrl}"`).length-1,1);
+  }
+  assert.doesNotMatch(render({...event,sourceName:'<script>bad</script>'}),/<script>bad/);
+ }
+ assert.equal(JSON.stringify(event),original);
+});
+
 test('visitor copy preserves expired-event warnings and client-side freshness without investigation prose',async()=>{
  const stale={...event,verifiedAt:new Date(now-48*3600000).toISOString(),sourceStatus:'retrying'};
  const html=renderEventDetail(stale,{now});
