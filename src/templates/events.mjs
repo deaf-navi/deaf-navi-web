@@ -8,6 +8,7 @@ import { escapeHtml as e } from '../lib/text.mjs';
 import { renderHead, renderSiteHeader, renderSkipLink, renderFooter } from './partials.mjs';
 import { renderNewsThumbnail } from './thumbnail.mjs';
 import { shareControl, eventShare } from '../content-share.js';
+import { renderEventSource } from './event-source.mjs';
 
 export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVersion='20261016polish' } = {}) {
   const events=(snapshot.events||[]).filter(validEvent);
@@ -31,7 +32,7 @@ ${deadline?`      <p class="event-deadline" data-event-deadline="${e(deadline.da
       <p class="event-action"><a href="${e(event.detailUrl||event.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${e(event.title)}の公式案内・申込方法を見る（新しいタブ）">公式案内・申込方法を見る<span aria-hidden="true"> ↗</span></a></p>
       ${shareControl(eventShare(event,new URL(eventDetailPath(event),SITE_URL).href))}
       <details><summary>主催・情報源</summary><dl><div><dt>主催</dt><dd>${e(event.organizer||'告知をご確認ください')}</dd></div></dl>
-      <p><a href="${e(event.sourceUrl)}" target="_blank" rel="noopener noreferrer">${e(event.sourceName)}の告知</a> · 情報確認 <time datetime="${e(event.verifiedAt)}">${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST</time></p></details></div></article>`;
+      <p>${renderEventSource(event)} · 情報確認 <time datetime="${e(event.verifiedAt)}">${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST</time></p></details></div></article>`;
   }).join('\n');
   return `<!doctype html><html lang="ja"><head>${renderHead({title:'国内の手話イベント | Deaf Navi',description:'国内の手話・ろう者コミュニティのイベントを開催日と地域から探せます。主催者・出演団体・会場の告知を確認して掲載します。',canonical:SITE_URL+'events.html',ogUrl:SITE_URL+'events.html',stylesFile:files?.styles||'styles.css',robots:isDev?'noindex,nofollow':'index,follow'})}<link rel="stylesheet" href="./events.css?v=20261017edition"><link rel="stylesheet" href="./browse.css?v=${e(clientAssetVersion)}"><noscript><style>[data-event][hidden]{display:grid!important}</style></noscript></head><body class="browse-page events-page">${renderSkipLink()}
   ${renderSiteHeader({current:'events',subLabel:'きこえ・手話のイベント',lead:'交流会、講座、公演、手話カフェ。国内の催しを開催日と地域から探せます。'})}
