@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-15T01:34:42.100Z",
+  "checkedAt": "2026-11-15T01:49:01.065Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -1079,10 +1079,10 @@
       "sourceName": "公益社団法人 静岡県聴覚障害者協会",
       "sourceUrl": "https://www.shizudeaf.com/",
       "status": "announced",
-      "reviewNote": " 11月6日に当該開催回の公式本文と必要な画像を実読し、年・日程・時刻・会場・料金・対象・申込・中止/受付条件を照合。未確認の空席や条件は補完しない。 11月13日に当該開催回の公式本文と、根拠の画像/PDF/申込画面を実読し、日時・会場・対象・料金・申込/締切・受付・情報保障・訂正/中止の有無を照合。未知条件は補完せず、SNS原文・画像の無料API共有/転載なし。",
-      "verifiedAt": "2026-11-13T00:12:17.908Z",
-      "evidenceHash": "40ffc63a38a679f78dd186c9f6955fde4a349ce3ba82bbd1daa229c130e83633",
-      "verification": "needs_review"
+      "reviewNote": " 11月6日に当該開催回の公式本文と必要な画像を実読し、年・日程・時刻・会場・料金・対象・申込・中止/受付条件を照合。未確認の空席や条件は補完しない。 11月13日に当該開催回の公式本文と、根拠の画像/PDF/申込画面を実読し、日時・会場・対象・料金・申込/締切・受付・情報保障・訂正/中止の有無を照合。未知条件は補完せず、SNS原文・画像の無料API共有/転載なし。 11月15日、期限到来した公式HTML全文を実読。新しい別企画の追記と既掲載開催回を区別し、対象回の日時・料金・申込条件・情報保障・中止訂正の有無を照合。追加API送信なし。残席・締切後参加可否は補完しない。",
+      "verifiedAt": "2026-11-15T01:49:01.065Z",
+      "evidenceHash": "240bfe20974da208517808f345980b39c34efac25a52e894d5c3bfebc5793b3f",
+      "verification": "verified"
     },
     {
       "id": "tonancyo-shimenawa-2026-11-20",
@@ -1607,11 +1607,10 @@
       "thumbnailReviewNote": "本文に掲載された舞台写真は別作品「楢山節考」と明記。今回の公演の写真として表示しない。",
       "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
       "status": "announced",
-      "reviewNote": "11月2日に現行の公式本文と、画像依存の開催回はチラシも実読。各回の年月日・時刻・会場・対象・料金・申込・情報保障を照合し、空席や未知の条件を補完せず現行掲載を維持。 11月7日に当該回の公式本文と、PDF/Instagram画像が根拠のものは実描画して確認。年月日・時刻・会場・対象・費用・申込・情報保障と新しい中止/訂正の有無を照合。未知の空席は補完せず、同日別企画や別開催回の条件は転用しない。 11月9日に当該開催回の現行公式本文と、画像/PDFを根拠とする対象は告知画像/PDFも実読。年・日時・会場・対象・費用・申込/締切・情報保障を照合。未知の残席等は補完せず、別開催回の条件は転用していない。",
-      "verifiedAt": "2026-11-13T00:12:18.554Z",
-      "evidenceHash": "58302a0ca66a5371ec2e80c076e9c6a0aec0840f8a00e259eb9b3fb9eb3ab809",
-      "verification": "needs_review",
-      "sourceStatus": "retrying"
+      "reviewNote": "11月2日に現行の公式本文と、画像依存の開催回はチラシも実読。各回の年月日・時刻・会場・対象・料金・申込・情報保障を照合し、空席や未知の条件を補完せず現行掲載を維持。 11月7日に当該回の公式本文と、PDF/Instagram画像が根拠のものは実描画して確認。年月日・時刻・会場・対象・費用・申込・情報保障と新しい中止/訂正の有無を照合。未知の空席は補完せず、同日別企画や別開催回の条件は転用しない。 11月9日に当該開催回の現行公式本文と、画像/PDFを根拠とする対象は告知画像/PDFも実読。年・日時・会場・対象・費用・申込/締切・情報保障を照合。未知の残席等は補完せず、別開催回の条件は転用していない。 11月15日、期限到来した公式HTML全文を実読。新しい別企画の追記と既掲載開催回を区別し、対象回の日時・料金・申込条件・情報保障・中止訂正の有無を照合。追加API送信なし。残席・締切後参加可否は補完しない。",
+      "verifiedAt": "2026-11-15T01:49:01.065Z",
+      "evidenceHash": "7f3c090835ebfdae8f807ec5d97ec0f5ff04c1ad7cc1e9919efe2d98bb28668b",
+      "verification": "verified"
     },
     {
       "id": "fukuoka-art-accessible-tour-2026-12-06",
@@ -2243,12 +2242,12 @@
     {
       "sourceUrl": "https://www.shizudeaf.com/",
       "id": "shizuoka-deaf-women-2026-11-15",
-      "result": "not_checked"
+      "result": "verified"
     },
     {
       "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
       "id": "spac-nihonjin-sign-2026-12-05",
-      "result": "not_checked"
+      "result": "verified"
     },
     {
       "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
@@ -2436,11 +2435,6 @@
       "reason": "source-content-changed"
     },
     {
-      "sourceUrl": "https://www.shizudeaf.com/",
-      "id": "shizuoka-deaf-women-2026-11-15",
-      "reason": "source-content-changed"
-    },
-    {
       "sourceUrl": "https://horipro-stage.jp/special/jacktheripper20260918/",
       "id": "horipro-jack-captions-2027-01-30",
       "reason": "source-content-changed"
@@ -2479,15 +2473,6 @@
     "eventsWithImage": 5
   },
   "recovery": {
-    "pending": [
-      {
-        "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
-        "failures": 12,
-        "firstFailureAt": "2026-11-13T00:40:16.700Z",
-        "lastAttemptAt": "2026-11-15T01:00:06.538Z",
-        "nextAttemptAt": "2026-11-15T07:00:06.538Z",
-        "code": "ABORT_ERR"
-      }
-    ]
+    "pending": []
   }
 }
