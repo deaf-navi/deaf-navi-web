@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {shareUrl,shareControl,newsShare,eventShare,sharePresentation,shareState} from '../src/content-share.js';
 import {renderCafeEvent} from '../src/event-cafe-feed.js';
 import {renderArticleCard} from '../src/templates/partials.mjs';
+import {renderArchiveMonthPage} from '../src/templates/archive.mjs';
 import {readFileSync} from 'node:fs';
 const now=Date.parse('2026-11-13T03:00:00Z');
 const event={title:'手話で交流',startDate:'2026-11-20',endDate:'2026-11-20',time:'10:00〜12:00',venue:'市民会館',prefecture:'大阪府',verification:'verified',verifiedAt:'2026-11-13T01:00:00Z',status:'announced',fee:'500円',target:'事前申込',reviewNote:'PRIVATE',phone:'SECRET'};
@@ -62,4 +63,18 @@ test('small named social icons are visible immediately, with Instagram tools ini
   assert.match(html,/aria-expanded="false"/);
   assert.match(html,/class="dn-share-panel" hidden/);
   assert.equal((html.match(/aria-hidden="true"/g)||[]).length,3);
+});
+
+test('archive news keeps distinct source links, shares the selected article, and does not mutate records',()=>{
+  for(const sourceUrl of ['https://example.com/story','https://example.com/notice.pdf']) {
+    const item={id:'https://example.com/story',sourceUrl,title:'過去の記事',sourceName:'公式団体',category:'general',publishedAt:'2026-10-01T00:00:00Z'};
+    const before=JSON.stringify(item);
+    const html=renderArchiveMonthPage({key:'2026-10',items:[item],generatedAt:item.publishedAt,isDev:false,files:{styles:'styles.css',oldIndex:'index-old.html'}});
+    assert.match(html,/data-content-share=/);
+    assert.match(html,/data-share-instagram/);
+    const card=html.slice(html.indexOf('<article class="card archive-card"'),html.indexOf('<div class="dn-share"'));
+    assert.equal((card.match(/href="https:\/\/example.com\/story"/g)||[]).length,1);
+    assert.equal(html.includes('href="https://example.com/notice.pdf"'),sourceUrl.endsWith('.pdf'));
+    assert.equal(JSON.stringify(item),before);
+  }
 });

@@ -13,19 +13,22 @@
 
   // External article pictures are optional. Remove failures, including cached
   // failures that occurred before this deferred script started.
+  function isOptionalPicture(img) {
+    return img && img.classList && (img.classList.contains('card__thumbnail') || img.classList.contains('reader-poster'));
+  }
   function removeFailedThumbnail(event) {
     var img = event.target;
-    if (img && img.classList && img.classList.contains('card__thumbnail')) img.remove();
+    if (isOptionalPicture(img)) img.remove();
   }
   document.addEventListener('error', removeFailedThumbnail, true);
   function removeEmptyThumbnail(event) {
     var img = event.target;
     // Some publishers return a 1-pixel image for deleted pictures instead of a load error.
-    if (img && img.classList && img.classList.contains('card__thumbnail')
+    if (isOptionalPicture(img)
       && (img.naturalWidth <= 1 || img.naturalHeight <= 1)) img.remove();
   }
   document.addEventListener('load', removeEmptyThumbnail, true);
-  document.querySelectorAll('img.card__thumbnail').forEach(function (img) {
+  document.querySelectorAll('img.card__thumbnail, img.reader-poster').forEach(function (img) {
     if (img.complete && (img.naturalWidth <= 1 || img.naturalHeight <= 1)) img.remove();
   });
   window.DeafNaviThumbnails = {

@@ -243,6 +243,12 @@ test('browser helper removes failed SSR/client images and keeps the article cont
   const real = { ...pixel, naturalWidth: 640, naturalHeight: 360, removed: false };
   handlers.load({ target: real });
   assert.equal(real.removed, false);
+  const poster = { ...pixel, classList: { contains: name => name === 'reader-poster' }, removed: false };
+  handlers.error({ target: poster });
+  assert.equal(poster.removed, true, 'failed event posters must not reserve a blank 240 x 320 block');
+  const unrelated = { ...poster, classList: { contains: () => false }, removed: false };
+  handlers.error({ target: unrelated });
+  assert.equal(unrelated.removed, false, 'other page artwork stays intact');
   const empty = { insertBefore() { throw new Error('Invalid image inserted'); } };
   window.DeafNaviThumbnails.append(empty, 'javascript:alert(1)');
 });
