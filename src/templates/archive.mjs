@@ -11,6 +11,7 @@ import { SITE_NAME, SITE_URL } from '../../config/site.mjs';
 import { CATEGORY_UI } from '../../config/categories.mjs';
 import { escapeHtml } from '../lib/text.mjs';
 import { formatDateJST, monthKey, monthLabel } from '../lib/dates.mjs';
+import { shareControl, newsShare } from '../content-share.js';
 import {
   renderFooter,
   renderHead,
@@ -59,8 +60,9 @@ function renderArchiveArticle(a) {
             </h3>${a.summary ? `
             <p class="card__summary">${escapeHtml(a.summary)}</p>` : ''}
             <footer class="card__foot">
-              <a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>
+              ${a.sourceUrl === a.id ? `<span class="card__source">${escapeHtml(a.sourceName)}</span>` : `<a class="card__source" href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(a.sourceName)}</a>`}
             </footer>
+            ${shareControl(newsShare(a))}
           </article>`;
 }
 
