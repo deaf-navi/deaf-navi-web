@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-events.v1",
-  "generatedAt": "2026-11-16T11:01:43.865Z",
+  "generatedAt": "2026-11-17T00:36:28.980Z",
   "events": [
     {
       "origin": "events",
@@ -1033,7 +1033,7 @@
       "target": "チケットは東区支部役員・東区内手話サークルへ申込。",
       "status": "announced",
       "description": "午前は映画上映、午後は交流やモルック体験。公共交通機関での来場を案内しています。",
-      "verification": "verified",
+      "verification": "needs_review",
       "verifiedAt": "2026-11-15T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/sapporo-higashi-shuwa-2026-11-15/",
       "validUntil": "2026-11-17T00:16:00.000Z",
@@ -1143,11 +1143,11 @@
       "target": "年齢制限なし。参加条件は公式案内へ。",
       "status": "announced",
       "description": "手話を中心に、ステージ・販売・交流を楽しむ催し。",
-      "verification": "needs_review",
-      "verifiedAt": "2026-11-08T00:11:19.106Z",
+      "verification": "verified",
+      "verifiedAt": "2026-11-17T00:36:28.980Z",
       "webUrl": "https://deafnavi.com/events/kurume-kaiju-2026-11-21/",
-      "validUntil": "2026-11-10T00:11:19.106Z",
-      "period": "review"
+      "validUntil": "2026-11-19T00:36:28.980Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1205,6 +1205,52 @@
     },
     {
       "origin": "events",
+      "id": "jsl47-tokyo-both-hands-2026-11-22-evening",
+      "title": "JSL47 東京対面・中級「両手を使って表現」（夕方）",
+      "startDate": "2026-11-22",
+      "endDate": "2026-11-22",
+      "prefecture": "東京都",
+      "venue": "東京都障害者福祉会館（港区芝5-18-2）",
+      "kind": "course",
+      "sourceName": "JSL47 公式Instagram・現行申込フォーム",
+      "sourceUrl": "https://www.instagram.com/jsl_47/p/De1dF4jyrGj/",
+      "organizer": "JSL47",
+      "time": "17:30〜19:00",
+      "fee": "各回2,000円。",
+      "target": "日本手話の中級クラス。各回定員10名、事前申込が必要です。定員になり次第締切。午前・夕方は同じ内容です。支払方法・取消条件・最新の受付状況は主催者の現行申込フォームをご確認ください。",
+      "status": "announced",
+      "description": "講師・新垣凌さんと、両手で位置関係・形・動きなどを表す日本手話の表現を練習する対面クラスです。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-17T00:23:00.154Z",
+      "webUrl": "https://deafnavi.com/events/jsl47-tokyo-both-hands-2026-11-22-evening/",
+      "validUntil": "2026-11-19T00:23:00.154Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "jsl47-tokyo-both-hands-2026-11-22-morning",
+      "title": "JSL47 東京対面・中級「両手を使って表現」（午前）",
+      "startDate": "2026-11-22",
+      "endDate": "2026-11-22",
+      "prefecture": "東京都",
+      "venue": "東京都障害者福祉会館（港区芝5-18-2）",
+      "kind": "course",
+      "sourceName": "JSL47 公式Instagram・現行申込フォーム",
+      "sourceUrl": "https://www.instagram.com/jsl_47/p/De1dF4jyrGj/",
+      "organizer": "JSL47",
+      "time": "10:00〜11:30",
+      "fee": "各回2,000円。",
+      "target": "日本手話の中級クラス。各回定員10名、事前申込が必要です。定員になり次第締切。午前・夕方は同じ内容です。支払方法・取消条件・最新の受付状況は主催者の現行申込フォームをご確認ください。",
+      "status": "announced",
+      "description": "講師・新垣凌さんと、両手で位置関係・形・動きなどを表す日本手話の表現を練習する対面クラスです。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-17T00:23:00.154Z",
+      "webUrl": "https://deafnavi.com/events/jsl47-tokyo-both-hands-2026-11-22-morning/",
+      "validUntil": "2026-11-19T00:23:00.154Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
       "id": "tonancyo-kikoe-festa-2026-11-22",
       "title": "機器展示会「きこえ応援フェスタ」",
       "startDate": "2026-11-22",
@@ -1240,11 +1286,11 @@
       "organizer": "特定非営利活動法人 東京都中途失聴・難聴者協会",
       "time": "13:30〜15:30",
       "fee": "1回800円。2026年度の協会会員は無料。",
-      "target": "どなたでも参加可能。障害者手帳の有無は問いません。家族との参加も可能。定員20名・申込順。希望する講座の1週間前までに、公式ページの申込フォーム等から申し込み。",
-      "status": "announced",
+      "target": "どなたでも参加可能。障害者手帳の有無は問いません。家族との参加も可能。定員20名・申込順。希望する講座の1週間前までに、公式ページの申込フォーム等から申し込み。 11月23日回の申込期限（11月16日）は経過しています。",
+      "status": "closed",
       "description": "中難協三田絵手紙サークルによる絵手紙の講座です。聞こえの状態に配慮した文字通訳とヒアリングループを利用できます。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "communication": [
         {
           "method": "summary",
@@ -1256,8 +1302,10 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/tonancyo-ikigai-etegami-2026-11-23/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review"
+      "applicationDeadline": "2026-11-16",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1277,13 +1325,12 @@
       "status": "closed",
       "description": "会話をリアルタイムに文字にして表示するスマートグラス「AiLENS」を試せる体験会です。当日の写真・映像を広報やSNSなどで使用する場合があると案内されています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:24:52.154Z",
+      "verifiedAt": "2026-11-17T00:18:14.367Z",
       "webUrl": "https://deafnavi.com/events/yysystem-ailens-hiroshima-2026-11-23/",
       "applicationDeadline": "2026-11-12",
       "deadlineScope": "participation",
-      "validUntil": "2026-11-17T01:24:52.154Z",
-      "period": "upcoming",
-      "thumbnailURL": "https://yysystem.com/wp-content/uploads/2026/05/vvvvvvvvvvvvvvvvvvvvvvd.png"
+      "validUntil": "2026-11-19T00:18:14.367Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1303,13 +1350,12 @@
       "status": "closed",
       "description": "会話をリアルタイムに文字にして表示するスマートグラス「AiLENS」を試せる体験会です。当日の写真・映像を広報やSNSなどで使用する場合があると案内されています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:24:52.154Z",
+      "verifiedAt": "2026-11-17T00:18:14.367Z",
       "webUrl": "https://deafnavi.com/events/yysystem-ailens-nagoya-2026-11-23/",
       "applicationDeadline": "2026-11-12",
       "deadlineScope": "participation",
-      "validUntil": "2026-11-17T01:24:52.154Z",
-      "period": "upcoming",
-      "thumbnailURL": "https://yysystem.com/wp-content/uploads/2026/05/vvvvvvvvvvvvvvvvvvvvvvd.png"
+      "validUntil": "2026-11-19T00:18:14.367Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1350,7 +1396,7 @@
       "status": "announced",
       "description": "手話の基礎や復習を交えた勉強会。要約筆記あり。17時以降は藤沢郵便局側の守衛口から入場します。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "communication": [
         {
           "method": "summary",
@@ -1358,9 +1404,8 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/jinnancho-beginner-2026-11-27/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
-      "thumbnailURL": "https://jinnancho.org/wp-content/uploads/2017/08/mimimark01.jpg"
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1380,9 +1425,9 @@
       "status": "closed",
       "description": "韓国手話を学ぶ少人数の講座です。申込後にキャンセルする場合は、後日参加費の支払いが必要です。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:30:45.993Z",
+      "verifiedAt": "2026-11-17T00:23:52.689Z",
       "webUrl": "https://deafnavi.com/events/lamunedou-korean-sign-2026-11-28/",
-      "validUntil": "2026-11-17T01:30:45.993Z",
+      "validUntil": "2026-11-19T00:23:52.689Z",
       "period": "upcoming"
     },
     {
@@ -1425,9 +1470,9 @@
       "status": "announced",
       "description": "歌う・聴く・手話で話すなど、それぞれの楽しみ方で交流する催し。今回はNAOKIさんが司会を担当します。会場の入店条件は主催者の案内をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:31:59.947Z",
+      "verifiedAt": "2026-11-17T00:25:30.373Z",
       "webUrl": "https://deafnavi.com/events/yubitopia-minna-oke-2026-11-29/",
-      "validUntil": "2026-11-17T01:31:59.947Z",
+      "validUntil": "2026-11-19T00:25:30.373Z",
       "period": "upcoming"
     },
     {
@@ -1448,9 +1493,34 @@
       "status": "announced",
       "description": "手話でゆっくり交流するバーイベント。途中参加・途中退席もできます。同名の別店舗と間違えないよう、練馬区富士見台2丁目31-24の住所をご確認ください。会場は喫煙目的店として案内されています。入店条件の詳細は主催者の案内をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:17:19.539Z",
+      "verifiedAt": "2026-11-17T00:24:24.238Z",
       "webUrl": "https://deafnavi.com/events/yubitopia-shuwaberiba-2026-11-29/",
-      "validUntil": "2026-11-17T01:17:19.539Z",
+      "validUntil": "2026-11-19T00:24:24.238Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "yysystem-ailens-aichi-2026-12-02",
+      "title": "字幕スマートグラス AiLENS 無料体験会（愛知・名古屋）",
+      "startDate": "2026-12-02",
+      "endDate": "2026-12-02",
+      "prefecture": "愛知県",
+      "venue": "桜通豊田ビル12階（愛知県名古屋市中村区名駅4丁目5-28）",
+      "kind": "exchange",
+      "sourceName": "YYSystem（主催者）・12月参加申込フォーム",
+      "sourceUrl": "https://yysystem.com/information/information-1970-8-2/",
+      "organizer": "YYSystem",
+      "time": "14:00〜15:00",
+      "fee": "無料。会場までの交通費は参加者負担。",
+      "target": "事前申込が必要です。申込締切は11月17日（火）23:59。応募多数の場合は抽選で、参加できる方に11月20日（金）までに連絡されます。申込みは1人1回まで。",
+      "status": "announced",
+      "description": "会話をリアルタイムに文字化して表示するスマートグラス「AiLENS」（ThinkAR製）の無料体験会です。当日に撮影した写真や動画がSNS等で使われる場合があると案内されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-17T00:16:22.382Z",
+      "webUrl": "https://deafnavi.com/events/yysystem-ailens-aichi-2026-12-02/",
+      "applicationDeadline": "2026-11-17",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-19T00:16:22.382Z",
       "period": "upcoming"
     },
     {
@@ -1471,11 +1541,36 @@
       "status": "announced",
       "description": "会話をリアルタイムに文字化して表示するスマートグラス「AiLENS」（ThinkAR製）の無料体験会です。当日に撮影した写真や動画がSNS等で使われる場合があると案内されています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:29:33.542Z",
+      "verifiedAt": "2026-11-17T00:16:22.382Z",
       "webUrl": "https://deafnavi.com/events/yysystem-ailens-miyagi-2026-12-02/",
       "applicationDeadline": "2026-11-17",
       "deadlineScope": "participation",
-      "validUntil": "2026-11-17T01:29:33.542Z",
+      "validUntil": "2026-11-19T00:16:22.382Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "yysystem-ailens-tokyo-2026-12-02",
+      "title": "字幕スマートグラス AiLENS 無料体験会（東京・秋葉原）",
+      "startDate": "2026-12-02",
+      "endDate": "2026-12-02",
+      "prefecture": "東京都",
+      "venue": "秋葉原ダイビル7階（東京都千代田区外神田1丁目18-13）",
+      "kind": "exchange",
+      "sourceName": "YYSystem（主催者）・12月参加申込フォーム",
+      "sourceUrl": "https://yysystem.com/information/information-1970-8-2/",
+      "organizer": "YYSystem",
+      "time": "14:00〜15:00",
+      "fee": "無料。会場までの交通費は参加者負担。",
+      "target": "事前申込が必要です。申込締切は11月17日（火）23:59。応募多数の場合は抽選で、参加できる方に11月20日（金）までに連絡されます。申込みは1人1回まで。",
+      "status": "announced",
+      "description": "会話をリアルタイムに文字化して表示するスマートグラス「AiLENS」（ThinkAR製）の無料体験会です。当日に撮影した写真や動画がSNS等で使われる場合があると案内されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-17T00:16:22.382Z",
+      "webUrl": "https://deafnavi.com/events/yysystem-ailens-tokyo-2026-12-02/",
+      "applicationDeadline": "2026-11-17",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-19T00:16:22.382Z",
       "period": "upcoming"
     },
     {
@@ -1609,11 +1704,11 @@
       "status": "announced",
       "description": "ろう者のお話、地元の手話サークル紹介、地域のクイズ、吉野杉のmyお箸作りやおしゃべり交流、よどりダンスを楽しむ企画です。昼食は各自持参してください。雨天決行ですが、当日午前7時に大淀町に警報が出ている場合は中止です。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:32:33.106Z",
+      "verifiedAt": "2026-11-17T00:35:04.888Z",
       "webUrl": "https://deafnavi.com/events/nara-gururi-kensaren-oyodo-2026-12-06/",
       "applicationDeadline": "2026-11-20",
       "deadlineScope": "participation",
-      "validUntil": "2026-11-17T01:32:33.106Z",
+      "validUntil": "2026-11-19T00:35:04.888Z",
       "period": "upcoming"
     },
     {
@@ -1635,10 +1730,10 @@
       "status": "announced",
       "description": "手話パフォーマンスと字幕・音声ガイド付き映画会を楽しむ催し。受付・司会進行に手話通訳があります。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/oioi-b7beb1ed211ba5722155/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_20261212.png"
     },
     {
@@ -1659,9 +1754,9 @@
       "status": "announced",
       "description": "店内を自由に移動しながら手話を通じて交流する催しです。夕方からでも夜からでも参加できます。年齢等の入店条件は主催者の案内をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:17:24.850Z",
+      "verifiedAt": "2026-11-17T00:24:58.058Z",
       "webUrl": "https://deafnavi.com/events/fusao-yubitopia-2026-12-13/",
-      "validUntil": "2026-11-17T01:17:24.850Z",
+      "validUntil": "2026-11-19T00:24:58.058Z",
       "period": "upcoming"
     },
     {
@@ -1683,11 +1778,36 @@
       "status": "announced",
       "description": "手話エンターテイメント発信団oioiによる、笑いを通して手話とコミュニケーションを体験するワークショップ。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/oioi-f11eed13307fa8137f63/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_2612_workshop.png"
+    },
+    {
+      "origin": "events",
+      "id": "yysystem-ailens-aichi-2026-12-16",
+      "title": "字幕スマートグラス AiLENS 無料体験会（愛知・名古屋）",
+      "startDate": "2026-12-16",
+      "endDate": "2026-12-16",
+      "prefecture": "愛知県",
+      "venue": "桜通豊田ビル12階（愛知県名古屋市中村区名駅4丁目5-28）",
+      "kind": "exchange",
+      "sourceName": "YYSystem（主催者）・12月参加申込フォーム",
+      "sourceUrl": "https://yysystem.com/information/information-1970-8-2/",
+      "organizer": "YYSystem",
+      "time": "14:00〜15:00",
+      "fee": "無料。会場までの交通費は参加者負担。",
+      "target": "事前申込が必要です。申込締切は11月17日（火）23:59。応募多数の場合は抽選で、参加できる方に11月20日（金）までに連絡されます。申込みは1人1回まで。",
+      "status": "announced",
+      "description": "会話をリアルタイムに文字化して表示するスマートグラス「AiLENS」（ThinkAR製）の無料体験会です。当日に撮影した写真や動画がSNS等で使われる場合があると案内されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-17T00:16:22.382Z",
+      "webUrl": "https://deafnavi.com/events/yysystem-ailens-aichi-2026-12-16/",
+      "applicationDeadline": "2026-11-17",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-19T00:16:22.382Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1707,11 +1827,36 @@
       "status": "announced",
       "description": "会話をリアルタイムに文字化して表示するスマートグラス「AiLENS」（ThinkAR製）の無料体験会です。当日に撮影した写真や動画がSNS等で使われる場合があると案内されています。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:29:33.542Z",
+      "verifiedAt": "2026-11-17T00:16:22.382Z",
       "webUrl": "https://deafnavi.com/events/yysystem-ailens-osaka-2026-12-16/",
       "applicationDeadline": "2026-11-17",
       "deadlineScope": "participation",
-      "validUntil": "2026-11-17T01:29:33.542Z",
+      "validUntil": "2026-11-19T00:16:22.382Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "yysystem-ailens-tokyo-2026-12-16",
+      "title": "字幕スマートグラス AiLENS 無料体験会（東京・秋葉原）",
+      "startDate": "2026-12-16",
+      "endDate": "2026-12-16",
+      "prefecture": "東京都",
+      "venue": "秋葉原ダイビル7階（東京都千代田区外神田1丁目18-13）",
+      "kind": "exchange",
+      "sourceName": "YYSystem（主催者）・12月参加申込フォーム",
+      "sourceUrl": "https://yysystem.com/information/information-1970-8-2/",
+      "organizer": "YYSystem",
+      "time": "14:00〜15:00",
+      "fee": "無料。会場までの交通費は参加者負担。",
+      "target": "事前申込が必要です。申込締切は11月17日（火）23:59。応募多数の場合は抽選で、参加できる方に11月20日（金）までに連絡されます。申込みは1人1回まで。",
+      "status": "announced",
+      "description": "会話をリアルタイムに文字化して表示するスマートグラス「AiLENS」（ThinkAR製）の無料体験会です。当日に撮影した写真や動画がSNS等で使われる場合があると案内されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-17T00:16:22.382Z",
+      "webUrl": "https://deafnavi.com/events/yysystem-ailens-tokyo-2026-12-16/",
+      "applicationDeadline": "2026-11-17",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-19T00:16:22.382Z",
       "period": "upcoming"
     },
     {
@@ -1733,10 +1878,10 @@
       "status": "announced",
       "description": "手話エンターテイメント発信団oioiによる、笑いを通して手話とコミュニケーションを体験するワークショップ。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/oioi-62bef9337943fa7aeffb/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_2612_workshop.png"
     },
     {
@@ -1758,10 +1903,10 @@
       "status": "announced",
       "description": "手話エンターテイメント発信団oioiによる、笑いを通して手話とコミュニケーションを体験するワークショップ。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/oioi-7cfe0d4e9e7c65f4e7ba/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_2612_workshop.png"
     },
     {
@@ -1783,10 +1928,10 @@
       "status": "announced",
       "description": "手話エンターテイメント発信団oioiによる、笑いを通して手話とコミュニケーションを体験するワークショップ。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/oioi-53fdd52dee2133317221/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_2612_workshop.png"
     },
     {
@@ -1796,7 +1941,7 @@
       "startDate": "2026-12-20",
       "endDate": "2026-12-20",
       "prefecture": "群馬県",
-      "venue": "前橋問屋センター（前橋市問屋町2丁目2番地）",
+      "venue": "前橋問屋センター 2階 華龍の間（前橋市問屋町2丁目2番地）",
       "kind": "exchange",
       "sourceName": "手話る楓 公式Instagram",
       "sourceUrl": "https://www.instagram.com/shuwarukaede20230510/p/DaKA71ATpB_/",
@@ -1807,9 +1952,9 @@
       "status": "announced",
       "description": "手話での買い物体験、講演会、交流を楽しむ催し。手話・筆談・身振りなどさまざまな方法で交流します。講演会は10:30〜12:00、12:30〜14:00、14:30〜16:00の3回です。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:33:26.037Z",
+      "verifiedAt": "2026-11-17T00:31:34.240Z",
       "webUrl": "https://deafnavi.com/events/maebashi-shuwa-shopping-street-2026-12-20/",
-      "validUntil": "2026-11-17T01:33:26.037Z",
+      "validUntil": "2026-11-19T00:31:34.240Z",
       "period": "upcoming"
     },
     {
@@ -1831,10 +1976,10 @@
       "status": "announced",
       "description": "手話エンターテイメント発信団oioiによる、笑いを通して手話とコミュニケーションを体験するワークショップ。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/oioi-1f6c735ac4fd34f90d0c/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_2612_workshop.png"
     },
     {
@@ -1856,10 +2001,10 @@
       "status": "announced",
       "description": "手話エンターテイメント発信団oioiによる、笑いを通して手話とコミュニケーションを体験するワークショップ。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T00:16:00Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "webUrl": "https://deafnavi.com/events/oioi-dcd83ca41eaff3669630/",
-      "validUntil": "2026-11-17T00:16:00.000Z",
-      "period": "review",
+      "validUntil": "2026-11-19T00:16:00.000Z",
+      "period": "upcoming",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_2612_workshop.png"
     },
     {
@@ -1957,7 +2102,7 @@
       "status": "announced",
       "description": "ろう者の俳優が演じる手話狂言。「萩大名」「文荷」「牛盗人」を上演し、三宅狂言会による声の出演もあります。",
       "verification": "verified",
-      "verifiedAt": "2026-11-15T01:32:15.806Z",
+      "verifiedAt": "2026-11-17T00:16:00Z",
       "communication": [
         {
           "method": "sign",
@@ -1969,7 +2114,7 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/jtd-kyogen-hatsuharu-2027-01-30/",
-      "validUntil": "2026-11-17T01:32:15.806Z",
+      "validUntil": "2026-11-19T00:16:00.000Z",
       "period": "upcoming"
     },
     {
@@ -2116,5 +2261,5 @@
       "period": "review"
     }
   ],
-  "count": 80
+  "count": 86
 }
