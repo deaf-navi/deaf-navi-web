@@ -1,22 +1,23 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-17T00:45:59.855Z",
+  "generatedAt": "2026-11-17T03:43:43.984Z",
   "counts": {
-    "uniqueInputs": 1969,
-    "alreadyPublished": 648,
-    "outsideWindow": 1158,
-    "hardExcluded": 1,
-    "duplicateOfPublished": 33,
+    "uniqueInputs": 1983,
+    "alreadyPublished": 650,
+    "outsideWindow": 1157,
+    "hardExcluded": 2,
+    "duplicateOfPublished": 36,
     "candidateDuplicates": 0,
-    "eligible": 129,
+    "eligible": 138,
     "queued": 40,
-    "deferred": 89
+    "deferred": 98
   },
   "hardExclusionReasons": {
-    "unrelated-visual-section": 1
+    "unrelated-visual-section": 1,
+    "market-report": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-16T11:00:13.214Z",
+    "previousGeneratedAt": "2026-11-17T00:45:59.855Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -24,6 +25,16 @@
     "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/17/110150",
+      "articleHash": "523cb1c9781eb869fdc42b49956c3cd655121197649bd3292c20618cda14b36e",
+      "publishedAt": "2026-11-17T02:01:50.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/16/131552",
       "articleHash": "c19ce8057ec294319bb60c6929fe83780033608bfafea18172efa8c6d53a9fac",
@@ -195,16 +206,6 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/10/123919",
-      "articleHash": "3a5951d4c3848229234cd0877443244d2a0ecedf64d1c4990a6eb6b44a894e62",
-      "publishedAt": "2026-10-10T03:39:19.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.mimisuppo-miyagi.org",
-      "priority": 0,
-      "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://co-coco.jp/series/design/design5year1/",
       "articleHash": "0768a8e2639ad6ffbf63cf8be8b31fdbe3f4ec5944057ed671d7358e8be4f584",
       "publishedAt": "2026-11-16T23:00:08.000Z",
@@ -212,7 +213,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/aitottoriforum27/",
