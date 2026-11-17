@@ -1,23 +1,24 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-17T03:43:43.984Z",
+  "generatedAt": "2026-11-17T18:28:33.438Z",
   "counts": {
-    "uniqueInputs": 1983,
-    "alreadyPublished": 650,
-    "outsideWindow": 1157,
-    "hardExcluded": 2,
-    "duplicateOfPublished": 36,
+    "uniqueInputs": 2009,
+    "alreadyPublished": 668,
+    "outsideWindow": 1146,
+    "hardExcluded": 3,
+    "duplicateOfPublished": 42,
     "candidateDuplicates": 0,
-    "eligible": 138,
+    "eligible": 150,
     "queued": 40,
-    "deferred": 98
+    "deferred": 110
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
+    "low-value-page": 1,
     "market-report": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-17T00:45:59.855Z",
+    "previousGeneratedAt": "2026-11-17T03:43:43.984Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -33,6 +34,16 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
+      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
+      "publishedAt": "2026-11-16T01:17:09.000Z",
+      "sourceTier": "specialist",
+      "sourceDomain": "www.zentsuken.net",
+      "priority": 0,
+      "reason": "below-score",
       "feedChange": "new"
     },
     {
@@ -411,16 +422,6 @@
       "publishedAt": "2026-10-11T03:00:59.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/subemayo/",
-      "articleHash": "431612cbb624bcbe083f4124264239521e021142df2b80466a37da2af4dc0cfd",
-      "publishedAt": "2026-10-30T04:21:53.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
