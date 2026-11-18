@@ -51,9 +51,9 @@ function select_field(string $name,string $label,array $options,string $selected
     return $html.'</select></label>';
 }
 function record_path(array $r): string { return '/connect/sign-cafe/'.($r['kind']==='event'?'starbucks/':'').$r['slug'].'/'; }
-function source_links_for_display(array $p): array {
+function source_links_for_display(array $p,array $alreadyLinked=[]): array {
     // Deduplicate the display only; preserve source URLs and their review history.
-    $urls=array_values(array_unique(array_filter(array_map('trim',$p['verification_sources']??[]))));
+    $urls=array_values(array_diff(array_unique(array_filter(array_map('trim',$p['verification_sources']??[]))),$alreadyLinked));
     $labels=[];
     foreach($urls as $url){
         $parts=parse_url($url);$host=$parts['host']??'';$path=$parts['path']??'';
@@ -71,10 +71,15 @@ function source_links_for_display(array $p): array {
     }
     return $links;
 }
-function sources_html(array $p): string {
-    $out='<div class="dn-sources"><span>情報確認日：'.e(($p['last_verified_at']??'')?:'未確認').'</span><details><summary>情報源を確認する</summary><ul>';
-    foreach(source_links_for_display($p) as $link) $out.='<li>'.ext_link($link['url'],$link['label']).'</li>';
-    return $out.'</ul></details></div>'.cafe_freshness_html($p);
+function sources_html(array $p,array $alreadyLinked=[]): string {
+    $out='<div class="dn-sources"><span>情報確認日：'.e(($p['last_verified_at']??'')?:'未確認').'</span>';
+    $links=source_links_for_display($p,$alreadyLinked);
+    if($links){
+        $out.='<details><summary>情報源を確認する</summary><ul>';
+        foreach($links as $link) $out.='<li>'.ext_link($link['url'],$link['label']).'</li>';
+        $out.='</ul></details>';
+    }
+    return $out.'</div>'.cafe_freshness_html($p);
 }
 function cafe_card(array $p): string {
     $type=TYPES[$p['type']??'special']??'特殊';
@@ -148,8 +153,8 @@ function event_state(array $p): string {
     if(in_array($status,['scheduled','ongoing'],true)&&cafe_event_freshness($p)['status']==='review')return 'date_unknown';
     return $status;
 }
-function event_card(array $p,array $store): string {
-    return '<article class="dn-card"><span class="dn-badge">'.e((($p['observation_only']??'0')==='1'?'開催実績・個別日時未確認':EVENT_STATUSES[event_state($p)])).'</span><h3><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h3><p>'.e($store['name'].' / '.$store['prefecture'].' '.$store['city']).'</p><p>'.e(($p['event_date']?:'日程未確認').' '.($p['start_time']??'').' '.($p['event_schedule']??'')).'</p><p>'.nl2br(e($p['description']??'')).'</p><p>情報の確度：'.e(CONFIDENCE[$p['confidence']??'unverified']).'</p>'.sources_html($p).'</article>';
+function event_card(array $p,array $store,array $alreadyLinked=[]): string {
+    return '<article class="dn-card"><span class="dn-badge">'.e((($p['observation_only']??'0')==='1'?'開催実績・個別日時未確認':EVENT_STATUSES[event_state($p)])).'</span><h3><a href="'.e(record_path($p)).'">'.e($p['name']).'</a></h3><p>'.e($store['name'].' / '.$store['prefecture'].' '.$store['city']).'</p><p>'.e(($p['event_date']?:'日程未確認').' '.($p['start_time']??'').' '.($p['event_schedule']??'')).'</p><p>'.nl2br(e($p['description']??'')).'</p><p>情報の確度：'.e(CONFIDENCE[$p['confidence']??'unverified']).'</p>'.sources_html($p,$alreadyLinked).'</article>';
 }
 function disclaimer(): string { return '<aside class="dn-disclaimer">本ページはDeaf Naviによる非公式の情報ページです。スターバックス コーヒー ジャパン株式会社が運営・監修するものではありません。開催状況や参加方法は、掲載している情報源または各店舗・主催者へご確認ください。</aside>'; }
 function event_table(array $events,array $stores):string {
@@ -166,7 +171,7 @@ function detail(string $slug,bool $event): string {
     $store=$event?expanded(record($p['store_id'])):$p;
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
     if($singleEvent)$body.=cafe_event_source_notice($p);
-    $body.=$event?event_card($p,$store).visitor_event_details($p):cafe_record_area_link($p).visitor_profile($p);
+    $body.=$event?event_card($p,$store,[trim($p['official_url']??'')]).visitor_event_details($p):cafe_record_area_link($p).visitor_profile($p);
     if($singleEvent){$shareRecord=$p;if($event){foreach(['prefecture','city','address'] as $key)$shareRecord[$key]=$store[$key];$shareRecord['venue_name']=$store['name'];}$body.=cafe_event_share($shareRecord);}
     if($event) $body.='<h2>開催店舗</h2><p>'.e($store['name'].' / '.$store['address']).'</p>'.disclaimer();
     if(!$event && $p['kind']==='store'&&$p['country_code']==='JP') {

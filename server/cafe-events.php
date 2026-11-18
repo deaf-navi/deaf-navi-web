@@ -84,7 +84,7 @@ function cafe_event_card(array $p):string {
     $out='<article class="dn-card dn-place-card dn-event-card" data-event-id="'.e($p['id']).'"><div class="dn-event-heading"><div class="dn-event-date">'.cafe_icon('calendar').($date!==''?'<time datetime="'.e($date).'">'.e(str_replace('-','.',$date)).'</time>':'<span>日付未確認</span>').'</div><span class="dn-badge">'.e(cafe_event_label($p)).'</span></div>'.cafe_card_intro($p,$location).'<dl class="dn-facts"><dt>会場</dt><dd>'.e($venue).'</dd><dt>開催時間</dt><dd>'.e($time?:'未確認').'</dd></dl><p class="dn-card-intro">'.nl2br(e($p['description']??'')).'</p>';
     if(!empty($p['notes']))$out.='<p class="dn-visit-note">'.nl2br(e($p['notes'])).'</p>';
     if(cafe_event_period($p)==='past'&&empty($p['event_reported'])&&($p['observation_only']??'0')!=='1')$out.='<p class="dn-event-history-note">過去の日付の告知情報です。実施済み・次回開催を示すものではありません。</p>';
-    return $out.cafe_event_source_notice($p).official_links($p,true).sources_html($p).cafe_event_share($p).'</article>';
+    return $out.cafe_event_source_notice($p).official_links($p,true).sources_html($p,array_column(official_link_items($p),'url')).cafe_event_share($p).'</article>';
 }
 function cafe_events_page():string {
     $all=cafe_event_records();$f=cafe_event_filters();$matched=array_values(array_filter($all,fn($p)=>cafe_event_matches($p,$f)));

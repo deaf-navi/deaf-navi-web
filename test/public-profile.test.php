@@ -68,6 +68,17 @@ expect(count($links)===2,'Exact source duplicates rendered once');
 expect($links[0]['label']==='公式サイト · example.org'&&$links[1]['label']==='PDF資料 · example.org','Same-host page and PDF distinguished');
 expect($sourceRecord===$sourceBefore,'Source records and original verification date remain unchanged');
 expect(str_contains(sources_html($sourceRecord),'2026-09-05'),'Original verification date displayed');
+$profile=array_replace($activity,$sourceRecord,['instagram_url'=>'https://www.instagram.com/example/']);
+$profile['verification_sources'][]=$profile['instagram_url'];
+$profile['verification_sources'][]='https://example.org/event/?slot=2';
+$html=visitor_profile($profile);
+foreach([$profile['official_url'],$profile['instagram_url'],'https://example.org/flyer.pdf','https://example.org/event/?slot=2'] as $url){
+    expect(substr_count($html,'href="'.$url.'"')===1,'Each distinct official or source URL is linked once');
+}
+expect(str_contains($html,'PDF資料 · example.org'),'Different same-host PDF stays identifiable');
+$onlyOfficial=array_replace($profile,['verification_sources'=>[$profile['official_url']]]);
+$html=visitor_profile($onlyOfficial);
+expect(!str_contains($html,'情報源を確認する')&&str_contains($html,'2026-09-05'),'No empty source disclosure and original date stays visible');
 $other=['verification_sources'=>['https://example.org/a','https://example.org/b','https://example.org/?p=1','https://example.org/?p=2','https://example.org/a#section']];
 $links=source_links_for_display($other);
 expect(count($links)===5&&count(array_unique(array_column($links,'label')))===5,'Different paths, query values and fragments are retained with distinct labels');

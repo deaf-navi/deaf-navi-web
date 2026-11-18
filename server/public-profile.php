@@ -1,14 +1,19 @@
 <?php
 declare(strict_types=1);
 // Public presentation is an allowlist, deliberately separate from admin fields.
-function official_links(array $p,bool $compact=false):string {
+function official_link_items(array $p,bool $compact=false):array {
     $links=[];$seen=[];
     foreach(['official_url'=>$compact?'公式サイト':'公式サイト（HP）','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','line_url'=>'LINE','youtube_url'=>'YouTube'] as $key=>$label){
-        $url=$p[$key]??'';if($url===''||isset($seen[rtrim($url,'/')]))continue;
+        $url=trim($p[$key]??'');if($url===''||isset($seen[rtrim($url,'/')]))continue;
         $seen[rtrim($url,'/')]=true;
-        $links[]='<a href="'.e(safe_url($url)).'" target="_blank" rel="noopener noreferrer" aria-label="'.e($p['name'].'の'.$label).'（別タブで開きます）">'.e($label).'</a>';
+        $links[]=['url'=>$url,'label'=>$label];
     }
-    if(!$links)return '';
+    return $links;
+}
+function official_links(array $p,bool $compact=false):string {
+    $items=official_link_items($p,$compact);
+    if(!$items)return '';
+    $links=array_map(fn($item)=>'<a href="'.e(safe_url($item['url'])).'" target="_blank" rel="noopener noreferrer" aria-label="'.e($p['name'].'の'.$item['label']).'（別タブで開きます）">'.e($item['label']).'</a>',$items);
     return '<div class="dn-official-links'.($compact?' is-compact':'').'">'.($compact?'':'<p class="dn-link-heading">公式サイト・SNS</p><p class="dn-muted">最新のお知らせは、お店や運営元の発信をご確認ください。</p>').'<nav aria-label="'.e($p['name']).'の公式サイト・SNS">'.implode('',$links).'</nav></div>';
 }
 function visitor_facts(array $p,array $fields):string {
@@ -46,7 +51,7 @@ function visitor_profile(array $p):string {
     }else $out.='<p>詳しい場所は、お店の案内をご確認ください。</p>';
     $out.='</section>';
     if(!empty($p['operator']))$out.='<section class="dn-visitor-section"><h2>運営について</h2><p>'.e($p['operator']).'</p></section>';
-    return $out.'<section class="dn-visitor-section"><h2>掲載情報について</h2><p>営業日や内容は変更される場合があります。訪問前に公式サイト・SNSの最新情報をご確認ください。</p>'.sources_html($p).'</section></article>';
+    return $out.'<section class="dn-visitor-section"><h2>掲載情報について</h2><p>営業日や内容は変更される場合があります。訪問前に公式サイト・SNSの最新情報をご確認ください。</p>'.sources_html($p,array_column(official_link_items($p),'url')).'</section></article>';
 }
 function visitor_event_details(array $p):string {
     return '<section class="dn-visitor-section"><h2>参加について</h2>'.visitor_facts($p,['end_time'=>'終了時刻','event_schedule'=>'開催日程','conditions'=>'参加条件','application'=>'参加・申込方法','organizer'=>'主催','partners'=>'協力']).(!empty($p['official_url'])?'<p>'.ext_link($p['official_url'],'開催案内を見る').'</p>':'').'</section>';
