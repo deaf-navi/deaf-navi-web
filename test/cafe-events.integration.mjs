@@ -75,6 +75,8 @@ try{
  ok(html.includes('data-share-x')&&html.includes('data-share-instagram')&&html.includes('data-share-copy')&&!html.includes('<summary>共有'),'cafe pages show direct social icons without the old share disclosure');
  const detail=await request('/connect/sign-cafe/event-fixture-future/');
  ok(detail.response.status===200&&shares(detail.html).some(x=>x.url===shared.url),'detail and listing share the same occurrence URL');
+ const profile=detail.html.match(/<article class="dn-visitor-profile">([\s\S]*?)<\/article>/)?.[1]||'';
+ ok(profile.includes('data-share-instagram')&&profile.includes('この情報の修正を知らせる'),'sharing and corrections align within the event profile');
  const schema=ld(html).find(x=>x['@type']==='CollectionPage');ok(schema?.mainEntity.itemListElement.some(x=>x.url.endsWith('/event-fixture-future/')),'schema describes rendered events');
  ok(!ld(html).some(x=>x['@type']==='Event'),'no invented Event structured data');
  ({html}=await request(route+'?period=past'));ok(html.includes('data-event-id="event-fixture-past"')&&!html.includes('data-event-id="event-fixture-future"'),'past events separate');

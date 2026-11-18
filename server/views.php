@@ -171,8 +171,16 @@ function detail(string $slug,bool $event): string {
     $store=$event?expanded(record($p['store_id'])):$p;
     if($event&&!publicly_visible($store)) fail('情報が見つかりません。',404);
     if($singleEvent)$body.=cafe_event_source_notice($p);
-    $body.=$event?event_card($p,$store,[trim($p['official_url']??'')]).visitor_event_details($p):cafe_record_area_link($p).visitor_profile($p);
-    if($singleEvent){$shareRecord=$p;if($event){foreach(['prefecture','city','address'] as $key)$shareRecord[$key]=$store[$key];$shareRecord['venue_name']=$store['name'];}$body.=cafe_event_share($shareRecord);}
+    $correction='<p><a href="'.e(cafe_correction_url($p)).'">この情報の修正を知らせる</a></p>';
+    if($event){
+        $shareRecord=$p;
+        foreach(['prefecture','city','address'] as $key)$shareRecord[$key]=$store[$key];
+        $shareRecord['venue_name']=$store['name'];
+        $body.=event_card($p,$store,[trim($p['official_url']??'')]).visitor_event_details($p).cafe_event_share($shareRecord);
+    }else{
+        $actions=$singleEvent?cafe_event_share($p).$correction:'';
+        $body.=cafe_record_area_link($p).visitor_profile($p,$actions);
+    }
     if($event) $body.='<h2>開催店舗</h2><p>'.e($store['name'].' / '.$store['address']).'</p>'.disclaimer();
     if(!$event && $p['kind']==='store'&&$p['country_code']==='JP') {
         $body.='<h2>この店舗の開催履歴</h2>';
@@ -183,7 +191,7 @@ function detail(string $slug,bool $event): string {
     if($event && ($p['observation_only']??'0')!=='1' && in_array($p['confidence']??'',['official','organizer','store'],true) && $p['event_date'] && $p['start_time'] && $p['timezone'] && !empty($store['address']) && in_array(event_state($p),['scheduled','ongoing','ended','cancelled'],true)) {
         $schema[]=['@context'=>'https://schema.org','@type'=>'Event','name'=>$p['name'],'url'=>BASE.record_path($p),'startDate'=>(new DateTimeImmutable($p['event_date'].'T'.$p['start_time'],new DateTimeZone($p['timezone'])))->format('c'),'eventStatus'=>'https://schema.org/'.(event_state($p)==='cancelled'?'EventCancelled':'EventScheduled'),'location'=>['@type'=>'Place','name'=>$store['name'],'address'=>['@type'=>'PostalAddress','streetAddress'=>$store['address'],'addressCountry'=>$store['country_code']]]];
     }
-    $body.='<p><a href="'.e(cafe_correction_url($p)).'">この情報の修正を知らせる</a></p>';
+    if($event||!$singleEvent)$body.=$correction;
     $seo=cafe_record_seo($p);
     if($singleEvent&&cafe_event_period($p)==='unconfirmed'){$schema=[];$seo=array_replace($seo?:[],['robots'=>'noindex,follow']);}
     // Public response provenance only; never expose record/admin fields.
