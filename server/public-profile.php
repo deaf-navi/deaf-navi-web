@@ -20,7 +20,7 @@ function visitor_facts(array $p,array $fields):string {
     $out='';foreach($fields as $key=>$label)if(isset($p[$key])&&$p[$key]!=='')$out.='<dt>'.e($label).'</dt><dd>'.nl2br(e($p[$key])).'</dd>';
     return $out===''?'':'<dl class="dn-visitor-facts">'.$out.'</dl>';
 }
-function visitor_profile(array $p):string {
+function visitor_profile(array $p,string $actions=''):string {
     $activity=($p['shop_type']??'')==='event';
     $visitInfo=cafe_has_visit_info($p);
     $related=in_array(cafe_listing_group($p),['spots','organizations'],true);
@@ -51,7 +51,7 @@ function visitor_profile(array $p):string {
     }else $out.='<p>詳しい場所は、お店の案内をご確認ください。</p>';
     $out.='</section>';
     if(!empty($p['operator']))$out.='<section class="dn-visitor-section"><h2>運営について</h2><p>'.e($p['operator']).'</p></section>';
-    return $out.'<section class="dn-visitor-section"><h2>掲載情報について</h2><p>営業日や内容は変更される場合があります。訪問前に公式サイト・SNSの最新情報をご確認ください。</p>'.sources_html($p,array_column(official_link_items($p),'url')).'</section></article>';
+    return $out.'<section class="dn-visitor-section"><h2>掲載情報について</h2><p>営業日や内容は変更される場合があります。訪問前に公式サイト・SNSの最新情報をご確認ください。</p>'.sources_html($p,array_column(official_link_items($p),'url')).'</section>'.$actions.'</article>';
 }
 function visitor_event_details(array $p):string {
     return '<section class="dn-visitor-section"><h2>参加について</h2>'.visitor_facts($p,['end_time'=>'終了時刻','event_schedule'=>'開催日程','conditions'=>'参加条件','application'=>'参加・申込方法','organizer'=>'主催','partners'=>'協力']).(!empty($p['official_url'])?'<p>'.ext_link($p['official_url'],'開催案内を見る').'</p>':'').'</section>';
