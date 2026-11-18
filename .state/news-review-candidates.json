@@ -1,30 +1,39 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-18T02:51:12.883Z",
+  "generatedAt": "2026-11-18T11:30:33.802Z",
   "counts": {
-    "uniqueInputs": 1985,
-    "alreadyPublished": 653,
-    "outsideWindow": 1138,
-    "hardExcluded": 2,
-    "duplicateOfPublished": 36,
-    "candidateDuplicates": 1,
-    "eligible": 155,
+    "uniqueInputs": 2010,
+    "alreadyPublished": 651,
+    "outsideWindow": 1163,
+    "hardExcluded": 1,
+    "duplicateOfPublished": 38,
+    "candidateDuplicates": 0,
+    "eligible": 157,
     "queued": 40,
-    "deferred": 115
+    "deferred": 117
   },
   "hardExclusionReasons": {
-    "unrelated-visual-section": 1,
-    "market-report": 1
+    "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-17T18:28:33.438Z",
+    "previousGeneratedAt": "2026-11-18T02:51:12.883Z",
     "previousQueued": 40,
-    "retained": 37,
-    "new": 3,
-    "changed": 0,
-    "unchanged": 37
+    "retained": 39,
+    "new": 1,
+    "changed": 1,
+    "unchanged": 38
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/18/123857",
+      "articleHash": "f65cdf25170c8588608d5816b4dd9222ba9c7f0ebe7cd098bcb78183859a41e1",
+      "publishedAt": "2026-11-18T03:38:57.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/17/110150",
       "articleHash": "523cb1c9781eb869fdc42b49956c3cd655121197649bd3292c20618cda14b36e",
@@ -213,7 +222,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/aitottoriforum27/",
@@ -253,7 +262,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/godzillaminuszero/",
@@ -277,13 +286,13 @@
     },
     {
       "sourceUrl": "https://co-coco.jp/series/design/design5year1/",
-      "articleHash": "0768a8e2639ad6ffbf63cf8be8b31fdbe3f4ec5944057ed671d7358e8be4f584",
+      "articleHash": "c397c86b84c776900b2860a712194b5224595c1d61c8318891f5d55b380a3941",
       "publishedAt": "2026-11-16T23:00:08.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "unchanged"
+      "feedChange": "changed"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/tonatoramovie/",
@@ -414,16 +423,6 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/subemayo/",
-      "articleHash": "431612cbb624bcbe083f4124264239521e021142df2b80466a37da2af4dc0cfd",
-      "publishedAt": "2026-10-30T04:21:53.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "new"
     }
   ]
 }
