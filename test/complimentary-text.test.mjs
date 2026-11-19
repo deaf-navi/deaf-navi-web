@@ -12,16 +12,25 @@ const items=[{id:'0',topic:'文化',original_title:'Captioned theatre on 2026-10
 async function fixture(t,overrides={}){const dir=await mkdtemp(join(tmpdir(),'dn-free-'));t.after(()=>rm(dir,{recursive:true,force:true}));await writeFile(join(dir,'allowance.json'),JSON.stringify({...lease,approvedTextHashes:items.map(publicTextFingerprint),...overrides}));return dir;}
 const result=()=>new Response(JSON.stringify({status:'completed',usage:{input_tokens:100,output_tokens:50},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({items:[{id:'0',title:'字幕付き演劇',summary:'市立劇場で日本語字幕を提供します。'}]})}]}]}),{status:200});
 
-test('request and token caps distinguish no-send deferral and leave usage and locks intact',async t=>{
- for(const reason of ['daily-request-limit','daily-token-budget']){
-  const dir=await fixture(t,reason==='daily-token-budget'?{dailyBudget:100}:{}),records=reason==='daily-request-limit'?Array.from({length:16},()=>({status:'completed',reservedTokens:1000,inputTokens:1,outputTokens:1,runMode:'routine'})):[];
-  const ledger={version:1,day:lease.utcDay,projectId:project,reserved:records.length*1000,records},path=join(dir,'usage-'+lease.utcDay+'.json');
-  await writeFile(path,JSON.stringify(ledger));let calls=0;
-  const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return result();}});
-  await assert.rejects(run(items),e=>e.code==='complimentary_unavailable'&&e.submissionState==='not-sent'&&e.deferReason===reason);
-  assert.equal(calls,0);assert.deepEqual(JSON.parse(await readFile(path)),ledger);
-  for(const name of ['request.lock','inflight.json'])await assert.rejects(readFile(join(dir,name)),{code:'ENOENT'});
- }
+test('routine sends past 16 requests but the 400000-token ceiling includes existing holds',async t=>{
+ const dir=await fixture(t,{dailyBudget:400_000});
+ const path=join(dir,'usage-'+lease.utcDay+'.json');
+ const records=Array.from({length:16},()=>({status:'completed',reservedTokens:24_000,inputTokens:18_000,outputTokens:6_000,runMode:'routine'}));
+ const ledger={version:1,day:lease.utcDay,projectId:project,reserved:384_000,records};
+ await writeFile(path,JSON.stringify(ledger));
+ let calls=0;
+ const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return result();}});
+ await run(items);
+ const updated=JSON.parse(await readFile(path));
+ assert.equal(updated.records.length,17);
+ assert.deepEqual(updated.records.slice(0,16),records);
+ updated.records.push({status:'rejected',reservedTokens:16_000,runMode:'routine'});
+ updated.reserved+=16_000;
+ await writeFile(path,JSON.stringify(updated));
+ await assert.rejects(run(items),e=>e.code==='complimentary_unavailable'&&e.submissionState==='not-sent'&&e.deferReason==='daily-token-budget');
+ assert.equal(calls,1);
+ assert.deepEqual(JSON.parse(await readFile(path)),updated);
+ for(const name of ['request.lock','inflight.json'])await assert.rejects(readFile(join(dir,name)),{code:'ENOENT'});
 });
 test('completed review keeps valid evidence and isolates invalid evidence after recording all usage',async t=>{
  const reviewItems=['one','two'].map(id=>prepareReviewItem({kind:'event',sourceUrl:'https://example.org/'+id,title:'手話交流会',text:'手話交流会を開催します。開催日2026年11月14日。会場は市民会館。'}));
@@ -32,7 +41,7 @@ test('completed review keeps valid evidence and isolates invalid evidence after 
  const ledger=JSON.parse(await readFile(join(dir,'usage-2026-10-18.json'),'utf8'));assert.equal(ledger.records[0].status,'completed');assert.equal(ledger.records[0].outputTokens,50);
 });
 test('no request without current-day project-bound complimentary eligibility',async t=>{
- for(const override of [{projectId:'other'},{keySha256:'bad'},{model:'other'},{model:'gpt-5.6-sol'},{enrolled:false},{sharingEnabled:false},{balancePositive:false},{utcDay:'2026-10-17'},{expiresAt:'invalid'},{expiresAt:'2026-10-18T03:01:00Z'},{dailyBudget:100001},{observedGroupTokens:999999}]){
+ for(const override of [{projectId:'other'},{keySha256:'bad'},{model:'other'},{model:'gpt-5.6-sol'},{enrolled:false},{sharingEnabled:false},{balancePositive:false},{utcDay:'2026-10-17'},{expiresAt:'invalid'},{expiresAt:'2026-10-18T03:01:00Z'},{dailyBudget:400001},{observedGroupTokens:999999}]){
   const dir=await fixture(t,override);let calls=0;const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return result();}});
   await assert.rejects(()=>run(items));assert.equal(calls,0);
  }
@@ -66,10 +75,10 @@ test('budget is reserved before transmission and concurrent requests cannot spen
  const dir=await fixture(t,{dailyBudget:30000});let calls=0;
  const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;await new Promise(r=>setTimeout(r,20));return result();}});
  const results=await Promise.allSettled([run(items),run(items)]);assert.equal(results.filter(x=>x.status==='fulfilled').length,1);assert.equal(calls,1);
- for(let i=1;i<16;i++)await run(items);
- await assert.rejects(()=>run(items),/Daily complimentary budget reached/);assert.equal(calls,16);
+ for(let i=1;i<20;i++)await run(items);
  const ledger=JSON.parse(await readFile(join(dir,'usage-2026-10-18.json'),'utf8'));
- assert.ok(ledger.reserved>30000);assert.equal(summarizeComplimentaryUsage(ledger,{day:lease.utcDay,project}).accountedTokens,2400);
+ assert.equal(calls,20);
+ assert.ok(ledger.reserved>30000);assert.equal(summarizeComplimentaryUsage(ledger,{day:lease.utcDay,project}).accountedTokens,3000);
 });
 
 test('model rejection records a support reference without storing error body or releasing budget',async t=>{

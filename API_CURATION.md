@@ -40,7 +40,7 @@
 
 私有 `curation-review-catalog.json`（version 1、targets）は、kind/recordId/title/sourceUrl/sourceMode=html/officialVerified=true/fragments/approvedDocumentHash/sharingReviewedAtを持つ。公式本文と共有する短文を実際に読んで登録する。全文hashは `prepare-curation-review.mjs` が実取得した `sourceDocumentHash` を使う。カタログ登録だけでは当日のAPI送信を許可しない。初期対象は確認したHTML資料から増やし、未登録・変更された文面は例外に残す。
 
-通常の国内イベント6週間・カフェイベント4か月・公演6か月の範囲で、登録済み情報をイベントとカフェ交互に最大40件選び、4件ずつ順番に比較する。同じURLのHTMLは実行内で一度だけ取得し、全文hashと抜粋の存在を再照合する（取得失敗も実行内で再送しない）。新規情報源の詳査は従来どおり1回最大8件。APIの1回・当日トークン予算、通常16回の回数上限は拡大しない。API/キャッシュ異常時は後続バッチも止め、UNKNOWNと例外を残す。
+通常の国内イベント6週間・カフェイベント4か月・公演6か月の範囲で、登録済み情報をイベントとカフェ交互に最大40件選び、4件ずつ順番に比較する。同じURLのHTMLは実行内で一度だけ取得し、全文hashと抜粋の存在を再照合する（取得失敗も実行内で再送しない）。新規情報源の詳査は従来どおり1回最大8件。1要求のトークン上限と共通の日次トークン予算を適用する。API/キャッシュ異常時は後続バッチも止め、UNKNOWNと例外を残す。
 
 API結果・既存キャッシュと最新台帳を比較し、一致は `corroborated`、差異・不足・未登録・目視対象は `exception`。対象上限超過は `deferred` として保持する。48時間の期限切れやカフェのrevision不一致を、この処理で復旧・承認しない。常設店舗の年次棚卸は別途維持する。
 
@@ -50,13 +50,13 @@ API結果・既存キャッシュと最新台帳を比較し、一致は `corrob
 
 `daily-curation-review.json` は公開root外に0600で保存する。Codexは主に `exceptionRecords` と未探索の情報源を確認し、一致した抽出を毎回手で作り直さない。新規発見、画像/PDF/SNS、共有適性・当日無料枠の確認、掲載差分の承認は残る。公開DB、承認台帳、reviewedAt、年次期限をこのCLIから更新しない。
 
-本体はGitHubのCI・PR・既定公開後、同じcommitのscripts（daily/prepare/curation-review/contract/complimentary-text-client）と参照するsrc/lib（thumbnail-fetch/thumbnail-metadata/text）を専用サービス内の版別フォルダへ設置し、`curation-batch` のリンクを原子的に切り替える。既存HTTPサービスやキー設定の再起動・変更は不要。モデル定義更新時も同じ版のbundleへ揃える。切替前のフォルダと私有カタログ・結果を保持し、旧リンクへ戻せるよう記録する。
+本体はGitHubのCI・PR・既定公開後、同じcommitのscripts（daily/prepare/curation-review/contract/complimentary-text-client）と参照するsrc/lib（thumbnail-fetch/thumbnail-metadata/text）を専用サービス内の版別フォルダへ設置し、`curation-batch` のリンクを原子的に切り替える。共有クライアントに変更がある場合はHTTPサービス側にも同じ変更を適用し、専用PM2プロセスだけを再起動する。キー設定は保持する。切替前のフォルダと私有カタログ・結果を保持し、旧リンクへ戻せるよう記録する。
 
 比較CLIは `/srv/deaf-navi-codex-app-server/curation-review.mjs`、私有キャッシュは `/srv/deafnavi/shared/ai/curation-review-cache.json`。当日の承認済み文面だけ処理する。ロックにより二重実行を防ぐ。同じ結果は再取得せず、再利用時に既存台帳・取得時刻との比較をやり直す。結果不明の送信を自動再試行しない。
 
 日次の `deaf-navi-2` に統合し、新しいcron・定時API連打は追加しない。登録済み情報源の復旧は引き続き非AI。毎日の共有適性・無料枠確認は必要なため、Codexが完全に不要になるわけではない。新規発見・画像・PDF・SNSの実確認も残る。
 
-調査・再試験に限りCLIへ `--research` を付け、回数を通常の16回と分ける。トークン予算、当日残量、秘密保護、結果不明時の停止は共通。モデル比較時の `modelOverride` も調査CLIのみ。定時HTTPの入力から上限を回避する経路はない。
+調査・再試験に限りCLIへ `--research` を付け、実要求数を通常処理と別に記録する。トークン予算、当日残量、秘密保護、結果不明時の停止は共通。モデル比較時の `modelOverride` も調査CLIのみ。定時HTTPの入力から上限を回避する経路はない。
 
 API応答の件数・固定ID・重複はバッチ全体で厳密に検証する。その上で、引用や日付が根拠と合わない項目だけを `api-evidence-invalid` として私有キャッシュへ保存し、正常な項目の照合は継続する。無効な原文や出力は保存せず、同じ文面の無効結果を自動再送しない。別IDや結果不明の応答をこの仕組みで正常扱いしない。
 

@@ -1,6 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {join} from 'node:path';
-import {summarizeComplimentaryUsage,validateStoredAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_REQUEST_LIMIT} from './complimentary-text-client.mjs';
+import {summarizeComplimentaryUsage,validateStoredAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_DAILY_TOKEN_LIMIT} from './complimentary-text-client.mjs';
 
 // Read-only operational report. Never calls the API, changes the allowance, or
 // treats the local budget as the organization's current remaining free quota.
@@ -17,7 +17,7 @@ try {
   let inflight=false;
   try{await readFile(join(stateDir,'inflight.json'));inflight=true;}catch(error){if(error.code!=='ENOENT')throw error;}
   process.stdout.write(JSON.stringify({day,model:COMPLIMENTARY_MODEL,accounting:'actual_usage_with_unsettled_reservations',dailyBudget:budget,...usage,
-    remainingLocalBudget:Math.max(0,budget-usage.accountedTokens),requestLimit:COMPLIMENTARY_REQUEST_LIMIT,remainingRequests:Math.max(0,COMPLIMENTARY_REQUEST_LIMIT-usage.routineRequests),researchRequestLimit:null,
+    remainingLocalBudget:Math.max(0,budget-usage.accountedTokens),maximumDailyBudget:COMPLIMENTARY_DAILY_TOKEN_LIMIT,requestLimit:null,remainingRequests:null,researchRequestLimit:null,
     fallback:lease.groups?.light?{model:lease.groups.light.model,eligible:lease.groups.light.eligible,accessVerified:lease.groups.light.modelAccessVerified}:null,
     reconciliationRequired:inflight||usage.unresolved>0,checkedAt:lease.checkedAt,expiresAt:lease.expiresAt,
     settingsCheckedAt:lease.accountReview?.checkedAt??null,nextSettingsReviewAt:lease.accountReview?.expiresAt??null})+'\n');

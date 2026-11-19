@@ -18,8 +18,8 @@
 - 2026-10-18に `gpt-6.1-sol` の無料対象を確認し、shared-free-tierのモデル許可リストへ同モデルのみ追加した（既存5.6系3モデル・支出上限は保持）。保存後も実APIが403 `model_not_found` / project does not have accessを返したため、本番移行は保留して5.6 Solへ明示的に戻した。APIキーの権限は変更していない。設定伝播以外の原因はUNKNOWN。6.1へ再移行する場合も実応答と無料枠区分を確認してから定義・日次記録を揃える。失敗したリクエストの予約量は払い戻さない。
 - 同日08:49 UTC、ユーザー許可で要求回数を見直して同じキー・プロジェクトで再試験し、`gpt-6.1-sol` のHTTP 200・completed・日本語の構造化応答を確認した（入力210＋出力73＝283トークン）。追加のキー権限・共有設定変更は行っていない。以前の403が解消した内部原因はUNKNOWN。本番反映はこの要求の無料枠区分をUsage画面で照合してから行う。
 - 日付の境界は00:00 UTC（09:00 JST）。毎日、有効な週次設定記録と当日の残量・他の利用・無料計上を確認した記録が必要。前日や過去7日間だけの確認では当日の許可を更新しない。
-- Deaf Naviの上限は「確定実使用＋未精算の予約」で10万トークン/日、16リクエスト/日、確認済み残量の10%以下。要求回数は `COMPLIMENTARY_REQUEST_LIMIT` を実行・状態表示で共有する。2026-10-18に組織全体の当日実使用3,952トークン、対象枠100万、他プロジェクトの同日使用なしを確認し、ユーザー許可で12回から16回へ変更した。当日のトークン予算99,000、既存要求回数・保留予約は維持する。送信前に入力UTF-8バイト数＋出力上限＋余裕を確保し、APIが返した入力・出力tokensが妥当で予約内と確認できた場合だけ実使用へ精算する。推論tokensはoutput_tokensに含まれるため二重加算しない。元の予約量・履歴は削除せず、既存version 1台帳も同じ計算で読む。
-- 拒否された要求の使用量が不明な場合は予約を保持し、通信断・5xx・使用量不明は再送を停止する。成功した要求の余剰分だけを解放し、失敗分をゼロと推測しない。通常処理の16回上限には失敗も含む。ユーザーの同日追加指定により、明示的な調査・再試験は `--research` で別集計し、回数上限を設けない。10万tokens以下の当日ローカル予算・確認済み無料枠・同じ台帳を共有し、回数以外の制限は外さない。HTTPサービスや定時処理は通常モード固定。
+- 2026-11-20のユーザー指定により、Deaf Naviの全用途で「確定実使用＋未精算の予約」をUTC日あたり最大40万トークンまで、モデル群ごとの確認済み無料残量内で利用する。日次の要求数上限は設けず実数を記録する。モデル群残量は確認時点の組織全体使用量、確認後のローカル実使用、未精算予約を差し引いて判定する。送信前に入力UTF-8バイト数＋出力上限＋余裕を確保し、APIが返した入力・出力tokensが妥当で予約内と確認できた場合だけ実使用へ精算する。推論tokensはoutput_tokensに含まれるため二重加算しない。元の予約量・履歴は削除せず、既存version 1台帳も同じ計算で読む。
+- 拒否された要求の使用量が不明な場合は予約を保持し、通信断・5xx・使用量不明は再送を停止する。成功した要求の余剰分だけを解放し、失敗分をゼロと推測しない。実要求数と失敗は記録する。明示的な調査・再試験は `--research` で別集計し、同じトークン予算・確認済み残量・台帳を適用する。HTTPサービスや定時処理は通常モード固定。
 - 無料枠をまたぐリクエストは全体が通常課金になり得る。ローカル上限はOpenAI側の強制無料設定ではない。他クライアントの消費も調べ、不明なら使用しない。料金画面の反映待ちは0円確定と書かない。
 - 残量・対象・キー所属・当日の確認が不明、期限切れ、上限超過、結果不明なら送信しない。自動で有料APIやCodexへ切り替えない。Google翻訳・キャッシュ・翻訳保留の仕組みは継続する。
 
@@ -51,11 +51,11 @@ DEAFNAVI_AI_STATE_DIR=/srv/deafnavi/shared/ai
 `scripts/record-complimentary-allowance.mjs` は標準入力の確認結果を記録する補助。アカウントの検証を自動で代行するものではない。秘密はファイルから読み、標準出力には日付・期限・上限・許可文数だけを出す。
 
 - `mode=weekly-account-check`: `checkedAt`（実確認から30分以内）、`model`、`keyProjectVerified/enrolled/sharingEnabled/balancePositive=true`、`groups.high/light` の `model/eligible/modelAccessVerified/groupDailyLimit`、`browser=iab|chrome-fallback`、非公開の根拠記録を指す `evidenceReference` を渡す。7日後の期限は元の実確認時刻から計算し、前の記録を私有履歴へ保存する。この操作だけでは当日のAPI利用を許可しない。未確認の軽量群は省略でき、自動切替には使われない。
-- `mode=daily-usage-check`: `checkedAt`（30分以内・当日UTC）、`otherUsageReviewed/billingReviewed=true`、`billingUtcDay`（前日UTC）、`billingStatus=reconciled|pending|no-usage`、`settingsChanged=false`、`anomaliesDetected=false`、`observedGroupTokens.high/light`（当日組織全体の実測）、`dailyBudget`、`publicDataReviewed=true`、`reviewedPublicItems` を渡す。設定とモデル群は有効な週次記録から読み、入力で書き換えない。pendingは表示遅延として既存照合台帳で追跡する。変更/異常がtrueなら設定記録を失効させ、日次許可を発行しない。falseは日次の使用量・計上・既知の変更/異常の確認を表し、全設定を当日見直したという意味ではない。
+- `mode=daily-usage-check`: `checkedAt`（30分以内・当日UTC）、`otherUsageReviewed/billingReviewed=true`、`billingUtcDay`（前日UTC）、`billingStatus=reconciled|pending|no-usage`、`settingsChanged=false`、`anomaliesDetected=false`、`observedGroupTokens.high/light`（当日組織全体の実測）、`dailyBudget`（省略時は最大400000、明示した低い上限も有効）、`publicDataReviewed=true`、`reviewedPublicItems` を渡す。設定とモデル群は有効な週次記録から読み、入力で書き換えない。pendingは表示遅延として既存照合台帳で追跡する。変更/異常がtrueなら設定記録を失効させ、日次許可を発行しない。falseは日次の使用量・計上・既知の変更/異常の確認を表し、全設定を当日見直したという意味ではない。
 - `mode=require-account-recheck`: `reason=settings-changed|billing-anomaly|usage-anomaly|account-unavailable` でAPIを停止。通常の確認不能では期限を延長せず、現行許可も止める必要があればこのモードを使う。旧日時・使用台帳・保留予約は保持し、解除には実際の設定確認と当日の使用量確認が必要。
 - 旧 `daily-account-check` は週次記録のない移行前環境のみ互換。週次記録導入後は拒否され、既存version 1の日次許可も週次確認の迂回に使えない。
 - `mode=approve-text`: 同じ日の有効な許可に、`publicDataReviewed=true` と `reviewedPublicItems` のhashだけを追加する。期限・残量・利用記録は更新しない。
-- 二群の適格性と利用可能性は週次設定記録、使用量は当日の実測を使用する。本番自動切替は実応答と無料区分を確認した `modelAccessVerified=true` の群のみ。群の残量は確認値の10%から確認後の自アプリ利用・保留予約を引いて評価し、総予算・回数・結果不明ロックはモデル変更でも共通。
+- 二群の適格性と利用可能性は週次設定記録、使用量は当日の実測を使用する。本番自動切替は実応答と無料区分を確認した `modelAccessVerified=true` の群のみ。群の残量は確認済みの組織全体の残量から確認後の実使用・未精算予約を引いて評価し、共通予算と結果不明ロックはモデル変更でも維持する。
 - `reviewedPublicItems` の各項目は `id/title/summary` または `id/original_title/original_summary`。共有する文面を変更したら再確認する。
 - `scripts/review-public-text.mjs` は `publicDataReviewed=true`、`items`、`purpose=world_translation|public_event_summary|public_cafe_summary|curation_review` を標準入力から受ける。比較には `scripts/curation-review.mjs` を使う。返答は下書きであり、掲載承認・確認期限更新を実行しない。
 

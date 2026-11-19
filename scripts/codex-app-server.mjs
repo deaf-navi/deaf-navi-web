@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import http from 'node:http';
 import {readFile} from 'node:fs/promises';
-import {createComplimentaryClient,publicItems,publicTextFingerprint,validateStoredAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_FALLBACK_MODEL,COMPLIMENTARY_REASONING_EFFORT} from './complimentary-text-client.mjs';
+import {createComplimentaryClient,publicItems,publicTextFingerprint,validateStoredAllowance,COMPLIMENTARY_MODEL,COMPLIMENTARY_FALLBACK_MODEL,COMPLIMENTARY_REASONING_EFFORT,COMPLIMENTARY_DAILY_TOKEN_LIMIT} from './complimentary-text-client.mjs';
 import {join} from 'node:path';
 
 const textBackend=process.env.DEAFNAVI_TEXT_BACKEND||'codex';
@@ -366,7 +366,7 @@ const server = http.createServer(async (req, res) => {
         ok: true,
         provider: 'codex_app_server',
         engine: textBackend==='complimentary'?'openai_complimentary':'codex',
-        ...(complimentary?{models:[COMPLIMENTARY_MODEL],fallback_model:COMPLIMENTARY_FALLBACK_MODEL,fallback_policy:'verified-free-group-headroom',reasoning_effort:COMPLIMENTARY_REASONING_EFFORT,capabilities:['filter-approved-v1']}:{codex_bin:codexBin,models:modelCandidates}),
+        ...(complimentary?{models:[COMPLIMENTARY_MODEL],fallback_model:COMPLIMENTARY_FALLBACK_MODEL,fallback_policy:'verified-free-group-headroom',reasoning_effort:COMPLIMENTARY_REASONING_EFFORT,daily_token_limit:COMPLIMENTARY_DAILY_TOKEN_LIMIT,daily_request_limit:null,capabilities:['filter-approved-v1']}:{codex_bin:codexBin,models:modelCandidates}),
       });
       return;
     }

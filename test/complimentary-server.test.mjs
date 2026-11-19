@@ -26,6 +26,7 @@ test('HTTP integration: health never generates and missing allowance fails close
   const headers={Authorization:'Bearer fixture-http-token','Content-Type':'application/json'};
   assert.equal((await fetch(base+'/health')).status,401);
   const health=await fetch(base+'/health',{headers});assert.equal(health.status,200);const status=await health.json();assert.equal(status.engine,'openai_complimentary');assert.deepEqual(status.models,['gpt-6.1-sol']);assert.equal(status.reasoning_effort,'low');
+  assert.equal(status.daily_token_limit,400_000);assert.equal(status.daily_request_limit,null);
   const request={type:'world_jp_post_edit',platform:'deaf-navi-world-jp',count:1,source_text:JSON.stringify({items:[{id:'0',title:'Captioned theatre',summary:'The city theatre offers captions.'}]})};
   const response=await fetch(base+'/generate',{method:'POST',headers,body:JSON.stringify(request)});
   assert.equal(response.status,503);assert.equal((await response.json()).code,'complimentary_unavailable');
@@ -39,7 +40,7 @@ test('HTTP integration: health never generates and missing allowance fails close
   await writeFile(join(dir,'allowance.json'),JSON.stringify({version:1,projectName:'shared-free-tier',projectId:'proj_fixture',
     keySha256:keyFingerprint('sk-proj-fixture-not-a-secret'),model:'gpt-6.1-sol',utcDay:day,checkedAt:new Date(now).toISOString(),
     expiresAt:new Date(Date.parse(day+'T00:00:00Z')+86400000).toISOString(),enrolled:true,sharingEnabled:true,balancePositive:true,
-    publicDataOnly:true,groupDailyLimit:1_000_000,observedGroupTokens:0,dailyBudget:100_000,approvedTextHashes:[publicTextFingerprint(item)]}));
+    publicDataOnly:true,groupDailyLimit:1_000_000,observedGroupTokens:0,dailyBudget:400_000,approvedTextHashes:[publicTextFingerprint(item)]}));
   const ready=await fetch(base+'/filter-approved',{method:'POST',headers,body:JSON.stringify({items:[item,{...item,id:'two',title:'Changed text'}]})});
   assert.deepEqual(await ready.json(),{success:true,accountReady:true,approvedIds:['one'],generationRequests:0});
 });

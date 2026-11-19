@@ -55,12 +55,12 @@ test('week expiry cannot be hidden by daily expiry and billing display lag remai
  assert.throws(()=>validateAllowance({...lease,utcDay:'2026-11-01',checkedAt:'2026-11-01T03:00:00Z',expiresAt:'2026-11-02T00:00:00Z'}, {key,project,now:Date.parse('2026-11-01T04:00:00Z')}),/Weekly/);
  assert.doesNotThrow(()=>validateAllowance({...lease,dailyReview:{...daily,billingStatus:'pending'}},{key,project,now}));
 });
-test('v2 retains token budget, 16 routine requests, private text and unresolved-request stops',async t=>{
+test('v2 retains token budget, unlimited routine request count, private text and unresolved-request stops',async t=>{
  const dir=await fixture(t);let calls=0;const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return response();}});
  await assert.rejects(()=>run([{...item,summary:'Email private@example.com'}]));assert.equal(calls,0);
- for(let i=0;i<16;i++)await run([item]);await assert.rejects(()=>run([item]),/budget/);assert.equal(calls,16);
- const tiny=await fixture(t,{...lease,dailyBudget:100});await assert.rejects(()=>createComplimentaryClient({key,project,stateDir:tiny,clock:()=>now,fetchImpl:async()=>{calls++;return response();}})([item]),/budget/);assert.equal(calls,16);
- await writeFile(join(dir,'inflight.json'),'{}');await assert.rejects(()=>run([item]),/reconciliation/);assert.equal(calls,16);
+ for(let i=0;i<17;i++)await run([item]);assert.equal(calls,17);
+ const tiny=await fixture(t,{...lease,dailyBudget:100});await assert.rejects(()=>createComplimentaryClient({key,project,stateDir:tiny,clock:()=>now,fetchImpl:async()=>{calls++;return response();}})([item]),/budget/);assert.equal(calls,17);
+ await writeFile(join(dir,'inflight.json'),'{}');await assert.rejects(()=>run([item]),/reconciliation/);assert.equal(calls,17);
 });
 test('authentication failure requires new settings inspection; it never triggers fallback or releases reservation',async t=>{
  const dir=await fixture(t);let calls=0;const run=createComplimentaryClient({key,project,stateDir:dir,clock:()=>now,fetchImpl:async()=>{calls++;return new Response('{}',{status:403});}});
@@ -75,12 +75,15 @@ test('recorder separates settings/usage, preserves usage and exact-text approval
  assert.equal((await record(dir,{...weekly,checkedAt:'invalid'})).code,1);
  assert.equal((await record(dir,weekly)).code,0);
  const saved=await readFile(join(dir,'account-review.json'),'utf8'),settings=JSON.parse(saved);assert.equal(Date.parse(settings.expiresAt)-Date.parse(settings.checkedAt),ACCOUNT_REVIEW_MAX_AGE);
- const input={mode:'daily-usage-check',checkedAt:new Date().toISOString(),otherUsageReviewed:true,billingReviewed:true,billingUtcDay:priorDay,billingStatus:'reconciled',settingsChanged:false,anomaliesDetected:false,observedGroupTokens:{high:564,light:0},dailyBudget:99000,publicDataReviewed:true,reviewedPublicItems:[item]};
+ const input={mode:'daily-usage-check',checkedAt:new Date().toISOString(),otherUsageReviewed:true,billingReviewed:true,billingUtcDay:priorDay,billingStatus:'reconciled',settingsChanged:false,anomaliesDetected:false,observedGroupTokens:{high:564,light:0},publicDataReviewed:true,reviewedPublicItems:[item]};
  assert.equal((await record(dir,input)).code,0);
  assert.equal((await record(dir,{...input,checkedAt:new Date().toISOString(),reviewedPublicItems:[]})).code,0);
- const next=JSON.parse(await readFile(join(dir,'allowance.json'),'utf8'));assert.equal(next.version,2);assert.equal(next.accountReview.checkedAt,stamp);assert.deepEqual(next.approvedTextHashes,[publicTextFingerprint(item)]);
+ const next=JSON.parse(await readFile(join(dir,'allowance.json'),'utf8'));assert.equal(next.version,2);assert.equal(next.dailyBudget,400_000);assert.equal(next.accountReview.checkedAt,stamp);assert.deepEqual(next.approvedTextHashes,[publicTextFingerprint(item)]);
  assert.equal(await readFile(join(dir,'account-review.json'),'utf8'),saved);assert.equal(await readFile(usagePath,'utf8'),'{"preserve":"original ledger"}');
- const before=await readFile(join(dir,'allowance.json'),'utf8');assert.equal((await record(dir,{...input,anomaliesDetected:true})).code,1);assert.equal(await readFile(join(dir,'allowance.json'),'utf8'),before);
+ const before=await readFile(join(dir,'allowance.json'),'utf8');
+ assert.equal((await record(dir,{...input,dailyBudget:400_001})).code,1);
+ assert.equal((await record(dir,{...input,dailyBudget:null})).code,1);
+ assert.equal((await record(dir,{...input,anomaliesDetected:true})).code,1);assert.equal(await readFile(join(dir,'allowance.json'),'utf8'),before);
  assert.equal((await record(dir,input)).code,1);assert.equal((await record(dir,{mode:'approve-text',publicDataReviewed:true,reviewedPublicItems:[item]})).code,1);
  assert.equal((await record(dir,{...weekly,mode:'daily-account-check',...input,mode:'daily-account-check'})).code,1);
  assert.equal((await record(dir,{...weekly,checkedAt:new Date().toISOString()})).code,0); // explicitly re-inspect settings
