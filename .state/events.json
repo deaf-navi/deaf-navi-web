@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-19T14:38:55.458Z",
+  "checkedAt": "2026-11-19T15:42:42.673Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -1266,6 +1266,38 @@
       "verification": "verified"
     },
     {
+      "id": "osaka-big-i-arts-contest-2026-11-22",
+      "title": "大阪府障がい者芸術・文化コンテスト2026",
+      "startDate": "2026-11-22",
+      "endDate": "2026-11-22",
+      "prefecture": "大阪府",
+      "venue": "国際障害者交流センター ビッグ・アイ 多目的ホール（堺市南区茶山台1-8-1）",
+      "kind": "culture",
+      "time": "14:00〜16:30（予定、13:30開場）",
+      "organizer": "大阪府（実施：国際障害者交流センター ビッグ・アイ）",
+      "fee": "入場無料",
+      "target": "観覧は事前申込不要。定員1,200人、自由席。",
+      "description": "選考を通過した8組が音楽、ダンス、人形劇などを披露します。特別出演もあります。",
+      "sourceName": "国際障害者交流センター ビッグ・アイ",
+      "sourceUrl": "https://www.big-i.jp/projects/post/001072.php",
+      "detailUrl": "https://www.big-i.jp/projects/post/001072.php",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "演目中は要約筆記のみです。"
+        },
+        {
+          "method": "summary",
+          "detail": "演目中の情報保障です。"
+        }
+      ],
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verifiedAt": "2026-11-19T15:42:42.673Z",
+      "evidenceHash": "217e2c8d066d07203e45d6fbf0f8526928d4e7f9be0f0df8d937116c403635c4",
+      "verification": "verified"
+    },
+    {
       "id": "tonancyo-kikoe-festa-2026-11-22",
       "title": "機器展示会「きこえ応援フェスタ」",
       "startDate": "2026-11-22",
@@ -1787,6 +1819,34 @@
       "verifiedAt": "2026-11-17T00:16:00Z",
       "evidenceHash": "c5fbca254e2799ae63384c64a18484e3d8f5a3c80f12ddc3510a347e48d5fe19",
       "verification": "needs_review"
+    },
+    {
+      "id": "topmuseum-sign-qa-show-2026-12-12",
+      "title": "インクルーシブプログラム「手話を交えたQ&Aショー」",
+      "startDate": "2026-12-12",
+      "endDate": "2026-12-12",
+      "prefecture": "東京都",
+      "venue": "東京都写真美術館 2階ロビー",
+      "kind": "culture",
+      "time": "14:00〜15:00（13:30開場）",
+      "organizer": "東京都写真美術館",
+      "fee": "無料",
+      "target": "どなたでも参加できます。事前申込不要、定員50人。",
+      "description": "展覧会「デュエット――アジアン・コンテンポラリー」について、学芸員が質問に答えながら、展覧会のテーマや出品作品を紹介します。",
+      "sourceName": "東京都写真美術館",
+      "sourceUrl": "https://topmuseum.jp/workshop/13375/",
+      "detailUrl": "https://topmuseum.jp/workshop/13375/",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "文字表示支援もあります。手話通訳や文字表示が見やすい専用席があります。"
+        }
+      ],
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verifiedAt": "2026-11-19T15:42:42.673Z",
+      "evidenceHash": "a1617d8313849e7e0f280e50a7cadfa993d93c58d8bfcd8acf543fdb676b1386",
+      "verification": "verified"
     },
     {
       "id": "fusao-yubitopia-2026-12-13",
@@ -2640,6 +2700,16 @@
     {
       "sourceUrl": "https://www.pref.saitama.lg.jp/g2212/library-info/2026082601.html",
       "id": "momas-uchima-gallery-talk-2026-12-13",
+      "result": "verified"
+    },
+    {
+      "sourceUrl": "https://www.big-i.jp/projects/post/001072.php",
+      "id": "osaka-big-i-arts-contest-2026-11-22",
+      "result": "verified"
+    },
+    {
+      "sourceUrl": "https://topmuseum.jp/workshop/13375/",
+      "id": "topmuseum-sign-qa-show-2026-12-12",
       "result": "verified"
     }
   ],
