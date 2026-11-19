@@ -1,23 +1,22 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-19T02:30:12.208Z",
+  "generatedAt": "2026-11-19T11:29:12.710Z",
   "counts": {
-    "uniqueInputs": 2062,
-    "alreadyPublished": 672,
-    "outsideWindow": 1190,
-    "hardExcluded": 2,
-    "duplicateOfPublished": 40,
-    "candidateDuplicates": 2,
-    "eligible": 156,
+    "uniqueInputs": 1980,
+    "alreadyPublished": 650,
+    "outsideWindow": 1134,
+    "hardExcluded": 1,
+    "duplicateOfPublished": 36,
+    "candidateDuplicates": 1,
+    "eligible": 158,
     "queued": 40,
-    "deferred": 116
+    "deferred": 118
   },
   "hardExclusionReasons": {
-    "unrelated-visual-section": 1,
-    "market-report": 1
+    "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-19T00:52:09.001Z",
+    "previousGeneratedAt": "2026-11-19T02:30:12.208Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -25,6 +24,16 @@
     "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/19/155423",
+      "articleHash": "134cffa24d103e43e1ffa74285047c78d793ac8e47629275ec56a9499e74c52b",
+      "publishedAt": "2026-11-19T06:54:23.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/18/123857",
       "articleHash": "f65cdf25170c8588608d5816b4dd9222ba9c7f0ebe7cd098bcb78183859a41e1",
@@ -199,16 +208,6 @@
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/15/173417",
       "articleHash": "d977593bfab628d42ef4695d2a2f3ad0c56a5b25b722f2be69b47702b1fd2201",
       "publishedAt": "2026-10-15T08:34:17.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.mimisuppo-miyagi.org",
-      "priority": 0,
-      "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/14/144330",
-      "articleHash": "855e3549ce183eab397d0fbcd59fd5c3a22c1f8a3f50f5a54120d9a0c5fdc875",
-      "publishedAt": "2026-10-14T05:43:30.000Z",
       "sourceTier": "official",
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
@@ -423,7 +422,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     }
   ]
 }
