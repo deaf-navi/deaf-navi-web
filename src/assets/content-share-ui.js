@@ -45,10 +45,9 @@ export function shareImageFile(presentation) {
   const bytes=Uint8Array.from(atob(canvas.toDataURL('image/png').split(',')[1]),c=>c.charCodeAt(0));
   return new File([bytes],'deafnavi-share.png',{type:'image/png'});
 }
-function openPanel(root) {
+function openPanel(root, mode='instagram') {
   for(const other of document.querySelectorAll('[data-content-share]'))if(other!==root)closePanel(other);
-  initialize(root).get();root.querySelector('.dn-share-panel').hidden=false;
-  root.querySelector('[data-share-instagram]').setAttribute('aria-expanded','true');
+  initialize(root).show(mode);
 }
 async function shareToApps(root) {
   if(!supportsAppSharing())return false;
@@ -68,21 +67,21 @@ async function shareToApps(root) {
   return true;
 }
 function closePanel(root,focus=false) {
-  root.querySelector('.dn-share-panel').hidden=true;
-  const trigger=root.querySelector('[data-share-instagram]');trigger.setAttribute('aria-expanded','false');
-  if(focus)trigger.focus();
+  panels.get(root)?.close(focus);
 }
 function initialize(root) {
   if(panels.has(root))return panels.get(root);
   const panel=root.querySelector('.dn-share-panel'),status=root.querySelector('.dn-share-status');
   panel.id='dn-instagram-'+(++panelSequence);
-  root.querySelector('[data-share-instagram]').setAttribute('aria-controls',panel.id);
+  const instagramTrigger=root.querySelector('[data-share-instagram]');
+  const copyTrigger=root.querySelector('[data-share-copy]');
+  instagramTrigger.setAttribute('aria-controls',panel.id);
   const heading=document.createElement('div');heading.className='dn-share-panel-head';
-  const title=document.createElement('strong');title.textContent='Instagramで紹介';heading.append(title);
+  const title=document.createElement('strong');heading.append(title);
   const close=document.createElement('button');close.type='button';close.className='dn-share-close';close.textContent='閉じる';close.addEventListener('click',()=>closePanel(root,true));heading.append(close);
   const help=document.createElement('p');help.textContent=supportsAppSharing()?'共有先にInstagramが表示される場合は選んでください。表示されない場合は画像を保存して投稿画面で選べます。紹介文は別にコピーできます。':'紹介文をコピーし、画像を保存してInstagramの投稿画面で選んでください。';
-  const label=document.createElement('label');label.textContent='紹介文';
-  const text=document.createElement('textarea');text.readOnly=true;text.rows=4;label.append(text);
+  const label=document.createElement('label'),fieldName=document.createElement('span');
+  const text=document.createElement('textarea');text.readOnly=true;text.rows=4;label.append(fieldName,text);
   const actions=document.createElement('div');actions.className='dn-share-actions';
   const canvas=document.createElement('canvas');canvas.hidden=true;canvas.setAttribute('role','img');
   const get=()=>{const p=current(root);text.value=p.text;root.querySelector('[data-share-x]').href=p.xUrl;return p;};
@@ -99,7 +98,44 @@ function initialize(root) {
   });
   const open=document.createElement('a');open.href='https://www.instagram.com/';open.textContent='Instagramを開く';open.target='_blank';open.rel='noopener noreferrer';open.setAttribute('aria-label','Instagramを開く（新しいタブ）');actions.append(open);
   const note=document.createElement('p');note.className='dn-share-note';note.textContent='投稿の確定はInstagramで行います。リンクはストーリーズのリンクスタンプなどに使えます。';
-  panel.append(heading,help,label,actions,canvas,note);panels.set(root,{get,text});return panels.get(root);
+  const instagramTools=[help,actions,note];
+  let mode='instagram';
+  const state={
+    show(nextMode){
+      const manual=nextMode==='link';
+      const p=manual?current(root):get();
+      mode=nextMode;
+      title.textContent=manual?'リンクを手動でコピー':'Instagramで紹介';
+      fieldName.textContent=manual?'共有リンク':'紹介文';
+      for(const tool of instagramTools)tool.hidden=manual;
+      if(manual)canvas.hidden=true;
+      panel.hidden=false;
+      instagramTrigger.setAttribute('aria-expanded',String(!manual));
+      if(manual){
+        copyTrigger.setAttribute('aria-controls',panel.id);
+        copyTrigger.setAttribute('aria-expanded','true');
+        text.value=p.url;
+        text.focus();
+        text.select();
+      }else{
+        copyTrigger.removeAttribute('aria-controls');
+        copyTrigger.removeAttribute('aria-expanded');
+      }
+    },
+    close(restoreFocus){
+      panel.hidden=true;
+      instagramTrigger.setAttribute('aria-expanded','false');
+      copyTrigger.removeAttribute('aria-controls');
+      copyTrigger.removeAttribute('aria-expanded');
+      if(restoreFocus)(mode==='link'?copyTrigger:instagramTrigger).focus();
+    },
+    refresh(){
+      if(!panel.hidden&&mode==='instagram')get();
+    }
+  };
+  panel.append(heading,help,label,actions,canvas,note);
+  panels.set(root,state);
+  return state;
 }
 if(typeof document!=='undefined') {
   const updateX=event=>{const x=event.target.closest?.('[data-share-x]');if(x)try{x.href=current(x.closest('[data-content-share]')).xUrl;}catch{}};
@@ -112,16 +148,15 @@ if(typeof document!=='undefined') {
     try {
       if(control.matches('[data-share-x]')){control.href=current(root).xUrl;return;}
       if(control.matches('[data-share-instagram]')){
-        const panel=root.querySelector('.dn-share-panel');
-        if(!panel.hidden){closePanel(root);return;}
+        if(control.getAttribute('aria-expanded')==='true'){closePanel(root);return;}
         if(!await shareToApps(root))openPanel(root);
         return;
       }
       try{await navigator.clipboard.writeText(current(root).url);status.textContent='リンクをコピーしました。';}
-      catch{const {text}=initialize(root);text.value=current(root).url;root.querySelector('.dn-share-panel').hidden=false;root.querySelector('[data-share-instagram]').setAttribute('aria-expanded','true');text.focus();text.select();status.textContent='選択されたリンクを手動でコピーしてください。';}
+      catch{openPanel(root,'link');status.textContent='選択されたリンクを手動でコピーしてください。';}
     }catch{if(control.matches('[data-share-x]'))event.preventDefault();status.textContent='情報を読み込めませんでした。ページのリンクをコピーしてください。';}
   });
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'){const root=event.target.closest?.('[data-content-share]')||document.querySelector('[data-share-instagram][aria-expanded="true"]')?.closest('[data-content-share]');if(root&&!root.querySelector('.dn-share-panel').hidden){closePanel(root,true);event.preventDefault();}}});
-  const refresh=()=>{if(!document.hidden)for(const root of document.querySelectorAll('[data-content-share]'))if(!root.querySelector('.dn-share-panel').hidden)panels.get(root)?.get();};
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){const root=event.target.closest?.('[data-content-share]')||document.querySelector('.dn-share-icon[aria-expanded="true"]')?.closest('[data-content-share]');if(root&&!root.querySelector('.dn-share-panel').hidden){closePanel(root,true);event.preventDefault();}}});
+  const refresh=()=>{if(!document.hidden)for(const root of document.querySelectorAll('[data-content-share]'))panels.get(root)?.refresh();};
   document.addEventListener('visibilitychange',refresh);setInterval(refresh,60000);
 }
