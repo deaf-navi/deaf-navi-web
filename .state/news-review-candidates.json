@@ -1,27 +1,27 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-19T15:48:44.176Z",
+  "generatedAt": "2026-11-19T16:04:57.821Z",
   "counts": {
-    "uniqueInputs": 1968,
-    "alreadyPublished": 642,
-    "outsideWindow": 1129,
+    "uniqueInputs": 2018,
+    "alreadyPublished": 651,
+    "outsideWindow": 1169,
     "hardExcluded": 1,
-    "duplicateOfPublished": 36,
+    "duplicateOfPublished": 35,
     "candidateDuplicates": 1,
-    "eligible": 159,
+    "eligible": 161,
     "queued": 40,
-    "deferred": 119
+    "deferred": 121
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-19T14:38:52.431Z",
+    "previousGeneratedAt": "2026-11-19T15:48:44.176Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -33,6 +33,16 @@
       "priority": 0,
       "reason": "source-topic-unconfirmed",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
+      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
+      "publishedAt": "2026-11-16T01:17:09.000Z",
+      "sourceTier": "specialist",
+      "sourceDomain": "www.zentsuken.net",
+      "priority": 0,
+      "reason": "below-score",
+      "feedChange": "new"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/18/123857",
@@ -410,16 +420,6 @@
       "publishedAt": "2026-10-30T09:27:48.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
-      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
-      "publishedAt": "2026-10-21T08:25:44.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
