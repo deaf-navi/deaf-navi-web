@@ -2,11 +2,22 @@ import { createHash } from 'node:crypto';
 import { cleanHtml } from './text.mjs';
 import { tagAttributes, publicUrl } from './thumbnail-metadata.mjs';
 import { EVENT_RECHECK_MS, EVENT_KINDS, EVENT_COMMUNICATION } from '../../config/events.mjs';
+import { SITE_URL } from '../../config/site.mjs';
 import { PREFECTURES } from '../../config/regions.mjs';
 import {validDeadlineDate} from '../event-deadline.js';
 
 export const eventDay = (now = Date.now()) => new Date(now + 9 * 3600000).toISOString().slice(0, 10);
 export const eventHash = value => createHash('sha256').update(value).digest('hex');
+
+// A supplied poster is a reviewed, occurrence-specific local JPEG.
+export function providedEventPoster(event) {
+  if (event.thumbnailPolicy !== 'provided' || !/^[a-z0-9][a-z0-9-]{1,120}$/.test(event.id || '')) return null;
+  const media = event.thumbnail;
+  const path = `event-media/${event.id}.jpg`;
+  if (media?.url !== new URL(path, SITE_URL).href ||
+    ![media.width,media.height].every(value=>Number.isSafeInteger(value)&&value>0)) return null;
+  return {path,url:media.url,width:media.width,height:media.height};
+}
 
 // Keep operational notes in the source snapshot, never in the public feed.
 // evidenceHash remains for existing feed consumers that validate events.

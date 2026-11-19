@@ -4,11 +4,32 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { enrichEventThumbnails, eventPreviewMetadata } from '../src/lib/event-thumbnails.mjs';
+import { verifyReviewedEvent, eventHash, eventSourceText } from '../src/lib/events.mjs';
 import { renderEventsPage } from '../src/templates/events.mjs';
+import { renderEventDetail, eventSchema } from '../src/templates/event-detail.mjs';
 const now=Date.parse('2026-10-16T03:00:00Z');
 const entry={id:'event-one',title:'手話交流会',startDate:'2026-11-14',endDate:'2026-11-14',prefecture:'岩手県',venue:'公式会場',kind:'exchange',sourceUrl:'https://publisher.example.com/event',sourceName:'主催者',verifiedAt:new Date(now).toISOString(),verification:'verified',evidenceHash:'a'.repeat(64),status:'announced'};
 const image='https://publisher.example.com/2026-event.jpg';
 const response=(url,text='',status=200,type='text/html')=>({url,text,status,headers:{'content-type':type}});
+test('an occurrence-specific supplied poster survives source verification and skips preview fetching',async()=>{
+ const source='<p>公式会場 11月14日 手話交流会</p>';
+ const thumbnail={url:'https://deafnavi.com/event-media/event-one.jpg',source:'provided',width:819,height:1024};
+ const reviewed={...entry,thumbnailPolicy:'provided',thumbnail,reviewedAt:entry.verifiedAt,
+   sourceHash:eventHash(eventSourceText(source)),evidence:['公式会場','11月14日','手話交流会']};
+ const event=verifyReviewedEvent(reviewed,source,now);
+ const unrelated={...event,id:'other-occurrence'};
+ const expired={...event,verifiedAt:new Date(now-48*3600000).toISOString()};
+ const cancelled={...event,status:'cancelled'};
+ const report=await enrichEventThumbnails([event,unrelated,expired,cancelled],{now,fetchResource:()=>{throw Error('supplied posters must not trigger preview requests')}});
+ assert.equal(report.eventsWithImage,1);
+ assert.deepEqual(event.thumbnail,thumbnail);
+ assert.ok([unrelated,expired,cancelled].every(item=>!item.thumbnail));
+ assert.equal(eventSchema(event,now).image,thumbnail.url);
+ const html=renderEventDetail(event,{now});
+ assert.ok(html.includes('width="819" height="1024"'));
+ assert.ok(html.includes('class="reader-poster-link" href="'+thumbnail.url+'"'));
+ assert.doesNotMatch(renderEventDetail({...event,id:'other-occurrence'},{now}),/class="reader-poster"/);
+});
 test('verified occurrences share one announcement preview and keep dates/text intact',async()=>{
  const calls=[],events=[{...entry},{...entry,id:'event-two',startDate:'2026-11-15',endDate:'2026-11-15'}];
  const fetchResource=async(url,options)=>{calls.push([url,options.method]);return options.method==='HEAD'?response(url,'',200,'image/jpeg'):response(url,`<meta property="og:image" content="${image}">`)};

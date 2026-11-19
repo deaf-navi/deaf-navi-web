@@ -30,7 +30,7 @@ import {
 import { renderAboutPage } from './templates/about.mjs';
 import { renderGuidePage } from './templates/guide.mjs';
 import { renderEventsPage } from './templates/events.mjs';
-import { validEvent, publicEventSnapshot } from './lib/events.mjs';
+import { validEvent, publicEventSnapshot, providedEventPoster } from './lib/events.mjs';
 import { renderEventDetail, renderRetiredEvent } from './templates/event-detail.mjs';
 import { renderGuideTopics } from './templates/guide-topics.mjs';
 import { renderGuesthousesPage } from './templates/guesthouses.mjs';
@@ -181,6 +181,12 @@ async function main() {
   await writeDoc(FILES.guide, renderGuidePage(opts));
   await writeDoc('events.html', renderEventsPage(eventSnapshot, opts));
   const currentEvents=(eventSnapshot.events||[]).filter(validEvent);
+  for (const event of currentEvents) {
+    const poster = providedEventPoster(event);
+    if (poster && !await copyAsset(join(ASSETS,poster.path),poster.path)) {
+      throw new Error(`Missing supplied event poster: ${poster.path}`);
+    }
+  }
   const detailIds=new Set(currentEvents.map(event=>event.id));
   let previousDetailIds=[];
   try { previousDetailIds=JSON.parse(await readFile(join(DOCS,'events','page-ids.json'),'utf8')); } catch(error) { if(error.code!=='ENOENT')throw error; }
