@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-events.v1",
-  "generatedAt": "2026-11-19T14:38:55.458Z",
+  "generatedAt": "2026-11-19T15:42:42.673Z",
   "events": [
     {
       "origin": "events",
@@ -1251,6 +1251,40 @@
     },
     {
       "origin": "events",
+      "id": "osaka-big-i-arts-contest-2026-11-22",
+      "title": "大阪府障がい者芸術・文化コンテスト2026",
+      "startDate": "2026-11-22",
+      "endDate": "2026-11-22",
+      "prefecture": "大阪府",
+      "venue": "国際障害者交流センター ビッグ・アイ 多目的ホール（堺市南区茶山台1-8-1）",
+      "kind": "culture",
+      "sourceName": "国際障害者交流センター ビッグ・アイ",
+      "sourceUrl": "https://www.big-i.jp/projects/post/001072.php",
+      "detailUrl": "https://www.big-i.jp/projects/post/001072.php",
+      "organizer": "大阪府（実施：国際障害者交流センター ビッグ・アイ）",
+      "time": "14:00〜16:30（予定、13:30開場）",
+      "fee": "入場無料",
+      "target": "観覧は事前申込不要。定員1,200人、自由席。",
+      "status": "announced",
+      "description": "選考を通過した8組が音楽、ダンス、人形劇などを披露します。特別出演もあります。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-19T15:42:42.673Z",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "演目中は要約筆記のみです。"
+        },
+        {
+          "method": "summary",
+          "detail": "演目中の情報保障です。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/osaka-big-i-arts-contest-2026-11-22/",
+      "validUntil": "2026-11-21T15:42:42.673Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
       "id": "tonancyo-kikoe-festa-2026-11-22",
       "title": "機器展示会「きこえ応援フェスタ」",
       "startDate": "2026-11-22",
@@ -1734,6 +1768,36 @@
       "webUrl": "https://deafnavi.com/events/oioi-b7beb1ed211ba5722155/",
       "validUntil": "2026-11-19T00:16:00.000Z",
       "period": "review"
+    },
+    {
+      "origin": "events",
+      "id": "topmuseum-sign-qa-show-2026-12-12",
+      "title": "インクルーシブプログラム「手話を交えたQ&Aショー」",
+      "startDate": "2026-12-12",
+      "endDate": "2026-12-12",
+      "prefecture": "東京都",
+      "venue": "東京都写真美術館 2階ロビー",
+      "kind": "culture",
+      "sourceName": "東京都写真美術館",
+      "sourceUrl": "https://topmuseum.jp/workshop/13375/",
+      "detailUrl": "https://topmuseum.jp/workshop/13375/",
+      "organizer": "東京都写真美術館",
+      "time": "14:00〜15:00（13:30開場）",
+      "fee": "無料",
+      "target": "どなたでも参加できます。事前申込不要、定員50人。",
+      "status": "announced",
+      "description": "展覧会「デュエット――アジアン・コンテンポラリー」について、学芸員が質問に答えながら、展覧会のテーマや出品作品を紹介します。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-19T15:42:42.673Z",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "文字表示支援もあります。手話通訳や文字表示が見やすい専用席があります。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/topmuseum-sign-qa-show-2026-12-12/",
+      "validUntil": "2026-11-21T15:42:42.673Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -2310,5 +2374,5 @@
       "period": "review"
     }
   ],
-  "count": 88
+  "count": 90
 }
