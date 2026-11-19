@@ -18,19 +18,18 @@ test('separate verified light group handles depleted high group before sending',
  for(const light of [{...groups.light,eligible:false},{...groups.light,model:'gpt-6-luna'},{...groups.light,groupDailyLimit:1000000}])assert.throws(()=>validateAllowance({...lease,groups:{...groups,light}},{key,project,now}));
  for(const light of [{...groups.light,modelAccessVerified:false},{...groups.light,observedGroupTokens:9999999}])assert.throws(()=>selectComplimentaryModel({...lease,groups:{...groups,light}},{records:[]},12000));
 });
-test('research is explicit, has no request-count cap, and cannot reset routine or token accounting',async t=>{
+test('research stays explicit and shares routine token accounting without a request-count cap',async t=>{
  const dir=await fixture(t);const records=Array.from({length:16},()=>({status:'completed',model:'gpt-6.1-sol',reservedTokens:100,inputTokens:50,outputTokens:20}));
  await writeFile(join(dir,'usage-2026-10-18.json'),JSON.stringify({version:1,day:'2026-10-18',projectId:project,reserved:1600,records}));
  let calls=0;const options={key,project,stateDir:dir,clock:()=>now,fetchImpl:async(_url,options)=>{calls++;return response(JSON.parse(options.body).model);}};
  const run=createComplimentaryClient({...options,allowResearch:true});
- await assert.rejects(()=>run(items),/budget reached/);
+ await assert.equal((await run(items)).model,'gpt-5.6-terra');
  await assert.rejects(()=>createComplimentaryClient(options)(items,{runMode:'research'}),/authorization/);
  for(let i=0;i<3;i++)assert.equal((await run(items,{runMode:'research'})).model,'gpt-5.6-terra');
  const ledger=JSON.parse(await readFile(join(dir,'usage-2026-10-18.json'),'utf8'));
- assert.deepEqual(ledger.records.slice(0,16),records);assert.equal(ledger.records.length,19);assert.equal(calls,3);
- await assert.rejects(()=>run(items),/budget reached/);
+ assert.deepEqual(ledger.records.slice(0,16),records);assert.equal(ledger.records.length,20);assert.equal(calls,4);
  await writeFile(join(dir,'allowance.json'),JSON.stringify({...lease,dailyBudget:1000}));
- await assert.rejects(()=>run(items,{runMode:'research'}),/budget reached/);assert.equal(calls,3);
+ await assert.rejects(()=>run(items,{runMode:'research'}),/budget reached/);assert.equal(calls,4);
 });
 test('HTTP rejection does not cause model switching or a second request',async t=>{
  const dir=await fixture(t,{observedGroupTokens:0,groups:{...groups,high:{...groups.high,observedGroupTokens:0}}});let calls=0;
@@ -44,8 +43,14 @@ test('unexpected response model keeps the cross-model reconciliation lock',async
  await assert.rejects(()=>run(items),/Previous request requires reconciliation/);assert.equal(calls,1);
 });
 test('local usage after account inspection reduces each group and probe never authorizes routine fallback',()=>{
- const used={records:[{timestamp:new Date(now).toISOString(),model:'gpt-5.6-terra',status:'rejected',reservedTokens:999000}]};
- assert.throws(()=>selectComplimentaryModel(lease,used,12000));
+ const almostFull={...lease,groups:{...groups,light:{...groups.light,observedGroupTokens:9_850_000}}};
+ const used={records:[
+  {timestamp:'2026-10-18T02:00:00Z',model:'gpt-5.6-terra',status:'completed',inputTokens:80_000,outputTokens:1_000},
+  {timestamp:'2026-10-18T02:00:00Z',model:'gpt-5.6-terra',status:'rejected',reservedTokens:80_000},
+  {timestamp:new Date(now).toISOString(),model:'gpt-5.6-terra',status:'completed',inputTokens:45_000,outputTokens:5_000}
+ ]};
+ assert.equal(selectComplimentaryModel(almostFull,used,20_000),'gpt-5.6-terra');
+ assert.throws(()=>selectComplimentaryModel(almostFull,used,20_001),error=>error.deferReason==='verified-free-headroom');
  const pending={...lease,groups:{...groups,light:{...groups.light,modelAccessVerified:false}}};
  assert.throws(()=>selectComplimentaryModel(pending,{records:[]},12000));
  assert.equal(selectComplimentaryModel(pending,{records:[]},12000,{research:true,modelOverride:'gpt-5.6-terra'}),'gpt-5.6-terra');

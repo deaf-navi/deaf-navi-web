@@ -1,7 +1,7 @@
 import {readFile,writeFile,rename,open,unlink} from 'node:fs/promises';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
-import {keyFingerprint,publicTextFingerprint,validateAllowance,validateStoredAllowance,validateAccountReview,invalidateAccountReview,ACCOUNT_REVIEW_MAX_AGE,COMPLIMENTARY_MODEL} from './complimentary-text-client.mjs';
+import {keyFingerprint,publicTextFingerprint,validateAllowance,validateStoredAllowance,validateAccountReview,invalidateAccountReview,ACCOUNT_REVIEW_MAX_AGE,COMPLIMENTARY_MODEL,COMPLIMENTARY_DAILY_TOKEN_LIMIT} from './complimentary-text-client.mjs';
 
 // This records an operator's current account inspection. It never discovers or
 // renews eligibility by itself, and never erases the separate usage ledger.
@@ -63,7 +63,7 @@ try {
       enrolled:review.enrolled,sharingEnabled:review.sharingEnabled,balancePositive:review.balancePositive,publicDataOnly:true,
       accountReview:review,dailyReview:{otherUsageReviewed:input.otherUsageReviewed,billingReviewed:input.billingReviewed,
         billingUtcDay:input.billingUtcDay,billingStatus:input.billingStatus,settingsChanged:input.settingsChanged,anomaliesDetected:input.anomaliesDetected},
-      groupDailyLimit:groups.high.groupDailyLimit,observedGroupTokens:groups.high.observedGroupTokens,dailyBudget:input.dailyBudget,groups,
+      groupDailyLimit:groups.high.groupDailyLimit,observedGroupTokens:groups.high.observedGroupTokens,dailyBudget:Object.hasOwn(input,'dailyBudget')?input.dailyBudget:COMPLIMENTARY_DAILY_TOKEN_LIMIT,groups,
       approvedTextHashes:[...new Set(hashes)]};
     await validateStoredAllowance(lease,context);
   }else if(input.mode==='daily-account-check'){
