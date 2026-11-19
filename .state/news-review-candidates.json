@@ -1,27 +1,28 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-18T11:30:33.802Z",
+  "generatedAt": "2026-11-19T00:19:04.647Z",
   "counts": {
-    "uniqueInputs": 2010,
-    "alreadyPublished": 651,
-    "outsideWindow": 1163,
-    "hardExcluded": 1,
-    "duplicateOfPublished": 38,
+    "uniqueInputs": 2074,
+    "alreadyPublished": 677,
+    "outsideWindow": 1205,
+    "hardExcluded": 2,
+    "duplicateOfPublished": 35,
     "candidateDuplicates": 0,
-    "eligible": 157,
+    "eligible": 155,
     "queued": 40,
-    "deferred": 117
+    "deferred": 115
   },
   "hardExclusionReasons": {
-    "unrelated-visual-section": 1
+    "unrelated-visual-section": 1,
+    "market-report": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-18T02:51:12.883Z",
+    "previousGeneratedAt": "2026-11-18T11:30:33.802Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
-    "changed": 1,
-    "unchanged": 38
+    "changed": 0,
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -32,6 +33,16 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
+      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
+      "publishedAt": "2026-11-16T01:17:09.000Z",
+      "sourceTier": "specialist",
+      "sourceDomain": "www.zentsuken.net",
+      "priority": 0,
+      "reason": "below-score",
       "feedChange": "new"
     },
     {
@@ -292,7 +303,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "changed"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/tonatoramovie/",
@@ -410,16 +421,6 @@
       "publishedAt": "2026-10-30T09:27:48.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
-      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
-      "publishedAt": "2026-10-21T08:25:44.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
