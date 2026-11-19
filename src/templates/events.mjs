@@ -17,21 +17,22 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
   const prefectures=[...PREFECTURES.map(p=>p.name), 'オンライン'];
   const rows=events.map(event=>{
     const period=eventPeriod(event), date=eventDateLabel(event.startDate), end=event.endDate&&event.endDate!==event.startDate?`〜<time datetime="${e(event.endDate)}">${e(eventDateLabel(event.endDate))}</time>`:'';
-    const search=eventSearchText(event);
+    const heading=event.detailIntro?.heading??event.title;
+    const search=[eventSearchText(event),event.detailIntro?.heading].filter(Boolean).join(' ');
     const communication=event.communication||[];
     const deadline=eventDeadline(event);
     const hasProvidedPoster=period==='upcoming'&&providedEventPoster(event);
     const mediaEvent=event.thumbnailPolicy==='provided'&&!hasProvidedPoster?{...event,thumbnail:null}:event;
     return `<article class="event-row" id="${e(event.id)}" data-event data-start="${e(event.startDate)}" data-end="${e(event.endDate||event.startDate)}" data-verified="${e(event.verifiedAt)}" data-verification="${e(event.verification)}" data-status="${e(event.status)}" data-prefecture="${e(event.prefecture)}" data-kind="${e(event.kind)}" data-search="${e(search)}"${period==='upcoming'?'':' hidden'}>
       <div class="event-when"><div class="event-dates"><time datetime="${e(event.startDate)}">${e(date)}</time>${end}</div><span data-event-state>${e(event.status==='cancelled'?'中止の告知':event.status==='closed'&&period==='upcoming'?'受付終了の告知':labels[period])}</span></div>
-      <div class="event-content"><div class="event-intro">${renderNewsThumbnail(mediaEvent, EVENT_KINDS[event.kind].split('・')[0])}<div class="event-heading"><p class="event-meta">${e(event.prefecture)} · ${e(EVENT_KINDS[event.kind])}</p><h2><a href="${e(eventDetailPath(event))}">${e(event.title)}</a></h2></div></div>
+      <div class="event-content"><div class="event-intro">${renderNewsThumbnail(mediaEvent, EVENT_KINDS[event.kind].split('・')[0])}<div class="event-heading"><p class="event-meta">${e(event.prefecture)} · ${e(EVENT_KINDS[event.kind])}</p><h2><a href="${e(eventDetailPath(event))}">${e(heading)}</a></h2></div></div>
       <p class="event-venue">${e(event.venue)}${event.time?` · ${e(event.time)}`:' · 時間は告知をご確認ください'}</p>${event.sourceStatus==='retrying'?`
       <p class="event-filter-help" data-source-retry>掲載内容は${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST時点のものです。参加・申込の前に主催者の最新案内をご確認ください。</p>`:''}
       ${event.description?`<p>${e(event.description)}</p>`:''}
       <div class="event-communication" data-communication="${communication.map(item=>item.method).join(' ')}"><p class="event-communication-label">情報の受け取り方</p>${communication.length?`<ul>${communication.map(item=>`<li><strong>${e(EVENT_COMMUNICATION[item.method])}</strong>：${e(item.detail)}</li>`).join('')}</ul>`:'<p class="event-communication-unknown">通訳・字幕・筆談など、利用できる方法は主催者へお問い合わせください。</p>'}</div>
       ${event.fee||event.target?`<dl class="event-participation">${[['参加費',event.fee],['対象・申込',event.target]].filter(([,value])=>value).map(([label,value])=>`<div><dt>${label}</dt><dd>${e(value)}</dd></div>`).join('')}</dl>`:''}
 ${deadline?`      <p class="event-deadline" data-event-deadline="${e(deadline.date)}" data-deadline-scope="${e(deadline.scope)}">${e(deadlineLabel(deadline))}</p>`:''}
-      <p class="event-action"><a href="${e(event.detailUrl||event.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${e(event.title)}の公式案内・申込方法を見る（新しいタブ）">公式案内・申込方法を見る<span aria-hidden="true"> ↗</span></a></p>
+      <p class="event-action"><a href="${e(event.detailUrl||event.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${e(heading)}の公式案内・申込方法を見る（新しいタブ）">公式案内・申込方法を見る<span aria-hidden="true"> ↗</span></a></p>
       ${shareControl(eventShare(event,new URL(eventDetailPath(event),SITE_URL).href))}
       <details><summary>主催・情報源</summary><dl><div><dt>主催</dt><dd>${e(event.organizer||'告知をご確認ください')}</dd></div></dl>
       <p>${renderEventSource(event)} · 情報確認 <time datetime="${e(event.verifiedAt)}">${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST</time></p></details></div></article>`;
