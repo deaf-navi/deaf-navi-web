@@ -1,22 +1,22 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-19T11:29:12.710Z",
+  "generatedAt": "2026-11-19T13:46:38.488Z",
   "counts": {
-    "uniqueInputs": 1980,
-    "alreadyPublished": 650,
-    "outsideWindow": 1134,
+    "uniqueInputs": 1985,
+    "alreadyPublished": 651,
+    "outsideWindow": 1129,
     "hardExcluded": 1,
-    "duplicateOfPublished": 36,
+    "duplicateOfPublished": 39,
     "candidateDuplicates": 1,
-    "eligible": 158,
+    "eligible": 164,
     "queued": 40,
-    "deferred": 118
+    "deferred": 124
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-19T02:30:12.208Z",
+    "previousGeneratedAt": "2026-11-19T11:29:12.710Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -32,6 +32,16 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
+      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
+      "publishedAt": "2026-11-16T01:17:09.000Z",
+      "sourceTier": "specialist",
+      "sourceDomain": "www.zentsuken.net",
+      "priority": 0,
+      "reason": "below-score",
       "feedChange": "new"
     },
     {
@@ -410,16 +420,6 @@
       "publishedAt": "2026-10-30T09:27:48.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
-      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
-      "publishedAt": "2026-10-21T08:25:44.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
