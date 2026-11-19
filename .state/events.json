@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-19T16:05:00.829Z",
+  "checkedAt": "2026-11-19T22:37:47.379Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -1080,6 +1080,34 @@
       "verification": "needs_review"
     },
     {
+      "id": "kochi-derashinera-cinderella-2026-11-20",
+      "title": "カンパニーデラシネラ「シンデレラ」高知公演",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-21",
+      "prefecture": "高知県",
+      "kind": "theater",
+      "venue": "高知県立美術館ホール",
+      "time": "20日19:00、21日13:00開演（各30分前開場）",
+      "organizer": "高知県立美術館ほか",
+      "fee": "一般前売3,000円・当日3,500円。30歳以下は前売2,000円・当日2,500円。小学生以下500円。対象の手帳をお持ちの方と介護者1名は3割引。",
+      "target": "チケットが必要です。手帳割引・車いす・補助犬同伴スペースの専用フォームは各公演の前々日まで（20日回は11月18日、21日回は11月19日）。締切後の対応や当日券は美術館へご確認ください。",
+      "description": "パントマイムで描くセリフのない舞台です。終演後にマイム体験とステージツアーを予定しています。",
+      "sourceName": "高知県立美術館",
+      "sourceUrl": "https://moak.jp/event/performing_arts/derashinera_cinderella.html",
+      "detailUrl": "https://moak.jp/event/performing_arts/derashinera_cinderella.html",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "両日の手話通訳は受付のみと案内されています。聴覚支援機器の貸出は台数限定です。"
+        }
+      ],
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verifiedAt": "2026-11-19T22:37:47.379Z",
+      "evidenceHash": "58cea556ff6ef0c1c0499db56ef1e1554a35a5b06773b079c992373800d5220d",
+      "verification": "verified"
+    },
+    {
       "id": "tonancyo-shimenawa-2026-11-20",
       "title": "世界に一つだけのしめ縄飾りを作ろう！",
       "startDate": "2026-11-20",
@@ -1646,6 +1674,42 @@
       "reviewNote": "11月16日の保存済み無料API抽出 review-ab2bc69f90376a094dad60cb4d0cf746ac47e2c9 を再送せず再利用。11月17日の変更後公式一覧全文と現在の12月申込フォーム全文・全6希望日を実読し、当該年月日/会場/時間と費用・締切・受付・抽選条件を個別掲載審査。現在の本文変更停止を自動一致とは扱わず、実読例外で公開判断。11月分フォームや宮城だけの最少催行条件は転用なし。画像転載・フォーム送信なし。 11月18日は共通申込フォームの回答受付終了を確認。11月19日に同じ主催者フォームの12月追加募集と公式一覧の6開催回を照合。締切11月23日23:59、抽選結果は対象者へ11月25日まで。元の回別会場・注意事項・宮城の最少催行条件を保持。フォーム送信・API送信なし。",
       "verifiedAt": "2026-11-19T00:09:21.042Z",
       "evidenceHash": "3100cc4a82c9a4281f0adfa9d91ef4df5577b3159fec67af11d7cc264bba0e60",
+      "verification": "verified"
+    },
+    {
+      "id": "chitose-fureai-music-festival-2026-12-05",
+      "title": "みんなで奏でるふれあい音楽祭",
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-05",
+      "prefecture": "北海道",
+      "kind": "culture",
+      "venue": "北ガス文化ホール 中ホール（千歳市北栄2丁目2番地11号）",
+      "time": "ステージ16:00〜18:00（15:30入場開始）、販売会15:00〜",
+      "organizer": "千歳市社会福祉協議会",
+      "fee": "無料",
+      "target": "定員400人。11月28日までに電話・FAX・公式フォームで事前申込。空席があれば当日も体験・観覧できます。手話通訳・要約筆記の希望は申込時に伝えられます。",
+      "applicationDeadline": "2026-11-28",
+      "deadlineScope": "other",
+      "description": "第1部は要約筆記体験とミニ講演、第2部は音楽ライブと手話歌の体験です。",
+      "sourceName": "千歳市社会福祉協議会",
+      "sourceUrl": "https://www.chitose-shakyo.or.jp/51009.html",
+      "detailUrl": "https://www.chitose-shakyo.or.jp/51009.html",
+      "verificationMode": "visual",
+      "visualEvidenceUrl": "https://www.chitose-shakyo.or.jp/wp-content/uploads/2026/10/ba3b71ae4abd573008b2ee73cf11159c.png",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "音楽祭に手話通訳が付きます。演目ごとの範囲は主催者へご確認ください。"
+        },
+        {
+          "method": "summary",
+          "detail": "音楽祭に要約筆記が付きます。第1部には要約筆記体験もあります。"
+        }
+      ],
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verifiedAt": "2026-11-19T22:37:47.379Z",
+      "evidenceHash": "74abb99038f2a6f3c9b2af36bf166f9801037993313977cb681c2e91ece0ec7b",
       "verification": "verified"
     },
     {
@@ -2907,6 +2971,17 @@
     {
       "sourceUrl": "https://nagano.art.museum/exhibition/namcollection2026_3",
       "id": "nagano-nam-gallery-talk-2026-12-19",
+      "result": "verified",
+      "mode": "visual-review"
+    },
+    {
+      "sourceUrl": "https://moak.jp/event/performing_arts/derashinera_cinderella.html",
+      "id": "kochi-derashinera-cinderella-2026-11-20",
+      "result": "verified"
+    },
+    {
+      "sourceUrl": "https://www.chitose-shakyo.or.jp/51009.html",
+      "id": "chitose-fureai-music-festival-2026-12-05",
       "result": "verified",
       "mode": "visual-review"
     }
