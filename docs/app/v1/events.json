@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-events.v1",
-  "generatedAt": "2026-11-19T15:48:48.172Z",
+  "generatedAt": "2026-11-19T15:59:27.500Z",
   "events": [
     {
       "origin": "events",
@@ -1638,6 +1638,40 @@
     },
     {
       "origin": "events",
+      "id": "kure-human-festa-concert-2026-12-05",
+      "title": "片手ピアノ弾き語り＆おしゃべりコンサートin呉",
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-05",
+      "prefecture": "広島県",
+      "venue": "新日本造機ホール（呉市民ホール、呉市中央4丁目1-6）",
+      "kind": "culture",
+      "sourceName": "呉市",
+      "sourceUrl": "https://www.city.kure.lg.jp/soshiki/56/humanfesta.html",
+      "detailUrl": "https://www.city.kure.lg.jp/soshiki/56/humanfesta.html",
+      "organizer": "呉市",
+      "time": "14:00〜16:00（13:00開場）",
+      "fee": "無料",
+      "target": "どなたでも参加できます。事前申込不要。",
+      "status": "announced",
+      "description": "ヒューマンフェスタ2026の演奏会。ピアノの弾き語りとトーク、尺八・ギターとの共演が予定されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-19T15:59:27.500Z",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "コンサートの公式チラシに手話通訳付きと案内されています。演奏・トークごとの範囲は主催者へご確認ください。"
+        },
+        {
+          "method": "summary",
+          "detail": "コンサートに要約筆記が付きます。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/kure-human-festa-concert-2026-12-05/",
+      "validUntil": "2026-11-21T15:59:27.500Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
       "id": "oioi-979bfc235331102b2298",
       "title": "第37回 横浜解放まつり ～熱と光を未来へ～ ふらっと ひと・まち パレット",
       "startDate": "2026-12-05",
@@ -1747,6 +1781,74 @@
     },
     {
       "origin": "events",
+      "id": "common-beat-nagoya-71-2026-12-12",
+      "title": "ミュージカル「A COMMON BEAT」第71期名古屋公演",
+      "startDate": "2026-12-12",
+      "endDate": "2026-12-13",
+      "prefecture": "愛知県",
+      "venue": "岡谷鋼機名古屋公会堂 大ホール",
+      "kind": "theater",
+      "sourceName": "UDCast（鑑賞サポート・受付窓口）",
+      "sourceUrl": "https://udcast.net/workslist/commonbeat71st/",
+      "detailUrl": "https://udcast.net/workslist/commonbeat71st/",
+      "organizer": "NPO法人コモンビート",
+      "time": "12日19:30、13日13:00・17:30開演（各30分前開場）",
+      "fee": "自由席は一般5,000円、子ども（17歳以下）とアクセシビリティ各2,000円。指定席の料金と販売状況は公式案内をご確認ください。",
+      "target": "チケットが必要です。アクセシビリティチケットと字幕タブレットはUDCastへ。12日19:30、13日13:00の指定席は完売で、自由席のみ販売と案内されています。",
+      "status": "announced",
+      "description": "市民キャストによるミュージカル。3公演で鑑賞サポートが案内されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-19T15:59:27.500Z",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "3公演とも受付・場内アナウンス・前説に手話通訳が付きます。"
+        },
+        {
+          "method": "captions",
+          "detail": "上演中は字幕タブレットで鑑賞できます。貸出は台数に限りがあり、先着予約です。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/common-beat-nagoya-71-2026-12-12/",
+      "validUntil": "2026-11-21T15:59:27.500Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "ishinomaki-sign-reading-2026-12-12",
+      "title": "手話朗読劇「3.11 あの時を忘れない」石巻公演＆トーク",
+      "startDate": "2026-12-12",
+      "endDate": "2026-12-12",
+      "prefecture": "宮城県",
+      "venue": "旧観慶丸商店（石巻市中央3丁目6-9）",
+      "kind": "theater",
+      "sourceName": "石巻アートプロジェクト実行委員会",
+      "sourceUrl": "https://ishinomakiartproject.com/projects/mite-miyou-vol3",
+      "detailUrl": "https://ishinomakiartproject.com/projects/mite-miyou-vol3",
+      "organizer": "石巻アートプロジェクト実行委員会",
+      "time": "18:30〜20:00（18:00開場）",
+      "fee": "無料",
+      "target": "公式フォームから予約できます。約100席で、当日入場も可。予約した方を優先し、座席が埋まった場合は立ち見になることがあります。",
+      "status": "announced",
+      "description": "那須英彰さんが東日本大震災を題材にした手話朗読劇を上演します。終演後には作品の背景などを語るトークがあります。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-19T15:59:27.500Z",
+      "communication": [
+        {
+          "method": "sign",
+          "detail": "本編は手話で物語を伝える朗読劇です。"
+        },
+        {
+          "method": "interpretation",
+          "detail": "終演後にアフタートークがあります。主催者はイベントに手話通訳が付くと案内しています。場面ごとの通訳範囲は主催者へご確認ください。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/ishinomaki-sign-reading-2026-12-12/",
+      "validUntil": "2026-11-21T15:59:27.500Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
       "id": "oioi-b7beb1ed211ba5722155",
       "title": "大阪府立中央図書館 バリアフリーイベント ～手話とバリアフリー映画会を楽しむ～",
       "startDate": "2026-12-12",
@@ -1797,6 +1899,44 @@
       ],
       "webUrl": "https://deafnavi.com/events/topmuseum-sign-qa-show-2026-12-12/",
       "validUntil": "2026-11-21T15:48:48.172Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "fukuoka-visible-ninth-2026-12-13",
+      "title": "みえる かんじる 新しい第九 2026",
+      "startDate": "2026-12-13",
+      "endDate": "2026-12-13",
+      "prefecture": "福岡県",
+      "venue": "福岡市民ホール 大ホール（福岡市中央区天神5-2-2）",
+      "kind": "culture",
+      "sourceName": "福岡市（公式チラシ）",
+      "sourceUrl": "https://www.city.fukuoka.lg.jp/fukushi/zaitakushien/health/syougaisyaweek2026-2.html",
+      "detailUrl": "https://www.kyukyo.or.jp/cms/16831",
+      "organizer": "福岡市文化芸術振興財団",
+      "time": "15:00開演（14:00開場）",
+      "fee": "一般前売 S席3,000円・A席2,500円。割引券種や空席は販売先をご確認ください。",
+      "target": "チケットが必要です。0歳から入場できます。ヒアリングループ対応S席は12月7日までに電話で申し込み。",
+      "status": "announced",
+      "description": "ホワイトハンドコーラスと九州交響楽団による演奏会です。手歌のワークショップとベートーヴェンの第九が予定されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-19T15:59:27.500Z",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "公演の鑑賞サポートに手話通訳があります。ワークショップ・演奏中など、場面ごとの通訳範囲は主催者へご確認ください。"
+        },
+        {
+          "method": "captions",
+          "detail": "字幕表示があります。主催者は場内で利用できるリアルタイム文字起こしも案内しています。"
+        },
+        {
+          "method": "writing",
+          "detail": "受付は筆談に対応します。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/fukuoka-visible-ninth-2026-12-13/",
+      "validUntil": "2026-11-21T15:59:27.500Z",
       "period": "upcoming"
     },
     {
@@ -2023,6 +2163,40 @@
       "webUrl": "https://deafnavi.com/events/oioi-53fdd52dee2133317221/",
       "validUntil": "2026-11-19T00:16:00.000Z",
       "period": "review"
+    },
+    {
+      "origin": "events",
+      "id": "nagano-nam-gallery-talk-2026-12-19",
+      "title": "長野県立美術館「NAMコレクション2026 第Ⅲ期」ギャラリートーク",
+      "startDate": "2026-12-19",
+      "endDate": "2026-12-19",
+      "prefecture": "長野県",
+      "venue": "長野県立美術館 本館2階 コレクション展示室",
+      "kind": "culture",
+      "sourceName": "長野県立美術館",
+      "sourceUrl": "https://nagano.art.museum/exhibition/namcollection2026_3",
+      "detailUrl": "https://nagano.art.museum/media/15526/PressReleaseNAM2026%E2%85%A2%E6%9C%9F_261019.pdf",
+      "organizer": "長野県・長野県立美術館",
+      "time": "14:00開始",
+      "fee": "トークは無料。コレクション展の観覧券が必要です。",
+      "target": "トーク参加の事前申込は不要。14:00までに本館2階コレクション展示室入口へ。手話通訳・要約筆記を希望する方は開催2週間前までに美術館へご連絡ください。",
+      "status": "announced",
+      "description": "担当学芸員がコレクション展の展示を解説します。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-19T15:59:27.500Z",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "ギャラリートークで希望する場合は、開催2週間前（12月5日）までに美術館へ連絡が必要です。"
+        },
+        {
+          "method": "summary",
+          "detail": "ギャラリートークで希望する場合は、手話通訳と同じく開催2週間前までにご連絡ください。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/nagano-nam-gallery-talk-2026-12-19/",
+      "validUntil": "2026-11-21T15:59:27.500Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -2374,5 +2548,5 @@
       "period": "review"
     }
   ],
-  "count": 90
+  "count": 95
 }
