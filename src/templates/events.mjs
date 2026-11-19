@@ -1,7 +1,7 @@
 import {eventDeadline,deadlineLabel} from '../event-deadline.js';
 import { SITE_URL } from '../../config/site.mjs';
 import { EVENT_KINDS, EVENT_RECHECK_MS, EVENT_COMMUNICATION } from '../../config/events.mjs';
-import { eventPeriod, validEvent, eventDateLabel, eventSearchText } from '../lib/events.mjs';
+import { eventPeriod, validEvent, eventDateLabel, eventSearchText, providedEventPoster } from '../lib/events.mjs';
 import { eventDetailPath } from './event-detail.mjs';
 import { PREFECTURES } from '../../config/regions.mjs';
 import { escapeHtml as e } from '../lib/text.mjs';
@@ -20,9 +20,11 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
     const search=eventSearchText(event);
     const communication=event.communication||[];
     const deadline=eventDeadline(event);
+    const hasProvidedPoster=period==='upcoming'&&providedEventPoster(event);
+    const mediaEvent=event.thumbnailPolicy==='provided'&&!hasProvidedPoster?{...event,thumbnail:null}:event;
     return `<article class="event-row" id="${e(event.id)}" data-event data-start="${e(event.startDate)}" data-end="${e(event.endDate||event.startDate)}" data-verified="${e(event.verifiedAt)}" data-verification="${e(event.verification)}" data-status="${e(event.status)}" data-prefecture="${e(event.prefecture)}" data-kind="${e(event.kind)}" data-search="${e(search)}"${period==='upcoming'?'':' hidden'}>
       <div class="event-when"><div class="event-dates"><time datetime="${e(event.startDate)}">${e(date)}</time>${end}</div><span data-event-state>${e(event.status==='cancelled'?'中止の告知':event.status==='closed'&&period==='upcoming'?'受付終了の告知':labels[period])}</span></div>
-      <div class="event-content"><div class="event-intro">${renderNewsThumbnail(event, EVENT_KINDS[event.kind].split('・')[0])}<div class="event-heading"><p class="event-meta">${e(event.prefecture)} · ${e(EVENT_KINDS[event.kind])}</p><h2><a href="${e(eventDetailPath(event))}">${e(event.title)}</a></h2></div></div>
+      <div class="event-content"><div class="event-intro">${renderNewsThumbnail(mediaEvent, EVENT_KINDS[event.kind].split('・')[0])}<div class="event-heading"><p class="event-meta">${e(event.prefecture)} · ${e(EVENT_KINDS[event.kind])}</p><h2><a href="${e(eventDetailPath(event))}">${e(event.title)}</a></h2></div></div>
       <p class="event-venue">${e(event.venue)}${event.time?` · ${e(event.time)}`:' · 時間は告知をご確認ください'}</p>${event.sourceStatus==='retrying'?`
       <p class="event-filter-help" data-source-retry>掲載内容は${e(new Date(Date.parse(event.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' '))} JST時点のものです。参加・申込の前に主催者の最新案内をご確認ください。</p>`:''}
       ${event.description?`<p>${e(event.description)}</p>`:''}

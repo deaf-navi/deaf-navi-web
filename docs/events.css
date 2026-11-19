@@ -8,3 +8,17 @@
 .event-content .card__thumbnail{float:right;width:128px;height:128px;object-fit:contain;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:4px;margin:0 0 12px 18px}.event-content::after{content:"";display:block;clear:both}@media(max-width:600px){.event-content .card__thumbnail{width:88px;height:100px;margin:4px 0 10px 12px}}
 
 .event-filters .event-communication-filter{flex:0 1 230px}.event-filter-help{flex-basis:100%;margin:0;font-size:.8rem;color:var(--text-secondary);line-height:1.8}.event-communication{clear:both;margin:12px 0}.event-communication p{margin:0}.event-communication-label{font-weight:600}.event-communication ul{padding:0;list-style:none;margin:4px 0;font-size:.85rem;line-height:1.8}.event-communication-unknown{color:var(--text-secondary)}@media(max-width:600px){.event-communication-filter,.event-filter-help{grid-column:1/-1}}
+.reader-poster-link {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-block: 24px;
+}
+
+.reader-poster-link .reader-poster {
+  width: 100%;
+  max-width: 36rem;
+  height: auto;
+  max-height: none;
+  margin: 0;
+}

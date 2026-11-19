@@ -1,5 +1,5 @@
 import { enrichNewsThumbnails } from './news-thumbnails.mjs';
-import { eventPeriod } from './events.mjs';
+import { eventPeriod, providedEventPoster } from './events.mjs';
 import { tagAttributes, publicUrl } from './thumbnail-metadata.mjs';
 import { fetchThumbnailResource } from './thumbnail-fetch.mjs';
 
@@ -28,6 +28,10 @@ export async function enrichEventThumbnails(events, options={}) {
     return settings.method==='HEAD'?result:{...result,text:eventPreviewMetadata(result.text,result.url)};
   };
   for(const event of events){
+    if(event.thumbnailPolicy==='provided'){
+      if(eventPeriod(event,now)!=='upcoming'||!providedEventPoster(event))delete event.thumbnail;
+      continue;
+    }
     if(event.sourceStatus==='retrying'&&event.thumbnailPolicy!=='omit'&&eventPeriod(event,now)==='upcoming')continue;
     delete event.thumbnail;
     if(event.thumbnailPolicy==='omit'||eventPeriod(event,now)!=='upcoming')continue;
@@ -40,7 +44,7 @@ export async function enrichEventThumbnails(events, options={}) {
   });
   for(const event of events){
     if(event.sourceStatus==='retrying')continue;
-    if(event.thumbnailPolicy==='omit'||eventPeriod(event,now)!=='upcoming')continue;
+    if(event.thumbnailPolicy==='omit'||event.thumbnailPolicy==='provided'||eventPeriod(event,now)!=='upcoming')continue;
     const thumbnail=pages.get(event.detailUrl||event.sourceUrl)?.thumbnail;
     if(thumbnail)event.thumbnail={...thumbnail};
   }
