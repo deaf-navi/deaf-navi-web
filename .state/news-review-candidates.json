@@ -1,28 +1,28 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-20T11:23:46.544Z",
+  "generatedAt": "2026-11-20T11:58:47.000Z",
   "counts": {
-    "uniqueInputs": 2043,
-    "alreadyPublished": 654,
-    "outsideWindow": 1164,
+    "uniqueInputs": 2058,
+    "alreadyPublished": 691,
+    "outsideWindow": 1143,
     "hardExcluded": 2,
-    "duplicateOfPublished": 45,
+    "duplicateOfPublished": 50,
     "candidateDuplicates": 1,
-    "eligible": 177,
+    "eligible": 171,
     "queued": 40,
-    "deferred": 137
+    "deferred": 131
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "foreign-coverage-review-required": 1
+    "low-value-page": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-20T02:14:57.787Z",
+    "previousGeneratedAt": "2026-11-20T11:23:46.544Z",
     "previousQueued": 40,
-    "retained": 38,
-    "new": 2,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 38
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -213,7 +213,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/crossplay-saitama/",
@@ -223,7 +223,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/trial_audiodiscription/",
