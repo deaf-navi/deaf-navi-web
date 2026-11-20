@@ -1,29 +1,29 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-20T00:19:27.028Z",
+  "generatedAt": "2026-11-20T02:14:57.787Z",
   "counts": {
-    "uniqueInputs": 2094,
-    "alreadyPublished": 706,
-    "outsideWindow": 1181,
-    "hardExcluded": 3,
+    "uniqueInputs": 2115,
+    "alreadyPublished": 703,
+    "outsideWindow": 1192,
+    "hardExcluded": 6,
     "duplicateOfPublished": 49,
     "candidateDuplicates": 1,
-    "eligible": 154,
+    "eligible": 164,
     "queued": 40,
-    "deferred": 114
+    "deferred": 124
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
     "foreign-coverage-review-required": 1,
-    "low-value-page": 1
+    "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-19T23:53:01.509Z",
+    "previousGeneratedAt": "2026-11-20T00:19:27.028Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -424,7 +424,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     }
   ]
 }
