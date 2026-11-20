@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deaf-navi-events.v1",
-  "generatedAt": "2026-11-20T11:24:24.851Z",
+  "generatedAt": "2026-11-20T11:52:46.955Z",
   "events": [
     {
       "origin": "events",
@@ -1669,6 +1669,40 @@
     },
     {
       "origin": "events",
+      "id": "connect-kyoto-archive-videos-2026-12-03",
+      "title": "アーカイブ映像展示 2022～2025",
+      "startDate": "2026-12-03",
+      "endDate": "2026-12-13",
+      "prefecture": "京都府",
+      "venue": "京都市京セラ美術館 本館2階談話室（京都市左京区岡崎円勝寺町124）",
+      "kind": "culture",
+      "sourceName": "CONNECT⇄_ ふれれば、はじまる（公式）",
+      "sourceUrl": "https://connect-art.jp/2026/programs/archive-video-exhibition-2022-2025/",
+      "detailUrl": "https://connect-art.jp/2026/programs/archive-video-exhibition-2022-2025/",
+      "organizer": "文化庁・京都新聞（CONNECT⇄_）",
+      "time": "美術館の開館時間 10:00〜18:00（入場は17:30まで）。12月7日（月）は休館。",
+      "fee": "無料",
+      "target": "事前申込不要。",
+      "status": "announced",
+      "description": "CONNECT⇄_が2022〜2025年に制作した映像4点を展示します。対話を通じた美術鑑賞や、障害の有無を超えた作品の楽しみ方を紹介します。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-20T11:52:46.955Z",
+      "communication": [
+        {
+          "method": "sign",
+          "detail": "会場の展示に手話映像があります。"
+        },
+        {
+          "method": "captions",
+          "detail": "会場の展示に字幕付き映像があります。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/connect-kyoto-archive-videos-2026-12-03/",
+      "validUntil": "2026-11-22T11:52:46.955Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
       "id": "chitose-fureai-music-festival-2026-12-05",
       "title": "みんなで奏でるふれあい音楽祭",
       "startDate": "2026-12-05",
@@ -1701,6 +1735,38 @@
       "applicationDeadline": "2026-11-28",
       "deadlineScope": "other",
       "validUntil": "2026-11-21T22:37:47.379Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "connect-kyoto-animal-textures-2026-12-05",
+      "title": "みて、ふれて、つくる どうぶつの手ざわり",
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-05",
+      "prefecture": "京都府",
+      "venue": "京都国立近代美術館 1階講堂（京都市左京区岡崎円勝寺町26-1）",
+      "kind": "culture",
+      "sourceName": "CONNECT⇄_ ふれれば、はじまる（公式）",
+      "sourceUrl": "https://connect-art.jp/2026/programs/touch-see-create/",
+      "detailUrl": "https://connect-art.jp/2026/programs/touch-see-create/",
+      "organizer": "京都国立近代美術館・京都市動物園",
+      "time": "午前の回 10:30〜12:00、午後の回 14:00〜15:30",
+      "fee": "無料",
+      "target": "小学4年生以上。事前申込は2026年11月24日（火）正午まで、公式案内の応募フォームから。各回15人程度で、応募多数の場合は抽選です。空きがあれば当日参加できます。オンライン申込が難しい場合は、事務局に電話またはFAXでご相談ください。",
+      "status": "announced",
+      "description": "動物の毛皮にふれ、動物が描かれた絵を鑑賞して、感じたことを伝え合うワークショップです。最後に作品をつくります。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-20T11:52:46.955Z",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "午前・午後とも、ワークショップに手話通訳が付きます。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/connect-kyoto-animal-textures-2026-12-05/",
+      "applicationDeadline": "2026-11-24",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-22T11:52:46.955Z",
       "period": "upcoming"
     },
     {
@@ -2724,5 +2790,5 @@
       "period": "review"
     }
   ],
-  "count": 100
+  "count": 102
 }
