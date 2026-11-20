@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-20T11:24:24.851Z",
+  "checkedAt": "2026-11-20T11:52:46.955Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -1634,6 +1634,52 @@
       "verification": "verified"
     },
     {
+      "prefecture": "京都府",
+      "kind": "culture",
+      "status": "announced",
+      "sourceName": "CONNECT⇄_ ふれれば、はじまる（公式）",
+      "thumbnailPolicy": "omit",
+      "id": "connect-kyoto-archive-videos-2026-12-03",
+      "title": "アーカイブ映像展示 2022～2025",
+      "startDate": "2026-12-03",
+      "endDate": "2026-12-13",
+      "venue": "京都市京セラ美術館 本館2階談話室（京都市左京区岡崎円勝寺町124）",
+      "time": "美術館の開館時間 10:00〜18:00（入場は17:30まで）。12月7日（月）は休館。",
+      "fee": "無料",
+      "target": "事前申込不要。",
+      "organizer": "文化庁・京都新聞（CONNECT⇄_）",
+      "organizers": [
+        {
+          "name": "文化庁",
+          "type": "Organization"
+        },
+        {
+          "name": "京都新聞",
+          "type": "Organization"
+        }
+      ],
+      "description": "CONNECT⇄_が2022〜2025年に制作した映像4点を展示します。対話を通じた美術鑑賞や、障害の有無を超えた作品の楽しみ方を紹介します。",
+      "sourceUrl": "https://connect-art.jp/2026/programs/archive-video-exhibition-2022-2025/",
+      "detailUrl": "https://connect-art.jp/2026/programs/archive-video-exhibition-2022-2025/",
+      "corroboratingUrls": [
+        "https://connect-art.jp/2026/venues/kyotocity-kyocera/",
+        "https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/94453901.html"
+      ],
+      "communication": [
+        {
+          "method": "sign",
+          "detail": "会場の展示に手話映像があります。"
+        },
+        {
+          "method": "captions",
+          "detail": "会場の展示に字幕付き映像があります。"
+        }
+      ],
+      "verifiedAt": "2026-11-20T11:52:46.955Z",
+      "evidenceHash": "485820fe5a220964fbdda79e5e8b3fa14c4db35d0e9ab801978de87eefebe5a2",
+      "verification": "verified"
+    },
+    {
       "id": "chitose-fureai-music-festival-2026-12-05",
       "title": "みんなで奏でるふれあい音楽祭",
       "startDate": "2026-12-05",
@@ -1667,6 +1713,57 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T22:37:47.379Z",
       "evidenceHash": "74abb99038f2a6f3c9b2af36bf166f9801037993313977cb681c2e91ece0ec7b",
+      "verification": "verified"
+    },
+    {
+      "prefecture": "京都府",
+      "kind": "culture",
+      "status": "announced",
+      "sourceName": "CONNECT⇄_ ふれれば、はじまる（公式）",
+      "thumbnailPolicy": "omit",
+      "id": "connect-kyoto-animal-textures-2026-12-05",
+      "title": "みて、ふれて、つくる どうぶつの手ざわり",
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-05",
+      "venue": "京都国立近代美術館 1階講堂（京都市左京区岡崎円勝寺町26-1）",
+      "time": "午前の回 10:30〜12:00、午後の回 14:00〜15:30",
+      "fee": "無料",
+      "applicationDeadline": "2026-11-24",
+      "deadlineScope": "participation",
+      "organizer": "京都国立近代美術館・京都市動物園",
+      "organizers": [
+        {
+          "name": "京都国立近代美術館",
+          "type": "Organization"
+        },
+        {
+          "name": "京都市動物園",
+          "type": "Organization"
+        }
+      ],
+      "target": "小学4年生以上。事前申込は2026年11月24日（火）正午まで、公式案内の応募フォームから。各回15人程度で、応募多数の場合は抽選です。空きがあれば当日参加できます。オンライン申込が難しい場合は、事務局に電話またはFAXでご相談ください。",
+      "description": "動物の毛皮にふれ、動物が描かれた絵を鑑賞して、感じたことを伝え合うワークショップです。最後に作品をつくります。",
+      "sourceUrl": "https://connect-art.jp/2026/programs/touch-see-create/",
+      "detailUrl": "https://connect-art.jp/2026/programs/touch-see-create/",
+      "corroboratingUrls": [
+        "https://www.momak.go.jp/senses/connect_2026.html",
+        "https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/94453901.html"
+      ],
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "午前・午後とも、ワークショップに手話通訳が付きます。"
+        }
+      ],
+      "offers": [
+        {
+          "price": 0,
+          "priceCurrency": "JPY",
+          "url": "https://connect-art.jp/2026/programs/touch-see-create/"
+        }
+      ],
+      "verifiedAt": "2026-11-20T11:52:46.955Z",
+      "evidenceHash": "937d879ea9725099d9fae416eae11f9ac5afbf58dc620a113a077f7d74ee00ec",
       "verification": "verified"
     },
     {
