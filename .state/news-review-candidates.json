@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-19T23:53:01.509Z",
+  "generatedAt": "2026-11-20T00:19:27.028Z",
   "counts": {
-    "uniqueInputs": 2112,
-    "alreadyPublished": 710,
-    "outsideWindow": 1186,
+    "uniqueInputs": 2094,
+    "alreadyPublished": 706,
+    "outsideWindow": 1181,
     "hardExcluded": 3,
-    "duplicateOfPublished": 48,
+    "duplicateOfPublished": 49,
     "candidateDuplicates": 1,
-    "eligible": 164,
+    "eligible": 154,
     "queued": 40,
-    "deferred": 124
+    "deferred": 114
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
@@ -18,7 +18,7 @@
     "low-value-page": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-19T22:42:15.876Z",
+    "previousGeneratedAt": "2026-11-19T23:53:01.509Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -35,16 +35,6 @@
       "priority": 0,
       "reason": "source-topic-unconfirmed",
       "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
-      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
-      "publishedAt": "2026-11-16T01:17:09.000Z",
-      "sourceTier": "specialist",
-      "sourceDomain": "www.zentsuken.net",
-      "priority": 0,
-      "reason": "below-score",
-      "feedChange": "new"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/18/123857",
@@ -425,6 +415,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/series/atelier/artdevivre/",
+      "articleHash": "8c05e63328cfa4016c72199a1ce288b93784a7378c53c2266cbc3e8592f2ab6b",
+      "publishedAt": "2026-10-21T08:25:44.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
