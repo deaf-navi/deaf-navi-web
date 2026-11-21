@@ -20,12 +20,17 @@ export function eventDateWindow(range, now = Date.now()) {
  const labels={upcoming:'開催予定',past:'過去の告知',review:'最新状況は公式案内へ',cancelled:'中止の告知'};let period='upcoming', range='', sortedPeriod;
  const quick=[...document.querySelectorAll('[data-range]')], remember=document.querySelector('#event-remember-region');
  const prefectureOptions = [...controls.prefecture.options];
- const regionByPrefecture = new Map(prefectureOptions.slice(1).map(option => [option.value, option.dataset.region]));
- regionByPrefecture.set('オンライン', 'online');
+ const optionByPrefecture = new Map(prefectureOptions.map(option => [option.value, option]));
+ function matchesRegion(prefecture, region) {
+  if (!region) return true;
+  if (region === 'online') return prefecture === 'オンライン';
+  const option = optionByPrefecture.get(prefecture);
+  return option?.dataset.region === region || option?.dataset.formerRegion === region;
+ }
 
  function updatePrefectures(value = controls.prefecture.value) {
   const region = controls.region.value;
-  const options = prefectureOptions.filter(option => !region || !option.value || option.dataset.region === region);
+  const options = prefectureOptions.filter(option => !option.value || matchesRegion(option.value, region));
   controls.prefecture.replaceChildren(...options);
   controls.prefecture.value = options.some(option => option.value === value) ? value : '';
   controls.prefecture.disabled = region === 'online';
@@ -52,7 +57,7 @@ export function eventDateWindow(range, now = Date.now()) {
    const deadlineNode=row.querySelector('[data-event-deadline]');if(deadlineNode)deadlineNode.textContent=deadlineLabel(eventDeadline({applicationDeadline:deadlineNode.dataset.eventDeadline,deadlineScope:deadlineNode.dataset.deadlineScope},now));
    const retryNote=row.querySelector('[data-source-retry]');if(retryNote)retryNote.hidden=state==='past'||state==='cancelled';
    row.querySelector('[data-event-state]').textContent=d.status==='cancelled'?'中止の告知':state==='upcoming'&&d.status==='closed'?'受付終了の告知':labels[state];
-   row.hidden=(controls.communication.value&&!row.querySelector('[data-communication]').dataset.communication.split(' ').includes(controls.communication.value))||state!==period||!tokens.every(t=>normalize(d.search).includes(t))||(controls.region.value&&regionByPrefecture.get(d.prefecture)!==controls.region.value)||(controls.prefecture.value&&d.prefecture!==controls.prefecture.value)||(controls.kind.value&&d.kind!==controls.kind.value)||(controls.month.value&&!(d.start.slice(0,7)<=controls.month.value&&d.end.slice(0,7)>=controls.month.value))||(window&&(d.end<window[0]||d.start>window[1]));if(!row.hidden)count++;
+   row.hidden=(controls.communication.value&&!row.querySelector('[data-communication]').dataset.communication.split(' ').includes(controls.communication.value))||state!==period||!tokens.every(t=>normalize(d.search).includes(t))||!matchesRegion(d.prefecture,controls.region.value)||(controls.prefecture.value&&d.prefecture!==controls.prefecture.value)||(controls.kind.value&&d.kind!==controls.kind.value)||(controls.month.value&&!(d.start.slice(0,7)<=controls.month.value&&d.end.slice(0,7)>=controls.month.value))||(window&&(d.end<window[0]||d.start>window[1]));if(!row.hidden)count++;
   }
   // Past announcements read newest first; upcoming events read nearest first.
   // Moving a row while an input blurs can cancel its native summary click.
@@ -73,7 +78,14 @@ export function eventDateWindow(range, now = Date.now()) {
   const prefecture = useLocation ? savedPrefecture : params.get('prefecture');
   const region = useLocation ? savedRegion : params.get('region');
   // Older shared links and saved preferences used オンライン as a prefecture.
-  controls.region.value = region || (prefecture === 'オンライン' ? 'online' : '');
+  const previous = optionByPrefecture.get(prefecture)?.dataset;
+  if (region === 'chubu' && previous?.formerRegion !== region && !controls.region.querySelector('option[value="chubu"]')) {
+   // Keep the original nine-prefecture scope for shared links and saved searches.
+   const legacy = new Option('中部（旧区分）', 'chubu');
+   legacy.hidden = true;
+   controls.region.add(legacy);
+  }
+  controls.region.value = region && previous?.formerRegion === region ? previous.region : region || (prefecture === 'オンライン' ? 'online' : '');
   if (controls.region.selectedIndex < 0) controls.region.value = '';
   updatePrefectures(prefecture);
   document.querySelector('.event-more-filters').open=Boolean(controls.kind.value||controls.month.value||controls.communication.value);
