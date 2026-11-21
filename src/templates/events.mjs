@@ -10,11 +10,22 @@ import { renderNewsThumbnail } from './thumbnail.mjs';
 import { shareControl, eventShare } from '../content-share.js';
 import { renderEventSource } from './event-source.mjs';
 
+const eventSubregions = [
+  { id: 'koshinetsu', label: '甲信越', prefectures: ['新潟県', '山梨県', '長野県'] },
+  { id: 'hokuriku', label: '北陸', prefectures: ['富山県', '石川県', '福井県'] },
+  { id: 'tokai', label: '東海', prefectures: ['岐阜県', '静岡県', '愛知県'] },
+];
+const eventRegionLabels = { ...REGION_UI, ...Object.fromEntries(eventSubregions.map(r => [r.id, r.label])) };
+const eventPrefectures = PREFECTURES.map(p => ({
+  ...p,
+  eventRegion: eventSubregions.find(r => r.prefectures.includes(p.name))?.id ?? p.region,
+}));
+
 export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVersion='20261016polish' } = {}) {
   const events=(snapshot.events||[]).filter(validEvent);
   const labels={upcoming:'開催予定',past:'過去の告知',review:'最新状況は公式案内へ',cancelled:'中止の告知'};
   const count=events.filter(event=>eventPeriod(event)==='upcoming').length;
-  const regions = [...new Set(PREFECTURES.map(p => p.region))];
+  const regions = [...new Set(eventPrefectures.map(p => p.eventRegion))];
   const rows=events.map(event=>{
     const period=eventPeriod(event), date=eventDateLabel(event.startDate), end=event.endDate&&event.endDate!==event.startDate?`〜<time datetime="${e(event.endDate)}">${e(eventDateLabel(event.endDate))}</time>`:'';
     const heading=event.detailIntro?.heading??event.title;
@@ -44,8 +55,8 @@ ${deadline?`      <p class="event-deadline" data-event-deadline="${e(deadline.da
       <label class="event-search">イベントを検索<input type="search" id="event-query" name="q" placeholder="例：手話劇、交流会" autocomplete="off"></label>
       <button type="reset" class="filter">条件を解除</button>
       <div class="event-location-filters">
-        <label>地域ブロック<select id="event-region" name="region"><option value="">すべての地域</option>${regions.map(id => `<option value="${e(id)}">${e(REGION_UI[id])}</option>`).join('')}<option value="online">オンライン</option></select></label>
-        <label>都道府県<select id="event-prefecture" name="prefecture"><option value="">すべて</option>${PREFECTURES.map(p => `<option data-region="${e(p.region)}">${e(p.name)}</option>`).join('')}</select></label>
+        <label>地域ブロック<select id="event-region" name="region"><option value="">すべての地域</option>${regions.map(id => `<option value="${e(id)}">${e(eventRegionLabels[id])}</option>`).join('')}<option value="online">オンライン</option></select></label>
+        <label>都道府県<select id="event-prefecture" name="prefecture"><option value="">すべて</option>${eventPrefectures.map(p => `<option data-region="${e(p.eventRegion)}"${p.region !== p.eventRegion ? ` data-former-region="${e(p.region)}"` : ''}>${e(p.name)}</option>`).join('')}</select></label>
       </div>
       <details class="event-more-filters"><summary id="event-filter-summary">種類・開催月・情報の受け取り方で絞り込む</summary><div class="event-filter-options">
 
