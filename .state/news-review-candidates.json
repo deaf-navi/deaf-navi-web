@@ -1,28 +1,28 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-20T22:34:00.515Z",
+  "generatedAt": "2026-11-21T02:07:43.584Z",
   "counts": {
-    "uniqueInputs": 2169,
-    "alreadyPublished": 676,
-    "outsideWindow": 1280,
+    "uniqueInputs": 2152,
+    "alreadyPublished": 701,
+    "outsideWindow": 1225,
     "hardExcluded": 2,
-    "duplicateOfPublished": 46,
+    "duplicateOfPublished": 50,
     "candidateDuplicates": 0,
-    "eligible": 165,
+    "eligible": 174,
     "queued": 40,
-    "deferred": 125
+    "deferred": 134
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "incidental-organization-mention": 1
+    "low-value-page": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-20T11:58:47.000Z",
+    "previousGeneratedAt": "2026-11-20T22:34:00.515Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -213,7 +213,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/crossplay-saitama/",

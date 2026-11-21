@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-20T22:35:31.100Z",
+  "checkedAt": "2026-11-21T02:09:14.194Z",
   "events": [
     {
       "id": "oioi-10118575d577f69c48c2",
@@ -1063,7 +1063,7 @@
       ],
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "58cea556ff6ef0c1c0499db56ef1e1554a35a5b06773b079c992373800d5220d",
       "verification": "verified"
     },
@@ -1125,7 +1125,7 @@
       ],
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "772c3642d6dc3b73f771a838adec9c1983387f1ae6fe83c2d3c7c565d7124190",
       "verification": "verified"
     },
@@ -1176,7 +1176,7 @@
         }
       ],
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "73837c32e935005f9a711a8387154dd4aba36e45d02d03a11f1164e9bdb2ccf3",
       "verification": "verified"
     },
@@ -1196,7 +1196,7 @@
       "sourceName": "大村市",
       "sourceUrl": "https://www.city.omura.nagasaki.jp/kouhou/event/202608/1121.html",
       "status": "announced",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "af2bdd9d327027fe76557706f87c39e31e6009692bb294bdb0e8a7f3fde0cf69",
       "verification": "verified"
     },
@@ -1221,7 +1221,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:21:33.553Z",
       "evidenceHash": "9cce5d843e7906c8b0340da108f62ce2b37aa3c23b89b996cfc167f836097576",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "jsl47-tokyo-both-hands-2026-11-22-morning",
@@ -1244,7 +1244,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:21:33.553Z",
       "evidenceHash": "9cce5d843e7906c8b0340da108f62ce2b37aa3c23b89b996cfc167f836097576",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "okayama-kenbi-sign-insects-2026-11-22",
@@ -1304,7 +1304,7 @@
       ],
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "217e2c8d066d07203e45d6fbf0f8526928d4e7f9be0f0df8d937116c403635c4",
       "verification": "verified"
     },
@@ -1432,7 +1432,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "68e1d2ad7e5ee83b6c7d19a3282fd7bcfdd41ad6e77b5e7d8ecb2a91cd585722",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261112.png",
@@ -1492,6 +1492,33 @@
       "verification": "needs_review"
     },
     {
+      "id": "oioi-3034924e82c869801ce6",
+      "title": "よさこい高知文化祭2026「心踊る、文化咲く」フェスティバル",
+      "startDate": "2026-11-28",
+      "endDate": "2026-11-28",
+      "prefecture": "高知県",
+      "venue": "東洋電化中央公園",
+      "kind": "culture",
+      "sourceId": "oioi",
+      "sourceName": "手話エンターテイメント発信団 oioi",
+      "sourceUrl": "https://www.oioi-sign.com/events_list/",
+      "detailUrl": "https://www.oioi-sign.com/event_20261128/",
+      "organizer": null,
+      "time": null,
+      "fee": null,
+      "target": null,
+      "status": "announced",
+      "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
+      "evidenceHash": "ab97456855a8a9593b5a2580a73550d5a54088712b3a2f6f38b53aad37e6afda",
+      "thumbnail": {
+        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/EVENT_20261128_1.png",
+        "source": "og:image",
+        "pageUrl": "https://www.oioi-sign.com/event_20261128/"
+      }
+    },
+    {
       "id": "myoko-shuwa-workshop-2026-11-29",
       "title": "手話を学ぼう 楽しく話そう（出張手話教室）",
       "startDate": "2026-11-29",
@@ -1508,7 +1535,7 @@
       "sourceUrl": "https://www.city.myoko.niigata.jp/docs/86968.html",
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "873372478488cc8f695c7daa85b9ffe825e23f13be6fb0810e538239056c784b",
       "verification": "verified"
     },
@@ -1581,7 +1608,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:09:21.042Z",
       "evidenceHash": "2672cefe84021300e517f666989b9d6bd1937b3404622eceb8887609763524dd",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "yysystem-ailens-miyagi-2026-12-02",
@@ -1606,7 +1633,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:09:21.042Z",
       "evidenceHash": "bb9fb6572c24680d3b9b11d307eab2d808efc2e5e25ea22ad27c9c55799e8d11",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "yysystem-ailens-tokyo-2026-12-02",
@@ -1631,7 +1658,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:09:21.042Z",
       "evidenceHash": "3100cc4a82c9a4281f0adfa9d91ef4df5577b3159fec67af11d7cc264bba0e60",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "prefecture": "京都府",
@@ -1675,7 +1702,7 @@
           "detail": "会場の展示に字幕付き映像があります。"
         }
       ],
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "485820fe5a220964fbdda79e5e8b3fa14c4db35d0e9ab801978de87eefebe5a2",
       "verification": "verified"
     },
@@ -1762,7 +1789,7 @@
           "url": "https://connect-art.jp/2026/programs/touch-see-create/"
         }
       ],
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "937d879ea9725099d9fae416eae11f9ac5afbf58dc620a113a077f7d74ee00ec",
       "verification": "verified"
     },
@@ -1792,7 +1819,7 @@
           "detail": "全日字幕付き。"
         }
       ],
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "527d9c0018e0dfc9a368c87cf2990abc05854d349f995abcd733502a7b103a68",
       "verification": "verified"
     },
@@ -1824,7 +1851,7 @@
       "detailUrl": "https://www.city.kure.lg.jp/soshiki/56/humanfesta.html",
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "6caa0ca902da8758124574c3541d7ef8e52f2c9392dfb85c34f806365c0c338f",
       "verification": "verified"
     },
@@ -1847,7 +1874,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "71293824fad5ec020594ea9a0c451250bcbb425992fa586db8586a5fe8af6586",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_20261205.png",
@@ -1884,7 +1911,7 @@
       "status": "announced",
       "verifiedAt": "2026-11-19T00:12:34.095Z",
       "evidenceHash": "7f3c090835ebfdae8f807ec5d97ec0f5ff04c1ad7cc1e9919efe2d98bb28668b",
-      "verification": "verified",
+      "verification": "needs_review",
       "sourceStatus": "retrying"
     },
     {
@@ -1910,7 +1937,7 @@
         }
       ],
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "2f283bd9f662e725b4d1434af71c6e5f72c4ffdfb28dcb3cda2173e9b68647d1",
       "verification": "verified"
     },
@@ -1967,7 +1994,7 @@
       "detailUrl": "https://udcast.net/workslist/commonbeat71st/",
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "120810ebacb98998791376b539ebe685b094885e7c7da7ca5880ee237d623dca",
       "verification": "verified"
     },
@@ -1999,7 +2026,7 @@
       "detailUrl": "https://ishinomakiartproject.com/projects/mite-miyou-vol3",
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "58b8e2bb015c6c756d051d4b376e30c26b1012dc686f0a619e13b3f40f74697c",
       "verification": "verified"
     },
@@ -2063,7 +2090,7 @@
       "detailUrl": "https://art.bunmori.tokushima.jp/zukan/",
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "4b3bb750a01e378a7f87644fd4aee0614266947914f04f665fee2fcb50d0f0fe",
       "verification": "verified"
     },
@@ -2091,7 +2118,7 @@
       ],
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "a1617d8313849e7e0f280e50a7cadfa993d93c58d8bfcd8acf543fdb676b1386",
       "verification": "verified"
     },
@@ -2189,7 +2216,7 @@
         "width": 819,
         "height": 1024
       },
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "3dcdcf69d6c500555edeef8996a9829a321137425c8f959f6a7cc045940dbead",
       "verification": "verified"
     },
@@ -2240,7 +2267,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:09:21.042Z",
       "evidenceHash": "e23cbfae7df9194d9cdb0ad74897547375363031747d522ab70388d1ab555998",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "yysystem-ailens-osaka-2026-12-16",
@@ -2265,7 +2292,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:09:21.042Z",
       "evidenceHash": "5e472b2ada9771ca598ea62defda60e3c0c837055e63f11cbd75b58bf8c91b9c",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "yysystem-ailens-tokyo-2026-12-16",
@@ -2290,7 +2317,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:09:21.042Z",
       "evidenceHash": "5cafe5ac9ccdeb46d71da7d8e3c0cebafafe29856c4a4900c56fad88f9453be5",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "oioi-62bef9337943fa7aeffb",
@@ -2421,7 +2448,7 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-19T00:10:43.247Z",
       "evidenceHash": "d2e103d132795373775e3c123282855d8c10f0e71574df0917f76ea7ff5238de",
-      "verification": "verified"
+      "verification": "needs_review"
     },
     {
       "id": "maebashi-shuwa-shopping-street-2026-12-20",
@@ -2526,7 +2553,7 @@
       "detailUrl": "https://art.bunmori.tokushima.jp/zukan/",
       "status": "announced",
       "thumbnailPolicy": "omit",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "4b3bb750a01e378a7f87644fd4aee0614266947914f04f665fee2fcb50d0f0fe",
       "verification": "verified"
     },
@@ -2549,7 +2576,7 @@
       "status": "announced",
       "description": "oioiの公開スケジュールに掲載された催しです。出演時間・参加条件は詳細の告知をご確認ください。",
       "verification": "verified",
-      "verifiedAt": "2026-11-20T22:35:31.100Z",
+      "verifiedAt": "2026-11-21T02:09:14.194Z",
       "evidenceHash": "b4c6aee99ccebb36a77ea8af9b5b07064ffc03ff3e8b115044a35a4a5b8f105c",
       "thumbnail": {
         "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/09/%E3%82%AA%E3%82%A4%E3%83%88%E3%83%BC%E3%83%BC%E3%82%AF%EF%BC%81%E5%AE%A3%E4%BC%9D%E3%83%93%E3%83%A9-22.png",
