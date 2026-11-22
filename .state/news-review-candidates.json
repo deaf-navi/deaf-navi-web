@@ -1,29 +1,28 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-22T01:10:16.153Z",
+  "generatedAt": "2026-11-22T11:07:34.013Z",
   "counts": {
-    "uniqueInputs": 2133,
-    "alreadyPublished": 705,
-    "outsideWindow": 1212,
-    "hardExcluded": 3,
-    "duplicateOfPublished": 51,
-    "candidateDuplicates": 0,
-    "eligible": 162,
+    "uniqueInputs": 2149,
+    "alreadyPublished": 697,
+    "outsideWindow": 1215,
+    "hardExcluded": 4,
+    "duplicateOfPublished": 56,
+    "candidateDuplicates": 4,
+    "eligible": 173,
     "queued": 40,
-    "deferred": 122
+    "deferred": 133
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "foreign-coverage-review-required": 1,
-    "low-value-page": 1
+    "low-value-page": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-21T11:21:46.855Z",
+    "previousGeneratedAt": "2026-11-22T01:10:16.153Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -34,16 +33,6 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
-      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
-      "publishedAt": "2026-11-16T01:17:09.000Z",
-      "sourceTier": "specialist",
-      "sourceDomain": "www.zentsuken.net",
-      "priority": 0,
-      "reason": "below-score",
       "feedChange": "unchanged"
     },
     {
@@ -425,6 +414,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
+      "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
+      "publishedAt": "2026-10-27T08:30:40.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
