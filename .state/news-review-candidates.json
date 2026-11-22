@@ -1,28 +1,29 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-21T11:21:46.855Z",
+  "generatedAt": "2026-11-22T01:10:16.153Z",
   "counts": {
-    "uniqueInputs": 2269,
-    "alreadyPublished": 769,
-    "outsideWindow": 1260,
-    "hardExcluded": 2,
-    "duplicateOfPublished": 63,
+    "uniqueInputs": 2133,
+    "alreadyPublished": 705,
+    "outsideWindow": 1212,
+    "hardExcluded": 3,
+    "duplicateOfPublished": 51,
     "candidateDuplicates": 0,
-    "eligible": 175,
+    "eligible": 162,
     "queued": 40,
-    "deferred": 135
+    "deferred": 122
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "foreign-coverage-review-required": 1
+    "foreign-coverage-review-required": 1,
+    "low-value-page": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-21T10:54:04.710Z",
+    "previousGeneratedAt": "2026-11-21T11:21:46.855Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -43,7 +44,7 @@
       "sourceDomain": "www.zentsuken.net",
       "priority": 0,
       "reason": "below-score",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/18/123857",
