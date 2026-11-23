@@ -1,24 +1,23 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-23T12:15:44.920Z",
+  "generatedAt": "2026-11-23T15:49:59.172Z",
   "counts": {
-    "uniqueInputs": 2231,
-    "alreadyPublished": 730,
-    "outsideWindow": 1237,
-    "hardExcluded": 4,
-    "duplicateOfPublished": 71,
-    "candidateDuplicates": 4,
-    "eligible": 185,
+    "uniqueInputs": 2156,
+    "alreadyPublished": 669,
+    "outsideWindow": 1288,
+    "hardExcluded": 2,
+    "duplicateOfPublished": 35,
+    "candidateDuplicates": 1,
+    "eligible": 161,
     "queued": 40,
-    "deferred": 145
+    "deferred": 121
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "foreign-coverage-review-required": 1,
-    "low-value-page": 2
+    "foreign-coverage-review-required": 1
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-23T01:35:01.880Z",
+    "previousGeneratedAt": "2026-11-23T12:15:44.920Z",
     "previousQueued": 40,
     "retained": 40,
     "new": 0,
