@@ -1399,7 +1399,7 @@
       "applicationDeadline": "2026-11-16",
       "deadlineScope": "participation",
       "validUntil": "2026-11-19T00:16:00.000Z",
-      "period": "review"
+      "period": "past"
     },
     {
       "origin": "events",
@@ -1424,7 +1424,7 @@
       "applicationDeadline": "2026-11-12",
       "deadlineScope": "participation",
       "validUntil": "2026-11-19T00:18:14.367Z",
-      "period": "review"
+      "period": "past"
     },
     {
       "origin": "events",
@@ -1449,7 +1449,7 @@
       "applicationDeadline": "2026-11-12",
       "deadlineScope": "participation",
       "validUntil": "2026-11-19T00:18:14.367Z",
-      "period": "review"
+      "period": "past"
     },
     {
       "origin": "events",
@@ -1558,13 +1558,13 @@
       "sourceUrl": "https://www.city.myoko.niigata.jp/docs/86968.html",
       "time": "1回目10:00〜12:00／2回目13:00〜15:00",
       "fee": "無料",
-      "target": "手話に興味のある方、手話で会話してみたい方。小学生や親子での参加も可能。定員30人。11月20日までに新潟県聴覚障害者情報センターへ申し込み（電話・FAX・メール）。",
-      "status": "announced",
+      "target": "手話に興味のある方、手話で会話してみたい方。小学生や親子での参加も可能。定員30人。11月20日までに新潟県聴覚障害者情報センターへ申し込み（電話・FAX・メール）。 受付は終了しました。",
+      "status": "closed",
       "description": "聴覚障害への理解と、手話でのコミュニケーションを学ぶ体験講座です。",
       "verification": "verified",
-      "verifiedAt": "2026-11-23T12:17:15.531Z",
+      "verifiedAt": "2026-11-23T00:12:17.555Z",
       "webUrl": "https://deafnavi.com/events/myoko-shuwa-workshop-2026-11-29/",
-      "validUntil": "2026-11-25T12:17:15.531Z",
+      "validUntil": "2026-11-25T00:12:17.555Z",
       "period": "upcoming"
     },
     {
@@ -1607,11 +1607,11 @@
       "target": "手話未経験の方・聴者も歓迎。申込不要で、開催時間内の好きな時間に参加できます。定員40名。混雑時は2時間制となる場合があります。",
       "status": "announced",
       "description": "手話でゆっくり交流するバーイベント。途中参加・途中退席もできます。同名の別店舗と間違えないよう、練馬区富士見台2丁目31-24の住所をご確認ください。会場は喫煙目的店として案内されています。入店条件の詳細は主催者の案内をご確認ください。",
-      "verification": "needs_review",
-      "verifiedAt": "2026-11-20T00:08:13.222Z",
+      "verification": "verified",
+      "verifiedAt": "2026-11-23T00:11:00Z",
       "webUrl": "https://deafnavi.com/events/yubitopia-shuwaberiba-2026-11-29/",
-      "validUntil": "2026-11-22T00:08:13.222Z",
-      "period": "review"
+      "validUntil": "2026-11-25T00:11:00.000Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -1720,6 +1720,42 @@
       ],
       "webUrl": "https://deafnavi.com/events/connect-kyoto-archive-videos-2026-12-03/",
       "validUntil": "2026-11-25T12:17:15.531Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
+      "id": "kadena-film-sign-2026-12-04",
+      "title": "映画「ぼくが生きてる、ふたつの世界」日本語字幕版上映会と手話体験",
+      "startDate": "2026-12-04",
+      "endDate": "2026-12-04",
+      "prefecture": "沖縄県",
+      "venue": "嘉手納町総合福祉センター 4階大集会室・ロビー（嘉手納町字水釜447番地1）",
+      "kind": "culture",
+      "sourceName": "嘉手納町・嘉手納町社会福祉協議会",
+      "sourceUrl": "https://www.town.kadena.okinawa.jp/info/n9143.html",
+      "detailUrl": "https://kadena-shakyo.or.jp/20261204_jisyujoueikai/",
+      "organizer": "嘉手納町（実施：嘉手納町社会福祉協議会）",
+      "time": "18:00開場。上映18:30〜20:15、手話体験18:00〜18:30・20:15〜20:30",
+      "fee": "無料",
+      "target": "嘉手納にお住まいの方、関係機関など。定員約80人。町社会福祉協議会の案内にあるフォームで11月30日（月）17:00までに事前申込。小学生以下は保護者同伴、中学生のみの場合は上映後に保護者の迎えが必要です。託児は要事前申込。",
+      "status": "announced",
+      "description": "映画は日本語字幕版です。上映の前後には、参加者が4階ロビーで自分の名前やあいさつ、映画のキーワードを手話で表現する体験に参加できます。椅子の利用のほか、クッションを持参し、床に横になって鑑賞することもできます。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-23T00:12:17.550Z",
+      "communication": [
+        {
+          "method": "captions",
+          "detail": "映画本編を日本語字幕版で上映します。"
+        },
+        {
+          "method": "sign",
+          "detail": "上映前と上映後のロビーで、上映会参加者向けの手話体験があります。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/kadena-film-sign-2026-12-04/",
+      "applicationDeadline": "2026-11-30",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-25T00:12:17.550Z",
       "period": "upcoming"
     },
     {
@@ -1922,11 +1958,11 @@
       "organizer": "福岡市美術館",
       "time": "13:30〜15:30（終了時刻は前後する場合があります）",
       "fee": "ツアー参加無料、観覧料別（一般200円、高校・大学生150円）。小中学生、障害者手帳等の提示者と介護者1人などは観覧料無料。",
-      "target": "きこえない人・きこえにくい人と家族・関係者。定員10人程度。メール・FAX・往復はがきで事前申込、11月20日（金）必着。応募多数の場合は抽選、締切後に応募者全員へ結果を通知。",
-      "status": "announced",
+      "target": "きこえない人・きこえにくい人と家族・関係者。定員10人程度。メール・FAX・往復はがきで事前申込、11月20日（金）必着。応募多数の場合は抽選、締切後に応募者全員へ結果を通知。 受付は終了しました。",
+      "status": "closed",
       "description": "手話通訳者を介して参加者同士で話しながら、コレクションを鑑賞します。手話が苦手な方には補助道具が用意されます。",
-      "verification": "needs_review",
-      "verifiedAt": "2026-11-09T00:32:37.744Z",
+      "verification": "verified",
+      "verifiedAt": "2026-11-23T00:12:17.555Z",
       "communication": [
         {
           "method": "interpretation",
@@ -1934,8 +1970,8 @@
         }
       ],
       "webUrl": "https://deafnavi.com/events/fukuoka-art-accessible-tour-2026-12-06/",
-      "validUntil": "2026-11-11T00:32:37.744Z",
-      "period": "review"
+      "validUntil": "2026-11-25T00:12:17.555Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -2816,5 +2852,5 @@
       "period": "review"
     }
   ],
-  "count": 103
+  "count": 104
 }
