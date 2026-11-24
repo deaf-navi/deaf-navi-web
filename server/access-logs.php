@@ -61,9 +61,10 @@ function access_options(): array {
 // A writer's incomplete final line is deferred until the next refresh.
 function access_reverse_lines($handle): Generator {
     $position = (int)fstat($handle)['size'];
-    if ($position === 0) return;
+    if ($position === 0) return false;
     fseek($handle, -1, SEEK_END);
     $partial = fread($handle, 1) !== "\n";
+    $complete = !$partial;
     $buffer = '';
     while ($position > 0) {
         $length = min(65536, $position);
@@ -81,9 +82,11 @@ function access_reverse_lines($handle): Generator {
         if (strlen($buffer) > 65536) throw new RuntimeException('Oversized log record');
     }
     if ($buffer !== '' && !$partial) yield $buffer;
+    return $complete;
 }
 
-function access_entry(string $line): ?array {
+// A report only needs a validated timestamp for records outside its two periods.
+function access_entry(string $line, ?callable $lookupExclusion=null, float $from=0, float $until=INF): ?array {
     $r = json_decode($line, true, 32);
     if (!is_array($r) || !is_numeric($r['ts'] ?? null) || !is_array($r['request'] ?? null)) return null;
     $req = $r['request'];
@@ -93,17 +96,18 @@ function access_entry(string $line): ?array {
     if (!in_array($host, ['deafnavi.com','www.deafnavi.com'], true)) return null;
     $path = $req['uri'] ?? '';
     if (!is_string($path)) return null;
-    $path = explode('?', $path, 2)[0];
-    $unsafePath=!str_starts_with($path, '/') || strlen($path)>8192 || preg_match('/[\x00-\x1f\x7f]/',$path) || !preg_match('//u',$path);
-    // Preserve valid HTTP metadata for malformed/probing URLs, but never render
-    // their control bytes. These are excluded explicitly, not a missing log.
-    if ($unsafePath) $path='/[invalid-request-path]';
     $method = $req['method'] ?? '';
     if (!is_string($method) || !preg_match('/^[A-Z]{1,20}$/D', $method)) return null;
     $status = $r['status'] ?? 0;
     if (!is_int($status) || $status < 100 || $status > 599) return null;
     $ts = (float)$r['ts'];
     if (!is_finite($ts) || $ts <= 0 || $ts > 4102444800) return null;
+    if ($ts<$from || $ts>=$until) return ['ts'=>$ts];
+    $path = explode('?', $path, 2)[0];
+    $unsafePath=!str_starts_with($path, '/') || strlen($path)>8192 || preg_match('/[\x00-\x1f\x7f]/',$path) || !preg_match('//u',$path);
+    // Preserve valid HTTP metadata for malformed/probing URLs, but never render
+    // their control bytes. These are excluded explicitly, not a missing log.
+    if ($unsafePath) $path='/[invalid-request-path]';
     $duration = is_numeric($r['duration'] ?? null) ? (float)$r['duration'] : null;
     if ($duration !== null && (!is_finite($duration) || $duration < 0)) $duration = null;
     $client = is_string($r['client_kind']??null) && isset(ACCESS_CLIENTS[$r['client_kind']]) && $r['client_kind']!=='all' ? $r['client_kind'] : 'unknown';
@@ -120,7 +124,8 @@ function access_entry(string $line): ?array {
     if(($r['purpose']??null)==='prefetch'&&$client==='human'){$client='automation';$classification='ブラウザーの先読み';}
     if($client==='human'&&$ip!==null&&$ua!==null){
         $identity=strlen($ua)<512?access_quality_identity($ip,$ua,$ts):null;
-        $quality=$identity?access_known_exclusion(...$identity):null;
+        $lookupExclusion??='access_known_exclusion';
+        $quality=$identity?$lookupExclusion(...$identity):null;
         if($quality!==null){$client=$quality;$classification=$quality==='suspected'?'同じ接続・ブラウザーの規則的な巡回':'詳細ログ照合による除外';}
     }
     if (preg_match('#^/admin(?:/|$)#',$path) && in_array($client,['human','unknown'],true)) $client='internal';
@@ -129,6 +134,33 @@ function access_entry(string $line): ?array {
         'duration'=>$duration, 'size'=>is_int($r['size'] ?? null) && $r['size'] >= 0 ? $r['size'] : null,
         'client'=>$client,'original_client'=>$originalClient,'classification'=>$unsafePath?'URL形式不正・パス非表示':$classification,'ip'=>$ip,'user_agent'=>$ua,'referrer_host'=>$ref,'unsafe_path'=>(bool)$unsafePath,
         'group'=>access_group($path)];
+}
+
+// The private cache contains only file metadata and observed time ranges.
+// It is disposable. A cache miss or a concurrent replacement costs another scan.
+function access_saved_ranges(): array {
+    $path=access_visitor_dir().'/access-log-ranges.json';
+    if (is_link($path)||!is_file($path)||filesize($path)>1048576) return [];
+    $ranges=json_decode((string)@file_get_contents($path),true,8);
+    return is_array($ranges)?$ranges:[];
+}
+
+function access_save_ranges(array $ranges): void {
+    $dir=access_visitor_dir();
+    if (!is_dir($dir)||is_link($dir)||!is_writable($dir)) return;
+    $temp=@tempnam($dir,'.access-ranges-');
+    if ($temp===false) return;
+    try {
+        if (realpath(dirname($temp))!==realpath($dir)) return;
+        $json=json_encode($ranges,JSON_THROW_ON_ERROR|JSON_PRESERVE_ZERO_FRACTION);
+        if (@file_put_contents($temp,$json)===strlen($json)) @rename($temp,$dir.'/access-log-ranges.json');
+    } finally {
+        if (is_file($temp)) @unlink($temp);
+    }
+}
+
+function access_range_signature(array $stat): array {
+    return [$stat['dev'],$stat['ino'],$stat['size'],$stat['mtime'],$stat['ctime']];
 }
 
 function access_report(array $options): array {
@@ -142,6 +174,18 @@ function access_report(array $options): array {
     usort($files,fn($a,$b)=>(filemtime($b)<=>filemtime($a))?:strcmp($b,$a));
     $started=microtime(true); $deadline=$started+($summary?.5:4);
     $bytes=0; $scanned=0; $index=access_maintenance_state()['file_index']??[];
+    $savedRanges=access_saved_ranges(); $newRanges=[];
+    // Repeated assets and page requests share a daily identity. Cache only within
+    // this report so the next refresh observes newly excluded visitors.
+    $lookupExclusion=static function(string $day,string $visitor): ?string {
+        static $cache=[];
+        $key=$day.$visitor;
+        if (!array_key_exists($key,$cache)) {
+            if (count($cache)>=2048) $cache=[];
+            $cache[$key]=access_known_exclusion($day,$visitor);
+        }
+        return $cache[$key];
+    };
     $offset=($options['page']-1)*$options['limit'];
     $keep=$summary?5:min(10000,$offset+$options['limit']);
     $heap=new SplPriorityQueue(); $heap->setExtractFlags(SplPriorityQueue::EXTR_DATA);
@@ -151,24 +195,38 @@ function access_report(array $options): array {
         if ($handle===false) { $report['reasons']['unreadable-file']=true; continue; }
         $report['available']=true;
         try {
-            $stat=fstat($handle); $range=$index[basename($file)]??null;
+            $name=basename($file);
+            $stat=fstat($handle); $range=$index[$name]??null;
+            $signature=access_range_signature($stat);
+            $saved=$savedRanges[$name]??null;
+            if (($saved['signature']??null)===$signature) $range=$saved;
             if (is_array($range)&&($range['bytes']??null)===$stat['size']&&($range['mtime']??null)===$stat['mtime']
                 &&is_numeric($range['first']??null)&&is_numeric($range['last']??null)
                 &&($range['first']>=$options['end']||$range['last']<$scanStart)) {
                 $report['oldest']=min($report['oldest']??$range['first'],$range['first']);
                 $report['latest']=max($report['latest']??0,$range['last']); continue;
             }
-            foreach (access_reverse_lines($handle) as $line) {
+            $learnRange=preg_match('/^access(?:-v[0-9]+)?-[0-9]/D',$name)
+                && ($saved['signature']??null)!==$signature
+                && max($stat['mtime'],$stat['ctime'])<time();
+            $first=null; $last=null;
+            $lines=access_reverse_lines($handle);
+            foreach ($lines as $line) {
                 $bytes+=strlen($line)+1; $scanned++;
                 if ($bytes>($summary?8:64)*1024*1024) { $report['reasons']['byte-limit']=true; break 2; }
                 if ($scanned>($summary?25000:200000)) { $report['reasons']['line-limit']=true; break 2; }
                 if ($scanned%512===0&&microtime(true)>$deadline) { $report['reasons']['time-limit']=true; break 2; }
-                $r=access_entry($line);
+                $r=access_entry($line,$lookupExclusion,$scanStart,$options['end']);
                 if (!$r) {
+                    $learnRange=false;
                     // A timestamp outside both windows cannot affect these totals.
                     $bad=json_decode($line,true,32); $ts=is_numeric($bad['ts']??null)?(float)$bad['ts']:null;
                     if ($ts===null||($ts>=$scanStart&&$ts<$options['end'])) $report['invalid']++;
                     continue;
+                }
+                if ($learnRange) {
+                    $first=min($first??$r['ts'],$r['ts']);
+                    $last=max($last??$r['ts'],$r['ts']);
                 }
                 $report['oldest']=min($report['oldest']??$r['ts'],$r['ts']);
                 $report['latest']=max($report['latest']??0,$r['ts']);
@@ -181,9 +239,13 @@ function access_report(array $options): array {
                 $heap->insert($r,[-$r['ts'],$r['_order']]);
                 if ($heap->count()>$keep) $heap->extract();
             }
+            if ($learnRange && $first!==null && $lines->getReturn() && access_range_signature(fstat($handle))===$signature) {
+                $newRanges[$name]=['signature'=>$signature,'bytes'=>$stat['size'],'mtime'=>$stat['mtime'],'first'=>$first,'last'=>$last];
+            }
         } catch (Throwable) { $report['reasons']['read-or-classification-error']=true; }
         finally { fclose($handle); }
     }
+    if ($newRanges) access_save_ranges(array_intersect_key($newRanges+$savedRanges,array_flip(array_map('basename',$files))));
     $rows=[]; foreach ($heap as $r) $rows[]=$r;
     usort($rows,fn($a,$b)=>($b['ts']<=>$a['ts'])?:strcmp($a['_order'],$b['_order']));
     $report['rows']=array_map(function($r){unset($r['_order']);return $r;},array_slice($rows,$summary?0:$offset,$summary?5:$options['limit']));

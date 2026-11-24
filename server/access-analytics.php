@@ -4,6 +4,7 @@ declare(strict_types=1);
 // Pure aggregation helpers. No new identifiers, network calls, or background jobs.
 const ACCESS_CHANNELS = ['search'=>'検索サイト','social'=>'SNS','referral'=>'外部サイト','internal'=>'サイト内','unattributed'=>'参照元なし・判別不能','unrecorded'=>'旧ログ・未取得'];
 const ACCESS_DEVICES = ['mobile'=>'スマートフォン','tablet'=>'タブレット','desktop'=>'PC等','unknown'=>'判別不能・未取得'];
+const ACCESS_READ_REASONS = ['unreadable-file'=>'読み取れないファイル','byte-limit'=>'64 MiBの読込上限','line-limit'=>'20万行の読込上限','time-limit'=>'約4秒の処理時間上限','read-or-classification-error'=>'読取または分類処理エラー'];
 
 function access_referrer(mixed $value): array {
     if ($value === null) return ['channel'=>'unrecorded','host'=>null];
@@ -94,7 +95,12 @@ function access_comparison_state(array $o,array $r,?array $previous,?DateTimeImm
     if ($o['end']>$today->getTimestamp()) $reasons[]='今日を含む期間は集計途中';
     if ($p['start']<access_retention_start($today)->getTimestamp()) $reasons[]='前期間が保存対象期間外';
     if (!$r['available'] || !$previous['available']) $reasons[]='ログ未取得';
-    if ($r['partial'] || $previous['partial'] || $r['invalid'] || $previous['invalid']) $reasons[]='部分集計・形式不明';
+    if ($r['partial'] || $previous['partial']) {
+        $readReasons=array_keys($r['reasons']+$previous['reasons']);
+        foreach ($readReasons as $key) $reasons[]=ACCESS_READ_REASONS[$key]??'部分集計';
+        if (!$readReasons) $reasons[]='部分集計';
+    }
+    if ($r['invalid'] || $previous['invalid']) $reasons[]='形式不明の記録あり';
     if ($r['oldest']===null || $r['oldest']>$p['start']) $reasons[]='前期間の先頭まで記録を確認できない';
     if ($r['latest']===null || $r['latest']<$o['end']) $reasons[]='期間末まで記録を確認できない';
     return ['available'=>!$reasons,'reason'=>implode(' / ',array_unique($reasons)),'from'=>$p['from'],'to'=>$p['to']];

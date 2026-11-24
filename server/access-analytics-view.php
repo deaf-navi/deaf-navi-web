@@ -142,8 +142,7 @@ function access_history(array $o,array $r,array $base):string {
 function access_quality_html(array $o,array $r,array $uu,array $cmp):string {
     $out=access_section('今回の集計品質','読み取れた保存ログと計測通知の状態です。「全ログを読めた」ことは、人を装う自動アクセスや通知されない閲覧まで判別できたという意味ではありません。');
     $out.='<dl class="aa-facts"><dt>計算時刻</dt><dd>'.e(access_iso_time($r['as_of'])).'</dd><dt>確認できた保存範囲</dt><dd>'.e(access_time($r['oldest'])).' ～ '.e(access_time($r['latest'])).'</dd><dt>読み取り</dt><dd>'.number_format($r['scanned_lines']).' 行 / '.number_format($r['scanned_bytes']/1048576,2).' MiB / '.number_format($r['elapsed_ms']??0,1).' ms</dd><dt>形式不明の記録</dt><dd>'.number_format($r['invalid']).' 件</dd><dt>前期間比較</dt><dd>'.e($cmp['available']?'保存範囲内で比較可能':$cmp['reason']).'</dd><dt>長いUser-Agent</dt><dd>'.number_format($r['ua_unmatchable']).' 件（選択条件内）。切り詰められた可能性があり、接続照合による再分類は行いません。</dd></dl>';
-    $reasons=['unreadable-file'=>'読み取れないファイル','byte-limit'=>'64 MiBの読込上限','line-limit'=>'20万行の読込上限','time-limit'=>'約4秒の処理時間上限','read-or-classification-error'=>'読取または分類処理エラー'];
-    if($r['reasons']){$out.='<ul class="aa-notice">';foreach(array_keys($r['reasons']) as $key)$out.='<li>'.e($reasons[$key]??$key).'</li>';$out.='</ul><p>期間を短くして再表示してください。上限に達した履歴や原本を削除する処理は行いません。</p>';}
+    if($r['reasons']){$out.='<ul class="aa-notice">';foreach(array_keys($r['reasons']) as $key)$out.='<li>'.e(ACCESS_READ_REASONS[$key]??$key).'</li>';$out.='</ul><p>期間を短くして再表示してください。上限に達した履歴や原本を削除する処理は行いません。</p>';}
     $out.='</section>'.access_section('集計から除外したアクセス','選択期間・URL検索条件の生ログ全体が対象です。コンテンツ・調査用条件を適用する前の内訳で、理由は重複しません。');
     $out.='<p>生ログ '.number_format($r['raw_total']).' 件中、除外 '.number_format(array_sum($r['excluded'])).' 件。</p>'.access_table('集計の除外理由',['理由','件数']);
     foreach(ACCESS_EXCLUSIONS as $key=>$label)$out.='<tr><th scope="row">'.e($label).'</th><td class="aa-number">'.access_number($r['excluded'][$key]).'</td></tr>';
