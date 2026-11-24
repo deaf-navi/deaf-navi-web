@@ -1469,7 +1469,7 @@
       "verifiedAt": "2026-11-24T05:18:03.356Z",
       "webUrl": "https://deafnavi.com/events/oioi-3baf0a91c984c8343567/",
       "validUntil": "2026-11-26T05:18:03.356Z",
-      "period": "upcoming",
+      "period": "past",
       "thumbnailURL": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/10/event_20261112.png"
     },
     {
@@ -2612,6 +2612,38 @@
     },
     {
       "origin": "events",
+      "id": "itami-hearing-public-lecture-2026-12-19",
+      "title": "市民公開講座「新しい難聴治療」（伊丹）",
+      "startDate": "2026-12-19",
+      "endDate": "2026-12-19",
+      "prefecture": "兵庫県",
+      "venue": "伊丹市立産業振興センター マルチメディアホール（伊丹市宮ノ前2-2-2）",
+      "kind": "course",
+      "sourceName": "兵庫県立聴覚障害者情報センター",
+      "sourceUrl": "https://hyogocenter.jp/gyouji/shuwa/",
+      "detailUrl": "https://business.form-mailer.jp/fms/dd576d5c287929",
+      "organizer": "一般社団法人メディカルケアコネクト",
+      "time": "13:30〜16:00（受付開始予定13:00）",
+      "fee": "無料",
+      "target": "難聴の有無にかかわらず、どなたでも参加できます。先着150人。12月15日（火）までに伊丹専用フォーム、またはチラシの用紙をFAXで事前申込。最新の空き状況は主催者の案内をご確認ください。",
+      "status": "announced",
+      "description": "補聴器や人工内耳などの選択肢をテーマにした講演のほか、装用者の話と質疑応答が予定されています。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-24T15:33:49.978Z",
+      "communication": [
+        {
+          "method": "summary",
+          "detail": "講座会場にパソコン要約筆記が設置されます。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/itami-hearing-public-lecture-2026-12-19/",
+      "applicationDeadline": "2026-12-15",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-26T15:33:49.978Z",
+      "period": "upcoming"
+    },
+    {
+      "origin": "events",
       "id": "nagano-nam-gallery-talk-2026-12-19",
       "title": "長野県立美術館「NAMコレクション2026 第Ⅲ期」ギャラリートーク",
       "startDate": "2026-12-19",
@@ -2691,6 +2723,38 @@
       "webUrl": "https://deafnavi.com/events/maebashi-shuwa-shopping-street-2026-12-20/",
       "validUntil": "2026-11-19T00:31:34.240Z",
       "period": "review"
+    },
+    {
+      "origin": "events",
+      "id": "kobe-minions-accessible-screening-2026-12-22",
+      "title": "ユニバーサルな映画鑑賞会「ミニオンズ＆モンスターズ」",
+      "startDate": "2026-12-22",
+      "endDate": "2026-12-22",
+      "prefecture": "兵庫県",
+      "venue": "OSシネマズ神戸ハーバーランド（神戸市中央区東川崎町1丁目7番2号、神戸ハーバーランドumie サウスモール5階）",
+      "kind": "culture",
+      "sourceName": "兵庫県 公式案内",
+      "sourceUrl": "https://web.pref.hyogo.lg.jp/kf10/hw20_000000009.html",
+      "detailUrl": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=ssKVaxG-YEu2AaXYFuEU90uuMNnunftFkIrWyR9Ycl1UREhTQkVZOTJHODhGVUdMRkFDQjZZQ0tDQy4u&origin=QRCode",
+      "organizer": "兵庫県、兵庫県障害者芸術文化祭実行委員会、ひょうご障害者芸術文化活動支援センター",
+      "time": "16:00〜18:30（16:30開演）",
+      "fee": "1人500円（3歳未満無料、当日精算）",
+      "target": "映画鑑賞に困難を感じている障害のある方、そのご家族や支援者など。介助が必要な方は介助者の同伴をお願いします。先着250人。12月11日（金）までに専用フォーム、またはチラシの用紙をFAX・郵送で事前申込。残席は未確認です。フォームから申込できる状態でも、参加は県からの「参加決定」メールで確定します。",
+      "status": "announced",
+      "description": "劇場を貸し切り、上映前に鑑賞時の案内があります。上映中は場内を明るめにし、音量を小さめにします。全席自由席で、車いす席には限りがあります。",
+      "verification": "verified",
+      "verifiedAt": "2026-11-24T15:33:49.978Z",
+      "communication": [
+        {
+          "method": "captions",
+          "detail": "映画本編は日本語吹替版にバリアフリー日本語字幕が付きます。"
+        }
+      ],
+      "webUrl": "https://deafnavi.com/events/kobe-minions-accessible-screening-2026-12-22/",
+      "applicationDeadline": "2026-12-11",
+      "deadlineScope": "participation",
+      "validUntil": "2026-11-26T15:33:49.978Z",
+      "period": "upcoming"
     },
     {
       "origin": "events",
@@ -3065,5 +3129,5 @@
       "period": "review"
     }
   ],
-  "count": 111
+  "count": 113
 }
