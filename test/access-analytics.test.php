@@ -67,6 +67,9 @@ check($series['2026-10-20']===null,'unscanned missing day not zero');
 file_put_contents($dir.'/logs/access.log',"not-json\n",FILE_APPEND);
 $broken=access_report($o);
 check($broken['invalid']===1&&!access_comparison_state($o,$broken,$broken['previous'])['available'],'malformed record suppresses exact change');
+$limited=array_replace($r,['partial'=>true,'reasons'=>['time-limit'=>true]]);
+$reason=access_comparison_state($o,$limited,$r['previous'])['reason'];
+check(str_contains($reason,'約4秒')&&!str_contains($reason,'形式不明'),'a timeout reports its actual cause without implying malformed records');
 $unsafe=access_entry(row("/\x01invalid",$start+12));
 check($unsafe!==null&&$unsafe['unsafe_path']&&access_exclusion($unsafe)==='probe'&&!str_contains(json_encode($unsafe),'invalid\\u0001'),'unsafe path is explicitly excluded with redacted display');
 file_put_contents($dir.'/logs/access.log',implode("\n",$lines)."\n");
@@ -112,4 +115,23 @@ $history=[];for($i=0;$i<2501;$i++)$history[]=row('/history-fixture/'.$i,$start+1
 file_put_contents($dir.'/logs/access.log',implode("\n",$history)."\n");
 $deep=access_report(array_replace($o,['mode'=>'requests','q'=>'/history-fixture/','page'=>101,'limit'=>25]));
 check($deep['total']===2501&&count($deep['rows'])===1&&!$deep['history_limited'],'25-row page 101 retains the 2501st request');
+$closed=$dir.'/logs/access-v3-2026-10-16T00-00-00-time.log';
+$older=row('/',$start-4*86400,200,['padding'=>str_repeat('x',1100)])."\n";
+file_put_contents($closed,str_repeat($older,7000));
+// Closed logs must be older than the filesystem's one-second stat resolution.
+sleep(1);
+// A completed full scan can teach the next short dashboard scan this file's range.
+$full=access_report($o);
+check(!$full['partial'],'full report covers the closed fixture');
+$repeat=access_report($o);
+check($repeat['scanned_lines']===$full['scanned_lines']-7000 && $repeat['days']===$full['days'] && $repeat['previous']['days']===$full['previous']['days'],'repeat period comparison skips only the unrelated rotation');
+$short=access_report(array_replace($o,['summary'=>true]));
+check(!$short['partial']&&$short['total']===$full['total'],'unrelated closed logs do not exhaust the dashboard read budget after a complete scan');
+file_put_contents($closed,row('/',$start+30)."\n".$older,FILE_APPEND);
+$changed=access_report($o);
+check(!$changed['partial']&&$changed['total']===$full['total']+1,'a changed closed log is re-read, including out-of-order timestamps');
+file_put_contents($closed,$older."broken-json\n".$older);
+sleep(1);
+$broken=access_report($o);
+check($broken['invalid']===1&&access_report($o)['invalid']===1,'unknown timestamps never disappear behind a cached range');
 echo json_encode(['result'=>'ANALYTICS_OK','checks'=>$n,'productionWrites'=>false])."\n";
