@@ -1464,9 +1464,10 @@
           "detail": "要約筆記あり。初めて・途中からの参加も歓迎。"
         }
       ],
-      "verifiedAt": "2026-11-17T00:16:00Z",
+      "verifiedAt": "2026-11-24T00:10:31.9328914+00:00",
       "evidenceHash": "89d01d068a583d1046c748279a802bb7f172c820d224955509cf9de92e9461fe",
-      "verification": "needs_review"
+      "verification": "verified",
+      "thumbnailPolicy": "omit"
     },
     {
       "endDate": "2026-11-27",
@@ -2024,26 +2025,27 @@
       "time": "両日13:30開演",
       "organizer": "SPAC-静岡県舞台芸術センター",
       "fee": "一般4,600円、U25・大学生等2,200円、高校生以下1,100円。障害者手帳割引3,200円・付添1名無料（条件は公式案内へ）",
-      "target": "未就学児入場不可。手話通訳対象席・字幕機付き席は11月22日18:00までに専用フォームで事前予約。定員に達し次第終了。通常の障害者割引券は電話・窓口で取り扱い。舞台手話通訳対象席・字幕機付き席は専用フォームでも障害者割引券種を指定できます。",
-      "description": "日本からブラジルへ渡った家族を描く日本語上演の演劇。12月5・6日は舞台手話通訳と日本語ポータブル字幕機で鑑賞できます。",
+      "target": "未就学児入場不可。舞台手話通訳対象席は12月5日・6日とも、字幕機付き席は12月6日のみ、残席がある限り専用フォームで予約を受け付けます。12月5日の字幕機付き席は受付終了。SPACからの返信で予約確定です。通常の障害者割引券は電話・窓口で取り扱い。鑑賞サポートの対象席は専用フォームでも障害者割引券種を指定できます。",
+      "description": "日本からブラジルへ渡った家族を描く日本語上演の演劇。12月5日・6日の公演に舞台手話通訳と日本語ポータブル字幕機の案内があります。字幕機付き席の受付状況は公演日によって異なります。",
       "sourceName": "SPAC-静岡県舞台芸術センター",
       "communication": [
         {
           "method": "interpretation",
-          "detail": "12月5・6日の対象席。11月22日18:00までに事前予約、定員あり。"
+          "detail": "12月5日・6日の本編に舞台手話通訳。対象席は残席がある限り事前予約可。"
         },
         {
           "method": "captions",
-          "detail": "12月5・6日はバリアフリー日本語ポータブル字幕機を無料貸出。事前予約・定員あり。"
+          "detail": "字幕機の貸出は無料。12月5日の字幕機付き席は受付終了。12月6日は残席がある限り事前予約可。"
         }
       ],
       "thumbnailPolicy": "omit",
       "sourceUrl": "https://spac.or.jp/26_autumn/nihonjin2026",
       "status": "announced",
-      "verifiedAt": "2026-11-19T00:12:34.095Z",
-      "evidenceHash": "7f3c090835ebfdae8f807ec5d97ec0f5ff04c1ad7cc1e9919efe2d98bb28668b",
-      "verification": "needs_review",
-      "sourceStatus": "retrying"
+      "verificationMode": "visual",
+      "visualEvidenceUrl": "https://forms.gle/PcAFPrgKG8qvWFop6",
+      "verifiedAt": "2026-11-24T00:10:31.9328914+00:00",
+      "evidenceHash": "58ecc88e586604999fa46f5f7c3d9077fe74dd3dfe62c20ed6e252f05d981cb5",
+      "verification": "verified"
     },
     {
       "id": "fukuoka-art-accessible-tour-2026-12-06",
