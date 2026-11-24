@@ -1,29 +1,29 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-24T15:41:20.462Z",
+  "generatedAt": "2026-11-24T20:06:51.079Z",
   "counts": {
-    "uniqueInputs": 2860,
-    "alreadyPublished": 866,
-    "outsideWindow": 1718,
-    "hardExcluded": 8,
-    "duplicateOfPublished": 70,
-    "candidateDuplicates": 6,
-    "eligible": 192,
+    "uniqueInputs": 2644,
+    "alreadyPublished": 846,
+    "outsideWindow": 1534,
+    "hardExcluded": 5,
+    "duplicateOfPublished": 82,
+    "candidateDuplicates": 5,
+    "eligible": 172,
     "queued": 40,
-    "deferred": 152
+    "deferred": 132
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
     "incidental-organization-mention": 1,
-    "low-value-page": 6
+    "low-value-page": 3
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-24T05:17:01.007Z",
+    "previousGeneratedAt": "2026-11-24T15:41:20.462Z",
     "previousQueued": 40,
-    "retained": 38,
-    "new": 2,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 38
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -34,16 +34,6 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
-      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
-      "publishedAt": "2026-11-16T01:17:09.000Z",
-      "sourceTier": "specialist",
-      "sourceDomain": "www.zentsuken.net",
-      "priority": 0,
-      "reason": "below-score",
       "feedChange": "unchanged"
     },
     {
@@ -224,7 +214,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/news/crossplay-saitama/",
@@ -344,7 +334,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/series/nursing/greentaoka/",
@@ -425,6 +415,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
+      "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
+      "publishedAt": "2026-10-27T08:30:40.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
