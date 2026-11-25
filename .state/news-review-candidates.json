@@ -1,29 +1,29 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-25T00:18:23.454Z",
+  "generatedAt": "2026-11-25T04:06:19.149Z",
   "counts": {
-    "uniqueInputs": 2853,
-    "alreadyPublished": 940,
-    "outsideWindow": 1628,
-    "hardExcluded": 11,
-    "duplicateOfPublished": 81,
-    "candidateDuplicates": 7,
-    "eligible": 186,
+    "uniqueInputs": 2728,
+    "alreadyPublished": 902,
+    "outsideWindow": 1541,
+    "hardExcluded": 8,
+    "duplicateOfPublished": 75,
+    "candidateDuplicates": 3,
+    "eligible": 199,
     "queued": 40,
-    "deferred": 146
+    "deferred": 159
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 6,
+    "low-value-page": 3,
     "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-24T20:06:51.079Z",
+    "previousGeneratedAt": "2026-11-25T00:18:23.454Z",
     "previousQueued": 40,
-    "retained": 39,
-    "new": 1,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 39
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -214,7 +214,7 @@
       "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://udcast.net/workslist/mahoyo/",
