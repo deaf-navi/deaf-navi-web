@@ -7,7 +7,7 @@ function cafe_has_visit_info(array $p):bool {
         &&(($p['kind']??'')==='cafe'||(($p['kind']??'')==='store'&&!empty($p['signing_store'])));
 }
 function cafe_visit_current(array $p):bool {
-    return in_array($p['status']??'',['open','active_recurring'],true)
+    return !isset($p['past_visit_information'])&&in_array($p['status']??'',['open','active_recurring'],true)
         &&($p['confirmation_status']??'')==='confirmed'&&cafe_freshness($p)==='fresh';
 }
 function cafe_conversation_facts(array $p):array {
@@ -22,14 +22,15 @@ function cafe_visit_summary(array $p):string {
 }
 function cafe_visit_information(array $p):string {
     $current=cafe_visit_current($p);
-    $reservation=trim($p['reservation']??'');
+    $previous=$p['past_visit_information']??[];
+    $reservation=trim($previous['reservation']??$p['reservation']??'');
     // Unknown and false are different. Never turn an empty field into "free" or "no booking".
     if($current&&$reservation===''&&is_bool($p['reservation_required']??null)){
         $reservation=$p['reservation_required']?'事前予約・申込が必要です。':'予約・事前申込は不要と案内されています。';
     }
     $conversation=implode('・',cafe_conversation_facts($p));
     if(!empty($p['sign_support']))$conversation.=($conversation!==''?"\n":'').$p['sign_support'];
-    $rows=['reservation'=>$reservation,'conversation'=>$conversation,'notes'=>$p['notes']??''];
+    $rows=['reservation'=>$reservation,'conversation'=>$conversation,'notes'=>$previous['notes']??$p['notes']??''];
     $facts='';
     foreach(['reservation'=>'予約・参加方法','conversation'=>'会話の方法','notes'=>'利用条件・料金などの補足'] as $key=>$label){
         if(trim($rows[$key])!=='')$facts.='<dt>'.$label.'</dt><dd>'.nl2br(e($rows[$key])).'</dd>';

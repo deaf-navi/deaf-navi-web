@@ -3,6 +3,11 @@ declare(strict_types=1);
 require_once __DIR__.'/cafe-seo.php';
 require_once __DIR__.'/cafe-related.php';
 require_once __DIR__.'/cafe-visit.php';
+require_once __DIR__.'/cafe-public-schedule.php';
+function cafe_display_days(array $p):string {
+    $schedule=$p['event_schedule']??'';
+    return !empty($p['public_cafe_schedule'])?$schedule:(($p['recurrence']??'')?:$schedule);
+}
 function cafe_status_label(array $p):string {
     if(in_array(cafe_listing_group($p),['spots','organizations'],true)&&in_array($p['status'],['unknown','needs_review'],true))return '活動日確認中';
     return match(cafe_activity_state($p)){'scheduled'=>'開催予定','today'=>'本日開催予定','date_elapsed'=>'開催予定日経過','ended'=>'活動終了','date_unknown'=>'開催日未確認',default=>STATUSES[$p['status']]??'営業状況未確認'};
@@ -19,11 +24,14 @@ function cafe_freshness_html(array $p):string {
 function cafe_schedule_html(array $p):string {
     $p=cafe_model($p);$recurring=in_array($p['shop_type'],['recurring_program','recurring_popup','public_recurring','facility_cafe'],true);
     if($p['shop_type']==='event')return '<div class="dn-visit-time"><p>開催日（告知情報）</p>'.cafe_table_schedule($p).($p['venue_name']!==''?'<span>会場：'.e($p['venue_name']).'</span>':'').'</div>';
-    $days=$p['recurrence']?:($p['event_schedule']??'');
+    $days=cafe_display_days($p);
     // Old schedules remain stored, but are not presented as current after a review warning.
-    if(in_array($p['status'],['needs_review','unknown'],true))$days='現在の開催日・営業時間は確認中';
+    if(in_array($p['status'],['needs_review','unknown'],true))$days=!empty($p['public_cafe_schedule'])?CAFE_SCHEDULE_PENDING:'現在の開催日・営業時間は確認中';
     $out='<div class="dn-visit-time"><p>'.(in_array($p['shop_type'],['community_space','community_program','related_organization'],true)?'活動・利用日':($recurring?'手話で利用できる日':'営業日')).'</p><strong>'.nl2br(e($days?:'営業日未確認・公式情報をご確認ください')).'</strong>';
-    if(!in_array($p['status'],['needs_review','unknown'],true))$out.='<span>'.nl2br(e(($p['business_hours']??'')?:'時間未確認')).'</span>';
+    if(!in_array($p['status'],['needs_review','unknown'],true)){
+        if(!empty($p['public_cafe_schedule'])&&!empty($p['recurrence'])&&$p['recurrence']!==$days)$out.='<span>'.nl2br(e($p['recurrence'])).'</span>';
+        if($days!==CAFE_SCHEDULE_PENDING&&(($p['business_hours']??'')!==''||!preg_match('/\d{1,2}:\d{2}/',$days)))$out.='<span>'.nl2br(e(($p['business_hours']??'')?:'時間未確認')).'</span>';
+    }
     if($p['venue_name']!=='')$out.='<span>会場：'.e($p['venue_name']).'</span>';
     return $out.'</div>';
 }
@@ -36,9 +44,15 @@ function cafe_table_schedule(array $p):string {
     if(in_array($p['status'],['needs_review','unknown'],true))return '<span class="dn-schedule-muted">日程確認中</span>';
     if($p['status']==='temporarily_closed')return '<span class="dn-schedule-muted">休業中</span>';
     if(in_array($p['status'],['closed','permanently_closed'],true))return '<span class="dn-schedule-muted">営業・活動終了</span>';
-    $days=($p['recurrence']??'')?:($p['event_schedule']??'');$hours=$p['business_hours']??'';
+    $days=cafe_display_days($p);$hours=$p['business_hours']??'';
+    if($days===CAFE_SCHEDULE_PENDING){
+        $cadence=trim($p['recurrence']??'');
+        return '<div class="dn-table-schedule"><span>'.e($days).'</span>'
+            .($cadence!==''&&$cadence!==$days?'<span class="dn-schedule-muted">'.nl2br(e($cadence)).'</span>':'').'</div>';
+    }
     if($days===''&&$hours==='')return '<span class="dn-schedule-muted">日程・時間未確認</span>';
-    return '<div class="dn-table-schedule">'.($days!==''?'<span>'.nl2br(e($days)).'</span>':'').($hours!==''?'<span>'.nl2br(e($hours)).'</span>':'<span class="dn-schedule-muted">時間未確認</span>').'</div>';
+    $time=$hours!==''?'<span>'.nl2br(e($hours)).'</span>':(preg_match('/\d{1,2}:\d{2}/',$days)?'':'<span class="dn-schedule-muted">時間未確認</span>');
+    return '<div class="dn-table-schedule">'.($days!==''?'<span>'.nl2br(e($days)).'</span>':'').$time.'</div>';
 }
 function domestic_card(array $p):string {
     $out='<article class="dn-card dn-place-card" data-cafe-id="'.e($p['id']).'">'.cafe_card_intro($p,$p['prefecture'].' '.$p['city']).cafe_badges($p).cafe_schedule_html($p).(!empty($p['description'])?'<p class="dn-card-intro">'.e($p['description']).'</p>':'');

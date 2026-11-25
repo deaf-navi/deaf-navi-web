@@ -91,7 +91,10 @@ function cafe_card(array $p): string {
     $out.='</div>'.sources_html($p);
     return $out.'</article>';
 }
-function visible_records(): array { return array_values(array_filter(array_map('expanded',query("SELECT * FROM records WHERE publication='public' ORDER BY prefecture,name")->fetchAll()),'publicly_visible')); }
+function visible_records(): array {
+    $records=array_map('expanded',query("SELECT * FROM records WHERE publication='public' ORDER BY prefecture,name")->fetchAll());
+    return array_map('cafe_public_schedule',array_values(array_filter($records,'publicly_visible')));
+}
 function filters(array $all,bool $overseas=false): string {
     $countries=[];foreach($all as $p)$countries[$p['country_code']]=($p['country_name']??'')?:$p['country_code'];asort($countries);
     $pref=[];foreach($all as $p) if($p['prefecture']!=='') $pref[$p['prefecture']]=$p['prefecture']; ksort($pref);
@@ -165,6 +168,7 @@ function event_table(array $events,array $stores):string {
 function detail(string $slug,bool $event): string {
     $r=query('SELECT * FROM records WHERE slug=? AND '.($event?"kind='event'":"kind IN ('cafe','store')"),[$slug])->fetch();
     if(!$r || !publicly_visible($p=expanded($r))) fail('情報が見つかりません。',404);
+    $p=cafe_public_schedule($p);
     $overseas=!$event&&$p['country_code']!=='JP';
     $singleEvent=$event||($p['shop_type']??'')==='event';
     $body=tabs($event,$overseas,false,$singleEvent).'<p><a href="'.($singleEvent?CAFE_EVENTS_PATH:($overseas?'/connect/sign-cafe/overseas/':'/connect/sign-cafe/')).'">← 一覧へ</a></p>';$schema=[];
