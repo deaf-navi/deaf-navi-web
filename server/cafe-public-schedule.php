@@ -76,6 +76,7 @@ function cafe_public_schedule(array $p,?DateTimeImmutable $today=null):array {
     [$hours,$hoursDated,$hoursUpcoming]=cafe_filter_schedule((string)($p['business_hours']??''),$day,$year);
     $p['event_schedule']=$upcoming?$schedule:($recurrenceUpcoming?$recurrence:($hoursUpcoming?$hours:CAFE_SCHEDULE_PENDING));
     $p['recurrence']=$recurrenceDated?'':$recurrence;
+    if($p['recurrence']===''&&!$dated&&!preg_match('/\d{1,2}(?:月\d{1,2}日|\/\d{1,2})/u',$schedule))$p['recurrence']=$schedule;
     $p['business_hours']=$hours;
     $notesMentionDatedNext=preg_match('/次回[^。\n]{0,24}(?:\d{1,2}月\d{1,2}日|\d{1,2}\/\d{1,2})/u',(string)($p['notes']??''));
     if($p['event_schedule']===CAFE_SCHEDULE_PENDING&&($dated||$recurrenceDated||$hoursDated||$notesMentionDatedNext)){

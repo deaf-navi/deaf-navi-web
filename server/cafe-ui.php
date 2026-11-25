@@ -29,8 +29,8 @@ function cafe_schedule_html(array $p):string {
     if(in_array($p['status'],['needs_review','unknown'],true))$days=!empty($p['public_cafe_schedule'])?CAFE_SCHEDULE_PENDING:'現在の開催日・営業時間は確認中';
     $out='<div class="dn-visit-time"><p>'.(in_array($p['shop_type'],['community_space','community_program','related_organization'],true)?'活動・利用日':($recurring?'手話で利用できる日':'営業日')).'</p><strong>'.nl2br(e($days?:'営業日未確認・公式情報をご確認ください')).'</strong>';
     if(!in_array($p['status'],['needs_review','unknown'],true)){
-        if(!empty($p['public_cafe_schedule'])&&!empty($p['recurrence']))$out.='<span>'.nl2br(e($p['recurrence'])).'</span>';
-        if($days!==CAFE_SCHEDULE_PENDING)$out.='<span>'.nl2br(e(($p['business_hours']??'')?:'時間未確認')).'</span>';
+        if(!empty($p['public_cafe_schedule'])&&!empty($p['recurrence'])&&$p['recurrence']!==$days)$out.='<span>'.nl2br(e($p['recurrence'])).'</span>';
+        if($days!==CAFE_SCHEDULE_PENDING&&(($p['business_hours']??'')!==''||!preg_match('/\d{1,2}:\d{2}/',$days)))$out.='<span>'.nl2br(e(($p['business_hours']??'')?:'時間未確認')).'</span>';
     }
     if($p['venue_name']!=='')$out.='<span>会場：'.e($p['venue_name']).'</span>';
     return $out.'</div>';
@@ -45,9 +45,14 @@ function cafe_table_schedule(array $p):string {
     if($p['status']==='temporarily_closed')return '<span class="dn-schedule-muted">休業中</span>';
     if(in_array($p['status'],['closed','permanently_closed'],true))return '<span class="dn-schedule-muted">営業・活動終了</span>';
     $days=cafe_display_days($p);$hours=$p['business_hours']??'';
-    if($days===CAFE_SCHEDULE_PENDING)return '<span class="dn-schedule-muted">'.e($days).'</span>';
+    if($days===CAFE_SCHEDULE_PENDING){
+        $cadence=trim($p['recurrence']??'');
+        return '<div class="dn-table-schedule"><span>'.e($days).'</span>'
+            .($cadence!==''&&$cadence!==$days?'<span class="dn-schedule-muted">'.nl2br(e($cadence)).'</span>':'').'</div>';
+    }
     if($days===''&&$hours==='')return '<span class="dn-schedule-muted">日程・時間未確認</span>';
-    return '<div class="dn-table-schedule">'.($days!==''?'<span>'.nl2br(e($days)).'</span>':'').($hours!==''?'<span>'.nl2br(e($hours)).'</span>':'<span class="dn-schedule-muted">時間未確認</span>').'</div>';
+    $time=$hours!==''?'<span>'.nl2br(e($hours)).'</span>':(preg_match('/\d{1,2}:\d{2}/',$days)?'':'<span class="dn-schedule-muted">時間未確認</span>');
+    return '<div class="dn-table-schedule">'.($days!==''?'<span>'.nl2br(e($days)).'</span>':'').$time.'</div>';
 }
 function domestic_card(array $p):string {
     $out='<article class="dn-card dn-place-card" data-cafe-id="'.e($p['id']).'">'.cafe_card_intro($p,$p['prefecture'].' '.$p['city']).cafe_badges($p).cafe_schedule_html($p).(!empty($p['description'])?'<p class="dn-card-intro">'.e($p['description']).'</p>':'');
