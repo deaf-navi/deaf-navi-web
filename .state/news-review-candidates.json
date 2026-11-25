@@ -1,24 +1,24 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-24T20:06:51.079Z",
+  "generatedAt": "2026-11-25T00:18:23.454Z",
   "counts": {
-    "uniqueInputs": 2644,
-    "alreadyPublished": 846,
-    "outsideWindow": 1534,
-    "hardExcluded": 5,
-    "duplicateOfPublished": 82,
-    "candidateDuplicates": 5,
-    "eligible": 172,
+    "uniqueInputs": 2853,
+    "alreadyPublished": 940,
+    "outsideWindow": 1628,
+    "hardExcluded": 11,
+    "duplicateOfPublished": 81,
+    "candidateDuplicates": 7,
+    "eligible": 186,
     "queued": 40,
-    "deferred": 132
+    "deferred": 146
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "incidental-organization-mention": 1,
-    "low-value-page": 3
+    "low-value-page": 6,
+    "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-24T15:41:20.462Z",
+    "previousGeneratedAt": "2026-11-24T20:06:51.079Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -207,21 +207,21 @@
       "feedChange": "unchanged"
     },
     {
+      "sourceUrl": "https://co-coco.jp/series/nursing/junseien/",
+      "articleHash": "80f515a4e84ab6cfd09b8546b27163523a49df31e42d59c4a7f9bcf36ec9bcca",
+      "publishedAt": "2026-11-25T00:00:12.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
       "sourceUrl": "https://udcast.net/workslist/mahoyo/",
       "articleHash": "0fa9ef8850e2d55c54c95971247bf59908670f3d20dd0fc995ecd7e7581c9713",
       "publishedAt": "2026-11-24T05:29:40.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/crossplay-saitama/",
-      "articleHash": "c263686e5ff2c623e4921457098311590128447a6b2a71b9a9ad2b02ae4588bc",
-      "publishedAt": "2026-11-20T02:30:04.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -247,21 +247,21 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/votomsgh1/",
-      "articleHash": "1708f0f02670de2fa5978eed12f6ca638bbb16bb603a5bf67ac171f5d4b0572c",
-      "publishedAt": "2026-11-24T04:55:53.000Z",
+      "sourceUrl": "https://co-coco.jp/news/crossplay-saitama/",
+      "articleHash": "c263686e5ff2c623e4921457098311590128447a6b2a71b9a9ad2b02ae4588bc",
+      "publishedAt": "2026-11-20T02:30:04.000Z",
       "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
+      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/news/oibokkeshi_movie/",
-      "articleHash": "71c76c99504455020d4b38da6209fe0f80424cbd7ba75d1c265ecb01f31f665d",
-      "publishedAt": "2026-11-18T02:30:58.000Z",
+      "sourceUrl": "https://udcast.net/workslist/votomsgh1/",
+      "articleHash": "1708f0f02670de2fa5978eed12f6ca638bbb16bb603a5bf67ac171f5d4b0572c",
+      "publishedAt": "2026-11-24T04:55:53.000Z",
       "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
+      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -277,6 +277,16 @@
       "feedChange": "unchanged"
     },
     {
+      "sourceUrl": "https://co-coco.jp/news/oibokkeshi_movie/",
+      "articleHash": "71c76c99504455020d4b38da6209fe0f80424cbd7ba75d1c265ecb01f31f665d",
+      "publishedAt": "2026-11-18T02:30:58.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
       "sourceUrl": "https://udcast.net/workslist/gojigen21/",
       "articleHash": "669093fbd6171cf0b0f0adb97e01cbd128ab6e5333a11cfe1bd4d5f4f45ed4fe",
       "publishedAt": "2026-11-20T12:58:10.000Z",
@@ -287,21 +297,21 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://co-coco.jp/series/design/design5year2/",
-      "articleHash": "c2aed17a21113515a14ee119eaa566921b436a1e0039710e8b9c58fb56d0cc19",
-      "publishedAt": "2026-11-17T23:00:01.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://palabra-i.co.jp/2026/10/a11y-chiba/",
       "articleHash": "1d029cc4b0bb7af2cc4f3b034385db9781daee0f00b11f944629940c95ee8694",
       "publishedAt": "2026-10-06T01:37:10.000Z",
       "sourceTier": "broad",
       "sourceDomain": "palabra-i.co.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/series/design/design5year2/",
+      "articleHash": "c2aed17a21113515a14ee119eaa566921b436a1e0039710e8b9c58fb56d0cc19",
+      "publishedAt": "2026-11-17T23:00:01.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -415,16 +425,6 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/creativewell2026/",
-      "articleHash": "6d04beea81ba577cd7601ec16c6c08608d7d59fccdd2621483049661026c570e",
-      "publishedAt": "2026-10-27T08:30:40.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "new"
     }
   ]
 }
