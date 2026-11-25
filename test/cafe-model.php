@@ -5,6 +5,28 @@ require __DIR__.'/../server/views.php';
 require __DIR__.'/../server/public-profile.php';
 $checks=0;function ok($v,string $m):void{global $checks;if(!$v)throw new RuntimeException($m);$checks++;}
 function rejects(callable $fn):bool{try{$fn();return false;}catch(DomainException){return true;}}
+$today = new DateTimeImmutable('2026-11-25', new DateTimeZone('Asia/Tokyo'));
+$base = ['kind'=>'cafe','shop_type'=>'public_recurring','country_code'=>'JP','status'=>'active_recurring',
+    'event_schedule'=>'次回：2026年11月25日（水）13:30〜15:00','recurrence'=>'毎月第4水曜日',
+    'business_hours'=>'11月25日（水）13:30〜15:00','notes'=>'次回は2026年11月25日です。',
+    'reservation'=>'11月25日分は事前申込。'];
+$dayOf = cafe_public_schedule($base, $today);
+ok(str_contains($dayOf['event_schedule'], '11月25日'), 'same-day date stays visible');
+$after = cafe_public_schedule($base, $today->modify('+1 day'));
+ok($after['event_schedule'] === '日程確認中' && $after['business_hours'] === '', 'next day rolls over without a DB write');
+ok($after['notes'] === '' && $after['reservation'] === '' && !empty($after['past_visit_information']), 'previous visit details are kept out of the current schedule');
+ok(cafe_public_schedule(['event_schedule'=>'','business_hours'=>'']+$base, $today)['event_schedule'] === '日程確認中', 'cadence does not invent a confirmed date');
+$mixed = cafe_public_schedule(['event_schedule'=>'次回：2026年10月23日（金）19:00〜20:30。以降11月27日、12月25日、2027年1月22日、2月26日。']+$base, $today);
+ok(!str_contains($mixed['event_schedule'], '10月23日') && str_contains($mixed['event_schedule'], '2026年11月27日') && str_contains($mixed['event_schedule'], '2027年1月22日'), 'announced dates survive older dates and a year boundary');
+$compact = cafe_public_schedule(['event_schedule'=>'2026年11月は4・25・26・28日、各13:00〜14:00。']+$base, $today);
+ok(str_contains($compact['event_schedule'], '2026年11月25・26・28日'), 'only future days in a compact month list');
+$range = '火・木（2026年9月1日〜12月17日）';
+ok(cafe_public_schedule(['event_schedule'=>$range]+$base, $today)['event_schedule'] === $range, 'a published range stays through its last day');
+ok(cafe_public_schedule(['event_schedule'=>$range]+$base, $today->modify('+24 days'))['event_schedule'] === '日程確認中', 'expired range no longer appears current');
+foreach (['permanent','event'] as $type) {
+    $entry = ['shop_type'=>$type]+$base;
+    ok(cafe_public_schedule($entry, $today) === $entry, 'unrelated type unchanged: '.$type);
+}
 $p=cafe_model(['id'=>'x','name'=>'検証カフェ','kind'=>'cafe','country_code'=>'JP','prefecture'=>'奈良県','city'=>'奈良市','status'=>'open','type'=>'permanent','verification_level'=>'official','last_verified_at'=>'2026-09-07','created_at'=>'2024-01-01T00:00:00Z']);
 ok($p['shop_type']==='permanent'&&$p['has_deaf_staff']===null,'unknown attributes preserved');
 ok(domestic_matches(array_replace($p,['writing_support'=>true]),['q'=>'筆談']),'search includes confirmed writing support');

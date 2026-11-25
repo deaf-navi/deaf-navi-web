@@ -22,7 +22,7 @@ function app_directory_place(array $p):array {
         'sources'=>array_values($p['verification_sources']??[])];
     // Match Web: uncertain operating schedules must not look current in the app.
     if(in_array($p['status'],['needs_review','unknown'],true)) {
-        $item['hours']='';$item['days']='';$item['recurrence']='';
+        $item['hours']='';$item['days']=!empty($p['public_cafe_schedule'])?CAFE_SCHEDULE_PENDING:'';$item['recurrence']='';
     }
     $links=[];
     foreach(['official_url'=>'公式サイト','instagram_url'=>'Instagram','x_url'=>'X','facebook_url'=>'Facebook','line_url'=>'LINE','youtube_url'=>'YouTube'] as $key=>$label) {

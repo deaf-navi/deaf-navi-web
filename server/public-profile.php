@@ -39,7 +39,9 @@ function visitor_profile(array $p,string $actions=''):string {
     if($visitInfo)$out.=cafe_visit_information($p);
     $out.='<section class="dn-visitor-section"><h2>'.($activity?'開催・参加の案内':($related?'活動・利用の案内':'営業時間・ご利用案内')).'</h2>';
     $scheduleUnconfirmed=$p['country_code']==='JP'&&in_array($p['status'],['needs_review','unknown'],true);
-    $fields=['business_hours'=>$related?'活動時間':'営業時間','event_schedule'=>$related?'活動日':'営業日','holidays'=>'お休み'];
+    $scheduledCafe=!empty($p['public_cafe_schedule']);
+    $fields=['business_hours'=>$related?'活動時間':($scheduledCafe?'開催時間':'営業時間'),'event_schedule'=>$related?'活動日':($scheduledCafe?'日程':'営業日'),'holidays'=>'お休み'];
+    if($scheduledCafe&&($p['event_schedule']??'')===CAFE_SCHEDULE_PENDING)unset($fields['business_hours']);
     if(!$visitInfo)$fields['reservation']='予約・参加について';
     $facts=$activity?(cafe_activity_state($p)==='date_unknown'?'<p>開催日・時刻は確認中です。主催者の最新案内をご確認ください。</p>':visitor_facts($p,['activity_date'=>!empty($p['event_reported'])?'開催日（報告）':'開催日（告知）','business_hours'=>'開催時刻（告知）','reservation'=>'参加について'])):($scheduleUnconfirmed?'<p>現在の営業日・営業時間は確認中です。過去の案内を訪問予定に使わず、公式の最新情報をご確認ください。</p>':visitor_facts($p,$fields));
     $out.=($facts?:'<p>営業時間・営業日は、お店の最新の案内をご確認ください。</p>').'</section>';
