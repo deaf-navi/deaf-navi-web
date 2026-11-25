@@ -1,31 +1,50 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-25T04:06:19.149Z",
+  "generatedAt": "2026-11-25T19:09:24.298Z",
   "counts": {
-    "uniqueInputs": 2728,
-    "alreadyPublished": 902,
-    "outsideWindow": 1541,
-    "hardExcluded": 8,
-    "duplicateOfPublished": 75,
-    "candidateDuplicates": 3,
-    "eligible": 199,
+    "uniqueInputs": 2735,
+    "alreadyPublished": 869,
+    "outsideWindow": 1579,
+    "hardExcluded": 3,
+    "duplicateOfPublished": 53,
+    "candidateDuplicates": 2,
+    "eligible": 229,
     "queued": 40,
-    "deferred": 159
+    "deferred": 189
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 3,
-    "market-report": 4
+    "low-value-page": 2
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-25T00:18:23.454Z",
+    "previousGeneratedAt": "2026-11-25T04:06:19.149Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 37,
+    "new": 3,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 37
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/25/170538",
+      "articleHash": "8eae57ca85d0eddb6f43129cc1f83befb28edec51c635de6d7f7eb4b8aebeb11",
+      "publishedAt": "2026-11-25T08:05:38.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
+    {
+      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
+      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
+      "publishedAt": "2026-11-16T01:17:09.000Z",
+      "sourceTier": "specialist",
+      "sourceDomain": "www.zentsuken.net",
+      "priority": 0,
+      "reason": "below-score",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/19/155423",
       "articleHash": "134cffa24d103e43e1ffa74285047c78d793ac8e47629275ec56a9499e74c52b",
@@ -207,6 +226,16 @@
       "feedChange": "unchanged"
     },
     {
+      "sourceUrl": "https://palabra-i.co.jp/2026/11/post-5744/",
+      "articleHash": "ace9f68d8d11b8aef18e2ea5e5fceee8b13294ef4f8269c654c033dd7de97dd4",
+      "publishedAt": "2026-11-25T04:19:18.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "palabra-i.co.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
+    },
+    {
       "sourceUrl": "https://co-coco.jp/series/nursing/junseien/",
       "articleHash": "80f515a4e84ab6cfd09b8546b27163523a49df31e42d59c4a7f9bcf36ec9bcca",
       "publishedAt": "2026-11-25T00:00:12.000Z",
@@ -227,21 +256,21 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://palabra-i.co.jp/2026/10/trial_audiodiscription/",
-      "articleHash": "9cd0699fd39f637f7a9f068da211b5220e3612fec6378d1069fdb21917e6c6da",
-      "publishedAt": "2026-10-28T03:27:47.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "palabra-i.co.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
       "sourceUrl": "https://note.com/psy_article/n/n008022d39951",
       "articleHash": "c07f4d1481defa2b8994a02b4f6f968736d0f818fef6e1d11e775cfa20bb4293",
       "publishedAt": "2026-05-31T14:40:03.000Z",
       "sourceTier": "broad",
       "sourceDomain": "note.com",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://palabra-i.co.jp/2026/10/trial_audiodiscription/",
+      "articleHash": "9cd0699fd39f637f7a9f068da211b5220e3612fec6378d1069fdb21917e6c6da",
+      "publishedAt": "2026-10-28T03:27:47.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "palabra-i.co.jp",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
@@ -392,36 +421,6 @@
       "publishedAt": "2026-11-04T07:30:26.000Z",
       "sourceTier": "broad",
       "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/tonatoramovie/",
-      "articleHash": "7405208fa19b63f4287b67a67d819cb5c061c47f8bb214aed377c95b2cd33293",
-      "publishedAt": "2026-11-11T03:09:02.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
-      "articleHash": "2dad976dbcdf5dd4b7208e0cefba6b2205377bb866b08b76a5e2c524cc23fb38",
-      "publishedAt": "2026-10-27T22:20:05.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/jazz_daimyo2026/",
-      "articleHash": "7b9d787c92e3391a5bb2d98b8c5bbb736bede999d89110c627efbf3ce24aba6d",
-      "publishedAt": "2026-11-09T01:27:57.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
