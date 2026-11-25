@@ -27,6 +27,20 @@ foreach (['permanent','event'] as $type) {
     $entry = ['shop_type'=>$type]+$base;
     ok(cafe_public_schedule($entry, $today) === $entry, 'unrelated type unchanged: '.$type);
 }
+$previous=['publication'=>'public','verification_level'=>'official','official_url'=>'https://example.org/old','verification_sources'=>['https://example.org/old'],'last_verified_at'=>'2026-11-20']+$base;
+$tomorrow=$today->modify('+1 day');
+ok(cafe_schedule_history($previous,$today)===[],'same-day date does not enter history early');
+ok(array_column(cafe_schedule_history($previous,$tomorrow),'start')===['2026-11-25'],'past date remains available on the next day');
+$replacement=['event_schedule'=>'2026年12月1日','official_url'=>'https://example.org/new']+$previous;
+$new=cafe_retain_schedule_history($previous,$replacement,$tomorrow);
+ok($new['event_schedule']==='2026年12月1日'&&$new['cafe_schedule_archive'][0]['source']==='https://example.org/old','replacement retains historical date and original source');
+ok(cafe_schedule_history($new,$tomorrow)===$new['cafe_schedule_archive'],'archive survives reading after replacement');
+ok(!isset(cafe_retain_schedule_history($previous,$replacement,$today)['cafe_schedule_archive']),'superseded future dates stay out of history');
+ok(!isset(cafe_retain_schedule_history(['publication'=>'private']+$previous,['event_schedule'=>'2026年12月1日'],$tomorrow)['cafe_schedule_archive']),'private dates are never promoted into history');
+ok(cafe_schedule_history(['event_schedule'=>'2026年11月25日は中止。']+$previous,$tomorrow)===[],'no planned occurrence inferred from cancelled dates');
+$rangeHistory=cafe_schedule_history(['event_schedule'=>$range]+$previous,new DateTimeImmutable('2026-12-18'));
+ok(count($rangeHistory)===1&&$rangeHistory[0]['start']==='2026-09-01'&&$rangeHistory[0]['end']==='2026-12-17','past range is archived as one range, not individual sessions');
+ok(str_contains(cafe_schedule_history_html(cafe_schedule_history($new,$tomorrow)),'datetime="2026-11-25"'),'archive date is visible in HTML');
 $p=cafe_model(['id'=>'x','name'=>'検証カフェ','kind'=>'cafe','country_code'=>'JP','prefecture'=>'奈良県','city'=>'奈良市','status'=>'open','type'=>'permanent','verification_level'=>'official','last_verified_at'=>'2026-09-07','created_at'=>'2024-01-01T00:00:00Z']);
 ok($p['shop_type']==='permanent'&&$p['has_deaf_staff']===null,'unknown attributes preserved');
 ok(domestic_matches(array_replace($p,['writing_support'=>true]),['q'=>'筆談']),'search includes confirmed writing support');

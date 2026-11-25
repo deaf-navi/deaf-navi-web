@@ -168,6 +168,7 @@ function event_table(array $events,array $stores):string {
 function detail(string $slug,bool $event): string {
     $r=query('SELECT * FROM records WHERE slug=? AND '.($event?"kind='event'":"kind IN ('cafe','store')"),[$slug])->fetch();
     if(!$r || !publicly_visible($p=expanded($r))) fail('情報が見つかりません。',404);
+    $history=$event?[]:cafe_schedule_history($p);
     $p=cafe_public_schedule($p);
     $overseas=!$event&&$p['country_code']!=='JP';
     $singleEvent=$event||($p['shop_type']??'')==='event';
@@ -183,7 +184,7 @@ function detail(string $slug,bool $event): string {
         $body.=event_card($p,$store,[trim($p['official_url']??'')]).visitor_event_details($p).cafe_event_share($shareRecord);
     }else{
         $actions=$singleEvent?cafe_event_share($p).$correction:'';
-        $body.=cafe_record_area_link($p).visitor_profile($p,$actions);
+        $body.=cafe_record_area_link($p).visitor_profile($p,$actions,$history);
     }
     if($event) $body.='<h2>開催店舗</h2><p>'.e($store['name'].' / '.$store['address']).'</p>'.disclaimer();
     if(!$event && $p['kind']==='store'&&$p['country_code']==='JP') {

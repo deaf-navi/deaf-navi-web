@@ -11,6 +11,8 @@ const CONFIDENCE = ['official'=>'公式確認済み','organizer'=>'主催者発�
 const REPORT_TYPES = ['new'=>'新しい手話カフェ','move'=>'移転','hours'=>'営業時間変更','url'=>'URL変更','rest'=>'休業','closed'=>'閉店','other'=>'その他'];
 require_once __DIR__.'/world-cafes.php';
 require_once __DIR__.'/cafe-model.php';
+require_once __DIR__.'/cafe-public-schedule.php';
+require_once __DIR__.'/cafe-schedule-history.php';
 require_once __DIR__.'/admin-sessions.php';
 const BASE = 'https://deafnavi.com';
 
@@ -186,13 +188,18 @@ function validated_record(array $post, string $kind): array {
 function save_record(array $p, string $kind, string $id='', int $revision=0): string {
     $id=$id?:uid(); $stamp=now();
     // Keep unexposed payload extensions when older editors/importers save a row.
-    if($revision)$p=array_replace(json_decode(record($id)['payload'],true,512,JSON_THROW_ON_ERROR),$p);
+    if($revision){
+        $r=record($id);
+        if($r['kind']!==$kind)fail('種別を変更できません。');
+        $p=array_replace(json_decode($r['payload'],true,512,JSON_THROW_ON_ERROR),$p);
+        if($kind==='cafe')$p=cafe_retain_schedule_history(expanded($r),$p);
+    }
     if(($p['publication']??'')==='public')assert_public_copy($p);
     $collision=query('SELECT id FROM records WHERE slug=? AND id!=? AND '.($kind==='event'?"kind='event'":"kind IN ('cafe','store')"),[$p['slug'],$id])->fetch();
     if($collision) fail('このURL名は既に使われています。別のURL名を指定してください。',409);
     $args=[$p['slug'],$p['name'],$p['country_code'],$p['prefecture'],$p['city'],$p['publication'],$p['status'],$p['store_id']??null,json($p),$stamp];
     if($revision) {
-        $r=record($id); if($r['kind']!==$kind) fail('種別を変更できません。');
+
         $s=query('UPDATE records SET slug=?,name=?,country_code=?,prefecture=?,city=?,publication=?,status=?,store_id=?,payload=?,updated_at=?,revision=revision+1 WHERE id=? AND revision=?',[...$args,$id,$revision]);
         if($s->rowCount()!==1) fail('別の管理者が変更しました。再読み込みして確認してください。',409);
     } else {
