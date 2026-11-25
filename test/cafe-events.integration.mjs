@@ -53,6 +53,12 @@ ok(JSON.parse(sql(`echo json(expanded(record('cafe-yourself-chubo-sign')));`)).a
 sql(`$p=expanded(record('lacic-toyonaka-sign-cafe'));foreach(['future'=>'2099-10-18','past'=>'2001-09-21','undated'=>''] as $key=>$date){$p['slug']='event-fixture-'.$key;$p['name']='Event fixture '.$key;$p['activity_date']=$date;$p['event_reported']=false;$p['internal_note']='PRIVATE_EVENT_SENTINEL';save_record($p,'cafe','event-fixture-'.$key);}
 $store=expanded(query("SELECT * FROM records WHERE kind='store' AND publication='public' LIMIT 1")->fetch());$legacy=['slug'=>'event-fixture-observation','name'=>'Legacy observation fixture','country_code'=>$store['country_code'],'prefecture'=>$store['prefecture'],'city'=>$store['city'],'publication'=>'public','status'=>'ended','store_id'=>$store['id'],'observation_only'=>'1','event_date'=>'','timezone'=>'Asia/Tokyo','verification_level'=>'official','verification_sources'=>['https://example.org/report'],'last_verified_at'=>'2026-09-01'];save_record($legacy,'event','event-fixture-observation');
 $store['slug']='event-fixture-private-store';$store['name']='Hidden store fixture';$store['publication']='private';save_record($store,'store','event-fixture-private-store');$legacy['slug']='event-fixture-hidden';$legacy['name']='PRIVATE_EVENT_PARENT_SENTINEL';$legacy['store_id']='event-fixture-private-store';save_record($legacy,'event','event-fixture-hidden');`);
+sql(`$p=expanded(record('setagaya-jinzai-sign-cafe'));
+$p['slug']='cafe-history-fixture';$p['name']='Recurring archive fixture';$p['status']='active_recurring';
+$p['event_schedule']='2020年11月25日（水）14:00〜15:00';$p['official_url']='https://example.org/previous-notice';
+$id=save_record($p,'cafe','cafe-history-fixture');
+$p['event_schedule']='2099年12月1日';$p['official_url']='https://example.org/next-notice';
+save_record($p,'cafe',$id,1);`);
 // Unit-level date boundary covers Japan / overseas and report vs announcement.
 const eventFile=join(root,'server/cafe-events.php').replaceAll('\\','/');
 ok(sql(`require '${eventFile}';$p=['kind'=>'cafe','shop_type'=>'event','status'=>'unknown','confirmation_status'=>'confirmed','activity_date'=>'2026-10-18'];echo cafe_event_period($p,new DateTimeImmutable('2026-10-18'));`) === 'upcoming','same-day event remains upcoming');
@@ -93,6 +99,10 @@ try{
    ({html}=await request('/connect/sign-cafe/'+query));ok(!html.includes('data-cafe-id="event-fixture-future"')&&!html.includes('>Event fixture future<'),'single events excluded from all domestic lists '+query);
  }
  ({html}=await request('/connect/sign-cafe/?q='+encodeURIComponent('世田谷区')));ok(html.includes('setagaya-jinzai-sign-cafe'),'recurring program remains in cafe list');
+ ({html}=await request('/connect/sign-cafe/cafe-history-fixture/'));
+ const archive=html.match(/<section[^>]*id="schedule-history">([\s\S]*?)<\/section>/)?.[1]??'';
+ ok(archive.includes('datetime="2020-11-25"')&&archive.includes('https://example.org/previous-notice')&&!archive.includes('2099'),'previously announced date and source survive a saved schedule change');
+ ok((html.match(/<div class="dn-visit-time">([\s\S]*?)<\/div>/)?.[1]??'').includes('2099年12月1日'),'new date appears in the current schedule');
  ({html}=await request('/connect/sign-cafe/overseas/?q=Overdoughs'));ok(html.includes('overdoughs-cafe-circuit'),'constant overseas cafe in overseas tab');
  ({html}=await request('/connect/sign-cafe/cafe-yourself-chubo-sign/'));ok(html.includes('実際に開催されたか・次回の日程は未確認')&&!html.includes('手話や筆談で交流できるスポットです'),'historical event detail is unambiguous');
  ({html}=await request('/directory-sitemap.xml'));ok(html.includes('<loc>https://deafnavi.com'+route+'</loc>')&&!html.includes('event-fixture-hidden/'),'sitemap includes tab, protects hidden parent');

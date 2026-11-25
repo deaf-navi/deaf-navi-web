@@ -4,9 +4,9 @@ declare(strict_types=1);
 const CAFE_SCHEDULE_PENDING = '日程確認中';
 
 /** Filter calendar dates from an announced schedule, without calculating dates from a cadence. */
-function cafe_filter_schedule(string $schedule,string $today,?int $year=null): array {
+function cafe_filter_schedule(string $schedule,string $today,?int $year=null,bool $includeHistory=false): array {
     $pattern='/\b(?<isoYear>20\d{2})-(?<isoMonth>\d{2})-(?<isoDay>\d{2})\b|(?:(?<year>20\d{2})年)?(?<month>\d{1,2})月(?:は)?\s*(?<days>\d{1,2}(?:[・･]\d{1,2})*)日(?:[（(][月火水木金土日](?:曜(?:日)?)?[）)])?/u';
-    $lines=[];$dated=false;$upcoming=false;$changed=false;
+    $lines=[];$dated=false;$upcoming=false;$changed=false;$history=[];
     foreach(preg_split('/(?<=。)|(?<=\n)/u',$schedule,-1,PREG_SPLIT_NO_EMPTY) as $line){
         $originalLine=$line;
         preg_match_all($pattern,$line,$matches,PREG_SET_ORDER|PREG_OFFSET_CAPTURE|PREG_UNMATCHED_AS_NULL);
@@ -20,15 +20,17 @@ function cafe_filter_schedule(string $schedule,string $today,?int $year=null): a
             if(array_filter($days,fn($day)=>!checkdate($month,(int)$day,$year)))continue;
             $live=array_values(array_filter($days,fn($day)=>sprintf('%04d-%02d-%02d',$year,$month,(int)$day)>=$today));
             $dates[]=['text'=>$m[0][0],'offset'=>$m[0][1],'live'=>$live,'all'=>$days,
-                'year'=>$year,'datePrefix'=>$year.'年'.$month.'月','explicit'=>$explicitYear!==null];
+                'year'=>$year,'month'=>$month,'datePrefix'=>$year.'年'.$month.'月','explicit'=>$explicitYear!==null];
         }
         if(!$dates){$lines[]=[$line,false];continue;}
+        if($includeHistory&&!preg_match('/中止|休み|開催しません|延期|未定|予定なし/u',$line)){
+            foreach(cafe_schedule_periods($line,$dates) as [$start,$end])if($end<$today)$history[]=[$start,$end];
+        }
         // For a date range, both endpoints provide context through the last day.
         foreach($dates as $i=>&$date){
             if($i===0||!$date['live'])continue;
             $previous=$dates[$i-1];
-            $gap=$previous['offset']+strlen($previous['text']);
-            if(preg_match('/^\s*[〜～−–—~]\s*$/u',substr($line,$gap,$date['offset']-$gap)))$dates[$i-1]['live']=$previous['all'];
+            if(cafe_schedule_range_between($line,$previous,$date))$dates[$i-1]['live']=$previous['all'];
         }
         unset($date);
         $dated=true;
@@ -57,17 +59,50 @@ function cafe_filter_schedule(string $schedule,string $today,?int $year=null): a
         }
         $lines[]=[$line,true];
     }
-    if($dated&&!$upcoming)return ['',true,false];
+    if($dated&&!$upcoming)return ['',true,false,$history];
     if($changed)$lines=array_filter($lines,fn($line)=>$line[1]);
-    return [trim(implode('',array_column($lines,0))),$dated,$upcoming];
+    return [trim(implode('',array_column($lines,0))),$dated,$upcoming,$history];
+}
+
+function cafe_schedule_range_between(string $line,array $start,array $end):bool {
+    $gap=$start['offset']+strlen($start['text']);
+    return (bool)preg_match('/^\s*[〜～−–—~]\s*$/u',substr($line,$gap,$end['offset']-$gap));
+}
+
+function cafe_schedule_periods(string $line,array $dates):array {
+    $periods=[];
+    $iso=fn($date,$day)=>sprintf('%04d-%02d-%02d',$date['year'],$date['month'],(int)$day);
+    foreach($dates as $i=>$date){
+        if(count($date['all'])===1&&isset($dates[$i+1])&&count($dates[$i+1]['all'])===1&&cafe_schedule_range_between($line,$date,$dates[$i+1])){
+            $end=$dates[$i+1];
+            $startDay=$iso($date,$date['all'][0]);$endDay=$iso($end,$end['all'][0]);
+            if($startDay<=$endDay)$periods[]=[$startDay,$endDay];
+            continue;
+        }
+        if($i>0&&count($date['all'])===1&&count($dates[$i-1]['all'])===1&&cafe_schedule_range_between($line,$dates[$i-1],$date))continue;
+        foreach($date['all'] as $day)$periods[]=[$iso($date,$day),$iso($date,$day)];
+    }
+    return $periods;
+}
+
+function cafe_has_recurring_schedule(array $p):bool {
+    if(($p['kind']??'')!=='cafe')return false;
+    return match($p['shop_type']??''){
+        'recurring_program','recurring_popup','public_recurring','community_program'=>true,
+        'facility_cafe','community_space'=>($p['status']??'')==='active_recurring',
+        default=>false,
+    };
+}
+
+function cafe_schedule_day(array $p,?DateTimeImmutable $today=null):string {
+    $zone=($p['country_code']??'JP')==='JP'?'Asia/Tokyo':($p['timezone']??'');
+    $today??=new DateTimeImmutable('today',new DateTimeZone(in_array($zone,DateTimeZone::listIdentifiers(),true)?$zone:'Asia/Tokyo'));
+    return $today->format('Y-m-d');
 }
 
 function cafe_public_schedule(array $p,?DateTimeImmutable $today=null):array {
-    if(($p['kind']??'')!=='cafe' || !in_array($p['shop_type']??'',['recurring_program','recurring_popup','public_recurring','community_program','community_space','facility_cafe'],true))return $p;
-    if(in_array($p['shop_type'],['facility_cafe','community_space'],true)&&($p['status']??'')!=='active_recurring')return $p;
-    $zone=($p['country_code']??'JP')==='JP'?'Asia/Tokyo':($p['timezone']??'');
-    $today??=new DateTimeImmutable('today',new DateTimeZone(in_array($zone,DateTimeZone::listIdentifiers(),true)?$zone:'Asia/Tokyo'));
-    $day=$today->format('Y-m-d');
+    if(!cafe_has_recurring_schedule($p))return $p;
+    $day=cafe_schedule_day($p,$today);
     $originalSchedule=(string)($p['event_schedule']??'');
     [$schedule,$dated,$upcoming]=cafe_filter_schedule($originalSchedule,$day);
     preg_match('/20\d{2}年|20\d{2}(?=-\d{2}-\d{2})/u',$originalSchedule,$yearMatch);
