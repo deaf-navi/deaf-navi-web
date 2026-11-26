@@ -46,6 +46,15 @@ try {
             if($annual&&in_array($result,['unavailable','needs_review'],true))fail('Unverified research cannot finish an annual review');
             $checks[$id]=['result'=>$result,'next_event_on'=>$next?:null,'next_check_on'=>$nextCheck,'evidence_urls'=>$evidence,'notes'=>$notes,'annual_review'=>$annual];
         }
+        $allowsOccurrence=static function(array $entry) use (&$records):bool {
+            if($entry['series_kind']==='oneoff')return true;
+            $parent=$records[$entry['listing_id']??'']??null;
+            if($entry['series_kind']!=='recurring'||$entry['state']!=='watching'||!$parent)return false;
+            $listing=expanded($parent);
+            return $listing['kind']==='cafe'&&publicly_visible($listing)
+                &&in_array($listing['shop_type']??'',['recurring_program','recurring_popup','public_recurring','community_program'],true)
+                &&$listing['country_code']===$entry['country_code'];
+        };
         $upserts=[];$summaryRecords=[];$links=$m['links'];
         foreach($preparedSeries as $sid=>$s)if($s['state']==='ended'&&($checks[$sid]['result']??'')!=='updated')fail('Ending a series requires verified research');
         foreach($m['upserts'] as $item){
@@ -63,7 +72,7 @@ try {
             if($p['last_verified_at']!==$day||!array_intersect($p['verification_sources'],$checks[$sid]['evidence_urls']))fail('Dated source evidence must support a listing update');
             if($p['country_code']!==$series[$sid]['country_code'])fail('Listing country mismatch');
             if(($p['shop_type']??'')==='event'){
-                if($series[$sid]['series_kind']!=='oneoff'||empty($p['activity_date']))fail('A dated one-off series is required');
+                if(!$allowsOccurrence($series[$sid])||empty($p['activity_date']))fail('A dated event requires an eligible series');
                 if(isset($p['event_reported'])&&!is_bool($p['event_reported']))fail('Held-report flag must be boolean');
                 if(!$old)foreach($records as $other){$op=isset($other['payload'])&&is_string($other['payload'])?expanded($other):$other;$od=$op['kind']==='event'?($op['event_date']??''):($op['activity_date']??'');if($op['publication']==='deleted'||cafe_listing_group($op)!=='events'||$od!==$p['activity_date']||$op['country_code']!==$p['country_code']||$op['prefecture']!==$p['prefecture']||$op['city']!==$p['city'])continue;$sameName=normalized($op['name'])===normalized($p['name']);$sameVenue=!empty($p['venue_name'])&&normalized($p['venue_name'])===normalized($op['venue_name']??'');if($sameName||($sameVenue&&!cafe_distinct_event_reviewed($p,$op,$item,$m['source_reviews'])))fail('Existing event on the same date and location; update its record instead');}
                 $links[]=['series_id'=>$sid,'record_id'=>$id,'slot'=>$item['slot']??'default'];
@@ -81,11 +90,12 @@ try {
         $oldLinks=query('SELECT * FROM cafe_event_occurrences ORDER BY record_id')->fetchAll();$occurrences=array_column($oldLinks,null,'record_id');$preparedLinks=[];$keys=[];
         foreach($links as $link){
             $sid=cafe_registry_id($link['series_id']??null);$rid=cafe_registry_id($link['record_id']??null);
-            if(!isset($series[$sid],$records[$rid])||$series[$sid]['series_kind']!=='oneoff')fail('Invalid occurrence link');
+            if(!isset($series[$sid],$records[$rid])||!$allowsOccurrence($series[$sid]))fail('Invalid occurrence link');
             $r=$records[$rid];$p=isset($r['payload'])&&is_string($r['payload'])?expanded($r):$r;
             if(!publicly_visible($p)||cafe_listing_group($p)!=='events')fail('Only visible event records may be linked');
             if(isset($occurrences[$rid])&&$occurrences[$rid]['series_id']!==$sid)fail('Occurrence belongs to another series');
             $date=($p['kind']==='event'?$p['event_date']??'':$p['activity_date']??'');
+            if($series[$sid]['series_kind']==='recurring'&&(!$date||$p['country_code']!==$series[$sid]['country_code']))fail('A recurring occurrence requires a date and matching country');
             $slot=cafe_registry_id($link['slot']??'default');$key=$date?$date.'/'.$slot:'undated/'.$rid;
             if(isset($keys[$sid.'|'.$key])&&$keys[$sid.'|'.$key]!==$rid)fail('Duplicate dated occurrence');$keys[$sid.'|'.$key]=$rid;
             foreach($oldLinks as $o)if($o['series_id']===$sid&&$o['occurrence_key']===$key&&$o['record_id']!==$rid)fail('Duplicate dated occurrence');
@@ -112,6 +122,9 @@ try {
                 if(!$state||$state['content_mode']!=='html'||!in_array($state['result'],['baseline','unchanged','changed'],true)||!preg_match('/^[a-f0-9]{64}$/D',$fingerprint??'')||!hash_equals($state['fingerprint']??'',$fingerprint)||strtotime($state['last_attempt_at'])>$at||$at-strtotime($state['last_attempt_at'])>=CAFE_EVENT_FRESH_SECONDS)fail('HTML review requires the fetched fingerprint actually reviewed');
             }elseif($fingerprint!==null)fail('Visual reviews cannot approve automatic content renewal');
             $sourceReviews[$rid]=['record_revision'=>$revision+(isset($upserts[$rid])?1:0),'url'=>$url,'mode'=>$reviewMode,'fingerprint'=>$fingerprint,'reviewed_at'=>gmdate('c',$at)];
+        }
+        foreach($preparedLinks as $rid=>$occurrence){
+            if($series[$occurrence['series_id']]['series_kind']==='recurring'&&!isset($sourceReviews[$rid]))fail('A recurring occurrence requires a current source review');
         }
         $registrySnapshot=[];foreach(['cafe_event_research_checks','cafe_event_curation_runs','cafe_event_source_checks','cafe_event_source_runs','cafe_event_source_state','cafe_event_source_reviews'] as $t)$registrySnapshot[$t]=query('SELECT * FROM '.$t.' ORDER BY 1,2')->fetchAll();
         $plan=hash('sha256',json([$hash,$before,$protected,$oldSeries,$oldLinks,$registrySnapshot,$preparedSeries,$checks,$upserts,$preparedLinks,$sourceReviews]));
