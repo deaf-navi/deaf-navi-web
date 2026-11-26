@@ -1,31 +1,40 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-26T03:29:46.097Z",
+  "generatedAt": "2026-11-26T18:58:00.521Z",
   "counts": {
-    "uniqueInputs": 2744,
-    "alreadyPublished": 921,
-    "outsideWindow": 1442,
-    "hardExcluded": 10,
-    "duplicateOfPublished": 109,
-    "candidateDuplicates": 9,
-    "eligible": 253,
+    "uniqueInputs": 2699,
+    "alreadyPublished": 778,
+    "outsideWindow": 1640,
+    "hardExcluded": 6,
+    "duplicateOfPublished": 65,
+    "candidateDuplicates": 11,
+    "eligible": 199,
     "queued": 40,
-    "deferred": 213
+    "deferred": 159
   },
   "hardExclusionReasons": {
-    "low-value-page": 5,
     "incidental-organization-mention": 1,
-    "market-report": 4
+    "low-value-page": 5
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-26T00:34:11.067Z",
+    "previousGeneratedAt": "2026-11-26T03:29:46.097Z",
     "previousQueued": 40,
-    "retained": 40,
-    "new": 0,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 40
+    "unchanged": 39
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/26/144601",
+      "articleHash": "d5157a984eeb0689b8c083630f217296c3ddee8cc7ca6e11f5e1010ceaf48ea2",
+      "publishedAt": "2026-11-26T05:46:01.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/25/170538",
       "articleHash": "8eae57ca85d0eddb6f43129cc1f83befb28edec51c635de6d7f7eb4b8aebeb11",
@@ -34,16 +43,6 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
-      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
-      "publishedAt": "2026-11-16T01:17:09.000Z",
-      "sourceTier": "specialist",
-      "sourceDomain": "www.zentsuken.net",
-      "priority": 0,
-      "reason": "below-score",
       "feedChange": "unchanged"
     },
     {
