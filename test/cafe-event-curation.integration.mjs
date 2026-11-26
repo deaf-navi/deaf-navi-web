@@ -100,6 +100,48 @@ ok(afterSeparate.records.length===beforeSeparateObject.records.length+1,'one rev
 for(const row of beforeSeparateObject.records)ok(JSON.stringify(afterSeparate.records.find(x=>x.id===row.id))===JSON.stringify(row),'distinct session preserves original '+row.id);
 for(const table of ['users','settings','submissions','outbox'])ok(JSON.stringify(afterSeparate[table])===JSON.stringify(beforeSeparateObject[table]),'distinct session protects '+table);
 const finalSeparate=snap();r=batch(separate,'--apply',separatePlan.plan_sha256);ok(r.status===0&&JSON.parse(r.stdout).result==='ALREADY_APPLIED'&&snap()===finalSeparate,'distinct session remains idempotent');
+const recurringId='fixture-recurring-series';
+const parentId='curation-recurring-parent';
+const occurrenceId='curation-recurring-december';
+const seriesData={title:'定期手話カフェ fixture',country_code:'JP',prefecture:'大阪府',city:'吹田市',
+ series_kind:'recurring',state:'watching',source_urls:['https://example.net/recurring-cafe'],next_check_on:day,annual_review_due_on:day};
+const recurringCheck={series_id:recurringId,expected_revision:0,result:'updated',evidence_urls:['https://example.net/recurring-cafe'],next_check_on:day};
+const parentManifest={version:1,batch:'fixture-recurring-parent',checked_on:day,
+ series:[{id:recurringId,expected_revision:0,data:seriesData}],checks:[recurringCheck],
+ upserts:[{id:parentId,series_id:recurringId,expected_revision:0,data:{...fixture,slug:parentId,
+  name:'定期手話カフェ fixture',instagram_url:'',official_url:'https://example.net/recurring-cafe',verification_sources:['https://example.net/recurring-cafe'],address:'定期手話交流の別会場',venue_name:'定期手話交流の別会場',venue_address:'定期手話交流の別会場',shop_type:'recurring_program',activity_date:'',status:'active_recurring'}}]};
+r=batch(parentManifest);assert.equal(r.status,0,r.stderr);
+r=batch(parentManifest,'--apply',JSON.parse(r.stdout).plan_sha256);assert.equal(r.status,0,r.stderr);
+const parentBefore=sql("echo json(record('curation-recurring-parent'));");
+const readRecurring=()=>JSON.parse(sql('echo json(cafe_registry_export());')).series.find(entry=>entry.id===recurringId);
+const revision=readRecurring().revision;
+const dated={version:1,batch:'fixture-recurring-dated',checked_on:day,
+ checks:[{...recurringCheck,expected_revision:revision}],
+ upserts:[{id:occurrenceId,series_id:recurringId,expected_revision:0,data:{...fixture,slug:occurrenceId,
+  name:'定期手話カフェ fixture 12月',official_url:'https://example.net/recurring-cafe',verification_sources:['https://example.net/recurring-cafe'],activity_date:'2099-12-11'}}],
+ source_reviews:[{record_id:occurrenceId,expected_revision:0,url:'https://example.net/recurring-cafe',mode:'visual',reviewed_at:new Date().toISOString()}]};
+const beforeDated=snap();
+r=batch({...dated,source_reviews:[]});
+ok(r.status!==0&&snap()===beforeDated,'recurring dates require fresh evidence');
+r=batch(dated);assert.equal(r.status,0,r.stderr);ok(snap()===beforeDated,'recurring occurrence dry run is read only');
+r=batch(dated,'--apply',JSON.parse(r.stdout).plan_sha256);assert.equal(r.status,0,r.stderr);
+ok(sql("echo json(record('curation-recurring-parent'));")===parentBefore,'the parent listing is unchanged');
+const linked=readRecurring().occurrences.find(entry=>entry.record_id===occurrenceId);
+assert.equal(linked?.series_id,recurringId);
+assert.equal(linked?.event_date,'2099-12-11');
+const duplicate=structuredClone(dated);
+duplicate.batch='fixture-repeat-recurring-date';
+duplicate.checks[0].expected_revision=readRecurring().revision;
+duplicate.upserts[0].id='curation-recurring-duplicate';
+duplicate.upserts[0].data={...duplicate.upserts[0].data,slug:'curation-recurring-duplicate',name:'別名',venue_name:'別会場'};
+duplicate.source_reviews[0].record_id='curation-recurring-duplicate';
+const afterDated=snap();
+r=batch(duplicate);ok(r.status!==0&&snap()===afterDated,'recurring series and dated slot cannot be duplicated');
+const noParent={...dated,batch:'fixture-recurring-without-listing',
+ series:[{id:'fixture-no-parent',expected_revision:0,data:seriesData}],
+ checks:[{...recurringCheck,series_id:'fixture-no-parent'}],
+ upserts:[{...duplicate.upserts[0],series_id:'fixture-no-parent'}],source_reviews:duplicate.source_reviews};
+r=batch(noParent);ok(r.status!==0&&snap()===afterDated,'unlinked recurring series cannot publish dates');
 sql("query('UPDATE users SET must_change=0');");
 const server=spawn('php',['-S','127.0.0.1:5232','-t','docs','server/local-router.php'],{cwd:root,env,stdio:['ignore','ignore','pipe']});let logs='';server.stderr.on('data',b=>logs+=b);let cookie='';
 const request=async(path,data)=>{const r=await fetch('http://127.0.0.1:5232'+path,{method:data?'POST':'GET',redirect:'manual',headers:{cookie,...(data?{'Content-Type':'application/x-www-form-urlencoded'}:{})},body:data?new URLSearchParams(data):undefined});for(const c of r.headers.getSetCookie())if(c.startsWith('deafnavi_directory='))cookie=c.split(';')[0];return {status:r.status,text:await r.text()};};
