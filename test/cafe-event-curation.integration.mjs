@@ -109,7 +109,7 @@ const recurringCheck={series_id:recurringId,expected_revision:0,result:'updated'
 const parentManifest={version:1,batch:'fixture-recurring-parent',checked_on:day,
  series:[{id:recurringId,expected_revision:0,data:seriesData}],checks:[recurringCheck],
  upserts:[{id:parentId,series_id:recurringId,expected_revision:0,data:{...fixture,slug:parentId,
-  name:'定期手話カフェ fixture',official_url:'https://example.net/recurring-cafe',verification_sources:['https://example.net/recurring-cafe'],address:'定期手話交流の別会場',venue_name:'定期手話交流の別会場',venue_address:'定期手話交流の別会場',shop_type:'recurring_program',activity_date:'',status:'active_recurring'}}]};
+  name:'定期手話カフェ fixture',instagram_url:'',official_url:'https://example.net/recurring-cafe',verification_sources:['https://example.net/recurring-cafe'],address:'定期手話交流の別会場',venue_name:'定期手話交流の別会場',venue_address:'定期手話交流の別会場',shop_type:'recurring_program',activity_date:'',status:'active_recurring'}}]};
 r=batch(parentManifest);assert.equal(r.status,0,r.stderr);
 r=batch(parentManifest,'--apply',JSON.parse(r.stdout).plan_sha256);assert.equal(r.status,0,r.stderr);
 const parentBefore=sql("echo json(record('curation-recurring-parent'));");
