@@ -104,12 +104,12 @@ const recurringId='fixture-recurring-series';
 const parentId='curation-recurring-parent';
 const occurrenceId='curation-recurring-december';
 const seriesData={title:'定期手話カフェ fixture',country_code:'JP',prefecture:'大阪府',city:'吹田市',
- series_kind:'recurring',state:'watching',source_urls:['https://example.org/event'],next_check_on:day,annual_review_due_on:day};
-const recurringCheck={series_id:recurringId,expected_revision:0,result:'updated',evidence_urls:['https://example.org/event'],next_check_on:day};
+ series_kind:'recurring',state:'watching',source_urls:['https://example.net/recurring-cafe'],next_check_on:day,annual_review_due_on:day};
+const recurringCheck={series_id:recurringId,expected_revision:0,result:'updated',evidence_urls:['https://example.net/recurring-cafe'],next_check_on:day};
 const parentManifest={version:1,batch:'fixture-recurring-parent',checked_on:day,
  series:[{id:recurringId,expected_revision:0,data:seriesData}],checks:[recurringCheck],
  upserts:[{id:parentId,series_id:recurringId,expected_revision:0,data:{...fixture,slug:parentId,
-  name:'定期手話カフェ fixture',shop_type:'recurring_program',activity_date:'',status:'active_recurring'}}]};
+  name:'定期手話カフェ fixture',official_url:'https://example.net/recurring-cafe',verification_sources:['https://example.net/recurring-cafe'],address:'定期手話交流の別会場',venue_name:'定期手話交流の別会場',venue_address:'定期手話交流の別会場',shop_type:'recurring_program',activity_date:'',status:'active_recurring'}}]};
 r=batch(parentManifest);assert.equal(r.status,0,r.stderr);
 r=batch(parentManifest,'--apply',JSON.parse(r.stdout).plan_sha256);assert.equal(r.status,0,r.stderr);
 const parentBefore=sql("echo json(record('curation-recurring-parent'));");
@@ -118,8 +118,8 @@ const revision=readRecurring().revision;
 const dated={version:1,batch:'fixture-recurring-dated',checked_on:day,
  checks:[{...recurringCheck,expected_revision:revision}],
  upserts:[{id:occurrenceId,series_id:recurringId,expected_revision:0,data:{...fixture,slug:occurrenceId,
-  name:'定期手話カフェ fixture 12月',activity_date:'2099-12-11'}}],
- source_reviews:[{record_id:occurrenceId,expected_revision:0,url:'https://example.org/event',mode:'visual',reviewed_at:new Date().toISOString()}]};
+  name:'定期手話カフェ fixture 12月',official_url:'https://example.net/recurring-cafe',verification_sources:['https://example.net/recurring-cafe'],activity_date:'2099-12-11'}}],
+ source_reviews:[{record_id:occurrenceId,expected_revision:0,url:'https://example.net/recurring-cafe',mode:'visual',reviewed_at:new Date().toISOString()}]};
 const beforeDated=snap();
 r=batch({...dated,source_reviews:[]});
 ok(r.status!==0&&snap()===beforeDated,'recurring dates require fresh evidence');
