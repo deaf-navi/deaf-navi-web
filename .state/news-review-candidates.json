@@ -1,28 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-25T19:09:24.298Z",
+  "generatedAt": "2026-11-26T00:22:44.014Z",
   "counts": {
-    "uniqueInputs": 2735,
-    "alreadyPublished": 869,
-    "outsideWindow": 1579,
-    "hardExcluded": 3,
-    "duplicateOfPublished": 53,
-    "candidateDuplicates": 2,
-    "eligible": 229,
+    "uniqueInputs": 2848,
+    "alreadyPublished": 939,
+    "outsideWindow": 1562,
+    "hardExcluded": 13,
+    "duplicateOfPublished": 98,
+    "candidateDuplicates": 9,
+    "eligible": 227,
     "queued": 40,
-    "deferred": 189
+    "deferred": 187
   },
   "hardExclusionReasons": {
     "unrelated-visual-section": 1,
-    "low-value-page": 2
+    "low-value-page": 7,
+    "incidental-organization-mention": 1,
+    "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-25T04:06:19.149Z",
+    "previousGeneratedAt": "2026-11-25T19:09:24.298Z",
     "previousQueued": 40,
-    "retained": 37,
-    "new": 3,
+    "retained": 40,
+    "new": 0,
     "changed": 0,
-    "unchanged": 37
+    "unchanged": 40
   },
   "candidates": [
     {
@@ -33,7 +35,7 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
@@ -43,7 +45,7 @@
       "sourceDomain": "www.zentsuken.net",
       "priority": 0,
       "reason": "below-score",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/19/155423",
@@ -233,7 +235,7 @@
       "sourceDomain": "palabra-i.co.jp",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://co-coco.jp/series/nursing/junseien/",
