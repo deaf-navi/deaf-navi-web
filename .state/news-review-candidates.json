@@ -1,30 +1,41 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-27T03:37:10.289Z",
+  "generatedAt": "2026-11-27T18:52:00.934Z",
   "counts": {
-    "uniqueInputs": 2715,
-    "alreadyPublished": 937,
-    "outsideWindow": 1464,
-    "hardExcluded": 5,
-    "duplicateOfPublished": 86,
-    "candidateDuplicates": 4,
-    "eligible": 219,
+    "uniqueInputs": 2864,
+    "alreadyPublished": 924,
+    "outsideWindow": 1611,
+    "hardExcluded": 10,
+    "duplicateOfPublished": 95,
+    "candidateDuplicates": 10,
+    "eligible": 214,
     "queued": 40,
-    "deferred": 179
+    "deferred": 174
   },
   "hardExclusionReasons": {
-    "low-value-page": 1,
-    "market-report": 4
+    "incidental-organization-mention": 1,
+    "foreign-coverage-review-required": 1,
+    "low-value-page": 8
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-27T00:16:21.180Z",
+    "previousGeneratedAt": "2026-11-27T03:37:10.289Z",
     "previousQueued": 40,
-    "retained": 38,
-    "new": 2,
+    "retained": 37,
+    "new": 3,
     "changed": 0,
-    "unchanged": 38
+    "unchanged": 37
   },
   "candidates": [
+    {
+      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/27/144127",
+      "articleHash": "edf5aae6aebfe2c0b28887786339c28e5c2c09d329043210af704134cbed1895",
+      "publishedAt": "2026-11-27T05:41:27.000Z",
+      "sourceTier": "official",
+      "sourceDomain": "www.mimisuppo-miyagi.org",
+      "priority": 0,
+      "reason": "source-topic-unconfirmed",
+      "feedChange": "new"
+    },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/26/144601",
       "articleHash": "d5157a984eeb0689b8c083630f217296c3ddee8cc7ca6e11f5e1010ceaf48ea2",
@@ -34,16 +45,6 @@
       "priority": 0,
       "reason": "source-topic-unconfirmed",
       "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
-      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
-      "publishedAt": "2026-11-16T01:17:09.000Z",
-      "sourceTier": "specialist",
-      "sourceDomain": "www.zentsuken.net",
-      "priority": 0,
-      "reason": "below-score",
-      "feedChange": "new"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/25/170538",
@@ -226,19 +227,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/10/21/175236",
-      "articleHash": "e77f578aa954fdaba58d55642168cdb73f66c9976860126b35cebf6f1a561fa8",
-      "publishedAt": "2026-10-21T08:52:36.000Z",
-      "sourceTier": "official",
-      "sourceDomain": "www.mimisuppo-miyagi.org",
-      "priority": 0,
-      "reason": "source-topic-unconfirmed",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/baranokusari/",
-      "articleHash": "705ae091e588f00d447d686a7a78b78e0d06e2925034060ee6f51810c90f4f2d",
-      "publishedAt": "2026-11-27T01:00:36.000Z",
+      "sourceUrl": "https://udcast.net/workslist/sleep-no-more/",
+      "articleHash": "ac1f07df101e7846af42ed8c7ff3fd433f23326aa670c6786d3d664e51610453",
+      "publishedAt": "2026-11-27T07:37:55.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -266,19 +257,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://note.com/psy_article/n/n008022d39951",
-      "articleHash": "c07f4d1481defa2b8994a02b4f6f968736d0f818fef6e1d11e775cfa20bb4293",
-      "publishedAt": "2026-05-31T14:40:03.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "note.com",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://udcast.net/workslist/mahoyo/",
-      "articleHash": "0fa9ef8850e2d55c54c95971247bf59908670f3d20dd0fc995ecd7e7581c9713",
-      "publishedAt": "2026-11-24T05:29:40.000Z",
+      "sourceUrl": "https://udcast.net/workslist/baranokusari/",
+      "articleHash": "705ae091e588f00d447d686a7a78b78e0d06e2925034060ee6f51810c90f4f2d",
+      "publishedAt": "2026-11-27T01:00:36.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -306,9 +287,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/votomsgh1/",
-      "articleHash": "1708f0f02670de2fa5978eed12f6ca638bbb16bb603a5bf67ac171f5d4b0572c",
-      "publishedAt": "2026-11-24T04:55:53.000Z",
+      "sourceUrl": "https://udcast.net/workslist/mahoyo/",
+      "articleHash": "0fa9ef8850e2d55c54c95971247bf59908670f3d20dd0fc995ecd7e7581c9713",
+      "publishedAt": "2026-11-24T05:29:40.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -336,9 +317,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/gojigen21/",
-      "articleHash": "669093fbd6171cf0b0f0adb97e01cbd128ab6e5333a11cfe1bd4d5f4f45ed4fe",
-      "publishedAt": "2026-11-20T12:58:10.000Z",
+      "sourceUrl": "https://udcast.net/workslist/votomsgh1/",
+      "articleHash": "1708f0f02670de2fa5978eed12f6ca638bbb16bb603a5bf67ac171f5d4b0572c",
+      "publishedAt": "2026-11-24T04:55:53.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -366,9 +347,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/rakuen-tsuiho-r/",
-      "articleHash": "0cb61963b3f434cd80d728d946f52cb26662425db684670658afadf53b288a61",
-      "publishedAt": "2026-11-20T05:06:30.000Z",
+      "sourceUrl": "https://udcast.net/workslist/gojigen21/",
+      "articleHash": "669093fbd6171cf0b0f0adb97e01cbd128ab6e5333a11cfe1bd4d5f4f45ed4fe",
+      "publishedAt": "2026-11-20T12:58:10.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -386,9 +367,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/kusuriyanohitorigoto/",
-      "articleHash": "dfc398dff9def4b0acd77ee62acb09f1502096afa2012701979ca60569e68108",
-      "publishedAt": "2026-11-20T04:53:13.000Z",
+      "sourceUrl": "https://udcast.net/workslist/rakuen-tsuiho-r/",
+      "articleHash": "0cb61963b3f434cd80d728d946f52cb26662425db684670658afadf53b288a61",
+      "publishedAt": "2026-11-20T05:06:30.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -406,9 +387,9 @@
       "feedChange": "unchanged"
     },
     {
-      "sourceUrl": "https://udcast.net/workslist/aitottoriforum27/",
-      "articleHash": "2518b9d1cf1f6b660c3b6124371be8998fde6486002e5d74749f02f4bbc66b3e",
-      "publishedAt": "2026-11-16T03:34:37.000Z",
+      "sourceUrl": "https://udcast.net/workslist/kusuriyanohitorigoto/",
+      "articleHash": "dfc398dff9def4b0acd77ee62acb09f1502096afa2012701979ca60569e68108",
+      "publishedAt": "2026-11-20T04:53:13.000Z",
       "sourceTier": "broad",
       "sourceDomain": "udcast.net",
       "priority": 1,
@@ -424,6 +405,26 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/aitottoriforum27/",
+      "articleHash": "2518b9d1cf1f6b660c3b6124371be8998fde6486002e5d74749f02f4bbc66b3e",
+      "publishedAt": "2026-11-16T03:34:37.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
+      "articleHash": "8559c4728ef1fbdbd00e3d86117ab8e8fefa2ac0f8c47458964c0b1ade638887",
+      "publishedAt": "2026-11-04T07:30:26.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
