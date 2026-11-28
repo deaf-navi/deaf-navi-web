@@ -1679,10 +1679,10 @@
       "visualEvidenceUrl": "https://www.instagram.com/yubitopia/p/DeH1Uy7BhJU/",
       "thumbnailPolicy": "omit",
       "thumbnailReviewNote": "公式告知画像は目視確認のみ。転載しない。",
-      "reviewNote": "公式共同投稿の本文・画像を実読し、11月29日17〜22時、ブルームーン、1,500円・1ドリンク、定員40人、申込不要を照合。主催者の新しい告知も確認。",
-      "verifiedAt": "2026-11-25T00:07:36.125Z",
+      "reviewNote": "公式共同投稿の本文・画像を実読し、11月29日17〜22時、ブルームーン、1,500円・1ドリンク、定員40人、申込不要を照合。主催者の新しい告知も確認。 11月28日に公式共同投稿本文・画像と関連する新しい告知を再確認。",
+      "verifiedAt": "2026-11-28T00:03:00.015Z",
       "evidenceHash": "71d5f0b397d35dd9a1d3f674925d218ba0a8dc37b652c29a9e62ff4149167216",
-      "verification": "needs_review"
+      "verification": "verified"
     },
     {
       "endDate": "2026-11-30",
@@ -2370,6 +2370,37 @@
       "verification": "verified"
     },
     {
+      "id": "ukiha-human-rights-festa-2026-12-06",
+      "kind": "culture",
+      "title": "2026年度 うきは市人権フェスティバル",
+      "prefecture": "福岡県",
+      "startDate": "2026-12-06",
+      "time": "12:30〜16:20（予定。講演13:00〜14:40）",
+      "venue": "タカトリグループホールディングス白壁ホール（うきは市吉井町1001-4）",
+      "organizer": "うきは市人権フェスティバル実行委員会",
+      "fee": "入場無料",
+      "target": "託児のみ11月27日までに事前申込。チラシは記入した受付表の持参を案内しています。",
+      "description": "作家のドリアン助川さんの講演、市内の児童・生徒による発表、展示やバザーが予定されています。",
+      "sourceName": "うきは市の開催案内",
+      "sourceUrl": "https://www.city.ukiha.fukuoka.jp/kiji0038781/index.html",
+      "visualEvidenceUrl": "https://www.city.ukiha.fukuoka.jp/kiji0038781/3_8781_up_ekytbbt1.pdf",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "手話通訳あり。講演・ステージなど各場面の対応範囲は主催者にご確認ください。"
+        }
+      ],
+      "reviewNote": "11月25日更新の市本文と公式チラシ表裏を確認。終了時刻は市本文の予定を採用。11月27日は託児の締切。",
+      "endDate": "2026-12-06",
+      "detailUrl": "https://www.city.ukiha.fukuoka.jp/kiji0038781/index.html",
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verificationMode": "visual",
+      "verifiedAt": "2026-11-28T00:08:22.7077326Z",
+      "evidenceHash": "25fc060b3576223a40d7d852e1d413a67449f715c47d29f6697bda6502b21e5d",
+      "verification": "verified"
+    },
+    {
       "id": "yamagata-water-preparedness-sign-2026-12-06",
       "title": "手話通訳付き講演「山形市上下水道部の災害対応とご家庭で出来る水の備え」",
       "prefecture": "山形県",
@@ -2472,6 +2503,43 @@
       "verification": "verified"
     },
     {
+      "id": "kyoto-kamigyo-white-hand-chorus-2026-12-10",
+      "kind": "culture",
+      "title": "音楽を通じて響きあう心 in 京都｜映画上映と手歌ワークショップ",
+      "prefecture": "京都府",
+      "startDate": "2026-12-10",
+      "time": "13:30〜16:00（受付13:00）",
+      "venue": "同志社大学 寒梅館 地下1階 ハーディーホール（京都市上京区御所八幡町103）",
+      "organizer": "京都市上京区役所、上京区社会福祉協議会",
+      "fee": "無料",
+      "target": "申込不要、先着840名。",
+      "description": "第1部はホワイトハンドコーラスNIPPONのドキュメンタリー上映。第2部は京都メンバーの舞台挨拶と手歌ワークショップで、主催者はパソコン通訳も案内しています。",
+      "sourceName": "京都市上京区役所の開催案内",
+      "sourceUrl": "https://www.city.kyoto.lg.jp/kamigyo/page/0000357865.html",
+      "corroboratingUrls": [
+        "https://artespublishing.com/news/20261210_kamigyo_whcn/"
+      ],
+      "communication": [
+        {
+          "method": "captions",
+          "detail": "第1部の映画上映に日本語字幕が付きます。"
+        },
+        {
+          "method": "interpretation",
+          "detail": "第2部の舞台挨拶・手歌ワークショップに手話通訳が付きます。"
+        }
+      ],
+      "reviewNote": "主催者の本文と11月23日の映画側の告知が一致。8月時点の協力団体の予定時刻は採用しない。",
+      "endDate": "2026-12-10",
+      "detailUrl": "https://www.city.kyoto.lg.jp/kamigyo/page/0000357865.html",
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verificationMode": "html",
+      "verifiedAt": "2026-11-28T00:09:23.296Z",
+      "evidenceHash": "c262e0fa4324a1094a85255b4427593c2189eefe72d0b6b124725dcbce8ef2e3",
+      "verification": "verified"
+    },
+    {
       "endDate": "2026-12-10",
       "status": "announced",
       "thumbnailPolicy": "omit",
@@ -2570,6 +2638,39 @@
       "verification": "verified"
     },
     {
+      "id": "matsue-citizen-sign-class-2026-12-12",
+      "kind": "course",
+      "title": "松江市 市民向け手話教室",
+      "prefecture": "島根県",
+      "startDate": "2026-12-12",
+      "time": "10:00〜11:30",
+      "venue": "松江市市民活動センターSTIC 202研修室",
+      "organizer": "松江市",
+      "fee": "無料",
+      "target": "中学生以上。定員25名、先着で定員に達し次第終了。12月4日（金）17:00までに公式ページの電子申請またはメールで申込。",
+      "applicationDeadline": "2026-12-04",
+      "deadlineScope": "participation",
+      "description": "ろう講師から、あいさつなど日常会話に使う手話を学ぶ教室です。",
+      "sourceName": "松江市の開催案内",
+      "sourceUrl": "https://www.city.matsue.lg.jp/kenko_fukushi/shogaishafukushi/goannai_oshirase/24265.html",
+      "visualEvidenceUrl": "https://www.city.matsue.lg.jp/material/images/group/44/syuwakyousitu.png",
+      "communication": [
+        {
+          "method": "sign",
+          "detail": "ろう講師が手話を教えます。"
+        }
+      ],
+      "reviewNote": "市の告知本文、チラシ画像と電子申請の公開フォームを確認。残席は未確認。",
+      "endDate": "2026-12-12",
+      "detailUrl": "https://www.city.matsue.lg.jp/kenko_fukushi/shogaishafukushi/goannai_oshirase/24265.html",
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verificationMode": "visual",
+      "verifiedAt": "2026-11-28T00:08:22.7077326Z",
+      "evidenceHash": "a4ecdfb8609728d09b8be2d4caf8fc048f0b0dc44cef65283c92d820213d55c1",
+      "verification": "verified"
+    },
+    {
       "id": "oioi-b7beb1ed211ba5722155",
       "title": "大阪府立中央図書館 バリアフリーイベント ～手話とバリアフリー映画会を楽しむ～",
       "startDate": "2026-12-12",
@@ -2584,16 +2685,45 @@
       "organizer": "大阪府立中央図書館 指定管理者 長谷工・大阪共立・TRCグループ",
       "time": "13:30〜16:20（開場13:00）",
       "fee": "無料",
-      "target": "どなたでも参加できます。定員70名、事前申込・先着順。小学2年生以下は保護者同伴。公式案内のQRコードから申込。配慮が必要な方は11月29日（日）までに主催者へ連絡。最新の残席は主催者の案内をご確認ください。",
+      "target": "どなたでも参加できます。定員70名、無料、事前申込・先着。小学2年生以下は保護者同伴。専用フォーム・来館・往復はがき・FAXで申込。要約筆記・手話通訳・ヒアリングループなどの配慮を希望する方は11月29日（日）までに主催者へ連絡してください。",
       "status": "announced",
-      "description": "手話パフォーマンスと字幕・音声ガイド付き映画会を楽しむ催し。受付・司会進行に手話通訳があります。",
+      "description": "oioiによる手話パフォーマンスと、「映画 すみっコぐらし ツギハギ工場のふしぎなコ」のバリアフリー上映会。上映は15:10〜16:20です。",
       "verificationMode": "visual",
-      "visualEvidenceUrl": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_20261212.png",
-      "reviewNote": "11月13日に主催者の公式一覧で抽出済みの当該開催回に対応する公式告知画像を実読。開催年・月日・各会場・各時刻・料金/対象を照合。申込可否や残席を推測しない。画像やSNS原文のAPI共有なし。既存ID/URLを保持。 11月15日に当該開催回の公式本文と根拠の告知画像/PDF/申込画面を実読し、日時・会場・対象・費用・申込/締切・受付・情報保障を照合。SNS対象は主催者の最新告知も確認。未知の条件や残席は補完せず、SNS原文/画像のAPI共有・転載なし。 11月17日に当該開催回の現行公式本文と必要な告知画像/PDF/申込画面を実読。日時・会場・対象・料金・受付/締切・情報保障を照合。未知条件を補完せず、SNS原文/画像のAPI共有と画像転載なし。実読時刻とHTTP取得時刻は別記録。",
+      "visualEvidenceUrl": "https://www.library.pref.osaka.jp/contents/wp-content/uploads/20261212barrierfree-event.pdf",
+      "reviewNote": "11月13日に主催者の公式一覧で抽出済みの当該開催回に対応する公式告知画像を実読。開催年・月日・各会場・各時刻・料金/対象を照合。申込可否や残席を推測しない。画像やSNS原文のAPI共有なし。既存ID/URLを保持。 11月15日に当該開催回の公式本文と根拠の告知画像/PDF/申込画面を実読し、日時・会場・対象・費用・申込/締切・受付・情報保障を照合。SNS対象は主催者の最新告知も確認。未知の条件や残席は補完せず、SNS原文/画像のAPI共有・転載なし。 11月17日に当該開催回の現行公式本文と必要な告知画像/PDF/申込画面を実読。日時・会場・対象・料金・受付/締切・情報保障を照合。未知条件を補完せず、SNS原文/画像のAPI共有と画像転載なし。実読時刻とHTTP取得時刻は別記録。 11月28日、図書館の公式本文、チラシ表裏、指定管理者の案内、公開申込フォームを照合。11月29日は配慮の相談期限。元の開催IDと出典URLを保持。",
       "htmlEvidenceHash": "3e4a22ba084102eafb485e4914a98c1a4d99bb3c306fedcef75aff028a0bc7e3",
-      "verifiedAt": "2026-11-17T00:16:00Z",
-      "evidenceHash": "c5fbca254e2799ae63384c64a18484e3d8f5a3c80f12ddc3510a347e48d5fe19",
-      "verification": "needs_review"
+      "corroboratingUrls": [
+        "https://www.library.pref.osaka.jp/?p=126419",
+        "https://www.lighty-hall.com/event/2026/12/event-3934.php"
+      ],
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "受付・司会進行に手話通訳を配置。追加の通訳が必要な方は11月29日までにご相談ください。"
+        },
+        {
+          "method": "captions",
+          "detail": "映画上映で、日本語字幕と日本語音声ガイドがあります。"
+        },
+        {
+          "method": "summary",
+          "detail": "要約筆記を希望する方は11月29日までに主催者へご相談ください。"
+        },
+        {
+          "method": "loop",
+          "detail": "ヒアリングループを希望する方は11月29日までに主催者へご相談ください。"
+        }
+      ],
+      "applicationDeadline": "2026-11-29",
+      "deadlineScope": "other",
+      "verifiedAt": "2026-11-28T00:08:22.7077326Z",
+      "evidenceHash": "b28a363d0d6f29697d4d172cc0f30f8fd4cff9f11ce725bd026ce5e9988ea14d",
+      "verification": "verified",
+      "thumbnail": {
+        "url": "https://www.oioi-sign.com/dev/wp-content/uploads/2026/11/event_20261212.png",
+        "source": "og:image",
+        "pageUrl": "https://www.oioi-sign.com/event_20261212/"
+      }
     },
     {
       "id": "tokushima-moa-universal-art-2026-12-12",
@@ -2661,6 +2791,37 @@
       "thumbnailPolicy": "omit",
       "verifiedAt": "2026-11-27T18:53:31.664Z",
       "evidenceHash": "a1617d8313849e7e0f280e50a7cadfa993d93c58d8bfcd8acf543fdb676b1386",
+      "verification": "verified"
+    },
+    {
+      "id": "tsu-hakusan-human-rights-2026-12-12",
+      "kind": "course",
+      "title": "津市 人権を考える市民のつどい（白山）",
+      "prefecture": "三重県",
+      "startDate": "2026-12-12",
+      "time": "13:30開始（開場13:00、講演14:30から）",
+      "venue": "津市白山総合文化センター しらさぎホール（津市白山町二本木1139-2）",
+      "organizer": "津市",
+      "fee": "入場無料",
+      "target": "定員595名、先着順。託児あり。利用条件は主催者の案内をご確認ください。",
+      "description": "人権作品の表彰・作文発表に続き、佐野有美さんが先入観や差別、偏見について講演します。",
+      "sourceName": "津市の開催案内",
+      "sourceUrl": "https://www.info.city.tsu.mie.jp/kurashi/1002199/1002200/1013715.html",
+      "visualEvidenceUrl": "https://www.pref.mie.lg.jp/common/content/001280246.pdf",
+      "communication": [
+        {
+          "method": "interpretation",
+          "detail": "手話通訳あり。第1部と第2部それぞれの対応範囲は主催者にご確認ください。"
+        }
+      ],
+      "reviewNote": "市公式本文と県掲載の主催者チラシを確認。通訳の適用範囲は告知に明記なし。",
+      "endDate": "2026-12-12",
+      "detailUrl": "https://www.info.city.tsu.mie.jp/kurashi/1002199/1002200/1013715.html",
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verificationMode": "visual",
+      "verifiedAt": "2026-11-28T00:08:22.7077326Z",
+      "evidenceHash": "24957f20558be26255c08bca94da3ff2a8a96db1772f1e194aa2e17e0a05a4c0",
       "verification": "verified"
     },
     {
@@ -3197,6 +3358,45 @@
       "verifiedAt": "2026-11-17T00:31:34.240Z",
       "evidenceHash": "3d930d432e7b59207b4294ee9d41a5218130c978b2f943a060a62f33a72d79dd",
       "verification": "needs_review"
+    },
+    {
+      "id": "shiga-transit-square-2026-12-20",
+      "kind": "theater",
+      "title": "TRANSIT SQUARE（トランジット スクエア）",
+      "prefecture": "滋賀県",
+      "startDate": "2026-12-20",
+      "time": "15:00開演（14:30開場）",
+      "venue": "滋賀県立文化産業交流会館 イベントホール（米原市下多良2丁目137）",
+      "organizer": "滋賀県立文化産業交流会館（びわ湖芸術文化財団）",
+      "fee": "自由席 一般2,000円、青少年（24歳以下）1,000円。",
+      "target": "未就学児入場不可。鑑賞サポートは事前申込が必要で、11月30日（月）24:00まで、先着。身体障害者手帳に関する利用条件があり、軽度難聴などの場合はUDCastにご相談ください。チケット購入済みの方はUDCastへ連絡。",
+      "applicationDeadline": "2026-11-30",
+      "deadlineScope": "captions",
+      "description": "米原駅前の広場を舞台にした青春群像劇。鑑賞サポートでは音声ガイドや誘導も案内されています。",
+      "sourceName": "UDCastの鑑賞サポート・公演案内",
+      "sourceUrl": "https://udcast.net/workslist/s-bunsan_youth/",
+      "corroboratingUrls": [
+        "https://www.s-bunsan.jp/event/25498.html"
+      ],
+      "communication": [
+        {
+          "method": "captions",
+          "detail": "公演の日本語字幕と多言語字幕は事前申込制です。"
+        },
+        {
+          "method": "interpretation",
+          "detail": "手話通訳は受付に配置されます。"
+        }
+      ],
+      "reviewNote": "会館の現行告知、支援提供元UDCastの案内と公開申込フォームを照合。9月頃の県印刷物の時刻は採用しない。",
+      "endDate": "2026-12-20",
+      "detailUrl": "https://udcast.net/workslist/s-bunsan_youth/",
+      "status": "announced",
+      "thumbnailPolicy": "omit",
+      "verificationMode": "html",
+      "verifiedAt": "2026-11-28T00:09:23.296Z",
+      "evidenceHash": "ecf974753e9ecf0206ae0b58f5b4a125c9cb51a08fe99eb8100103a534e42732",
+      "verification": "verified"
     },
     {
       "prefecture": "兵庫県",
