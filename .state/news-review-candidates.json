@@ -1,25 +1,24 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-28T00:17:12.788Z",
+  "generatedAt": "2026-11-28T03:14:34.255Z",
   "counts": {
-    "uniqueInputs": 2880,
-    "alreadyPublished": 981,
-    "outsideWindow": 1591,
-    "hardExcluded": 15,
-    "duplicateOfPublished": 81,
-    "candidateDuplicates": 5,
-    "eligible": 207,
+    "uniqueInputs": 2657,
+    "alreadyPublished": 865,
+    "outsideWindow": 1524,
+    "hardExcluded": 11,
+    "duplicateOfPublished": 70,
+    "candidateDuplicates": 4,
+    "eligible": 183,
     "queued": 40,
-    "deferred": 167
+    "deferred": 143
   },
   "hardExclusionReasons": {
-    "low-value-page": 8,
-    "incidental-organization-mention": 1,
-    "foreign-coverage-review-required": 2,
+    "low-value-page": 6,
+    "foreign-coverage-review-required": 1,
     "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-27T18:52:00.934Z",
+    "previousGeneratedAt": "2026-11-28T00:17:12.788Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -36,16 +35,6 @@
       "priority": 0,
       "reason": "source-topic-unconfirmed",
       "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
-      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
-      "publishedAt": "2026-11-16T01:17:09.000Z",
-      "sourceTier": "specialist",
-      "sourceDomain": "www.zentsuken.net",
-      "priority": 0,
-      "reason": "below-score",
-      "feedChange": "new"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/26/144601",
@@ -426,6 +415,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
+      "articleHash": "8559c4728ef1fbdbd00e3d86117ab8e8fefa2ac0f8c47458964c0b1ade638887",
+      "publishedAt": "2026-11-04T07:30:26.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "co-coco.jp",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
