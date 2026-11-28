@@ -1,4 +1,4 @@
-import {eventDeadline,deadlineLabel} from '../event-deadline.js';
+import {eventDeadlines,deadlineLabel} from '../event-deadline.js';
 import { SITE_URL } from '../../config/site.mjs';
 import { EVENT_KINDS, EVENT_RECHECK_MS, EVENT_COMMUNICATION } from '../../config/events.mjs';
 import { eventPeriod, validEvent, eventDateLabel, eventSearchText, providedEventPoster } from '../lib/events.mjs';
@@ -31,7 +31,7 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
     const heading=event.detailIntro?.heading??event.title;
     const search=[eventSearchText(event),event.detailIntro?.heading].filter(Boolean).join(' ');
     const communication=event.communication||[];
-    const deadline=eventDeadline(event);
+    const deadlines=eventDeadlines(event);
     const hasProvidedPoster=period==='upcoming'&&providedEventPoster(event);
     const mediaEvent=event.thumbnailPolicy==='provided'&&!hasProvidedPoster?{...event,thumbnail:null}:event;
     return `<article class="event-row" id="${e(event.id)}" data-event data-start="${e(event.startDate)}" data-end="${e(event.endDate||event.startDate)}" data-verified="${e(event.verifiedAt)}" data-verification="${e(event.verification)}" data-status="${e(event.status)}" data-prefecture="${e(event.prefecture)}" data-kind="${e(event.kind)}" data-search="${e(search)}"${period==='upcoming'?'':' hidden'}>
@@ -42,7 +42,7 @@ export function renderEventsPage(snapshot, { files, isDev=false, clientAssetVers
       ${event.description?`<p>${e(event.description)}</p>`:''}
       <div class="event-communication" data-communication="${communication.map(item=>item.method).join(' ')}"><p class="event-communication-label">情報の受け取り方</p>${communication.length?`<ul>${communication.map(item=>`<li><strong>${e(EVENT_COMMUNICATION[item.method])}</strong>：${e(item.detail)}</li>`).join('')}</ul>`:'<p class="event-communication-unknown">通訳・字幕・筆談など、利用できる方法は主催者へお問い合わせください。</p>'}</div>
       ${event.fee||event.target?`<dl class="event-participation">${[['参加費',event.fee],['対象・申込',event.target]].filter(([,value])=>value).map(([label,value])=>`<div><dt>${label}</dt><dd>${e(value)}</dd></div>`).join('')}</dl>`:''}
-${deadline?`      <p class="event-deadline" data-event-deadline="${e(deadline.date)}" data-deadline-scope="${e(deadline.scope)}">${e(deadlineLabel(deadline))}</p>`:''}
+${deadlines.map(deadline=>`      <p class="event-deadline" data-event-deadline="${e(deadline.date)}" data-deadline-scope="${e(deadline.scope)}">${e(deadlineLabel(deadline))}</p>`).join('\n')}
       <p class="event-action"><a href="${e(event.detailUrl||event.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${e(heading)}の公式案内・申込方法を見る（新しいタブ）">公式案内・申込方法を見る<span aria-hidden="true"> ↗</span></a></p>
       ${shareControl(eventShare(event,new URL(eventDetailPath(event),SITE_URL).href))}
       <details><summary>主催・情報源</summary><dl><div><dt>主催</dt><dd>${e(event.organizer||'告知をご確認ください')}</dd></div></dl>

@@ -1,4 +1,5 @@
 // Public, allowlisted presentation only. No fetching, tracking, AI or posting.
+import {deadlineFields,deadlineTitle,eventDeadlines} from './event-deadline.js';
 const clean = value => typeof value === 'string' ? value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '').trim() : '';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value || '') && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0,10) === value ? value : '';
@@ -16,8 +17,8 @@ export function newsShare(article) {
 }
 export function eventShare(event, url, kind='event') {
   const result = {kind, title:clean(event.title), url:shareUrl(url)};
-  for (const key of ['startDate','endDate','time','venue','prefecture','fee','target','status','period','verification','verifiedAt','validUntil','timezone','applicationDeadline','deadlineScope']) result[key] = clean(event[key]);
-  return result;
+  for (const key of ['startDate','endDate','time','venue','prefecture','fee','target','status','period','verification','verifiedAt','validUntil','timezone']) result[key] = clean(event[key]);
+  return {...result,applicationDeadline:'',deadlineScope:'',...deadlineFields(event,{inferParticipation:false})};
 }
 export function shareControl(data) {
   if (!clean(data.title) || !shareUrl(data.url)) return '';
@@ -62,7 +63,9 @@ export function sharePresentation(data, now=Date.now()) {
   if (data.kind !== 'news' && state !== '最新状況は公式案内へ') {
     if (data.fee) lines.push('参加費：'+clean(data.fee));
     if (data.target) lines.push('対象・申込：'+clean(data.target));
-    if (date(data.applicationDeadline)) lines.push('申込期限：'+data.applicationDeadline);
+    for (const deadline of eventDeadlines({...data,target:''},now)) {
+      lines.push((deadline.scope==='participation'?'申込期限':deadlineTitle(deadline.scope))+'：'+deadline.date);
+    }
   }
   if (data.kind !== 'news' && Number.isFinite(Date.parse(data.verifiedAt))) lines.push('情報確認：'+new Date(Date.parse(data.verifiedAt)+9*3600000).toISOString().slice(0,16).replace('T',' ')+' JST');
   lines.push(note,url,'Deaf Naviで見つけた情報');

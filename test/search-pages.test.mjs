@@ -50,7 +50,11 @@ test('visitor copy preserves expired-event warnings and client-side freshness wi
  const list=renderEventsPage({events:[stale]});
  assert.doesNotMatch(list,/再確認中|再取得中|最長6時間|約30分後|順次調査/);
  const nodes={'[data-detail-status]':{},'[data-detail-notice]':{},'[data-source-retry]':{}};
- const article={dataset:{end:stale.endDate,status:stale.status,verification:stale.verification,verified:stale.verifiedAt,recheckMs:String(48*3600000)},querySelector:s=>nodes[s]};
+ const deadlines=[
+  {dataset:{eventDeadline:'2026-10-20',deadlineScope:'participation'}},
+  {dataset:{eventDeadline:'2026-10-16',deadlineScope:'accessibility'}},
+ ];
+ const article={dataset:{end:stale.endDate,status:stale.status,verification:stale.verification,verified:stale.verifiedAt,recheckMs:String(48*3600000)},querySelector:s=>nodes[s],querySelectorAll:()=>deadlines};
  const robots={setAttribute:(k,v)=>{robots[k]=v;}};
  const schema={textContent:JSON.stringify([{'@type':'Event'},{'@type':'BreadcrumbList'}])};
  const document={querySelector:s=>s==='[data-event-detail]'?article:robots,querySelectorAll:()=>[schema],addEventListener:()=>{}};
@@ -59,6 +63,8 @@ test('visitor copy preserves expired-event warnings and client-side freshness wi
  vm.runInNewContext(detailScript,{document,Date:Clock,setInterval:()=>{},eventDeadline,deadlineLabel});
  assert.equal(nodes['[data-detail-status]'].textContent,eventDetailState(stale,now).label);
  assert.equal(nodes['[data-detail-notice]'].textContent,eventDetailState(stale,now).note);
+ assert.match(deadlines[0].textContent,/^申込締切日：2026-10-20/);
+ assert.match(deadlines[1].textContent,/^配慮を希望する方の連絡期限を過ぎています/);
  assert.equal(robots.content,'noindex,follow');
  assert.deepEqual(JSON.parse(schema.textContent),[{'@type':'BreadcrumbList'}]);
  assert.equal(stale.verifiedAt,new Date(now-48*3600000).toISOString());
