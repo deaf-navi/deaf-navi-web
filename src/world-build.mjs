@@ -625,6 +625,7 @@ async function main() {
   await writeFile(EN_LEGACY_FEED_OUT, originalFeed, 'utf8');
   await writeFile(SITEMAP_OUT, renderSitemap(data), 'utf8');
   await copyFile(join(__dirname, 'content-share.js'), join(DOCS, 'content-share.js'));
+  await copyFile(join(__dirname, 'event-deadline.js'), join(DOCS, 'event-deadline.js'));
   for (const asset of ['content-share.css','content-share-ui.js']) await copyFile(join(__dirname, 'assets', asset), join(DOCS, asset));
   await copyFile(STYLES_SRC, STYLES_OUT);
   await copyFile(join(__dirname, 'assets/browse.css'), join(DOCS, 'browse.css'));

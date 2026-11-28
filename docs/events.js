@@ -54,7 +54,9 @@ export function eventDateWindow(range, now = Date.now()) {
   const window=eventDateWindow(range,now);
   for(const row of rows){
    const d=row.dataset, state=eventRowPeriod(d,now,stale);
-   const deadlineNode=row.querySelector('[data-event-deadline]');if(deadlineNode)deadlineNode.textContent=deadlineLabel(eventDeadline({applicationDeadline:deadlineNode.dataset.eventDeadline,deadlineScope:deadlineNode.dataset.deadlineScope},now));
+   for (const node of row.querySelectorAll('[data-event-deadline]')) {
+     node.textContent=deadlineLabel(eventDeadline({applicationDeadline:node.dataset.eventDeadline,deadlineScope:node.dataset.deadlineScope},now));
+   }
    const retryNote=row.querySelector('[data-source-retry]');if(retryNote)retryNote.hidden=state==='past'||state==='cancelled';
    row.querySelector('[data-event-state]').textContent=d.status==='cancelled'?'中止の告知':state==='upcoming'&&d.status==='closed'?'受付終了の告知':labels[state];
    row.hidden=(controls.communication.value&&!row.querySelector('[data-communication]').dataset.communication.split(' ').includes(controls.communication.value))||state!==period||!tokens.every(t=>normalize(d.search).includes(t))||!matchesRegion(d.prefecture,controls.region.value)||(controls.prefecture.value&&d.prefecture!==controls.prefecture.value)||(controls.kind.value&&d.kind!==controls.kind.value)||(controls.month.value&&!(d.start.slice(0,7)<=controls.month.value&&d.end.slice(0,7)>=controls.month.value))||(window&&(d.end<window[0]||d.start>window[1]));if(!row.hidden)count++;

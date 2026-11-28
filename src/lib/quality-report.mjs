@@ -1,5 +1,5 @@
 import {eventDay,eventPeriod,validEvent} from './events.mjs';
-import {eventDeadline} from '../event-deadline.js';
+import {deadlineFields,eventDeadlines} from '../event-deadline.js';
 import {sourceDispositionDigest} from './source-review.mjs';
 export const INFORMATION_FIELDS={time:'時刻',fee:'料金',signup:'申込方法',deadline:'申込締切',communication:'情報の受け取り方'};
 export function eventInformation(event) {
@@ -7,7 +7,7 @@ export function eventInformation(event) {
   const target=text(event.target),noSignup=/(?:^|[。\n])(?:事前)?(?:申込|申し込み|予約)(?:は)?不要(?:[。\n]|$)/u.test(target);
   const values={time:/\d{1,2}\s*[:：時]|終日/.test(text(event.time)),fee:/無料|\d[\d,]*\s*円/.test(text(event.fee)),
     signup:/(?:フォーム|FAX|メール|電話|郵送|窓口)[^。\n]{0,35}(?:申込|申し込|予約)|(?:申込|申し込|予約)[^。\n]{0,35}(?:フォーム|FAX|メール|電話|郵送|窓口)|当日受付/iu.test(target),
-    deadline:Boolean(eventDeadline(event)),communication:(event.communication||[]).length>0 || (event.communicationAvailability==='unavailable'&&Boolean(event.informationNotes?.communication?.trim()))};
+    deadline:Boolean(deadlineFields(event).applicationDeadline),communication:(event.communication||[]).length>0 || (event.communicationAvailability==='unavailable'&&Boolean(event.informationNotes?.communication?.trim()))};
   return Object.fromEntries(Object.keys(INFORMATION_FIELDS).map(key=>[key,
     event.informationStatus?.[key]==='not_applicable' && event.informationNotes?.[key]?.trim()?'not_applicable':
     event.informationStatus?.[key]==='unknown'?'unknown':noSignup&&['signup','deadline'].includes(key)?'not_applicable':values[key]?'confirmed':'unknown']));
@@ -17,7 +17,7 @@ export function qualityReport(snapshot, ledgers, {now=Date.now(),worldArticles=[
   const events=(snapshot.events||[]).filter(validEvent).filter(e=>e.startDate<=through && (e.endDate||e.startDate)>=today).map(e=>({
     id:e.id,title:e.title,startDate:e.startDate,prefecture:e.prefecture,sourceUrl:e.sourceUrl,
     verifiedAt:e.verifiedAt,period:eventPeriod(e,now),information:eventInformation(e),
-    notes:e.informationNotes||{},deadline:eventDeadline(e,now),
+    notes:e.informationNotes||{},deadline:eventDeadlines(e,now).find(row=>row.scope==='participation')??null,
   }));
   const coverage=Object.fromEntries(Object.keys(INFORMATION_FIELDS).map(key=>[key,{
     confirmed:events.filter(e=>e.information[key]==='confirmed').length,

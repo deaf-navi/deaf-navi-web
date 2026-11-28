@@ -4,7 +4,7 @@ import { tagAttributes, publicUrl } from './thumbnail-metadata.mjs';
 import { EVENT_RECHECK_MS, EVENT_KINDS, EVENT_COMMUNICATION } from '../../config/events.mjs';
 import { SITE_URL } from '../../config/site.mjs';
 import { PREFECTURES } from '../../config/regions.mjs';
-import {validDeadlineDate} from '../event-deadline.js';
+import {deadlineFields,isSupportDeadlineScope,validDeadlineDate} from '../event-deadline.js';
 
 export const eventDay = (now = Date.now()) => new Date(now + 9 * 3600000).toISOString().slice(0, 10);
 export const eventHash = value => createHash('sha256').update(value).digest('hex');
@@ -26,8 +26,12 @@ export function publicEventSnapshot(snapshot) {
     'organizer','organizers','time','fee','target','status','description','verification','verifiedAt','evidenceHash',
     'sourceStatus','communication','communicationAvailability','applicationDeadline','deadlineScope','informationStatus',
     'informationNotes','offers','thumbnail','thumbnailPolicy','verificationMode','visualEvidenceUrl','corroboratingUrls'];
-  return {version:1,checkedAt:snapshot.checkedAt,events:(snapshot.events||[]).map(event=>
-    Object.fromEntries(Object.entries(event).filter(([key])=>fields.includes(key))))};
+  return {version:1,checkedAt:snapshot.checkedAt,events:(snapshot.events||[]).map(event=>{
+    const item=Object.fromEntries(Object.entries(event).filter(([key])=>fields.includes(key)));
+    const deadlines=deadlineFields(event,{inferParticipation:false});
+    if(!deadlines.applicationDeadline){delete item.applicationDeadline;delete item.deadlineScope;}
+    return {...item,...deadlines};
+  })};
 }
 export function validEventDate(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
@@ -69,7 +73,9 @@ export function validEvent(event) {
     && typeof event.sourceName === 'string' && event.sourceName.length > 0 && validEventTerms(event)
     && Number.isFinite(Date.parse(event.verifiedAt)) && /^[a-f0-9]{64}$/.test(event.evidenceHash || '')
     && (event.applicationDeadline == null || validDeadlineDate(event.applicationDeadline))
-    && (event.deadlineScope == null || ['participation','captions','interpretation','other'].includes(event.deadlineScope))
+    && (event.deadlineScope == null || ['participation','other'].includes(event.deadlineScope) || isSupportDeadlineScope(event.deadlineScope))
+    && (event.supportDeadline == null ? event.supportDeadlineScope == null
+      : validDeadlineDate(event.supportDeadline) && isSupportDeadlineScope(event.supportDeadlineScope))
     && (event.communicationAvailability == null || (['available','unavailable','unknown'].includes(event.communicationAvailability)
       && (event.communicationAvailability!=='unavailable' || (typeof event.informationNotes?.communication==='string' && event.informationNotes.communication.trim().length>0 && event.informationNotes.communication.length<=300 && !(event.communication||[]).length))))
     && (event.informationStatus == null || (typeof event.informationStatus==='object' && !Array.isArray(event.informationStatus)

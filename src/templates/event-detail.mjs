@@ -1,4 +1,4 @@
-import {eventDeadline,deadlineLabel} from '../event-deadline.js';
+import {eventDeadlines,deadlineLabel} from '../event-deadline.js';
 import { SITE_URL } from '../../config/site.mjs';
 import { EVENT_COMMUNICATION, EVENT_RECHECK_MS } from '../../config/events.mjs';
 import { escapeHtml as e } from '../lib/text.mjs';
@@ -28,8 +28,7 @@ export function renderEventDetail(event,{now=Date.now()}={}) {
  if(!validEvent(event))throw new Error('Invalid event detail');
  const state=eventDetailState(event,now),schema=eventSchema(event,now),path=eventDetailPath(event);
  const date=eventDateLabel(event.startDate)+(event.endDate&&event.endDate!==event.startDate?' 〜 '+eventDateLabel(event.endDate):'');
- const deadline=eventDeadline(event,now);
- const deadlineNote=deadline?`<p class="reader-note" data-event-deadline="${e(deadline.date)}" data-deadline-scope="${e(deadline.scope)}">${e(deadlineLabel(deadline))}</p>`:'';
+ const deadlineNote=eventDeadlines(event,now).map(deadline=>`<p class="reader-note" data-event-deadline="${e(deadline.date)}" data-deadline-scope="${e(deadline.scope)}">${e(deadlineLabel(deadline))}</p>`).join('');
  const organizerHtml=event.organizers?.map(item=>item.url?`<a href="${e(publicUrl(item.url))}" target="_blank" rel="noopener noreferrer">${e(item.name)}</a>`:e(item.name)).join('・');
  const offerLinks=(event.offers||[]).filter(item=>publicUrl(item.url)!==publicUrl(event.detailUrl||event.sourceUrl))
   .map(item=>`<a href="${e(publicUrl(item.url))}" target="_blank" rel="noopener noreferrer">${e(item.name||'参加')}の申込案内（${e(item.price)} ${e(item.priceCurrency)}・新しいタブ）</a>`).join('');
