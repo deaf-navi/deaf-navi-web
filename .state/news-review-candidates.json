@@ -1,29 +1,30 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-27T18:52:00.934Z",
+  "generatedAt": "2026-11-28T00:17:12.788Z",
   "counts": {
-    "uniqueInputs": 2864,
-    "alreadyPublished": 924,
-    "outsideWindow": 1611,
-    "hardExcluded": 10,
-    "duplicateOfPublished": 95,
-    "candidateDuplicates": 10,
-    "eligible": 214,
+    "uniqueInputs": 2880,
+    "alreadyPublished": 981,
+    "outsideWindow": 1591,
+    "hardExcluded": 15,
+    "duplicateOfPublished": 81,
+    "candidateDuplicates": 5,
+    "eligible": 207,
     "queued": 40,
-    "deferred": 174
+    "deferred": 167
   },
   "hardExclusionReasons": {
+    "low-value-page": 8,
     "incidental-organization-mention": 1,
-    "foreign-coverage-review-required": 1,
-    "low-value-page": 8
+    "foreign-coverage-review-required": 2,
+    "market-report": 4
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-27T03:37:10.289Z",
+    "previousGeneratedAt": "2026-11-27T18:52:00.934Z",
     "previousQueued": 40,
-    "retained": 37,
-    "new": 3,
+    "retained": 39,
+    "new": 1,
     "changed": 0,
-    "unchanged": 37
+    "unchanged": 39
   },
   "candidates": [
     {
@@ -34,6 +35,16 @@
       "sourceDomain": "www.mimisuppo-miyagi.org",
       "priority": 0,
       "reason": "source-topic-unconfirmed",
+      "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
+      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
+      "publishedAt": "2026-11-16T01:17:09.000Z",
+      "sourceTier": "specialist",
+      "sourceDomain": "www.zentsuken.net",
+      "priority": 0,
+      "reason": "below-score",
       "feedChange": "new"
     },
     {
@@ -234,7 +245,7 @@
       "sourceDomain": "udcast.net",
       "priority": 1,
       "reason": "unrelated",
-      "feedChange": "new"
+      "feedChange": "unchanged"
     },
     {
       "sourceUrl": "https://palabra-i.co.jp/2026/11/post-5744/",
@@ -415,16 +426,6 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://co-coco.jp/news/wonyoung_mimibi/",
-      "articleHash": "8559c4728ef1fbdbd00e3d86117ab8e8fefa2ac0f8c47458964c0b1ade638887",
-      "publishedAt": "2026-11-04T07:30:26.000Z",
-      "sourceTier": "broad",
-      "sourceDomain": "co-coco.jp",
-      "priority": 1,
-      "reason": "unrelated",
-      "feedChange": "new"
     }
   ]
 }
