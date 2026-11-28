@@ -1,24 +1,24 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-28T13:04:32.922Z",
+  "generatedAt": "2026-11-28T13:23:18.987Z",
   "counts": {
-    "uniqueInputs": 2795,
-    "alreadyPublished": 962,
-    "outsideWindow": 1544,
-    "hardExcluded": 9,
-    "duplicateOfPublished": 93,
-    "candidateDuplicates": 5,
-    "eligible": 182,
+    "uniqueInputs": 2854,
+    "alreadyPublished": 954,
+    "outsideWindow": 1572,
+    "hardExcluded": 8,
+    "duplicateOfPublished": 97,
+    "candidateDuplicates": 6,
+    "eligible": 217,
     "queued": 40,
-    "deferred": 142
+    "deferred": 177
   },
   "hardExclusionReasons": {
-    "low-value-page": 4,
-    "foreign-coverage-review-required": 1,
-    "market-report": 4
+    "incidental-organization-mention": 1,
+    "foreign-coverage-review-required": 2,
+    "low-value-page": 5
   },
   "comparison": {
-    "previousGeneratedAt": "2026-11-28T03:14:34.255Z",
+    "previousGeneratedAt": "2026-11-28T13:04:32.922Z",
     "previousQueued": 40,
     "retained": 39,
     "new": 1,
@@ -35,16 +35,6 @@
       "priority": 0,
       "reason": "source-topic-unconfirmed",
       "feedChange": "unchanged"
-    },
-    {
-      "sourceUrl": "https://zentsuken.cocolog-nifty.com/blog/2026/11/post-c30755.html",
-      "articleHash": "9098bc77f313edcda16ccd0a32bdcf4edd4043138e0f5a21d59e73b464266b4c",
-      "publishedAt": "2026-11-16T01:17:09.000Z",
-      "sourceTier": "specialist",
-      "sourceDomain": "www.zentsuken.net",
-      "priority": 0,
-      "reason": "below-score",
-      "feedChange": "new"
     },
     {
       "sourceUrl": "https://mimisuppomiyagi.hatenablog.com/entry/2026/11/26/144601",
@@ -425,6 +415,16 @@
       "priority": 1,
       "reason": "unrelated",
       "feedChange": "unchanged"
+    },
+    {
+      "sourceUrl": "https://udcast.net/workslist/godzillaminuszero/",
+      "articleHash": "f35d8cc44a0bd5fd9b25139ef34b083a4a5a117b2228f2822075b3e1b5c14791",
+      "publishedAt": "2026-11-13T02:39:15.000Z",
+      "sourceTier": "broad",
+      "sourceDomain": "udcast.net",
+      "priority": 1,
+      "reason": "unrelated",
+      "feedChange": "new"
     }
   ]
 }
